@@ -1,30 +1,46 @@
 # aa工具
 
-
 Ability assistant（Ability助手，简称为aa），是用于启动应用和启动测试用例的工具，为开发者提供基本的应用调试和测试能力，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
 
-> **说明：**
->
-> 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
+## 环境要求
 
+在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
 
-## help
-  用于显示aa相关的帮助信息。
+## aa工具命令列表
 
-  **返回值**：
+| 命令 | 描述 |
+|--------|--------|
+| -h/help | 帮助命令。用于查询aa支持的命令信息。|
+| start | 启动命令。用于启动一个应用组件，目标组件可以是FA模型的PageAbility和ServiceAbility组件，也可以是Stage模型的UIAbility和ServiceExtensionAbility组件，且目标组件相应配置文件中的exported标签不能配置为false。|
+| stop-service | 停止命令。用于停止ServiceAbility。 |
+| dump<sup>(deprecated)</sup> | 打印命令。用于打印应用组件的相关信息。|
+| force-stop | 强制停止进程命令。通过bundleName强制停止一个进程。|
+| test | 启动测试框架命令。根据所携带的参数启动测试框架。 |
+| attach | 进入调试模式命令。通过bundleName使指定应用进入调试模式。|
+| detach | 退出调试模式命令。通过bundleName使指定应用退出调试模式。|
+| appdebug | 等待调试命令。用于设置、取消设置应用等待调试状态，以及获取处于等待调试状态的应用包名和持久化信息。等待调试状态只对debug类型应用生效。appdebug的设置命令只对单个应用生效，当重复设置时，应用包名与持久化状态会替换成最新设置内容。|
+| process | 应用调试/调优命令。对应用进行调试或调优，IDE用该命令集成调试和调优工具。|
 
-  返回对应的帮助信息。
+## 帮助命令（help）
 
-  **使用方法**：
+```bash
+# 显示帮助信息
+aa help
+```
 
-  
-  ```bash
-  aa help
-  ```
+## 启动命令（start）
 
+启动一个应用组件，目标组件可以是FA模型的PageAbility和ServiceAbility组件，也可以是Stage模型的UIAbility和ServiceExtensionAbility组件，且目标组件相应配置文件中的exported标签不能配置为false。
 
-## start
-  用于启动一个应用组件，目标组件可以是FA模型的PageAbility和ServiceAbility组件，也可以是Stage模型的UIAbility和ServiceExtensionAbility组件，且目标组件相应配置文件中的exported标签不能配置为false。
+```bash
+# 显示启动Ability
+aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+
+# 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
+aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+```
+
+  **启动命令参数列表**
 
   | 参数 | 参数说明              |
   | -------- |-------------------|
@@ -53,20 +69,10 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
   当启动成功时，返回"start ability successfully."；当启动失败时，返回"error: failed to start ability."，同时会包含相应的失败信息。
 
-  **使用方法**：
-
-  
-  ```bash
-  # 显示启动Ability
-  aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
-  
-  # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
-  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
-  ```
-
   **示例**：
 
-以隐式启动Ability为例。
+  以隐式启动Ability为例。
+
   > **说明：**
   > 
   > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)。
@@ -139,9 +145,15 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
         ```
 
 
-## stop-service
-  用于停止ServiceAbility。
+## 停止命令（stop-service）
 
+用于停止ServiceAbility。
+
+```bash
+aa stop-service [-d <deviceId>] -a <abilityName> -b <bundleName> [-m <moduleName>]
+```
+
+  **停止命令参数列表**
   | 参数 | 参数说明 |
   | -------- | -------- |
   | -h/--help | 帮助信息。 |
@@ -154,19 +166,26 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
   当成功停止ServiceAbility时，返回"stop service ability successfully."；当停止失败时，返回"error: failed to stop service ability."。
 
-  **使用方法**：
-
+  **示例**：
   
   ```bash
-  aa stop-service [-d <deviceId>] -a <abilityName> -b <bundleName> [-m <moduleName>]
+  # 停止一个ServiceAbility
+  aa stop-service -a EntryAbility -b com.example.myapplication -m entry
   ```
 
-## dump<sup>(deprecated)</sup>
-  > **说明：**
-  >
-  > aa dump命令从API version 7开始支持，从API version 9废弃，替换命令为[hidumper](../dfx/hidumper.md) -s AbilityManagerService。
+## 打印命令（dump<sup>(deprecated)</sup>）
 
-  用于打印应用组件的相关信息。
+用于打印应用组件的相关信息。
+
+```bash
+aa dump -a
+```
+
+> **说明：**
+>
+> aa dump命令从API version 7开始支持，从API version 9废弃，替换命令为[hidumper](../dfx/hidumper.md) -s AbilityManagerService。
+
+  **打印命令参数列表**
   | 参数 | 二级参数 | 参数说明 |
   | -------- | -------- | -------- |
   | -h/--help | - | 帮助信息。 |
@@ -180,10 +199,10 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
   | -p/--pending | - | 打印pendingWant信息，需要和其他参数组合使用，例如aa&nbsp;dump&nbsp;-a&nbsp;-p。 |
   | -r/--process | - | 打印应用进程信息，需要和其他参数组合使用，例如aa&nbsp;dump&nbsp;-a&nbsp;-r。 |
 
-  **使用方法**：
-
+  **示例**：
   
   ```bash
+  # 打印所有mission内的应用组件信息
   aa dump -a
   ```
 
@@ -191,6 +210,7 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
   
   ```bash
+  # 打印所有任务链
   aa dump -l
   ```
 
@@ -198,33 +218,44 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
   
   ```bash
+  # 打印指定应用组件详细信息
   aa dump -i 12
   ```
 
   ![aa-dump-i](figures/aa-dump-i.png)
 
-## force-stop
-  通过bundleName强制停止一个进程。
+## 强制停止进程命令（force-stop）
+
+通过bundleName强制停止一个进程。
+
+```bash
+aa force-stop <bundleName>
+```
 
   **返回值**：
 
   当成功强制停止该进程时，返回"force stop process successfully."；当强制停止失败时，返回"error: failed to force stop process."。
 
-  **使用方法**：
+  **示例**：
 
-  
   ```bash
-  aa force-stop <bundleName>
+  # 通过bundleName强制停止一个进程
+  aa force-stop com.example.myapplication
   ```
 
-## test
+## 启动测试框架命令（test）
 
-  根据所携带的参数启动测试框架。
+根据所携带的参数启动测试框架。
 
-  > **说明**：
-  > 
-  > 关于class、level、size、testType等参数的详细说明请参见<!--RP2-->[aa test命令执行配置参数](../application-test/arkxtest-guidelines.md#cmd执行)<!--RP2End-->。
+```bash
+aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-class>] [-s level <test-level>] [-s size <test-size>] [-s testType <test-testType>] [-s timeout <test-timeout>] [-s <any-key> <any-value>] [-w <wait-time>] -s unittest <testRunner>
+```
 
+> **说明**：
+> 
+> 关于class、level、size、testType等参数的详细说明请参见<!--RP2-->[aa test命令执行配置参数](../application-test/arkxtest-guidelines.md#cmd执行)<!--RP2End-->。
+
+  **启动测试框架命令参数列表**
   | 参数 | 参数说明 |
   | -------- | -------- |
   | -h/--help | 帮助信息。 |
@@ -245,55 +276,76 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
   当成功启动测试框架时，返回"user test started."；当启动失败时，返回"error: failed to start user test."和对应的错误信息。
 
-  **使用方法**：
+  **示例**：
 
   ```bash
-  aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-class>] [-s level <test-level>] [-s size <test-size>] [-s testType <test-testType>] [-s timeout <test-timeout>] [-s <any-key> <any-value>] [-w <wait-time>] -s unittest <testRunner>
+  # 启动测试框架
+  aa test -b com.example.myapplication -s unittest ActsAbilityTest
+  # 启动测试框架并设置moduleName
+  aa test -b com.example.myapplication -m entry_test -s unittest ActsAbilityTest
+  # 启动测试框架并指定超时时间
+  aa test -b com.example.myapplication -m entry_test -s timeout 10000 -s unittest ActsAbilityTest
   ```
 
-## attach
-  通过bundleName使指定应用进入调试模式。
+## 进入调试模式命令（attach）
 
+通过bundleName使指定应用进入调试模式。
+
+```bash
+aa attach -b <bundleName>
+```
+
+  **进入调试模式命令参数列表**
   | 参数 | 参数说明              |
   | -------- |-------------------|
   | -h/--help | 帮助信息。             |
   | -b | 必选参数，bundleName。  |
-
 
   **返回值**：
 
   当应用成功进入调试模式时，返回"attach app debug successfully."；当给定参数不合法时，返回"fail: unknown option."并打印帮助信息。
 
-  **使用方法**：
+  **示例**：
 
-  
   ```bash
-  aa attach -b <bundleName>
+  # 通过bundleName使指定应用进入调试模式
+  aa attach -b com.example.myapplication
   ```
 
-## detach
-  通过bundleName使指定应用退出调试模式。
+## 退出调试模式命令（detach）
 
+通过bundleName使指定应用退出调试模式。
+
+```bash
+aa detach -b <bundleName>
+```
+
+  **退出调试模式命令参数列表**
   | 参数 | 参数说明              |
   | -------- |-------------------|
   | -h/--help | 帮助信息。             |
   | -b | 必选参数，bundleName。  |
 
-
   **返回值**：
 
   当应用成功退出调试模式时，返回"detach app debug successfully."；当给定参数不合法时，返回"fail: unknown option."并打印帮助信息。
 
-  **使用方法**：
+  **示例**：
 
-  
   ```bash
-  aa detach -b <bundleName>
+  # 通过bundleName使指定应用退出调试模式
+  aa detach -b com.example.myapplication
   ```
 
-## appdebug
-  用于设置、取消设置应用等待调试状态，以及获取处于等待调试状态的应用包名和持久化信息。等待调试状态只对debug类型应用生效。appdebug的设置命令只对单个应用生效，当重复设置时，应用包名与持久化状态会替换成最新设置内容。
+## 等待调试命令（appdebug）
 
+用于设置、取消设置应用等待调试状态，以及获取处于等待调试状态的应用包名和持久化信息。等待调试状态只对debug类型应用生效。appdebug的设置命令只对单个应用生效，当重复设置时，应用包名与持久化状态会替换成最新设置内容。
+
+```bash
+aa appdebug -b <bundleName> [-p]
+```
+
+  **等待调试命令参数列表**
   | 参数 | 二级参数 | 参数说明 |
   | -------- | -------- | -------- |
   | -h/--help | - | 帮助信息。 |
@@ -306,26 +358,36 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
   当执行成功时，返回"app debug successfully."；当执行失败时，返回"error: failed to app debug."；当失败原因为非开发者模式时，返回"error: not developer mode."。
 
-  **使用方法**：
+  **示例**：
 
   ```bash
   # 显示帮助信息
   aa appdebug -h
 
   # 为指定应用设置等待调试状态
-  aa appdebug -b <bundleName> [-p]
+  aa appdebug -b com.example.myapplication [-p]
 
   # 取消等待调试状态
   aa appdebug -c
 
   # 获取等待调试状态的应用包名和持久化信息
-  aa appdebug -g
   # 获取信息例： bundle name : com.example.publishsystem, persist : false
+  aa appdebug -g
   ```
 
-## process
-  对应用进行调试或调优，IDE用该命令集成调试和调优工具。
+## 应用调试/调优命令（process）
 
+对应用进行调试或调优，IDE用该命令集成调试和调优工具。
+
+```bash
+# 调试应用
+aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-D <debug-cmd>] [-S]
+
+# 调优应用
+aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-S]
+```
+
+  **应用调试/调优命令参数列表**
   | 参数 | 参数说明 |
   | -------- | -------- |
   | -h/--help | 帮助信息。 |
@@ -340,15 +402,12 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
   当执行成功时，返回"start native process successfully."；当执行失败时，返回"error: failed to start native process."；当给定参数不合法时，返回"error: option requires a value."并打印帮助信息。
 
-  **使用方法**：
+  **示例**：
 
   ```bash
-  # 显示帮助信息
-  aa process -h
-
   # 调试应用
-  aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-D <debug-cmd>] [-S]
+  aa process -b com.example.myapplication -a EntryAbility -D debug_cmd [-S]
 
   # 调优应用
-  aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-S]
+  aa process -b com.example.myapplication -a EntryAbility -p perf-cmd [-S]
   ```
