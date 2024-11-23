@@ -115,7 +115,9 @@ close()
 
 ## 示例
 
-### 示例1
+### 示例1（弹出嵌套弹窗）
+
+该示例实现了在CustomDialog中打开另一个或另一些CustomDialog。
 
 ```ts
 // xxx.ets
@@ -262,7 +264,9 @@ struct CustomDialogUser {
 
 ![zh-cn_image_custom](figures/zh-cn_image_custom.gif)
 
-### 示例2
+### 示例2（可在主窗外弹出的弹窗）
+
+该示例通过配置showInSubWindow为true弹出可以在主窗外显示的弹窗。
 
 ```ts
 // xxx.ets
@@ -348,8 +352,8 @@ struct CustomDialogUser {
 
 ![zh-cn_image_custom-showinsubwindow](figures/zh-cn_image_custom-showinsubwindow.jpg)
 
-### 示例3
-该示例定义了CustomDialog的样式，如宽度、高度、背景色、阴影等等
+### 示例3（设置弹窗的样式）
+该示例定义了CustomDialog的样式，如宽度、高度、背景色、阴影等等。
 ```ts
 // xxx.ets
 @CustomDialog

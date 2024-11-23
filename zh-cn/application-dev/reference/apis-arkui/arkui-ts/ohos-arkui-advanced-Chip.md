@@ -191,9 +191,9 @@ LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距�
 
 ## 示例
 
-### 示例1
+### 示例1（自定义后缀图标）
 
-自定义删除图标的操作块。
+该示例通过配置suffixIcon实现自定义操作块的后缀图标。
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -235,9 +235,9 @@ struct Index {
 
 ![](figures/chip1.png)
 
-### 示例2
+### 示例2（设置默认后缀图标）
 
-使用默认删除图标的操作块。
+该示例通过配置allowClose为true显示后缀删除图标。
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -274,9 +274,9 @@ struct Index {
 
 ![](figures/chip2.png)
 
-### 示例3
+### 示例3（不显示后缀图标）
 
-不显示删除图标的操作块。
+该示例通过配置allowClose为false不显示后缀删除图标。
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -316,9 +316,9 @@ struct Index {
 
 ![](figures/chip3.png)
 
-### 示例4
+### 示例4（激活态操作块）
 
-激活态操作块。
+该示例通过配置activated实现激活态操作块。
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -371,7 +371,7 @@ struct Index {
 
 ![](figures/chip4.gif)
 
-### 示例5
+### 示例5（设置symbol类型图标）
 
 Chip组件的前缀、后缀图标使用symbol类型资源展示。
 
@@ -429,9 +429,9 @@ struct Index {
 
 ![](figures/chip5.gif)
 
-### 示例6
+### 示例6（设置镜像效果）
 
-Chip布局镜像化展示
+该示例通过配置direction实现Chip布局镜像化展示。
 
 ```ts
 
