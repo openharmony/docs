@@ -117,7 +117,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
   ArkWeb_ProxyMethod method2 = {"method2", ProxyMethod2, static_cast<void *>(jsbridge_object_ptr->GetWeakPt  ())};
   ArkWeb_ProxyMethod methodList[2] = {method1, method2};
   // 调用ndk接口注册对象
-  // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method1调用此文件下的ProxyMethod1和ProxyMethod2方法了
+  // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method2调用此文件下的ProxyMethod1和ProxyMethod2方法了
   ArkWeb_ProxyObject proxyObject = {"ndkProxy", methodList, 2};
   controller->registerJavaScriptProxy(webTag, &proxyObject);
   ```
@@ -400,7 +400,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
       ArkWeb_ProxyMethod method2 = {"method2", ProxyMethod2, static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
       ArkWeb_ProxyMethod methodList[2] = {method1, method2};
       // 调用ndk接口注册对象
-      // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method1调用此文件下的ProxyMethod1和ProxyMethod2方法了
+      // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method2调用此文件下的ProxyMethod1和ProxyMethod2方法了
       ArkWeb_ProxyObject proxyObject = {"ndkProxy", methodList, 2};
       controller->registerJavaScriptProxy(webTag, &proxyObject);
 

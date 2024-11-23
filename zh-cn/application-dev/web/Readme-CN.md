@@ -1,6 +1,7 @@
 # ArkWeb（方舟Web）
 
 - [ArkWeb简介](web-component-overview.md)
+- [ArkWeb进程](web_component_process.md)
 - [Web组件的生命周期](web-event-sequence.md)
 - 设置基本属性和事件
   - [设置UserAgent](web-default-userAgent.md)
