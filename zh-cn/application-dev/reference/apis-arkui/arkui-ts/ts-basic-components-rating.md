@@ -185,7 +185,9 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
-### 示例1
+### 示例1（设置默认评分样式）
+
+该示例为创建默认星型评分样式。
 
 ```ts
 // xxx.ets
@@ -241,7 +243,9 @@ struct RatingExample {
 
 ![rating](figures/rating.gif)
 
-### 示例2
+### 示例2（设置评分的样式）
+
+该示例通过配置starStyle实现自定义星级的图片链接。
 
 ```ts
 // xxx.ets
@@ -275,7 +279,7 @@ struct RatingExample {
 
 ![rating1](figures/rating1.gif)
 
-### 示例3
+### 示例3（自定义评分条）
 该示例实现了自定义评分条的功能，每个圆圈表示0.5分。ratingIndicator为true时表示评分条作为一个指示器不可改变评分；
 为false时可以进行评分。ratingStars可改变评分总数。ratingStepsize可改变评分步长。
 
