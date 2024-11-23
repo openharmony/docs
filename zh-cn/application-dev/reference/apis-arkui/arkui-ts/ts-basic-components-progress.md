@@ -413,8 +413,6 @@ struct ProgressExample {
 @Entry
 @Component
 struct ProgressExample {
-  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
-                                                              { color: Color.Orange, offset: 1.0 }])
   build() {
     Column({ space: 15 }) {
       Text('Loading Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')
