@@ -22,7 +22,7 @@ This topic walks you through on how to derive a 256-bit key using HKDF. For deta
 
     - If this tag is not set, the derived key can be either managed by HUKS or returned to the caller for management. The key protection mode can be set in the subsequent key derivation on the service side.
 
-3. Use **OH_Huks_GenerateKeyItem** to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
+3. Use [OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem) to generate a key. For details, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 Alternatively, you can [import a key](huks-key-import-overview.md).
 
