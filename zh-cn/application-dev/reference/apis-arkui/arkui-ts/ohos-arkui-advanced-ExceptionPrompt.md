@@ -77,9 +77,9 @@ MarginType定义marginType的类型。
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-### 示例1(异常提示基本用法)
+### 示例1(设置异常提示)
 
-该示例演示了设置异常提示的异常图标，异常提示的文字，异常提示的边距样式和右侧图标按钮的文字内容。
+该示例展示了设置异常提示的异常图标，异常提示的文字，边距样式和右侧图标按钮的文字内容。
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
@@ -116,7 +116,7 @@ struct Index {
 
 ### 示例2(设置弹窗类型的异常提示)
 
-该示例展示了如何在弹窗中设置异常提示。
+该示例展示了使用自定义弹窗设置弹窗类型的异常提示。
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
