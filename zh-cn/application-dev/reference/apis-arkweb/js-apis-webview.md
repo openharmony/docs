@@ -761,7 +761,7 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能。详情请参考[DevTools工具](../../web/web-debugging-with-devtools.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
