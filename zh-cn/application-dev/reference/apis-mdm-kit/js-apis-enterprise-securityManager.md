@@ -1,5 +1,3 @@
-
-
 # @ohos.enterprise.securityManager（安全管理）
 
 本模块提供设备安全管理的能力，包括查询安全补丁状态、查询文件加密状态等。
@@ -376,6 +374,102 @@ try {
     console.info(`Succeeded in getting password policy, result : ${result}`);
 } catch(err) {
     console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.setWatermarkImage<sup>14+</sup>
+
+setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
+
+指定应用设置水印策略，当前仅支持2in1使用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| bundleName | string    | 是   | 被设置水印的应用包名。                                                       |
+| image | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md)  | 是   | string表示图像路径，图像路径为应用沙箱路径等应用有权限访问的路径。<br>image.PixelMap表示图像对象，图像像素占用大小不能超过500KB。                                                       |
+| accountId     | number     | 是   | 用户ID。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let image: string = '/data/storage/el1/base/test.png';
+let accountId: number = 100;
+try {
+    securityManager.setWatermarkImage(wantTemp, bundleName, image, accountId);
+    console.info(`Succeeded in setting set watermarkImage policy.`);
+} catch(err) {
+    console.error(`Failed to set watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.cancelWatermarkImage<sup>14+</sup>
+
+cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
+
+指定应用取消水印策略，当前仅支持2in1使用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| bundleName | string    | 是   | 被取消水印的应用包名。                                                       |
+| accountId     | number     | 是   | 用户ID。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let accountId: number = 100;
+try {
+    securityManager.cancelWatermarkImage(wantTemp, bundleName, accountId);
+    console.info(`Succeeded in setting cancel watermarkImage policy.`);
+} catch(err) {
+    console.error(`Failed to cancel watermarkImage policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
