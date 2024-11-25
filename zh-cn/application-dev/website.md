@@ -3504,7 +3504,6 @@
       
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
         - ArkTS API<!--performance-analysis-arkts-->
-          - [@ohos.faultLogger (故障日志获取)](reference/apis-performance-analysis-kit/js-apis-faultLogger.md)
           - [@ohos.hichecker (检测模式)](reference/apis-performance-analysis-kit/js-apis-hichecker.md)
           - [@ohos.hidebug (Debug调试)](reference/apis-performance-analysis-kit/js-apis-hidebug.md)
           - [@ohos.hilog (HiLog日志打印)](reference/apis-performance-analysis-kit/js-apis-hilog.md)
@@ -3519,6 +3518,7 @@
           - 已停止维护的接口<!--performance-analysis-arkts-dep-->
             - [@ohos.bytrace (性能打点)](reference/apis-performance-analysis-kit/js-apis-bytrace.md)
             - [@ohos.hiAppEvent (应用打点)](reference/apis-performance-analysis-kit/js-apis-hiappevent.md)
+            - [@ohos.faultLogger (故障日志获取)](reference/apis-performance-analysis-kit/js-apis-faultLogger.md)
         - C API<!--performance-analysis-c-->
           - 模块<!--performance-analysis-module-->
             - [HiAppEvent](reference/apis-performance-analysis-kit/_hi_app_event.md)
