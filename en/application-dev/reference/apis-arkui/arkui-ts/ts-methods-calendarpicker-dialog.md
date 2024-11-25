@@ -28,7 +28,7 @@ Shows a calendar picker dialog box.
 
 ## CalendarDialogOptions
 
-Inherited from [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions).
+Inherits [CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
