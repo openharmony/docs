@@ -21,7 +21,7 @@ BigInt是JavaScript中用于表示任意精度整数的数据类型，它能够�
 | OH_JSVM_CreateBigintWords     | 将一组无符号64位字转换为单个BigInt值。|
 | OH_JSVM_GetValueBigintInt64  | 返回给定JavaScript BigInt的C int64_t基础类型等价值。 如果需要，它将截断该值，将lossless设置为false。       |
 | OH_JSVM_GetValueBigintUint64 | 返回给定JavaScript BigInt的C uint64_t基础类型等价值。 如果需要，它将截断该值，将lossless设置为false。      |
-| OH_JSVM_GetValueBigintWords  | 将单个BigInt值转换为符号位、64位小端数组和数组中的元素数。 signBit和words参数可以都设置为NULL。这种情况下，只获取wordCount。|
+| OH_JSVM_GetValueBigintWords  | 将单个BigInt值转换为一个符号位、一个64位的小端数组和该数组的长度。 signBit和words参数可以都设置为NULL，这种情况下，只获取wordCount。|
 
 ## 使用示例
 
@@ -38,29 +38,26 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetValueBigintWords注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueBigintWords},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueBigintWords方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueBigintWords", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetValueBigintWords的样例方法
-static JSVM_Value GetValueBigintWords(JSVM_Env env, JSVM_CallbackInfo info)
-{
+static JSVM_Value GetValueBigintWords(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     int signBit = 0;
     size_t wordCount = 0;
-    uint64_t words;
+    uint64_t* words{nullptr};
     // 调用OH_JSVM_GetValueBigintWords接口获取wordCount
     JSVM_Status status = OH_JSVM_GetValueBigintWords(env, args[0], nullptr, &wordCount, nullptr);
     OH_LOG_INFO(LOG_APP, "OH_JSVM_GetValueBigintWords wordCount:%{public}d.", wordCount);
+    words = (uint64_t*)malloc(wordCount*sizeof(uint64_t));
+    if (words == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "OH_JSVM_GetValueBigintWords malloc failed.");
+        return nullptr;
+    }
     // 调用OH_JSVM_GetValueBigintWords接口获取传入bigInt相关信息，如：signBit传入bigInt正负信息
-    status = OH_JSVM_GetValueBigintWords(env, args[0], &signBit, &wordCount, &words);
+    status = OH_JSVM_GetValueBigintWords(env, args[0], &signBit, &wordCount, words);
+    free(words);
+    words = nullptr;
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_JSVM_GetValueBigintWords fail, status:%{public}d.", status);
     } else {
@@ -71,28 +68,23 @@ static JSVM_Value GetValueBigintWords(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateInt32(env, signBit, &returnValue);
     return returnValue;
 }
+// GetValueBigintWords注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueBigintWords},
+};
+static JSVM_CallbackStruct *method = param;
+// GetValueBigintWords方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueBigintWords", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `getValueBigintWords(BigInt(5555555555555555))`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueBigintWords: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueBigintWords error: %{public}s', error.message);
-}
-try {
-  let script: string = `getValueBigintWords(BigInt(-5555555555555555))`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueBigintWords: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueBigintWords error: %{public}s', error.message);
-}
+OH_JSVM_GetValueBigintWords wordCount:1.
+OH_JSVM_GetValueBigintWords signBit: 1.
 ```
 
 ### OH_JSVM_CreateBigintWords
@@ -106,15 +98,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CreateBigintWords注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateBigintWords},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateBigintWords方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createBigintWords", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CreateBigintWords的样例方法
 static int DIFF_VALUE_THREE = 3;
 static JSVM_Value CreateBigintWords(JSVM_Env env, JSVM_CallbackInfo info)
@@ -132,21 +115,22 @@ static JSVM_Value CreateBigintWords(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return returnValue;
 }
+// CreateBigintWords注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateBigintWords},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateBigintWords方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createBigintWords", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(createBigintWords())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `createBigintWords()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createBigintWords: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createBigintWords error: %{public}s', error.message);
-}
+JSVM OH_JSVM_CreateBigintWords success
 ```
 
 ### OH_JSVM_CreateBigintUint64
@@ -162,15 +146,6 @@ cpp部分代码
 #include <hilog/log.h>
 // 声明uint64_t的变量value
 static uint64_t TEST_VALUE = 5555555555555555555;
-// CreateBigintUint64注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateBigintUint64},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateBigintUint64方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createBigintUint64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CreateBigintUint64的样例方法
 static JSVM_Value CreateBigintUint64(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -184,21 +159,23 @@ static JSVM_Value CreateBigintUint64(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return returnValue;
 }
+// CreateBigintUint64注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateBigintUint64},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateBigintUint64方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createBigintUint64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(createBigintUint64())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `createBigintUint64()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createBigintUint64: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createBigintUint64 error: %{public}s', error.message);
-}
+JSVM OH_JSVM_CreateBigintUint64 success
+
 ```
 
 ### OH_JSVM_GetValueBigintUint64
@@ -212,15 +189,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetValueBigintUint64注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueBigintUint64},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueBigintUint64方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueBigintUint64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetValueBigintUint64的样例方法
 static JSVM_Value GetValueBigintUint64(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -242,23 +210,22 @@ static JSVM_Value GetValueBigintUint64(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateBigintUint64(env, value, &returnValue);
     return returnValue;
 }
+// GetValueBigintUint64注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueBigintUint64},
+};
+static JSVM_CallbackStruct *method = param;
+// GetValueBigintUint64方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueBigintUint64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(getValueBigintUint64(BigInt(5555555555555555)))JS";
 ```
 
-接口声明
-
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `getValueBigintUint64(BigInt(5555555555555555))`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueBigintUint64: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueBigintUint64 error: %{public}s', error.message);
-}
+JSVM GetValueBigintUint64 success:1
 ```
 
 ### OH_JSVM_CreateBigintInt64
@@ -274,15 +241,6 @@ cpp部分代码
 #include <hilog/log.h>
 // 声明int64_t的变量value
 static int64_t TEST_VALUE_DEMO = -5555555555555555555;
-// CreateBigintInt64注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateBigintInt64},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateBigintInt64方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createBigintInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CreateBigintInt64的样例方法
 static JSVM_Value CreateBigintInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -295,21 +253,22 @@ static JSVM_Value CreateBigintInt64(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return returnValue;
 }
+// CreateBigintInt64注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateBigintInt64},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateBigintInt64方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createBigintInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(createBigintInt64())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `createBigintInt64()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createBigintInt64: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createBigintInt64 error: %{public}s', error.message);
-}
+JSVM OH_JSVM_CreateBigintInt64 success
 ```
 
 ### OH_JSVM_GetValueBigintInt64
@@ -323,15 +282,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetBigintInt64注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetBigintInt64},
-};
-static JSVM_CallbackStruct *method = param;
-// GetBigintInt64方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getBigintInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetValueBigintInt64的样例方法
 static JSVM_Value GetBigintInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -353,19 +303,20 @@ static JSVM_Value GetBigintInt64(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateBigintInt64(env, value, &returnValue);
     return returnValue;
 }
+// GetBigintInt64注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetBigintInt64},
+};
+static JSVM_CallbackStruct *method = param;
+// GetBigintInt64方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getBigintInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(getBigintInt64(BigInt(-5555555555555555)))JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `getBigintInt64(BigInt(-5555555555555555))`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getBigintInt64: %{public}d', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getBigintInt64 error: %{public}s', error.message);
-}
+JSVM GetBigintInt64 success:1
 ```
