@@ -212,13 +212,13 @@ Dialog关闭的信息。
 
 ## 示例
 
-### 示例1
+### 示例1（弹出多个按钮的弹窗）
 
 > **说明：**
 > 
 > 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
 
-分别弹出一、二、三个按钮的弹窗。
+该示例实现了分别弹出一、二、三个按钮的弹窗。
 
 ```ts
 // xxx.ets
@@ -363,9 +363,9 @@ struct AlertDialogExample {
 
 ![zh-cn_image_alert](figures/zh-cn_image_alert.gif)
 
-### 示例2
+### 示例2（可在主窗外弹出的弹窗）
 
-弹出可展示在主窗外的弹窗。
+该示例通过配置showInSubWindow为true弹出可以在主窗外显示的弹窗。
 
 > **说明：**
 > 
@@ -438,8 +438,8 @@ struct AlertDialogExample {
 
 ![zh-cn_image_alert_showinsubwindow](figures/zh-cn_image_alert_showinsubwindow.jpg)
 
-### 示例3
-AlertDialog显示动画持续3秒，退出动画持续100毫秒
+### 示例3（设置弹窗的动画）
+该示例通过配置transition实现弹窗的显示和消失动画。
 
 > **说明：**
 > 
@@ -487,8 +487,8 @@ struct AlertDialogExample {
 
 ![zh-cn_image_alert_animation](figures/zh-cn_image_alert_animation.gif)
 
-### 示例4
-该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等
+### 示例4（设置弹窗的样式）
+该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等。
 
 > **说明：**
 > 
