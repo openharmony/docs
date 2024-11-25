@@ -48,5 +48,5 @@
 - [同层渲染](web-same-layer.md)
 - [使用离线Web组件](web-offline-mode.md)
 - Web调试维测
-  - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+  - [使用DevTools工具调试前端页面](web-debugging-with-devtools.md)
   - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)

@@ -591,7 +591,7 @@
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
-        - [使用运动和方向传感器](web/web-sensor.md)
+        - [使用运动和方向传感器监测设备状态](web/web-sensor.md)
       - Web渲染和布局<!--web-render-layout--->
         - [Web渲染模式](web/web-render-mode.md)
         - [使用Web组件大小自适应页面内容布局](web/web-fit-content.md)
@@ -603,6 +603,7 @@
         - [建立应用侧与前端页面数据通道(C/C++)](web/arkweb-ndk-page-data-channel.md)
       - 管理网页交互<!--web-manage-page-interaction-->
         - [Web组件嵌套滚动](web/web-nested-scrolling.md)
+        - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -626,9 +627,10 @@
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
-      - [同层渲染绘制Video和Button组件](web/web-same-layer.md)
+      - [同层渲染](web/web-same-layer.md)
+      - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
-        - [使用Devtools工具调试前端页面](web/web-debugging-with-devtools.md)
+        - [使用DevTools工具调试前端页面](web/web-debugging-with-devtools.md)
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
