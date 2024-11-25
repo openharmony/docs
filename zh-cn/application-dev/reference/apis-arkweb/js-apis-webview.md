@@ -761,7 +761,7 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能，默认不开启。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能，默认不开启。详情请参考[DevTools工具](../../web/web-debugging-with-devtools.md)。
 
 安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
 
