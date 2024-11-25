@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > - 本模块接口为系统接口。
 
 ## 导入模块
@@ -62,7 +62,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型                                          | 说明                                      |
 | --------------------------------------------- | ----------------------------------------- |
@@ -558,7 +558,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = { 
+let option : VirtualScreenOption = {
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -586,7 +586,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 **需要权限**：ohos.permission.CAPTURE_SCREEN
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                        | 必填 | 说明                     |
 | ------- | ------------------------------------------- | ---- | ------------------------ |
@@ -623,7 +623,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = { 
+let option : VirtualScreenOption = {
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -970,6 +970,49 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 });
 ```
 
+## screen.makeUnoqueScreen
+
+makeUnoqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+设置屏幕为异源屏，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenIds  | Array&lt;number&gt; | 是   | 需要设置为异源屏的屏幕id集合。true为锁定，false为未锁定. |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回设置异源屏幕的displayId集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenIds: Array<number> = [1001, 1002];
+screen.makeUnoqueScreen(screenIds).then((data: Array<number>) => {
+  console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## ExpandOption
 
 扩展屏幕的参数。
@@ -1014,6 +1057,7 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。                                                       |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。                                                     |
+| edId<sup>13+</sup> | string                                        | 是   | 否   | 屏幕的edId。                                                     |
 
 ### setOrientation
 
@@ -1422,7 +1466,7 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 | 
+| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 |
 | width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数应为整数。                                |
 | height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数应为整数。                                |
 | refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数。                                     |
