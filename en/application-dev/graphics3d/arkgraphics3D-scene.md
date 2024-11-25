@@ -10,7 +10,7 @@ After a model is loaded, it can be rendered using the ArkUI component [Component
 ![3D scene display process](./figures/scene.PNG)
 
 ## Model Loading and Display
-Models come in a multitude of formats, but currently, ArkGraphics 3D supports only the loading of glTF models. glTF represents 3D scenes, just like the PNG format that represents a type of image. For details about glTF, see [glTF-2.0](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html).
+Models come in a multitude of formats, but currently, ArkGraphics 3D supports only the loading of glTF models. glTF represents 3D scenes. For details about glTF, see [glTF-2.0](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html).
 
 A glTF model can contain key elements of a 3D scene, including the light, camera, and model. If a glTF model contains a camera, you can use the APIs provided by ArkGraphics 3D to load the glTF model to render the 3D scene in the camera view. If the model does not contain a camera, you can use the ArkGraphics 3D APIs to create a camera for rendering. Due to the large size, a 3D model is usually loaded in asynchronous mode. After a model is loaded, a scene object is returned, based on which you can edit the 3D scene.
 
