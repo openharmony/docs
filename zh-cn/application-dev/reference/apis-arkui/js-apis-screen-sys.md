@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
+> 
 > - 本模块接口为系统接口。
 
 ## 导入模块
@@ -62,7 +62,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**返回值：**
+**返回值：** 
 
 | 类型                                          | 说明                                      |
 | --------------------------------------------- | ----------------------------------------- |
@@ -558,7 +558,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = {
+let option : VirtualScreenOption = { 
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -586,7 +586,7 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 **需要权限**：ohos.permission.CAPTURE_SCREEN
 
-**参数：**
+**参数：** 
 
 | 参数名  | 类型                                        | 必填 | 说明                     |
 | ------- | ------------------------------------------- | ---- | ------------------------ |
@@ -623,7 +623,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = {
+let option : VirtualScreenOption = { 
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -1466,7 +1466,7 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 |
+| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 | 
 | width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数应为整数。                                |
 | height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数应为整数。                                |
 | refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数。                                     |
