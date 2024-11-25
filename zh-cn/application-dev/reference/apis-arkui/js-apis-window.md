@@ -5455,6 +5455,8 @@ setWindowDecorVisible(isVisible: boolean): void
 
 设置窗口标题栏是否可见，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
+设置窗口标题栏不可见后，当主窗口进入全屏沉浸状态时，此时鼠标Hover到上方窗口标题栏热区上会显示悬浮标题栏。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -5579,6 +5581,8 @@ setWindowDecorHeight(height: number): void
 <!--RP1-->
 设置窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 <!--RP1End-->
+
+当主窗口进入全屏沉浸状态时，此时鼠标Hover到窗口标题栏热区时，会显示悬浮标题栏，悬浮标题栏高度固定为37vp。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
