@@ -9,7 +9,7 @@
 
 ## 约束限制
 - 集成态HSP只支持[Stage模型](application-package-structure-stage.md)。
-- 集成态HSP需要API12及以上版本，使用[标准化的OHMUrl格式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)。
+- 集成态HSP需要API12及以上版本，使用[标准化的OHMUrl格式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-build-profile-V13#section511142752919)。
 
 ## 开发使用说明
 1. 创建方-集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
@@ -48,7 +48,7 @@
 
 3. 创建方-集成态HSP-打包配置（tgz包）。
 
-   (1) 配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)；
+   (1) 配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)；
 
    (2) 配置release模式；
 
@@ -88,4 +88,4 @@
     }
     ```
     > **说明：** 
-    > 安装运行应用前，使用方工程必须配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
+    > 安装运行应用前，使用方工程必须配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-0000001587684945-V13)。
