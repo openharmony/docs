@@ -1,4 +1,4 @@
-# 使用Devtools工具调试前端页面
+# 使用DevTools工具调试前端页面
 
 
 Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前端开发调试工具，提供了电脑上调试移动设备前端页面的能力。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
@@ -296,7 +296,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
 
   开启USB调试开关的设备连接没有授权的电脑后，会弹框提示"是否允许USB调试？"，请选择允许。
 
-### 找不到Devtools的domain socket
+### 找不到DevTools的domain socket
 **问题现象**
 
    在hdc shell里执行如下命令后，没有结果。

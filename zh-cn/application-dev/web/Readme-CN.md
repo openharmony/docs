@@ -21,7 +21,7 @@
   - [建立应用侧与前端页面数据通道(C/C++)](arkweb-ndk-page-data-channel.md)
 - 管理网页交互
   - [Web组件嵌套滚动](web-nested-scrolling.md)
-  - [Web对接软键盘](web-docking-softkeyboard.md)
+  - [Web组件对接软键盘](web-docking-softkeyboard.md)
 - 管理Web组件的网络安全与隐私
   - [解决Web组件本地资源跨域问题](web-cross-origin.md)
   - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
@@ -48,5 +48,5 @@
 - [同层渲染](web-same-layer.md)
 - [使用离线Web组件](web-offline-mode.md)
 - Web调试维测
-  - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
+  - [使用DevTools工具调试前端页面](web-debugging-with-devtools.md)
   - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)
