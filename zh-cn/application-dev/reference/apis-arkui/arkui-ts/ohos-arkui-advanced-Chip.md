@@ -626,9 +626,9 @@ struct ChipExample2 {
 }
 ```
 
-### 示例8（Symbol类型无障碍朗读）
+### 示例8（symbol类型无障碍朗读）
 
-该示例代码实现了Chip组件Symbol类型后缀图标的无障碍朗读功能。
+该示例代码实现了Chip组件symbol类型后缀图标的无障碍朗读功能。
 
 ```ts
 
