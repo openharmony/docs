@@ -112,7 +112,7 @@ The type of data to transfer does not support serialization or is imported exter
 
 **Solution**
 
-Ensure that the data to transfer is a valid serialized object supported by Worker. For details, see [Serialization Types Supported by TaskPool and Worker](../../arkts-utils/serialization-support-types.md).
+Ensure that the data to transfer is a valid serialized object supported by Worker. For details, see [ArkTS Inter-Thread Communication Overview](../../arkts-utils/interthread-communication-overview.md).
 
 ## 10200007 Abnormal Worker File Path
 
@@ -380,7 +380,7 @@ This error code is reported when the function is not called in a **TaskPool** th
 
 **Possible Causes**
 
-The function is called in the main thread or in a thread that is not in **TaskPool**.
+The function is called in the UI main thread or in a thread that is not in **TaskPool**.
 
 **Solution**
 

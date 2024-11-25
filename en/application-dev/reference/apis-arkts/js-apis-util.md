@@ -577,7 +577,7 @@ Inserts a function before a method of a class object. The inserted function is e
 | Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
-| methodName   | string   | Yes  | Name of the method.                   |
+| methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                   |
 | isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
 | before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.|
 
@@ -669,7 +669,7 @@ Inserts a function after a method of a class object. The final return value is t
 | Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
-| methodName   | string   | Yes  | Name of the method.                  |
+| methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                  |
 | isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
 | after        | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; the second parameter is the return value of the original method (**undefined** if the original method does not have a return value); other parameters are the parameters carried by the original method. If the function does not carry any parameter, no processing is performed. |
 
@@ -752,7 +752,7 @@ Replaces a method of a class object with another function. After the replacement
 | Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
-| methodName   | string   | Yes  | Name of the method.                 |
+| methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                 |
 | isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.      |
 | instead      | Function | Yes  | Function to be used replacement. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.  |
 
@@ -830,8 +830,8 @@ A constructor used to create a **TextDecoder** object.
 **Example**
 
 ```ts
-let result = new util.TextDecoder();
-let retStr = result.encoding;
+let textDecoder = new util.TextDecoder();
+let retStr = textDecoder.encoding;
 ```
 ### create<sup>9+</sup>
 
@@ -865,8 +865,8 @@ let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
   ignoreBOM : true
 }
-let result = util.TextDecoder.create('utf-8', textDecoderOptions)
-let retStr = result.encoding
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let retStr = textDecoder.encoding;
 ```
 
 ### decodeToString<sup>12+</sup>
@@ -911,8 +911,8 @@ let decodeToStringOptions: util.DecodeToStringOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
-let retStr = textDecoder.decodeToString(result, decodeToStringOptions);
+let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -962,15 +962,15 @@ let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -1041,15 +1041,15 @@ Decodes the input content into a string.
 
 ```ts
 let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decode( result , {stream: false});
+let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
 ```
 
@@ -1235,10 +1235,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeIntoUint8Array('abcd', dest);
-console.info("dest = " + dest);
-// Output: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
+console.info("uint8 = " + uint8);
+// Output: uint8 = 97,98,99,100
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1271,10 +1271,10 @@ Stores the UTF-8 encoded text.
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeInto('abcd', dest);
-console.info("dest = " + dest);
-// Output: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeInto('abcd', uint8);
+console.info("uint8 = " + uint8);
+// Output: uint8 = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -1332,9 +1332,13 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 Create a **RationalNumber** instance with a given numerator and denominator.
+
+> **NOTE**
+>
+> The **numerator** and **denominator** parameters must be integers. If a decimal number is passed in, the function is not intercepted, but the error message "parseRationalNumber: The type of Parameter must be integer" is displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1344,8 +1348,8 @@ Create a **RationalNumber** instance with a given numerator and denominator.
 
 | Name     | Type  | Mandatory| Description            |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | Yes  | Numerator, which is an integer.|
-| denominator | number | Yes  | Denominator, which is an integer.|
+| numerator   | number | Yes  | Numerator, which is an integer. Value range: -Number.MAX_VALUE <= numerator <= Number.MAX_VALUE.|
+| denominator | number | Yes  | Denominator, which is an integer. Value range: -Number.MAX_VALUE <= denominator <= Number.MAX_VALUE.|
 
 **Error codes**
 
@@ -1366,6 +1370,10 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 static createRationalFromString(rationalString: string): RationalNumber​
 
 Creates a **RationalNumber** object based on the given string.
+
+> **NOTE**
+>
+> The **rationalString** parameter must be a string. If a decimal string is passed in, the function is not intercepted, but the error message "createRationalFromString: The type of Parameter must be integer string" is displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1511,9 +1519,13 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number,number2: number): number
 
 Obtains the greatest common divisor of two specified integers.
+
+> **NOTE**
+>
+> The **number1** and **number2** parameters must be integers. If a decimal number is passed in, the function is not intercepted, but the error message "getCommonFactor: The type of Parameter must be integer" is displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1523,8 +1535,8 @@ Obtains the greatest common divisor of two specified integers.
 
 | Name | Type  | Mandatory| Description      |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | Yes  | The first integer used to get the greatest common divisor.|
-| number2 | number | Yes  | The second integer used to get the greatest common divisor.|
+| number1 | number | Yes  | The first integer used to get the greatest common divisor. Value range: -Number.MAX_VALUE <= number1 <= Number.MAX_VALUE.|
+| number2 | number | Yes  | The second integer used to get the greatest common divisor. Value range: -Number.MAX_VALUE <= number2 <= Number.MAX_VALUE.|
 
 **Return value**
 
@@ -2344,7 +2356,7 @@ console.info('result = ' + result);
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
-Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>](#updatecapacity9).
+Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>] (#updatecapacity9).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2509,10 +2521,6 @@ for (let value of arrayValue) {
 
 Obtains a two-dimensional array in key-value pairs.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -2525,7 +2533,6 @@ Obtains a two-dimensional array in key-value pairs.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
@@ -3824,6 +3831,7 @@ isBooleanObject(value: Object): boolean
 
 Checks whether the input value is of the Boolean type.
 
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -3855,6 +3863,7 @@ Checks whether the input value is of the Boolean type.
 isBoxedPrimitive(value: Object): boolean
 
 Checks whether the input value is of the Boolean, Number, String, or Symbol type.
+
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4112,6 +4121,7 @@ Checks whether the input value is a generator function.
   export function* foo() {}
   ```
 
+  <!--code_no_check-->
   ```ts
   import { foo } from './test'
 
@@ -4152,6 +4162,7 @@ Checks whether the input value is a generator object.
   export const generator = foo();
   ```
 
+  <!--code_no_check-->
   ```ts
   import { generator } from './test'
 
@@ -4362,6 +4373,7 @@ isNumberObject(value: Object): boolean
 
 Checks whether the input value is a number object.
 
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -4560,6 +4572,7 @@ isStringObject(value: Object): boolean
 
 Checks whether the input value is a string object.
 
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -4592,6 +4605,7 @@ isSymbolObject(value: Object): boolean
 
 Checks whether the input value is a symbol object.
 
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -4615,6 +4629,7 @@ Checks whether the input value is a symbol object.
   export const symbols = Symbol('foo');
   ```
 
+  <!--code_no_check-->
   ```ts
   import { symbols } from './test'
 
@@ -4947,6 +4962,7 @@ Checks whether the input value is a module namespace object.
   }
   ```
 
+  <!--code_no_check-->
   ```ts
   import * as nameSpace from './test';
 
