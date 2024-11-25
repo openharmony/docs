@@ -433,7 +433,9 @@ onSelect(callback: (index: number, value:&nbsp;string) => void)
 | index  | number | 是   | 选中项的索引。 |
 | value  | string | 是   | 选中项的值。   |
 
-##  示例1
+##  示例1（设置下拉菜单）
+
+该示例通过配置SelectOptions实现下拉菜单。
 
 ```ts
 // xxx.ets
@@ -475,67 +477,9 @@ struct SelectExample {
 
 ![](figures/selectExample.png)
 
-##  示例2
-该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + 图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
-```ts
-import { MenuItemModifier } from '@kit.ArkUI'
 
-class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
-  modifierText: string = ""
-  constructor(text: string) {
-    this.modifierText = text;
-  }
-  applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
-    return wrapBuilder(MenuItemBuilder)
-  }
-}
-
-@Builder
-function MenuItemBuilder(configuration: MenuItemConfiguration) {
-  Row() {
-    Text(configuration.value)
-    Blank()
-    Image(configuration.icon).size({ width: 40, height: 40 })
-    Blank(30)
-    Text((configuration.contentModifier as MyMenuItemContentModifier).modifierText)
-    Path()
-      .width('100px')
-      .height('150px')
-      .commands('M40 0 L80 100 L0 100 Z')
-      .fillOpacity(0)
-      .stroke(Color.Black)
-      .strokeWidth(3)
-  }
-  .onClick(() => {
-    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString())
-  })
-}
-
-@Entry
-@Component
-struct SelectExample {
-  @State text: string = "有modifier"
-  build() {
-    Column() {
-      Row() {
-        Select([{ value: 'item1', icon: $r("app.media.icon") },
-          { value: 'item2', icon: $r("app.media.icon") }])
-          .value(this.text)
-          .onSelect((index:number, text?: string)=>{
-            console.info('Select index:' + index)
-            console.info('Select text:' + text)
-          })
-          .menuItemContentModifier(new MyMenuItemContentModifier("我来自Modifier"))
-
-      }.alignItems(VerticalAlign.Center).height("50%")
-    }
-  }
-}
-```
-![](figures/selectBuilderExample.png)
-
-##  示例3
+##  示例2（设置symbol类型图标）
 该示例实现了一个下拉菜单中图片为Symbol的Select组件。
 
 ```ts
@@ -582,7 +526,7 @@ struct SelectExample {
 
 ![](figures/SelectSymbol.png)
 
-##  示例4
+##  示例3（自定义下拉菜单）
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
@@ -649,8 +593,8 @@ struct SelectExample {
 ```
 ![](figures/SelectBuilderSymbol.png)
 
-##  示例5
-该示例实现了分割线样式支持自定义。
+##  示例4（设置分割线样式）
+该示例通过配置divider的DividerOptions类型实现分割线样式的下拉菜单。
 
 ```ts
 // xxx.ets
@@ -690,8 +634,8 @@ struct SelectExample {
 ```
 ![](figures/SelectCustomDivider.png)
 
-##  示例6
-该示例实现了隐藏分割线。
+##  示例5（设置无分割线样式）
+该示例通过配置divider为null实现无分割线样式的下拉菜单。
 
 ```ts
 // xxx.ets
