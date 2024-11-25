@@ -5,7 +5,7 @@ The **Screen** module implements basic screen management. You can use the APIs o
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> 
 > - The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -558,7 +558,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = {
+let option : VirtualScreenOption = { 
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -623,7 +623,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = {
+let option : VirtualScreenOption = { 
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -1466,7 +1466,7 @@ Defines the screen mode information.
 
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.|
+| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
 | width       | number   | Yes  | Yes  | Width of the screen, in px. The value must be an integer.                               |
 | height      | number   | Yes  | Yes  | Height of the screen, in px. The value must be an integer.                               |
 | refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value must be an integer.                                    |
