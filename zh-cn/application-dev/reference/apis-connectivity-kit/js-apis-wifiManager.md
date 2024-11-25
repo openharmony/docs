@@ -2036,7 +2036,7 @@ stopDiscoverDevices(): void
 
 on(type: 'wifiStateChange', callback: Callback&lt;number&gt;): void
 
-注册WLAN状态改变事件，和接口off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;)配合使用。
+注册WLAN状态改变事件，在业务退出时，要调用off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2122,7 +2122,7 @@ off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiConnectionChange', callback: Callback&lt;number&gt;): void
 
-注册WLAN连接状态改变事件，和接口off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;)配合使用。
+注册WLAN连接状态改变事件，在业务退出时，要调用off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2204,7 +2204,7 @@ off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiScanStateChange', callback: Callback&lt;number&gt;): void
 
-注册扫描状态改变事件，和接口off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;)配合使用。
+注册扫描状态改变事件，在业务退出时，要调用off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2286,7 +2286,7 @@ off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
-注册RSSI状态改变事件，和接口off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;)配合使用。
+注册RSSI状态改变事件，在业务退出时，要调用off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2357,7 +2357,7 @@ off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 
-注册热点状态改变事件，和接口off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;)配合使用。
+注册热点状态改变事件，在业务退出时，要调用off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2438,7 +2438,7 @@ off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'p2pStateChange', callback: Callback&lt;number&gt;): void
 
-注册P2P开关状态改变事件，和接口off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;)配合使用。
+注册P2P开关状态改变事件，在业务退出时，要调用off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2519,7 +2519,7 @@ off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'p2pConnectionChange', callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
-注册P2P连接状态改变事件，和接口off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;)配合使用。
+注册P2P连接状态改变事件，在业务退出时，要调用off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2590,7 +2590,7 @@ off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 
 on(type: 'p2pDeviceChange', callback: Callback&lt;WifiP2pDevice&gt;): void
 
-注册P2P设备状态改变事件，和接口off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;)配合使用。
+注册P2P设备状态改变事件，在业务退出时，要调用off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;)接口去掉之前的注册回调。
 
 **需要权限：**
 
@@ -2661,7 +2661,7 @@ off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
-注册P2P对端设备状态改变事件，和接口off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;)配合使用。
+注册P2P对端设备状态改变事件，在业务退出时，要调用off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;)接口去掉之前的注册回调。
 
 **需要权限：**
 
@@ -2732,7 +2732,7 @@ off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 on(type: 'p2pPersistentGroupChange', callback: Callback&lt;void&gt;): void
 
-注册P2P永久组状态改变事件，和接口off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;)配合使用。
+注册P2P永久组状态改变事件，在业务退出时，要调用off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2803,7 +2803,7 @@ off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;): void
 
 on(type: 'p2pDiscoveryChange', callback: Callback&lt;number&gt;): void
 
-注册发现设备状态改变事件，和接口off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;)配合使用。
+注册发现设备状态改变事件，在业务退出时，要调用off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
