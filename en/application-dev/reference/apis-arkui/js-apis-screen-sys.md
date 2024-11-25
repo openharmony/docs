@@ -5,7 +5,7 @@ The **Screen** module implements basic screen management. You can use the APIs o
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > - The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -558,7 +558,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = { 
+let option : VirtualScreenOption = {
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -623,7 +623,7 @@ class VirtualScreenOption {
   surfaceId : string = '';
 }
 
-let option : VirtualScreenOption = { 
+let option : VirtualScreenOption = {
   name: 'screen01',
   width: 1080,
   height: 2340,
@@ -967,6 +967,49 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
     return;
   }
   console.info('Succeeded in unlocking auto rotate.');
+});
+```
+
+## screen.makeUnoqueScreen
+
+makeUnoqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+Set multiple screens as unique screens. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description         |
+| --------- | ------ | ---- | ------------- |
+| screenIds  | Array&lt;number&gt; | Yes  | A collection of screen ids to be set as unique screens.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result. Returns the displayId collection that sets the unique screen.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 1400001 | Invalid display or screen. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenIds: Array<number> = [1001, 1002];
+screen.makeUnoqueScreen(screenIds).then((data: Array<number>) => {
+  console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);
 });
 ```
 
@@ -1422,7 +1465,7 @@ Defines the screen mode information.
 
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
+| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.|
 | width       | number   | Yes  | Yes  | Width of the screen, in px. The value must be an integer.                               |
 | height      | number   | Yes  | Yes  | Height of the screen, in px. The value must be an integer.                               |
 | refreshRate | number   | Yes  | Yes  | Refresh rate of the screen, in hz. The value must be an integer.                                    |

@@ -982,7 +982,7 @@ makeUnoqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenIds  | Array&lt;number&gt; | 是   | 需要设置为异源屏的屏幕id集合。true为锁定，false为未锁定. |
+| screenIds  | Array&lt;number&gt; | 是   | 需要设置为异源屏的屏幕id集合. |
 
 **返回值：**
 
