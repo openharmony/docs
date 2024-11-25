@@ -22,7 +22,7 @@ Sets the alignment mode of the component content in the drawing area.
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **Stack**, **Button**, **StepperItem**,**\<FolderStack>**, **\<Marquee>**, **Text**, **TextArea**, and **TextInput**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>In the **Stack** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **Stack**, **Button**, **StepperItem**,**FolderStack**, **Marquee**, **Text**, **TextArea**, and **TextInput**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>In the **Stack** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
 
 ## direction
 
@@ -94,7 +94,7 @@ Sets the offset of the component relative to its original position.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12)  \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | Yes  | Offset of the component relative to its original position. The **offset** attribute does not affect the layout of the parent container. It adjusts the component position only during drawing.<br>If of the Position type, this parameter sets the offset relative to the upper left corner of the component. If of the Edges type, this parameter sets the offset relative to the four edges of the component. **{x: x, y: y}** has the same effect as **{left: x, top: y}** and **{right: -x, bottom: -y}**. The LocalizedEdges type supports the mirror mode: **start** is equivalent to **x** with left-to-right scripts and **-x** with right-to-left scripts.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none|
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12)  \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | Yes  | Offset of the component relative to its original position. The **offset** attribute does not affect the layout of the parent container. It adjusts the component position only during drawing.<br>If of the Position type, this parameter sets the offset relative to the upper left corner of the component. If of the Edges type, this parameter sets the offset relative to the four edges of the component. **{x: x, y: y}** has the same effect as **{left: x, top: y}** and **{right: -x, bottom: -y}**. The LocalizedEdges type supports the mirror mode: **start** is equivalent to **x** with left-to-right scripts and **-x** with right-to-left scripts.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>Default unit: vp<br>API version 10: none|
 
 ## alignRules<sup>9+</sup>
 
@@ -184,8 +184,8 @@ Sets the alignment rules in the relative container. This API is valid only when 
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| horizontal  | number | No| Bias value in the horizontal direction.<br>This parameter takes effect when the child component has a determinable width and two horizontal anchors.<br>Default value: **0.5**|
-| vertical  | number | No| Bias value in the vertical direction.<br>This parameter takes effect when the child component has a determinable height and two vertical anchors.<br>Default value: **0.5**|
+| horizontal  | number | No| Bias value in the horizontal direction.<br>This parameter takes effect when the child component has a correct width and two horizontal anchors.<br>Default value: **0.5**|
+| vertical  | number | No| Bias value in the vertical direction.<br>This parameter takes effect when the child component has a correct height and two vertical anchors.<br>Default value: **0.5**|
 
 ## chainMode<sup>12+</sup>
 
@@ -200,9 +200,24 @@ Sets the parameters of the chain in which the component is the head. This parame
 | Name| Type                                       | Mandatory| Description                    |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | direction  | [Axis](ts-appendix-enums.md#axis) | Yes  | Direction of the chain.|
-| style  | [ChainStyle](ts-appendix-enums.md#chainstyle12) | Yes  | Style of the chain.|
+| style  | [ChainStyle](#chainstyle12) | Yes  | Style of the chain.|
+
+## ChainStyle<sup>12+</sup>
+
+Enumerates the chain styles.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Description                                                        |
+| ------------- | ------------------------------------------------------------ |
+| SPREAD        | Child components are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
+| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
+| PACKED        | There is no gap between child components in the chain. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
 
 ## Example
+
 ### Example 1
 ```ts
 // xxx.ets

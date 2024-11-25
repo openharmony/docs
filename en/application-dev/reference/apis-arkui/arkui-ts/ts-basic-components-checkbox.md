@@ -24,19 +24,21 @@ Creates a check box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                       | Mandatory | Description              |
+| Name | Type                                       | Mandatory| Description              |
 | ------- | ------------------------------------------- | ---- | ------------------ |
-| options | [CheckboxOptions](#checkboxoptions) | No  | Check box parameters. |
+| options | [CheckboxOptions](#checkboxoptions)| No  | Check box parameters.|
 
 ## CheckboxOptions
 
-| Name | Type | Mandatory | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type| Mandatory | Description|
 | --------| --------| ------ | -------- |
-| name    | string | No | Name of the check box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| group   | string | No | Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>For the settings to take effect, this parameter must be used with the [CheckboxGroup](ts-basic-components-checkboxgroup.md) component.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | No | Custom component to indicate that the check box is selected. This custom component is center aligned with the check box. When **indicatorBuilder** is set to **undefined** or **null**, it defaults to the state where it is not set.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| name    | string | No| Name of the check box.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| group   | string | No| Group name of the check box (that is, the name of the check box group to which the check box belongs).<br>**NOTE**<br>For the settings to take effect, this parameter must be used with the [CheckboxGroup](ts-basic-components-checkboxgroup.md) component.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | No| Custom component to indicate that the check box is selected. This custom component is center aligned with the check box. When **indicatorBuilder** is set to **undefined** or **null**, it defaults to the state where it is not set.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
 
@@ -74,11 +76,11 @@ Sets the color of the check box when it is selected.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                                        |
+| Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value. |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.|
 
 ### unselectedColor<sup>10+</sup>
 
@@ -90,11 +92,11 @@ Sets the border color of the check box when it is not selected.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                      |
+| Name| Type                                      | Mandatory| Description                    |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the check box when it is not selected.<br>Default value: **'#33ffffff'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the check box when it is not selected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**|
 
 ### mark<sup>10+</sup>
 
@@ -106,11 +108,11 @@ Sets the mark style of the check box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                             | Mandatory | Description                |
-| ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](ts-types.md#markstyle10) | Yes  | Mark style of the check box. Since API version 12, if **indicatorBuilder** is set, the content configured in **indicatorBuilder** will be displayed accordingly.|
+| Name| Type                                        | Mandatory| Description                                                        |
+| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [MarkStyle](ts-types.md#markstyle10)| Yes  | Mark style of the check box. Since API version 12, if **indicatorBuilder** is set, the content configured in **indicatorBuilder** will be displayed accordingly.<br>Default value: {<br>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br>size: '20vp'<br>} |
 
 ### shape<sup>11+</sup>
 
@@ -124,11 +126,11 @@ Sets the shape of the check box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                         | Mandatory | Description                                                        |
+| Name| Type                                         | Mandatory| Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CheckBoxShape](#checkboxshape11) | Yes  | Shape of the check box.<br>Default value: **CheckBoxShape.CIRCLE** |
+| value  | [CheckBoxShape](#checkboxshape11)| Yes  | Shape of the check box.<br>Default value: **CheckBoxShape.CIRCLE**|
 
 ### contentModifier<sup>12+</sup>
 
@@ -142,9 +144,9 @@ Creates a content modifier.
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                            |
+| Name| Type                                         | Mandatory| Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12) | Yes  | Content modifier to apply to the check box.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
+| modifier  | [ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12)| Yes  | Content modifier to apply to the check box.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
 ## Events
 
@@ -154,7 +156,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 onChange(callback: (value: boolean) => void)
 
-Invoked when the selection status of the check box changes.
+Invoked when the selected state of the check box changes.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -162,20 +164,22 @@ Invoked when the selection status of the check box changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                             |
-| ------ | ------- | ---- | ------------------------------------------------- |
-| value  | boolean | Yes  | Whether the check box is selected. The value **true** means that the check box is selected, and **false** means the opposite. |
+| Name  | Type                                                   | Mandatory| Description            |
+| -------- | ------------------------------------------------------- | ---- | ---------------- |
+| value | boolean | Yes  | Whether the check box is selected. The value **true** means that the check box is selected, and **false** means the opposite. |
 
 ## CheckBoxShape<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name          | Value  | Description    |
 | -------------- | ---- | -------- |
 | CIRCLE         | 0    | Circle.    |
-| ROUNDED_SQUARE | 1    | Rounded square. |
+| ROUNDED_SQUARE | 1    | Rounded square.|
 
 ## CheckBoxConfiguration<sup>12+</sup>
 
@@ -183,11 +187,13 @@ You need a custom class to implement the **ContentModifier** API.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Type   |    Default Value     |  Description             |
-| ------ | ------ | ------ |-------------------------------- |
-| name | string | - |Name of the check box. |
-| selected | boolean| false | Whether the check box is selected.<br>If the **select** attribute is not set, the default value **false** is used.<br>If the **select** attribute is set, the attribute value is used here. |
-| triggerChange |Callback\<boolean>| - |Changes the selected state of the check box. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type   |    Read Only   |    Optional     |  Description             |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| name | string | No| No|Name of the check box.|
+| selected | boolean| No| No| Whether the check box is selected.<br>If the **select** attribute is not set, the default value **false** is used.<br>If the **select** attribute is set, the attribute value is used here.|
+| triggerChange |Callback\<boolean>| No| No|Changes the selected state of the check box.|
 
 ## Example
 
@@ -304,7 +310,7 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
           .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
           .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
           .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:11,top:10})
+          .margin({left:10,top:10})
           .opacity(config.enabled ? 1 : 0.1)
       }
       .width(300)
@@ -336,7 +342,7 @@ struct Index {
             this.checkboxEnabled = false
           }
         })
-      }
+      }.position({ x: 50, y: 130 })
     }.margin({top : 30})
   }
 }

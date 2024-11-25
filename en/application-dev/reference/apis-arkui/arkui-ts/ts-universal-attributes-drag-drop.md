@@ -10,11 +10,15 @@ The ArkUI framework implements the drag and drop capability for some components,
 
 - The following component supports drag actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), <!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md), <!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
 
-- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Video](ts-media-components-video.md), [RichEditor](ts-basic-components-richeditor.md)
+- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Video](ts-media-components-video.md)
 
 You can also define drag responses by implementing common drag events.
 
 To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+
+> **NOTE**
+>
+> When using the **Text** component, set [copyOption](ts-basic-components-text.md#copyoption9) to **CopyOptions.InApp** or **CopyOptions.LocalDevice**.
 
 ## allowDrop
 
@@ -88,8 +92,8 @@ Sets the processing mode of the drag preview and the display of the number badge
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11)  \|  Array<[DragPreviewMode](#dragpreviewmode11)><sup>12+</sup>| No| How the background image is processed when the component is dragged.<br>Default value: **DragPreviewMode.AUTO**<br>If **DragPreviewMode.AUTO** is along with other enum values, the setting takes precedence with **DragPreviewMode.AUTO**, and other enum values do not take effect.|
-| numberBadge<sup>12+</sup> | boolean  \|  number | No| Whether to display the badge or the number displayed via the badge. For a number badge, the value range is [0, 2<sup>31</sup>-1]. If the value specified is a floating-point number, only the integer part is displayed<br>**NOTE**<br>When multiple items are dragged, use this API to set the number of items dragged.<br>Default value: **true**|
-| modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| No| Style modifier to apply to the drag preview. You can use the attributes and styles supported by the image component to configure the drag preview style (see example 6). Currently, opacity, shadow, background blur, and rounded corners are supported. This parameter does not work for text dragging, which only supports the default effect.<br>1. Opacity<br>Use the [opacity](ts-universal-attributes-opacity.md#opacity) attribute to set the opacity. The value ranges from 0 to 1. If the value is set to **0** or left unspecified, it reverts to the default value **0.95**. Setting it to **1** or an invalid value makes the object completely opaque.<br>2. Shadow<br>Use the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute to set the shadow.<br>3. Background blur<br>Use the [backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11) or [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9) attribute to set the background blur. If both are used, **backgroundEffect** takes precedence.<br>4. Rounded corner<br>Use the [border](ts-universal-attributes-border.md#border) or [borderRadius](ts-universal-attributes-border.md#borderRadius) attribute to set rounded corners. If you set rounded corners in both **mode** and **modifier**, the settings in **modifier** prevail.<br>Default value: empty. The attribute cannot be modified.|
+| numberBadge<sup>12+</sup> | boolean  \|  number | No| Whether to display the number badge or the number displayed on the badge. For a number badge, the value range is [0, 2<sup>31</sup>-1]. Values outside this range will be processed as the default state. If the value specified is a floating-point number, only the integer part is displayed.<br>**NOTE**<br>When multiple items are dragged, use this API to set the number of items dragged.<br>Default value: **true**|
+| modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| No| Style modifier to apply to the drag preview. You can use the attributes and styles supported by the image component to configure the drag preview style (see example 6). Currently, opacity, shadow, background blur, and rounded corners are supported. This parameter does not work for text dragging, which only supports the default effect.<br>1. Opacity<br>Use the [opacity](ts-universal-attributes-opacity.md#opacity) attribute to set the opacity. The value ranges from 0 to 1. If the value is set to **0** or left unspecified, it reverts to the default value **0.95**. Setting it to **1** or an invalid value makes the object completely opaque.<br>2. Shadow<br>Use the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute to set the shadow.<br>3. Background blur<br>Use the [backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11) or [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle) attribute to set the background blur. If both are used, **backgroundEffect** takes precedence.<br>4. Rounded corner<br>Use the [border](ts-universal-attributes-border.md#border) or [borderRadius](ts-universal-attributes-border.md#borderRadius) attribute to set rounded corners. If you set rounded corners in both **mode** and **modifier**, the settings in **modifier** prevail.<br>Default value: empty. The attribute cannot be modified.|
 
 ## DragPreviewMode<sup>11+</sup>
 
@@ -130,7 +134,7 @@ struct ImageExample {
 
   build() {
     Column() {
-      Text ('Image drag and drop')
+      Text('Image drag and drop')
         .fontSize('30dp')
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
         Image($r('app.media.icon'))
@@ -182,7 +186,7 @@ struct ImageExample {
         .border({ width: 1 })
         .margin({ left: 12 })
         Column(){
-          Text ('Valid drop target')
+          Text('Valid drop target')
             .fontSize('15dp')
             .height('10%')
           List(){
@@ -229,11 +233,7 @@ struct ImageExample {
 }
 ```
 
-![dragImage1.jpeg](figures/dragImage1.jpeg)
-
-![dragImage2.jpeg](figures/dragImage2.jpeg)
-
-![dragImage3.jpeg](figures/dragImage3.jpeg)
+![dragImage.gif](figures/dragImage.gif)
 
 ### Example 2
 Example of using the **dragPreview** attribute:
@@ -343,7 +343,7 @@ struct Example {
         ForEach(this.numbers, (item: number) => {
           GridItem() {
             Column()
-              .backgroundColor(Color.Red)
+              .backgroundColor(Color.Blue)
               .width('100%')
               .height('100%')
           }
@@ -381,7 +381,7 @@ struct Example {
         ForEach(this.numbers, (item: number) => {
           GridItem() {
             Column()
-              .backgroundColor(Color.Red)
+              .backgroundColor(Color.Blue)
               .width('100%')
               .height('100%')
           }

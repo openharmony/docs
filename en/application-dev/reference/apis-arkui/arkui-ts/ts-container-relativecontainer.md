@@ -24,7 +24,7 @@ The **RelativeContainer** component is a container component used for relative l
    * A guideline or barrier in the vertical direction can only be used as the anchor of the component in the horizontal direction, and the value is **0** when it is used as the anchor in the vertical direction. A guideline or barrier in the horizontal direction can only be used as the anchor of the component in the vertical direction, and the value is **0** when it is used as the anchor in the horizontal direction.
    * The formation of a chain depends on the dependency between components. For example, the minimum horizontal chain formed by component A and component B requires the following dependency: Anchor 1 <- Component A <--> Component B -> Anchor 2. That is, A has a left anchor, B has a right anchor, the right anchor of A is **HorizontalAlign.Start** of B, and the left anchor of B is **HorizontalAlign.End** of A.
    * The direction and format of the chain are declared in the [chainMode](ts-universal-attributes-location.md#chainmode12) API of the chain head component. The **bias** attributes of all elements in the chain are ineffective, and the bias of the chain head element takes effect as the bias of the entire chain.
-   * If the size of all elements in a chain exceeds the anchor constraint of the chain, the excess part is evenly distributed on both sides of the chain. In the [Packed](ts-appendix-enums.md#chainstyle12) chain, the distribution of the excess part can be set through [bias](ts-universal-attributes-location.md#bias).
+   * If the size of all elements in a chain exceeds the anchor constraint of the chain, the excess part is evenly distributed on both sides of the chain. In the [Packed](ts-universal-attributes-location.md#chainstyle12) chain, the distribution of the excess part can be set through [bias](ts-universal-attributes-location.md#bias).
  * Exceptions
    * If the size of a child component cannot be determined based on the rules and its own **size** attribute, the child component is not drawn.
    * When a mutual or circular dependency occurs, none of the child components in the container are drawn. 
@@ -43,6 +43,8 @@ RelativeContainer()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -52,6 +54,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 guideLine(value: Array&lt;GuideLineStyle&gt;)
 
 Sets the guidelines in the **RelativeContainer** component. The value is an array, each element of which is a guideline.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,6 +71,8 @@ barrier(value: Array&lt;BarrierStyle&gt;)
 
 Sets the barriers in the **RelativeContainer** component. The value is an array, each element of which is a barrier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -81,6 +87,8 @@ barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
 Sets the barriers in the **RelativeContainer** component. The value is an array, each element of which is a barrier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -93,7 +101,9 @@ Sets the barriers in the **RelativeContainer** component. The value is an array,
 
 Defines the ID, direction, and position of a guideline.
 
-**Parameters**
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
@@ -105,7 +115,9 @@ Defines the ID, direction, and position of a guideline.
 
 Defines the position of a guideline.
 
-**Parameters**
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
@@ -116,21 +128,40 @@ Defines the position of a guideline.
 
 Defines the ID, direction, and referenced components of a barrier.
 
-**Parameters**
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | Yes   | ID of the barrier, which must be unique and cannot be the same as the name of any component in the container.  |
-| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection12) | Yes   | Direction of the barrier.<br>Default value: **BarrierDirection.LEFT**|
+| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12) | Yes   | Direction of the barrier.<br>Default value: **BarrierDirection.LEFT**|
 | referencedId | Array\<string> | Yes   | Referenced components of the barrier.|
+
+## BarrierDirection<sup>12+</sup>
+
+Defines the direction of a barrier.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                         |
+| ------ | ----------------------------- |
+| LEFT | The barrier is on the left side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
+| RIGHT | The barrier is on the right side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).  |
+| TOP  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
+| BOTTOM  | The barrier is at the bottom of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).|
 
 ## LocalizedBarrierStyle<sup>12+</sup>
 
 Defines the ID, direction, and referenced components of a barrier.
 
-**Parameters**
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name   | Type     | Mandatory  | Description                   |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type     | Mandatory  | Description             |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | Yes   | ID of the barrier, which must be unique and cannot be the same as the name of any component in the container.  |
 | localizedDirection | [LocalizedBarrierDirection](#localizedbarrierdirection12) | Yes   | Direction of the barrier.|
@@ -140,7 +171,11 @@ Defines the ID, direction, and referenced components of a barrier.
 
 Defines the direction of a barrier.
 
-| Name|  Value | Description                        |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name|  Value | Description                      |
 | ------ | -- | ----------------------------- |
 | START  | 0  |The barrier is on the left (for left-to-right scripts) or right (for right-to-left scripts) side of all the referenced components specified by [referencedId](#localizedbarrierstyle12).|
 | END    | 1  | The barrier is on the right (for left-to-right scripts) or left (for right-to-left scripts) side of all the referenced components specified by [referencedId](#localizedbarrierstyle12).  |

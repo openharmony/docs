@@ -6,6 +6,12 @@
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```typescript
+import { ChipSize, ChipGroup } from '@kit.ArkUI'
+```
+
 ## Child Components
 
 Not supported
@@ -31,9 +37,7 @@ ChipGroup({
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name           | Type                                           | Mandatory| Description                                                                                      |
+| Name           | Type                                           | Mandatory| Description                                                                                    |
 | --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             |
 | items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | Yes  | Specific attributes of individual chips. For details, see [ChipGroupItemOptions[]](#chipgroupitemoptions).<br>If this parameter is set to **undefined**, the chip group is empty by default.              |
 | itemStyle       | [ChipItemStyle](#chipitemstyle)                 | No  | Chip style, including the color and size. For details, see [ChipItemStyle](#chipitemstyle).<br>If this parameter is set to **undefined**, the default chip style is used.                |
@@ -41,7 +45,7 @@ ChipGroup({
 | multiple        | boolean                                         | No  | Whether multiple chips can be selected.<br>**true**: Multiple chips can be selected.<br>**false**: Only one chip can be selected.<br>Default value: **false**<br>If this parameter is set to **undefined**, the default value is used.                    |
 | chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | No  | Left and right padding, and the spacing between chips. For details, see [ChipGroupSpaceOptions](#chipgroupspaceoptions).<br>If this parameter is set to **undefined**, the default value is used.|
 | chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | No  | Top and bottom padding, used to control the overall height. For details, see [ChipGroupPaddingOptions](#chipgrouppaddingoptions).<br>If this parameter is set to **undefined**, the default value is used.|
-| onChange        | (selectedIndexes: Array&lt;number&gt;) => void  | No  | Callback invoked when the chip status changes.<br>If the value is **undefined**, the event is unbound.                                                               |
+| onChange        | Callback\<Array\<number>>  | No  | Callback invoked when the chip status changes.<br>If the value is **undefined**, the event is unbound.                                                               |
 | suffix          | ()=>void                                        | No  | Suffix, which is a builder customized by the user and requires importing the [IconGroupSuffix](#icongroupsuffix) API when used.<br>Default value: The suffix is not displayed if not passed.|
 
 > **NOTE**
@@ -58,12 +62,14 @@ Defines the specific attributes of individual chips.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name        | Type                          | Mandatory| Description                               |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
 | prefixIcon   | [IconOptions](#iconoptions)   | No  | Prefix image icon of the chip.                  |
 | prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Prefix symbol glyph icon of the chip.            |
 | label        | [LabelOptions](#labeloptions) | Yes  | Text of the chip.                           |
-| suffixIcon   | [IconOptions](#iconoptions) | No  | Suffix image icon of the chip.                  |
+| suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | No  | Suffix image icon of the chip.<br>**NOTE**<br>This API is supported since API version 12 and deprecated since API version 14. You are advised to use **suffixImageIcon** instead.|
 | suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Suffix symbol glyph icon of the chip.            |
 | allowClose   | boolean                       | No  | Whether to show the close icon.<br>Default value: **false** |
 
@@ -77,13 +83,15 @@ Defines the common attributes shared by all chips in the chip group.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name                   | Type                                                             | Mandatory| Description                                                 |
-| ----------------------- | ----------------------                                           | ---- | -------------------------------                       |
-| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions)  | No  | Chip size. To use this API, you must import the **ChipSize** type from the **Chip** component.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br> If this parameter is set to **undefined**, the default value is used. |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>If this parameter is set to **undefined**, the default value is used.                 |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Font color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**<br>If this parameter is set to **undefined**, the default value is used.                   |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Font color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_contrary')**<br>If this parameter is set to **undefined**, the default value is used.   |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Background color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**<br>If this parameter is set to **undefined**, the default value is used.               |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                   | Type                                                        | Mandatory| Description                                                        |
+| ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Chip size. To use this API, you must import the **ChipSize** type from the **Chip** component.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br> If this parameter is set to **undefined**, the default value is used.|
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>If this parameter is set to **undefined**, the default value is used.|
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**<br>If this parameter is set to **undefined**, the default value is used.|
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_contrary')**<br>If this parameter is set to **undefined**, the default value is used.|
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**<br>If this parameter is set to **undefined**, the default value is used.|
 
 > **NOTE**
 >
@@ -97,7 +105,9 @@ Defines the left and right padding of the chip group, and the spacing between ch
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name      | Type           | Mandatory| Description                                              |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Type           | Mandatory| Description                                            |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
 | itemSpace | string \| number  | No  | Spacing between chips. Percentage values are not supported.<br>Default value: **8**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.     |
 | startSpace | [Length](ts-types.md#length)         | No  | Left padding. Percentage values are not supported.<br>Default value: **16**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.               |
@@ -109,7 +119,9 @@ Defines the top and bottom padding of the chip group, used to control the overal
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name  | Type           | Mandatory| Description                                                       |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type           | Mandatory| Description                                                     |
 | ------ | -------------- | ---- | ------------------------------------------------            |
 | top    | [Length](ts-types.md#length)         | Yes  | Top padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.       |
 | bottom | [Length](ts-types.md#length)         | Yes  | Bottom padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.        |
@@ -122,9 +134,7 @@ Defines the top and bottom padding of the chip group, used to control the overal
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name    | Type                   | Mandatory| Description                                                               |
+| Name    | Type                   | Mandatory| Description                                                             |
 | -------- | ---------------------- | ---- | ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | Yes  | Custom builder items.|
 
@@ -139,9 +149,11 @@ Defines the tail builder, which imposes limitations on the settings for the back
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name    | Type                           | Mandatory| Description                                     |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type                           | Mandatory| Description                                   |
 | -------- | --------------                 | ---- | ------------------------------           |
-| icon     | [IconOptions](#iconoptions)    | Yes  | Custom builder icon.                       |
+| icon     | [IconOptions](#iconoptions)    | Yes  | Custom builder icon.<br>When the chip size is **ChipSize.SMALL**, the default suffix is at {width: 16, height: 16}.<br>When the chip size is **ChipSize.NORMAL**, the default suffix is at {width: 24, height: 24}.<br> To dynamically change the size, you must use the [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) type when importing the [IconGroupSuffix](#icongroupsuffix) API.                      |
 | action   | Callback\<void>        | Yes  | Callback of custom builder items.<br>If the value is **undefined**, the event is unbound.           |
 
 ## IconOptions
@@ -150,16 +162,20 @@ Defines the common attributes of icons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type                                  | Mandatory| Description                                                        |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | src  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon source, which can be a specific image path or an image reference.                                    |
-| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Icon size. Percentage values are not supported.<br>When the chip size is **ChipSize.SMALL**, the default suffix is at {width: 16, height: 16}.<br>When the chip size is **ChipSize.NORMAL**, the default suffix is at {width: 24, height: 24}.<br> To dynamically change the size, you must use the [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) type when importing the [IconGroupSuffix](#icongroupsuffix) API.|
+| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Icon size. This parameter cannot be set in percentage.|
 
 ## LabelOptions
 
 Defines the common attributes of labels.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type  | Mandatory | Description    |
 | ---- | ------ | ---- | -------- |
@@ -416,4 +432,4 @@ struct Index {
 }
 
 ```
-![](figures/chipGroupDemo3.jpeg)
+

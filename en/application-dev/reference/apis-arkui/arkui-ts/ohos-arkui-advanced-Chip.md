@@ -1,4 +1,4 @@
-# Chip
+#  Chip
 
 The chip component is typically used in the search box history or email address list.
 
@@ -6,13 +6,19 @@ The chip component is typically used in the search box history or email address 
 >
 > This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import { Chip, ChipOptions, ChipSize } from '@kit.ArkUI';
+```
+
 ## Child Components
 
 Not supported
 
 ## Chip
 
-Chip({options:ChipOptions})
+Chip({options:ChipOptions}): void
 
 **Decorator**: @Builder
 
@@ -49,7 +55,7 @@ Defines the type and style parameters of the chip.
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**|
 | allowClose      | boolean                                                      | No  | Whether to show the close icon.<br>Default value: **true** |
 | onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.|
-| onClicked<sup>12+</sup>       | ()=>void                                       | No  | Event triggered when the chip is clicked.                                      |
+| onClicked<sup>12+</sup>       | Callback\<void>                                       | No  | Event triggered when the chip is clicked.                                      |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**|
 
 > **NOTE**
@@ -66,7 +72,7 @@ Defines the type and style parameters of the chip.
 
 ## ChipSize
 
-Defines the size type of the chip.
+Enumerates the size types of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -79,7 +85,7 @@ Defines the size type of the chip.
 
 ## IconCommonOptions
 
-Defines the common icon attributes of the chip.
+Defines the common icon options of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -99,9 +105,9 @@ Defines the common icon attributes of the chip.
 
 ## PrefixIconOptions
 
-Defines the attributes of the prefix icon.
+Defines the prefix icon options.
 
-Inherits from [IconCommonOptions](#iconcommonoptions).
+Inherits [IconCommonOptions](#iconcommonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -109,9 +115,9 @@ Inherits from [IconCommonOptions](#iconcommonoptions).
 
 ## SuffixIconOptions
 
-Defines the attributes of the suffix icon.
+Defines the suffix icon options.
 
-Inherits from [IconCommonOptions](#iconcommonoptions).
+Inherits [IconCommonOptions](#iconcommonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -123,7 +129,7 @@ Inherits from [IconCommonOptions](#iconcommonoptions).
 
 ## ChipSymbolGlyphOptions<sup>12+</sup>
 
-Defines the options for prefix and suffix icons.
+Defines the prefix and suffix icon options.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -141,7 +147,7 @@ Defines the options for prefix and suffix icons.
 
 ## LabelOptions
 
-Defines the text attributes of the chip.
+Defines the label options of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
