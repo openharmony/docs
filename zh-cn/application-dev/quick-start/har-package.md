@@ -371,4 +371,4 @@ HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 相关实例
 
-- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Solutions/Shopping/OrangeShopping)
+- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-5.0.1-Release/code/Solutions/Shopping/OrangeShopping)
