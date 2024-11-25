@@ -82,6 +82,8 @@
         - [方舟字节码函数命名规则](arkts-bytecode-function-name.md)
         - [编译期自定义修改方舟字节码](customize-bytecode-during-compilation.md)
     - [Disassembler反汇编工具](tool-disassembler.md)
-    - [ArkGuard源码混淆工具](source-obfuscation.md)
+    - ArkGuard源码混淆
+        - [ArkGuard源码混淆工具](source-obfuscation.md)
+        - [不同包类型的源码混淆建议](source-obfuscation-practice.md)
     - [在build-profile.json5中配置arkOptions](arkoptions-guide.md)
 
