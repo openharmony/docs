@@ -76,9 +76,9 @@ static show(options?: TextPickerDialogOptions)
 >
 > 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog)来明确UI的执行上下文。
 
-### 示例1
+### 示例1（弹出文本选择弹窗）
 
-TextPickerDialog基本使用
+该示例通过点击按钮弹出文本选择弹窗。
 
 ```ts
 // xxx.ets
@@ -138,9 +138,9 @@ struct TextPickerDialogExample {
 ![TextPickerDialog](figures/TextPickerDialog.gif)
 
 
-### 示例2
+### 示例2（自定义样式）
 
-按钮支持自定义样式
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle、acceptButtonStyle、cancelButtonStyle实现了自定义文本以及按钮样式。
 
 ```ts
 // xxx.ets
@@ -205,7 +205,7 @@ struct TextPickerDialogExample {
 
 ![TextPickerDialog](figures/TextPickerDialog_CustomButton.png)
 
-### 示例3
+### 示例3（悬停态弹窗）
 
 该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
 

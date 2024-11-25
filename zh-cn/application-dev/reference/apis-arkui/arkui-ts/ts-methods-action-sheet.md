@@ -118,7 +118,9 @@ Dialog关闭的信息。
 >
 > 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)来明确UI的执行上下文。
 
-### 示例1
+### 示例1（弹出列表选择弹窗）
+
+该示例通过点击按钮弹窗列表选择弹窗。
 
 ```ts
 @Entry
@@ -185,7 +187,9 @@ struct ActionSheetExample {
 
 ![zh-cn_image_action](figures/zh-cn_image_action.gif)
 
-### 示例2
+### 示例2（可在主窗外弹出的弹窗）
+
+该示例通过配置showInSubWindow为true弹出可以在主窗外显示的弹窗。
 
 ```ts
 @Entry
@@ -254,8 +258,9 @@ struct ActionSheetExample {
 
 ![zh-cn_image_action_showinsubwindow](figures/zh-cn_image_action_showinsubwindow.jpg)
 
-### 示例3
-ActionSheet显示动画持续3秒，退出动画持续100毫秒
+### 示例3（设置弹窗的动画）
+该示例通过配置transition实现弹窗的显示和消失动画。
+
 ```ts
 @Entry
 @Component
@@ -312,8 +317,8 @@ struct ActionSheetExample {
 
 ![zh-cn_image_action_animation](figures/zh-cn_image_action_animation.gif)
 
-### 示例4
-该示例定义了ActionSheet的样式，如宽度、高度、背景色、阴影等等
+### 示例4（设置弹窗的样式）
+该示例定义了ActionSheet的样式，如宽度、高度、背景色、阴影等等。
 ```ts
 @Entry
 @Component
@@ -387,7 +392,7 @@ struct ActionSheetExample {
 
 ![zh-cn_image_action_style](figures/zh-cn_image_action_style.gif)
 
-### 示例5
+### 示例5（悬停态弹窗）
 
 该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
 
