@@ -1901,7 +1901,7 @@ setDeviceName(devName: string): void
 
 on(type: 'streamChange', callback: Callback&lt;number&gt;): void
 
-注册WIFI流变更事件。
+注册WIFI流变更事件，和接口off(type: 'streamChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1978,7 +1978,7 @@ wifi.off("streamChange", recvStreamChangeFunc);
 
 on(type: 'deviceConfigChange', callback: Callback&lt;number&gt;): void
 
-注册WIFI设备配置更改事件。
+注册WIFI设备配置更改事件，和接口off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2056,7 +2056,7 @@ wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
 
 on(type: 'hotspotStaJoin', callback: Callback&lt;StationInfo&gt;): void
 
-注册wifi热点sta加入事件。
+注册wifi热点sta加入事件，和接口off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;)配合使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2134,7 +2134,7 @@ wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 on(type: 'hotspotStaLeave', callback: Callback&lt;StationInfo&gt;): void
 
-注册wifi热点sta离开事件。
+注册wifi热点sta离开事件，和接口off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;)配合使用。
 
 **系统接口：** 此接口为系统接口。
 

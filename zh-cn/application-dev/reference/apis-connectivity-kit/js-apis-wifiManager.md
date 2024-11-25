@@ -988,7 +988,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
-| ipAddress | number | 是 | 否 | WLAN连接的IP地址(wifi连接信息和关于本机机里的状态信息可以查看)。
+| ipAddress | number | 是 | 否 | WLAN连接的IP地址(wifi连接信息和关于本机里的状态信息可以查看)。
 | connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的WiFi标准。 |
@@ -2036,7 +2036,7 @@ stopDiscoverDevices(): void
 
 on(type: 'wifiStateChange', callback: Callback&lt;number&gt;): void
 
-注册WLAN状态改变事件，和接口off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;):配合使用。
+注册WLAN状态改变事件，和接口off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2122,7 +2122,7 @@ off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiConnectionChange', callback: Callback&lt;number&gt;): void
 
-注册WLAN连接状态改变事件，和接口off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;):配合使用。
+注册WLAN连接状态改变事件，和接口off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2204,7 +2204,7 @@ off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiScanStateChange', callback: Callback&lt;number&gt;): void
 
-注册扫描状态改变事件，和接口off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;):配合使用。
+注册扫描状态改变事件，和接口off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2286,7 +2286,7 @@ off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
-注册RSSI状态改变事件，和接口off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;):配合使用。
+注册RSSI状态改变事件，和接口off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2357,7 +2357,7 @@ off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 
-注册热点状态改变事件，和接口off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;):配合使用。
+注册热点状态改变事件，和接口off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2438,7 +2438,7 @@ off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'p2pStateChange', callback: Callback&lt;number&gt;): void
 
-注册P2P开关状态改变事件，和接口off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;):配合使用。
+注册P2P开关状态改变事件，和接口off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2519,7 +2519,7 @@ off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'p2pConnectionChange', callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
-注册P2P连接状态改变事件，和接口off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;):配合使用。
+注册P2P连接状态改变事件，和接口off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2590,7 +2590,7 @@ off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 
 on(type: 'p2pDeviceChange', callback: Callback&lt;WifiP2pDevice&gt;): void
 
-注册P2P设备状态改变事件，和接口off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;):配合使用。
+注册P2P设备状态改变事件，和接口off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;)配合使用。
 
 **需要权限：**
 
@@ -2661,7 +2661,7 @@ off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
-注册P2P对端设备状态改变事件，和接口off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;):配合使用。
+注册P2P对端设备状态改变事件，和接口off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;)配合使用。
 
 **需要权限：**
 
@@ -2732,7 +2732,7 @@ off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 on(type: 'p2pPersistentGroupChange', callback: Callback&lt;void&gt;): void
 
-注册P2P永久组状态改变事件，和接口off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;):配合使用。
+注册P2P永久组状态改变事件，和接口off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2803,7 +2803,7 @@ off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;): void
 
 on(type: 'p2pDiscoveryChange', callback: Callback&lt;number&gt;): void
 
-注册发现设备状态改变事件，和接口off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;):配合使用。
+注册发现设备状态改变事件，和接口off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;)配合使用。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
