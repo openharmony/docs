@@ -970,9 +970,9 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 });
 ```
 
-## screen.makeUnoqueScreen
+## screen.makeUniqueScreen
 
-makeUnoqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+makeUniqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 设置屏幕为异源屏，使用Promise异步回调。
 
@@ -1006,7 +1006,7 @@ makeUnoqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenIds: Array<number> = [1001, 1002];
-screen.makeUnoqueScreen(screenIds).then((data: Array<number>) => {
+screen.makeUniqueScreen(screenIds).then((data: Array<number>) => {
   console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);

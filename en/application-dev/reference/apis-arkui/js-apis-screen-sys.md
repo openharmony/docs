@@ -970,9 +970,9 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 });
 ```
 
-## screen.makeUnoqueScreen
+## screen.makeUniqueScreen
 
-makeUnoqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+makeUniqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 Set multiple screens as unique screens. This API uses a promise to return the result.
 
@@ -1006,7 +1006,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenIds: Array<number> = [1001, 1002];
-screen.makeUnoqueScreen(screenIds).then((data: Array<number>) => {
+screen.makeUniqueScreen(screenIds).then((data: Array<number>) => {
   console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);
