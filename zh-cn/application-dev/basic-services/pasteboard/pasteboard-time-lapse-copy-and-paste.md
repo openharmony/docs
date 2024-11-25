@@ -20,6 +20,8 @@
 | setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口，在使用延迟复制粘贴功能时，不可与getUnifiedDataSync同线程调用。|
 | getUnifiedData(): Promise\<udc.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。|
 | getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口，在使用延迟复制粘贴功能时，不可与setUnifiedData和setUnifiedDataSync同线程调用。|
+| setAppShareOptions(shareOptions: ShareOption): void | 设置应用自身剪贴板数据的粘贴分享的范围。|
+| removeAppShareOptions(): void | 删除设置的分享范围。|
 
 ## 开发步骤
 
@@ -80,4 +82,29 @@
        //处理异常场景
      })
    })
+   ```
+   
+5. 设置应用自身剪贴板数据的粘贴分享的范围
+
+   ```ts
+   try {
+       systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
+       console.info('Set app share options success.');
+   } catch (err) {
+       let error: BusinessError = err as BusinessError;
+       //处理异常场景
+   }
+   ```
+   
+6. 删除设置的分享范围
+
+   ```ts
+   let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+   try {
+	   systemPasteboard.removeAppShareOptions();
+	   console.info('Remove app share options success.');
+   } catch (err) {
+	   let error: BusinessError = err as BusinessError;
+       //处理异常场景
+   }
    ```
