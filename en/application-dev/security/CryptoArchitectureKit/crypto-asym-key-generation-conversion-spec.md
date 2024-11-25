@@ -44,9 +44,9 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> - It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
 >
-> - If the created RSA asymmetric key generator is used to randomly generate keys, the specifications of the RSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the RSA keys generated are the same as the key specifications set in key conversion parameters.
+> If the created RSA asymmetric key generator is used to randomly generate keys, the specifications of the RSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the RSA keys generated are the same as the key specifications set in key conversion parameters.
 
 ### Key Parameter
 
@@ -192,9 +192,9 @@ When creating an asymmetric key generator instance, you need to specify the key 
 
 > **NOTE**
 >
-> - It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
 >
-> - If the created DSA asymmetric key generator is used to randomly generate keys, the specifications of the DSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DSA keys generated are the same as the key specifications set in key conversion parameters.
+> If the created DSA asymmetric key generator is used to randomly generate keys, the specifications of the DSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DSA keys generated are the same as the key specifications set in key conversion parameters.
 
 ### Key Parameter
 
