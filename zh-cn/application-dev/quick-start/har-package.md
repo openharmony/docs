@@ -3,7 +3,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 ## 使用场景
 - 支持应用内共享，也可以发布后供其他应用使用。
-- 作为二方库，发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-ohpm-repo-V5)，供公司内部其他应用使用。
+- 作为二方库，发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-ohpm-repo-V13)，供公司内部其他应用使用。
 - 作为三方库，发布到[OHPM中心仓](https://ohpm.openharmony.cn/)，供其他应用使用。
 - 多包（HAP/HSP）引用相同的HAR时，会造成多包间代码和资源的重复拷贝，从而导致应用包膨大。
 
@@ -371,4 +371,4 @@ HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 相关实例
 
-- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Solutions/Shopping/OrangeShopping)
+- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-5.0.1-Release/code/Solutions/Shopping/OrangeShopping)
