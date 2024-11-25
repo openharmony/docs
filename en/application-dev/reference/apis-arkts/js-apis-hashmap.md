@@ -31,9 +31,9 @@ import { HashMap } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes | No | Number of elements in a hash map (called container later). |
+| length | number | Yes| No| Number of elements in a hash map (called container later).|
 
 
 ### constructor
@@ -50,7 +50,7 @@ A constructor used to create a **HashMap** instance.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200012 | The HashMap's constructor cannot be directly invoked. |
 
@@ -73,15 +73,15 @@ Checks whether this container is empty (contains no element).
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise. |
+| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -105,21 +105,21 @@ Checks whether this container contains the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Target key. |
+| key | K | Yes| Target key.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified key is contained; returns **false** otherwise. |
+| boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The hasKey method cannot be bound. |
 
@@ -144,21 +144,21 @@ Checks whether this container contains the specified value.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes | Target value. |
+| value | V | Yes| Target value.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified value is contained; returns **false** otherwise. |
+| boolean | Returns **true** if the specified value is contained; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The hasValue method cannot be bound. |
 
@@ -183,21 +183,21 @@ Obtains the value of the specified key in this container. If nothing is obtained
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Target key. |
+| key | K | Yes| Target key.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| V | Value obtained. |
+| V | Value obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The get method cannot be bound. |
 
@@ -223,15 +223,15 @@ Adds all elements in a **HashMap** instance to this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| map | HashMap<K, V> | Yes | **HashMap** instance whose elements are to be added to the current container. |
+| map | HashMap<K, V> | Yes| **HashMap** instance whose elements are to be added to the current container.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The setAll method cannot be bound. |
@@ -260,22 +260,22 @@ Adds or updates an element in this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key of the target element. |
-| value | V | Yes | Value of the target element. |
+| key | K | Yes| Key of the target element.|
+| value | V | Yes| Value of the target element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Object | Container that contains the new element. |
+| Object | Container that contains the new element.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 10200011 | The set method cannot be bound. |
@@ -300,21 +300,21 @@ Removes an element with the specified key from this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key of the target element. |
+| key | K | Yes| Key of the target element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| V | Value of the element. |
+| V | Value of the element.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -342,7 +342,7 @@ Clears this container and sets its length to **0**.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -368,15 +368,15 @@ Obtains an iterator that contains all the keys in this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;K&gt; | Iterator obtained. |
+| IterableIterator&lt;K&gt; | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The keys method cannot be bound. |
 
@@ -407,15 +407,15 @@ Obtains an iterator that contains all the values in this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;V&gt; | Iterator obtained. |
+| IterableIterator&lt;V&gt; | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -446,22 +446,22 @@ Replaces an element in this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key of the target element. |
-| newValue | V | Yes | New value of the element. |
+| key | K | Yes| Key of the target element.|
+| newValue | V | Yes| New value of the element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is replaced; returns **false** otherwise. |
+| boolean | Returns **true** if the element is replaced; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The replace method cannot be bound. |
 
@@ -486,23 +486,23 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes | Callback invoked to traverse the elements in the container. |
-| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No | Value of the element that is currently traversed. The default value is the value of the first key-value pair. |
-| key | K | No | Key of the element that is currently traversed. The default value is the key of the first key-value pair. |
-| map | HashMap<K, V> | No | Instance that calls the **forEach** API. The default value is this instance. |
+| value | V | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
+| key | K | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
+| map | HashMap<K, V> | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -541,15 +541,15 @@ Obtains an iterator that contains all the elements in this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[K, V]&gt; | Iterator obtained. |
+| IterableIterator&lt;[K, V]&gt; | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -584,25 +584,21 @@ for(let i = 0; i < 10; i++) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[K, V]&gt; | Iterator obtained. |
+| IterableIterator&lt;[K, V]&gt; | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 

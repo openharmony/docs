@@ -1,6 +1,6 @@
-# GC Introduction
+# GC
 
-Garbage Collection (GC) is the process of finding garbage in memory and releasing and reclaiming memory space. Two GC algorithms are mainly used: reference counting and tracing GC. ArkTS runtime implements efficient memory reclamation in different scenarios based on generational models and hybrid algorithms.
+Garbage Collection (GC) is the process of finding garbage in memory and releasing and reclaiming memory space. Two GC algorithms are mainly used: reference counting and tracing GC. Based on the generational model (young generation and old generation), ArkTS uses both the reference counting and object tracking algorithms to concurrently execute GC tasks, achieving high-performance memory reclamation in different scenarios.
 
 In ArkTS, data types are classified into simple type and reference type. Data of the simple type is stored in stacks, and its space is automatically allocated and reclaimed by the operating system. Data of the reference type is stored in heaps, and its space must be manually reclaimed by the engine. GC is a management mechanism for automatically reclaiming heap space.
 
@@ -95,9 +95,7 @@ Note: The thread pool is used to execute concurrent tasks in the GC process. Dur
 | minGrowingStep | 4 M/8 M/16 M | Minimum increase step of **oldSpace**.|
 | longPauseTime | 40 ms| Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**.|
 
-### Other
-
-### The maximum native memory of the ArrayBuffer in a single VM is 4 GB.
+### Other: The maximum native memory of the ArrayBuffer in a single VM is 4 GB.
 
 ## GC Process
 
@@ -215,7 +213,7 @@ In performance-sensitive scenarios, the GC trigger threshold of the JS thread is
 - Page redirection upon click
 - Jumbo frame
 
-Application cold start is supported by default. In other scenarios, you can call the **dfxjsnapi** interface for configuration and there is no essential difference.
+Currently, this feature is controlled by the system. Third-party apps do not have APIs to directly call this feature.
 
 Log keyword: **SmartGC**
 
@@ -224,37 +222,6 @@ Log keyword: **SmartGC**
 ![image](./figures/gc-smart-feature.png)
 
 Mark performance-sensitive scenarios. When entering or exiting a performance-sensitive scenario, mark the scenario on the heap to avoid unnecessary GC and maintain high performance.
-
-### Idle GC
-
-The thread idle time in the system frame drawing process is used to efficiently utilize computing resources to complete GC by phase, reducing janky frames caused by subsequent long GC pauses triggered by accumulated memory usage.
-
-#### **Incremental Marking**
-
-It usually takes a long period of time (longer than one idle time period) to complete old GC. Therefore, the marking process is distributed in multiple idle time periods.
-
-![image](./figures/gc-incremental-mark-feature.png)
-
-Incremental marking is triggered during linear space expansion when the following conditions are met:
-
-- **ENABLE_IDLE_GC** is enabled in **ArkProperties** and the idleTime switch callback function sent by the ability is received.
-- There is no idle task and concurrent marking is not triggered.
-- When incremental marking is complete, the difference between the heap size and the threshold is less than 256 KB.
-- The size of the allocated object is less than 100 KB during incremental marking.
-
-Incremental marking and full concurrent marking are mutually exclusive. Linear space mainly refers to Semi Space.
-
-#### **Idle Young GC**
-
-![image](./figures/gc-idle-feature.png)
-
-During linear space expansion, the system attempts to trigger idle GC and set an idle task when the following conditions are met:
-
-- **ENABLE_IDLE_GC** is enabled in **ArkProperties** and the idleTime switch callback function sent by the ability is received.
-- There is no idle task and concurrent marking is not triggered.
-- The heap size is less than 256 KB or less than the young GC concurrent mark threshold.
-
-Idle young GC can coexist with concurrent marking to prevent the GC threshold from being reached before the idle time is received. Concurrent marking can be triggered before idle young GC starts.
 
 ## Log Description
 
@@ -319,7 +286,6 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ## GC Developer Debugging Interfaces
 
 > **NOTE**
->
 > The following interfaces are used only for debugging. They are informal external SDK interfaces and should not be used in official application versions.
 
 ### ArkTools.hintGC()
