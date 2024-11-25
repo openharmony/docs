@@ -252,13 +252,13 @@ OpenHarmony 5.0.1 Release版本对标准系统的能力进行持续完善，以�
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 5.0.1 Release    | *上传中* | *上传中* | -- |
-| Hi3861解决方案（二进制）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_pegasus.tar.gz.sha256) | 28 MB |
-| Hi3516解决方案-LiteOS（二进制） | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 329 MB |
-| Hi3516解决方案-Linux（二进制）  | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_Linux.tar.gz.sha256) | 222 MB |
-| RK3568标准系统解决方案（二进制）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/dayu200_standard_arm32.tar.gz.sha256) | 13 GB |
-| 标准系统Public SDK包（Mac）             | 5.0.1.111 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.4 GB |
-| 标准系统Public SDK包（Mac-M1）             | 5.0.1.111  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.3 GB |
+| 全量代码（标准、轻量和小型系统）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/code-v5.0.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/code-v5.0.1-Release.tar.gz.sha256) | 42.7 GB |
+| Hi3861解决方案（二进制）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_pegasus.tar.gz.sha256) | 27.2 MB |
+| Hi3516解决方案-LiteOS（二进制） | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 328.4 MB |
+| Hi3516解决方案-Linux（二进制）  | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_Linux.tar.gz.sha256) | 221.1 MB |
+| RK3568标准系统解决方案（二进制）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/dayu200_standard_arm32.tar.gz.sha256) | 12.7 GB |
+| 标准系统Public SDK包（Mac）             | 5.0.1.111 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 5.0.1.111  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
 | 标准系统Public SDK包（Windows/Linux）   | 5.0.1.111   | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.5 GB |
 
 
@@ -298,5 +298,3 @@ OpenHarmony 5.0.1 Release版本对标准系统的能力进行持续完善，以�
 | IAP85P | 启动进程优先级过低有小概率会被优先kill掉导致出现sysfreeze。 | 该问题会导致应用被关闭，重启应用可解决。 | 12月15日 | 
 | I9SXZ8 | 进程com.ohos.contacts小概率因THREAD_BLOCK_6S卡在libark_jsruntime.so出现appfreeze。 | 该问题因联系人应用卡在了窗口的 windowStage.loadContent()方法产生，会导致应用卡死，重启应用可解决。 | 12月15日 | 
 | IB36B2 | 进程com.ohos.mms小概率出现jscrash，问题栈为close。 | 该问题会导致短信应用闪退，重启应用可解决。 | 12月15日 | 
-
-<!--no_check-->
