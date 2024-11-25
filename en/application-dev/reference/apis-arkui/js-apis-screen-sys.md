@@ -1057,6 +1057,7 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 | activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
 | orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.                                                      |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.                                                    |
+| edId<sup>13+</sup> | string                                         | Yes  | No  | EdId of the screen.                                                 |
 
 ### setOrientation
 
