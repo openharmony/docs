@@ -1,12 +1,12 @@
-# Using Embedded User Identity Authentication Icons
+# Using userAuthIcon
 
-The system provides embedded icons to simplify the user identity authentication process.
+**userAuthIcon** provides user identity authentication icons used on the application UI. With **userAuthIcon**, you can:
 
-1. The icons for facial authentication and fingerprint authentication can be easily integrated into your applications.
-2. The color and size of the icons can be customized, but the icon style cannot be changed.
-3. The pop-up facial or fingerprint authentication component can be started once the icon is tapped.
+1. Easily integrate the facial authentication and fingerprint authentication icons into your applications.
+2. Customize the color and size of the icons. The icon style cannot be changed.
+3. Start the pop-up facial or fingerprint authentication component once the icon is tapped.
 
-The embedded user authentication icons support the following types of authentication:
+**userAuthIcon** supports the following types of authentication:
 
 - Facial authentication
 - Fingerprint authentication
@@ -14,7 +14,7 @@ The embedded user authentication icons support the following types of authentica
 - Fingerprint + lock screen password authentication
 - Facial + fingerprint + lock screen password authentication
 
-The following figure shows the use of the fingerprint authentication icon. When a user taps the fingerprint authentication icon (shown in the left of the figure) integrated into the application, the system starts the user authentication component (shown in the right of the figure) to complete identity authentication. The embedded icons eliminate the need for initiating user identity authentication requests by using APIs, making the identity authentication process simpler.
+The following figure shows the use of **userAuthIcon** for fingerprint authentication. When a user taps the fingerprint authentication icon (shown in the left part of the figure) integrated into the application, the system starts the user authentication component (shown in the right part of the figure) to complete identity authentication. The embedded icons eliminate the need for initiating user identity authentication requests by using APIs, making the identity authentication process simpler.
 
 ![user_auth_icon_demo](figures/user_auth_icon_demo.png)
 
