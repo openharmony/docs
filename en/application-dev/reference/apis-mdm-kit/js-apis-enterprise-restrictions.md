@@ -1,6 +1,6 @@
 # @ohos.enterprise.restrictions (Restrictions)
 
-This **restrictions** module provides APIs for disallowing general features of devices.
+This **restrictions** module provides APIs for disallowing general features of devices. You can globally disable or enable the features such as Bluetooth, HDC, USB, and Wi-Fi.
 
 > **NOTE**
 >
@@ -31,7 +31,7 @@ Disallows a feature.
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature  | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of setting the system time of the device.<br>- **printer**: printer capability of the device.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device.<br>- **wifi**: Wi-Fi capability of the device. <!--RP1--><!--RP1End--> |
+| feature  | string                                                  | Yes  | Feature to set.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. After this feature is disabled, USB devices cannot be used.<br>- **wifi**: Wi-Fi capability of the device.<!--RP1--><!--RP1End--> |
 | disallow | boolean                                                 | Yes  | Whether to disallow the feature. The value **true** means to disallow the feature; the value **false** means the opposite.                       |
 
 **Error codes**
@@ -77,7 +77,7 @@ Obtains the status of a feature.
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                              |
-| feature | string                                                  | Yes  | Name of the feature, whose status is to be obtained.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of setting the system time of the device.<br>- **printer**: printer capability of the device.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device.<br>- **wifi**: Wi-Fi capability of the device.<!--RP2--><!--RP2End--> |
+| feature | string                                                  | Yes  | Name of the feature, whose status is to be obtained.<br>- **bluetooth**: Bluetooth capability of the device.<br>- **modifyDateTime**: capability of modifying the system time. Currently, this feature is available only for 2-in-1 devices.<br>- **printer**: printing capability. Currently, this feature is available only for 2-in-1 devices.<br>- **hdc**: OpenHarmony Device Connector (hdc).<br>- **microphone**: microphone capability of the device.<br>- **fingerprint**: fingerprint authentication capability of the device.<br>- **usb**: USB capability of the device. After this feature is disabled, USB devices cannot be used.<br>- **wifi**: Wi-Fi capability of the device.<!--RP2--><!--RP2End--> |
 
 **Return value**
 
