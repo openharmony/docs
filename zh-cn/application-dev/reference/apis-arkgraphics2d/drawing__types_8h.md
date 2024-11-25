@@ -25,12 +25,15 @@
 | struct  [OH_Drawing_Point3D](_o_h___drawing___point3_d.md) | 定义一个三维的坐标点。 | 
 | struct  [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | 定义图片信息结构体。 | 
 | struct  [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) | 定义矩形框样式结构体。 | 
+| struct  [OH_Drawing_String](_o_h___drawing___string.md) | 采用UTF-16BE（大端模式）编码的字符串信息结构体。  | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef struct [OH_Drawing_Array](_drawing.md#oh_drawing_array) [OH_Drawing_Array](_drawing.md#oh_drawing_array) | 定义数组对象, 用于存储多个同类型对象。  | 
+| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](_drawing.md#oh_drawing_string) | 采用UTF-16BE（大端模式）编码的字符串信息结构体。  | 
 | typedef struct [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas)  [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) | 定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 | 
 | typedef struct [OH_Drawing_Pen](_drawing.md#oh_drawing_pen)  [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) | 定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 | 
 | typedef struct [OH_Drawing_Region](_drawing.md#oh_drawing_region)  [OH_Drawing_Region](_drawing.md#oh_drawing_region) | 定义一个区域，用于表示画布上的封闭区域，实现更精确的图形控制。 | 
@@ -55,6 +58,7 @@
 | typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | 定<br/>义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
 | typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)  [OH_Drawing_Font](_drawing.md#oh_drawing_font) | 用于描述字体。 | 
 | typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)  [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | 用于描述内存流。 | 
+| typedef struct [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) | 用于描述字型参数。 | 
 | typedef struct [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface)  [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface) | 用于描述字形。 | 
 | typedef struct [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob)  [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob) | 定义一个文本对象，表示将多个文本组合到一个不可变的容器中。 每个文本行由字形和位置组成。 | 
 | typedef struct [OH_Drawing_Image](_drawing.md#oh_drawing_image)  [OH_Drawing_Image](_drawing.md#oh_drawing_image) | 定义一个用于描述绘制二维像素数组的图片。 | 

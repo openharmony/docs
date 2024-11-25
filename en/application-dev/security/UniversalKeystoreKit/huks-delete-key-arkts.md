@@ -6,7 +6,7 @@ To ensure data security, delete the key that is no longer required.
 
 For example, delete a 256-bit HKDF key.
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
 2. Initialize the key property set to specify the properties of the key to delete, for example, delete all keys or a single key. To delete a single key, leave **properties** empty.
 

@@ -10,7 +10,7 @@ BuilderNode提供了组件预创建的能力，能够自定义原生组件的创
 
 ![zh-cn_image_builder-node](figures/builder-node.png)
 
-BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通过BuilderNode中的Update方式触发更新，不建议通过BuilderNode中获取的RenderNode对节点进行修改操作。
+BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通过BuilderNode中的[update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update)方式触发更新，不建议通过BuilderNode中获取的RenderNode对节点进行修改操作。
 
 > **说明：**
 > 
@@ -51,10 +51,10 @@ BuilderNode对象为一个模板类，需要在创建的时候指定类型。该
 BuilderNode的根节点直接作为[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)的[makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode)返回值。
 
 ```ts
-import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI'
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -90,7 +90,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -113,10 +113,10 @@ struct Index {
 BuilderNode的RenderNode挂载其它RenderNode下时，需要明确定义[selfIdeaSize](../reference/apis-arkui/js-apis-arkui-builderNode.md#renderoptions)的大小作为BuilderNode的布局约束。不推荐通过该方式挂载节点。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -164,7 +164,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -196,10 +196,10 @@ struct Index {
 更新BuilderNode中的节点。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -261,7 +261,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -307,7 +307,7 @@ BuilderNode中提供了[postTouchEvent](../reference/apis-arkui/js-apis-arkui-bu
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "this is a text"
+  text: string = "this is a text";
 }
 
 @Builder

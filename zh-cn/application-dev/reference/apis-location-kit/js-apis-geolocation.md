@@ -31,11 +31,9 @@ API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或�
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
 
-如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
+如果应用在后台运行时也需要访问设备位置，需要申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
 
 应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
-
-长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
@@ -75,7 +73,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geolocation.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
   ```
@@ -108,7 +106,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.LocationRequest = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geolocation.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   geolocation.on('locationChange', requestInfo, locationChange);
   geolocation.off('locationChange', locationChange);
@@ -141,7 +139,7 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
   ```ts
   import geolocation from '@ohos.geolocation';
   let locationServiceState = (state:boolean):void => {
-      console.log('locationServiceState: ' + JSON.stringify(state));
+      console.info('locationServiceState: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
   ```
@@ -149,7 +147,7 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
 ## geolocation.off('locationServiceState')<sup>(deprecated)</sup>
 
-off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
+off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void
 
 取消订阅位置服务状态变化。
 
@@ -173,7 +171,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
   ```ts
   import geolocation from '@ohos.geolocation';
   let locationServiceState = (state:boolean):void => {
-      console.log('locationServiceState: state: ' + JSON.stringify(state));
+      console.info('locationServiceState: state: ' + JSON.stringify(state));
   }
   geolocation.on('locationServiceState', locationServiceState);
   geolocation.off('locationServiceState', locationServiceState);
@@ -182,7 +180,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
 ## geolocation.on('cachedGnssLocationsReporting')<sup>(deprecated)</sup>
 
-on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
+on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 订阅缓存GNSS定位结果上报事件。使用callback异步回调。
 
@@ -208,7 +206,7 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
   ```ts
   import geolocation from '@ohos.geolocation';
   let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
-      console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
@@ -217,7 +215,7 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
 
 ## geolocation.off('cachedGnssLocationsReporting')<sup>(deprecated)</sup>
 
-off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
+off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 取消订阅缓存GNSS定位结果上报事件。
 
@@ -242,7 +240,7 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
   ```ts
   import geolocation from '@ohos.geolocation';
   let cachedLocationsCb = (locations:Array<geolocation.Location>):void => {
-      console.log('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsReporting: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geolocation.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   geolocation.on('cachedGnssLocationsReporting', requestInfo, cachedLocationsCb);
@@ -252,7 +250,7 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
 
 ## geolocation.on('gnssStatusChange')<sup>(deprecated)</sup>
 
-on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
+on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void
 
 订阅GNSS卫星状态信息上报事件。使用callback异步回调。
 
@@ -277,7 +275,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
   ```ts
   import geolocation from '@ohos.geolocation';
   let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo):void => {
-      console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
   ```
@@ -285,7 +283,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
 
 ## geolocation.off('gnssStatusChange')<sup>(deprecated)</sup>
 
-off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
+off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void
 
 取消订阅GNSS卫星状态信息上报事件。
 
@@ -309,7 +307,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
   ```ts
   import geolocation from '@ohos.geolocation';
   let gnssStatusCb = (satelliteStatusInfo:geolocation.SatelliteStatusInfo) => {
-      console.log('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('gnssStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   geolocation.on('gnssStatusChange', gnssStatusCb);
   geolocation.off('gnssStatusChange', gnssStatusCb);
@@ -318,7 +316,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
 
 ## geolocation.on('nmeaMessageChange')<sup>(deprecated)</sup>
 
-on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
+on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void
 
 订阅GNSS NMEA信息上报事件。使用callback异步回调。
 
@@ -343,7 +341,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
   ```ts
   import geolocation from '@ohos.geolocation';
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessageChange: ' + JSON.stringify(str));
+      console.info('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb );
   ```
@@ -351,7 +349,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
 ## geolocation.off('nmeaMessageChange')<sup>(deprecated)</sup>
 
-off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
+off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void
 
 取消订阅GNSS NMEA信息上报事件。
 
@@ -376,7 +374,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
   ```ts
   import geolocation from '@ohos.geolocation';
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessageChange: ' + JSON.stringify(str));
+      console.info('nmeaMessageChange: ' + JSON.stringify(str));
   }
   geolocation.on('nmeaMessageChange', nmeaCb);
   geolocation.off('nmeaMessageChange', nmeaCb);
@@ -385,7 +383,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
 ## geolocation.on('fenceStatusChange')<sup>(deprecated)</sup>
 
-on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 添加一个围栏，并订阅地理围栏事件。使用callback异步回调。
 
@@ -433,7 +431,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 ## geolocation.off('fenceStatusChange')<sup>(deprecated)</sup>
 
-off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 删除一个围栏，并取消订阅该围栏事件。
 
@@ -508,10 +506,10 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location) => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.info('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
   geolocation.getCurrentLocation(requestInfo, locationChange);
@@ -545,10 +543,10 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
   import BusinessError from "@ohos.base"
   let locationChange = (err:BusinessError.BusinessError, location:geolocation.Location):void => {
       if (err) {
-          console.log('locationChanger: err=' + JSON.stringify(err));
+          console.info('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
   geolocation.getCurrentLocation(locationChange);
@@ -587,7 +585,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.CurrentLocationRequest = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
   geolocation.getCurrentLocation(requestInfo).then((result) => {
-      console.log('current location: ' + JSON.stringify(result));
+      console.info('current location: ' + JSON.stringify(result));
   });
   ```
 
@@ -618,10 +616,10 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
   import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation((err, data) => {
       if (err) {
-          console.log('getLastLocation: err=' + JSON.stringify(err));
+          console.info('getLastLocation: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('getLastLocation: data=' + JSON.stringify(data));
+          console.info('getLastLocation: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -652,7 +650,7 @@ getLastLocation(): Promise&lt;Location&gt;
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getLastLocation().then((result) => {
-      console.log('getLastLocation: result: ' + JSON.stringify(result));
+      console.info('getLastLocation: result: ' + JSON.stringify(result));
   });
   ```
 
@@ -682,10 +680,10 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
   import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled((err, data) => {
       if (err) {
-          console.log('isLocationEnabled: err=' + JSON.stringify(err));
+          console.info('isLocationEnabled: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('isLocationEnabled: data=' + JSON.stringify(data));
+          console.info('isLocationEnabled: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -715,7 +713,7 @@ isLocationEnabled(): Promise&lt;boolean&gt;
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isLocationEnabled().then((result) => {
-      console.log('promise, isLocationEnabled: ' + JSON.stringify(result));
+      console.info('promise, isLocationEnabled: ' + JSON.stringify(result));
   });
   ```
 
@@ -745,10 +743,10 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
   import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation((err, data) => {
       if (err) {
-          console.log('requestEnableLocation: err=' + JSON.stringify(err));
+          console.info('requestEnableLocation: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('requestEnableLocation: data=' + JSON.stringify(data));
+          console.info('requestEnableLocation: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -778,7 +776,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.requestEnableLocation().then((result) => {
-      console.log('promise, requestEnableLocation: ' + JSON.stringify(result));
+      console.info('promise, requestEnableLocation: ' + JSON.stringify(result));
   });
   ```
 
@@ -808,10 +806,10 @@ isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
   import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable((err, data) => {
       if (err) {
-          console.log('isGeoServiceAvailable: err=' + JSON.stringify(err));
+          console.info('isGeoServiceAvailable: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('isGeoServiceAvailable: data=' + JSON.stringify(data));
+          console.info('isGeoServiceAvailable: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -841,7 +839,7 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.isGeoServiceAvailable().then((result) => {
-      console.log('promise, isGeoServiceAvailable: ' + JSON.stringify(result));
+      console.info('promise, isGeoServiceAvailable: ' + JSON.stringify(result));
   });
   ```
 
@@ -873,10 +871,10 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
   let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
       if (err) {
-          console.log('getAddressesFromLocation: err=' + JSON.stringify(err));
+          console.info('getAddressesFromLocation: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
+          console.info('getAddressesFromLocation: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -884,7 +882,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
 ## geolocation.getAddressesFromLocation<sup>(deprecated)</sup>
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
+getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
 调用逆地理编码服务，将坐标转换为地理描述，使用Promise异步回调。
 
@@ -913,7 +911,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
   import geolocation from '@ohos.geolocation';
   let reverseGeocodeRequest:geolocation.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   geolocation.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
-      console.log('getAddressesFromLocation: ' + JSON.stringify(data));
+      console.info('getAddressesFromLocation: ' + JSON.stringify(data));
   });
   ```
 
@@ -945,10 +943,10 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
   let geocodeRequest:geolocation.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
       if (err) {
-          console.log('getAddressesFromLocationName: err=' + JSON.stringify(err));
+          console.info('getAddressesFromLocationName: err=' + JSON.stringify(err));
       }
       if (data) {
-          console.log('getAddressesFromLocationName: data=' + JSON.stringify(data));
+          console.info('getAddressesFromLocationName: data=' + JSON.stringify(data));
       }
   });
   ```
@@ -985,14 +983,14 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
   import geolocation from '@ohos.geolocation';
   let geocodeRequest:geolocation.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   geolocation.getAddressesFromLocationName(geocodeRequest).then((result) => {
-      console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
+      console.info('getAddressesFromLocationName: ' + JSON.stringify(result));
   });
   ```
 
 
 ## geolocation.getCachedGnssLocationsSize<sup>(deprecated)</sup>
 
-getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
+getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void
 
 获取GNSS芯片缓存位置的个数。使用callback异步回调。
 
@@ -1016,10 +1014,10 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
   import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize((err, size) => {
       if (err) {
-          console.log('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
+          console.info('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
       }
       if (size) {
-          console.log('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
+          console.info('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
       }
   });
   ```
@@ -1050,14 +1048,14 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.getCachedGnssLocationsSize().then((result) => {
-      console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
+      console.info('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
   });
   ```
 
 
 ## geolocation.flushCachedGnssLocations<sup>(deprecated)</sup>
 
-flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
+flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void
 
 读取并清空GNSS芯片所有缓存位置。使用callback异步回调。
 
@@ -1081,10 +1079,10 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
   import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations((err, result) => {
       if (err) {
-          console.log('flushCachedGnssLocations: err=' + JSON.stringify(err));
+          console.info('flushCachedGnssLocations: err=' + JSON.stringify(err));
       }
       if (result) {
-          console.log('flushCachedGnssLocations: result=' + JSON.stringify(result));
+          console.info('flushCachedGnssLocations: result=' + JSON.stringify(result));
       }
   });
   ```
@@ -1092,7 +1090,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
 ## geolocation.flushCachedGnssLocations<sup>(deprecated)</sup>
 
-flushCachedGnssLocations(): Promise&lt;boolean&gt;;
+flushCachedGnssLocations(): Promise&lt;boolean&gt;
 
 读取并清空GNSS芯片所有缓存位置。使用Promise异步回调。
 
@@ -1115,14 +1113,14 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
   ```ts
   import geolocation from '@ohos.geolocation';
   geolocation.flushCachedGnssLocations().then((result) => {
-      console.log('promise, flushCachedGnssLocations: ' + JSON.stringify(result));
+      console.info('promise, flushCachedGnssLocations: ' + JSON.stringify(result));
   });
   ```
 
 
 ## geolocation.sendCommand<sup>(deprecated)</sup>
 
-sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
+sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void
 
 给位置服务子系统的各个部件发送扩展命令。使用callback异步回调。
 
@@ -1148,10 +1146,10 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
   let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo, (err, result) => {
       if (err) {
-          console.log('sendCommand: err=' + JSON.stringify(err));
+          console.info('sendCommand: err=' + JSON.stringify(err));
       }
       if (result) {
-          console.log('sendCommand: result=' + JSON.stringify(result));
+          console.info('sendCommand: result=' + JSON.stringify(result));
       }
   });
   ```
@@ -1159,7 +1157,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
 
 ## geolocation.sendCommand<sup>(deprecated)</sup>
 
-sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
+sendCommand(command: LocationCommand): Promise&lt;boolean&gt;
 
 给位置服务子系统的各个部件发送扩展命令。使用Promise异步回调。
 
@@ -1189,7 +1187,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
   import geolocation from '@ohos.geolocation';
   let requestInfo:geolocation.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   geolocation.sendCommand(requestInfo).then((result) => {
-      console.log('promise, sendCommand: ' + JSON.stringify(result));
+      console.info('promise, sendCommand: ' + JSON.stringify(result));
   });
   ```
 

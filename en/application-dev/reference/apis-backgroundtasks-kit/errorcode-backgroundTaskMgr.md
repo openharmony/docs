@@ -94,7 +94,7 @@ This error code is reported when continuous task verification fails.
 1. The application repeatedly requests a continuous task.
 2. The application repeatedly cancels a continuous task.
 3. The value of **bgMode** is invalid because no continuous task type is configured for **backgroundModes** in the application's configuration file.
-4. A non-PC device requests the continuous task **KEEPING_TASK**, which is available only for PCs.
+4. Only <!--RP1-->specific devices<!--RP1End--> can request continuous tasks of the KEEPING_TASK type.
 
 **Solution**
 

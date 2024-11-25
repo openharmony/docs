@@ -27,11 +27,22 @@
 
 ### 设置
 
-当前支持直接拉起设置应用中如下页面，未列出的暂不支持。
-- 权限设置页面：[Ability Kit](abilitykit-overview.md)提供[requestPermissionOnSetting](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12)接口，支持拉起权限设置页面。详见[二次向用户申请授权](../security/AccessToken/request-user-authorization-second.md)。
-<!--Del-->
-- 通知管理页面：[Notification Kit](../notification/notification-overview.md)提供[openNotificationSettings()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageropennotificationsettings12)接口，支持拉起通知管理页面。
-<!--DelEnd-->
+当前支持直接拉起设置应用中如下功能界面，未列出的暂不支持。
+- **权限设置：** 当应用通过[requestPermissionsFromUser()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口拉起权限申请弹框时，如果用户拒绝授权，将无法使用该接口再次拉起弹框，需要调用[requestPermissionOnSetting](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12)接口拉起权限设置弹窗。
+
+  [二次向用户申请授权](../security/AccessToken/request-user-authorization-second.md)中以申请麦克风权限为例，介绍了如何拉起权限设置弹窗。该文档中的示例代码同样适用于[应用权限组列表](../security/AccessToken/app-permission-group-list.md)中的所有权限，只需将对应的权限名进行替换即可。以下为开发者经常用到的一些场景。
+  
+    - 拉起位置权限设置弹窗
+    - 拉起相机权限设置弹窗
+    - 拉起图片与视频权限设置弹窗
+    - 拉起音乐和音频权限设置弹窗
+    - 拉起通讯录权限设置弹窗
+    - 拉起日历权限设置弹窗
+ 
+
+- **通知管理：** 当应用通过[requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10)接口拉起通知授权弹框时，如果用户拒绝授权，将无法使用该接口再次拉起弹框，需要调用[openNotificationSettings()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageropennotificationsettings13)接口，支持拉起通知管理弹窗。
+
+
 
 <!--RP1-->
 <!--RP1End-->
@@ -50,7 +61,8 @@
 
 <!--RP2-->
 ### 相机
-[Camera Kit](../media/camera/camera-overview.md)提供了相机Picker （Camera Picker），用于拍照、录制。详见[cameraPicker](../reference/apis-camera-kit/js-apis-cameraPicker.md)。
+
+[Camera Kit](../media/camera/camera-overview.md)提供了相机Picker （Camera Picker），用于拍照、录像。详见[通过系统相机拍照和录像](../media/camera/camera-picker.md)。
 <!--RP2End-->
 
 ### 文件管理
@@ -61,7 +73,8 @@
 ### 图库（媒体库）
 [Media Library Kit](../media/medialibrary/photoAccessHelper-overview.md)提供了照片Picker（PhotoViewPicker），用于访问、保存公共目录的图片或视频文件。详见[选择媒体库资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md) 、[创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
-
+<!--RP3-->
+<!--RP3End-->
 
 
 

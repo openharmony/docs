@@ -48,7 +48,7 @@
         });
       }
     }).catch((err : BusinessError) => {
-        hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail: ${JSON.stringify(err)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
     });
     ```
 

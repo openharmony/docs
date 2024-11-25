@@ -39,7 +39,7 @@
   | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
   | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
   | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
-  | REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | 类型为bool。 | 可选 | 是否查询业务自定义附属信息被加密的数据，默认查询业务附属信息不加密的数据。|
+  | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否查询业务自定义附属信息被加密的数据，默认查询业务附属信息不加密的数据。|
 
 - **query参数列表**
 
@@ -66,7 +66,7 @@
   | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
   | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
   | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
-  | REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | 类型为bool。 | 可选 | 是否查询业务自定义附属信息被加密的数据，默认查询业务附属信息不加密的数据。|
+  | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否查询业务自定义附属信息被加密的数据，默认查询业务附属信息不加密的数据。|
 
 - **postQuery参数列表**
 
@@ -95,7 +95,7 @@ function stringToArray(str: string): Uint8Array {
 
 function arrayToString(arr: Uint8Array): string {
   let textDecoder = util.TextDecoder.create("utf-8", { ignoreBOM: true });
-  let str = textDecoder.decodeWithStream(arr, { stream: false })
+  let str = textDecoder.decodeToString(arr, { stream: false })
   return str;
 }
 

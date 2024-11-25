@@ -59,7 +59,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -68,13 +68,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -141,7 +148,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -149,16 +156,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000067 | Start options check failed. |
-| 16000068 | Ability already running. |
-| 16200001 | The caller has been released. |
+| 16000067 | The StartOptions check failed. |
+| 16000068 | The ability is already running. |
 | 16300003 | The target application is not self application. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -235,7 +249,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 801 | Capability not support. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -244,16 +258,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000067 | Start options check failed. |
-| 16000068 | Ability already running. |
-| 16200001 | The caller has been released. |
+| 16000067 | The StartOptions check failed. |
+| 16000068 | The ability is already running. |
 | 16300003 | The target application is not self application. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -327,7 +348,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -336,13 +357,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -414,7 +442,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -422,13 +450,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -511,7 +546,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -520,13 +555,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -873,7 +915,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1086,15 +1128,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000050 | Internal error. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
 
 **Example**
 
@@ -1282,7 +1331,7 @@ Sets the mission continuation state of this ability. This API uses an asynchrono
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#continuestate10) | Yes| Mission continuation state.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1324,7 +1373,7 @@ Sets the mission continuation state of this ability. This API uses a promise to 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#continuestate10) | Yes| Mission continuation state.|
 
 **Return value**
 
@@ -1464,7 +1513,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1547,7 +1596,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1670,7 +1719,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
+| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
@@ -1729,7 +1778,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
+| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 
@@ -1781,9 +1830,9 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-Shows the current ability. This API uses a promise to return the result. It takes effect only on tablets. It can be called only by the main thread.
+Shows the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
 
-To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
+Before calling this API, ensure that the application has been added to the status bar.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1801,7 +1850,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 801 | Capability not support. |
 | 16000050 | Internal error. |
-| 16000067 | Start options check failed. |
+| 16000067 | The StartOptions check failed. |
 
 **Example**
 
@@ -1878,9 +1927,9 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-Hides the current ability. This API uses a promise to return the result. It takes effect only on tablets. It can be called only by the main thread.
+Hides the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
 
-To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
+Before calling this API, ensure that the application has been added to the status bar.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1898,7 +1947,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 801 | Capability not support. |
 | 16000050 | Internal error. |
-| 16000067 | Start options check failed. |
+| 16000067 | The StartOptions check failed. |
 
 **Example**
 
@@ -1995,8 +2044,8 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000061 | Operation not supported. |
-| 16000065 | The interface can be called only when ability is foreground. |
-| 16000066 | An ability cannot move to foreground or background in Wukong mode. |
+| 16000065 | The API can be called only when the ability is running in the foreground. |
+| 16000066 | An ability cannot switch to the foreground or background in Wukong mode. |
 
 **Example**
 
@@ -2073,8 +2122,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
-| 16000003 | The appId does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000003 | The specified ID does not exist. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000050 | Internal error. |
@@ -2161,7 +2210,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -2170,7 +2219,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000019 | Can not match any component. |
+| 16000019 | No matching ability is found. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
 
@@ -2187,49 +2236,39 @@ const TAG: string = '[openLinkDemo]';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'I am caller';
-
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('start browser', { type: ButtonType.Capsule, stateEffect: true })
-          .width('87%')
-          .height('5%')
-          .margin({ bottom: '12vp' })
-          .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
-            let link: string = 'https://www.example.com';
-            let openLinkOptions: OpenLinkOptions = {
-              appLinkingOnly: true,
-              parameters: { demo_key: 'demo_value' }
-            };
+    RelativeContainer() {
+      Button("Call StartAbilityForResult")
+        .onClick(() => {
+          let context = getContext(this) as common.UIAbilityContext;
+          let link: string = 'https://www.example.com';
+          let openLinkOptions: OpenLinkOptions = {
+            appLinkingOnly: true,
+            parameters: { demo_key: 'demo_value' }
+          };
 
-            try {
-              context.openLink(
-                link,
-                openLinkOptions,
-                (err, result) => {
-                  hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
-                }
-              ).then(() => {
-                hilog.info(DOMAIN, TAG, `open link success.`);
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
-              });
-            }
-            catch (e) {
-              hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
-            }
-          })
-      }
-      .width('100%')
+          try {
+            context.openLink(
+              link,
+              openLinkOptions,
+              (err, result) => {
+                hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
+              }
+            ).then(() => {
+              hilog.info(DOMAIN, TAG, `open link success.`);
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
+            });
+          }
+          catch (e) {
+            hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
+          }
+        })
     }
     .height('100%')
+    .width('100%')
   }
 }
 ```
@@ -2472,7 +2511,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 801 | The Ability is not supported. |
 | 16000001 | The specified ability does not exist.                                                                       |
 | 16000002 | Incorrect ability type.                                                                                     |
-| 16000004 | Can not start invisible component.                                                                          |
+| 16000004 | Failed to start the invisible ability.                                                                          |
 | 16000005 | The specified process does not have the permission.                                                         |
 | 16000006 | Cross-user operations are not allowed.                                                                      |
 | 16000008 | The crowdtesting application expires.                                                                       |
@@ -2560,7 +2599,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist.                                               |
 | 16000002 | Incorrect ability type.                                                             |
-| 16000004 | Can not start invisible component.                                                  |
+| 16000004 | Failed to start the invisible ability.                                                  |
 | 16000005 | The specified process does not have the permission.                                 |
 | 16000006 | Cross-user operations are not allowed.                                              |
 | 16000008 | The crowdtesting application expires.                                               |
@@ -2732,3 +2771,5 @@ struct UIServiceExtensionAbility {
   }
 }
 ```
+
+ <!--no_check--> 

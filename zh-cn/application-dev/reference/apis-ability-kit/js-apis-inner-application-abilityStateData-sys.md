@@ -25,13 +25,13 @@ import { appManager } from '@kit.AbilityKit';
 | bundleName              | string   | 是   | 否  | 应用Bundle名称。          |
 | abilityName            | string   | 是   | 否   | Ability名称。               |
 | uid                    | number   | 是   | 否   | 用户ID。                  |
-| state                   | number   | 是   | 否   | [Ability状态](#ability状态)。                |
+| state                   | number   | 是   | 否   | Ability状态。<br>- Stage模型：UIAbility的状态参见[Ability状态](#ability状态)；ExtensionAbility的状态参见[Extension状态](#extension状态)。<br>- FA模型：参见[Ability状态](#ability状态)。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP的名称。    |
 | abilityType | number | 是   | 否   | [Ability类型](#ability类型)：页面或服务等。 |
 | isAtomicService<sup>12+</sup>| boolean   | 是  | 否  | 判断Ability所属的应用是否是原子化服务。<br>true:Ability所属的应用是原子化服务。<br>false:Ability所属的应用不是原子化服务。     |
 | appCloneIndex          | number   | 是   | 否   | 分身应用索引。                  |
 
-#### Ability状态
+### Ability状态
 
 | 值   | 状态                       | 说明                   |
 | ---- | -------------------------- | ---------------------- |
@@ -41,10 +41,19 @@ import { appManager } from '@kit.AbilityKit';
 | 3    | ABILITY_STATE_FOCUS        | Ability已经获焦。        |
 | 4    | ABILITY_STATE_BACKGROUND   | Ability处于后台。        |
 | 5    | ABILITY_STATE_TERMINATED   | Ability已经销毁。        |
-| 8    | ABILITY_STATE_CONNECTED    | 后台服务已被客户端连接。 |
-| 9    | ABILITY_STATE_DISCONNECTED | 后台服务客户端断开连接。 |
+| 7    | ABILITY_STATE_CONNECTED    | 后台服务已被客户端连接。 |
+| 8    | ABILITY_STATE_DISCONNECTED | 后台服务客户端断开连接。 |
 
-#### Ability类型
+### Extension状态
+| 值   | 状态    | 说明                  |
+| ---- | -------------------------- | ---------------------- |
+| 0    | EXTENSION_STATE_CREATE     | ExtensionAbility正在创建中。  |
+| 1    | EXTENSION_STATE_READY      | ExtensionAbility已创建完成。  |
+| 2    | EXTENSION_STATE_CONNECTED  | ExtensionAbility已被客户端连接。  |
+| 3    | EXTENSION_STATE_DISCONNECTED | ExtensionAbility客户端断开连接。 |
+| 4    | EXTENSION_STATE_TERMINATED  | ExtensionAbility已经销毁。  |
+
+### Ability类型
 
 | 值   | 状态    | 说明                  |
 | ---- | ------- | --------------------- |

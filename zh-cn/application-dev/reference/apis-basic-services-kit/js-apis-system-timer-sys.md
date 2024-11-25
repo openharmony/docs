@@ -48,6 +48,8 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 创建定时器，使用callback异步回调。
 
+**注意：需与[systemTimer.destroyTimer](#systemtimerdestroytimer)结合使用，否则会造成内存泄漏**
+
 **系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
@@ -95,6 +97,7 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 创建定时器，使用Promise异步回调。
 
+**注意：需与[systemTimer.destroyTimer](#systemtimerdestroytimer)结合使用，否则会造成内存泄漏**
 
 **系统能力：** SystemCapability.MiscServices.Time
 

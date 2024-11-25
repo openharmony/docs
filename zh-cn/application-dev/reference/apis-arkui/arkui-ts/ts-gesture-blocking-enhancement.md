@@ -7,7 +7,10 @@
 >  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## shouldBuiltInRecognizerParallelWith
+
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
+
+提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -272,9 +275,30 @@ getPanGestureOptions(): PanGestureOptions
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
 
+## onGestureRecognizerJudgeBegin<sup>13+</sup>
+
+onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exposeInnerGesture: boolean): T
+
+给组件绑定自定义手势识别器判定回调。
+
+新增exposeInnerGesture参数作为是否将回调暴露给ArkUI原生组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI原生组合组件的内置组件。<br>
+对于不需要将回调暴露给ArkUI原生组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI原生组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| ---------- | -------------------------- | ------- | ----------------------------- |
+| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
+| exposeInnerGesture   | boolean         | 是    | 暴露内部手势标识。<br/>默认值：false<br/>**说明:**<br/>如果是组合组件，此参数设置true，则会在current参数回调出组合组件内部的手势识别器。<br>当前仅支持[Tabs](ts-container-tabs.md)，其他组件请不要设置此参数。<br/>设置为false时，功能与原接口[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)相同。 |
+
 ## onGestureRecognizerJudgeBegin
 
 onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback): T
+
+给组件绑定自定义手势识别器判定回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -316,6 +340,8 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 | [GestureJudgeResult](ts-gesture-customize-judge.md#gesturejudgeresult11) | 手势是否裁决成功的判定结果。 |
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -473,3 +499,91 @@ struct FatherControlChild {
   }
 }
 ```
+
+### 示例2
+
+本示例通过将参数exposeInnerGesture设置为true，实现了一级Tabs容器在嵌套二级Tabs的场景下，能够屏蔽二级Tabs内置Swiper的滑动手势，从而触发一级Tabs内置Swiper滑动手势的功能。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State currentIndex: number = 0
+  @State selectedIndex: number = 0
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  controller?: TabsController = new TabsController();
+  @Builder
+  tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.selectedIndex === index ? 1 : 0)
+    }.width('100%')
+  }
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar(this.tabBuilder(0, 'green'))
+        TabContent() {
+          Tabs() {
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor(Color.Blue)
+            }.tabBar(new SubTabBarStyle('blue'))
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+            }.tabBar(new SubTabBarStyle('pink'))
+          }
+          .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+            others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+            console.info('ets onGestureRecognizerJudgeBegin child')
+            if (current) {
+              let target = current.getEventTargetInfo();
+              if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+                console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE')
+                let swiperTaget = target as ScrollableTargetInfo
+                if (swiperTaget instanceof ScrollableTargetInfo) {
+                  console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
+                }
+                if (swiperTaget instanceof ScrollableTargetInfo && (swiperTaget.isEnd() || swiperTaget.isBegin())) {
+                  let panEvent = event as PanGestureEvent;
+                  console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
+                  swiperTaget.isEnd())
+                  if (panEvent && panEvent.offsetX < 0 && swiperTaget.isEnd()) {
+                    console.info('ets onGestureRecognizerJudgeBegin child reject end')
+                    return GestureJudgeResult.REJECT;
+                  }
+                  if (panEvent && panEvent.offsetX > 0 && swiperTaget.isBegin()) {
+                    console.info('ets onGestureRecognizerJudgeBegin child reject begin')
+                    return GestureJudgeResult.REJECT;
+                  }
+                }
+              }
+            }
+            return GestureJudgeResult.CONTINUE;
+          }, true)
+        }.tabBar(this.tabBuilder(1, 'blue and pink'))
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Brown)
+        }.tabBar(this.tabBuilder(2, 'brown'))
+      }
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        // 切换动画开始时触发该回调。目标页签显示下划线。
+        this.selectedIndex = targetIndex
+      })
+    }
+  }
+}
+```
+
+ ![example](figures/gesture_recognizer.gif)

@@ -9,6 +9,8 @@ Defines the functions for debugging.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
+**File to include**: <hidebug/hidebug.h>
+
 **Since**: 12
 
 **Related module**: [HiDebug](_hi_debug.md)
@@ -30,3 +32,4 @@ Defines the functions for debugging.
 | void [OH_HiDebug_GetAppMemoryLimit](_hi_debug.md#oh_hidebug_getappmemorylimit) ([HiDebug_MemoryLimit](_hi_debug___memory_limit.md) \*memoryLimit) | Obtains the memory limit of an application. | 
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](_hi_debug.md#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | Starts tracing of an application. | 
 | [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](_hi_debug.md#oh_hidebug_stopapptracecapture) () | Stops application tracing. | 
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](_hi_debug.md#oh_hidebug_getgraphicsmemory) ()     | Obtains the size of the GPU memory.  |

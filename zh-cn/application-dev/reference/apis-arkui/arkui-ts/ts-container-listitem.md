@@ -56,7 +56,7 @@ sticky(value: Sticky)
 
 设置ListItem吸顶效果。
 
-从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#属性)。
+从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#sticky9)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -139,7 +139,7 @@ swipeAction(value: SwipeActionOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | None |  0  | 无吸顶效果。 |
 | Normal |  1  | 当前item吸顶。 |
@@ -150,7 +150,7 @@ swipeAction(value: SwipeActionOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 枚举值 | 描述        |
+| 名称     | 值 | 说明      |
 | ------ | ------ | --------- |
 | None   |  0  | 编辑操作不限制。    |
 | Deletable |  1  | 可删除。 |
@@ -162,7 +162,7 @@ swipeAction(value: SwipeActionOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 枚举值 | 描述        |
+| 名称     | 值 | 说明      |
 | ------ | ------ | --------- |
 |   Spring   |    0    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
 |   None   |    1    | ListItem划动距离不能超过划出组件大小。<br>如果设置了删除区域，ListItem划动距离不能超过删除阈值，<br/>并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
@@ -213,7 +213,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值  | 描述               |
+| 名称 | 值  | 说明             |
 | ---- | ---- | ------------------ |
 | NONE | 0 | 无样式。           |
 | CARD | 1 | 显示默认卡片样式。 |
@@ -224,7 +224,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 枚举值     | 描述                                                         |
+| 名称      | 值     | 说明                                                       |
 | --------- | --------- | ------------------------------------------------------------ |
 | COLLAPSED | 0 | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。 |
 | EXPANDED  | 1 | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |

@@ -21,18 +21,27 @@ GridRow(option?: GridRowOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
-| Name |Type|Mandatory|Description|
+| Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-| option | [GridRowOptions](#gridrowoptions)  | No | Child component options of the grid layout. |
+| option | [GridRowOptions](#gridrowoptions) | No | Child component options of the grid layout.|
 
 ## GridRowOptions
-| Name |Type|Mandatory|Description|
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.<br>Default value: **12** |
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.<br>Default value: **0** |
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.<br>Default value: **12**|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.<br>Default value: **0**|
 |breakpoints|[BreakPoints](#breakpoints)|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.<br>Default value:<br>{<br>value: ["320vp", "600vp", "840vp"],<br>reference: BreakpointsReference.WindowSize<br>} |
-|direction|[GridRowDirection](#gridrowdirection)|   No |Arrangement direction of the grid layout.<br>Default value: **GridRowDirection.Row** |
+|direction|[GridRowDirection](#gridrowdirection)|   No |Arrangement direction of the grid layout.<br>Default value: **GridRowDirection.Row**|
 
 ## GutterOption
 
@@ -41,6 +50,8 @@ Provides the gutter options for the grid layout to define the spacing between ch
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -54,6 +65,8 @@ Describes the numbers of grid columns for devices with different grid sizes.
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -84,6 +97,8 @@ Describes the gutter sizes for different device width types.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | [Length](ts-types.md#length) | No   | Gutter size for minimum device width.   |
@@ -101,10 +116,12 @@ Sets breakpoints for the responsive grid container.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | No | Array of monotonically increasing breakpoints.<br>Default value: **["320vp", "600vp", "840vp"]**   |
-| reference  | [BreakpointsReference](#breakpointsreference)  | No   | Breakpoint switching reference.<br>Default value: **BreakpointsReference.WindowSize** |
+| reference  | [BreakpointsReference](#breakpointsreference) | No   | Breakpoint switching reference.<br>Default value: **BreakpointsReference.WindowSize**|
 ```ts
   // Enable the xs, sm, and md breakpoints.
   breakpoints: {value: ["100vp", "200vp"]}
@@ -120,10 +137,12 @@ Sets breakpoints for the responsive grid container.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Description|
 | -------- | -------- |
-| WindowSize | The window is used as a reference. |
-| ComponentSize | The container is used as a reference. |
+| WindowSize | The window is used as a reference.|
+| ComponentSize | The container is used as a reference.|
 
 ## GridRowDirection
 
@@ -131,10 +150,12 @@ Sets breakpoints for the responsive grid container.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Description|
 | -------- | -------- |
-| Row | Grid elements are arranged in the row direction. |
-| RowReverse | Grid elements are arranged in the reverse row direction. |
+| Row | Grid elements are arranged in the row direction.|
+| RowReverse | Grid elements are arranged in the reverse row direction.|
 
 **NOTE**
 * Grid elements can be arranged only in the **Row** or **RowReverse** direction, but not in the **Column** or **ColumnReverse** direction.
@@ -165,11 +186,11 @@ Sets the alignment mode of the **GridCol** components along the vertical main ax
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                       | Mandatory | Description                                                        |
+| Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the **GridCol** components along the vertical main axis of the **GridRow** component.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>**ItemAlign** supports the following enums: **ItemAlign.Start**, **ItemAlign.Center**, **ItemAlign.End**, and **ItemAlign.Stretch**. |
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the **GridCol** components along the vertical main axis of the **GridRow** component.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>**ItemAlign** supports the following enums: **ItemAlign.Start**, **ItemAlign.Center**, **ItemAlign.End**, and **ItemAlign.Stretch**.|
 
 
 ## Events
@@ -180,7 +201,7 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 Triggered when the breakpoint changes.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

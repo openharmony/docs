@@ -143,7 +143,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_button1'),<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>API Version 12以后，如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。 |
+| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;`$r('sys.float.ohos_id_text_size_button1')`,<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>API Version 12以后，如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。 |
 
 ### fontColor
 
@@ -322,7 +322,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11枚举说明) | 是   | 下拉菜单项的宽度。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 是   | 下拉菜单项的宽度。 |
 
 ### optionHeight<sup>11+</sup>
 
@@ -382,7 +382,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 描述               |
+| 名称                | 说明             |
 | ------------------- | ------------------ |
 | END<sup>10+</sup>   | 文字在前，箭头在后。 |
 | START<sup>10+</sup> | 箭头在前，文字在后。 |
@@ -393,7 +393,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 描述               |
+| 名称                | 说明             |
 | ------------------- | ------------------ |
 | START               | 按照语言方向起始端对齐。 |
 | CENTER              | 居中对齐。 |

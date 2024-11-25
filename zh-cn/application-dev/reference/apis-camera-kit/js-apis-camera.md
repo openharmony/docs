@@ -287,7 +287,7 @@ getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。       |
+| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。       |
 
 **返回值：**
 
@@ -327,7 +327,7 @@ getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。       |
+| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。      |
 
 **返回值：**
 
@@ -891,7 +891,7 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 | 参数名   | 类型              | 必填 | 说明       |
 | -------- | -----------------| ---- | --------- |
-| mode     | SceneMode        | 是   | 相机支持的模式。 |
+| mode     | [SceneMode](#scenemode11)     | 是   | 相机支持的模式。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -903,9 +903,10 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400201                |  Camera service fatal error.               |
+| 错误码ID         | 错误信息                                                                                                                                           |
+| --------------- |------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
+| 7400201                | Camera service fatal error.                                                                                                                    |
 
 **示例：**
 
@@ -1082,7 +1083,7 @@ isTorchModeSupported(mode: TorchMode): boolean
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。 |
+| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。传参为null或者undefined，作为0处理，手电筒关闭。 |
 
 **返回值：**
 
@@ -1135,7 +1136,7 @@ setTorchMode(mode: TorchMode): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。 |
+| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。传参为null或者undefined，作为0处理，手电筒关闭。 |
 
 **错误码：**
 
@@ -1282,6 +1283,18 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010格式的图片。      |
+| CAMERA_FORMAT_HEIC<sup>13+</sup>       |   2003    | HEIF格式的图片。            |
+
+## VideoCodecType<sup>13+</sup>
+
+枚举，视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称   | 值    | 说明          |
+|------|------|-------------|
+| AVC  | 0    | 视频编码类型AVC。  |
+| HEVC | 1 | 视频编码类型HEVC。 |
 
 ## CameraInput
 
@@ -1347,11 +1360,12 @@ open(): Promise\<void\>
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400107                |  Can not use camera cause of conflict.               |
-| 7400108                |  Camera disabled cause of security reason.                                  |
-| 7400201                |  Camera service fatal error.                                  |
+| 错误码ID   | 错误信息                                      |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400107 | Can not use camera cause of conflict.     |
+| 7400108 | Camera disabled cause of security reason. |
+| 7400201 | Camera service fatal error.               |
 
 **示例：**
 
@@ -2001,8 +2015,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率 |
-| maxFps   | number        | 是   | 最大帧率 |
+| minFps   | number        | 是   | 最小帧率。 |
+| maxFps   | number        | 是   | 最大帧率，当传入的最小值大于最大值时，传参异常，接口不生效。|
 
 **错误码：**
 
@@ -2091,7 +2105,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 获取预览旋转角度。
 
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
-- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -2100,7 +2114,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| displayRotation | number  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| displayRotation | number  | 是   | 显示设备的屏幕旋转角度，通过[display.getDefaultDisplaySync](../apis-arkui/js-apis-display.md#displaygetdefaultdisplaysync9)获得。 |
 
 **返回值：**
 
@@ -2121,7 +2135,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 
 ```ts
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let previewRotation: camera.ImageRotation;
+  let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     previewRotation = previewOutput.getPreviewRotation(imageRotation);
     console.log(`Preview rotation is: ${previewRotation}`);
@@ -2130,7 +2144,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
     let err = error as BusinessError;
     console.error(`The previewOutput.getPreviewRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return previewRotation;
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
@@ -2160,7 +2174,6 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 
 ```ts
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
-  let previewRotation: camera.ImageRotation;
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
   } catch (error) {
@@ -2744,6 +2757,108 @@ function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
 }
 ```
 
+### enableMirror<sup>13+</sup>
+
+enableMirror(enabled: boolean): void
+
+是否启用镜像拍照。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                        |
+|----------| ---------------------- | ---- |---------------------------|
+| enabled | boolean                | 是   | true为开启镜像拍照，false为关闭镜像拍照。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+| -------- |------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400103  | Session not config.                    |
+| 7400201  | Camera service fatal error.            |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableMirror(photoOutput: camera.PhotoOutput): void {
+  try {
+    photoOutput.enableMirror(true);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableMirror call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getSupportedMovingPhotoVideoCodecTypes<sup>13+</sup>
+
+getSupportedMovingPhotoVideoCodecTypes(): Array\<VideoCodecType\>
+
+查询支持的动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                |
+| -------------- |-------------------|
+| Array\<[VideoCodecType](#videocodectype13)\> | 支持的动态照片短视频编码类型列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function getSupportedMovingPhotoVideoCodecType(photoOutput: camera.PhotoOutput): Array<camera.VideoCodecType> {
+  let supportedVideoCodecTypesArray: Array<camera.VideoCodecType> = photoOutput.getSupportedMovingPhotoVideoCodecTypes();
+  return supportedVideoCodecTypesArray;
+}
+```
+
+### setMovingPhotoVideoCodecType<sup>13+</sup>
+
+setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
+
+设置动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名        | 类型                                  | 必填 |  说明                |
+| ------------- |-------------------------------------|-------| ------------        |
+| codecType     | [VideoCodecType](#videocodectype13) |  是    |获取动态照片短视频编码类型  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function setMovingPhotoVideoCodecTypes(photoOutput: camera.PhotoOutput, videoCodecType: camera.VideoCodecType): void {
+   photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
+}
+```
+
 ### on('captureStart')<sup>(deprecated)</sup>
 
 on(type: 'captureStart', callback: AsyncCallback\<number\>): void
@@ -3208,7 +3323,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 获取拍照旋转角度。
 
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
-- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -3237,17 +3352,17 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let photoRotation: camera.ImageRotation;
+function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : number): camera.ImageRotation {
+  let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
-    photoRotation = photoOutput.getPhotoRotation(imageRotation);
+    photoRotation = photoOutput.getPhotoRotation(deviceDegree);
     console.log(`Photo rotation is: ${photoRotation}`);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
     console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return photoRotation;
 }
 ```
 
@@ -3293,6 +3408,17 @@ function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation :
 | ---------- | ------ | ---- | ---- | ---------|
 | captureId  | number | 否   | 否   | 拍照的ID。 |
 | frameCount | number | 否   | 否   | 帧数。    |
+
+## AutoDeviceSwitchStatus<sup>13+</sup>
+
+自动切换镜头状态信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称       | 类型      | 只读 | 可选 | 说明                      |
+| ---------- |---------| ---- | ---- |-------------------------|
+| isDeviceSwitched  | boolean | 否   | 否   | 自动切换镜头是否成功。             |
+| isDeviceCapabilityChanged | boolean  | 否   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。 |
 
 ## VideoOutput
 
@@ -3636,7 +3762,7 @@ function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<camera.F
 
 setFrameRate(minFps: number, maxFps: number): void
 
-设置预览流帧率范围，设置的范围必须在支持的帧率范围内。
+设置录像流帧率范围，设置的范围必须在支持的帧率范围内。
 
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12-1)查询支持的帧率范围。
 
@@ -3649,8 +3775,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率 |
-| maxFps   | number        | 是   | 最大帧率 |
+| minFps   | number        | 是   | 最小帧率。 |
+| maxFps   | number        | 是   | 最大帧率。当传入的最小值大于最大值时，传参异常，接口不生效。 |
 
 **错误码：**
 
@@ -3739,7 +3865,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 获取录像旋转角度。
 
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
-- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -3768,17 +3894,17 @@ getVideoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation;
+function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
+  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
-    videoRotation = videoOutput.getVideoRotation(imageRotation);
+    videoRotation = videoOutput.getVideoRotation(deviceDegree);
     console.log(`Video rotation is: ${videoRotation}`);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
     console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return videoRotation;
 }
 ```
 
@@ -4261,7 +4387,7 @@ canAddInput(cameraInput: CameraInput): boolean
 
 | 参数名        | 类型                          | 必填 | 说明                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
+| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -4374,7 +4500,7 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 
 | 参数名        | 类型                          | 必填 | 说明                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraOutput | [CameraOutput](#cameraoutput) | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput | [CameraOutput](#cameraoutput) | 是   | 需要添加的CameraOutput实例。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -4724,7 +4850,7 @@ setFlashMode(flashMode: FlashMode): void
 
 | 参数名       | 类型                     | 必填 | 说明                  |
 | --------- | ----------------------- | ---- | --------------------- |
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。       |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。传参为null或者undefined，作为0处理，闪光灯关闭。       |
 
 **错误码：**
 
@@ -4846,7 +4972,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 参数名       | 类型                     | 必填 | 说明                               |
 | --------- | ----------------------- | ---- | --------------------------------- |
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。                     |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。传参为null或者undefined，作为0处理，闪光灯关闭。             |
 
 **返回值：**
 
@@ -4938,7 +5064,7 @@ setExposureMode(aeMode: ExposureMode): void
 
 | 参数名      | 类型                            | 必填 | 说明                    |
 | -------- | -------------------------------| ---- | ----------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                |
+| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。传参为null或者undefined，作为0处理，曝光锁定。                |
 
 **错误码：**
 
@@ -5144,7 +5270,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 | 参数名      | 类型                           | 必填  | 说明                           |
 | -------- | -------------------------------| ---- | ----------------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                      |
+| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。传参为null或者undefined，作为0处理，曝光锁定。                 |
 
 **返回值：**
 
@@ -5238,7 +5364,7 @@ setFocusMode(afMode: FocusMode): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。       |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。传参为null或者undefined，作为0处理，手动对焦模式。       |
 
 **错误码：**
 
@@ -5440,7 +5566,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 参数名      | 类型                     | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | -------------------------------- |
-| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。                    |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。传参为null或者undefined，作为0处理，手动对焦模式。                    |
 
 **返回值：**
 
@@ -5510,9 +5636,9 @@ setZoomRatio(zoomRatio: number): void
 
 **参数：**
 
-| 参数名       | 类型                  | 必填 | 说明                                                                                   |
-| --------- | -------------------- | ---- |--------------------------------------------------------------------------------------|
-| zoomRatio | number               | 是   | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
+| 参数名       | 类型                  | 必填 | 说明                                                                                                                              |
+| --------- | -------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------|
+| zoomRatio | number               | 是   | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。<br>设置可变焦距比到底层生效需要一定时间，获取正确设置的可变焦距比需要等待1~2帧的时间。 |
 
 **错误码：**
 
@@ -6803,7 +6929,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填  | 说明                                                                                                                                                                                    |
 | -------- | -------------------------------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| exposureBias   | number                   | 是  | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| exposureBias   | number                   | 是  | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。传参为null或者undefined，作为0处理，曝光补偿设置0。 |
 
 **错误码：**
 
@@ -7201,7 +7327,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 参数名       | 类型                  | 必填  | 说明                 |
 | --------- | -------------------- |-----| ------------------- |
-| zoomRatio | number               | 是  | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
+| zoomRatio | number               | 是  | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。传参为null或者undefined，作为0处理，变焦设置最小值。 |
 
 **错误码：**
 
@@ -7290,7 +7416,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 参数名      | 类型                                              | 必填 | 说明                             |
 | -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。                    |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。传参为null或者undefined，作为0处理，超级防抖模式关闭。              |
 
 **返回值：**
 
@@ -7382,7 +7508,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 | 参数名      | 类型                                              | 必填 | 说明                    |
 | -------- | ------------------------------------------------- | ---- | --------------------- |
-| mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。   |
+| mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。传参为null或者undefined，作为0处理，超级防抖模式关闭。   |
 
 **错误码：**
 
@@ -7683,6 +7809,103 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 }
 ```
 
+## AutoDeviceSwitchQuery<sup>13+</sup>
+
+自动切换镜头查询类，用于查询设备是否支持自动切换镜头。
+
+### isAutoDeviceSwitchSupported<sup>13+</sup>
+
+isAutoDeviceSwitchSupported(): boolean
+
+查询设备是否支持自动切换镜头能力。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明          |
+| ----------------------------------------------- |-------------|
+| boolean               | 是否支持自动切换镜头。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息                                              |
+| --------------- |---------------------------------------------------|
+| 7400103         | Session not config, only throw in session usage.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isAutoDeviceSwitchSupported(session: camera.PhotoSession): boolean {
+  let isSupported = false;
+  try {
+    isSupported = session.isAutoDeviceSwitchSupported();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The isAutoDeviceSwitchSupported call failed, error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+## AutoDeviceSwitch<sup>13+</sup>
+
+AutoDeviceSwitch extends [AutoDeviceSwitchQuery](#autodeviceswitchquery13)
+
+自动切换镜头类，继承自[AutoDeviceSwitchQuery](#autodeviceswitchquery13)，用于使能或去使能自动切换镜头。
+
+使用建议：自动切换镜头功能由系统自动完成输入设备切换、会话配置和参数接续，
+如系统发现镜头切换时，两颗镜头的变焦范围不一致，则会通过[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)中的isDeviceCapabilityChanged字段告知应用，
+但仍需要应用自己处理UX的变更（如变焦范围的调整，需要重新通过[getZoomRatioRange](#getzoomratiorange11)接口获取数据并更新UX），
+因此更适用于极简UX交换的场景。
+
+### enableAutoDeviceSwitch<sup>13+</sup>
+
+enableAutoDeviceSwitch(enabled: boolean): void
+
+使能或去使能自动切换镜头。可以先通过[isAutoDeviceSwitchSupported](#isautodeviceswitchsupported13)获取当前设备是否支持自动切换镜头。
+
+> **说明：**
+> 该接口仅用于有多个前置镜头的折叠设备，在不同的折叠状态下可自动切换到当前可使用的前置镜头。无法实现前后置镜头的切换。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型  | 必填 | 说明  |
+| ----------- |---------------------- |---| -------------------------- |
+| enabled | boolean  | 是 | 使能或去使能自动切换镜头。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                                                                                                                       |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                                                                                                         |
+| 7400103  | Session not config.                                                                                                                            |
+| 7400201  | Camera service fatal error.                                                                                                                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableAutoDeviceSwitch(session: camera.PhotoSession, isEnable: boolean): void {
+  try {
+    session.enableAutoDeviceSwitch(isEnable);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The enableAutoDeviceSwitch call failed, error code: ${err.code}`);
+  }
+}
+```
+
 ## PreconfigType<sup>12+</sup>
 
 枚举，提供预配置的类型。
@@ -7710,7 +7933,7 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12)
+PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
 
 普通拍照模式会话类，提供了对闪光灯、曝光、对焦、变焦、色彩空间的操作。
 
@@ -7976,9 +8199,69 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 }
 ```
 
+### on('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+on(type: 'autoDeviceSwitchStatusChange', callback: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+监听相机自动切换镜头状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                                   | 必填 | 说明                                                     |
+| -------- |----------------------------------------------------------------------| ---- |--------------------------------------------------------|
+| type     | string                                                               | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 是   | 回调函数，用于获取当前自动切换镜头的状态。                                  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, autoDeviceSwitchStatus: camera.AutoDeviceSwitchStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isDeviceSwitched: ${autoDeviceSwitchStatus.isDeviceSwitched}, isDeviceCapabilityChanged: ${autoDeviceSwitchStatus.isDeviceCapabilityChanged}`);
+}
+
+function registerAutoDeviceSwitchStatus(photoSession: camera.PhotoSession): void {
+  photoSession.on('autoDeviceSwitchStatusChange', callback);
+}
+```
+
+### off('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+注销监听相机自动切换镜头状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                           | 必填 | 说明                       |
+| -------- |----------------------------------------------| ---- | ------------------------ |
+| type     | string                                       | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。|
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
+  photoSession.off('autoDeviceSwitchStatusChange');
+}
+```
+
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12)
+VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
 
 普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间的操作。
 
@@ -8244,6 +8527,66 @@ function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
 }
 ```
 
+### on('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+on(type: 'autoDeviceSwitchStatusChange', callback: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+监听相机自动切换镜头状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                                   | 必填 | 说明                       |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。|
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 是   | 回调函数，用于获取当前自动切换镜头的状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, autoDeviceSwitchStatus: camera.AutoDeviceSwitchStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isDeviceSwitched: ${autoDeviceSwitchStatus.isDeviceSwitched}, isDeviceCapabilityChanged: ${autoDeviceSwitchStatus.isDeviceCapabilityChanged}`);
+}
+
+function registerAutoDeviceSwitchStatus(videoSession: camera.VideoSession): void {
+  videoSession.on('autoDeviceSwitchStatusChange', callback);
+}
+```
+
+### off('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+注销监听相机自动切换镜头状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                           | 必填 | 说明                       |
+| -------- |----------------------------------------------| ---- | ------------------------ |
+| type     | string                                       | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。|
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
+  videoSession.off('autoDeviceSwitchStatusChange');
+}
+```
+
 ## SecureSession<sup>12+</sup>
 
 SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11)
@@ -8252,8 +8595,8 @@ SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#
 
 > **说明：**
 >
-> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式开放给人脸识别、银行等有安全诉求的应用，需要结合安全TA使用，支持同时出普通预览流和安全流的业务场景。
-> 安全TA：可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。
+> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式开放给人脸识别、银行等有安全诉求的应用，需要结合<!--RP1-->安全TA<!--RP1End-->使用，支持同时出普通预览流和安全流的业务场景。<!--RP2-->
+> <br>安全TA：可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。<!--RP2End-->
 
 ### addSecureOutput<sup>12+</sup>
 
@@ -8267,7 +8610,7 @@ addSecureOutput(previewOutput: PreviewOutput): void
 
 | 参数名           | 类型                             | 必填 | 说明            |
 | ------------- | ------------------------------- | ---- |---------------|
-| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要标记成安全输出的预览流 |
+| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要标记成安全输出的预览流，传参异常时，会返回错误码。 |
 
 **错误码：**
 

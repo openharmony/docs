@@ -3,7 +3,7 @@
 
 ## Overview
 
-Declares the APIs used to access the image rectangle, size, format, and component data.
+The **image_mdk.h** file declares the APIs used to access the image rectangle, size, format, and component data.
 
 **Library**: libimage_ndk.z.so
 

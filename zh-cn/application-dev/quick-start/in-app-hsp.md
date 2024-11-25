@@ -5,7 +5,7 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 > 
 > 应用内HSP：在编译过程中与应用包名（bundleName）强耦合，只能给某个特定的应用使用。
 > 
-> 集成态HSP：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名。
+> [集成态HSP](integrated-hsp.md)：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名。
 
 ## 使用场景
 - 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够有效控制应用包大小。
@@ -17,10 +17,8 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 ## 约束限制
 
 - HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。HSP的版本号必须与HAP版本号一致。
-- HSP不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件与[ExtensionAbility](../application-models/extensionability-overview.md)组件。
+- HSP不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但支持[UIAbility](../application-models/uiability-overview.md)组件。
 - HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
-- 集成态HSP只支持[Stage模型](application-package-structure-stage.md)。
-- 集成态HSP需要API12及以上版本，使用标准化的OHMUrl格式。
 
 
 ## 创建
@@ -181,7 +179,6 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -262,11 +259,11 @@ struct Index {
             .resourceManager
             .getStringValue(ResManager.getDesc())
             .then(value => {
-              Logger.info(TAG, `getStringValue is ${value}`);
+              console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;
             })
             .catch((err: BusinessError) => {
-              Logger.info(TAG, `getStringValue promise error is ${err}`);
+              console.error('getStringValue promise error is ' + err);
             });
         })
 
@@ -305,7 +302,6 @@ struct Index {
 ```ts
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -338,9 +334,8 @@ struct Index {
             url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
           }).then(() => {
             console.log('push page success');
-            Logger.info(TAG, 'push page success');
           }).catch((err: BusinessError) => {
-            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
           })
         })
       }

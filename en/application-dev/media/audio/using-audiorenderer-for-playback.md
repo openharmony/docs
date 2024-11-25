@@ -41,7 +41,7 @@ During application development, you are advised to use [on('stateChange')](../..
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 
@@ -65,28 +65,26 @@ During application development, you are advised to use [on('stateChange')](../..
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
 
-    let bufferSize: number = 0;
     class Options {
       offset?: number;
       length?: number;
     }
 
+    let bufferSize: number = 0;
     let path = getContext().cacheDir;
     // Ensure that the resource exists in the path.
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
     let writeDataCallback = (buffer: ArrayBuffer) => {
-
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
-      }
-      fileIo.readSync(file.fd, buffer, options);
+      };
+      fs.readSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
-    }
+    };
 
     audioRenderer.on('writeData', writeDataCallback);
     ```
@@ -123,7 +121,7 @@ During application development, you are advised to use [on('stateChange')](../..
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     audioRenderer.release((err: BusinessError) => {
       if (err) {
         console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -151,7 +149,7 @@ Refer to the sample code below to render an audio file using AudioRenderer.
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -160,7 +158,6 @@ class Options {
   length?: number;
 }
 
-let context = getContext(this);
 let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -168,28 +165,27 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2, // Channel.
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
-}
+};
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type.
   rendererFlags: 0 // AudioRenderer flag.
-}
+};
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
 let path = getContext().cacheDir;
 // Ensure that the resource exists in the path.
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
-  }
-  fileIo.readSync(file.fd, buffer, options);
-   bufferSize += buffer.byteLength;
-}
+  };
+  fs.readSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
+};
 
 // Create an AudioRenderer instance, and set the events to listen for.
 function init() {
@@ -257,7 +253,7 @@ async function stop() {
       if (err) {
         console.error('Renderer stop failed.');
       } else {
-        fileIo.close(file);
+        fs.close(file);
         console.info('Renderer stop success.');
       }
     });

@@ -571,7 +571,7 @@ calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 editEvent(event: Event): Promise\<number>
 
-创建单个日程，入参Event不填日程id，调用该接口会跳转到日程创建页面，使用Promise异步回调。
+创建单个日程，入参Event不填日程id，调用该接口会跳转到日程创建页面，使用Promise异步回调。使用该接口创建的日程，三方应用无法查询和修改，只能通过系统日历进行查询和修改。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1322,6 +1322,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
+    // 根据MyEvent进行模糊查询，如果存在类似标题为MyEvent1类型的日程，也可查询出来
     const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
       console.info(`Succeeded in getting events, data -> ${JSON.stringify(data)}`);
@@ -1708,7 +1709,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 static filterByTitle(title: string): EventFilter
 
-根据日程标题过滤日程。
+根据日程标题过滤日程，该条件为模糊匹配。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1769,7 +1770,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称      | 值   | 说明                      |
 | --------- | ---- |-------------------------|
 | NORMAL    | 0    | 普通日程，例如会议，闹钟等日常提醒的日程。   |
-| IMPORTANT | 1    | 重要日程，例如结婚纪念日等具有重要意义的日期。 |
+| IMPORTANT | 1    | 重要日程，例如结婚纪念日等具有重要意义的日期，不推荐三方开发者使用，重要日程类型不支持一键服务跳转功能及无法自定义提醒时间。 |
 
 ## RecurrenceRule
 
@@ -1826,10 +1827,10 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 **系统能力**：SystemCapability.Applications.CalendarData
 
 | 名称        | 类型                        | 只读 | 可选 | 说明                                  |
-| ----------- | --------------------------- | ---- |----| ------------------------------------- |
-| type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                            |
-| uri         | string                      | 否   | 否  | 服务的uri。可以跳转到三方应用相应界面。 |
-| description | string                      | 否   | 是  | 服务辅助描述。不填时，默认为空字符串。  |
+| ----------- | --------------------------- | ---- |----|-------------------------------------|
+| type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                               |
+| uri         | string                      | 否   | 否  | 服务的uri，格式为Deeplink类型。可以跳转到三方应用相应界面。 |
+| description | string                      | 否   | 是  | 服务辅助描述。不填时，默认为空字符串。                 |
 
 ## ServiceType
 

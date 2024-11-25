@@ -7,127 +7,124 @@
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/_o_h___camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
-     
+
    ```c++
     // 导入NDK接口头文件
-    #include "hilog/log.h"
-    #include "ohcamera/camera.h"
-    #include "ohcamera/camera_input.h"
-    #include "ohcamera/capture_session.h"
-    #include "ohcamera/photo_output.h"
-    #include "ohcamera/preview_output.h"
-    #include "ohcamera/video_output.h"
-    #include "ohcamera/camera_manager.h"
+   #include <cstdlib>
+   #include <hilog/log.h>
+   #include <memory>
+   #include <multimedia/image_framework/image/image_native.h>
+   #include <multimedia/image_framework/image/image_receiver_native.h>
+   #include "ohcamera/camera.h"
+   #include "ohcamera/camera_input.h"
+   #include "ohcamera/capture_session.h"
+   #include "ohcamera/preview_output.h"
+   #include "ohcamera/camera_manager.h"
    ```
 
 2. 在CMake脚本中链接相关动态库。
 
    ```txt
-    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
+   target_link_libraries(entry PUBLIC
+       libace_napi.z.so
+       libhilog_ndk.z.so
+       libohimage.so
+       libimage_receiver.so
+       libnative_image.so
+       libohcamera.so
+   )
    ```
 
-3. 获取SurfaceId。
+3. 初始化图片接收器[ImageReceiver](../image/image-receiver-c.md)实例，获取SurfaceId。
+
+   通过image的OH_ImageReceiverNative_Create方法创建OH_ImageReceiverNative实例，再通过实例的OH_ImageReceiverNative_GetReceivingSurfaceId方法获取SurfaceId。
+
+   ```c++
+   void InitImageReceiver() {
+       OH_ImageReceiverOptions *options = nullptr;
+       // 注意捕获错误码处理异常及对象判空，当前示例仅展示调用流程
+       // 设置图片参数
+       Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
+       Image_Size imgSize;
+       imgSize.width = 1080; // 创建预览流的宽
+       imgSize.height = 1080; // 创建预览流的高
+       int32_t capacity = 8; // BufferQueue里最大Image数量，推荐填写8
+       errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
+       errCode = OH_ImageReceiverOptions_SetCapacity(options, capacity);
+       // 创建OH_ImageReceiverNative对象
+       OH_ImageReceiverNative *receiver = nullptr;
+       errCode = OH_ImageReceiverNative_Create(options, &receiver);
+       // 获取OH_ImageReceiverNative对象的SurfaceId
+       uint64_t receiverSurfaceID = 0;
+       errCode = OH_ImageReceiverNative_GetReceivingSurfaceId(receiver, &receiverSurfaceID);
+       OH_LOG_INFO(LOG_APP, "receiver surfaceID:%{public}%llu", receiverSurfaceID);
+   }
+   ```
+
+4. 通过上一步获取到的SurfaceId创建预览流，参考[预览(C/C++)](./native-camera-preview.md)步骤4。
+
+5. 创建会话，使能会话，参考[会话管理(C/C++)](./native-camera-session-management.md)。
+
+6. 注册ImageReceiver图片接收器的回调，监听获取每帧上报图像内容。
+
+   ```c++
+   OH_ImageReceiverNative *receiver; // 步骤3创建的实例
+
+   // 图像回调函数，参考媒体/Image Kit（图片处理服务）
+   static void OnCallback(OH_ImageReceiverNative *receiver) {
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
+       // 注意捕获错误码处理异常及对象判空，当前示例仅展示调用流程
+       OH_ImageNative *image = nullptr;
+       // 从bufferQueue中获取图像
+       Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
+       // 读取图像宽高
+       Image_Size size;
+       errCode = OH_ImageNative_GetImageSize(image, &size);
+       OH_LOG_INFO(LOG_APP, "OH_ImageNative_GetImageSize errCode:%{public}d width:%{public}d height:%{public}d", errCode,
+           size.width, size.height);
+
+       // 获取图像ComponentType
+       size_t typeSize = 0;
+       OH_ImageNative_GetComponentTypes(image, nullptr, &typeSize);
+       uint32_t* types = new uint32_t[typeSize];
+       OH_ImageNative_GetComponentTypes(image, &types, &typeSize);
+       uint32_t component = types[0];
+       // 获取图像buffer
+       OH_NativeBuffer *imageBuffer = nullptr;
+       errCode = OH_ImageNative_GetByteBuffer(image, component, &imageBuffer);
+       size_t bufferSize = 0;
+       errCode = OH_ImageNative_GetBufferSize(image, component, &bufferSize);
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer component: %{public}d size:%{public}zu", component, bufferSize);
+       // 获取图像行距
+       int32_t stride = 0;
+       errCode = OH_ImageNative_GetRowStride(image, component, &stride);
+       OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer stride：%{public}d.", stride);
+       void* srcVir = nullptr;
+       OH_NativeBuffer_Map(imageBuffer, &srcVir);
+       uint8_t* srcBuffer = static_cast<uint8_t*>(srcVir);
+       // 判断行距与预览流宽是否一致，如不一致，需要考虑stride对读取buffer的影响
+       if (stride == size.width) {
+           // 传给其他不需要stride的接口处理
+       } else {
+           // 传给其他支持stride的接口处理，或去除stride数据
+           // 去除stride数据示例:将byteBuffer中的数据去除stride，拷贝得到新的dstBuffer数据
+           size_t dstBufferSize = size.width * size.height * 1.5; // 相机预览流返回NV21格式
+           std::unique_ptr<uint8_t[]> dstBuffer = std::make_unique<uint8_t[]>(dstBufferSize);
+           uint8_t *dstPtr = dstBuffer.get();
+           for (int j = 0; j < size.height * 1.5; j++) {
+               memcpy(dstPtr, srcBuffer, size.width);
+               dstPtr += size.width;
+               srcBuffer += stride;
+           }
+           // 传给其他不需要stride的接口处理
+       }
+       // 释放buffer,保证bufferQueue正常轮转
+       OH_NativeBuffer_Unmap(imageBuffer);
+       errCode = OH_ImageNative_Release(image);
+   }
    
-   通过image的createImageReceiver()方法创建ImageReceiver实例，再通过实例的getReceivingSurfaceId()方法获取SurfaceId。
-
-4. 根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput()方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput()方法中的参数分别是cameraManager指针、previewProfiles数组中的第一项、步骤三中获取的surfaceId，以及返回的previewOutput指针。
-     
-   ```c++
-    NDKCamera::NDKCamera(char *str)
-    {
-      Camera_Manager *cameraManager = nullptr;
-      Camera_Device* cameras = nullptr;
-      Camera_OutputCapability* cameraOutputCapability = nullptr;
-      Camera_PreviewOutput* previewOutput = nullptr;
-      const Camera_Profile* previewProfile = nullptr;
-      uint32_t size = 0;
-      uint32_t cameraDeviceIndex = 0;
-      char* previewSurfaceId = str;
-      Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
-      if (cameraManager == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
-      }
-      ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-      if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
-      }
-      ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
-                                                                      &cameraOutputCapability);
-      if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
-      }
-      if (cameraOutputCapability->previewProfilesSize < 0) {
-        OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
-      }
-      previewProfile = cameraOutputCapability->previewProfiles[0];
-      
-      ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
-      if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
-      }
-    }
+   void OnImageReceiver() {
+       // 注册图像回调事件，监听每帧上报的图像
+       Image_ErrorCode errCode = OH_ImageReceiverNative_On(receiver, OnCallback);
+   }
    ```
-
-5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
-     
-   ```c++
-    ret = OH_PreviewOutput_Start(previewOutput);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Start failed.");
-    }
-   ```
-
-6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
-     
-   ```c++
-    ret = OH_PreviewOutput_Stop(previewOutput);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Stop failed.");
-    }
-   ```
-
-## 状态监听
-
-在相机应用开发过程中，可以随时监听预览输出流状态，包括预览流启动、预览流结束、预览流输出错误。
-
-- 通过注册固定的frameStart回调函数获取监听预览启动结果，previewOutput创建成功时即可监听，预览第一次曝光时触发，有该事件返回结果则认为预览流已启动。
-    
-  ```c++
-    ret = OH_PreviewOutput_RegisterCallback(previewOutput, GetPreviewOutputListener());
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_RegisterCallback failed.");
-    }
-  ```
-  ```c++
-    void PreviewOutputOnFrameStart(Camera_PreviewOutput* previewOutput)
-    {
-        OH_LOG_INFO(LOG_APP, "PreviewOutputOnFrameStart");
-    }
-    PreviewOutput_Callbacks* GetPreviewOutputListener(void)
-    {
-        static PreviewOutput_Callbacks previewOutputListener = {
-            .onFrameStart = PreviewOutputOnFrameStart,
-            .onFrameEnd = PreviewOutputOnFrameEnd,
-            .onError = PreviewOutputOnError
-        };
-        return &previewOutputListener;
-    }
-  ```
-
-- 通过注册固定的frameEnd回调函数获取监听预览结束结果，previewOutput创建成功时即可监听，预览完成最后一帧时触发，有该事件返回结果则认为预览流已结束。
-    
-  ```c++
-    void PreviewOutputOnFrameEnd(Camera_PreviewOutput* previewOutput, int32_t frameCount)
-    {
-        OH_LOG_INFO(LOG_APP, "PreviewOutput frameCount = %{public}d", frameCount);
-    }
-  ```
-
-- 通过注册固定的error回调函数获取监听预览输出错误结果，callback返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
-    
-  ```c++
-    void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)
-    {
-        OH_LOG_INFO(LOG_APP, "PreviewOutput errorCode = %{public}d", errorCode);
-    }
-  ```

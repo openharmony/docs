@@ -16,6 +16,8 @@ int res = OH_HiAppEvent_Write("user_domain", EVENT_USER_LOGIN, BEHAVIOR, list);
 OH_HiAppEvent_DestroyParamList(list);
 ```
 
+**引用文件：** &lt;hiappevent/hiappevent_param.h&gt;
+
 **起始版本：** 8
 
 **相关模块：**[HiAppEvent](_hi_app_event.md)

@@ -1,6 +1,6 @@
 # SoundPool (Sound Pool)
 
-The **SoundPool** module provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.
+The SoundPool module provides APIs for loading, unloading, playing, and stopping playing sounds, setting the volume, and setting the number of loops.
 
 Before using these APIs, you must call [media.createSoundPool](js-apis-media.md#mediacreatesoundpool10) to create a **SoundPool** instance.
 
@@ -218,7 +218,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | 5400103  | I/O error. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
-**Example**
+**Example 1:**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -241,7 +241,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let fileSize: number = 1; // Obtain the size through fileIo.stat().
     let uri: string = "";
-    // Obtain the FD.
+    // Obtain the FD. The test_01.mp3 file is not an audio file in the rawfile directory.
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -255,6 +255,42 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
         }
       });
     }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
+  }
+});
+
+```
+
+**Example 2**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+let soundID: number = 0;
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`Succeeded in createSoundPool`)
+    // The test_01.mp3 file is an audio file in the rawfile directory.
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
+      if (error) {
+        console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        soundID = soundId_;
+        console.info('Succeeded in loading soundId:' + soundId_);
+      }
+    });
   }
 });
 
@@ -297,7 +333,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | 5400103  | I/O error. Return by promise. |
 | 5400105  | Service died. Return by promise. |
 
-**Example**
+**Example 1:**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -320,7 +356,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let fileSize: number = 1; // Obtain the size through fileIo.stat().
     let uri: string = "";
-    // Obtain the FD.
+    // Obtain the FD. The test_01.mp3 file is not an audio file in the rawfile directory.
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -331,6 +367,40 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
       }, (err: BusinessError) => {
         console.error('Failed to load soundpool and catch error is ' + err.message);
       });
+    });
+  }
+});
+
+```
+
+**Example 2**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+let soundID: number = 0;
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`Succeeded in createSoundPool`)
+    // The test_01.mp3 file is an audio file in the rawfile directory.
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
+      console.info('Succeeded in loading soundpool');
+      soundID = soundId;
+    }, (err: BusinessError) => {
+      console.error('Failed to load soundpool and catch error is ' + err.message);
     });
   }
 });

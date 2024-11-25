@@ -1,7 +1,7 @@
 # SelectionMenu
 
 
-文本选择菜单，适用于富文本组件通过[bindSelectionMenu](./ts-basic-components-richeditor.md#属性)绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
+文本选择菜单，适用于富文本组件通过[bindSelectionMenu](./ts-basic-components-richeditor.md#bindselectionmenu)绑定自定义文本选择菜单，建议绑定鼠标右键或者鼠标选中方式弹出，不支持作为普通组件单独使用。
 
 
 > **说明：**
@@ -21,9 +21,9 @@ import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo,
 
 ## SelectionMenu
 
-SelectionMenu(options: SelectionMenuOptions)
+SelectionMenu(options: SelectionMenuOptions): void
 
-入参为空时，文本选择菜单组件SelectionMenu内容区大小及组件大小为零。表现例如，富文本组件[RichEditor](ts-basic-components-richeditor.md)使用[bindSelectionMenu](ts-basic-components-richeditor.md#属性)接口绑定一个SelectionMenu的右键菜单，则右键富文本组件区域时无任何菜单弹出。
+入参为空时，文本选择菜单组件SelectionMenu内容区大小及组件大小为零。表现例如，富文本组件[RichEditor](ts-basic-components-richeditor.md)使用[bindSelectionMenu](ts-basic-components-richeditor.md#bindselectionmenu)接口绑定一个SelectionMenu的右键菜单，则右键富文本组件区域时无任何菜单弹出。
 
 **装饰器类型：**\@Builder
 
@@ -33,7 +33,7 @@ SelectionMenu(options: SelectionMenuOptions)
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options | [SelectionMenuOptions](#selectionmenuoptions) | 是 | 文本选择菜单可选项。 |
 
@@ -45,7 +45,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | editorMenuOptions | Array&lt;[EditorMenuOptions](#editormenuoptions)&gt; | 否 | 编辑菜单。<br/>editorMenuOptions未配置时，不显示编辑菜单。<br/>同时配置EditorMenuOptions中action和builder时，点击图标会同时响应。<br/>点击编辑菜单图标默认不关闭整个菜单，应用可以通过action接口配置RichEditorController的closeSelectionMenu主动关闭菜单。 |
 | expandedMenuOptions | Array&lt;[ExpandedMenuOptions](#expandedmenuoptions)&gt; | 否 | 扩展下拉菜单。<br/>expandedMenuOptions参数为空时无更多按钮，不显示扩展下拉菜单。<br/>expandedMenuOptions参数不为空时显示更多按钮，配置菜单项收起在更多按钮中，点击更多按钮展示。 |

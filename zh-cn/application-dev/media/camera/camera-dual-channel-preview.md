@@ -1,5 +1,6 @@
 # 双路预览(ArkTS)
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
 双路预览，即应用可同时使用两路预览流，一路用于在屏幕上显示，一路用于图像处理等其他操作，提升处理效率。
 
 相机应用通过控制相机，实现图像显示（预览）、照片保存（拍照）、视频录制（录像）等基础操作。相机开发模型为Surface模型，即应用通过Surface进行数据传递，通过ImageReceiver的surface获取拍照流的数据、通过XComponent的surface获取预览流的数据。
@@ -152,20 +153,77 @@
            console.error('readNextImage failed');
            return;
          }
-         nextImage.getComponent(image.ComponentType.JPEG, (err: BusinessError, imgComponent: image.Component) => {
+         nextImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError, imgComponent: image.Component) => {
            if (err || imgComponent === undefined) {
              console.error('getComponent failed');
            }
-           if (imgComponent && imgComponent.byteBuffer as ArrayBuffer) {
-             // do something...
-             // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）
+           if (imgComponent.byteBuffer) {
+             // 请参考步骤7解析buffer数据，本示例以方式一为例
+             let width = nextImage.size.width; // 获取图片的宽
+             let height = nextImage.size.height; // 获取图片的高
+             let stride = imgComponent.rowStride; // 获取图片的stride
+             console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+             // stride与width一致
+             if (stride == width) {
+               let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
+                 size: { height: height, width: width },
+                 srcPixelFormat: 8,
+               })
+             } else {
+               // stride与width不一致
+               const dstBufferSize = width * height * 1.5
+               const dstArr = new Uint8Array(dstBufferSize)
+               for (let j = 0; j < height * 1.5; j++) {
+                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
+                 dstArr.set(srcBuf, j * width)
+               }
+               let pixelMap = await image.createPixelMap(dstArr.buffer, {
+                 size: { height: height, width: width },
+                 srcPixelFormat: 8,
+               })
+             }
            } else {
              console.error('byteBuffer is null');
            }
            // 确保当前buffer没有在使用的情况下，可进行资源释放
+           // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）
            nextImage.release();
          })
        })
      })
    }
    ```
+
+7. 通过 [image.Component](../../reference/apis-image-kit/js-apis-image.md#component9)解析图片buffer数据参考：
+
+   > **注意：**
+   > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：
+
+   方式一：去除component.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
+
+   ```ts
+   // 当前相机预览流仅支持NV21（YUV_420_SP格式的图片）
+   const dstBufferSize = width * height * 1.5;
+   const dstArr = new Uint8Array(dstBufferSize);
+   // 逐行读取buffer数据
+   for (let j = 0; j < height * 1.5; j++) {
+     // component.byteBuffer的每行数据拷贝前width个字节到dstArr中
+     const srcBuf = new Uint8Array(component.byteBuffer, j * stride, width);
+     dstArr.set(srcBuf, j * width);
+   }
+   let pixelMap = await image.createPixelMap(dstArr.buffer, {
+     size: { height: height, width: width }, srcPixelFormat: 8
+   });
+   ```
+
+   方式二：根据stride*height创建pixelMap，然后调用pixelMap的cropSync方法裁剪掉多余的像素。
+
+   ```ts
+   // 创建pixelMap，width宽传行距stride的值
+   let pixelMap = await image.createPixelMap(component.byteBuffer, {
+     size:{height: height, width: stride}, srcPixelFormat: 8});
+   // 裁剪多余的像素
+   pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
+   ```
+
+   方式三：将原始component.byteBuffer和stride信息一起传给支持stride的接口处理。

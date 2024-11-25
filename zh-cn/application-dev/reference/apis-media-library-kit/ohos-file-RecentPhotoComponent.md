@@ -11,7 +11,7 @@
 ```ts
 import {
   RecentPhotoComponent, RecentPhotoOptions, RecentPhotoCheckResultCallback,
-  RecentPhotoClickCallback, PhotoSource
+  RecentPhotoClickCallback, PhotoSource, RecentPhotoInfo, RecentPhotoCheckInfoCallback,
 } from '@ohos.file.RecentPhotoComponent';
 ```
 
@@ -24,24 +24,24 @@ import {
 RecentPhotoComponent({
   recentPhotoOptions?: RecentPhotoOptions,
   onRecentPhotoCheckResult?: RecentPhotoCheckResultCallback,
-  onRecentPhotoClick: RecentPhotoClickCallback
+  onRecentPhotoClick: RecentPhotoClickCallback,
+  onRecentPhotoCheckInfo?: RecentPhotoCheckInfoCallback,
 })
 
 RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的图片/视频文件。通过此组件，应用无需申请媒体访问权限，即可根据配置项，访问公共目录下最新的一个图片或视频文件。
 
 **装饰器类型**：@Component
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
-| 名称          | 类型            | 必填 | 参数描述                 |
-|---------------|-----------------|------|--------------------------|
-| recentPhotoOptions         | [RecentPhotoOptions](#recentphotooptions)                             | 否  | 最近图片配置参数信息。  |
-| onRecentPhotoCheckResult   | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback)     | 否  | 最近图片查询结果回调函数。  |
-| onRecentPhotoClick         | [RecentPhotoClickCallback](#recentphotoclickcallback)                 | 是  | 选择最近图片回调函数。      |
+| 名称                       | 类型                                                                | 必填 | 说明                       |
+|--------------------------|-------------------------------------------------------------------|------|----------------------------|
+| recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | 否  | 最近图片配置参数信息。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                |
+| onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | 否  | 最近图片查询结果回调函数。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。              |
+| onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | 是  | 选择最近图片回调函数。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                |
+| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | 否  | 最近图片查询结果回调函数，并且返回该照片的相关信息。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## RecentPhotoOptions
 
@@ -56,6 +56,19 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 | period                  | number                                                                                  | 否    | 配置显示多久时间段内的最近图片，单位为秒。最长可配置时长为1天(86400)。<br/>未配置最长时间段时，默认按最长时间段1天显示最近图片。当配置时间段内无符合的图片或视频时，组件不显示。|
 | MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
 | photoSource             | [PhotoSource](#photosource)                                                             | 否    | 配置最近图片视频显示内容的来源，比如拍照、截屏等。默认不限制来源。                               |
+
+## RecentPhotoInfo<sup>13+</sup>
+
+最近图片相关信息。
+
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称         | 类型     | 必填  | 说明                                                        |
+|------------|--------|-------|-----------------------------------------------------------|
+| dateTaken  | number | 否    | 最近图片/视频的拍摄时间，单位为毫秒。（距1970年一月一日的毫秒数值）。                     |
+| identifier | string | 否    | 最近图片/视频的名称hash值，用于辅助应用区分最新图片组件将要显示的图片/视频与之前曾显示过的图片/视频是否为同一个。 |
 
 ## RecentPhotoCheckResultCallback
 
@@ -95,6 +108,23 @@ type RecentPhotoClickCallback = (recentPhotoInfo: BaseItemInfo) => boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 应用回调中处理最近图片的结果返回。 |
 
+## RecentPhotoCheckInfoCallback<sup>13+</sup>
+
+type RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPhotoInfo) => void
+
+最近图片是否存在查询结果以及最近图片相关信息的回调事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名               | 类型                                    | 必填 | 说明          |
+|-------------------|---------------------------------------| -------- |-------------|
+| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在。 |
+| info              | [RecentPhotoInfo](#recentphotoinfo13) | 是 | 最近图片相关信息。   |
+
 ## PhotoSource
 
 枚举，图片或者视频数据的来源类型。
@@ -117,7 +147,7 @@ import {
   photoAccessHelper
 } from '@kit.MediaLibraryKit';
 import {
-  RecentPhotoComponent, RecentPhotoOptions, PhotoSource, RecentPhotoCheckResultCallback, RecentPhotoClickCallback
+  RecentPhotoComponent, RecentPhotoOptions, PhotoSource, RecentPhotoInfo, RecentPhotoCheckResultCallback, RecentPhotoClickCallback, RecentPhotoCheckInfoCallback
 } from '@ohos.file.RecentPhotoComponent';
 import {
   BaseItemInfo
@@ -129,6 +159,7 @@ struct PickerDemo {
   private recentPhotoOptions: RecentPhotoOptions = new RecentPhotoOptions();
   private recentPhotoCheckResultCallback: RecentPhotoCheckResultCallback = (recentPhotoExists: boolean) => this.onRecentPhotoCheckResult(recentPhotoExists);
   private recentPhotoClickCallback: RecentPhotoClickCallback = (recentPhotoInfo: BaseItemInfo): boolean => this.onRecentPhotoClick(recentPhotoInfo);
+  private recentPhotoCheckInfoCallback: RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPhotoInfo) => this.onRecentPhotoCheckInfo(recentPhotoExists, info);
 
   aboutToAppear() {
     this.recentPhotoOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -152,12 +183,17 @@ struct PickerDemo {
     return true;
   }
 
+  private onRecentPhotoCheckResult(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
+    // 是否存在符合条件的照片或视频，若存在则可以拿到该照片或视频的相关信息
+  }
+
   build() {
     Stack() {
       RecentPhotoComponent({
         recentPhotoOptions: this.recentPhotoOptions,
         onRecentPhotoCheckResult: this.recentPhotoCheckResultCallback,
         onRecentPhotoClick: this.recentPhotoClickCallback,
+        onRecentPhotoCheckInfo: this.recentPhotoCheckInfoCallback,
       }).height('100%').width('100%')
     }
   }

@@ -183,7 +183,7 @@ All permissions in the permission list have been granted.
 
 **处理步骤**
 
-无。
+无需处理，返回此错误码表示申请权限已被授权，不会拉起权限设置弹框。
 
 
 ## 12100012 输入的权限中存在未被用户拒绝过的权限
@@ -213,4 +213,4 @@ The specific global switch is already open.
 
 **处理步骤**
 
-无。
+无需处理，返回此错误码表示全局开关已开启，不会拉起全局开关设置弹框。

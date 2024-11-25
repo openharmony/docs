@@ -2,7 +2,7 @@
 
 Deque（double ended queue）根据循环队列的数据结构实现，符合先进先出以及先进后出的特点，支持两端的元素插入和移除。Deque会根据实际需要动态调整容量，每次进行两倍扩容。
 
-Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能在头部删除元素，尾部增加元素。
+Deque和[Queue](js-apis-queue.md)相比，Deque允许在两端执行增删元素的操作，Queue只能在头部删除元素，尾部增加元素。
 
 与[Vector](js-apis-vector.md)相比，它们都支持在两端增删元素，但Deque不能进行中间插入的操作。对头部元素的插入删除效率高于Vector，而Vector访问元素的效率高于Deque。
 
@@ -374,10 +374,6 @@ let result = deque.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

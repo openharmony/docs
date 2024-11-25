@@ -49,7 +49,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
 
 ## 与其他kit的关系
 
-- [ArkTS Kit](../arkts-utils/arkts-commonlibrary-overview.md)：ArkTS Kit中的[多线程并发(Worker和Taskpool)](../arkts-utils/multi-thread-concurrency-overview.md)需要使用本Kit中的Emitter进行线程间通信。
+- [ArkTS Kit](../arkts-utils/arkts-overview.md)：ArkTS Kit中的[多线程并发(Worker和Taskpool)](../arkts-utils/multi-thread-concurrency-overview.md)需要使用本Kit中的Emitter进行线程间通信。
 
 - [Ability Kit](../application-models/abilitykit-overview.md)：Ability Kit中的进程间通信需要使用本Kit中的公共事件。
 

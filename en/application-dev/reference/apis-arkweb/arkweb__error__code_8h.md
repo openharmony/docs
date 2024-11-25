@@ -7,6 +7,8 @@ Declares the error code of the ArkWeb NDK APIs.
 
 **Library**: libohweb.so
 
+**File to include**: <web/arkweb_error_code.h>
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Since**: 12

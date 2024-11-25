@@ -62,7 +62,7 @@ Pointer to the function used to send the message to the HTML page.
 
 **Returns**
 
-  Returns [ARKWEB_SUCCESS](_web.md) if the operation is successful. Returns [ARKWEB_INVALID_PARAM](_web.md) if the parameter is invalid. Returns [ARKWEB_INIT_ERROR](_web.md) if the initialization fails, that is, the Web component bound to the WebTag is not found.
+Returns [ARKWEB_SUCCESS](_web.md) if the operation is successful. Returns [ARKWEB_INVALID_PARAM](_web.md) if the parameter is invalid. Returns [ARKWEB_INIT_ERROR](_web.md) if the initialization fails, that is, the Web component bound to the WebTag is not found.
 
 
 ### setMessageEventHandler
@@ -92,5 +92,3 @@ size_t ArkWeb_WebMessagePortAPI::size
 **Description**
 
 Size of the struct.
-
-<!--no_check-->

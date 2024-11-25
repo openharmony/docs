@@ -18,7 +18,7 @@ import { PiPWindow } from '@kit.ArkUI';
 
 isPiPEnabled(): boolean
 
-用于判断当前系统是否开启画中画功能。
+用于判断当前系统是否支持画中画功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -28,7 +28,7 @@ isPiPEnabled(): boolean
 
 | 类型       | 说明                                  |
 |----------|-------------------------------------|
-| boolean  | 当前系统是否开启画中画功能。true表示开启，false则表示未开启。 |
+| boolean  | 当前系统是否开启画中画功能。true表示支持，false则表示不支持。 |
 
 **示例：**
 

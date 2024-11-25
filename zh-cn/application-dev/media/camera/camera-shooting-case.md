@@ -1,5 +1,6 @@
 # 拍照实现方案(ArkTS)
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
 当前示例提供完整的拍照流程介绍，方便开发者了解完整的接口调用顺序。
 
 在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[拍照](camera-shooting.md)等单个流程。
@@ -14,6 +15,9 @@
 
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+如需要在图库中看到所保存的图片、视频资源，需要将其保存到媒体库，保存方式请参考：[保存媒体库资源](../medialibrary/photoAccessHelper-savebutton.md)。
+
+需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
 ```ts
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
@@ -23,19 +27,6 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
-
-async function savePicture(buffer: ArrayBuffer, img: image.Image): Promise<void> {
-  let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-  let options: photoAccessHelper.CreateOptions = {
-    title: Date.now().toString()
-  };
-  let photoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg', options);
-  //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
-  let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  await fs.write(file.fd, buffer);
-  fs.closeSync(file);
-  img.release(); 
-}
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中
@@ -60,7 +51,11 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
         console.error('byteBuffer is null');
         return;
       }
-      savePicture(buffer, imageObj);
+
+      // 如需要在图库中看到所保存的图片、视频资源，请使用用户无感的安全控件创建媒体资源。
+
+      // buffer处理结束后需要释放该资源，如果未正确释放资源会导致后续拍照获取不到buffer
+      imageObj.release(); 
     });
   });
 }

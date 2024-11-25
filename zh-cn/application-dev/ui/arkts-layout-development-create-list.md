@@ -644,6 +644,10 @@ ListItem() {
 
 3. 监听手指抬起事件，若此时移动达到最大值，则触发数据加载并显示刷新视图，加载完成后将此视图隐藏。
 
+> **说明：** 
+>
+> 页面的下拉刷新操作推荐使用[Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md)组件实现。
+
 <!--RP1--><!--RP1End-->
 
 <!--Del-->
@@ -1104,3 +1108,5 @@ List() {
 - [List组件的使用之设置项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
 
 - [PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)
+
+<!--RP2--><!--RP2End-->

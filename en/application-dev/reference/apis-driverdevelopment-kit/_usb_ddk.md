@@ -42,7 +42,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 
 | Name| Description|
 | -------- | -------- |
-| [UsbDdkErrCode](#usbddkerrcode) {<br>USB_DDK_SUCCESS = 0, USB_DDK_FAILED = -1, USB_DDK_INVALID_PARAMETER = -2, USB_DDK_MEMORY_ERROR = -3,<br>USB_DDK_INVALID_OPERATION = -4, USB_DDK_NULL_PTR = -5, USB_DDK_DEVICE_BUSY = -6, USB_DDK_TIMEOUT = -7<br>} | USB DDK error code definitions.|
+| [UsbDdkErrCode](#usbddkerrcode) {<br>USB_DDK_SUCCESS = 0, USB_DDK_NO_PERM = 201, USB_DDK_INVALID_PARAMETER = 401, USB_DDK_MEMORY_ERROR = 27400001,<br>USB_DDK_INVALID_OPERATION = 27400002, USB_DDK_IO_FAILED = 27400003, USB_DDK_TIMEOUT = 27400004<br>} | USB DDK error code definitions.|
 
 
 ### Functions
@@ -51,6 +51,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | -------- | -------- |
 | [OH_Usb_Init](#oh_usb_init) (void) | Initializes the DDK.|
 | [OH_Usb_Release](#oh_usb_release) (void) | Releases the DDK.|
+| [OH_Usb_ReleaseResource](#oh_usb_releaseresource14) (void) | Releases the DDK.|
 | [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) (uint64_t deviceId, struct [UsbDeviceDescriptor](_usb_device_descriptor.md) \*desc) | Obtains the device descriptor.|
 | [OH_Usb_GetConfigDescriptor](#oh_usb_getconfigdescriptor) (uint64_t deviceId, uint8_t configIndex, struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*\*const config) | Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor** to release a descriptor after use.|
 | [OH_Usb_FreeConfigDescriptor](#oh_usb_freeconfigdescriptor) (const struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*const config) | Releases the configuration descriptor. To avoid memory leakage, release a descriptor after use.|
@@ -61,7 +62,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [OH_Usb_SendControlReadRequest](#oh_usb_sendcontrolreadrequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), uint8_t \*data, uint32_t \*dataLen) | Sends a control read transfer request. This API works in a synchronous manner.|
 | [OH_Usb_SendControlWriteRequest](#oh_usb_sendcontrolwriterequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), const uint8_t \*data, uint32_t dataLen) | Sends a control write transfer request. This API works in a synchronous manner.|
 | [OH_Usb_SendPipeRequest](#oh_usb_sendpiperequest) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk transfer.|
-| [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
+| [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem12) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap) to destroy a buffer after use.|
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
 
@@ -99,16 +100,15 @@ enum UsbDdkErrCode
 
 USB DDK error code definitions.
 
-| Value| Description|
-| -------- | -------- |
-| USB_DDK_SUCCESS | Operation successful.|
-| USB_DDK_FAILED | Operation failed.|
-| USB_DDK_INVALID_PARAMETER | Invalid parameter.|
-| USB_DDK_MEMORY_ERROR | Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.|
-| USB_DDK_INVALID_OPERATION | Invalid operation.|
-| USB_DDK_NULL_PTR | Null pointer.|
-| USB_DDK_DEVICE_BUSY | Device busy.|
-| USB_DDK_TIMEOUT | Transfer timed out.|
+| Enum| Value| Description|
+| -------- | -------- |-------- |
+| USB_DDK_SUCCESS | 0 | Operation successful.|
+| USB_DDK_NO_PERM | 201 | Operation failed.|
+| USB_DDK_INVALID_PARAMETER | 401 | Invalid parameter.|
+| USB_DDK_MEMORY_ERROR | 27400001 | Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.|
+| USB_DDK_INVALID_OPERATION | 27400002 | Invalid operation.|
+| USB_DDK_IO_FAILED | 27400003 | The device I/O operation fails.|
+| USB_DDK_TIMEOUT | 27400004 | Transfer timed out.|
 
 
 ## Function Description
@@ -137,7 +137,10 @@ Declares a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **interfaceHandle** is a null pointer.
 
 
 ### OH_Usb_CreateDeviceMemMap()
@@ -163,7 +166,10 @@ Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#o
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **devMmap** is a null pointer.
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode): indicates that the mmap fails or the memory space of the devMmap fails to be applied for.
 
 
 ### OH_Usb_DestroyDeviceMemMap()
@@ -229,7 +235,11 @@ Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_Free
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **config** is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
 
 
 ### OH_Usb_GetCurrentInterfaceSetting()
@@ -254,7 +264,10 @@ Obtains the activated alternate setting of a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **settingIndex** is a null pointer.
 
 
 ### OH_Usb_GetDeviceDescriptor()
@@ -279,8 +292,10 @@ Obtains the device descriptor.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
-
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **desc** is a null pointer.
 
 ### OH_Usb_Init()
 
@@ -297,14 +312,15 @@ Initializes the DDK.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
-
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 ### OH_Usb_Release()
 
 
 ```
-void OH_Usb_Release (void )
+void OH_Usb_Release (void)
 ```
 
 **Description**
@@ -313,9 +329,25 @@ Releases the DDK.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+### OH_Usb_ReleaseResource()<sup>14+</sup>
+
+```
+int32_t OH_Usb_ReleaseResource (void)
+```
+
+**Description**
+
+Releases the DDK.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Returns**
+
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 ### OH_Usb_ReleaseInterface()
-
 
 ```
 int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
@@ -335,7 +367,9 @@ Releases a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 
 ### OH_Usb_SelectInterfaceSetting()
@@ -360,7 +394,9 @@ Activates the alternate setting of a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 
 ### OH_Usb_SendControlReadRequest()
@@ -388,7 +424,13 @@ Sends a control read transfer request. This API works in a synchronous manner.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **setup**, **data**, or **dataLen** is a null pointer, or the value of **datalen** is less than the length of the read data.
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode): The attempt to copy the memory that stores the read data fails.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
 
 ### OH_Usb_SendControlWriteRequest()
@@ -416,7 +458,12 @@ Sends a control write transfer request. This API works in a synchronous manner.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **setup** or **data** is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
 
 ### OH_Usb_SendPipeRequest()
@@ -441,10 +488,14 @@ Sends a pipe request. This API works in a synchronous manner. It applies to inte
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **pipe**, **devMmap**, or **devMmap** address is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
-
-### OH_Usb_SendPipeRequestWithAshmem()
+### OH_Usb_SendPipeRequestWithAshmem()<sup>12+</sup>
 
 
 ```
@@ -466,4 +517,9 @@ Sends a pipe request for the shared memory. This API returns the result synchron
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **pipe**, **ashmem**, or **ashmem** address is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.

@@ -88,3 +88,5 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
    完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md)。
 
+<!--RP4-->
+<!--RP4End-->

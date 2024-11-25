@@ -15,13 +15,13 @@
       - [启动应用内的UIAbility组件](uiability-intra-device-interaction.md)
       - [UIAbility备份恢复](ability-recover-guideline.md)
     - [ExtensionAbility组件](extensionability-overview.md)
-      - [UIServiceExtension](uiserviceextension.md)
       <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
       - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
       <!--DelEnd-->
+      - [UIServiceExtension](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
@@ -29,6 +29,7 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
+      - [常见action与entities（不推荐使用）](actions-entities.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
     - [应用启动框架AppStartup](app-startup.md)
     <!--Del-->
@@ -40,7 +41,8 @@
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
   - 应用间跳转
     - [应用间跳转概述](link-between-apps-overview.md)
-    - 拉起指定应用
+    - 拉起指定应用<!--directional-redirection-->
+      - [拉起指定应用概述](app-startup-overview.md)
       - [（可选）使用canOpenLink判断应用是否可访问](canopenlink.md)
       - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
       <!--Del-->
@@ -48,12 +50,16 @@
       <!--DelEnd-->
       - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
       - [应用链接说明](app-uri-config.md)
-    - [拉起指定类型的应用](start-intent-panel.md)
-      - [拉起导航类应用](start-navigation-apps.md)
-      - [拉起邮件类应用](start-email-apps.md)
-      - [拉起金融类应用](start-finance-apps.md)
-      - [拉起图片编辑类应用](photoEditorExtensionAbility.md)
-      - [拉起文件处理类应用](file-processing-apps-startup.md)
+    - 拉起指定类型的应用<!--specified-type-app-redirection-->
+      - [拉起指定类型的应用概述](start-intent-panel.md)
+      - [拉起导航类应用（startAbilityByType）](start-navigation-apps.md)
+      - [拉起邮件类应用（startAbilityByType）](start-email-apps.md)
+      - [拉起邮件类应用（mailto方式）](start-email-apps-by-mailto.md)
+      - [拉起金融类应用（startAbilityByType）](start-finance-apps.md)
+      - [拉起航班类应用（startAbilityByType）](start-flight-apps.md)
+      - [拉起快递类应用（startAbilityByType）](start-express-apps.md)
+      - [拉起图片编辑类应用（startAbilityByType）](photoEditorExtensionAbility.md)
+      - [拉起文件处理类应用（startAbility）](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
   - [线程模型](thread-model-stage.md)

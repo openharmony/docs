@@ -44,7 +44,6 @@
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
-      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
@@ -52,6 +51,7 @@
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
+    - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
@@ -68,6 +68,7 @@
     - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件
   - 组件通用信息
     - 通用事件
@@ -237,6 +238,7 @@
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
+    - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
     <!--DelEnd-->
   - 图片与视频
     - [Image](arkui-ts/ts-basic-components-image.md)
@@ -372,6 +374,7 @@
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
+    - [SVG标签说明](arkui-ts/ts-basic-svg.md)
     <!--Del-->
     - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
     <!--DelEnd-->
@@ -399,6 +402,7 @@
 - C API
   - 模块
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
+    - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
@@ -410,7 +414,9 @@
     - [native_dialog.h](native__dialog_8h.md)
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
+    - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+    - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
     - [native_node_napi.h](native__node__napi_8h.md)
     - [native_type.h](native__type_8h.md)

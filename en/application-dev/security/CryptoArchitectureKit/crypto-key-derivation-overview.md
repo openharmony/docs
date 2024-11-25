@@ -2,9 +2,7 @@
 
 A key derivation function (KDF) is a cryptographic algorithm that derives one or more secrete keys from a secret value (such as a master key) by using a pseudorandom function. It can be used to stretch keys into longer keys or to obtain keys in the required format.
 
-## Supported Algorithms and Specifications
-
-### PBKDF2
+## PBKDF2
 
 Password-Based Key Derivation Function (PBKDF) is a key derivation function with a sliding computational cost. PBKDF2 is part of the PKCS series.
 
@@ -20,7 +18,7 @@ When creating a **kDF** instance, you need to specify the algorithm specificatio
 | PBKDF2 | SHA512 | PBKDF2\|SHA512 | 11+ | 
 | PBKDF2 | SM3 | PBKDF2\|SM3 | 11+ | 
 
-### HKDF
+## HKDF
 
 HMAC-based Extract-and-Expand Key Derivation Function (HKDF) is a simple key derivation function (KDF) based on the [HMAC](crypto-compute-mac.md) message authentication code. It is used to expand limited input key material into a cryptographically strong secret key.
 

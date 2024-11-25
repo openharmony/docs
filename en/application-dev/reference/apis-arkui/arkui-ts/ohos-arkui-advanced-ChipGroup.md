@@ -6,6 +6,12 @@
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```typescript
+import { ChipSize, ChipGroup } from '@kit.ArkUI'
+```
+
 ## Child Components
 
 Not supported
@@ -31,9 +37,7 @@ ChipGroup({
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name           | Type                                           | Mandatory| Description                                                                                      |
+| Name           | Type                                           | Mandatory| Description                                                                                    |
 | --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             |
 | items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | Yes  | Specific attributes of individual chips. For details, see [ChipGroupItemOptions[]](#chipgroupitemoptions).<br>If this parameter is set to **undefined**, the chip group is empty by default.              |
 | itemStyle       | [ChipItemStyle](#chipitemstyle)                 | No  | Chip style, including the color and size. For details, see [ChipItemStyle](#chipitemstyle).<br>If this parameter is set to **undefined**, the default chip style is used.                |
@@ -41,7 +45,7 @@ ChipGroup({
 | multiple        | boolean                                         | No  | Whether multiple chips can be selected.<br>**true**: Multiple chips can be selected.<br>**false**: Only one chip can be selected.<br>Default value: **false**<br>If this parameter is set to **undefined**, the default value is used.                    |
 | chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | No  | Left and right padding, and the spacing between chips. For details, see [ChipGroupSpaceOptions](#chipgroupspaceoptions).<br>If this parameter is set to **undefined**, the default value is used.|
 | chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | No  | Top and bottom padding, used to control the overall height. For details, see [ChipGroupPaddingOptions](#chipgrouppaddingoptions).<br>If this parameter is set to **undefined**, the default value is used.|
-| onChange        | (selectedIndexes: Array&lt;number&gt;) => void  | No  | Callback invoked when the chip status changes.<br>If the value is **undefined**, the event is unbound.                                                               |
+| onChange        | Callback\<Array\<number>>  | No  | Callback invoked when the chip status changes.<br>If the value is **undefined**, the event is unbound.                                                               |
 | suffix          | ()=>void                                        | No  | Suffix, which is a builder customized by the user and requires importing the [IconGroupSuffix](#icongroupsuffix) API when used.<br>Default value: The suffix is not displayed if not passed.|
 
 > **NOTE**
@@ -58,14 +62,22 @@ Defines the specific attributes of individual chips.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name        | Type                          | Mandatory| Description                               |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name        | Type                          | Mandatory| Description                             |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
 | prefixIcon   | [IconOptions](#iconoptions)   | No  | Prefix image icon of the chip.                  |
 | prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Prefix symbol glyph icon of the chip.            |
 | label        | [LabelOptions](#labeloptions) | Yes  | Text of the chip.                           |
-| suffixIcon   | [IconOptions](#iconoptions) | No  | Suffix image icon of the chip.                  |
+| suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | No  | Suffix image icon of the chip.<br>**NOTE**<br>This API is supported since API version 12 and deprecated since API version 14. You are advised to use **suffixImageIcon** instead.|
 | suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | No  | Suffix symbol glyph icon of the chip.            |
 | allowClose   | boolean                       | No  | Whether to show the close icon.<br>Default value: **false** |
+| suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | No| Suffix image icon of the chip.|
+| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsuffixsymbolglyphoptions14) | No| Suffix symbol icon of the chip.|
+| closeOptions<sup>14+</sup> | [CloseOptions](ohos-arkui-advanced-Chip.md#closeoptions14) | No| Accessibility options of the default close icon.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the chip.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip.<br>Default value: **"auto"**|
+
 
 >**NOTE**
 >
@@ -77,13 +89,15 @@ Defines the common attributes shared by all chips in the chip group.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name                   | Type                                                             | Mandatory| Description                                                 |
-| ----------------------- | ----------------------                                           | ---- | -------------------------------                       |
-| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions)  | No  | Chip size. To use this API, you must import the **ChipSize** type from the **Chip** component.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br> If this parameter is set to **undefined**, the default value is used. |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>If this parameter is set to **undefined**, the default value is used.                 |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Font color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**<br>If this parameter is set to **undefined**, the default value is used.                   |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Font color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_contrary')**<br>If this parameter is set to **undefined**, the default value is used.   |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                       | No  | Background color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_emphasize')**<br>If this parameter is set to **undefined**, the default value is used.               |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                   | Type                                                        | Mandatory| Description                                                        |
+| ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Chip size. To use this API, you must import the **ChipSize** type from the **Chip** component.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br> If this parameter is set to **undefined**, the default value is used.|
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>If this parameter is set to **undefined**, the default value is used.|
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**<br>If this parameter is set to **undefined**, the default value is used.|
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_contrary')**<br>If this parameter is set to **undefined**, the default value is used.|
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip when it is activated or selected.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**<br>If this parameter is set to **undefined**, the default value is used.|
 
 > **NOTE**
 >
@@ -97,7 +111,9 @@ Defines the left and right padding of the chip group, and the spacing between ch
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name      | Type           | Mandatory| Description                                              |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Type           | Mandatory| Description                                            |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
 | itemSpace | string \| number  | No  | Spacing between chips. Percentage values are not supported.<br>Default value: **8**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.     |
 | startSpace | [Length](ts-types.md#length)         | No  | Left padding. Percentage values are not supported.<br>Default value: **16**<br>Unit: vp<br>If this parameter is set to **undefined**, the default value is used.               |
@@ -109,10 +125,44 @@ Defines the top and bottom padding of the chip group, used to control the overal
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name  | Type           | Mandatory| Description                                                       |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type           | Mandatory| Description                                                     |
 | ------ | -------------- | ---- | ------------------------------------------------            |
 | top    | [Length](ts-types.md#length)         | Yes  | Top padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.       |
-| bottom | [Length](ts-types.md#length)         | Yes  | Bottom padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.        |
+| bottom | [Length](ts-types.md#length)         | Yes  | Top padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.        |
+
+## SuffixImageIconOptions<sup>14+</sup>
+
+Defines the suffix iconoptions.
+
+Inherits [IconOptions](#iconoptions).
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| ---- | ---- | --- | ---- |
+| action | [VoidCallback](ts-types.md#voidcallback12) | No| Action of the suffix icon.|
+| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the suffix icon.|
+| accessibilityLevel | string | No| Accessibility level of the suffix icon.<br>Default value: **"auto"**|
+
+## SymbolItemOptions<sup>14+</sup>
+
+Defines the options for the trailing symbol item in a chip group.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| ---- | ---- | --- | ---- |
+| symbol | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Settings of the trailing symbol item.|
+| action | [VoidCallback](ts-types.md#voidcallback12) | No| Action of the trailing symbol item.|
+| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the trailing symbol item.|
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the trailing symbol item.|
+| accessibilityLevel | string | No| Accessibility level of the trailing symbol item.<br>Default value: **"auto"**|
 
 ## IconGroupSuffix
 
@@ -122,11 +172,9 @@ Defines the top and bottom padding of the chip group, used to control the overal
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name    | Type                   | Mandatory| Description                                                               |
+| Name    | Type                   | Mandatory| Description                                                             |
 | -------- | ---------------------- | ---- | ----------------------------------------------|
-| items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | Yes  | Custom builder items.|
+| items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) \| [ SymbolItemOptions](#symbolItemoptions14)> | Yes  | Custom builder items.|
 
 > **NOTE**
 >
@@ -139,10 +187,15 @@ Defines the tail builder, which imposes limitations on the settings for the back
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name    | Type                           | Mandatory| Description                                     |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type                           | Mandatory| Description                                   |
 | -------- | --------------                 | ---- | ------------------------------           |
-| icon     | [IconOptions](#iconoptions)    | Yes  | Custom builder icon.                       |
+| icon     | [IconOptions](#iconoptions)    | Yes  | Custom builder icon.<br>When the chip size is **ChipSize.SMALL**, the default suffix is at {width: 16, height: 16}.<br>When the chip size is **ChipSize.NORMAL**, the default suffix is at {width: 24, height: 24}.<br> To dynamically change the size, you must use the [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) type when importing the [IconGroupSuffix](#icongroupsuffix) API.                      |
 | action   | Callback\<void>        | Yes  | Callback of custom builder items.<br>If the value is **undefined**, the event is unbound.           |
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the trailing symbol item.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the trailing symbol item.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the trailing symbol item.<br>Default value: **"auto"**|
 
 ## IconOptions
 
@@ -150,16 +203,20 @@ Defines the common attributes of icons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type                                  | Mandatory| Description                                                        |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | src  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon source, which can be a specific image path or an image reference.                                    |
-| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Icon size. Percentage values are not supported.<br>When the chip size is **ChipSize.SMALL**, the default suffix is at {width: 16, height: 16}.<br>When the chip size is **ChipSize.NORMAL**, the default suffix is at {width: 24, height: 24}.<br> To dynamically change the size, you must use the [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) type when importing the [IconGroupSuffix](#icongroupsuffix) API.|
+| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Icon size. This parameter cannot be set in percentage.|
 
 ## LabelOptions
 
 Defines the common attributes of labels.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type  | Mandatory | Description    |
 | ---- | ------ | ---- | -------- |
@@ -417,3 +474,328 @@ struct Index {
 
 ```
 ![](figures/chipGroupDemo3.jpeg)
+
+### Example 4
+
+This example implements the screen reader feature for a chip group with and without a suffix area in a single-selection scenario.
+
+```typescript
+import { ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Builder function DefaultFunction(): void {}
+
+@Component
+struct SectionGroup {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 4 }) {
+      Text(this.title)
+        .fontColor('#FF666666')
+        .fontSize(12)
+      Column({ space: 8 }) {
+        this.content()
+      }
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+  }
+}
+@Component
+struct SectionItem {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 12 }) {
+      Text(this.title)
+      this.content()
+    }
+    .backgroundColor('#FFFFFFFF')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
+  }
+}
+
+@Entry
+@Component
+export struct ChipGroupExample2 {
+  @LocalBuilder
+  Suffix() {
+    IconGroupSuffix({
+      items: [
+        {
+          icon: { src: $r('sys.media.ohos_ic_public_more'), },
+          accessibilityText: 'More',
+          accessibilityDescription: 'Speak usage hints',
+          action: () => {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'More icon touched.'
+            });
+          }
+        },
+        {
+          symbol: new SymbolGlyphModifier($r('sys.symbol.more'))
+            .accessibilityText('More')
+            .accessibilityDescription('Speak usage hints'),
+          action: () => {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'More icon touched.'
+            });
+          }
+        },
+        {
+          icon: { src: $r('sys.media.ohos_ic_public_more'), },
+          accessibilityText: 'More',
+          accessibilityDescription: 'Speak usage hints',
+          accessibilityLevel: 'no',
+          action: () => {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'More icon touched.'
+            });
+          }
+        }
+      ]
+    })
+  }
+
+  build() {
+    NavDestination() {
+      Scroll() {
+        Column({ space: 12 }) {
+          SectionGroup({ title: 'Available' }) {
+            SectionItem({ title: 'Single selection without suffix area' }) {
+              ChipGroup({
+                items: [
+                  {
+                    prefixIcon: {
+                      src: $r('app.media.startIcon')
+                    },
+                    label: { text: "Option 1" },
+                    suffixImageIcon: {
+                      src: $r('sys.media.save_button_picture'),
+                      accessibilityText: 'Save',
+                      action: () => {
+                        this.getUIContext().getPromptAction().showToast({
+                          message: 'Suffix icon touched.'
+                        });
+                      },
+                    }
+                  },
+                  {
+                    label: { text: "Option 2" },
+                    suffixSymbol: {
+                      normal: new SymbolGlyphModifier($r('sys.symbol.save')),
+                      activated: new SymbolGlyphModifier($r('sys.symbol.save'))
+                    },
+                    suffixSymbolOptions: {
+                      normalAccessibility: {
+                        accessibilityText: 'Save'
+                      },
+                      action: () => {
+                        this.getUIContext().getPromptAction().showToast({
+                          message: 'Suffix icon touched.'
+                        });
+                      }
+                    }
+                  },
+                  {
+                    label: { text: "Option 3" },
+                    suffixIcon: { src: $r('sys.media.save_button_picture'), }
+                  },
+                  { label: { text: "Option 4" } },
+                  { label: { text: "Option 5" } },
+                  { label: { text: "Option 6" } },
+                  { label: { text: "Option 7" } },
+                  { label: { text: "Option 8" } },
+                  { label: { text: "Option 9" } },
+                ]
+              })
+            }
+            SectionItem({ title: 'Single selection with suffix area' }) {
+              ChipGroup({
+                items: [
+                  { label: { text: "Option 1" } },
+                  { label: { text: "Option 2" } },
+                  { label: { text: "Option 3" } },
+                  { label: { text: "Option 4" } },
+                  { label: { text: "Option 5" } },
+                  { label: { text: "Option 6" } },
+                  { label: { text: "Option 7" } },
+                  { label: { text: "Option 8" } },
+                  { label: { text: "Option 9" } },
+                ],
+                suffix: this.Suffix.bind(this),
+              })
+            }
+          }
+        }
+      }
+      .padding({
+        top: 8,
+        bottom: 8,
+        left: 16,
+        right: 16, })
+    }
+    .title('Basic usage')
+    .backgroundColor('#F1F3F5')
+  }
+}
+```
+
+### Example 5
+
+This example implements the screen reader feature for a chip group with and without a suffix area in a multi-selection scenario.
+
+```typescript
+import { ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Builder function DefaultFunction(): void {}
+
+@Component
+struct SectionGroup {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 4 }) {
+      Text(this.title)
+        .fontColor('#FF666666')
+        .fontSize(12)
+      Column({ space: 8 }) {
+        this.content()
+      }
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+  }
+}
+@Component
+struct SectionItem {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 12 }) {
+      Text(this.title)
+      this.content()
+    }
+    .backgroundColor('#FFFFFFFF')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
+  }
+}
+
+@Entry
+@Component
+export struct ChipGroupExample2 {
+  @LocalBuilder
+  Suffix() {
+    IconGroupSuffix({
+      items: [
+        {
+          icon: { src: $r('sys.media.ohos_ic_public_more'), },
+          accessibilityText: 'More',
+          accessibilityDescription: 'Speak usage hints',
+          action: () => {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'More icon touched.'
+            });
+          }
+        },
+        {
+          symbol: new SymbolGlyphModifier($r('sys.symbol.more'))
+            .accessibilityText('More')
+            .accessibilityDescription('Speak usage hints'),
+          action: () => {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'More icon touched.'
+            });
+          }
+        },
+        {
+          icon: { src: $r('sys.media.ohos_ic_public_more'), },
+          accessibilityText: 'More',
+          accessibilityDescription: 'Speak usage hints',
+          accessibilityLevel: 'no',
+          action: () => {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'More icon touched.'
+            });
+          }
+        }
+      ]
+    })
+  }
+
+  build() {
+    NavDestination() {
+      Scroll() {
+        Column({ space: 12 }) {
+          SectionGroup({ title: 'Available' }) {
+            SectionItem({ title: 'Multi-selection without suffix area' }) {
+              ChipGroup({
+                items: [
+                  { label: { text: "Option 1" } },
+                  { label: { text: "Option 2" } },
+                  { label: { text: "Option 3" } },
+                  { label: { text: "Option 4" } },
+                  { label: { text: "Option 5" } },
+                  { label: { text: "Option 6" } },
+                  { label: { text: "Option 7" } },
+                  { label: { text: "Option 8" } },
+                  { label: { text: "Option 9" } },
+                ],
+                multiple: true
+              })
+            }
+            SectionItem({ title: 'Multi-selection with suffix area' }) {
+              ChipGroup({
+                items: [
+                  { label: { text: "Option 1" } },
+                  { label: { text: "Option 2" } },
+                  { label: { text: "Option 3" } },
+                  { label: { text: "Option 4" } },
+                  { label: { text: "Option 5" } },
+                  { label: { text: "Option 6" } },
+                  { label: { text: "Option 7" } },
+                  { label: { text: "Option 8" } },
+                  { label: { text: "Option 9" } },
+                ],
+                suffix: this.Suffix.bind(this),
+                multiple: true,
+              })
+            }
+          }
+        }
+      }
+      .padding({
+        top: 8,
+        bottom: 8,
+        left: 16,
+        right: 16, })
+    }
+    .title('Basic usage')
+    .backgroundColor('#F1F3F5')
+  }
+}
+```

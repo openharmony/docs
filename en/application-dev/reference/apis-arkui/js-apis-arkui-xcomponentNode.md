@@ -28,13 +28,13 @@ Constructor used to create an XComponentNode.
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory | Description                                                        |
+| Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [[Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context). |
+| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context).|
 | options     | [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions) | Yes  | Parameters for creating an XComponentNode.                              |
-| id          | string                                                       | Yes  | Unique ID of the **XComponent**. The value can contain a maximum of 128 characters. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent). |
-| type        | [XComponentType](arkui-ts/ts-basic-components-xcomponent.md#xcomponenttype10)  | Yes  | Type of the **XComponent**. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent). |
-| libraryName | string                                                       | No  | Name of the dynamic library generated during compilation at the native layer. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent). |
+| id          | string                                                       | Yes  | Unique ID of the **XComponent**. The value can contain a maximum of 128 characters. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
+| type        | [XComponentType](arkui-ts/ts-appendix-enums.md#xcomponenttype10) | Yes  | Type of the **XComponent**. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
+| libraryName | string                                                       | No  | Name of the dynamic library generated during compilation at the native layer. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
 
 > **NOTE**
 >
@@ -50,9 +50,9 @@ Called when the XComponentNode loading is complete.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| event  | Object | No  | Context of the **XComponent** object. The APIs contained in the context are defined by you at the C++ layer. |
+| event  | Object | No  | Context of the **XComponent** object. The APIs contained in the context are defined by you at the C++ layer.|
 
 ### onDestroy
 
@@ -72,15 +72,15 @@ Changes the rendering type of the XComponentNode.
 
 **Parameters**
 
-| Name | Type                                                    | Mandatory | Description            |
+| Name| Type                                                    | Mandatory| Description            |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| type   | [NodeRenderType](./js-apis-arkui-builderNode.md#noderendertype) | Yes | Target rendering type. |
+| type   | [NodeRenderType](./js-apis-arkui-builderNode.md#noderendertype) | Yes| Target rendering type.|
 
 **Return value**
 
-| Type | Description                  |
+| Type| Description                  |
 | ---- | ---------------------- |
-| boolean | Whether the rendering type is changed successfully. |
+| boolean | Whether the rendering type is changed successfully.|
 
 ## Example
 

@@ -57,7 +57,7 @@ The following table lists the APIs used for persisting user preference data. For
 
 2. Obtain a **Preferences** instance.
 
-   Stage model:
+   <!--Del-->Stage model:<!--DelEnd-->
 
 
    ```ts
@@ -75,7 +75,7 @@ The following table lists the APIs used for persisting user preference data. For
    }
    ```
 
-   FA model:
+   <!--Del-->FA model:
 
 
    ```ts
@@ -87,6 +87,7 @@ The following table lists the APIs used for persisting user preference data. For
    let options: preferences.Options =  { name: 'myStore' };
    let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
+<!--DelEnd-->
 
 3. Write data.
 
@@ -124,7 +125,7 @@ The following table lists the APIs used for persisting user preference data. For
    // If the value is a string containing special characters, it is stored in the Uint8Array format. Convert the obtained Uint8Array into a string.
    let uInt8Array2 : preferences.ValueType = dataPreferences.getSync('uInt8', new Uint8Array(0));
    let textDecoder = util.TextDecoder.create('utf-8');
-   val = textDecoder.decodeWithStream(uInt8Array2 as Uint8Array);
+   val = textDecoder.decodeToString(uInt8Array2 as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 
@@ -190,14 +191,15 @@ The following table lists the APIs used for persisting user preference data. For
    > - The deleted data and files cannot be restored.
 
    Example:
+   
+   
+      ```ts
+      preferences.deletePreferences(this.context, options, (err: BusinessError) => {
+        if (err) {
+          console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+            return;
+        }
+        console.info('Succeeded in deleting preferences.');
+      })
+      ```
 
-
-   ```ts
-   preferences.deletePreferences(this.context, options, (err: BusinessError) => {
-     if (err) {
-       console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-         return;
-     }
-     console.info('Succeeded in deleting preferences.');
-   })
-   ```

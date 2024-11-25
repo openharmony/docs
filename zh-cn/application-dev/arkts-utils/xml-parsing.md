@@ -34,6 +34,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
     ```
 
 2. 对XML文件编码后调用XmlPullParser。
+
    可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。
 
     ```ts
@@ -45,10 +46,10 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-    // 1.基于ArrayBuffer构造XmlPullParser对象
+    // 方式1：基于ArrayBuffer构造XmlPullParser对象
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
    
-    // 2.基于DataView构造XmlPullParser对象
+    // 方式2：基于DataView构造XmlPullParser对象
     // let dataView: DataView = new DataView(arrBuffer.buffer as object as ArrayBuffer);
     // let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
     ```

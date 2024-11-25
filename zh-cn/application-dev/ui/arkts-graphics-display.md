@@ -1,7 +1,7 @@
 # 显示图片 (Image)
 
 
-开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
+开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
 
 
 Image通过调用接口来创建，接口调用形式如下：
@@ -48,7 +48,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - Resource资源
 
-  使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
+  使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读取到并转换到Resource格式。
 
   **图1** resources  
 
@@ -77,6 +77,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   支持file://路径前缀的字符串，用于访问通过[选择器](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
 
   1. 调用接口获取图库的照片url。
+
       ```ts
       import { photoAccessHelper } from '@kit.MediaLibraryKit';
       import { BusinessError } from '@kit.BasicServicesKit';
@@ -105,7 +106,7 @@ Image支持加载存档图、多媒体像素图两种类型。
             let code = (err as BusinessError).code;
             console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);    }
         }
-      
+
         // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
         async aboutToAppear() {
           this.getAllImg();
@@ -125,23 +126,25 @@ Image支持加载存档图、多媒体像素图两种类型。
         }
       }
       ```
-      
-2. 从媒体库获取的url格式通常如下。
+
+  2. 从媒体库获取的url格式通常如下。
+
       ```ts
       Image('file://media/Photos/5')
       .width(200)
       ```
 
+
 - base64
 
-  路径格式为data:image/[png|jpeg|bmp|webp];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
+  路径格式为data:image/[png|jpeg|bmp|webp|heif];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
 
   Base64格式字符串可用于存储图片的像素数据，在网页上使用较为广泛。
 
 
 ### 多媒体像素图
 
-PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上，
+PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上。
 
 1. 创建PixelMap状态变量。
 
@@ -151,102 +154,108 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
 2. 引用多媒体。
 
-   请求网络图片，解码编码PixelMap。
-
    (1) 引用网络权限与媒体库权限。
-       ```ts
-       import { http } from '@kit.NetworkKit';
-       import { image } from '@kit.ImageKit';
-       import { BusinessError } from '@kit.BasicServicesKit';
-       ```
-   (2) 填写网络图片地址。
-       ```ts
-       let OutData: http.HttpResponse
-       http.createHttp().request("https://www.example.com/xxx.png",
-         (error: BusinessError, data: http.HttpResponse) => {
-           if (error) {
-             console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
-           } else {
-             OutData = data
-           }
-         }
-       )
-       ```
-   3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
-       ```ts
-       let code: http.ResponseCode | number = OutData.responseCode
-       if (http.ResponseCode.OK === code) {
-         let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
-         let imageSource: image.ImageSource = image.createImageSource(imageData);
-       
-         class tmp {
-           height: number = 100
-           width: number = 100
-         }
-       
-         let si: tmp = new tmp()
-         let options: Record<string, number | boolean | tmp> = {
-           'alphaType': 0, // 透明度
-           'editable': false, // 是否可编辑
-           'pixelFormat': 3, // 像素格式
-           'scaleMode': 1, // 缩略值
-           'size': { height: 100, width: 100 }
-         } // 创建图片大小
-       
-         class imagetmp {
-           image: PixelMap | undefined = undefined
-           set(val: PixelMap) {
-             this.image = val
-           }
-         }
-       
-         imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-           let im = new imagetmp()
-           im.set(pixelMap)
-         })
-       }
-       ```
-   4. 显示图片。
-       ```ts
-       class htp{
-        httpRequest: Function | undefined = undefined
-        set(){
-          if(this.httpRequest){
-            this.httpRequest()
-          }
-        }
-      }
-       Button("获取网络图片")
-         .onClick(() => {
-           let sethtp = new htp()
-           sethtp.set()
-         })
-       Image(this.image).height(100).width(100)
-      ```
-      同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
-      ```ts
-       import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
-       class htp{
-        httpRequest: Function | undefined = undefined
-        set(){
-          if(this.httpRequest){
-            this.httpRequest()
-          }
-        }
-       }
-       Button("获取网络图片")
-         .onClick(() => {
-           let sethtp = new htp()
-           sethtp.set()
-           this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
-         })
-       Image(this.drawablePixelMap).height(100).width(100)
-      ```
 
+   ```ts
+   import { http } from '@kit.NetworkKit';
+   import { image } from '@kit.ImageKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   ```
+
+   (2) 填写网络图片地址。
+
+   ```ts
+   let OutData: http.HttpResponse
+   http.createHttp().request("https://www.example.com/xxx.png",
+     (error: BusinessError, data: http.HttpResponse) => {
+       if (error) {
+         console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
+       } else {
+         OutData = data
+       }
+     }
+   )
+   ```
+
+3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
+
+   ```ts
+   let code: http.ResponseCode | number = OutData.responseCode
+   if (http.ResponseCode.OK === code) {
+     let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
+     let imageSource: image.ImageSource = image.createImageSource(imageData);
+
+     class tmp {
+       height: number = 100
+       width: number = 100
+     }
+
+     let si: tmp = new tmp()
+     let options: Record<string, number | boolean | tmp> = {
+       'alphaType': 0, // 透明度
+       'editable': false, // 是否可编辑
+       'pixelFormat': 3, // 像素格式
+       'scaleMode': 1, // 缩略值
+       'size': { height: 100, width: 100 }
+     } // 创建图片大小
+
+     class imagetmp {
+       image: PixelMap | undefined = undefined
+       set(val: PixelMap) {
+         this.image = val
+       }
+     }
+
+     imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+       let im = new imagetmp()
+       im.set(pixelMap)
+     })
+   }
+   ```
+
+4. 显示图片。
+
+   ```ts
+   class htp{
+     httpRequest: Function | undefined = undefined
+     set(){
+       if(this.httpRequest){
+         this.httpRequest()
+       }
+     }
+   }
+   Button("获取网络图片")
+     .onClick(() => {
+       let sethtp = new htp()
+       sethtp.set()
+     })
+   Image(this.image).height(100).width(100)
+   ```
+
+   同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
+
+   ```ts
+   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+   class htp{
+     httpRequest: Function | undefined = undefined
+     set(){
+       if(this.httpRequest){
+         this.httpRequest()
+       }
+     }
+   }
+   Button("获取网络图片")
+     .onClick(() => {
+       let sethtp = new htp()
+       sethtp.set()
+       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
+     })
+   Image(this.drawablePixelMap).height(100).width(100)
+   ```
 
 ## 显示矢量图
 
-Image组件可显示矢量图（svg格式的图片），支持的svg标签为：svg、rect、circle、ellipse、path、line、polyline、polygon和animate。
+Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
 
 svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
@@ -298,9 +307,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .objectFit(ImageFit.Cover)
             .margin(15)
-              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)

@@ -22,7 +22,7 @@
 | 装饰器参数          | 必填。常量字符串，字符串需要有引号。是(string)&nbsp;=&gt;&nbsp;void自定义成员函数的方法的引用。 |
 | 可装饰的自定义组件变量    | 可监听所有装饰器装饰的状态变量。不允许监听常规变量。               |
 | 装饰器的顺序         | 建议[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)等装饰器在\@Watch装饰器之前。 |
-
+| \@Watch触发时机 | 使用\@Watch来监听状态变量变化时，回调触发时间是变量真正变化、被赋值的时间。详细示例请参考使用场景中的[@Watch的触发时机](#watch的触发时机)。 |
 
 ## 语法说明
 
@@ -49,6 +49,52 @@
 - 开发者应关注性能，属性值更新函数会延迟组件的重新渲染（具体请见上面的行为表现），因此，回调函数应仅执行快速运算；
 
 - 不建议在\@Watch函数中调用async await，因为\@Watch设计的用途是为了快速的计算，异步行为可能会导致重新渲染速度的性能问题。
+
+- \@Watch参数为必选，且参数类型必须是string，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+@State @Watch() num: number = 10;
+@State @Watch(change) num: number = 10;
+
+// 正确写法
+@State @Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+```
+
+- \@Watch内的参数必须是声明的方法名，否则编译期会报错。
+
+```ts
+// 错误写法，没有对应名称的函数，编译报错
+@State @Watch('change') num: number = 10;
+onChange() {
+  console.log(`xxx`);
+}
+
+// 正确写法
+@State @Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+```
+
+- 常规变量不能被\@Watch装饰，否则编译期会报错。
+
+```ts
+//错误写法
+@Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+
+// 正确写法
+@State @Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+```
 
 
 ## 使用场景
@@ -173,6 +219,86 @@ struct BasketModifier {
 3. 状态管理框架调用\@Watch函数BasketViewer onBasketUpdated 更新BasketViewer TotalPurchase的值；
 
 4. \@Link shopBasket的改变，新增了数组项，ForEach组件会执行item Builder，渲染构建新的Item项；\@State totalPurchase改变，对应的Text组件也重新渲染；重新渲染是异步发生的。
+
+### \@Watch的触发时机
+
+为了展示\@Watch回调触发时间是根据状态变量真正变化的时间，本示例在子组件中同时使用\@Link和\@ObjectLink装饰器，分别观察不同的状态对象。通过在父组件中更改状态变量并观察\@Watch回调的先后顺序，来表明@Watch触发的时机与赋值、同步的关系。
+
+```ts
+@Observed
+class Task {
+  isFinished: boolean = false;
+
+  constructor(isFinished : boolean) {
+    this.isFinished = isFinished;
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State @Watch('onTaskAChanged') taskA: Task = new Task(false);
+  @State @Watch('onTaskBChanged') taskB: Task = new Task(false);
+
+  onTaskAChanged(changedPropertyName: string): void {
+    console.log(`观测到父组件任务属性变化: ${changedPropertyName}`);
+  }
+
+  onTaskBChanged(changedPropertyName: string): void {
+    console.log(`观测到父组件任务属性变化: ${changedPropertyName}`);
+  }
+
+  build() {
+    Column() {
+      Text(`父组件任务A状态: ${this.taskA.isFinished ? '已完成' : '未完成'}`)
+      Text(`父组件任务B状态: ${this.taskB.isFinished ? '已完成' : '未完成'}`)
+      ChildComponent({ taskA: this.taskA, taskB: this.taskB })
+      Button('切换任务状态')
+        .onClick(() => {
+          this.taskB = new Task(!this.taskB.isFinished);
+          this.taskA = new Task(!this.taskA.isFinished);
+        })
+    }
+  }
+}
+
+@Component
+struct ChildComponent {
+  @ObjectLink @Watch('onObjectLinkTaskChanged') taskB: Task;
+  @Link @Watch('onLinkTaskChanged') taskA: Task;
+
+  onObjectLinkTaskChanged(changedPropertyName: string): void {
+    console.log(`观测到子组件@ObjectLink关联的任务属性变化: ${changedPropertyName}`);
+  }
+
+  onLinkTaskChanged(changedPropertyName: string): void {
+    console.log(`观测到子组件@Link关联的任务属性变化: ${changedPropertyName}`);
+  }
+
+  build() {
+    Column() {
+      Text(`子组件任务A状态: ${this.taskA.isFinished ? '已完成' : '未完成'}`)
+      Text(`子组件任务B状态: ${this.taskB.isFinished ? '已完成' : '未完成'}`)
+    }
+  }
+}
+```
+
+处理步骤如下：
+
+1. 当点击按钮切换任务状态时，父组件首先更新了被\@ObjectLink关联的taskB，然后更新了被\@Link关联的taskA。
+
+2. 观察到日志依次显示：
+    ```
+    观测到父组件任务属性变化: taskB
+    观测到父组件任务属性变化: taskA
+    观测到子组件@Link关联的任务属性变化: taskA
+    观测到子组件@ObjectLink关联的任务属性变化: taskB
+    ```
+
+3. 通过日志可以看到，父组件的回调顺序和修改顺序一致，而子组件中\@Link和\@ObjectLink的回调触发顺序与父组件中变量更新的顺序不同。这是因为父组件的变量更新是即时的，但子组件中\@Link和\@ObjectLink获取更新数据的时机不同。\@Link的状态更新是同步的，状态变化会立刻触发\@Watch回调。而\@ObjectLink的更新依赖于父组件的同步，当父组件刷新并将更新后的变量传递给子组件时，\@Watch回调才会触发，因此触发顺序略晚于\@Link。
+
+4. 这是符合预期的行为，展示了\@Watch回调的触发时机是根据状态变量真正变化的时间。因为\@Link直接同步，而\@ObjectLink需要等父组件更新子组件变量。类似地，\@Prop也可能表现出与\@ObjectLink类似的行为，其回调触发时间也会略晚。
 
 ### 使用changedPropertyName进行不同的逻辑处理
 

@@ -16,21 +16,13 @@
 
 - 当前\@Styles仅支持[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)。
 
-- \@Styles方法不支持参数，反例如下。
-
-  ```ts
-  // 反例： @Styles不支持参数
-  @Styles function globalFancy (value: number) {
-    .width(value)
-  }
-  ```
-
 - \@Styles可以定义在组件内或全局，在全局定义时需在方法名前面添加function关键字，组件内定义时则不需要添加function关键字。
 
 > **说明：**
 >
 > 只能在当前文件内使用，不支持export。
 >
+> 如果想实现export功能，推荐使用[AttributeModifier](../ui/arkts-user-defined-extension-attributeModifier.md)
 
   ```ts
   // 全局
@@ -105,6 +97,38 @@
 - 组件内\@Styles的优先级高于全局\@Styles。
   框架优先找当前组件内的\@Styles，如果找不到，则会全局查找。
 
+
+## 限制条件
+
+- \@Styles方法不能有参数，编译期会报错，提醒开发者@Styles方法不支持参数。
+
+  ```ts
+  // 错误写法： @Styles不支持参数，编译期报错
+  @Styles function globalFancy (value: number) {
+    .width(value)
+  }
+
+  // 正确写法
+  @Styles function globalFancy () {
+    .width(value)
+  }
+  ```
+
+- 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
+
+```ts
+// 错误写法
+@Styles function backgroundColorStyle() {
+  if (true) {
+    .backgroundColor(Color.Red)
+  }
+}
+
+// 正确写法
+@Styles function backgroundColorStyle() {
+  .backgroundColor(Color.Red)
+}
+```
 
 ## 使用场景
 

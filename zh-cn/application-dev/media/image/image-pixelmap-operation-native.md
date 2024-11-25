@@ -60,12 +60,16 @@ EXTERN_C_END
         createOps.alphaType = 0;
         size_t bufferSize = createOps.width * createOps.height * 4;
         void *buff = malloc(bufferSize);
+        if (buff == nullptr) {
+            return udfVar;
+        }
 
         char *cc = (char *)buff;
         for (int i = 0; i < 96; i++) {
             *(cc++) = (char)i;
         }
         int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelMap);
+        free(buff);
         if (res != IMAGE_RESULT_SUCCESS || pixelMap == nullptr) {
             return udfVar;
         }
@@ -206,19 +210,19 @@ EXTERN_C_END
     import { image } from '@kit.ImageKit';
 
     export const createPixelMapTest: () => image.PixelMap;
-    export const transform: (a: image.PixelMap) => image.PixelMap;
+    export const transform: (a: image.PixelMap) => void;
     ```
 
 2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)，调用Native接口，传入JS的资源对象。示例如下:
 
     ```js
-    import testNapi from 'libentry.so'
+    import testNapi from 'libentry.so';
     import { image } from '@kit.ImageKit';
 
     @Entry
     @Component
     struct Index {
-    @State _PixelMap : image.PixelMap | undefined = undefined;
+    @State _pixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {

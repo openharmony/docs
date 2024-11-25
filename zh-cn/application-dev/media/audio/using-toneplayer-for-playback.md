@@ -51,6 +51,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
 };
+
 async function createTonePlayer() {
   let tonePlayerPromise = await audio.createTonePlayer(audioRendererInfo);
 }
@@ -60,7 +61,7 @@ async function createTonePlayer() {
      
 ```ts
 async function load() {
-    await tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
+  await tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
 }
 ```
 
@@ -68,7 +69,7 @@ async function load() {
      
 ```ts
 async function start() {
-    await tonePlayerPromise.start();
+  await tonePlayerPromise.start();
 }
 ```
 
@@ -76,7 +77,7 @@ async function start() {
      
 ```ts
 async function stop() {
-    await tonePlayerPromise.stop();
+  await tonePlayerPromise.stop();
 }
 ```
 
@@ -84,7 +85,7 @@ async function stop() {
      
 ```ts
 async function release() {
-    await tonePlayerPromise.release();
+  await tonePlayerPromise.release();
 }
 ```
 
@@ -146,5 +147,4 @@ async function testTonePlayerPromise(type: audio.ToneType) {
 async function testTonePlayer() {
    testTonePlayerPromise(audio.ToneType.TONE_TYPE_DIAL_0);
 }
-
 ```

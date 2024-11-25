@@ -10,6 +10,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 颜色名称                     | 颜色值           | 颜色示意                                     |
 | ------------------------ | ------------- | ---------------------------------------- |
 | Black                    | 0x000000      | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) |
@@ -27,27 +29,25 @@
 
 ## ImageFit
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称        | 描述                              |
+| 名称        | 说明                              |
 | --------- | ------------------------------- |
-| Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。   |
-| Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
-| Auto      | 图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图。 |
-| Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。        |
-| ScaleDown | 保持宽高比显示，图片缩小或者保持不变。             |
-| None      | 保持原有尺寸显示。                       |
-| TOP_START<sup>12+</sup> | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。 |
-| TOP<sup>12+</sup>       | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。 |
-| TOP_END<sup>12+</sup>   | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。 |
-| START<sup>12+</sup>     | 图像显示在Image组件的起始端纵向居中，保持原有尺寸显示。 |
-| CENTER<sup>12+</sup>    | 图像显示在Image组件的横向和纵向居中，保持原有尺寸显示。 |
-| END<sup>12+</sup>       | 图像显示在Image组件的尾端纵向居中，保持原有尺寸显示。 |
-| BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。 |
-| BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。 |
-| BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。 |
+| Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Auto      | 图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ScaleDown | 保持宽高比显示，图片缩小或者保持不变。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| None      | 保持原有尺寸显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| TOP_START<sup>12+</sup> | 图像显示在Image组件的顶部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TOP<sup>12+</sup>       | 图像显示在Image组件的顶部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TOP_END<sup>12+</sup>   | 图像显示在Image组件的顶部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| START<sup>12+</sup>     | 图像显示在Image组件的起始端纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CENTER<sup>12+</sup>    | 图像显示在Image组件的横向和纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| END<sup>12+</sup>       | 图像显示在Image组件的尾端纵向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## BorderStyle
@@ -56,7 +56,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                            |
 | ------ | ----------------------------- |
 | Dotted | 显示为一系列圆点，圆点半径为borderWidth的一半。 |
 | Dashed | 显示为一系列短的方形虚线。                 |
@@ -68,7 +70,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称    | 描述         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 说明         |
 | ----- | ---------- |
 | Bevel | 使用斜角连接路径段。 |
 | Miter | 使用尖角连接路径段。 |
@@ -78,18 +82,22 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述              |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明              |
 | ------ | --------------- |
 | Down   | 手指按下时触发。        |
 | Up     | 手指抬起时触发。        |
 | Move   | 手指按压态在屏幕上移动时触发。 |
 | Cancel | 触摸事件取消时触发。      |
 
-## MouseButton
+## MouseButton<sup>8+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明       |
 | ------- | -------- |
 | Left    | 鼠标左键。    |
 | Right   | 鼠标右键。    |
@@ -98,24 +106,30 @@
 | Forward | 鼠标左侧前进键。 |
 | None    | 无按键。     |
 
-## MouseAction
+## MouseAction<sup>8+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述      |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明      |
 | ------- | ------- |
 | Press   | 鼠标按键按下。 |
 | Release | 鼠标按键松开。 |
 | Move    | 鼠标移动。   |
-| Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。<br/>   |
+| Hover   | 鼠标悬浮。<br/>**说明：** 该枚举值无效。   |
 
 ## Curve
+
+插值曲线，动效请参考<!--RP1-->[贝塞尔曲线](../../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                  | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                  | 说明                                       |
 | ------------------- | ---------------------------------------- |
 | Linear              | 表示动画从头到尾的速度都是相同的。                        |
 | Ease                | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25, 0.1, 0.25, 1.0)。 |
@@ -137,7 +151,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明        |
 | ------- | --------- |
 | Initial | 动画初始状态。   |
 | Running | 动画处于播放状态。 |
@@ -150,7 +166,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称        | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 说明                                       |
 | --------- | ---------------------------------------- |
 | None      | 动画未执行时不会将任何样式应用于目标，动画播放完成之后恢复初始默认状态。     |
 | Forwards  | 目标将保留动画执行期间最后一个关键帧的状态。                   |
@@ -163,7 +181,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称               | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称               | 说明                                       |
 | ---------------- | ---------------------------------------- |
 | Normal           | 动画正向播放。                                 |
 | Reverse          | 动画反向播放。                                  |
@@ -174,7 +194,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称   | 描述    |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明    |
 | ---- | ----- |
 | Down | 按键按下。 |
 | Up   | 按键松开。 |
@@ -183,30 +205,34 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称       | 描述         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 说明         |
 | -------- | ---------- |
 | Unknown  | 输入设备类型未知。  |
 | Keyboard | 输入设备类型为键盘。 |
 
 ## Edge
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                               | 描述                                       |
-| -------------------------------- | ---------------------------------------- |
-| Top                              | 竖直方向上边缘。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Center<sup>(deprecated) </sup>   | 竖直方向居中位置。<br/> 从API version 9开始废弃。         |
-| Bottom                           | 竖直方向下边缘。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置。<br/> 从API version 9开始废弃。    |
-| Start                            | 水平方向起始位置。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Middle<sup>(deprecated) </sup>   | 水平方向居中位置。<br/> 从API version 9开始废弃。      |
-| End                              | 水平方向末尾位置。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| 名称                             | 说明                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| Top                              | 竖直方向上边缘。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Center<sup>(deprecated) </sup>   | 竖直方向居中位置。<br/> 从API version 9开始废弃。            |
+| Bottom                           | 竖直方向下边缘。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置。<br/> 从API version 9开始废弃。      |
+| Start                            | 水平方向起始位置。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Middle<sup>(deprecated) </sup>   | 水平方向居中位置。<br/> 从API version 9开始废弃。            |
+| End                              | 水平方向末尾位置。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## Week
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称   | 描述   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明   |
 | ---- | ---- |
 | Mon  | 星期一  |
 | Tue  | 星期二  |
@@ -222,7 +248,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称   | 描述          |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明          |
 | ---- | ----------- |
 | Ltr  | 元素从左到右布局。   |
 | Rtl  | 元素从右到左布局。   |
@@ -234,7 +262,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称   | 描述                 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明                 |
 | ---- | ------------------ |
 | Off  | 不显示。               |
 | On   | 常驻显示。              |
@@ -246,7 +276,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 描述                         |
+| 名称          | 说明                         |
 | ----------- | -------------------------- |
 | MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
 | MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
@@ -257,7 +287,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                                       |
 | ------ | ---------------------------------------- |
 | Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
 | Fade   | 阴影效果，滑动到边缘后会有圆弧状的阴影。                     |
@@ -269,7 +301,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 描述       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 说明       |
 | ----------- | -------- |
 | TopStart    | 顶部起始端。   |
 | Top         | 顶部横向居中。  |
@@ -287,7 +321,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                             |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                             |
 | ------ | ------------------------------ |
 | All    | 指定当前的Transition动效生效在组件的所有变化场景。 |
 | Insert | 指定当前的Transition动效生效在组件的插入显示场景。 |
@@ -297,7 +333,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称   | 描述             |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明             |
 | ---- | -------------- |
 | FILL | 缩放当前子组件以填充满父组件 |
 | FIT  | 缩放当前子组件以自适应父组件 |
@@ -308,7 +346,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述               |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
 | ------- | ---------------- |
 | Hidden  | 隐藏，但参与布局进行占位。    |
 | Visible | 显示。              |
@@ -320,7 +360,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                            |
 | ------ | ----------------------------- |
 | Butt   | 线条两端为平行线，不额外扩展。               |
 | Round  | 在线条两端延伸半个圆，直径等于线宽。            |
@@ -332,7 +374,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称         | 描述     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 说明     |
 | ---------- | ------ |
 | Vertical   | 方向为纵向。 |
 | Horizontal | 方向为横向。 |
@@ -343,7 +387,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述           |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明           |
 | ------ | ------------ |
 | Start  | 按照语言方向起始端对齐。 |
 | Center | 居中对齐，默认对齐方式。 |
@@ -355,7 +401,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称           | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 说明                                       |
 | ------------ | ---------------------------------------- |
 | Start        | 元素在主轴方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。    |
 | Center       | 元素在主轴方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。   |
@@ -370,7 +418,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称       | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 说明                                       |
 | -------- | ---------------------------------------- |
 | Auto     | 使用Flex容器中默认配置。                           |
 | Start    | 元素在Flex容器中，交叉轴方向首部对齐。                    |
@@ -387,7 +437,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 描述               |
+| 名称            | 说明               |
 | ------------- | ---------------- |
 | Row           | 主轴与行方向一致作为布局模式。  |
 | RowReverse    | 与Row方向相反方向进行布局。  |
@@ -400,7 +450,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 描述                          |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 说明                          |
 | ----------- | --------------------------- |
 | NoWrap      | Flex容器的元素单行/列布局，子元素尽可能约束在容器内。当子元素有最小尺寸约束等设置时，Flex容器不会对其强制弹性压缩。  |
 | Wrap        | Flex容器的元素多行/列排布，子项允许超出容器。   |
@@ -412,7 +464,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述           |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明           |
 | ------ | ------------ |
 | Top    | 顶部对齐。        |
 | Center | 居中对齐，默认对齐方式。 |
@@ -424,7 +478,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称       | 描述            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 说明            |
 | -------- | ------------- |
 | X        | 只在水平轴上重复绘制图片。 |
 | Y        | 只在竖直轴上重复绘制图片。 |
@@ -433,13 +489,13 @@
 
 ## ImageSize
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型      | 描述                                  |
+| 名称    | 说明                                  |
 | ------- | ----------------------------------- |
-| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| Auto    | 默认值，保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
+| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| Auto    | 默认值，保持原图的比例不变。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
 | FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## GradientDirection
@@ -448,7 +504,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 描述    |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 说明    |
 | ----------- | ----- |
 | Left        | 从右向左。 |
 | Top         | 从下向上。 |
@@ -464,7 +522,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称       | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 说明                                       |
 | -------- | ---------------------------------------- |
 | Static   | 目标页面元素的位置保持不变，可以配置透明度动画。目前，只有为重定向到目标页面而配置的静态效果才会生效。 |
 | Exchange | 将源页面元素移动到目标页面元素位置并适当缩放。                  |
@@ -475,7 +535,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明       |
 | ------ | -------- |
 | Normal | 标准的字体样式。 |
 | Italic | 斜体的字体样式。 |
@@ -486,7 +548,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称    |  值   |    描述      |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  值   |    说明   |
 | ------- | ----- | ----------- |
 | Lighter |  100  |   字体较细。 |
 | Normal  |  400  |   字体粗细正常。 |
@@ -497,29 +561,29 @@
 
 ## TextAlign
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                    | 描述      |
-| --------------------- | ------- |
-| Start                 | 水平对齐首部。 |
-| Center                | 水平居中对齐。 |
-| End                   | 水平对齐尾部。 |
-| JUSTIFY<sup>10+</sup> | 双端对齐。   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Start                 | 水平对齐首部。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Center                | 水平居中对齐。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| End                   | 水平对齐尾部。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| JUSTIFY<sup>10+</sup> | 双端对齐。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 ## TextOverflow
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                    | 描述                  |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                    | 说明                  |
 | --------------------- | ------------------- |
-| None                  | 文本超长时按最大行截断显示。          |
-| Clip                  | 文本超长时按最大行截断显示。        |
-| Ellipsis              | 文本超长时显示不下的文本用省略号代替。 |
-| MARQUEE<sup>10+</sup> | 文本超长时以跑马灯的方式展示。     |
+| None                  | 文本超长时按最大行截断显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Clip                  | 文本超长时按最大行截断显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Ellipsis              | 文本超长时显示不下的文本用省略号代替。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| MARQUEE<sup>10+</sup> | 文本超长时以跑马灯的方式展示。 |
 
 ## TextDecorationType
 
@@ -527,7 +591,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 描述        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 说明        |
 | ----------- | --------- |
 | Underline   | 文字下划线修饰。  |
 | LineThrough | 穿过文本的修饰线。 |
@@ -540,7 +606,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称        | 描述         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 说明         |
 | --------- | ---------- |
 | Normal    | 保持文本原有大小写。 |
 | LowerCase | 文本采用全小写。   |
@@ -550,7 +618,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称         | 描述            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 说明            |
 | ---------- | ------------- |
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
@@ -559,7 +629,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称        | 描述             |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 说明             |
 | --------- | -------------- |
 | Auto      | 使用组件的系统默认悬浮效果。 |
 | Scale     | 放大缩小效果。        |
@@ -570,50 +642,56 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称            | 描述                                     |
-| ------------- | -------------------------------------- |
-| Left          | 气泡提示位于组件左侧，与组件左侧中心对齐。                  |
-| Right         | 气泡提示位于组件右侧，与组件右侧中心对齐。                  |
-| Top           | 气泡提示位于组件上侧，与组件上侧中心对齐。                  |
-| Bottom        | 气泡提示位于组件下侧，与组件下侧中心对齐。                  |
-| TopLeft       | 气泡提示位于组件上侧，从API Version 9开始，与组件左侧边缘对齐。 |
-| TopRight      | 气泡提示位于组件上侧，从API Version 9开始，与组件右侧边缘对齐。 |
-| BottomLeft    | 气泡提示位于组件下侧，从API Version 9开始，与组件左侧边缘对齐。 |
-| BottomRight   | 气泡提示位于组件下侧，从API Version 9开始，与组件右侧边缘对齐。 |
-| LeftTop9+     | 气泡提示位于组件左侧，与组件上侧边缘对齐。                  |
-| LeftBottom9+  | 气泡提示位于组件左侧，与组件下侧边缘对齐。                  |
-| RightTop9+    | 气泡提示位于组件右侧，与组件上侧边缘对齐。                  |
-| RightBottom9+ | 气泡提示位于组件右侧，与组件下侧边缘对齐。                  |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| Left                     | 气泡提示位于组件左侧，与组件左侧中心对齐。                   |
+| Right                    | 气泡提示位于组件右侧，与组件右侧中心对齐。                   |
+| Top                      | 气泡提示位于组件上侧，与组件上侧中心对齐。                   |
+| Bottom                   | 气泡提示位于组件下侧，与组件下侧中心对齐。                   |
+| TopLeft                  | 气泡提示位于组件上侧，从API Version 9开始，与组件左侧边缘对齐。 |
+| TopRight                 | 气泡提示位于组件上侧，从API Version 9开始，与组件右侧边缘对齐。 |
+| BottomLeft               | 气泡提示位于组件下侧，从API Version 9开始，与组件左侧边缘对齐。 |
+| BottomRight              | 气泡提示位于组件下侧，从API Version 9开始，与组件右侧边缘对齐。 |
+| LeftTop<sup>9+</sup>     | 气泡提示位于组件左侧，与组件上侧边缘对齐。                   |
+| LeftBottom<sup>9+</sup>  | 气泡提示位于组件左侧，与组件下侧边缘对齐。                   |
+| RightTop<sup>9+</sup>    | 气泡提示位于组件右侧，与组件上侧边缘对齐。                   |
+| RightBottom<sup>9+</sup> | 气泡提示位于组件右侧，与组件下侧边缘对齐。                   |
 
 ## CopyOptions<sup>9+</sup>
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 描述       |
+| 名称          | 说明       |
 | ----------- | -------- |
-| None        | 不支持复制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| InApp       | 支持应用内复制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| LocalDevice | 支持设备内复制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| CROSS_DEVICE<sup>(deprecated)</sup> | 支持跨设备复制。<br/>**说明：** 从API version 11开始支持，从API version 12开始废弃。 |
+| None        | 不支持复制。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| InApp       | 支持应用内复制。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| LocalDevice | 支持设备内复制。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| CROSS_DEVICE<sup>(deprecated)</sup> | 支持跨设备复制。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** 从API version 11开始支持，从API version 12开始废弃。 |
 
 ## HitTestMode<sup>9+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 说明                                       |
 | ----------- | ---------------------------------------- |
 | Default     | 自身节点和子节点都响应触摸事件的命中测试，但会阻止被该节点屏蔽的其他节点的命中测试。 |
 | Block       | 自身节点响应触摸事件的命中测试，但阻止被该节点屏蔽的子节点和其他节点的命中测试。 |
 | Transparent | 自身节点和子节点响应触摸事件的命中测试，并允许对被该节点屏蔽的其他节点进行命中测试。 |
 | None        | 自身节点不会响应触摸事件的命中测试，但子节点会对触摸事件进行命中测试。      |
 
-## DialogButtonStyle<sup>10+</sup>枚举说明
+## DialogButtonStyle<sup>10+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述                              |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明                              |
 | --------- | --------------------------------- |
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
 | HIGHLIGHT | 蓝底白字。                        |
@@ -622,19 +700,21 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                      | 描述                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                      | 说明                       |
 | ----------------------- | ------------------------ |
 | MAX_LINES_FIRST         | 设置文本高度自适应方式为以MaxLines优先。 |
 | MIN_FONT_SIZE_FIRST     | 设置文本高度自适应方式为以缩小字体优先。     |
 | LAYOUT_CONSTRAINT_FIRST | 设置文本高度自适应方式为以布局约束（高度）优先。 |
 
-## NestedScrollMode<sup>10+</sup>枚举说明
+## NestedScrollMode<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                             |
+| 名称     | 说明                             |
 | ------ | ------------------------------ |
 | SELF_ONLY   | 只自身滚动，不与父组件联动。  |
 | SELF_FIRST | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。        |
@@ -643,11 +723,11 @@
 
 ## ObscuredReasons<sup>10+</sup>
 
-该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称        | 描述                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 说明                     |
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
@@ -657,7 +737,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述               | 动效参数                          | 默认缩放比                     |
+| 名称   | 说明               | 动效参数                          | 默认缩放比                     |
 | ------ | --------------------------------- | --------------------------------- | --------------------------------- |
 | LIGHT  | 小面积（轻盈） | 弹簧动效， 刚性：410，阻尼：38，初始速度：1 | 90% |
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
@@ -667,7 +747,9 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称                      | 描述         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                      | 说明         |
 | ----------------------  | ---------- |
 | FOLD_STATUS_UNKNOWN     | 表示设备当前折叠状态未知。 |
 | FOLD_STATUS_EXPANDED    | 表示设备当前折叠状态为完全展开。   |
@@ -678,7 +760,9 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称    | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
 | INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
@@ -706,7 +790,9 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称  | 描述                                   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 说明                                   |
 | ----- | -------------------------------------- |
 | NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
@@ -716,14 +802,21 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称         | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 说明                                                         |
 | ------------ | ------------------------------------------------------------ |
 | GREEDY       | 使每一行尽量显示多的字符，直到这一行不能显示更多字符再进行折行。 |
 | HIGH_QUALITY | 在BALANCED的基础上，尽可能填满行，在最后一行的权重上比较低，可能会出现最后一行留白比较多。 |
 | BALANCED     | 尽可能保证在不拆词的情况下，使一个段落中每一行的宽度相同。   |
 
 ## TextSelectableMode<sup>12+</sup>
-| 名称         | 描述                                                         |
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 说明                                                         |
 | ------------ | ------------------------------------------------------------ |
 | SELECTABLE_UNFOCUSABLE  | 文本可选择，但不可获焦，设置属性selection、bindSelectionMenu、copyOption不影响当前行为。 |
 | SELECTABLE_FOCUSABLE | 文本可选择，可获焦并Touch后获得焦点。 |
@@ -731,11 +824,11 @@ Nullable\<T> {
 
 ## EllipsisMode<sup>11+</sup>
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称  | 描述                                   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 说明                                   |
 | ----- | -------------------------------------- |
 | START  | 省略行首内容。|
 | CENTER | 省略行中内容。|
@@ -745,42 +838,36 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称            | 描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 说明                                     |
 | ------------- | -------------------------------------- |
 | START | 水平方向：位于父组件最左侧，垂直方向：位于父组件最上侧。 |
 | CENTER | 位于父组件居中位置。 |
 | END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
 
-## OptionWidthMode<sup>11+</sup>枚举说明
+## OptionWidthMode<sup>11+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        | 描述                           |
+| 名称        | 说明                           |
 | ----------- | ------------------------------ |
 | FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
 | FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
-
-## ChainStyle<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-定义链的风格。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| SPREAD | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                 |
-| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                      |
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
 组件边界像素级取整计算策略。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                            |
 | ------ | ----------------------------- |
 | NO_FORCE_ROUND | 不取整计算。|
 | FORCE_CEIL | 取上整计算。|
@@ -790,27 +877,15 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称          | 描述        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 说明        |
 | ----------- | --------- |
 | SOLID   | 单实线（默认值）。  |
 | DOUBLE | 双实线。 |
 | DOTTED    | 点线。  |
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 值   | 描述                               |
-| ------- | ---- | ---------------------------------- |
-| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
-| HIDE    | 1    | 始终不弹出菜单。                   |
-| SHOW    | 2    | 始终弹出菜单。                     |
 
 ## EmbeddedType<sup>12+</sup>
 枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
@@ -823,13 +898,13 @@ Nullable\<T> {
 | --------------------- | - | ---------------------------------------------------- |
 | EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
 
-## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
+## MarqueeUpdateStrategy<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 值      | 描述                     |
+| 名称       | 值      | 说明                     |
 | ---------- | ------------------------ | ------------------------ |
 | DEFAULT | 0 | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
 | PRESERVE_POSITION  | 1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
@@ -838,37 +913,28 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                            |
 | ------ | ----------------------------- |
 | ROTATION_0 | 应用方向为0度。|
 | ROTATION_90 |应用方向为90度。|
 | ROTATION_180 | 应用方向为180度。|
 | ROTATION_270 | 应用方向为270度。|
 
-## BlurStyleActivePolicy<sup>13+</sup>
+## BlurStyleActivePolicy<sup>14+</sup>
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                            |
+| 名称     | 说明                            |
 | ------ | ----------------------------- |
 | ALWAYS_ACTIVE | 一直有模糊效果。|
 | FOLLOWS_WINDOW_ACTIVE_STATE | 模糊效果跟随窗口焦点状态变化，非焦点不模糊，焦点模糊。|
 | ALWAYS_INACTIVE | 一直无模糊效果。|
 
-## BlurType<sup>13+</sup>
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| WITHIN_WINDOW | 透控件下层模糊。|
-| BEHIND_WINDOW | 透窗口下层模糊。|
-
-## ScrollSource<sup>12+</sup>枚举说明
+## ScrollSource<sup>12+</sup>
 
 滑动操作的来源。
 
@@ -876,7 +942,7 @@ Nullable\<T> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  枚举值  | 说明                                       |
 | ------ | ------ | ---------------------------------------- |
 | DRAG   |  0  | 拖拽事件。 |
 | FLING |  1  | 拖拽结束之后的惯性滑动。 |
@@ -887,13 +953,13 @@ Nullable\<T> {
 | SCROLLER  |  6  | Scroller的不带动效方法。 |
 | SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
 
-## ImageSpanAlignment<sup>10+</sup>枚举说明
+## ImageSpanAlignment<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                           |
+| 名称     | 说明                           |
 | -------- | ------------------------------ |
 | TOP      | 图片上边沿与行上边沿对齐。   |
 | CENTER   | 图片中间与行中间对齐。       |
@@ -901,15 +967,15 @@ Nullable\<T> {
 | BASELINE | 图片下边沿与文本BaseLine对齐。 |
 
 
-## XComponentType<sup>10+</sup>枚举说明
+## XComponentType<sup>10+</sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                             | 描述                                                         |
+| 名称                             | 说明                                                         |
 | -------------------------------- | ------------------------------------------------------------ |
 | SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12 开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比suface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## HoverModeAreaType<sup>13+</sup>
@@ -920,7 +986,37 @@ Nullable\<T> {
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                            |
+| 名称     | 说明                            |
 | ------ | ----------------------------- |
 | TOP_SCREEN | 上半屏。|
 | BOTTOM_SCREEN | 下半屏。|
+
+### WidthBreakpoint<sup>13+</sup>
+
+表示窗口不同宽度阈值下对应的宽度断点枚举值。通过[getWindowWidthBreakpoint](../js-apis-arkui-UIContext.md#getwindowwidthbreakpoint13)返回。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| WIDTH_XS | 0   | 窗口宽度小于320vp。 |
+| WIDTH_SM | 1   | 窗口宽度大于等于320vp，且小于600vp。 |
+| WIDTH_MD | 2   | 窗口宽度大于等于600vp，且小于840vp。 |
+| WIDTH_LG | 3   | 窗口宽度大于等于840vp，且小于1440vp。 |
+| WIDTH_XL | 4   | 窗口宽度大于等于1440vp。 |
+
+### HeightBreakpoint<sup>13+</sup>
+
+表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| HEIGHT_SM | 0   | 窗口高宽比小于0.8。 |
+| HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
+| HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |

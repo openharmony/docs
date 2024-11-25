@@ -79,17 +79,17 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_1,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+};
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 0
-}
+};
 
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
 
 audio.createAudioRenderer(audioRendererOptions,(err, data) => {
   if (err) {
@@ -132,19 +132,20 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_1,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+};
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 0
-}
+};
 
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
 
 let audioRenderer: audio.AudioRenderer;
+
 audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
@@ -163,7 +164,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
@@ -182,17 +183,17 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+};
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
+};
 
 audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
@@ -214,7 +215,7 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
@@ -239,19 +240,20 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+};
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 let audioCapturerOptions:audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
+};
 
 let audioCapturer: audio.AudioCapturer;
+
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
   console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
@@ -751,6 +753,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
+## DeviceBlockStatusInfo<sup>13+</sup>
+
+描述音频设备被堵塞状态和设备信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                              | 必填 | 说明               |
+| :---------------- | :------------------------------------------------ | :--- | :----------------- |
+| blockStatus       | [DeviceBlockStatus](#deviceblockstatus13)           | 是   | 音频设备堵塞状态。 |
+| devices | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
+
 ## ChannelBlendMode<sup>11+</sup>
 
 枚举，声道混合模式类型。
@@ -803,6 +816,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | CONNECT    | 0    | 设备连接。     |
 | DISCONNECT | 1    | 断开设备连接。 |
 
+## DeviceBlockStatus<sup>13+</sup>
+
+枚举，表示音频设备是否被堵塞。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 值   | 说明           |
+| :--------- | :--- | :------------- |
+| UNBLOCKED  | 0    | 音频设备正常。    |
+| BLOCKED    | 1    | 音频设备被堵塞。 |
+
 ## AudioCapturerOptions<sup>8+</sup>
 
 音频采集器选项信息。
@@ -836,6 +860,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
@@ -891,9 +916,9 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明      |
 | :--------------------- |:--|:--------|
 | CONCURRENCY_DEFAULT | 0 | 默认使用系统策略。     |
-| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它正在播放应用进行混音。     |
-| CONCURRENCY_DUCK_OTHERS | 2 | 后来播放应用压低正在播放应用的音量。 |
-| CONCURRENCY_PAUSE_OTHERS | 3 | 后来播放应用暂停正在播放应用。 |
+| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它音频并发。     |
+| CONCURRENCY_DUCK_OTHERS | 2 | 压低其他音频的音量。 |
+| CONCURRENCY_PAUSE_OTHERS | 3 | 暂停其他音频。 |
 
 ## AudioSessionDeactivatedReason<sup>12+</sup>
 
@@ -904,7 +929,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明     |
 | :--------------------- |:--|:-------|
 | DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
-| DEACTIVATED_TIMEOUT | 1 | 应用停流后超时。    |
+| DEACTIVATED_TIMEOUT | 1 | 音频会话等待超时。    |
 
 ## AudioSessionStrategy<sup>12+</sup>
 
@@ -1508,6 +1533,8 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 设置指定音量流静音，使用callback方式异步返回结果。
 
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
+
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
@@ -1540,6 +1567,8 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 设置指定音量流静音，使用Promise方式异步返回结果。
+
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -2144,7 +2173,7 @@ audioManager.isMicrophoneMute().then((value: boolean) => {
 
 on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
-订阅监听音频设备连接变化事件（当音频设备连接状态发生变化时触发），使用callback方式返回结果。
+监听音频设备连接变化事件（当音频设备连接状态发生变化时触发），使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on('deviceChange')](#ondevicechange9)替代。
@@ -2190,14 +2219,27 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioManager.off('deviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let deviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
+  console.info(`device change type : ${deviceChanged.type} `);
+  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType} `);
+};
+
+audioManager.on('deviceChange', deviceChangeCallback);
+
+audioManager.off('deviceChange', deviceChangeCallback);
 ```
 
 ### on('interrupt')<sup>(deprecated)</sup>
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
-订阅监听音频打断事件（当应用程序的音频被另一个播放事件中断时触发，回调通知此应用程序），使用callback方式返回结果。
+监听音频打断事件（当应用程序的音频被另一个播放事件中断时触发，回调通知此应用程序），使用callback方式返回结果。
 
 与[on('audioInterrupt')](#onaudiointerrupt9)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
 
@@ -2224,14 +2266,15 @@ let interAudioInterrupt: audio.AudioInterrupt = {
   contentType:0,
   pauseWhenDucked:true
 };
-audioManager.on('interrupt', interAudioInterrupt, (InterruptAction: audio.InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
+
+audioManager.on('interrupt', interAudioInterrupt, (interruptAction: audio.InterruptAction) => {
+  if (interruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${InterruptAction} `);
+    console.info(`Focus gain event: ${interruptAction} `);
   }
-  if (InterruptAction.actionType === 1) {
+  if (interruptAction.actionType === 1) {
     console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${InterruptAction} `);
+    console.info(`Audio interruption event: ${interruptAction} `);
   }
 });
 ```
@@ -2265,12 +2308,25 @@ let interAudioInterrupt: audio.AudioInterrupt = {
   contentType:0,
   pauseWhenDucked:true
 };
-audioManager.off('interrupt', interAudioInterrupt, (InterruptAction: audio.InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
-    console.info('An event to release the audio focus starts.');
-    console.info(`Focus release event: ${InterruptAction} `);
+
+// 取消该事件的所有监听
+audioManager.off('interrupt', interAudioInterrupt);
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let interruptCallback = (interruptAction: audio.InterruptAction) => {
+  if (interruptAction.actionType === 0) {
+    console.info('An event to gain the audio focus starts.');
+    console.info(`Focus gain event: ${interruptAction} `);
   }
-});
+  if (interruptAction.actionType === 1) {
+    console.info('An audio interruption event starts.');
+    console.info(`Audio interruption event: ${interruptAction} `);
+  }
+};
+
+audioManager.on('interrupt', interAudioInterrupt, interruptCallback);
+
+audioManager.off('interrupt', interAudioInterrupt, interruptCallback);
 ```
 
 ## AudioVolumeManager<sup>9+</sup>
@@ -2298,6 +2354,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
+
 audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
@@ -2335,6 +2392,7 @@ import { audio } from '@kit.AudioKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
+
 async function getVolumeGroupManager(){
   audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupId);
   console.info('Promise returned to indicate that the volume group infos list is obtained.');
@@ -2388,7 +2446,7 @@ try {
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
-订阅监听系统音量变化事件（当系统音量发生变化时触发），使用callback方式返回结果。
+监听系统音量变化事件（当系统音量发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2445,7 +2503,19 @@ off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioVolumeManager.off('volumeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let volumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+};
+
+audioVolumeManager.on('volumeChange', volumeChangeCallback);
+
+audioVolumeManager.off('volumeChange', volumeChangeCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -2934,7 +3004,7 @@ try {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-订阅监听铃声模式变化事件（当[铃声模式](#audioringmode)发生变化时触发），使用callback方式返回结果。
+监听铃声模式变化事件（当[铃声模式](#audioringmode)发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3113,7 +3183,7 @@ try {
 
 on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
-订阅监听系统麦克风状态更改事件（当检测到系统麦克风状态发生改变时触发），使用callback方式返回结果。
+监听系统麦克风状态更改事件（当检测到系统麦克风状态发生改变时触发），使用callback方式返回结果。
 
 目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
 
@@ -3331,7 +3401,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
@@ -3382,7 +3452,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
@@ -3677,7 +3747,7 @@ try {
 
 on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
-订阅监听音频渲染器更改事件（当音频播放流状态变化、设备变化时触发），使用callback方式返回结果。
+监听音频渲染器更改事件（当音频播放流状态变化、设备变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -3700,23 +3770,23 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 **示例：**
 
 ```ts
-audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
-  for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-    let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+audioStreamManager.on('audioRendererChange',  (audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
+  for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
+    let audioRendererChangeInfo: audio.AudioRendererChangeInfo = audioRendererChangeInfoArray[i];
     console.info(`## RendererChange on is called for ${i} ##`);
-    console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-    console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
-    console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
-    console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-    for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
-      console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
-      console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
-      console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
-      console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
-      console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
-      console.info(`SampleRate: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`ChannelCount: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
+    console.info(`StreamId for ${i} is: ${audioRendererChangeInfo.streamId}`);
+    console.info(`Content ${i} is: ${audioRendererChangeInfo.rendererInfo.content}`);
+    console.info(`Stream ${i} is: ${audioRendererChangeInfo.rendererInfo.usage}`);
+    console.info(`Flag ${i} is: ${audioRendererChangeInfo.rendererInfo.rendererFlags}`);
+    for (let j = 0;j < audioRendererChangeInfo.deviceDescriptors.length; j++) {
+      console.info(`Id: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].id}`);
+      console.info(`Type: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
+      console.info(`Role: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
+      console.info(`Name: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].name}`);
+      console.info(`Address: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].address}`);
+      console.info(`SampleRate: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+      console.info(`ChannelCount: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+      console.info(`ChannelMask: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
     }
   }
 });
@@ -3749,14 +3819,13 @@ off(type: 'audioRendererChange'): void
 
 ```ts
 audioStreamManager.off('audioRendererChange');
-console.info('######### RendererChange Off is called #########');
 ```
 
 ### on('audioCapturerChange')<sup>9+</sup>
 
 on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
-订阅监听音频采集器更改事件（当音频录制流状态变化、设备变化时触发），使用callback方式返回结果。
+监听音频采集器更改事件（当音频录制流状态变化、设备变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -3826,8 +3895,6 @@ off(type: 'audioCapturerChange'): void
 
 ```ts
 audioStreamManager.off('audioCapturerChange');
-console.info('######### CapturerChange Off is called #########');
-
 ```
 
 ### isActive<sup>9+</sup>
@@ -4159,11 +4226,112 @@ try {
 }
 ```
 
+### isMicBlockDetectionSupported<sup>13+</sup>
+
+isMicBlockDetectionSupported(): Promise&lt;boolean&gt;
+
+获取当前设备是否支持麦克风状态检测，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象，返回当前设备是否支持堵麦回调注册状态，true为支持，false为不支持。 |
+
+**示例：**
+
+```ts
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+});
+```
+
+### on('micBlockStatusChanged')<sup>13+</sup>
+
+on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): void
+
+监听音频麦克风是否被堵塞变化事件。在使用此功能之前，用户应查询当前设备是否支持检测，应用只有在使用麦克风录音时，并且所使用的麦克风的堵塞状态发生改变，
+才会收到回调，目前此检测功能仅支持麦克风位于本地设备上，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 是   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported()
+if (blockMic == true) {
+  audioRoutingManager.on('micBlockStatusChanged', async(deviceBlockStatusInfo: ESObject) =>{
+  if (deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.Blocked ||
+    deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.UNBlocked) {
+    console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
+  })
+}
+```
+
+### off('micBlockStatusChanged')<sup>13+</sup>
+
+off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>): void
+
+取消监听音频麦克风是否被堵塞变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 否   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听
+audioRoutingManager.off('micBlockStatusChanged');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+  console.info(`device descriptor size : ${micBlockStatusChanged.deviceDescriptors.length} `);
+  console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+};
+
+audioRoutingManager.on('micBlockStatusChanged', micBlockStatusCallback);
+
+audioRoutingManager.off('micBlockStatusChanged', micBlockStatusCallback);
+```
+
 ### on('deviceChange')<sup>9+</sup>
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
-订阅监听音频设备连接变化事件（当音频设备连接状态发生变化时触发），使用callback方式返回结果。
+监听音频设备连接变化事件（当音频设备连接状态发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4222,7 +4390,20 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioRoutingManager.off('deviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let deviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+};
+
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, deviceChangeCallback);
+
+audioRoutingManager.off('deviceChange', deviceChangeCallback);
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
@@ -4306,7 +4487,7 @@ try {
 
 on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
 
-订阅监听音频可选设备连接变化事件（当音频可选设备连接状态发生变化时触发），使用callback方式返回结果。
+监听音频可选设备连接变化事件（当音频可选设备连接状态发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4365,7 +4546,20 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioRoutingManager.off('availableDeviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let availableDeviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+};
+
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, availableDeviceChangeCallback);
+
+audioRoutingManager.off('availableDeviceChange', availableDeviceChangeCallback);
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
@@ -4534,7 +4728,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
@@ -4585,7 +4779,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -4633,7 +4827,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 try {
   let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo);
@@ -4648,7 +4842,7 @@ try {
 
 on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
-订阅监听最高优先级输出设备变化事件（当最高优先级输出设备发生变化时触发），使用callback方式返回结果。
+监听最高优先级输出设备变化事件（当最高优先级输出设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4677,7 +4871,7 @@ import { audio } from '@kit.AudioKit';
 let rendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
@@ -4711,7 +4905,21 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let preferOutputDeviceChangeForRendererInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
+  console.info(`device descriptor: ${desc}`);
+};
+let rendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
+};
+
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, preferOutputDeviceChangeForRendererInfoCallback);
+
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', preferOutputDeviceChangeForRendererInfoCallback);
 ```
 
 ### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
@@ -4747,7 +4955,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -4797,7 +5005,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
@@ -4844,7 +5052,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 try {
   let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceForCapturerInfoSync(capturerInfo);
@@ -4859,7 +5067,7 @@ try {
 
 on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapturerInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
-订阅监听最高优先级输入设备变化事件（当最高优先级输入设备发生变化时触发），使用callback方式返回结果。
+监听最高优先级输入设备变化事件（当最高优先级输入设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4888,7 +5096,7 @@ import { audio } from '@kit.AudioKit';
 let capturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
@@ -4922,7 +5130,21 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let preferredInputDeviceChangeForCapturerInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
+  console.info(`device descriptor: ${desc}`);
+};
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+};
+
+audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, preferredInputDeviceChangeForCapturerInfoCallback);
+
+audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo', preferredInputDeviceChangeForCapturerInfoCallback);
 ```
 
 ## AudioSessionManager<sup>12+</sup>
@@ -4966,7 +5188,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let strategy: audio.AudioSessionStrategy = {
   concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
-}
+};
 
 audioSessionManager.activateAudioSession(strategy).then(() => {
   console.info('activateAudioSession SUCCESS');
@@ -5033,7 +5255,7 @@ let isActivated = audioSessionManager.isAudioSessionActivated();
 
 on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedEvent>): void
 
-订阅监听音频会话停用事件（当音频会话停用时触发），使用callback方式返回结果。
+监听音频会话停用事件（当音频会话停用时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -5088,7 +5310,17 @@ off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivate
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioSessionManager.off('audioSessionDeactivated');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let audioSessionDeactivatedCallback = (audioSessionDeactivatedEvent: audio.AudioSessionDeactivatedEvent) => {
+  console.info(`reason of audioSessionDeactivated: ${audioSessionDeactivatedEvent.reason} `);
+};
+
+audioSessionManager.on('audioSessionDeactivated', audioSessionDeactivatedCallback);
+
+audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallback);
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
@@ -5227,9 +5459,9 @@ function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
   deviceTypeValue = value.deviceType;
 }
 
-let deviceRoleValue: audio.DeviceRole | undefined = undefined;;
-let deviceTypeValue: audio.DeviceType | undefined = undefined;;
-audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors) => {
+let deviceRoleValue: audio.DeviceRole | undefined = undefined;
+let deviceTypeValue: audio.DeviceType | undefined = undefined;
+audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != undefined && deviceRoleValue != undefined){
@@ -5254,7 +5486,7 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
 
 type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
 
-回调函数类型，用于音频渲染器的数据写入。
+回调函数类型，用于音频渲染器的数据写入，回调函数结束后，音频服务会把data指针数据放入队列里等待播放，因此请勿在回调外再次更改data指向的数据, 且务必保证往data填满待播放数据, 否则会导致音频服务播放杂音。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6002,7 +6234,7 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 let bufferSize: number;
 class Options {
@@ -6015,16 +6247,16 @@ audioRenderer.getBufferSize().then((data: number)=> {
   console.info(`Buffer size: ${bufferSize}`);
   let path = getContext().cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-  fileIo.stat(filePath).then(async (stat: fileIo.Stat) => {
+  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
     for (let i = 0;i < len; i++) {
       let options: Options = {
         offset: i * bufferSize,
         length: bufferSize
-      }
-      let readsize: number = await fileIo.read(file.fd, buf, options)
+      };
+      let readSize: number = await fs.read(file.fd, buf, options);
       let writeSize: number = await new Promise((resolve,reject)=>{
         audioRenderer.write(buf,(err: BusinessError, writeSize: number)=>{
           if(err){
@@ -6039,8 +6271,6 @@ audioRenderer.getBufferSize().then((data: number)=> {
   }).catch((err: BusinessError) => {
     console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
-
-
 ```
 
 ### write<sup>8+(deprecated)</sup>
@@ -6070,7 +6300,7 @@ write(buffer: ArrayBuffer): Promise\<number>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 let bufferSize: number;
 class Options {
@@ -6083,16 +6313,16 @@ audioRenderer.getBufferSize().then((data: number) => {
   console.info(`BufferSize: ${bufferSize}`);
   let path = getContext().cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-  fileIo.stat(filePath).then(async (stat: fileIo.Stat) => {
+  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+  fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
     for (let i = 0;i < len; i++) {
       let options: Options = {
         offset: i * bufferSize,
         length: bufferSize
-      }
-      let readsize: number = await fileIo.read(file.fd, buf, options)
+      };
+      let readSize: number = await fs.read(file.fd, buf, options);
       try{
         let writeSize: number = await audioRenderer.write(buf);
       } catch(err) {
@@ -6110,7 +6340,7 @@ audioRenderer.getBufferSize().then((data: number) => {
 
 getAudioTime(callback: AsyncCallback\<number>): void
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用callback方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6134,7 +6364,7 @@ audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise\<number>
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用Promise方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6160,7 +6390,7 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从 1970 年 1 月 1 日开始），同步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6204,6 +6434,7 @@ getBufferSize(callback: AsyncCallback\<number>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number;
+
 audioRenderer.getBufferSize((err: BusinessError, data: number) => {
   if (err) {
     console.error('getBufferSize error');
@@ -6234,6 +6465,7 @@ getBufferSize(): Promise\<number>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number;
+
 audioRenderer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -6262,6 +6494,7 @@ getBufferSizeSync(): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 try {
   bufferSize = audioRenderer.getBufferSizeSync();
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${bufferSize}`);
@@ -6500,6 +6733,7 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let mode = 0;
+
 audioRenderer.setInterruptMode(mode).then(() => {
   console.info('setInterruptMode Success!');
 }).catch((err: BusinessError) => {
@@ -6527,6 +6761,7 @@ setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let mode = 1;
+
 audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
   if(err){
     console.error(`setInterruptMode Fail: ${err}`);
@@ -7170,7 +7405,7 @@ audioRenderer.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => {
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-订阅监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
+监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
 
 AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
@@ -7258,7 +7493,7 @@ async function onAudioInterrupt(){
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅监听到达标记事件（当渲染的帧数到达frame参数的值时触发，仅调用一次），使用callback方式返回结果。
+监听到达标记事件（当渲染的帧数到达frame参数的值时触发，仅调用一次），使用callback方式返回结果。
 
 举例说明，如果frame设置为100，当渲染帧数到达第100帧时，将上报信息。
 
@@ -7307,7 +7542,7 @@ audioRenderer.off('markReach');
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅监听到达标记事件（每当渲染的帧数达到frame参数的值时触发，即按周期上报信息），使用callback方式返回结果。
+监听到达标记事件（每当渲染的帧数达到frame参数的值时触发，即按周期上报信息），使用callback方式返回结果。
 
 举例说明，如果frame设置为10，每当渲染10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
@@ -7355,7 +7590,7 @@ audioRenderer.off('periodReach');
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-订阅监听状态变化事件（当AudioRenderer的状态发生变化时触发），使用callback方式返回结果。
+监听状态变化事件（当AudioRenderer的状态发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7383,7 +7618,7 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
 
 on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-订阅监听音频输出设备变化事件（当音频输出设备发生变化时触发），使用callback方式返回结果。
+监听音频输出设备变化事件（当音频输出设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7440,18 +7675,26 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 **示例：**
 
 ```ts
-audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors) => {
+// 取消该事件的所有监听
+audioRenderer.off('outputDeviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let outputDeviceChangeCallback = (deviceInfo: audio.AudioDeviceDescriptors) => {
   console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
-});
+};
+
+audioRenderer.on('outputDeviceChange', outputDeviceChangeCallback);
+
+audioRenderer.off('outputDeviceChange', outputDeviceChangeCallback);
 ```
 
 ### on('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
 
-订阅监听音频流输出设备变化及原因事件（当音频输出设备发生变化时触发），使用callback方式返回结果。
+监听音频流输出设备变化及原因事件（当音频输出设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7509,19 +7752,27 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 **示例：**
 
 ```ts
-audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+// 取消该事件的所有监听
+audioRenderer.off('outputDeviceChangeWithInfo');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let outputDeviceChangeWithInfoCallback = (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
   console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
   console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
   console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
-});
+};
+
+audioRenderer.on('outputDeviceChangeWithInfo', outputDeviceChangeWithInfoCallback);
+
+audioRenderer.off('outputDeviceChangeWithInfo', outputDeviceChangeWithInfoCallback);
 ```
 
 ### on('writeData')<sup>11+</sup>
 
 on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
-订阅监听音频数据写入回调事件（当需要写入音频数据时触发），使用 callback 方式返回结果。
+监听音频数据写入回调事件（当需要写入音频数据时触发），使用 callback 方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7545,7 +7796,7 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import {fileIo} from '@kit.CoreFileKit';
+import {fileIo as fs} from '@kit.CoreFileKit';
 
 class Options {
   offset?: number;
@@ -7556,7 +7807,7 @@ let bufferSize: number = 0;
 let path = getContext().cacheDir;
 // 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
@@ -7564,7 +7815,7 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   };
 
   try {
-    fileIo.readSync(file.fd, buffer, options);
+    fs.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
     // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
     return audio.AudioDataCallbackResult.VALID;
@@ -7610,9 +7861,17 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 **示例：**
 
 ```ts
-audioRenderer.off('writeData', (data: ArrayBuffer) => {
+// 取消该事件的所有监听
+audioRenderer.off('writeData');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let writeDataCallback = (data: ArrayBuffer) => {
     console.info(`write data: ${data}`);
-});
+};
+
+audioRenderer.on('writeData', writeDataCallback);
+
+audioRenderer.off('writeData', writeDataCallback);
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -8101,12 +8360,14 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
 });
+
 audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) => {
   if (!err) {
     console.info('Success in reading the buffer data');
@@ -8144,6 +8405,7 @@ read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -8151,6 +8413,7 @@ audioCapturer.getBufferSize().then((data: number) => {
   console.error(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
 });
 console.info(`Buffer size: ${bufferSize}`);
+
 audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
   console.info('buffer read successfully');
 }).catch((err: BusinessError) => {
@@ -8162,7 +8425,7 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 
 getAudioTime(callback: AsyncCallback<number\>): void
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用callback方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8186,7 +8449,7 @@ audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise<number\>
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用Promise方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8212,7 +8475,7 @@ audioCapturer.getAudioTime().then((audioTime: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从1970年1月1日开始），单位为纳秒，同步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8287,6 +8550,7 @@ getBufferSize(): Promise<number\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
   bufferSize = data;
@@ -8315,6 +8579,7 @@ getBufferSizeSync(): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 try {
   bufferSize = audioCapturer.getBufferSizeSync();
   console.info(`AudioFrameworkRecLog: getBufferSizeSync :SUCCESS ${bufferSize}`);
@@ -8393,7 +8658,7 @@ if (info.deviceDescriptors[0].encodingTypes) {
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-订阅监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
+监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
 
 AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
@@ -8406,7 +8671,7 @@ AudioCapturer对象在start事件发生时会主动获取焦点，在pause、sto
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                       | 是   | 监听事件，固定为：'audioInterrupt'。 |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回录制中断时，应用接收的中断事件信息。 |
 
 **错误码：**
 
@@ -8499,7 +8764,7 @@ audioCapturer.off('audioInterrupt');
 
 on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-订阅监听音频输入设备变化事件（当音频输入设备发生变化时触发），使用callback方式返回结果。
+监听音频输入设备变化事件（当音频输入设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -8555,14 +8820,26 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioCapturer.off('inputDeviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let inputDeviceChangeCallback = (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
+  console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
+  console.info(`inputDevice deviceType: ${deviceChangeInfo[0].deviceType}`);
+};
+
+audioCapturer.on('inputDeviceChange', inputDeviceChangeCallback);
+
+audioCapturer.off('inputDeviceChange', inputDeviceChangeCallback);
 ```
 
 ### on('audioCapturerChange')<sup>11+</sup>
 
 on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
 
-订阅监听录音流配置变化事件（当音频录制流状态变化、设备变化时触发），使用callback方式返回结果。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
+监听录音流配置变化事件（当音频录制流状态变化、设备变化时触发），使用callback方式返回结果。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8619,14 +8896,26 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 **示例：**
 
 ```ts
+// 取消该事件的所有监听
 audioCapturer.off('audioCapturerChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let audioCapturerChangeCallback = (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
+  console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
+  console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
+  console.info(`audioCapturerChange deviceType: ${capturerChangeInfo[0].deviceType}`);
+};
+
+audioCapturer.on('audioCapturerChange', audioCapturerChangeCallback);
+
+audioCapturer.off('audioCapturerChange', audioCapturerChangeCallback);
 ```
 
 ### on('markReach')<sup>8+</sup>
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅监听标记到达事件（当采集的帧数达到frame参数的值时触发，仅调用一次），使用callback方式返回结果。
+监听标记到达事件（当采集的帧数达到frame参数的值时触发，仅调用一次），使用callback方式返回结果。
 
 举例说明，如果frame设置为100，当采集帧数到达第100帧时，将上报信息。
 
@@ -8674,7 +8963,7 @@ audioCapturer.off('markReach');
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅监听到达标记事件（当采集的帧数达到frame参数的值时触发，即按周期上报信息），使用callback方式返回结果。
+监听到达标记事件（当采集的帧数达到frame参数的值时触发，即按周期上报信息），使用callback方式返回结果。
 
 举例说明，如果frame设置为10，每当采集10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
@@ -8722,7 +9011,7 @@ audioCapturer.off('periodReach');
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-订阅监听状态变化事件（当AudioCapturer状态发生变化时触发），使用callback方式返回结果。
+监听状态变化事件（当AudioCapturer状态发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8750,7 +9039,7 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
-订阅监听音频数据读入回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
+监听音频数据读入回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8774,7 +9063,7 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 class Options {
   offset?: number;
@@ -8785,16 +9074,18 @@ let bufferSize: number = 0;
 let path = getContext().cacheDir;
 // 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
-  }
-  fileIo.writeSync(file.fd, buffer, options);
+  };
+  fs.writeSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
 }
+
 audioCapturer.on('readData', readDataCallback);
+
 audioCapturer.start((err: BusinessError) => {
   if (err) {
     console.error('Capturer start failed.');
@@ -8831,9 +9122,17 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 **示例：**
 
 ```ts
-audioCapturer.off('readData', (data: ArrayBuffer) => {
+// 取消该事件的所有监听
+audioCapturer.off('readData');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let readDataCallback = (data: ArrayBuffer) => {
     console.info(`read data: ${data}`);
-});
+};
+
+audioCapturer.on('readData', readDataCallback);
+
+audioCapturer.off('readData', readDataCallback);
 ```
 
 ### getOverflowCount<sup>12+</sup>

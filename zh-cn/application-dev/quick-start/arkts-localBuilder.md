@@ -1,6 +1,6 @@
 # \@LocalBuilder装饰器： 维持组件父子关系
 
-当开发者使用@Builder做引用数据传递时，会考虑组件的父子关系，使用了bind(this)之后，组件的父子关系和状态管理的父子关系并不一致。为了解决组件的父子关系和状态管理的父子关系保持一致，引入@LocalBuilder装饰器。@LocalBuilder拥有和局部@Builder相同的功能，且比局部@Builder能够更好的确定组件的父子关系和状态管理的父子关系。
+当开发者使用@Builder做引用数据传递时，会考虑组件的父子关系，使用了bind(this)之后，组件的父子关系和状态管理的父子关系并不一致。为了解决组件的父子关系和状态管理的父子关系保持一致的问题，引入@LocalBuilder装饰器。@LocalBuilder拥有和局部@Builder相同的功能，且比局部@Builder能够更好的确定组件的父子关系和状态管理的父子关系。
 
 
 > **说明：**
@@ -174,7 +174,7 @@ struct Parent {
 
 ## @LocalBuilder和@Builder区别说明
 
-函数componentBuilder被@Builder修饰时，显示效果是 “Child”，函数componentBuilder被@LocalBuild修饰时，显示效果是“Parent”。
+函数componentBuilder被@Builder修饰时，显示效果是 “Child”，函数componentBuilder被@LocalBuilder修饰时，显示效果是“Parent”。
 
 说明：
 

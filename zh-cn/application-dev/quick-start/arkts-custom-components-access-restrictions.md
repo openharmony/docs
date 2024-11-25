@@ -24,18 +24,26 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
 ## 错误使用场景示例
 
-1.当成员变量被private访问限定符和\@State/\@Prop/\@Provide/\@BuilderParam装饰器同时修饰时，ArkTS会进行校验并产生告警日志。
+1.当成员变量被private访问限定符和\@State/\@Prop/\@Provide/\@BuilderParam装饰器同时修饰，并且通过父组件进行初始化赋值，ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry
 @Component
 struct AccessRestrictions {
-  @Builder buildTest() {
+  @Builder
+  buildTest() {
     Text("Parent builder")
   }
+
   build() {
     Column() {
-      ComponentsChild({state_value: "Hello", prop_value: "Hello", provide_value: "Hello", builder_value: this.buildTest, regular_value: "Hello"})
+      ComponentsChild({
+        state_value: "Hello",
+        prop_value: "Hello",
+        provide_value: "Hello",
+        builder_value: this.buildTest,
+        regular_value: "Hello"
+      })
     }
     .width('100%')
   }
@@ -48,9 +56,12 @@ struct ComponentsChild {
   @Provide private provide_value: string = "Hello";
   @BuilderParam private builder_value: () => void = this.buildTest;
   private regular_value: string = "Hello";
-  @Builder buildTest() {
+
+  @Builder
+  buildTest() {
     Text("Child builder")
   }
+
   build() {
     Column() {
       Text("Hello")
@@ -71,7 +82,7 @@ Property 'builder_value' is private and can not be initialized through the compo
 Property 'regular_value' is private and can not be initialized through the component constructor.
 ```
 
-2.当成员变量被public访问限定符和\@StorageLink/\@StorageProp/\@LocalStorageLink/\@LocalStorageProp/\@Consume装饰器同时修饰时，ArkTS会进行校验并产生告警日志。
+2.当成员变量被public访问限定符和\@StorageLink/\@StorageProp/\@LocalStorageLink/\@LocalStorageProp/\@Consume装饰器同时修饰，并且通过父组件进行初始化赋值，ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry
@@ -113,7 +124,7 @@ Property 'storage_link_value' can not be decorated with both @StorageLink and pu
 Property 'consume_value' can not be decorated with both @Consume and public.
 ```
 
-3.当成员变量被private访问限定符和\@Link/\@ObjectLink装饰器同时修饰时，ArkTS会进行校验并产生告警日志。
+3.当成员变量被private访问限定符和\@Link/\@ObjectLink装饰器同时修饰，并且通过父组件进行初始化赋值，ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry
@@ -154,7 +165,7 @@ Property 'link_value' can not be decorated with both @Link and private.
 Property 'objectLink_value' can not be decorated with both @ObjectLink and private.
 ```
 
-4.当成员变量被protected访问限定符修饰时，ArkTS会进行校验并产生告警日志。
+4.当成员变量被protected访问限定符修饰，并且通过父组件进行初始化赋值，ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry
@@ -187,7 +198,7 @@ struct ComponentChild {
 The member attributes of a struct can not be protected.
 ```
 
-5.当成员变量被private访问限定符、\@Require和\@State/\@Prop/\@Provide/\@BuilderParam装饰器同时修饰时，ArkTS会进行校验并产生告警日志。
+5.当成员变量被private访问限定符、\@Require和\@State/\@Prop/\@Provide/\@BuilderParam装饰器同时修饰，并且通过父组件进行初始化赋值，ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry

@@ -122,6 +122,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ContentFilter_AddWindowContent](#oh_avscreencapture_contentfilter_addwindowcontent) (struct [OH_AVScreenCapture_ContentFilter](#oh_avscreencapture_contentfilter) \*filter, int32_t \*windowIDs, int32_t windowCount) | 向ContentFilter实例添加可被过滤的窗口ID列表  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | 调整屏幕的分辨率  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | 录屏时豁免隐私窗口  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | 设置录屏的最大帧率  | 
 
 
 ## 类型定义说明
@@ -1633,5 +1634,38 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode (struct OH_AVScre
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+
+
+### OH_AVScreenCapture_SetMaxVideoFrameRate()
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_AVScreenCapture * capture, int32_t frameRate)
+```
+**描述**
+设置录屏的最大帧率。
+
+调用该方法可以设置录屏时的最大帧率，frameRate为想要设置的最大帧率。
+
+该接口设置最大帧率时，实际设置的帧率受限设备的能力，由底层的系统能力决定。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
+| frameRate | 设置录屏的最大帧率。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针，或者输入参数frameRate不支持。
 
 AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。

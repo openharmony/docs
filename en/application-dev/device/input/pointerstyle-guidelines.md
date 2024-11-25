@@ -25,7 +25,7 @@ The following table lists the common APIs for mouse pointer management. For deta
 
 When watching a video in full-screen mode, a user can hide the mouse pointer for an improved user experience.
 
-## How to Develop
+### How to Develop
 
 1. Switch to the full-screen playback mode.
 2. Hide the mouse pointer.

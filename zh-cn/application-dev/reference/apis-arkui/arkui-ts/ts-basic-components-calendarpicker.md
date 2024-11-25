@@ -70,7 +70,7 @@ textStyle(value: PickerTextStyle)
 
 ### onChange
 
-onChange(callback: (value: Date) => void)
+onChange(callback: Callback\<Date>)
 
 选择日期时触发该事件。
 
@@ -80,9 +80,9 @@ onChange(callback: (value: Date) => void)
 
 **参数：** 
 
-| 参数名 | 类型 | 必填 | 说明           |
-| ------ | ---- | ---- | -------------- |
-| value  | Date | 是   | 选中的日期值。 |
+| 参数名   | 类型                                      | 必填 | 说明           |
+| -------- | ----------------------------------------- | ---- | -------------- |
+| callback | [Callback](ts-types.md#callback12)\<Date> | 是   | 选中的日期值。 |
 
 ##  CalendarOptions对象说明
 
@@ -108,6 +108,8 @@ onChange(callback: (value: Date) => void)
 | END    | 设置选择器与入口组件右对齐的对齐方式。   |
 
 ## 示例
+
+该示例实现了日历选择器组件，提供下拉日历弹窗。
 
 ```ts
 // xxx.ets

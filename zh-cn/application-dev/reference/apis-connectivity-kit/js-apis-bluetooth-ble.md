@@ -2454,14 +2454,14 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Ca
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback 模式
 let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) => {
-    if (!code) {
-        let services: Array<ble.GattService> = gattServices;
+    if (code && code.code != 0) {
         console.info('bluetooth code is ' + code.code);
-        console.info('bluetooth services size is ', services.length);
-
-        for (let i = 0; i < services.length; i++) {
-            console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
-        }
+        return;
+    }
+    let services: Array<ble.GattService> = gattServices;
+    console.info('bluetooth services size is ', services.length);
+    for (let i = 0; i < services.length; i++) {
+        console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
     }
 }
 

@@ -344,8 +344,39 @@ let p: Promise<void> = lock.lockAsync<void, void>(
 
 | 名称      | 值  | 说明                                                     |
 | --------- | --- | -------------------------------------------------------- |
-| SHARED    | 1   | 共享锁操作。如果指定了此模式，操作可以在同一线程中重入。 |
-| EXCLUSIVE | 2   | 独占锁操作。如果指定了此模式，仅在独占获取锁时执行操作。 |
+| SHARED    | 1   | 共享锁模式。如果指定了此模式，可以在任意线程同时执行。   |
+| EXCLUSIVE | 2   | 独占锁模式。如果指定了此模式，仅在独占获取锁时才能执行。 |
+
+**示例：**
+
+```ts
+let lock = new ArkTSUtils.locks.AsyncLock();
+// shared0可获取锁并开始执行
+lock.lockAsync(async () => {
+    console.log('shared0');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+// shared1可获取锁并开始执行，无需等待shared0
+lock.lockAsync(async () => {
+    console.log('shared1');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+// exclusive0需等待shared0、1执行完后才可获取锁并执行
+lock.lockAsync(async () => {
+    console.log('exclusive0');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE);
+// shared2需等待exclusive0执行完后才可获取锁并执行
+lock.lockAsync(async () => {
+    console.log('shared2');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+// shared3需等待exclusive0执行完后才可获取锁并执行，无需等待shared2
+lock.lockAsync(async () => {
+    console.log('shared3');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+```
 
 ### AsyncLockOptions
 
@@ -544,6 +575,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 
 ```ts
 import { lang } from '@kit.ArkTS';
+import { collections } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';

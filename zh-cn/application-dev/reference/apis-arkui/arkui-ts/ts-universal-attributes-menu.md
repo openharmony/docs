@@ -10,6 +10,12 @@
 >
 >  - 弹出菜单的文本内容不支持长按选中。
 >
+>  - 当窗口大小发生变化时，菜单自动隐藏。
+>
+>  - 动效曲线使用弹簧曲线，在动效退出时，由于弹簧曲线的回弹震荡，菜单消失后有较长的拖尾，使得其他事件无法响应。
+>
+>  - 若组件是可拖动节点，绑定bindContextMenu未指定preview时，菜单弹出会浮起拖拽预览图且菜单选项和预览图不会发生避让。对此，开发者可根据使用场景设置preview或者将目标节点设置成不可拖动节点。
+>
 >  - 从API Version 12开始，菜单支持长按500ms弹出子菜单。
 >
 >  - 从API Version 12开始，菜单支持按压态跟随手指移动。
@@ -17,8 +23,6 @@
 >    1. 仅支持使用[Menu组件](ts-basic-components-menu.md)且子组件包含[MenuItem](ts-basic-components-menuitem.md)或[MenuItemGroup](ts-basic-components-menuitemgroup.md)的场景。
 >
 >    2. 仅支持[MenuPreviewMode](#menupreviewmode11)为NONE的菜单。
-
->    3. 动效曲线使用弹簧曲线，在动效退出时，由于弹簧曲线的回弹震荡，菜单消失后有较长的拖尾，使得其他事件无法响应。
 
 
 ## bindMenu
@@ -134,7 +138,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：**<br />菜单退出动效过程中，进行横竖屏切换，菜单会避让。二级菜单不继承自定义动效。弹出过程可以点击二级菜单，退出动效执行过程不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| borderRadius<sup>12+</sup>  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 设置菜单的边框圆角半径。<br/>默认值：2in1设备上默认值8vp，其他设备上默认值20vp。<br />**说明：** <br /> 不支持百分比。<br />当水平方向两个圆角半径之和的最大值超出菜单宽度或垂直方向两个圆角半径之和的最大值超出菜单高度时，采用菜单默认圆角半径值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| borderRadius<sup>12+</sup>  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 设置菜单的边框圆角半径。<br/>默认值：2in1设备上默认值8vp，其他设备上默认值20vp。<br />**说明：** <br /> 支持百分比。<br />当水平方向两个圆角半径之和的最大值超出菜单宽度或垂直方向两个圆角半径之和的最大值超出菜单高度时，采用菜单默认圆角半径值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | layoutRegionMargin<sup>13+</sup>  | [Margin](ts-types.md#margin) | 否   | 设置预览图与菜单布局时距上下左右边界的最小边距。<br />**说明：** <br/> 仅支持vp、px、fp、lpx、百分比。<br/> 当margin设置异常值或负值时，按默认值处理。<br/> 若preview为CustomBuilder，设置margin.left或margin.right时，预览图取消最大栅格的宽度限制。<br/> 注意应避免设置过大的margin导致布局区域变小，使得预览图和菜单无法正常布局。<br />当水平方向上margin之和超过布局最大宽度时，margin.left和margin.right均不生效，按默认值处理。<br/> 当垂直方向上margin之和超过布局最大高度时，margin.top和margin.bottom均不生效，按默认值处理。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
@@ -172,9 +176,9 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 ## 示例
 
-### 示例1
+### 示例1（弹出普通菜单）
 
-普通菜单
+该示例为bindMenu通过配置MenuElement弹出普通菜单。
 
 ```ts
 // xxx.ets
@@ -207,9 +211,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/zh-cn_image_0000001174582862.gif)
 
-### 示例2
+### 示例2（弹出自定义菜单）
 
-自定义内容菜单
+该示例为bindMenu通过配置CustomBuilder弹出自定义菜单。
 
 ```ts
 @Entry
@@ -257,9 +261,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001186807708](figures/zh-cn_image_0000001186807708.gif)
 
-### 示例3
+### 示例3（长按弹出菜单）
 
-菜单(长按触发显示)
+该示例为bindContextMenu通过配置responseType.LongPress弹出菜单。
 
 ```ts
 // xxx.ets
@@ -295,9 +299,9 @@ struct ContextMenuExample {
 
 ![longMenu](figures/longMenu.gif)
 
-### 示例4
+### 示例4（右键弹出指向型菜单）
 
-指向性菜单(右键触发显示)
+该示例为bindContextMenu通过配置responseType.RightClick、enableArrow弹出指向型菜单。
 
 ```ts
 // xxx.ets
@@ -338,9 +342,9 @@ struct DirectiveMenuExample {
 
 ![zh-cn_image_0000001689126950](figures/zh-cn_image_0000001689126950.png)
 
-### 示例5
+### 示例5（长按弹出菜单的截图预览样式）
 
-长按悬浮菜单（预览内容为截图形式）
+该示例为bindContextMenu通过配置responseType.LongPress、preview的MenuPreviewMode类型弹出菜单预览样式。
 
 ```ts
 // xxx.ets
@@ -382,9 +386,9 @@ struct Index {
 
 ![preview-image](figures/preview-image.png)
 
-### 示例6
+### 示例6（长按弹出菜单的自定义预览样式）
 
-长按悬浮菜单（自定义预览内容）
+该示例为bindContextMenu通过配置responseType.LongPress、preview的CustomBuilder类型弹出菜单自定义预览样式。
 
 ```ts
 // xxx.ets
@@ -434,9 +438,9 @@ struct Index {
 
 ![preview-builder](figures/preview-builder.png)
 
-### 示例7
+### 示例7（设置状态变量弹出菜单）
 
-通过绑定isShown控制菜单（自定义预览内容）
+该示例为bindContextMenu通过配置isShown弹出菜单预览样式。
 
 ```ts
 // xxx.ets
@@ -492,9 +496,9 @@ struct Index {
 }
 ```
 
-### 示例8
+### 示例8（设置菜单和预览的动效）
 
-通过transition自定义菜单和预览的显示/退出动效属性
+该示例为bindContextMenu通过配置transition，实现自定义菜单以及菜单预览时的显示和退出动效。
 
 ```ts
 // xxx.ets
@@ -560,9 +564,9 @@ struct MenuExample {
 
 ![preview-builder](figures/menu2.gif)
 
-### 示例9
+### 示例9（设置symbol类型图标）
 
-普通菜单(使用symbol类型图标)
+该示例为bindMenu通过配置MenuElement的symbolIcon弹出菜单。
 
 ```ts
 // xxx.ets
@@ -600,9 +604,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
 
-### 示例10
+### 示例10（设置一镜到底动效）
 
-通过hoverScale实现组件截图到自定义预览图的一镜到底过渡动效
+该示例为bindContextMenu通过配置preview中hoverScale，实现组件截图到自定义预览图的一镜到底过渡动效。
 
 ```ts
 // xxx.ets

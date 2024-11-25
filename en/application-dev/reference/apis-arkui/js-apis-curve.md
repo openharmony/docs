@@ -38,7 +38,7 @@ Implements initialization for the interpolation curve, which is used to create a
 
 ## Curve
 
-Defines an interpolation curve. For details about the animation, see [Bezier Curve](../../../design/ux-design/animation-attributes.md).
+Defines an interpolation curve. For details about the animation, see <!--RP1-->[Bezier Curve](../../../design/ux-design/animation-attributes.md)<!--RP1End-->.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

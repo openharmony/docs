@@ -21,7 +21,7 @@ flexBasis(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                                         |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 设置组件在父容器主轴方向上的基准尺寸。<br/>默认值：'auto'（表示组件在主轴方向上的基准尺寸为组件原本的大小）。<br/>不支持百分比设置。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 设置组件在父容器主轴方向上的基准尺寸。<br/>默认值：'auto'（表示组件在主轴方向上的基准尺寸为组件原本的大小）。<br/>string类型可选值：可以转化为数字的字符串（如'10'）或带长度单位的字符串（如'10px'）或'auto'，不允许设置百分比字符串。<br/>number：取值范围(0,+∞)，单位为vp。<br/>异常值：默认为'auto'。 |
 
 ## flexGrow
 
@@ -57,7 +57,7 @@ flexShrink(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：0<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 |
+| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：0<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 <br/>[constraintSize](ts-universal-attributes-size.md#constraintsize)限制组件的尺寸范围，[Column](ts-container-column.md)和[Row](ts-container-row.md)即使设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，在未设置主轴尺寸（[width](ts-universal-attributes-size.md#width)/[height](ts-universal-attributes-size.md#height)/[size](ts-universal-attributes-size.md#size)）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。|
 
 ## alignSelf
 

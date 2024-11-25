@@ -8,7 +8,9 @@
 
 * 适老化规则
 
-  由于在系统字体大于1倍时，组件并没有默认放大，需要通过适老化功能放大组件。
+  由于在系统字体大于1倍时，组件并没有默认放大，需要通过配置[configuration标签](../quick-start/app-configuration-file.md#configuration标签)，实现组件放大的适老化功能。
+
+<!--RP1--><!--RP1End-->
 
 * 适老化操作
 
@@ -35,10 +37,11 @@
 | 触发方式             | 组件名称                                                     |
 | -------------------- | ------------------------------------------------------------ |
 | 长按组件触发         | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)， [底部页签（tabBar）](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#tabbar9)，[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)， [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) |
-| 设置系统字体默认放大 | [Picker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md)， [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)， [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)， [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)， [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)，[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)/[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)/[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)/[SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md)，[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)，[Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)，[Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)， [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)， [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) |
+| 设置系统字体默认放大 | [PickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)， [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)， [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)， [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)， [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)，[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)，[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)，[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)，[SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md)，[Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)，[Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)，[Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md)， [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md)， [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) |
 
 ## 示例
 
+<!--RP2-->
 SideBarContainer组件通过长按控制按钮触发适老化弹窗。在系统字体为1倍的情况下，长按控制按钮不能弹窗。在系统字体大于1倍的情况下，长按控制按钮可以弹窗。
 
 ```ts
@@ -252,3 +255,4 @@ struct TextPickerExample {
 | 系统字体为一倍（适老化能力开启前） | 系统字体为1.75倍（适老化能力开启后） |
 | ---------------------------------- | ------------------------------------ |
 | ![](figures/aging_03.png)          | ![](figures/aging_04.png)            |
+<!--RP2End-->

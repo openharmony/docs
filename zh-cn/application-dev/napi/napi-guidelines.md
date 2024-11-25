@@ -9,7 +9,7 @@
 **错误示例**
 
 ```cpp
-static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+static napi_value IncorrectDemo1(napi_env env, napi_callback_info info) {
     // argc 未正确的初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
     size_t argc;
     napi_value argv[10] = {nullptr};
@@ -51,7 +51,7 @@ static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
     // napi_get_cb_info 会向 argv 中写入 argc 个 JS 传入参数或 undefined
-    napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码
     // ... ...
     return nullptr;
@@ -143,6 +143,10 @@ if (status != napi_ok) {
 
 使用uv_queue_work方法，不会走Node-API框架，此时需要开发者自己合理使用napi_handle_scope来管理napi_value的生命周期。
 
+> **说明**
+>
+> 本规则旨在强调napi_value生命周期情况，若只想往JS线程抛任务，**不推荐**使用uv_queue_work方法。如有抛任务的需要，请使用[napi_threadsafe_function系列](./use-napi-thread-safety.md)接口。
+
 **正确示例**：
 
 ```cpp
@@ -154,8 +158,12 @@ void callbackTest(CallbackContext* context)
     context->retData = 1;
     work->data = (void*)context;
     uv_queue_work(
-        loop, work, [](uv_work_t* work) {},
-        // using callback function back to JS thread
+        loop, work,
+        // 请注意，uv_queue_work会创建一个线程并执行该回调函数，若开发者只想往JS线程抛任务，不推荐使用uv_queue_work，以避免冗余的线程创建
+        [](uv_work_t* work) {
+            // 执行一些业务逻辑
+        },
+        // 该回调会执行在loop所在的JS线程上
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
             napi_handle_scope scope = nullptr;
@@ -252,6 +260,10 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
     void* data = nullptr;
 
     napi_create_arraybuffer(env, arrSize * sizeof(int32_t), &data, &arrBuffer);
+    // data为空指针，取消对data进行写入
+    if (data == nullptr) {
+        return arrBuffer;
+    }
     int32_t* i32Buffer = reinterpret_cast<int32_t*>(data);
     for (int i = 0; i < arrSize; i++) {
         // arrayBuffer直接对缓冲区进行修改，跳过运行时，
@@ -393,11 +405,11 @@ mWorker.terminate();
 // Worker的实现为默认模板，此处省略
 ```
 
-## 其它
+## 防止重复释放获取的buffer
 
-**【规则】** 使用napi_get_arraybuffer_info接口，第三个参数data资源开发者不允许释放，data的生命周期受引擎管理。
+**【规则】** 使用napi_get_arraybuffer_info等接口，参数data资源开发者不允许释放，data的生命周期受引擎管理。
 
-napi_get_arraybuffer_info接口定义如下：
+这里以napi_get_arraybuffer_info为例，该接口定义如下：
 
 ```cpp
 napi_get_arraybuffer_info(napi_env env, napi_value arraybuffer, void** data, size_t* byte_length)
@@ -416,6 +428,18 @@ size_t arrayBufferSize;
 napi_status result = napi_get_arraybuffer_info(env, arrayBuffer, &arrayBufferPtr, &arrayBufferSize);
 delete arrayBufferPtr; // 这一步是禁止的，创建的arrayBufferPtr生命周期由引擎管理，不允许用户自己delete，否则会double free
 ```
+
+|Node-API中受当前规则约束的接口有：|
+|----------------------------------|
+| napi_create_arraybuffer          |
+| napi_create_sendable_arraybuffer |
+| napi_get_arraybuffer_info        |
+| napi_create_buffer               |
+| napi_get_buffer_info             |
+| napi_get_typedarray_info         |
+| napi_get_dataview_info           |
+
+## 其他
 
 **【建议】** 合理使用napi_object_freeze和napi_object_seal来控制对象以及对象属性的可变性。
 

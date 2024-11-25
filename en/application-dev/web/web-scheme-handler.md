@@ -1,6 +1,6 @@
-# Intercepting Network Requests Initiated by the Web Component
+# Intercepting Network Requests Initiated by the Web component
 
-The [Network Interception APIs](../reference/apis-arkweb/arkweb__scheme__handler_8h.md) are used to intercept requests sent by **Web** components and provide custom response headers and bodies for intercepted requests.
+The [Network Interception APIs(arkweb_scheme_handler.h)](../reference/apis-arkweb/arkweb__scheme__handler_8h.md) can be used to intercept requests sent by **Web** components and provide custom response headers and bodies for intercepted requests.
 
 ## Setting Network Interceptors for Web Components
 
@@ -47,7 +47,7 @@ To intercept the request of a custom scheme, you need to register the custom sch
   ```c++
     // Register the custom scheme with the Web component and specify that this scheme should follow the standard scheme rules, allowing cross-origin requests from this scheme.
     OH_ArkWeb_RegisterCustomSchemes("custom", ARKWEB_SCHEME_OPTION_STANDARD | ARKWEB_SCHEME_OPTION_CORS_ENABLED);
-    // Register the custom-local scheme with the Web component and specify that  this scheme should follow the same rules as the file scheme.
+    // Register the custom-local scheme with the Web component and specify that this scheme should follow the same rules as the file scheme.
     OH_ArkWeb_RegisterCustomSchemes("custom-local", ARKWEB_SCHEME_OPTION_LOCAL);
     // Register custom-csp-bypassing with the Web component and specify that this scheme should follow the standard scheme rules, allowing it to bypass CSP checks.
     OH_ArkWeb_RegisterCustomSchemes("custom-csp-bypassing", ARKWEB_SCHEME_OPTION_CSP_BYPASSING | ARKWEB_SCHEME_OPTION_STANDARD);
@@ -63,7 +63,7 @@ After the scheme is registered, use [initializeWebEngine](../reference/apis-arkw
         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
             // Register the scheme configuration.
             testNapi.registerCustomSchemes();
-            // Initialize the kernel of the Web component. This operation initializes the Browser process and creates BrowserContext.
+            // Initialize the Web Engine, which will initialize the Browser process and create a BrowserContext. 
             webview.WebviewController.initializeWebEngine();
             // Create and set ArkWeb_SchemeHandler.
             testNapi.setSchemeHandler();
@@ -106,7 +106,7 @@ Uploaded data of **PUT** and **POST** requests can be obtained. Data types such 
 
 ## Providing Custom Response Bodies for Intercepted Requests
 
-The network interception of **Web** components provide custom response bodies for intercepted requests in stream mode in the worker thread. You can also end the intercepted request with a specific [network error code](../reference/apis-arkweb/arkweb__net__error__list_8h.md).
+The network interception of the **Web** component provides custom response bodies for intercepted requests in stream mode in the worker thread. The intercepted request can also be stopped with a specific [network error code](../reference/apis-arkweb/arkweb__net__error__list_8h.md).
 
   ```c++
     // Create a response header for the intercepted request.
@@ -183,7 +183,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         // Register the configuration of the third-party protocol.
         testNapi.registerCustomSchemes();
-        // Initialize the kernel of the Web component, which will initialize the Browser process and create a BrowserContext. 
+        // Initialize the Web Engine, which will initialize the Browser process and create a BrowserContext. 
         webview.WebviewController.initializeWebEngine();
         // Set SchemeHandler.
         testNapi.setSchemeHandler();

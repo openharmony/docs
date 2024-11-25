@@ -15,8 +15,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [net_connection.h](net__connection_8h.md) | 为网络管理数据网络连接模块提供C接口。 | 
-| [net_connection_type.h](net__connection__type_8h.md) | 定义网络连接模块的C接口需要的数据结构。 | 
+| [net_connection.h](net__connection_8h.md) | 为网络管理数据网络连接模块提供C接口。<br>**引用文件：** \<network\/netmanager\/net_connection.h\> | 
+| [net_connection_type.h](net__connection__type_8h.md) | 定义网络连接模块的C接口需要的数据结构。<br>**引用文件：** \<network\/netmanager\/net_connection_type.h\> | 
 
 
 ### 结构体
@@ -85,8 +85,10 @@
 | [OH_NetConn_GetAddrInfo](#oh_netconn_getaddrinfo) (char \*host, char \*serv, struct addrinfo \*hint, struct addrinfo \*\*res, int32_t netId) | 通过netId获取DNS结果。 | 
 | [OH_NetConn_FreeDnsResult](#oh_netconn_freednsresult) (struct addrinfo \*res) | 释放DNS结果。 | 
 | [OH_NetConn_GetAllNets](#oh_netconn_getallnets) ([NetConn_NetHandleList](_net_conn___net_handle_list.md) \*netHandleList) | 查询所有激活的数据网络。 | 
-| [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 | 
-| [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver) (void) | 取消注册自定义 DNS 解析器。 | 
+| [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver-deprecated) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 |
+| [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver-deprecated) (void) | 取消注册自定义 DNS 解析器。 |
+| [OH_NetConn_RegisterDnsResolver](#oh_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 | 
+| [OH_NetConn_UnregisterDnsResolver](#oh_netconn_unregisterdnsresolver) (void) | 取消注册自定义 DNS 解析器。 | 
 | [OH_NetConn_BindSocket](#oh_netconn_bindsocket) (int32_t socketFd, [NetConn_NetHandle](_net_conn___net_handle.md) \*netHandle) | 将套接字与指定的网络进行绑定。 |
 | [OH_NetConn_SetAppHttpProxy](#oh_netconn_setapphttpproxy) ([NetConn_HttpProxy](_net_conn___http_proxy.md) \*httpProxy) | 设置应用级代理信息。 |
 | [OH_NetConn_RegisterAppHttpProxyCallback](#oh_netconn_registerapphttpproxycallback) ([OH_NetConn_AppHttpProxyChange](#oh_netconn_apphttpproxychange) appHttpProxyChange, uint32_t \*callbackId) | 注册监听应用级代理变化。 |
@@ -667,7 +669,7 @@ int32_t OH_NetConn_IsDefaultNetMetered (int32_t * isMetered)
 ohos.permission.GET_NETWORK_INFO
 
 
-### OHOS_NetConn_RegisterDnsResolver()
+### OHOS_NetConn_RegisterDnsResolver() <sup>(deprecated)</sup>
 
 ```
 int32_t OHOS_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
@@ -680,6 +682,10 @@ int32_t OHOS_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
 **起始版本：** 11
+
+**废弃版本：** 13
+
+**替代接口：** [OH_NetConn_RegisterDnsResolver](#oh_netconn_registerdnsresolver)
 
 **参数:**
 
@@ -704,7 +710,7 @@ int32_t OHOS_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
 ohos.permission.INTERNET
 
 
-### OHOS_NetConn_UnregisterDnsResolver()
+### OHOS_NetConn_UnregisterDnsResolver() <sup>(deprecated)</sup>
 
 ```
 int32_t OHOS_NetConn_UnregisterDnsResolver (void )
@@ -717,6 +723,78 @@ int32_t OHOS_NetConn_UnregisterDnsResolver (void )
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
 **起始版本：** 11
+
+**废弃版本：** 13
+
+**替代接口：** [OH_NetConn_UnregisterDnsResolver](#oh_netconn_unregisterdnsresolver)
+
+**返回：**
+
+0 - 成功.
+
+201 - 缺少权限.
+
+401 - 参数错误.
+
+2100002 - 无法连接到服务.
+
+2100003 - 内部错误.
+
+**Permission：**
+
+ohos.permission.INTERNET
+
+
+### OH_NetConn_RegisterDnsResolver()
+
+```
+int32_t OH_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
+```
+
+**描述**
+
+注册自定义 DNS 解析器。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| resolver | 指向自定义 DNS 解析器的指针。 | 
+
+**返回：**
+
+0 - 成功.
+
+201 - 缺少权限.
+
+401 - 参数错误.
+
+2100002 - 无法连接到服务.
+
+2100003 - 内部错误.
+
+**Permission：**
+
+ohos.permission.INTERNET
+
+
+### OH_NetConn_UnregisterDnsResolver()
+
+```
+int32_t OH_NetConn_UnregisterDnsResolver (void )
+```
+
+**描述**
+
+取消注册自定义 DNS 解析器。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 13
 
 **返回：**
 

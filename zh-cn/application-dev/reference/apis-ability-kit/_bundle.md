@@ -37,6 +37,7 @@
 | [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
 | [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
 | [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | 获取自身应用入口的信息。 |
+| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |
 
 
 ## 函数说明
@@ -105,3 +106,19 @@ OH_NativeBundle_ElementName OH_NativeBundle_GetMainElementName()
 **返回：**
 
 返回一个[OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)结构体。
+
+### OH_NativeBundle_GetCompatibleDeviceType()
+
+```
+char* OH_NativeBundle_GetCompatibleDeviceType()
+```
+
+**描述**
+
+获取自身应用适用的设备类型。
+
+**起始版本：** 14
+
+**返回：**
+
+返回一个字符串，表示该应用适用的设备类型。

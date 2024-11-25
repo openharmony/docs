@@ -1,12 +1,12 @@
-# Web前进后退缓存
+# 设置Web组件前进后退缓存
 
-开启Web组件的前进后退缓存功能，在前进后退的场景达到秒开的效果。
+Web组件为开发者提供了启用和配置前进后退缓存（以下简称BFCache）的功能。启用此功能后，能够显著提升用户返回至先前浏览网页的速度，尤其对于网络条件不佳的用户，可提供更为流畅的浏览体验。
 
-## 开启前进后退缓存
+BFCache功能启用后，Web组件会在用户离开当前页面时在内存中保存该页面的快照。当用户在短期内通过Web组件的前进或后退功能重新访问同一页面时，能够迅速恢复页面状态，避免重复发起HTTP请求。
 
-可以通过[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启web组件使用前进后退缓存的功能。
+## Web组件开启BFCache
 
-需要在[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化内核之前调用。
+开发者需要在调用[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化ArkWeb内核之前调用[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启BFCache。enableBackForwardCache可以接收一个[BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12)参数，用于控制是否允许具备同层渲染特性和视频托管特性的页面进入BFCache。
 
 ```ts
 // EntryAbility.ets
@@ -29,12 +29,12 @@ export default class EntryAbility extends UIAbility {
 
 ## 设置缓存的页面数量和页面留存的时间
 
-可以通过[setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12)来设置每一个web示例前进后退缓存的策略。
+启用BFCache后仅能存储一个页面，Web组件默认进入BFCache的页面可保持存活状态600秒。开发者可通过调用[setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12)设置每个Web实例的前进后退缓存策略。包括调整缓存中页面的最大数量，使BFCache能够容纳更多页面，从而在用户连续进行前进后退操作时，提供更快的加载速度。同时，开发者还能修改每个页面在缓存中的停留时间，延长页面在BFCache中的驻留期限，进而优化用户的浏览体验。
 
-在下面的示例中，设置web组件可以缓存的最大数量为10，每个页面在缓存中停留300s。
+在下面的示例中，设置Web组件可以缓存的最大数量为10，每个页面在缓存中停留300s。
   
 ```ts
-// xxx.ts
+// Index.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry

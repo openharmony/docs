@@ -1,12 +1,12 @@
 # QRCode
 
-The **\<QRCode>** component is used to display a QR code.
+The **QRCode** component is used to display a QR code.
 
 >  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > 
-> The pixel count of the **\<QRCode>** component is subject to the content. If the component size is not large enough, the content may fail to be displayed. In this case, you need to resize the component.
+> The pixel count of the **QRCode** component is subject to the content. If the component size is not large enough, the content may fail to be displayed. In this case, you need to resize the component.
 
 
 ## Child Components
@@ -22,11 +22,13 @@ QRCode(value: string)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters** 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type | Mandatory | Description |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes | Content of the QR code. A maximum of 256 characters are supported. If this limit is exceeded, the first 256 characters are used.<br>**NOTE**<br>The string cannot be **null**, **undefined**, or empty. |
+| value | string | Yes| Content of the QR code. A maximum of 512 characters are supported. If this limit is exceeded, the first 512 characters are used.<br>**NOTE**<br>The value must be valid. It cannot be **null**, **undefined**, or empty content, as otherwise the QR code generated will be invalid.|
 
 ## Attributes
 
@@ -44,11 +46,11 @@ Sets the color of the QR code.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description        |
+| Name| Type                                      | Mandatory| Description        |
 | ------ | ------------------------------------------ | ---- | ------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | QR code color. Default value: **'#ff182431'**<br> |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | QR code color. Default value: **'#ff182431'**<br>|
 
 ### backgroundColor
 
@@ -62,11 +64,11 @@ Sets the background color of the QR code.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                                        |
+| Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 11, the default value is changed to **'#ffffffff'**. |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 11, the default value is changed to **'#ffffffff'**.|
 
 ### contentOpacity<sup>11+</sup>
 
@@ -78,11 +80,11 @@ Sets the opacity of the QR code content. The minimum value is 0, and the maximum
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                | Mandatory | Description                                    |
+| Name| Type                                                | Mandatory| Description                                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------------------------- |
-| value  | number \| [Resource](ts-types.md#resource) | Yes  | Opacity of the QR code content.<br>Default value: **1** |
+| value  | number \| [Resource](ts-types.md#resource) | Yes  | Opacity of the QR code content.<br>Default value: **1**|
 
 
 ## Events
@@ -103,7 +105,7 @@ struct QRCodeExample {
       Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
       QRCode(this.value).width(140).height(140)
 
-      // Set the color for the QR code.
+      // Set the background color of the QR code.
       Text('color').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
       QRCode(this.value).color(0xF7CE00).width(140).height(140)
 

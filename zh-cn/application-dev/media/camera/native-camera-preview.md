@@ -30,7 +30,7 @@
      
     XComponent组件为预览流提供的SurfaceId，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
-4. 根据传入的SurfaceId，通过OH_CameraManager_GetSupportedCameraOutputCapability()方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput()方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput()方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针。
+4. 根据传入的SurfaceId，通过[OH_CameraManager_GetSupportedCameraOutputCapability()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedcameraoutputcapability)方法获取当前设备支持的预览能力。通过[OH_CameraManager_CreatePreviewOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createpreviewoutput)方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput()方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针。
      
     ```c++
       NDKCamera::NDKCamera(char *str)
@@ -68,21 +68,21 @@
       }
     ```
 
-5. 使能。当session完成CommitConfig后通过调用start()方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
+5. 使能。当session完成CommitConfig后通过调用[OH_CaptureSession_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_start)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
-    ret = OH_PreviewOutput_Start(previewOutput);
+    ret = OH_CaptureSession_Start();
     if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Start failed.");
+        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
     }
    ```
 
-6. 通过stop()方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
+6. 通过[OH_CaptureSession_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_stop)方法停止预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1)。
      
    ```c++
-    ret = OH_PreviewOutput_Stop(previewOutput);
+    ret = OH_CaptureSession_Stop(previewOutput);
     if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Stop failed.");
+        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed.");
     }
    ```
 

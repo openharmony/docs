@@ -16,6 +16,9 @@ The following types of credentials are supported for system accounts:
 
 Credential types are further classified into the following subtypes:
 
+> **NOTE**<br>
+> The credential types supported by the device depend on the hardware capability.
+
 | Name      | Value| Description              |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | Six-digit PIN.      |
@@ -26,8 +29,6 @@ Credential types are further classified into the following subtypes:
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | Capacitive fingerprint.  |
 | FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | Optical fingerprint.  |
 | FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | Ultrasonic fingerprint.  |
-
-**NOTE**<br>The credential types supported by the device depend on the hardware capability.
 
 ## Before You Start
 
@@ -56,7 +57,7 @@ Register a PIN inputer to transmit PIN data.
 1. Define a PIN inputer and obtain the PIN.
 
    ```ts
-   let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]); // you can obtain a PIN throught other ways.
+   let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]); // you can obtain a PIN through other ways.
    let inputer: osAccount.IInputer = {
      onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
        callback.onSetData(authSubType, pinData);
@@ -77,7 +78,7 @@ Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.
 
 **Procedure**
 
-1. Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
+Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
 
    ```ts
    let challenge: Uint8Array = await userIDM.openSession();
@@ -89,12 +90,12 @@ Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sy
 
 **Procedure**
 
-1. Defines the PIN authentication credential.
+1. Define the PIN authentication credential.
 
    ```ts
    let credentialInfo: osAccount.CredentialInfo = {
      credType: osAccount.AuthType.PIN,
-     credSubType: osAccount.AuthSubType.PIN_SIX;
+     credSubType: osAccount.AuthSubType.PIN_SIX,
      token: new Uint8Array([0])
    };
    ```
@@ -231,7 +232,7 @@ The user can update credentials as required. You can use [updateCredential](../.
    };
    ```
 
-3. Use [updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update the credential.  
+3. Use [updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update the credential.
 
    ```ts
    userIDM.updateCredential(credentialInfo, {
@@ -309,3 +310,4 @@ Use [closeSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys
 ```ts
 userIDM.closeSession();
 ```
+

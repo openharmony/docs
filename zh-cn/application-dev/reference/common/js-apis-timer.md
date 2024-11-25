@@ -24,7 +24,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | handler | Function \| string | 是 | 定时器到期后执行函数。类型为string则打印Error信息，不进行其他处理。 |
-| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。如果省略该参数，delay取默认值0，意味着“马上”执行，或尽快执行。 |
+| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0，意味着“马上”执行，更准确的说，在下一个事件循环执行。<br>注意：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，会被默认取0。 |
 | ...arguments | any[] | 否 | 附加参数，一旦定时器到期，它们会作为参数传递给handler。 |
 
 **返回值：**
@@ -33,14 +33,22 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 | -------- | -------- |
 | number | 该定时器的ID，定时器ID为进程共享，是从0开始顺序增加的整数，无重复值。 |
 
-**示例：**
+**示例1：不带参数**
 
   ```ts
   setTimeout(() => {
-    console.log('delay 1s');
+    console.info('delay 1s');
   }, 1000);
   ```
 
+**示例2：带参数传递给函数**
+
+  ```ts
+  function myFunction(param1: string, param2: string) {
+    console.info(param1, param2);
+  }
+  setTimeout(myFunction, 1000, 'Hello', 'World');
+  ```
 
 ## clearTimeout
 
@@ -130,3 +138,28 @@ clearInterval(intervalID?: number): void
   }, 1000);
   clearInterval(intervalID);
   ```
+
+## 其他说明
+### 超时延迟
+如果页面正忙于其他任务，超时也可能比预期的晚。setTimeout的函数或代码片段是在下一个时间周期执行的。例如：
+  ```ts
+  function foo() {
+    console.info('OH test foo is called')
+  }
+  setTimeout(foo, 0);
+  console.info('After OH test setTimeout')
+
+  // output
+  After OH test setTimeout
+  OH test foo is called
+  ```
+这是因为，虽然setTimeout设置了0ms的延迟，但任务不是立即执行，而是会被放入队列中，等待下一次事件循环执行。当前正在执行的代码必须先完成，队列中的函数才会被执行，因此最终的执行顺序可能和预期不一致。
+
+### 最大延迟值
+timer内部以32位带符号整数存储延时，这就会导致如果一个延时大于2147483647毫秒（大约24.8天）时就会溢出，导致定时器将会被立即执行。
+
+### 定时器冻结
+定时器的触发受底层任务调度。当前应用被切换到后台后，定时器到期也不会触发。应用被重新拉起到前台后，到期定时器会按序触发。可使用trace查看进程是否还存在调度，如果没有调度，则定时器被冻结。
+
+### 定时器ID
+setTimeout()和setInterval()使用共享的ID池，意味着在技术上可以混用clearTimeout()和clearInterval()。但出于代码清晰性考虑，我们应该避免混用它们。

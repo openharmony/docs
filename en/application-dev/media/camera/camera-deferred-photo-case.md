@@ -1,8 +1,10 @@
-# High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)
+# High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)
 
-This topic provides sample code that covers the complete high-performance photographing process to help you understand the complete API calling sequence.
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
 
-Before referring to the sample code, you are advised to read [High-Performance Camera Photographing (for System Applications Only) (ArkTS)](camera-deferred-photo.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Camera Photographing](camera-shooting.md).
+This topic provides sample code that covers the complete high-performance photo capture process to help you understand the complete API calling sequence.
+
+Before referring to the sample code, you are advised to read [High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Photo Capture](camera-shooting.md).
 
 ## Development Process
 
@@ -51,14 +53,14 @@ async function savePicture(photoObj: camera.Photo): Promise<void> {
   await photoObj.release(); 
 }
 
-// Flush the thumbnail by calling the mediaLibrary API.
+// Flush the thumbnail by calling the media library API.
 async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
   try {
     // Create a photoAsset.
     let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let testFileName = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await accessHelper.createAsset(testFileName);
-    // Pass the thumbnail proxy class object to the mediaLibrary.
+    // Pass the thumbnail proxy class object to the media library.
     let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
     mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
     let res = await accessHelper.applyChanges(mediaRequest);
@@ -242,7 +244,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
       AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
     });
-    // Call the mediaLibrary API to flush the thumbnail.
+    // Call the media library API to flush the thumbnail.
     saveDeferredPhoto(proxyObj).then(() => {
       // Release the thumbnail proxy class object after the flushing is complete.
       proxyObj.release();
@@ -340,7 +342,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // Set the photo quality to high.
     rotation: camera.ImageRotation.ROTATION_0 // Set the rotation angle of the photo to 0.
   }
-  // Use the current photographing settings to take photos.
+  // Use the current photo capture settings to take photos.
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to capture the photo ${err.message}`);
@@ -348,20 +350,22 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+
+  // After the photo capture is complete, call the following APIs to close the camera and release the session. Do not release the session before the photo capture is complete.
   // Stop the session.
-  photoSession.stop();
+  await photoSession.stop();
 
   // Release the camera input stream.
-  cameraInput.close();
+  await cameraInput.close();
 
   // Release the preview output stream.
-  previewOutput.release();
+  await previewOutput.release();
 
   // Release the photo output stream.
-  photoOutput.release();
+  await photoOutput.release();
 
   // Release the session.
-  photoSession.release();
+  await photoSession.release();
 
   // Set the session to null.
   photoSession = undefined;

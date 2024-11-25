@@ -1,19 +1,26 @@
 # Media Kit
 
 - [Introduction to Media Kit](media-kit-intro.md)
-- Audio Playback and Recording
-  - [Using AVPlayer for Audio Playback (ArkTS)](using-avplayer-for-playback.md)
-  - [Using AVPlayer for Audio Playback (C/C++)](using-ndk-avplayer-for-playerback.md)
-  - [Using SoundPool for Audio Playback](using-soundpool-for-playback.md)
-  - [Using AVRecorder for Audio Recording](using-avrecorder-for-recording.md)
-  - [Obtaining Audio/Video Metadata](avmetadataextractor.md)
-- Video Playback and Recording
-  - [Video Playback](video-playback.md)
-  - [Adding External Subtitles to Videos](video-subtitle.md)
-  - [Video Recording](video-recording.md)
-  - [Using AVScreenCaptureRecorder to Capture Screens and Save Them to a File (ArkTs)](using-avscreencapture-ArkTs.md)
-  - [Using AVScreenCapture to Obtain Original Streams (C/C++)](using-avscreencapture-for-buffer.md)
-  - [Using AVScreenCapture to Save Recordings in Files (C/C++)](using-avscreencapture-for-file.md)
-  - [Obtaining Video Thumbnails](avimagegenerator.md)
-- Video Transcoding
-  - [Using AVTranscoder for Video Transcoding](using-avtranscoder-for-transcodering.md)
+- [Media Development Preparations](media-preparation.md)
+- Media Development (ArkTS)<!--media-kit-dev--arkts-->
+  - Playback<!--media-playback-arkts-->
+    - [Using AVPlayer to Play Audio (ArkTS)](using-avplayer-for-playback.md)
+    - [Using AVPlayer to Play Videos (ArkTS)](video-playback.md)
+    - [Using AVPlayer to Play Streaming Media (ArkTS)](streaming-media-playback-development-guide.md)
+    - [Using AVPlayer to Add External Subtitles to Videos (ArkTS)](video-subtitle.md)
+    - [Using SoundPool to Play Short Sounds (ArkTS)](using-soundpool-for-playback.md)
+  - Recording<!--media-recording-arkts-->
+    - [Using AVRecorder to Record Audio (ArkTS)](using-avrecorder-for-recording.md)
+    - [Using AVRecorder to Record Videos (ArkTS)](video-recording.md)
+    - [Using AVScreenCaptureRecorder to Capture Screens and Write Them to Files (ArkTS)](using-avscreencapture-ArkTs.md)
+  - Media Information Query<!--media-info-arkts-->
+    - [Using AVMetadataExtractor to Extract Audio and Video Metadata (ArkTS)](avmetadataextractor.md)
+    - [Using AVImageGenerator to Extract Video Images at a Specified Time (ArkTS)](avimagegenerator.md)
+  - Video Transcoding<!--media-transcoder-arkts-->
+    - [Using AVTranscoder to Transcode Videos (ArkTS)](using-avtranscoder-for-transcodering.md)
+- Media Development (C/C++)<!--media-kit-dev--c-->
+  - Playback<!--media-playback-c-->
+    - [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playerback.md)
+  - Screen Capture<!--media-recording-c-->
+    - [Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)](using-avscreencapture-for-buffer.md)
+    - [Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)](using-avscreencapture-for-file.md)

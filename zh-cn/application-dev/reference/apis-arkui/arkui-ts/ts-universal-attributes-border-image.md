@@ -52,8 +52,9 @@ borderImage(value: BorderImageOption)
 
 ## 示例
 
-### 示例1
+### 示例1（设置渐变色边框）
 
+通过borderImage接口为组件设置渐变色边框。
 
 ```ts
 // xxx.ets
@@ -85,7 +86,9 @@ struct Index {
 
 ![zh-cn_image_borderImageGradient](figures/borderImageGradient.png)
 
-### 示例2
+### 示例2（动态调整属性值）
+
+通过[slider](../../apis-arkui/arkui-js/js-components-basic-slider.md)接口动态调整borderImage接口中属性值。
 
 ```ts
 // xxx.ets
@@ -183,12 +186,12 @@ struct BorderImage {
 
 ![borderImage](figures/borderImage.gif)
 
-### 示例3
+### 示例3（使用LocalizedEdgeWidths类型值）
+
+borderImage接口中的slice、width、outset属性值使用[LocalizedEdgeWidths](ts-types.md#localizededgewidths12)类型。
 
 ```ts
 // xxx.ets
-// borderImage属性的slice、width、outset属性值使用LocalizedEdgeWidths类型
-
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry

@@ -15,10 +15,10 @@ convertXml模块未实现parentKey属性，生成的object中不具有parentKey�
 该变更为不兼容性变更。
 
 变更前：
-convertToJSObject接口对xml字符串的入参进行解析时，无法正确设置parentKey属性的值。
+convertToJSObject接口对xml字符串的入参进行解析时，未支持设置parentKey属性的值。
 
 变更后：
-convertToJSObject接口对xml字符串的入参进行解析时，可以正确设置parentKey属性的值。
+convertToJSObject接口对xml字符串的入参进行解析时，可以支持正确设置parentKey属性的值。
 
 **起始API Level**
 
@@ -35,7 +35,7 @@ convertToJSObject(xml: string, options?: ConvertOptions): Object;
 
 **适配指导**
 
-变更：convertToJSObject接口对xml字符串的入参进行解析时，可以正确设置parentKey属性的值。
+变更：convertToJSObject接口对xml字符串的入参进行解析时，可以支持正确设置parentKey属性的值。
 
 ```ts
 import { convertxml } from '@kit.ArkTS';
@@ -69,8 +69,9 @@ let result: ESObject = conv.convertToJSObject(xml, options);
 // 变更后：result的值实际为（新增parentKey属性）： {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_parent":"note","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text","_text":"Play"}]}]}]}
 
 // 对于开发者使用场景来说，不影响开发者使用。
-// 获取title标签的parentKey属性：result1["_elements"][0]["_elements"][0]._parent
-// 获取title标签的nameKey属性：result1["_elements"][0]["_elements"][0]._name
+// 获取title标签的parentKey属性的方法是：result1["_elements"][0]["_elements"][0]._parent 
+// 变更前：获取title标签的parentKey属性为：undefined
+// 变更后：获取title标签的parentKey属性为实际值：note
 ```
 
 ## cl.arkts.2 util.TextEncoder模块utf-16le和utf-16be编码数据行为变更
@@ -153,4 +154,75 @@ let dest_le = new Uint8Array(14);
 let dest_be = new Uint8Array(14);
 let res_le = encoderUtf16Le.encodeIntoUint8Array('abcdefg', dest_le); // dest_le: 97,0,98,0,99,0,100,0,101,0,102,0,103,0
 let res_be = encoderUtf16Be.encodeIntoUint8Array('abcdefg', dest_be); // dest_be: 0,97,0,98,0,99,0,100,0,101,0,102,0,103
+```
+
+## cl.arkui.3  backgroundEffect在modifier中radius参数单位修改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+ 直接使用backgroundEffect时对应的模糊参数radius单位为vp。通过modifier或者CAPI使用时，单位为px。现将单位同一为vp。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：backgroundEffect通过modifier使用时单位为px。<br/>
+![addComponentContent_before](figures/backgroundEffect_before.png)
+
+变更后：backgroundEffect通过modifier使用时单位为vp。<br/>
+![addComponentContent_after](figures//backgroundEffect_after.png)
+
+
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony 5.0.1.1 版本开始。
+
+**变更的接口/组件**
+
+backgroundEffect
+
+**适配指导**
+
+在modifier中使用px2vp方法把radius参数转换为vp。
+
+```ts
+
+import { CommonModifier } from '@kit.ArkUI';
+
+class ColumnModifier extends CommonModifier {
+  public radius: number = 0;
+  applyNormalAttribute(instance: CommonAttribute): void {
+    instance.backgroundEffect({ radius: this.radius })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State testSize: number = 200;
+  @State modifier:ColumnModifier = new ColumnModifier();
+  onPageShow(): void {
+    // 变更前
+    // this.modifier.radius = 10;
+    // 变更后适配
+    this.modifier.radius = px2vp(10);
+  }
+  build() {
+    Column() {
+      Stack() {
+        Image($r('app.media.test')).width(this.testSize).height(this.testSize)
+        Column().width(this.testSize).height(this.testSize).attributeModifier(this.modifier)
+      }.width('100%')
+    }
+  }
+}
 ```

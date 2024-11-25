@@ -2,11 +2,15 @@
 
 - ArkTS API
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+  - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.net.mdns (MDNS管理)](js-apis-net-mdns.md)
+  - [@ohos.net.policy (网络策略管理)](js-apis-net-policy.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
+  - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.vpnExtension (VPN增强管理)](js-apis-net-vpnExtension.md)
+  - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
@@ -66,3 +70,4 @@
   - [MDNS错误码](errorcode-net-mdns.md)
   - [流量管理错误码](errorcode-net-statistics.md)
   - [VPN错误码](errorcode-net-vpn.md)
+  - [NetworkSecurity错误码](errorcode-net-networkSecurity.md)

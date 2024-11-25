@@ -223,15 +223,15 @@
 
 ## ColoringStrategy<sup>10+</sup>
 
-智能取色枚举类型，用于设置前景色。
+智能取色枚举类型。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 描述              |
 | ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LengthConstrain
 
@@ -518,6 +518,8 @@
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -601,13 +603,13 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 组件可见区域变化事件的回调类型。
 
-type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
+type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) => void;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称            | 类型                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isVisible：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
 ## StyledStringValue<sup>12+</sup>
 
@@ -744,7 +746,21 @@ setTextSelection选中文字时的配置。
 
 | 名称       | 类型                                            | 必填 | 说明             |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |
 
 ## CaretOffset<sup>11+</sup>对象说明
 

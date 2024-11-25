@@ -1,9 +1,9 @@
 # Using Incognito Mode
 
 
-When creating a **\<Web>** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#incognitomode) to **true**. When incognito mode, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **\<Web>** component is destroyed.
+When creating a **Web** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#apis) to **true**. When incognito mode is enabled, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **Web** component is destroyed.
 
-- Create a [\<Web>](../reference/apis-arkweb/ts-basic-components-web.md#web) component in incognito mode.
+- Create a [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component in incognito mode.
  
    ```ts
   // xxx.ets
@@ -22,7 +22,7 @@ When creating a **\<Web>** component, you can enable incognito mode for it by se
   }
   ```
 
-- Use [isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) to check whether the current **\<Web>** component is in incognito mode.
+- Use [isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) to check whether the current **Web** component is in incognito mode.
 
   ```ts
   // xxx.ets
@@ -179,6 +179,50 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
+  HTML file to be loaded:
+   ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+
+      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
+      var msg;
+
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
+        msg = '<p>Data table created, with two data records inserted.</p>';
+
+        document.querySelector('#status').innerHTML = msg;
+      });
+
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+          var len = results.rows.length,i;
+          msg = "<p>Number of records: " + len + "</p>";
+
+          document.querySelector('#status').innerHTML += msg;
+
+              for(i = 0; i < len; i++){
+                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+
+          document.querySelector('#status').innerHTML += msg;
+          }
+        },null);
+      });
+
+      </script>
+  </head>
+  <body>
+  <div id="status" name="status">Status</div>
+  </body>
+  </html>
+  ```
+
 - Use [fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11) to obtain the cookie corresponding to the specified URL.
 
   ```ts
@@ -226,7 +270,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('configCookieSync')
           .onClick(() => {
             try {
-              // The third parameter of configCookieSync specifies whether to obtain the cookie for the specified URL in incognito mode (true) or in non-incognito mode (false).
+              // The third parameter of configCookieSync specifies whether to obtain the cookie for the specified URL in incognito mode (true) or non-incognito mode (false).
               webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

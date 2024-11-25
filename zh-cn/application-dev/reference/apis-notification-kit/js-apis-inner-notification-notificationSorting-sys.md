@@ -14,8 +14,8 @@
 
 **系统接口**: 以下为系统接口，三方应用不支持调用。
 
-| 名称      | 类型                  | 必填 | 说明                     |
-|---------| --------------------- | --- |------------------------|
-| slot    | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是  | 通道类型。                  |
-| ranking | number                | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
-| hashCode    | string                | 是  | 通知唯一标识。                |
+| 名称      | 类型              | 只读   | 可选 | 说明                     |
+|-----------| ---------------- | -------|----- |-------------------------|
+| slot        | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是 | 否 | 通道类型。                  |
+| ranking     | number                                                             | 是 | 否 | 通知级别，不设置则根据通知渠道类型有默认值。 |
+| hashCode    | string                                                             | 是 | 否 | 通知唯一标识。                |

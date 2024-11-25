@@ -80,7 +80,7 @@ struct Child {
 
  ![img](figures/9e2d58bc-b0e1-4613-934b-8e4237bd5c05.png) 
 
-使用@ComponentV2修饰的自定义组组件ChildPage通过父组件ParentPage进行初始化，因为有@Require装饰，所以父组件必须进行构造赋值。
+使用@ComponentV2修饰的自定义组件ChildPage通过父组件ParentPage进行初始化，因为有@Require装饰，所以父组件必须进行构造赋值。
 
 ```ts
 @ObservedV2

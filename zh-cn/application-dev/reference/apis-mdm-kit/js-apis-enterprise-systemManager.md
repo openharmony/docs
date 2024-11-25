@@ -117,7 +117,7 @@ try {
 
 setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
-指定设备管理应用设置升级策略。
+指定设备管理应用设置升级策略。内网升级场景下，需要先调用[systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages)接口通知系统更新包，再调用该接口设置升级策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -266,7 +266,7 @@ try {
 
 notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;void&gt;
 
-通知系统更新包信息。
+通知系统更新包信息。内网升级场景下，需要先调用该接口通知系统更新包，再调用[systemManager.setOtaUpdatePolicy](#systemmanagersetotaupdatepolicy)设置升级策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -444,8 +444,8 @@ systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.Update
 | 名称                | 类型     | 必填  | 说明            |
 | ----------------- | ------ | --- | ------------- |
 | type       | [PackageType](#packagetype) | 是   | 系统更新包类型。   |
-| path | string | 是   | 系统更新包文件路径。 |
-| fd       | number | 否   | 系统更新包文件句柄。  |
+| path | string | 是   | 系统更新包文件路径。若传入fd参数，该参数传入更新包文件名。 |
+| fd       | number | 否   | 系统更新包文件句柄。当前不支持只传入path参数，需要传入fd。  |
 
 ## PackageDescription
 

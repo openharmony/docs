@@ -273,7 +273,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。调用此函数会生成两个UUID，其中一个UUID进行缓存，一个UUID用于输出，首次调用时，参数是true或false无区别；下次调用时，如果参数是true，依旧缓存上次UUID，并生成新的UUID；如果参数是false，将生成两个UUID，其中一个UUID进行缓存，一个UUID进行输出。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。为了提升性能，此接口会默认使用缓存，即入参为true，最多可缓存128个随机的UUID。当缓存中128个UUID都被使用后，会重新进行一次缓存UUID的生成，以保证UUID的随机性。假如不需要使用缓存的UUID，请将入参设置为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -830,8 +830,8 @@ TextDecoder的构造函数。
 **示例：**
 
 ```ts
-let result = new util.TextDecoder();
-let retStr = result.encoding;
+let textDecoder = new util.TextDecoder();
+let retStr = textDecoder.encoding;
 ```
 ### create<sup>9+</sup>
 
@@ -865,8 +865,8 @@ let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
   ignoreBOM : true
 }
-let result = util.TextDecoder.create('utf-8', textDecoderOptions)
-let retStr = result.encoding
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let retStr = textDecoder.encoding;
 ```
 
 ### decodeToString<sup>12+</sup>
@@ -911,8 +911,8 @@ let decodeToStringOptions: util.DecodeToStringOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
-let retStr = textDecoder.decodeToString(result, decodeToStringOptions);
+let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -962,15 +962,15 @@ let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -1041,15 +1041,15 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 ```ts
 let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decode( result , {stream: false});
+let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
 ```
 
@@ -1234,10 +1234,10 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeIntoUint8Array('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1270,10 +1270,10 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeInto('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeInto('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -1331,9 +1331,13 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
+
+> **说明：**
+>
+> 该接口要求参数numerator和denominator必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："parseRationalNumber: The type of Parameter must be integer"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1343,8 +1347,8 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 | 参数名      | 类型   | 必填 | 说明             |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | 是   | 分子，整数类型。 |
-| denominator | number | 是   | 分母，整数类型。 |
+| numerator   | number | 是   | 分子，整数类型。取值范围：-Number.MAX_VALUE <= numerator <= Number.MAX_VALUE。|
+| denominator | number | 是   | 分母，整数类型。取值范围：-Number.MAX_VALUE <= denominator <= Number.MAX_VALUE。|
 
 **错误码：**
 
@@ -1365,6 +1369,10 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 static createRationalFromString(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
+
+> **说明：**
+>
+> 该接口要求参数rationalString是字符串格式。如果传入的参数是小数类型字符串格式，不会进行拦截，但是会输出错误信息："createRationalFromString: The type of Parameter must be integer string"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1510,9 +1518,13 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
+
+> **说明：**
+>
+> 该接口要求参数number1和number2必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："getCommonFactor: The type of Parameter must be integer"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1522,8 +1534,8 @@ getCommonFactor(number1: number,number2: number): number
 
 | 参数名  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | 是   | 整数类型。 |
-| number2 | number | 是   | 整数类型。 |
+| number1 | number | 是   | 整数类型。-Number.MAX_VALUE <= number1 <= Number.MAX_VALUE。|
+| number2 | number | 是   | 整数类型。-Number.MAX_VALUE <= number2 <= Number.MAX_VALUE。|
 
 **返回值：**
 
@@ -2508,10 +2520,6 @@ for (let value of arrayValue) {
 
 返回一个键值对形式的二维数组。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2524,7 +2532,6 @@ for (let value of arrayValue) {
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
@@ -3817,11 +3824,15 @@ isAsyncFunction(value: Object): boolean
   ```
 
 
-### isBooleanObject<sup>8+</sup>
+### isBooleanObject<sup>(deprecated)</sup>
 
 isBooleanObject(value: Object): boolean
 
 检查输入的value是否是一个Boolean对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3849,11 +3860,15 @@ isBooleanObject(value: Object): boolean
   ```
 
 
-### isBoxedPrimitive<sup>8+</sup>
+### isBoxedPrimitive<sup>(deprecated)</sup>
 
 isBoxedPrimitive(value: Object): boolean
 
 检查输入的value是否是Boolean或Number或String或Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4111,6 +4126,7 @@ isGeneratorFunction(value: Object): boolean
   export function* foo() {}
   ```
 
+  <!--code_no_check-->
   ```ts
   import { foo } from './test'
 
@@ -4151,6 +4167,7 @@ isGeneratorObject(value: Object): boolean
   export const generator = foo();
   ```
 
+  <!--code_no_check-->
   ```ts
   import { generator } from './test'
 
@@ -4355,11 +4372,15 @@ isNativeError(value: Object): boolean
   ```
 
 
-### isNumberObject<sup>8+</sup>
+### isNumberObject<sup>(deprecated)</sup>
 
 isNumberObject(value: Object): boolean
 
 检查输入的value是否是Number对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4553,11 +4574,15 @@ isSetIterator(value: Object): boolean
   ```
 
 
-### isStringObject<sup>8+</sup>
+### isStringObject<sup>(deprecated)</sup>
 
 isStringObject(value: Object): boolean
 
 检查输入的value是否是String对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4585,11 +4610,15 @@ isStringObject(value: Object): boolean
   ```
 
 
-### isSymbolObject<sup>8+</sup>
+### isSymbolObject<sup>(deprecated)</sup>
 
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4614,6 +4643,7 @@ isSymbolObject(value: Object): boolean
   export const symbols = Symbol('foo');
   ```
 
+  <!--code_no_check-->
   ```ts
   import { symbols } from './test'
 
@@ -4946,6 +4976,7 @@ isModuleNamespaceObject(value: Object): boolean
   }
   ```
 
+  <!--code_no_check-->
   ```ts
   import * as nameSpace from './test';
 

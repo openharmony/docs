@@ -102,7 +102,7 @@ customHeight(value: Dimension | PanelHeight)
 
 ### fullHeight
 
-fullHeight(value: string | number)
+fullHeight(value: number | string)
 
 指定PanelType.Full状态下的高度。
 
@@ -112,13 +112,13 @@ fullHeight(value: string | number)
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string&nbsp;\|&nbsp;number | 是   | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
+| 参数名 | 类型                       | 必填 | 说明                                                         |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;string | 是   | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
 
 ### halfHeight
 
-halfHeight(value: string | number)
+halfHeight(value: number | string)
 
 指定PanelMode.Half状态下的高度。
 
@@ -128,13 +128,13 @@ halfHeight(value: string | number)
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string&nbsp;\|&nbsp;number | 是   | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
+| 参数名 | 类型                       | 必填 | 说明                                                         |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;string | 是   | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
 
 ### miniHeight
 
-miniHeight(value: string | number)
+miniHeight(value: number | string)
 
 指定PanelMode.Mini状态下的高度。
 
@@ -144,9 +144,9 @@ miniHeight(value: string | number)
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string&nbsp;\|&nbsp;number | 是   | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
+| 参数名 | 类型                       | 必填 | 说明                                                         |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;string | 是   | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
 
 ### show
 
@@ -202,7 +202,7 @@ showCloseIcon(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Minibar | 提供minibar和类全屏展示切换效果。 |
 | Foldable | 内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。 |
@@ -215,7 +215,7 @@ showCloseIcon(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。|
 | Half | 1 | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。 |
@@ -227,7 +227,7 @@ showCloseIcon(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
 ## 事件

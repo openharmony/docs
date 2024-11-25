@@ -32,8 +32,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| { [OHOS_IMAGE_RESULT_SUCCESS](image.md#anonymous-enum-33) = 0,<br/>[OHOS_IMAGE_RESULT_BAD_PARAMETER](image.md#anonymous-enum-33) = -1 } | 函数方法返回值的错误码的枚举。 | 
-| { [OHOS_PIXEL_MAP_FORMAT_NONE](image.md#anonymous-enum-33-1) = 0,<br/>[OHOS_PIXEL_MAP_FORMAT_RGBA_8888](image.md#anonymous-enum-33-1) = 3,<br/>[OHOS_PIXEL_MAP_FORMAT_RGB_565](image.md#anonymous-enum-33-1) = 2 } | Pixel格式的枚举。 | 
+| { [OHOS_IMAGE_RESULT_SUCCESS](image.md#方法返回的错误码) = 0,<br/>[OHOS_IMAGE_RESULT_BAD_PARAMETER](image.md#方法返回的错误码) = -1 } | 函数方法返回值的错误码的枚举。 | 
+| { [OHOS_PIXEL_MAP_FORMAT_NONE](image.md#像素格式) = 0,<br/>[OHOS_PIXEL_MAP_FORMAT_RGBA_8888](image.md#像素格式) = 3,<br/>[OHOS_PIXEL_MAP_FORMAT_RGB_565](image.md#像素格式) = 2 } | Pixel格式的枚举。 | 
 | { [OHOS_PIXEL_MAP_SCALE_MODE_FIT_TARGET_SIZE](image.md#anonymous-enum) = 0,<br/>[OHOS_PIXEL_MAP_SCALE_MODE_CENTER_CROP](image.md#anonymous-enum) = 1 } | PixelMap缩放类型的枚举。 | 
 
 

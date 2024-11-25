@@ -11,7 +11,7 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 import { appRecovery } from '@kit.AbilityKit';
 ```
 
-## appRecovery.RestartFlag
+## RestartFlag
 
 应用重启标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数，该类型为枚举。
 
@@ -26,7 +26,7 @@ import { appRecovery } from '@kit.AbilityKit';
 | RESTART_WHEN_APP_FREEZE   | 0x0002    | 发生APP_FREEZE时重启应用。 |
 | NO_RESTART           | 0xFFFF    | 总是不重启应用。 |
 
-## appRecovery.SaveOccasionFlag
+## SaveOccasionFlag
 
 保存条件标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存时的选项参数，该类型为枚举。
 
@@ -39,7 +39,7 @@ import { appRecovery } from '@kit.AbilityKit';
 | SAVE_WHEN_ERROR            | 0x0001    | 当发生应用故障时保存。 |
 | SAVE_WHEN_BACKGROUND            | 0x0002    | 当应用切入后台时保存。 |
 
-## appRecovery.SaveModeFlag  
+## SaveModeFlag  
 
 状态保存标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存方式的参数，该类型为枚举。
 
@@ -54,7 +54,7 @@ import { appRecovery } from '@kit.AbilityKit';
 
 ## appRecovery.enableAppRecovery
 
-enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void
+enableAppRecovery(restart?: [RestartFlag](#restartflag), saveOccasion?: [SaveOccasionFlag](#saveoccasionflag), saveMode?: [SaveModeFlag](#savemodeflag)) : void
 
 使能应用恢复功能，参数按顺序填入。该接口调用后，应用从启动器启动时第一个Ability支持恢复。
 
@@ -68,9 +68,9 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为重启。 |
-| saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 枚举类型，状态保存时机，默认为故障时保存。 |
-| saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 枚举类型，状态保存方式， 默认为文件缓存。 |
+| restart | [RestartFlag](#restartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为重启。 |
+| saveOccasion | [SaveOccasionFlag](#saveoccasionflag) | 否 | 枚举类型，状态保存时机，默认为故障时保存。 |
+| saveMode | [SaveModeFlag](#savemodeflag) | 否 | 枚举类型，状态保存方式， 默认为文件缓存。 |
 
 **示例：**
     

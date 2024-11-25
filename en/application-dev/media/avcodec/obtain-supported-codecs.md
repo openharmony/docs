@@ -5,7 +5,7 @@ The codecs and their capabilities that you can use for your application on a dev
 To ensure that the encoding and decoding behavior meets your expectations, first query the audio and video codecs supported by the system and their capability parameters through a series of APIs. Then find the codecs that are suitable for the development scenario, and correctly configure the codec parameters.
 
 ## General Development
-1. Link the dynamic link library in the CMake script.
+1. Link the dynamic libraries in the CMake script.
 
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -13,6 +13,7 @@ To ensure that the encoding and decoding behavior meets your expectations, first
    target_link_libraries(sample PUBLIC libnative_media_venc.so)
    target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    ```
+
    > **NOTE**
    >
    > The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
@@ -390,13 +391,9 @@ The video codec has restrictions on width and height alignment. For example, for
 
 The width and height of a video codec are restricted by the frame-level encoding and decoding capability of the codec and the frame-level capability defined in the protocol. For example, for H.264, AVC_LEVEL_51 limits the maximum number of macroblocks per frame to 36864.
 
-The formula for calculating the maximum frame rate based on the image width and height is as follows, where **$MaxMBsPerFrameLevelLimits$** indicates the maximum number of macroblocks per frame defined in the protocol that can be supported by the codec, and **$MaxMBsPerFrameSubmit$** indicates the maximum number of macroblocks per frame reported by the codec. In practice, the intersection of the two values is used.
+The formula for calculating the maximum frame rate based on the image width and height is as follows, where *MaxMBsPerFrameLevelLimits* indicates the maximum number of macroblocks per frame defined in the protocol that can be supported by the codec, and *MaxMBsPerFrameSubmit* indicates the maximum number of macroblocks per frame reported by the codec. In practice, the intersection of the two values is used.
 
-$$
-MaxMBsPerFrame = \min(MaxMBsPerFrameLevelLimits, MaxMBsPerFrameSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxWidth = \lfloor MaxMBsPerFrame \div \lceil \frac{height}{MBHeight} \rceil \rfloor \times MBWidth
-$$
+![](figures/formula-maxmbsperframe.png)
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -491,13 +488,9 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 The frame rate of a video codec is restricted by the second-level encoding and decoding capability of the codec and the second-level capability defined in the protocol. For example, for H.264, AVC_LEVEL_51 limits the maximum number of macroblocks per second to 983040.
 
-The formula for calculating the maximum frame rate based on the image width and height is as follows, where **$MaxMBsPerSecondLevelLimits$** indicates the maximum number of macroblocks per second defined in the protocol that can be supported by the codec, and **$MaxMBsPerSecondSubmit$** indicates the maximum number of macroblocks per second reported by the codec. In practice, the intersection of the two values is used.
+The formula for calculating the maximum frame rate based on the image width and height is as follows, where *MaxMBsPerSecondLevelLimits* indicates the maximum number of macroblocks per second defined in the protocol that can be supported by the codec, and *MaxMBsPerSecondSubmit* indicates the maximum number of macroblocks per second reported by the codec. In practice, the intersection of the two values is used.
 
-$$
-MaxMBsPerSecond = \min(MaxMBsPerSecondLevelLimits, MaxMBsPerSecondSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxFrameRate = MaxMBsPerSecond \div (\lceil{\frac{width}{MBWidth}} \rceil \times \lceil \frac{height}{MBHeight} \rceil)
-$$
+![](figures/formula-maxmbspersecond.png)
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -608,8 +601,8 @@ if (isSupported) {
    // 2. Obtain the number of supported long-term reference frames.
    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(capability, VIDEO_ENCODER_LONG_TERM_REFERENCE);
    int32_t maxLTRCount = -1;
-   int32_t ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
-   if (ret == AV_ERR_OK && maxLTRCount >= NEEDED_MIN_LTR_NUM) {
+   bool ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
+   if (ret && maxLTRCount >= NEEDED_LTR_NUM) {
       if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_NUM)) {
          // Exception handling.
       }

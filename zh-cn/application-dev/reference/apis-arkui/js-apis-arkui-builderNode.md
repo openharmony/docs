@@ -84,7 +84,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+支持自定义组件。不支持自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
 
 > **说明**
 > 
@@ -550,9 +550,10 @@ OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[
 >
 > 在[webview](../apis-arkweb/js-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
 >
-> 同一时间戳，postTouchEvent只能调用一次。
+> 同一时间戳，postTouchEvent只能调用一次。<!--Del-->
 >
 > 不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。
+<!--DelEnd-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -767,7 +768,7 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到BuiderNode中的自定义组件。
+传递recycle事件到BuilderNode中的自定义组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

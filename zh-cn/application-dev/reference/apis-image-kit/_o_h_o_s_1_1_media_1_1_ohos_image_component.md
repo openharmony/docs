@@ -68,7 +68,7 @@ int32_t OhosImageComponent::pixelStride
 int32_t OhosImageComponent::rowStride
 ```
 **描述**
-像素数据行宽
+像素数据行宽，读取相机预览流数据时，需要考虑按stride进行读取，具体用法见[C/C++预览流二次处理示例](../../media/camera/native-camera-preview-imageReceiver.md)。
 
 
 ### size

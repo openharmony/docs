@@ -1,6 +1,6 @@
 # SegmentButton
 
-A segment button is a group of options, such as tabs, single-select options, and multi-select options.
+**SegmentButton** is a versatile component containing a group of related items, which can be tab-style, single-select, and multi-select buttons.
 
 >**NOTE**
 >
@@ -18,89 +18,85 @@ Not supported
 
 ## SegmentButton
 
-SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
+SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItemClicked: Callback\<number\>, maxFontScale: number \| Resource })
 
 **Decorator**: @Component
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
 
 | Name           | Type                                     | Mandatory| Decorator | Description                                                        |
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
-| options         | [SegmentButtonOptions](#segmentbuttonoptions) | Yes  | @ObjectLink | **SegmentButtonOptions** object.                                              |
-| selectedIndexes | number[]                                      | Yes  | @Link       | Indexes of selected options of the segment button. The index starts from 0 and increments by 1.<br>**NOTE**<br>**selectedIndexes** is decorated with [@Link](../../../quick-start/arkts-link.md) to implement parent-child two-way synchronization. If no options are selected, an empty array **[]** can be passed in.|
+| options         | [SegmentButtonOptions](#segmentbuttonoptions) | Yes  | @ObjectLink | Options of the **SegmentButton** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| selectedIndexes | number[]                                      | Yes  | @Link       | Indexes of selected items of the **SegmentButton**. The index starts from 0 and increments by 1.<br>**NOTE**<br>**selectedIndexes** is decorated with [@Link](../../../quick-start/arkts-link.md) to implement parent-child two-way synchronization. If no items are selected, an empty array **[]** can be passed in.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onItemClicked<sup>13+</sup> | Callback\<number\> | No| - | Callback invoked when an item in the **SegmentButton** is clicked. The index of the clicked item is passed in as the parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| maxFontScale<sup>14+</sup> | number \| [Resource](ts-types.md#resource) | No| @Prop | Maximum font scale for the text in the **SegmentButton**.<br>Default value: **1**<br>Value range: [1, 2]<br>**NOTE**<br>Values less than 1 are treated as 1, and values greater than 2 are treated as 2.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 >**NOTE**
 >
->The segment button does not support the universal attributes. The segment button takes up the maximum width allowed by the content area, and evenly allocates the width among its options. It adapts its height automatically to the content (text and image), the minimum height being 28 vp.
+>The **SegmentButton** component does not support the universal attributes. The component takes up the maximum width allowed by the content area, and evenly allocates the width among its items. It adapts its height automatically to the content (text and image), the minimum height being 28 vp.
 
 ## SegmentButtonOptions
 
-Provides initial data and custom attributes for the segment button.
+Provides initial data and custom properties for the **SegmentButton** component.
 
-### Attributes
+### Properties
+
+**Decorator Type**: @Observed
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                   | Type                                                        | Description                                                        |
-| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| type                    | "tab" \| "capsule"                                           | Type of the segment button.                                            |
-| multiply                | boolean                                                      | Whether multiple options can be selected.<br>**NOTE**<br>For the segment button consisting of tabs, only one option can be selected. In this case, setting **multiply** to **true** does not take effect.|
-| buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | Button information, including the icon and text.                              |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the option when not selected.<br>Default value: **#99182431**                 |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the option when selected.<br>Default value: **#ff182431**                   |
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | Font size of the option when not selected. It cannot be set in percentage.<br>Default value: **14.0fp**|
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | Font size of the option when selected. It cannot be set in percentage.<br>Default value: **14.0fp**  |
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | Font weight of the option when not selected.<br>Default value: **FontWeight.Regular**        |
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | Font weight of the option when selected.<br>Default value: **FontWeight.Medium**           |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | Background color.<br>Default value: **\#0c182431** for tabs and **\#0c182431** for single-select and mult-select options|
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the option when selected.<br>Default value: **\#ffffffff** for tabs and **\#ff007dff** for single-select and multi-select options|
-| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | Image size.<br>Default value: { width: 24, height: 24 }<br>**NOTE**<br>This attribute is effective only for buttons that contain icons.|
-| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
-| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Text padding.<br>Default value: **0**                                     |
-| localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | Button padding.<br>Default value:<br>Icon-only buttons and text-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Icon+text buttons: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**|
-| localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | Text margin.<br>Default value: **0**                                                                                                                                                                                                                                                    |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | Layout direction.<br>Default value: **Direction.Auto**                                                                                                                                                                                                                                          |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                        |
+| Name                 | Type                                                        | Mandatory                                                    | Description                                                      |
+| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| type                    | 'tab' \| 'capsule'                                       | Yes                                       | Type of the **SegmentButton**.                                            |
+| multiply                | boolean                                                      | Yes                                                  | Whether multiple items can be selected.<br>**NOTE**<br>For the **SegmentButton** component consisting of tab-style buttons, only one item can be selected. In this case, setting **multiply** to **true** does not take effect.|
+| buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | Yes| Button information, including the icon and text.                              |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | Yes               | Font color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | Yes               | Font color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"capsule"**|
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | Yes          | Font size of the unselected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | Yes           | Font size of the selected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | Yes             | Font weight of the unselected item.<br>Default value: **FontWeight.Regular**|
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | Yes             | Font weight of the selected item.<br>Default value: **FontWeight.Medium**    |
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | Yes                | Background color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**|
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | Yes                | Background color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_emphasize')** when **type** is **"capsule"**|
+| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | Yes                    | Image size.<br>Default value: **{ width: 24, height: 24 }**<br>**NOTE**<br>This property is effective only for buttons that contain icons.|
+| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Yes| Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
+| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Yes| Text padding.<br>Default value: **0**                          |
+| localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No              | Button padding.<br>Default value:<br>Text-only buttons and icon-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Buttons with both an icon and text: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**|
+| localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No             | Text padding.<br>Default value: **0**                                                                                                                                                                                                                                         |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                                         | Layout direction.<br>Default value: **Direction.Auto**                                                                                                                                                                                                                                          |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | Yes               | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                   |
 
 ### constructor
 
 constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
-Implements a constructor.
+A constructor used to create a **SegmentButtonOptions** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
 
 | Name   | Type                                                    | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | Yes| Information about the segment button.|
+| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \|   [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | Yes| Options of the **SegmentButton** component.|
 
 ### tab
 
 static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
-Creates a **SegmentButtonOptions** object for the segment button consisting of tabs.
+Creates a **SegmentButtonOptions** object for the **SegmentButton** component consisting of tab-style buttons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
 
-
-| Name   | Type                                                    | Mandatory| Description                |
+| Name   | Type                                                        | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions) | Yes  | Options of the segment button.|
+| options | [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions) | Yes  | Options of the tab-style buttons.|
 
 **Return value**
 
@@ -112,18 +108,16 @@ Creates a **SegmentButtonOptions** object for the segment button consisting of t
 
 static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonOptions
 
-Creates a **SegmentButtonOptions** object for the segment button consisting of single-select or multi-select options.
+Creates a **SegmentButtonOptions** object for the **SegmentButton** component consisting of single-select or multi-select buttons.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
 
-
-| Name   | Type                                                    | Mandatory| Description                       |
+| Name   | Type                                                        | Mandatory| Description                       |
 | ------- | ------------------------------------------------------------ | ---- | --------------------------- |
-| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | Yes  | Options of the segment button.|
+| options | [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | Yes  | Options of the single-select or multi-select buttons.|
 
 **Return value**
 
@@ -132,6 +126,8 @@ Creates a **SegmentButtonOptions** object for the segment button consisting of s
 | [SegmentButtonOptions](#segmentbuttonoptions) | **SegmentButtonOptions** object.|
 
 ## DimensionNoPercentage
+
+type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 Represents the length union type that does not support values in percentage.
 
@@ -155,35 +151,37 @@ Defines the attributes that can be customized for the segment button.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Attributes**
+### Properties
 
-| Name                   | Type                                                        | Description                                                        |
-| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the option when not selected.<br>Default value: **#99182431**                 |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the option when selected.<br>Default value: **#ff182431**                   |
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | Font size of the option when not selected. It cannot be set in percentage.<br>Default value: **14.0fp**|
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | Font size of the option when selected. It cannot be set in percentage.<br>Default value: **14.0fp**  |
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | Font weight of the option when not selected.<br>Default value: **FontWeight.Regular**        |
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | Font weight of the option when selected.<br>Default value: **FontWeight.Medium**           |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | Background color.<br>Default value: **\#0c182431** for tabs and **\#0c182431** for single-select and multi-select options|
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the option when selected.<br>Default value: **\#ffffffff** for tabs and **\#ff007dff** for single-select and multi-select options|
-| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | Image size.<br>Default value: { width: 24, height: 24 }<br>**NOTE**<br>This attribute is effective only for buttons that contain icons.|
-| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
-| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Text padding.<br>Default value: **0**                                     |
-| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | Button padding.<br>Default value:<br>Icon-only buttons and text-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Icon+text buttons: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**|
-| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | Text margin.<br>Default value: **0**                                                                                                                                                                                                                                                    |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | Layout direction.<br>Default value: **Direction.Auto**                                                                                                                                                                                                                                         |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                     |
+| Name                 | Type                                                        | Mandatory                                                      | Description                                                      |
+| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Font color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"capsule"**|
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the unselected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | No            | Font size of the selected item. It cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')**|
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the unselected item.<br>Default value: **FontWeight.Regular**|
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | No              | Font weight of the selected item.<br>Default value: **FontWeight.Medium**|
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the unselected item.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**|
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No                 | Background color of the selected item.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')** when **type** is **"tab"** and **$r('sys.color.ohos_id_color_emphasize')** when **type** is **"capsule"**|
+| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | No                     | Image size.<br>Default value: { width: 24, height: 24 }<br>**NOTE**<br>This property is effective only for buttons that contain icons.|
+| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
+| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | No| Text padding.<br>Default value: **0**                        |
+| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Button padding.<br>Default value:<br>Text-only buttons and icon-only buttons: **{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }**<br>Buttons with both an icon and text: **{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }**|
+| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | No               | Text padding.<br>Default value: **0**                                                                                                                                                                                                                                         |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                                           | Layout direction.<br>Default value: **Direction.Auto**                                                                                                                                                                                                                                         |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | No               | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**|
 
 ## TabSegmentButtonConstructionOptions
 
-Represents options for creating a segment button consisting of tabs.
+Represents options for creating a **SegmentButton** component consisting of tab-style buttons.
 
 It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Properties
 
 | Name   | Type                                                        | Mandatory| Description      |
 | ------- | ------------------------------------------------------------ | ---- | ---------- |
@@ -191,7 +189,7 @@ It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 ## CapsuleSegmentButtonConstructionOptions
 
-Represents options for creating a segment button consisting of single-select or multi-select options.
+Represents options for creating a **SegmentButton** component consisting of single-select or multi-select buttons.
 
 It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
@@ -199,24 +197,30 @@ It inherits [CommonSegmentButtonOptions](#commonsegmentbuttonoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type                                             | Mandatory| Description                         |
+### Properties
+
+| Name     | Type                                             | Mandatory| Description                       |
 | -------- | ------------------------------------------------- | ---- | ----------------------------- |
 | buttons  | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | Yes  | Button information.                   |
-| multiply | boolean                                           | No  | Whether multiple options can be selected.<br>Default value: **false**|
+| multiply | boolean                                           | No  | Whether multiple items can be selected.<br>Default value: **false**|
 
 ## ItemRestriction
+
+type ItemRestriction\<T> = [T, T, T?, T?, T?]
 
 Represents a tuple used to store button information.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Value                                 | Description                             |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| ItemRestriction\<T\> = [T, T, T?, T?, T?] | A tuple that contains two to five elements of the same type.|
+|[T, T, T?, T?, T?] | A tuple that contains two to five elements of the same type.|
 
 >**NOTE**
 >
->A segment button supports two to five options.
+>A **SegmentButton** component supports two to five buttons.
 
 ## SegmentButtonItemTuple
 
@@ -226,7 +230,7 @@ Represents the tuple union type used to store button information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Value                                                    | Description                     |
+| Type                                                        | Description                     |
 | ------------------------------------------------------------ | ------------------------- |
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonTextItem](#segmentbuttontextitem)\> | A tuple of text-only button information.   |
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonIconItem](#segmentbuttoniconitem)\> | A tuple of icon-only button information.   |
@@ -240,7 +244,7 @@ Represents the array union type used to store button information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Value                                                    | Description                     |
+| Type                                                        | Description                     |
 | ------------------------------------------------------------ | ------------------------- |
 | Array\<[SegmentButtonTextItem](#segmentbuttontextitem)\>     | An array of text-only button information.   |
 | Array\<[SegmentButtonIconItem](#segmentbuttoniconitem)\>     | An array of icon-only button information.   |
@@ -250,22 +254,26 @@ Represents the array union type used to store button information.
 
 Represents an array for storing button information.
 
+**Decorator Type**: @Observed
+
 >**NOTE**
 >
->A segment button supports two to five options. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five button options.
+>A **SegmentButton** component supports two to five buttons. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five buttons.
 
 ### constructor
 
 constructor(elements: SegmentButtonItemTuple)
 
-Implements a constructor.
+A constructor used to create a **SegmentButtonItemOptionsArray** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 
-| Name    | Type                                         | Mandatory| Description      |
+| Name  | Type                                             | Mandatory| Description      |
 | -------- | ------------------------------------------------- | ---- | ---------- |
 | elements | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | Yes  | Button information.|
 
@@ -277,12 +285,14 @@ Adds the specified elements to the end of this array and returns the new length 
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 
-| Name | Type                                         | Mandatory| Description                  |
-| ----- | ------------------------------------------------- | ---- | ---------------------- |
-| items | [SegmentButtonItemArray](#segmentbuttonitemarray) | Yes  | Elements to add to the end of the array.|
+| Name| Type                                             | Mandatory| Description                  |
+| ------ | ------------------------------------------------- | ---- | ---------------------- |
+| items  | [SegmentButtonItemArray](#segmentbuttonitemarray) | Yes  | Elements to add to the end of the array.|
 
 **Return value**
 
@@ -292,7 +302,7 @@ Adds the specified elements to the end of this array and returns the new length 
 
 >**NOTE**
 >
->A segment button supports two to five options. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five button options. If the number limit is reached, this API will not work.
+>A **SegmentButton** component supports two to five buttons. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five buttons. If the number limit is reached, this API will not work.
 
 ### pop
 
@@ -302,6 +312,8 @@ Removes the last element from this array and returns that element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type                                                        | Description          |
@@ -310,7 +322,7 @@ Removes the last element from this array and returns that element.
 
 >**NOTE**
 >
->A segment button supports two to five options. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five button options. If the number limit is reached, this API will not work.
+>A **SegmentButton** component supports two to five buttons. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five buttons. If the number limit is reached, this API will not work.
 
 ### shift
 
@@ -320,6 +332,8 @@ Removes the first element from this array and returns that element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type                                                        | Description          |
@@ -328,7 +342,7 @@ Removes the first element from this array and returns that element.
 
 >**NOTE**
 >
->A segment button supports two to five options. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five button options. If the number limit is reached, this API will not work.
+>A **SegmentButton** component supports two to five buttons. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five buttons. If the number limit is reached, this API will not work.
 
 ### unshift
 
@@ -338,10 +352,12 @@ Adds the specified elements to the beginning of this array and returns the new l
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 
-| Name | Type                                         | Mandatory| Description                |
+| Name | Type                                             | Mandatory| Description                |
 | ----- | ------------------------------------------------- | ---- | -------------------- |
 | items | [SegmentButtonItemArray](#segmentbuttonitemarray) | Yes  | Elements to add to the beginning of the array.|
 
@@ -353,7 +369,7 @@ Adds the specified elements to the beginning of this array and returns the new l
 
 >**NOTE**
 >
->A segment button supports two to five options. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five button options. If the number limit is reached, this API will not work.
+>A **SegmentButton** component supports two to five buttons. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five buttons. If the number limit is reached, this API will not work.
 
 ### splice
 
@@ -363,10 +379,12 @@ Changes the contents of this array by removing the specified number of elements 
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 
-| Name       | Type                                               | Mandatory| Description                |
+| Name     | Type                                                   | Mandatory| Description                |
 | ----------- | ------------------------------------------------------- | ---- | -------------------- |
 | start       | number                                                  | Yes  | Index of the position starting from which elements are to be removed.|
 | deleteCount | number                                                  | Yes  | Number of elements to remove.    |
@@ -380,7 +398,7 @@ Changes the contents of this array by removing the specified number of elements 
 
 >**NOTE**
 >
->A segment button supports two to five options. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five button options. If the number limit is reached, this API will not work.
+>A **SegmentButton** component supports two to five buttons. As such, a **SegmentButtonItemOptionsArray** object stores information about only two to five buttons. If the number limit is reached, this API will not work.
 
 ### create
 
@@ -390,10 +408,12 @@ Creates a **SegmentButtonItemOptionsArray** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 
-| Name    | Type                                         | Mandatory| Description      |
+| Name  | Type                                             | Mandatory| Description      |
 | -------- | ------------------------------------------------- | ---- | ---------- |
 | elements | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | Yes  | Button information.|
 
@@ -405,52 +425,54 @@ Creates a **SegmentButtonItemOptionsArray** object.
 
 ## TabSegmentButtonOptions
 
-Provides the options of the segment button consisting of tabs. It inherits [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions).
+Provides the options of the **SegmentButton** component consisting of tab-style buttons. It inherits [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type | Description                  |
-| ---- | ----- | ---------------------- |
-| type | "tab" | Segment button consisting of tabs.|
+| Name| Type | Mandatory| Description                  |
+| ---- | ----- | ---- | ---------------------- |
+| type | 'tab' | Yes  | **SegmentButton** component consisting of tab-style buttons.|
 
 ## CapsuleSegmentButtonOptions
 
-Provides the options of the segment button consisting of single-select or multi-select options. It inherits [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions).
+Provides the options of the **SegmentButton** component consisting of single-select or multi-select buttons. It inherits [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type     | Description                         |
-| ---- | --------- | ----------------------------- |
-| type | "capsule" | Segment button consisting of single-select or multi-select options.|
+| Name| Type     | Mandatory| Description                       |
+| ---- | --------- | ---- | ----------------------------- |
+| type | 'capsule' | Yes  | **SegmentButton** component consisting of single-select or multi-select buttons.|
 
 ## SegmentButtonTextItem
 
 Provides text button information.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type                                  | Mandatory| Description      |
+| Name| Type                                  | Mandatory| Description     |
 | ---- | -------------------------------------- | ---- | ---------- |
-| text | [ResourceStr](ts-types.md#resourcestr) | Yes  | Button text.|
+| text | [ResourceStr](ts-types.md#resourcestr) | Yes  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## SegmentButtonIconItem
 
 Provides icon button information.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                  | Mandatory| Description                |
+|Name     | Type                                  | Mandatory| Description              |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the option when not selected.|
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the option when selected.  |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 >**NOTE**
 >
@@ -460,15 +482,19 @@ Provides icon button information.
 
 Provides icon+text button information.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Properties
 
 | Name        | Type                                  | Mandatory| Description                |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the option when not selected.|
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the option when selected.  |
-| text         | [ResourceStr](ts-types.md#resourcestr) | Yes  | Button text.          |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | Yes  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| text         | [ResourceStr](ts-types.md#resourcestr) | Yes  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 >**NOTE**
 >
@@ -476,46 +502,58 @@ Provides icon+text button information.
 
 ## SegmentButtonItemOptions
 
-Describes options of the segment button.
+Describes options of the items in the **SegmentButton** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Decorator Type**: @Observed
 
-**Attributes**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Properties
 
 | Name        | Type                                  | Mandatory| Description                |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option when not selected.|
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option when selected.  |
-| text         | [ResourceStr](ts-types.md#resourcestr) | No  | Button text.          |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| text         | [ResourceStr](ts-types.md#resourcestr) | No  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 ### constructor
 
 constructor(options: SegmentButtonItemOptionsConstructorOptions)
 
-Implements a constructor.
+A constructor used to create a **SegmentButtonItemOptions** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 
 | Name | Type                                                        | Mandatory| Description              |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | Yes  | Options of the segment button.|
+| options | [SegmentButtonItemOptionsConstructorOptions](#segmentbuttonitemoptionsconstructoroptions) | Yes  | Options of the items in the **SegmentButton** component.|
 
 ## SegmentButtonItemOptionsConstructorOptions
 
 Describes the constructor parameters of **SegmentButtonItemOptions**.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                  | Mandatory| Description                |
+### Properties
+
+| Name        | Type                                  | Mandatory| Description             |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option when not selected.|
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option when selected.  |
-| text         | [ResourceStr](ts-types.md#resourcestr) | No  | Button text.          |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the unselected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility text of the selected item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| text         | [ResourceStr](ts-types.md#resourcestr) | No  | Button text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
+| accessibilityLevel<sup>13+</sup> | string | No  | Accessibility level, which is used to set whether the current component can be recognized by accessibility services.<br>The options are as follows:<br>**"auto"**: The component cannot be recognized by accessibility services.<br>**"yes"**: The component can be recognized by accessibility services.<br>**"no"**: The component cannot be recognized by accessibility services.<br>**"no-hide-descendants"**: Neither the component nor its child components can be recognized by accessibility services.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
 
 ## Example
 
@@ -716,29 +754,29 @@ struct Index {
         Column({ space: 10 }) {
           SegmentButton({ options: this.singleSelectCapsuleOptions,
             selectedIndexes: $capsuleSelectedIndexes })
-          Button ("Delete First Option")
+          Button("Delete First Item")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons.shift()
             })
-          Button ("Delete Last Option")
+          Button("Delete Last Item")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons.pop()
             })
-          Button ("Add push to End")
+          Button("Add to End")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons.push({ text: 'push' })
             })
-          Button ("Add unshift to Beginning")
+          Button("Add to Beginning")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons.unshift(({ text: 'unshift' }))
             })
-          Button ("Replace Options 2 and 3 with splice1 and splice2")
+          Button("Replace Items 2 and 3 with splice1 and splice2")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
                 text: 'splice1'
               }), new SegmentButtonItemOptions({ text: 'splice2' }))
             })
-          Button ("Change All Button Text")
+          Button("Change All Button Text")
             .onClick(() => {
               this.singleSelectCapsuleOptions.buttons =
               SegmentButtonItemOptionsArray.create([{ text: 'a' }, { text: 'b' },
@@ -857,3 +895,92 @@ struct Index {
 ```
 
 ![segmentbutton-sample4](figures/segmentbutton-sample4.png)
+
+### Example 5
+This example implements the accessibility feature of the segment button.
+
+```ts
+// xxx.ets
+import {
+  ItemRestriction,
+  SegmentButton,
+  SegmentButtonItemTuple,
+  SegmentButtonOptions,
+  SegmentButtonTextItem,
+  SegmentButtonItemOptions
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: 'Tab 1', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 1 usage hints' },
+      { text: 'Tab 2', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 2 usage hints' },
+      { text: 'Tab 3', accessibilityLevel: 'yes', accessibilityDescription: 'Tab 3 usage hints'
+    }] as ItemRestriction<SegmentButtonTextItem>,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+      accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'},
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem usage hints'}
+    ] as SegmentButtonItemTuple,
+    multiply: false,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
+      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
+      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'},
+      { text: 'Icon 1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: 'Accessibility text for the unselected icon',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: 'Accessibility text for the selected icon',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem usage hints'}
+    ] as SegmentButtonItemTuple,
+    multiply: true
+  })
+  @State tabSelectedIndexes: number[] = [1]
+  @State singleSelectIconCapsuleSelectedIndexes: number[] = [3]
+  @State multiplySelectIconTextCapsuleSelectedIndexes: number[] = [1, 2]
+
+  build() {
+    Row() {
+      Column() {
+        Column({ space: 25 }) {
+          SegmentButton({ options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes })
+          SegmentButton({ options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
+          SegmentButton({ options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          Button("Replace Items 2 and 3 with splice1 and splice2")
+            .onClick(() => {
+              this.iconTextCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
+                text: 'splice1', accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonItemOptions usage hints'
+              }), new SegmentButtonItemOptions({ text: 'splice2', icon: $r('sys.media.ohos_ic_public_email'),
+                iconAccessibilityText: 'Accessibility text for the unselected icon', selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+                selectedIconAccessibilityText: 'Accessibility text for the selected icon', accessibilityLevel: 'yes',
+                accessibilityDescription: 'SegmentButtonIconTextItem usage hints' }))
+            })
+        }.width('90%')
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```

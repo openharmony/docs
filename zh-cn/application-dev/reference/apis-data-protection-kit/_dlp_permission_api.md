@@ -5,7 +5,7 @@
 
 数据防泄漏（DLP）是系统提供的系统级的数据防泄漏解决方案，提供跨设备的文件的权限管理、加密存储、授权访问等能力。
 
-**起始版本：** 13
+**起始版本：** 14
 
 
 ## 汇总
@@ -51,7 +51,7 @@ enum DLP_ErrCode
 
 DLP错误码的枚举。
 
-**起始版本：** 13
+**起始版本：** 14
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -74,7 +74,7 @@ enum DLP_FileAccess
 
 DLP文件授权类型的枚举。
 
-**起始版本：** 13
+**起始版本：** 14
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -97,7 +97,7 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
 
 查询当前DLP沙箱的权限信息。
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -131,7 +131,7 @@ DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char **originalFile
 
 获取指定DLP文件名的原始文件名。
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -161,7 +161,7 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox)
 
 查询当前应用是否运行在DLP沙箱环境。
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -190,7 +190,7 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo)
 
 设置沙箱应用配置信息。
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -223,7 +223,7 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char **configInfo)
 
 获取沙箱应用配置信息。
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 
@@ -254,7 +254,7 @@ DLP_ErrCode OH_DLP_CleanSandboxAppConfig()
 
 清理沙箱应用配置信息。
 
-**起始版本：** 13
+**起始版本：** 14
 
 **返回：**
 

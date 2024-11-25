@@ -32,8 +32,13 @@
 ```javascript
 // feature/DFXStateManagement/src/main/ets/view/DFXStateBeforeOptimization.ets  
 
-// 常量声明
-// ... 
+const animationDuration: number = 500; // move动画时长
+const opacityChangeValue: number = 0.1; // opacity每次变化的值
+const opacityChangeRange: number = 1; // opacity变化的范围
+const translateYChangeValue: number = 180; // translateY每次变化的值
+const translateYChangeRange: number = 250; // translateY变化的范围
+const scaleXChangeValue: number = 0.6; // scaleX每次变化的值
+const scaleXChangeRange: number = 0.8; // scaleX每次变化的值
 // 样式属性类  
 class UIStyle {  
   public translateX: number = 0;  

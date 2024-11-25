@@ -57,7 +57,7 @@
     interruptGroupId : 1,
     volumeGroupId : 1,
     displayName : ""
-  }
+  };
   try {
     let isSpatializationSupportedForDevice: boolean = audioSpatializationManager.isSpatializationSupportedForDevice(deviceDescriptor);
     console.info(`AudioSpatializationManager isSpatializationSupportedForDevice: ${isSpatializationSupportedForDevice}`);
@@ -104,7 +104,8 @@
     interruptGroupId : 1,
     volumeGroupId : 1,
     displayName : ""
-  }
+  };
+
   try {
     let isHeadTrackingSupportedForDevice: boolean = audioSpatializationManager.isHeadTrackingSupportedForDevice(deviceDescriptor);
     console.info(`AudioSpatializationManager isHeadTrackingSupportedForDevice: ${isHeadTrackingSupportedForDevice}`);
@@ -142,8 +143,9 @@ enabled：布尔值类型，用于控制指定设备的空间音频渲染开关�
     interruptGroupId : 1,
     volumeGroupId : 1,
     displayName : ""
-  }
-  let enabled: boolean = true
+  };
+  let enabled: boolean = true;
+
   audioSpatializationManager.setSpatializationEnabled(deviceDescriptor, enabled).then(() => {
     console.info(`setSpatializationEnabled success`);
   }).catch((err: BusinessError) => {
@@ -173,6 +175,7 @@ enabled：布尔值类型，用于控制指定设备的空间音频渲染开关�
     volumeGroupId : 1,
     displayName : ""
   }
+
   try {
     let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled(deviceDescriptor);
     console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -232,8 +235,9 @@ enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入�
     interruptGroupId : 1,
     volumeGroupId : 1,
     displayName : ""
-  }
-  let enable: boolean = true
+  };
+  let enable: boolean = true;
+
   audioSpatializationManager.setHeadTrackingEnabled(deviceDescriptor, enable).then(() => {
     console.info(`setHeadTrackingEnabled success`);
   }).catch((err: BusinessError) => {
@@ -262,7 +266,8 @@ enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入�
     interruptGroupId : 1,
     volumeGroupId : 1,
     displayName : ""
-  }
+  };
+
   try {
     let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled(deviceDescriptor);
     console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -311,7 +316,8 @@ enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入�
     isSpatializationSupported: true,
     isHeadTrackingSupported: true,
     spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
-  }
+  };
+
   try {
     audioSpatializationManager.updateSpatialDeviceState(spatialDeviceState);
     console.info(`AudioSpatializationManager updateSpatialDeviceState success`);
@@ -332,6 +338,7 @@ enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入�
   ```ts
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
     console.info(`AudioSpatializationManager setSpatializationSceneType success`);
@@ -350,6 +357,7 @@ enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入�
   ```ts
   import { audio } from '@kit.AudioKit';
   import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
     console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);

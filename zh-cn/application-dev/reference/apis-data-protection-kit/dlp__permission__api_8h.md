@@ -9,7 +9,7 @@
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-**起始版本：** 13
+**起始版本：** 14
 
 **相关模块：**[DlpPermissionApi](_dlp_permission_api.md)
 

@@ -52,12 +52,12 @@ The following describes how to add a button in the application and click the but
    The following calls **OH_HiDebug_GetSystemCpuUsage()** and outputs the return value. For details about how to use other APIs, see [HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md).
 
    ```c++
-   # include "napi/native_api.h"
-   # include "hilog/log.h"
-   # include "hidebug/hidebug.h"
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+   #include "hidebug/hidebug.h"
    
-   # undef LOG_TAG
-   # define LOG_TAG "testTag"
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
    
    static napi_value TestHidebugNdk(napi_env env, napi_callback_info info)
    {
@@ -121,5 +121,3 @@ The following describes how to add a button in the application and click the but
    ```Text
    09-10 09:40:26.755 17221-17221/com.example.myapplication I A00000/testTag: GetSystemCpuUsage: 0.083904
    ```
-
-<!--no_check-->

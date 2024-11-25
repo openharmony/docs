@@ -49,7 +49,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
 | GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
 | GET_BUNDLE_INFO_ONLY_WITH_LAUNCHER_ABILITY<sup>12+</sup> | 0x00001000 | 用于获取仅包含有桌面图标的应用的bundleInfo。它仅在[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口中生效。 |
-| GET_BUNDLE_INFO_OF_ANY_USER<sup>12+</sup>      | 0x00002000 | 用于获取任意用户安装的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_APPLICATION一起使用。它仅在[getBundleInfo](#bundlemanagergetbundleinfo)、[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口生效。<br/>**系统API：** 从API version 12开始，该接口支持在系统API中使用。 |
+| GET_BUNDLE_INFO_OF_ANY_USER<sup>12+</sup>      | 0x00002000 | 用于获取任意用户安装的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_APPLICATION一起使用。它仅在[getBundleInfo](#bundlemanagergetbundleinfo14)、[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口生效。<br/>**系统API：** 从API version 12开始，该接口支持在系统API中使用。 |
 | GET_BUNDLE_INFO_EXCLUDE_CLONE<sup>12+</sup> | 0x00004000 | 用于获取去除分身应用而仅包含主应用的bundleInfo。它仅在[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口中生效。 |
 
 ### ApplicationFlag
@@ -145,15 +145,13 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 ## 接口
 
-### bundleManager.getBundleInfo
+### bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
 以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用callback形式返回结果。
 
 获取调用方自己的信息时不需要权限。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -175,7 +173,6 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
@@ -229,15 +226,13 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo
+### bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 以异步方法根据给定的bundleName和bundleFlags获取BundleInfo，使用callback形式返回结果。
 
 获取调用方自己的信息时不需要权限。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -258,7 +253,6 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
@@ -287,15 +281,13 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo
+### bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用Promise形式返回结果。
 
 获取调用方自己的信息时不需要权限。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -322,7 +314,6 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
@@ -1552,13 +1543,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid
+### bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
 以异步方法根据给定的uid获取对应的bundleName，使用callback形式返回结果。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -1578,7 +1567,6 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 | 错误码ID | 错误信息            |
 | -------- | --------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -1603,13 +1591,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid
+### bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number): Promise\<string>
 
 以异步方法根据给定的uid获取对应的bundleName，使用Promise形式返回结果。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -1634,7 +1620,6 @@ getBundleNameByUid(uid: number): Promise\<string>
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -1657,13 +1642,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUidSync<sup>10+</sup>
+### bundleManager.getBundleNameByUidSync<sup>14+</sup>
 
 getBundleNameByUidSync(uid: number): string
 
 以同步方法根据给定的uid获取对应的bundleName。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -1688,7 +1671,6 @@ getBundleNameByUidSync(uid: number): string
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -3638,13 +3620,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync
+### bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
 
 以同步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -3671,7 +3651,6 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
@@ -3696,13 +3675,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync
+### bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
-
-**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -3728,7 +3705,6 @@ getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
@@ -5096,15 +5072,13 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneIdentity<sup>12+</sup>
+### bundleManager.getAppCloneIdentity<sup>14+</sup>
 
 getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
 根据uid查询分身应用的bundleName和appIndex。使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -5127,7 +5101,6 @@ getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -5274,5 +5247,171 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAllAppCloneBundleInfo failed. Cause: %{public}s', message);
+}
+```
+### bundleManager.verifyAbc<sup>11+</sup>
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。|
+| callback | AsyncCallback\<void> | 是 | 回调函数，当获取成功时，err为null；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700201 | Failed to verify the abc file. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+  bundleManager.verifyAbc(abcPaths, true, (err, data) => {
+    if (err) {
+      hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+    }
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc<sup>11+</sup>
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
+
+根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
+| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。       |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700201 | Failed to verify the abc file. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+  bundleManager.verifyAbc(abcPaths, true).then((data) => {
+    hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.deleteAbc<sup>11+</sup>
+
+deleteAbc(abcPath: string): Promise\<void>
+
+根据给定的abcPath删除.abc文件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.RUN_DYN_CODE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPath  | string | 是   | .abc文件路径。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700202 | Failed to delete the abc file. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPath: string = '/data/storage/el2/base/a.abc';
+
+try {
+  bundleManager.deleteAbc(abcPath).then((data) => {
+    hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
 }
 ```

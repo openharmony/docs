@@ -54,7 +54,7 @@ AtomicServiceWeb({
 
 **参数**：
 
-| 名称                   | 类型                                                                                                               | 必填 | 装饰器类型       | 描述                                                                                                                   |
+| 名称                   | 类型                                                                                                               | 必填 | 装饰器类型       | 说明                                                                                                                  |
 |----------------------|------------------------------------------------------------------------------------------------------------------|----|-------------|----------------------------------------------------------------------------------------------------------------------|
 | src                  | [ResourceStr](ts-types.md#resourcestr)                                                                           | 是  | -           | 网页资源地址，访问网络资源需要在AGC配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。 |
 | controller           | [AtomicServiceWebController](#atomicservicewebcontroller)                                                        | 是  | @ObjectLink | 通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。                                                              |
@@ -330,6 +330,10 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 Web组件返回的请求/响应头对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 类型     | 可读 | 可写 | 说明            |
 |-------------|--------|----|----|---------------|
 | headerKey   | string | 是  | 是  | 请求/响应头的key。   |
@@ -345,7 +349,7 @@ Web组件返回的请求/响应头对象。
 
 | 名称   | 类型       | 必填 | 说明    |
 |------|----------|----|-------|
-| data | Object[] | 是  | 消息列表。 |
+| data | object[] | 是  | 消息列表。 |
 
 ## OnErrorReceiveEvent
 
@@ -494,7 +498,7 @@ struct WebComponent {
         controller: this.controller,
         // H5页面点击“发送消息”后，再点击“返回上一页”，触发该回调
         onMessage: (event: OnMessageEvent) => {
-          console.log(`[AtomicServiceWebLog] onMessage data=${JSON.stringify(event.data)}`);
+          console.info(`[AtomicServiceWebLog] onMessage data = ${JSON.stringify(event.data)}`);
         }
       })
     }
@@ -523,9 +527,9 @@ struct WebComponent {
             data: data,
             callback: (err, res) => {
                 if (err) {
-                    console.error('[AtomicServiceWebLog H5] postMessage error err=' + JSON.stringify(err));
+                    console.error(`[AtomicServiceWebLog H5] postMessage error err. Code: ${err.code}, message: ${err.message}`);
                 } else {
-                    console.log('[AtomicServiceWebLog H5] postMessage success res=' + JSON.stringify(res));
+                    console.info(`[AtomicServiceWebLog H5] postMessage success res = ${JSON.stringify(res)}`);
                 }
             }
         });
@@ -568,7 +572,7 @@ struct WebComponent {
         controller: this.controller,
         // 网页加载遇到错误时触发该回调
         onErrorReceive: (event: OnErrorReceiveEvent) => {
-          console.log(`AtomicServiceWebLog onErrorReceive event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onErrorReceive event = ${JSON.stringify({
             requestUrl: event.request?.getRequestUrl(),
             requestMethod: event.request?.getRequestMethod(),
             errorCode: event.error?.getErrorCode(),
@@ -577,7 +581,7 @@ struct WebComponent {
         },
         // 网页加载遇到HTTP资源加载错误时触发该回调
         onHttpErrorReceive: (event: OnHttpErrorReceiveEvent) => {
-          console.log(`AtomicServiceWebLog onHttpErrorReceive event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onHttpErrorReceive event = ${JSON.stringify({
             requestUrl: event.request?.getRequestUrl(),
             requestMethod: event.request?.getRequestMethod(),
             responseCode: event.response?.getResponseCode(),
@@ -586,13 +590,13 @@ struct WebComponent {
         },
         // 页面开始加载，触发该回调
         onPageBegin: (event: OnPageBeginEvent) => {
-          console.log(`AtomicServiceWebLog onPageBegin event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onPageBegin event = ${JSON.stringify({
             url: event.url
           })}`);
         },
         // 页面加载完成，触发该回调
         onPageEnd: (event: OnPageEndEvent) => {
-          console.log(`AtomicServiceWebLog onPageEnd event=${JSON.stringify({
+          console.info(`AtomicServiceWebLog onPageEnd event = ${JSON.stringify({
             url: event.url
           })}`);
         }
@@ -632,25 +636,25 @@ struct WebComponent {
   build() {
     Column() {
       Button('accessForward').onClick(() => {
-        console.log(`AtomicServiceWebLog accessForward = ${this.controller.accessForward()}`);
+        console.info(`AtomicServiceWebLog accessForward = ${this.controller.accessForward()}`);
       })
       Button('accessBackward').onClick(() => {
-        console.log(`AtomicServiceWebLog accessBackward = ${this.controller.accessBackward()}`);
+        console.info(`AtomicServiceWebLog accessBackward = ${this.controller.accessBackward()}`);
       })
       Button('accessStep').onClick(() => {
-        console.log(`AtomicServiceWebLog accessStep = ${this.controller.accessStep(1)}`);
+        console.info(`AtomicServiceWebLog accessStep = ${this.controller.accessStep(1)}`);
       })
       Button('forward').onClick(() => {
-        console.log(`AtomicServiceWebLog forward = ${this.controller.forward()}`);
+        console.info(`AtomicServiceWebLog forward = ${this.controller.forward()}`);
       })
       Button('backward').onClick(() => {
-        console.log(`AtomicServiceWebLog backward = ${this.controller.backward()}`);
+        console.info(`AtomicServiceWebLog backward = ${this.controller.backward()}`);
       })
       Button('refresh').onClick(() => {
-        console.log(`AtomicServiceWebLog refresh = ${this.controller.refresh()}`);
+        console.info(`AtomicServiceWebLog refresh = ${this.controller.refresh()}`);
       })
       Button('loadUrl').onClick(() => {
-        console.log(`AtomicServiceWebLog loadUrl = ${this.controller.loadUrl('https://www.baidu.com/')}`);
+        console.info(`AtomicServiceWebLog loadUrl = ${this.controller.loadUrl('https://www.baidu.com/')}`);
       })
       Button('深色模式').onClick(() => {
         this.forceDarkAccess = !this.forceDarkAccess;
@@ -659,12 +663,12 @@ struct WebComponent {
         this.mixedMode = this.mixedMode == MixedMode.None ? MixedMode.All : MixedMode.None;
       })
       Button('点击').onClick(() => {
-        console.log(`AtomicServiceWebLog getUserAgent = ${this.controller.getUserAgent()}`);
-        console.log(`AtomicServiceWebLog getCustomUserAgent = ${this.controller.getCustomUserAgent()}`);
+        console.info(`AtomicServiceWebLog getUserAgent = ${this.controller.getUserAgent()}`);
+        console.info(`AtomicServiceWebLog getCustomUserAgent = ${this.controller.getCustomUserAgent()}`);
         this.controller.setCustomUserAgent('test' + this.num++);
 
-        console.log(`AtomicServiceWebLog getUserAgent after set = ${this.controller.getUserAgent()}`);
-        console.log(`AtomicServiceWebLog getCustomUserAgent after set = ${this.controller.getCustomUserAgent()}`);
+        console.info(`AtomicServiceWebLog getUserAgent after set = ${this.controller.getUserAgent()}`);
+        console.info(`AtomicServiceWebLog getCustomUserAgent after set = ${this.controller.getCustomUserAgent()}`);
       })
       AtomicServiceWeb({
         src: 'https://www.example.com',
@@ -673,10 +677,10 @@ struct WebComponent {
         forceDarkAccess: this.forceDarkAccess,
         controller: this.controller,
         onControllerAttached: () => {
-          console.log("AtomicServiceWebLog onControllerAttached call back success");
+          console.info("AtomicServiceWebLog onControllerAttached call back success");
         },
         onLoadIntercept: (event: OnLoadInterceptEvent) => {
-          console.log("AtomicServiceWebLog onLoadIntercept call back success " + JSON.stringify({
+          console.info("AtomicServiceWebLog onLoadIntercept call back success " + JSON.stringify({
             getRequestUrl: event.data.getRequestUrl(),
             getRequestMethod: event.data.getRequestMethod(),
             getRequestHeader: event.data.getRequestHeader(),
@@ -687,22 +691,22 @@ struct WebComponent {
           return false;
         },
         onProgressChange: (event: OnProgressChangeEvent) => {
-          console.log("AtomicServiceWebLog onProgressChange call back success " + JSON.stringify(event));
+          console.info("AtomicServiceWebLog onProgressChange call back success " + JSON.stringify(event));
         },
         onMessage: (event: OnMessageEvent) => {
-          console.log("onMessage call back success " + JSON.stringify(event));
+          console.info("onMessage call back success " + JSON.stringify(event));
         },
         onPageBegin: (event: OnPageBeginEvent) => {
-          console.log("onPageBegin call back success " + JSON.stringify(event));
+          console.info("onPageBegin call back success " + JSON.stringify(event));
         },
         onPageEnd: (event: OnPageEndEvent) => {
-          console.log("onPageEnd call back success " + JSON.stringify(event));
+          console.info("onPageEnd call back success " + JSON.stringify(event));
         },
         onHttpErrorReceive: (event: OnHttpErrorReceiveEvent) => {
-          console.log("onHttpErrorReceive call back success " + JSON.stringify(event));
+          console.info("onHttpErrorReceive call back success " + JSON.stringify(event));
         },
         onErrorReceive: (event: OnErrorReceiveEvent) => {
-          console.log("onErrorReceive call back success " + JSON.stringify(event));
+          console.info("onErrorReceive call back success " + JSON.stringify(event));
         }
       })
     }

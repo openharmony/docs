@@ -2,7 +2,7 @@
 
 - [Media Library Kit 简介](photoAccessHelper-overview.md)
 - [使用Picker选择媒体库资源](photoAccessHelper-photoviewpicker.md)
-- [使用安全控件保存媒体库资源](photoAccessHelper-savebutton.md)
+- [保存媒体库资源](photoAccessHelper-savebutton.md)
 - 动态照片
   - [访问和管理动态照片资源](photoAccessHelper-movingphoto.md)
   - [使用MovingPhotoView播放动态照片](movingphotoview-guidelines.md)

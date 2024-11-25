@@ -172,7 +172,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-Adds the auto-start applications (applications that automatically run at system startup) through the specified device administrator application. This API returns the result synchronously.
+Adds the auto-start applications (applications that automatically run at system startup) through the specified device administrator application. This API returns the result synchronously. Currently, this capability supports only 2-in-1 devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -224,7 +224,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-Removes the auto-start applications through the specified device administrator application. This API returns the result synchronously.
+Removes the auto-start applications through the specified device administrator application. This API returns the result synchronously. Currently, this capability supports only 2-in-1 devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -276,7 +276,7 @@ try {
 
 getAutoStartApps(admin: Want): Array\<Want>
 
-Obtains the auto-start applications through the specified device administrator application. This API returns the result synchronously.
+Obtains the auto-start applications through the specified device administrator application. This API returns the result synchronously. Currently, this capability supports only 2-in-1 devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
