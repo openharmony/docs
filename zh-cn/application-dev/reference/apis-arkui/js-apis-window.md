@@ -336,7 +336,7 @@ move接口配置信息。
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| displayId | number | 否 | 窗口所在屏幕ID，该参数应为整数。 |
+| displayId | number | 否 | 窗口将移动到的屏幕ID，该参数应为整数。如果传入的displayId错误，默认当前屏幕处理。 |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -1511,10 +1511,14 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 **示例：**
 
 ```ts
+import window from "@ohos.window";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let promise = windowClass.moveWindowToAsync(300, 300);
+  let moveConfiguration: window.MoveConfiguration = {
+    displayId: 0
+  }
+  let promise = windowClass.moveWindowToAsync(300, 300, moveConfiguration);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
     let rect = windowClass?.getWindowProperties().windowRect;
@@ -1570,10 +1574,14 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 **示例：**
 
 ```ts
+import window from "@ohos.window";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let promise = windowClass.moveWindowToGlobal(300, 300);
+  let moveConfiguration: window.MoveConfiguration = {
+    displayId: 0
+  }
+  let promise = windowClass.moveWindowToGlobal(300, 300, moveConfiguration);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
   }).catch((err: BusinessError) => {
