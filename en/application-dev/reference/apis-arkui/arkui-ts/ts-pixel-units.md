@@ -25,17 +25,21 @@ Conversion between px and other pixel units is supported.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| API                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| vp2px(value : number) : number | Converts a value in units of vp to a value in units of px.<br>This API can be used in ArkTS widgets since API version 9.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
-| px2vp(value : number) : number | Converts a value in units of px to a value in units of vp.<br>This API can be used in ArkTS widgets since API version 9.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
-| fp2px(value : number) : number | Converts a value in units of fp to a value in units of px.<br>This API can be used in ArkTS widgets since API version 9.|
-| px2fp(value : number) : number | Converts a value in units of px to a value in units of fp.<br>This API can be used in ArkTS widgets since API version 9.|
-| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.<br>This API can be used in ArkTS widgets since API version 9.|
-| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.<br>This API can be used in ArkTS widgets since API version 9.|
+| API                                               | Description                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------ |
+| vp2px(value : number) : number  | Converts a value in units of vp to a value in units of px.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
+| px2vp(value : number) : number  | Converts a value in units of px to a value in units of vp.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio of the default screen is used instead.|
+| fp2px(value : number) : number  | Converts a value in units of fp to a value in units of px.                      |
+| px2fp(value : number) : number  | Converts a value in units of px to a value in units of fp.                      |
+| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.                     |
+| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.                     |
 
 
 ## Example
+
+> **NOTE**
+>
+> When performing pixel unit conversions, directly calling the **vp2px**, **px2vp**, **fp2px**, **px2fp**, **lpx2px**, or **px2lpx** API may result in ambiguity regarding which UI instance it is tied to. To avoid this issue, obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then call the pixel unit conversion API under the specific **UIContext** instance.
 
 ```ts
 // xxx.ets
@@ -86,6 +90,7 @@ struct Example {
 
         Column() {
           Text("width(vp2px(220) + 'px')")
+            // You are advised to use this.getUIContext().vp2px().
             .width(vp2px(220) + 'px')
             .height(40)
             .backgroundColor(0xF9CF93)
@@ -106,6 +111,7 @@ struct Example {
 
         Column() {
           Text("width(px2vp(220))")
+            // You are advised to use this.getUIContext().px2vp().
             .width(px2vp(220))
             .height(40)
             .backgroundColor(0xF9CF93)

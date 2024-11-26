@@ -503,6 +503,7 @@ struct FatherControlChild {
 ### 示例2
 
 本示例通过将参数exposeInnerGesture设置为true，实现了一级Tabs容器在嵌套二级Tabs的场景下，能够屏蔽二级Tabs内置Swiper的滑动手势，从而触发一级Tabs内置Swiper滑动手势的功能。
+开发者自行定义变量来记录内层Tabs的索引值，通过该索引值判断当滑动达到内层Tabs的边界处时，触发回调返回屏蔽使外层Tabs产生滑动手势。
 
 ```ts
 // xxx.ets
@@ -513,6 +514,7 @@ struct Index {
   @State selectedIndex: number = 0
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
+  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {
@@ -544,6 +546,10 @@ struct Index {
               Column().width('100%').height('100%').backgroundColor(Color.Pink)
             }.tabBar(new SubTabBarStyle('pink'))
           }
+          .onAnimationStart((index: number, targetIndex: number) => {
+            console.info('ets onGestureRecognizerJudgeBegin child:' + targetIndex)
+            this.innerSelectedIndex = targetIndex
+          })
           .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
             others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
             console.info('ets onGestureRecognizerJudgeBegin child')
@@ -555,15 +561,17 @@ struct Index {
                 if (swiperTaget instanceof ScrollableTargetInfo) {
                   console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
                 }
-                if (swiperTaget instanceof ScrollableTargetInfo && (swiperTaget.isEnd() || swiperTaget.isBegin())) {
+                if (swiperTaget instanceof ScrollableTargetInfo && 
+                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // 此处判断swiperTaget.isEnd()或innerSelectedIndex === 内层Tabs的总数 - 1，表明内层Tabs滑动到尽头
+                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明内层Tabs滑动到开头
                   let panEvent = event as PanGestureEvent;
                   console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
-                  swiperTaget.isEnd())
-                  if (panEvent && panEvent.offsetX < 0 && swiperTaget.isEnd()) {
+                  swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
+                  if (panEvent && panEvent.offsetX < 0 && (swiperTaget.isEnd() || this.innerSelectedIndex === 1)) {
                     console.info('ets onGestureRecognizerJudgeBegin child reject end')
                     return GestureJudgeResult.REJECT;
                   }
-                  if (panEvent && panEvent.offsetX > 0 && swiperTaget.isBegin()) {
+                  if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
                     console.info('ets onGestureRecognizerJudgeBegin child reject begin')
                     return GestureJudgeResult.REJECT;
                   }

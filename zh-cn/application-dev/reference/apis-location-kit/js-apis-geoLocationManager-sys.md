@@ -201,7 +201,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 ## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
 
-on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void
 
 订阅定位业务所需数据的变化，主要包含WiFi和蓝牙扫描信息；根据入参决定是否启动WiFi和蓝牙扫描。使用callback异步回调。
 
@@ -235,22 +235,21 @@ on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callb
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
-      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+      console.info('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locatingRequiredDataChange')<sup>10+</sup>
 
-off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void
 
 取消订阅定位业务所需数据的变化，并停止WiFi和蓝牙扫描。
 
@@ -282,22 +281,21 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
-      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+      console.info('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
       geoLocationManager.off('locatingRequiredDataChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.enableLocation
 
-enableLocation(callback: AsyncCallback&lt;void&gt;): void;
+enableLocation(callback: AsyncCallback&lt;void&gt;): void
 
 打开位置服务，使用callback异步回调。
 
@@ -329,7 +327,6 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.enableLocation((err) => {
           if (err) {
@@ -337,7 +334,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -375,22 +372,22 @@ enableLocation(): Promise&lt;void&gt;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.enableLocation().then(() => {
-          console.log('promise, enableLocation succeed');
+          console.info('promise, enableLocation succeed');
       })
       .catch((error:BusinessError) => {
           console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.disableLocation
 
-disableLocation(): void;
+disableLocation(): void
 
 关闭位置服务。
 
@@ -418,13 +415,13 @@ disableLocation(): void;
   try {
       geoLocationManager.disableLocation();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.enableLocationMock
 
-enableLocationMock(): void;
+enableLocationMock(): void
 
 使能位置模拟功能。
 
@@ -450,14 +447,14 @@ enableLocationMock(): void;
   try {
       geoLocationManager.enableLocationMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.disableLocationMock
 
-disableLocationMock(): void;
+disableLocationMock(): void
 
 去使能位置模拟功能。
 
@@ -483,14 +480,14 @@ disableLocationMock(): void;
   try {
       geoLocationManager.disableLocationMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setMockedLocations
 
-setMockedLocations(config: LocationMockConfig): void;
+setMockedLocations(config: LocationMockConfig): void
 
 设置模拟的位置信息，后面会以该接口中携带的时间间隔上报模拟位置。
 
@@ -534,14 +531,14 @@ setMockedLocations(config: LocationMockConfig): void;
       geoLocationManager.enableLocationMock();
       geoLocationManager.setMockedLocations(config);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.enableReverseGeocodingMock
 
-enableReverseGeocodingMock(): void;
+enableReverseGeocodingMock(): void
 
 使能逆地理编码模拟功能。
 
@@ -566,14 +563,14 @@ enableReverseGeocodingMock(): void;
   try {
       geoLocationManager.enableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.disableReverseGeocodingMock
 
-disableReverseGeocodingMock(): void;
+disableReverseGeocodingMock(): void
 
 去使能逆地理编码模拟功能。
 
@@ -598,14 +595,14 @@ disableReverseGeocodingMock(): void;
   try {
       geoLocationManager.disableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setReverseGeocodingMockInfo
 
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void;
+setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void
 
 设置逆地理编码模拟功能的配置信息，包含了位置和地名的对应关系，后续进行逆地理编码查询时如果位置信息位于配置信息中，就返回对应的地名。
 
@@ -647,14 +644,14 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
       geoLocationManager.enableReverseGeocodingMock();
       geoLocationManager.setReverseGeocodingMockInfo(mockInfos);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.isLocationPrivacyConfirmed
 
-isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
+isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
 
@@ -692,14 +689,14 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
   try {
       let isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setLocationPrivacyConfirmStatus
 
-setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void;
+setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
 
@@ -735,14 +732,14 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
   try {
       geoLocationManager.setLocationPrivacyConfirmStatus(1, true);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getLocatingRequiredData<sup>10+</sup>
 
-getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;;
+getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;
 
 单次获取定位业务所需数据，包含WiFi蓝牙扫描信息，使用Promise方式异步返回结果。
 
@@ -780,24 +777,24 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.getLocatingRequiredData(config).then((result) => {
-          console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
+          console.info('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
       .catch((error:BusinessError) => {
           console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('locationIconStatusChange')<sup>12+</sup>
 
-on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void;
+on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void
 
 订阅定位图标状态变化。使用callback异步回调。
 
@@ -828,19 +825,19 @@ on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
   let callback = (code: geoLocationManager.LocationIconStatus):void => {
-      console.log('LocationIconStatus: ' + JSON.stringify(code));
+      console.info('LocationIconStatus: ' + JSON.stringify(code));
   }
   try {
       geoLocationManager.on('locationIconStatusChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locationIconStatusChange')<sup>12+</sup>
 
-off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void;
+off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void
 
 取消订阅定位图标状态的变化。
 
@@ -871,20 +868,20 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
   let callback = (code: geoLocationManager.LocationIconStatus):void => {
-      console.log('LocationIconStatus: ' + JSON.stringify(code));
+      console.info('LocationIconStatus: ' + JSON.stringify(code));
   }
   try {
       geoLocationManager.on('locationIconStatusChange', callback);
 	  geoLocationManager.off('locationIconStatusChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getLocationIconStatus<sup>12+</sup>
 
-getLocationIconStatus(): LocationIconStatus;
+getLocationIconStatus(): LocationIconStatus
 
 获取当前的定位图标状态。
 
@@ -915,6 +912,6 @@ getLocationIconStatus(): LocationIconStatus;
   try {
       let iconStatus = geoLocationManager.getLocationIconStatus();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```

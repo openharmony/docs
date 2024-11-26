@@ -141,7 +141,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
     return decryptBlob;
   }
-  async function main() {
+  function main() {
     let message = "This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
       "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
       "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
@@ -151,7 +151,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
       "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
       "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!";
     let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");  // Create an AsyKeyGenerator object.
-    let keyPair = await asyKeyGenerator.generateKeyPair(); // Randomly generate an RSA key pair.
+    let keyPair = asyKeyGenerator.generateKeyPairSync(); // Randomly generate an RSA key pair.
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = rsaEncryptBySegment(keyPair.pubKey, plainText);
     let decryptText = rsaDecryptBySegment(keyPair.priKey, encryptText);

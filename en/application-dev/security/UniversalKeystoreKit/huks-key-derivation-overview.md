@@ -14,7 +14,7 @@ The key management service specifications include mandatory specifications and o
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
 <!--DelEnd-->
 
-A derived key is the key session result obtained using the Init-Update-Finish mechanism. It can be managed by HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.
+A derived key is the key session result obtained using the Init-Update-Finish mechanism. It can be managed by HUKS (the key is always in a [TEE](huks-concepts.md)) or independently managed by the service based on service requirements.
 
 | Algorithm/MD| Algorithm/Length of the Base Key| Available Algorithm/Length of the Derived Key| API Version| <!--DelCol5-->Mandatory|
 | -------- | -------- | -------- | -------- | -------- |

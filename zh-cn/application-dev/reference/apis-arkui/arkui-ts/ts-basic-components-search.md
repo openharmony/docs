@@ -940,8 +940,10 @@ type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
 
 ##  示例
 
-### 示例1
-Search基本使用示例。
+### 示例1（设置与获取光标位置）
+
+该示例通过controller实现了光标位置的设置与获取的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -987,8 +989,10 @@ struct SearchExample {
 
 ![search](figures/search.gif)
 
-### 示例2
-searchButton、searchIcon、cancelButton属性接口使用示例。
+### 示例2（设置搜索和删除图标）
+
+该示例通过searchButton、searchIcon、cancelButton属性展示了设置搜索和删除图标的效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1033,8 +1037,10 @@ struct SearchExample {
 ![searchButton](figures/searchButton.gif)
 
 
-### 示例3
-Search绑定自定义键盘使用示例。
+### 示例3（设置自定义键盘）
+
+该示例通过customKeyboard属性实现了自定义键盘的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1075,8 +1081,10 @@ struct SearchExample {
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
 
-### 示例4
-enterKeyType属性接口使用示例。
+### 示例4（设置输入法回车键类型）
+
+该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1107,9 +1115,9 @@ struct SearchExample {
 
 ![searchEnterKeyType](figures/searchEnterKey.gif)
 
-### 示例5
+### 示例5（设置文本样式）
 
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -1156,13 +1164,15 @@ struct SearchExample {
 
 ![SearchDecoration](figures/search_decoration.png)
 
-### 示例6
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+### 示例6（设置文字特性效果）
+
+该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct search {
+struct SearchExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1182,11 +1192,12 @@ struct search {
 ```
 ![fontFeature](figures/searchFontFeature.png)
 
-### 示例7
+### 示例7（自定义键盘避让）
 
-自定义键盘弹出发生避让示例。
+该示例通过自定义键盘实现了键盘避让的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct SearchExample {
@@ -1255,9 +1266,9 @@ struct SearchExample {
 
 ![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
 
-### 示例8
+### 示例8（设置文本自适应）
 
-该示例实现了使用minFontSize及maxFontSize设置文本自适应字号。
+该示例通过minFontSize、maxFontSize属性展示了文本自适应字号的效果。
 
 ```ts
 // xxx.ets
@@ -1285,9 +1296,9 @@ struct SearchExample {
 
 ![searchAdaptFont](figures/search_adapt_font.png)
 
-### 示例9
+### 示例9（支持插入和删除回调）
 
-该示例展示输入框支持插入和删除回调。
+该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的功能。
 
 ```ts
 // xxx.ets
@@ -1339,15 +1350,15 @@ struct SearchExample {
 
 ![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)
 
-### 示例10
+### 示例10（文本扩展自定义菜单）
 
-editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Index {
+struct SearchExample {
   @State text: string = 'Search editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
@@ -1406,9 +1417,9 @@ struct Index {
 
 ![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
 
-### 示例11
+### 示例11（设置symbol类型清除按钮）
 
-searchIcon和cancelButton使用SymbolGlyphModifier设置图标样式示例。
+该示例通过searchIcon、cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
 
 ```ts
 // xxx.ets

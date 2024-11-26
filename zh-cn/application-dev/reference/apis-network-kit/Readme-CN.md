@@ -23,7 +23,7 @@
   - [@ohos.net.statistics (流量管理)（系统接口）](js-apis-net-statistics-sys.md)
   - [@ohos.net.vpn (VPN管理)（系统接口）](js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (VPN增强管理)（系统接口）](js-apis-net-vpnExtension-sys.md)
-  - [@ohos.net.netFirewall (网络防火墙)（系统接口）](js-apis-net-netfirewall.md)
+  - [@ohos.net.netFirewall (网络防火墙)（系统接口）](js-apis-net-netfirewall-sys.md)
   <!--DelEnd-->
 - C API
   - 模块

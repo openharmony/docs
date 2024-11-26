@@ -4357,6 +4357,35 @@
 
 **起始版本**：13
 
+
+### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+
+允许应用禁用本应用的代码运行时完整性保护。
+
+针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+
+允许应用申请可写可执行匿名内存。
+
+针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
 允许应用设置或移除其使用UDMF支持的数据分享范围。

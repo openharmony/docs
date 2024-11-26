@@ -480,9 +480,7 @@ windowStage.loadContent('pages/Index', this.storage);
 import { router } from '@kit.ArkUI';
 
 // 通过getShared接口获取stage共享的LocalStorage实例
-let storage = LocalStorage.getShared()
-
-@Entry(storage)
+@Entry({ storage: LocalStorage.getShared() })
 @Component
 struct Index {
   // 可以使用@LocalStorageLink/Prop与LocalStorage实例中的变量建立联系
@@ -512,9 +510,7 @@ struct Index {
 // Page.ets
 import { router } from '@kit.ArkUI';
 
-let storage = LocalStorage.getShared()
-
-@Entry(storage)
+@Entry({ storage: LocalStorage.getShared() })
 @Component
 struct Page {
   @LocalStorageLink('PropA') propA: number = 2;

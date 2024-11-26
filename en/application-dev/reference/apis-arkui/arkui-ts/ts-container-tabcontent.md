@@ -32,7 +32,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; text?: string | Resource })
 
-Content displayed on the tab bar.
+Sets the content displayed on the tab bar.
 
 If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.
 

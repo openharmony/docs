@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块API使用时建议放在worker线程或者taskpool中做网络操作，否则可能会导致UI线程卡顿。
 
 ## 导入模块
 
@@ -6931,6 +6932,7 @@ TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双�
 | useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
 | cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。              |
 
 ## Protocol<sup>9+</sup>
 
