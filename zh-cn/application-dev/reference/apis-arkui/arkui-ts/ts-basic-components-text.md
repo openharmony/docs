@@ -80,7 +80,7 @@ textOverflow(options: TextOverflowOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [TextOverflowOptions](#textoverflowoptions13对象说明) | 是   | 文本超长显示方式对象 |
+| options | [TextOverflowOptions](#textoverflowoptions14对象说明) | 是   | 文本超长显示方式对象 |
 
 ### maxLines
 
@@ -887,13 +887,13 @@ selectedBackgroundColor(value: ResourceColor)
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
 
-## TextOverflowOptions<sup>13+</sup>对象说明
+## TextOverflowOptions<sup>14+</sup>对象说明
 
 文本超长显示方式对象。
 
-**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

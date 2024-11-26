@@ -28,15 +28,15 @@ Marquee(options: MarqueeOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [MarqueeOptions](#marqueeoptions13对象说明) | 是 | 配置跑马灯组件的参数。|
+| options | [MarqueeOptions](#marqueeoptions14对象说明) | 是 | 配置跑马灯组件的参数。|
 
-## MarqueeOptions<sup>13+</sup>对象说明
+## MarqueeOptions<sup>14+</sup>对象说明
 
 Marquee初始化参数。
 
-**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
