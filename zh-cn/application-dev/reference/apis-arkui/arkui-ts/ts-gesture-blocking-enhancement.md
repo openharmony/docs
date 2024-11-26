@@ -503,6 +503,7 @@ struct FatherControlChild {
 ### 示例2
 
 本示例通过将参数exposeInnerGesture设置为true，实现了一级Tabs容器在嵌套二级Tabs的场景下，能够屏蔽二级Tabs内置Swiper的滑动手势，从而触发一级Tabs内置Swiper滑动手势的功能。
+开发者自行定义变量来记录内层Tabs的索引值，通过该索引值判断当滑动达到内层Tabs的边界处时，触发回调返回屏蔽使外层Tabs产生滑动手势。
 
 ```ts
 // xxx.ets
@@ -513,7 +514,7 @@ struct Index {
   @State selectedIndex: number = 0
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0
+  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {
@@ -561,8 +562,8 @@ struct Index {
                   console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
                 }
                 if (swiperTaget instanceof ScrollableTargetInfo && 
-                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // 此处判断swiperTaget.isEnd()为true或当前Tabs索引为内层Tabs的总数-1时，表明内层Tabs滑动到尽头
-                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // 此处判断swiperTaget.isBegin()为true或当前Tabs索引为0时，表明内层Tabs滑动到开头
+                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // 此处判断swiperTaget.isEnd()或innerSelectedIndex === 内层Tabs的总数 - 1，表明内层Tabs滑动到尽头
+                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明内层Tabs滑动到开头
                   let panEvent = event as PanGestureEvent;
                   console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
                   swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
