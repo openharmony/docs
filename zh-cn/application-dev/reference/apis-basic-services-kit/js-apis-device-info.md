@@ -37,7 +37,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。<br/>示例：bootloater |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）。<br/>示例：arm64-v8a |
 | securityPatchTag | string | 是 | 否 | 安全补丁级别。<br/>示例：2021-01-01 |
-| displayVersion | string | 是 | 否 | 产品版本。<br/>示例：XXX X.X.X.X |
+| displayVersion | string | 是 | 否 | 产品版本。<br/>示例：XXX X.X.X.X<!--RP1--><!--RP1End--> |
 | incrementalVersion | string | 是 | 否 | 差异版本号。 |
 | osReleaseType | string | 是 | 否 | 系统的发布类型，取值为：<br/>-&nbsp;Canary：面向特定开发者发布的早期预览版本，不承诺API稳定性。<br/>-&nbsp;Beta：面向开发者公开发布的Beta版本，不承诺API稳定性。<br/>-&nbsp;Release：面向开发者公开发布的正式版本，承诺API稳定性。<br/>示例：Canary\\Beta\\Release |
 | osFullName | string | 是 | 否 | 系统版本，版本格式OpenHarmony-x.x.x.x,x为数值。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br/>示例：Openharmony-5.0.0.1 |
@@ -55,7 +55,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
 | udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID  |
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
-| distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP1--><!--RP1End-->  |
+| distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP2--><!--RP2End-->  |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | distributionOSApiName<sup>13+</sup> | String | 是 | 否 | 发行版系统api版本名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。 |
