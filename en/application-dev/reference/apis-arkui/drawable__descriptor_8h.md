@@ -7,6 +7,8 @@ Declares the APIs of **NativeDrawableDescriptor**.
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <arkui/drawable_descriptor.h>
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Since**: 12
