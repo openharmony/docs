@@ -435,6 +435,7 @@ bm dump-target-overlay -b com.ohos.app -m entry
 **错误信息**
 
 Failed to install bundle, no signature file.
+
 ![示例图](figures/zh-cn_image_0000001389116960.png)
 
 **错误描述**
@@ -493,6 +494,7 @@ Error: install parse native so failed.
 **错误信息**
 
 Error: install parse profile prop check error.
+
 ![示例图](figures/zh-cn_image_0000001585361412.png)
 
 **错误描述**
@@ -563,6 +565,7 @@ Error: install parse profile prop check error.
 **错误信息**
 
 Error: dependent module does not exist.
+
 ![示例图](figures/zh-cn_image_0000001560338986.png)
 
 **错误描述**
@@ -584,7 +587,8 @@ Error: dependent module does not exist.
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 
-Error: install parse profile missing prop.<br>
+Error: install parse profile missing prop.
+
 ![示例图](figures/zh-cn_image_0000001559130596.png)
 
 **错误描述**
@@ -613,7 +617,8 @@ Error: install parse profile missing prop.<br>
 ### 9568258 安装应用的releaseType与已安装应用的releaseType不相同
 **错误信息**
 
-Error: install releaseType target not same.<br>
+Error: install releaseType target not same.
+
 ![示例图](figures/zh-cn_image_0000001609976041.png)
 
 **错误描述**
@@ -633,6 +638,7 @@ Error: install releaseType target not same.<br>
 **错误信息**
 
 Error: signature verification failed due to not trusted app source.
+
 ![示例图](figures/zh-cn_image_0000001585042216.png)
 
 **错误描述**
@@ -661,6 +667,7 @@ Error: signature verification failed due to not trusted app source.
 **错误信息**
 
 Error: install failed due to grant request permissions failed.
+
 ![示例图](figures/zh-cn_image_0000001585201996.png)
 
 **错误描述**
@@ -680,6 +687,7 @@ Error: install failed due to grant request permissions failed.
 **错误信息**
 
 Error: install failed due to older sdk version in the device.
+
 ![示例图](figures/zh-cn_image_0000001635521909.png)
 
 **错误描述**
@@ -705,6 +713,7 @@ Error: install failed due to older sdk version in the device.
 **错误信息**
 
 Error: install sign info inconsistent.
+
 ![示例图](figures/zh-cn_image_0000001635761329.png)
 
 **错误描述**
@@ -750,6 +759,7 @@ Error: verify signature failed.
 **错误信息**
 
 Error: install permission denied.
+
 ![示例图](figures/zh-cn_image_9568266.png)
 
 **错误描述**
