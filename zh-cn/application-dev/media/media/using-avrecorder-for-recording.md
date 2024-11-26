@@ -23,8 +23,8 @@
 | 权限名 | 说明 | 授权方式 | 权限级别 |
 | ------ | ----- | --------| ------- |
 | ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。| user_grant | normal |
-| ohos.permission.READ_AUDIO | 允许读取用户公共目录的音频文件。| user_grant | normal |
-| ohos.permission.WRITE_AUDIO | 允许修改用户公共目录的音频文件。| user_grant | normal |
+| ohos.permission.READ_AUDIO | 允许读取用户公共目录的音频文件。| user_grant | system_basic |
+| ohos.permission.WRITE_AUDIO | 允许修改用户公共目录的音频文件。| user_grant | system_basic |
 
 ## 开发步骤及注意事项
 

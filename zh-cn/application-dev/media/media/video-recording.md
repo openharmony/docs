@@ -29,8 +29,8 @@
 | ------ | ----- | --------| ------- |
 | ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。| user_grant | normal |
 | ohos.permission.CAMERA | 允许应用使用相机。| user_grant | normal |
-| ohos.permission.WRITE_IMAGEVIDEO | 允许修改用户公共目录的图片或视频文件。| user_grant | normal |
-| ohos.permission.READ_IMAGEVIDEO | 允许读取用户公共目录的图片或视频文件。| user_grant | normal |
+| ohos.permission.WRITE_IMAGEVIDEO | 允许修改用户公共目录的图片或视频文件。| user_grant | system_basic |
+| ohos.permission.READ_IMAGEVIDEO | 允许读取用户公共目录的图片或视频文件。| user_grant | system_basic |
 
 ## 开发步骤及注意事项
 
@@ -79,7 +79,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    > **说明：**
    >
    > 配置参数需要注意：
-   
+
    > - 配置参数之前需要确保完成对应权限的申请，请参考[申请权限](#申请权限)。
    >
    > - prepare接口的入参avConfig中仅设置视频相关的配置参数，如示例代码所示。
