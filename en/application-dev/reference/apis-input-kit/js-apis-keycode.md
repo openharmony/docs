@@ -14,7 +14,7 @@ import { KeyCode } from '@kit.InputKit';
 
 ## KeyCode
 
-Keycode value.
+Enumerates keycode values.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -24,11 +24,11 @@ Keycode value.
 | KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
-| KEYCODE_MEDIA_PLAY_PAUSE         |  10 | Play/Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
-| KEYCODE_MEDIA_STOP               |  11 | Stop key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_PLAY_PAUSE        |  10 | Play/Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| KEYCODE_MEDIA_STOP              |  11 | Stop key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_MEDIA_NEXT               |  12 | Next key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
 | KEYCODE_MEDIA_PREVIOUS           |  13 | Previous key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
-| KEYCODE_MEDIA_REWIND             |  14 | Rewind key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_REWIND          |  14 | Rewind key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_MEDIA_FAST_FORWARD       |  15 | Fast Forward key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_VOLUME_UP                |  16 | Volume Up key                      |
 | KEYCODE_VOLUME_DOWN              |  17 | Volume Down key                      |
@@ -50,8 +50,8 @@ Keycode value.
 | KEYCODE_9                        |  2009 | Key 9                      |
 | KEYCODE_STAR                     |  2010 | Key *                      |
 | KEYCODE_POUND                    |  2011 | Key #                      |
-| KEYCODE_DPAD_UP                  |  2012 |  Up key on D-pad                     |
-| KEYCODE_DPAD_DOWN                |  2013 |  Down key on D-pad                     |
+| KEYCODE_DPAD_UP                  |  2012 | Up key on D-pad                     |
+| KEYCODE_DPAD_DOWN                |  2013 | Down key on D-pad                     |
 | KEYCODE_DPAD_LEFT                |  2014 | Left key on D-pad                     |
 | KEYCODE_DPAD_RIGHT               |  2015 | Right key on D-pad                     |
 | KEYCODE_DPAD_CENTER              |  2016 | Center key on D-pad                    |
@@ -188,7 +188,7 @@ Keycode value.
 | KEYCODE_FIND                     |  2623 | Find key                        |
 | KEYCODE_CUT                      |  2624 | Cut key                        |
 | KEYCODE_HELP                     |  2625 | Help key                        |
-| KEYCODE_CALC                     |  2626 | Calc key, used to start the calculator application       |
+| KEYCODE_CALC                     |  2626 | Calc key, which is used to start the calculator application       |
 | KEYCODE_FILE                     |  2627 | File key                       |
 | KEYCODE_BOOKMARKS                |  2628 | Bookmarks key                        |
 | KEYCODE_NEXT                     |  2629 | Next key                      |
@@ -211,8 +211,8 @@ Keycode value.
 | KEYCODE_FINANCE                  |  2647 | Finance key                        |
 | KEYCODE_CANCEL                   |  2648 | Cancel key                        |
 | KEYCODE_KBDILLUM_TOGGLE          |  2649 | Keyboard Illumination Toggle key                    |
-| KEYCODE_KBDILLUM_DOWN            |  2650 | Keyboard Illumination Up key                    |
-| KEYCODE_KBDILLUM_UP              |  2651 | Keyboard Illumination Down key                    |
+| KEYCODE_KBDILLUM_DOWN            |  2650 | Keyboard Illumination Down key                    |
+| KEYCODE_KBDILLUM_UP              |  2651 | Keyboard Illumination Up key                    |
 | KEYCODE_SEND                     |  2652 | Send key                        |
 | KEYCODE_REPLY                    |  2653 | Reply key                        |
 | KEYCODE_FORWARDMAIL              |  2654 | Forward Mail key                      |
@@ -274,7 +274,7 @@ Keycode value.
 | KEYCODE_MESSENGER                |  2710 | Messenger key                        |
 | KEYCODE_BRIGHTNESS_TOGGLE        |  2711 | Brightness Toggle key                      |
 | KEYCODE_SPELLCHECK               |  2712 | Spell Check key                     |
-| KEYCODE_COFFEE                   |  2713 | Coffee key, used to launch screen lock or screen saver                 |
+| KEYCODE_COFFEE                   |  2713 | Coffee key, which is used to launch screen lock or screen saver                 |
 | KEYCODE_MEDIA_REPEAT             |  2714 | Media Repeat key                      |
 | KEYCODE_IMAGES                   |  2715 | Images key                        |
 | KEYCODE_BUTTONCONFIG             |  2716 | Button Configuration key                      |
@@ -293,12 +293,12 @@ Keycode value.
 | KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Assist_Next_Group key, used to switch to the next input method in the input group.              |
 | KEYCODE_KBDINPUTASSIST_ACCEPT    |  2730 | Keyboard Input-assisted Accept key          |
 | KEYCODE_KBDINPUTASSIST_CANCEL    |  2731 | Keyboard Input-assisted Cancel key          |
-| KEYCODE_FRONT                    |  2800 | Front key, used to launch the windshield defogger                  |
+| KEYCODE_FRONT                    |  2800 | Front key, which is used to launch the windshield defogger                  |
 | KEYCODE_SETUP                    |  2801 | Setup key                        |
 | KEYCODE_WAKEUP                   |  2802 | Wakeup key                        |
 | KEYCODE_SENDFILE                 |  2803 | Send File key                     |
 | KEYCODE_DELETEFILE               |  2804 | Delete File key                     |
-| KEYCODE_XFER                     |  2805 | XFER key, used to start file transfer               |
+| KEYCODE_XFER                     |  2805 | XFER key, which is used to start file transfer               |
 | KEYCODE_PROG1                    |  2806 | Program key 1                       |
 | KEYCODE_PROG2                    |  2807 | Program key 2                       |
 | KEYCODE_MSDOS                    |  2808 | MS-DOS key           |
