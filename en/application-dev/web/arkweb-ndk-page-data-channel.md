@@ -1,10 +1,24 @@
 # Establishing a Data Channel Between the Application and the Frontend Page (C/C++)
 
-The following provides native APIs to implement communication between the frontend page and the application, which avoid unnecessary switching to the ArkTS environment and allow callback to be reported in non-UI threads to avoid UI blocking. In addition, messages and callbacks can be reported in non-UI threads to avoid UI blocking. Currently, only the string and buffer can be sent.
+The native **PostWebMessage** is provided to implement communication between the frontend page and the application, which reduces unnecessary switching to the ArkTS environment and allows messages and callbacks to be reported in non-UI threads to avoid UI blocking. Currently, only the string and buffer can be sent.
 
-## Binding the Native ArkWeb Component
+## Applicable Application Architecture
 
-- The ArkWeb component is declared on the ArkTS side. You need to define a **webTag** and pass it to the C++ application through the Node-API. When the ArkWeb native API is called, **webTag** uniquely identifies the corresponding component.
+If an application is developed using both ArkTS and C++, or the application architecture is close to the applet architecture and has a built-in C++ environment, you are advised to use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi) provided by ArkWeb on the native side to implement the **PostWebMessage** feature.
+
+  ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
+
+  The preceding figure shows a general architecture of applets with universal applicability. In this architecture, the logical layer depends on a JavaScript runtime built in an application, and the runtime runs in an existing C++ environment. The logic layer can communicate with the view layer (in which ArkWeb as the renderer) in the C++ environment through the native API, instead of using the ArkTS **PostWebMessage** API in the ArkTS environment.
+
+  The figure on the left shows that the application needs to invoke the ArkTS environment and then the C++ environment to build an applet using the ArkTS **PostWebMessage** API. Using the native **PostWebMessage** API is more efficient because the switch between the ArkTS and C++ environments is not required, as shown in the figure on the right.
+
+  ![arkweb_postwebmessage_diff](figures/arkweb_postwebmessage_diff_en.png)
+
+## Using the Native API to Implement PostWebMessage
+
+### Binding the Native API to ArkWeb
+
+- The ArkWeb component is declared on the ArkTS side. You need to define a **webTag** and pass it to the C++ side of the application through the Node-API. When the ArkWeb native API is called, **webTag** uniquely identifies the corresponding component.
 
 - ArkTS side:
 
@@ -14,7 +28,7 @@ The following provides native APIs to implement communication between the fronte
   webTag: string = 'ArkWeb1';
   controller: webview.WebviewController = new webview.WebviewController();
   ...
-  // Use aboutToAppear() to pass the webTag to C++ through the native API. The webTag uniquely identifies the C++ ArkWeb component.
+  // Use aboutToAppear() to pass webTag to C++ through the Node-API. The webTag uniquely identifies the C++ ArkWeb component.
   aboutToAppear() {
     console.info("aboutToAppear")
     // Initialize the NDK API of the Web component.
@@ -23,9 +37,9 @@ The following provides native APIs to implement communication between the fronte
   ...
   ```
 
-## Obtaining the Native API Struct 
+### Obtaining API Struct Using the Native API
 
-Obtain the ArkWeb native APIs using [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_ark_web___any_native_a_p_i.md#arkweb_anynativeapi). You can pass different parameters to obtain the corresponding function pointer structs. The following APIs are provided: [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi).
+To invoke the native APIs in the API structs, obtain the API structs on the ArkWeb native side first. You can pass different types of parameters in the [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) function to obtain the corresponding function pointer structs. The following APIs are provided: [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi).
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -38,9 +52,9 @@ Obtain the ArkWeb native APIs using [OH_ArkWeb_GetNativeAPI](../reference/apis-a
   webMessage = reinterpret_cast<ArkWeb_WebMessageAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_WEB_MESSAGE));
   ```
 
-## Sample Code
+### Sample Code
 
-Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether the function struct has the corresponding pointer before calling an API to avoid crash caused by mismatch between the SDK and the device ROM. [createWebMessagePorts](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#createwebmessageports), [postWebMessage](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#postwebmessage) and [close](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#close) must be used in the UI thread.
+Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether the function struct has the corresponding pointer before calling an API to avoid crash caused by mismatch between the SDK and the device ROM. You must use [createWebMessagePorts](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#createwebmessageports), [postWebMessage](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#postwebmessage) and [close](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#close) in the UI thread.
 
 * Frontend page code:
 
@@ -418,7 +432,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
   }
   ```
 
-* ArkTS APIs exposed on the native APIs:
+* ArkTS APIs exposed on the Node-API side:
 
   ```javascript
   // entry/src/main/cpp/types/libentry/index.d.ts
@@ -435,7 +449,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
   export const postMessageThread: (webName: string) => void;
   ```
 
-* Compilation configuration of the native APIs:
+* Compilation configuration on Node-API:
 
   ```c++
   # entry/src/main/cpp/CMakeLists.txt
@@ -465,7 +479,7 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
   target_link_libraries(entry PUBLIC libace_napi.z.so ${hilog-lib} libohweb.so)
   ```
 
-* Native API code:
+* Node-API layer code:
 
   ```c++
   // entry/src/main/cpp/hello.cpp
@@ -867,5 +881,3 @@ Use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missi
 
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
-
-<!--no_check-->
