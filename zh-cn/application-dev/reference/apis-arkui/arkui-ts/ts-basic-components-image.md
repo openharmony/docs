@@ -249,7 +249,7 @@ fitOriginalSize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                             |
 | ------ | ------- | ---- | ------------------------------------------------ |
-| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸<br/>默认值：false |
+| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
 
 ### fillColor
 
