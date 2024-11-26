@@ -1005,11 +1005,34 @@ makeUniqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let screenIds: Array<number> = [1001, 1002];
-screen.makeUniqueScreen(screenIds).then((data: Array<number>) => {
-  console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(data));
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
+
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let screenIds: Array<number> = [screenClass.id];
+  let promise: Promise<Array<number>> = screen.makeUniqueScreen(modeIndex);
+  promise.then((displayIds: Array<number>) => {
+    console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(displayIds));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);
+  });
 }).catch((err: BusinessError) => {
-  console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
 });
 ```
 
@@ -1057,7 +1080,7 @@ screen.makeUniqueScreen(screenIds).then((data: Array<number>) => {
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。                                                       |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。                                                     |
-| edId<sup>13+</sup> | string                                        | 是   | 否   | 屏幕的edId。                                                     |
+| edId<sup>13+</sup> | string                                        | 是   | 否   | 屏幕edId。                                                     |
 
 ### setOrientation
 
