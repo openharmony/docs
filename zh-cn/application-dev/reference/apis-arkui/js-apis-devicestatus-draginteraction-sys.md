@@ -180,7 +180,7 @@ setDragSwitchState(enabled: boolean): void
 
 | 参数名   | 类型                               | 必填 | 说明                                                                   |
 | -------- | ---------------------------------- | ---- | ---------------------------------------------------------------------- |
-| enabled  | boolean                            | 是   | 设置开关状态：false-关，true-开。                                              |
+| enabled  | boolean                            | 是   | 设置开关状态。<br>false：关闭，true：开启。                                              |
 
 **错误码：**
 
@@ -211,7 +211,7 @@ setAppDragSwitchState(enabled: boolean, bundleName: string): void
 
 | 参数名      | 类型                               | 必填 | 说明                                                                   |
 | --------   | ---------------------------------- | ---- | ---------------------------------------------------------------------- |
-| enabled    | boolean                            | 是   | 设置开关状态：false-关，true-开。                                              |
+| enabled    | boolean                            | 是   | 设置开关状态。<br>false：关闭，true：开启。                                              |
 | bundleName | string                             | 是   | 设置指定应用包名开关状态。                                               |
 
 **错误码：**
