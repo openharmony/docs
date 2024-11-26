@@ -863,10 +863,6 @@ arrayList.trimToCurrentLength();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang

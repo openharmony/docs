@@ -7,7 +7,7 @@ Data transferred in XML format must be parsed before being put in use. Generally
 The **xml** module provides the **XmlPullParser** class to parse XML files. The input is an object of the ArrayBuffer or DataView type containing XML text, and the output is the parsed information.
 
 
-**Table 1** XML parsing options
+  **Table 1** XML parsing options
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -34,6 +34,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
     ```
 
 2. Create an **XmlPullParser** object.
+
    The **XmlPullParser** object can be created based on an object of the ArrayBuffer or DataView type.
 
     ```ts
