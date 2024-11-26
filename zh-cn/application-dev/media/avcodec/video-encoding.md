@@ -400,7 +400,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
-    - buffer： 回调函数OnNewOutputBuffer传入的参数，Surface模式调用者无法通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
+    - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
     ```c++
     // 获取编码后信息
     OH_AVCodecBufferAttr info;
@@ -686,7 +686,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     送入输入队列进行编码，以下示例中：
 
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
     - stride: 获取到的buffer数据的跨距。
@@ -795,7 +795,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以下示例中：
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识。
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
 
     与“8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
