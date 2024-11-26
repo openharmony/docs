@@ -2287,7 +2287,7 @@ metaViewport(enabled: boolean)
 > - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
-> - 如果设备为平板设备，无论设置为true或者false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
+> - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
