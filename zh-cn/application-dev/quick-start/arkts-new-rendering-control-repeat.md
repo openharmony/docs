@@ -1,19 +1,10 @@
 # Repeat：子组件复用
 
->**说明：**
->
->Repeat从API version 12开始支持。
->
-
 API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
 
 Repeat组件non-virtualScroll场景（不开启virtualScroll开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
 Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件，必须与滚动类容器组件配合使用。当在滚动类容器组件中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
-
-> **注意：**
->
-> Repeat组件的virtualScroll场景不完全兼容V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
 
 ## 使用限制
 
@@ -23,6 +14,8 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 - 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
 - template模板目前只支持virtualScroll场景。当多个template type相同时，Repeat会覆盖旧的`template()`函数，仅生效最新的`template()`。
 - totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
+- 在容器组件内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
+- Repeat组件的virtualScroll场景不支持V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
 
 ## 键值生成规则
 
@@ -362,7 +355,7 @@ struct RepeatVirtualScroll {
   }
 }
 ```
-该应用列表内容为100项自定义类`RpeatClazz`的`message`字符串属性，List组件的cachedCount设为2，模板'a'的缓存池大小设为3。应用界面如下图所示：
+该应用列表内容为100项自定义类`RepeatClazz`的`message`字符串属性，List组件的cachedCount设为2，模板'a'的缓存池大小设为3。应用界面如下图所示：
 
 ![Repeat-VirtualScroll-Demo](./figures/Repeat-VirtualScroll-Demo.gif)
 

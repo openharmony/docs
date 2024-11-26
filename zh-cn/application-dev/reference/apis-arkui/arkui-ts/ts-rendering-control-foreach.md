@@ -1,10 +1,12 @@
 # ForEach
 
-ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../../../reference/apis-arkui/arkui-ts/ts-container-list.md)。
-
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+开发者指南见：[ForEach开发者指南](../../../quick-start/arkts-rendering-control-foreach.md)
+
+ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../../../reference/apis-arkui/arkui-ts/ts-container-list.md)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
