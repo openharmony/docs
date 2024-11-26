@@ -25,12 +25,6 @@
 > 
 > 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
 
-| 权限名 | 说明 | 授权方式 | 权限级别 |
-| ------ | ----- | --------| ------- |
-| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。| user_grant | normal |
-| ohos.permission.CAMERA | 允许应用使用相机。| user_grant | normal |
-| ohos.permission.WRITE_IMAGEVIDEO | 允许修改用户公共目录的图片或视频文件。| user_grant | system_basic |
-| ohos.permission.READ_IMAGEVIDEO | 允许读取用户公共目录的图片或视频文件。| user_grant | system_basic |
 
 ## 开发步骤及注意事项
 
