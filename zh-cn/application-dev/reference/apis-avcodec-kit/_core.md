@@ -565,6 +565,17 @@ uint8_t* OH_AVBuffer_GetAddr (OH_AVBuffer *buffer)
 
 获取数据缓冲区的虚拟地址。
 
+|   使用场景     |                |  |   获取虚拟地址   |
+| --------------- | -------- | -------- | ------ |
+| 编码    | Surface模式  |OnNeedInputBuffer输入    | ×   |
+|         |             |OnNewOutputBuffer 输出     | √    |
+| 编码    | Buffer模式  |OnNeedInputBuffer输入    |   √   |
+|         |             |OnNewOutputBuffer 输出     |  √    |
+| 解码    | Surface模式  |OnNeedInputBuffer输入    |   √   |
+|         |             |OnNewOutputBuffer 输出     |  ×   |
+| 解码    | Buffer模式  |OnNeedInputBuffer输入    |   √   |
+|         |             |OnNewOutputBuffer 输出     | √     |
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **起始版本：** 11
@@ -1185,7 +1196,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入addr为空指针；
-5. size为0或超过限制1MB；
+5. size为0或超过上限，上限为1MB；
 6. 设置的key对应的value类型错误。
 
 
