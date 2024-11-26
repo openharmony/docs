@@ -1,6 +1,6 @@
 # Implementing an Input Method Application
 
-[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required.  
+[InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required. InputMethodExtensionAbility lifecycle:
 
 - **onCreate()**
 
@@ -8,7 +8,7 @@
 
   > **NOTE**
   >
-  > If a service has been created, starting it again does not trigger the **onCreate()** callback.
+  > If an InputMethodExtensionAbility has been created, starting it again does not trigger the **onCreate()** callback.
 
 - **onDestroy()**
 
@@ -19,18 +19,18 @@
 
 To implement an input method application, manually create an InputMethodExtensionAbility component in DevEco Studio. The procedure is as follows:
 
-1. In the **ets** directory of the target module, right-click and choose **New > Directory** to create a directory named **InputMethodExtensionAbility**.
+1. In the **ets** directory of the target module, right-click and choose **New** > **Directory** to create a directory named **InputMethodExtensionAbility**.
 
 2. Right-click the **InputMethodExtensionAbility** directory, choose **New** > **File**, and create four files: **KeyboardController.ts**, **InputMethodService.ts**, **Index.ets**, and **KeyboardKeyData.ts**. The file directory is as follows:
 
 ``` 
 /src/main/
 ├── ets/InputMethodExtensionAbility
-│   └──model/KeyboardController.ts			# Shows the keyboard.
-│   └──InputMethodService.ts				# Customizes a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
-│   └──pages
-│      └── Index.ets						# Draws the keyboard and adds the input and deletion features.
-│      └── KeyboardKeyData.ts			    # Defines keyboard attributes.
+│       └──model/KeyboardController.ts			# Shows the keyboard.
+│       └──InputMethodService.ts				# Customizes a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
+│       └──pages
+│         └── Index.ets						# Draws the keyboard and adds the input and deletion features.
+│         └── KeyboardKeyData.ts			    # Defines keyboard attributes.
 ├── resources/base/profile/main_pages.json  
 ```
 
@@ -61,7 +61,6 @@ To implement an input method application, manually create an InputMethodExtensio
 2. **KeyboardController.ts** file:
 
    ```ts
-   import { common } from '@kit.AbilityKit';
    import { display } from '@kit.ArkUI';
    import { inputMethodEngine, InputMethodExtensionContext } from '@kit.IMEKit';
    
@@ -88,7 +87,6 @@ To implement an input method application, manually create an InputMethodExtensio
      {
        this.unRegisterListener(); // Deregister the event listener.
        if(this.panel) { // Destroy the window.
-         this.panel.hide();
          inputMethodAbility.destroyPanel(this.panel);
        }
        if(this.mContext) {
@@ -128,7 +126,7 @@ To implement an input method application, manually create an InputMethodExtensio
          if(this.panel) {
            await this.panel.resize(dWidth, keyHeight);
            await this.panel.moveTo(0, nonBarPosition);
-           await this.panel.setUiContent('inputmethodextability/pages/Index');
+           await this.panel.setUiContent('InputMethodExtensionAbility/pages/Index');
          }
        });
      }
@@ -212,7 +210,7 @@ To implement an input method application, manually create an InputMethodExtensio
 
    ```ets
    import { numberSourceListData, sourceListType } from './keyboardKeyData';
-   import keyboardController from '../InputMethodExtensionAbility/model/KeyboardController';
+   import keyboardController from '../model/KeyboardController';
    
    @Component
    struct keyItem {
@@ -237,7 +235,7 @@ To implement an input method application, manually create an InputMethodExtensio
      }
    }
    
-   // Component used for deletion.
+   // Component used for deletion
    @Component
    export struct deleteItem {
      @State keyBgc: string = "#fff"
@@ -267,7 +265,7 @@ To implement an input method application, manually create an InputMethodExtensio
      build() {
        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-           ForEach(this.numberList, (item: sourceListType) => {// First row on the numeric keyboard
+           ForEach(this.numberList, (item: sourceListType) => { // First row on the numeric keyboard
              keyItem({ keyValue: item })
            }, (item: sourceListType) => item.content);
          }
@@ -316,10 +314,8 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
-5. **module.json5** file:
+5. **module.json5** file:<br>Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the **InputMethodExtensionAbility** component.
 
-   Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
-   
    ```json
    {
      "module": {
@@ -327,8 +323,8 @@ To implement an input method application, manually create an InputMethodExtensio
        "extensionAbilities": [
          {
            "description": "inputMethod",
-           "icon": "$media:icon",
-           "name": "InputMethodExtAbility",
+           "name": "InputMethodExtensionAbility",       
+           "icon": "$media:app_icon",
            "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ts",
            "type": "inputMethod",
            "exported": true,
@@ -338,7 +334,7 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
-## Verification
+## Verification Method
 
 1. Start the dialog box that lists the input methods for switching by an API for an application.
 
@@ -362,20 +358,17 @@ To implement an input method application, manually create an InputMethodExtensio
 
 2. In the dialog box for switching between input methods, switch the input method to the demo application.
 
-3. When you touch any edit box, the demo application should start.
+3. When you click any edit box, the demo application should start.
 
 ## Constraints
 
-To protect the InputMethodExtensionAbility against abuse, the invoking of APIs in the modules listed below is restricted in the InputMethodExtensionAbility.
+To protect the InputMethodExtensionAbility against abuse, the call of APIs in the modules listed below is restricted in the InputMethodExtensionAbility.
 
 > **NOTE**
 >
-> - If a restricted module is imported, no error is reported during compilation, but **undefined** is returned during running, which renders the imported module ineffective.
+> - If a restricted module is imported, no error is reported during compilation, but an incorrect value (**undefined**) is returned during running, which renders the imported module ineffective.
 > - Currently, access to the [@ohos.multimedia.audio (Audio Management)](../reference/apis-audio-kit/js-apis-audio.md) module is allowed, but subject to the following rules:
->   - Users who deny the recording permission should still be allowed to use the non-voice-input features of the input method application.
+>   - Users who have not granted the recording permission should still be allowed to use the non-voice-input features of the input method application.
 >   - Recording-related services are allowed only when the InputMethodExtensionAbility is in the foreground. For example, perform recording only when the soft keyboard is in the foreground and the user is proactively using the voice input method; stop recording when the application is switched to the background.
 >   - Applications will be subject to increasingly stringent measures against violations with the preceding rules, and any violation may result in service exceptions.
 > - Strictly comply with the functional constraints of the basic access mode. In this mode, you should provide only basic typing features, not interaction with online services in any form. The system will gradually introduce measures for compliance with the basic access mode, including but not limited to running the Extension process as an independent process and in sandbox mode, preventing the Extension process from creating subprocesses, and restricting inter-process communication and network access. Violations may result in service exceptions.
-
-
-

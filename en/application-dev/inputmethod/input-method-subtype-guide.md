@@ -1,10 +1,10 @@
 # Setting Input Method Subtypes
 
-The input method subtype allows the input method to switch to a specific mode or language, for example, the Chinese or English keyboard.
+The input method subtypes allow the input method to switch to a specific mode or language, for example, the Chinese or English keyboard.
 
 ## Configuring and Implementing an Input Method Subtype
 
-1. Implement an **InputMethodExtensionAbility** instance for an input method, which will be shared by all subtypes of the input method. Add **metadata** to the [module.json5](../quick-start/module-configuration-file.md) file, setting it name to **ohos_extension.input_method** and **resource** to the resource file applicable to all subtypes of the input method.
+1. Implement an **InputMethodExtensionAbility** instance for an input method, which will be shared by all subtypes of the input method. Add **metadata** with the name **ohos_extension.input_method** to the [module.json5](../quick-start/module-configuration-file.md) file to configure resource information for all subtypes.
    ```ts
    {
      "module": {
@@ -60,7 +60,7 @@ The input method subtype allows the input method to switch to a specific mode or
    let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
      let subType = inputMethodSubtype; // Save the current input method subtype. You can also change the state variable value here, based on which different layouts are displayed.
-     if (inputMethodSubtype.id == 'InputMethodExtAbility') {// Different soft keyboard UIs are loaded according to the subtype.
+     if (inputMethodSubtype.id == 'InputMethodExtAbility') { // Different soft keyboard UIs are loaded according to the subtype.
        panel.setUiContent('pages/Index'); 
      }
      if (inputMethodSubtype.id == 'InputMethodExtAbility1') { // Different soft keyboard UIs are loaded according to the subtype.
