@@ -10,6 +10,19 @@
 
 状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
 
+## 申请权限
+
+在开发此功能前，开发者应根据实际需求申请相应权限，申请方式请参考：[申请应用权限](../../security/AccessToken/request-user-authorization.md)。
+
+> **说明：**
+>
+> - 其中涉及到读写媒体文件的权限，开发者如果实际使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)和[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)，则无需在应用中申请对应读写权限。
+
+| 权限名 | 说明 | 授权方式 | 权限级别 |
+| ------ | ----- | --------| ------- |
+| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。| user_grant | normal |
+| ohos.permission.READ_AUDIO | 允许读取用户公共目录的音频文件。| user_grant | normal |
+| ohos.permission.WRITE_AUDIO | 允许修改用户公共目录的音频文件。| user_grant | normal |
 
 ## 开发步骤及注意事项
 
@@ -59,6 +72,7 @@
    > **说明：**
    > 配置参数需要注意：
    >
+   > - 配置参数之前需要确保已经成功[申请对应权限](../../security/AccessToken/request-user-authorization.md)，比如音频录制需要申请受限权限"ohos.permission.MICROPHONE"、"ohos.permission.READ_AUDIO"、"ohos.permission.WRITE_AUDIO"。
    > - prepare接口的入参avConfig中仅设置音频相关的配置参数，如示例代码所示。
    >   如果只需要录制音频，请不要设置视频相关配置参数；如果需要录制视频，可以参考[视频录制开发指导](video-recording.md)进行开发。直接设置视频相关参数会导致后续步骤报错。
    > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)。
