@@ -14,7 +14,7 @@ FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力�
 
 ## 接口
 
-FolderStack(value?: { upperItems?:  Array<string\> })
+FolderStack(options?: FolderStackOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -24,9 +24,17 @@ FolderStack(value?: { upperItems?:  Array<string\> })
 
 | 参数名       | 类型                                    | 必填 | 说明                                                                 |
 | ------------ | ------------------------------------------- | ---- |----------------------------------------------------------------------|
-| value |  { upperItems?:  Array<string\> } | 否   | FolderStack的配置项。<br/>-&nbsp;upperItems：定义悬停态会被移到上半屏的子组件的id，组件id在此数组中的子组件悬停触发时自动避让折叠屏折痕区后移到上半屏，其它组件堆叠在下半屏区域。 |
+| options |  [FolderStackOptions](#folderstackoptions14对象说明) | 否   | FolderStack的配置项。 |
 
+## FolderStackOptions<sup>14+</sup>对象说明
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型         | 必填 | 说明                       |
+| ------------ | -------------------------- | ---- |----------------------------|
+| upperItems |    Array<string\>  | 否   | FolderStack的配置项。<br/>upperItems：定义悬停态会被移到上半屏的子组件的id，组件id在此数组中的子组件悬停触发时自动避让折叠屏折痕区后移到上半屏，其它组件堆叠在下半屏区域。 |
 
 ## 属性
 
