@@ -17,7 +17,7 @@ Describes the scene resource parameters, which are **name** and **uri**. The par
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | No| No| Name of the scene resource. It is customizable.|
-| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| Yes| Path of the resource file required in the 3D scene. The default value is undefined.|
+| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | No| Yes| Path of the resource file required in the 3D scene. The default value is undefined.|
 
 **Example**
 ```ts
@@ -46,7 +46,7 @@ Describes the scene node parameters, which are used to provide the name and path
 **System capability**: SystemCapability.ArkUi.Graphics3D
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| name | string | No| No| Name of the scene node. It is customizable. |
+| name | string | No| No| Name of the scene node. It is customizable.
 | path | string | No| Yes| Path in the scene node tree. It specifies the position of the created camera, light, or node in the scene node tree. Each layer is separated by a slash (/). If no path is provided, the node is set as a child node of the root node. The default value is undefined.|
 
 **Example**
@@ -343,7 +343,7 @@ Used to set a scene.
 | root | [Node](js-apis-inner-scene-nodes.md#node) \| null | Yes| No| Root node in the 3D scene tree.|
 
 ### load
-static load(uri?: Resource): Promise\<Scene>
+static load(uri?: ResourceStr): Promise\<Scene>
 
 Loads a resource by path.
 
@@ -352,7 +352,7 @@ Loads a resource by path.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | ---- | ---- | ---- | ---- |
-| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| Path of the model file resource to load. The default value is undefined.|
+| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | No| Path of the model file resource to load. The default value is undefined.|
 
 **Return value**
 | Type| Description|

@@ -2,7 +2,7 @@
 
 Double-ended queue (deque) is a sequence container implemented based on the queue data structure that follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). It allows insertion and removal of elements at both the ends. **Deque** can dynamically adjust the capacity based on project requirements. It doubles the capacity each time. **Deque** differs from **[Queue](js-apis-queue.md)** and **[Vector](js-apis-vector.md)** mainly in the following aspects:
 
-**Queue** follows the principle of FIFO only and allows element removal at the front and insertion at the rear.
+**Queue** allows element removal at the front and insertion at the rear.
 
 **Vector** supports insertion and deletion of elements in between, as well as at both the ends. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
 
@@ -374,10 +374,6 @@ let result = deque.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
-
-> **NOTE**
->
-> This API cannot be used in .ets files.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

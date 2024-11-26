@@ -111,7 +111,7 @@ struct AddLog {
 
 ## 限制条件
 
-- 如果class类中使用了\@Track装饰器，那么该class类中非\@Track装饰的属性不能在UI中使用，包括不能绑定在组件上、不能用于初始化子组件，错误的使用将导致JSCrash；可以在非UI中使用非\@Track装饰的属性，如事件回调函数中、生命周期函数中等。
+- 如果class类中使用了\@Track装饰器，那么该class类中非\@Track装饰的属性不能在UI中使用，包括不能绑定在组件上、不能用于初始化子组件，错误的使用将导致运行时报错，详见[在UI中使用非\@Track装饰的属性发生运行时报错](#在ui中使用非track装饰的属性发生运行时报错)；可以在非UI中使用非\@Track装饰的属性，如事件回调函数中、生命周期函数中等。
 
 - 建议开发者不要混用包含\@Track的class对象和不包含\@Track的class对象，如联合类型中、类继承中等。
 
@@ -179,3 +179,33 @@ struct AddLog {
 
 2. 由于\@State log变量的\@Track属性logInfo更改，Text重新渲染。
 
+## 常见问题
+
+### 在UI中使用非\@Track装饰的属性发生运行时报错
+
+在UI中使用非\@Track装饰的属性，运行时会报错。
+
+```ts
+class Person {
+  // id被@Track装饰
+  @Track id: number;
+  // age未被@Track装饰
+  age: number;
+
+  constructor(id: number, age: number) {
+    this.id = id;
+    this.age = age;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State parent: Person = new Person(2, 30);
+
+  build() {
+    // 没有被@Track装饰的属性不可以在UI中使用，运行时会报错
+    Text(`Parent id is: ${this.parent.id} and Parent age is: ${this.parent.age}`)
+  }
+}
+```

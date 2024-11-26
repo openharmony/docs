@@ -4357,6 +4357,34 @@ Allows an application to access the application lock.
 
 **Valid since**: 13
 
+### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+
+Allows an application to disable its runtime code integrity protection.
+
+For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+
+Allows an application to apply for writable and executable anonymous memory.
+
+For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.

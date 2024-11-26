@@ -26,7 +26,7 @@ try {
 **解决措施**
 
 引入窗口模块\@ohos.window，获取指定窗口对象Window后，在该对象上使用getWindowProperties()获取窗口各个属性，在属性windowRect中获取窗口宽高信息。
-如果要在页面中获取窗口宽高信息，需要注意获取的正确时机。页面生命周期[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#aboutToAppear)阶段，不代表此时窗口可见，仅代表当前组件已创建，此时获取到的窗口尺寸信息（windowRect）可能有误。建议在页面生命周期[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onPageShow)阶段获取，该阶段会在窗口可见后调用，此时可以拿到窗口正确的宽高信息。
+如果要在页面中获取窗口宽高信息，需要注意获取的正确时机。页面生命周期[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)阶段，不代表此时窗口可见，仅代表当前组件已创建，此时获取到的窗口尺寸信息（windowRect）可能有误。建议在页面生命周期[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)阶段获取，该阶段会在窗口可见后调用，此时可以拿到窗口正确的宽高信息。
 
 **代码示例**
 

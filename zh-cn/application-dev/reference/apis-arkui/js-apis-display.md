@@ -273,6 +273,40 @@ let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 ```
 
+## display.getPrimaryDisplaySync<sup>14+</sup>
+
+getPrimaryDisplaySync(): Display
+
+获取主屏信息。除2in1之外的设备获取的是设备自带屏幕的Display对象；2in1设备外接屏幕时获取的是当前主屏幕的Display对象；2in1设备没有外接屏幕时获取的是自带屏幕的Display对象。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型                           | 说明                                           |
+| ------------------------------| ----------------------------------------------|
+| [Display](#display) | 当前设备主屏幕的Display对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+
+displayClass = display.getPrimaryDisplaySync();
+```
+
 ## display.getAllDisplays<sup>9+</sup>
 
 getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
