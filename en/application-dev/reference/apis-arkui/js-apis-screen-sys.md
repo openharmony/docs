@@ -1025,7 +1025,7 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
   console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
   let screenIds: Array<number> = [screenClass.id];
-  let promise: Promise<Array<number>> = screen.makeUniqueScreen(modeIndex);
+  let promise: Promise<Array<number>> = screen.makeUniqueScreen(screenIds);
   promise.then((displayIds: Array<number>) => {
     console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(displayIds));
   }).catch((err: BusinessError) => {
