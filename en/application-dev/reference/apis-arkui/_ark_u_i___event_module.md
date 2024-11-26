@@ -370,7 +370,7 @@ Obtains the button type of a mouse event.
 
 **Returns**
 
-* @return Returns the mouse button type. The value **1** indicates the left button, **2** indicates the right button, **3** indicates the middle button, **4** indicates the back button, and **5** indicates the forward button.
+Returns the mouse button type. The value **1** indicates the left button, **2** indicates the right button, **3** indicates the middle button, **4** indicates the back button, and **5** indicates the forward button.
 
 
 ### OH_ArkUI_PointerEvent_GetDisplayX()

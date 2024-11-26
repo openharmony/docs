@@ -1,6 +1,6 @@
 # Blank
 
-The **Blank** component is able to automatically fill the empty spaces in the container along the main axis. It works only when the parent component is **Row**, **Column**, or **Flex**.
+The **Blank** component is a spacer in the layout, automatically filling the remaining space along the main axis of its parent container. It works only when the parent component is [Row](ts-container-row.md), [Column](ts-container-column.md), or [Flex](ts-container-flex.md).
 
 >  **NOTE**
 >
@@ -16,12 +16,16 @@ Not supported
 
 Blank(min?: number | string)
 
-Since API version 10:
- - On the main axis of the parent container **Row**, **Column**, or **Flex**, if the size of the **Blank** component is not set, the component will be automatically stretched or shrunk; if the size is not set or the container adapts to the size of its child component, the component will not be stretched or shrunk.
- - Relationship between **size** and **min** of the **Blank** component on the main axis: max(min, size).
- - On the cross axis of the parent container, if the size of the **Blank** component is set, the component will not fill up the parent container; if the size is not set, the component will fill up the parent container, following the default **alignSelf** settings **ItemAlign.Stretch**.
+Since API version 10: 
+ - When the **Blank** component is used within a [Row](ts-container-row.md), [Column](ts-container-column.md), or [Flex](ts-container-flex.md) container, it will automatically stretch or shrink along the main axis if it does not have a main axis size specified. If the **Blank** component has a main axis size specified or if the container is set to adapt to the size of its child nodes, the component will not automatically stretch or shrink.
+ - Relationship between **size** and **min** of the **Blank** component on the main axis: max(min, size). 
+ - If the **Blank** component has a cross axis size specified, it will not fill up the parent container on the cross axis. If it does not have a cross axis size specified, it will fill up the parent container on the cross axis, following the **ItemAlign.Stretch** mode, the default setting of **alignSelf**. 
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -33,9 +37,23 @@ This API can be used in ArkTS widgets since API version 9.
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Default value: **Color.Transparent**<br>This API can be used in ArkTS widgets since API version 9.|
+### color
+
+color(value: ResourceColor)
+
+Sets the color to fill the blank.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color to fill the blank.<br><br>Default value: **Color.Transparent**|
 
 ## Events
 

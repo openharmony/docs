@@ -330,7 +330,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
 ## Adding Events
 
-The **Text** component supports the [universal events](../reference/arkui-ts/ts-universal-events-click.md). It can be bound to the **onClick**, **onTouch**, or other events to respond to user operations.
+The **Text** component supports the universal events. It can be bound to the **onClick**, **onTouch**, or other events to respond to user operations.
 
 
 ```ts

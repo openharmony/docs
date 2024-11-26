@@ -33,19 +33,19 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
 
-
-| Name    | Type                            | Decorator| Mandatory| Description        |
-| -------- | -------------------------------- | ---------- | ---- | ------------ |
-| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop      | Yes  | Component configuration.|
-| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | Yes  | Data to pass. The maximum data length is 50 characters. If it is exceeded, only the first 50 characters are used.|
-| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | - | Yes| Callback invoked when changes are saved. The data after the changes is returned.|
-| onCancel | () => void | - | Yes| Callback invoked when changes are canceled.|
+| Name    | Type                            | Mandatory| Decorator| Description        |
+| -------- | -------------------------------- | ---------- | ---- | ---- |
+| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | Yes    | @Prop      | Component configuration.|
+| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | Yes   | -     | Data to pass. The maximum data length is 50 characters. If it is exceeded, only the first 50 characters are used.|
+| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | Yes| - | Callback invoked when changes are saved. The data after the changes is returned.|
+| onCancel | () => void | Yes| - | Callback invoked when changes are canceled.|
 
 ##  GridObjectSortComponentOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type                     | Mandatory| Description                                                  |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
@@ -60,6 +60,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Value   | Description          |
 | -------- | ----- | -------------- |
 | IMAGE_TEXT | 'image_text' | Text and imagery.|
@@ -69,9 +71,11 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| id       | string \| number                       | Yes  | Data ID, which must be unique.                                      |
+| id       | number \| string             | Yes  | Data ID, which must be unique.                                      |
 | text     | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text information.                                              |
 | selected | boolean                                | Yes  | Whether the grid object has been added. The value **true** means that grid object has been added, and **false** means the opposite.                 |
 | url      | [ResourceStr](ts-types.md#resourcestr) | No  | URL of the image. This parameter is required when **GridObjectSortComponentType** is set to **IMAGE_TEXT**.|

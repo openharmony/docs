@@ -1,16 +1,16 @@
 # Adding Interactions
 
-You can make the UI interactive by binding events to components. This section describes how to bind **\<div>**, **Text**, and **Image** components to click events to build a thumb up button, as shown in the following figure.
+You can make the UI interactive by binding events to components. This section describes how to bind **\<div>**, **Text**, and **\<image>** components to click events to build a thumb up button, as shown in the following figure.
 
 **Figure 1** Thumb up button effect
 
 ![en-us_image_0000001267647901](figures/en-us_image_0000001267647901.gif)
 
 
-The thumb up button is implemented by binding a click event to a &lt;div&gt; component. The \<div> component contains an **Image** component and a Text component.
+The thumb up button is implemented by binding a click event to a &lt;div&gt; component. The \<div> component contains an **\<image>** component and a Text component.
 
 
-- The **Image** component is used to display unselected and selected (highlighted) thumbs up images. The click event function alternately updates the paths of the images that are liked and not liked.
+- The **\<image>** component is used to display unselected and selected (highlighted) thumbs up images. The click event function alternately updates the paths of the images that are liked and not liked.
 
 - The **Text** component is used to display the number of thumbs up. The number is updated in the function of the click event.
 
