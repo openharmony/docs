@@ -22,8 +22,8 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
     | -------------------- | ---------------------- | ---- | -------------------------------------------------------- |
     | sceneType            | number                 | 是   | 意图，按起降地查询场景填2。                                        |
     | originLocation      | string                 | 是   | 出发地。                                                 |
-    | destinationLocation  | number                 | 是   | 目的地。                                                 |
-    | departureDate | number                 | 否   | 航班出发时间：YYYY-MM-DD。                                                 |
+    | destinationLocation  | string                  | 是   | 目的地。                                                 |
+    | departureDate | string                  | 否   | 航班出发时间：YYYY-MM-DD。                                                 |
 
 
 ## 拉起方开发步骤
@@ -121,8 +121,8 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
         | 参数名               | 类型   | 必填 | 说明                                               |
         | -------------------- | ------ | ---- | -------------------------------------------------- |
         | originLocation      | string | 是   | 出发地。                                           |
-        | destinationLocation  | number | 是   | 目的地。                                           |
-        | departureDate | number | 否   | 航班出发时间：YYYY-MM-DD。不填时，Target可按当天处理。    |
+        | destinationLocation  | string  | 是   | 目的地。                                           |
+        | departureDate | string  | 否   | 航班出发时间：YYYY-MM-DD。不填时，Target可按当天处理。    |
 
     应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如按航班号查询和按起降地查询，结合接收到的uri和参数开发不同的样式页面。
 

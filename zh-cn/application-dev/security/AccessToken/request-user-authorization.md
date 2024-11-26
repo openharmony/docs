@@ -52,8 +52,6 @@
    import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
-   const permissions: Array<Permissions> = ['ohos.permission.LOCATION','ohos.permission.APPROXIMATELY_LOCATION'];
-   
    async function checkPermissionGrant(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
      let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
@@ -81,12 +79,15 @@
    }
    
    async function checkPermissions(): Promise<void> {
-     let grantStatus: abilityAccessCtrl.GrantStatus = await checkPermissionGrant(permissions[0]);
-   
-     if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-       // 已经授权，可以继续访问目标操作
+     let grantStatus1: boolean = await checkPermissionGrant('ohos.permission.LOCATION') === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;// 获取精确定位权限状态
+     let grantStatus2: boolean = await checkPermissionGrant('ohos.permission.APPROXIMATELY_LOCATION') === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;// 获取模糊定位权限状态
+     // 精确定位权限只能跟模糊定位权限一起申请，或者已经有模糊定位权限才能申请精确定位权限
+     if (grantStatus2 && !grantStatus1) {
+        // 申请精确定位权限
+     } else if (!grantStatus1 && !grantStatus2) {
+        // 申请模糊定位权限与精确定位权限或单独申请模糊定位权限
      } else {
-       // 申请位置权限
+        // 已经授权，可以继续访问目标操作
      }
    }
    ```

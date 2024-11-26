@@ -94,6 +94,24 @@ The maximum number of connections has been reached.
 
 检查已配对设备数量，是否超出阈值。
 
+## 2900007
+
+**错误信息**
+
+Asynchronous interface invoking timeout.
+
+**错误描述**
+
+异步接口调用超时。
+
+**可能原因**
+
+远端设备无响应。
+
+**处理步骤**
+
+超时后重试；若和远端设备存在链路，可以断开后，再重试。
+
 ## 2900008
 
 **错误信息**

@@ -27,7 +27,7 @@ Allows a window to be displayed with animation for an atomic service without the
 
 ### ohos.permission.MANAGE_APP_KEEP_ALIVE
 
-Allows a system application to set the keep-alive flag for other applications.
+Allows a system service to set the keep-alive flag for other applications.
 
 **Permission level**: system_core
 
@@ -3735,7 +3735,7 @@ Allows a system application to apply for IP addresses from the DHCP server.
 
 ### ohos.permission.ALLOW_CONNECT_CAR
 
-Allows an application to connect to an automobile head unit.
+Allows an application to connect to a telematics device.
 
 **Permission level**: system_basic
 
@@ -3975,23 +3975,9 @@ Currently, this permission is available only for 2-in-1 device applications.
 
 **Valid since**: 13
 
-### ohos.permission.START_RESTORE_NOTIFICATION
-
-Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
-
-This permission is available only for applications running on 2-in-1 devices.
-
-**Permission level**：system_basic
-
-**Authorization mode**：system_grant
-
-**Enable via ACL**：true
-
-**Valid since**：13
-
 ### ohos.permission.READ_WRITE_USER_FILE
 
-Allows an application to access and modify the files in the user directory.
+Allows an application to access and modify files in user directories.
 
 Currently, this permission is available only for 2-in-1 device applications.
 
@@ -4003,9 +3989,9 @@ Currently, this permission is available only for 2-in-1 device applications.
 
 **Valid since**: 13
 
-### ohos.permission.USER_AUTH_FROM_BACKGROUND
+### ohos.permission.READ_WEATHER_DATA
 
-Allows an application or a service to initiate user identity authentication from the background.
+Allows an application to read weather data.
 
 **Permission level**: system_basic
 
@@ -4013,7 +3999,7 @@ Allows an application or a service to initiate user identity authentication from
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.ACCESS_MCU_LOG_DIR
 
@@ -4031,7 +4017,7 @@ Allows a system application to access the microcontroller unit (MCU) log directo
 
 Allows an application to update the virtual keyboard status or a service to query the virtual keyboard status.
 
-With this permission, the application can update the virtual keyboard status, and the service can query the virtual keyboard status. Currently, this permission is available only to 2-in-1 devices.
+With this permission, the application can update the virtual keyboard status and the service can query the virtual keyboard status. Currently, this permission is available only for applications or services running on 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4287,6 +4273,18 @@ Allows an application to access Super Hub.
 
 **Valid since**: 12
 
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+Allows a system application or service to initiate user identity authentication from the background.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ### ohos.permission.MANAGE_RECOVERY_KEY
 
 Allows an application to create or remove the recovery key.
@@ -4325,7 +4323,7 @@ Allows an application to obtain brief information of the recovery key.
 
 ### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
 
-Allows an UIExtensionAbility to be displayed on the locked screen.
+Allows a UIExtensionAbility to be displayed on the locked screen.
 
 **Permission level**: system_core
 
@@ -4334,6 +4332,70 @@ Allows an UIExtensionAbility to be displayed on the locked screen.
 **Enable via ACL**: false
 
 **Valid since**: 14
+
+### ohos.permission.READ_APP_LOCK
+
+Allows a system application to read the application lock state.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.WRITE_APP_LOCK
+
+Allows a system application to set the application lock state.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+Allows an application to access the application lock.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+
+Allows an application to disable its runtime code integrity protection.
+
+For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+
+Allows an application to apply for writable and executable anonymous memory.
+
+For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ## user_grant Permissions (Available via ACL)
 

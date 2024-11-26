@@ -9,17 +9,19 @@ The **params** parameter in the event information is described as follows.
 
 **params**
 
-| Name   | Type  | Description                      |
-| ------- | ------ | ------------------------- |
-| time     | number | Event triggering time, in ms.|
-| bundle_version | string | Application version.|
-| bundle_name | string | Application name.|
-| pid | number | Process ID of the application.|
-| uid | number | User ID of the application.|
-| resource_type | string | Resource type. For details, see **resource_type**.|
-| memory | object | Memory information (only available for **pss_memory** and **js_heap**). For details, see **memory**.|
-| fd | object | File descriptor information (only available for **fd**). For details, see **fd**.|
-| thread | object | Thread information (only available for **thread**). For details, see **thread**.|
+| Name            | Type   | Description                                                                      |
+|----------------|-------|--------------------------------------------------------------------------|
+| time           | number | Event triggering time, in ms.                                                           |
+| bundle_version | string | Application version.                                                                   |
+| bundle_name    | string | Application name.                                                                   |
+| pid            | number | Process ID of the application.                                                                |
+| uid            | number | User ID of the application.                                                                |
+| resource_type  | string | Resource type. For details, see **resource_type**.                                             |
+| memory         | object | Memory information (only available for **pss_memory** and **js_heap**). For details, see **memory**.                    |
+| fd             | object | File descriptor information (only available for **fd**). For details, see **fd**.                                     |
+| thread         | object | Thread information (only available for **thread**). For details, see **thread**.                                |
+| external_log   | string[] | Path of the error log file. If the directory files exceed the threshold (for details, see **log_over_limit**), new log files may fail to be written. Therefore, delete the log files immediately after they are processed.|
+| log_over_limit | Boolean  | Whether the size of generated fault log files and existing log files exceeds the upper limit (2 GB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.           |
 
 **resource_type**
 

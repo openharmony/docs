@@ -41,6 +41,8 @@ AlphabetIndexer(value: AlphabetIndexerOptions)
 
 [padding](ts-universal-attributes-size.md#padding)属性默认为4vp。
 
+文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)和最小的字体缩放倍数[minFontScale](ts-basic-components-text.md#minfontscale12)皆为1，不跟随系统字体大小调节变化。
+
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### color
@@ -540,8 +542,11 @@ type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<strin
 | ------------- | -------------------- |
 | Array\<string\> | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
 
-## 示例
-### 示例1
+## 示例 
+ 
+### 示例1（设置提示弹窗显示文本内容）
+
+通过onRequestPopupData事件自定义提示弹窗显示文本内容。
 
 ```ts
 // xxx.ets
@@ -652,7 +657,10 @@ struct AlphabetIndexerSample {
 
 ![alphabet](figures/alphabet.gif)
 
-### 示例2
+### 示例2（开启自适应折叠模式）
+
+通过autoCollapse属性开启自适应折叠模式。
+
 ```ts
 // xxx.ets
 @Entry
@@ -788,10 +796,12 @@ struct AlphabetIndexerSample {
 
 ![alphabetIndexerAutoCollapseSample](figures/alphabetIndexerAutoCollapseSample.gif)
 
-### 示例3
+### 示例3（设置提示弹窗背景模糊材质）
+
+通过popupBackgroundBlurStyle属性实现提示弹窗的背景模糊效果。
 
 ```ts
-// 该示例实现了自定义设置提示弹窗的背景模糊材质
+// xxx.ets
 @Entry
 @Component
 struct AlphabetIndexerSample {

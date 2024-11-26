@@ -30,6 +30,7 @@
     - [HSP转HAR指导](hsp-to-har.md)
     - [创建应用静态快捷方式](typical-scenario-configuration.md)
     - [创建应用分身](app-clone.md)
+    - [创建应用多实例](multiInstance.md)
     - [配置分层图标](layered-image.md)
 
 - [资源分类与访问](resource-categories-and-access.md)
@@ -60,6 +61,7 @@
     - [stateStyles：多态样式](arkts-statestyles.md)
     - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
     - [@Require装饰器：校验构造传参](arkts-require.md)
+    - [@Reusable装饰器：组件复用](arkts-reusable.md)
   - 状态管理
     - [状态管理概述](arkts-state-management-overview.md)
     - 状态管理（V1）

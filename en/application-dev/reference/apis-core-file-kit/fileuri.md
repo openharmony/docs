@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides APIs for operating a file Uniform Resource Identifier (URI), including performing URI-path conversion, obtaining a URI, and verifying a URI.
+Provides APIs for manipulating file Uniform Resource Identifiers (URIs), including performing URI-path conversion, obtaining a URI, and verifying a URI.
 
 **System capability**: SystemCapability.FileManagement.AppFileService
 
@@ -17,18 +17,18 @@ Provides APIs for operating a file Uniform Resource Identifier (URI), including 
 
 | Name| Description| 
 | -------- | -------- |
-| [oh_file_uri.h](oh__file__uri_8h.md) | Provides APIs for URI operations, including performing URI-path conversion, obtaining a URI, and verifying a URI.| 
+| [oh_file_uri.h](oh__file__uri_8h.md) | Provides APIs for URI operations, including URI-path conversion, retrieval, and verification.| 
 
 
 ### Functions
 
-| Name| Description| 
-| -------- | -------- |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileUri_GetUriFromPath](#oh_fileuri_geturifrompath) (const char \*path, unsigned int length, char \*\*result) | Obtains the URI from a path.| 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileUri_GetPathFromUri](#oh_fileuri_getpathfromuri) (const char \*uri, unsigned int length, char \*\*result) | Obtains the path from a URI.| 
+| Name                                                                                                                                                                                      | Description                                             | 
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileUri_GetUriFromPath](#oh_fileuri_geturifrompath) (const char \*path, unsigned int length, char \*\*result)          | Obtains the URI from a path.                              | 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileUri_GetPathFromUri](#oh_fileuri_getpathfromuri) (const char \*uri, unsigned int length, char \*\*result)           | Obtains the path from a URI.                              | 
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileUri_GetFullDirectoryUri](#oh_fileuri_getfulldirectoryuri) (const char \*uri, unsigned int length, char \*\*result) | Obtains the URI of the directory, in which a URI is located. If the specified URI points to a file, the URI of the parent directory is returned. If the specified URI points to a folder, the URI of the folder is returned.| 
-| bool [OH_FileUri_IsValidUri](#oh_fileuri_isvaliduri) (const char \*uri, unsigned int length) | Checks whether a URI is valid.| 
-
+| bool [OH_FileUri_IsValidUri](#oh_fileuri_isvaliduri) (const char \*uri, unsigned int length)                                                                                             | Checks whether a URI is valid.                                  | 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileUri_GetFileName](#oh_fileuri_getfilename) (const char \*uri, unsigned int length, char \*\*result)                 | Obtains the file name from the given URI.                                 | 
 
 ## Function Description
 
@@ -138,3 +138,29 @@ Checks whether a URI is valid.
 **Returns**
 
 Returns **true** if the URI is valid; returns **false** otherwise.
+
+### OH_FileUri_GetFileName()
+
+```
+FileManagement_ErrCode OH_FileUri_GetFileName (const char * uri, unsigned int length, char ** result )
+```
+
+**Description**
+
+Obtains the file name from the given URI.
+
+**System capability**: SystemCapability.FileManagement.AppFileService
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description                                                  | 
+| -------- |------------------------------------------------------|
+| uri | Pointer to the URI.                                           | 
+| length | Length of the URI, in bytes.                                       | 
+| result | Double pointer to the file name obtained. You also need to use **free()** of the standard library to release the memory allocated.| 
+
+**Returns**
+
+Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).

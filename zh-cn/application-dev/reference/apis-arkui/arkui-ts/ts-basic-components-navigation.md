@@ -446,6 +446,28 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 > 8. 当页面设置不同样式时，在页面转场开始时生效。
 > 9. 非全屏窗口下，Navigation/NavDestination设置的状态栏不生效。
 
+### recoverable<sup>14+</sup>
+
+recoverable(recoverable: Optional&lt;boolean&gt;)
+
+配置Navigation是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该Navigation，并恢复至异常退出时的页面栈。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| recoverable  | Optional&lt;boolean&gt; | 否   | Navigation是否可恢复，默认为不可恢复 |
+
+>  **使用说明：**
+>
+> 1. 使用该接口需要先设置Navigation的[id属性](./ts-universal-attributes-component-id#id)，否则该接口无效。
+> 2. 该接口需要配合NavDestination的[recoverable](./ts-basic-components-navdestination.md#recoverable14)接口使用。
+> 3. 恢复的过程中不可序列化的信息，例如不可序列化的参数与用户设置的onPop等，会被丢弃，无法恢复。
+
 ## 事件
 
 ### onTitleModeChange
@@ -785,6 +807,40 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### replaceDestination<sup>14+</sup>
+
+replaceDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
+
+替换页面栈操作。使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                            | 必填   | 说明                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### removeByIndexes<sup>11+</sup>
 

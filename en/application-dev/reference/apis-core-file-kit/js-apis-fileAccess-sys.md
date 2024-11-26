@@ -274,22 +274,24 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { BusinessError } from '@ohos.base';
   // fileInfoDir indicates information about a directory.
   // let filter = { suffix : [".txt", ".jpg", ".xlsx"] };
-  let fileInfoDir: fileAccess.FileInfo; // = fileInfos[0];
+  let fileInfoDir :Array<fileAccess.FileInfo> = [];
   let subfileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = fileInfoDir.listFile();
-    // listFile() with the filter implementation.
-    // let fileIterator = fileInfoDir.listFile(filter);
-    if (!fileIterator) {
-      console.error("listFile interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        subfileInfos.push(result.value);
+    for (let i = 0; i < fileInfoDir.length; ++i) {
+      let fileIterator = fileInfoDir[i].listFile();
+      // listFile() with the filter implementation.
+      // let fileIterator = fileInfoDir.listFile(filter);
+      if (!fileIterator) {
+        console.error("listFile interface returns an undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          subfileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -314,7 +316,7 @@ Obtains a **FileIterator** object that recursively retrieves the files matching 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -332,22 +334,24 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { BusinessError } from '@ohos.base';
   // fileInfoDir indicates information about a directory.
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let fileInfoDir: fileAccess.FileInfo; // = fileInfos[0];
+  let fileInfoDir: Array<fileAccess.FileInfo> = [];
   let subfileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = fileInfoDir.scanFile();
-    // scanFile() with the filter implementation.
-    // let fileIterator = fileInfoDir.scanFile(filter);
-    if (!fileIterator) {
-      console.error("scanFile interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        subfileInfos.push(result.value);
+    for (let i = 0; i < fileInfoDir.length; ++i) {
+      let fileIterator = fileInfoDir[i].scanFile();
+      // scanFile() with the filter implementation.
+      // let fileIterator = fileInfoDir.scanFile(filter);
+      if (!fileIterator) {
+        console.error("scanFile interface returns an undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          subfileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -424,7 +428,7 @@ Obtains a **FileIterator** object that lists the first-level files (directories)
 
 | Name| Type| Mandatory| Description|
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -440,24 +444,26 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // Obtain rootInfos by using getRoots().
+  // rootInfo can be obtained by getRoots().
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo: fileAccess.RootInfo; // = rootinfos[0];
+  let rootInfo: Array<fileAccess.FileInfo> = [];
   let fileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = rootInfo.listFile();
-    // listFile() with the filter implementation.
-    // let fileIterator = rootInfo.listFile(filter);
-    if (!fileIterator) {
-      console.error("listFile interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        fileInfos.push(result.value);
+    for (let i = 0; i < rootInfo.length; ++i) {
+      let fileIterator = rootInfo[i].listFile();
+      // listFile() with the filter implementation.
+      // let fileIterator = rootInfo.listFile(filter);
+      if (!fileIterator) {
+        console.error("listFile interface returns an undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          fileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -482,7 +488,7 @@ Obtains a **FileIterator** object that recursively retrieves the files matching 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | -- | -- |
-| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+| filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -498,24 +504,26 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // Obtain rootInfos by using getRoots().
+  // rootInfo can be obtained by getRoots().
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo: fileAccess.RootInfo; // = rootinfos[0];
+  let rootInfo: Array<fileAccess.FileInfo> = [];
   let fileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = rootInfo.scanFile();
-    // scanFile with the filter implementation.
-    // let fileIterator = rootInfo.scanFile(filter);
-    if (!fileIterator) {
-      console.error("scanFile interface returns undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        fileInfos.push(result.value);
+    for (let i = 0; i < rootInfo.length; ++i) {
+      let fileIterator = rootInfo[i].scanFile();
+      // scanFile with the filter implementation.
+      // let fileIterator = rootInfo.scanFile(filter);
+      if (!fileIterator) {
+        console.error("scanFile interface returns undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          fileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -592,19 +600,22 @@ async function getRoots() {
   let rootIterator: fileAccess.RootIterator;
   let rootinfos: Array<fileAccess.RootInfo> = [];
   let isDone: boolean = false;
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    rootIterator = await fileAccessHelper.getRoots();
-    if (!rootIterator) {
-      console.error("getRoots interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = rootIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        rootinfos.push(result.value);
+    if (fileAccessHelper != undefined) {
+      rootIterator = await fileAccessHelper.getRoots();
+      if (!rootIterator) {
+        console.error("getRoots interface returns an undefined object");
       }
+      while (!isDone) {
+        let result = rootIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          rootinfos.push(result.value);
+        }
+      }     
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -641,21 +652,24 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   async function getRoots() {
     let rootinfos: Array<fileAccess.RootInfo> = [];
     let isDone: boolean = false;
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      fileAccessHelper.getRoots((err: BusinessError, rootIterator: fileAccess.RootIterator) => {
-        if (err) {
-          console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
-        }
-        while (!isDone) {
-          let result = rootIterator.next();
-          console.log("next result = " + JSON.stringify(result));
-          isDone = result.done;
-          if (!isDone) {
-            rootinfos.push(result.value);
+      if (fileAccessHelper != undefined) {
+        fileAccessHelper.getRoots((err: BusinessError, rootIterator: fileAccess.RootIterator) => {
+          if (err) {
+            console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
           }
-        }
-      });
+          while (!isDone) {
+            let result = rootIterator.next();
+            console.log("next result = " + JSON.stringify(result));
+            isDone = result.done;
+            if (!isDone) {
+              rootinfos.push(result.value);
+            }
+          }
+        });       
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -701,14 +715,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
     let displayName: string = "file1";
     let fileUri: string;
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-      if (!fileUri) {
-        console.error("createFile return undefined object");
-        return;
+        if (fileAccessHelper != undefined) {
+        fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
+        if (!fileUri) {
+          console.error("createFile return undefined object");
+          return;
+        }
+        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));       
       }
-      console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -747,14 +764,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // You can use the URI obtained.
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
   let displayName: string = "file1";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.createFile(sourceUri, displayName, (err: BusinessError, fileUri: string) => {
-      if (err) {
-        console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.createFile(sourceUri, displayName, (err: BusinessError, fileUri: string) => {
+        if (err) {
+          console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -799,14 +819,16 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
     let dirName: string = "dirTest";
     let dirUri: string;
-
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      dirUri = await fileAccessHelper.mkDir(sourceUri, dirName);
-      if (!dirUri) {
-        console.error("mkDir return undefined object");
-      } else {
-        console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
+      if (fileAccessHelper != undefined) {
+        dirUri = await fileAccessHelper.mkDir(sourceUri, dirName);
+        if (!dirUri) {
+          console.error("mkDir return undefined object");
+        } else {
+          console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
+        }
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -846,14 +868,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // You can use the URI obtained.
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
   let dirName: string = "dirTest";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.mkDir(sourceUri, dirName, (err: BusinessError, dirUri: string) => {
-      if (err) {
-        console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.mkDir(sourceUri, dirName, (err: BusinessError, dirUri: string) => {
+        if (err) {
+          console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -896,9 +921,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
     // You can use the URI obtained.
     let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
+      if (fileAccessHelper != undefined) {
+        let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -936,14 +964,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, (err: BusinessError, fd: number) => {
-      if (err) {
-        console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("openFile sucess, fd: " + fd);
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, (err: BusinessError, fd: number) => {
+        if (err) {
+          console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("openFile sucess, fd: " + fd);
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -985,11 +1016,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
     // You can use the URI obtained.
     let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let code = await fileAccessHelper.delete(targetUri);
-      if (code != 0)
-        console.error("delete failed, code " + code);
+      if (fileAccessHelper != undefined) {
+        let code = await fileAccessHelper.delete(targetUri);
+        if (code != 0)
+          console.error("delete failed, code " + code);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1026,14 +1060,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.delete(targetUri, (err: BusinessError, code: number) => {
-      if (err) {
-        console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("delete sucess, code: " + code);
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.delete(targetUri, (err: BusinessError, code: number) => {
+        if (err) {
+          console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("delete sucess, code: " + code);
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1077,10 +1114,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     // You can use the URI obtained.
     let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let fileUri = await fileAccessHelper.move(sourceFile, destFile);
-      console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+      if (fileAccessHelper != undefined) {
+        let fileUri = await fileAccessHelper.move(sourceFile, destFile);
+        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1119,14 +1159,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // You can use the URI obtained.
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.move(sourceFile, destFile, (err: BusinessError, fileUri: string) => {
-      if (err) {
-        console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.move(sourceFile, destFile, (err: BusinessError, fileUri: string) => {
+        if (err) {
+          console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1169,10 +1212,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
     // You can use the URI obtained.
     let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
-      console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+      if (fileAccessHelper != undefined) {
+        let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
+        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1210,14 +1256,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.rename(sourceDir, "testDir", (err: BusinessError, DestDir: string) => {
-      if (err) {
-        console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.rename(sourceDir, "testDir", (err: BusinessError, DestDir: string) => {
+        if (err) {
+          console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1259,13 +1308,16 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // You can use the URI obtained.
   async function accessFunc() {
     let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let existJudgment = await fileAccessHelper.access(sourceDir);
-      if (existJudgment) {
-        console.log("sourceDir exists");
-      } else {
-        console.log("sourceDir does not exist");
+      if (fileAccessHelper != undefined) {
+        let existJudgment = await fileAccessHelper.access(sourceDir);
+        if (existJudgment) {
+          console.log("sourceDir exists");
+        } else {
+          console.log("sourceDir does not exist");
+        }
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1303,18 +1355,21 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   // In the sample code, sourceDir indicates a folder in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceDir: string = "file://docs/storage/Users/currentUser/Download/test";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.access(sourceDir, (err: BusinessError, existJudgment: boolean) => {
-      if (err) {
-        console.error("Failed to access in async, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      if (existJudgment)
-        console.log("sourceDir exists");
-      else
-        console.log("sourceDir does not exist");
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.access(sourceDir, (err: BusinessError, existJudgment: boolean) => {
+        if (err) {
+          console.error("Failed to access in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        if (existJudgment)
+          console.log("sourceDir exists");
+        else
+          console.log("sourceDir does not exist");
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1352,9 +1407,12 @@ Obtains a **FileInfo** object based on a URI. This API uses a promise to return 
   // You can use the URI obtained.
   async function getUri() {
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
+      if (fileAccessHelper != undefined) {
+        let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1387,15 +1445,18 @@ Obtains a **FileInfo** object based on a URI. This API uses an asynchronous call
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.getFileInfoFromUri(sourceUri, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
-      if (err) {
-        console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.getFileInfoFromUri(sourceUri, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
+        if (err) {
+          console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1433,9 +1494,12 @@ Obtains a **FileInfo** object based on a relative path. This API uses a promise 
   // You can use the relativePath obtained.
   async function getRelativePath() {
     let relativePath: string = "Download/";
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(relativePath);
+      if (fileAccessHelper != undefined) {
+        let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(relativePath);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1467,15 +1531,18 @@ Obtains a **FileInfo** object based on a relative path. This API uses an asynchr
   // In the sample code, relativePath indicates the Download directory, which is the relativePath in fileInfo.
   // You can use the relativePath obtained.
   let relativePath: string = "Download/";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.getFileInfoFromRelativePath(relativePath, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
-      if (err) {
-        console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.getFileInfoFromRelativePath(relativePath, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
+        if (err) {
+          console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1512,11 +1579,14 @@ import { BusinessError } from '@ohos.base';
 async function getQuery01() {
   let imageFileRelativePath: string = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
   let jsonStrSingleRelativepath: string = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
-    let queryResult = await fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath);
-    console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+    if (fileAccessHelper != undefined) {
+      let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
+      let queryResult = await fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath);
+      console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
@@ -1549,16 +1619,19 @@ import { BusinessError } from '@ohos.base';
 async function getQuery02() {
   let imageFileRelativePath: string = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
   let jsonStrSingleRelativepath: string = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
-    fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err: BusinessError, queryResult: string) => {
-      if (err) {
-        console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
-    })
+    if (fileAccessHelper != undefined) {
+      let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
+      fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err: BusinessError, queryResult: string) => {
+        if (err) {
+          console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+      })
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
@@ -1600,17 +1673,20 @@ import { BusinessError } from '@ohos.base';
 async function copyFunc01() {
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -1630,17 +1706,20 @@ import { BusinessError } from '@ohos.base';
 async function copyFunc02() {
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -1677,23 +1756,26 @@ import { BusinessError } from '@ohos.base';
 // You can use the URI obtained.
 let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+// Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-  fileAccessHelper.copy(sourceFile, destFile, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
-    if (err) {
-      console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.copy(sourceFile, destFile, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
+      if (err) {
+        console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1728,23 +1810,26 @@ import { BusinessError } from '@ohos.base';
 // You can use the URI obtained.
 let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+// Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-  fileAccessHelper.copy(sourceFile, destFile, true, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
-    if (err) {
-      console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.copy(sourceFile, destFile, true, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
+      if (err) {
+        console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1788,10 +1873,13 @@ async function copyFunc01() {
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
   let fileName: string = "2.txt";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let copyResult = await fileAccessHelper.copyFile(sourceFile, destFile, fileName);
-    console.log("copyResult uri: " + copyResult);
+    if (fileAccessHelper != undefined) {
+      let copyResult = await fileAccessHelper.copyFile(sourceFile, destFile, fileName);
+      console.log("copyResult uri: " + copyResult);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1830,12 +1918,14 @@ import { BusinessError } from '@ohos.base';
 let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
 let fileName: string = "2.txt";
-
+// Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-  fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
-        console.log("copyResult uri: " + copyResult);
-  });
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
+          console.log("copyResult uri: " + copyResult);
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1866,47 +1956,50 @@ Registers a callback to listen for a URI. URIs and callbacks can be in many-to-m
 import { BusinessError } from '@ohos.base';
 async function registerObserver01() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let dirUri1 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR1');
-    let dirUri2 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR2');
-    // Two notifications are expected to receive because notifyForDescendants is set to true during registration.
-    // The URI is 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE', and the event type is NOTIFY_MOVED_FROM.
-    // The URI is 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE', and the event type is NOTIFY_MOVE_SELF.
-    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri1 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR1');
+      let dirUri2 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR2');
+      // Two notifications are expected to receive because notifyForDescendants is set to true during registration.
+      // The URI is 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE', and the event type is NOTIFY_MOVED_FROM.
+      // The URI is 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE', and the event type is NOTIFY_MOVE_SELF.
+      const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'.
-    const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'.
+      const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    // The notification expected to receive is about the NOTIFY_MOVE_SELF event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'.
-    // The notification expected to receive is about the NOTIFY_MOVED_FROM event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'.
-    const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      // The notification expected to receive is about the NOTIFY_MOVE_SELF event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'.
+      // The notification expected to receive is about the NOTIFY_MOVED_FROM event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'.
+      const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      let fileUri = await fileAccessHelper.createFile(dirUri1, 'SUB_FILE');
+      fileAccessHelper.registerObserver(dirUri1, true, callbackDir1);
+      fileAccessHelper.registerObserver(dirUri2, true, callbackDir2);
+      // If the moved file itself is not listened for, the NOTIFY_MOVE_SELF event will not be triggered.
+      fileAccessHelper.registerObserver(fileUri, true, callbackFile);
+      let moveFileUri = await fileAccessHelper.move(fileUri, dirUri2);
+      // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
+      fileAccessHelper.unregisterObserver(dirUri1, callbackDir1);
+      fileAccessHelper.unregisterObserver(dirUri2, callbackDir2);
+      fileAccessHelper.unregisterObserver(fileUri, callbackFile);
     }
-    let fileUri = await fileAccessHelper.createFile(dirUri1, 'SUB_FILE');
-    fileAccessHelper.registerObserver(dirUri1, true, callbackDir1);
-    fileAccessHelper.registerObserver(dirUri2, true, callbackDir2);
-    // If the moved file itself is not listened for, the NOTIFY_MOVE_SELF event will not be triggered.
-    fileAccessHelper.registerObserver(fileUri, true, callbackFile);
-    let moveFileUri = await fileAccessHelper.move(fileUri, dirUri2);
-    // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
-    fileAccessHelper.unregisterObserver(dirUri1, callbackDir1);
-    fileAccessHelper.unregisterObserver(dirUri2, callbackDir2);
-    fileAccessHelper.unregisterObserver(fileUri, callbackFile);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1920,23 +2013,26 @@ Example 2: Use the same **uri**, **notifyForDescendants**, and **callback** to r
 import { BusinessError } from '@ohos.base';
 async function registerObserver02() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // The notification expected to receive is about the NOTIFY_ADD event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'.
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // The notification expected to receive is about the NOTIFY_ADD event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'.
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      // A message is returned indicating that the registration is successful. Repeated registration is reported only in the log.
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      let subDirUri = await fileAccessHelper.mkDir(dirUri, 'SUB_DIR');
+      // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
     }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    // A message is returned indicating that the registration is successful. Repeated registration is reported only in the log.
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    let subDirUri = await fileAccessHelper.mkDir(dirUri, 'SUB_DIR');
-    // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1950,25 +2046,28 @@ Example 3: Use the same **uri** and **callback** but different **notifyForDescen
 import { BusinessError } from '@ohos.base';
 async function registerObserver03() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // The first notification expected to receive is about the NOTIFY_ADD event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE_1'.
-    // No second return is expected.
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // The first notification expected to receive is about the NOTIFY_ADD event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE_1'.
+      // No second return is expected.
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      let subFile1 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_1');
+      // After the registration is successful, change notifyForDescendants to false.
+      fileAccessHelper.registerObserver(dirUri, false, callbackDir);
+      let subFile2 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_2');
+      // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
     }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    let subFile1 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_1');
-    // After the registration is successful, change notifyForDescendants to false.
-    fileAccessHelper.registerObserver(dirUri, false, callbackDir);
-    let subFile2 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_2');
-    // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1981,6 +2080,8 @@ Example 4: Observe the device online/offline status.
 ```ts
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
@@ -1989,10 +2090,12 @@ async function UnregisterObserver03() {
         console.error("NotifyMessageDir is undefined");
       }
     }
-    // Subscribe to the device online/offline status.
-    fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
-    // Unsubscribe from the device online/offline status.
-    fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    if (fileAccessHelper != undefined) {
+      // Subscribe to the device online/offline status.
+      fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+      // Unsubscribe from the device online/offline status.
+      fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2023,21 +2126,24 @@ Example 1: Unregister a callback of the specified URI.
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver01() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      await fileAccessHelper.delete(dirUri);
+      // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
     }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    await fileAccessHelper.delete(dirUri);
-    // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2051,23 +2157,26 @@ Example 2: Repeatedly unregister a callback of the specified URI.
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver02() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // The notification expected to receive is about the NOTIFY_DELETE event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'.
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    await fileAccessHelper.delete(dirUri);
-    // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
-    // If the unregistration fails, throw the error code E_CAN_NOT_FIND_URI.
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      await fileAccessHelper.delete(dirUri);
+      // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+      // If the unregistration fails, throw the error code E_CAN_NOT_FIND_URI.
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+      }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2081,35 +2190,38 @@ Example 3: Unregister all callbacks of the specified URI.
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // The notification expected to receive is about the NOTIFY_MOVED_FROM event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE'.
-    // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'.
-    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // The notification expected to receive is about the NOTIFY_MOVED_FROM event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE'.
+      // The notification expected to receive is about the NOTIFY_MOVED_TO event of the URI 'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'.
+      const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    // No notification is expected to receive.
-    const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      // No notification is expected to receive.
+      const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      let fileUri = await fileAccessHelper.createFile(dirUri, 'SUB_FILE');
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
+      // The registration does not include the events about the next-level directory.
+      fileAccessHelper.registerObserver(dirUri, false, callbackDir2);
+      let renameUri = await fileAccessHelper.rename(fileUri, 'RENAME_FILE');
+      // Unregister all callbacks (callbackDir1 and callbackDir2) of dirUri.
+      // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
+      fileAccessHelper.unregisterObserver(dirUri);
+      await fileAccessHelper.delete(dirUri);
     }
-    let fileUri = await fileAccessHelper.createFile(dirUri, 'SUB_FILE');
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
-    // The registration does not include the events about the next-level directory.
-    fileAccessHelper.registerObserver(dirUri, false, callbackDir2);
-    let renameUri = await fileAccessHelper.rename(fileUri, 'RENAME_FILE');
-    // Unregister all callbacks (callbackDir1 and callbackDir2) of dirUri.
-    // Do not unregister the callback immediately after the registration is complete, because the unregistration result may be returned before the notification is returned. If this occurs, the notification wll not be received.
-    fileAccessHelper.unregisterObserver(dirUri);
-    await fileAccessHelper.delete(dirUri);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2119,9 +2231,11 @@ async function UnregisterObserver03() {
 
 Example 4: Unregistger the device online/offline status.
 
-```
+```ts
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
@@ -2130,10 +2244,12 @@ async function UnregisterObserver03() {
         console.error("NotifyMessageDir is undefined");
       }
     }
-    // Subscribe to the device online/offline status.
-    fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
-    // Unsubscribe from the device online/offline status.
-    fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    if (fileAccessHelper != undefined) {
+      // Subscribe to the device online/offline status.
+      fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+      // Unsubscribe from the device online/offline status.
+      fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2185,17 +2301,20 @@ import { BusinessError } from '@ohos.base';
 async function moveItemFunc01() {
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri);
-    if (moveResult.length === 0) {
-      console.log("moveItem success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri);
+      if (moveResult.length === 0) {
+        console.log("moveItem success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -2215,17 +2334,20 @@ import { BusinessError } from '@ohos.base';
 async function moveItemFunc02() {
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri, true);
-    if (moveResult.length === 0) {
-      console.log("moveItem success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri, true);
+      if (moveResult.length === 0) {
+        console.log("moveItem success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -2266,23 +2388,26 @@ import { BusinessError } from '@ohos.base';
 // You can use the URI obtained.
 let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+// Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-  fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
-    if (err) {
-      console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (moveResult.length === 0) {
-      console.log("moveItem success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
+      if (err) {
+        console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (moveResult.length === 0) {
+        console.log("moveItem success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2323,23 +2448,26 @@ import { BusinessError } from '@ohos.base';
 // You can use the URI obtained.
 let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+// Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-  fileAccessHelper.moveItem(sourceUri, destUri, true, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
-    if (err) {
-      console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (moveResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.moveItem(sourceUri, destUri, true, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
+      if (err) {
+        console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (moveResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2390,10 +2518,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
     let fileName: string;
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-      let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
-      console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+    if (fileAccessHelper != undefined) {
+        let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
+        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+    }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("moveFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2440,14 +2571,17 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
   let fileName: string;
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-    fileAccessHelper.moveFile(sourceUri, destUri, fileName, (err: BusinessError, fileUri: string) => {
-      if (err) {
-        console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.moveFile(sourceUri, destUri, fileName, (err: BusinessError, fileUri: string) => {
+        if (err) {
+          console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("moveFile failed, errCode:" + error.code + ", errMessage:" + error.message);

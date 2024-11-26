@@ -33,7 +33,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
-
 let seService : omapi.SEService;
 let seReaders : omapi.Reader[];
 let seSession : omapi.Session;
@@ -50,19 +49,23 @@ export default class EntryAbility extends UIAbility {
       hilog.error(0x0000, 'testTag', 'secure element unavailable.');
       return;
     }
+    hilog.info(0x0000, 'testTag', 'secure element available.');
+    this.omaTest();
+  }
 
+  private async omaTest () {
     // get the service
-    try {
-      seService = omapi.newSEService("serviceState", (state) => {
-        hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
-      });
-    } catch (error) {
-      hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
-    }
-    if (seService == undefined || !seService.isConnected()) {
-      hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+    await omapi.createService().then((data) => {
+      if (data == undefined || !data.isConnected()) {
+        hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+        return;
+      }
+      seService = data;
+      hilog.info(0x0000, 'testTag', 'secure element service connected.');
+    }).catch((error: BusinessError) => {
+      hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
       return;
-    }
+    });
 
     // get readers
     try {
@@ -72,34 +75,43 @@ export default class EntryAbility extends UIAbility {
     }
     if (seReaders == undefined || seReaders.length == 0) {
       hilog.error(0x0000, 'testTag', 'no valid reader found.');
+      seService.shutdown();
       return;
     }
+    let reader: (omapi.Reader | undefined);
+    for (let i = 0; i < seReaders.length; ++i) {
+      let r = seReaders[i];
+      if (r.getName().includes("SIM")) {
+        reader = r;
+        break;
+      }
+    }
+    if (reader == undefined) {
+      hilog.error(0x0000, 'testTag', 'no valid sim reader.');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'reader is %{public}s', reader?.getName());
 
     // get session
     try {
-      let reader = seReaders[0]; // change it to the selected reader, ese or sim.
-      seSession = reader.openSession();
+      seSession = reader?.openSession() as omapi.Session;
     } catch (error) {
       hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
     }
     if (seSession == undefined) {
       hilog.error(0x0000, 'testTag', 'seSession invalid.');
+      seService.shutdown();
       return;
     }
 
     // get channel
     try {
       // change the aid value for open logical channel.
-      seSession.openLogicalChannel(aidArray, p2, (error, data) => {
-        if (error) {
-          hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-        } else {
-          seChannel = data;
-        }
-      });
+      seChannel = await seSession.openLogicalChannel(aidArray, p2);
     } catch (exception) {
       hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
     }
+
     if (seChannel == undefined) {
       hilog.error(0x0000, 'testTag', 'seChannel invalid.');
       return;
@@ -108,11 +120,8 @@ export default class EntryAbility extends UIAbility {
     // transmit data
     let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
     try {
-      seChannel.transmit(cmdData).then((response) => {
-        hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));
-      }).catch((error : BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'seChannel.transmit() error = %{public}s.', JSON.stringify(error));
-      });
+      let response: number[] = await seChannel.transmit(cmdData)
+      hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));
     } catch (exception) {
       hilog.error(0x0000, 'testTag', 'seChannel.transmit() exception = %{public}s.', JSON.stringify(exception));
     }
@@ -123,6 +132,8 @@ export default class EntryAbility extends UIAbility {
     } catch (exception) {
       hilog.error(0x0000, 'testTag', 'seChannel.close() exception = %{public}s.', JSON.stringify(exception));
     }
+
   }
 }
+
 ```

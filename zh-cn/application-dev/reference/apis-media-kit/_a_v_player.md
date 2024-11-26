@@ -53,7 +53,7 @@
 | -------- | -------- |
 | [AVPlayerState](#avplayerstate-1) {<br/>AV_IDLE = 0, <br/>AV_INITIALIZED = 1, <br/>AV_PREPARED = 2, <br/>AV_PLAYING = 3,<br/>AV_PAUSED = 4, <br/>AV_STOPPED = 5, <br/>AV_COMPLETED = 6, <br/>AV_RELEASED = 7,<br/>AV_ERROR = 8<br/>} | 播放状态。 | 
 | [AVPlayerSeekMode](#avplayerseekmode) { <br/>AV_SEEK_NEXT_SYNC = 0, <br/>AV_SEEK_PREVIOUS_SYNC, <br/>AV_SEEK_CLOSEST = 2<br/>} | 跳转模式。 | 
-| [AVPlaybackSpeed](#avplaybackspeed-1) {<br/>AV_SPEED_FORWARD_0_75_X, <br/>AV_SPEED_FORWARD_1_00_X, <br/>AV_SPEED_FORWARD_1_25_X, <br/> AV_SPEED_FORWARD_1_75_X,<br/>AV_SPEED_FORWARD_2_00_X, <br/>AV_SPEED_FORWARD_0_50_X, <br/>AV_SPEED_FORWARD_1_50_X<br/>} | 播放速度。  | 
+| [AVPlaybackSpeed](#avplaybackspeed-1) {<br/>AV_SPEED_FORWARD_0_75_X, <br/>AV_SPEED_FORWARD_1_00_X, <br/>AV_SPEED_FORWARD_1_25_X, <br/> AV_SPEED_FORWARD_1_75_X,<br/>AV_SPEED_FORWARD_2_00_X, <br/>AV_SPEED_FORWARD_0_50_X, <br/>AV_SPEED_FORWARD_1_50_X<br/>, <br/>AV_SPEED_FORWARD_3_00_X, <br/>AV_SPEED_FORWARD_0_25_X, <br/>AV_SPEED_FORWARD_0_125_X} | 播放速度。  | 
 | [AVPlayerOnInfoType](#avplayeroninfotype-1) {<br/>AV_INFO_TYPE_SEEKDONE = 0, <br/>AV_INFO_TYPE_SPEEDDONE = 1, <br/>AV_INFO_TYPE_BITRATEDONE = 2, <br/>AV_INFO_TYPE_EOS = 3,<br/>AV_INFO_TYPE_STATE_CHANGE = 4, <br/>AV_INFO_TYPE_POSITION_UPDATE = 5, <br/>AV_INFO_TYPE_MESSAGE = 6, <br/>AV_INFO_TYPE_VOLUME_CHANGE = 7,<br/>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, <br/>AV_INFO_TYPE_BUFFERING_UPDATE = 9, <br/>AV_INFO_TYPE_BITRATE_COLLECT = 10, <br/>AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br/>AV_INFO_TYPE_DURATION_UPDATE = 12, <br/>AV_INFO_TYPE_IS_LIVE_STREAM = 13, <br/>AV_INFO_TYPE_TRACKCHANGE = 14, <br/>AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br/>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br/>} | OnInfo类型。 | 
 | [AVPlayerBufferingType](#avplayerbufferingtype-1) { <br/>AVPLAYER_BUFFERING_START = 1, <br/>AVPLAYER_BUFFERING_END, <br/>AVPLAYER_BUFFERING_PERCENT, <br/>AVPLAYER_BUFFERING_CACHED_DURATION <br/>} | 播放缓冲消息类型定义。  | 
 
@@ -402,6 +402,9 @@ enum AVPlaybackSpeed
 | AV_SPEED_FORWARD_2_00_X | 2.0倍速播放 | 
 | AV_SPEED_FORWARD_0_50_X | 0.5倍速播放<br>**起始版本：** 12 | 
 | AV_SPEED_FORWARD_1_50_X | 1.5倍速播放<br>**起始版本：** 12 | 
+| AV_SPEED_FORWARD_3_00_X | 3.0倍速播放<br>**起始版本：** 13 |
+| AV_SPEED_FORWARD_0_25_X | 0.25倍速播放<br>**起始版本：** 13 |
+| AV_SPEED_FORWARD_0_125_X | 0.125倍速播放<br>**起始版本：** 13 |
 
 
 ### AVPlayerBufferingType

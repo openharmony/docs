@@ -18,6 +18,10 @@ Column(value?: {space?: string | number})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -64,9 +68,31 @@ Alignment mode of the child components in the vertical direction.
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [FlexAlign](ts-appendix-enums.md#flexalign) | Yes  | Alignment mode of child components in the vertical direction.<br>Default value: **FlexAlign.Start**|
 
->  **NOTE**   
+>  **NOTE**
 >
 >  During column layout, child components do not shrink if [flexShrink](ts-universal-attributes-flex-layout.md#flexshrink) is not set for them. In this case, the total size of the child components on the main axis can exceed the size of the container on the main axis.
+
+### reverse<sup>12+</sup>
+
+reverse(isReversed: Optional\<boolean\>)
+
+Sets whether to reverse the arrangement of child components on the main axis (vertical direction).
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                                      |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| isReversed  | Optional\<boolean\> | Yes  | Whether to reverse the arrangement of child components on the main axis (vertical direction).<br>Default value: **true**|
+
+>  **NOTE**
+>
+>  If the **reverse** attribute is not set, the arrangement on the main axis remains in the normal order. If the attribute is set to **undefined**, it defaults to **true**, which reverses the arrangement on the main axis.<br>The **direction** attribute only changes the cross axis direction of the column and does not impact the main axis direction. Therefore, it is independent of the **reverse** attribute.
 
 ## Events
 

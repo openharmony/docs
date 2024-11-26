@@ -6,7 +6,7 @@ Focus control attributes set whether a component is focusable and how it partici
 >
 >  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >  
->  - Custom components are inherently unfocusable, and setting [focusable](#focusable) and [enabled](ts-universal-attributes-enable.md#enabled) attributes to **false** does not impact their child components' ability to gain focus.
+>  - Custom components are inherently unfocusable, and setting [focusable](#focusable) and [enabled](ts-universal-attributes-enable.md#enabled) attributes to **false** or setting the [visibility](ts-universal-attributes-visibility.md#visibility) attribute to **Hidden** or **None** does not impact their child components' capability to gain focus.
 >  
 >  - Components can actively acquire focus independently of the window's focus state.
 >  
@@ -165,6 +165,16 @@ Sets focus on the specified entity node in the component tree based on the compo
 >
 >  For details, see [requestFocus](../js-apis-arkui-UIContext.md#requestfocus12).
 
+### activate<sup>14+</sup>
+
+activate(): void
+
+Sets the current screen to immediately enter the focused state, where the single focused component on the screen is highlighted (with a focus box, for example), producing an effect similar to that of pressing the **Tab** key.
+
+>  **NOTE**
+>
+>  For details, see [activate](../js-apis-arkui-UIContext.md#activate14).
+
 ## FocusBoxStyle<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -210,16 +220,15 @@ focusScopeId(id: string, isGroup?: boolean)
 
 Assigns an ID to this container component and specifies whether the container is a focus group.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| id  | string | Yes  | ID of the current container component.<br>**NOTE**<br>The ID must be unique within a single level page.|
-| isGroup  | boolean | No  | Whether the current container component is a focus group.<br>**NOTE**<br>Focus groups cannot be nested and should not be configured repeatedly.<br> The focus group and **tabIndex** cannot be used together.<br>The focus group enables the container and its elements to navigate focus according to the focus group rules as follows:<br>1. Only arrow keys are allowed for focus traversal within the focus group; the **Tab** key will move the focus out of the focus group.<br>2. When arrow keys are used to move the focus from outside the focus group to inside, if there is a component with a priority of **PREVIOUS** within the focus group, that component gains focus; otherwise, the last focused component does.|
+| id  | string | Yes  | ID of the current container component.<br>**NOTE**<br>The ID must be unique within a single level page.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isGroup  | boolean | No  | Whether the current container component is a focus group.<br>**NOTE**<br>Focus groups cannot be nested and should not be configured repeatedly.<br> The focus group and **tabIndex** cannot be used together.<br>The focus group enables the container and its elements to navigate focus according to the focus group rules as follows:<br>1. Only arrow keys are allowed for focus traversal within the focus group; the **Tab** key will move the focus out of the focus group.<br>2. When arrow keys are used to move the focus from outside the focus group to inside, if there is a component with a priority of **PREVIOUS** within the focus group, that component gains focus; otherwise, the last focused component does.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| arrowStepOut<sup>14+</sup>  | boolean | No  | Whether the focus can be moved out of the current focus group using arrow keys.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
 
@@ -378,13 +387,13 @@ Clicking the component bound to **focusOnTouch** sets the focus on the component
 
 ### Example 2
 
-This example shows how to use **focusControl.requestFocus**
+> **NOTE**
+> 
+> To avoid confusion with **focusControl** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **focusControl** instance bound to the context through the [getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12) API.
 
-to move the focus to the specified component.
+This example shows how to use **focusControl.requestFocus** to move the focus to the specified component.
 ```ts
 // requestFocus.ets
-import { promptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct RequestFocusExample {
@@ -433,11 +442,12 @@ struct RequestFocusExample {
         Button("RequestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
+            // You are advised to use this.getUIContext().getFocusController().requestFocus().
             let res = focusControl.requestFocus(this.selectId)      // Move the focus to the component specified by this.selectId.
             if (res) {
-              promptAction.showToast({message: 'Request success'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request success'})
             } else {
-              promptAction.showToast({message: 'Request failed'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request failed'})
             }
           })
       }
@@ -621,3 +631,4 @@ struct FocusableExample {
   }
 }
 ```
+<!--no_check-->

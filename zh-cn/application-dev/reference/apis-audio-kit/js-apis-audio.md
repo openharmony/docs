@@ -762,7 +762,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称              | 类型                                              | 必填 | 说明               |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
 | blockStatus       | [DeviceBlockStatus](#deviceblockstatus13)           | 是   | 音频设备堵塞状态。 |
-| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
+| devices | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
 ## ChannelBlendMode<sup>11+</sup>
 

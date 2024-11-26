@@ -20,6 +20,8 @@ Counter()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -62,7 +64,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ### onInc
 
-onInc(event: () =&gt; void)
+onInc(event: VoidCallback)
 
 Invoked when the value increases.
 
@@ -72,9 +74,15 @@ Invoked when the value increases.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
+| Name| Type                                          | Mandatory| Description                                |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | Yes  | Callback invoked when the value increases.       |
+
 ### onDec
 
-onDec(event: () =&gt; void)
+onDec(event: VoidCallback)
 
 Invoked when the value decreases.
 
@@ -83,6 +91,12 @@ Invoked when the value decreases.
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                          | Mandatory| Description                                |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | Yes  | Callback invoked when the value decreases.       |
 
 
 ## Example

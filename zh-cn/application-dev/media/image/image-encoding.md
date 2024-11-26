@@ -75,6 +75,8 @@
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
+   }).finally(()=>{
+     fs.closeSync(file.fd);
    })
    ```
 
@@ -90,6 +92,8 @@
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
+   }).finally(()=>{
+     fs.closeSync(file.fd);
    })
    ```
 

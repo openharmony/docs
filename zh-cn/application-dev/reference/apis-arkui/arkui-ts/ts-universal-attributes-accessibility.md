@@ -198,7 +198,7 @@ accessibilitySelected(isSelect: boolean)
 
 
 
-## 示例 1
+## 示例1（设置无障碍文本和无障碍说明）
 
 该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
 
@@ -240,7 +240,7 @@ struct Index {
 }
 ```
 
-## 示例 2
+## 示例2（设置无障碍组）
 
 该示例主要演示优先使用子组件的无障碍文本进行朗读。
 

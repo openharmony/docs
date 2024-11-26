@@ -17,12 +17,21 @@ GridCol(option?: GridColOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | option   | [GridColOptions](#gridcoloptions) | No  | Child component options of the grid layout.|
 
 ## GridColOptions
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | span   | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of columns occupied by the component. If it is set to **0**, the component is not involved in layout calculation, that is, the component is not rendered.<br>Default value: **1**|
@@ -95,6 +104,8 @@ Describes the numbers of grid columns occupied by the **GridCol** component on d
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |

@@ -537,7 +537,7 @@ struct Index {
     * shares ------ 存放通用组件
     * service ------ 数据服务
       * app.ts ------ 服务入口
-      * LoginMode ----- 登录页ViewModel
+      * LoginViewMode ----- 登录页ViewModel
       * xxxModel ------ 其他页ViewModel
 
 ### 分层设计技巧

@@ -34,6 +34,6 @@ Before implementing the specifications for mini-system devices, determine whethe
 
 | Algorithm/MD Algorithm/Padding Mode| Description| API Version|
 | -------- | -------- | -------- |
-| RSA/SHA1/PKCS1_V1_5<br>RSA/SHA256/PKCS1_V1_5 | - | 12+ |
-| RSA/SHA1/PSS<br>RSA/SHA256/PSS | - | 12+ |
-| RSA/SHA1/ISO_IEC_9796_2<br>RSA/SHA256/ISO_IEC_9796_2 | - | 12+ |
+| RSA/SHA256/PKCS1_V1_5 | - | 12+ |
+| RSA/SHA256/PSS | - | 12+ |
+| RSA/SHA1/ISO_IEC_9796_2 | Minimum data length = Key length - 22 bytes| 12+ |

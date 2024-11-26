@@ -158,7 +158,7 @@ static struct OH_Huks_Param g_agreeParamsFinish02[] = {
         .uint32Param = OH_HUKS_AES_KEY_SIZE_256
     }, {
         .tag = OH_HUKS_TAG_PURPOSE,
-        .uint32Param = OH_HUKS_KEY_PURPOSE_DERIVE
+        .uint32Param = OH_HUKS_KEY_PURPOSE_AGREE
     }, {
         .tag = OH_HUKS_TAG_KEY_ALIAS,
         .blob = g_keyAliasFinal2001

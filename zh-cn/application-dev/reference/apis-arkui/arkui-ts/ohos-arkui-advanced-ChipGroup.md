@@ -221,7 +221,9 @@ Label定义图标的共通属性。
 
 ## 示例
 
-### 示例1-无suffix
+### 示例1（无最右侧的builder）
+
+该示例实现了无最右侧的builder时效果。
 
 ```typescript
 import { ChipSize, ChipGroup } from '@kit.ArkUI'
@@ -289,7 +291,9 @@ struct Index {
 
 ![](figures/chipGroupDemo1.jpeg)
 
-### 示例2-有suffix
+### 示例2（有最右侧的builder）
+
+该示例通过配置suffix实现最右侧的自定义组件效果。
 
 ```typescript
 import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
@@ -379,7 +383,7 @@ struct Index {
 
 ![](figures/chipGroupDemo2.jpeg)
 
-### 示例3
+### 示例3（设置Symbol类型图标）
 该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
 ```typescript
 import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
@@ -472,7 +476,7 @@ struct Index {
 ```
 ![](figures/chipGroupDemo3.jpeg)
 
-### 示例4
+### 示例4（单选时无障碍朗读）
 
 该示例实现了ChipGroup在单选的情况下，有后缀区域和无后缀区域的屏幕朗读功能。
 
@@ -542,9 +546,9 @@ export struct ChipGroupExample2 {
           }
         },
         {
-          symbol: new SymbolGlyphModifier($r('sys.symbol.more'))
-            .accessibilityText('更多')
-            .accessibilityDescription('新手提醒'),
+          symbol: new SymbolGlyphModifier($r('sys.symbol.more')),
+          accessibilityText: '更多',
+          accessibilityDescription: '新手提醒',
           action: () => {
             this.getUIContext().getPromptAction().showToast({
               message: '更多按钮被点击！'
@@ -650,7 +654,7 @@ export struct ChipGroupExample2 {
 }
 ```
 
-### 示例5
+### 示例5（多选时无障碍朗读）
 
 该示例实现了ChipGroup在多选的情况下，有后缀区域和无后缀区域的屏幕朗读功能。
 
@@ -720,9 +724,9 @@ export struct ChipGroupExample2 {
           }
         },
         {
-          symbol: new SymbolGlyphModifier($r('sys.symbol.more'))
-            .accessibilityText('更多')
-            .accessibilityDescription('新手提醒'),
+          symbol: new SymbolGlyphModifier($r('sys.symbol.more')),
+          accessibilityText: '更多',
+          accessibilityDescription: '新手提醒',
           action: () => {
             this.getUIContext().getPromptAction().showToast({
               message: '更多按钮被点击！'
