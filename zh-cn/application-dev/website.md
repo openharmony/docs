@@ -487,6 +487,8 @@
         - 主题设置<!--arkts-theme-->
           - [设置主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
+        - 跨进程拉起页面<!--arkts-ui-cross-process-->
+          - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
         <!--Del-->
         - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
         <!--DelEnd-->
@@ -651,7 +653,7 @@
         - [延迟任务(ArkTS)](task-management/work-scheduler.md)
         - [代理提醒(ArkTS)](task-management/agent-powered-reminder.md)
         <!--Del-->
-        - [能效资源申请（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
+        - [能效资源申请(ArkTS)（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
         <!--DelEnd-->
       <!--Del-->
       - 设备使用信息统计（仅对系统应用开放）<!--device-usage-statistics-->
@@ -1048,7 +1050,7 @@
             - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
             - [流量管理](network/net-statistics.md)
           <!--Del-->
-            - [网络防火墙（仅对系统应用开放）](network/net-netfirewall-sys.md)
+            - [网络防火墙（仅对系统应用开放）](network/net-netfirewall.md)
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)   
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
@@ -1132,8 +1134,9 @@
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
-        - [驱动扩展框架DriverExtensionAbility](device/driver/driverextensionability.md)
-        - [扩展外设管理开发指导](device/driver/externaldevice-guidelines.md)
+        - [外设扩展驱动客户端开发指导](device/driver/externaldevice-guidelines.md)
+        - [外设扩展驱动开发指导](device/driver/driverextensionability.md)
+        - [常见问题](device/driver/externaldevice-faqs.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
@@ -1574,8 +1577,6 @@
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
-          - [使用Node-API接口进行错误处理开发](napi/use-napi-about-error.md)
-          - [使用Node-API扩展能力接口](napi/use-napi-about-extension.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -2056,7 +2057,6 @@
             - [Graphics](reference/apis-arkui/js-apis-arkui-graphics.md)
             - [NodeController](reference/apis-arkui/js-apis-arkui-nodeController.md)
             - [RenderNode](reference/apis-arkui/js-apis-arkui-renderNode.md)
-            - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
@@ -2211,9 +2211,7 @@
           <!--DelEnd-->
         - 导航与切换
           - [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)
-          - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [NavDestination](reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)
-          - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [Stepper](reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
           - [StepperItem](reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md)
           - [Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)
@@ -3304,11 +3302,15 @@
         - 错误码<!--basic-services-arkts-errcode-->
           - [USB服务错误码](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock锁错误码](reference/apis-basic-services-kit/errorcode-runninglock.md)
-          - [zlib子系统错误码](reference/apis-basic-services-kit/errorcode-zlib.md)  
+          - [zlib子系统错误码](reference/apis-basic-services-kit/errorcode-zlib.md)
+          <!--Del-->
           - [电量信息错误码](reference/apis-basic-services-kit/errorcode-battery-info.md)
           - [耗电统计错误码](reference/apis-basic-services-kit/errorcode-batteryStatistics.md)
+          <!--DelEnd-->
           - [剪贴板错误码](reference/apis-basic-services-kit/errorcode-pasteboard.md)
+          <!--Del-->
           - [屏幕亮度错误码](reference/apis-basic-services-kit/errorcode-brightness.md)
+          <!--DelEnd-->
           - [热管理错误码](reference/apis-basic-services-kit/errorcode-thermal.md)
           - [上传下载错误码](reference/apis-basic-services-kit/errorcode-request.md)
           - [时间时区错误码](reference/apis-basic-services-kit/errorcode-time.md)
@@ -3316,13 +3318,9 @@
           - [系统参数错误码](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
           - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
           - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
-          <!--Del-->
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
-          <!--DelEnd-->
-          - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
-          - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
-          - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           <!--Del-->
+          - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
       - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
@@ -3384,6 +3382,7 @@
               - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
+          - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
         - ArkTS API<!--mdm-arkts-->
           - [@ohos.enterprise.accountManager（账户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
@@ -4064,6 +4063,11 @@
           <!--Del-->
           - [@ohos.notification (Notification模块)(系统接口)](reference/apis-notification-kit/js-apis-notification-sys.md)
           <!--DelEnd-->
+      - C API<!--notification-c-->
+        - 模块<!--notification-module-->
+          - [Notification](reference/apis-notification-kit/capi-notification.md)
+        - 头文件<!--notification-c-->
+          - [notification.h](reference/apis-notification-kit/notification_8h.md)
       - 错误码<!--notification-arkts-errcode-->
         - [通知错误码](reference/apis-notification-kit/errorcode-notification.md)
   - AI<!--ai-api-->
