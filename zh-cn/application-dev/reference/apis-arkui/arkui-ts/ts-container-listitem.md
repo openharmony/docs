@@ -252,7 +252,8 @@ ListItem元素被鼠标框选的状态改变时触发回调。
 
 ## 示例
 
-### 示例1 
+### 示例1（创建ListItem）
+该实例实现了创建ListItem的基本用法。
 
 ```ts
 // xxx.ets
@@ -284,8 +285,8 @@ struct ListItemExample {
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_0000001219864159.gif)
 
-### 示例2
-
+### 示例2（设置划出组件）
+该示例展示了ListItem设置了swipeAction的横滑效果。
 
 ```ts
 // xxx.ets
@@ -354,7 +355,8 @@ struct ListItemExample2 {
 ```
 ![deleteListItem](figures/deleteListItem.gif)
 
-### 示例3
+### 示例3（设置卡片样式）
+该示例展示了ListItem的卡片样式效果。
 
 ```ts
 // xxx.ets
