@@ -1,5 +1,5 @@
 # @ohos.wifiManager (WLAN)
-该模块主要提供WLAN基础功能（无线接入、无限加密、无限漫游等）、P2P（peer-to-peer）服务的基础功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
+该模块主要提供WLAN基础功能（无线接入、无线加密、无线漫游等）、P2P（peer-to-peer）服务的基础功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -329,12 +329,12 @@ WLAN热点信息。
 | centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高wifi级别。 |
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hiLink，true:支持，&nbsp;false:不支持。 |
 
 ## DeviceAddressType<sup>10+</sup>
 
-wifi 设备地址（mac/bssid）类型。
+Wi-Fi 设备地址（MAC/bssid）类型。
 
 **系统能力：** SystemCapability.Communication.WiFi.Core
 
@@ -852,7 +852,7 @@ getSignalLevel(rssi: number, band: number): number
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | rssi | number | 是 | 热点的信号强度(dBm)。 |
-  | band | number | 是 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
+  | band | number | 是 | WLAN接入点的频段，1表示2.4GHZ；2表示5GHZ。 |
 
 **返回值：**
 
@@ -978,7 +978,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bssid | string | 是 | 否 | 热点的BSSID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
+| band | number | 是 | 否 | WLAN接入点的频段，1表示2.4GHZ；2表示5GHZ。 |
 | linkSpeed | number | 是 | 否 | WLAN接入点的上行速度，单位Mbps/s。 |
 | rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度，单位Mbps/s。 |
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率，单位Mbps/s。 |
@@ -991,8 +991,8 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址(wifi连接信息和关于本机里的状态信息可以查看)。 |
 | connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
-| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的WiFi标准。 |
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高wifi级别。 |
+| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
 
 ## ConnState<sup>9+</sup>
@@ -1443,7 +1443,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
+| isGroupOwner | boolean | 是 | 否 | 是否为GO。 |
 | groupOwnerAddr | string | 是 | 否 | 群组IP地址。 
 
 
