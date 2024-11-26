@@ -1180,6 +1180,7 @@ Error: install version name not same.
 **处理步骤**
 
 * 场景一：DevEco entry配置界面中取消勾选“Keep Application Data”。
+
 ![示例图](figures/zh-cn_image_9568279.png)
 
 * 场景二：对其HSP和HAP的包名、版本号、sdk版本号、releaseType使其一致。
