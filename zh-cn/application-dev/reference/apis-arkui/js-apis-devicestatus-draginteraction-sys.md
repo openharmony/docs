@@ -170,7 +170,7 @@ console.log(`Drag interaction summarys: ${JSON.stringify(summarys)}`);
 
 setDragSwitchState(enabled: boolean): void
 
-控制统一拖拽功能总开关
+控制统一拖拽功能总开关。
 
 **系统接口：** 此接口为系统接口。
 
@@ -180,7 +180,7 @@ setDragSwitchState(enabled: boolean): void
 
 | 参数名   | 类型                               | 必填 | 说明                                                                   |
 | -------- | ---------------------------------- | ---- | ---------------------------------------------------------------------- |
-| enabled  | boolean                            | 是   | 设置开关状态：0-关，1-开。                                              |
+| enabled  | boolean                            | 是   | 设置开关状态：false-关，true-开。                                              |
 
 **错误码：**
 
@@ -201,7 +201,7 @@ dragInteraction.setDragSwitchState(false);
 
 setAppDragSwitchState(enabled: boolean, bundleName: string): void
 
-控制统一拖拽适配应用开关
+控制统一拖拽适配应用开关。
 
 **系统接口：** 此接口为系统接口。
 
@@ -211,7 +211,7 @@ setAppDragSwitchState(enabled: boolean, bundleName: string): void
 
 | 参数名      | 类型                               | 必填 | 说明                                                                   |
 | --------   | ---------------------------------- | ---- | ---------------------------------------------------------------------- |
-| enabled    | boolean                            | 是   | 设置开关状态：0-关，1-开。                                              |
+| enabled    | boolean                            | 是   | 设置开关状态：false-关，true-开。                                              |
 | bundleName | string                             | 是   | 设置指定应用包名开关状态。                                               |
 
 **错误码：**
@@ -226,5 +226,5 @@ setAppDragSwitchState(enabled: boolean, bundleName: string): void
 **示例：**
 
 ```ts
-dragInteraction.setAppDragSwitchState(true, "com.huawei.hmsapp.appgallery");
+dragInteraction.setAppDragSwitchState(true, "com.app.bundleName");
 ```
