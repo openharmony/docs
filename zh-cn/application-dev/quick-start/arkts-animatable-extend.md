@@ -29,13 +29,14 @@
 - \@AnimatableExtend定义的函数体内只能调用\@AnimatableExtend括号内组件的属性方法。
 
 ### AnimatableArithmetic\<T\>接口说明
-对复杂数据类型做动画，需要实现AnimatableArithmetic\<T\>接口中加法、减法、乘法和判断相等函数。
+该接口定义非number数据类型的动画运算规则。对非number类型的数据（如数组、结构体、颜色等）做动画，需要实现AnimatableArithmetic\<T\>接口中加法、减法、乘法和判断相等函数，
+使得该数据能参与动画的插值运算和识别该数据是否发生改变。即定义它们为实现了AnimatableArithmetic\<T\>接口的类型。
 | 名称 | 入参类型 | 返回值类型 | 说明
 | -------- | -------- |-------- |-------- |
-| plus | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | 加法函数 |
-| subtract | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | 减法函数 |
-| multiply | number | AnimatableArithmetic\<T\> | 乘法函数 |
-| equals | AnimatableArithmetic\<T\> | boolean | 相等判断函数 |
+| plus | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | 定义该数据类型的加法运算规则 |
+| subtract | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | 定义该数据类型的减法运算规则 |
+| multiply | number | AnimatableArithmetic\<T\> | 定义该数据类型的乘法运算规则 |
+| equals | AnimatableArithmetic\<T\> | boolean | 定义该数据类型的相等判断规则|
 
 ## 使用场景
 
@@ -96,6 +97,7 @@ class Point {
   }
 }
 
+// PointVector实现了AnimatableArithmetic<T>接口
 class PointVector extends Array<Point> implements AnimatableArithmetic<PointVector> {
   constructor(value: Array<Point>) {
     super();
@@ -160,13 +162,14 @@ struct AnimatablePropertyExample {
     Column() {
       Polyline()
         .animatablePoints(this.points)
-        .animation({duration: 1000, curve: Curve.Ease})
+        .animation({duration: 1000, curve: Curve.Ease}) // 设置动画参数
         .size({height:220, width:300})
         .fill(Color.Green)
         .stroke(Color.Red)
         .backgroundColor('#eeaacc')
       Button("Play")
         .onClick(() => {
+          // points是实现了可动画协议的数据类型，points在动画过程中可按照定义的运算规则、动画参数从之前的PointVector变为新的PointVector数据，产生每一帧的PointVector数据，进而产生动画
           this.points = new PointVector([
             new Point(50, Math.random() * 200),
             new Point(100, Math.random() * 200),
