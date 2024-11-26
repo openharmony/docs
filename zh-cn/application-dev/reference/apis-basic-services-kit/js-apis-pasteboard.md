@@ -2507,9 +2507,13 @@ try {
 
 setShareOptions(shareOptions: ShareOption): void
 
-设置应用全局的可粘贴的范围。
+应用设置本应用剪贴板数据的可粘贴范围。
+
+**需要权限**：ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2546,7 +2550,11 @@ removeShareOptions(): void
 
 删除应用全局的可粘贴的范围。
 
+**需要权限**：ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **错误码：**
 
