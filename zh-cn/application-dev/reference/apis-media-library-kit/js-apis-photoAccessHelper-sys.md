@@ -5772,6 +5772,8 @@ async function example() {
 
 setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: string): Promise&lt;void&gt;
 
+设置视频的二阶段增强处理类型。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
