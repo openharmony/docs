@@ -518,9 +518,9 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 
 ## screen.makeUnique<sup>13+</sup>
 
-makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-Set multiple screens as unique screens. This API uses a promise to return the result.
+Sets screen unique. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -528,13 +528,13 @@ Set multiple screens as unique screens. This API uses a promise to return the re
 
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
-| screenIds  | Array&lt;number&gt; | Yes  | A collection of screen ids to be set as unique screens.|
+| uniqueScreen  | Array&lt;number&gt; | Yes  | IDs of unique screens. Each ID must be an integer.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result. Returns the displayId collection that sets the unique screen.|
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the display IDs of the unique screens, Each ID must be an integer.|
 
 **Error codes**
 
@@ -551,8 +551,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let screenIds: Array<number> = [1001, 1002, 1003];
-screen.makeUnique(screenIds).then((data: Array<number>) => {
+let uniqueScreenIds: Array<number> = [1001, 1002, 1003];
+screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
   console.info('Succeeded in making unoque screens.';
 }).catch((err: BusinessError) => {
   console.error(`Failed to make unoque screens. Code:${err.code},message is ${err.message}`);

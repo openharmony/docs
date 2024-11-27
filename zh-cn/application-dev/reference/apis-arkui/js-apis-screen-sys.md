@@ -518,9 +518,9 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 
 ## screen.makeUnique<sup>13+</sup>
 
-makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-设置屏幕为异源屏，使用Promise异步回调。
+将屏幕设置为异源模式，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -528,13 +528,13 @@ makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenIds  | Array&lt;number&gt; | 是   | 需要设置为异源屏的屏幕id集合. |
+| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为整数。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回设置异源屏幕的displayId集合。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回异源屏幕的displayId集合，其中id应为整数。|
 
 **错误码：**
 
@@ -551,8 +551,8 @@ makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let screenIds: Array<number> = [1001, 1002, 1003];
-screen.makeUnique(screenIds).then((data: Array<number>) => {
+let uniqueScreenIds: Array<number> = [1001, 1002, 1003];
+screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
   console.info('Succeeded in making unoque screens.';
 }).catch((err: BusinessError) => {
   console.error(`Failed to make unoque screens. Code:${err.code},message is ${err.message}`);
