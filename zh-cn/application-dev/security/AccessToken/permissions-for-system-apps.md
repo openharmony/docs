@@ -505,6 +505,18 @@
 
 **起始版本**：12
 
+### ohos.permission.RECEIVE_ENTERPRISE_POLICY_EVENT
+
+允许系统应用订阅企业设备管理策略事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
 允许应用发布系统公共事件。

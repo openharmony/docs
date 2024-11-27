@@ -486,3 +486,16 @@ Allows an application to manage the enterprise recovery keys.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 13
+
+## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+Allows a device administrator application to delegated other applications to set device management policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 14
