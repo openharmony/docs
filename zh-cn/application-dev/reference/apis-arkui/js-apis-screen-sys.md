@@ -543,7 +543,7 @@ makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**

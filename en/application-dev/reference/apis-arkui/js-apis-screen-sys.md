@@ -543,7 +543,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -553,7 +553,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let screenIds: Array<number> = [1001, 1002, 1003];
 screen.makeUnique(screenIds).then((data: Array<number>) => {
-  console.info('Succeeded in making unoque screens.';
+  console.info('Succeeded in making unoque screens. dispalyIds: ';
 }).catch((err: BusinessError) => {
   console.error(`Failed to make unoque screens. Code:${err.code},message is ${err.message}`);
 });
