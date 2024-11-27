@@ -21,13 +21,6 @@
 - \@Observed用于嵌套类场景中，观察对象类属性变化，要配合自定义组件使用（示例详见[嵌套对象](#嵌套对象)），如果要做数据双/单向同步，需要搭配\@ObjectLink或者\@Prop使用（示例详见[\@Prop与\@ObjectLink的差异](#prop与objectlink的差异)）。
 
 
-## 限制条件
-
-- 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
-
-- \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
-
-
 ## 装饰器说明
 
 | \@Observed类装饰器 | 说明                                |
@@ -197,6 +190,149 @@ struct Parent {
    2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+
+
+## 限制条件
+
+1. 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+
+2. \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
+
+3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+class Test {
+  msg: number;
+
+  constructor(msg: number) {
+    this.msg = msg;
+  }
+}
+
+// 错误写法，编译报错
+@ObjectLink count;
+@ObjectLink test: Test;
+
+// 正确写法
+@ObjectLink count: Info;
+```
+
+4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+// 错误写法，编译报错
+@ObjectLink count: Info = new Info(10);
+
+// 正确写法
+@ObjectLink count: Info;
+```
+
+5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+
+【反例】
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink num: Info;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num.count}`)
+        .onClick(() => {
+          // 错误写法，\@ObjectLink装饰的变量不能被赋值
+          this.num = new Info(10);
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State num: Info = new Info(10);
+
+  build() {
+    Column() {
+      Text(`count的值: ${this.num}`)
+      Child({num: this.num})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink num: Info;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num.count}`)
+        .onClick(() => {
+          // 正确写法，可以更改@ObjectLink装饰变量的成员属性
+          this.num.count = 20;
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State num: Info = new Info(10);
+
+  build() {
+    Column() {
+      Text(`count的值: ${this.num}`)
+      Button('click')
+        .onClick(() => {
+          // 可以在父组件做整体替换
+          this.num = new Info(30);
+        })
+      Child({num: this.num})
+    }
+  }
+}
+```
 
 
 ## 使用场景
@@ -1429,7 +1565,7 @@ struct CounterComp {
       Text(`this.value.counter：increase 7 `)
         .fontSize(30)
         .onClick(() => {
-          // click handler, Text(`this.subValue.counter: ${this.subValue.counter}`) will update
+          // 点击后Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1494,7 +1630,7 @@ struct ParentComp {
 
 【反例】
 
-如果用\@Prop替代\@ObjectLink。点击第一个click handler，UI刷新正常。但是点击第二个onClick事件，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
+如果用\@Prop替代\@ObjectLink。点击Text(`this.subValue.counter: ${this.subValue.counter}`)，UI刷新正常。但是点击Text(`this.value.counter：increase 7 `)，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
 
   this.value.subCounter和this.subValue并不是同一个对象。所以this.value.subCounter的改变，并没有改变this.subValue的拷贝对象，Text(`this.subValue.counter: ${this.subValue.counter}`)不会刷新。
 
@@ -1508,13 +1644,11 @@ struct CounterComp {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.subValue.counter += 7;
         })
       Text(`this.value.counter：increase 7 `)
         .fontSize(20)
         .onClick(() => {
-          // 2nd click handler
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1577,7 +1711,6 @@ struct SubCounterComp {
   build() {
     Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
       .onClick(() => {
-        // 2nd click handler
         this.subValue.counter = 7;
       })
   }
@@ -1590,13 +1723,11 @@ struct CounterComp {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.value.incrCounter();
         })
       SubCounterComp({ subValue: this.value.subCounter })
       Text(`this.value.incrSubCounter()`)
         .onClick(() => {
-          // 3rd click handler
           this.value.incrSubCounter(77);
         })
       Divider().height(2)

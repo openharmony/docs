@@ -6,7 +6,6 @@
 >
 >\@Monitor装饰器从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -19,7 +18,7 @@
 - 单个\@Monitor装饰器能够同时监听多个属性的变化，当这些属性在一次事件中共同变化时，只会触发一次\@Monitor的回调方法。
 - \@Monitor装饰器具有深度监听的能力，能够监听嵌套类、多维数组、对象数组中指定项的变化。对于嵌套类、对象数组中成员属性变化的监听要求该类被\@ObservedV2装饰且该属性被\@Trace装饰。
 - 在继承类场景中，可以在父子组件中对同一个属性分别定义\@Monitor进行监听，当属性变化时，父子组件中定义的\@Monitor回调均会被调用。
-- 和[\@Watch装饰器](arkts-watch.md)类似，开发者需要自己定义回调函数，区别在于\@Watch装饰器将函数名作为参数，而\@Monitor直接装饰回调函数。\@Monitor与\@Watch的对比可以查看[\@Monitor与\@Watch的对比](#\@Monitor与\@Watch对比)。
+- 和[\@Watch装饰器](arkts-watch.md)类似，开发者需要自己定义回调函数，区别在于\@Watch装饰器将函数名作为参数，而\@Monitor直接装饰回调函数。\@Monitor与\@Watch的对比可以查看[\@Monitor与\@Watch的对比](#monitor与watch对比)。
 
 ## 状态管理V1版本\@Watch装饰器的局限性
 
@@ -1016,3 +1015,167 @@ struct Index {
 }
 ```
 
+### 正确设置\@Monitor入参
+
+由于\@Monitor无法对入参做编译时校验，当前存在以下写法不符合\@Monitor监听条件但\@Monitor仍会触发的情况。开发者应当正确传入\@Monitor入参，不传入非状态变量，避免造成功能异常或行为表现不符合预期。
+
+【反例1】
+
+```ts
+@ObservedV2
+class Info {
+  name: string = "John";
+  @Trace age: number = 24;
+  @Monitor("age", "name") // 同时监听状态变量age和非状态变量name
+  onPropertyChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.log(`property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    })
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change age&name")
+        .onClick(() => {
+          this.info.age = 25; // 同时改变状态变量age和非状态变量name
+          this.info.name = "Johny";
+        })
+    }
+  }
+}
+```
+
+上面的代码中，当点击按钮同时更改状态变量age和非状态变量name时，会输出以下日志：
+
+```
+property path:age change from 24 to 25
+property path:name change from John to Johny
+```
+
+实际上name属性本身并不是可被观测的变量，不应被加入到\@Monitor的入参当中。建议开发者去除对name属性的监听或者将给name加上\@Trace装饰成为状态变量。
+
+【正例1】
+
+```ts
+@ObservedV2
+class Info {
+  name: string = "John";
+  @Trace age: number = 24;
+  @Monitor("age") // 仅监听状态变量age
+  onPropertyChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.log(`property path:${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    })
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change age&name")
+        .onClick(() => {
+          this.info.age = 25; // 状态变量age改变
+          this.info.name = "Johny";
+        })
+    }
+  }
+}
+```
+
+【反例2】
+
+```ts
+@ObservedV2
+class Info {
+  name: string = "John";
+  @Trace age: number = 24;
+  get myAge() {
+    return this.age; // age为状态变量
+  }
+  @Monitor("myAge") // 监听非@Computed装饰的getter访问器
+  onPropertyChange() {
+    console.log("age changed");
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change age")
+        .onClick(() => {
+          this.info.age = 25; // 状态变量age改变
+        })
+    }
+  }
+}
+```
+
+上面的代码中，\@Monitor的入参为一个getter访问器的名字，但该getter访问器本身并未被\@Computed装饰，不是一个可被监听的变量。但由于使用了状态变量参与了计算，在状态变量变化后，myAge也被认为发生了变化，因此触发了\@Monitor回调。建议开发者给myAge添加\@Computed装饰器或当getter访问器直接返回状态变量时，不监听getter访问器而是直接监听状态变量本身。
+
+【正例2】
+
+将myAge变为状态变量：
+
+```ts
+@ObservedV2
+class Info {
+  name: string = "John";
+  @Trace age: number = 24;
+  @Computed // 给myAge添加@Computed成为状态变量
+  get myAge() {
+    return this.age;
+  }
+  @Monitor("myAge") // 监听@Computed装饰的getter访问器
+  onPropertyChange() {
+    console.log("age changed");
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change age")
+        .onClick(() => {
+          this.info.age = 25; // 状态变量age改变
+        })
+    }
+  }
+}
+```
+
+或直接监听状态变量本身：
+
+```ts
+@ObservedV2
+class Info {
+  name: string = "John";
+  @Trace age: number = 24;
+  @Monitor("age") // 监听状态变量age
+  onPropertyChange() {
+    console.log("age changed");
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change age")
+        .onClick(() => {
+          this.info.age = 25; // 状态变量age改变
+        })
+    }
+  }
+}
+```

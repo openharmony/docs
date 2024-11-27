@@ -16,15 +16,6 @@
 
 - 当前\@Styles仅支持[通用属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)和[通用事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)。
 
-- \@Styles方法不支持参数，反例如下。
-
-  ```ts
-  // 反例： @Styles不支持参数
-  @Styles function globalFancy (value: number) {
-    .width(value)
-  }
-  ```
-
 - \@Styles可以定义在组件内或全局，在全局定义时需在方法名前面添加function关键字，组件内定义时则不需要添加function关键字。
 
 > **说明：**
@@ -123,6 +114,23 @@
   .backgroundColor(Color.Red)
 }
 ```
+
+## 限制条件
+
+- \@Styles方法不能有参数，编译期会报错，提醒开发者@Styles方法不支持参数。
+
+  ```ts
+  // 错误写法： @Styles不支持参数，编译期报错
+  @Styles function globalFancy (value: number) {
+    .width(value)
+  }
+
+  // 正确写法
+  @Styles function globalFancy () {
+    .width(value)
+  }
+  ```
+
 
 ## 使用场景
 
