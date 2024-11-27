@@ -1,6 +1,94 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 RenderNode的rotation接口角度单位从vp变为度
+## cl.arkui.1 FrameNode的isAttached接口返回值含义发生变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户使用FrameNode的isAttached接口时，实际返回当前节点是否可见，即通用属性中的Visibility是否为Visible，而非当前节点是否被挂载到主节点树上。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：返回当前节点是否可见。
+
+变更后：返回当前节点是否被挂载到主节点树上。
+
+不兼容场景：
+当用户通过该接口获取目标节点是否被挂载到主节点树上，而目标节点为节点树上的不可见节点或未上树的可见节点时，会出现不兼容情况; 例如：
+```ts
+import { FrameNode, NodeController } from '@ohos.arkui.node';
+import { UIContext } from '@ohos.arkui.UIContext';
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private notAttachedNode: FrameNode | null = null;
+  private notVisibleNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext) {
+    this.rootNode = new FrameNode(uiContext);
+    this.notAttachedNode = new FrameNode(uiContext);
+    this.notVisibleNode = new FrameNode(uiContext);
+    this.notVisibleNode.commonAttribute.visibility(Visibility.Hidden);
+    this.rootNode.appendChild(this.notVisibleNode);
+    return this.rootNode;
+  }
+
+  printInfo(): void {
+    if (this.notVisibleNode) {
+      // 主节点树上的不可见节点，变更前为false，变更后为true
+      console.log('notVisibleNode:', this.notVisibleNode.isAttached());
+    }
+    if (this.notAttachedNode) {
+      // 未上树的可见节点，变更前为true，变更后为false
+      console.log('notAttachedNode:', this.notAttachedNode.isAttached());
+    }
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  @State myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+      Button('click').onClick(() => {
+        this.myNodeController.printInfo();
+      })
+    }
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.57开始。
+
+**变更的接口/组件**
+
+FrameNode.d.ts文件isAttached接口。
+
+**适配指导**
+
+```ts
+// 变更前FrameNode的isAttached接口行为和isVisible接口一致，若需保持变更前行为，使用isVisible接口替换即可。
+node.isAttached(); // 变更前
+node.isVisible(); // 变更后
+```
+
+## cl.arkui.2 RenderNode的rotation接口角度单位从vp变为度
 
 **访问级别**
 
