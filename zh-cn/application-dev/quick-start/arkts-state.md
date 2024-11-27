@@ -57,9 +57,9 @@
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
   ```ts
-  // for simple type
+  // 简单类型
   @State count: number = 0;
-  // value changing can be observed
+  // 可以观察到值的变化
   this.count = 1;
   ```
 
@@ -217,6 +217,21 @@
 - 执行依赖该状态变量的组件的更新方法，组件更新渲染；
 
 - 和该状态变量不相关的组件或者UI描述不会发生重新渲染，从而实现页面渲染的按需更新。
+
+
+## 限制条件
+
+1. \@State装饰的变量必须初始化，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+@State count: number;
+
+// 正确写法
+@State count: number = 10;
+```
+
+2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
 
 
 ## 使用场景
