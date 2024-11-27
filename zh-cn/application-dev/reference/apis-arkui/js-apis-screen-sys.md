@@ -516,6 +516,72 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 });
 ```
 
+## screen.makeUnique
+
+makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+设置屏幕为异源屏，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenIds  | Array&lt;number&gt; | 是   | 需要设置为异源屏的屏幕id集合. |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回设置异源屏幕的displayId集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
+
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let screenIds: Array<number> = [screenClass.id];
+  let promise: Promise<Array<number>> = screen.makeUnique(screenIds);
+  promise.then((displayIds: Array<number>) => {
+    console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(displayIds));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## screen.createVirtualScreen
 
 createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Screen&gt;): void
@@ -967,72 +1033,6 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
     return;
   }
   console.info('Succeeded in unlocking auto rotate.');
-});
-```
-
-## screen.makeUnique
-
-makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
-
-设置屏幕为异源屏，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填 | 说明          |
-| --------- | ------ | ---- | ------------- |
-| screenIds  | Array&lt;number&gt; | 是   | 需要设置为异源屏的屏幕id集合. |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回设置异源屏幕的displayId集合。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 1400001 | Invalid display or screen. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-class VirtualScreenOption {
-  name : string = '';
-  width : number =  0;
-  height : number = 0;
-  density : number = 0;
-  surfaceId : string = '';
-}
-
-let option : VirtualScreenOption = {
-  name: 'screen01',
-  width: 1080,
-  height: 2340,
-  density: 2,
-  surfaceId: ''
-};
-
-screen.createVirtualScreen(option).then((data: screen.Screen) => {
-  let screenClass: screen.Screen = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-  let screenIds: Array<number> = [screenClass.id];
-  let promise: Promise<Array<number>> = screen.makeUnique(screenIds);
-  promise.then((displayIds: Array<number>) => {
-    console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(displayIds));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to make unoque screen. Code:${err.code},message is ${err.message}`);
-  });
-}).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
 });
 ```
 
