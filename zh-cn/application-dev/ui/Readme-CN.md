@@ -28,6 +28,7 @@
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
   - 设置组件导航和页面路由
+    - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
