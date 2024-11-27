@@ -38,11 +38,11 @@ The number of reminders exceeds the limit when **publishReminder()** is called.
 
 1. The number of reminders generated for the entire system exceeds 2000 in API version 9 or 12000 in API version 10 or later.
 2. The number of reminders generated for the application exceeds 30 in API version 9 or 30 (for a common application) or 10000 (for a system application) in API version 10 or later.
-
+<!--RP1-->
 **Solution**
 
 Delete unnecessary reminders.
-
+<!--RP1End-->
 ## 1700003 Nonexistent Reminder
 
 **Error Message**
