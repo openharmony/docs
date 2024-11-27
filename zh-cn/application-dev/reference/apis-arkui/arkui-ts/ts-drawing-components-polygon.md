@@ -14,7 +14,7 @@
 
 ## 接口
 
-Polygon(value?: {width?: string | number, height?: string | number})
+Polygon(options?: PolygonOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -25,6 +25,19 @@ Polygon(value?: {width?: string | number, height?: string | number})
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [PolygonOptions](ts-drawing-components-polygon.md#polygonoptions14对象说明) | 否 | Polygon绘制区域。 |
+
+## PolygonOptions<sup>14+</sup>对象说明
+用于描述Polygon绘制区域。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
 | height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
