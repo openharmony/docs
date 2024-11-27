@@ -8,6 +8,7 @@ This module provides the following classes:
 - [FontCollection](#fontcollection): font manager, which controls various fonts.
 - [ParagraphStyle](#paragraphstyle): paragraph style, which controls the display style of a paragraph.
 - [Paragraph](#paragraph): paragraph, which is constructed by calling [build()](#build) in the **ParagraphBuilder** class.
+- [LineTypeset](#linetypeset14): line typesetter, which is constructed by calling [buildLineTypeset()](#buildlinetypeset14) in the **ParagraphBuilder** class.
 - [ParagraphBuilder](#paragraphbuilder): paragraph builder, which controls the generation of different paragraph objects.
 - [TextLine](#textline): carrier of the paragraph text in lines. It is obtained by calling [getTextLines()](#gettextlines) in the **Paragraph** class.
 - [Run](#run): rendering unit used for text typesetting. It is obtained by calling [getGlyphRuns()](#getglyphruns) in the **TextLine** class.
@@ -20,6 +21,201 @@ This module provides the following classes:
 
 ```ts
 import { text } from '@kit.ArkGraphics2D';
+```
+
+## text.matchFontDescriptors<sup>14+</sup>
+
+matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
+
+Obtains all system font descriptors that match a font descriptor. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| - | - | - | - |
+| desc | [FontDescriptor](#fontdescriptor14) | Yes| Font descriptor used for matching. In the FontDescriptor struct, the **path** field is not used for matching; the **weight** field is valid only when it is set; other fields are valid only when they are not set to their default values. If all fields are not set or are set to their default values, all system font descriptors are obtained. If the matching fails, an empty array is returned.|
+
+**Return value**
+
+| Type| Description|
+| - | - |
+| Promise&lt;Array&lt;[FontDescriptor](#fontdescriptor14)&gt;&gt; | Promise used to return all matched system font descriptors.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("font descriptor")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            console.info(`Get font descriptor start`)
+            let promise = text.matchFontDescriptors({
+              weight: text.FontWeight.W400,
+            })
+            promise.then((data) => {
+              console.info(`Font descriptor array size: ${data.length}`);
+              console.info(`Font descriptor result: ${JSON.stringify(data)}`)
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to match the font descriptor, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## text.getSystemFontFullNamesByType<sup>14+</sup>
+
+getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains the names of all fonts of the specified type. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| - | - | - | - |
+| fontType | [SystemFontType](#systemfonttype14) | Yes| Font type.|
+
+**Return value**
+
+| Type| Description|
+| - | - |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the names of all fonts of the specified type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("get font list")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            let fontType:text.SystemFontType = text.SystemFontType.GENERIC
+            let promise = text.getSystemFontFullNamesByType(fontType)
+            promise.then((data) => {
+              console.info(`then font list size: ${data.length}`)
+              data.forEach((fontItem) => {
+                console.info(fontItem)
+              })
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to get font fullNames by type, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## text.getFontDescriptorByFullName<sup>14+</sup>
+
+getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise&lt;FontDescriptor&gt;
+
+Obtains the font descriptor based on the font name and type. This API uses a promise to return the result.
+
+A font descriptor is a data structure that describes font features. It contains details of the font appearance and properties.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| - | - | - | - |
+| fullName | string | Yes| Font name, which is a field parsed from the **name** table in the font file. You can use [getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14) to obtain the names of all fonts of a specified type.|
+| fontType | [SystemFontType](#systemfonttype14) | Yes| Font type.|
+
+**Return value**
+
+| Type| Description|
+| - | - |
+| Promise&lt;[FontDescriptor](#fontdescriptor14)&gt; | Promise used to return the font descriptor.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("get fontDesciptor")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            let fontType:text.SystemFontType = text.SystemFontType.GENERIC
+            let promise = text.getFontDescriptorByFullName("HarmonyOS Sans", fontType)
+            promise.then((fontdecriptor) => {
+              console.info(`desc: ${JSON.stringify(fontdecriptor)}`)
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to get fontDescriptor by fullName, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 ## TextAlign
@@ -256,7 +452,7 @@ Describes a text style.
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
 | decoration    | [Decoration](#decoration)                            | Yes| Yes| Text decoration. The default value is the initial decoration.            |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| Yes| Font color. The default color is white.                        |
-| fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**.                         |
+| fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                        |
 | fontStyle     | [FontStyle](#fontstyle)                              | Yes| Yes| Font style. The default value is **NORMAL**.                         |
 | baseline      | [TextBaseline](#textbaseline)                        | Yes| Yes| Text baseline type. The default value is **ALPHABETIC**.              |
 | fontFamilies  | Array\<string>                                       | Yes| Yes| List of font families. By default, the list corresponds to the system's default fonts.                   |
@@ -286,7 +482,7 @@ Describes the strut style, which determines the line spacing, baseline alignment
 | fontFamilies   | Array\<string>                                       | Yes  | Yes| Font families. The default value is the system fonts.                                              |
 | fontStyle      | [FontStyle](#fontstyle)                              | Yes  | Yes| Font style. The default value is **NORMAL**.                                              |
 | fontWidth      | [FontWidth](#fontwidth)                              | Yes  | Yes| Font width. The default value is **NORMAL**.                                               |
-| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**.                                                     |
+| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                            |
 | fontSize       | number                                               | Yes  | Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.                             |
 | height         | number                                               | Yes  | Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.                                        |
 | leading        | number                                               | Yes  | Yes| Custom leading to be applied to the strut. The value is a floating point number. The default value is **-1.0**.                         |
@@ -294,6 +490,25 @@ Describes the strut style, which determines the line spacing, baseline alignment
 | enabled        | boolean                                              | Yes  | Yes| Whether to enable the strut style. The value **true** means to enable the strut style, and **false** means the opposite. The default value is **false**.             |
 | heightOverride | boolean                                              | Yes  | Yes| Whether to override the height. The value **true** means to override the height, and **false** means the opposite. The default value is **false**.                 |
 | halfLeading    | boolean                                              | Yes  | Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.          |
+
+## FontDescriptor<sup>14+</sup>
+
+Describes the font descriptor information.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name| Type| Read Only| Optional| Description|
+| - | - | -  | - | - |
+| path | string | No| Yes| Absolute path of the font. Any value is acceptable. The default value is an empty string.|
+| postScriptName | string | No| Yes| Unique name of the font. Any value is acceptable. The default value is an empty string.|
+| fullName | string | No| Yes| Font name. Any value is acceptable. The default value is an empty string.|
+| fontFamily | string | No| Yes| Family name of the font. Any value is acceptable. The default value is an empty string.|
+| fontSubfamily | string | No| Yes| Subfamily name of the font. Any value is acceptable. The default value is an empty string.|
+| weight | [FontWeight](#fontweight) | No| Yes| Font weight. The default value is the value of **FontWeight.W100**, that is, **0**. In [matchFontDescriptors](#textmatchfontdescriptors14), omitting this parameter is equivalent to setting it to its default value.|
+| width | number | No| Yes| Font width. The value is an integer ranging from 1 to 9. The default value is **0**.|
+| italic | number | No| Yes| Whether the font is italic. The value **0** means that the font is not italic, and **1** means the opposite. The default value is **0**.|
+| monoSpace | boolean | No| Yes| Whether the font is monospaced. The value **true** means that the font is monospaced, and **false** means the opposite. The default value is **false**.|
+| symbolic | boolean | No| Yes| Whether the font is symbolic. The value **true** means that the font is symbolic, and **false** means the opposite.|
 
 ## FontCollection
 
@@ -387,6 +602,62 @@ struct RenderTest {
 }
 ```
 
+### loadFont<sup>14+</sup>
+
+loadFont(name: string, path: string | Resource): Promise\<void>
+
+Loads a font based on the specified name and file path. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+|   Name| Type              | Mandatory| Description                             |
+|   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
+|   name   | string             | Yes  | Font name. Any value is acceptable.|
+|   path   | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes  | Path of the font file to load. The value must be **file://***absolute path of the font file* or **rawfile/***directory or file name*.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+let fontCollection: text.FontCollection = new text.FontCollection();
+
+@Entry
+@Component
+struct RenderTest {
+  async loadFontPromise() {
+    fontCollection.loadFont('testName', 'file:///system/fonts/a.ttf').then((data) => {
+      console.info(`Succeeded in doing loadFont ${JSON.stringify(data)} `);
+    }).catch((error: Error) => {
+      console.error(`Failed to do loadFont, error: ${JSON.stringify(error)} message: ${error.message}`);
+    });
+  }
+
+  aboutToAppear() {
+    this.loadFontPromise();
+  }
+
+  build() {
+  }
+}
+```
+
 ### clearCaches
 
 clearCaches(): void
@@ -425,12 +696,13 @@ Describes a paragraph style.
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
 | textStyle            | [TextStyle](#textstyle)                    | Yes  | Yes  | Text style applied to the paragraph. The default value is the initial text style.|
 | textDirection        | [TextDirection](#textdirection)            | Yes  | Yes  | Text direction. The default value is **LTR**.                         |
-| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**.                    |
+| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**. When both the text alignment mode and the tab alignment mode (specified by **tab**) are configured, the tab alignment mode does not take effect.|
 | wordBreak            | [WordBreak](#wordbreak)                    | Yes  | Yes  | Word break type. The default value is **BREAK_WORD**.                   |
 | maxLines             | number                                     | Yes  | Yes  | Maximum number of lines. The value is an integer. The default value is **1e9**.                 |
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
 | strutStyle           | [StrutStyle](#strutstyle)                  | Yes  | Yes  | Strut style. The default value is the initial **StrutStyle** object.              |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | Yes  | Yes  | Text height modifier pattern. The default value is **ALL**.                             |
+| tab<sup>14+</sup>   | [TextTab](#texttab14)  | Yes  | Yes  | Alignment mode and position of the text after the tab character in a paragraph. By default, the tab character is replaced with a space. This parameter does not take effect when it is configured together with the text alignment mode (specified by **align**) or ellipsis content (specified by **ellipsis** in [TextStyle](#textstyle)).|
 
 
 ## PlaceholderAlignment
@@ -506,6 +778,112 @@ Performs typography and calculates the positions of all glyphs.
 ```ts
 paragraph.layoutSync(100);
 ```
+
+### layout<sup>14+</sup>
+
+layout(width: number): Promise\<void>
+
+Performs typography and calculates the positions of all glyphs. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+|   Name  |    Type              | Mandatory| Description                                   |
+|   -----   |   ------------------  | ---- | --------------------------------------- |
+|   width   | number                | Yes  | Maximum width of a single line, in units of px. The value is a floating point number greater than 0.   |
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { drawing, text } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit';
+
+let textStyle: text.TextStyle = {
+  color: {
+    alpha: 255,
+    red: 255,
+    green: 0,
+    blue: 0
+  },
+  fontSize: 30,
+};
+let paragraphStyle: text.ParagraphStyle = {
+  textStyle: textStyle,
+};
+let fontCollection: text.FontCollection = new text.FontCollection();
+let paragraphGraphBuilder = new text.ParagraphBuilder(paragraphStyle, fontCollection);
+// Add a text string.
+paragraphGraphBuilder.addText("test");
+// Generate a typography object.
+let paragraph = paragraphGraphBuilder.build();
+
+function textFunc(pixelmap: PixelMap) {
+  // Construct a canvas using an image object.
+  let canvas = new drawing.Canvas(pixelmap);
+  // Draw a text string.
+  paragraph.paint(canvas, 100, 10);
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixelmap?: PixelMap = undefined;
+  fun: Function = textFunc;
+
+  async prepareLayoutPromise() {
+    // Calculate the layout of the typography object.
+    paragraph.layout(200).then((data) => {
+      console.info(`Succeeded in doing layout,  ${JSON.stringify(data)}`);
+    }).catch((error: Error) => {
+      console.error(`Failed to do layout, error: ${JSON.stringify(error)} message: ${error.message}`);
+    });
+  }
+
+  aboutToAppear() {
+    this.prepareLayoutPromise();
+  }
+
+  build() {
+    Column() {
+      Image(this.pixelmap).width(200).height(200);
+      Button("layout")
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          if (this.pixelmap == undefined) {
+            // Construct an image object.
+            this.pixelmap = image.createPixelMapSync(color, opts);
+          }
+          // Draw the text.
+          this.fun(this.pixelmap);
+        })
+    }
+  }
+}
+```
+
+>**NOTE**
+>
+>The following figure shows the running result of the **layout** interface sample code after the button is clicked.
+>
+>![image_layout.png](figures/image_layout.png)
 
 ### paint
 
@@ -1010,6 +1388,87 @@ Obtains the line measurement information of a line.
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
+## LineTypeset<sup>14+</sup>
+
+Implements a carrier that stores the text content and style. It can be used to compute typography details for individual lines of text.
+
+Before calling any of the following APIs, you must use [buildLineTypeset()](#buildlinetypeset14) in the [ParagraphBuilder](#paragraphbuilder) class to create a **LineTypeset** object.
+
+### getLineBreak<sup>14+</sup>
+
+getLineBreak(startIndex: number, width: number): number
+
+Obtains the number of characters that can fit in the layout from the specified position within a limited layout width.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description          |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | Yes| Start position (inclusive) for calculation. The value is an integer in the range [0, total number of text characters). If the parameter is invalid, an exception is thrown.|
+| width | number | Yes  | Layout width. The value is a floating point number greater than 0, in px.|
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| number | Number of characters.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+```
+
+### createLine<sup>14+</sup>
+
+createLine(startIndex: number, count: number): TextLine
+
+Generates a text line object based on the specified layout range.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description          |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | Yes| Start position for layout calculation. The value is an integer in the range [0, total number of text characters).|
+| count | number | Yes  | Number of characters from the specified start position. The value is an integer in the range [0, total number of text characters). The sum of **startIndex** and **count** cannot be greater than the total number of text characters. When **count** is **0**, the specified range is [startIndex, end of the text]. You can use [getLineBreak](#getlinebreak14) to obtain the number of characters that can fit in the layout.|
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| [TextLine](#textline) | **TextLine** object generated based on the characters in the text range.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+let line : text.TextLine = lineTypeset.createLine(startIndex, count);
+```
+
 ## RunMetrics
 
 Describes the layout information and measurement information of a run of text in a text line.
@@ -1373,18 +1832,67 @@ import { drawing, text, common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit';
 
 function textFunc() {
+  let myTextStyle: text.TextStyle = {
+    color : {alpha: 255, red: 255, green: 0, blue: 0},
+    fontSize : 20,
+  };
   let myParagraphStyle: text.ParagraphStyle = {
-    align: text.TextAlign.END,
+    textStyle : myTextStyle,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addText("123456789");
   let paragraph = ParagraphGraphBuilder.build();
+  paragraph.layoutSync(200);
 }
 
 @Entry
 @Component
 struct Index {
   fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### buildLineTypeset<sup>14+</sup>
+
+buildLineTypeset(): LineTypeset
+
+Builds a line typesetter.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                    | Description                          |
+| ------------------------ | ------------------------------ |
+| [LineTypeset](#linetypeset14)  | **LineTypeset** object.|
+
+**Example**
+
+```ts
+import { text } from '@kit.ArkGraphics2D'
+
+function test() {
+  let myParagraphStyle: text.ParagraphStyle = {
+    align: text.TextAlign.JUSTIFY,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addText("123456789");
+  let lineTypeset = ParagraphGraphBuilder.buildLineTypeset();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = test;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1407,7 +1915,7 @@ Inserts a symbol into the paragraph being built.
 
 | Name   | Type   | Mandatory| Description                                                       |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000–0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json).|
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json). |
 
 **Example**
 
@@ -1443,11 +1951,59 @@ struct Index {
 }
 ```
 
+## TypographicBounds<sup>14+</sup>
+
+Describes the typographic boundary of a text line. The typographic boundary is related to the font and font size used for typography, but not the characters within the text. For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary encompasses the spaces at the beginning and end. For the strings "j" and "E", the typographic boundaries are the same, indicating that they are irrelevant to specific characters.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name| Type| Read Only| Optional| Description|
+| - | - | - | - | - |
+| ascent | number | Yes| No| Ascent of a text line. The value is a floating point number.|
+| descent | number | Yes| No| Descent of a text line. The value is a floating point number.|
+| leading | number | Yes| No| Leading of a text line. The value is a floating point number.|
+| width | number | Yes| No| Width of the typographic boundary. The value is a floating point number.|
+
+>**NOTE**
+>
+>The following figure shows the meanings of ascent, descent, leading, top, baseline, bottom and next line top, where **width** is the width of the text line, including the left and right spaces; **top** is the highest point of the text line; **baseline** is the character baseline; **bottom** is the lowest point of the text line, and **next line top** is the highest point of the next text line.
+>
+>![image_Typographic.png](figures/image_Typographic.png)
+>
+>The following figure shows the typographic boundary of the string " a b ".
+>
+>![image_TypographicBounds.png](figures/image_TypographicBounds.png)
+>
+>The following figure shows the typographic boundary of the strings "j" and "E".
+>
+>![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
+
+## CaretOffsetsCallback<sup>14+</sup>
+
+type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean) => boolean
+
+Defines the callback used to receive the offset and index of each character in a text line object as its parameters.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| - | - | - | - |
+| offset | number | Yes| Offset of each character in a text line. The value is a floating point number.|
+| index | number | Yes| Index of each character in a text line. The value is an integer.|
+| leadingEdge | boolean | Yes| Whether the cursor is located at the front of the character. The value **true** means that the cursor is located at the front of the character, that is, the offset does not contain the character width. The value **false** means that the cursor is located at the rear of the character, that is, the offset contains the character width.|
+
+**Return value**
+
+| Type| Description|
+| - | - |
+| boolean | Whether to stop calling the callback. The value **true** means to stop calling the callback, and **false** means to continue calling the callback.|
+
 ## TextLine
 
 Implements a carrier that describes the basic text line structure of a paragraph.
 
-Before calling any of the following APIs, you must use [getTextLines()](#gettextlines) of the [Paragraph](#paragraph) class to create a **TextLine** object.
+Before calling any of the following APIs, you must use [getTextLines ()](#gettextlines) of the [Paragraph](#paragraph) class or [createLine ()](#createline14) of the [LineTypeset](#linetypeset14) class to create a **TextLine** object.
 
 ### getGlyphCount
 
@@ -1490,7 +2046,7 @@ struct Index {
 
 getTextRange(): Range
 
-Obtains the range of the text in this text line in the entire paragraph.
+Obtains the range of the text in this text line in the entire paragraph. The [TextLine](#textline) object created by calling [creatLine](#createline14) of the [LineTypeset](#linetypeset14) class is a temporary object and is automatically destroyed when [creatLine](#createline14) is called next time. Therefore, the index range returned by [getTextRange] through this object is relative to a temporary [Paragraph](#paragraph) object.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1527,7 +2083,7 @@ struct Index {
 
 getGlyphRuns(): Array\<Run>
 
-Obtains the glyph runs in this text line.
+Obtains the runs in this text line.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1535,7 +2091,7 @@ Obtains the glyph runs in this text line.
 
 | Type        | Description                        |
 | ------------ | --------------------------- |
-| Array\<[Run](#run)>  | Array of the glyph runs obtained.|
+| Array\<[Run](#run)>  | Array of the runs obtained.|
 
 **Example**
 
@@ -1584,12 +2140,422 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function textFunc() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
   lines[0].paint(canvas, 0, 0);
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixelmap?: PixelMap = undefined;
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Image(this.pixelmap).width(200).height(200);
+      Button().onClick(() => {
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
+      })
+    }
+  }
+}
+```
+
+### createTruncatedLine<sup>14+</sup>
+
+createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string): TextLine
+
+Creates a truncated text line object.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -| - | - | - |
+| width | number | Yes| Width of the line after truncation. The value is a floating point number.|
+| ellipsisMode | [EllipsisMode](#ellipsismode) | Yes| Ellipsis mode.|
+| ellipsis | string | Yes| String used to mark a truncation.|
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| [TextLine](#textline)  | Truncated text line object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit';
+
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
+  let truncatedTextLine = lines[0].createTruncatedLine(100, text.EllipsisMode.START, "...");
+  truncatedTextLine.paint(canvas, 0, 100);
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixelmap?: PixelMap = undefined;
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Image(this.pixelmap).width(200).height(200);
+      Button().onClick(() => {
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
+      })
+    }
+  }
+}
+```
+
+### getTypographicBounds<sup>14+</sup>
+
+getTypographicBounds(): TypographicBounds
+
+Obtains the typographic boundary of this text line. The typographic boundary is related to the font and font size used for typography, but not the characters within the text. For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary encompasses the spaces at the beginning and end. For the strings "j" and "E", the typographic boundaries are the same, indicating that they are irrelevant to specific characters.
+
+>**NOTE**
+>
+>The following figure shows the typographic boundary of the string " a b ".
+>
+>![image_TypographicBounds.png](figures/image_TypographicBounds.png)
+>
+>The following figure shows the typographic boundary of the strings "j" and "E".
+>
+>![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type| Description |
+| -| - |
+| [TypographicBounds](#typographicbounds14) | Typographic boundary of the text line.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let bounds = lines[0].getTypographicBounds();
+  console.info('textLine ascent:' + bounds.ascent + ', descent:' + bounds.descent + ', leading:' + bounds.leading + ', width:' + bounds.width);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getImageBounds<sup>14+</sup>
+
+getImageBounds(): common2D.Rect
+
+Obtains the image boundary of this text line. The image boundary, equivalent to a visual boundary, is related to the font, font size, and characters. For example, for the string " a b " (which has a space before "a" and a space after "b"), only "a b" are visible to users, and therefore the image boundary does not include these spaces at the beginning and end. For the strings "j" and "E", their image boundaries are different. Specifically, the width of the boundary for "j" is narrower than that for "E", and the height of the boundary for "j" is taller than that for "E".
+
+>**NOTE**
+>
+>The following figure shows the image boundary of the string " a b ".
+>
+>![image_ImageBounds.png](figures/image_ImageBounds.png)
+>
+>The following figure shows the image boundary of the strings "j" and "E".
+>
+>![image_ImageBounds_Character.png](figures/image_ImageBounds_Character.png)
+
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect)  | Image boundary of the text line.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let imageBounds = lines[0].getImageBounds();
+  console.info('textLine left:' + imageBounds.left + ', top:' + imageBounds.top + ', right:' + imageBounds.right + ', bottom:' + imageBounds.bottom);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getTrailingSpaceWidth<sup>14+</sup>
+
+getTrailingSpaceWidth(): number
+
+Obtains the width of the spaces at the end of this text line.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| number | Number of spaces at the end of the text line. The value is a floating point number.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let trailingSpaceWidth = lines[0].getTrailingSpaceWidth();
+  console.info('textLine trailingSpaceWidth:' + trailingSpaceWidth);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getStringIndexForPosition<sup>14+</sup>
+
+getStringIndexForPosition(point: common2D.Point): number
+
+Obtains the index of a character at the specified position in this text line.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -| - | - | - |
+| point | [common2D.Point](js-apis-graphics-common2D.md#point12) | Yes| Position of the character.|
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| number | Index of the character in the text line. The value is an integer.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let point : common2D.Point = { x: 15.0, y: 2.0 };
+  let index = lines[0].getStringIndexForPosition(point);
+  console.info('textLine getStringIndexForPosition(15.0, 2.0):' + index);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getOffsetForStringIndex<sup>14+</sup>
+
+getOffsetForStringIndex(index: number): number
+
+Obtains the offset of a character with the specified index in this text line.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -| - | - | - |
+| index | number | Yes| Index of the character. The value is an integer.|
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| number | Offset of the character with the specified index. The value is a floating point number.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let offset = lines[0].getOffsetForStringIndex(3);
+  console.info('textLine getOffsetForStringIndex(3):' + offset);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### enumerateCaretOffsets<sup>14+</sup>
+
+enumerateCaretOffsets(callback: CaretOffsetsCallback): void
+
+Enumerates the offset and index of each character in a text line.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -| - | - | - |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback14) | Yes| Custom function, which is used to receive the offset and index of each character in a text line object as its parameters.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function callback(offset: number, index: number, leadingEdge: boolean): boolean {
+  console.info('textLine: offset: ' + offset + ', index: ' + index + ', leadingEdge: ' + leadingEdge);
+  return index > 50;
+}
+
+function textFunc() {
+  lines[0].enumerateCaretOffsets(callback);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getAlignmentOffset<sup>14+</sup>
+
+getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
+
+Obtains the offset of this text line after alignment based on the alignment factor and alignment width.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -| - | - | - |
+| alignmentFactor | number | Yes| Alignment factor, which determines how text is aligned. The value is a floating point number. A value less than or equal to 0.0 means that the text is left-aligned; a value between 0.0 and 0.5 means that the text is slightly left-aligned; the value 0.5 means that is text is centered; a value between 0.5 and 1 means that the text is slightly right-aligned; a value greater than or equal to 1.0 means that the text is right-aligned.|
+| alignmentWidth | number | Yes| Alignment width, that is, the width of the text line. The value is a floating point number. If the width is less than the actual width of the text line, **0** is returned.|
+
+**Return value**
+
+| Type        | Description                        |
+| ------------ | --------------------------- |
+| number | Offset required for alignment. The value is a floating point number.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let alignmentOffset = lines[0].getAlignmentOffset(0.5, 500);
+  console.info('textLine getAlignmentOffset(0.5, 500):' + alignmentOffset);
 }
 
 @Entry
@@ -1616,7 +2582,7 @@ Before calling any of the following APIs, you must use [getGlyphRuns()](#getglyp
 
 getGlyphCount(): number
 
-Obtains the number of glyphs in this glyph run.
+Obtains the number of glyphs in this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1653,7 +2619,7 @@ struct Index {
 
 getGlyphs(): Array\<number>
 
-Obtains the index of each glyph in this glyph run.
+Obtains the index of each glyph in this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1661,7 +2627,7 @@ Obtains the index of each glyph in this glyph run.
 
 | Type           | Description                            |
 | --------------- | -------------------------------- |
-| Array\<number>  | Array holding the index of each glyph in this glyph run.|
+| Array\<number>  | Array holding the index of each glyph in the run.|
 
 **Example**
 
@@ -1686,11 +2652,67 @@ struct Index {
 }
 ```
 
+### getGlyphs<sup>14+</sup>
+
+getGlyphs(range: Range): Array\<number>
+
+Obtains the index of each glyph in the specified range of this run.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                      |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | Yes  | Range of the glyphs, where **range.start** indicates the start position of the range, and **range.end** indicates the length of the range. If the length is 0, the range is from **range.start** to the end of the run. If **range.end** or **range.start** is set to a negative value, **null**, or **undefined**, **undefined** is returned.|
+
+**Return value**
+
+| Type           | Description                            |
+| --------------- | -------------------------------- |
+| Array\<number>  | Array holding the index of each glyph in the run.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let glyphs = runs[0].getGlyphs (); // Obtain the index of all glyphs of the run.
+  let glyphsRange = runs[0].getGlyphs ({start:1, end:2}); // Obtain the indices of glyphs in the range starting from position 1, with a length of 2.
+  glyphsRange = runs[0].getGlyphs({start:-1, end:2}); // -1 is an invalid value, and undefined is returned.
+  glyphsRange = runs[0].getGlyphs({start:0, end:-10}); // -10 is an invalid value, and undefined is returned.
+  let glyphsNull = runs[0].getGlyphs(null); // null is an invalid value, and undefined is returned.
+  let glyphsUndefined = runs[0].getGlyphs(undefined); // undefined is an invalid value, and undefined is returned.
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
 ### getPositions
 
 getPositions(): Array<common2D.Point>
 
-Obtains the index of each glyph relative to the respective line in this glyph run.
+Obtains the position of each glyph relative to the respective line in this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1698,7 +2720,7 @@ Obtains the index of each glyph relative to the respective line in this glyph ru
 
 | Type                  | Description                                  |
 | ---------------------- | ------------------------------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the index of each glyph relative to the respective line in this glyph run.|
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the position of each glyph relative to the respective line in the run.|
 
 **Example**
 
@@ -1706,7 +2728,62 @@ Obtains the index of each glyph relative to the respective line in this glyph ru
 import { text } from "@kit.ArkGraphics2D";
 
 function textFunc() {
-  let positions = runs[0].getPositions();
+  let positions = runs[0].getPositions (); // Obtain the positions of all glyphs in the run.
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+### getPositions<sup>14+</sup>
+
+getPositions(range: Range): Array<common2D.Point>
+
+Obtains the position array of each glyph relative to the respective line within the specified range of this run.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                      |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | Yes  | Range of the glyphs, where **range.start** indicates the start position of the range, and **range.end** indicates the length of the range. If the length is 0, the range is from **range.start** to the end of the run. If **range.end** or **range.start** is set to a negative value, **null**, or **undefined**, **undefined** is returned.|
+
+**Return value**
+
+| Type                  | Description                                  |
+| ---------------------- | ------------------------------------- |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the position of each glyph relative to the respective line in the run.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let positions = runs[0].getPositions(); // Obtain the positions of all glyphs in the run.
+  let positionsRange = runs[0].getPositions({start:1, end:2}); // Obtain the positions of glyphs in the range starting from position 1, with a length of 2.
+  positionsRange = runs[0].getPositions({start:-1, end:2}); // -1 is an invalid value, and undefined is returned.
+  positionsRange = runs[0].getPositions({start:0, end:-10}); // -10 is an invalid value, and undefined is returned.
+  let positionsNull = runs[0].getPositions(null); // null is an invalid value, and undefined is returned.
+  let positionsUndefined = runs[0].getPositions(undefined); // undefined is an invalid value, and undefined is returned.
 }
 
 @Entry
@@ -1727,7 +2804,7 @@ struct Index {
 
 getOffsets(): Array<common2D.Point>
 
-Obtains the offset of each glyph in this glyph run relative to its index.
+Obtains the offset of each glyph in this run relative to its index.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1735,7 +2812,7 @@ Obtains the offset of each glyph in this glyph run relative to its index.
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the offset of each glyph in this glyph run relative to its index.|
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the offset of each glyph in the run relative to its index.|
 
 **Example**
 
@@ -1764,7 +2841,7 @@ struct Index {
 
 getFont(): drawing.Font
 
-Obtains the **Font** object of this glyph run.
+Obtains the **Font** object of this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1772,7 +2849,7 @@ Obtains the **Font** object of this glyph run.
 
 | Type                  | Description          |
 | ------------------------------------------------- | -------------------------- |
-| [drawing.Font](js-apis-graphics-drawing.md#font)  | **Font** object of this glyph run.|
+| [drawing.Font](js-apis-graphics-drawing.md#font)  | **Font** object of this run.|
 
 **Example**
 
@@ -1802,7 +2879,7 @@ struct Index {
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-Paints this glyph run on the canvas with the coordinate point (x, y) as the upper left corner.
+Paints this run on the canvas with the coordinate point (x, y) as the upper left corner.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1843,3 +2920,231 @@ struct Index {
   }
 }
 ```
+
+## TextTab<sup>14+</sup>
+
+Implements a paragraph-style text tab, which stores the alignment mode and position.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name              | Type                   | Read Only| Optional| Description                                              |
+| -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
+| alignment          | [TextAlign](#textalign) | Yes  |  No | Alignment mode of the text following the tab character in a paragraph. It can be set to **LEFT**, **RIGHT**, and **CENTER** defined in [TextAlign](#textalign). Other enumerated values have the effect of left alignment. The default value is left alignment.|
+| location           | number                  | Yes  |  No | Alignment position of the text following the tab character. The value is a floating point number, in px. The minimum value is 1.0. When the value is less than 1.0, the tab character is replaced with a space.|
+
+**Example**
+
+**alignment** is **CENTER**, **location** is **200**, and the text is "12/t345".
+
+![image_AlignmentCenter.png](figures/image_AlignmentCenter.png)
+
+**alignment** is **LEFT**, **location** is **100**, and the text is "abccccccccc/tdef".
+
+![image_AlignmentLeft.png](figures/image_AlignmentLeft.png)
+
+**alignment** is **RIGHT**, **location** is **100**, and the text is "aabcdef/tg hi/tjkl/tmno/tp qr".
+
+![image_AlignmentRight.png](figures/image_AlignmentRight.png)
+
+### getStringRange<sup>14+</sup>
+
+getStringRange(): Range
+
+Obtains the range of glyphs generated by this run.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+| [Range](#range) | Range of the glyphs, where **start** indicates the start position of the range, which is the index relative to the entire paragraph, and **end** indicates the length of the range.|
+
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let runStringRange = runs[0].getStringRange();
+  let location = runStringRange.start;
+  let length = runStringRange.end;
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getStringIndices<sup>14+</sup>
+
+getStringIndices(range?: Range): Array\<number>
+
+Obtains character indices of glyphs within a specified range of this run, where the indices are offsets relative to the entire paragraph.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                      |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | No  | Range of the glyphs, where **range.start** indicates the start position of the range, and **range.end** indicates the length of the range. If the length is 0, the range is from **range.start** to the end of the run. If **range.end** or **range.start** is set to a negative value, **null**, or **undefined**, **undefined** is returned. If this parameter is not passed, the entire run is obtained.|
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+| Array\<number>  | Index of each character in the run.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let indices = runs[0].getStringIndices (); // Obtain the indices of all characters in the run.
+  let indicesRange = runs[0].getStringIndices({start:1, end:2}); // Obtain the indices of characters in the range starting from position 1, with a length of 2.
+  indicesRange = runs[0].getStringIndices({start:-1, end:2}); // -1 is an invalid value, and undefined is returned.
+  indicesRange = runs[0].getStringIndices({start:0, end:-10}); // -10 is an invalid value, and undefined is returned.
+  let indicesNull = runs[0].getStringIndices(null); // null is an invalid value, and undefined is returned.
+  let indicesUndefined = runs[0].getStringIndices(undefined); // undefined is an invalid value, and undefined is returned.
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getImageBounds<sup>14+</sup>
+
+getImageBounds(): common2D.Rect
+
+Obtains the image boundary of this run. The image boundary, equivalent to a visual boundary, is related to the font, font size, and characters. For example, for the string " a b " (which has a space before "a" and a space after "b"), only "a b" are visible to users, and therefore the image boundary does not include these spaces at the beginning and end.
+
+>**NOTE**
+>
+>The following figure shows the image boundary of the string " a b ".
+>
+>![image_ImageBounds.png](figures/image_ImageBounds.png)
+>
+>The following figure shows the image boundary of the strings "j" and "E".
+>
+>![image_ImageBounds_Character.png](figures/image_ImageBounds_Character.png)
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+|   [common2D.Rect](js-apis-graphics-common2D.md#rect)  | Image boundary of the run.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let bounds = runs[0].getImageBounds();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getTypographicBounds<sup>14+</sup>
+
+getTypographicBounds(): TypographicBounds
+
+Obtain a typographic boundary of this run. The typographic boundary is related to the font and font size used for typography, but not the characters within the text. For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary encompasses the spaces at the beginning and end.
+
+>**NOTE**
+>
+>The following figure shows the typographic boundary of the string " a b ".
+>
+>![image_TypographicBounds.png](figures/image_TypographicBounds.png)
+>
+>The following figure shows the typographic boundary of the strings "j" and "E".
+>
+>![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+|  [TypographicBounds](#typographicbounds14)  | Typographic boundary of the run.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let typographicBounds = runs[0].getTypographicBounds();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+## SystemFontType<sup>14+</sup>
+
+Enumerates the font types, which can be combined through bitwise OR operations.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name| Value| Description|
+| - | - | - |
+| ALL | 1 << 0 | All font types, including the system font type, style font type, and user-installed font type.|
+| GENERIC  | 1 << 1 | System font type.|
+| STYLISH  | 1 << 2 | Style font type. The style font type is designed for 2-in-1 devices.|
+| INSTALLED  | 1 << 3 | Font type that has been installed.|

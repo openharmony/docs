@@ -19,7 +19,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | -------- | -------- |
 | [drawing_bitmap.h](drawing__bitmap_8h.md) | Declares the functions related to the bitmap in the drawing module.|
 | [drawing_brush.h](drawing__brush_8h.md) | Declares the functions related to the brush in the drawing module.|
-| [drawing_canvas.h](drawing__canvas_8h.md) | Declares the functions related to the canvas in the drawing module. By default, the canvas has a black brush with anti-aliasing enabled but no any other style. This default brush takes effect only when no brush or pen is proactively set in the canvas.|
+| [drawing_canvas.h](drawing__canvas_8h.md) | Declares the functions related to the canvas in the drawing module. By default, the canvas has a black brush with anti-aliasing enabled but no any other style. This default brush takes effect only when no brush or pen is proactively set in the canvas. Canvases that are not set for recording will immediately draw the commands onto the bound bitmap, whereas canvases designated for recording will store the drawing commands for future replay.|
 | [drawing_color.h](drawing__color_8h.md) | Declares the functions related to the color in the drawing module.|
 | [drawing_color_filter.h](drawing__color__filter_8h.md) | Declares the functions related to the color filter in the drawing module.|
 | [drawing_error_code.h](drawing__error__code_8h.md) | Declares the functions related to the error code in the drawing module.|
@@ -50,6 +50,9 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | [drawing_surface.h](drawing__surface_8h.md) | Declares the functions related to the surface in the drawing module, including creating, destroying, and using the surface.|
 | [drawing_text_blob.h](drawing__text__blob_8h.md) | Declares the functions related to the text blob in the drawing module.|
 | [drawing_text_declaration.h](drawing__text__declaration_8h.md) | Declares the structs related to text in 2D drawing.|
+| [drawing_text_font_descriptor.h](drawing__text__font__descriptor_8h.md) | Declares the capabilities of font information, such as obtaining font information and searching for a font.|
+| [drawing_text_line.h](drawing__text__line_8h.md) | Declares the capabilities for obtaining the character position in a text line, obtaining the run information, and truncating text by line.|
+| [drawing_text_run.h](drawing__text__run_8h.md) | Declares the capabilities of runs, such as obtaining the typographic boundary and drawing. |
 | [drawing_text_typography.h](drawing__text__typography_8h.md) | Declares the functions related to typography in the drawing module.|
 | [drawing_typeface.h](drawing__typeface_8h.md) | Declares the functions related to the typeface in the drawing module. Different platforms have their own default typefaces. You can also parse the .ttf file to obtain the typefaces specified by the third party, such as SimSun and SimHei.|
 | [drawing_types.h](drawing__types_8h.md) | Declares the data types of the canvas, brush, pen, bitmap, and path used to draw 2D graphics.|
@@ -59,6 +62,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 
 | Name| Description|
 | -------- | -------- |
+| struct  [OH_Drawing_String](_o_h___drawing___string.md) | Describes a string of characters encoded in UTF-16BE (big-endian mode).|
 | struct  [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | Describes the pixel format of a bitmap, including the color type and alpha type.|
 | struct  [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) | Describes the measurement information about a font.|
 | struct  [OH_Drawing_GpuContextOptions](_o_h___drawing___gpu_context_options.md) | Describes the options about the GPU context.|
@@ -85,9 +89,15 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 
 | Name| Description|
 | -------- | -------- |
+| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](#oh_drawing_string) | Defines a struct for a string of characters encoded in UTF-16BE (big-endian mode).|
+| typedef enum [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype) | Defines an enum for the system font types.|
+| typedef bool(\* [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback)) (double offset, int32_t index, bool leadingEdge) | Defines a custom callback used to receive the offset and index of each character in a text line object as its parameters.|
+| typedef struct [OH_Drawing_LineTypography](#oh_drawing_linetypography) [OH_Drawing_LineTypography](#oh_drawing_linetypography) | Defines a struct used to extract a single line of data from a piece of text for typography.|
+| typedef struct [OH_Drawing_TextTab](#oh_drawing_texttab) [OH_Drawing_TextTab](#oh_drawing_texttab) | Defines a struct used to manage text tabs.|
+| typedef struct [OH_Drawing_Array](#oh_drawing_array) [OH_Drawing_Array](#oh_drawing_array) | Defines a struct for an array object, which is used to store multiple objects of the same type.|
 | typedef struct [OH_Drawing_FontArguments](#oh_drawing_fontarguments) [OH_Drawing_FontArguments](#oh_drawing_fontarguments) | Defines a struct for font arguments.|
-| typedef struct [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils)[OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) | Defines the recording command tool, which is used to generate recording commands.|
-| typedef struct [OH_Drawing_RecordCmd](#oh_drawing_recordcmd)[OH_Drawing_RecordCmd](#oh_drawing_recordcmd) | Defines the recording command class, which is used to store the set of recording commands.|
+| typedef struct [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) | Defines the recording command tool, which is used to generate recording commands.|
+| typedef struct [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) | Defines the recording command class, which is used to store the set of recording commands.|
 | typedef enum [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_ErrorCode](#oh_drawing_errorcode) | Defines an enum for the error codes that may be generated by the module.|
 | typedef enum [OH_Drawing_PathOpMode](#oh_drawing_pathopmode)  [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) | Defines an enum for the operation modes available for a path.|
 | typedef enum [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags)  [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) | Defines an enum for the types of matrix information obtained during path measurement.|
@@ -187,6 +197,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 
 | Name| Description|
 | -------- | -------- |
+| [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3 } | Enumerates the system font types.|
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode-1) { OH_DRAWING_SUCCESS = 0, OH_DRAWING_ERROR_NO_PERMISSION = 201, OH_DRAWING_ERROR_INVALID_PARAMETER = 401, OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE = 26200001,OH_DRAWING_ERROR_ALLOCATION_FAILED = 26200002 } | Enumerates the error codes that may be generated by the module.|
 | [OH_Drawing_PathOpMode](#oh_drawing_pathopmode-1) {<br>PATH_OP_MODE_DIFFERENCE, PATH_OP_MODE_INTERSECT, PATH_OP_MODE_UNION, PATH_OP_MODE_XOR,<br>PATH_OP_MODE_REVERSE_DIFFERENCE<br>} | Enumerates the operation modes available for a path.|
 | [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags-1) { GET_POSITION_MATRIX, GET_TANGENT_MATRIX, GET_POSITION_AND_TANGENT_MATRIX } | Enumerates the types of matrix information obtained during path measurement.|
@@ -231,68 +242,10 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | [OH_Drawing_TextEncoding](#oh_drawing_textencoding-1) { TEXT_ENCODING_UTF8, TEXT_ENCODING_UTF16, TEXT_ENCODING_UTF32, TEXT_ENCODING_GLYPH_ID } | Enumerates the text encoding types.|
 | [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags-1) { SHADOW_FLAGS_NONE, SHADOW_FLAGS_TRANSPARENT_OCCLUDER, SHADOW_FLAGS_GEOMETRIC_ONLY, SHADOW_FLAGS_ALL } | Enumerates the shadow flags.|
 
-
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromFileWithArguments](#oh_drawing_typefacecreatefromfilewitharguments) (const char \*path, const [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | Creates an **OH_Drawing_Typeface** object with font arguments through a file. If the **OH_Drawing_Typeface** object does not support the variation described in the font arguments, this function creates an **OH_Drawing_Typeface** object with the default font arguments. In this case, this function provides the same capability as [OH_Drawing_TypefaceCreateFromFile](#oh_drawing_typefacecreatefromfile).|
-| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromCurrent](#oh_drawing_typefacecreatefromcurrent) (const [OH_Drawing_Typeface](#oh_drawing_typeface) \*current, const [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | Creates an **OH_Drawing_Typeface** object with font arguments based on an existing **OH_Drawing_Typeface** object.|
-| [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \* [OH_Drawing_FontArgumentsCreate](#oh_drawing_fontargumentscreate) (void) | Creates an **OH_Drawing_FontArguments** object. The font arguments are used to create an **OH_Drawing_Typeface** object with custom attributes.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontArgumentsAddVariation](#oh_drawing_fontargumentsaddvariation) ([OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments, const char \*axis, float value) | Adds a variation to an **OH_Drawing_FontArguments** object.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontArgumentsDestroy](#oh_drawing_fontargumentsdestroy) ([OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | Destroys an **OH_Drawing_FontArguments** object.|
-| double [OH_Drawing_TypographyGetLongestLineWithIndent](#oh_drawing_typographygetlongestlinewithindent) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the width of the longest line, including its indentation. You are advised to round up the return value in actual use. If the text content is empty, **0.0** is returned.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_CanvasDrawRecordCmd](#oh_drawing_canvasdrawrecordcmd) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*recordCmd) | Draws a recording command object.|
-| [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \* [OH_Drawing_RecordCmdUtilsCreate](#oh_drawing_recordcmdutilscreate) (void) | Creates an **OH_Drawing_RecordCmdUtils** object.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_RecordCmdUtilsDestroy](#oh_drawing_recordcmdutilsdestroy) ([OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \*recordCmdUtils) | Destroys an **OH_Drawing_RecordCmdUtils** object and reclaims the memory occupied by the object.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording) ([OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \*recordCmdUtils, int32_t width, int32_t height, [OH_Drawing_Canvas](#oh_drawing_canvas) \*\*canvas) | Starts recording. This function must be used in pair with [OH_Drawing_RecordCmdUtilsFinishRecording](#oh_drawing_recordcmdutilsfinishrecording).<br>The **OH_Drawing_RecordCmdUtils** object generates a canvas object of the recording type and calls the interface of the drawing object to record all drawing commands.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_RecordCmdUtilsFinishRecording](#oh_drawing_recordcmdutilsfinishrecording) ([OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \*recordCmdUtils, [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*\*recordCmd) | Ends recording. This function must be called after [OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording).<br>The **OH_Drawing_RecordCmdUtils** object ends recording and stores the drawing commands recorded by the canvas object of the recording type into the generated [OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording) object.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_RecordCmdDestroy](#oh_drawing_recordcmddestroy) ([OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*recordCmd) | Destroys an **OH_Drawing_RecordCmd** object and reclaims the memory occupied by the object.|
-| void [OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*) | Releases the memory occupied by a text box.|
-| void [OH_Drawing_SetTextShadow](#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](#oh_drawing_point) \*offset, double blurRadius) | Sets a text shadow.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawSingleCharacter](#oh_drawing_canvasdrawsinglecharacter) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const char \*str, const [OH_Drawing_Font](#oh_drawing_font) \*font, float x, float y) | Draws a single character. If the typeface of the current font does not support the character to draw, the system typeface is used to draw the character.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureSingleCharacter](#oh_drawing_fontmeasuresinglecharacter) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const char \*str, float \*textWidth) | Measures the width of a single character. If the typeface of the current font does not support the character to measure, the system typeface is used to measure the character width.|
-| void [OH_Drawing_TypographyPaintOnPath](#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Path](#oh_drawing_path) \*, double, double) | Draws text along a path.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RoundRectOffset](#oh_drawing_roundrectoffset) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*roundRect, float dx, float dy) | Translates a rounded rectangle by an offset along the X axis and Y axis.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetX](#oh_drawing_pointgetx) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*x) | Obtains the X coordinate of a point.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetY](#oh_drawing_pointgety) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*y) | Obtains the Y coordinate of a point.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointSet](#oh_drawing_pointset) ([OH_Drawing_Point](#oh_drawing_point) \*point, float x, float y) | Sets the X and Y coordinates of a point.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureText](#oh_drawing_fontmeasuretext) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, [OH_Drawing_Rect](#oh_drawing_rect) \*bounds, float \*textWidth) | Obtains the text width and bounding box.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasClipRegion](#oh_drawing_canvasclipregion) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Region](#oh_drawing_region) \*region, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp) | Clips a rectangle.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawColor](#oh_drawing_canvasdrawcolor) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, uint32_t color, [OH_Drawing_BlendMode](#oh_drawing_blendmode) blendMode) | Fills the entire canvas with the specified color and blend mode.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasGetImageInfo](#oh_drawing_canvasgetimageinfo) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*imageInfo) | Obtains the image information of a canvas.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasIsClipEmpty](#oh_drawing_canvasisclipempty) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, bool \*isClipEmpty) | Checks whether the region that can be drawn is empty after cropping.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawPoint](#oh_drawing_canvasdrawpoint) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*point) | Draws a point.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_MatrixGetAll](#oh_drawing_matrixgetall) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, float value[9]) | Obtains all element values of a matrix.|
-| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget) () | Obtains the error code of the module.|
-| [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCopy](#oh_drawing_brushcopy) ([OH_Drawing_Brush](#oh_drawing_brush) \*brush) | Copies an existing [OH_Drawing_Brush](#oh_drawing_brush) object to create a new one.|
-| void [OH_Drawing_FilterSetImageFilter](#oh_drawing_filtersetimagefilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | Sets an **OH_Drawing_ImageFilter** object for an **OH_Drawing_Filter** object.|
-| [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \* [OH_Drawing_ImageFilterCreateBlur](#oh_drawing_imagefiltercreateblur) (float sigmaX, float sigmaY, [OH_Drawing_TileMode](#oh_drawing_tilemode), [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*input) | Creates an **OH_Drawing_ImageFilter** object with a given blur type.|
-| [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \* [OH_Drawing_ImageFilterCreateFromColorFilter](#oh_drawing_imagefiltercreatefromcolorfilter) ([OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*colorFilter, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*input) | Creates an **OH_Drawing_ImageFilter** object with a color filter effect.|
-| void [OH_Drawing_ImageFilterDestroy](#oh_drawing_imagefilterdestroy) ([OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | Destroys an **OH_Drawing_ImageFilter** object and reclaims the memory occupied by the object.|
-| void [OH_Drawing_MatrixMapPoints](#oh_drawing_matrixmappoints) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*src, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*dst, int count) | Maps a source point array to a destination point array by means of matrix transformation.|
-| bool [OH_Drawing_MatrixMapRect](#oh_drawing_matrixmaprect) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, [OH_Drawing_Rect](#oh_drawing_rect) \*dst) | Maps a rectangle to the smallest rectangle that can enclose the vertices to which the four source vertices are mapped by means of matrix transformation.|
-| void [OH_Drawing_PathAddPolygon](#oh_drawing_pathaddpolygon) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*points, uint32_t count, bool isClosed) | Adds a polygon to a path.|
-| void [OH_Drawing_PathAddCircle](#oh_drawing_pathaddcircle) ([OH_Drawing_Path](#oh_drawing_path) \*path, float x, float y, float radius, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | Adds a circle to a path in the specified direction.|
-| bool [OH_Drawing_PathBuildFromSvgString](#oh_drawing_pathbuildfromsvgstring) ([OH_Drawing_Path](#oh_drawing_path) \*path, const char \*str) | Parses the path represented by an SVG string.|
-| void [OH_Drawing_PathGetBounds](#oh_drawing_pathgetbounds) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_Rect](#oh_drawing_rect) \*) | Obtains the minimum bounds that enclose a path.|
-| bool [OH_Drawing_PathIsClosed](#oh_drawing_pathisclosed) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed) | Checks whether a path is closed.|
-| bool [OH_Drawing_PathGetPositionTangent](#oh_drawing_pathgetpositiontangent) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*position, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*tangent) | Obtains the coordinates and tangent at a distance from the start point of a path.|
-| bool [OH_Drawing_PathOp](#oh_drawing_pathop) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*other, [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) op) | Combines two paths based on the specified operation mode.|
-| bool [OH_Drawing_PathGetMatrix](#oh_drawing_pathgetmatrix) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) flag) | Obtains a transformation matrix at a distance from the start point of a path.|
-| bool [OH_Drawing_PenGetFillPath](#oh_drawing_pengetfillpath) ([OH_Drawing_Pen](#oh_drawing_pen) \*, const [OH_Drawing_Path](#oh_drawing_path) \*src, [OH_Drawing_Path](#oh_drawing_path) \*dst, const [OH_Drawing_Rect](#oh_drawing_rect) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Obtains the source path outline drawn using a pen and represents it using a destination path.|
-| [OH_Drawing_Pen](#oh_drawing_pen) \* [OH_Drawing_PenCopy](#oh_drawing_pencopy) ([OH_Drawing_Pen](#oh_drawing_pen) \*pen) | Copies an existing [OH_Drawing_Pen](#oh_drawing_pen) object to create a new one.|
-| [OH_Drawing_PixelMap](#oh_drawing_pixelmap) \* [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap) (NativePixelMap_ \*) | Obtains the pixel map defined by this module from a pixel map defined by the image framework.|
-| [OH_Drawing_PixelMap](#oh_drawing_pixelmap) \* [OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative) (OH_PixelmapNative \*) | Obtains the pixel map defined by this module from a pixel map defined by the image framework.|
-| void [OH_Drawing_PixelMapDissolve](#oh_drawing_pixelmapdissolve) ([OH_Drawing_PixelMap](#oh_drawing_pixelmap) \*) | Removes the relationship between a pixel map defined by this module and a pixel map defined by the image framework. The relationship is established by calling [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap) or [OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative).|
-| bool [OH_Drawing_RectJoin](#oh_drawing_rectjoin) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](#oh_drawing_rect) \*other) | Obtains the union of two rectangles.|
-| bool [OH_Drawing_RegionContains](#oh_drawing_regioncontains) ([OH_Drawing_Region](#oh_drawing_region) \*region, int32_t x, int32_t y) | Checks whether a region contains the specified point.|
-| bool [OH_Drawing_RegionOp](#oh_drawing_regionop) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Region](#oh_drawing_region) \*other, [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) op) | Combines two regions based on the specified operation mode.|
-| bool [OH_Drawing_RegionSetPath](#oh_drawing_regionsetpath) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Region](#oh_drawing_region) \*clip) | Sets a region to the area described by the path.|
-| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateColorShader](#oh_drawing_shadereffectcreatecolorshader) (const uint32_t color) | Creates an **OH_Drawing_ShaderEffect** object with a single color.|
-| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix](#oh_drawing_shadereffectcreatelineargradientwithlocalmatrix) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*startPt, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*endPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Creates an **OH_Drawing_ShaderEffect** object that generates a linear gradient between two points.|
-| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix](#oh_drawing_shadereffectcreateradialgradientwithlocalmatrix) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*centerPt, float radius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Creates an **OH_Drawing_ShaderEffect** object that generates a radial gradient based on the center and radius of a circle. The radial gradient transitions colors from the center to the ending shape in a radial manner.|
-| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateTwoPointConicalGradient](#oh_drawing_shadereffectcreatetwopointconicalgradient) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*startPt, float startRadius, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*endPt, float endRadius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Creates an **OH_Drawing_ShaderEffect** object that generates a gradient between two given circles.|
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | Creates an **OH_Drawing_Bitmap** object.|
 | void [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Destroys an **OH_Drawing_Bitmap** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreateFromPixels](#oh_drawing_bitmapcreatefrompixels) ([OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*, void \*pixels, uint32_t rowBytes) | Creates an **OH_Drawing_Bitmap** object, with the address of the memory for storing the bitmap pixels set to the memory address that you applied for.|
@@ -305,6 +258,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_BitmapGetImageInfo](#oh_drawing_bitmapgetimageinfo) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*) | Obtains the image information of a bitmap.|
 | bool [OH_Drawing_BitmapReadPixels](#oh_drawing_bitmapreadpixels) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*dstInfo, void \*dstPixels, size_t dstRowBytes, int32_t srcX, int32_t srcY) | Reads pixels of a rectangle in a bitmap to the specified buffer.|
 | [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCreate](#oh_drawing_brushcreate) (void) | Creates an **OH_Drawing_Brush** object.|
+| [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCopy](#oh_drawing_brushcopy) ([OH_Drawing_Brush](#oh_drawing_brush) \*brush) | Copies an existing [OH_Drawing_Brush](#oh_drawing_brush) object to create a new one.|
 | void [OH_Drawing_BrushDestroy](#oh_drawing_brushdestroy) ([OH_Drawing_Brush](#oh_drawing_brush) \*) | Destroys an **OH_Drawing_Brush** object and reclaims the memory occupied by the object.|
 | bool [OH_Drawing_BrushIsAntiAlias](#oh_drawing_brushisantialias) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | Checks whether anti-aliasing is enabled for a brush. Anti-aliasing makes the pixels around the shape edges semi-transparent.|
 | void [OH_Drawing_BrushSetAntiAlias](#oh_drawing_brushsetantialias) ([OH_Drawing_Brush](#oh_drawing_brush) \*, bool) | Enables or disables anti-aliasing for a brush. Anti-aliasing makes the pixels around the shape edges semi-transparent.|
@@ -335,6 +289,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_CanvasDrawPixelMapRect](#oh_drawing_canvasdrawpixelmaprect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_PixelMap](#oh_drawing_pixelmap) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, const [OH_Drawing_Rect](#oh_drawing_rect) \*dst, const [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \*) | Draws a portion of a pixel map onto a specified area of the canvas.|
 | void [OH_Drawing_CanvasDrawBackground](#oh_drawing_canvasdrawbackground) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | Draws a background filled with a brush.|
 | void [OH_Drawing_CanvasDrawRegion](#oh_drawing_canvasdrawregion) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Region](#oh_drawing_region) \*) | Draws a region.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawPoint](#oh_drawing_canvasdrawpoint) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*point) | Draws a point.|
 | void [OH_Drawing_CanvasDrawPoints](#oh_drawing_canvasdrawpoints) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_PointMode](#oh_drawing_pointmode) mode, uint32_t count, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*) | Draws multiple points. You can draw a single point, a line segment, or an open polygon.|
 | void [OH_Drawing_CanvasDrawBitmap](#oh_drawing_canvasdrawbitmap) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, float left, float top) | Draws a bitmap. A bitmap, also referred to as a dot matrix image, a pixel map image, or a grid image, includes single points called pixels (image elements).|
 | void [OH_Drawing_CanvasDrawBitmapRect](#oh_drawing_canvasdrawbitmaprect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, const [OH_Drawing_Rect](#oh_drawing_rect) \*dst, const [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \*) | Draws a portion of a bitmap onto a specified area of the canvas.|
@@ -345,11 +300,15 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_CanvasDrawVertices](#oh_drawing_canvasdrawvertices) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_VertexMode](#oh_drawing_vertexmode) vertexMmode, int32_t vertexCount, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*positions, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*texs, const uint32_t \*colors, int32_t indexCount, const uint16_t \*indices, [OH_Drawing_BlendMode](#oh_drawing_blendmode) mode) | Draws a triangular grid described by a vertex array.|
 | bool [OH_Drawing_CanvasReadPixels](#oh_drawing_canvasreadpixels) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*, void \*dstPixels, uint32_t dstRowBytes, int32_t srcX, int32_t srcY) | Copies pixel data from a canvas to a specified address. This function cannot be used for recorded canvases.|
 | bool [OH_Drawing_CanvasReadPixelsToBitmap](#oh_drawing_canvasreadpixelstobitmap) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, int32_t srcX, int32_t srcY) | Copies pixel data from a canvas to an image. This function cannot be used for recorded canvases.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasIsClipEmpty](#oh_drawing_canvasisclipempty) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, bool \*isClipEmpty) | Checks whether the region that can be drawn is empty after cropping.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasGetImageInfo](#oh_drawing_canvasgetimageinfo) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*imageInfo) | Obtains the image information of a canvas.|
 | void [OH_Drawing_CanvasDrawRect](#oh_drawing_canvasdrawrect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*) | Draws a rectangle.|
 | void [OH_Drawing_CanvasDrawCircle](#oh_drawing_canvasdrawcircle) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Point](#oh_drawing_point) \*, float radius) | Draws a circle.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawColor](#oh_drawing_canvasdrawcolor) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, uint32_t color, [OH_Drawing_BlendMode](#oh_drawing_blendmode) blendMode) | Fills the entire canvas with the specified color and blend mode.|
 | void [OH_Drawing_CanvasDrawOval](#oh_drawing_canvasdrawoval) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*) | Draws an oval.|
 | void [OH_Drawing_CanvasDrawArc](#oh_drawing_canvasdrawarc) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, float startAngle, float sweepAngle) | Draws an arc.|
 | void [OH_Drawing_CanvasDrawRoundRect](#oh_drawing_canvasdrawroundrect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*) | Draws a rounded rectangle.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawSingleCharacter](#oh_drawing_canvasdrawsinglecharacter) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const char \*str, const [OH_Drawing_Font](#oh_drawing_font) \*font, float x, float y) | Draws a single character. If the typeface of the current font does not support the character to draw, the system typeface is used to draw the character.|
 | void [OH_Drawing_CanvasDrawTextBlob](#oh_drawing_canvasdrawtextblob) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_TextBlob](#oh_drawing_textblob) \*, float x, float y) | Draws a text blob. If the typeface used to construct **OH_Drawing_TextBlob** does not support a character, that character will not be drawn.|
 | uint32_t [OH_Drawing_ColorSetArgb](#oh_drawing_colorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | Converts four variables (alpha, red, green, and blue) into a 32-bit (ARGB) variable that describes a color.|
 | [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateBlendMode](#oh_drawing_colorfiltercreateblendmode) (uint32_t color, [OH_Drawing_BlendMode](#oh_drawing_blendmode)) | Creates an **OH_Drawing_ColorFilter** object with a given blend mode.|
@@ -362,7 +321,9 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | [OH_Drawing_ColorSpace](#oh_drawing_colorspace) \* [OH_Drawing_ColorSpaceCreateSrgb](#oh_drawing_colorspacecreatesrgb) (void) | Creates an sRGB color space.|
 | [OH_Drawing_ColorSpace](#oh_drawing_colorspace) \* [OH_Drawing_ColorSpaceCreateSrgbLinear](#oh_drawing_colorspacecreatesrgblinear) (void) | Creates an sRGB linear (Gamma 1.0) color space.|
 | void [OH_Drawing_ColorSpaceDestroy](#oh_drawing_colorspacedestroy) ([OH_Drawing_ColorSpace](#oh_drawing_colorspace) \*) | Destroys an **OH_Drawing_ColorSpace** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget) () | Obtains the error code of the module.|
 | [OH_Drawing_Filter](#oh_drawing_filter) \* [OH_Drawing_FilterCreate](#oh_drawing_filtercreate) (void) | Creates an **OH_Drawing_Filter** object.|
+| void [OH_Drawing_FilterSetImageFilter](#oh_drawing_filtersetimagefilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | Sets an **OH_Drawing_ImageFilter** object for an **OH_Drawing_Filter** object.|
 | void [OH_Drawing_FilterSetMaskFilter](#oh_drawing_filtersetmaskfilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_MaskFilter](#oh_drawing_maskfilter) \*) | Sets an **OH_Drawing_MaskFilter** object for an **OH_Drawing_Filter** object.|
 | void [OH_Drawing_FilterSetColorFilter](#oh_drawing_filtersetcolorfilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*) | Sets an **OH_Drawing_ColorFilter** object for an **OH_Drawing_Filter** object.|
 | void [OH_Drawing_FilterGetColorFilter](#oh_drawing_filtergetcolorfilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*) | Obtains an **OH_Drawing_ColorFilter** object from an **OH_Drawing_Filter** object.|
@@ -383,6 +344,8 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | int [OH_Drawing_FontCountText](#oh_drawing_fontcounttext) ([OH_Drawing_Font](#oh_drawing_font) \*, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding) | Obtains the number of glyphs represented by text.|
 | uint32_t [OH_Drawing_FontTextToGlyphs](#oh_drawing_fonttexttoglyphs) (const [OH_Drawing_Font](#oh_drawing_font) \*, const void \*text, uint32_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, uint16_t \*glyphs, int maxGlyphCount) | Converts text into glyph indices.|
 | void [OH_Drawing_FontGetWidths](#oh_drawing_fontgetwidths) (const [OH_Drawing_Font](#oh_drawing_font) \*, const uint16_t \*glyphs, int count, float \*widths) | Obtains the width of each glyph in a string of text.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureSingleCharacter](#oh_drawing_fontmeasuresinglecharacter) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const char \*str, float \*textWidth) | Measures the width of a single character. If the typeface of the current font does not support the character to measure, the system typeface is used to measure the character width.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureText](#oh_drawing_fontmeasuretext) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, [OH_Drawing_Rect](#oh_drawing_rect) \*bounds, float \*textWidth) | Obtains the text width and bounding box.|
 | void [OH_Drawing_FontSetLinearText](#oh_drawing_fontsetlineartext) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isLinearText) | Sets linear scaling for a font.|
 | bool [OH_Drawing_FontIsLinearText](#oh_drawing_fontislineartext) (const [OH_Drawing_Font](#oh_drawing_font) \*) | Checks whether linear scaling is used for a font.|
 | void [OH_Drawing_FontSetTextSkewX](#oh_drawing_fontsettextskewx) ([OH_Drawing_Font](#oh_drawing_font) \*, float skewX) | Sets a horizontal skew factor for a font.|
@@ -397,7 +360,10 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | bool [OH_Drawing_FontIsEmbeddedBitmaps](#oh_drawing_fontisembeddedbitmaps) (const [OH_Drawing_Font](#oh_drawing_font) \*) | Checks whether bitmaps are used in a font.|
 | void [OH_Drawing_FontDestroy](#oh_drawing_fontdestroy) ([OH_Drawing_Font](#oh_drawing_font) \*) | Destroys an **OH_Drawing_Font** object and reclaims the memory occupied by the object.|
 | float [OH_Drawing_FontGetMetrics](#oh_drawing_fontgetmetrics) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | Obtains the measurement information about a font.|
-| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | Creates an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object. The [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object created by this function can be used by only one [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) object. To share an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object among multiple [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) objects, use [OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection) to create it.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontGetBounds](#oh_drawing_fontgetbounds) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const uint16_t \*glyphs, uint32_t count, [OH_Drawing_Array](#oh_drawing_array) \*bounds) | Obtains the rectangular bounding box for each glyph in the glyph array.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontGetPathForGlyph](#oh_drawing_fontgetpathforglyph) (const [OH_Drawing_Font](#oh_drawing_font) \*font, uint16_t glyph, [OH_Drawing_Path](#oh_drawing_path) \*path) | Obtains the path of a glyph.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontGetTextPath](#oh_drawing_fontgettextpath) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, float x, float y, [OH_Drawing_Path](#oh_drawing_path) \*path) | Obtains the text outline path.|
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | Creates an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.|
 | void [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | Destroys an **OH_Drawing_FontCollection** object and reclaims the memory occupied by the object.|
 | void [OH_Drawing_DisableFontCollectionFallback](#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | Disables the alternate fonts.|
 | void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | Disables the system fonts.|
@@ -426,6 +392,9 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | int32_t [OH_Drawing_ImageGetWidth](#oh_drawing_imagegetwidth) ([OH_Drawing_Image](#oh_drawing_image) \*) | Obtains the image width, that is, the number of pixels in each line.|
 | int32_t [OH_Drawing_ImageGetHeight](#oh_drawing_imagegetheight) ([OH_Drawing_Image](#oh_drawing_image) \*) | Obtains the image height, that is, the number of pixel lines.|
 | void [OH_Drawing_ImageGetImageInfo](#oh_drawing_imagegetimageinfo) ([OH_Drawing_Image](#oh_drawing_image) \*, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*) | Obtains the image information. After this function is called, the passed-in image information object is filled.|
+| [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \* [OH_Drawing_ImageFilterCreateBlur](#oh_drawing_imagefiltercreateblur) (float sigmaX, float sigmaY, [OH_Drawing_TileMode](#oh_drawing_tilemode), [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*input) | Creates an **OH_Drawing_ImageFilter** object with a given blur type.|
+| [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \* [OH_Drawing_ImageFilterCreateFromColorFilter](#oh_drawing_imagefiltercreatefromcolorfilter) ([OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*colorFilter, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*input) | Creates an **OH_Drawing_ImageFilter** object with a color filter effect.|
+| void [OH_Drawing_ImageFilterDestroy](#oh_drawing_imagefilterdestroy) ([OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | Destroys an **OH_Drawing_ImageFilter** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_MaskFilter](#oh_drawing_maskfilter) \* [OH_Drawing_MaskFilterCreateBlur](#oh_drawing_maskfiltercreateblur) ([OH_Drawing_BlurType](#oh_drawing_blurtype) blurType, float sigma, bool respectCTM) | Creates an **OH_Drawing_MaskFilter** object with a given blur type.|
 | void [OH_Drawing_MaskFilterDestroy](#oh_drawing_maskfilterdestroy) ([OH_Drawing_MaskFilter](#oh_drawing_maskfilter) \*) | Destroys an **OH_Drawing_MaskFilter** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate) (void) | Creates an **OH_Drawing_Matrix** object.|
@@ -435,21 +404,24 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_MatrixSetMatrix](#oh_drawing_matrixsetmatrix) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float scaleX, float skewX, float transX, float skewY, float scaleY, float transY, float persp0, float persp1, float persp2) | Sets matrix parameters for an **OH_Drawing_Matrix** object.|
 | bool [OH_Drawing_MatrixSetRectToRect](#oh_drawing_matrixsetrecttorect) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, const [OH_Drawing_Rect](#oh_drawing_rect) \*dst, [OH_Drawing_ScaleToFit](#oh_drawing_scaletofit) stf) | Scales a matrix to map a source rectangle to a destination rectangle.|
 | void [OH_Drawing_MatrixPreRotate](#oh_drawing_matrixprerotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | Premultiplies a matrix by an identity matrix that rotates by a given degree around the rotation point (px, py).  |
-| void [OH_Drawing_MatrixPreScale](#oh_drawing_matrixprescale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | Premultiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px, py).|
-| void [OH_Drawing_MatrixPreTranslate](#oh_drawing_matrixpretranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | Premultiplies a matrix by an identity matrix that translates by a given distance (dx, dy).|
-| void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | Post multiplies a matrix by an identity matrix that rotates a given degree around the rotation point (px, py).|
-| void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | Post multiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px, py).|
+| void [OH_Drawing_MatrixPreScale](#oh_drawing_matrixprescale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | Premultiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px, py).  |
+| void [OH_Drawing_MatrixPreTranslate](#oh_drawing_matrixpretranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | Premultiplies a matrix by an identity matrix that translates by a given distance (dx, dy).  |
+| void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | Post multiplies a matrix by an identity matrix that rotates a given degree around the rotation point (px, py).  |
+| void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | Post multiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px, py).  |
 | void [OH_Drawing_MatrixPostTranslate](#oh_drawing_matrixposttranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | Post multiplies a matrix by an identity matrix that translates by a given distance (dx, dy).  |
-| void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Resets a matrix to an identity matrix.|
-| void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | Multiplies two matrices to produce a new matrix.|
+| void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Resets a matrix to an identity matrix: \| 1 0 0 \| \| 0 1 0 \| \| 0 0 1 \| |
+| void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | Multiplies two matrices to produce a new matrix. For example, if a given matrix a and a given matrix b are shown as follows:\| A B C \| \| J K L \| a = \| D E F \|, b = \| M N O \| \| G H I \| \| P Q R \| then the final matrix total is as follows:\| A B C \| \| J K L \| \| AJ+BM+CP AK+BN+CQ AL+BO+CR \| total = a \* b = \| D E F \| \* \| M N O \| = \| DJ+EM+FP DK+EN+FQ DL+EO+FR \| \| G H I \| \| P Q R \| \| GJ+HM+IP GK+HN+IQ GL+HO+IR \| |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_MatrixGetAll](#oh_drawing_matrixgetall) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, float value[9]) | Obtains all element values of a matrix.|
 | float [OH_Drawing_MatrixGetValue](#oh_drawing_matrixgetvalue) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, int index) | Obtains a matrix value of a given index, which ranges from 0 to 8.|
 | void [OH_Drawing_MatrixRotate](#oh_drawing_matrixrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | Sets a matrix as an identity matrix and rotates it by a given degree around the rotation point (px, py).|
 | void [OH_Drawing_MatrixTranslate](#oh_drawing_matrixtranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | Sets a matrix as an identity matrix and translates it by a given distance (dx, dy).|
 | void [OH_Drawing_MatrixScale](#oh_drawing_matrixscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | Sets a matrix as an identity matrix and scales it with the factor (sx, sy) at the rotation point (px, py).|
 | bool [OH_Drawing_MatrixInvert](#oh_drawing_matrixinvert) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*inverse) | Inverts a matrix and returns the result.|
 | bool [OH_Drawing_MatrixSetPolyToPoly](#oh_drawing_matrixsetpolytopoly) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*src, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*dst, uint32_t count) | Generates a transformation matrix by setting source points and destination points. Both the number of source points and that of destination points must be in the range [0, 4].|
+| void [OH_Drawing_MatrixMapPoints](#oh_drawing_matrixmappoints) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*src, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*dst, int count) | Maps a source point array to a destination point array by means of matrix transformation.|
+| bool [OH_Drawing_MatrixMapRect](#oh_drawing_matrixmaprect) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, [OH_Drawing_Rect](#oh_drawing_rect) \*dst) | Maps a rectangle to the smallest rectangle that can enclose the vertices to which the four source vertices are mapped by means of matrix transformation.|
 | bool [OH_Drawing_MatrixIsEqual](#oh_drawing_matrixisequal) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*other) | Checks whether two **OH_Drawing_Matrix** objects are equal.|
-| bool [OH_Drawing_MatrixIsIdentity](#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Checks whether an **OH_Drawing_Matrix** object is an identity matrix.|
+| bool [OH_Drawing_MatrixIsIdentity](#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Checks whether an **OH_Drawing_Matrix** object is an identity matrix: \| 1 0 0 \| \| 0 1 0 \| \| 0 0 1 \| |
 | void [OH_Drawing_MatrixDestroy](#oh_drawing_matrixdestroy) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Destroys an **OH_Drawing_Matrix** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_MemoryStream](#oh_drawing_memorystream) \* [OH_Drawing_MemoryStreamCreate](#oh_drawing_memorystreamcreate) (const void \*data, size_t length, bool copyData) | Creates an **OH_Drawing_MemoryStream** object.|
 | void [OH_Drawing_MemoryStreamDestroy](#oh_drawing_memorystreamdestroy) ([OH_Drawing_MemoryStream](#oh_drawing_memorystream) \*) | Destroys an **OH_Drawing_MemoryStream** object and reclaims the memory occupied by the object.|
@@ -476,18 +448,27 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_PathAddPathWithMatrixAndMode](#oh_drawing_pathaddpathwithmatrixandmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | Transforms the points in a **src** path by a matrix and adds the new one to the current path with the specified adding mode.|
 | void [OH_Drawing_PathAddPathWithMode](#oh_drawing_pathaddpathwithmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | Adds a **src** path to the current path with the specified adding mode.|
 | void [OH_Drawing_PathAddPathWithOffsetAndMode](#oh_drawing_pathaddpathwithoffsetandmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, float dx, float dy, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | Translates a **src** path by an offset and adds the new one to the current path with the specified adding mode.|
+| void [OH_Drawing_PathAddPolygon](#oh_drawing_pathaddpolygon) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*points, uint32_t count, bool isClosed) | Adds a polygon to a path.|
+| void [OH_Drawing_PathAddCircle](#oh_drawing_pathaddcircle) ([OH_Drawing_Path](#oh_drawing_path) \*path, float x, float y, float radius, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | Adds a circle to a path in the specified direction.|
 | void [OH_Drawing_PathAddOval](#oh_drawing_pathaddoval) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | Adds an oval to a path in the specified direction.|
-| bool [OH_Drawing_PathContains](#oh_drawing_pathcontains) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | Checks whether a coordinate point is included in this path. For details, see [OH_Drawing_PathFillType](#oh_drawing_pathfilltype-1).|
+| bool [OH_Drawing_PathBuildFromSvgString](#oh_drawing_pathbuildfromsvgstring) ([OH_Drawing_Path](#oh_drawing_path) \*path, const char \*str) | Parses the path represented by an SVG string.|
+| bool [OH_Drawing_PathContains](#oh_drawing_pathcontains) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | Checks whether a coordinate point is included in this path. For details, see [OH_Drawing_PathFillType](#oh_drawing_pathfilltype).|
 | void [OH_Drawing_PathTransform](#oh_drawing_pathtransform) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Transforms the points in a path by a matrix.|
 | void [OH_Drawing_PathTransformWithPerspectiveClip](#oh_drawing_pathtransformwithperspectiveclip) ([OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Path](#oh_drawing_path) \*dst, bool applyPerspectiveClip) | Transforms the points in a **src** path by a matrix and uses the new one to replace the **dst** path. If **dst** is NULL, the **src** path is replaced.|
 | void [OH_Drawing_PathSetFillType](#oh_drawing_pathsetfilltype) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_PathFillType](#oh_drawing_pathfilltype)) | Sets the fill type for a path.|
 | float [OH_Drawing_PathGetLength](#oh_drawing_pathgetlength) ([OH_Drawing_Path](#oh_drawing_path) \*, bool forceClosed) | Obtains the length of a path.|
+| void [OH_Drawing_PathGetBounds](#oh_drawing_pathgetbounds) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_Rect](#oh_drawing_rect) \*) | Obtains the minimum bounds that enclose a path.|
 | void [OH_Drawing_PathClose](#oh_drawing_pathclose) ([OH_Drawing_Path](#oh_drawing_path) \*) | Closes a path by drawing a line segment from the current point to the start point of the path.|
+| bool [OH_Drawing_PathIsClosed](#oh_drawing_pathisclosed) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed) | Checks whether a path is closed.|
+| bool [OH_Drawing_PathGetPositionTangent](#oh_drawing_pathgetpositiontangent) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*position, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*tangent) | Obtains the coordinates and tangent at a distance from the start point of a path.|
+| bool [OH_Drawing_PathOp](#oh_drawing_pathop) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*other, [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) op) | Combines two paths based on the specified operation mode.|
+| bool [OH_Drawing_PathGetMatrix](#oh_drawing_pathgetmatrix) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) flag) | Obtains a transformation matrix at a distance from the start point of a path.|
 | void [OH_Drawing_PathOffset](#oh_drawing_pathoffset) ([OH_Drawing_Path](#oh_drawing_path) \*path, [OH_Drawing_Path](#oh_drawing_path) \*dst, float dx, float dy) | Translates a path by an offset along the X axis and Y axis and adds the new one to the **dst** path.|
 | void [OH_Drawing_PathReset](#oh_drawing_pathreset) ([OH_Drawing_Path](#oh_drawing_path) \*) | Resets path data.|
 | [OH_Drawing_PathEffect](#oh_drawing_patheffect) \* [OH_Drawing_CreateDashPathEffect](#oh_drawing_createdashpatheffect) (float \*intervals, int count, float phase) | Creates an **OH_Drawing_PathEffect** object with a dashed line effect. The dashed line effect is determined by a group of "on" and "off" intervals.|
 | void [OH_Drawing_PathEffectDestroy](#oh_drawing_patheffectdestroy) ([OH_Drawing_PathEffect](#oh_drawing_patheffect) \*) | Destroys an **OH_Drawing_PathEffect** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_Pen](#oh_drawing_pen) \* [OH_Drawing_PenCreate](#oh_drawing_pencreate) (void) | Creates an **OH_Drawing_Pen** object.|
+| [OH_Drawing_Pen](#oh_drawing_pen) \* [OH_Drawing_PenCopy](#oh_drawing_pencopy) ([OH_Drawing_Pen](#oh_drawing_pen) \*pen) | Copies an existing [OH_Drawing_Pen](#oh_drawing_pen) object to create a new one.|
 | void [OH_Drawing_PenDestroy](#oh_drawing_pendestroy) ([OH_Drawing_Pen](#oh_drawing_pen) \*) | Destroys an **OH_Drawing_Pen** object and reclaims the memory occupied by the object.|
 | bool [OH_Drawing_PenIsAntiAlias](#oh_drawing_penisantialias) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | Checks whether anti-aliasing is enabled for a pen. Anti-aliasing makes the pixels around the shape edges semi-transparent.|
 | void [OH_Drawing_PenSetAntiAlias](#oh_drawing_pensetantialias) ([OH_Drawing_Pen](#oh_drawing_pen) \*, bool) | Enables or disables anti-aliasing for a pen. Anti-aliasing makes the pixels around the shape edges semi-transparent.|
@@ -495,8 +476,8 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_PenSetColor](#oh_drawing_pensetcolor) ([OH_Drawing_Pen](#oh_drawing_pen) \*, uint32_t color) | Sets the color for a pen. The color is used by the pen to outline a shape.|
 | uint8_t [OH_Drawing_PenGetAlpha](#oh_drawing_pengetalpha) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | Obtains the alpha value of a pen. This value is used by the alpha channel when the pen outlines a shape.|
 | void [OH_Drawing_PenSetAlpha](#oh_drawing_pensetalpha) ([OH_Drawing_Pen](#oh_drawing_pen) \*, uint8_t alpha) | Sets the alpha value for a pen. This value is used by the alpha channel when the pen outlines a shape.|
-| float [OH_Drawing_PenGetWidth](#oh_drawing_pengetwidth) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | Obtains the width of a pen. The width describes the thickness of the outline of a shape.|
-| void [OH_Drawing_PenSetWidth](#oh_drawing_pensetwidth) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float width) | Sets the width for a pen. The value **0** is treated as an unusually thin width. During drawing, the width of 0 is always drawn as 1 pixel wide, regardless of any scaling applied to the canvas. Negative values are also regarded as the value **0** during the drawing process.|
+| float [OH_Drawing_PenGetWidth](#oh_drawing_pengetwidth) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | Obtains the thickness of a pen. This thickness determines the width of the outline of a shape.|
+| void [OH_Drawing_PenSetWidth](#oh_drawing_pensetwidth) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float width) | Sets the thickness for a pen. This thickness determines the width of the outline of a shape.|
 | float [OH_Drawing_PenGetMiterLimit](#oh_drawing_pengetmiterlimit) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | Obtains the stroke miter limit of a polyline drawn by a pen. When the corner type is bevel, a beveled corner is displayed if the miter limit is exceeded, and a mitered corner is displayed if the miter limit is not exceeded.|
 | void [OH_Drawing_PenSetMiterLimit](#oh_drawing_pensetmiterlimit) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float miter) | Sets the stroke miter limit for a polyline drawn by a pen. When the corner type is bevel, a beveled corner is displayed if the miter limit is exceeded, and a mitered corner is displayed if the miter limit is not exceeded.|
 | [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle) [OH_Drawing_PenGetCap](#oh_drawing_pengetcap) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | Obtains the line cap style of a pen.|
@@ -509,9 +490,21 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_PenSetFilter](#oh_drawing_pensetfilter) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | Sets a filter for a pen.|
 | void [OH_Drawing_PenGetFilter](#oh_drawing_pengetfilter) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | Obtains the filter of a pen. The filter is a container that holds a mask filter and color filter.|
 | void [OH_Drawing_PenSetBlendMode](#oh_drawing_pensetblendmode) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_BlendMode](#oh_drawing_blendmode)) | Sets a blender for a pen. The blender implements the specified blend mode.|
+| bool [OH_Drawing_PenGetFillPath](#oh_drawing_pengetfillpath) ([OH_Drawing_Pen](#oh_drawing_pen) \*, const [OH_Drawing_Path](#oh_drawing_path) \*src, [OH_Drawing_Path](#oh_drawing_path) \*dst, const [OH_Drawing_Rect](#oh_drawing_rect) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Obtains the source path outline drawn using a pen and represents it using a destination path.|
 | void [OH_Drawing_PenReset](#oh_drawing_penreset) ([OH_Drawing_Pen](#oh_drawing_pen) \*) | Resets a pen to the initial state.|
+| [OH_Drawing_PixelMap](#oh_drawing_pixelmap) \* [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap) (NativePixelMap_ \*) | Obtains the pixel map defined by this module from a pixel map defined by the image framework.|
+| [OH_Drawing_PixelMap](#oh_drawing_pixelmap) \* [OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative) (OH_PixelmapNative \*) | Obtains the pixel map defined by this module from a pixel map defined by the image framework.|
+| void [OH_Drawing_PixelMapDissolve](#oh_drawing_pixelmapdissolve) ([OH_Drawing_PixelMap](#oh_drawing_pixelmap) \*) | Removes the relationship between a pixel map defined by this module and a pixel map defined by the image framework. The relationship is established by calling [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap) or [OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative).|
 | [OH_Drawing_Point](#oh_drawing_point) \* [OH_Drawing_PointCreate](#oh_drawing_pointcreate) (float x, float y) | Creates an **OH_Drawing_Point** object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetX](#oh_drawing_pointgetx) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*x) | Obtains the X coordinate of a point.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetY](#oh_drawing_pointgety) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*y) | Obtains the Y coordinate of a point.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointSet](#oh_drawing_pointset) ([OH_Drawing_Point](#oh_drawing_point) \*point, float x, float y) | Sets the X and Y coordinates of a point.|
 | void [OH_Drawing_PointDestroy](#oh_drawing_pointdestroy) ([OH_Drawing_Point](#oh_drawing_point) \*) | Destroys an **OH_Drawing_Point** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \* [OH_Drawing_RecordCmdUtilsCreate](#oh_drawing_recordcmdutilscreate) (void) | Creates an **OH_Drawing_RecordCmdUtils** object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RecordCmdUtilsDestroy](#oh_drawing_recordcmdutilsdestroy) ([OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \*recordCmdUtils) | Destroys an **OH_Drawing_RecordCmdUtils** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording) ([OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \*recordCmdUtils, int32_t width, int32_t height, [OH_Drawing_Canvas](#oh_drawing_canvas) \*\*canvas) | Starts recording. This function must be used in pair with [OH_Drawing_RecordCmdUtilsFinishRecording](#oh_drawing_recordcmdutilsfinishrecording).<br>The **OH_Drawing_RecordCmdUtils** object generates a canvas object of the recording type and calls the interface of the drawing object to record all drawing commands.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RecordCmdUtilsFinishRecording](#oh_drawing_recordcmdutilsfinishrecording) ([OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \*recordCmdUtils, [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*\*recordCmd) | Ends recording. This function must be called after [OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording).<br>The **OH_Drawing_RecordCmdUtils** object ends recording and stores the drawing commands recorded by the canvas object of the recording type into the generated [OH_Drawing_RecordCmdUtilsBeginRecording](#oh_drawing_recordcmdutilsbeginrecording) object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RecordCmdDestroy](#oh_drawing_recordcmddestroy) ([OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*recordCmd) | Destroys an **OH_Drawing_RecordCmd** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | Creates an **OH_Drawing_Rect** object, without sorting the coordinates passed in. This means that the coordinates of the upper left corner of the rectangle can be greater than those of the lower right corner.|
 | float [OH_Drawing_RectGetHeight](#oh_drawing_rectgetheight) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | Obtains the height of a rectangle. The height is calculated by using the Y coordinate of the lower right corner of the rectangle minus the Y coordinate of the upper left corner.|
 | float [OH_Drawing_RectGetWidth](#oh_drawing_rectgetwidth) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | Obtains the width of a rectangle. The width is calculated by using the X coordinate of the lower right corner of the rectangle minus the X coordinate of the upper left corner.|
@@ -520,14 +513,22 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | float [OH_Drawing_RectGetRight](#oh_drawing_rectgetright) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | Obtains the X coordinate of the lower right corner of a rectangle.|
 | float [OH_Drawing_RectGetBottom](#oh_drawing_rectgetbottom) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | Obtains the Y coordinate of the lower right corner of a rectangle.|
 | bool [OH_Drawing_RectIntersect](#oh_drawing_rectintersect) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](#oh_drawing_rect) \*other) | Checks whether two rectangles intersect and if yes, sets **rect** to the area of intersection.|
+| bool [OH_Drawing_RectJoin](#oh_drawing_rectjoin) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](#oh_drawing_rect) \*other) | Obtains the union of two rectangles.|
 | void [OH_Drawing_RectSetLeft](#oh_drawing_rectsetleft) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, float left) | Sets the horizontal coordinate of the upper left corner of a rectangle.|
 | void [OH_Drawing_RectSetTop](#oh_drawing_rectsettop) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, float top) | Sets the vertical coordinate of the upper left corner of a rectangle.|
 | void [OH_Drawing_RectSetRight](#oh_drawing_rectsetright) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, float right) | Sets the horizontal coordinate of the lower right corner of a rectangle.|
 | void [OH_Drawing_RectSetBottom](#oh_drawing_rectsetbottom) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, float bottom) | Sets the vertical coordinate of the lower right corner of a rectangle.|
 | void [OH_Drawing_RectCopy](#oh_drawing_rectcopy) ([OH_Drawing_Rect](#oh_drawing_rect) \*sRect, [OH_Drawing_Rect](#oh_drawing_rect) \*dRect) | Copies a source rectangle to create a new one.|
 | void [OH_Drawing_RectDestroy](#oh_drawing_rectdestroy) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | Destroys an **OH_Drawing_Rect** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_RectCreateArray](#oh_drawing_rectcreatearray) (size_t size) | Creates a rectangle array object to store multiple rectangle objects.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RectGetArraySize](#oh_drawing_rectgetarraysize) ([OH_Drawing_Array](#oh_drawing_array) \*rectArray, size_t \*pSize) | Obtains the size of a rectangle array, which is an [OH_Drawing_Array](#oh_drawing_array) object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RectGetArrayElement](#oh_drawing_rectgetarrayelement) ([OH_Drawing_Array](#oh_drawing_array) \*rectArray, size_t index, [OH_Drawing_Rect](#oh_drawing_rect) \*\*rect) | Obtains the rectangle with the specified index in a rectangle array.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RectDestroyArray](#oh_drawing_rectdestroyarray) ([OH_Drawing_Array](#oh_drawing_array) \*rectArray) | Destroys an **OH_Drawing_Array** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_Region](#oh_drawing_region) \* [OH_Drawing_RegionCreate](#oh_drawing_regioncreate) (void) | Creates an **OH_Drawing_Region** object for more accurate graphical control.|
+| bool [OH_Drawing_RegionContains](#oh_drawing_regioncontains) ([OH_Drawing_Region](#oh_drawing_region) \*region, int32_t x, int32_t y) | Checks whether a region contains the specified point.|
+| bool [OH_Drawing_RegionOp](#oh_drawing_regionop) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Region](#oh_drawing_region) \*other, [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) op) | Combines two regions based on the specified operation mode.|
 | bool [OH_Drawing_RegionSetRect](#oh_drawing_regionsetrect) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Rect](#oh_drawing_rect) \*rect) | Sets the boundary for an **OH_Drawing_Region** object.|
+| bool [OH_Drawing_RegionSetPath](#oh_drawing_regionsetpath) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Region](#oh_drawing_region) \*clip) | Sets a region to the area described by the path.|
 | void [OH_Drawing_RegionDestroy](#oh_drawing_regiondestroy) ([OH_Drawing_Region](#oh_drawing_region) \*) | Destroys an **OH_Drawing_Region** object and reclaims the memory occupied by the object.|
 | uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | Registers a custom font with the font manager. The supported font file formats are .ttf and .otf.|
 | uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | Registers a font buffer with the font manager.|
@@ -535,15 +536,20 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_RoundRectSetCorner](#oh_drawing_roundrectsetcorner) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos, [OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)) | Sets the radii of the specified rounded corner in a rounded rectangle.|
 | [OH_Drawing_Corner_Radii](#oh_drawing_corner_radii) [OH_Drawing_RoundRectGetCorner](#oh_drawing_roundrectgetcorner) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos) | Obtains the radii of the specified rounded corner in a rounded rectangle.|
 | void [OH_Drawing_RoundRectDestroy](#oh_drawing_roundrectdestroy) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*) | Destroys an **OH_Drawing_RoundRect** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RoundRectOffset](#oh_drawing_roundrectoffset) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*roundRect, float dx, float dy) | Translates a rounded rectangle by an offset along the X axis and Y axis.|
 | [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \* [OH_Drawing_SamplingOptionsCreate](#oh_drawing_samplingoptionscreate) ([OH_Drawing_FilterMode](#oh_drawing_filtermode), [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode)) | Creates an **OH_Drawing_SamplingOptions** object.|
 | void [OH_Drawing_SamplingOptionsDestroy](#oh_drawing_samplingoptionsdestroy) ([OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \*) | Destroys an **OH_Drawing_SamplingOptions** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateColorShader](#oh_drawing_shadereffectcreatecolorshader) (const uint32_t color) | Creates an **OH_Drawing_ShaderEffect** object with a single color.|
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateLinearGradient](#oh_drawing_shadereffectcreatelineargradient) (const [OH_Drawing_Point](#oh_drawing_point) \*startPt, const [OH_Drawing_Point](#oh_drawing_point) \*endPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | Creates an **OH_Drawing_ShaderEffect** object that generates a linear gradient between two points.|
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix](#oh_drawing_shadereffectcreatelineargradientwithlocalmatrix) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*startPt, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*endPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Creates an **OH_Drawing_ShaderEffect** object that generates a linear gradient between two points.|
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateRadialGradient](#oh_drawing_shadereffectcreateradialgradient) (const [OH_Drawing_Point](#oh_drawing_point) \*centerPt, float radius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | Creates an **OH_Drawing_ShaderEffect** object that generates a radial gradient based on the center and radius of a circle. The radial gradient transitions colors from the center to the ending shape in a radial manner.|
-| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateSweepGradient](#oh_drawing_shadereffectcreatesweepgradient) (const [OH_Drawing_Point](#oh_drawing_point) \*centerPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | Creates an **OH_Drawing_ShaderEffect** object that generates a sweep gradient based on the center.|
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix](#oh_drawing_shadereffectcreateradialgradientwithlocalmatrix) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*centerPt, float radius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Creates an **OH_Drawing_ShaderEffect** object that generates a radial gradient based on the center and radius of a circle. The radial gradient transitions colors from the center to the ending shape in a radial manner.|
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateSweepGradient](#oh_drawing_shadereffectcreatesweepgradient) (const [OH_Drawing_Point](#oh_drawing_point) \*centerPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode)) | Creates an **OH_Drawing_ShaderEffect** object that generates a sweep gradient based on the center. A sweep gradient paints a gradient in a sweeping arc ranging from 0° to 360°.|
 | [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateImageShader](#oh_drawing_shadereffectcreateimageshader) ([OH_Drawing_Image](#oh_drawing_image) \*, [OH_Drawing_TileMode](#oh_drawing_tilemode) tileX, [OH_Drawing_TileMode](#oh_drawing_tilemode) tileY, const [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Creates an **OH_Drawing_ShaderEffect** object for an image shader. You are advised not to use the API for the canvas of the capture type because it affects the performance.|
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateTwoPointConicalGradient](#oh_drawing_shadereffectcreatetwopointconicalgradient) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*startPt, float startRadius, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*endPt, float endRadius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Creates an **OH_Drawing_ShaderEffect** object that generates a gradient between two given circles.|
 | void [OH_Drawing_ShaderEffectDestroy](#oh_drawing_shadereffectdestroy) ([OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \*) | Destroys an **OH_Drawing_ShaderEffect** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer) \* [OH_Drawing_ShadowLayerCreate](#oh_drawing_shadowlayercreate) (float blurRadius, float x, float y, uint32_t color) | Creates an **OH_Drawing_ShadowLayer** object.|
-| void [OH_Drawing_ShadowLayerDestroy](#oh_drawing_shadowlayerdestroy) ([OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer)\*) | Destroys an **OH_Drawing_ShadowLayer** object and reclaims the memory occupied by the object.|
+| void [OH_Drawing_ShadowLayerDestroy](#oh_drawing_shadowlayerdestroy) ([OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer) \*) | Destroys an **OH_Drawing_ShadowLayer** object and reclaims the memory occupied by the object.|
 | [OH_Drawing_Surface](#oh_drawing_surface) \* [OH_Drawing_SurfaceCreateFromGpuContext](#oh_drawing_surfacecreatefromgpucontext) ([OH_Drawing_GpuContext](#oh_drawing_gpucontext) \*, bool budgeted, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)) | Creates an **OH_Drawing_Surface** object using the GPU context to manage the content drawn on the canvas.|
 | [OH_Drawing_Canvas](#oh_drawing_canvas) \* [OH_Drawing_SurfaceGetCanvas](#oh_drawing_surfacegetcanvas) ([OH_Drawing_Surface](#oh_drawing_surface) \*) | Obtains a canvas from an **OH_Drawing_Surface** object.|
 | void [OH_Drawing_SurfaceDestroy](#oh_drawing_surfacedestroy) ([OH_Drawing_Surface](#oh_drawing_surface) \*) | Destroys an **OH_Drawing_Surface** object and reclaims the memory occupied.|
@@ -557,6 +563,45 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobBuilderMake](#oh_drawing_textblobbuildermake) ([OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) \*) | Makes an **OH_Drawing_TextBlob** object from an **OH_Drawing_TextBlobBuilder**.|
 | void [OH_Drawing_TextBlobDestroy](#oh_drawing_textblobdestroy) ([OH_Drawing_TextBlob](#oh_drawing_textblob) \*) | Destroys an **OH_Drawing_TextBlob** object and reclaims the memory occupied by the object.|
 | void [OH_Drawing_TextBlobBuilderDestroy](#oh_drawing_textblobbuilderdestroy) ([OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) \*) | Destroys an **OH_Drawing_TextBlobBuilder** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_MatchFontDescriptors](#oh_drawing_matchfontdescriptors) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*, size_t \*) | Obtains all system font descriptors that match a font descriptor. In the [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) struct, the **path** field is not used for matching, and other fields are valid only when they are not set to their default values. If all fields in [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) are set to their default values, all system font descriptors are obtained. If no matching is found, NULL is returned.|
+| void [OH_Drawing_DestroyFontDescriptors](#oh_drawing_destroyfontdescriptors) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*, size_t) | Releases an array of [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) objects.|
+| [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_GetFontDescriptorByFullName](#oh_drawing_getfontdescriptorbyfullname) (const [OH_Drawing_String](_o_h___drawing___string.md) \*, [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype)) | Obtains a font descriptor based on the font name and type. System fonts, style fonts, and user-installed fonts are supported. A font descriptor is a data structure that describes font features. It contains details of the font appearance and properties.|
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_GetSystemFontFullNamesByType](#oh_drawing_getsystemfontfullnamesbytype) ([OH_Drawing_SystemFontType](#oh_drawing_systemfonttype)) | Obtains an array of font names by font type.|
+| const [OH_Drawing_String](_o_h___drawing___string.md) \* [OH_Drawing_GetSystemFontFullNameByIndex](#oh_drawing_getsystemfontfullnamebyindex) ([OH_Drawing_Array](#oh_drawing_array) \*, size_t) | Obtains the font name with the specified index in the font name array.|
+| void [OH_Drawing_DestroySystemFontFullNames](#oh_drawing_destroysystemfontfullnames) ([OH_Drawing_Array](#oh_drawing_array) \*) | Releases the memory occupied by the font name array obtained by font type.|
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_TypographyGetTextLines](#oh_drawing_typographygettextlines) ([OH_Drawing_Typography](#oh_drawing_typography) \*typography) | Obtains the array of text lines in a typography object. This array contains one or more text line objects.|
+| void [OH_Drawing_DestroyTextLines](#oh_drawing_destroytextlines) ([OH_Drawing_Array](#oh_drawing_array) \*lines) | Releases the memory occupied by a text line array.|
+| void [OH_Drawing_DestroyTextLine](#oh_drawing_destroytextline) (OH_Drawing_TextLine \*line) | Releases the memory occupied by a text line object. This is applicable only to text line objects that have requested memory on their own and not to a particular text line object within a text line array.|
+| OH_Drawing_TextLine \* [OH_Drawing_GetTextLineByIndex](#oh_drawing_gettextlinebyindex) ([OH_Drawing_Array](#oh_drawing_array) \*lines, size_t index) | Obtains the text line object with the specified index in a text line array.|
+| double [OH_Drawing_TextLineGetGlyphCount](#oh_drawing_textlinegetglyphcount) (OH_Drawing_TextLine \*line) | Obtains the number of glyphs in a text line object.|
+| void [OH_Drawing_TextLineGetTextRange](#oh_drawing_textlinegettextrange) (OH_Drawing_TextLine \*line, size_t \*start, size_t \*end) | Obtains the range of the text in a text line object in the entire paragraph.|
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_TextLineGetGlyphRuns](#oh_drawing_textlinegetglyphruns) (OH_Drawing_TextLine \*line) | Obtains the array of glyph runs in a text line object.|
+| void [OH_Drawing_DestroyRuns](#oh_drawing_destroyruns) ([OH_Drawing_Array](#oh_drawing_array) \*runs) | Releases the memory occupied by a glyph run array.|
+| OH_Drawing_Run \* [OH_Drawing_GetRunByIndex](#oh_drawing_getrunbyindex) ([OH_Drawing_Array](#oh_drawing_array) \*runs, size_t index) | Obtains the glyph run object with the specified index in a glyph run array.|
+| void [OH_Drawing_TextLinePaint](#oh_drawing_textlinepaint) (OH_Drawing_TextLine \*line, [OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, double x, double y) | Paints a text line on the canvas with the coordinate point (x, y) as the upper left corner.|
+| OH_Drawing_TextLine \* [OH_Drawing_TextLineCreateTruncatedLine](#oh_drawing_textlinecreatetruncatedline) (OH_Drawing_TextLine \*line, double width, int mode, const char \*ellipsis) | Creates a truncated text line object.|
+| double [OH_Drawing_TextLineGetTypographicBounds](#oh_drawing_textlinegettypographicbounds) (OH_Drawing_TextLine \*line, double \*ascent, double \*descent, double \*leading) | Obtains the typographic boundary of a text line object. The typographic boundary is related to the font and font size used for typography, but not the characters within the text. For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary encompasses the spaces at the beginning and end. For the strings "j" and "E", the typographic boundaries are the same, indicating that they are irrelevant to specific characters.|
+| [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_TextLineGetImageBounds](#oh_drawing_textlinegetimagebounds) (OH_Drawing_TextLine \*line) | Obtains the image boundary of a text line object. The image boundary, equivalent to a visual boundary, is related to the font, font size, and characters. For example, for the string " a b " (which has a space before "a" and a space after "b"), only "a b" are visible to users, and therefore the image boundary does not include these spaces at the beginning and end. For the strings "j" and "E", their image boundaries are different. Specifically, the width of the boundary for "j" is narrower than that for "E", and the height of the boundary for "j" is taller than that for "E".|
+| double [OH_Drawing_TextLineGetTrailingSpaceWidth](#oh_drawing_textlinegettrailingspacewidth) (OH_Drawing_TextLine \*line) | Obtains the width of the spaces at the end of a text line object.|
+| int32_t [OH_Drawing_TextLineGetStringIndexForPosition](#oh_drawing_textlinegetstringindexforposition) (OH_Drawing_TextLine \*line, [OH_Drawing_Point](#oh_drawing_point) \*point) | Obtains the index of a string at a specified position in a text line object.|
+| double [OH_Drawing_TextLineGetOffsetForStringIndex](#oh_drawing_textlinegetoffsetforstringindex) (OH_Drawing_TextLine \*line, int32_t index) | Obtains the offset of a string with the specified index in a text line object.|
+| void [OH_Drawing_TextLineEnumerateCaretOffsets](#oh_drawing_textlineenumeratecaretoffsets) (OH_Drawing_TextLine \*line, [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback) callback) | Enumerates the offset and index of each character in a text line object and passes them to a custom callback function. You can use the offset and index array for other operations.|
+| double [OH_Drawing_TextLineGetAlignmentOffset](#oh_drawing_textlinegetalignmentoffset) (OH_Drawing_TextLine \*line, double alignmentFactor, double alignmentWidth) | Obtains the offset of a text line object after alignment based on the alignment factor and alignment width.|
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_GetRunStringIndices](#oh_drawing_getrunstringindices) (OH_Drawing_Run \*run, int64_t start, int64_t length) | Obtains character indices of glyphs within a specified range of a run, where the indices are offsets relative to the entire paragraph.|
+| uint64_t [OH_Drawing_GetRunStringIndicesByIndex](#oh_drawing_getrunstringindicesbyindex) ([OH_Drawing_Array](#oh_drawing_array) \*stringIndices, size_t index) | Obtains character indices of glyphs in a run by index.|
+| void [OH_Drawing_DestroyRunStringIndices](#oh_drawing_destroyrunstringindices) ([OH_Drawing_Array](#oh_drawing_array) \*stringIndices) | Releases the pointer to a character index array.|
+| void [OH_Drawing_GetRunStringRange](#oh_drawing_getrunstringrange) (OH_Drawing_Run \*run, uint64_t \*location, uint64_t \*length) | Obtains the range of glyphs generated by a run.|
+| float [OH_Drawing_GetRunTypographicBounds](#oh_drawing_getruntypographicbounds) (OH_Drawing_Run \*run, float \*ascent, float \*descent, float \*leading) | Obtains the typographic boundary of a run. The typographic boundary is related to the font and font size used for typography, but not the characters within the text.|
+| void [OH_Drawing_RunPaint](#oh_drawing_runpaint) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, OH_Drawing_Run \*run, double x, double y) | Paints the text contained in a run on the canvas.|
+| [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_GetRunImageBounds](#oh_drawing_getrunimagebounds) (OH_Drawing_Run \*run) | Obtains the image boundary of a run. The image boundary is related to characters and is equivalent to the visual boundary.|
+| void [OH_Drawing_DestroyRunImageBounds](#oh_drawing_destroyrunimagebounds) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect) | Releases the pointer to an image boundary object of a run.|
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_GetRunGlyphs](#oh_drawing_getrunglyphs) (OH_Drawing_Run \*run, int64_t start, int64_t length) | Obtains an array of glyphs within the specified range of a run.|
+| uint16_t [OH_Drawing_GetRunGlyphsByIndex](#oh_drawing_getrunglyphsbyindex) ([OH_Drawing_Array](#oh_drawing_array) \*glyphs, size_t index) | Obtains individual glyphs in a run by index.|
+| void [OH_Drawing_DestroyRunGlyphs](#oh_drawing_destroyrunglyphs) ([OH_Drawing_Array](#oh_drawing_array) \*glyphs) | Releases the pointer to a glyph array in a run.|
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_GetRunPositions](#oh_drawing_getrunpositions) (OH_Drawing_Run \*run, int64_t start, int64_t length) | Obtains the positions of glyphs within the specified range of a run.|
+| [OH_Drawing_Point](#oh_drawing_point) \* [OH_Drawing_GetRunPositionsByIndex](#oh_drawing_getrunpositionsbyindex) ([OH_Drawing_Array](#oh_drawing_array) \*positions, size_t index) | Obtains the positions of individual glyphs in a run by index.|
+| void [OH_Drawing_DestroyRunPositions](#oh_drawing_destroyrunpositions) ([OH_Drawing_Array](#oh_drawing_array) \*positions) | Releases the pointer to a glyph position array in a run.|
+| uint32_t [OH_Drawing_GetRunGlyphCount](#oh_drawing_getrunglyphcount) (OH_Drawing_Run \*run) | Obtains the number of glyphs in a run.|
 | [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle) (void) | Creates an **OH_Drawing_TypographyStyle** object.|
 | void [OH_Drawing_DestroyTypographyStyle](#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | Destroys an **OH_Drawing_TypographyStyle** object and reclaims the memory occupied by the object.|
 | void [OH_Drawing_SetTypographyTextDirection](#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the text direction.|
@@ -568,9 +613,11 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_DestroyTextStyle](#oh_drawing_destroytextstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Destroys an **OH_Drawing_TextStyle** object and reclaims the memory occupied by the object.|
 | void [OH_Drawing_SetTextStyleColor](#oh_drawing_settextstylecolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | Sets the color for a text style.|
 | void [OH_Drawing_SetTextStyleFontSize](#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | Sets the font size for a text style.|
-| void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Sets the font weight for a text style.|
+| void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Sets the font weight for a text style. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.|
 | void [OH_Drawing_SetTextStyleBaseLine](#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Sets the baseline for a text style.|
 | void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Sets the decoration for a text style.|
+| void [OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Adds the decoration for a text style. Multiple decoration lines can be displayed.|
+| void [OH_Drawing_RemoveTextStyleDecoration](#oh_drawing_removetextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Removes the decoration for a text style.|
 | void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | Sets the decoration color for a text style.|
 | void [OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | Sets the line height based on the multiple of the font size.|
 | void [OH_Drawing_SetTextStyleFontFamilies](#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | Sets the font families for a text style.|
@@ -593,9 +640,11 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_DestroyTypography](#oh_drawing_destroytypography) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Destroys an **OH_Drawing_Typography** object and reclaims the memory occupied by the object.|
 | void [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) ([OH_Drawing_Typography](#oh_drawing_typography) \*, double) | Lays out the typography.|
 | void [OH_Drawing_TypographyPaint](#oh_drawing_typographypaint) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, double, double) | Paints text on the canvas.|
+| void [OH_Drawing_TypographyPaintOnPath](#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Path](#oh_drawing_path) \*, double, double) | Draws text along a path.|
 | double [OH_Drawing_TypographyGetMaxWidth](#oh_drawing_typographygetmaxwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the maximum width.|
 | double [OH_Drawing_TypographyGetHeight](#oh_drawing_typographygetheight) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the height.|
 | double [OH_Drawing_TypographyGetLongestLine](#oh_drawing_typographygetlongestline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the width of the longest line. You are advised to round up the return value in actual use. When the text content is empty, the minimum float value, that is, -340282346638528859811704183484516925440.000000, is returned.|
+| double [OH_Drawing_TypographyGetLongestLineWithIndent](#oh_drawing_typographygetlongestlinewithindent) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the width of the longest line, including its indentation. You are advised to round up the return value in actual use. If the text content is empty, **0.0** is returned.|
 | double [OH_Drawing_TypographyGetMinIntrinsicWidth](#oh_drawing_typographygetminintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the minimum intrinsic width.|
 | double [OH_Drawing_TypographyGetMaxIntrinsicWidth](#oh_drawing_typographygetmaxintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the maximum intrinsic width.|
 | double [OH_Drawing_TypographyGetAlphabeticBaseline](#oh_drawing_typographygetalphabeticbaseline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | Obtains the alphabetic baseline.|
@@ -634,7 +683,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_SetTypographyTextSplitRatio](#oh_drawing_settypographytextsplitratio) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, float textSplitRatio) | Sets the text split ratio.|
 | bool [OH_Drawing_TypographyIsLineUnlimited](#oh_drawing_typographyislineunlimited) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | Checks whether the maximum number of lines is limited for text.|
 | bool [OH_Drawing_TypographyIsEllipsized](#oh_drawing_typographyisellipsized) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | Checks whether the text has an ellipsis.|
-| void [OH_Drawing_SetTypographyTextLocale](#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, const char \*locale) |Sets the locale for text.|
+| void [OH_Drawing_SetTypographyTextLocale](#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, const char \*locale) | Sets the locale for text.|
 | bool [OH_Drawing_TextStyleGetFontMetrics](#oh_drawing_textstylegetfontmetrics) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | Obtains the font metrics of a text style.|
 | void [OH_Drawing_SetTypographyTextStyle](#oh_drawing_settypographytextstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Sets a text style.|
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_CreateFontDescriptor](#oh_drawing_createfontdescriptor) (void) | Creates an **OH_Drawing_FontDescriptor** object to describe the detailed information about a system font.|
@@ -649,14 +698,14 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_DestroyLineMetrics](#oh_drawing_destroylinemetrics) ([OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | Destroys an **OH_Drawing_LineMetrics** object and reclaims the memory occupied by the object.|
 | bool [OH_Drawing_TypographyGetLineMetricsAt](#oh_drawing_typographygetlinemetricsat) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | Obtains the metrics of a given line.|
 | bool [OH_Drawing_TypographyGetLineInfo](#oh_drawing_typographygetlineinfo) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool, bool, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | Obtains the metrics of a given line or the metrics of the first character in a given line.|
-| void [OH_Drawing_SetTypographyTextFontWeight](#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the font weight for text.|
+| void [OH_Drawing_SetTypographyTextFontWeight](#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the font weight for text. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.|
 | void [OH_Drawing_SetTypographyTextFontStyle](#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the font style for text.|
 | void [OH_Drawing_SetTypographyTextFontFamily](#oh_drawing_settypographytextfontfamily) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, const char \*) | Sets the font family name for text.|
 | void [OH_Drawing_SetTypographyTextFontSize](#oh_drawing_settypographytextfontsize) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | Sets the font size for text.|
 | void [OH_Drawing_SetTypographyTextFontHeight](#oh_drawing_settypographytextfontheight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | Sets the font height for text.|
 | void [OH_Drawing_SetTypographyTextHalfLeading](#oh_drawing_settypographytexthalfleading) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | Sets whether to enable half leading for text.|
 | void [OH_Drawing_SetTypographyTextUseLineStyle](#oh_drawing_settypographytextuselinestyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | Sets whether to enable the text line style.|
-| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the font weight for a text line style.|
+| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the font weight for a text line style. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.|
 | void [OH_Drawing_SetTypographyTextLineStyleFontStyle](#oh_drawing_settypographytextlinestylefontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | Sets the font style for a text line style.|
 | void [OH_Drawing_SetTypographyTextLineStyleFontFamilies](#oh_drawing_settypographytextlinestylefontfamilies) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int, const char \*fontFamilies[]) | Sets the font families for a text line style.|
 | void [OH_Drawing_SetTypographyTextLineStyleFontSize](#oh_drawing_settypographytextlinestylefontsize) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | Sets the font size for a text line style.|
@@ -671,7 +720,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_TextStyleAddShadow](#oh_drawing_textstyleaddshadow) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const [OH_Drawing_TextShadow](#oh_drawing_textshadow) \*) | Adds a shadow to a text shadow container.|
 | void [OH_Drawing_TextStyleClearShadows](#oh_drawing_textstyleclearshadows) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Clears all shadows in a text shadow container.|
 | [OH_Drawing_TextShadow](#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadowWithIndex](#oh_drawing_textstylegetshadowwithindex) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | Obtains a shadow with a given index in a text shadow container.|
-| void [OH_Drawing_TypographySetIndents](#oh_drawing_typographysetindents) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, const float indents[]) | Sets the indents for typography.|
+| void [OH_Drawing_TypographySetIndents](#oh_drawing_typographysetindents) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, const float indents[]) | Sets indents for typography. If this function is not called, texts will have no indentation applied.|
 | float [OH_Drawing_TypographyGetIndentsWithIndex](#oh_drawing_typographygetindentswithindex) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | Obtains indents with a given index.|
 | [OH_Drawing_Range](#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool) | Obtains the line bounds.|
 | void [OH_Drawing_DestroyTextShadows](#oh_drawing_destroytextshadows) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*) | Reclaims the memory occupied by the vector consisting of the **OH_Drawing_TextShadow** objects.|
@@ -684,11 +733,11 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_TextStyleSetBackgroundRect](#oh_drawing_textstylesetbackgroundrect) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) \*, int styleId) | Sets a background rectangle and style ID for a text style. The style ID is valid only when the background box is a rounded rectangle.|
 | void [OH_Drawing_TypographyHandlerAddSymbol](#oh_drawing_typographyhandleraddsymbol) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, uint32_t symbol) | Adds the symbol to use in the typography creation process.|
 | void [OH_Drawing_TextStyleAddFontFeature](#oh_drawing_textstyleaddfontfeature) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*tag, int value) | Adds a font feature for a text style.|
+| void [OH_Drawing_TextStyleAddFontVariation](#oh_drawing_textstyleaddfontvariation) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*, const float) | Adds a font variation. This function takes effect only when the corresponding font file (.ttf file) supports variable adjustment. Otherwise, calling this function does not take effect.|
 | [OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \* [OH_Drawing_TextStyleGetFontFeatures](#oh_drawing_textstylegetfontfeatures) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains all the contents in a font feature map container.|
 | void [OH_Drawing_TextStyleDestroyFontFeatures](#oh_drawing_textstyledestroyfontfeatures) ([OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \*, size_t fontFeatureSize) | Reclaims the memory occupied by the struct array that holds all the font features.|
 | size_t [OH_Drawing_TextStyleGetFontFeatureSize](#oh_drawing_textstylegetfontfeaturesize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the size of a font feature map container.|
 | void [OH_Drawing_TextStyleClearFontFeature](#oh_drawing_textstyleclearfontfeature) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Clears all the contents in a font feature map container.|
-| void [OH_Drawing_TextStyleAddFontVariation](#oh_drawing_textstyleaddfontvariation) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*axis, int value) | Adds a font variation. This function takes effect only when the corresponding font file (.ttf file) supports variable adjustment. Otherwise, calling this function does not take effect.|
 | double [OH_Drawing_TextStyleGetBaselineShift](#oh_drawing_textstylegetbaselineshift) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the baseline drift of a text style.|
 | void [OH_Drawing_TextStyleSetBaselineShift](#oh_drawing_textstylesetbaselineshift) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double lineShift) | Sets a baseline drift for a text style.|
 | void [OH_Drawing_TypographyTextSetHeightBehavior](#oh_drawing_typographytextsetheightbehavior) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) heightMode) | Sets a text height modifier pattern.|
@@ -730,7 +779,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | uint32_t [OH_Drawing_TextStyleGetColor](#oh_drawing_textstylegetcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the color of a text style.|
 | [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle) [OH_Drawing_TextStyleGetDecorationStyle](#oh_drawing_textstylegetdecorationstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the decoration style of a text style.|
 | [OH_Drawing_FontWeight](#oh_drawing_fontweight) [OH_Drawing_TextStyleGetFontWeight](#oh_drawing_textstylegetfontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the font weight of a text style.|
-| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) [OH_Drawing_TextStyleGetFontStyle](#oh_drawing_textstylegetfontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the text style of a typography style.|
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) [OH_Drawing_TextStyleGetFontStyle](#oh_drawing_textstylegetfontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the font style of a text style.|
 | [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) [OH_Drawing_TextStyleGetBaseline](#oh_drawing_textstylegetbaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the baseline of a text style.|
 | char \*\* [OH_Drawing_TextStyleGetFontFamilies](#oh_drawing_textstylegetfontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, size_t \*num) | Obtains the font families of a text style.|
 | void [OH_Drawing_TextStyleDestroyFontFamilies](#oh_drawing_textstyledestroyfontfamilies) (char \*\*fontFamilies, size_t num) | Reclaims the memory occupied by the font families.|
@@ -740,13 +789,33 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | double [OH_Drawing_TextStyleGetFontHeight](#oh_drawing_textstylegetfontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the font height of a text style.|
 | bool [OH_Drawing_TextStyleGetHalfLeading](#oh_drawing_textstylegethalfleading) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Checks whether half leading is enabled for a text style.|
 | const char \* [OH_Drawing_TextStyleGetLocale](#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | Obtains the locale of a text style.|
+| void [OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*) | Releases the memory occupied by a text box.|
+| void [OH_Drawing_SetTextShadow](#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](#oh_drawing_point) \*offset, double blurRadius) | Sets a text shadow.|
+| [OH_Drawing_LineTypography](#oh_drawing_linetypography) \* [OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*handler) | Creates a pointer to an [OH_Drawing_LineTypography](#oh_drawing_linetypography) object, which stores the text content and style and can be used to compute typography details for individual lines of text.|
+| void [OH_Drawing_DestroyLineTypography](#oh_drawing_destroylinetypography) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography) | Releases the memory occupied by an [OH_Drawing_LineTypography](#oh_drawing_linetypography) object.|
+| size_t [OH_Drawing_LineTypographyGetLineBreak](#oh_drawing_linetypographygetlinebreak) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography, size_t startIndex, double width) | Obtains the number of characters that can fit in the layout from the specified position within a limited layout width.|
+| OH_Drawing_TextLine \* [OH_Drawing_LineTypographyCreateLine](#oh_drawing_linetypographycreateline) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography, size_t startIndex, size_t count) | Creates a pointer to an **OH_Drawing_TextLine** object based on the text content in a specified range.|
+| [OH_Drawing_TextTab](#oh_drawing_texttab) \* [OH_Drawing_CreateTextTab](#oh_drawing_createtexttab) ([OH_Drawing_TextAlign](#oh_drawing_textalign) alignment, float location) | Creates a text tab object.|
+| void [OH_Drawing_DestroyTextTab](#oh_drawing_destroytexttab) ([OH_Drawing_TextTab](#oh_drawing_texttab) \*) | Releases the memory occupied by a text tab object.|
+| [OH_Drawing_TextAlign](#oh_drawing_textalign) [OH_Drawing_GetTextTabAlignment](#oh_drawing_gettexttabalignment) ([OH_Drawing_TextTab](#oh_drawing_texttab) \*) | Obtains the alignment mode of a text tab.|
+| float [OH_Drawing_GetTextTabLocation](#oh_drawing_gettexttablocation) ([OH_Drawing_TextTab](#oh_drawing_texttab) \*) | Obtains the location of a text tab.|
+| void [OH_Drawing_SetTypographyTextTab](#oh_drawing_settypographytexttab) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_TextTab](#oh_drawing_texttab) \*TextTab) | Sets the alignment mode and location of a text tab. When the text alignment mode or ellipsis style is set, the tab does not take effect. When the tab location is less than 1.0, the tab is replaced with a space.|
+| size_t [OH_Drawing_GetDrawingArraySize](#oh_drawing_getdrawingarraysize) ([OH_Drawing_Array](#oh_drawing_array) \*drawingArray) | Obtains the number of objects in an [OH_Drawing_Array](#oh_drawing_array).|
 | [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateDefault](#oh_drawing_typefacecreatedefault) (void) | Creates a default **OH_Drawing_Typeface** object.|
 | [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromFile](#oh_drawing_typefacecreatefromfile) (const char \*path, int index) | Creates an **OH_Drawing_Typeface** object through a file.|
+| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromFileWithArguments](#oh_drawing_typefacecreatefromfilewitharguments) (const char \*path, const [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | Creates an **OH_Drawing_Typeface** object with font arguments through a file. If the **OH_Drawing_Typeface** object does not support the variation described in the font arguments, this function creates an **OH_Drawing_Typeface** object with the default font arguments. In this case, this function provides the same capability as [OH_Drawing_TypefaceCreateFromFile](#oh_drawing_typefacecreatefromfile).|
+| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromCurrent](#oh_drawing_typefacecreatefromcurrent) (const [OH_Drawing_Typeface](#oh_drawing_typeface) \*current, const [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | Creates an **OH_Drawing_Typeface** object with font arguments based on an existing **OH_Drawing_Typeface** object.|
 | [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromStream](#oh_drawing_typefacecreatefromstream) ([OH_Drawing_MemoryStream](#oh_drawing_memorystream) \*, int32_t index) | Creates an **OH_Drawing_Typeface** object through a memory stream. If the memory stream is an invalid font file, a null pointer is returned. After the memory stream is passed in, the ownership is transferred and you cannot release it.|
 | void [OH_Drawing_TypefaceDestroy](#oh_drawing_typefacedestroy) ([OH_Drawing_Typeface](#oh_drawing_typeface) \*) | Destroys an **OH_Drawing_Typeface** object and reclaims the memory occupied by the object.|
+| [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \* [OH_Drawing_FontArgumentsCreate](#oh_drawing_fontargumentscreate) (void) | Creates an **OH_Drawing_FontArguments** object. The font arguments are used to create an **OH_Drawing_Typeface** object with custom attributes.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontArgumentsAddVariation](#oh_drawing_fontargumentsaddvariation) ([OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments, const char \*axis, float value) | Adds a variation to an **OH_Drawing_FontArguments** object.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontArgumentsDestroy](#oh_drawing_fontargumentsdestroy) ([OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | Destroys an **OH_Drawing_FontArguments** object.|
+| enum&nbsp;&nbsp;[OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags) { SHADOW_FLAGS_NONE, SHADOW_FLAGS_TRANSPARENT_OCCLUDER, SHADOW_FLAGS_GEOMETRIC_ONLY, SHADOW_FLAGS_ALL } | Defines an enum for the shadow flags.|
+| typedef enum [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags) [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags) | Defines an enum for the shadow flags.|
 | void [OH_Drawing_CanvasClipRect](#oh_drawing_canvascliprect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a rectangle.|
 | void [OH_Drawing_CanvasClipRoundRect](#oh_drawing_canvascliproundrect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a rounded rectangle.|
 | void [OH_Drawing_CanvasClipPath](#oh_drawing_canvasclippath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | Clips a path.|
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasClipRegion](#oh_drawing_canvasclipregion) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Region](#oh_drawing_region) \*region, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp) | Clips a rectangle.|
 | void [OH_Drawing_CanvasRotate](#oh_drawing_canvasrotate) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float degrees, float px, float py) | Rotates a canvas by a given angle. A positive value indicates a clockwise rotation, and a negative value indicates a counterclockwise rotation.|
 | void [OH_Drawing_CanvasTranslate](#oh_drawing_canvastranslate) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float dx, float dy) | Translates a canvas by a given distance.|
 | void [OH_Drawing_CanvasScale](#oh_drawing_canvasscale) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float sx, float sy) | Scales a canvas.|
@@ -758,9 +827,102 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 | void [OH_Drawing_CanvasGetTotalMatrix](#oh_drawing_canvasgettotalmatrix) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Obtains the 3x3 matrix of a canvas.|
 | void [OH_Drawing_CanvasConcatMatrix](#oh_drawing_canvasconcatmatrix) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Preconcats the existing matrix with the passed-in matrix. The drawing operation triggered before this function is called is not affected.|
 | void [OH_Drawing_CanvasDrawShadow](#oh_drawing_canvasdrawshadow) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_Point3D](_o_h___drawing___point3_d.md) planeParams, [OH_Drawing_Point3D](_o_h___drawing___point3_d.md) devLightPos, float lightRadius, uint32_t ambientColor, uint32_t spotColor, [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags) flag) | Draws a spot shadow and uses a given path to outline the ambient shadow.|
-
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawRecordCmd](#oh_drawing_canvasdrawrecordcmd) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*recordCmd) | Draws a recording command object.|
 
 ## Type Description
+
+
+### OH_Drawing_Array
+
+```
+typedef struct OH_Drawing_ArrayOH_Drawing_Array
+```
+
+**Description**
+
+Defines a struct for an array object, which is used to store multiple objects of the same type.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+### OH_Drawing_LineTypography
+
+```
+typedef struct OH_Drawing_LineTypographyOH_Drawing_LineTypography
+```
+
+**Description**
+
+Defines a struct used to extract a single line of data from a piece of text for typography.
+
+**Since**: 14
+
+### OH_Drawing_TextTab
+
+```
+typedef struct OH_Drawing_TextTabOH_Drawing_TextTab
+```
+
+**Description**
+
+Defines a struct used to manage text tabs.
+
+**Since**: 14
+
+### Drawing_CaretOffsetsCallback
+
+```
+typedef bool(* Drawing_CaretOffsetsCallback) (double offset, int32_t index, bool leadingEdge)
+```
+
+**Description**
+
+Defines a custom callback used to receive the offset and index of each character in a text line object as its parameters.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| offset | Offset of each character in the text line object.|
+| index | Index of each character in the text line object.|
+| leadingEdge | Whether the cursor is located at the front of the character. The value **true** means that the cursor is located at the front of the character, that is, the offset does not contain the character width. The value **false** means that the cursor is located at the rear of the character, that is, the offset contains the character width.|
+
+**Returns**
+
+Returns the result indicating whether to stop calling the callback. The value **true** means to stop calling the callback, and **false** means to continue calling the callback.
+
+### OH_Drawing_String
+
+```
+typedef struct OH_Drawing_StringOH_Drawing_String
+```
+
+**Description**
+
+Defines a struct for a string of characters encoded in UTF-16BE (big-endian mode).
+
+**Since**: 14
+
+
+### OH_Drawing_SystemFontType
+
+```
+typedef enum OH_Drawing_SystemFontType OH_Drawing_SystemFontType
+```
+
+**Description**
+
+Defines an enum for the system font types.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
 
 ### OH_Drawing_FontArguments
 
@@ -2033,6 +2195,27 @@ Defines an enum for the word break types.
 
 ## Enum Description
 
+### OH_Drawing_SystemFontType
+
+```
+enum OH_Drawing_SystemFontType
+```
+
+**Description**
+
+Enumerates the system font types.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+| Value| Description|
+| -------- | -------- |
+| ALL | All font types.|
+| GENERIC | System font type.|
+| STYLISH | Style font type.|
+| INSTALLED | User-installed font type.|
+
 ### OH_Drawing_ErrorCode
 
 ```
@@ -2917,6 +3100,1411 @@ Enumerates the word break types.
 ## Function Description
 
 
+### OH_Drawing_CreateLineTypography()
+
+```
+OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography (OH_Drawing_TypographyCreate* handler)
+```
+
+**Description**
+
+Creates a pointer to an [OH_Drawing_LineTypography](#oh_drawing_linetypography) object, which stores the text content and style and can be used to compute typography details for individual lines of text.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| handler | Pointer to an [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) object. The pointer is obtained by calling [OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler).|
+
+**Returns**
+
+Returns the pointer to the [OH_Drawing_LineTypography](#oh_drawing_linetypography) object created.
+
+### OH_Drawing_DestroyLineTypography()
+
+```
+void OH_Drawing_DestroyLineTypography (OH_Drawing_LineTypography* lineTypography)
+```
+
+**Description**
+
+Releases the memory occupied by an [OH_Drawing_LineTypography](#oh_drawing_linetypography) object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| lineTypography | Pointer to an [OH_Drawing_LineTypography](#oh_drawing_linetypography) object, which is obtained by calling [OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography).|
+
+### OH_Drawing_LineTypographyGetLineBreak()
+
+```
+size_t OH_Drawing_LineTypographyGetLineBreak (OH_Drawing_LineTypography* lineTypography, size_t startIndex, double width )
+```
+
+**Description**
+
+Obtains the number of characters that can fit in the layout from the specified position within a limited layout width.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| lineTypography | Pointer to an [OH_Drawing_LineTypography](#oh_drawing_linetypography) object, which is obtained by calling [OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography).|
+| startIndex | Start position (inclusive) for layout calculation. The value must be an integer in the range [0, total number of text characters].|
+| width | Layout width. The value is a floating point number greater than 0, in px.|
+
+**Returns**
+
+Returns the number of characters.
+
+### OH_Drawing_LineTypographyCreateLine()
+
+```
+OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine (OH_Drawing_LineTypography* lineTypography, size_t startIndex, size_t count )
+```
+
+**Description**
+
+Creates a pointer to an **OH_Drawing_TextLine** object based on the text content in a specified range.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| lineTypography | Pointer to an [OH_Drawing_LineTypography](#oh_drawing_linetypography) object, which is obtained by calling [OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography).|
+| startIndex | Start position for layout calculation. The value is an integer in the range [0, total number of text characters).|
+| count | Number of characters from the specified start position. The value is an integer in the range [0, total number of text characters). The sum of **startIndex** and **count** cannot be greater than the total number of text characters. You can use [OH_Drawing_LineTypographyGetLineBreak](#oh_drawing_linetypographygetlinebreak) to obtain the number of characters that can fit in the layout. If **count** is set to 0, a null pointer is returned.|
+
+**Returns**
+
+Returns the pointer to the **OH_Drawing_TextLine** object created.
+
+### OH_Drawing_CreateTextTab()
+
+```
+OH_Drawing_TextTab* OH_Drawing_CreateTextTab (OH_Drawing_TextAlign alignment, float location )
+```
+
+**Description**
+
+Creates a text tab object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| alignment | Alignment mode of the text following the tab character. The value 1 means right alignment, 2 means center alignment, and 0 or other values mean left alignment.|
+| float | Alignment position of the text following the tab character. The unit is px. The minimum value is 1.0.|
+
+**Returns**
+
+Returns the pointer to the **OH_Drawing_TextTab** object created. If a null pointer is returned, the creation fails. A possible cause is that no memory is available.
+
+### OH_Drawing_DestroyTextTab()
+
+```
+void OH_Drawing_DestroyTextTab (OH_Drawing_TextTab* )
+```
+
+**Description**
+
+Releases the memory occupied by a text tab object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_TextTab | Pointer to an **OH_Drawing_TextTab** object.|
+
+### OH_Drawing_GetTextTabAlignment()
+
+```
+OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment (OH_Drawing_TextTab* )
+```
+
+**Description**
+
+Obtains the alignment mode of a text tab.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_TextTab | Pointer to an **OH_Drawing_TextTab** object.|
+
+**Returns**
+
+Returns the alignment mode. The value 1 means right alignment, 2 means center alignment, and 0 or other values mean left alignment.
+
+### OH_Drawing_GetTextTabLocation()
+
+```
+float OH_Drawing_GetTextTabLocation (OH_Drawing_TextTab* )
+```
+
+**Description**
+
+Obtains the location of a text tab.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_TextTab | Pointer to an **OH_Drawing_TextTab** object.|
+
+**Returns**
+
+Returns the position of the text tab.
+
+### OH_Drawing_SetTypographyTextTab()
+
+```
+void OH_Drawing_SetTypographyTextTab (OH_Drawing_TypographyStyle* , OH_Drawing_TextTab* TextTab )
+```
+
+**Description**
+
+Sets the alignment mode and location of a text tab. When the text alignment mode or ellipsis style is set, the tab does not take effect. When the tab location is less than 1.0, the tab is replaced with a space.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_TypographyStyle | Pointer to an [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) object.|
+| OH_Drawing_TextTab | Pointer to an **OH_Drawing_TextTab** object.|
+
+### OH_Drawing_FontGetBounds()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetBounds (const OH_Drawing_Font* font, const uint16_t* glyphs, uint32_t count, OH_Drawing_Array* bounds )
+```
+
+**Description**
+
+Obtains the rectangular bounding box for each glyph in the glyph array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| font | Pointer to an [OH_Drawing_Font](#oh_drawing_font) object.|
+| glyphs | Pointer to a glyph array.|
+| count | Length of the glyph array.|
+| bounds | Pointer to a rectangular bounding box array.|
+
+**Returns**
+
+Returns one of the following result codes: 
+- **OH_DRAWING_SUCCESS** if the operation is successful. 
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if **font**, **glyphs**, or **bounds** is NULL or **count** is **0**.
+
+### OH_Drawing_FontGetPathForGlyph()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph (const OH_Drawing_Font* font, uint16_t glyph, OH_Drawing_Path* path )
+```
+
+**Description**
+
+Obtains the path of a glyph.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| font | Pointer to an [OH_Drawing_Font](#oh_drawing_font) object.|
+| glyph | Glyph index.|
+| path | Pointer to an [OH_Drawing_Path](#oh_drawing_path) object, which is used to store the glyph path.|
+
+**Returns**
+
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful. 
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if **font** or **path** is NULL or the specified glyph does not exist.
+
+### OH_Drawing_RectCreateArray()
+
+```
+OH_Drawing_Array* OH_Drawing_RectCreateArray (size_t size)
+```
+
+**Description**
+
+Creates a rectangle array object to store multiple rectangle objects.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| size | Size of the rectangle array. The value cannot exceed 65536, which is the maximum number of glyph indices.|
+
+**Returns**
+
+Returns the pointer to the [OH_Drawing_Array](#oh_drawing_array) object created. If the returned object pointer is null, the creation fails. Possible causes are that no memory is available or an input parameter is incorrect.
+
+### OH_Drawing_RectGetArraySize()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize (OH_Drawing_Array* rectArray, size_t* pSize )
+```
+
+**Description**
+
+Obtains the size of a rectangle array, which is an [OH_Drawing_Array](#oh_drawing_array) object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| rectArray | Pointer to an [OH_Drawing_Array](#oh_drawing_array) object.|
+| pSize | Pointer to the size_t type, which is used as an output parameter to store the size of the rectangle array.|
+
+**Returns**
+
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **rectArray** or **pSize** is NULL.
+
+### OH_Drawing_RectGetArrayElement()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement (OH_Drawing_Array* rectArray, size_t index, OH_Drawing_Rect** rect )
+```
+
+**Description**
+
+Obtains the rectangle with the specified index in a rectangle array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| rectArray | Pointer to an [OH_Drawing_Array](#oh_drawing_array) object.|
+| index | Index of the rectangle array.|
+| rect | Double pointer to [OH_Drawing_Rect](#oh_drawing_rect), which is returned to the caller as an output parameter.|
+
+**Returns**
+
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if **rectArray** or **rect** is null or **index** is out of range.
+
+### OH_Drawing_RectDestroyArray()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray (OH_Drawing_Array* rectArray)
+```
+
+**Description**
+
+Destroys an **OH_Drawing_Array** object and reclaims the memory occupied by the object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| rectArray | Pointer to an [OH_Drawing_Array](#oh_drawing_array) object.|
+
+**Returns**
+
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if **rectArray** is NULL.
+
+### OH_Drawing_TypographyGetTextLines()
+
+```
+OH_Drawing_Array* OH_Drawing_TypographyGetTextLines (OH_Drawing_Typography* typography)
+```
+
+**Description**
+
+Obtains the array of text lines in a typography object. This array contains one or more text line objects.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| typography | Pointer to an [OH_Drawing_Typography](#oh_drawing_typography) object.|
+
+**Returns**
+
+Returns the pointer to the [OH_Drawing_Array](#oh_drawing_array) object obtained.
+
+### OH_Drawing_DestroyTextLines()
+
+```
+void OH_Drawing_DestroyTextLines (OH_Drawing_Array* lines)
+```
+
+**Description**
+
+Releases the memory occupied by a text line array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| lines | Pointer to an [OH_Drawing_Array](#oh_drawing_array) object.|
+
+### OH_Drawing_DestroyTextLine()
+
+```
+void OH_Drawing_DestroyTextLine (OH_Drawing_TextLine* line)
+```
+
+**Description**
+
+Releases the memory occupied by a text line object. This is applicable only to text line objects that have requested memory on their own and not to a particular text line object within a text line array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+
+### OH_Drawing_GetTextLineByIndex()
+
+```
+OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex (OH_Drawing_Array* lines, size_t index )
+```
+
+**Description**
+
+Obtains the text line object with the specified index in a text line array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| lines | Pointer to an [OH_Drawing_Array](#oh_drawing_array) object.|
+| index | Index of the text line array.|
+
+**Returns**
+
+Returns the pointer to the **OH_Drawing_TextLine** object obtained.
+
+### OH_Drawing_TextLineGetGlyphCount()
+
+```
+double OH_Drawing_TextLineGetGlyphCount (OH_Drawing_TextLine* line)
+```
+
+**Description**
+
+Obtains the number of glyphs in a text line object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+
+**Returns**
+
+Returns the number of glyphs in the text line object.
+
+### OH_Drawing_TextLineGetTextRange()
+
+```
+void OH_Drawing_TextLineGetTextRange (OH_Drawing_TextLine* line, size_t* start, size_t* end )
+```
+
+**Description**
+
+Obtains the range of the text in a text line object in the entire paragraph.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+| start | Pointer to the start of the range.|
+| end | Pointer to the end of the range.|
+
+### OH_Drawing_TextLineGetGlyphRuns()
+
+```
+OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns (OH_Drawing_TextLine* line)
+```
+
+**Description**
+
+Obtains the array of glyph runs in a text line object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+
+**Returns**
+
+Returns the pointer to the [OH_Drawing_Array](#oh_drawing_array), which holds multiple **OH_Drawing_Run** objects.
+
+### OH_Drawing_DestroyRuns()
+
+```
+void OH_Drawing_DestroyRuns (OH_Drawing_Array* runs)
+```
+
+**Description**
+
+Releases the memory occupied by a glyph run array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| runs | Pointer to an [OH_Drawing_Array](#oh_drawing_array), which holds multiple **OH_Drawing_Run** objects.|
+
+### OH_Drawing_GetRunByIndex()
+
+```
+OH_Drawing_Run* OH_Drawing_GetRunByIndex (OH_Drawing_Array* runs, size_t index )
+```
+
+**Description**
+
+Obtains the glyph run object with the specified index in a glyph run array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| runs | Pointer to an [OH_Drawing_Array](#oh_drawing_array), which holds multiple **OH_Drawing_Run** objects.|
+| index | Index of the glyph run array.|
+
+**Returns**
+
+Returns the pointer to the **OH_Drawing_Run** object obtained.
+
+### OH_Drawing_TextLinePaint()
+
+```
+void OH_Drawing_TextLinePaint (OH_Drawing_TextLine* line, OH_Drawing_Canvas* canvas, double x, double y )
+```
+
+**Description**
+
+Paints a text line on the canvas with the coordinate point (x, y) as the upper left corner.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+| canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| x | Horizontal coordinate of the upper left corner, in px.|
+| y | Vertical coordinate of the upper left corner, in px.|
+
+### OH_Drawing_TextLineCreateTruncatedLine()
+
+```
+OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine (OH_Drawing_TextLine* line, double width, int mode, const char* ellipsis )
+```
+
+**Description**
+
+Creates a truncated text line object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+| width | Line width after truncation.|
+| mode | Truncation type. The value is an enumerated value of [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal). Currently, only **ELLIPSIS_MODAL_HEAD** and **ELLIPSIS_MODAL_TAIL** are supported.|
+| ellipsis | Pointer to the string used to mark a truncation.|
+
+**Returns**
+
+Returns the pointer to the **OH_Drawing_TextLine** object created.
+
+### OH_Drawing_TextLineGetTypographicBounds()
+
+```
+double OH_Drawing_TextLineGetTypographicBounds (OH_Drawing_TextLine* line, double* ascent, double* descent, double* leading )
+```
+
+**Description**
+
+Obtains the typographic boundary of a text line object. The typographic boundary is related to the font and font size used for typography, but not the characters within the text. For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary encompasses the spaces at the beginning and end. For the strings "j" and "E", the typographic boundaries are the same, indicating that they are irrelevant to specific characters.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object. height = ascent + descent + leading.|
+| ascent | Pointer to the ascent of the text line object.|
+| descent | Pointer to the descent of the text line object.|
+| leading | Pointer to the leading of the text line object.|
+
+**Returns**
+
+Returns the total width of the layout boundary.
+
+### OH_Drawing_TextLineGetImageBounds()
+
+```
+OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds (OH_Drawing_TextLine* line)
+```
+
+**Description**
+
+Obtains the image boundary of a text line object.
+
+The image boundary, equivalent to a visual boundary, is related to the font, font size, and characters. For example, for the string " a b " (which has a space before "a" and a space after "b"), only "a b" are visible to users, and therefore the image boundary does not include these spaces at the beginning and end. For the strings "j" and "E", their image boundaries are different. Specifically, the width of the boundary for "j" is narrower than that for "E", and the height of the boundary for "j" is taller than that for "E".
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+
+**Returns**
+
+Returns the pointer to the [OH_Drawing_Rect](#oh_drawing_rect) of the text line object.
+
+### OH_Drawing_TextLineGetTrailingSpaceWidth()
+
+```
+double OH_Drawing_TextLineGetTrailingSpaceWidth (OH_Drawing_TextLine* line)
+```
+
+**Description**
+
+Obtains the width of the spaces at the end of a text line object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+
+**Returns**
+
+Returns the pointer to the width of the spaces.
+
+### OH_Drawing_TextLineGetStringIndexForPosition()
+
+```
+int32_t OH_Drawing_TextLineGetStringIndexForPosition (OH_Drawing_TextLine* line, OH_Drawing_Point* point )
+```
+
+**Description**
+
+Obtains the index of a character at the specified position in a text line object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+| point | Pointer to the position, which is an [OH_Drawing_Point](#oh_drawing_point) object.|
+
+**Returns**
+
+Returns the index of the character. For example, for the string "abc", the index of "a" is 0, the index of "b" is 1, and the index of "c" is 2. If the specified position is at "a", then **0** is returned.
+
+### OH_Drawing_TextLineGetOffsetForStringIndex()
+
+```
+double OH_Drawing_TextLineGetOffsetForStringIndex (OH_Drawing_TextLine* line, int32_t index )
+```
+
+**Description**
+
+Obtains the offset of a character with the specified index in a text line object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+| index | Index of the character.|
+
+**Returns**
+
+Returns the offset.
+
+### OH_Drawing_TextLineEnumerateCaretOffsets()
+
+```
+void OH_Drawing_TextLineEnumerateCaretOffsets (OH_Drawing_TextLine* line, Drawing_CaretOffsetsCallback callback )
+```
+
+**Description**
+
+Enumerates the offset and index of each character in a text line object and passes them to a custom callback function. You can use the offset and index array for other operations.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+| callback | User-defined function, which is [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback).|
+
+### OH_Drawing_TextLineGetAlignmentOffset()
+
+```
+double OH_Drawing_TextLineGetAlignmentOffset (OH_Drawing_TextLine* line, double alignmentFactor, double alignmentWidth )
+```
+
+**Description**
+
+Obtains the offset of a text line object after alignment based on the alignment factor and alignment width.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| line | Pointer to an **OH_Drawing_TextLine** object.|
+| alignmentFactor | Alignment factor, which determines how text is aligned. A value less than or equal to 0.0 means that the text is left-aligned; a value between 0.0 and 0.5 means that the text is slightly left-aligned; the value 0.5 means that is text is centered; a value between 0.5 and 1 means that the text is slightly right-aligned; a value greater than or equal to 1.0 means that the text is right-aligned.|
+| alignmentWidth | Alignment width, that is, the offset of the lower right corner of the text line object relative to the start position. If the specified alignment width is less than the actual width of the text line object, **0** is returned.|
+
+**Returns**
+
+Returns the offset obtained.
+
+### OH_Drawing_AddTextStyleDecoration()
+
+```
+void OH_Drawing_AddTextStyleDecoration (OH_Drawing_TextStyle* , int  )
+```
+
+**Description**
+
+Adds the decoration for a text style. Multiple decoration lines can be displayed.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_TextStyle | Pointer to an [OH_Drawing_TextStyle](#oh_drawing_textstyle) object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| int | Decoration to add. The value **1** means to add an underline, **2** means to add an overline, and 4 means to add a strikethrough. You can add various text decorations in a single operation using bitwise OR. If you set decoration styles that are not defined in [OH_Drawing_TextDecoration](#oh_drawing_textdecoration), the existing decorations remain unchanged.|
+
+### OH_Drawing_RemoveTextStyleDecoration()
+
+```
+void OH_Drawing_RemoveTextStyleDecoration (OH_Drawing_TextStyle* , int  )
+```
+
+**Description**
+
+Removes the decoration for a text style.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_TextStyle | Pointer to an [OH_Drawing_TextStyle](#oh_drawing_textstyle) object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| int | Decoration to remove. The value **1** means to remove an underline, **2** means to remove an overline, and 4 means to remove a strikethrough. You can remove various text decorations in a single operation using bitwise OR.  If you set decoration styles that are not defined in [OH_Drawing_TextDecoration](#oh_drawing_textdecoration), the existing decorations remain unchanged.|
+
+### OH_Drawing_FontGetTextPath()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath (const OH_Drawing_Font* font, const void* text, size_t byteLength, OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path )
+```
+
+**Description**
+
+Obtains the text outline path.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| font | Pointer to an [OH_Drawing_Font](#oh_drawing_font) object.|
+| text | Pointer to the text string.|
+| byteLength | Length of the text path. If the length is greater than the length of the text string, undefined behavior occurs.|
+| encoding | Text encoding format. UTF-8, UTF-16, UTF-32, and glyph indices are supported.|
+| x | X coordinate of the text in the drawing area, with the origin as the start point.|
+| y | Y coordinate of the text in the drawing area, with the origin as the start point.|
+| path | Pointer to the text outline path.|
+
+**Returns**
+
+Returns one of the following error codes: **IMAGE_RESULT_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if any of **font**, **text**, and **path** is a null pointer.
+
+### OH_Drawing_GetDrawingArraySize()
+
+```
+size_t OH_Drawing_GetDrawingArraySize (OH_Drawing_Array* drawingArray)
+```
+
+**Description**
+
+Obtains the number of objects in an [OH_Drawing_Array](#oh_drawing_array).
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| drawingArray | Pointer to an [OH_Drawing_Array](#oh_drawing_array) object.|
+
+**Returns**
+
+Returns the number of objects in the array.
+
+
+### OH_Drawing_GetRunStringIndices()
+
+```
+OH_Drawing_Array* OH_Drawing_GetRunStringIndices (OH_Drawing_Run* run, int64_t start, int64_t length )
+```
+
+**Description**
+
+Obtains an array of character indices for glyphs within a specified range of a run, where the indices are offsets relative to the entire paragraph.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| run | Pointer to an **OH_Drawing_Run** object.|
+| start | Start position in the run. If a negative number is passed, a null pointer is returned.|
+| length | Length of the range in the run. If the length is 0, all character indexes of the run are obtained. If the length is less than 0, a null pointer is returned.|
+
+**Returns**
+
+Returns the character index array.
+
+
+### OH_Drawing_GetRunStringIndicesByIndex()
+
+```
+uint64_t OH_Drawing_GetRunStringIndicesByIndex (OH_Drawing_Array* stringIndices, size_t index )
+```
+
+**Description**
+
+Obtains character indices of glyphs in a run by index.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| stringIndices | Pointer to a character index array.|
+| index | Index of the character index array.|
+
+**Returns**
+
+Returns the character indices.
+
+
+### OH_Drawing_DestroyRunStringIndices()
+
+```
+void OH_Drawing_DestroyRunStringIndices (OH_Drawing_Array* stringIndices)
+```
+
+**Description**
+
+Releases the pointer to a character index array object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| stringIndices | Pointer to a character index array.|
+
+
+### OH_Drawing_GetRunStringRange()
+
+```
+void OH_Drawing_GetRunStringRange (OH_Drawing_Run* run, uint64_t* location, uint64_t* length )
+```
+
+**Description**
+
+Obtains the range of glyphs generated by a run.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| run | Pointer to an **OH_Drawing_Run** object.|
+| location | Start position of the range in the run, which is an offset relative to the entire paragraph.|
+| length | Length of the range.|
+
+
+### OH_Drawing_GetRunTypographicBounds()
+
+```
+float OH_Drawing_GetRunTypographicBounds (OH_Drawing_Run* run, float* ascent, float* descent, float* leading )
+```
+
+**Description**
+
+Obtains the typographic boundary of a run.
+
+The typographic boundary is related to the font and font size used for typography, but not the characters within the text.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| run | Pointer to an **OH_Drawing_Run** object.|
+| ascent | Distance from the top of the tallest character to the baseline in the run.|
+| descent | Distance from the bottom of the lowest character to the baseline in the run.|
+| leading | Vertical space between lines in the run.|
+
+**Returns**
+
+Returns the layout width of the run.
+
+
+### OH_Drawing_RunPaint()
+
+```
+void OH_Drawing_RunPaint (OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double x, double y )
+```
+
+**Description**
+
+Paints the text contained in a run on the canvas.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| run | Pointer to an **OH_Drawing_Run** object.|
+| x | X coordinate of the run.|
+| y | Y coordinate of the run.|
+
+
+### OH_Drawing_GetRunImageBounds()
+
+```
+OH_Drawing_Rect* OH_Drawing_GetRunImageBounds (OH_Drawing_Run* run)
+```
+
+**Description**
+
+Obtains the image boundary of a run.
+
+The image boundary is related to characters and is equivalent to the visual boundary.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| run | Pointer to an **OH_Drawing_Run** object.|
+
+**Returns**
+
+Returns the pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object, which describes the image boundary of the run.
+
+
+### OH_Drawing_DestroyRunImageBounds()
+
+```
+void OH_Drawing_DestroyRunImageBounds (OH_Drawing_Rect* rect)
+```
+
+**Description**
+
+Releases the pointer to an image boundary object of a run.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| rect | Pointer to the image boundary, which is an [OH_Drawing_Rect](#oh_drawing_rect) object.|
+
+
+### OH_Drawing_GetRunGlyphs()
+
+```
+OH_Drawing_Array* OH_Drawing_GetRunGlyphs (OH_Drawing_Run* run, int64_t start, int64_t length )
+```
+
+**Description**
+
+Obtains an array of glyphs within the specified range of a run.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| run | Pointer to an **OH_Drawing_Run** object.|
+| start | Start position of the run. If a negative number is passed, a null pointer is returned.|
+| length | Length of the range in the run. If the length is 0, all character indices of the run are obtained. If the length is less than 0, a null pointer is returned.|
+
+**Returns**
+
+Returns the pointer to an [OH_Drawing_Array](#oh_drawing_array) object, which holds the glyphs.
+
+
+### OH_Drawing_GetRunGlyphsByIndex()
+
+```
+uint16_t OH_Drawing_GetRunGlyphsByIndex (OH_Drawing_Array* glyphs, size_t index )
+```
+
+**Description**
+
+Obtains individual glyphs in a run by index.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| glyphs | Pointer to the glyph array, which is an [OH_Drawing_Array](#oh_drawing_array) object.|
+| index | Index of the glyph array.|
+
+**Returns**
+
+Returns the individual glyphs.
+
+
+### OH_Drawing_DestroyRunGlyphs()
+
+```
+void OH_Drawing_DestroyRunGlyphs (OH_Drawing_Array* glyphs)
+```
+
+**Description**
+
+Releases the pointer to a glyph array in a run.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| glyphs | Pointer to the glyph array, which is an [OH_Drawing_Array](#oh_drawing_array) object.|
+
+### OH_Drawing_GetRunPositions()
+
+```
+OH_Drawing_Array* OH_Drawing_GetRunPositions (OH_Drawing_Run* run, int64_t start, int64_t length )
+```
+
+**Description**
+
+Obtains the positions of glyphs within the specified range of a run.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| run | Pointer to an **OH_Drawing_Run** object.|
+| start | Start position in the run. If a negative number is passed, a null pointer is returned.|
+| length | Length of the range in the run. If the length is 0, all character indices of the run are obtained. If the length is less than 0, a null pointer is returned.|
+
+**Returns**
+
+Returns the pointer to an [OH_Drawing_Array](#oh_drawing_array) object, which holds the glyph positions.
+
+### OH_Drawing_GetRunPositionsByIndex()
+
+```
+OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex (OH_Drawing_Array* positions, size_t index )
+```
+
+**Description**
+
+Obtains the positions of individual glyphs in a run by index.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| positions | Pointer to the glyph position array, which is an [OH_Drawing_Array](#oh_drawing_array) object.|
+| index | Index of the glyph position array in the run.|
+
+**Returns**
+
+Returns the pointer to an [OH_Drawing_Point](#oh_drawing_point) object, which holds the positions of individual glyphs in the run.
+
+
+### OH_Drawing_DestroyRunPositions()
+
+```
+void OH_Drawing_DestroyRunPositions (OH_Drawing_Array* positions)
+```
+
+**Description**
+
+Releases the pointer to a glyph position array in a run.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| positions | Pointer to the glyph position array, which is an [OH_Drawing_Array](#oh_drawing_array) object.|
+
+### OH_Drawing_GetRunGlyphCount()
+
+```
+uint32_t OH_Drawing_GetRunGlyphCount (OH_Drawing_Run* run)
+```
+
+**Description**
+
+Obtains the number of glyphs in a run.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| run | Pointer to an **OH_Drawing_Run** object.|
+
+**Returns**
+
+Returns the number of glyphs.
+
+### OH_Drawing_MatchFontDescriptors()
+
+```
+OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors (OH_Drawing_FontDescriptor* , size_t*  )
+```
+
+**Description**
+
+Obtains all system font descriptors that match a font descriptor. In the [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) struct, the **path** field is not used for matching, and other fields are valid only when they are not set to their default values. If all fields in [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) are set to their default values, all system font descriptors are obtained. If no matching is found, NULL is returned.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) | Pointer to [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md). You are advised to use [OH_Drawing_CreateFontDescriptor](#oh_drawing_createfontdescriptor) to obtain a valid [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) instance. If you create a [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) instance, ensure that the fields that are not used for matching are set to their default values.|
+| size_t                                                       | Pointer to the number of elements in the array.                                  |
+
+**Returns**
+
+Returns an [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) array, which must be released by calling [OH_Drawing_DestroyFontDescriptors](#oh_drawing_destroyfontdescriptors).
+
+### OH_Drawing_DestroyFontDescriptors()
+
+```
+void OH_Drawing_DestroyFontDescriptors (OH_Drawing_FontDescriptor* , size_t  )
+```
+
+**Description**
+
+Releases an array of [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) objects.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) | Pointer to an array of [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) objects.|
+| size_t | Number of [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) objects in the array.|
+
+### OH_Drawing_DestroySystemFontFullNames()
+
+```
+void OH_Drawing_DestroySystemFontFullNames (OH_Drawing_Array* )
+```
+
+**Description**
+
+Releases the memory occupied by the font name array obtained by font type.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Array | Pointer to an [OH_Drawing_Array](#oh_drawing_array) that holds the font names.|
+
+### OH_Drawing_GetSystemFontFullNameByIndex()
+
+```
+const OH_Drawing_String* OH_Drawing_GetSystemFontFullNameByIndex (OH_Drawing_Array* , size_t  )
+```
+
+**Description**
+
+Obtains the font name with the specified index in the font name array.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Array | Pointer to an [OH_Drawing_Array](#oh_drawing_array) that holds the font names.|
+| size_t | Index of the font in the array.|
+
+**Returns**
+
+Returns the pointer to the font name, which is an [OH_Drawing_String](_o_h___drawing___string.md) object.
+
+### OH_Drawing_GetSystemFontFullNamesByType()
+
+```
+OH_Drawing_Array* OH_Drawing_GetSystemFontFullNamesByType (OH_Drawing_SystemFontType )
+```
+
+**Description**
+
+Obtains an array of font names by font type.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_SystemFontType | Font type, which is defined in [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype).|
+
+**Returns**
+
+Returns the pointer to an [OH_Drawing_Array](#oh_drawing_array), which holds the font names.
+
+### OH_Drawing_GetFontDescriptorByFullName()
+
+```
+OH_Drawing_FontDescriptor* OH_Drawing_GetFontDescriptorByFullName (const OH_Drawing_String* , OH_Drawing_SystemFontType  )
+```
+
+**Description**
+
+Obtains a font descriptor based on the font name and type. System fonts, style fonts, and user-installed fonts are supported. A font descriptor is a data structure that describes font features. It contains details of the font appearance and properties.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| [OH_Drawing_String](_o_h___drawing___string.md) | Pointer to the font name, which is [OH_Drawing_String](_o_h___drawing___string.md).|
+| OH_Drawing_SystemFontType | Font type, which is defined in [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype).|
+
+**Returns**
+
+Returns the pointer to an [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) object.
+
 ### OH_Drawing_TypefaceCreateFromFileWithArguments()
 
 ```
@@ -2966,7 +4554,7 @@ Creates an **OH_Drawing_Typeface** object with font arguments based on an existi
 
 **Returns**
 
-Returns the pointer to the [OH_Drawing_Typeface](#oh_drawing_typeface) object created. If a null pointer is returned, the creation fails. Possible causes are that no memory is available, the passed-in **path** or **fontArguments** is null, or the existing **OH_Drawing_FontArguments** object does not support the variation described in the font arguments.
+Returns the pointer to the [OH_Drawing_Typeface](#oh_drawing_typeface) object created. If a null pointer is returned, the creation fails. Possible causes are that no memory is available, the passed-in **path** or **fontArguments** is NULL, or the existing **OH_Drawing_FontArguments** object does not support the variation described in the font arguments.
 
 
 ### OH_Drawing_FontArgumentsAddVariation()
@@ -2993,7 +4581,9 @@ Adds a variation to an **OH_Drawing_FontArguments** object.
 
 **Returns**
 
-Returns either of the following result codes: **OH_DRAWING_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **fontArguments** or **axis** is NULL or the length of **axis** is not 4.
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **fontArguments** or **axis** is NULL or the length of **axis** is not 4.
 
 
 ### OH_Drawing_FontArgumentsCreate()
@@ -3037,7 +4627,9 @@ Destroys an **OH_Drawing_FontArguments** object.
 
 **Returns**
 
-Returns either of the following result codes: **OH_DRAWING_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if **fontArguments** is NULL.
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if **fontArguments** is NULL.
 
 
 ### OH_Drawing_TypographyGetLongestLineWithIndent()
@@ -3088,7 +4680,9 @@ Destroys an **OH_Drawing_RecordCmd** object and reclaims the memory occupied by 
 
 **Returns**
 
-Returns either of the following result codes: **OH_DRAWING_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if **recordCmd** is NULL.
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if **recordCmd** is NULL.
 
 
 ### OH_Drawing_RecordCmdUtilsBeginRecording()
@@ -3118,7 +4712,11 @@ The **OH_Drawing_RecordCmdUtils** object generates a canvas object of the record
 
 **Returns**
 
-Returns either of the following result codes: **OH_DRAWING_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **recordCmdUtils** or **canvas** is NULL. **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **width** or **height** is less than 0. **OH_DRAWING_ERROR_ALLOCATION_FAILED** if the system memory is insufficient.
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **recordCmdUtils** or **canvas** is NULL.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **width** or **height** is less than 0.
+- **OH_DRAWING_ERROR_ALLOCATION_FAILED** if the system memory is insufficient.
 
 
 ### OH_Drawing_RecordCmdUtilsCreate()
@@ -3162,7 +4760,9 @@ Destroys an **OH_Drawing_RecordCmdUtils** object and reclaims the memory occupie
 
 **Returns**
 
-Returns either of the following result codes: **OH_DRAWING_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if **recordCmdUtils** is NULL.
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if **recordCmdUtils** is NULL.
 
 
 ### OH_Drawing_RecordCmdUtilsFinishRecording()
@@ -3190,7 +4790,10 @@ The **OH_Drawing_RecordCmdUtils** object ends recording and stores the drawing c
 
 **Returns**
 
-Returns either of the following result codes: **OH_DRAWING_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **recordCmdUtils** or **recordCmd** is NULL. **OH_DRAWING_ERROR_ALLOCATION_FAILED** if the system memory is insufficient.
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **recordCmdUtils** or **recordCmd** is NULL.
+- **OH_DRAWING_ERROR_ALLOCATION_FAILED** if the system memory is insufficient.
 
 
 ### OH_Drawing_CanvasDrawRecordCmd()
@@ -3216,7 +4819,9 @@ Draws an **OH_Drawing_RecordCmd** object.
 
 **Returns**
 
-Returns either of the following result codes: **OH_DRAWING_SUCCESS** if the operation is successful. **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **canvas** or **recordCmd** is NULL.
+Returns one of the following result codes:
+- **OH_DRAWING_SUCCESS** if the operation is successful.
+- **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **canvas** or **recordCmd** is NULL.
 
 
 
@@ -3292,7 +4897,7 @@ Draws a single character. If the typeface of the current font does not support t
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if at least one of the parameters **canvas**, **str**, or **font** is NULL, or the length of **str** is **0**.
 
@@ -3322,7 +4927,7 @@ Measures the width of a single character. If the typeface of the current font do
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if at least one of the parameters **font**, **str**, or **textWidth** is NULL, or the length of **str** is **0**.
 
@@ -3377,7 +4982,7 @@ Translates a rounded rectangle by an offset along the X axis and Y axis.
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if **roundRect** is NULL.
 
@@ -3405,7 +5010,7 @@ Obtains the X coordinate of a point.
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **point** or **x** is NULL.
 
@@ -3433,7 +5038,7 @@ Obtains the Y coordinate of a point.
 
 **Returns**
 
-Returns either of the following result codes: 
+Returns one of the following result codes: 
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **point** or **y** is NULL.
 
@@ -3462,7 +5067,7 @@ Sets the X and Y coordinates of a point.
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if **point** is NULL.
 
@@ -3494,7 +5099,7 @@ Obtains the text width and bounding box.
 
 **Returns**
 
-Returns either of the following result codes: 
+Returns one of the following result codes: 
 - **OH_DRAWING_SUCCESS** if the operation is successful. 
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if at least one of the parameters **font**, **text**, and **textWidth** is NULL, or **byteLength** is **0**.
 
@@ -3523,7 +5128,7 @@ Clips a rectangle.
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **canvas** or **region** is NULL.
 - **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if **clipOp** is not set to one of the enumerated values.
@@ -3553,7 +5158,7 @@ Fills the entire canvas with the specified color and blend mode.
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes: 
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if **canvas** is NULL.
 - **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** if **blendMode** is not set to one of the enumerated values.
@@ -3582,7 +5187,7 @@ Obtains the image information of a canvas.
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **canvas** or **imageInfo** is NULL.
 
@@ -3610,7 +5215,7 @@ Checks whether the region that can be drawn is empty after cropping.
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **canvas** or **isClipEmpty** is NULL.
 
@@ -3638,7 +5243,7 @@ Draws a point.
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if the operation is successful.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if either **canvas** or **point** is NULL.
 
@@ -3666,7 +5271,7 @@ Obtains all element values of a matrix.
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 - **OH_DRAWING_SUCCESS** if all element values of the matrix are successfully obtained.
 - **OH_DRAWING_ERROR_INVALID_PARAMETER** if the matrix element values fail to be obtained. The failure cause is that **matrix** or **value** is NULL.
 
@@ -4506,7 +6111,7 @@ Error codes may be generated in the call. You can view the error code by calling
 
 If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
-If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER**} is returned.
+If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_TileMode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
 
@@ -5679,9 +7284,9 @@ Destroys an **OH_Drawing_Brush** object and reclaims the memory occupied by the 
 
 **Parameters**
 
-| Name             | Description                                |
-| ---------------- | ------------------------------------------ |
-| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
 
 
 ### OH_Drawing_BrushGetAlpha()
@@ -5706,9 +7311,9 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name             | Description                                |
-| ---------------- | ------------------------------------------ |
-| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
 
 **Returns**
 
@@ -5737,9 +7342,9 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name             | Description                                |
-| ---------------- | ------------------------------------------ |
-| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
 
 **Returns**
 
@@ -5768,10 +7373,10 @@ If either **OH_Drawing_Brush** or **OH_Drawing_Filter** is NULL, **OH_DRAWING_ER
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Brush  | Pointer to an [OH_Drawing_Brush](#oh_drawing_brush) object.  |
-| OH_Drawing_Filter | Pointer to the [OH_Drawing_Filter](#oh_drawing_filter) object obtained. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an [OH_Drawing_Brush](#oh_drawing_brush) object.|
+| OH_Drawing_Filter | Pointer to the [OH_Drawing_Filter](#oh_drawing_filter) object obtained.|
 
 
 ### OH_Drawing_BrushIsAntiAlias()
@@ -5796,9 +7401,9 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name             | Description                                |
-| ---------------- | ------------------------------------------ |
-| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
 
 **Returns**
 
@@ -5827,9 +7432,9 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name             | Description                                                 |
-| ---------------- | ----------------------------------------------------------- |
-| OH_Drawing_Brush | Pointer to an [OH_Drawing_Brush](#oh_drawing_brush) object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an [OH_Drawing_Brush](#oh_drawing_brush) object.|
 
 
 ### OH_Drawing_BrushSetAlpha()
@@ -5854,10 +7459,10 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name             | Description                                |
-| ---------------- | ------------------------------------------ |
-| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object. |
-| alpha            | Alpha value, which is an 8-bit variable.   |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
+| alpha | Alpha value, which is an 8-bit variable.|
 
 
 ### OH_Drawing_BrushSetAntiAlias()
@@ -5882,10 +7487,10 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name             | Description                                                  |
-| ---------------- | ------------------------------------------------------------ |
-| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.                   |
-| bool             | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
+| bool | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite.|
 
 
 ### OH_Drawing_BrushSetBlendMode()
@@ -5912,10 +7517,10 @@ If **OH_Drawing_BlendMode** is not set to one of the enumerated values, **OH_DRA
 
 **Parameters**
 
-| Name                 | Description                                                  |
-| -------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Brush     | Pointer to an [OH_Drawing_Brush](#oh_drawing_brush) object.  |
-| OH_Drawing_BlendMode | Blend mode. For details about the available options, see [OH_Drawing_BlendMode](#oh_drawing_blendmode). |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an [OH_Drawing_Brush](#oh_drawing_brush) object.|
+| OH_Drawing_BlendMode | Blend mode. For details about the available options, see [OH_Drawing_BlendMode](#oh_drawing_blendmode).|
 
 
 ### OH_Drawing_BrushSetColor()
@@ -5940,10 +7545,10 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name             | Description                                |
-| ---------------- | ------------------------------------------ |
-| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object. |
-| color            | Color, which is a 32-bit (ARGB) variable.  |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
+| color | Color, which is a 32-bit (ARGB) variable.|
 
 
 ### OH_Drawing_BrushSetFilter()
@@ -5968,10 +7573,10 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Brush  | Pointer to an **OH_Drawing_Brush** object.                   |
-| OH_Drawing_Filter | Pointer to an **OH_Drawing_Filter** object. If null is passed in, the filter will be cleared. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
+| OH_Drawing_Filter | Pointer to an **OH_Drawing_Filter** object. If null is passed in, the filter will be cleared.|
 
 
 ### OH_Drawing_BrushSetShaderEffect()
@@ -5996,10 +7601,10 @@ If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retur
 
 **Parameters**
 
-| Name                    | Description                                                  |
-| ----------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Brush        | Pointer to an **OH_Drawing_Brush** object.                   |
-| OH_Drawing_ShaderEffect | Pointer to an **OH_Drawing_ShaderEffect** object. If NULL is passed in, the shader effect of the brush will be cleared. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
+| OH_Drawing_ShaderEffect | Pointer to an **OH_Drawing_ShaderEffect** object. If NULL is passed in, the shader effect of the brush will be cleared.|
 
 
 ### OH_Drawing_CanvasAttachBrush()
@@ -6024,10 +7629,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Brush** is NULL, **OH_DRAWING_ER
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Brush  | Pointer to an **OH_Drawing_Brush** object.  |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
 
 
 ### OH_Drawing_CanvasAttachPen()
@@ -6052,10 +7657,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERRO
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Pen    | Pointer to an **OH_Drawing_Pen** object.    |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Pen | Pointer to an **OH_Drawing_Pen** object.|
 
 
 ### OH_Drawing_CanvasBind()
@@ -6066,7 +7671,7 @@ void OH_Drawing_CanvasBind (OH_Drawing_Canvas* , OH_Drawing_Bitmap*  )
 
 **Description**
 
-Binds a bitmap to a canvas so that the content drawn on the canvas is output to the bitmap. (This process is called CPU rendering.)
+Binds a bitmap to a canvas so that the content drawn on the canvas is output to the bitmap. (This process is called CPU rendering.) A canvas bound to a bitmap is a non-recording canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
@@ -6080,10 +7685,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_E
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Bitmap | Pointer to an **OH_Drawing_Bitmap** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Bitmap | Pointer to an **OH_Drawing_Bitmap** object.|
 
 
 ### OH_Drawing_CanvasClear()
@@ -6108,10 +7713,10 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| color             | Color, which is a 32-bit (ARGB) variable.   |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| color | Color, which is a 32-bit (ARGB) variable.|
 
 
 ### OH_Drawing_CanvasClipPath()
@@ -6138,12 +7743,12 @@ If **clipOp** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PAR
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.                  |
-| OH_Drawing_Path   | Pointer to an **OH_Drawing_Path** object.                    |
-| clipOp            | Clip mode. For details about the available options, see [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop). |
-| doAntiAlias       | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Path | Pointer to an **OH_Drawing_Path** object.|
+| clipOp | Clip mode. For details about the available options, see [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop).|
+| doAntiAlias | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite.|
 
 
 ### OH_Drawing_CanvasClipRect()
@@ -6170,12 +7775,12 @@ If **clipOp** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PAR
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.                  |
-| OH_Drawing_Rect   | Pointer to an **OH_Drawing_Rect** object.                    |
-| clipOp            | Clip mode. For details about the available options, see [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop). |
-| doAntiAlias       | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Rect | Pointer to an **OH_Drawing_Rect** object.|
+| clipOp | Clip mode. For details about the available options, see [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop).|
+| doAntiAlias | Whether to enable anti-aliasing. The value **true** means to enable anti-aliasing, and **false** means the opposite.|
 
 ### OH_Drawing_CanvasClipRoundRect()
 
@@ -6201,12 +7806,12 @@ If **clipOp** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PAR
 
 **Parameters**
 
-| Name                 | Description                                                  |
-| -------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas    | Pointer to an **OH_Drawing_Canvas** object.                  |
-| OH_Drawing_RoundRect | Pointer to an **OH_Drawing_RoundRect** object.               |
-| clipOp               | Clip mode. For details about the available options, see [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop). |
-| doAntiAlias          | Whether to perform anti-aliasing. The value **true** means to perform anti-aliasing, and **false** means the opposite. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_RoundRect | Pointer to an **OH_Drawing_RoundRect** object.|
+| clipOp | Clip mode. For details about the available options, see [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop).|
+| doAntiAlias | Whether to perform anti-aliasing. The value **true** means to perform anti-aliasing, and **false** means the opposite.|
 
 ### OH_Drawing_CanvasConcatMatrix()
 
@@ -6230,10 +7835,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_E
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object.|
 
 
 ### OH_Drawing_CanvasCreate()
@@ -6271,9 +7876,9 @@ Destroys an **OH_Drawing_Canvas** object and reclaims the memory occupied by the
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
 
 
 ### OH_Drawing_CanvasDetachBrush()
@@ -6298,9 +7903,9 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
 
 
 ### OH_Drawing_CanvasDetachPen()
@@ -6325,9 +7930,9 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
 
 
 ### OH_Drawing_CanvasDrawArc()
@@ -6352,12 +7957,12 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERR
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Rect   | Pointer to an **OH_Drawing_Rect** object.   |
-| startAngle        | Start angle of the arc.                     |
-| sweepAngle        | Sweep angle of the arc.                     |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Rect | Pointer to an **OH_Drawing_Rect** object.|
+| startAngle | Start angle of the arc.|
+| sweepAngle | Sweep angle of the arc.|
 
 
 ### OH_Drawing_CanvasDrawBackground()
@@ -6382,10 +7987,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Brush** is NULL, **OH_DRAWING_ER
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Brush  | Pointer to an **OH_Drawing_Brush** object.  |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.|
 
 
 ### OH_Drawing_CanvasDrawBitmap()
@@ -6410,12 +8015,12 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_E
 
 **Parameters**
 
-| Name              | Description                                          |
-| ----------------- | ---------------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.          |
-| OH_Drawing_Bitmap | Pointer to an **OH_Drawing_Bitmap** object.          |
-| left              | X coordinate of the upper left corner of the bitmap. |
-| top               | Y coordinate of the upper left corner of the bitmap. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Bitmap | Pointer to an **OH_Drawing_Bitmap** object.|
+| left | X coordinate of the upper left corner of the bitmap.|
+| top | Y coordinate of the upper left corner of the bitmap.|
 
 
 ### OH_Drawing_CanvasDrawBitmapRect()
@@ -6440,13 +8045,13 @@ If any of **OH_Drawing_Canvas**, **OH_Drawing_Bitmap**, and **dst** is NULL, **O
 
 **Parameters**
 
-| Name                       | Description                                                  |
-| -------------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas          | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Bitmap          | Pointer to an [OH_Drawing_Bitmap](#oh_drawing_bitmap) object. |
-| src                        | Pointer to a rectangle on the bitmap. If NULL is passed in, it refers to the entire bitmap. |
-| dst                        | Pointer to a rectangle on the canvas.                        |
-| OH_Drawing_SamplingOptions | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Bitmap | Pointer to an [OH_Drawing_Bitmap](#oh_drawing_bitmap) object.|
+| src | Pointer to a rectangle on the bitmap. If NULL is passed in, it refers to the entire bitmap.|
+| dst | Pointer to a rectangle on the canvas.|
+| OH_Drawing_SamplingOptions | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used.|
 
 
 ### OH_Drawing_CanvasDrawCircle()
@@ -6473,11 +8078,11 @@ If **radius** is less than or equal to 0, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RA
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.                  |
-| OH_Drawing_Point  | Pointer to an **OH_Drawing_Point** object, which indicates the center of the circle. |
-| radius            | Radius of the circle.                                        |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Point | Pointer to an **OH_Drawing_Point** object, which indicates the center of the circle.|
+| radius | Radius of the circle.|
 
 
 ### OH_Drawing_CanvasDrawImageRect()
@@ -6502,12 +8107,12 @@ If any of **OH_Drawing_Canvas**, **OH_Drawing_Image**, and **dst** is NULL, **OH
 
 **Parameters**
 
-| Name                       | Description                                                  |
-| -------------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas          | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Image           | Pointer to an [OH_Drawing_Image](#oh_drawing_image) object.  |
-| dst                        | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object.    |
-| OH_Drawing_SamplingOptions | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Image | Pointer to an [OH_Drawing_Image](#oh_drawing_image) object.|
+| dst | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object.|
+| OH_Drawing_SamplingOptions | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used.|
 
 
 ### OH_Drawing_CanvasDrawImageRectWithSrc()
@@ -6532,14 +8137,14 @@ If any of **OH_Drawing_Canvas**, **OH_Drawing_Image**, **src**, and **dst** is N
 
 **Parameters**
 
-| Name                         | Description                                                  |
-| ---------------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas            | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Image             | Pointer to an [OH_Drawing_Image](#oh_drawing_image) object.  |
-| src                          | Pointer to a source rectangle, which is an [OH_Drawing_Rect](#oh_drawing_rect) object. |
-| dst                          | Pointer to a destination rectangle, which is an [OH_Drawing_Rect](#oh_drawing_rect) object. |
-| OH_Drawing_SamplingOptions   | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used. |
-| OH_Drawing_SrcRectConstraint | Constraint type. For details about the available options, see [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint-1). |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Image | Pointer to an [OH_Drawing_Image](#oh_drawing_image) object.|
+| src | Pointer to a source rectangle, which is an [OH_Drawing_Rect](#oh_drawing_rect) object.|
+| dst | Pointer to a destination rectangle, which is an [OH_Drawing_Rect](#oh_drawing_rect) object.|
+| OH_Drawing_SamplingOptions | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used.|
+| OH_Drawing_SrcRectConstraint | Constraint type. For details about the available options, see [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint-1).|
 
 
 ### OH_Drawing_CanvasDrawLine()
@@ -6564,13 +8169,13 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                          |
-| ----------------- | ---------------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.          |
-| x1                | X coordinate of the start point of the line segment. |
-| y1                | Y coordinate of the start point of the line segment. |
-| x2                | X coordinate of the end point of the line segment.   |
-| y2                | Y coordinate of the end point of the line segment.   |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| x1 | X coordinate of the start point of the line segment.|
+| y1 | Y coordinate of the start point of the line segment.|
+| x2 | X coordinate of the end point of the line segment.|
+| y2 | Y coordinate of the end point of the line segment.|
 
 
 ### OH_Drawing_CanvasDrawOval()
@@ -6595,10 +8200,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERR
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Rect   | Pointer to an **OH_Drawing_Rect** object.   |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Rect | Pointer to an **OH_Drawing_Rect** object.|
 
 
 ### OH_Drawing_CanvasDrawPath()
@@ -6623,10 +8228,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Path** is NULL, **OH_DRAWING_ERR
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Path   | Pointer to an **OH_Drawing_Path** object.   |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Path | Pointer to an **OH_Drawing_Path** object.|
 
 
 ### OH_Drawing_CanvasDrawPixelMapRect()
@@ -6651,13 +8256,13 @@ If any of **OH_Drawing_Canvas**, **OH_Drawing_PixelMap**, and **dst** is NULL, *
 
 **Parameters**
 
-| Name                       | Description                                                  |
-| -------------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas          | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_PixelMap        | Pointer to an [OH_Drawing_PixelMap](#oh_drawing_pixelmap) object. |
-| src                        | Pointer to a rectangle on the pixel map. If NULL is passed in, it refers to the entire pixel map. |
-| dst                        | Pointer to a rectangle on the canvas.                        |
-| OH_Drawing_SamplingOptions | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_PixelMap | Pointer to an [OH_Drawing_PixelMap](#oh_drawing_pixelmap) object.|
+| src | Pointer to a rectangle on the pixel map. If NULL is passed in, it refers to the entire pixel map.|
+| dst | Pointer to a rectangle on the canvas.|
+| OH_Drawing_SamplingOptions | Pointer to an [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) object. If NULL is passed in, the default sampling options are used.|
 
 
 ### OH_Drawing_CanvasDrawPoints()
@@ -6684,12 +8289,12 @@ If **mode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAM
 
 **Parameters**
 
-| Name                                               | Description                                                  |
-| -------------------------------------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas                                  | Pointer to an **OH_Drawing_Canvas** object.                  |
-| mode                                               | Mode of drawing multiple points. For details about the available options, see [OH_Drawing_PointMode](#oh_drawing_pointmode). |
-| count                                              | Number of vertices, that is, the number of vertices in the vertex array. |
-| [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) | Pointer to an array holding the vertices.                    |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| mode | Mode of drawing multiple points. For details about the available options, see [OH_Drawing_PointMode](#oh_drawing_pointmode).|
+| count | Number of vertices, that is, the number of vertices in the vertex array.|
+| [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) | Pointer to an array holding the vertices.|
 
 
 ### OH_Drawing_CanvasDrawRect()
@@ -6714,10 +8319,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERR
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Rect   | Pointer to an **OH_Drawing_Rect** object.   |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Rect | Pointer to an **OH_Drawing_Rect** object.|
 
 
 ### OH_Drawing_CanvasDrawRegion()
@@ -6742,10 +8347,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Region** is NULL, **OH_DRAWING_E
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
-| OH_Drawing_Region | Pointer to an **OH_Drawing_Region** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_Region | Pointer to an **OH_Drawing_Region** object.|
 
 
 ### OH_Drawing_CanvasDrawRoundRect()
@@ -6770,10 +8375,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_RoundRect** is NULL, **OH_DRAWIN
 
 **Parameters**
 
-| Name                 | Description                                    |
-| -------------------- | ---------------------------------------------- |
-| OH_Drawing_Canvas    | Pointer to an **OH_Drawing_Canvas** object.    |
-| OH_Drawing_RoundRect | Pointer to an **OH_Drawing_RoundRect** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_RoundRect | Pointer to an **OH_Drawing_RoundRect** object.|
 
 
 ### OH_Drawing_CanvasDrawShadow()
@@ -6800,16 +8405,16 @@ If **flag** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAM
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Path   | Pointer to an [OH_Drawing_Path](#oh_drawing_path) object, which is used to generate the shadow. |
-| planeParams       | Value of the function that returns the Z axis of the occluding object from the canvas based on the X axis and Y axis. |
-| devLightPos       | Position of the light relative to the canvas.                |
-| lightRadius       | Radius of the light.                                         |
-| ambientColor      | Color of the ambient shadow.                                 |
-| spotColor         | Color of the spot shadow.                                    |
-| flag              | Shadow flag. For details about the available options, see [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags). |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Path | Pointer to an [OH_Drawing_Path](#oh_drawing_path) object, which is used to generate the shadow.|
+| planeParams | Value of the function that returns the Z axis of the occluding object from the canvas based on the X axis and Y axis.|
+| devLightPos | Position of the light relative to the canvas.|
+| lightRadius | Radius of the light.|
+| ambientColor | Color of the ambient shadow.|
+| spotColor | Color of the spot shadow.|
+| flag | Shadow flag. For details about the available options, see [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags).|
 
 
 ### OH_Drawing_CanvasDrawTextBlob()
@@ -6834,12 +8439,12 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_TextBlob** is NULL, **OH_DRAWING
 
 **Parameters**
 
-| Name                | Description                                             |
-| ------------------- | ------------------------------------------------------- |
-| OH_Drawing_Canvas   | Pointer to an **OH_Drawing_Canvas** object.             |
-| OH_Drawing_TextBlob | Pointer to an **OH_Drawing_TextBlob** object.           |
-| x                   | X coordinate of the lower left corner of the text blob. |
-| y                   | Y coordinate of the lower left corner of the text blob. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| OH_Drawing_TextBlob | Pointer to an **OH_Drawing_TextBlob** object.|
+| x | X coordinate of the lower left corner of the text blob.|
+| y | Y coordinate of the lower left corner of the text blob.|
 
 
 ### OH_Drawing_CanvasDrawVertices()
@@ -6856,7 +8461,7 @@ Error codes may be generated in the call. You can view the error code by calling
 
 If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
-If either **OH_Drawing_Canvas** or **positions** is null, **vertexCount** is less than 3, or **indexCount** is less than 3 but not 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
+If either **OH_Drawing_Canvas** or **positions** is NULL, **vertexCount** is less than 3, or **indexCount** is less than 3 but not 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If either **vertexMmode** or **mode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
 
@@ -6866,17 +8471,17 @@ If either **vertexMmode** or **mode** is not set to one of the enumerated values
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.                  |
-| vertexMmode       | Vertex drawing mode. For details about the available options, see [OH_Drawing_VertexMode](#oh_drawing_vertexmode). |
-| vertexCount       | Number of elements in the vertex array. The value must be greater than or equal to 3. |
-| positions         | Pointer to the array that holds the position of every vertex. The array cannot be null and its length must be equal to the value of **vertexCount**. |
-| texs              | Pointer to the array that holds the texture space coordinate corresponding to each vertex. The array can be null. If the array is not null, its length must be equal to the value of **vertexCount**. |
-| colors            | Pointer to the array that holds the color corresponding to each vertex. It is used for interpolation in a triangle. The array can be null. If the array is not null, its length must be equal to the value of **vertexCount**. |
-| indexCount        | Number of indexes. The value can be 0 or a value greater than or equal to 3. |
-| indices           | Pointer to the array that holds the index of each vertex. The array can be null. If the array is not null, its length must be equal to the value of **indexCount**. |
-| mode              | Blend mode. For details about the available options, see [OH_Drawing_BlendMode](#oh_drawing_blendmode). |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
+| vertexMmode | Vertex drawing mode. For details about the available options, see [OH_Drawing_VertexMode](#oh_drawing_vertexmode).|
+| vertexCount | Number of elements in the vertex array. The value must be greater than or equal to 3.|
+| positions | Pointer to the array that holds the position of every vertex. The array cannot be null and its length must be equal to the value of **vertexCount**.|
+| texs | Pointer to the array that holds the texture space coordinate corresponding to each vertex. The array can be null. If the array is not null, its length must be equal to the value of **vertexCount**.|
+| colors | Pointer to the array that holds the color corresponding to each vertex. It is used for interpolation in a triangle. The array can be null. If the array is not null, its length must be equal to the value of **vertexCount**.|
+| indexCount | Number of indexes. The value can be 0 or a value greater than or equal to 3.|
+| indices | Pointer to the array that holds the index of each vertex. The array can be null. If the array is not null, its length must be equal to the value of **indexCount**.|
+| mode | Blend mode. For details about the available options, see [OH_Drawing_BlendMode](#oh_drawing_blendmode).|
 
 
 ### OH_Drawing_CanvasGetHeight()
@@ -6901,9 +8506,9 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
 
 **Returns**
 
@@ -6932,10 +8537,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERR
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Rect   | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object, which is obtained by calling [OH_Drawing_RectCreate](#oh_drawing_rectcreate). |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Rect | Pointer to an [OH_Drawing_Rect](#oh_drawing_rect) object, which is obtained by calling [OH_Drawing_RectCreate](#oh_drawing_rectcreate).|
 
 
 ### OH_Drawing_CanvasGetSaveCount()
@@ -6960,9 +8565,9 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                 |
-| ----------------- | ------------------------------------------- |
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object.|
 
 **Returns**
 
@@ -6991,10 +8596,10 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_E
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object, which is obtained by calling [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate). |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object, which is obtained by calling [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate).|
 
 
 ### OH_Drawing_CanvasGetWidth()
@@ -7019,9 +8624,9 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
 
 **Returns**
 
@@ -7050,14 +8655,14 @@ If any of **OH_Drawing_Canvas**, **OH_Drawing_Image_Info**, and **dstPixels** is
 
 **Parameters**
 
-| Name                                                      | Description                                                  |
-| --------------------------------------------------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas                                         | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | Pointer to an [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) object. |
-| dstPixels                                                 | Pointer to the start address for storing the pixel data.     |
-| dstRowBytes                                               | Size of pixels per row.                                      |
-| srcX                                                      | X offset of the pixels on the canvas, in px.                 |
-| srcY                                                      | Y offset of the pixels on the canvas, in px.                 |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | Pointer to an [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) object.|
+| dstPixels | Pointer to the start address for storing the pixel data.|
+| dstRowBytes | Size of pixels per row.|
+| srcX | X offset of the pixels on the canvas, in px.|
+| srcY | Y offset of the pixels on the canvas, in px.|
 
 **Returns**
 
@@ -7086,12 +8691,12 @@ If either **OH_Drawing_Canvas** or **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_E
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
-| OH_Drawing_Bitmap | Pointer to an [OH_Drawing_Bitmap](#oh_drawing_bitmap) object. |
-| srcX              | X offset of the pixels on the canvas, in px.                 |
-| srcY              | Y offset of the pixels on the canvas, in px.                 |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
+| OH_Drawing_Bitmap | Pointer to an [OH_Drawing_Bitmap](#oh_drawing_bitmap) object.|
+| srcX | X offset of the pixels on the canvas, in px.|
+| srcY | Y offset of the pixels on the canvas, in px.|
 
 **Returns**
 
@@ -7120,9 +8725,9 @@ If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is retu
 
 **Parameters**
 
-| Name              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object. |
+| Name| Description|
+| -------- | -------- |
+| OH_Drawing_Canvas | Pointer to an [OH_Drawing_Canvas](#oh_drawing_canvas) object.|
 
 
 ### OH_Drawing_CanvasRestore()
@@ -12978,7 +14583,7 @@ void OH_Drawing_SetTextStyleFontWeight (OH_Drawing_TextStyle* , int  )
 
 **Description**
 
-Sets the font weight for a text style.
+Sets the font weight for a text style. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13374,7 +14979,7 @@ void OH_Drawing_SetTypographyTextFontWeight (OH_Drawing_TypographyStyle* , int  
 
 **Description**
 
-Sets the font weight for text.
+Sets the font weight for text. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13507,7 +15112,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight (OH_Drawing_TypographyStyle
 
 **Description**
 
-Sets the font weight for a text line style.
+Sets the font weight for a text line style. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold, there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13807,7 +15412,7 @@ Error codes may be generated in the call. You can view the error code by calling
 
 If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
-If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER**} is returned.
+If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_TileMode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
 
@@ -13845,7 +15450,7 @@ Error codes may be generated in the call. You can view the error code by calling
 
 If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
-If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER**} is returned.
+If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_TileMode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
 
@@ -14140,7 +15745,7 @@ If **OH_Drawing_TextEncoding** is not set to one of the enumerated values, **OH_
 | ----------------------- | ------------------------------------------------------------ |
 | str                     | Pointer to a string.                                         |
 | OH_Drawing_Font         | Pointer to an [OH_Drawing_Font](#oh_drawing_font) object.    |
-| OH_Drawing_TextEncoding | Encoding type of the text. For details about the available options, see [OH_Drawing_TextEncoding](#oh_drawing_textencoding). |
+| OH_Drawing_TextEncoding | Encoding type of the text. For details about the available options, see [OH_Drawing_TextEncoding](#oh_drawing_textencoding). Currently, only **TEXT_ENCODING_UTF8** takes effect, and other encoding types are treated as **TEXT_ENCODING_UTF8**. |
 
 **Returns**
 
@@ -14258,7 +15863,7 @@ Adds a font feature for a text style.
 ### OH_Drawing_TextStyleAddFontVariation()
 
 ```
-void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* axis, int value )
+void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* , const float  )
 ```
 
 **Description**
@@ -14274,8 +15879,8 @@ Adds a font variation. This function takes effect only when the corresponding fo
 | Name                 | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
 | OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle). |
-| char                 | Pointer to the key in the font variation key-value pair. Currently, only **'wght'** is supported, indicating the font weight. |
-| int                  | Value of the font variation key-value pair. Currently, the value range of **'wght'** for the default font is \[0,900\]. |
+| char\*               | Pointer to the key in the font variation key-value pair. Currently, only **'wght'** is supported, indicating the font weight. |
+| float                | Value of the font variation key-value pair. Currently, the value range of **'wght'** for the default font is \[0,900\]. |
 
 
 ### OH_Drawing_TextStyleAddShadow()
@@ -16274,7 +17879,7 @@ void OH_Drawing_TypographySetIndents (OH_Drawing_Typography* , int , const float
 
 **Description**
 
-Sets the indents for typography.
+Sets indents for typography. If this function is not called, texts will have no indentation applied.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16285,8 +17890,8 @@ Sets the indents for typography.
 | Name                  | Description                                                  |
 | --------------------- | ------------------------------------------------------------ |
 | OH_Drawing_Typography | Pointer to an [OH_Drawing_Typography](#oh_drawing_typography) object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography). |
-| int                   | Number of indents.                                           |
-| float                 | Array holding the indents.                                   |
+| int                   | Number of indents. The value must be less than or equal to the length of the indents array to avoid display exceptions caused by access to the out-of-bounds array. |
+| float                 | Pointer to a floating-point array, in which each element indicates an indentation width, in px. Before using [OH_Drawing_Typography](#oh_drawing_typography), you must declare and initialize the floating-point array. |
 
 
 ### OH_Drawing_TypographyStyleDestroyStrutStyle()
