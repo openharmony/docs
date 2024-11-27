@@ -38,17 +38,17 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 ## 开发
 
-- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加pages页面。具体操作可参考<!--RP1-->[应用/服务开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-add-new-ability-V5)<!--RP1End-->。
+- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加pages页面。具体操作可参考[应用/服务开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-add-new-ability-V13)。
 
 - HAP中支持引用HAR或HSP共享包，详见[HAR的使用](./har-package.md#使用)、[HSP的使用](./in-app-hsp.md#使用)。
 
 ## 调试
 
-通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见<!--RP2-->[定制编译指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-customized-multi-targets-and-products-guides-V5)<!--RP2End-->。
+通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-customized-multi-targets-and-products-guides-V13)。
 
 开发者可以采用DevEco Studio或者hdc工具进行调试：
 
-- **方法一：** 使用DevEco Studio进行调试，详见<!--RP3-->[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-run-debug-configurations-V5)<!--RP3End-->。
+- **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-debug-configurations-V13)。
 
 - **方法二：** 使用<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试。
 

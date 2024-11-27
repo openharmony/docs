@@ -16,7 +16,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建
-通过DevEco Studio创建一个HAR模块，详见<!--RP1-->[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-V5#section643521083015)<!--RP1End-->。
+通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-V13#section643521083015)。
 
 
 ## 开发
@@ -134,7 +134,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 介绍如何配置HAR依赖，并引用HAR的ArkUI组件、接口、资源。
 
-引用HAR前，需要先配置对HAR的依赖，详见<!--RP2-->[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->。
+引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13)。
 
 ### 引用HAR的ArkUI组件
 
@@ -300,7 +300,7 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 > 仅Stage模型的ArkTS工程支持混淆。  
 > HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
-HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-build-obfuscation-V5)，配置如下所示：
+HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-build-obfuscation-V13)，配置如下所示：
 
   ```json
   {
@@ -367,8 +367,8 @@ HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 发布
 
-详见<!--RP3-->[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-publish-V5)<!--RP3End-->。
+详见[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-publish-V13)。
 
 ## 相关实例
 
-- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-5.0.1-Release/code/Solutions/Shopping/OrangeShopping)
+- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Solutions/Shopping/OrangeShopping)
