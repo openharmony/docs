@@ -2613,7 +2613,7 @@
             - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
             - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
             - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
-            - [oh_display_capture.h](oh__display__capture_8h.md)
+            - [oh_display_capture.h](reference/apis-arkui/oh__display__capture_8h.md)
             - [oh_display_info.h](reference/apis-arkui/oh__display__info_8h.md)
             - [oh_display_manager.h](reference/apis-arkui/oh__display__manager_8h.md)
           - 结构体<!--arkui-struct-->
@@ -2645,10 +2645,10 @@
             - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
             - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
             - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
-            - [NativeDisplayManager_DisplayColorSpace](_native_display_manager___display_color_space.md)
-            - [NativeDisplayManager_DisplayHdrFormat](_native_display_manager___display_hdr_format.md)
-            - [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md)
-            - [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md)
+            - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/_native_display_manager___display_color_space.md)
+            - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/_native_display_manager___display_hdr_format.md)
+            - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/_native_display_manager___display_info.md)
+            - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/_native_display_manager___displays_info.md)
             - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
             - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
       - 错误码<!--arkui-arkts-errcode-->
