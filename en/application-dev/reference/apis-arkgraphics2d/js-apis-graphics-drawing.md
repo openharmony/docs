@@ -3482,7 +3482,7 @@ Converts a value of the string type into a **TextBlob** object.
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | Yes  | Content to be used for drawing the text blob.                  |
 | font     | [Font](#font)                 | Yes  | **Font** object.          |
-| encoding | [TextEncoding](#textencoding) | No  | Encoding type. The default value is **TEXT_ENCODING_UTF8**.|
+| encoding | [TextEncoding](#textencoding) | No  | Encoding type. The default value is **TEXT_ENCODING_UTF8**. Currently, only **TEXT_ENCODING_UTF8** takes effect, and other encoding types are treated as **TEXT_ENCODING_UTF8**.|
 
 **Return value**
 
@@ -3638,7 +3638,7 @@ Constructs a typeface from a file.
 
 | Name        | Type                                      | Mandatory  | Description                 |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| filePath | string           | Yes  | Path of the file.|
+| filePath | string           | Yes  | Path of the file. For details, see [Mappings Between Application Sandbox Paths and Physical Paths](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths).|
 
 **Return value**
 
@@ -6602,7 +6602,7 @@ matrix.setRotation(90, 100, 100);
 
 setScale(sx: number, sy: number, px: number, py: number): void
 
-Sets this matrix as an identity matrix and scales it with the coefficients (sx, sy) at the rotation point (px, py).
+Sets this matrix as an identity matrix and scales it with the coefficients (sx, sy) at the scale point (px, py).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -6612,8 +6612,8 @@ Sets this matrix as an identity matrix and scales it with the coefficients (sx, 
 | ----------- | ---------------------------------------- | ---- | ------------------- |
 | sx          | number                  | Yes   | Scale coefficient along the X axis. If a negative number is passed in, the matrix is mirrored around y = px before being scaled. The value is a floating point number.    |
 | sy          | number                  | Yes   | Scale coefficient along the Y axis. If a negative number is passed in, the matrix is mirrored around x = py before being scaled. The value is a floating point number.    |
-| px          | number                  | Yes   |  X coordinate of the rotation point. The value is a floating point number.     |
-| py          | number                  | Yes   |  Y coordinate of the rotation point. The value is a floating point number.     |
+| px          | number                  | Yes   |  X coordinate of the scale point. The value is a floating point number.     |
+| py          | number                  | Yes   |  Y coordinate of the scale point. The value is a floating point number.     |
 
 **Error codes**
 

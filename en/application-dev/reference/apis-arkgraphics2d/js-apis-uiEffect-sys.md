@@ -6,7 +6,7 @@ The uiEffect module provides basic capabilities to apply an effect, for example,
 - [VisualEffect](#visualeffect): applies a visual effect to a component.
 
 > **NOTE**
-> 
+>
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This topic describes only system APIs provided by the module. For details about its public APIs, see [ohos.graphics.uiEffect (Cascading Effect)](js-apis-uiEffect.md).
 
@@ -49,7 +49,7 @@ A class that can apply a filter to a component. Before calling any API in **Filt
 ### pixelStretch
 pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
 
-Applies the pixel stretch effect to the component.
+Applies the pixel stretch effect onto the component.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -77,7 +77,7 @@ filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 ### waterRipple
 waterRipple(progress: number, waveCount: number, x: number, y: number, rippleMode: WaterRippleMode): Filter
 
-Applies the ripple effect to the component.
+Applies the ripple effect onto the component.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -108,7 +108,7 @@ filter.waterRipple(0.5, 2, 0.5, 0.5, uiEffect.WaterRippleMode.SMALL2SMALL)
 ### flyInFlyOutEffect
 flyInFlyOutEffect(degree: number, flyMode: FlyMode): Filter
 
-Adds fly-in and fly-out animations to the component.
+Applies fly-in and fly-out animations onto the component.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -118,7 +118,7 @@ Adds fly-in and fly-out animations to the component.
 | Name        | Type                 | Mandatory| Description                      |
 | ------------- | --------------------- | ---- | ------------------------- |
 | degree  | number         | Yes  | Degree of control over deformation of the fly-in and fly-out animations. The value range is [0, 1].<br>A value closer to 1 results in more obvious deformation.<br>If a value outside this range is provided, no fly-in and fly-out animations will be displayed.|
-| flyMode      | [FlyMode](#flymode) | Yes  | Scene mode of the fly-in and fly-out animations.<br>**BOTTOM** means that the fly-in and fly-out animations occur from the bottom of the screen, and **TOP** means that the fly-in and fly-out animations occur from the top of the screen.|
+| flyMode      | [FlyMode](#flymode) | Yes  | Scene mode of the fly-in and fly-out animations.<br>**BOTTOM** means that the fly-in and fly-out animations occur from the bottom of the screen,<br>and **TOP** means that the fly-in and fly-out animations occur from the top of the screen.|
 
 
 **Return value**
