@@ -1084,6 +1084,7 @@ async function example() {
 ```
 
 ### grantPhotoAssetsReadPermission<sup>14+</sup>
+
 grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 <!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
