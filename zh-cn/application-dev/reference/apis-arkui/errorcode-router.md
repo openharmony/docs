@@ -12,7 +12,7 @@ Internal error.
 
 **错误描述**
 
-当出现了开发者解决不了的内部异常错误，系统会产生此错误码，并描述具体是哪种内部错误。
+当出现了开发者解决不了的内部异常错误，系统会产生此错误码，并描述具体是哪种内部错误。作为router的错误码时，该错误码为string类型。
 
 **可能原因**
 
@@ -30,7 +30,7 @@ Uri error. The URI of the page to redirect is incorrect or does not exist
 
 **错误描述**
 
-当跳转页面输入的uri错误或者不存在，系统会产生此错误码。
+当跳转页面输入的uri错误或者不存在，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
@@ -48,7 +48,7 @@ Page stack error. Too many pages are pushed.
 
 **错误描述**
 
-当跳转页面压入页面数超过32，系统会产生此错误码。
+当跳转页面压入页面数超过32，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
@@ -66,7 +66,7 @@ Named route error. The named route does not exist.
 
 **错误描述**
 
-当跳转命名路由页面输入的name错误或者不存在，系统会产生此错误码。
+当跳转命名路由页面输入的name错误或者不存在，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
@@ -116,7 +116,7 @@ Uri error. The URI of the page to be used for replacement is incorrect or does n
 
 **错误描述**
 
-当替换页面输入的uri错误或不存在，系统会产生此错误码。
+当替换页面输入的uri错误或不存在，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
