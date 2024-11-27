@@ -17,7 +17,7 @@
     - [Concurrency Overview](concurrency-overview.md)
     - [Asynchronous Concurrency](async-concurrency-overview.md)
     - Multithreaded Concurrency
-        - [Multithreaded Concurrency](multi-thread-concurrency-overview.md)
+        - [Multithreaded Concurrency Overview](multi-thread-concurrency-overview.md)
         - [TaskPool Introduction](taskpool-introduction.md)
         - [Worker Introduction](worker-introduction.md)
         - [Comparison Between TaskPool and Worker](taskpool-vs-worker.md)
@@ -28,8 +28,8 @@
             - [ArrayBuffer Object](arraybuffer-object.md)
             - [SharedArrayBuffer Object](shared-arraybuffer-object.md)
             - [Transferable Object (NativeBinding Object)](transferabled-object.md)
-            - Sendable Objects
-                - [Sendable Object](arkts-sendable.md)
+            - Sendable Object
+                - [Sendable Object Overview](arkts-sendable.md)
                 - [Sendable Usage Rules and Constraints](sendable-constraints.md)
                 - [Asynchronous Lock](arkts-async-lock-introduction.md)
                 - [ASON Parsing and Generation](ason-parsing-generation.md)
