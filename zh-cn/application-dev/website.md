@@ -3321,6 +3321,7 @@
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
           <!--Del-->
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
+          - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
       - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
@@ -4029,6 +4030,7 @@
           - [oh_location.h](reference/apis-location-kit/oh__location_8h.md)
           - [oh_location_type.h](reference/apis-location-kit/oh__location__type_8h.md)
         - 结构体<!--location-struct-->
+          - [Location_BasicInfo](reference/apis-location-kit/_location___basic_info.md)
       - 错误码<!--location-arkts-errcode-->
         - [位置服务错误码](reference/apis-location-kit/errorcode-geoLocationManager.md)
     - Notification Kit（用户通知服务）<!--notification-api-->
