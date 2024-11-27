@@ -745,10 +745,10 @@ Pixelmap缩放时采用的缩放算法。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_PixelmapNative_AntiAliasing_NONE  | 最近邻缩放算法。   | 
-| OH_PixelmapNative_AntiAliasing_LOW  | 双线性缩放算法。   | 
-| OH_PixelmapNative_AntiAliasing_MEDIUM  | 双线性缩放算法，同时开启mipmap。   | 
-| OH_PixelmapNative_AntiAliasing_HIGH  | cubic缩放算法。   | 
+| OH_PixelmapNative_AntiAliasing_NONE  | 最近邻插值算法。   | 
+| OH_PixelmapNative_AntiAliasing_LOW  | 双线性插值算法。   | 
+| OH_PixelmapNative_AntiAliasing_MEDIUM  | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   | 
+| OH_PixelmapNative_AntiAliasing_HIGH  | 三次插值算法。   | 
 
 
 ### PIXELMAP_ALPHA_TYPE
