@@ -36,16 +36,4 @@ The error message **code:9568347 error: install parse native so failed** is disp
 
 ### Solution
 
-Configure the value of **abiFilters** in **buildOption/externalNativeOptions** in the **build-profile.json5** file. For details, see [Application Debugging](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-app-debugging-V5).
-
-  ```
-  "buildOption": {
-    "externalNativeOptions": {
-      "abiFilters": [
-        "arm64-v8a",
-        "armeabi-v7a," // Mandatory for RK3568
-        "x86_64",
-       ]
-    },
-  }
-  ```
+Configure the value of **abiFilters** in **buildOption/externalNativeOptions** in the **build-profile.json5** file. For details, see [Application Debugging](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-app-debugging-14-V5).
