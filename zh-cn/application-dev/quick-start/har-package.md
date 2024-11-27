@@ -300,7 +300,7 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 > 仅Stage模型的ArkTS工程支持混淆。  
 > HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
-HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-build-obfuscation-V5)，配置如下所示：
+HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-build-obfuscation-V13)，配置如下所示：
 
   ```json
   {
