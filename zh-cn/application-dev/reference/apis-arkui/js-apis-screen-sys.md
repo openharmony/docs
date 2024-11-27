@@ -516,7 +516,7 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 });
 ```
 
-## screen.makeUnique
+## screen.makeUnique<sup>13+</sup>
 
 makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
