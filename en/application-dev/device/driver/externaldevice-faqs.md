@@ -19,9 +19,9 @@ The message "usb/usb_ddk_api.h not found" or "hid/hid_ddk_api.h not found" is di
 The message "compileSdkVersion and releaseType of the app do not match the apiVersion and releaseType on the device" is displayed during HAP installation.
 
 ### Solution
-
-<!--RP2-->Check whether the system version of the device<!--RP2End--> is correct according to the mapping provided in [Version Mapping](#version-mapping).
-
+<!--RP2-->
+Check whether the system version of the device is correct according to the mapping provided in [Version Mapping](#version-mapping).
+<!--RP2End-->
 ### Version Mapping
 <!--RP3-->
 | API Type| Minimum API Version| OpenHarmony Version|
