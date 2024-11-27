@@ -226,7 +226,7 @@ on(type: 'windowRectChange', callback: Callback<window.RectChangeOptions>): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -269,7 +269,7 @@ off(type: 'windowRectChange', callback?: Callback<window.RectChangeOptions>): vo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
