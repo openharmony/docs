@@ -1776,6 +1776,8 @@ async function example() {
 
 clone(title: string): Promise&lt;PhotoAsset&gt;
 
+将一个资产进行克隆，支持设置文件名，不支持修改文件类型。
+
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
