@@ -411,6 +411,7 @@
             - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
         - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
           - [组件导航 (Navigation) (推荐)](ui/arkts-navigation-navigation.md)
+          - [实现组件导航转场](ui/arkts-navigation-transition.md)
           - [页面路由 (@ohos.router)(不推荐)](ui/arkts-routing.md)
           - [Router切换Navigation](ui/arkts-router-to-navigation.md)
         - 使用文本<!--arkts-use-text-->
@@ -435,7 +436,6 @@
           - 转场动画<!--arkts-animation-transition-->
             - [转场动画概述](ui/arkts-transition-overview.md)
             - [出现/消失转场](ui/arkts-enter-exit-transition.md)
-            - [导航转场](ui/arkts-navigation-transition.md)
             - [模态转场](ui/arkts-modal-transition.md)
             - [共享元素转场 (一镜到底)](ui/arkts-shared-element-transition.md)
             - [旋转屏动画增强](ui/arkts-rotation-transition-animation.md)
@@ -1313,6 +1313,7 @@
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
         - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
         - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
+        - [在Worker线程中使用相机(ArkTS)](media/camera/camera-worker.md)
         <!--Del-->
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
