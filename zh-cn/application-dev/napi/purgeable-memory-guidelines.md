@@ -46,7 +46,7 @@ OpenHarmony提供Purgeable Memory内存管理机制，开发者可以使用相�
         ParaData *pdata = (ParaData*) param;
         int* oriData = (int*)data;
         int i = pdata->start;
-        while(i<pdata->end){
+        while (i < pdata->end) {
             *oriData *= i;
             i++;
         }
