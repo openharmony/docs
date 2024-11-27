@@ -21,6 +21,8 @@ The **drawing_text_declaration.h** file declares the structs related to text in 
 
 | Name| Description| 
 | -------- | -------- |
+| typedef struct [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) | Defines a struct used to manage text tabs. | 
+| typedef struct [OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) [OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) | Defines a struct used to extract a single line of data from a piece of text for typography. |
 | typedef struct [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)  [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) | Defines a struct used to load fonts.| 
 | typedef struct [OH_Drawing_Typography](_drawing.md#oh_drawing_typography)  [OH_Drawing_Typography](_drawing.md#oh_drawing_typography) | Defines a struct used to manage the typography layout and display.| 
 | typedef struct [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle)  [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) | Defines a struct used to manage text colors and decorations.| 
