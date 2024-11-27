@@ -464,7 +464,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 >  **使用说明：**
 >
-> 1. 使用该接口需要先设置Navigation的[id属性](./ts-universal-attributes-component-id#id)，否则该接口无效。
+> 1. 使用该接口需要先设置Navigation的[id属性](ts-universal-attributes-component-id.md#id)，否则该接口无效。
 > 2. 该接口需要配合NavDestination的[recoverable](./ts-basic-components-navdestination.md#recoverable14)接口使用。
 > 3. 恢复的过程中不可序列化的信息，例如不可序列化的参数与用户设置的onPop等，会被丢弃，无法恢复。
 
