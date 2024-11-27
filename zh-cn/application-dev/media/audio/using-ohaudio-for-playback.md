@@ -78,132 +78,209 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数的声明请查看[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks) 。
 
-
 3. 设置音频回调函数
 
     多音频并发处理可参考文档[处理音频焦点事件](audio-playback-concurrency.md)，仅接口语言差异。
 
-    ```c++
-    // 自定义写入数据函数
-    int32_t MyOnWriteData(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        void* buffer,
-        int32_t length)
-    {
-        // 将待播放的数据，按length长度写入buffer
-        return 0;
-    }
-    // 自定义音频流事件函数
-    int32_t MyOnStreamEvent(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        OH_AudioStream_Event event)
-    {
-        // 根据event表示的音频流事件信息，更新播放器状态和界面
-        return 0;
-    }
-    // 自定义音频中断事件函数
-    int32_t MyOnInterruptEvent(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        OH_AudioInterrupt_ForceType type,
-        OH_AudioInterrupt_Hint hint)
-    {
-        // 根据type和hint表示的音频中断信息，更新播放器状态和界面
-        return 0;
-    }
-    // 自定义异常回调函数
-    int32_t MyOnError(
-        OH_AudioRenderer* renderer,
-        void* userData,
-        OH_AudioStream_Result error)
-    {
-        // 根据error表示的音频异常信息，做出相应的处理
-        return 0;
-    }
+    在设置音频回调函数时API version 12新增回调函数[OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_onwritedatacallback)用于写入音频数据。
 
-    OH_AudioRenderer_Callbacks callbacks;
+    - API version 12开始**推荐**使用[OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_onwritedatacallback)代替[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
 
-    // 配置回调函数
-    callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
-    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
-    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
-    callbacks.OH_AudioRenderer_OnError = MyOnError;
+      能填满回调所需长度数据的情况下，返回AUDIO_DATA_CALLBACK_RESULT_VALID，系统会取用完整长度的数据缓冲进行播放。请不要在未填满数据的情况下返回AUDIO_DATA_CALLBACK_RESULT_VALID，否则会导致杂音、卡顿等现象。
 
-    //设置输出音频流的回调
-    OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
-    ```
+      在无法按时根据回调时间填充完整长度数据的情况。这时开发者可以选择暂停播放或填充静音数据。此时如果已经收到回调，可以返回AUDIO_DATA_CALLBACK_RESULT_INVALID，这样本次缓冲数据就不会被添加到播放过程中。
+
+      回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度,开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
+
+      从API version 12开始可通过[OH_AudioStreamBuilder_SetFrameSizeInCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback)设置audioDataSize的大小。
+
+      ```c++
+      // 自定义写入数据函数
+      static OH_AudioData_Callback_Result NewAudioRendererOnWriteData(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          void* audioData,
+          int32_t audioDataSize)
+      {
+          // 将待播放的数据，按audioDataSize长度写入audioData
+          // 如果开发者不希望播放某段audioData，返回AUDIO_DATA_CALLBACK_RESULT_INVALID即可
+          return AUDIO_DATA_CALLBACK_RESULT_VALID;
+      }
+      // 自定义音频流事件函数
+      int32_t MyOnStreamEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Event event)
+      {
+          // 根据event表示的音频流事件信息，更新播放器状态和界面
+          return 0;
+      }
+      // 自定义音频中断事件函数
+      int32_t MyOnInterruptEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioInterrupt_ForceType type,
+          OH_AudioInterrupt_Hint hint)
+      {
+          // 根据type和hint表示的音频中断信息，更新播放器状态和界面
+          return 0;
+      }
+      // 自定义异常回调函数
+      int32_t MyOnError(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Result error)
+      {
+          // 根据error表示的音频异常信息，做出相应的处理
+          return 0;
+      }
+
+      OH_AudioRenderer_Callbacks callbacks;
+
+      // 配置回调函数
+      callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+      callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+      callbacks.OH_AudioRenderer_OnError = MyOnError;
+      callbacks.OH_AudioRenderer_OnWriteData = nullptr;
+
+      // 设置输出音频流的回调
+      OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+
+      // 配置写入音频数据回调函数
+      OH_AudioRenderer_OnWriteDataCallback writeDataCb = NewAudioRendererOnWriteData;
+      OH_AudioStreamBuilder_SetRendererWriteDataCallback(builder, writeDataCb, nullptr);
+      ```
+
+    - API version 11使用回调函数[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
+
+      该函数不支持返回回调结果，系统默认回调中的数据均为有效数据。请确保填满回调所需长度数据，否则会导致杂音、卡顿等现象。
+
+      在无法按时根据回调时间填充完整长度数据的情况。这时开发者可以选择暂停播放或填充静音数据。此时如果已经收到回调，开发者需要主动处理将buffer置空，这样本次缓冲数据就不会被添加到播放过程中。
+
+      回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度,开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
+
+      ```c++
+      // 自定义写入数据函数
+      int32_t MyOnWriteData(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          void* buffer,
+          int32_t length)
+      {
+          // 将待播放的数据，按length长度写入buffer
+          // 如果开发者不希望播放某段buffer，可在此处对buffer进行置空处理。
+          return 0;
+      }
+      // 自定义音频流事件函数
+      int32_t MyOnStreamEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Event event)
+      {
+          // 根据event表示的音频流事件信息，更新播放器状态和界面
+          return 0;
+      }
+      // 自定义音频中断事件函数
+      int32_t MyOnInterruptEvent(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioInterrupt_ForceType type,
+          OH_AudioInterrupt_Hint hint)
+      {
+          // 根据type和hint表示的音频中断信息，更新播放器状态和界面
+          return 0;
+      }
+      // 自定义异常回调函数
+      int32_t MyOnError(
+          OH_AudioRenderer* renderer,
+          void* userData,
+          OH_AudioStream_Result error)
+      {
+          // 根据error表示的音频异常信息，做出相应的处理
+          return 0;
+      }
+
+      OH_AudioRenderer_Callbacks callbacks;
+
+      // 配置回调函数
+      callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+      callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+      callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+      callbacks.OH_AudioRenderer_OnError = MyOnError;
+
+      // 设置输出音频流的回调
+      OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+      ```
 
    为了避免不可预期的行为，在设置音频回调函数时，可以通过下面两种方式中的任意一种来设置音频回调函数：
 
-    - 请确保[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
+   - 请确保[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
+   
+     ```c++
+     // 自定义写入数据函数
+     int32_t MyOnWriteData(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         void* buffer,
+         int32_t length)
+     {
+         // 将待播放的数据，按length长度写入buffer
+         return 0;
+     }
+     // 自定义音频中断事件函数
+     int32_t MyOnInterruptEvent(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         OH_AudioInterrupt_ForceType type,
+         OH_AudioInterrupt_Hint hint)
+     {
+         // 根据type和hint表示的音频中断信息，更新播放器状态和界面
+         return 0;
+     }
 
-      ```c++
-      // 自定义写入数据函数
-      int32_t MyOnWriteData(
-          OH_AudioRenderer* renderer,
-          void* userData,
-          void* buffer,
-          int32_t length)
-      {
-          // 将待播放的数据，按length长度写入buffer
-          return 0;
-      }
-      // 自定义音频中断事件函数
-      int32_t MyOnInterruptEvent(
-          OH_AudioRenderer* renderer,
-          void* userData,
-          OH_AudioInterrupt_ForceType type,
-          OH_AudioInterrupt_Hint hint)
-      {
-          // 根据type和hint表示的音频中断信息，更新播放器状态和界面
-          return 0;
-      }
+     OH_AudioRenderer_Callbacks callbacks;
 
-      OH_AudioRenderer_Callbacks callbacks;
+     // 配置回调函数，如果需要监听，则赋值
+     callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+     callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
 
-      // 配置回调函数，如果需要监听，则赋值
-      callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
-      callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
-
-      // （必选）如果不需要监听，使用空指针初始化
-      callbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
-      callbacks.OH_AudioRenderer_OnError = nullptr;
-      ```
-
-    - 使用前，初始化并清零结构体。
-
-      ```c++
-      // 自定义写入数据函数
-      int32_t MyOnWriteData(
-          OH_AudioRenderer* renderer,
-          void* userData,
-          void* buffer,
-          int32_t length)
-      {
-          // 将待播放的数据，按length长度写入buffer
-          return 0;
-      }
-      // 自定义音频中断事件函数
-      int32_t MyOnInterruptEvent(
-          OH_AudioRenderer* renderer,
-          void* userData,
-          OH_AudioInterrupt_ForceType type,
-          OH_AudioInterrupt_Hint hint)
-      {
-          // 根据type和hint表示的音频中断信息，更新播放器状态和界面
-          return 0;
-      }
-      OH_AudioRenderer_Callbacks callbacks;
-
-      // 使用前，初始化并清零结构体
-      memset(&callbacks, 0, sizeof(OH_AudioRenderer_Callbacks));
-
-      // 配置需要的回调函数
-      callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
-      callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
-      ```
+     // （必选）如果不需要监听，使用空指针初始化
+     callbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
+     callbacks.OH_AudioRenderer_OnError = nullptr;
+     ```
+   
+   - 使用前，初始化并清零结构体。
+   
+     ```c++
+     // 自定义写入数据函数
+     int32_t MyOnWriteData(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         void* buffer,
+         int32_t length)
+     {
+         // 将待播放的数据，按length长度写入buffer
+         return 0;
+     }
+     // 自定义音频中断事件函数
+     int32_t MyOnInterruptEvent(
+         OH_AudioRenderer* renderer,
+         void* userData,
+         OH_AudioInterrupt_ForceType type,
+         OH_AudioInterrupt_Hint hint)
+     {
+         // 根据type和hint表示的音频中断信息，更新播放器状态和界面
+         return 0;
+     }
+     OH_AudioRenderer_Callbacks callbacks;
+   
+     // 使用前，初始化并清零结构体
+     memset(&callbacks, 0, sizeof(OH_AudioRenderer_Callbacks));
+   
+     // 配置需要的回调函数
+     callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+     callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+     ```
 
 4. 构造播放音频流
 
