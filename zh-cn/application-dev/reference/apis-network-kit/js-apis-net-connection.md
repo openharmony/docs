@@ -1890,7 +1890,7 @@ unregister(callback: AsyncCallback\<void>): void
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exists.      |
+| 2101007 | The callback does not exist.      |
 
 **示例：**
 
