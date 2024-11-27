@@ -3321,6 +3321,7 @@
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
           <!--Del-->
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
+          - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
