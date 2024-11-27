@@ -1,4 +1,4 @@
-# Continuous task (ArkTS)
+# Continuous Task (ArkTS)
 
 
 ## Overview
@@ -7,7 +7,6 @@
 ### Introduction
 
 If an application has a perceivable task that needs to run in an extended period of time in the background, it can request a continuous task to prevent itself from being suspended. Examples of continuous tasks include music playback and navigation in the background.
-
 After an application requests a continuous task, the system verifies whether the application is actually executing the continuous task. It also attaches a notification to the continuous task. If the user deletes the notification, the system automatically stops the task.
 
 
@@ -19,7 +18,7 @@ The table below lists the types of continuous tasks, which are used in various s
 | Name| Description| Item| Example Scenario|
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | Data transfer| dataTransfer | The browser downloads a large file in the background.|
-| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | A music application plays music in the background.<br>It can be used in atomic services.|
+| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | Music applications play music in the background. Users cast a video application to a large screen.<br>It can be used in atomic services.|
 | AUDIO_RECORDING | Audio recording| audioRecording | A recorder records audio in the background.|
 | LOCATION | Positioning and navigation| location | A navigation application provides navigation in the background.|
 | BLUETOOTH_INTERACTION | Bluetooth-related task| bluetoothInteraction | Transfer a file through Bluetooth.|
@@ -71,9 +70,9 @@ The following walks you through how to request a continuous task for recording. 
 
 1. Declare the **ohos.permission.KEEP_BACKGROUND_RUNNING** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
-2. Declare the background mode and add configurations such as **uris**.
-   - (Mandatory) Declare the background mode. Specifically, declare the type of the continuous task for the target UIAbility in the **module.json5** file. (Set the corresponding configuration item in the configuration file.)
-   - (Optional) Add configurations such as **uris**. If redirection features such as deep linking and app linking are used, refer to the sample code below. The mandatory parameters cannot be modified. For details about the optional parameters, see [Overview of Application Redirection](../application-models/link-between-apps-overview.md).
+2. Declare the continuous task type.
+
+   Declare the type of the continuous task for the target UIAbility in the **module.json5** file. (Set the corresponding [configuration item](#use-cases) in the configuration file.)
    
    ```json
     "module": {
@@ -82,31 +81,6 @@ The following walks you through how to request a continuous task for recording. 
                 "backgroundModes": [
                  // Configuration item of the continuous task type
                 "audioRecording"
-                ], 
-                "skills": [
-                    // Mandatory: entities and actions values for the request for a continuous task.
-                    {
-                        "entities": [
-                            "entity.system.home"
-                        ],
-                        "actions": [
-                            "action.system.home"
-                        ]    
-                    },
-                    // Optional: required for redirection features such as deep linking and app linking.
-                    {
-                        "entities": [
-                            "test"
-                        ],
-                        "actions": [
-                            "test"
-                        ],
-                        "uris": [
-                            {
-                                "scheme": "test"
-                            }
-                        ]
-                    }
                 ]
             }
         ],
@@ -150,7 +124,7 @@ The following walks you through how to request a continuous task for recording. 
           wants: [
             {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "MainAbility"
             }
           ],
           // Specify the action to perform (starting the ability) after the notification message is clicked.
@@ -202,7 +176,7 @@ The following walks you through how to request a continuous task for recording. 
             })
    
             Button() {
-              Text ('Cancel continuous task').fontSize (25).fontWeight (FontWeight.Bold)
+              Text('Cancel continuous task').fontSize (25).fontWeight (FontWeight.Bold)
             }
             .type(ButtonType.Capsule)
             .margin({ top: 10 })
@@ -497,6 +471,5 @@ The following walks you through how to request a continuous task for recording. 
     }
 
     export default new ServiceAbility();
-    ```
+   ```
 <!--DelEnd-->
-

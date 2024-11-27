@@ -22,8 +22,6 @@ Publishes a reminder. This API uses an asynchronous callback to return the resul
 > **NOTE**
 >
 > This API can be called only after the [NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) permission is obtained.
->
-> <!--RP1--><!--RP1End-->
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -73,8 +71,6 @@ Publishes a reminder. This API uses a promise to return the result.
 > **NOTE**
 >
 > This API can be called only after the [NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) permission is obtained.
->
-> <!--RP1--><!--RP1End-->
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -853,7 +849,7 @@ Defines the request for publishing a reminder.
 | tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
 | autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest).|
 | snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder. (It is not applicable to countdown reminders.)|
-| customRingUri<sup>11+</sup> | string | No| URI of the custom prompt tone.|
+| customRingUri<sup>11+</sup> | string | No| URI of the custom prompt tone. The prompt tone file must be stored in the **resources/rawfile** directory and supports formats such as M4A, AAC, MP3, OGG, WAV, FLAC, and AMR.|
 
 ## ReminderRequestCalendar
 
