@@ -128,7 +128,7 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
    }
    ```
 
-2. Wrap a C++ object in an ArkJS object in a constructor.
+2. Wrap a C++ object in an ArkTS object in a constructor.
 
    ```cpp
    napi_value MyObject::New(napi_env env, napi_callback_info info)
