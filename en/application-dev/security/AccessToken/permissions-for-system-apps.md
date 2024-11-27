@@ -2929,6 +2929,18 @@ Allows a system application to enable or disable the switches related to communi
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_CMAP_SERVICE
+
+Allows a system application to access the cellular map service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ### ohos.permission.MANAGE_USER_ACCOUNT_INFO
 
 Allows a system application or an SA to call the account service.
