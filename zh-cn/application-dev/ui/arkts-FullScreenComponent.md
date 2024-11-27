@@ -8,7 +8,7 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，�
 
 - [FullScreenLaunchComponent](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)组件
 
-  FullScreenLaunchComponent是由ArkUI提供的组件，允许在使用方应用中通过ArkTS的声明式范式进行定义和使用。该组件基于[UIExtension](./arkts-ui-extension-components.md)封装，<!--Del-->但不同于系统接口 [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)，<!--DelEnd-->FullScreenLaunchComponent向第三方应用开放使用权限，当被拉起方授权使用方应用嵌入式运行原子化服务时，使用方应用可全屏嵌入式运行该服务；若未授权，则使用方应用将以跳出式方式拉起原子化服务。
+  FullScreenLaunchComponent是由ArkUI提供的组件，允许在使用方应用中通过ArkTS的声明式范式进行定义和使用。<!--Del-->该组件基于[UIExtension](./arkts-ui-extension-components.md)封装，但不同于系统接口 [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)，<!--DelEnd-->FullScreenLaunchComponent向第三方应用开放使用权限，当被拉起方授权使用方应用嵌入式运行原子化服务时，使用方应用可全屏嵌入式运行该服务。若未授权，则使用方应用将以跳出式方式拉起原子化服务。
 
 - [EmbeddableUIAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)组件
 
