@@ -565,16 +565,23 @@ uint8_t* OH_AVBuffer_GetAddr (OH_AVBuffer *buffer)
 
 获取数据缓冲区的虚拟地址。
 
-|   使用场景     |                |  |   获取虚拟地址   |
-| --------------- | -------- | -------- | ------ |
-| 编码    | Surface模式  |OnNeedInputBuffer输入    | ×   |
-|         |             |OnNewOutputBuffer 输出     | √    |
-| 编码    | Buffer模式  |OnNeedInputBuffer输入    |   √   |
-|         |             |OnNewOutputBuffer 输出     |  √    |
-| 解码    | Surface模式  |OnNeedInputBuffer输入    |   √   |
-|         |             |OnNewOutputBuffer 输出     |  ×   |
-| 解码    | Buffer模式  |OnNeedInputBuffer输入    |   √   |
-|         |             |OnNewOutputBuffer 输出     | √     |
+不同场景下，对是否可以获取虚拟地址的支持情况不同，请见表格：
+
+**编码：**
+| 模式 | 填充数据的方式 |  是否可以获取虚拟地址 |
+| --------------- | -------- | -------- |
+| Surface模式 | OnNeedInputBuffer输入  | × |
+| Surface模式 | OnNewOutputBuffer输出  | √ |
+| Buffer模式  | OnNeedInputBuffer输入  | √ |
+| Buffer模式  | OnNewOutputBuffer输出  | √ |
+
+**解码：**
+| 模式 | 填充数据的方式 |  是否可以获取虚拟地址 |
+| --------------- | -------- | -------- |
+| Surface模式 | OnNeedInputBuffer输入  | √ |
+| Surface模式 | OnNewOutputBuffer输出  | × |
+| Buffer模式  | OnNeedInputBuffer输入  | √ |
+| Buffer模式  | OnNewOutputBuffer输出  | √ |
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
