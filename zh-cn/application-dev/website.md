@@ -4068,7 +4068,7 @@
       - C API<!--notification-c-->
         - 模块<!--notification-module-->
           - [Notification](reference/apis-notification-kit/capi-notification.md)
-        - 头文件<!--notification-c-->
+        - 头文件<!--notification-struct-->
           - [notification.h](reference/apis-notification-kit/notification_8h.md)
       - 错误码<!--notification-arkts-errcode-->
         - [通知错误码](reference/apis-notification-kit/errorcode-notification.md)
