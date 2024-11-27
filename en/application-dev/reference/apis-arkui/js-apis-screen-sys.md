@@ -970,9 +970,9 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 });
 ```
 
-## screen.makeUniqueScreen
+## screen.makeUnique
 
-makeUniqueScreen(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+makeUnique(screenIds: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 Set multiple screens as unique screens. This API uses a promise to return the result.
 
@@ -1025,7 +1025,7 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
   console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
   let screenIds: Array<number> = [screenClass.id];
-  let promise: Promise<Array<number>> = screen.makeUniqueScreen(screenIds);
+  let promise: Promise<Array<number>> = screen.makeUnique(screenIds);
   promise.then((displayIds: Array<number>) => {
     console.info('Succeeded make unoque screen. dispalyIds: ' + JSON.stringify(displayIds));
   }).catch((err: BusinessError) => {
