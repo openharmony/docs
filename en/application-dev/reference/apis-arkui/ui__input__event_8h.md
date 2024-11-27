@@ -7,6 +7,8 @@ Provides ArkUI event definitions on the native side.
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <arkui/ui_input_event.h>
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Since**: 12

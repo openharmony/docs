@@ -7,6 +7,8 @@ Declares the functions used to convert FrameNodes on the ArkTS side into NodeHan
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <arkui/native_node_napi.h>
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Since**: 12

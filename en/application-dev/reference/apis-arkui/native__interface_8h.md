@@ -7,6 +7,8 @@ Provides a unified entry for the native module APIs.
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <arkui/native_interface.h>
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Since**: 12
