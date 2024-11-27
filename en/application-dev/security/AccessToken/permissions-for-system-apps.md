@@ -4385,6 +4385,30 @@ For the application developed using the cross-platform framework, this permissio
 
 **Valid since**: 13
 
+### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+
+Allows an application to set or remove the sharing range of the data supported by UDMF.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：14
+
+### ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+Allows an application to manage the pasteable range of the pasteboard data.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：14
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
