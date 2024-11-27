@@ -1,6 +1,6 @@
 # Using the Input Method in a Custom Edit Box
 
-You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9) to obtain an [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller) instance, and implement a custom text input box by binding the **InputMethodController** instance to an input method and listen for text input operations, such as text insertion, deletion, selection, and cursor movement.
+In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9) to obtain the [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller) instance for binding the input method and listening to various events of the input method application, such as insertion, deletion, selection, and cursor movement. In this way, the input method can be used in the custom edit box, implementing more flexible and free editing operations.
 
 ## How to Develop
 
@@ -16,7 +16,7 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
    }
    ```
 
-2. In the component, use the **Text** component to show text in the text input box, and the **inputText** state variable to specify the text to display in the text input box.
+2. In the component, use the **Text** component to show the text in the custom edit box, and the **inputText** state variable to specify the text to display in the text input box.
 
    ```ets
    import { inputMethod } from '@kit.IMEKit';
@@ -26,7 +26,7 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
      @State inputText: string = ''; // Specify the text to display in the text input box.
      
      build() {
-       Text(this.inputText) // Use the Text component to show text in the text input box
+       Text(this.inputText) // Use the Text component to show the text in the custom edit box.
          .fontSize(16)
          .width('100%')
          .lineHeight(40)
@@ -50,7 +50,7 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
      private inputController: inputMethod.InputMethodController = inputMethod.getController();
    
      build() {
-       Text(this.inputText) // Use the Text component to show text in the custom input box
+       Text(this.inputText) // Use the Text component to show the text in the custom edit box.
          .fontSize(16)
          .width('100%')
          .lineHeight(40)
@@ -66,7 +66,7 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
          })
      }
    
-     async attachAndListener() {// Bind and set a listener.
+     async attachAndListener() { // Bind and set a listener.
        focusControl.requestFocus('CustomInput');
        await this.inputController.attach(true, {
          inputAttribute: {
@@ -111,6 +111,4 @@ You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inp
    ```
 
    ## Effect
-    ![Example](figures/image-1.png)
-  
-  
+   ![Example](figures/image-1.png)

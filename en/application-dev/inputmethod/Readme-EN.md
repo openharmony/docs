@@ -5,3 +5,4 @@
 - [Using the Input Method in a Custom Edit Box](use-inputmethod-in-custom-edit-box.md)
 - [Switching Between Input Methods](switch-inputmehod-guide.md)
 - [Setting Input Method Subtypes](input-method-subtype-guide.md)
+- [Custom Edit Box Development Guide (C/C++)](use-inputmethod-in-custom-edit-box-ndk.md)
