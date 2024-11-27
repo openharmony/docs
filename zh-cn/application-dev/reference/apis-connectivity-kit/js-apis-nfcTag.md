@@ -101,9 +101,9 @@ export default class EntryAbility extends UIAbility {
         if (isNfcATag) {
             let nfcA : tag.NfcATag | null = null;
             try {
-                nfcA = tag.getNfcATag(tagInfo);
+                nfcA = tag.getNfcA(tagInfo);
             } catch (error) {
-                console.error("tag.getNfcATag catch error: " + error);
+                console.error("tag.getNfcA catch error: " + error);
             }
             // other code to read or write this found tag.
         }
@@ -610,13 +610,11 @@ import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
 function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
-    if (err as BusinessError) {
-        if (!err) {
-            console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
-        } else {
-            console.log("foreground callback err: " + (err as BusinessError).message);
-            return;
-        }
+    if (!err) {
+        console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.log("foreground callback err: " + err.message);
+        return;
     }
   // other Operations of taginfo
 }
@@ -740,13 +738,11 @@ let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) th
 let elementName : bundleManager.ElementName;
 
 function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
-    if (err as BusinessError) {
-        if (!err) {
-            console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
-        } else {
-            console.error("offCallback err: " + (err as BusinessError).message);
-            return;
-        }
+    if (!err) {
+        console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.error("offCallback err: " + err.message);
+        return;
     }
   // other Operations of taginfo
 }

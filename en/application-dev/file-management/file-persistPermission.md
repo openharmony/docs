@@ -13,7 +13,7 @@ When an application needs to temporarily access data in a user directory, for ex
 
 Sometimes, an application needs to access a file or folder multiple times. For example, after editing a user file, a file editor application needs to select and open the file directly from the history records. To address this need, you can use Picker to select the file, and use [ohos.fileshare.persistPermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharepersistpermission11) to persist the temporary permission granted by Picker.
 
-To persist a temporary permission: 
+Before persisting a temporary permission, ensure that: 
 - The device must have the SystemCapability.FileManagement.File.Environment.FolderObtain system capability. You can use **canIUse()** to check whether the device has the required system capability.
 
 ```ts
@@ -22,10 +22,8 @@ if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
     return;
 }
 ```
+- The application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
-- The application must have the ohos.permission.FILE_ACCESS_PERSIST permission.
-  
-  The ohos.permission.FILE_ACCESS_PERSIST permission is of the system_basic Ability Privilege Level (APL) and is available only to the applications of the same or higher APL. To enable an application of the normal APL to have this permission, you need to declare the permission in the Access Control List (ACL). For details, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
 
@@ -73,7 +71,9 @@ For details about how to persist a temporary permission using C/C++ APIs, see [O
 ### Revoking a Temporary Permission
 You can use [ohos.fileshare.revokePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharerevokepermission11) to revoke the persistent permission from a file, and update the data stored in the application to delete the file URI from the recently accessed data.
 
-The caller must have the ohos.permission.FILE_ACCESS_PERSIST permission, which is of the system_basic APL and is available only to the applications of the same or higher APL. To enable an application of the normal APL to have this permission, you need to declare the permission in the Access Control List (ACL). For details, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
+**Required Permissions**
+
+ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
 
@@ -113,13 +113,17 @@ async function revokePermissionExample() {
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.
 > - The APIs used for persisting permissions are available only for 2-in-1 devices. You can use **canIUse()** to check whether the device has the required system capability. The caller must also have the required permissions.
 
+
+
 For details about how to revoke temporary permission using C/C++ APIs, see [OH_FileShare_RevokePermission](native-fileshare-guidelines.md).
 
 ## Activating a Persistent Permission for Accessing a File or Folder
 
 Each time an application is started, its persistent permissions have not been loaded to the memory. To make a persistent permission still valid after the application is restarted, use [ohos.fileshare.activatePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#fileshareactivatepermission11) to activate the permission.
 
-The caller must have the ohos.permission.FILE_ACCESS_PERSIST permission, which is of the system_basic APL and is available only to the applications of the same or higher APL. To enable an application of the normal APL to have this permission, you need to declare the permission in the Access Control List (ACL). For details, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
+**Required Permissions**
+
+ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
 

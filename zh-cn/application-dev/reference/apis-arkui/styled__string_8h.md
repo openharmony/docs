@@ -7,6 +7,8 @@
 
 **库：** libace_ndk.z.so
 
+**引用文件：** <arkui/styled_string.h>
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 12
@@ -35,3 +37,8 @@
 | void [OH_ArkUI_StyledString_PopTextStyle](_ark_u_i___native_module.md#oh_arkui_styledstring_poptextstyle) ([ArkUI_StyledString](_ark_u_i___native_module.md#arkui_styledstring) \*handle) | 将当前格式化字符串对象中栈顶样式出栈。  | 
 | OH_Drawing_Typography \* [OH_ArkUI_StyledString_CreateTypography](_ark_u_i___native_module.md#oh_arkui_styledstring_createtypography) ([ArkUI_StyledString](_ark_u_i___native_module.md#arkui_styledstring) \*handle) | 基于格式字符串对象创建指向OH_Drawing_Typography对象的指针，用于提前进行文本测算排版。  | 
 | void [OH_ArkUI_StyledString_AddPlaceholder](_ark_u_i___native_module.md#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](_ark_u_i___native_module.md#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | 设置占位符。  | 
+| [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \* [OH_ArkUI_StyledString_Descriptor_Create](_ark_u_i___native_module.md#oh_arkui_styledstring_descriptor_create) () | 创建属性字符串数据对象。  | 
+| void [OH_ArkUI_StyledString_Descriptor_Destroy](_ark_u_i___native_module.md#oh_arkui_styledstring_descriptor_destroy) ([ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor) | 释放被ArkUI_StyledString_Descriptor对象占据的内存。  | 
+| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](_ark_u_i___native_module.md#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t \*bufferSize, [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
+| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](_ark_u_i___native_module.md#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t \*bufferSize, [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
+| const char \* [OH_ArkUI_ConvertToHtml](_ark_u_i___native_module.md#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 

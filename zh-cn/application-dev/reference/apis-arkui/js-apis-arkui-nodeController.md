@@ -115,6 +115,11 @@ rebuild(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+> **说明：**
+> 由于rebuild方法为应用主动调用的方法，且该操作与UI相关。需要开发者自行保证调用该接口时UI上下文有效，即与绑定的NodeContainer保持UI上下文一致。
+>
+> 监听回调等UI上下文不明确时，可以通过[UIContext](./js-apis-arkui-UIContext.md)的[runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask)方法明确调用时的UI上下文。
+
 ### 示例
 
 ```ts

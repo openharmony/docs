@@ -1,4 +1,4 @@
-# Camera Preview (C/C++)
+# Preview (C/C++)
 
 Preview is the image you see after you start the camera application but before you take photos or record videos.
 
@@ -28,9 +28,9 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 3. Obtain the surface ID.
      
-    The **\<XComponent>**, the capabilities of which are provided by the UI, offers the surface ID for preview streams. For details, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+    The **XComponent**, the capabilities of which are provided by the UI, offers the surface ID for preview streams. For details, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
-4. Call **OH_CameraManager_GetSupportedCameraOutputCapability()** to obtain the preview capability supported by the current device based on the surface ID. Then call **OH_CameraManager_CreatePreviewOutput()** to create a **PreviewOutput** instance, with the parameters set to the **cameraManager** pointer, the first item in the **previewProfiles** array, the surface ID obtained in step 3, and the returned **previewOutput** pointer, respectively.
+4. Call [OH_CameraManager_GetSupportedCameraOutputCapability()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedcameraoutputcapability) to obtain the preview capability supported by the current device based on the surface ID. Then call **OH_CameraManager_CreatePreviewOutput()** to create a **PreviewOutput** instance, with the parameters set to the **cameraManager** pointer, the first item in the **previewProfiles** array, the surface ID obtained in step 3, and the returned **previewOutput** pointer, respectively.
      
     ```c++
       NDKCamera::NDKCamera(char *str)
@@ -71,18 +71,18 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 5. Configure the session. Call **commitConfig()** to commit the session configuration, and then call **start()** to start outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
      
    ```c++
-    ret = OH_PreviewOutput_Start(previewOutput);
+    ret = OH_CaptureSession_Start();
     if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Start failed.");
+        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
     }
    ```
 
-6. Call **stop()** to stop outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
+6. Call [OH_CaptureSession_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_stop) to stop outputting the preview stream. If the call fails, an error code is returned. For details, see [Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
      
    ```c++
-    ret = OH_PreviewOutput_Stop(previewOutput);
+    ret = OH_CaptureSession_Stop(previewOutput);
     if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Stop failed.");
+        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed.");
     }
    ```
 

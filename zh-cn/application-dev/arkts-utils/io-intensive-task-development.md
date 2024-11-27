@@ -66,7 +66,7 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
                 let context = getContext() as common.UIAbilityContext;
     
                 // 使用TaskPool执行包含密集I/O的并发函数
-                // 数组较大时，I/O密集型任务任务分发也会抢占主线程，需要使用多线程能力
+                // 数组较大时，I/O密集型任务任务分发也会抢占UI主线程，需要使用多线程能力
                 taskpool.execute(concurrentTest, context).then(() => {
                   // 调度结果处理
                   console.info("taskpool: execute success")

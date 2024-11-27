@@ -77,9 +77,9 @@ Appends a child node to this RenderNode.
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description                  |
+| Name| Type                     | Mandatory| Description                  |
 | ------ | ------------------------- | ---- | ---------------------- |
-| node   | [RenderNode](#rendernode) | Yes  | Child node to append. |
+| node   | [RenderNode](#rendernode) | Yes  | Child node to append.|
 
 **Example**
 
@@ -134,10 +134,10 @@ Inserts a child node after the specified child node of this RenderNode.
 
 **Parameters**
 
-| Name | Type                                       | Mandatory | Description                                                                        |
+| Name | Type                                       | Mandatory| Description                                                                        |
 | ------- | ------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
 | child   | [RenderNode](#rendernode)                   | Yes  | Child node to add.                                                          |
-| sibling | [RenderNode](#rendernode)&nbsp;\|&nbsp;null | Yes  | Node after which the new child node will be inserted. If this parameter is left empty, the new node is inserted before the first subnode. |
+| sibling | [RenderNode](#rendernode) \| null | Yes  | Node after which the new child node will be inserted. If this parameter is left empty, the new node is inserted before the first subnode.|
 
 **Example**
 
@@ -200,9 +200,9 @@ Deletes the specified child node from this RenderNode.
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description              |
+| Name| Type                     | Mandatory| Description              |
 | ------ | ------------------------- | ---- | ------------------ |
-| node   | [RenderNode](#rendernode) | Yes  | Child node to delete. |
+| node   | [RenderNode](#rendernode) | Yes  | Child node to delete.|
 
 **Example**
 ```ts
@@ -318,15 +318,15 @@ Obtains the child node in the specified position of this RenderNode.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
+| Name | Type   | Mandatory| Description              |
 | ------- | ------- | ---- | ------------------ |
-| index | number | Yes  | Index of the child node to obtain. |
+| index | number | Yes  | Index of the child node to obtain.|
 
 **Return value**
 
 | Type                             | Description                                                      |
 | --------------------------------- | ---------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | Child node obtained. If the RenderNode does not contain the specified child node, null is returned. |
+| [RenderNode](#rendernode) \| null | Child node obtained. If the RenderNode does not contain the specified child node, null is returned.|
 
 **Example**
 
@@ -398,7 +398,7 @@ Obtains the first child node of this RenderNode.
 
 | Type                             | Description                                                      |
 | --------------------------------- | ---------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | First child node. If the RenderNode does not contain any child node, null is returned. |
+| [RenderNode](#rendernode) \| null | First child node. If the RenderNode does not contain any child node, null is returned.|
 
 **Example**
 
@@ -468,7 +468,7 @@ Obtains the next sibling node of this RenderNode.
 
 | Type                             | Description                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | Next sibling node of the current RenderNode. If the RenderNode does not have the next sibling node, null is returned. |
+| [RenderNode](#rendernode) \| null | Next sibling node of the current RenderNode. If the RenderNode does not have the next sibling node, null is returned.|
 
 **Example**
 ```ts
@@ -539,7 +539,7 @@ Obtains the previous sibling node of this RenderNode.
 
 | Type                             | Description                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------- |
-| [RenderNode](#rendernode) \| null | Previous sibling node of the current RenderNode. If the RenderNode does not have the previous sibling node, null is returned. |
+| [RenderNode](#rendernode) \| null | Previous sibling node of the current RenderNode. If the RenderNode does not have the previous sibling node, null is returned.|
 
 **Example**
 ```ts
@@ -608,9 +608,9 @@ Sets the background color for this RenderNode.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                  |
+| Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | Yes  | Background color value, in ARGB format. |
+| color  | number | Yes  | Background color value, in ARGB format.|
 
 get backgroundColor(): number
 
@@ -624,7 +624,7 @@ Obtains the background color of this RenderNode.
 
 | Type  | Description                                          |
 | ------ | ---------------------------------------------- |
-| number | Background color of the current RenderNode. The default value is **0X00000000**. |
+| number | Background color of the current RenderNode. The default value is **0X00000000**.|
 
 **Example**
 ```ts
@@ -674,9 +674,9 @@ Sets whether to clip this RenderNode. The value **true** means to clip the Rende
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
+| Name | Type   | Mandatory| Description              |
 | ------- | ------- | ---- | ------------------ |
-| useClip | boolean | Yes  | Whether to clip the RenderNode. |
+| useClip | boolean | Yes  | Whether to clip the RenderNode.|
 
 get clipToFrame(): boolean
 
@@ -690,7 +690,7 @@ Obtains whether this RenderNode needs to be clipped.
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | Whether the current RenderNode needs to be clipped. The default value is **true**. |
+| boolean | Whether the current RenderNode needs to be clipped. The default value is **true**.|
 
 **Example**
 ```ts
@@ -747,9 +747,9 @@ Sets the opacity for this RenderNode. If the value passed in is less than **0**,
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                  |
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1] |
+| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]|
 
 get opacity(): number
 
@@ -763,7 +763,7 @@ Obtains the opacity of this RenderNode.
 
 | Type  | Description                                     |
 | ------ | ----------------------------------------- |
-| number | Opacity of the current RenderNode. The default value is **1**. |
+| number | Opacity of the current RenderNode. The default value is **1**.|
 
 **Example**
 ```ts
@@ -815,9 +815,9 @@ Sets the size for this RenderNode.
 
 **Parameters**
 
-| Name | Type                                    | Mandatory | Description                        |
+| Name| Type                                    | Mandatory| Description                        |
 | ------ | ---------------------------------------- | ---- | ---------------------------- |
-| size   | [Size](./js-apis-arkui-graphics.md#size) | Yes  | Size to set. |
+| size   | [Size](./js-apis-arkui-graphics.md#size) | Yes  | Size to set.|
 
 get size(): Size
 
@@ -831,7 +831,7 @@ Obtains the size of this RenderNode.
 
 | Name                                    | Description                                           |
 | ---------------------------------------- | ----------------------------------------------- |
-| [Size](./js-apis-arkui-graphics.md#size) | Size of the current RenderNode. The default width and height are **0**. |
+| [Size](./js-apis-arkui-graphics.md#size) | Size of the current RenderNode. The default width and height are **0**.|
 
 **Example**
 ```ts
@@ -882,9 +882,9 @@ Sets the position for this RenderNode.
 
 **Parameters**
 
-| Name  | Type                                            | Mandatory | Description                        |
+| Name  | Type                                            | Mandatory| Description                        |
 | -------- | ------------------------------------------------ | ---- | ---------------------------- |
-| position | [Position](./js-apis-arkui-graphics.md#position) | Yes  | Position to set. |
+| position | [Position](./js-apis-arkui-graphics.md#position) | Yes  | Position to set.|
 
 get position(): Position
 
@@ -898,7 +898,7 @@ Obtains the position of this RenderNode.
 
 | Type                                            | Description                                                |
 | ------------------------------------------------ | ---------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | Position of the current RenderNode. The default value is **{ x: 0, y: 0 }**. |
+| [Position](./js-apis-arkui-graphics.md#position) | Position of the current RenderNode. The default value is **{ x: 0, y: 0 }**.|
 
 **Example**
 ```ts
@@ -950,9 +950,9 @@ Sets the size and position for this RenderNode. When this parameter is used toge
 
 **Parameters**
 
-| Name | Type                                      | Mandatory | Description                            |
+| Name| Type                                      | Mandatory| Description                            |
 | ------ | ------------------------------------------ | ---- | -------------------------------- |
-| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | Yes  | Size and position to set. |
+| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | Yes  | Size and position to set.|
 
 get frame(): Frame
 
@@ -966,7 +966,7 @@ Obtains the size and position of this RenderNode.
 
 | Type           | Description                                                                         |
 | --------------- | ----------------------------------------------------------------------------- |
-| [Frame](#frame) | Size and position of the current RenderNode. The default value is **{ x: 0, y: 0, width: 0, height: 0 }**. |
+| [Frame](#frame) | Size and position of the current RenderNode. The default value is **{ x: 0, y: 0, width: 0, height: 0 }**.|
 
 **Example**
 ```ts
@@ -1017,9 +1017,9 @@ Sets the pivot for this RenderNode, which affects the scaling and rotation effec
 
 **Parameters**
 
-| Name | Type                                      | Mandatory | Description                        |
+| Name| Type                                      | Mandatory| Description                        |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
-| pivot  | [Pivot](./js-apis-arkui-graphics.md#pivot) | Yes  | Pivot to set. |
+| pivot  | [Pivot](./js-apis-arkui-graphics.md#pivot) | Yes  | Pivot to set.|
 
 get pivot(): Pivot
 
@@ -1033,7 +1033,7 @@ Obtains the pivot of this RenderNode.
 
 | Type                                      | Description                                                 |
 | ------------------------------------------ | ----------------------------------------------------- |
-| [Pivot](./js-apis-arkui-graphics.md#pivot) | Pivot of the current RenderNode. The default value is **{ x: 0.5, y: 0.5}**. |
+| [Pivot](./js-apis-arkui-graphics.md#pivot) | Pivot of the current RenderNode. The default value is **{ x: 0.5, y: 0.5}**.|
 
 **Example**
 ```ts
@@ -1087,9 +1087,9 @@ Sets the scale factor for this RenderNode.
 
 **Parameters**
 
-| Name | Type                                      | Mandatory | Description                            |
+| Name| Type                                      | Mandatory| Description                            |
 | ------ | ------------------------------------------ | ---- | -------------------------------- |
-| scale  | [Scale](./js-apis-arkui-graphics.md#scale) | Yes  | Scale factor to set. |
+| scale  | [Scale](./js-apis-arkui-graphics.md#scale) | Yes  | Scale factor to set.|
 
 get scale(): Scale
 
@@ -1103,7 +1103,7 @@ Obtains the scale factor of this RenderNode.
 
 | Type                                      | Description                                              |
 | ------------------------------------------ | -------------------------------------------------- |
-| [Scale](./js-apis-arkui-graphics.md#scale) | Scale factor of the current RenderNode. The default value is **{ x: 1, y: 1 }**. |
+| [Scale](./js-apis-arkui-graphics.md#scale) | Scale factor of the current RenderNode. The default value is **{ x: 1, y: 1 }**.|
 
 **Example**
 ```ts
@@ -1155,9 +1155,9 @@ Sets the translation amount for this RenderNode.
 
 **Parameters**
 
-| Name     | Type                                                  | Mandatory | Description                          |
+| Name     | Type                                                  | Mandatory| Description                          |
 | ----------- | ------------------------------------------------------ | ---- | ------------------------------ |
-| translation | [Translation](./js-apis-arkui-graphics.md#translation) | Yes  | Translation amount to set. |
+| translation | [Translation](./js-apis-arkui-graphics.md#translation) | Yes  | Translation amount to set.|
 
 get translation(): Translation
 
@@ -1171,7 +1171,7 @@ Obtains the translation amount of this RenderNode.
 
 | Type                                                  | Description                                                |
 | ------------------------------------------------------ | ---------------------------------------------------- |
-| [Translation](./js-apis-arkui-graphics.md#translation) | Translation amount of the current RenderNode. The default value is **{ x: 0, y: 0 }**. |
+| [Translation](./js-apis-arkui-graphics.md#translation) | Translation amount of the current RenderNode. The default value is **{ x: 0, y: 0 }**.|
 
 **Example**
 ```ts
@@ -1223,9 +1223,9 @@ Sets the rotation angle for this RenderNode.
 
 **Parameters**
 
-| Name  | Type                                            | Mandatory | Description                            |
+| Name  | Type                                            | Mandatory| Description                            |
 | -------- | ------------------------------------------------ | ---- | -------------------------------- |
-| rotation | [Rotation](./js-apis-arkui-graphics.md#rotation) | Yes  | Rotation angle to set. |
+| rotation | [Rotation](./js-apis-arkui-graphics.md#rotation) | Yes  | Rotation angle to set.|
 
 get rotation(): Rotation
 
@@ -1239,7 +1239,7 @@ Obtains the rotation angle of this RenderNode.
 
 | Type                                            | Description                                                   |
 | ------------------------------------------------ | ------------------------------------------------------- |
-| [Rotation](./js-apis-arkui-graphics.md#rotation) | Rotation angle of the current RenderNode. The default value is **{ x: 0, y: 0, z: 0}**. |
+| [Rotation](./js-apis-arkui-graphics.md#rotation) | Rotation angle of the current RenderNode. The default value is **{ x: 0, y: 0, z: 0}**.|
 
 **Example**
 ```ts
@@ -1283,7 +1283,7 @@ struct Index {
 
 set transform(transform: Matrix4)
 
-Sets the transformation information for this RenderNode.
+Sets the transformation matrix for this RenderNode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1291,13 +1291,13 @@ Sets the transformation information for this RenderNode.
 
 **Parameters**
 
-| Name   | Type                                          | Mandatory | Description                            |
+| Name   | Type                                          | Mandatory| Description                            |
 | --------- | ---------------------------------------------- | ---- | -------------------------------- |
-| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Yes  | Transformation information to set. |
+| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Yes  | Transformation matrix to set.|
 
 get transform(): Matrix4
 
-Obtains the transformation information of this RenderNode. The default value is as follows:
+Obtains the transformation matrix of this RenderNode. The default value is as follows:
 ```ts
 [
   1, 0, 0, 0,
@@ -1315,7 +1315,7 @@ Obtains the transformation information of this RenderNode. The default value is 
 
 | Type                                          | Description                      |
 | ---------------------------------------------- | -------------------------- |
-| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Transformation information of the current RenderNode. |
+| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Transformation matrix of the current RenderNode.|
 
 **Example**
 ```ts
@@ -1372,9 +1372,9 @@ Sets the shadow color for this RenderNode, in ARGB format. If [shadowAlpha](#sha
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                      |
+| Name| Type  | Mandatory| Description                                      |
 | ------ | ------ | ---- | ------------------------------------------ |
-| color  | number | Yes  | Shadow color to set, in ARGB format. |
+| color  | number | Yes  | Shadow color to set, in ARGB format.|
 
 get shadowColor(): number
 
@@ -1388,7 +1388,7 @@ Obtains the shadow color of this RenderNode.
 
 | Type  | Description                                                    |
 | ------ | -------------------------------------------------------- |
-| number | Shadow color of the current RenderNode, in ARGB format. The default value is **0X00000000**. |
+| number | Shadow color of the current RenderNode, in ARGB format. The default value is **0X00000000**.|
 
 **Example**
 ```ts
@@ -1441,9 +1441,9 @@ Sets the shadow offset for this RenderNode.
 
 **Parameters**
 
-| Name | Type                                        | Mandatory | Description                            |
+| Name| Type                                        | Mandatory| Description                            |
 | ------ | -------------------------------------------- | ---- | -------------------------------- |
-| offset | [Offset](./js-apis-arkui-graphics.md#offset) | Yes  | Shadow offset to set. |
+| offset | [Offset](./js-apis-arkui-graphics.md#offset) | Yes  | Shadow offset to set.|
 
 get shadowOffset(): Offset
 
@@ -1457,7 +1457,7 @@ Obtains the shadow offset of this RenderNode.
 
 | Type                                        | Description                                              |
 | -------------------------------------------- | -------------------------------------------------- |
-| [Offset](./js-apis-arkui-graphics.md#offset) | Shadow offset of the current RenderNode. The default value is **{ x: 0, y: 0 }**. |
+| [Offset](./js-apis-arkui-graphics.md#offset) | Shadow offset of the current RenderNode. The default value is **{ x: 0, y: 0 }**.|
 
 **Example**
 
@@ -1504,7 +1504,7 @@ struct Index {
 
 set label(label: string)
 
-Sets the label for this RenderNode. If the RenderNode was created with **new**, the set label will appear in the properties of its Inspector information.
+Sets the label for this RenderNode. If the RenderNode was created with **new**, the set label will appear in the node Inspector information.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1512,9 +1512,9 @@ Sets the label for this RenderNode. If the RenderNode was created with **new**, 
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                     |
+| Name| Type  | Mandatory| Description                                     |
 | ------ | ------ | ---- | ----------------------------------------- |
-| label  | string | Yes  | Label of the RenderNode to set. |
+| label  | string | Yes  | Label of the RenderNode to set.|
 
 get label(): string
 
@@ -1528,7 +1528,7 @@ Obtains the label of this RenderNode.
 
 | Type  | Description                                          |
 | ------ | ---------------------------------------------- |
-| string | Label of the current RenderNode.<br>Default value: **""** |
+| string | Label of the current RenderNode.<br>Default value: **""**|
 
 **Example**
 
@@ -1581,9 +1581,9 @@ Sets the alpha value of the shadow color for this RenderNode.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                     |
+| Name| Type  | Mandatory| Description                                     |
 | ------ | ------ | ---- | ----------------------------------------- |
-| alpha  | number | Yes  | Alpha value of the shadow color to set. |
+| alpha  | number | Yes  | Alpha value of the shadow color to set.|
 
 get shadowAlpha(): number
 
@@ -1597,7 +1597,7 @@ Obtains the alpha value of the shadow color of this RenderNode.
 
 | Type  | Description                                          |
 | ------ | ---------------------------------------------- |
-| number | Alpha value of the shadow color of the current RenderNode. The default value is **0**. |
+| number | Alpha value of the shadow color of the current RenderNode. The default value is **0**.|
 
 **Example**
 
@@ -1653,9 +1653,9 @@ Sets the shadow elevation for this RenderNode.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                            |
+| Name   | Type  | Mandatory| Description                            |
 | --------- | ------ | ---- | -------------------------------- |
-| elevation | number | Yes  | Shadow elevation to set. |
+| elevation | number | Yes  | Shadow elevation to set.|
 
 get shadowElevation(): number
 
@@ -1669,7 +1669,7 @@ Obtains the shadow elevation of this RenderNode.
 
 | Type  | Description                                 |
 | ------ | ------------------------------------- |
-| number | Shadow elevation of the current RenderNode. The default value is **0**. |
+| number | Shadow elevation of the current RenderNode. The default value is **0**.|
 
 **Example**
 
@@ -1726,9 +1726,9 @@ Sets the shadow blur radius for this RenderNode.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                |
+| Name| Type  | Mandatory| Description                                |
 | ------ | ------ | ---- | ------------------------------------ |
-| radius | number | Yes  | Shadow blur radius to set. |
+| radius | number | Yes  | Shadow blur radius to set.|
 
 get shadowRadius(): number
 
@@ -1742,7 +1742,7 @@ Obtains the shadow blur radius of this RenderNode.
 
 | Type  | Description                                     |
 | ------ | ----------------------------------------- |
-| number | Shadow blur radius of the current RenderNode. The default value is **0**. |
+| number | Shadow blur radius of the current RenderNode. The default value is **0**.|
 
 **Example**
 
@@ -1799,9 +1799,9 @@ Performs drawing. You need to implement this API. It is called when the RenderNo
 
 **Parameters**
 
-| Name | Type                                                  | Mandatory | Description            |
+| Name | Type                                                  | Mandatory| Description            |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| context | [DrawContext](./js-apis-arkui-graphics.md#drawcontext) | Yes  | Graphics drawing context. |
+| context | [DrawContext](./js-apis-arkui-graphics.md#drawcontext) | Yes  | Graphics drawing context.|
 
 **Example**
 
@@ -1880,7 +1880,7 @@ static napi_value OnDraw(napi_env env, napi_callback_info info)
     int32_t height;
     napi_get_value_int32(env, args[3], &height);
     
-    // Pass in information such as the canvas, height, and width to the drawing API for customized drawing.
+    // Pass in information such as the canvas, height, and width to the drawing API for custom drawing.
     auto path = OH_Drawing_PathCreate();
     OH_Drawing_PathMoveTo(path, width / 4, height / 4);
     OH_Drawing_PathLineTo(path, width * 3 / 4, height / 4);
@@ -2031,9 +2031,9 @@ Sets the border style for this RenderNode.
 
 **Parameters**
 
-| Name | Type                                                                                                  | Mandatory | Description                  |
+| Name| Type                                                                                                  | Mandatory| Description                  |
 | ------ | ------------------------------------------------------------------------------------------------------ | ---- | ---------------------- |
-| style  | [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Yes  | Border style of the RenderNode. |
+| style  | [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Yes  | Border style of the RenderNode.|
 
 get borderStyle(): Edges\<BorderStyle>
 
@@ -2047,7 +2047,7 @@ Obtains the border style of this RenderNode.
 
 | Type                                                                                                  | Description                  |
 | ------------------------------------------------------------------------------------------------------ | ---------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Border style of the RenderNode. |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | Border style of the RenderNode.|
 
 **Example**
 ```ts
@@ -2106,9 +2106,9 @@ Sets the border width for this RenderNode.
 
 **Parameters**
 
-| Name | Type                                               | Mandatory | Description                  |
+| Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border width of the RenderNode, in vp. |
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border width of the RenderNode, in vp.|
 
 get borderWidth(): Edges\<number>
 
@@ -2122,7 +2122,7 @@ Obtains the border width of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border width of the RenderNode. The default width of all borders is 0 vp. |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border width of the RenderNode. The default width of all borders is 0 vp.|
 
 **Example**
 
@@ -2176,9 +2176,9 @@ Sets the border color for this RenderNode.
 
 **Parameters**
 
-| Name | Type                                               | Mandatory | Description                  |
+| Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border color of the RenderNode. |
+| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Yes  | Border color of the RenderNode.|
 
 get borderColor(): Edges\<number>
 
@@ -2192,7 +2192,7 @@ Obtains the border color of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border color of the RenderNode. By default, the color of all borders is 0XFF000000. |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | Border color of the RenderNode. By default, the color of all borders is 0XFF000000.|
 
 **Example**
 
@@ -2247,9 +2247,9 @@ Sets the border corner radius for this RenderNode.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description                  |
+| Name| Type                                                        | Mandatory| Description                  |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Yes  | Border corner radius of the RenderNode, in vp. |
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Yes  | Border corner radius of the RenderNode, in vp.|
 
 
 get borderRadius(): BorderRadiuses
@@ -2264,7 +2264,7 @@ Obtains the border corner radius of this RenderNode.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Border corner radius of the RenderNode. By default, the corner radius of all borders is 0 vp. |
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Border corner radius of the RenderNode. By default, the corner radius of all borders is 0 vp.|
 
 **Example**
 
@@ -2318,9 +2318,9 @@ Sets the mask for this RenderNode.
 
 **Parameters**
 
-| Name   | Type                                              | Mandatory | Description              |
+| Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| shapeMask | [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Yes  | Shape mask of the RenderNode. |
+| shapeMask | [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Yes  | Shape mask of the RenderNode.|
 
 get shapeMask(): ShapeMask
 
@@ -2332,7 +2332,7 @@ Obtains the shape mask of this RenderNode.
 
 | Type                                              | Description                  |
 | -------------------------------------------------- | ---------------------- |
-| [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Shape mask of the RenderNode. |
+| [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Shape mask of the RenderNode.|
 
 **Example**
 
@@ -2392,9 +2392,9 @@ Sets the clipping shape for this RenderNode.
 
 **Parameters**
 
-| Name   | Type                                              | Mandatory | Description              |
+| Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| shapeClip | [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | Yes  | Clipping shape of the RenderNode. |
+| shapeClip | [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | Yes  | Clipping shape of the RenderNode.|
 
 get shapeClip(): ShapeClip
 
@@ -2408,7 +2408,7 @@ Obtains the clipping shape for this RenderNode.
 
 | Type                                              | Description                  |
 | -------------------------------------------------- | ---------------------- |
-| [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | Clipping shape of the RenderNode. |
+| [ShapeClip](./js-apis-arkui-graphics.md#shapeclip12) | Clipping shape of the RenderNode.|
 
 **Example**
 
@@ -2573,7 +2573,9 @@ struct Index {
 
 set markNodeGroup(isNodeGroup: boolean)
 
-Sets whether to prioritize the drawing of this RenderNode and its childe nodes. If the input parameter is set to **true**, attributes such as opacity will be composited after the node has been drawn.
+Sets whether to prioritize the drawing of this RenderNode and its childe nodes. If the input parameter is set to **true**, attributes such as opacity will be composited after the node has been drawn. The configuration result is as follows.
+
+![markNodeGroup](./figures/renderNode-markNodeGroup.png)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2581,9 +2583,9 @@ Sets whether to prioritize the drawing of this RenderNode and its childe nodes. 
 
 **Parameters**
 
-| Name   | Type                                              | Mandatory | Description              |
+| Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes. |
+| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.|
 
 get markNodeGroup(): boolean
 
@@ -2595,7 +2597,7 @@ Obtains whether to prioritize the drawing of this RenderNode and its childe node
 
 | Type   | Description                                       |
 | ------- | ------------------------------------------- |
-| boolean | Whether to prioritize the drawing of the current RenderNode and its childe nodes. The default value is **false**. |
+| boolean | Whether to prioritize the drawing of the current RenderNode and its childe nodes. The default value is **false**.|
 
 **Example**
 
@@ -2667,9 +2669,9 @@ Sets the metric unit used by attributes of this RenderNode.
 
 **Parameters**
 
-| Name | Type                                                                | Mandatory | Description                              |
+| Name| Type                                                                | Mandatory| Description                              |
 | ------ | -------------------------------------------------------------------- | ---- | ---------------------------------- |
-| unit   | [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | Yes  | Metric unit used by attributes of the current RenderNode. |
+| unit   | [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | Yes  | Metric unit used by attributes of the current RenderNode.|
 
 get lengthMetricsUnit(): LengthMetricsUnit
 
@@ -2681,7 +2683,7 @@ Obtains the metric unit used by attributes of this RenderNode.
 
 | Type   | Description                                       |
 | ------- | ------------------------------------------- |
-| [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | Metric unit used by attributes of this RenderNode. The default value is **LengthMetricsUnit.DEFAULT**. |
+| [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | Metric unit used by attributes of this RenderNode. The default value is **LengthMetricsUnit.DEFAULT**.|
 
 **Example**
 

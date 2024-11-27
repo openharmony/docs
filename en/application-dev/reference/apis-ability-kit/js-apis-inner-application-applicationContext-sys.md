@@ -32,26 +32,26 @@ A **UIExtensionAbility** instance can be preloaded for multiple times. Each time
 
 **System API**: This is a system API.
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information of the UIExtensionAbility. |
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information of the UIExtensionAbility.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16200011 | The context does not exist. |
 | 16000050 | Internal error. |
 

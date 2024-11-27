@@ -606,7 +606,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>13+</sup>
+## ApplicationContext.killAllProcesses<sup>14+</sup>
 
 killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
@@ -715,7 +715,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -886,7 +886,7 @@ restartApp(want: Want): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
+| 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
 
 **示例：**
@@ -1089,7 +1089,7 @@ setFontSizeScale(fontSizeScale: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.The input size is less than zero.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1106,6 +1106,104 @@ export default class MyAbility extends UIAbility {
       let applicationContext = this.context.getApplicationContext();
       applicationContext.setFontSizeScale(2);
     });
+  }
+}
+```
+
+
+## ApplicationContext.getCurrentInstanceKey<sup>14+</sup>
+
+getCurrentInstanceKey(): string
+
+获取当前应用多实例的唯一实例标识。仅支持主线程调用。
+
+> **说明：**
+>
+> 当前仅支持2in1设备。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| string | 返回当前应用多实例的唯一实例标识。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000078 | The multi-instance is not supported. |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    let currentInstanceKey = '';
+    try {
+      currentInstanceKey = applicationContext.getCurrentInstanceKey();
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`getCurrentInstanceKey fail, code: ${code}, msg: ${message}`);
+    }
+    console.log(`currentInstanceKey: ${currentInstanceKey}`);
+  }
+}
+```
+
+## ApplicationContext.getAllRunningInstanceKeys<sup>14+</sup>
+
+getAllRunningInstanceKeys(): Promise\<Array\<string>>;
+
+获取应用的所有多实例的唯一实例标识。使用Promise异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 当前仅支持2in1设备。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| Promise\<Array\<string>> | Promise对象，返回应用的所有多实例的唯一实例标识。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000078 | The multi-instance is not supported. |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.getAllRunningInstanceKeys();
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`getAllRunningInstanceKeys fail, code: ${code}, msg: ${message}`);
+    }
   }
 }
 ```

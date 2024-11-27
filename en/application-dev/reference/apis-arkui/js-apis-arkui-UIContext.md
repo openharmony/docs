@@ -28,7 +28,7 @@ Obtains a **Font** object.
 
 | Type           | Description         |
 | ------------- | ----------- |
-| [Font](#font) | **Font** object. |
+| [Font](#font) | **Font** object.|
 
 **Example**
 
@@ -49,7 +49,7 @@ Obtains the **ComponentUtils** object.
 
 | Type                               | Description                   |
 | --------------------------------- | --------------------- |
-| [ComponentUtils](#componentutils) | **ComponentUtils** object. |
+| [ComponentUtils](#componentutils) | **ComponentUtils** object.|
 
 **Example**
 
@@ -71,7 +71,7 @@ Obtains the **UIInspector** object.
 
 | Type                         | Description                |
 | --------------------------- | ------------------ |
-| [UIInspector](#uiinspector) | **UIInspector** object. |
+| [UIInspector](#uiinspector) | **UIInspector** object.|
 
 **Example**
 
@@ -93,7 +93,7 @@ Obtains the **UIObserver** object.
 
 | Type                         | Description                |
 | --------------------------- | ------------------ |
-| [UIObserver](#uiobserver11) | **UIObserver** object. |
+| [UIObserver](#uiobserver11) | **UIObserver** object.|
 
 **Example**
 
@@ -115,7 +115,7 @@ Obtains a **MediaQuery** object.
 
 | Type                       | Description               |
 | ------------------------- | ----------------- |
-| [MediaQuery](#mediaquery) | **MediaQuery** object. |
+| [MediaQuery](#mediaquery) | **MediaQuery** object.|
 
 **Example**
 
@@ -137,7 +137,7 @@ Obtains a **Router** object.
 
 | Type               | Description           |
 | ----------------- | ------------- |
-| [Router](#router) | **Router** object. |
+| [Router](#router) | **Router** object.|
 
 **Example**
 
@@ -159,7 +159,7 @@ Obtains a **PromptAction** object.
 
 | Type                           | Description                 |
 | ----------------------------- | ------------------- |
-| [PromptAction](#promptaction) | **PromptAction** object. |
+| [PromptAction](#promptaction) | **PromptAction** object.|
 
 **Example**
 
@@ -181,7 +181,7 @@ Obtains the **OverlayManager** object.
 
 | Type                          | Description                |
 | ----------------------------- | ------------------- |
-| [OverlayManager](#overlaymanager12) | **OverlayManager** instance obtained. |
+| [OverlayManager](#overlaymanager12) | **OverlayManager** instance obtained.|
 
 **Example**
 
@@ -203,8 +203,8 @@ Applies a transition animation for state changes.
 
 | Name  | Type                                      | Mandatory  | Description                                   |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam)  | Yes   | Animation settings.                          |
-| event | () => void                               | Yes   | Closure function that displays the animation. The system automatically inserts the transition animation if the state changes in the closure function. |
+| value | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
+| event | () => void                               | Yes   | Closure function that displays the animation. The system automatically inserts the transition animation if the state changes in the closure function.|
 
 **Example**
 
@@ -217,6 +217,15 @@ struct AnimateToExample {
   @State heightSize: number = 100
   @State rotateAngle: number = 0
   private flag: boolean = true
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+  }
 
   build() {
     Column() {
@@ -226,7 +235,7 @@ struct AnimateToExample {
         .margin(30)
         .onClick(() => {
           if (this.flag) {
-            uiContext.animateTo({
+            this.uiContext?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 3,
@@ -239,28 +248,37 @@ struct AnimateToExample {
               this.heightSize = 60
             })
           } else {
-            uiContext.animateTo({}, () => {
+            this.uiContext?.animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
             })
           }
           this.flag = !this.flag
         })
-      Button('change rotate angle')
+      Button('stop rotating')
         .margin(50)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
-        .onClick(() => {
-          uiContext.animateTo({
+        .onAppear(() => {
+          // The animation starts when the component appears.
+          this.uiContext?.animateTo({
             duration: 1200,
             curve: Curve.Friction,
             delay: 500,
             iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
             playMode: PlayMode.Alternate,
-            onFinish: () => {
-              console.info('play end')
+            expectedFrameRateRange: {
+              min: 10,
+              max: 120,
+              expected: 60,
             }
           }, () => {
             this.rotateAngle = 90
+          })
+        })
+        .onClick(() => {
+          this.uiContext?.animateTo({ duration: 0 }, () => {
+            // The value of this.rotateAngle is 90 before the animation. In an animation with a duration of 0, changing the property stops any previous animations for that property and applies the new value immediately.
+            this.rotateAngle = 0
           })
         })
     }.width('100%').margin({ top: 5 })
@@ -284,7 +302,7 @@ Obtains the **LocalStorage** instance shared by this stage.
 
 | Type                            | Description               |
 | ------------------------------ | ----------------- |
-| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) \| undefined | **LocalStorage** instance if it exists; **undefined** if it does not exist. |
+| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) \| undefined | **LocalStorage** instance if it exists; **undefined** if it does not exist.|
 
 **Example**
 
@@ -366,9 +384,9 @@ Obtains the context of this ability.
 
 **Return value**
 
-| Type | Description                            |
+| Type| Description                            |
 | ------ | ------------------------------- |
-| [Context](../../application-models/application-context-stage.md) \| undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext. If the ability context does not exist, **undefined** is returned. |
+| [Context](../../application-models/application-context-stage.md) \| undefined | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext. If the ability context does not exist, **undefined** is returned.|
 
 **Example**
 
@@ -405,18 +423,54 @@ Obtains a FrameNode on the component tree based on the component ID.
 
 | Name  | Type                                      | Mandatory  | Description                                   |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node.      |
+
+**Return value**
+
+| Type                                      | Description           |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node.|
+
+> **NOTE**
+>
+> The **getFrameNodeById** API searches for a node with a specific ID by traversing the tree, which can lead to poor performance. To deliver better performance, use the [getAttachedFrameNodeById](#getattachedframenodebyid12) API.
+
+**Example**
+
+```ts
+uiContext.getFrameNodeById("TestNode")
+```
+
+### getAttachedFrameNodeById<sup>12+</sup>
+
+getAttachedFrameNodeById(id: string): FrameNode | null
+
+Obtains the entity node attached to the current window based on its component ID.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory  | Description                                   |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
 | id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node.                         |
 
 **Return value**
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node. |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node.|
+
+> **NOTE**
+>
+> **getAttachedFrameNodeById** can only obtain nodes that are currently rendered on the screen.
 
 **Example**
 
 ```ts
-uiContext.getFrameNodeById("TestNode")
+uiContext.getAttachedFrameNodeById("TestNode")
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
@@ -442,7 +496,7 @@ Obtains a FrameNode on the component tree based on the unique component ID.
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node. |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node.|
 
 **Example**
 
@@ -490,7 +544,7 @@ Obtains the router or navigation destination page information corresponding to t
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [PageInfo](#pageinfo12) | Router or navigation destination page information corresponding to the specified node. |
+| [PageInfo](#pageinfo12) | Router or navigation destination page information corresponding to the specified node.|
 
 **Example**
 
@@ -561,7 +615,7 @@ Obtains the navigation information corresponding to the node that matches the sp
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| observer.[NavigationInfo](js-apis-arkui-observer.md#navigationinfo12) \| undefined | Navigation information corresponding to the specified node. |
+| observer.[NavigationInfo](js-apis-arkui-observer.md#navigationinfo12) \| undefined | Navigation information corresponding to the specified node.|
 
 **Example**
 
@@ -581,7 +635,7 @@ Shows an alert dialog box.
 
 | Name    | Type                                      | Mandatory  | Description                 |
 | ------- | ---------------------------------------- | ---- | ------------------- |
-| options | [AlertDialogParamWithConfirm](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10)  | Yes   | Shows an **\<AlertDialog>** component in the given settings. |
+| options | [AlertDialogParamWithConfirm](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10) | Yes   | Shows an **AlertDialog** component in the given settings.|
 
 
 **Example**
@@ -618,11 +672,11 @@ Shows an action sheet in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                |
+| Name| Type                                                        | Mandatory| Description                |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | [ActionSheetOptions](arkui-ts/ts-methods-action-sheet.md#actionsheetoptions)  | Yes  | Parameters of the action sheet. |
+| value  | [ActionSheetOptions](arkui-ts/ts-methods-action-sheet.md#actionsheetoptions) | Yes  | Parameters of the action sheet.|
 
 **Example**
 
@@ -675,11 +729,11 @@ Shows a date picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                          |
+| Name | Type                                                        | Mandatory| Description                          |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| options | [DatePickerDialogOptions](arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions)  | Yes  | Parameters of the date picker dialog box. |
+| options | [DatePickerDialogOptions](arkui-ts/ts-methods-datepicker-dialog.md#datepickerdialogoptions) | Yes  | Parameters of the date picker dialog box.|
 
 **Example**
 
@@ -713,11 +767,11 @@ Shows a time picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                          |
+| Name | Type                                                        | Mandatory| Description                          |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| options | [TimePickerDialogOptions](arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions)  | Yes  | Parameters of the time picker dialog box. |
+| options | [TimePickerDialogOptions](arkui-ts/ts-methods-timepicker-dialog.md#timepickerdialogoptions) | Yes  | Parameters of the time picker dialog box.|
 
 **Example**
 
@@ -774,11 +828,11 @@ Shows a text picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                          |
+| Name | Type                                                        | Mandatory| Description                          |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| options | [TextPickerDialogOptions](arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions)  | Yes  | Parameters of the text picker dialog box. |
+| options | [TextPickerDialogOptions](arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions) | Yes  | Parameters of the text picker dialog box.|
 
 **Example**
 
@@ -847,22 +901,22 @@ Creates an **Animator** object.
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) | Yes   | Animator options. |
+| options | [AnimatorOptions](js-apis-animator.md#animatoroptions) | Yes   | Animator options.|
 
 **Return value**
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [AnimatorResult](js-apis-animator.md#animatorresult) | Animator result. |
+| [AnimatorResult](js-apis-animator.md#animatorresult) | Animator result.|
 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -910,7 +964,7 @@ Executes the specified callback in this UI context.
 
 | Name     | Type        | Mandatory  | Description  |
 | -------- | ---------- | ---- | ---- |
-| callback | () => void | Yes   | Callback used to return the result. |
+| callback | () => void | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -936,7 +990,7 @@ Sets the avoidance mode for the virtual keyboard.
 
 | Name     | Type        | Mandatory  | Description  |
 | -------- | ---------- | ---- | ---- |
-| value | [KeyboardAvoidMode](#keyboardavoidmode11)| Yes   | Avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET** |
+| value | [KeyboardAvoidMode](#keyboardavoidmode11)| Yes   | Avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**|
 
 **Example**
 
@@ -1014,7 +1068,7 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 
 | Type                                             | Description                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------ |
-| Nullable<[AtomicServiceBar](#atomicservicebar11)> | Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise. |
+| Nullable<[AtomicServiceBar](#atomicservicebar11)> | Returns the **AtomicServerBar** type if the service is an atomic service; returns **undefined** type otherwise.|
 
 **Example**
 
@@ -1057,28 +1111,6 @@ Obtains the **DragController** object, which can be used to create and initiate 
 uiContext.getDragController();
 ```
 
-### getDragPreview<sup>11+</sup>
-
-getDragPreview(): dragController.DragPreview
-
-Obtains the **DragPreview** object, which represents the preview displayed during a drag.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value** 
-
-| Type                                                        | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks. |
-
-**Error codes**: For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-**Example**
-
-For details, see [animate](js-apis-arkui-dragController.md#animate11).
-
 ### keyframeAnimateTo<sup>11+</sup>
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
@@ -1091,9 +1123,9 @@ Generates a key frame animation. For details about how to use this API, see [key
 
 **Parameters**
 
-| Name | Type                                             | Mandatory | Description                     |
+| Name| Type                                             | Mandatory| Description                     |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
-| param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam)  | Yes     | Overall animation parameter of the keyframe animation.    |
+| param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam) | Yes     | Overall animation parameter of the keyframe animation.    |
 | keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate)&gt;  | Yes     | States of all keyframes.           |
 
 ### getFocusController<sup>12+</sup>
@@ -1130,24 +1162,24 @@ Obtains the component tree and component attributes.
 
 **Parameters**
 
-| Name | Type           | Mandatory | Description                                                        |
+| Name | Type           | Mandatory| Description                                                        |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following attributes are supported: "id", "src", "content", "editable", "scrollable", "selectable", "focusable", "focused". |
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following attributes are supported: "id", "src", "content", "editable", "scrollable", "selectable", "focusable", "focused".|
 
-**Return value** 
+**Return value**
 
 | Type  | Description                              |
 | ------ | ---------------------------------- |
-| string | JSON string of the component tree and component attributes. |
+| string | JSON string of the component tree and component attributes.|
 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -1167,26 +1199,26 @@ Obtains the attributes of the specified component and its child components.
 
 **Parameters**
 
-| Name | Type           | Mandatory | Description                                                        |
+| Name | Type           | Mandatory| Description                                                        |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| id      | string          | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component. |
-| depth   | number          | Yes  | Number of layers of child components. If the value is **0**, the attributes of the specified component and all its child components are obtained. If the value is **1**, only the attributes of the specified component are obtained. If the value is **2**, the attributes of the specified component and its level-1 child components are obtained. The rest can be deduced by analogy. |
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following attributes are supported: "id", "src", "content", "editable", "scrollable", "selectable", "focusable", "focused". |
+| id      | string          | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| depth   | number          | Yes  | Number of layers of child components. If the value is **0**, the attributes of the specified component and all its child components are obtained. If the value is **1**, only the attributes of the specified component are obtained. If the value is **2**, the attributes of the specified component and its level-1 child components are obtained. The rest can be deduced by analogy.|
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following attributes are supported: "id", "src", "content", "editable", "scrollable", "selectable", "focusable", "focused".|
 
-**Return value** 
+**Return value**
 
 | Type  | Description                                        |
 | ------ | -------------------------------------------- |
-| string | JSON string of the attributes of the specified component and its child components. |
+| string | JSON string of the attributes of the specified component and its child components.|
 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -1248,11 +1280,11 @@ Obtains a **MeasureUtils** object for text calculation.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Return value** 
+**Return value**
 
 | Type  | Description                                        |
 | ------ | -------------------------------------------- |
-| [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) | Text metrics, such as text height and width. |
+| [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) | Text metrics, such as text height and width.|
 
 **Example**
 
@@ -1274,7 +1306,7 @@ Obtains a **ComponentSnapshot** object, which can be used to obtain a component 
 
 | Type                                                        | Description                       |
 | ------------------------------------------------------------ | --------------------------- |
-| [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) | **ComponentSnapshot** object. |
+| [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) | **ComponentSnapshot** object.|
 
 **Example**
 
@@ -1294,15 +1326,15 @@ Converts a value in units of vp to a value in units of px.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                  |
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert. |
+| value | number | Yes  | Value to convert.|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion. |
+| number | Value after conversion.|
 
 **Example**
 
@@ -1322,15 +1354,15 @@ Converts a value in units of px to a value in units of vp.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                  |
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert. |
+| value | number | Yes  | Value to convert.|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion. |
+| number | Value after conversion.|
 
 **Example**
 
@@ -1350,15 +1382,15 @@ Converts a value in units of fp to a value in units of px.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                  |
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert. |
+| value | number | Yes  | Value to convert.|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion. |
+| number | Value after conversion.|
 
 **Example**
 
@@ -1378,15 +1410,15 @@ Converts a value in units of px to a value in units of fp.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                  |
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value | number | Yes  | Value to convert. |
+| value | number | Yes  | Value to convert.|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion. |
+| number | Value after conversion.|
 
 **Example**
 
@@ -1406,15 +1438,15 @@ Converts a value in units of lpx to a value in units of px.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                   |
+| Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| value | number | Yes  | Value to convert. |
+| value | number | Yes  | Value to convert.|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion. |
+| number | Value after conversion.|
 
 **Example**
 
@@ -1434,15 +1466,15 @@ Converts a value in units of px to a value in units of lpx.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                   |
+| Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| value | number | Yes  | Value to convert. |
+| value | number | Yes  | Value to convert.|
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Value after conversion. |
+| number | Value after conversion.|
 
 **Example**
 
@@ -1460,11 +1492,11 @@ Obtains the name of the window where this instance is located.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Return value** 
+**Return value**
 
 | Type  | Description                                        |
 | ------ | -------------------------------------------- |
-| string \| undefined | Name of the window where the current instance is located. If the window does not exist, **undefined** is returned. |
+| string \| undefined | Name of the window where the current instance is located. If the window does not exist, **undefined** is returned.|
 
 **Example**
 
@@ -1498,6 +1530,106 @@ struct Index {
 }
 ```
 
+### getWindowWidthBreakpoint<sup>13+</sup>
+
+getWindowWidthBreakpoint(): WidthBreakpoint
+
+Obtains the width breakpoint value of the window where this instance is located. The specific value is determined by the vp value of the window width. For details, see [WidthBreakpoint](./arkui-ts/ts-appendix-enums.md#widthbreakpoint13).
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type  | Description                                        |
+| ------ | -------------------------------------------- |
+| [WidthBreakpoint](./arkui-ts/ts-appendix-enums.md#widthbreakpoint13) | Width breakpoint value of the window where the current instance is located. If the window width is 0 vp, **WIDTH_XS** is returned.|
+
+**Example**
+
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text('test')
+            .fontSize(30)
+        }
+        .onClick(() => {
+          let uiContext: UIContext = this.getUIContext();
+          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
+          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### getWindowHeightBreakpoint<sup>13+</sup>
+
+getWindowHeightBreakpoint(): HeightBreakpoint
+
+Obtains the height breakpoint value of the window where this instance is located. The specific value is determined based on the window aspect ratio. For details, see [HeightBreakpoint](./arkui-ts/ts-appendix-enums.md#heightbreakpoint13).
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type  | Description                                        |
+| ------ | -------------------------------------------- |
+| [HeightBreakpoint](./arkui-ts/ts-appendix-enums.md#heightbreakpoint13) | Height breakpoint value of the window where the current instance is located. If the window aspect ratio is 0, **HEIGHT_SM** is returned.|
+
+**Example**
+
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text('test')
+            .fontSize(30)
+        }
+        .onClick(() => {
+          let uiContext: UIContext = this.getUIContext();
+          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
+          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### postFrameCallback<sup>12+</sup>
 
 postFrameCallback(frameCallback: FrameCallback): void
@@ -1510,9 +1642,9 @@ Registers a callback that is executed when the next frame is rendered.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                   |
+| Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| frameCallback | [FrameCallback](#framecallback12) | Yes  | Callback to be executed for the next frame. |
+| frameCallback | [FrameCallback](#framecallback12) | Yes  | Callback to be executed for the next frame.|
 
 **Example**
 
@@ -1558,10 +1690,10 @@ Registers a callback to be executed on the next frame after a delay.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                   |
+| Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| frameCallback | [FrameCallback](#framecallback12) | Yes  | Callback to be executed for the next frame. |
-| delayTime | number | Yes  | Delay time, in milliseconds. If a **null**, **undefined**, or value less than 0 is passed in, it will be treated as **0**. |
+| frameCallback | [FrameCallback](#framecallback12) | Yes  | Callback to be executed for the next frame.|
+| delayTime | number | Yes  | Delay time, in milliseconds. If a **null**, **undefined**, or value less than 0 is passed in, it will be treated as **0**.|
 
 **Example**
 
@@ -1607,15 +1739,15 @@ Requests the dynamic sync scene of a component for customizing related frame rat
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                   |
+| Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
 | id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node. |
 
-**Return value** 
+**Return value**
 
 | Type  | Description                                        |
 | ------ | -------------------------------------------- |
-| Array&lt;DynamicSyncScene&gt; | **DynamicSyncScene** object array. |
+| Array&lt;DynamicSyncScene&gt; | **DynamicSyncScene** object array.|
 
 **Example**
 ```ts
@@ -1630,7 +1762,12 @@ Creates a sheet whose content is as defined in **bindSheetContent** and displays
 
 > **NOTE**
 >
-> Since [updateBindSheet](#updatebindsheet12) and [closeBindSheet](#closebindsheet12) depend on **bindSheetContent**, you need to maintain the passed **bindSheetContent** yourself.
+> 1. When calling this API, if you don't provide a valid value for **targetId**, you won't be able to set **SheetOptions.preferType** to **POPUP** or **SheetOptions.mode** to **EMBEDDED**.
+>
+> 2. Since [updateBindSheet](#updatebindsheet12) and [closeBindSheet](#closebindsheet12) depend on **bindSheetContent**, you need to maintain the passed **bindSheetContent** yourself.
+>
+> 3. Setting **SheetOptions.UIContext** is not supported.
+>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1640,15 +1777,15 @@ Creates a sheet whose content is as defined in **bindSheetContent** and displays
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes | Content to display on the sheet. |
-| sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | No   |   Style of the sheet.<br>**NOTE**<br>1. **SheetOptions.uiContext** cannot be set. Its value is fixed to the **UIContext** object of the current instance.<br>2. If **targetId** is not passed in, **SheetOptions.preferType** cannot be set to **POPUP**; if **POPUP** is set, it will be replaced with **CENTER**.<br>3. If **targetId** is not passed in, **SheetOptions.mode** cannot be set to **EMBEDDED**; the default mode is **OVERLAY**.<br>4. For the default values of other attributes, see [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions). |
-| targetId | number | No   |   ID of the component to be bound. If this parameter is not set, no component is bound. |
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content to display on the sheet.|
+| sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | No   |   Style of the sheet.<br>**NOTE**<br>1. **SheetOptions.uiContext** cannot be set. Its value is fixed to the **UIContext** object of the current instance.<br>2. If **targetId** is not passed in, **SheetOptions.preferType** cannot be set to **POPUP**; if **POPUP** is set, it will be replaced with **CENTER**.<br>3. If **targetId** is not passed in, **SheetOptions.mode** cannot be set to **EMBEDDED**; the default mode is **OVERLAY**.<br>4. For the default values of other attributes, see [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions).|
+| targetId | number | No   |   ID of the component to be bound. If this parameter is not set, no component is bound.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result. |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
 
 **Error codes**
 
@@ -1656,10 +1793,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120002 | The bindSheetContent already exists. |
-| 120004 | The targetld does not exist. |
+| 120004 | The targetId does not exist. |
 | 120005 | The node of targetId is not in the component tree. |
 | 120006 | The node of targetId is not a child of the page node or NavDestination node. |
 
@@ -1771,15 +1908,15 @@ Updates the sheet corresponding to **bindSheetContent**. This API uses a promise
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes | Content to display on the sheet. |
-| sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | Yes   |   Style of the sheet.<br>**NOTE**<br>**SheetOptions.UIContext** and **SheetOptions.mode** cannot be updated. |
-| partialUpdate | boolean | No   |   Whether to update the sheet in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified attributes in **SheetOptions** are updated, and other attributes stay at their current value.<br>2. **false**: full update, where all attributes except those specified in **SheetOptions** are restored to default values. |
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content to display on the sheet.|
+| sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | Yes   |   Style of the sheet.<br>**NOTE**<br>**SheetOptions.UIContext** and **SheetOptions.mode** cannot be updated.|
+| partialUpdate | boolean | No   |   Whether to update the sheet in incremental mode.<br>Default value: **false**<br>**NOTE**<br>1. **true**: incremental update, where the specified attributes in **SheetOptions** are updated, and other attributes stay at their current value.<br>2. **false**: full update, where all attributes except those specified in **SheetOptions** are restored to default values.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result. |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
 
 **Error codes**
 
@@ -1787,7 +1924,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120003 | The bindSheetContent cannot be found. |
 
@@ -1899,13 +2036,13 @@ Closes the sheet corresponding to **bindSheetContent**. This API uses a promise 
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes | Content to display on the sheet. |
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content to display on the sheet.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result. |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
 
 **Error codes**
 
@@ -1913,7 +2050,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120003 | The bindSheetContent cannot be found. |
 
@@ -2006,6 +2143,229 @@ struct UIContextBindSheet {
 }
 ```
 
+### isFollowingSystemFontScale<sup>13+</sup>
+
+isFollowingSystemFontScale(): boolean
+
+Checks whether this UI context follows the system font scale settings.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type     | Description           |
+|---------|---------------|
+| boolean | Whether the current UI context follows the system font scale settings.|
+
+**Example**
+```ts
+uiContext.isFollowingSystemFontScale()
+```
+
+### getMaxFontScale<sup>13+</sup>
+
+getMaxFontScale(): number
+
+Obtains the maximum font scale of this UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| number | Maximum font scale of the current UI context.|
+
+**Example**
+```ts
+uiContext.getMaxFontScale()
+```
+
+### bindTabsToScrollable<sup>13+</sup>
+
+bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
+
+Binds a **Tabs** component with a scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the scrollable container triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it. A **TabsController** instance can be bound with multiple **Scroller** instances, and conversely, a **Scroller** instance can be bound with multiple **TabsController** instances.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | Yes| Controller of the target **Tabs** component.|
+| scroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | Yes| Controller of the target scrollable container.|
+
+**Example**
+
+```ts
+@Entry
+@Component
+struct TabsExample {
+  private arr: string[] = []
+  private parentTabsController: TabsController = new TabsController()
+  private childTabsController: TabsController = new TabsController()
+  private listScroller: Scroller = new Scroller()
+  private parentScroller: Scroller = new Scroller()
+  private childScroller: Scroller = new Scroller()
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 20; i++) {
+      this.arr.push(i.toString())
+    }
+    let context = this.getUIContext()
+    context.bindTabsToScrollable(this.parentTabsController, this.listScroller)
+    context.bindTabsToScrollable(this.childTabsController, this.listScroller)
+    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+  }
+
+  aboutToDisappear(): void {
+    let context = this.getUIContext()
+    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller)
+    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller)
+    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+  }
+
+  build() {
+    Tabs({ barPosition: BarPosition.End, controller: this.parentTabsController }) {
+      TabContent() {
+        Tabs({ controller: this.childTabsController }) {
+          TabContent() {
+            List({ space: 20, initialIndex: 0, scroller: this.listScroller }) {
+              ForEach(this.arr, (item: string) => {
+                ListItem() {
+                  Text(item)
+                    .width('100%')
+                    .height(100)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .borderRadius(10)
+                    .backgroundColor(Color.Gray)
+                }
+              }, (item: string) => item)
+            }
+            .scrollBar(BarState.Off)
+            .width('90%')
+            .height('100%')
+            .contentStartOffset(56)
+            .contentEndOffset(52)
+          }.tabBar(SubTabBarStyle.of('Top tab'))
+        }
+        .width('100%')
+        .height('100%')
+        .barOverlap (true) // Make the tab bar overlap the TabContent component. This means that when the tab bar is hidden upwards or downwards, the area it occupies will not appear empty.
+        .clip (true) // Clip any child components that extend beyond the Tabs component's boundaries, preventing accidental touches on the tab bar when it is hidden.
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Scroller linked with TabsControllers'))
+
+      TabContent() {
+        Scroll(this.parentScroller) {
+            List({ space: 20, initialIndex: 0, scroller: this.childScroller }) {
+              ForEach(this.arr, (item: string) => {
+                ListItem() {
+                  Text(item)
+                    .width('100%')
+                    .height(100)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .borderRadius(10)
+                    .backgroundColor(Color.Gray)
+                }
+              }, (item: string) => item)
+            }
+            .scrollBar(BarState.Off)
+            .width('90%')
+            .height('100%')
+            .contentEndOffset(52)
+            .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST })
+        }
+        .width('100%')
+        .height('100%')
+        .scrollBar(BarState.Off)
+        .scrollable(ScrollDirection.Vertical)
+        .edgeEffect(EdgeEffect.Spring)
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'Nested Scroller linked with TabsController'))
+    }
+    .width('100%')
+    .height('100%')
+    .barOverlap (true) // Make the tab bar overlap the TabContent component. This means that when the tab bar is hidden upwards or downwards, the area it occupies will not appear empty.
+    .clip (true) // Clip any child components that extend beyond the Tabs component's boundaries, preventing accidental touches on the tab bar when it is hidden.
+  }
+}
+```
+
+
+
+### unbindTabsFromScrollable<sup>13+</sup>
+
+unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void;
+
+Unbinds a **Tabs** component from a scrollable container.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | Yes| Controller of the target **Tabs** component.|
+| scroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | Yes| Controller of the target scrollable container.|
+
+**Example**
+
+See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
+
+### bindTabsToNestedScrollable<sup>13+</sup>
+
+bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+
+Binds a **Tabs** component with a nested scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the parent or child component triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it. A **TabsController** instance can be bound with multiple nested **Scroller** instances, and conversely, a nested **Scroller** instance can be bound with multiple **TabsController** instances.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | Yes| Controller of the target **Tabs** component.|
+| parentScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | Yes| Controller of the target parent scrollable container.|
+| childScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | Yes| Controller of the target child scrollable container, which is a nested child component of the component corresponding to **parentScroller**.|
+
+**Example**
+
+See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
+
+### unbindTabsFromNestedScrollable<sup>13+</sup>
+
+unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+
+Unbinds a **Tabs** component from a nested scrollable container.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | Yes| Controller of the target **Tabs** component.|
+| parentScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | Yes| Controller of the target parent scrollable container.|
+| childScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | Yes| Controller of the target child scrollable container, which is a nested child component of the component corresponding to **parentScroller**.|
+
+**Example**
+
+See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
+
 ## Font
 
 In the following API examples, you must first use [getFont()](#getfont) in **UIContext** to obtain a **Font** instance, and then call the APIs using the obtained instance.
@@ -2024,7 +2384,7 @@ Registers a custom font with the font manager.
 
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
-| options | [font.FontOptions](js-apis-font.md#fontoptions) | Yes   | Information about the custom font to register. |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | Yes   | Information about the custom font to register.|
 
 **Example**
 
@@ -2051,9 +2411,13 @@ Obtains the list of supported fonts.
 
 | Type            | Description       |
 | -------------- | --------- |
-| Array\<string> | List of supported fonts. |
+| Array\<string> | List of supported fonts.|
 
-**Example** 
+>  **NOTE**
+>
+>  This API takes effect only on 2-in-1 devices.
+
+**Example**
 
 ```ts
 import { Font } from '@kit.ArkUI';
@@ -2074,19 +2438,19 @@ Obtains information about a system font based on the font name.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
 | Name     | Type    | Mandatory  | Description     |
 | -------- | ------ | ---- | ------- |
-| fontName | string | Yes   | System font name. |
+| fontName | string | Yes   | System font name.|
 
-**Return value** 
+**Return value**
 
 | Type                                     | Description          |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo10) | Information about the system font. |
+| [font.FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
-**Example** 
+**Example**
 
 ```ts
 import { Font } from '@kit.ArkUI';
@@ -2115,13 +2479,21 @@ Obtains the size, position, translation, scaling, rotation, and affine matrix in
 
 | Name | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
-| id   | string | Yes   | Unique component ID. |
+| id   | string | Yes   | Unique component ID.|
 
 **Return value**
 
 | Type                                                        | Description                                            |
 | ------------------------------------------------------------ | ------------------------------------------------ |
-| [componentUtils.ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | Size, position, translation, scaling, rotation, and affine matrix information of the component. |
+| [componentUtils.ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | Size, position, translation, scaling, rotation, and affine matrix information of the component.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message               |
+| ------ | ------------------- |
+| 100001 | UI execution context not found. |
 
 **Example**
 
@@ -2152,13 +2524,13 @@ Creates an observer for the specified component.
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| id   | string | Yes   | Component ID. |
+| id   | string | Yes   | Component ID.|
 
-**Return value** 
+**Return value**
 
 | Type                                                        | Description                                              |
 | ------------------------------------------------------------ | -------------------------------------------------- |
-| [inspector.ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register or unregister listeners for completion of component layout or drawing. |
+| [inspector.ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register or unregister listeners for completion of component layout or drawing.|
 
 **Example**
 
@@ -2176,10 +2548,10 @@ Represents the page information of the router or navigation destination. If ther
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | No | Router information. |
-| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | No | Navigation destination information. |
+| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | No| Router information.|
+| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | No| Navigation destination information.|
 
 ## UIObserver<sup>11+</sup>
 
@@ -2189,18 +2561,18 @@ In the following API examples, you must first use [getUIObserver()](#getuiobserv
 
 on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
-Subscribes to state changes of this **\<NavDestination>** component.
+Subscribes to status changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                        |
+| Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
 
@@ -2217,20 +2589,20 @@ observer.on('navDestinationUpdate', (info) => {
 
 off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from state changes of this **\<NavDestination>** component.
+Unsubscribes from status changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                        |
+| Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **NavDestination** component.                |
 
-**Example** 
+**Example**
 
 ```ts
 import { UIObserver } from '@kit.ArkUI';
@@ -2243,19 +2615,19 @@ observer.off('navDestinationUpdate');
 
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
-Subscribes to state changes of this **\<NavDestination>** component.
+Subscribes to state changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **NavDestination** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
 
@@ -2272,19 +2644,19 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from state changes of this **\<NavDestination>** component.
+Unsubscribes from state changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **NavDestination** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
 
@@ -2305,9 +2677,9 @@ Subscribes to the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                        |
+| Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.     |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | Yes  | Callback used to return the Callback used to return the information about the scroll event.  |
@@ -2326,9 +2698,9 @@ Unsubscribes from the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                        |
+| Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.     |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | No  | Callback used to return the Callback used to return the information about the scroll event.  |
@@ -2347,11 +2719,11 @@ Subscribes to the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event. |
+| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.|
 | options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Observer options, including the ID of the target scrollable component.                   |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | Yes  | Callback used to return the Callback used to return the information about the scroll event.                |
 
@@ -2369,11 +2741,11 @@ Unsubscribes from the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event. |
+| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.|
 | options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Observer options, including the ID of the target scrollable component.                   |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | No  | Callback used to return the Callback used to return the information about the scroll event.                |
 
@@ -2452,11 +2824,11 @@ Subscribes to state changes of the page in the router.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page in the router. |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page in the router.|
 | callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | Yes  | Callback used to return the If **pageInfo** is passed, the current page state is returned.                |
 
 **Example**
@@ -2480,11 +2852,11 @@ Unsubscribes to state changes of the page in the router.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page in the router. |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page in the router.|
 | callback | Callback\<observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo)\>        | No  | Callback to be unregistered.                |
 
 **Example**
@@ -2508,11 +2880,11 @@ Subscribes to the pixel density changes of the screen.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen. |
+| type     | string                                                       | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen.|
 | callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | Yes  | Callback used to return the screen pixel density after the change.                |
 
 ```ts
@@ -2554,12 +2926,12 @@ Unsubscribes from the pixel density changes of the screen.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                                | Mandatory | Description                                                                                        |
+| Name  | Type                                                                | Mandatory| Description                                                                                        |
 | -------- | -------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------- |
 | type     | string                                                               | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen.                                       |
-| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | No  | Callback to be unregistered. If this parameter is not specified, this API unregisters all callbacks for the **densityUpdate** event under the current UI context. |
+| callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | No  | Callback to be unregistered. If this parameter is not specified, this API unregisters all callbacks for the **densityUpdate** event under the current UI context.|
 
 ```ts
 import { uiObserver } from '@kit.ArkUI';
@@ -2605,11 +2977,11 @@ Subscribes to the dispatch of drawing instructions in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur. |
+| type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur.|
 | callback | Callback\<void\>        | Yes  | Callback used to return the result.                |
 
 ```ts
@@ -2642,11 +3014,11 @@ Unsubscribes from the dispatch of drawing instructions in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur. |
+| type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur.|
 | callback | Callback\<void\>        | No  | Callback to be unregistered.                 |
 
 ```ts
@@ -2684,11 +3056,11 @@ Subscribes to layout completion status in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed. |
+| type     | string                                                       | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed.|
 | callback | Callback\<void\>        | Yes  | Callback used to return the result.                |
 
 ```ts
@@ -2721,11 +3093,11 @@ Unsubscribes from layout completion status in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event event. The value **'didLayout'** indicates whether the layout has been completed. |
+| type     | string                                                       | Yes  | Event event. The value **'didLayout'** indicates whether the layout has been completed.|
 | callback | Callback\<void\>        | No  | Callback to be unregistered.                 |
 
 ```ts
@@ -2763,11 +3135,11 @@ Subscribes to the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
 **Example**
@@ -2837,11 +3209,11 @@ Unsubscribes from the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 
 For the sample code, see the sample code of the **UIObserver.on('navDestinationSwitch')** API.
@@ -2856,11 +3228,11 @@ Subscribes to the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
@@ -2932,11 +3304,11 @@ Unsubscribes from the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 
@@ -2952,11 +3324,11 @@ Subscribes to the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event is about to occur. |
+| type     | string                                                       | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event is about to occur.|
 | callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | Yes  | Callback used to return the **GestureEvent** object of the click event and the FrameNode of the component. |
 
 **Example**
@@ -2981,11 +3353,11 @@ Unsubscribes from the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                 |
+| Name  | Type                                                        | Mandatory| Description                                                 |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. |
+| type     | string                                                       | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions.|
 | callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | No  | Callback to be unregistered.                               |
 
 **Example**
@@ -3010,11 +3382,11 @@ Subscribes to the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event occurs. |
+| type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. The registered callback is triggered after the click event is about to occur.|
 | callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | Yes  | Callback used to return the **GestureEvent** object of the click event and the FrameNode of the component. |
 
 **Example**
@@ -3039,11 +3411,11 @@ Unsubscribes from the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                |
+| Name  | Type                                                        | Mandatory| Description                                                |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. |
+| type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions.|
 | callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | No  | Callback to be unregistered.                              |
 
 **Example**
@@ -3068,11 +3440,11 @@ Subscribes to the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                       | Mandatory | Description                                                        |
+| Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event is about to occur. |
+| type     | string                                                      | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event is about to occur.|
 | callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | Yes  | Callback used to return the **ClickEvent** object and the FrameNode of the component.   |
 
 **Example**
@@ -3097,11 +3469,11 @@ Unsubscribes from the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                       | Mandatory | Description                                                 |
+| Name  | Type                                                       | Mandatory| Description                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| type     | string                                                      | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions. |
+| type     | string                                                      | Yes  | Event type. The value **'willClick'** indicates the dispatch of click event instructions.|
 | callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | No  | Callback to be unregistered.                               |
 
 **Example**
@@ -3126,11 +3498,11 @@ Subscribes to the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                       | Mandatory | Description                                                        |
+| Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                      | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. The registered callback is triggered after the click event is about to occur. |
+| type     | string                                                      | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. The registered callback is triggered after the click event is about to occur.|
 | callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | Yes  | Callback used to return the **ClickEvent** object and the FrameNode of the component.   |
 
 **Example**
@@ -3155,11 +3527,11 @@ Unsubscribes from the dispatch of click event instructions.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                       | Mandatory | Description                                                |
+| Name  | Type                                                       | Mandatory| Description                                                |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                      | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. |
+| type     | string                                                      | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions.|
 | callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | No  | Callback to be unregistered.                              |
 
 **Example**
@@ -3180,14 +3552,16 @@ on(type: 'tabContentUpdate', callback: Callback\<observer.TabContentInfo\>): voi
 
 Subscribes to the **TabContent** switching event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | Yes  | Callback used to return the information about the **TabContent** switching event. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | Yes  | Callback used to return the information about the **TabContent** switching event.|
 
 **Example**
 
@@ -3246,14 +3620,16 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 
 Unsubscribes from the **TabContent** switching event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Callback to be unregistered. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Callback to be unregistered.|
 
 **Example**
 
@@ -3265,15 +3641,17 @@ on(type: 'tabContentUpdate', options: observer.ObserverOptions, callback: Callba
 
 Subscribes to the **TabContent** switching event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | ID of the target **Tabs** component. |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | Yes  | Callback used to return the information about the **TabContent** switching event. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | ID of the target **Tabs** component.|
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | Yes  | Callback used to return the information about the **TabContent** switching event.|
 
 **Example**
 
@@ -3332,15 +3710,17 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 
 Unsubscribes from the **TabContent** switching event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | ID of the target **Tabs** component. |
-| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Callback to be unregistered. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| options  | observer.[ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | ID of the target **Tabs** component.|
+| callback | Callback\<observer.[TabContentInfo](js-apis-arkui-observer.md#tabcontentinfo12)\> | No  | Callback to be unregistered.|
 
 **Example**
 
@@ -3357,10 +3737,10 @@ Implements a callback for the ArkTS gesture event.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                         |
+| Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent) | Yes | Information about the subscribed-to gesture event. |
-| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No | Component bound to the subscribed-to gesture event. |
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent)| Yes| Information about the subscribed-to gesture event.|
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No| Component bound to the subscribed-to gesture event.|
 
 ## ClickEventListenerCallback<sup>12+</sup>
 type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
@@ -3373,10 +3753,10 @@ Implements a callback for the ArkTS gesture event.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                         |
+| Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent) | Yes | Information about the subscribed-to click event. |
-| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No | Component bound to the subscribed-to click event. |
+| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent)| Yes| Information about the subscribed-to click event.|
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | No| Component bound to the subscribed-to click event.|
 
 ## MediaQuery
 
@@ -3396,13 +3776,13 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | Yes   | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax). |
+| condition | string | Yes   | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax).|
 
 **Return value**
 
 | Type                                                        | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | Listening handle to a media event, which is used to register or unregister the listening callback. |
+| [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | Listening handle to a media event, which is used to register or unregister the listening callback.|
 
 **Example**
 
@@ -3431,13 +3811,13 @@ Navigates to a specified page in the application. This API uses a promise to ret
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -3445,7 +3825,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3488,7 +3868,7 @@ Navigates to a specified page in the application.
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -3497,7 +3877,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3543,13 +3923,13 @@ Navigates to a specified page in the application. This API uses a promise to ret
 | Name    | Type                                      | Mandatory  | Description        |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -3557,7 +3937,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3605,7 +3985,7 @@ Navigates to a specified page in the application.
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
-| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
@@ -3614,7 +3994,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3663,13 +4043,13 @@ Replaces the current page with another one in the application and destroys the c
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page.|
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -3677,7 +4057,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
@@ -3716,7 +4096,7 @@ Replaces the current page with another one in the application and destroys the c
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -3725,9 +4105,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **Example**
 
@@ -3767,13 +4147,13 @@ Replaces the current page with another one in the application and destroys the c
 | Name    | Type                                      | Mandatory  | Description        |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -3781,8 +4161,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **Example**
@@ -3825,7 +4205,7 @@ Replaces the current page with another one in the application and destroys the c
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
-| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
@@ -3834,7 +4214,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.               |
 
@@ -3879,13 +4259,13 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -3893,7 +4273,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.   |
@@ -3936,7 +4316,7 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -3945,7 +4325,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.  |
@@ -3990,13 +4370,13 @@ Navigates to a page using the named route. This API uses a promise to return the
 | Name    | Type                                      | Mandatory  | Description        |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4004,7 +4384,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.  |
@@ -4052,7 +4432,7 @@ Navigates to a page using the named route. This API uses a promise to return the
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
@@ -4061,7 +4441,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.   |
@@ -4110,13 +4490,13 @@ Replaces the current page with another one using the named route and destroys th
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page.|
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4124,7 +4504,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -4163,7 +4543,7 @@ Replaces the current page with another one using the named route and destroys th
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -4172,7 +4552,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.         |
 
@@ -4214,14 +4594,14 @@ Replaces the current page with another one using the named route and destroys th
 | Name    | Type                                      | Mandatory  | Description        |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 
 **Return value**
 
 | Type                 | Description     |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4229,8 +4609,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.       |
 
 **Example**
@@ -4273,7 +4653,7 @@ Replaces the current page with another one using the named route and destroys th
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
@@ -4282,7 +4662,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -4327,7 +4707,7 @@ Returns to the previous page or a specified page.
 
 | Name    | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | No   | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up. |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | No   | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
 
@@ -4352,7 +4732,7 @@ Returns to the specified page.
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | index | number | Yes   | Index of the target page to navigate to. |
-| params    | Object      | No   | Parameters carried when returning to the page. |
+| params    | Object      | No   | Parameters carried when returning to the page.|
 
 **Example**
 
@@ -4403,7 +4783,7 @@ Obtains the number of pages in the current stack.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | Number of pages in the stack. The maximum value is **32**. |
+| string | Number of pages in the stack. The maximum value is **32**.|
 
 **Example**
 
@@ -4429,7 +4809,7 @@ Obtains state information about the current page.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#routerstate) | Page routing state. |
+| router.[RouterState](js-apis-router.md#routerstate) | Page routing state.|
 
 **Example**
 
@@ -4463,9 +4843,9 @@ Obtains the status information about a page by its index.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#routerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist. |
+| router.[RouterState](js-apis-router.md#routerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist.|
 
-**Example** 
+**Example**
 
 ```ts
 import { Router } from '@kit.ArkUI';
@@ -4499,9 +4879,9 @@ Obtains the status information about a page by its URL.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| Array<router.[RouterState](js-apis-router.md#routerstate)> | Page routing state. |
+| Array<router.[RouterState](js-apis-router.md#routerstate)> | Page routing state.|
 
-**Example** 
+**Example**
 
 ```ts
 import { Router } from '@kit.ArkUI';
@@ -4529,7 +4909,7 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes   | Description of the dialog box. |
+| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes   | Description of the dialog box.|
 
 **Error codes**
 
@@ -4537,7 +4917,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4591,7 +4971,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 | Type    | Description               |
 | ------ | ----------------- |
-| object | Parameters passed from the page that initiates redirection to the current page. |
+| object | Parameters passed from the page that initiates redirection to the current page.|
 
 **Example**
 
@@ -4620,7 +5000,7 @@ Shows a toast in the given settings.
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes   | Toast options. |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes   | Toast options.|
 
 **Error codes**
 
@@ -4628,7 +5008,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4650,33 +5030,33 @@ try {
 };
 ```
 
-### openToast<sup>12+</sup>
+### openToast<sup>13+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 13.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description          |
+| Name | Type                                                        | Mandatory| Description          |
 | ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes  | Toast options. |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes  | Toast options.|
 
 **Return value**
 
 | Type            | Description                                |
 | ---------------- | ------------------------------------ |
-| Promise&lt;number&gt; | ID of the toast, which is required in **closeToast**. |
+| Promise&lt;number&gt; | ID of the toast, which is required in **closeToast**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
 **Example**
@@ -4724,32 +5104,32 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>12+</sup>
+### closeToast<sup>13+</sup>
 
 closeToast(toastId: number): void
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 13.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                         |
+| Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | ----------------------------- |
-| toastId | number | Yes  | ID of the toast to close, which is returned by **openToast**. |
+| toastId | number | Yes  | ID of the toast to close, which is returned by **openToast**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
 **Example**
 
-See the example of [openToaset12](#opentoast12).
+See the example for [openToaset13](#opentoast13).
 
 ### showDialog
 
@@ -4765,7 +5145,7 @@ Shows a dialog box in the given settings. This API uses an asynchronous callback
 
 | Name     | Type                                      | Mandatory  | Description          |
 | -------- | ---------------------------------------- | ---- | ------------ |
-| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options. |
+| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options.|
 | callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
 
 **Error codes**
@@ -4774,7 +5154,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4830,13 +5210,13 @@ Shows a dialog box. This API uses a promise to return the result.
 
 | Name    | Type                                      | Mandatory  | Description    |
 | ------- | ---------------------------------------- | ---- | ------ |
-| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options. |
+| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options.|
 
 **Return value**
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result. |
+| Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
 
 **Error codes**
 
@@ -4844,7 +5224,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4894,18 +5274,18 @@ Shows an action menu in the given settings. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description              |
+| Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
-| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Yes  | Callback used to return the action menu response result. |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Yes  | Callback used to return the action menu response result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
 
-| ID | Error Message                          |
+| ID| Error Message                          |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal error. |
 
 **Example**
@@ -4954,10 +5334,10 @@ This API is deprecated since API version 11. You are advised to use [showActionM
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description              |
+| Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes  | Callback used to return the action menu response result. |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes  | Callback used to return the action menu response result.|
 
 **Error codes**
 
@@ -4965,7 +5345,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -5010,13 +5390,13 @@ Shows an action menu. This API uses a promise to return the result.
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options. |
+| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result. |
+| Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
 
 **Error codes**
 
@@ -5024,7 +5404,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -5065,7 +5445,7 @@ try {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**.
+Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5075,14 +5455,14 @@ Opens a custom dialog box corresponding to **dialogContent**. This API uses a pr
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes | Content of the custom dialog box. |
-| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | No   |   Dialog box style. |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content of the custom dialog box.|
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | No   |   Dialog box style.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result. |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
 
 **Error codes**
 
@@ -5090,7 +5470,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
@@ -5161,13 +5541,13 @@ Closes a custom dialog box corresponding to **dialogContent**. This API uses a p
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes | Content of the custom dialog box. |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content of the custom dialog box.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result. |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
 
 **Error codes**
 
@@ -5175,7 +5555,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -5256,14 +5636,14 @@ Updates a custom dialog box corresponding to **dialogContent**. This API uses a 
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes | Content of the custom dialog box. |
-| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | Yes   |   Dialog box style. Currently, only **alignment**, **offset**, **autoCancel**, and **maskColor** can be updated. |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | Yes| Content of the custom dialog box.|
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | Yes   |   Dialog box style. Currently, only **alignment**, **offset**, **autoCancel**, and **maskColor** can be updated.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result. |
+|   Promise&lt;void&gt;           |    Promise used to return the result.|
 
 **Error codes**
 
@@ -5271,7 +5651,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -5338,6 +5718,120 @@ struct Index {
 }
 ```
 
+### openCustomDialog<sup>12+</sup>
+
+openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
+
+Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID, which can be used with **closeCustomDialog**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description              |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [promptAction.CustomDialogOptions](js-apis-promptAction.md#customdialogoptions11) | Yes  | Content of the custom dialog box.|
+
+**Return value**
+
+| Type               | Description                                   |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | ID of the custom dialog box, which can be used with **closeCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+### closeCustomDialog<sup>12+</sup>
+
+closeCustomDialog(dialogId: number): void
+
+Closes the specified custom dialog box.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                            |
+| -------- | ------ | ---- | -------------------------------- |
+| dialogId | number | Yes  | ID of the custom dialog box to close. It is returned from **openCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { PromptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  private customDialogComponentId: number = 0
+
+  @Builder
+  customDialogComponent() {
+    Column() {
+      Text('Dialog box').fontSize(30)
+      Row({ space: 50 }) {
+        Button("OK").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+        Button("Cancel").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            this.promptAction.openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
+                }
+              }
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId
+            })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## DragController<sup>11+</sup>
 In the following API examples, you must first use [getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
 
@@ -5353,18 +5847,18 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)  | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [\<Image>](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging. |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [Image](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | Yes  | Dragging information.                                                  |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event. |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.|
 
-**Error codes** 
+**Error codes**
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **Example**
@@ -5433,23 +5927,23 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                            |
+| Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)  | Yes  | Object to be dragged. |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | Yes  | Dragging information.                      |
 
 **Return value**
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event. |
+| Promise&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event.|
 
 **Error codes**
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **Example**
@@ -5535,7 +6029,7 @@ struct DragControllerPage {
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
-Creates a **DragAction** object, by explicitly specifying one or more drag previews, drag data, and information about the dragged object. If the drag initiated by a **DragAction** object is not complete, no new **DragAction** object can be created, and calling this API will throw an exception.
+Creates a drag action object for initiating drag and drop operations. You need to explicitly specify one or more drag previews, the drag data, and the drag handle point. If a drag operation initiated by an existing drag action object is not completed, no new object can be created, and calling the API will throw an exception. After the lifecycle of the drag action object ends, the callback functions registered on this object become invalid. Therefore, it is necessary to hold this object within a longer scope and replace the old value with a new object returned by **createDragAction** before each drag initiation.
 
 **NOTE**<br>You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
 
@@ -5545,23 +6039,23 @@ Creates a **DragAction** object, by explicitly specifying one or more drag previ
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                            |
+| Name  | Type                                                        | Mandatory| Description                            |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
-| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)&gt;  | Yes  | Object to be dragged. |
+| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)&gt; | Yes  | Object to be dragged.|
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                | Yes  | Dragging information.                      |
 
 **Return value**
 
 | Type                                                  | Description              |
 | ------------------------------------------------------ | ------------------ |
-| [dragController.DragAction](js-apis-arkui-dragController.md#dragaction11)| **DragAction** object, which is used to subscribe to drag state change events and start the dragging service. |
+| [dragController.DragAction](js-apis-arkui-dragController.md#dragaction11)| **DragAction** object, which is used to subscribe to drag state change events and start the dragging service.|
 
 **Error codes**
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **Example**
@@ -5705,6 +6199,28 @@ struct DragControllerPage {
 }
 ```
 
+### getDragPreview<sup>11+</sup>
+
+getDragPreview(): dragController.DragPreview
+
+Obtains the **DragPreview** object, which represents the preview displayed during a drag.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks.|
+
+**Error codes**: For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+**Example**
+
+For details, see [animate](js-apis-arkui-dragController.md#animate11).
+
 ### setDragEventStrictReportingEnabled<sup>12+</sup>
 
 setDragEventStrictReportingEnabled(enable: boolean): void
@@ -5717,9 +6233,9 @@ Sets whether the **onDragLeave** callback of the parent component is triggered w
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable | boolean | Yes  | Whether the **onDragLeave** callback of the parent component is triggered when an item is dragged from the parent to the child component. |
+| enable | boolean | Yes  | Whether the **onDragLeave** callback of the parent component is triggered when an item is dragged from the parent to the child component.|
 
 **Example**
 
@@ -5886,7 +6402,7 @@ Removes a specified **ComponentContent** node from the **OverlayManager**
 
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
-| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to remove from the **OverlayManager**. |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to remove from the **OverlayManager**.|
 
 **Example**
 
@@ -5926,7 +6442,7 @@ Hides a specified **ComponentContent** node on the **OverlayManager**.
 
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
-| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to hide on the **OverlayManager**. |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to hide on the **OverlayManager**.|
 
 **Example**
 
@@ -5982,9 +6498,9 @@ Sets whether the atomic service menu bar is visible.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| visible | boolean | Yes | Whether the atomic service menu bar is visible.|
+| visible | boolean | Yes| Whether the atomic service menu bar is visible.|
 
 
 **Example**
@@ -6024,9 +6540,9 @@ Sets the background color of the atomic service menu bar.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes | Background color of the atomic service menu bar. The value **undefined** means to use the default color.|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Background color of the atomic service menu bar. The value **undefined** means to use the default color.|
 
 **Example**
 
@@ -6064,9 +6580,9 @@ Sets the title content of the atomic service menu bar.
 
 **Parameters**
 
-|Name|Type|Mandatory|Description |
+|Name|Type|Mandatory|Description|
 | ------- | ------- | ------- | ------- |
-| content | string | Yes | Title content of the atomic service menu bar.|
+| content | string | Yes| Title content of the atomic service menu bar.|
 
 **Example**
 
@@ -6105,9 +6621,9 @@ Sets the font style of the atomic service menu bar.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
-| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | Yes | Font style of the atomic service menu bar. |
+| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | Yes| Font style of the atomic service menu bar.|
 
 **Example**
 
@@ -6146,9 +6662,9 @@ Sets the color of the atomic service icon.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes | Color of the atomic service icon. The value **undefined** means to use the default color. |
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | Yes| Color of the atomic service icon. The value **undefined** means to use the default color.|
 
 
 **Example**
@@ -6174,7 +6690,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 ```
 ## KeyboardAvoidMode<sup>11+</sup>
 
-Enumerates the avoidance modes for the virtual keyboard.
+Enumerates the modes in which the layout responds when the keyboard is displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -6182,8 +6698,10 @@ Enumerates the avoidance modes for the virtual keyboard.
 
 | Name  | Value  | Description      |
 | ------ | ---- | ---------- |
-| OFFSET | 0    | Avoid the virtual keyboard through offset. |
-| RESIZE | 1    | Avoid the virtual keyboard through resizing. |
+| OFFSET | 0    | The layout moves up.|
+| RESIZE | 1    | The layout is resized.|
+| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | The layout moves up, and this adjustment also occurs if the caret position in the text box changes.|
+| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | The layout is resized, and this adjustment also occurs if the caret position in the text box changes.|
 
 
 ## FocusController<sup>12+</sup>
@@ -6250,7 +6768,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-Sets focus on the specified entity node in the component tree based on the component ID.
+Sets focus on the specified entity node in the component tree based on the component ID. This API takes effect in the current frame.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6258,19 +6776,19 @@ Sets focus on the specified entity node in the component tree based on the compo
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| key | string | Yes | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node.|
+| key | string | Yes| [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node.|
 
 **Error codes**
 
 For details about the error codes, see [Focus Error Codes](errorcode-focus.md).
 
-| ID | Error Message                                    |
-| ------ | ---------------------------------------- |
-| 150001 | This component is not focusable. |
-| 150002 | This component has an unfocusable ancestor.      |
-| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 150001   | the component cannot be focused.                |
+| 150002   | This component has an unfocusable ancestor.     |
+| 150003   | the component is not on tree or does not exist. |
 
 **Example**
 
@@ -6385,7 +6903,7 @@ Sets the cursor style.
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) | Yes   | Cursor style. |
+| value | [PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) | Yes   | Cursor style.|
 
 **Example**
 In this example, the **setCursor** API of **CursorController** is used to set the cursor style to **PointerStyle.WEST** when the cursor moves into the blue frame.
@@ -6497,13 +7015,13 @@ Measures the width of the given single-line text.
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [MeasureOptions](js-apis-measure.md#measureoptions) | Yes   | Options of the target text. |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | Yes   | Options of the target text.|
 
 **Return value**
 
 | Type         | Description      |
 | ------------  | --------- |
-| number        | Text width.<br>**NOTE**<br>Unit: px |
+| number        | Text width.<br>**NOTE**<br>Unit: px|
 
 
 **Example**
@@ -6548,13 +7066,13 @@ Measures the width and height of the given single-line text.
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [MeasureOptions](js-apis-measure.md#measureoptions) | Yes   | Options of the target text. |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | Yes   | Options of the target text.|
 
 **Return value**
 
 | Type         | Description      |
 | ------------  | --------- |
-| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | Width and height of the text.<br>**NOTE**<br> The return values for text width and height are both in px. |
+| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | Width and height of the text.<br>**NOTE**<br> The return values for text width and height are both in px.|
 
 
 **Example**
@@ -6595,7 +7113,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 Obtains the snapshot of a component that has been loaded. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > The snapshot captures content rendered in the last frame. If a snapshot is taken at the same time as the component triggers an update, the updated rendering content will not be captured in the snapshot; instead, the snapshot will return the rendering content from the previous frame.
 
@@ -6605,11 +7123,20 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component. |
+| id       | string                                                       | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result.                                        |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | No   | Custom settings of the snapshot. |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
 
 **Example**
 
@@ -6662,16 +7189,25 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component. |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | No   | Custom settings of the snapshot. |
+| id     | string | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
 
 **Return value**
 
 | Type                                                        | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result. |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
 
 **Example**
 
@@ -6715,7 +7251,7 @@ struct SnapshotExample {
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
 Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) in the background of the application and outputs its snapshot. This API uses an asynchronous callback to return the result.
-> **NOTE** 
+> **NOTE**
 >
 > Due to the need to wait for the component to be built and rendered, there is a delay of up to 500 ms in the callback for offscreen snapshot capturing.
 >
@@ -6727,13 +7263,23 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.     |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback. |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
 | delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot. |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | No   | Custom settings of the snapshot.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **Example**
 
@@ -6796,7 +7342,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) in the background of the application and outputs its snapshot. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > Due to the need to wait for the component to be built and rendered, there is a delay of up to 500 ms in the callback for offscreen snapshot capturing.
 >
@@ -6808,18 +7354,28 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 
 **Parameters**
 
-| Name | Type                                                | Mandatory | Description                                                   |
+| Name | Type                                                | Mandatory| Description                                                   |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported. |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.|
 
 **Return value**
 
 | Type                                                        | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result. |
-| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an image component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
+| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot. |
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **Example**
 
@@ -6875,15 +7431,15 @@ struct ComponentSnapshotExample {
 }
 ```
 
-## FrameCallback<sup>12+</sup>
+### getSync<sup>12+</sup>
 
-Implements the API for setting the task that needs to be executed during the next frame rendering. It must be used together with [postFrameCallback](#postframecallback12) and [postDelayedFrameCallback](#postdelayedframecallback12) in [UIContext](#uicontext). Inherit this class and override the [onFrame](#onframe12) method to implement specific service logic.
+getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
-### onFrame<sup>12+</sup>
+Obtains the snapshot of a component that has been loaded. This API synchronously waits for the snapshot to complete and returns a [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) object.
 
-Called when the next frame is rendered.
-
-onFrame(frameTimeInNano: number): void
+> **NOTE**
+>
+> The snapshot captures content rendered in the last frame. If a snapshot is taken at the same time as the component triggers an update, the updated rendering content will not be captured in the snapshot; instead, the snapshot will return the rendering content from the previous frame.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6891,9 +7447,80 @@ onFrame(frameTimeInNano: number): void
 
 **Parameters**
 
-| Name | Type                                                | Mandatory | Description                                                   |
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | Yes   | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
+
+**Return value**
+
+| Type                           | Description      |
+| ----------------------------- | -------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message               |
+| ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
+| 160002 | Timeout. |
+
+**Example**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          try {
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixelmap
+          } catch (error) {
+            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+## FrameCallback<sup>12+</sup>
+
+Implements the API for setting the task that needs to be executed during the next frame rendering. It must be used together with [postFrameCallback](#postframecallback12) and [postDelayedFrameCallback](#postdelayedframecallback12) in [UIContext](#uicontext). Extend this class and override either the [onFrame](#onframe12) or [onIdle](#onidle12) method to implement specific service logic.
+
+### onFrame<sup>12+</sup>
+
+onFrame(frameTimeInNano: number): void
+
+Called when the next frame is rendered.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                                   |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| frameTimeInNano | number | Yes  | Time when the rendering of the next frame starts, in nanoseconds. |
+| frameTimeInNano | number | Yes  | Time when the rendering of the next frame starts, in nanoseconds.|
 
 **Example**
 
@@ -6935,6 +7562,62 @@ struct Index {
 }
 ```
 
+### onIdle<sup>12+</sup>
+
+onIdle(timeLeftInNano: number): void
+
+Called after the rendering of the subsequent frame has finished and there is more than 1 millisecond left before the next VSync signal. If the time left is not more than 1 millisecond, the execution of this API will be deferred to a later frame.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                                   |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| timeLeftInNano | number | Yes  | Remaining idle time for the current frame.|
+
+**Example**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyIdleCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onIdle(timeLeftInNano: number) {
+    console.info('MyIdleCallback ' + this.tag + ' ' + timeLeftInNano.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('Invoke postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyIdleCallback("normTask"));
+          })
+        Button('Invoke postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyIdleCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## DynamicSyncScene<sup>12+</sup>
 
 In the following API examples, you must first use **requireDynamicSyncScene()** in **UIContext** to obtain a **DynamicSyncScene** instance, and then call the APIs using the obtained instance.
@@ -6945,7 +7628,7 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 Sets the expected frame rate range.
 
-The final result may not necessarily be the set frame rate range, as the system will make a comprehensive decision based on its capabilities, striving to meet what you have set.
+While you can specify a target frame rate for your application, the actual frame rate may vary. The system will take into account its capabilities and make decisions to optimize performance. It will aim to deliver a frame rate as close as possible to your setting, but this might not always be achievable.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6955,7 +7638,7 @@ The final result may not necessarily be the set frame rate range, as the system 
 
 | Name     | Type        | Mandatory  | Description  |
 | -------- | ---------- | ---- | ---- |
-| range | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| Yes   | Expected frame rate range.<br>Default value: **{min:0, max:120, expected: 120}** |
+| range | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| Yes   | Expected frame rate range.<br>Default value: **{min:0, max:120, expected: 120}**|
 
 **Example**
 
@@ -7082,7 +7765,7 @@ Inherits [DynamicSyncScene](#dynamicsyncscene12) and represents the dynamic sync
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                                                     | Read Only | Optional | Description                               |
+| Name      | Type                                                     | Read Only| Optional| Description                               |
 | --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
 | type      | [SwiperDynamicSyncSceneType](#swiperdynamicsyncscenetype12) | Yes  | No  | Dynamic sync scene of the **Swiper** component.            |
 
@@ -7096,5 +7779,104 @@ Enumerates the dynamic sync scene types.
 
 | Name    | Value  | Description                  |
 | -------- | ---- | ---------------------- |
-| GESTURE | 0   | Gesture operation. |
-| ANIMATION | 1   | Animation transition. |
+| GESTURE | 0   | Gesture operation.|
+| ANIMATION | 1   | Animation transition.|
+
+## MarqueeDynamicSyncScene<sup>13+</sup>
+
+Inherits [DynamicSyncScene](#dynamicsyncscene12) and represents the dynamic sync scene of the **Marquee** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Type                                                     | Read Only| Optional| Description                               |
+| --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
+| type      | [MarqueeDynamicSyncSceneType](#marqueedynamicsyncscenetype13) | Yes  | No  | Dynamic sync scene of the **Marquee** component.            |
+
+## MarqueeDynamicSyncSceneType<sup>13+</sup>
+
+Enumerates the dynamic sync scene types for the **Marquee** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| ANIMATION | 1   | Animation transition.|
+
+**Example**
+
+```ts
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct MarqueeExample {
+  @State start: boolean = false
+  @State src: string = ''
+  @State marqueeText: string = 'Running Marquee'
+  private fromStart: boolean = true
+  private step: number = 10
+  private loop: number = Number.POSITIVE_INFINITY
+  controller: TextClockController = new TextClockController()
+  convert2time(value: number): string{
+    let date = new Date(Number(value+'000'));
+    let hours = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+    return hours+ ":" + minutes + ":" + seconds;
+  }
+  @State ANIMATION: ExpectedFrameRateRange = {min:0, max:120, expected:30}
+  private scenes: MarqueeDynamicSyncScene[] = []
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Marquee({
+        start: this.start,
+        step: this.step,
+        loop: this.loop,
+        fromStart: this.fromStart,
+        src: this.marqueeText + this.src
+      })
+        .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE_POSITION)
+        .width(300)
+        .height(80)
+        .fontColor('#FFFFFF')
+        .fontSize(48)
+        .fontWeight(700)
+        .backgroundColor('#182431')
+        .margin({ bottom: 40 })
+        .id('dynamicMarquee')
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[]
+        })
+      Button('Start')
+        .onClick(() => {
+          this.start = true
+          this.controller.start()
+          this.scenes.forEach((scenes: MarqueeDynamicSyncScene) => {
+            if (scenes.type == MarqueeDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION)
+            }
+          });
+        })
+        .width(120)
+        .height(40)
+        .fontSize(16)
+        .fontWeight(500)
+        .backgroundColor('#007DFF')
+      TextClock({ timeZoneOffset: -8, controller: this.controller })
+        .format('hms')
+        .onDateChange((value: number) => {
+          this.src = this.convert2time(value);
+        })
+        .margin(20)
+        .fontSize(30)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

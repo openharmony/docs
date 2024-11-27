@@ -59,7 +59,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 13开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 12及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 14开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 13及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -139,7 +139,7 @@ fontWeight(value: number&nbsp;|&nbsp;FontWeight&nbsp;|&nbsp;string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：500 |
 
 ### fontStyle<sup>8+</sup>
 
@@ -289,12 +289,12 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
 | Circle  | 圆形按钮。              |
 | Normal  | 普通按钮（默认不带圆角）。      |
-| ROUNDED_RECTANGLE<sup>13+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp） |
+| ROUNDED_RECTANGLE<sup>14+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp） |
 
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
@@ -327,7 +327,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | EMPHASIZED | 强调按钮（用于强调当前操作）。 |
 | NORMAL  | 普通按钮（一般界面操作）。              |
@@ -341,7 +341,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | SMALL | 小尺寸按钮。 |
 | NORMAL  | 正常尺寸按钮。              |
@@ -354,7 +354,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | NORMAL | 正常按钮。 |
 | ERROR  | 警示按钮。              |
@@ -383,6 +383,8 @@ type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
 | xPos | number | 是 | 点击位置x的坐标。 |
@@ -393,7 +395,9 @@ type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 支持[通用事件](ts-universal-events-click.md)。
 ## 示例
 
-### 示例1
+### 示例1（设置按钮的显示样式）
+
+该示例实现了两种创建按钮的方式，包含子组件或使用文本内容创建相应的按钮。
 
 ```ts
 // xxx.ets
@@ -453,7 +457,9 @@ struct ButtonExample {
 
 ![button](figures/button.gif)
 
-### 示例2 
+### 示例2 （为按钮添加渲染控制）
+
+该示例通过if/else控制按钮的显示文本。
 
 ```ts
 // xxx.ets
@@ -483,7 +489,9 @@ struct SwipeGestureExample {
 
 ![ifButton](figures/ifButton.gif)
 
-### 示例3 
+### 示例3 （设置按钮文本样式）
+
+该示例通过配置labelStyle自定义按钮文本的显示样式。
 
 ```ts
 // xxx.ets
@@ -522,7 +530,10 @@ struct buttonTestDemo {
 
 ![image-20230711171138661](figures/imageButtonLabelStyle.png)
 
-### 示例4
+### 示例4（设置不同尺寸按钮的重要程度）
+
+该示例通过配置controlSize、buttonStyle实现不同尺寸按钮的重要程度。
+
 ```ts
 // xxx.ets
 @Entry
@@ -557,7 +568,10 @@ struct ButtonExample {
 ```
 ![image-20230711171138661](figures/buttonstyleandsize.jpeg)
 
-### 示例5
+### 示例5（设置按钮的角色）
+
+该示例通过配置role实现按钮的角色。
+
 ```ts
 // xxx.ets
 @Entry
@@ -583,7 +597,7 @@ struct ButtonExample {
 ```
 ![buttonrole](figures/buttonrole.jpeg)
 
-### 示例6
+### 示例6（设置自定义样式按钮）
 该示例实现了自定义样式的功能，自定义样式实现了一个圆圈替换原本的按钮样式。如果按压，圆圈将变成红色，标题会显示按压字样；如果没有按压，圆圈将变成黑色，标题会显示非按压字样。
 ```ts
 class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
@@ -649,8 +663,8 @@ struct ButtonExample {
 ```
 ![buttonrole](figures/buttonbuilder.gif)
 
-### 示例7
-该示例创建了圆角矩形按钮。
+### 示例7（设置圆角矩形按钮）
+该示例通过配置ButtonType.ROUNDED_RECTANGLE创建圆角矩形按钮。
 ```ts
 @Entry
 @Component

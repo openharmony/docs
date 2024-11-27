@@ -12,7 +12,9 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。<!--Del-->编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。<!--DelEnd-->
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
+
+如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)<!--RP1--><!--RP1End-->。
 
 ## 基本知识
 
@@ -138,7 +140,7 @@ let instance: Class <void>
 
 #### `Object`类型
 
-`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。
+`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除非基本类型外的类型。
 
 #### `Array`类型
 
@@ -174,15 +176,18 @@ let c: ColorSet = ColorSet.Black;
 
 ```typescript
 class Cat {
+  name: string = 'cat';
   // ...
 }
 class Dog {
+  name: string = 'dog';
   // ...
 }
 class Frog {
+  name: string = 'frog';
   // ...
 }
-type Animal = Cat | Dog | Frog | number
+type Animal = Cat | Dog | Frog | number;
 // Cat、Dog、Frog是一些类型（类或接口）
 
 let animal: Animal = new Cat();
@@ -199,7 +204,7 @@ class Cat { sleep () {}; meow () {} }
 class Dog { sleep () {}; bark () {} }
 class Frog { sleep () {}; leap () {} }
 
-type Animal = Cat | Dog | Frog
+type Animal = Cat | Dog | Frog;
 
 function foo(animal: Animal) {
   if (animal instanceof Frog) {
@@ -234,10 +239,10 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `===`    | 如果两个操作数严格相等（不同类型的操作数是不相等的），则返回true。     |
-| `!==`    | 如果两个操作数严格不相等（不同类型的操作数是不相等的），则返回true。    |
-| `==`     | 如果两个操作数相等（尝试先转换不同类型的操作数，再进行比较），则返回true。 |
-| `!=`     | 如果两个操作数不相等（尝试先转换不同类型的操作数，再进行比较），则返回true。    |
+| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `==`     | 如果两个操作数相等，则返回true。 |
+| `!=`     | 如果两个操作数不相等，则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
 | `>=`     | 如果左操作数大于或等于右操作数，则返回true。 |
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
@@ -469,7 +474,7 @@ while (true) {
 示例：
 
 ```typescript
-let x = 1
+let x = 1;
 label: while (true) {
   switch (x) {
     case 1:
@@ -489,7 +494,7 @@ label: while (true) {
 let sum = 0;
 for (let x = 0; x < 100; x++) {
   if (x % 2 == 0) {
-    continue
+    continue;
   }
   sum += x;
 }
@@ -610,8 +615,8 @@ function sum(...numbers: number[]): number {
   return res;
 }
 
-sum() // 返回0
-sum(1, 2, 3) // 返回6
+sum(); // 返回0
+sum(1, 2, 3); // 返回6
 ```
 
 ### 返回类型
@@ -736,8 +741,8 @@ foo('aa'); // OK，使用第二个定义
 
 ```typescript
 class Person {
-  name: string = ''
-  surname: string = ''
+  name: string = '';
+  surname: string = '';
   constructor (n: string, sn: string) {
     this.name = n;
     this.surname = sn;
@@ -759,8 +764,8 @@ console.log(p.fullName());
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p: Point = {x: 42, y: 42};
 ```
@@ -779,8 +784,8 @@ let p: Point = {x: 42, y: 42};
 
 ```typescript
 class Person {
-  name: string = ''
-  age: number = 0
+  name: string = '';
+  age: number = 0;
   constructor(n: string, a: number) {
     this.name = n;
     this.age = a;
@@ -805,7 +810,7 @@ p2.getName();
 
 ```typescript
 class Person {
-  static numberOfPersons = 0
+  static numberOfPersons = 0;
   constructor() {
      // ...
      Person.numberOfPersons++;
@@ -825,7 +830,7 @@ ArkTS要求所有字段在声明时或者构造函数中显式初始化。这和
 
 ```typescript
 class Person {
-  name: string // undefined
+  name: string; // undefined
   
   setName(n:string): void {
     this.name = n;
@@ -847,7 +852,7 @@ jack.getName().length; // 运行时异常：name is undefined
 
 ```typescript
 class Person {
-  name: string = ''
+  name: string = '';
   
   setName(n:string): void {
     this.name = n;
@@ -869,13 +874,13 @@ jack.getName().length; // 0, 没有运行时异常
 
 ```typescript
 class Person {
-  name?: string // 可能为`undefined`
+  name?: string; // 可能为`undefined`
 
   setName(n:string): void {
     this.name = n;
   }
 
-  // 编译时错误：name可以是"undefined"，所以将这个API的返回值类型标记为string
+  // 编译时错误：name可以是"undefined"，所以这个API的返回值类型不能仅定义为string类型
   getNameWrong(): string {
     return this.name;
   }
@@ -902,8 +907,8 @@ setter和getter可用于提供对对象属性的受控访问。
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age: number = 0
+  name: string = '';
+  private _age: number = 0;
   get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
@@ -932,8 +937,8 @@ p.age = -42; // 设置无效age值会抛出错误
 
 ```typescript
 class RectangleSize {
-  private height: number = 0
-  private width: number = 0
+  private height: number = 0;
+  private width: number = 0;
   constructor(height: number, width: number) {
     this.height = height;
     this.width = width;
@@ -986,14 +991,14 @@ class [extends BaseClassName] [implements listOfInterfaces] {
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age = 0
+  name: string = '';
+  private _age = 0;
   get age(): number {
     return this._age;
   }
 }
 class Employee extends Person {
-  salary: number = 0
+  salary: number = 0;
   calculateTaxes(): number {
     return this.salary * 0.42;
   }
@@ -1020,8 +1025,8 @@ class MyDate implements DateInterface {
 
 ```typescript
 class RectangleSize {
-  protected height: number = 0
-  protected width: number = 0
+  protected height: number = 0;
+  protected width: number = 0;
 
   constructor (h: number, w: number) {
     this.height = h;
@@ -1060,7 +1065,7 @@ class RectangleSize {
   }
 }
 class Square extends RectangleSize {
-  private side: number = 0
+  private side: number = 0;
   area(): number {
     return this.side * this.side;
   }
@@ -1101,8 +1106,8 @@ constructor ([parameters]) {
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p = new Point();
 ```
@@ -1159,8 +1164,8 @@ let c2 = new C('abc');    // OK，使用第二个签名
 
 ```typescript
 class C {
-  public x: string = ''
-  private y: string = ''
+  public x: string = '';
+  private y: string = '';
   set_y (new_y: string) {
     this.y = new_y; // OK，因为y在类本身中可以访问
   }
@@ -1176,8 +1181,8 @@ c.y = 'b'; // 编译时错误：'y'不可见
 
 ```typescript
 class Base {
-  protected x: string = ''
-  private y: string = ''
+  protected x: string = '';
+  private y: string = '';
 }
 class Derived extends Base {
   foo() {
@@ -1195,8 +1200,8 @@ class Derived extends Base {
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 let c: C = {n: 42, s: 'foo'};
@@ -1206,8 +1211,8 @@ ArkTS是静态类型语言，如上述示例所示，对象字面量只能在可
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 function foo(c: C) {}
@@ -1226,8 +1231,8 @@ function bar(): C {
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}];
 ```
@@ -1249,12 +1254,58 @@ map['John']; // 25
 
 ```typescript
 interface PersonInfo {
-  age: number
-  salary: number
+  age: number;
+  salary: number;
 }
 let map: Record<string, PersonInfo> = {
   'John': { age: 25, salary: 10},
   'Mary': { age: 21, salary: 20}
+}
+```
+
+### 抽象类 
+
+带有修饰符abstract的类称为抽象类。抽象类可用于表示一组更具体的概念所共有的概念。
+
+如果尝试创建抽象类的实例，则会发生编译时的错误：
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  //编译时错误：不能创建抽象类的具体实例
+```
+
+抽象类的子类可以是抽象类也可以是非抽象类。抽象父类的非抽象子类可以实例化。因此，执行抽象类的构造函数和该类非静态字段的字段初始化器：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) { 
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### 抽象方法
+
+带有abstract修饰符的方法称为抽象方法，抽象方法可以被声明但不能被实现。
+
+只有抽象类内才能有抽象方法，如果非抽象类具有抽象方法，则会发生编译时错误：
+
+```typescript
+class Y {
+  abstract method(p: string)  //编译时错误：抽象方法只能在抽象类内。
 }
 ```
 
@@ -1270,10 +1321,10 @@ let map: Record<string, PersonInfo> = {
 
 ```typescript
 interface Style {
-  color: string // 属性
+  color: string; // 属性
 }
 interface AreaSize {
-  calculateAreaSize(): number // 方法的声明
+  calculateAreaSize(): number; // 方法的声明
   someMethod(): void;     // 方法的声明
 }
 ```
@@ -1283,14 +1334,14 @@ interface AreaSize {
 ```typescript
 // 接口：
 interface AreaSize {
-  calculateAreaSize(): number // 方法的声明
+  calculateAreaSize(): number; // 方法的声明
   someMethod(): void;     // 方法的声明
 }
 
 // 实现：
 class RectangleSize implements AreaSize {
-  private width: number = 0
-  private height: number = 0
+  private width: number = 0;
+  private height: number = 0;
   someMethod(): void {
     console.log('someMethod called');
   }
@@ -1309,14 +1360,14 @@ class RectangleSize implements AreaSize {
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 ```
 
 ```typescript
 interface Style {
-  get color(): string
-  set color(x: string)
+  get color(): string;
+  set color(x: string);
 }
 ```
 
@@ -1324,21 +1375,21 @@ interface Style {
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  color: string = ''
+  color: string = '';
 }
 ```
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  private _color: string = ''
+  private _color: string = '';
   get color(): string { return this._color; }
   set color(x: string) { this._color = x; }
 }
@@ -1350,11 +1401,11 @@ class StyledRectangle implements Style {
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 interface ExtendedStyle extends Style {
-  width: number
+  width: number;
 }
 ```
 
@@ -1396,7 +1447,7 @@ s.push(55); // 将会产生编译时错误
 
 ```typescript
 interface Hashable {
-  hash(): number
+  hash(): number;
 }
 class MyHashMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
@@ -1510,7 +1561,7 @@ function foo(a: A | null) {
 ```typescript
 class Person {
   // ...
-  nick: string | null = null
+  nick: string | null = null;
   getNick(): string {
     return this.nick ?? '';
   }
@@ -1523,7 +1574,7 @@ class Person {
 
 ```typescript
 class Person {
-  nick: string | null = null
+  nick: string | null = null;
   spouse?: Person
 
   setSpouse(spouse: Person): void {
@@ -1549,8 +1600,8 @@ class Person {
 
 ```typescript
 class Person {
-  nick: string | null = null
-  spouse?: Person
+  nick: string | null = null;
+  spouse?: Person;
 
   constructor(nick: string) {
     this.nick = nick;
@@ -1580,8 +1631,8 @@ p.spouse?.nick; // undefined
 
 ```typescript
 export class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
@@ -1626,7 +1677,7 @@ Y // 表示来自utils的Y
 
 ```typescript
 import { X as Z, Y } from './utils'
-Z // 表示来自Utils的Z
+Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
 ```
@@ -1667,9 +1718,9 @@ async function test() {
 }
 ```
 
-更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)。
+更多的使用动态import的业务场景和使用实例见[动态import](../arkts-utils/arkts-dynamic-import.md)。
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### 顶层语句
 
@@ -1685,7 +1736,7 @@ async function test() {
 
 ```typescript
 class A {
-  count: string = 'a'
+  count: string = 'a';
   m(i: string): void {
     this.count = i;
   }
@@ -1701,7 +1752,7 @@ class A {
 
 ```typescript
 class A {
-  n: number = 0
+  n: number = 0;
   f1(arg1: this) {} // 编译时错误，不支持this类型
   static f2(arg1: number) {
     this.n = arg1;  // 编译时错误，不支持在类的静态方法中使用this
@@ -1725,6 +1776,6 @@ function foo(arg1: number) {
 
 ### ArkUI示例
 
-[MVVM应用示例](arkts-mvvm.md#mvvm应用示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
+[MVVM代码示例](arkts-mvvm.md#代码示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
 
 有关ArkUI功能的更多详细信息，请参见ArkUI[基本语法概述](arkts-basic-syntax-overview.md)。

@@ -20,7 +20,7 @@ import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOpt
 
 ## Popup
 
-Popup(options: PopupOptions)
+Popup(options: PopupOptions): void
 
 **装饰器类型：**@Builder
 
@@ -30,7 +30,7 @@ Popup(options: PopupOptions)
 
 **参数**：
 
-| 名称    | 类型                          | 必填 | 说明                  |
+| 参数名  | 类型                          | 必填 | 说明                  |
 | ------- | ----------------------------- | ---- | --------------------- |
 | options | [PopupOptions](#popupoptions) | 是   | 定义Popup组件的类型。 |
 
@@ -60,7 +60,7 @@ PopupTextOptions设置文本样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型                                                         | 必填 | 描述               |
+| 名称       | 类型                                                         | 必填 | 说明         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置文本内容。     |
 | fontSize   | number \| string \| [Resource](ts-types.md#resource)         | 否   | 设置文本字体大小。<br />默认值：`$r('sys.float.ohos_id_text_size_body2')`  |
@@ -75,7 +75,7 @@ PopupButtonOptions定义按钮的相关属性和事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                                 | 必填 | 描述                   |
+| 名称      | 类型                                                 | 必填 | 说明                 |
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | 是   | 设置按钮内容。         |
 | action    | () => void                                           | 否   | 设置按钮click回调。 |
@@ -90,7 +90,7 @@ PopupIconOptions定义icon（右上角图标）的属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                                         | 必填 | 描述                               |
+| 名称         | 类型                                                         | 必填 | 说明                             |
 | ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | image        | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置图标内容。                     |
 | width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。<br />默认值：32VP |
@@ -98,7 +98,11 @@ PopupIconOptions定义icon（右上角图标）的属性。
 | fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。 <br />**说明：**<br />仅针对svg图源生效。|
 | borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：`$r('sys.float.ohos_id_corner_radius_default_s')`  |
 
-## 示例   
+## 示例
+
+### 示例1（设置气泡样式）
+
+该示例通过配置PopupIconOptions、PopupTextOptions、PopupButtonOptions实现气泡的样式。
 
 ```ts
 // xxx.ets
@@ -112,7 +116,7 @@ struct PopupExample {
     Row() {
       // popup 自定义高级组件
       Popup({
-        //PopupIconOptions 类型设置图标内容
+        // PopupIconOptions类型设置图标内容
         icon: {
           image: $r('app.media.icon'),
           width:32,
@@ -120,14 +124,14 @@ struct PopupExample {
           fillColor:Color.White,
           borderRadius: 16
         } as PopupIconOptions,
-        // PopupTextOptions 类型设置文字内容
+        // PopupTextOptions类型设置文字内容
         title: {
           text: 'This is a popup with PopupOptions',
           fontSize: 20,
           fontColor: Color.Black,
           fontWeight: FontWeight.Normal
         } as PopupTextOptions,
-        //PopupTextOptions 类型设置文字内容
+        // PopupTextOptions类型设置文字内容
         message: {
           text: 'This is the message',
           fontSize: 15,
@@ -137,7 +141,7 @@ struct PopupExample {
         onClose: () => {
           console.info('close Button click')
         },
-        // PopupButtonOptions 类型设置按钮内容
+        // PopupButtonOptions类型设置按钮内容
         buttons: [{
           text: 'confirm',
           action: () => {
@@ -166,8 +170,8 @@ struct PopupExample {
 
 ![](figures/popup_7.png)
 
-## 示例 2
-Popup布局镜像展示
+### 示例 2（设置镜像效果）
+该示例通过配置direction实现Popup的镜像效果。
 
 ```ts
 // xxx.ets

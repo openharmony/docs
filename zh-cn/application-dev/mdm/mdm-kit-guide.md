@@ -10,13 +10,16 @@
 
 要完成一个设备管理应用开发，需要完成以下步骤：
 
-<!--RP1--><!--RP1End-->
+<!--RP1-->
 
 1. 创建EnterpriseAdminExtensionAbility；
 
 2. 声明接口所需权限；
 
 3. MDM功能开发与调试；
+
+<!--RP1End-->
+
 
 <!--RP2--><!--RP2End-->
 

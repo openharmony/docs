@@ -1,46 +1,48 @@
-# Starting a Navigation Application
+# Using startAbilityByType to Start a Navigation Application
 
 
 This topic describes how to open the vertical domain panel of navigation applications.
 
-
 ## Parameters on the Navigation Application Panel
 
-If the **type** field in **startAbilityByType** is set to **navigation**, **wantParam** contains the following properties.
-
-| Name            | Description                                                        | Data Type| Mandatory|
-| -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| destinationLatitude  | Latitude of the destination.                                                   | number   | Mandatory when **sceneType** is set to **1** or **2**.|
-| destinationLongitude | Longitude of the destination.                                                    | number   | Mandatory when **sceneType** is set to **1** or **2**.|
-| sceneType            | Scene type. The options are as follows: 1: route planning; 2: navigation; 3: place search.                               | number   | No. When this parameter is left unspecified, the default value **1** is used.  |
-| destinationName      | Name of the destination.                                                    | string   | Mandatory when **sceneType** is set to **3**.  |
-| destinationPoiIds      | List of POI IDs of the destination. It is valid in route planning or navigation scenarios.                                                      | Record<number, string>   | No  |
-| originName           | Name of the source. It is valid in route planning scenarios.                                  | string   | No  |
-| originLatitude       | Latitude of the source. It is valid in route planning scenarios.                                  | number   | No  |
-| originLongitude      | Longitude of the source. It is valid in route planning scenarios.                                  | number   | No  |
-| originPoiIds      | List of POI IDs of the source. It is valid in route planning or navigation scenarios.                                                     | Record<number, string>   | No  |
-| vehicleType          | Transportation mode. The options are as follows: 0: driving; 1: walking; 2: cycling; 3: public transportation. It is valid in route planning scenarios.| number   | No. When this parameter is left unspecified, the processing is determined by the application.  |
+If the **type** field in **startAbilityByType** is set to **navigation**, three intent scenarios are supported: route planning, navigation, and place search. The corresponding **wantParam** parameter contains the following properties.
 
 > **NOTE**
-> 
-> * The GCJ-02 coordinate system is used for the longitude and latitude in this document.
-> 
-> * You need to obtain the destination POI IDs and source POI IDs from each map system and transfer parameters based on the following mappings.
+>
+> The GCJ-02 coordinate system is used for the longitude and latitude in this document.
 
-```ts
-let wantParam: Record<string, Object> = {
-      // Other parameters
-      ...,
-      'destinationPoiIds': {
-          1:'1111', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-          2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
-      } as Record<number, string>,
-      'originPoiIds': {
-          1: '3333',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-          2: '4444'   // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
-      } as Record<number, string>
-    };
-```
+- Route planning scenarios
+
+    | Name              | Type                  | Mandatory| Description                                                |
+    | -------------------- | ---------------------- | ---- | ---------------------------------------------------- |
+    | sceneType            | number                 | No  | Intent. The default value is **1**. In route planning scenarios, set it to **1** or leave it empty.                  |
+    | originName           | string                 | No  | Name of the source.                                            |
+    | originLatitude       | number                 | No  | Latitude of the source.                                            |
+    | originLongitude      | number                 | No  | Longitude of the source.                                            |
+    | originPoiIds         | Record<number, string> | No  | List of POI IDs of the source. Currently, only POI IDs of Petal Maps and AutoNavi Map can be passed.|
+    | destinationName      | string                 | No  | Name of the destination.                                            |
+    | destinationLatitude  | number                 | Yes  | Latitude of the destination.                                            |
+    | destinationLongitude | number                 | Yes  | Longitude of the destination.                                            |
+    | destinationPoiIds    | Record<number, string> | No  | List of POI IDs of the destination. Currently, only POI IDs of Petal Maps and AutoNavi Map can be passed.|
+    | vehicleType          | number                 | No  | Transportation mode. The options are as follows: 0: driving; 1: walking; 2: cycling; 3: public transportation.|
+
+- Navigation scenarios
+
+    | Name              | Type                  | Mandatory| Description             |
+    | -------------------- | ---------------------- | ---- | ----------------- |
+    | sceneType            | number                 | Yes  | Intent. Set it to **2** for navigation scenarios.|
+    | destinationName      | string                 | No  | Name of the destination.         |
+    | destinationLatitude  | number                 | Yes  | Latitude of the destination.         |
+    | destinationLongitude | number                 | Yes  | Longitude of the destination.         |
+    | destinationPoiIds    | Record<number, string> | No  | List of POI IDs of the destination. Currently, only POI IDs of Petal Maps and AutoNavi Map can be passed.|
+
+- Place search scenarios
+
+    | Name         | Type  | Mandatory| Description                 |
+    | --------------- | ------ | ---- | --------------------- |
+    | sceneType       | number | Yes  | Intent. Set it to **3** for place search scenarios.|
+    | destinationName | string | Yes  | Name of the destination.             |
+
 
 ## Developing a Caller Application
 
@@ -50,6 +52,9 @@ let wantParam: Record<string, Object> = {
     ```
 2. Construct parameters and call the **startAbilityByType** API.
 
+   You need to obtain the POI IDs of the destination and origin from each map system and pass the parameters **destinationPoiIds** and **originPoiIds** based on the mappings.
+   
+   
     ```ts
     let context = getContext(this) as common.UIAbilityContext;
     let wantParam: Record<string, Object> = {
@@ -58,15 +63,15 @@ let wantParam: Record<string, Object> = {
       'destinationLongitude': 118.78315,
       'destinationName': 'No.xx, xx Road, xx City',
       'destinationPoiIds': {
-          1: "111111111111",
-          2: "222222222222"
+          1: '1111',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+          2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
       } as Record<number, string>,
-      'originName': 'xx Park in xx City',
+       'originName': 'xx Park in xx City',
       'originLatitude': 31.060844,
       'originLongitude': 120.78315,
       'originPoiIds': {
-          1: "333333333333",  
-          2: "444444444444"
+          1: '3333',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+          2: '4444'   // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
       } as Record<number, string>,
       'vehicleType': 0
     };
@@ -88,9 +93,10 @@ let wantParam: Record<string, Object> = {
             }
     });
     ```
-    Effect
 
-    ![Effect example](./figures/start-navigation-panel.png)
+**Effect**
+
+![Effect example](./figures/start-navigation-panel.png)
 
 ## Developing a Target Application
 
@@ -102,39 +108,40 @@ let wantParam: Record<string, Object> = {
         | RoutePlan      | The application supports route planning.	|
         | PlaceSearch    | The application supports place search.    |
     2. Set **scheme**, **host**, **port**, and **path** or **pathStartWith** to match the URIs in Want to distinguish different features.
-    ```json
-    {
-      "abilities": [
-          {
-          "skills": [
+    
+        ```json
+        {
+          "abilities": [
               {
-              "uris": [
+              "skills": [
                   {
-                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                  "host": "navigation",
-                  "path": "",
-                  "linkFeature": "Navigation" // Declare that the application supports navigation.
-                  },
-                  {
-                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                  "host": "routePlan",
-                  "path": "",
-                  "linkFeature": "RoutePlan" // Declare that the application supports route planning.
-                  },
-                  {
-                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                  "host": "search",
-                  "path": "",
-                  "linkFeature": "PlaceSearch" // Declare that the application supports place search.
+                  "uris": [
+                      {
+                      "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                      "host": "navigation",
+                      "path": "",
+                      "linkFeature": "Navigation" // Declare that the application supports navigation.
+                      },
+                      {
+                      "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                      "host": "routePlan",
+                      "path": "",
+                      "linkFeature": "RoutePlan" // Declare that the application supports route planning.
+                      },
+                      {
+                      "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                      "host": "search",
+                      "path": "",
+                      "linkFeature": "PlaceSearch" // Declare that the application supports place search.
+                      }
+                  ]
                   }
               ]
               }
           ]
-          }
-      ]
-    }
-    ```
-
+        }
+        ```
+    
 2. Parse parameters and perform corresponding processing.
 
     ```ts
@@ -143,21 +150,38 @@ let wantParam: Record<string, Object> = {
 
     The **want.uri** parameter carries the URI corresponding to **linkFeature** configured by the target application.
 
-    The **want.parameters** parameter contains the following parameters, which may be slightly different from the ones passed in by the caller.
+    **want.parameters** carries the parameters passed by the caller, which vary in different scenarios.
 
-    | Name            | Description                                                        | Data Type| Mandatory|
-    | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | destinationLatitude  | Latitude of the destination.                                                    | number   | Mandatory in the route planning or navigation scenario.|
-    | destinationLongitude | Longitude of the destination.                                                    | number   | Mandatory in the route planning or navigation scenario.|
-    | destinationName      | Name of the destination.                                                    | string   | Mandatory in the place search scenario.  |
-    | destinationPoiId      | POI ID of the destination.                                                    | string   | No. When this parameter is specified, it can be used to display a route planning or navigation page.  |
-    | originName           | Name of the source.                                  | string   | No. When this parameter is specified, it can be used to display a route planning page.  |
-    | originLatitude       | Latitude of the source.                                | number   | No. When this parameter is specified, it can be used to display a route planning page.  |
-    | originLongitude      | Longitude of the source.                                 | number   | No. When this parameter is specified, it can be used to display a route planning page.  |
-    | originPoiId      | POI ID of the source.                                                    | string   | No. When this parameter is specified, it can be used to display a route planning page.  |
-    | vehicleType          | Transportation mode. The options are as follows: 0: driving; 1: walking; 2: cycling; 3: public transportation. It is valid in route planning scenarios.| number   | No. When this parameter is left unspecified, the processing is determined by the application.  |
+    - Route planning scenarios
+    
+        | Name              | Type  | Mandatory| Description                                                |
+        | -------------------- | ------ | ---- | ---------------------------------------------------- |
+        | originName           | string | No  | Name of the source.                                            |
+        | originLatitude       | number | No  | Latitude of the source.                                            |
+        | originLongitude      | number | No  | Longitude of the source.                                            |
+        | originPoiId          | string | No  | POI ID of the source. Currently, this parameter can be obtained only from Petal Maps and AutoNavi Map.     |
+        | destinationName      | string | No  | Name of the destination.                                            |
+        | destinationLatitude  | number | Yes  | Latitude of the destination.                                            |
+        | destinationLongitude | number | Yes  | Longitude of the destination.                                            |
+        | destinationPoiId     | string | No  | POI ID of the destination. Currently, this parameter can be obtained only from Petal Maps and AutoNavi Map.     |
+        | vehicleType          | number | No  | Transportation mode. The options are as follows: 0: driving; 1: walking; 2: cycling; 3: public transportation.|
+    
+    - Navigation scenarios
+    
+        | Name              | Type  | Mandatory| Description      |
+        | -------------------- | ------ | ---- | ---------- |
+        | destinationName      | string | No  | Name of the destination.  |
+        | destinationLatitude  | number | Yes  | Latitude of the destination.  |
+        | destinationLongitude | number | Yes  | Longitude of the destination.  |
+        | destinationPoiId     | string | No  | POI ID of the destination. Currently, this parameter can be obtained only from Petal Maps and AutoNavi Map.|
 
-    The application can develop different style pages based on the features defined in [linkFeature](../quick-start/module-configuration-file.md#skills), such as route planning, navigation, and place search, as well as the received URI.
+    - Place search scenarios
+    
+        | Name         | Type  | Mandatory| Description    |
+        | --------------- | ------ | ---- | -------- |
+        | destinationName | string | Yes  | Name of the destination.|
+
+    The application can develop different style pages based on the features defined in [linkFeature](../quick-start/module-configuration-file.md#skills), such as route planning, navigation, and place search, as well as the received URI and parameters.
 
 **Sample Code**
 

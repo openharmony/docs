@@ -840,10 +840,6 @@ Replaces an element at the specified position in this container with a given ele
 
 Obtains an iterator. Each item of the iterator is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**

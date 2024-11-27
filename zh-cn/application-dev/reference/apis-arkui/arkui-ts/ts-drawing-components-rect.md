@@ -90,7 +90,7 @@ radius(value: number | string | Array&lt;string&nbsp;|&nbsp;number&gt;)
 
 fill(value: ResourceColor)
 
-设置填充区域颜色。异常值按照默认值处理。
+设置填充区域的颜色，异常值按照默认值处理。与通用属性foregroundColor同时设置时，后设置的属性生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -350,16 +350,16 @@ struct RectExample {
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
-        .clip(new Rect({ width: 100, height: 100, radius: 40 }))
+        .clipShape(new Rect({ width: 100, height: 100, radius: 40 }))
       Rect()
         .width(100)
         .height(100)
-        // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
+          // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
         .fill(Color.Pink)
-        // 设置倒角为40
+          // 设置倒角为40
         .radius(40)
         .stroke(Color.Black)
-        // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
+          // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
         .linearGradient({
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]

@@ -1,1375 +1,751 @@
 # MVVM模式
 
+当开发者了解了状态管理的概念之后，跃跃欲试去开发一款自己的应用，倘若开发者在应用开发时不注意设计自己的项目结构，随着项目越来越庞大，状态变量设计的越来越多，组件与组件之间的关系变得越来越模糊，当开发一个新需求时，牵一发而动全身，需求开发和维护成本也会成倍增加，为此，本文旨在介绍MVVM模式以及ArkUI的UI开发模式与MVVM的关系，指引开发者如何去设计自己的项目结构，从而在产品迭代和升级时，能更容易的去开发和维护。
 
-应用通过状态去渲染更新UI是程序设计中相对复杂，但又十分重要的，往往决定了应用程序的性能。程序的状态数据通常包含了数组、对象，或者是嵌套对象组合而成。在这些情况下，ArkUI采取MVVM = Model + View + ViewModel模式，其中状态管理模块起到的就是ViewModel的作用，将数据与视图绑定在一起，更新数据的时候直接更新视图。
+## MVVM模式介绍
 
+### 概念
 
-- Model层：存储数据和相关逻辑的模型。它表示组件或其他相关业务逻辑之间传输的数据。Model是对原始数据的进一步处理。
+在应用开发中，UI的更新需要随着数据状态的变化进行实时同步，而这种同步往往决定了应用程序的性能和用户体验。为了解决数据与UI同步的复杂性，ArkUI采用了 Model-View-ViewModel（MVVM）架构模式。MVVM 将应用分为Model、View和ViewModel三个核心部分，实现数据、视图与逻辑的分离。通过这种模式，UI可以随着状态的变化自动更新，无需手动处理，从而更加高效地管理数据和视图的绑定与更新。
 
-- View层：在ArkUI中通常是\@Component装饰组件渲染的UI。
+- Model：负责存储和管理应用的数据以及业务逻辑，不直接与用户界面交互。通常从后端接口获取数据，是应用程序的数据基础，确保数据的一致性和完整性。
+- View：负责用户界面展示数据并与用户交互，不包含任何业务逻辑。它通过绑定ViewModel层提供的数据来动态更新UI。
+- ViewModel：负责管理UI状态和交互逻辑。作为连接Model和View的桥梁，ViewModel监控Model数据的变化，通知View更新UI，同时处理用户交互事件并转换为数据操作。
 
-- ViewModel层：在ArkUI中，ViewModel是存储在自定义组件的状态变量、LocalStorage和AppStorage中的数据。
-  - 自定义组件通过执行其build()方法或者\@Builder装饰的方法来渲染UI，即ViewModel可以渲染View。
-  - View可以通过相应event handler来改变ViewModel，即事件驱动ViewModel的改变，另外ViewModel提供了\@Watch回调方法用于监听状态数据的改变。
-  - 在ViewModel被改变时，需要同步回Model层，这样才能保证ViewModel和Model的一致性，即应用自身数据的一致性。
-  - ViewModel结构设计应始终为了适配自定义组件的构建和更新，这也是将Model和ViewModel分开的原因。
+ArkUI的UI开发模式就属于MVVM模式，通过对MVVM概念的基本介绍，开发者大致能猜到状态管理能在MVVM中起什么样的作用，状态管理旨在数据驱动更新，让开发者只用关注页面设计，而不去关注整个UI的刷新逻辑，数据的维护也无需开发者进行感知，由状态变量自动更新完成，而这就是属于ViewModel层所需要支持的内容，因此开发者使用MVVM模式开发自己的应用是最省心省力的。
 
+### ArkUI开发模式图
 
-目前很多关于UI构造和更新的问题，都是由于ViewModel的设计并没有很好的支持自定义组件的渲染，或者试图去让自定义组件强行适配Model层，而中间没有用ViewModel来进行分离。例如，一个应用程序直接将SQL数据库中的数据读入内存，这种数据模型不能很好的直接适配自定义组件的渲染，所以在应用程序开发中需要适配ViewModel层。
+ArkUI的UI开发开发模式即是MVVM模式，而状态管理在MVVM模式中扮演者ViewModel的角色，向上刷新UI，向下更新数据，整体框架如下图：
 
+![MVVM图](./figures/MVVM_架构.png)
 
-![zh-cn_image_0000001653986573](figures/zh-cn_image_0000001653986573.png)
+### 分层说明
 
+**View层**
 
-根据上面涉及SQL数据库的示例，应用程序应设计为：
+* 页面组件：所有应用基本都是按照页面进行分类的，比如登录页，列表页，编辑页，帮助页，版权页等。每个页对应需要的数据可能是完全不一样的，也可能多个页面需要的数据是同一套。
+* 业务组件：本身具备本APP部分业务能力的功能组件，典型的就是这个业务组件可能关联了本项目的ViewModel中的数据，不可以被共享给其他项目使用。
+* 通用组件：像内置组件一样，这类组件不会关联本APP中ViewModel的数据，这些组件可实现跨越多个项目进行共享，来完成比较通用的功能。
 
+**ViewModel层**
 
-- Model：针对数据库高效操作的数据模型。
+* 页面数据：按照页面组织的数据，用户打开页面时，可能某些页面并不会切换到，因此，这个页面数据最好设计成懒加载的模式。
 
-- ViewModel：针对ArkUI状态管理功能进行高效的UI更新的视图模型。
+> ViewModel层数据和Model层数据的区别：
+>
+> Model层数据是按照整个工程，项目来组织数据，是一套完成本APP的业务数据。
+>
+> ViewModel层数据，是提供某个页面上使用的数据，它可能是整个APP的业务数据的一部分。另外ViewModel层还可以附加对应Page的辅助页面显示数据，这部分数据可能与本APP的业务完全无关，仅仅是为页面展示提供便利的辅助数据。
 
-- 部署 converters/adapters： converters/adapters作用于Model和ViewModel的相互转换。
-  - converters/adapters可以转换最初从数据库读取的Model，来创建并初始化ViewModel。
-  - 在应用的使用场景中，UI会通过event handler改变ViewModel，此时converters/adapters需要将ViewModel的更新数据同步回Model。
+**Model层**
 
+Model层是应用的原始数据提供者，这一层在UI来看，有两种模式
 
-虽然与强制将UI拟合到SQL数据库模式（MV模式）相比，MVVM的设计比较复杂，但应用程序开发人员可以通过ViewModel层的隔离，来简化UI的设计和实现，以此来收获更好的UI性能。
+* 本地实现：通过纯NativeC++实现
 
+* 远端实现：通过IO端口（RestFul）实现
 
-## ViewModel的数据源
+> 注意：
+>
+> 采用本地实现时，系统的对数据加工和处理，基本上一定会存在非UI线程模型，这个时候，被加工的数据变更可能需要即时通知ViewModel层，来引起数据的变化，从而引起UI的相应更新。这个时候，自动线程转换就会变得非常重要。常规下，ViewModel层，View层，都只能在UI线程下执行，才能正常工作。因此需要一种机制，当需要通知UI更新时，需要自动完成线程切换。
 
+### 架构核心原则
 
-ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量以及LocalStorage和AppStorage都是顶层数据源，其余装饰器都是与数据源做同步的数据。装饰器的选择取决于状态需要在自定义组件之间的共享范围。共享范围从小到大的排序是：
+**不可跨层访问**
 
+* View层不可以直接调用Model层的数据，只能通过ViewModel提供的方法进行调用。
+* Model层数据，不可以直接操作UI，Model层只能通知ViewModel层数据有更新，由ViewModel层更新对应的数据。
 
-- \@State：组件级别的共享，通过命名参数机制传递，例如：CompA: ({ aProp: this.aProp })，表示传递层级（共享范围）是父子之间的传递。
+**下层不可访问上层数据**
 
-- \@Provide：组件级别的共享，可以通过key和\@Consume绑定，因此不用参数传递，实现多层级的数据共享，共享范围大于\@State。
+下层的数据通过通知模式更新上层数据。在业务逻辑中，下层不可直接写代码去获取上层数据。如ViewModel层的逻辑处理，不能去依赖View层界面上的某个值。
 
-- LocalStorage：页面级别的共享，可以通过\@Entry在当前组件树上共享LocalStorage实例。
+**非父子组件间不可直接访问**
 
-- AppStorage：应用全局的UI状态存储，和应用进程绑定，在整个应用内的状态数据的共享。
-
-
-### \@State装饰的变量与一个或多个子组件共享状态数据
-
-
-\@State可以初始化多种状态变量，\@Prop、\@Link和\@ObjectLink可以和其建立单向或双向同步，详情见[@State使用规范](arkts-state.md)。
-
-
-1. 使用Parent根节点中\@State装饰的testNum作为ViewModel数据项。将testNum传递给其子组件LinkChild和Sibling。
-
-   ```ts
-   // xxx.ets
-   @Entry
-   @Component
-   struct Parent {
-     @State @Watch("testNumChange1") testNum: number = 1;
-   
-     testNumChange1(propName: string): void {
-       console.log(`Parent: testNumChange value ${this.testNum}`)
-     }
-   
-     build() {
-       Column() {
-         LinkChild({ testNum: $testNum })
-         Sibling({ testNum: $testNum })
-       }
-     }
-   }
-   ```
+这是针对View层设计的核心原则，一个组件应该具备这样的逻辑：
 
-2. LinkChild和Sibling中用\@Link和父组件的数据源建立双向同步。其中LinkChild中创建了LinkLinkChild和PropLinkChild。
+* 禁止直接访问父组件（使用事件或是订阅能力）
+* 禁止直接访问兄弟组件能力。这是因为组件应该仅能访问自己看的见的子节点（通过传参）和父节点（通过事件或通知），以此完成组件之间的解耦。
 
-   ```ts
-   @Component
-   struct Sibling {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`Sibling: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Text(`Sibling: ${this.testNum}`)
-     }
-   }
-   
-   @Component
-   struct LinkChild {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkChild: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Column() {
-         Button('incr testNum')
-           .onClick(() => {
-             console.log(`LinkChild: before value change value ${this.testNum}`);
-             this.testNum = this.testNum + 1
-             console.log(`LinkChild: after value change value ${this.testNum}`);
-           })
-         Text(`LinkChild: ${this.testNum}`)
-         LinkLinkChild({ testNumGrand: $testNum })
-         PropLinkChild({ testNumGrand: this.testNum })
-       }
-       .height(200).width(200)
-     }
-   }
-   ```
-
-3. LinkLinkChild和PropLinkChild声明如下，PropLinkChild中的\@Prop和其父组件建立单向同步关系。
-
-   ```ts
-   @Component
-   struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`LinkLinkChild: ${this.testNumGrand}`)
-     }
-   }
-   
-   
-   @Component
-   struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number = 0;
-   
-     testNumChange(propName: string): void {
-       console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`PropLinkChild: ${this.testNumGrand}`)
-         .height(70)
-         .backgroundColor(Color.Red)
-         .onClick(() => {
-           this.testNumGrand += 1;
-         })
-     }
-   }
-   ```
-
-   ![zh-cn_image_0000001638250945](figures/zh-cn_image_0000001638250945.png)
-
-   当LinkChild中的\@Link testNum更改时。
-
-   1. 更改首先同步到其父组件Parent，然后更改从Parent同步到Sibling。
-
-   2. LinkChild中的\@Link testNum更改也同步给子组件LinkLinkChild和PropLinkChild。
-
-   \@State装饰器与\@Provide、LocalStorage、AppStorage的区别：
-
-   - \@State如果想要将更改传递给孙子节点，需要先将更改传递给子组件，再从子节点传递给孙子节点。
-   - 共享只能通过构造函数的参数传递，即命名参数机制CompA: ({ aProp: this.aProp })。
-
-   完整的代码示例如下：
-
-
-   ```ts
-   @Component
-   struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`LinkLinkChild: ${this.testNumGrand}`)
-     }
-   }
-   
-   
-   @Component
-   struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number = 0;
-   
-     testNumChange(propName: string): void {
-       console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`PropLinkChild: ${this.testNumGrand}`)
-         .height(70)
-         .backgroundColor(Color.Red)
-         .onClick(() => {
-           this.testNumGrand += 1;
-         })
-     }
-   }
-   
-   
-   @Component
-   struct Sibling {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`Sibling: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Text(`Sibling: ${this.testNum}`)
-     }
-   }
-   
-   @Component
-   struct LinkChild {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkChild: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Column() {
-         Button('incr testNum')
-           .onClick(() => {
-             console.log(`LinkChild: before value change value ${this.testNum}`);
-             this.testNum = this.testNum + 1
-             console.log(`LinkChild: after value change value ${this.testNum}`);
-           })
-         Text(`LinkChild: ${this.testNum}`)
-         LinkLinkChild({ testNumGrand: $testNum })
-         PropLinkChild({ testNumGrand: this.testNum })
-       }
-       .height(200).width(200)
-     }
-   }
-   
-   
-   @Entry
-   @Component
-   struct Parent {
-     @State @Watch("testNumChange1") testNum: number = 1;
-   
-     testNumChange1(propName: string): void {
-       console.log(`Parent: testNumChange value ${this.testNum}`)
-     }
-   
-     build() {
-       Column() {
-         LinkChild({ testNum: $testNum })
-         Sibling({ testNum: $testNum })
-       }
-     }
-   }
-   ```
-
-
-### \@Provide装饰的变量与任何后代组件共享状态数据
-
-\@Provide装饰的变量可以与任何后代组件共享状态数据，其后代组件使用\@Consume创建双向同步，详情见[@Provide和@Consume](arkts-provide-and-consume.md)。
-
-因此，\@Provide-\@Consume模式比使用\@State-\@Link-\@Link从父组件将更改传递到孙子组件更方便。\@Provide-\@Consume适合在单个页面UI组件树中共享状态数据。
-
-使用\@Provide-\@Consume模式时，\@Consume和其祖先组件中的\@Provide通过绑定相同的key连接，而不是在组件的构造函数中通过参数来进行传递。
-
-以下示例通过\@Provide-\@Consume模式，将更改从父组件传递到孙子组件。
-
-
-```ts
-@Component
-struct LinkLinkChild {
-  @Consume @Watch("testNumChange") testNum: number;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkLinkChild: testNum value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`LinkLinkChild: ${this.testNum}`)
-  }
-}
-
-@Component
-struct PropLinkChild {
-  @Prop @Watch("testNumChange") testNumGrand: number = 0;
-
-  testNumChange(propName: string): void {
-    console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-  }
-
-  build() {
-    Text(`PropLinkChild: ${this.testNumGrand}`)
-      .height(70)
-      .backgroundColor(Color.Red)
-      .onClick(() => {
-        this.testNumGrand += 1;
-      })
-  }
-}
-
-@Component
-struct Sibling {
-  @Consume @Watch("testNumChange") testNum: number;
-
-  testNumChange(propName: string): void {
-    console.log(`Sibling: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`Sibling: ${this.testNum}`)
-  }
-}
-
-@Component
-struct LinkChild {
-  @Consume @Watch("testNumChange") testNum: number;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkChild: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Column() {
-      Button('incr testNum')
-        .onClick(() => {
-          console.log(`LinkChild: before value change value ${this.testNum}`);
-          this.testNum = this.testNum + 1
-          console.log(`LinkChild: after value change value ${this.testNum}`);
-        })
-      Text(`LinkChild: ${this.testNum}`)
-      LinkLinkChild({ /* empty */ })
-      PropLinkChild({ testNumGrand: this.testNum })
-    }
-    .height(200).width(200)
-  }
-}
+对于一个组件，这样设计的原因是：
 
+* 组件自己使用了哪些子组件是明确的，因此可以访问。
+* 组件被放置于哪个父节点下是未知的，因此组件想访问父节点，就只能通过通知或者事件能力完成。
+* 组件不可能知道自己的兄弟节点是谁，因此组件不可以操纵兄弟节点。
+
+## 备忘录开发实战
+
+本节通过备忘录应用的开发，让开发者了解如何通过ArkUI框架设计自己的应用，本节未设计代码架构直接进行功能开发，即根据需求做即时开发，不考虑后续维护，同时向开发者介绍功能开发所需的装饰器。
+
+### @State状态变量
+
+* @State装饰器作为最常用的装饰器，用来定义状态变量，一般作为父组件的数据源，当开发者点击时，通过触发状态变量的更新从而刷新UI，去掉@State则不再支持刷新UI。
+
+```typescript
 @Entry
 @Component
-struct Parent {
-  @Provide @Watch("testNumChange1") testNum: number = 1;
-
-  testNumChange1(propName: string): void {
-    console.log(`Parent: testNumChange value ${this.testNum}`)
-  }
+struct Index {
+  @State isFinished: boolean = false;
 
   build() {
     Column() {
-      LinkChild({ /* empty */ })
-      Sibling({ /* empty */ })
-    }
-  }
-}
-```
-
-
-### 给LocalStorage实例中对应的属性建立双向或单向同步
-
-通过\@LocalStorageLink和\@LocalStorageProp，给LocalStorage实例中的属性建立双向或单向同步。可以将LocalStorage实例视为\@State变量的Map，使用详情参考[LocalStorage](arkts-localstorage.md)。
-
-LocalStorage对象可以在ArkUI应用程序的几个页面上共享。因此，使用\@LocalStorageLink、\@LocalStorageProp和LocalStorage可以在应用程序的多个页面上共享状态。
-
-以下示例中：
-
-1. 创建一个LocalStorage实例，并通过\@Entry(storage)将其注入根节点。
-
-2. 在Parent组件中初始化\@LocalStorageLink("testNum")变量时，将在LocalStorage实例中创建testNum属性，并设置指定的初始值为1，即\@LocalStorageLink("testNum") testNum: number = 1。
-
-3. 在其子组件中，都使用\@LocalStorageLink或\@LocalStorageProp绑定同一个属性名key来传递数据。
-
-LocalStorage可以被认为是\@State变量的Map，属性名作为Map中的key。
-
-\@LocalStorageLink和LocalStorage中对应的属性的同步行为，和\@State和\@Link一致，都为双向数据同步。
-
-以下为组件的状态更新图：
-
-![zh-cn_image_0000001588450934](figures/zh-cn_image_0000001588450934.png)
-
-
-```ts
-@Component
-struct LinkLinkChild {
-  @LocalStorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkLinkChild: testNum value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`LinkLinkChild: ${this.testNum}`)
-  }
-}
-
-@Component
-struct PropLinkChild {
-  @LocalStorageProp("testNum") @Watch("testNumChange") testNumGrand: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-  }
-
-  build() {
-    Text(`PropLinkChild: ${this.testNumGrand}`)
-      .height(70)
-      .backgroundColor(Color.Red)
-      .onClick(() => {
-        this.testNumGrand += 1;
-      })
-  }
-}
-
-@Component
-struct Sibling {
-  @LocalStorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`Sibling: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`Sibling: ${this.testNum}`)
-  }
-}
-
-@Component
-struct LinkChild {
-  @LocalStorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkChild: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Column() {
-      Button('incr testNum')
-        .onClick(() => {
-          console.log(`LinkChild: before value change value ${this.testNum}`);
-          this.testNum = this.testNum + 1
-          console.log(`LinkChild: after value change value ${this.testNum}`);
-        })
-      Text(`LinkChild: ${this.testNum}`)
-      LinkLinkChild({ /* empty */ })
-      PropLinkChild({ /* empty */ })
-    }
-    .height(200).width(200)
-  }
-}
-
-// create LocalStorage object to hold the data
-const storage = new LocalStorage();
-@Entry(storage)
-@Component
-struct Parent {
-  @LocalStorageLink("testNum") @Watch("testNumChange1") testNum: number = 1;
-
-  testNumChange1(propName: string): void {
-    console.log(`Parent: testNumChange value ${this.testNum}`)
-  }
-
-  build() {
-    Column() {
-      LinkChild({ /* empty */ })
-      Sibling({ /* empty */ })
-    }
-  }
-}
-```
-
-
-### 给AppStorage中对应的属性建立双向或单向同步
-
-AppStorage是LocalStorage的单例对象，ArkUI在应用程序启动时创建该对象，在页面中使用\@StorageLink和\@StorageProp为多个页面之间共享数据，具体使用方法和LocalStorage类似。
-
-也可以使用PersistentStorage将AppStorage中的特定属性持久化到本地磁盘的文件中，再次启动的时候\@StorageLink和\@StorageProp会恢复上次应用退出的数据。详情请参考[PersistentStorage文档](arkts-persiststorage.md)。
-
-示例如下：
-
-
-```ts
-@Component
-struct LinkLinkChild {
-  @StorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkLinkChild: testNum value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`LinkLinkChild: ${this.testNum}`)
-  }
-}
-
-@Component
-struct PropLinkChild {
-  @StorageProp("testNum") @Watch("testNumChange") testNumGrand: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-  }
-
-  build() {
-    Text(`PropLinkChild: ${this.testNumGrand}`)
-      .height(70)
-      .backgroundColor(Color.Red)
-      .onClick(() => {
-        this.testNumGrand += 1;
-      })
-  }
-}
-
-@Component
-struct Sibling {
-  @StorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`Sibling: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`Sibling: ${this.testNum}`)
-  }
-}
-
-@Component
-struct LinkChild {
-  @StorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkChild: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Column() {
-      Button('incr testNum')
-        .onClick(() => {
-          console.log(`LinkChild: before value change value ${this.testNum}`);
-          this.testNum = this.testNum + 1
-          console.log(`LinkChild: after value change value ${this.testNum}`);
-        })
-      Text(`LinkChild: ${this.testNum}`)
-      LinkLinkChild({ /* empty */
-      })
-      PropLinkChild({ /* empty */
-      })
-    }
-    .height(200).width(200)
-  }
-}
-
-
-@Entry
-@Component
-struct Parent {
-  @StorageLink("testNum") @Watch("testNumChange1") testNum: number = 1;
-
-  testNumChange1(propName: string): void {
-    console.log(`Parent: testNumChange value ${this.testNum}`)
-  }
-
-  build() {
-    Column() {
-      LinkChild({ /* empty */
-      })
-      Sibling({ /* empty */
-      })
-    }
-  }
-}
-```
-
-
-## ViewModel的嵌套场景
-
-
-大多数情况下，ViewModel数据项都是复杂类型的，例如，对象数组、嵌套对象或者这些类型的组合。对于嵌套场景，可以使用\@Observed搭配\@Prop或者\@ObjectLink来观察变化。
-
-
-### \@Prop和\@ObjectLink嵌套数据结构
-
-推荐设计单独的自定义组件来渲染每一个数组或对象。此时，对象数组或嵌套对象（属性是对象的对象称为嵌套对象）需要两个自定义组件，一个自定义组件呈现外部数组/对象，另一个自定义组件呈现嵌套在数组/对象内的类对象。 \@State、\@Prop、\@Link、\@ObjectLink装饰的变量只能观察到第一层的变化。
-
-- 对于类：
-  - 可以观察到赋值的变化：this.obj=new ClassObj(...)
-  - 可以观察到对象属性的更改：this.obj.a=new ClassA(...)
-  - 不能观察更深层级的属性更改：this.obj.a.b = 47
-
-- 对于数组：
-  - 可以观察到数组的整体赋值：this.arr=[...]
-  - 可以观察到数据项的删除、插入和替换：this.arr[1] = new ClassA()、this.arr.pop()、 this.arr.push(new ClassA(...))、this.arr.sort(...)
-  - 不能观察更深层级的数组变化：this.arr[1].b = 47
-
-如果要观察嵌套类的内部对象的变化，可以使用\@ObjectLink或\@Prop。优先考虑\@ObjectLink，其通过嵌套对象内部属性的引用初始化自身。\@Prop会对嵌套在内部的对象的深度拷贝来进行初始化，以实现单向同步。在性能上\@Prop的深度拷贝比\@ObjectLink的引用拷贝慢很多。
-
-\@ObjectLink或\@Prop可以用来存储嵌套内部的类对象，该类必须用\@Observed类装饰器装饰，否则类的属性改变并不会触发更新，UI并不会刷新。\@Observed为其装饰的类实现自定义构造函数，此构造函数创建了一个类的实例，并使用ES6代理包装（由ArkUI框架实现），拦截装饰class属性的所有“get”和“set”。“set”观察属性值，当发生赋值操作时，通知ArkUI框架更新。“get”收集哪些UI组件依赖该状态变量，实现最小化UI更新。
-
-如果嵌套场景中，嵌套数据内部是数组或者class时，需根据以下场景使用\@Observed类装饰器。
-
-- 如果嵌套数据内部是class，直接被\@Observed装饰。
-
-- 如果嵌套数据内部是数组，可以通过以下方式来观察数组变化。
-
-  ```ts
-  @Observed class ObservedArray<T> extends Array<T> {
-      constructor(args: T[]) {
-          if (args instanceof Array) {
-            super(...args);
-          } else {
-            super(args)
-          }
+      Row() {
+        Text('全部待办')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
       }
-      /* otherwise empty */
+      .width('100%')
+      .margin({top: 10, bottom: 10})
+
+      // 待办事项
+      Row({space: 15}) {
+        if (this.isFinished) {
+          Image($r('app.media.finished'))
+            .width(28)
+            .height(28)
+        }
+        else {
+          Image($r('app.media.unfinished'))
+            .width(28)
+            .height(28)
+        }
+        Text('学习高数')
+          .fontSize(24)
+          .fontWeight(450)
+          .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+      }
+      .height('40%')
+      .width('100%')
+      .border({width: 5})
+      .padding({left: 15})
+      .onClick(() => {
+        this.isFinished = !this.isFinished;
+      })
+    }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
   }
-  ```
+}
+```
 
-  ViewModel为外层class。
+效果图：
 
+![state](./figures/MVVM_state.gif)
 
-  ```ts
-  class Outer {
-    innerArrayProp : ObservedArray<string> = [];
-    ...
-  }
-  ```
+### @Prop、@Link的作用
 
+上述示例中，所有的代码都写在了@Entry组件中，随着需要渲染的组件越来越多，@Entry组件必然需要进行拆分，为此拆分出的子组件就需要使用@Prop和@Link装饰器：
 
-### 嵌套数据结构中\@Prop和\@ObjectLink之间的区别
+* @Prop是父子间单向传递，子组件会深拷贝父组件数据，可从父组件更新，也可自己更新数据，但不会同步父组件数据。
+* @Link是父子间双向传递，父组件改变，会通知所有的@Link，同时@Link的更新也会通知父组件对应变量进行刷新。
 
-以下示例中：
-
-- 父组件ViewB渲染\@State arrA：Array&lt;ClassA&gt;。\@State可以观察新数组的分配、数组项插入、删除和替换。
-
-- 子组件ViewA渲染每一个ClassA的对象。
-
-- 类装饰器\@Observed ClassA与\@ObjectLink a: ClassA。
-
-  - 可以观察嵌套在Array内的ClassA对象的变化。
-
-  - 不使用\@Observed时：
-    ViewB中的this.arrA[Math.floor(this.arrA.length/2)].c=10将不会被观察到，相应的ViewA组件也不会更新。
-
-    对于数组中的第一个和第二个数组项，每个数组项都初始化了两个ViewA的对象，渲染了同一个ViewA实例。在一个ViewA中的属性赋值this.a.c += 1;时不会引发另外一个使用同一个ClassA初始化的ViewA的渲染更新。
-
-![zh-cn_image_0000001588610894](figures/zh-cn_image_0000001588610894.png)
-
-
-```ts
-let NextID: number = 1;
-
-// 类装饰器@Observed装饰ClassA
-@Observed
-class ClassA {
-  public id: number;
-  public c: number;
-
-  constructor(c: number) {
-    this.id = NextID++;
-    this.c = c;
+```typescript
+@Component
+struct TodoComponent {
+  build() {
+    Row() {
+      Text('全部待办')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .margin({top: 10, bottom: 10})
   }
 }
 
 @Component
-struct ViewA {
-  @ObjectLink a: ClassA;
-  label: string = "ViewA1";
+struct AllChooseComponent {
+  @Link isFinished: boolean;
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
+      Button('全选', {type: ButtonType.Normal})
         .onClick(() => {
-          // 改变对象属性
-          this.a.c += 1;
+          this.isFinished = !this.isFinished;
         })
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#f7f6cc74')
     }
+    .padding({left: 15})
+    .width('100%')
+    .margin({top: 10, bottom: 10})
   }
 }
 
-@Entry
 @Component
-struct ViewB {
-  @State arrA: ClassA[] = [new ClassA(0), new ClassA(0)];
+struct ThingsComponent1 {
+  @Prop isFinished: boolean;
 
   build() {
-    Column() {
-      ForEach(this.arrA,
-        (item: ClassA) => {
-          ViewA({ label: `#${item.id}`, a: item })
-        },
-        (item: ClassA): string => { return item.id.toString(); }
-      )
-
-      Divider().height(10)
-
-      if (this.arrA.length) {
-        ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })
-        ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })
+    // 待办事项1
+    Row({space: 15}) {
+      if (this.isFinished) {
+        Image($r('app.media.finished'))
+          .width(28)
+          .height(28)
       }
-
-      Divider().height(10)
-
-      Button(`ViewB: reset array`)
-        .onClick(() => {
-          // 替换整个数组，会被@State this.arrA观察到
-          this.arrA = [new ClassA(0), new ClassA(0)];
-        })
-      Button(`array push`)
-        .onClick(() => {
-          // 数组中插入数据，会被@State this.arrA观察到
-          this.arrA.push(new ClassA(0))
-        })
-      Button(`array shift`)
-        .onClick(() => {
-          // 数组中移除数据，会被@State this.arrA观察到
-          this.arrA.shift()
-        })
-      Button(`ViewB: chg item property in middle`)
-        .onClick(() => {
-          // 替换数组中的某个元素，会被@State this.arrA观察到
-          this.arrA[Math.floor(this.arrA.length / 2)] = new ClassA(11);
-        })
-      Button(`ViewB: chg item property in middle`)
-        .onClick(() => {
-          // 改变数组中某个元素的属性c，会被ViewA中的@ObjectLink观察到
-          this.arrA[Math.floor(this.arrA.length / 2)].c = 10;
-        })
-    }
-  }
-}
-```
-
-在ViewA中，将\@ObjectLink替换为\@Prop。
-
-
-```ts
-@Component
-struct ViewA {
-
-  @Prop a: ClassA = new ClassA(0);
-  label : string = "ViewA1";
-
-  build() {
-     Row() {
-        Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
-        .onClick(() => {
-            // change object property
-            this.a.c += 1;
-        })
-     }
-  }
-}
-```
-
-与用\@Prop装饰不同，用\@ObjectLink装饰时，点击数组的第一个或第二个元素，后面两个ViewA会发生同步的变化。
-
-\@Prop是单向数据同步，ViewA内的Button只会触发Button自身的刷新，不会传播到其他的ViewA实例中。在ViewA中的ClassA只是一个副本，并不是其父组件中\@State arrA : Array&lt;ClassA&gt;中的对象，也不是其他ViewA的ClassA，这使得数组的元素和ViewA中的元素表面是传入的同一个对象，实际上在UI上渲染使用的是两个互不相干的对象。
-
-需要注意\@Prop和\@ObjectLink还有一个区别：\@ObjectLink装饰的变量是仅可读的，不能被赋值；\@Prop装饰的变量可以被赋值。
-
-- \@ObjectLink实现双向同步，因为它是通过数据源的引用初始化的。
-
-- \@Prop是单向同步，需要深拷贝数据源。
-
-- 对于\@Prop赋值新的对象，就是简单地将本地的值覆写，但是对于实现双向数据同步的\@ObjectLink，覆写新的对象相当于要更新数据源中的数组项或者class的属性，这个对于 TypeScript/JavaScript是不能实现的。
-
-
-## MVVM应用示例
-
-
-以下示例深入探讨了嵌套ViewModel的应用程序设计，特别是自定义组件如何渲染一个嵌套的Object，该场景在实际的应用开发中十分常见。
-
-
-开发一个电话簿应用，实现功能如下：
-
-
-- 显示联系人和设备（"Me"）电话号码 。
-
-- 选中联系人时，进入可编辑态“Edit”，可以更新该联系人详细信息，包括电话号码，住址。
-
-- 在更新联系人信息时，只有在单击保存“Save Changes”之后，才会保存更改。
-
-- 可以点击删除联系人“Delete Contact”，可以在联系人列表删除该联系人。
-
-
-ViewModel需要包括：
-
-
-- AddressBook（class）
-  - me（设备）: 存储一个Person类。
-  - contacts（设备联系人）：存储一个Person类数组。
-
-
-AddressBook类声明如下：
-
-
-
-```ts
-export class AddressBook {
-  me: Person;
-  contacts: ObservedArray<Person>;
-  
-  constructor(me: Person, contacts: Person[]) {
-    this.me = me;
-    this.contacts = new ObservedArray<Person>(contacts);
-  }
-}
-```
-
-
-- Person (class)
-  - name : string
-  - address : Address
-  - phones: ObservedArray&lt;string&gt;
-  - Address (class)
-    - street : string
-    - zip : number
-    - city : string
-
-
-Address类声明如下：
-
-
-
-```ts
-@Observed
-export class Address {
-  street: string;
-  zip: number;
-  city: string;
-
-  constructor(street: string,
-              zip: number,
-              city: string) {
-    this.street = street;
-    this.zip = zip;
-    this.city = city;
-  }
-}
-```
-
-
-Person类声明如下：
-
-
-
-```ts
-let nextId = 0;
-
-@Observed
-export class Person {
-  id_: string;
-  name: string;
-  address: Address;
-  phones: ObservedArray<string>;
-
-  constructor(name: string,
-              street: string,
-              zip: number,
-              city: string,
-              phones: string[]) {
-    this.id_ = `${nextId}`;
-    nextId++;
-    this.name = name;
-    this.address = new Address(street, zip, city);
-    this.phones = new ObservedArray<string>(phones);
-  }
-}
-```
-
-
-需要注意的是，因为phones是嵌套属性，如果要观察到phones的变化，需要extends array，并用\@Observed装饰它。ObservedArray类的声明如下。
-
-
-
-```ts
-@Observed
-export class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    console.log(`ObservedArray: ${JSON.stringify(args)} `)
-    if (args instanceof Array) {
-      super(...args);
-    } else {
-      super(args)
-    }
-  }
-}
-```
-
-
-- selected : 对Person的引用。
-
-
-更新流程如下：
-
-
-1. 在根节点PageEntry中初始化所有的数据，将me和contacts和其子组件AddressBookView建立双向数据同步，selectedPerson默认为me，需要注意，selectedPerson并不是PageEntry数据源中的数据，而是数据源中，对某一个Person的引用。
-   PageEntry和AddressBookView声明如下：
-
-
-   ```ts
-   @Component
-   struct AddressBookView {
-   
-       @ObjectLink me : Person;
-       @ObjectLink contacts : ObservedArray<Person>;
-       @State selectedPerson: Person = new Person("", "", 0, "", []);
-   
-       aboutToAppear() {
-           this.selectedPerson = this.me;
-       }
-   
-       build() {
-           Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start}) {
-               Text("Me:")
-               PersonView({
-                person: this.me,
-                phones: this.me.phones,
-                selectedPerson: this.selectedPerson
-              })
-   
-               Divider().height(8)
-   
-              ForEach(this.contacts, (contact: Person) => {
-                PersonView({
-                  person: contact,
-                  phones: contact.phones as ObservedArray<string>,
-                  selectedPerson: this.selectedPerson
-                })
-              },
-                (contact: Person): string => { return contact.id_; }
-              )
-
-               Divider().height(8)
-   
-               Text("Edit:")
-               PersonEditView({ 
-                selectedPerson: this.selectedPerson, 
-                name: this.selectedPerson.name, 
-                address: this.selectedPerson.address, 
-                phones: this.selectedPerson.phones 
-              })
-           }
-               .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
-       }
-   }
-   
-   @Entry
-   @Component
-   struct PageEntry {
-     @Provide addrBook: AddressBook = new AddressBook(
-       new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
-       [
-         new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-         new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-         new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-       ]);
-   
-     build() {
-       Column() {
-         AddressBookView({ 
-          me: this.addrBook.me, 
-          contacts: this.addrBook.contacts, 
-          selectedPerson: this.addrBook.me 
-        })
-       }
-     }
-   }
-   ```
-
-2. PersonView，即电话簿中联系人姓名和首选电话的View，当用户选中，即高亮当前Person，需要同步回其父组件AddressBookView的selectedPerson，所以需要通过\@Link建立双向同步。
-   PersonView声明如下：
-
-
-   ```ts
-   // 显示联系人姓名和首选电话
-   // 为了更新电话号码，这里需要@ObjectLink person和@ObjectLink phones，
-   // 显示首选号码不能使用this.person.phones[0]，因为@ObjectLink person只代理了Person的属性，数组内部的变化观察不到
-   // 触发onClick事件更新selectedPerson
-   @Component
-   struct PersonView {
-   
-       @ObjectLink person : Person;
-       @ObjectLink phones :  ObservedArray<string>;
-   
-       @Link selectedPerson : Person;
-   
-       build() {
-           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-             Text(this.person.name)
-             if (this.phones.length > 0) {
-               Text(this.phones[0])
-             }
-           }
-           .height(55)
-           .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
-           .onClick(() => {
-               this.selectedPerson = this.person;
-           })
-       }
-   }
-   ```
-
-3. 选中的Person会在PersonEditView中显示详细信息，对于PersonEditView的数据同步分为以下三种方式：
-
-   - 在Edit状态通过Input.onChange回调事件接受用户的键盘输入时，在点击“Save Changes”之前，这个修改是不希望同步回数据源的，但又希望刷新在当前的PersonEditView中，所以\@Prop深拷贝当前Person的详细信息；
-
-   - PersonEditView通过\@Link selectedPerson: Person和AddressBookView的``selectedPerson建立双向同步，当用户点击“Save Changes”的时候，\@Prop的修改将被赋值给\@Link selectedPerson: Person，这就意味这，数据将被同步回数据源。
-
-   - PersonEditView中通过\@Consume addrBook: AddressBook和根节点PageEntry建立跨组件层级的直接的双向同步关系，当用户在PersonEditView界面删除某一个联系人时，会直接同步回PageEntry，PageEntry的更新会通知AddressBookView刷新contracts的列表页。 PersonEditView声明如下：
-
-     ```ts
-     // 渲染Person的详细信息
-     // @Prop装饰的变量从父组件AddressBookView深拷贝数据，将变化保留在本地, TextInput的变化只会在本地副本上进行修改。
-     // 点击 "Save Changes" 会将所有数据的复制通过@Prop到@Link, 同步到其他组件
-     @Component
-     struct PersonEditView {
-     
-         @Consume addrBook : AddressBook;
-     
-         /* 指向父组件selectedPerson的引用 */
-         @Link selectedPerson: Person;
-     
-         /*在本地副本上编辑，直到点击保存*/
-         @Prop name: string = "";
-         @Prop address : Address = new Address("", 0, "");
-         @Prop phones : ObservedArray<string> = [];
-     
-         selectedPersonIndex() : number {
-             return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
-         }
-     
-         build() {
-             Column() {
-                 TextInput({ text: this.name})
-                     .onChange((value) => {
-                         this.name = value;
-                       })
-                 TextInput({text: this.address.street})
-                     .onChange((value) => {
-                         this.address.street = value;
-                     })
-     
-                 TextInput({text: this.address.city})
-                     .onChange((value) => {
-                         this.address.city = value;
-                     })
-     
-                 TextInput({text: this.address.zip.toString()})
-                     .onChange((value) => {
-                         const result = Number.parseInt(value);
-                         this.address.zip= Number.isNaN(result) ? 0 : result;
-                     })
-     
-                 if (this.phones.length > 0) {
-                   ForEach(this.phones,
-                     (phone: ResourceStr, index?:number) => {
-                       TextInput({ text: phone })
-                         .width(150)
-                         .onChange((value) => {
-                           console.log(`${index}. ${value} value has changed`)
-                           this.phones[index!] = value;
-                         })
-                     },
-                     (phone: ResourceStr, index?:number) => `${index}`
-                   )
-                 }
-
-                 Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-                     Text("Save Changes")
-                         .onClick(() => {
-                             // 将本地副本更新的值赋值给指向父组件selectedPerson的引用
-                             // 避免创建新对象，在现有属性上进行修改
-                             this.selectedPerson.name = this.name;
-                             this.selectedPerson.address = new Address(this.address.street, this.address.zip, this.address.city)
-                             this.phones.forEach((phone : string, index : number) => { this.selectedPerson.phones[index] = phone } );
-                         })
-                     if (this.selectedPersonIndex()!=-1) {
-                         Text("Delete Contact")
-                             .onClick(() => {
-                                 let index = this.selectedPersonIndex();
-                                 console.log(`delete contact at index ${index}`);
-     
-                                 // 删除当前联系人
-                                 this.addrBook.contacts.splice(index, 1);
-     
-                                 // 删除当前selectedPerson，选中态前移一位
-                                 index = (index < this.addrBook.contacts.length) ? index : index-1;
-     
-                                 // 如果contract被删除完，则设置me为选中态
-                                 this.selectedPerson = (index>=0) ? this.addrBook.contacts[index] : this.addrBook.me;
-                             })
-                     }
-                 }
-     
-             }
-         }
-     }
-     ```
-
-     其中关于\@ObjectLink和\@Link的区别要注意以下几点：
-
-     1. 在AddressBookView中实现和父组件PageView的双向同步，需要用\@ObjectLink me : Person和\@ObjectLink contacts : ObservedArray&lt;Person&gt;，而不能用\@Link，原因如下：
-        - \@Link需要和其数据源类型完全相同，且仅能观察到第一层的变化；
-        - \@ObjectLink可以被数据源的属性初始化，且代理了\@Observed装饰类的属性，可以观察到被装饰类属性的变化。
-     2. 当 联系人姓名 (Person.name) 或者首选电话号码 (Person.phones[0]) 发生更新时，PersonView也需要同步刷新，其中Person.phones[0]属于第二层的更新，如果使用\@Link将无法观察到，而且\@Link需要和其数据源类型完全相同。所以在PersonView中也需要使用\@ObjectLink，即\@ObjectLink person : Person和\@ObjectLink phones :  ObservedArray&lt;string&gt;。
-
-     ![zh-cn_image_0000001605293914](figures/zh-cn_image_0000001605293914.png)
-
-     在这个例子中，我们可以大概了解到如何构建ViewModel，在应用的根节点中，ViewModel的数据可能是可以巨大的嵌套数据，但是在ViewModel和View的适配和渲染中，我们尽可能将ViewModel的数据项和View相适配，这样的话在针对每一层的View，都是一个相对“扁平”的数据，仅观察当前层就可以了。
-
-     在应用实际开发中，也许我们无法避免去构建一个十分庞大的Model，但是我们可以在UI树状结构中合理地去拆分数据，使得ViewModel和View更好的适配，从而搭配最小化更新来实现高性能开发。
-
-     完整应用代码如下：
-
-
-```ts
-// ViewModel classes
-let nextId = 0;
-
-@Observed
-export class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    console.log(`ObservedArray: ${JSON.stringify(args)} `)
-    if (args instanceof Array) {
-      super(...args);
-    } else {
-      super(args)
-    }
-  }
-}
-
-@Observed
-export class Address {
-  street: string;
-  zip: number;
-  city: string;
-
-  constructor(street: string,
-              zip: number,
-              city: string) {
-    this.street = street;
-    this.zip = zip;
-    this.city = city;
-  }
-}
-
-@Observed
-export class Person {
-  id_: string;
-  name: string;
-  address: Address;
-  phones: ObservedArray<string>;
-
-  constructor(name: string,
-              street: string,
-              zip: number,
-              city: string,
-              phones: string[]) {
-    this.id_ = `${nextId}`;
-    nextId++;
-    this.name = name;
-    this.address = new Address(street, zip, city);
-    this.phones = new ObservedArray<string>(phones);
-  }
-}
-
-export class AddressBook {
-  me: Person;
-  contacts: ObservedArray<Person>;
-
-  constructor(me: Person, contacts: Person[]) {
-    this.me = me;
-    this.contacts = new ObservedArray<Person>(contacts);
-  }
-}
-
-// 渲染出Person对象的名称和Observed数组<string>中的第一个号码
-// 为了更新电话号码，这里需要@ObjectLink person和@ObjectLink phones，
-// 不能使用this.person.phones，内部数组的更改不会被观察到。
-// 在AddressBookView、PersonEditView中的onClick更新selectedPerson
-@Component
-struct PersonView {
-  @ObjectLink person: Person;
-  @ObjectLink phones: ObservedArray<string>;
-  @Link selectedPerson: Person;
-
-  build() { 
-    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-      Text(this.person.name)
-      if (this.phones.length) {
-        Text(this.phones[0])
+      else {
+        Image($r('app.media.unfinished'))
+          .width(28)
+          .height(28)
       }
+      Text('学习语文')
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
-    .height(55)
-    .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
+    .height('40%')
+    .width('100%')
+    .border({width: 5})
+    .padding({left: 15})
     .onClick(() => {
-      this.selectedPerson = this.person;
+      this.isFinished = !this.isFinished;
     })
   }
 }
 
 @Component
-struct phonesNumber {
-  @ObjectLink phoneNumber: ObservedArray<string>
+struct ThingsComponent2 {
+  @Prop isFinished: boolean;
 
   build() {
-    Column() {
-
-      ForEach(this.phoneNumber,
-        (phone: ResourceStr, index?: number) => {
-          TextInput({ text: phone })
-            .width(150)
-            .onChange((value) => {
-              console.log(`${index}. ${value} value has changed`)
-              this.phoneNumber[index!] = value;
-            })
-        },
-        (phone: ResourceStr, index: number) => `${this.phoneNumber[index] + index}`
-      )
-    }
-  }
-}
-
-
-// 渲染Person的详细信息
-// @Prop装饰的变量从父组件AddressBookView深拷贝数据，将变化保留在本地, TextInput的变化只会在本地副本上进行修改。
-// 点击 "Save Changes" 会将所有数据的复制通过@Prop到@Link, 同步到其他组件
-@Component
-struct PersonEditView {
-  @Consume addrBook: AddressBook;
-  /* 指向父组件selectedPerson的引用 */
-  @Link selectedPerson: Person;
-  /*在本地副本上编辑，直到点击保存*/
-  @Prop name: string = "";
-  @Prop address: Address = new Address("", 0, "");
-  @Prop phones: ObservedArray<string> = [];
-
-  selectedPersonIndex(): number {
-    return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
-  }
-
-  build() {
-    Column() {
-      TextInput({ text: this.name })
-        .onChange((value) => {
-          this.name = value;
-        })
-      TextInput({ text: this.address.street })
-        .onChange((value) => {
-          this.address.street = value;
-        })
-
-      TextInput({ text: this.address.city })
-        .onChange((value) => {
-          this.address.city = value;
-        })
-
-      TextInput({ text: this.address.zip.toString() })
-        .onChange((value) => {
-          const result = Number.parseInt(value);
-          this.address.zip = Number.isNaN(result) ? 0 : result;
-        })
-
-      if (this.phones.length > 0) {
-        phonesNumber({ phoneNumber: this.phones })
+    // 待办事项1
+    Row({space: 15}) {
+      if (this.isFinished) {
+        Image($r('app.media.finished'))
+          .width(28)
+          .height(28)
       }
-
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-        Text("Save Changes")
-          .onClick(() => {
-            // 将本地副本更新的值赋值给指向父组件selectedPerson的引用
-            // 避免创建新对象，在现有属性上进行修改
-            this.selectedPerson.name = this.name;
-            this.selectedPerson.address = new Address(this.address.street, this.address.zip, this.address.city)
-            this.phones.forEach((phone: string, index: number) => {
-              this.selectedPerson.phones[index] = phone
-            });
-          })
-        if (this.selectedPersonIndex() != -1) {
-          Text("Delete Contact")
-            .onClick(() => {
-              let index = this.selectedPersonIndex();
-              console.log(`delete contact at index ${index}`);
-
-              // 删除当前联系人
-              this.addrBook.contacts.splice(index, 1);
-
-              // 删除当前selectedPerson，选中态前移一位
-              index = (index < this.addrBook.contacts.length) ? index : index - 1;
-
-              // 如果contract被删除完，则设置me为选中态
-              this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
-            })
-        }
+      else {
+        Image($r('app.media.unfinished'))
+          .width(28)
+          .height(28)
       }
-
+      Text('学习高数')
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
-  }
-}
-
-@Component
-struct AddressBookView {
-  @ObjectLink me: Person;
-  @ObjectLink contacts: ObservedArray<Person>;
-  @State selectedPerson: Person = new Person("", "", 0, "", []);
-
-  aboutToAppear() {
-    this.selectedPerson = this.me;
-  }
-
-  build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-      Text("Me:")
-      PersonView({
-        person: this.me,
-        phones: this.me.phones,
-        selectedPerson: this.selectedPerson
-      })
-
-      Divider().height(8)
-
-      ForEach(this.contacts, (contact: Person) => {
-        PersonView({
-          person: contact,
-          phones: contact.phones as ObservedArray<string>,
-          selectedPerson: this.selectedPerson
-        })
-      },
-        (contact: Person): string => {
-          return contact.id_;
-        }
-      )
-
-      Divider().height(8)
-
-      Text("Edit:")
-      PersonEditView({
-        selectedPerson: this.selectedPerson,
-        name: this.selectedPerson.name,
-        address: this.selectedPerson.address,
-        phones: this.selectedPerson.phones
-      })
-    }
-    .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
+    .height('40%')
+    .width('100%')
+    .border({width: 5})
+    .padding({left: 15})
+    .onClick(() => {
+      this.isFinished = !this.isFinished;
+    })
   }
 }
 
 @Entry
 @Component
-struct PageEntry {
-  @Provide addrBook: AddressBook = new AddressBook(
-    new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
-    [
-      new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["11*********", "12*********"]),
-      new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["13*********", "14*********"]),
-      new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["15*********", "168*********"]),
-    ]);
+struct Index {
+  @State isFinished: boolean = false;
 
   build() {
     Column() {
-      AddressBookView({
-        me: this.addrBook.me,
-        contacts: this.addrBook.contacts,
-        selectedPerson: this.addrBook.me
-      })
+      // 全部待办
+      TodoComponent()
+
+      // 全选
+      AllChooseComponent({isFinished: this.isFinished})
+
+      // 待办事项1
+      ThingsComponent1({isFinished: this.isFinished})
+
+      // 待办事项2
+      ThingsComponent2({isFinished: this.isFinished})
     }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
   }
 }
 ```
+
+效果图如下：
+
+![Prop&Link](./figures/MVVM_Prop&Link.gif)
+
+### 循环渲染组件
+
+* 上个示例虽然拆分出了子组件，但是发现组件1和组件2的代码十分类似，当渲染的组件除了数据外其他设置都相同时，此时就需要使用到ForEach循环渲染。
+* ForEach使用之后，冗余代码变得更少，并且代码结构更加清晰。
+
+```typescript
+@Component
+struct TodoComponent {
+  build() {
+    Row() {
+      Text('全部待办')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct AllChooseComponent {
+  @Link isFinished: boolean;
+
+  build() {
+    Row() {
+      Button('全选', {type: ButtonType.Normal})
+        .onClick(() => {
+          this.isFinished = !this.isFinished;
+        })
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#f7f6cc74')
+    }
+    .padding({left: 15})
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct ThingsComponent {
+  @Prop isFinished: boolean;
+  @Prop things: string;
+  build() {
+    // 待办事项1
+    Row({space: 15}) {
+      if (this.isFinished) {
+        Image($r('app.media.finished'))
+          .width(28)
+          .height(28)
+      }
+      else {
+        Image($r('app.media.unfinished'))
+          .width(28)
+          .height(28)
+      }
+      Text(`${this.things}`)
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+    }
+    .height('8%')
+    .width('90%')
+    .padding({left: 15})
+    .opacity(this.isFinished ? 0.3: 1)
+    .border({width:1})
+    .borderColor(Color.White)
+    .borderRadius(25)
+    .backgroundColor(Color.White)
+    .onClick(() => {
+      this.isFinished = !this.isFinished;
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State isFinished: boolean = false;
+  @State planList: string[] = [
+    '7.30 起床',
+    '8.30 早餐',
+    '11.30 中餐',
+    '17.30 晚餐',
+    '21.30 夜宵',
+    '22.30 洗澡',
+    '1.30 起床'
+  ];
+
+  build() {
+    Column() {
+      // 全部待办
+      TodoComponent()
+
+      // 全选
+      AllChooseComponent({isFinished: this.isFinished})
+
+      List() {
+        ForEach(this.planList, (item: string) => {
+          // 待办事项1
+          ThingsComponent({isFinished: this.isFinished, things: item})
+            .margin(5)
+        })
+      }
+
+    }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
+  }
+}
+```
+
+效果图如下：
+
+![ForEach](./figures/MVVM_ForEach.gif)
+
+### @Builder方法
+
+* Builder方法用于组件内定义方法，可以使得相同代码可以在组件内进行复用。
+* 本示例不仅使用了@Builder方法进行去重，同时对数据进行了移出，可以看到此时代码更加清晰易读，相对于最开始的代码，@Entry组件基本只用于处理页面构建逻辑，而不处理大量与页面设计无关的内容。
+
+```typescript
+@Observed
+class TodoListData {
+  planList: string[] = [
+    '7.30 起床',
+    '8.30 早餐',
+    '11.30 中餐',
+    '17.30 晚餐',
+    '21.30 夜宵',
+    '22.30 洗澡',
+    '1.30 起床'
+  ];
+}
+
+@Component
+struct TodoComponent {
+  build() {
+    Row() {
+      Text('全部待办')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct AllChooseComponent {
+  @Link isFinished: boolean;
+
+  build() {
+    Row() {
+      Button('全选', {type: ButtonType.Capsule})
+        .onClick(() => {
+          this.isFinished = !this.isFinished;
+        })
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#f7f6cc74')
+    }
+    .padding({left: 15})
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct ThingsComponent {
+  @Prop isFinished: boolean;
+  @Prop things: string;
+
+  @Builder displayIcon(icon: Resource) {
+    Image(icon)
+      .width(28)
+      .height(28)
+      .onClick(() => {
+        this.isFinished = !this.isFinished;
+      })
+  }
+
+  build() {
+    // 待办事项1
+    Row({space: 15}) {
+      if (this.isFinished) {
+        this.displayIcon($r('app.media.finished'));
+      }
+      else {
+        this.displayIcon($r('app.media.unfinished'));
+      }
+      Text(`${this.things}`)
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+        .onClick(() => {
+          this.things += '啦';
+        })
+    }
+    .height('8%')
+    .width('90%')
+    .padding({left: 15})
+    .opacity(this.isFinished ? 0.3: 1)
+    .border({width:1})
+    .borderColor(Color.White)
+    .borderRadius(25)
+    .backgroundColor(Color.White)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State isFinished: boolean = false;
+  @State data: TodoListData = new TodoListData();
+
+  build() {
+    Column() {
+      // 全部待办
+      TodoComponent()
+
+      // 全选
+      AllChooseComponent({isFinished: this.isFinished})
+
+      List() {
+        ForEach(this.data.planList, (item: string) => {
+          // 待办事项1
+          ThingsComponent({isFinished: this.isFinished, things: item})
+            .margin(5)
+        })
+      }
+
+    }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
+  }
+}
+```
+
+ 效果图如下：
+
+![builder](./figures/MVVM_builder.gif)
+
+### 总结
+
+* 通过对代码结构的一步步优化，可以看到@Enrty组件作为页面的入口，其build函数应该只需要考虑将需要的组件进行组合，类似于搭积木，将需要的组件搭起来。被page调用的子组件则类似积木，等着被需要的page进行调用。状态变量类似于粘合剂，当触发UI刷新事件时，状态变量能自动完成对应绑定的组件的刷新，从而实现page的按需刷新。
+* 虽然现有的架构并未使用到MVVM的设计理念，但是MVVM的核心理念已经呼之欲出，这也是为什么说ArkUI的UI开发天生属于MVVM模式，page和组件就是View层，page负责搭积木，组件就是积木被page组织；组件需要刷新，通过状态变量驱动组件刷新从而更新page；ViewModel的数据需要有来源，这就是Model层来源。
+* 示例中的代码功能还是比较简单的，但是已经感觉到功能越来越多的情况下，主page的代码越来越多，当备忘录需要添加的功能越来越多时，其他的page也需要使用到主page的组件时，应该如何去组织项目结构呢，MVVM模式是组织的首选。
+
+## 通过MVVM开发备忘录实战
+
+上一章节中，展示了非MVVM模式如何组织代码，能感觉到随着主page的代码越来越庞大，应该采取合理的方式进行分层，使得项目结构清晰，组件之间不去互相引用，导致后期维护时牵一发而动全身，加大后期功能更新的困难，为此本章通过对MVVM的核心文件组织模式介绍入手，向开发者展示如何使用MVVM来组织上一章节的代码。
+
+### MVVM文件结构说明
+
+* src
+  * ets
+    * pages ------ 存放页面组件
+    * views ------ 存放业务组件
+    * shares ------ 存放通用组件
+    * service ------ 数据服务
+      * app.ts ------ 服务入口
+      * LoginViewMode ----- 登录页ViewModel
+      * xxxModel ------ 其他页ViewModel
+
+### 分层设计技巧
+
+**Model层**
+
+* model层存放本应用核心数据结构，这层本身和UI开发关系不大，让用户按照自己的业务逻辑进行封装。
+
+**ViewModel层**
+
+> 注意：
+>
+> ViewModel层不只是存放数据，他同时需要提供数据的服务及处理，因此很多框架会以“service”来进行表达此层。
+
+* ViewModel层是为视图服务的数据层。它的设计一般来说，有两个特点：
+  1、按照页面组织数据。
+  2、每个页面数据进行懒加载。
+
+**View层**
+
+View层根据需要来组织，但View层需要区分一下三种组件：
+
+* 页面组件：提供整体页面布局，实现多页面之间的跳转，前后台事件处理等页面内容。
+* 业务组件：被页面引用，构建出页面。
+* 共享组件：与项目无关的多项目共享组件。
+
+> 共享组件和业务组件的区别：
+>
+> 业务组件包含了ViewModel层数据，没有ViewModel，这个组件不能运行。
+>
+> 共享组件：不包含任务ViewModel层的数据，他需要的数据需要从外部传入。共享组件包含一个自包含组件，只要外部参数（无业务参数）满足，就可以工作。
+
+### 代码示例
+
+现在按照MVVM模式组织结构，重构如下：
+
+* src
+  * ets
+    * pages
+      * index
+    * View
+      * TodoComponent
+      * AllchooseComponent
+      * ThingsComponent
+    * ViewModel
+      * ThingsViewModel
+
+文件代码如下：
+
+* Index.ets
+
+  ```typescript
+  // import view
+  import { TodoComponent } from './../View/TodoComponent'
+  import { MultiChooseComponent } from './../View/AllchooseComponent'
+  import { ThingsComponent } from './../View/ThingsComponent'
+  
+  // import viewModel
+  import { TodoListData } from '../ViewModel/ThingsViewModel'
+  
+  @Entry
+  @Component
+  struct Index {
+    @State isFinished: boolean = false;
+    @State data: TodoListData = new TodoListData();
+  
+    build() {
+      Column() {
+        Row({space: 40}) {
+          // 全部待办
+          TodoComponent()
+  
+          // 全选
+          MultiChooseComponent({isFinished: this.isFinished})
+        }
+  
+        List() {
+          ForEach(this.data.planList, (item: string) => {
+            // 待办事项1
+            ThingsComponent({isFinished: this.isFinished, things: item})
+              .margin(5)
+          })
+        }
+  
+      }
+      .height('100%')
+      .width('100%')
+      .margin({top: 5, bottom: 5})
+      .backgroundColor('#90f1f3f5')
+    }
+  }
+  ```
+
+  * TodoComponent
+
+  ```typescript
+  @Component
+  export struct TodoComponent {
+    build() {
+      Row() {
+        Text('全部待办')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+      }
+      .padding({left: 15})
+      .width('50%')
+      .margin({top: 10, bottom: 10})
+    }
+  }
+  ```
+
+  
+
+  * AllchooseComponent.ets
+
+  ```typescript
+  @Component
+  export struct MultiChooseComponent {
+    @Link isFinished: boolean;
+  
+    build() {
+      Row() {
+        Button('多选', {type: ButtonType.Capsule})
+          .onClick(() => {
+            this.isFinished = !this.isFinished;
+          })
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .backgroundColor('#f7f6cc74')
+      }
+      .padding({left: 15})
+      .width('100%')
+      .margin({top: 10, bottom: 10})
+    }
+  }
+  ```
+
+  * ThingsComponent
+
+  ```typescript
+  @Component
+  export struct ThingsComponent {
+    @Prop isFinished: boolean;
+    @Prop things: string;
+  
+    @Builder displayIcon(icon: Resource) {
+      Image(icon)
+        .width(28)
+        .height(28)
+        .onClick(() => {
+          this.isFinished = !this.isFinished;
+        })
+    }
+  
+    build() {
+      // 待办事项1
+      Row({space: 15}) {
+        if (this.isFinished) {
+          this.displayIcon($r('app.media.finished'));
+        }
+        else {
+          this.displayIcon($r('app.media.unfinished'));
+        }
+        Text(`${this.things}`)
+          .fontSize(24)
+          .fontWeight(450)
+          .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+          .onClick(() => {
+            this.things += '啦';
+          })
+      }
+      .height('8%')
+      .width('90%')
+      .padding({left: 15})
+      .opacity(this.isFinished ? 0.3: 1)
+      .border({width:1})
+      .borderColor(Color.White)
+      .borderRadius(25)
+      .backgroundColor(Color.White)
+    }
+  }
+  
+  ```
+
+  ThingsViewModel.ets
+
+  ```typescript
+  @Observed
+  export class TodoListData {
+    planList: string[] = [
+      '7.30 起床',
+      '8.30 早餐',
+      '11.30 中餐',
+      '17.30 晚餐',
+      '21.30 夜宵',
+      '22.30 洗澡',
+      '1.30 起床'
+    ];
+  }
+  ```
+
+  经过MVVM模式拆分之后的代码，项目结构更加清晰，各个模块的职责更加清晰，假如有新的page需要用到事件这个组件，只需要import对应的组件即可，因为是固定的本地数据，没有去写Model层的逻辑，后续开发者也可以照着示例去重构自己的项目结构。
+
+  效果图如下：
+
+  ![MVVM_index.gif](./figures/MVVM_index.gif)
+
+  
+
+  
+

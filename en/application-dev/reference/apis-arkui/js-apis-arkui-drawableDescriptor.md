@@ -16,6 +16,8 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 ## DrawableDescriptor
 
+Resources in PNG, JPG, BMP, SVG, GIF, WEBP, ASTC, and SUT formats are supported.
+
 ### getPixelMap
 
 getPixelMap(): image.PixelMap
@@ -30,7 +32,7 @@ Obtains this **pixelMap** object.
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object. |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 **Example**
   ```ts
@@ -61,12 +63,12 @@ A constructor used to create a **PixelMapDrawableDescriptor** object.
 
 | Name    | Type             | Mandatory | Description                                      |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | No | **PixelMap** image data. |
+| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | No| **PixelMap** image data.|
 
 
 ## LayeredDrawableDescriptor
 
-Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources. This API inherits from [DrawableDescriptor](#drawabledescriptor).
+Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources. Inherits from [DrawableDescriptor](#drawabledescriptor).
 
 The **drawable.json** file is located under **entry/src/main/resources/base/media** in the project directory. Below shows the file content:
 
@@ -158,31 +160,6 @@ The **drawable.json** file is located under **entry/src/main/resources/base/medi
     }
     ```
 
-### getPixelMap
-
-getPixelMap(): image.PixelMap
-
-Obtains the **pixelMap** object where the foreground, background, and mask are blended and cropped.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type                                      | Description      |
-| ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object. |
-
-**Example**
-  ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let pixmapNew: object = pixmap.getPixelMap()
-  ```
-
 ### getForeground
 getForeground(): DrawableDescriptor;
 
@@ -196,7 +173,7 @@ Obtains the **DrawableDescriptor** object of the foreground.
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object. |
+| [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object.|
 
 **Example**
   ```ts
@@ -221,7 +198,7 @@ Obtains the **DrawableDescriptor** object of the background.
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object. |
+| [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object.|
 
 **Example**
   ```ts
@@ -246,7 +223,7 @@ Obtains the **DrawableDescriptor** object of the mask.
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object. |
+| [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object.|
 
 **Example**
   ```ts
@@ -270,7 +247,7 @@ Obtains the built-in clipping path parameters of the system. It is a static meth
 
 | Type                                      | Description                  |
 | ---------------------------------------- | -------------------- |
-| string | String of the clipping path. |
+| string | String of the clipping path.|
 
 **Example**
 
@@ -286,7 +263,7 @@ struct Index {
       Column() {
         Image($r('app.media.icon'))
           .width('200px').height('200px')
-          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+          .clipShape(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
         Text(`Obtain the built-in clip path parameters:`)
           .fontWeight(800)
         Text(JSON.stringify(LayeredDrawableDescriptor.getMaskClipPath()))
@@ -308,7 +285,7 @@ Provides the playback options of the animation with a pixel map image array in a
 | Name     | Type   | Mandatory | Description                                   |
 | ---------- | ------ | -----| --------------------------------------- |
 | duration   | number | No  | Total playback duration for the pixel map image array. The default value is 1 second per image.     |
-| iterations | number | No  | Number of times that the pixel map image array is played. The default value is **1**. The value **-1** indicates that the animation is played for an unlimited number of times. |
+| iterations | number | No  | Number of times that the pixel map image array is played. The default value is **1**. The value **-1** indicates that the animation is played for an unlimited number of times.|
 
 **Example**
 
@@ -341,7 +318,7 @@ A constructor used to create an **AnimatedDrawableDescriptor** instance.
 
 | Name    | Type             | Mandatory | Description                                      |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | Yes  | **PixelMap** image data. |
+| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | Yes  | **PixelMap** image data.|
 | options   | [AnimationOptions](#animationoptions12) | No  | Animation options.                              |
 
 **Example**

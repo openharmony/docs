@@ -13,6 +13,8 @@ Example:
 bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
 ```
 
+**File to include**: <hiappevent/hiappevent_cfg.h>
+
 **Since**: 8
 
 **Related module**: [HiAppEvent](_hi_app_event.md)
@@ -23,7 +25,7 @@ bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");
 
 ### Macros
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | [DISABLE](_hi_app_event.md#disable)&nbsp;&nbsp;&nbsp;"disable" | Specifies whether to disable event logging. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite. | 
 | [MAX_STORAGE](_hi_app_event.md#max_storage)&nbsp;&nbsp;&nbsp;"max_storage" | Specifies the storage quota of the event file directory. The default value is **10M**. | 

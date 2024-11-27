@@ -34,7 +34,7 @@ Obtains distributed information about a system account. This API uses an asynchr
   | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
-  | callback | AsyncCallback&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](js-apis-distributed-account.md#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -130,7 +130,7 @@ Sets the distributed information for a system account. This API uses an asynchro
   | -------- | -------- | -------- | -------- |
   | localId | number | Yes| ID of the target system account.|
   | accountInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | Yes| Distributed account information to set.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 

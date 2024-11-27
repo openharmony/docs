@@ -17,6 +17,8 @@
 
 - 获取视频缩略图（[AVImageGenerator](#avimagegenerator12)<sup>12+</sup>）
 
+- 屏幕录制（[AVScreenCaptureRecorder](#avscreencapturerecorder12)<sup>12+</sup>）
+
 ## 导入模块
 
 ```ts
@@ -334,7 +336,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | maxStreams | number | 是   | soundPool实例的最大播放的流数 |
-| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息 |
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息。其中audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。 |
 | callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | 是   | 回调函数。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
 
 **错误码：**
@@ -719,7 +721,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
-| 5400106  | Unsupport format.     |
+| 5400106  | Unsupported format.     |
 
 **示例：**
 
@@ -834,8 +836,10 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
+let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
@@ -866,7 +870,7 @@ prepare(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **示例：**
 
@@ -905,7 +909,7 @@ prepare(): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **示例：**
 
@@ -1488,7 +1492,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
-使用AVPlayer播放多音轨视频时选择指定音轨播放，通过Promise获取返回值。
+使用AVPlayer播放多音视频轨资源时，选择指定轨道播放，通过Promise获取返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1498,14 +1502,14 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
-| mode   | [SwitchMode](#switchmode12) | 否   | 切换视频轨模式，默认为SMOOTH模式，仅支持DASH协议，**仅在视频资源播放时设置**。 |
+| index | number | 是   | 多音视频资源的轨道索引，可通过[getTrackDescription](#gettrackdescription9-1)接口获取当前资源的所有轨道信息[MediaDescription](#mediadescription8)。 |
+| mode   | [SwitchMode](#switchmode12) | 否   | 切换视频轨道模式，默认为SMOOTH模式，**仅在DASH协议网络流视频轨切换时生效**，其他场景当前暂不支持。 |
 
 **返回值：**
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 选择曲目完成的Promise返回值。 |
+| Promise\<void> | 选择轨道完成的Promise返回值。 |
 
 **错误码：**
 
@@ -1545,7 +1549,7 @@ avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 
 deselectTrack(index: number): Promise\<void>
 
-使用AVPlayer播放多音轨视频时取消指定音轨播放，通过Promise获取返回值。
+使用AVPlayer播放多音轨视频时取消指定音视频轨道播放，通过Promise获取返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1555,7 +1559,7 @@ deselectTrack(index: number): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
+| index | number | 是   | 多音视频资源的轨道索引，来自[getTrackDescription](#gettrackdescription9-1)接口所获取的轨道信息[MediaDescription](#mediadescription8)。 |
 
 **返回值：**
 
@@ -1816,7 +1820,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-选择要播放的指定比特率，仅对**HLS协议网络流**有效，默认情况下，播放器会根据网络连接速度选择合适的比特率，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#onbitratedone9)事件确认是否生效。
+设置比特率，以播放所指定比特率的流媒体资源，当前仅对**HLS/DASH协议网络流**有效。默认情况下，AVPlayer会根据网络连接速度选择合适的比特率。只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#onbitratedone9)事件确认是否生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1826,7 +1830,7 @@ setBitrate(bitrate: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#onavailablebitrates9)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。如果通过availableBitrates事件获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
+| bitrate | number | 是   | 指定比特率，须通过[availableBitrates](#onavailablebitrates9)事件获得当前HLS/DASH协议网络流可用的比特率列表，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最接近的比特率。如果通过availableBitrates事件获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
 
 **示例：**
 
@@ -1885,7 +1889,7 @@ avPlayer.off('bitrateDone')
 
 on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
-监听HLS协议流可用的比特率列表，只会在切换prepared状态后上报。
+监听HLS/DASH协议网络流可用的比特率列表，只会在切换prepared状态后上报。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1895,8 +1899,8 @@ on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | HLS协议可用比特率上报事件回调类型，支持的事件：'availableBitrates'，只会在prepared之后上报一次。 |
-| callback | Callback\<Array\<number>> | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
+| type     | string   | 是   | HLS/DASH协议网络流可用比特率上报事件回调类型，支持的事件：'availableBitrates'，只会在prepared之后上报一次。 |
+| callback | Callback\<Array\<number>> | 是   | HLS/DASH协议网络流可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
 
 **示例：**
 
@@ -1910,7 +1914,7 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 
 off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
-取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
+取消监听HLS/DASH协议网络流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1920,8 +1924,8 @@ off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | HLS协议可用比特率上报事件回调类型，取消注册的事件：'availableBitrates'。 |
-| callback | Callback\<Array\<number>> | 否   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。<br/>从API version 12开始支持此参数。 |
+| type   | string | 是   | HLS/DASH协议网络流可用比特率上报事件回调类型，取消注册的事件：'availableBitrates'。 |
+| callback | Callback\<Array\<number>> | 否   | HLS/DASH协议网络流可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -2353,7 +2357,7 @@ on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                                                       | 是   | 音频焦点变化事件回调类型，支持的事件：'audioInterrupt'。 |
-| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 是   | 音频焦点变化事件回调方法。                           |
+| callback | Callback\<[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)> | 是   | 音频焦点变化事件回调方法。                           |
 
 **示例：**
 
@@ -2380,7 +2384,7 @@ off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 音频焦点变化事件回调类型，取消注册的事件：'audioInterrupt'。 |
-| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 否   | 音频焦点变化事件回调方法。<br/>从API version 12开始支持此参数。             |
+| callback | Callback\<[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)> | 否   | 音频焦点变化事件回调方法。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -2487,6 +2491,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit'
+import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
@@ -2693,6 +2698,50 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 avPlayer.off('trackInfoUpdate')
 ```
 
+### on('amplitudeUpdate')<sup>13+</sup>
+
+on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
+
+订阅音频最大电平值，音频资源播放时定时上报。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
+| callback | Callback\<Array\<number>> | 是   | 音频最大电平值更新事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
+  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}')
+})
+```
+
+### off('amplitudeUpdate')<sup>13+</sup>
+
+off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
+
+取消订阅获取音频最大电平值事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
+| callback | Callback\<Array\<number>> | 否   | 取消音频最大电平值更新事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('amplitudeUpdate')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
@@ -2857,8 +2906,9 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。 |
-| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。 |
+| SPEED_FORWARD_3_00_X<sup>13+</sup> | 7    | 表示视频播放正常播速的3.00倍。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -4143,7 +4193,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.             |
 | 5400104  | Time out.              |
 | 5400105  | Service died.          |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.    |
 | 5400107  | Audio interrupted.     |
 
 **示例：**
@@ -4205,6 +4255,8 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 **示例：**
 
 ```ts
+import { audio } from '@kit.AudioKit'
+
 let capturerChangeInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCapturerChangeInfo) => {
@@ -4262,13 +4314,15 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
+let context = getContext(this) as common.UIAbilityContext
 
 // 例:处理photoAsset回调，保存video
-async saveVideo(asset: photoAccessHelper.PhotoAsset) {
+async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4376,7 +4430,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -4806,7 +4860,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.              |
 | 5400104  | Time out.            |
 | 5400105  | Service died.           |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.      |
 
 **示例：**
 
@@ -5599,7 +5653,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 **示例：**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
@@ -5644,7 +5698,7 @@ audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调
 let fdPath = 'fd://';
 // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-fileIo.open(path).then((file) => {
+fs.open(path).then((file) => {
   fdPath = fdPath + '' + file.fd;
   console.info('Succeeded in opening fd, fd is' + fdPath);
   audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
@@ -6799,7 +6853,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | permission denied     |
 
 **示例：**
 
@@ -7446,6 +7500,8 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 创建流媒体预下载媒体来源实例方法。
 
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **参数：**
@@ -7552,6 +7608,8 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
+| preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
@@ -7873,6 +7931,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 201      | permission denied.     |
 | 5400103  | IO error. Return by ErrorCallback. |
 | 5400105  | Service died. Return by ErrorCallback. |
 

@@ -77,7 +77,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
 atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -121,7 +121,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
 try {
   let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
   console.log(`data->${JSON.stringify(data)}`);
@@ -162,7 +162,7 @@ import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
@@ -177,7 +177,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 用于<!--RP1-->UIAbility<!--RP1End-->拉起弹框请求用户授权。使用callback异步回调。
 
-如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。
+如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。或是调用[requestPermissionOnSetting](#requestpermissiononsetting12)，拉起权限设置弹框，引导用户授权。
 
 > **说明：**
 >
@@ -207,7 +207,9 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 | 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
 
 **示例：**
-示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+下述示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+关于向用户申请授权的完整流程及示例，请参见[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
@@ -233,7 +235,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 用于<!--RP1-->UIAbility<!--RP1End-->拉起弹框请求用户授权。使用promise异步回调。
 
-如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。
+如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。或是调用[requestPermissionOnSetting](#requestpermissiononsetting12)，拉起权限设置弹框，引导用户授权。
 
 > **说明：**
 >
@@ -268,7 +270,9 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 | 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
 
 **示例：**
-示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+下述示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+关于向用户申请授权的完整流程及示例，请参见[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
@@ -318,7 +322,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
 atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -364,7 +368,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
 console.log(`data->${JSON.stringify(data)}`);

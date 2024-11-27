@@ -2,6 +2,8 @@
 
 位置服务提供GNSS定位、网络定位（蜂窝基站、WLAN、蓝牙定位技术）、地理编码、逆地理编码、国家码和地理围栏等基本功能。
 
+使用位置服务时请打开设备“位置”开关。如果“位置”开关关闭并且代码未设置捕获异常，可能导致应用异常。
+
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -92,9 +94,9 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 否 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
-| timeInterval | number | 否 | 是 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。 |
+| timeInterval | number | 否 | 是 |  表示上报位置信息的时间间隔，单位为秒。<br/>取值范围为大于等于0的值。<br/>默认值为对应定位模式下允许的最小时间间隔：<br/>默认值在GNSS定位时为1秒，网络定位时为20秒。<br/>当设置值小于最小间隔时，以最小时间间隔生效。<br/>设置为0时不对时间间隔进行校验，直接上报位置信息。 |
 | distanceInterval | number | 否 | 是 | 表示上报位置信息的距离间隔。单位是米，默认值为0，取值范围为大于等于0。等于0时对位置上报距离间隔无限制。 |
-| maxAccuracy | number | 否 | 是 |  表示精度信息，单位是米。<br/>仅在精确位置功能场景（同时授予了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（仅授予了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>默认值为0，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
+| maxAccuracy | number | 否 | 是 |  应用向系统请求位置信息时要求的精度值，单位为米。该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>该参数生效的情况下，系统会对比GNSS或网络定位服务上报的位置信息与应用的位置信息申请。当位置信息[Location](#location)中的精度值（accuracy）小于等于应用要求的精度值（maxAccuracy）时，位置信息会返回给应用；否则系统将丢弃本次收到的位置信息。<br/>默认值为0，表示不限制位置信息的精度，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。<br/> |
 
 
 ## CurrentLocationRequest
@@ -109,7 +111,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestpriority) | 否 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。|
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 否 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
-| maxAccuracy | number | 否 | 是|  表示精度信息，单位是米。<br/>仅在精确位置功能场景（同时授予了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（仅授予了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>默认值为0，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
+| maxAccuracy | number | 否 | 是|  应用向系统请求位置信息时要求的精度值，单位为米。该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>该参数生效的情况下，系统会对比GNSS或网络定位服务上报的位置信息与应用的位置信息申请。当位置信息[Location](#location)中的精度值（accuracy）小于等于应用要求的精度值（maxAccuracy）时，位置信息会返回给应用；否则系统将丢弃本次收到的位置信息。<br/>默认值为0，表示不限制位置信息的精度，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
 | timeoutMs | number | 否 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
 
 
@@ -507,23 +509,23 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
   // 方式一：使用LocationRequest作为入参
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
 
   // 方式二：使用ContinuousLocationRequest作为入参
   let request:geoLocationManager.ContinuousLocationRequest = {'interval': 1, 'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION};
   let locationCallback = (location:geoLocationManager.Location):void => {
-      console.log('locationCallback: data: ' + JSON.stringify(location));
+      console.info('locationCallback: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', request, locationCallback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -567,20 +569,20 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-    console.log('locationChanger: data: ' + JSON.stringify(location));
+    console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
       geoLocationManager.off('locationChange', locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('locationError')<sup>12+</sup>
 
-on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
+on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void
 
 订阅持续定位过程中的错误码。使用callback异步回调。
 
@@ -615,21 +617,21 @@ on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
 
   let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
-    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+    console.info('locationErrorChange: data: ' + JSON.stringify(errcode));
   };
   try {
     geoLocationManager.on('locationError', locationErrorChange);
   } catch (err) {
-    console.error("errCode:" + JSON.stringify(err));
+    console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   
   ```
@@ -671,13 +673,13 @@ off(type: 'locationError', callback?: Callback&lt;LocationError&gt;): void
   import { geoLocationManager } from '@kit.LocationKit';
 
   let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
-    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+    console.info('locationErrorChange: data: ' + JSON.stringify(errcode));
   };
   try {
     geoLocationManager.on('locationError', locationErrorChange);
     geoLocationManager.off('locationError', locationErrorChange);
   } catch (err) {
-    console.error("errCode:" + JSON.stringify(err));
+    console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -713,19 +715,19 @@ on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
   import { geoLocationManager } from '@kit.LocationKit';
 
   let locationEnabledChange = (state:boolean):void => {
-      console.log('locationEnabledChange: ' + JSON.stringify(state));
+      console.info('locationEnabledChange: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locationEnabledChange')
 
-off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
+off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void
 
 取消订阅位置服务状态变化。
 
@@ -754,20 +756,20 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
   import { geoLocationManager } from '@kit.LocationKit';
 
   let locationEnabledChange = (state:boolean):void => {
-      console.log('locationEnabledChange: state: ' + JSON.stringify(state));
+      console.info('locationEnabledChange: state: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
       geoLocationManager.off('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('cachedGnssLocationsChange')
 
-on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
+on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 订阅缓存GNSS定位结果上报事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
@@ -802,20 +804,20 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   import { geoLocationManager } from '@kit.LocationKit';
 
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
-      console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geoLocationManager.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('cachedGnssLocationsChange')
 
-off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
+off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void
 
 取消订阅缓存GNSS定位结果上报事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
@@ -849,21 +851,21 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
   import { geoLocationManager } from '@kit.LocationKit';
 
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
-      console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
+      console.info('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
   let requestInfo:geoLocationManager.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
       geoLocationManager.off('cachedGnssLocationsChange');
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('satelliteStatusChange')
 
-on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
+on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void
 
 订阅GNSS卫星状态信息上报事件。使用callback异步回调。
 
@@ -896,20 +898,20 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
   import { geoLocationManager } from '@kit.LocationKit';
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
-      console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
 
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('satelliteStatusChange')
 
-off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void;
+off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): void
 
 取消订阅GNSS卫星状态信息上报事件。
 
@@ -943,20 +945,20 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
   import { geoLocationManager } from '@kit.LocationKit';
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
-      console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
       geoLocationManager.off('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('nmeaMessage')
 
-on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
+on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void
 
 订阅GNSS NMEA信息上报事件。使用callback异步回调。
 
@@ -990,20 +992,20 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
   import { geoLocationManager } from '@kit.LocationKit';
 
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessage: ' + JSON.stringify(str));
+      console.info('nmeaMessage: ' + JSON.stringify(str));
   }
 
   try {
       geoLocationManager.on('nmeaMessage', nmeaCb );
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('nmeaMessage')
 
-off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
+off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void
 
 取消订阅GNSS NMEA信息上报事件。
 
@@ -1037,21 +1039,21 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
   import { geoLocationManager } from '@kit.LocationKit';
 
   let nmeaCb = (str:string):void => {
-      console.log('nmeaMessage: ' + JSON.stringify(str));
+      console.info('nmeaMessage: ' + JSON.stringify(str));
   }
 
   try {
       geoLocationManager.on('nmeaMessage', nmeaCb);
       geoLocationManager.off('nmeaMessage', nmeaCb);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('gnssFenceStatusChange')
 
-on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 添加一个围栏，并订阅地理围栏事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
@@ -1084,7 +1086,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { wantAgent } from '@kit.AbilityKit'
+  import { wantAgent } from '@kit.AbilityKit';
 
 
   let wantAgentInfo:wantAgent.WantAgentInfo = {
@@ -1105,7 +1107,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + JSON.stringify(err));
+        console.error("errCode:" + err.code + ", message:"  + err.message);
     }
   });
   ```
@@ -1113,7 +1115,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
 ## geoLocationManager.off('gnssFenceStatusChange')
 
-off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
+off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void
 
 删除一个围栏，并取消订阅该围栏事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
@@ -1146,7 +1148,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { wantAgent } from '@kit.AbilityKit'
+  import { wantAgent } from '@kit.AbilityKit';
 
   
   let wantAgentInfo:wantAgent.WantAgentInfo = {
@@ -1168,7 +1170,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + JSON.stringify(err));
+        console.error("errCode:" + err.code + ", message:"  + err.message);
     }
   });
   ```
@@ -1176,7 +1178,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 
 ## geoLocationManager.on('countryCodeChange')
 
-on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
+on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void
 
 订阅国家码信息变化事件。使用callback异步回调。
 
@@ -1207,20 +1209,20 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
   import { geoLocationManager } from '@kit.LocationKit';
 
   let callback = (code:geoLocationManager.CountryCode):void => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
+      console.info('countryCodeChange: ' + JSON.stringify(code));
   }
 
   try {
       geoLocationManager.on('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('countryCodeChange')
 
-off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
+off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void
 
 取消订阅国家码变化事件。
 
@@ -1250,14 +1252,14 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
   import { geoLocationManager } from '@kit.LocationKit';
 
   let callback = (code:geoLocationManager.CountryCode):void => {
-      console.log('countryCodeChange: ' + JSON.stringify(code));
+      console.info('countryCodeChange: ' + JSON.stringify(code));
   }
 
   try {
       geoLocationManager.on('countryCodeChange', callback);
       geoLocationManager.off('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1298,7 +1300,7 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 方式一：使用CurrentLocationRequest作为入参
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError, location:geoLocationManager.Location):void => {
@@ -1306,14 +1308,14 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
 
   try {
       geoLocationManager.getCurrentLocation(requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   
   // 方式二：使用SingleLocationRequest作为入参
@@ -1323,20 +1325,20 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
 
   try {
       geoLocationManager.getCurrentLocation(request, locationCallback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.getCurrentLocation
 
-getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
+getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 获取当前位置，使用callback异步回调。
 
@@ -1369,20 +1371,20 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let locationChange = (err:BusinessError, location:geoLocationManager.Location) => {
       if (err) {
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.log('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChanger: location=' + JSON.stringify(location));
       }
   };
 
   try {
       geoLocationManager.getCurrentLocation(locationChange);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1427,32 +1429,32 @@ getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Pr
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 方式一：使用CurrentLocationRequest作为入参
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
-          console.log('current location: ' + JSON.stringify(result));
+          console.info('current location: ' + JSON.stringify(result));
       })  
       .catch((error:BusinessError) => {
           console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   
   // 方式二：使用SingleLocationRequest作为入参
   let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
   try {
       geoLocationManager.getCurrentLocation(request).then((result) => {
-          console.log('current location: ' + JSON.stringify(result));
+          console.info('current location: ' + JSON.stringify(result));
       })  
       .catch((error:BusinessError) => {
           console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1494,7 +1496,7 @@ getLastLocation(): Location
   try {
       let location = geoLocationManager.getLastLocation();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1503,7 +1505,7 @@ getLastLocation(): Location
 
 isLocationEnabled(): boolean
 
-判断位置服务是否已经使能。
+判断位置服务是否已经开启。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1531,7 +1533,7 @@ isLocationEnabled(): boolean
   try {
       let locationEnabled = geoLocationManager.isLocationEnabled();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1573,18 +1575,18 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
               console.error('getAddressesFromLocation: err=' + JSON.stringify(err));
           }
           if (data) {
-              console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
+              console.info('getAddressesFromLocation: data=' + JSON.stringify(data));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getAddressesFromLocation
 
-getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
+getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
 调用逆地理编码服务，将坐标转换为地理描述，使用Promise异步回调。
 
@@ -1617,17 +1619,17 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
-          console.log('getAddressesFromLocation: ' + JSON.stringify(data));
+          console.info('getAddressesFromLocation: ' + JSON.stringify(data));
       })
       .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1662,7 +1664,6 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
@@ -1670,11 +1671,11 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
               console.error('getAddressesFromLocationName: err=' + JSON.stringify(err));
           }
           if (data) {
-              console.log('getAddressesFromLocationName: data=' + JSON.stringify(data));
+              console.info('getAddressesFromLocationName: data=' + JSON.stringify(data));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -1714,23 +1715,23 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
-          console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
+          console.info('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
       .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.isGeocoderAvailable
 
-isGeocoderAvailable(): boolean;
+isGeocoderAvailable(): boolean
 
 判断地理编码与逆地理编码服务状态。
 
@@ -1758,14 +1759,14 @@ isGeocoderAvailable(): boolean;
   try {
       let isAvailable = geoLocationManager.isGeocoderAvailable();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCachedGnssLocationsSize
 
-getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
+getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void
 
 获取GNSS芯片缓存位置的个数。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
@@ -1795,25 +1796,24 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCachedGnssLocationsSize((err, size) => {
           if (err) {
               console.error('getCachedGnssLocationsSize: err=' + JSON.stringify(err));
           }
           if (size) {
-              console.log('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
+              console.info('getCachedGnssLocationsSize: size=' + JSON.stringify(size));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCachedGnssLocationsSize
 
-getCachedGnssLocationsSize(): Promise&lt;number&gt;;
+getCachedGnssLocationsSize(): Promise&lt;number&gt;
 
 获取GNSS芯片缓存位置的个数。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
 
@@ -1842,23 +1842,23 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.getCachedGnssLocationsSize().then((result) => {
-          console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
+          console.info('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
       .catch((error:BusinessError) => {
           console.error('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.flushCachedGnssLocations
 
-flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
+flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void
 
 读取并清空GNSS芯片所有缓存位置。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
@@ -1889,7 +1889,6 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.flushCachedGnssLocations((err) => {
           if (err) {
@@ -1897,14 +1896,14 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.flushCachedGnssLocations
 
-flushCachedGnssLocations(): Promise&lt;void&gt;;
+flushCachedGnssLocations(): Promise&lt;void&gt;
 
 读取并清空GNSS芯片所有缓存位置。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
 
@@ -1934,23 +1933,23 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.flushCachedGnssLocations().then(() => {
-          console.log('promise, flushCachedGnssLocations success');
+          console.info('promise, flushCachedGnssLocations success');
       })
       .catch((error:BusinessError) => {
           console.error('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.sendCommand
 
-sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void;
+sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
 给位置服务子系统的各个部件发送扩展命令。使用callback异步回调。
 
@@ -1977,7 +1976,6 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo, (err) => {
@@ -1986,14 +1984,14 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.sendCommand
 
-sendCommand(command: LocationCommand): Promise&lt;void&gt;;
+sendCommand(command: LocationCommand): Promise&lt;void&gt;
 
 给位置服务子系统的各个部件发送扩展命令。使用Promise异步回调。
 
@@ -2025,24 +2023,24 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo).then(() => {
-          console.log('promise, sendCommand success');
+          console.info('promise, sendCommand success');
       })  
       .catch((error:BusinessError) => {
           console.error('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCountryCode
 
-getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
+getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void
 
 查询当前的国家码。使用callback异步回调。
 
@@ -2069,25 +2067,24 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCountryCode((err, result) => {
           if (err) {
               console.error('getCountryCode: err=' + JSON.stringify(err));
           }
           if (result) {
-              console.log('getCountryCode: result=' + JSON.stringify(result));
+              console.info('getCountryCode: result=' + JSON.stringify(result));
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getCountryCode
 
-getCountryCode(): Promise&lt;CountryCode&gt;;
+getCountryCode(): Promise&lt;CountryCode&gt;
 
 查询当前的国家码。使用Promise异步回调。
 
@@ -2113,23 +2110,23 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.getCountryCode()
       .then((result) => {
-          console.log('promise, getCountryCode: result=' + JSON.stringify(result));
+          console.info('promise, getCountryCode: result=' + JSON.stringify(result));
       })
       .catch((error:BusinessError) => {
           console.error('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.addGnssGeofence<sup>12+</sup>
 
-addGnssGeofence(fenceRequest: GnssGeofenceRequest): Promise&lt;number&gt;;
+addGnssGeofence(fenceRequest: GnssGeofenceRequest): Promise&lt;number&gt;
 
 添加一个GNSS地理围栏，并订阅地理围栏事件。使用Promise异步回调。
 
@@ -2170,7 +2167,7 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { notificationManager } from '@kit.NotificationKit';
   // 创建围栏
   let geofence: geoLocationManager.Geofence = {
@@ -2222,7 +2219,7 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
         console.error('geofenceTransitionCallback: err=' + JSON.stringify(err));
       }
       if (transition) {
-        console.log("GeofenceTransition: %{public}s", JSON.stringify(transition));
+        console.info("GeofenceTransition: %{public}s", JSON.stringify(transition));
     }
     }
   }
@@ -2230,7 +2227,7 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
     // 添加围栏
     geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
       // 围栏添加成功后返回围栏ID
-      console.log("addGnssGeofence success, fence id: " + id);
+      console.info("addGnssGeofence success, fence id: " + id);
       let fenceId = id;
     }).catch((err: BusinessError) => {
       console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError).code + 
@@ -2244,7 +2241,7 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
 ## geoLocationManager.removeGnssGeofence<sup>12+</sup>
 
-removeGnssGeofence(geofenceId: number): Promise&lt;void&gt;;
+removeGnssGeofence(geofenceId: number): Promise&lt;void&gt;
 
 删除一个GNSS地理围栏，并取消订阅该地理围栏事件。使用Promise异步回调。
 
@@ -2282,12 +2279,12 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   // fenceId是在geoLocationManager.addGnssGeofence执行成功后获取的
   let fenceId = 1;
   try {
     geoLocationManager.removeGnssGeofence(fenceId).then(() => {
-      console.log("removeGnssGeofence success fenceId:" + fenceId);
+      console.info("removeGnssGeofence success fenceId:" + fenceId);
     }).catch((error : BusinessError) => {
       console.error("removeGnssGeofence: error=" + JSON.stringify(error));
     });
@@ -2299,7 +2296,7 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
 ## geoLocationManager.getGeofenceSupportedCoordTypes<sup>12+</sup>
 
-getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;;
+getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;
 
 获取地理围栏功能支持的坐标系列表。
 
@@ -2326,8 +2323,49 @@ getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;;
   import { geoLocationManager } from '@kit.LocationKit';
   try {
     let supportedCoordTypes: Array<geoLocationManager.CoordinateSystemType> = geoLocationManager.getGeofenceSupportedCoordTypes();
-    console.log("getGeofenceSupportedCoordTypes return:" + JSON.stringify(supportedCoordTypes));
+    console.info("getGeofenceSupportedCoordTypes return:" + JSON.stringify(supportedCoordTypes));
   } catch(error) {
     console.error("getGeofenceSupportedCoordTypes: error=" + JSON.stringify(error));
+  }
+  ```
+
+
+## geoLocationManager.getCurrentWifiBssidForLocating<sup>14+</sup>
+
+getCurrentWifiBssidForLocating(): string
+
+获取连接的Wi-Fi AP（Access Point）的Bssid（Basic Service Set Identifier）信息
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | Wi-Fi Bssid |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported.Failed to call function due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+|3301100 | The location switch is off.                                                 |
+|3301900 | Failed to obtain the hotpot MAC address because the Wi-Fi is not connected. |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+    let bssid: string = geoLocationManager.getCurrentWifiBssidForLocating();
+    console.info("get wifi bssid:" + bssid);
+  } catch(error) {
+    console.error("getCurrentWifiBssidForLocating: errCode" + error.code + ", errMessage" + error.message);
   }
   ```

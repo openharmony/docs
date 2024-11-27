@@ -42,7 +42,7 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- |
 | Embed | The sidebar is embedded in the component and displayed side by side with the content area.<br>When the component size is less than the sum of **minContentWidth** and **minSideBarWidth** and **showSideBar** is not set, the sidebar is automatically hidden.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation.<br> The user can bring out the sidebar in Overlay mode by clicking the control button.|
 | Overlay | The sidebar is displayed overlaid on the content area.|
-| AUTO<sup>10+</sup> | The sidebar is displayed in Embed mode when the component size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth**<br>and in Overlay mode otherwise.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation. If the calculation result is less than 600 vp, 600 vp will be used as the breakpoint value for mode switching.|
+| AUTO<sup>10+</sup> | The sidebar is displayed in Embed mode when the component size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth** and in Overlay mode otherwise.<br>If **minSideBarWidth** or **minContentWidth** is not set, the default value will be used for calculation. If the calculation result is less than 600 vp, 600 vp will be used as the breakpoint value for mode switching.|
 
 ## Attributes
 

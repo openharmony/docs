@@ -3,7 +3,7 @@
 
 ## Overview
 
-[Media queries](../reference/../reference/apis-arkui/js-apis-mediaquery.md) are at the core of responsive design and widely used on mobile devices. You can use media queries to apply application styles based on the device type or device state. Specifically, media queries allow you to:
+[Media queries](../reference/apis-arkui/js-apis-mediaquery.md), the cornerstone of responsive design, are widely used on mobile devices. You can use media queries to apply application styles based on the device type or device state. Specifically, media queries allow you to:
 
 1. Design a layout style based on the device and application attributes (such as display area, dark light color, and resolution).
 
@@ -72,6 +72,7 @@ Examples are as follows:
 
 
 ### media-type
+When media types are not specified in a media query, the default type **screen** is used. Media types must be placed at the beginning of the query condition.
 
 | **Type**| **Description**        |
 | ------ | -------------- |
@@ -88,8 +89,8 @@ You can use logical operators (**and**, **or**, **not**, and **only**) to compos
 | ---------------- | ------------------------------------------------------------ |
 | and              | The **and** operator is used to combine multiple media features into one media query, in a logical AND operation. The query is valid only when all media features are true. It can also combine media types and media functions. For example, **screen and (device-type: wearable) and (max-height: 600px)** evaluates to **true** when the device type is wearable and the maximum height of the application is 600 pixel units.|
 | or               | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. For example, **screen and (max-height: 1000px) or (round-screen: true)** indicates that the query is valid when the maximum height of the application is 1000 pixel units or the device screen is round.|
-| not              | The **not** operator is used to perform a logical negation for a media query. **true** is returned if the query condition is not met. Otherwise, **false** is returned. For example, **not screen and (min-height: 50px) and (max-height: 600px)** evaluates to **true** when the height of the application is less than 50 pixel units or greater than 600 pixel units.<br>You must specify the media type when using the **not** operator.|
-| only             | The **only** operator applies the selected style only when the entire expression is matched. It can be used to prevent ambiguity on browsers of earlier versions. The statements that contain both media types and media features produce ambiguity when they are received by some browsers of earlier versions. For example, regarding **screen and (min-height: 50px)**, the browsers of earlier versions would mislead this sentence into **screen**, causing the fact that the specified style is applied when only the media type is matched. In this case, the **only** operator can be used to avoid this issue.<br>You must specify the media type when using the **only** operator.|
+| not              | The **not** operator is used to perform a logical negation for a media query. It must be used in conjunction with **screen**. **true** is returned if the query condition is not met. Otherwise, **false** is returned. For example, **not screen and (min-height: 50px) and (max-height: 600px)** evaluates to **true** when the height of the application is less than 50 pixel units or greater than 600 pixel units.|
+| only             | The **only** operator must be used with **screen** to ensure that the styles are only applied when the media query matches. It has the same effect as using **screen** alone. Example: **only screen and (height &lt;= 50) **|
 | comma (,) | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. The effect of a comma operator is equivalent to that of the **or** operator. For example, **screen and (min-height: 1000px), (round-screen: true)** indicates that the query is valid when the minimum height of the application is 1000 pixel units or the device screen is round.|
 
 Media range operators include <=, >=, <, and >. For details, see the following table.
@@ -127,7 +128,7 @@ For width and height related features, the units vp and px are supported. If no 
 | device-height     | Height of the device.                                  |
 | min-device-height | Minimum height of the device.                                |
 | max-device-height | Maximum height of the device.                                |
-| device-width      | Width of the device.                                  |
+| device-width      | Width of the device. The settings are only saved once during application initialization and do not update in real-time with device width changes, such as in scenarios where a foldable screen is folded or unfolded.                                  |
 | device-type       | Type of the device.<br>Available options: **default** and **tablet**          |
 | min-device-width  | Minimum width of the device.                                |
 | max-device-width  | Maximum width of the device.                                |
@@ -156,7 +157,7 @@ struct MediaQueryExample {
   @State text: string = 'Portrait';
   @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // The query is valid when the device is in landscape mode.
-  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 
   // The callback is triggered when the query is valid.
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
@@ -172,7 +173,14 @@ struct MediaQueryExample {
   aboutToAppear() {
     // Bind to the current application instance.
     // Register the callback.
-    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
+    this.listener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
+      this.onPortrait(mediaQueryResult)
+    });
+  }
+
+  aboutToDisappear() {
+    // Unbind the callback function registered in the listener.
+    this.listener.off('change');
   }
 
   // Change the landscape/portrait mode of the device in the callback.
@@ -230,6 +238,11 @@ struct MediaQueryExample {
   aboutToAppear() {
     // Bind to the current application instance.
     this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); // Register the callback.
+  }
+
+  aboutToDisappear() {
+    // Unbind the callback function registered in the listener.
+    this.listener.off('change');
   }
 
   build() {

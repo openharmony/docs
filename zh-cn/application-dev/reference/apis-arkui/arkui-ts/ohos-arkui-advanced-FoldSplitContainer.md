@@ -8,6 +8,11 @@ FoldSplitContainer分栏布局，实现折叠屏二分栏、三分栏在展开�
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 导入模块
+
+```ts
+import { FoldSplitContainer } from '@kit.ArkUI';
+```
 
 ## 子组件
 
@@ -32,9 +37,7 @@ FoldSplitContainer({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | primary | ()=>void | 否 | @BuilderParam | 主要区域回调函数。 |
 | secondary | ()=>void | 否 | @BuilderParam | 次要区域回调函数。 |
@@ -47,13 +50,11 @@ FoldSplitContainer({
 
 ## ExpandedRegionLayoutOptions
 
-**装饰器类型：**\@Prop
+展开态布局信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-展开态布局信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -64,13 +65,11 @@ FoldSplitContainer({
 
 ## HoverModeRegionLayoutOptions
 
-**装饰器类型：**\@Prop
+悬停态布局信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-悬停态布局信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -85,8 +84,6 @@ FoldSplitContainer({
 
 ## FoldedRegionLayoutOptions
 
-**装饰器类型：**\@Prop
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -95,13 +92,17 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| verticalSplitRatio | number | 是 | 主要区域与次要区域之间的高度比例。默认值：PresetSplitRatio.LAYOUT_1V1。 |
+| verticalSplitRatio | number | 否 | 主要区域与次要区域之间的高度比例。默认值：PresetSplitRatio.LAYOUT_1V1。 |
 
 ## onHoverStatusChangeHandler
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+type OnHoverStatusChangeHandler = (status: HoverModeStatus) => void
 
 onHoverStatusChange事件处理。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -109,37 +110,41 @@ onHoverStatusChange事件处理。
 
 ## HoverModeStatus
 
+折叠态布局信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-折叠态布局信息。
-
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| foldStatus | [FoldStatus<sup>10+</sup>](../js-apis-display.md#foldstatus10) | 是 | 设备的折叠状态。 |
+| foldStatus | [display.FoldStatus<sup>10+</sup>](../js-apis-display.md#foldstatus10) | 是 | 设备的折叠状态。 |
 | isHoverMode | boolean | 是 | app当前是否处于悬停态。 |
 | appRotation | number | 是 | 应用旋转角度。 |
-| windowStatusType | [WindowStatusType<sup>11+</sup>](../js-apis-window.md#windowstatustype11) | 是 | 窗口模式。 |
+| windowStatusType | [window.WindowStatusType<sup>11+</sup>](../js-apis-window.md#windowstatustype11) | 是 | 窗口模式。 |
 
 ## ExtraRegionPosition
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 扩展区域位置信息。
 
-| 名称 | 值 | 描述 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| top | 1 | 扩展区域在组件上半区域。 |
-| bottom | 2 | 扩展区域在组件下半区域。 |
+| TOP | 1 | 扩展区域在组件上半区域。 |
+| BOTTOM | 2 | 扩展区域在组件下半区域。 |
 
 ## PresetSplitRatio
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 区域比例。
 
-| 名称 | 值 | 描述 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | LAYOUT_1V1 | 1/1 | 1:1比例。 |
 | LAYOUT_3V2 | 3/2 | 3:2比例。 |
@@ -147,7 +152,9 @@ onHoverStatusChange事件处理。
 
 ## 示例
 
-### 示例1
+### 示例1（设置二分栏）
+
+该示例实现了折叠屏二分栏在展开态、悬停态以及折叠态的区域控制。
 
 ```ts
 import { FoldSplitContainer } from '@kit.ArkUI';
@@ -194,10 +201,11 @@ struct TwoColumns {
 
 | 折叠态 | 展开态 | 悬停态 |
 | ----- | ------ | ------ |
-| ![](figures/foldsplitcontainer-1.png) | ![](figures/foldsplitcontainer-2.png) | ![](figures/foldsplitcontainer-3.png) | 
+| ![](figures/foldsplitcontainer-1.png) | ![](figures/foldsplitcontainer-2.png) | ![](figures/foldsplitcontainer-3.png) |
 
+### 示例2（设置三分栏）
 
-### 示例2
+该示例实现了折叠屏三分栏在展开态、悬停态以及折叠态的区域控制。
 
 ```ts
 import { FoldSplitContainer } from '@kit.ArkUI';
@@ -257,9 +265,11 @@ struct ThreeColumns {
 
 | 折叠态 | 展开态 | 悬停态 |
 | ----- | ------ | ------ |
-| ![](figures/foldsplitcontainer-4.png) | ![](figures/foldsplitcontainer-5.png) | ![](figures/foldsplitcontainer-6.png) | 
+| ![](figures/foldsplitcontainer-4.png) | ![](figures/foldsplitcontainer-5.png) | ![](figures/foldsplitcontainer-6.png) |
 
-### 示例3
+### 示例3（展开态布局信息）
+
+该示例通过配置ExpandedRegionLayoutOptions实现折叠屏展开态的布局信息。
 
 ```ts
 import {
@@ -656,6 +666,6 @@ struct Index {
 
 | 折叠态 | 展开态 | 悬停态 |
 | ----- | ------ | ------ |
-| ![](figures/foldsplitcontainer-7.png) | ![](figures/foldsplitcontainer-8.png) | ![](figures/foldsplitcontainer-11.png) | 
-|                                       | ![](figures/foldsplitcontainer-9.png) | ![](figures/foldsplitcontainer-12.png) | 
-|                                       | ![](figures/foldsplitcontainer-10.png) | ![](figures/foldsplitcontainer-13.png) | 
+| ![](figures/foldsplitcontainer-7.png) | ![](figures/foldsplitcontainer-8.png) | ![](figures/foldsplitcontainer-11.png) |
+|                                       | ![](figures/foldsplitcontainer-9.png) | ![](figures/foldsplitcontainer-12.png) |
+|                                       | ![](figures/foldsplitcontainer-10.png) | ![](figures/foldsplitcontainer-13.png) |

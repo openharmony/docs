@@ -33,7 +33,7 @@
 | RETURN_LIMIT          | 类型为number。                                                 | 可选     | 关键资产查询返回的结果数量。                                         |
 | RETURN_OFFSET         | 类型为number，取值范围：1-65536。                              | 可选     | 关键资产查询返回的结果偏移量。<br>**说明：** 用于分批查询场景，指定从第几个开始返回。                                 |
 | RETURN_ORDERED_BY     | 类型为number，取值范围：asset.Tag.DATA_LABEL_xxx。             | 可选     | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序。<br>**说明：** 默认按照关键资产新增的顺序返回。 |
-| REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | 类型为bool。 | 可选 | 是否查询业务自定义附属信息被加密的数据，默认查询业务附属信息不加密的数据。|
+| REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否查询业务自定义附属信息被加密的数据，默认查询业务附属信息不加密的数据。|
 
 ## 约束和限制
 
@@ -61,7 +61,7 @@ function stringToArray(str: string): Uint8Array {
 
 function arrayToString(arr: Uint8Array): string {
   let textDecoder = util.TextDecoder.create("utf-8", { ignoreBOM: true });
-  let str = textDecoder.decodeWithStream(arr, { stream: false })
+  let str = textDecoder.decodeToString(arr, { stream: false })
   return str;
 }
 

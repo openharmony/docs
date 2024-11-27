@@ -88,9 +88,9 @@ sys.symbol.ohos_lungs图标不支持设置fontWeight。
 
 **参数：** 
 
-| 参数名 | 类型 | 必填 | 说明  |
-| ------ | ---- | ---- | ----- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight) | 是   | SymbolGlyph组件粗细。<br/>默认值：FontWeight.Normal |
+| 参数名 | 类型                                                         | 必填 | 说明                                                |
+| ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | SymbolGlyph组件粗细。<br/>默认值：FontWeight.Normal |
 
 ### renderingStrategy
 
@@ -177,18 +177,6 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 ## SymbolEffect<sup>12+</sup>对象说明
 
 定义SymbolEffect类。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### constructor<sup>12+</sup>
-
-constructor()
-
-SymbolEffect的构造函数，无动效。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -406,10 +394,6 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
 
-### constructor<sup>12+</sup>
-
-constructor()
-
 PulseSymbolEffect的构造函数，脉冲动效。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -467,7 +451,7 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                            |
+| 名称     | 说明                          |
 | ------ | ----------------------------- |
 | NONE | 无动效（默认值）。 |
 | SCALE | 整体缩放动效。                 |
@@ -483,7 +467,7 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                            |
+| 名称     | 说明                          |
 | ------ | ----------------------------- |
 | SINGLE  | 单色模式（默认值）。<br/> 默认为黑色，可以设置一个颜色。<br/> 当用户设置多个颜色时，仅生效第一个颜色。 |
 | MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，不透明度设置不生效。|

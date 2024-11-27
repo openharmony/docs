@@ -11,7 +11,13 @@ ErrorManager模块提供对错误观察器的注册和注销的能力。
 import { errorManager } from '@kit.AbilityKit';
 ```
 
-## ErrorManager.on('error')
+## errorManager.on('error')
+
+> **注意：**
+> 
+> 在主线程注册errormanager.on接口，当前版本不支持捕获子线程（如：taskpool）中的异常。
+>
+> 使用errormanager.on接口应用不会退出，建议在回调函数执行完后，增加同步退出操作。
 
 on(type: 'error', observer: ErrorObserver): number
 
@@ -41,7 +47,7 @@ on(type: 'error', observer: ErrorObserver): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | Id does not exist. |
+| 16000003 | The specified ID does not exist. |
 
 **示例：**
     
@@ -72,7 +78,7 @@ try {
 }
 ```
 
-## ErrorManager.off('error')
+## errorManager.off('error')
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -97,7 +103,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | Id does not exist. |
+| 16000003 | The specified ID does not exist. |
 
 **示例：**
     
@@ -122,7 +128,7 @@ try {
 }
 ```
 
-## ErrorManager.off('error')
+## errorManager.off('error')
 
 off(type: 'error', observerId: number): Promise\<void>
 
@@ -152,7 +158,7 @@ off(type: 'error', observerId: number): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | Id does not exist. |
+| 16000003 | The specified ID does not exist. |
 
 **示例：**
     
@@ -177,7 +183,7 @@ try {
 }
 ```
 
-## ErrorManager.on('loopObserver')<sup>12+</sup>
+## errorManager.on('loopObserver')<sup>12+</sup>
 
 on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
@@ -217,7 +223,7 @@ let observer: errorManager.LoopObserver = {
 errorManager.on("loopObserver", 1, observer);
 ```
 
-## ErrorManager.on('unhandledRejection')<sup>12+</sup>
+## errorManager.on('unhandledRejection')<sup>12+</sup>
 
 on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
@@ -266,7 +272,7 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 });
 ```
 
-## ErrorManager.off('loopObserver')<sup>12+</sup>
+## errorManager.off('loopObserver')<sup>12+</sup>
 
 off(type: 'loopObserver', observer?: LoopObserver): void
 
@@ -299,7 +305,7 @@ import { errorManager } from '@kit.AbilityKit';
 errorManager.off("loopObserver");
 ```
 
-## ErrorManager.off('unhandledRejection')<sup>12+</sup>
+## errorManager.off('unhandledRejection')<sup>12+</sup>
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 

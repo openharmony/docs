@@ -22,7 +22,7 @@ This topic walks you through on how to derive a 256-bit key using HKDF. For deta
 
     - If this tag is not set, the derived key can be either managed by HUKS or returned to the caller for management. The key protection mode can be set in the subsequent key derivation on the service side.
 
-3. Use **OH_Huks_GenerateKeyItem** to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
+3. Use [OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem) to generate a key. For details, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 Alternatively, you can [import a key](huks-key-import-overview.md).
 
@@ -78,6 +78,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t DERIVE_KEY_SIZE_32 = 32;
+static const uint32_t DERIVE_KEY_SIZE_256 = 256;
 static struct OH_Huks_Blob g_deriveKeyAlias = {
     (uint32_t)strlen("test_derive"),
     (uint8_t *)"test_derive"
@@ -121,10 +122,10 @@ static struct OH_Huks_Param g_hkdfFinishParams[] = {
         .blob = g_deriveKeyAlias
     }, {
         .tag =  OH_HUKS_TAG_ALGORITHM,
-        .uint32Param = OH_HUKS_ALG_HKDF
+        .uint32Param = OH_HUKS_ALG_AES
     }, {
         .tag =  OH_HUKS_TAG_KEY_SIZE,
-        .uint32Param = DERIVE_KEY_SIZE_32
+        .uint32Param = DERIVE_KEY_SIZE_256
     }, {
         .tag =  OH_HUKS_TAG_PURPOSE,
         .uint32Param = OH_HUKS_KEY_PURPOSE_DERIVE

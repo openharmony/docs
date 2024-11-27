@@ -8,7 +8,7 @@
 
 ## onVisibleAreaChange
 
-onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void): T
+onVisibleAreaChange(ratios: Array&lt;number&gt;, event: VisibleAreaChangeCallback): T
 
 组件可见区域变化时触发该回调。
 
@@ -21,7 +21,7 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, cur
 | 参数名 | 类型                                                | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | ratios | Array&lt;number&gt;                                 | 是   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。当组件可见面积与自身面积的比值接近阈值时，均会触发该回调。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。<br/>**说明：** <br/>当数值接近边界0和1时，将会按照误差不超过0.001的规则进行舍入。例如，0.9997会被近似为1。 |
-| event  | (isVisible: boolean, currentRatio: number) => void) | 是   | -isVisible：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+| event  | [VisibleAreaChangeCallback](ts-types.md#visibleareachangecallback12) | 是   | 组件可见区域变化事件的回调。 |
 
 **返回值：**
 
@@ -31,7 +31,12 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, cur
 
 > **说明：**
 >
-> 该接口只适用于组件布局区域超出或离开了当前屏幕显示区域的情况，不支持组件堆叠（[Stack](ts-container-stack.md)、[Z序控制](ts-universal-attributes-z-order.md)）导致的面积不可见、使用offset或translate等图形变换接口导致的面积超出情况。子组件超出父组件的区域，该区域视为不可见区域。
+>
+>- 仅提供自身节点相对于所有祖先节点（直到window边界）的相对裁切面积与自身面积的比值及其变化趋势。
+> 
+>- 不支持兄弟组件对自身节点的遮挡计算，不支持所有祖先的兄弟节点对自身节点的遮挡计算，如[Stack](ts-container-stack.md)、[Z序控制](ts-universal-attributes-z-order.md)等。
+>
+>- 不支持非挂树节点的可见面积变化计算。例如，预加载的节点、通过[overlay](ts-universal-attributes-overlay.md#overlay)能力挂载的自定义节点。
 
 
 ## 示例
@@ -67,14 +72,14 @@ struct ScrollExample {
             .margin({ top: 50, bottom: 20 })
             .backgroundColor(Color.Green)
               // 通过设置ratios为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调
-            .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-              console.info('Test Text isVisible: ' + isVisible + ', currentRatio:' + currentRatio)
-              if (isVisible && currentRatio >= 1.0) {
+            .onVisibleAreaChange([0.0, 1.0], (isExpanding: boolean, currentRatio: number) => {
+              console.info('Test Text isExpanding: ' + isExpanding + ', currentRatio:' + currentRatio)
+              if (isExpanding && currentRatio >= 1.0) {
                 console.info('Test Text is fully visible. currentRatio:' + currentRatio)
                 this.testTextStr = 'Test Text is fully visible'
               }
 
-              if (!isVisible && currentRatio <= 0.0) {
+              if (!isExpanding && currentRatio <= 0.0) {
                 console.info('Test Text is completely invisible.')
                 this.testTextStr = 'Test Text is completely invisible'
               }
@@ -88,14 +93,14 @@ struct ScrollExample {
           }
           .height(200)
           .backgroundColor(Color.Yellow)
-          .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-            console.info('Test Row isVisible:' + isVisible + ', currentRatio:' + currentRatio)
-            if (isVisible && currentRatio >= 1.0) {
+          .onVisibleAreaChange([0.0, 1.0], (isExpanding: boolean, currentRatio: number) => {
+            console.info('Test Row isExpanding:' + isExpanding + ', currentRatio:' + currentRatio)
+            if (isExpanding && currentRatio >= 1.0) {
               console.info('Test Row is fully visible.')
               this.testRowStr = 'Test Row is fully visible'
             }
 
-            if (!isVisible && currentRatio <= 0.0) {
+            if (!isExpanding && currentRatio <= 0.0) {
               console.info('Test Row is completely invisible.')
               this.testRowStr = 'Test Row is completely invisible'
             }

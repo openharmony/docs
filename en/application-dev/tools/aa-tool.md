@@ -17,7 +17,7 @@ Ability Assistant (AA) is a tool used to start applications and test cases. It p
 
   **Method**
 
-  
+
   ```bash
   aa help
   ```
@@ -26,27 +26,28 @@ Ability Assistant (AA) is a tool used to start applications and test cases. It p
 ## start
   Starts an application component. The target component can be the PageAbility and ServiceAbility components of the FA model or the UIAbility and ServiceExtensionAbility components of the Stage model. The **exported** tag in the configuration file of the target component cannot be set to **false**.
 
-  | Name| Description             |
-  | -------- |-------------------|
-  | -h/--help | Help information.            |
-  | -d | Device ID. This parameter is optional.   |
-  | -a | Ability name. This parameter is optional.|
-  | -b | Bundle name. This parameter is optional. |
-  | -m | Module name. This parameter is optional. |
-  | -U | URI. This parameter is optional.        |
-  | -A | Action. This parameter is optional.     |
-  | -e | Entity. This parameter is optional.     |
-  | -t | Type. This parameter is optional.       |
-  | -S | Whether to enter the application sandbox during debugging. This parameter is optional. If this parameter is carried, the application sandbox is entered. Otherwise, the application sandbox is not entered.|
-  | --pi  | Key-value pair of the integer type. This parameter is optional.    |
-  | --pb  | Key-value pair of the Boolean type. This parameter is optional.    |
-  | --ps  | Key-value pair of the string type. This parameter is optional.   |
-  | --psn | Keyword of an empty string. This parameter is optional.    |
-  | --wl | Left margin of the window, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
-  | --wt | Top margin of the window, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
-  | --wh | Window height, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
-  | --ww | Window width, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
-  | -D | Debugging mode. This parameter is optional.       |
+| Name| Description             |
+| -------- |-------------------|
+| -h/--help | Help information.            |
+| -d | Device ID. This parameter is optional.   |
+| -a | Ability name. This parameter is optional.|
+| -b | Bundle name. This parameter is optional. |
+| -m | Module name. This parameter is optional. |
+| -U | URI. This parameter is optional.        |
+| -A | Action. This parameter is optional.     |
+| -e | Entity. This parameter is optional.     |
+| -t | Type. This parameter is optional.       |
+| -S | Whether to enter the application sandbox during debugging. This parameter is optional. If this parameter is carried, the application sandbox is entered. Otherwise, the application sandbox is not entered.|
+| --pi  | Key-value pair of the integer type. This parameter is optional.    |
+| --pb  | Key-value pair of the Boolean type. This parameter is optional.    |
+| --ps  | Key-value pair of the string type. This parameter is optional.   |
+| --psn | Keyword of an empty string. This parameter is optional.    |
+| --wl | Left margin of the window, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
+| --wt | Top margin of the window, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
+| --wh | Window height, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
+| --ww | Window width, in px. This parameter is optional.<br>**Constraints**:<br>This field is valid only when the 2-in-1 device is in developer mode and the application to start uses a debug signature.|
+| -D | Debugging mode. This parameter is optional.       |
+| -p | Optimization mode. This parameter is optional. This command can be customized.       |
 
   **Return value**
 
@@ -54,13 +55,13 @@ Ability Assistant (AA) is a tool used to start applications and test cases. It p
 
   **Method**
 
-  
+
   ```bash
   # Display the ability started.
-  aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f, case insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>]
+  aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f, case insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
   
   # Implicitly start an ability. If none of the parameters in the command is set, the startup fails.
-  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f, case insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>]
+  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f, case insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
   ```
 
   **Example**
@@ -71,7 +72,7 @@ The following uses the implicit startup of an ability as an example.
   > This example describes only the usage of some fields. For details about ability matching rules, see [Matching Rules of Explicit Want and Implicit Want](../application-models/explicit-implicit-want-mappings.md).
 
 
-1. Configure **uris** for the target ability in the **module.json5** file.
+  - Configure **uris** for the target ability in the **module.json5** file.
 
       ```json
       {
@@ -97,7 +98,7 @@ The following uses the implicit startup of an ability as an example.
       ```
 
 
-2. Implicitly start the ability.
+  - Implicitly start the ability.
 
     - Run the **-U** command to start an application page.
 
@@ -112,7 +113,7 @@ The following uses the implicit startup of an ability as an example.
         ```
 
       The following is an example for the UIAbility to obtain input parameters:
-  
+    
         ```ts
         import UIAbility from '@ohos.app.ability.UIAbility';
         import hilog from '@ohos.hilog';
@@ -141,13 +142,13 @@ The following uses the implicit startup of an ability as an example.
 ## stop-service
   Stops a ServiceAbility.
 
-  | Name| Description|
-  | -------- | -------- |
-  | -h/--help | Help information.|
-  | -d | Device ID. This parameter is optional.|
-  | -a | Ability name. This parameter is mandatory.|
-  | -b | Bundle name. This parameter is mandatory.|
-  | -m | Module name. This parameter is optional.|
+| Name| Description|
+| -------- | -------- |
+| -h/--help | Help information.|
+| -d | Device ID. This parameter is optional.|
+| -a | Ability name. This parameter is mandatory.|
+| -b | Bundle name. This parameter is mandatory.|
+| -m | Module name. This parameter is optional.|
 
   **Return value**
 
@@ -155,7 +156,7 @@ The following uses the implicit startup of an ability as an example.
 
   **Method**
 
-  
+
   ```bash
   aa stop-service [-d <deviceId>] -a <abilityName> -b <bundleName> [-m <moduleName>]
   ```
@@ -166,36 +167,36 @@ The following uses the implicit startup of an ability as an example.
   > This command is supported since API version 7 and deprecated since API version 9. You are advised to use **[hidumper](../dfx/hidumper.md) -s AbilityManagerService** instead.
 
   Prints information about an application component.
-  | Name| Level-2 Parameter| Description|
-  | -------- | -------- | -------- |
-  | -h/--help | - | Help information.|
-  | -a/--all | - | Application component information in all missions.|
+| Name| Level-2 Parameter| Description|
+| -------- | -------- | -------- |
+| -h/--help | - | Help information.|
+| -a/--all | - | Application component information in all missions.|
 | -l/--mission-list | type (All logs are printed if this parameter is left unspecified.)| For better management, the service side maintains four types of MissionLists, as described below:<br>- **NORMAL**: MissionList that is started normally. For example, if A starts B and C, the corresponding MissionList is A->B->C.<br>- **DEFAULT_STANDARD**: If a MissionList is damaged, missions with the launch type set to **multiton** are removed to this MissionList. The Missions in it are not associated with each other.<br>- **DEFAULT_SINGLE**: If a MissionList is damaged, missions with the launch type set to **singleton** are removed to this MissionList. The Missions in it are not associated with each other.<br>- **LAUNCHER**: MissionList for launcher abilities.|
-  | -e/--extension | elementName | Extended component information.|
-  | -u/--userId | UserId | Mission stack information of a specified user ID. This parameter must be used together with other parameters. Example commands: **aa dump -a -u 100** and **aa dump -d -u 100**.|
-  | -d/--data | - | DataAbility information.|
-  | -i/--ability | AbilityRecord ID | Detailed information about an application component.|
-  | -c/--client | - | Detailed information about an application component. This parameter must be used together with other parameters. Example commands: **aa dump -a -c** and **aa dump -i 21 -c**.|
-  | -p/--pending | - | Pending Want information. This parameter must be used together with other parameters. Example command: **aa dump -a -p**.|
-  | -r/--process | - | Process information. This parameter must be used together with other parameters. Example command: **aa dump -a -r**.|
+| -e/--extension | elementName | Extended component information.|
+| -u/--userId | UserId | Mission stack information of a specified user ID. This parameter must be used together with other parameters. Example commands: **aa dump -a -u 100** and **aa dump -d -u 100**.|
+| -d/--data | - | DataAbility information.|
+| -i/--ability | AbilityRecord ID | Detailed information about an application component.|
+| -c/--client | - | Detailed information about an application component. This parameter must be used together with other parameters. Example commands: **aa dump -a -c** and **aa dump -i 21 -c**.|
+| -p/--pending | - | Pending Want information. This parameter must be used together with other parameters. Example command: **aa dump -a -p**.|
+| -r/--process | - | Process information. This parameter must be used together with other parameters. Example command: **aa dump -a -r**.|
 
   **Method**
 
-  
+
   ```bash
   aa dump -a
   ```
 
   ![aa-dump-a](figures/aa-dump-a.png)
 
-  
+
   ```bash
   aa dump -l
   ```
 
   ![aa-dump-l](figures/aa-dump-l.png)
 
-  
+
   ```bash
   aa dump -i 12
   ```
@@ -211,7 +212,7 @@ The following uses the implicit startup of an ability as an example.
 
   **Method**
 
-  
+
   ```bash
   aa force-stop <bundleName>
   ```
@@ -222,23 +223,23 @@ The following uses the implicit startup of an ability as an example.
 
   > **NOTE**
   > 
-  > For details about parameters such as **class**, **level**, **size**, and **testType**, see [Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md#in-the-cli).
+  > For details about parameters such as **class**, **level**, **size**, and **testType**, see <!--RP2-->[Keywords in the aa test Commands](../application-test/arkxtest-guidelines.md)<!--RP2End-->.
 
-  | Name| Description|
-  | -------- | -------- |
-  | -h/--help | Help information.|
-  | -b | Bundle name. This parameter is mandatory.|
-  | -s unittest | Test runner. This parameter is mandatory.|
-  | -p | Package name of the test runner. This parameter is optional.<br>**NOTE**: This parameter can be used only in the FA model.|
-  | -m | Module name of the test runner. This parameter is optional.<br>**NOTE**: This parameter can be used only in the stage model.|
-  | -s class | Test suite or test case to be executed. This parameter is optional.|
-  | -s level | Level of the test case to be executed. This parameter is optional.|
-  | -s size | Size of the test case to be executed. This parameter is optional.|
-  | -s testType | Type of the test case to be executed. This parameter is optional.|
-  | -s timeout | Timeout interval for executing the test case, in ms. The default value is 5000. This parameter is optional.|
-  | -s \<any-key> | Any key-value pair. This parameter is optional.|
-  | -w | Test running time, in ms. This parameter is optional.|
-  | -D | Debugging mode. This parameter is optional.|
+| Name| Description|
+| -------- | -------- |
+| -h/--help | Help information.|
+| -b | Bundle name. This parameter is mandatory.|
+| -s unittest | Test runner. This parameter is mandatory.|
+| -p | Package name of the test runner. This parameter is optional.<br>**NOTE**: This parameter can be used only in the FA model.|
+| -m | Module name of the test runner. This parameter is optional.<br>**NOTE**: This parameter can be used only in the stage model.|
+| -s class | Test suite or test case to be executed. This parameter is optional.|
+| -s level | Level of the test case to be executed. This parameter is optional.|
+| -s size | Size of the test case to be executed. This parameter is optional.|
+| -s testType | Type of the test case to be executed. This parameter is optional.|
+| -s timeout | Timeout interval for executing the test case, in ms. The default value is 5000. This parameter is optional.|
+| -s \<any-key> | Any key-value pair. This parameter is optional.|
+| -w | Test running time, in ms. This parameter is optional.|
+| -D | Debugging mode. This parameter is optional.|
 
   **Return value**
 
@@ -253,10 +254,10 @@ The following uses the implicit startup of an ability as an example.
 ## attach
   Attaches an application to enable it to enter the debugging mode.
 
-  | Name| Description             |
-  | -------- |-------------------|
-  | -h/--help | Help information.            |
-  | -b | Bundle name. This parameter is mandatory. |
+| Name| Description             |
+| -------- |-------------------|
+| -h/--help | Help information.            |
+| -b | Bundle name. This parameter is mandatory. |
 
 
   **Return value**
@@ -265,7 +266,7 @@ The following uses the implicit startup of an ability as an example.
 
   **Method**
 
-  
+
   ```bash
   aa attach -b <bundleName>
   ```
@@ -273,19 +274,19 @@ The following uses the implicit startup of an ability as an example.
 ## detach
   Detaches an application to enable it to exit the debugging mode.
 
-  | Name| Description             |
-  | -------- |-------------------|
-  | -h/--help | Help information.            |
-  | -b | Bundle name. This parameter is mandatory. |
+| Name| Description             |
+| -------- |-------------------|
+| -h/--help | Help information.            |
+| -b | Bundle name. This parameter is mandatory. |
 
 
   **Return value**
 
-  Returns "attach app debug successfully." if the application exits the debugging mode; returns "fail: unknown option." and prints the help information if the specified parameter is invalid.
+  Returns "detach app debug successfully." if the application exits the debugging mode; returns "fail: unknown option." and prints the help information if the specified parameter is invalid.
 
   **Method**
 
-  
+
   ```bash
   aa detach -b <bundleName>
   ```
@@ -293,13 +294,13 @@ The following uses the implicit startup of an ability as an example.
 ## appdebug
   Sets or cancels the waiting-for-debugging state of an application, and obtains the bundle name and persistence flag of an application in the waiting-for-debugging state. The waiting-for-debugging state takes effect only for debugging applications. The setting command of **appdebug** takes effect only for a single application. Once the command is executed repeatedly, the bundle name and persistence flag are replaced with the latest settings.
 
-  | Name| Level-2 Parameter| Description|
-  | -------- | -------- | -------- |
-  | -h/--help | - | Help information.|
-  | -b/--bundlename | bundleName | Bundle name for which the waiting-for-debugging state is set. The system does not verify the validity of the bundle name.|
-  | -p/--persist | - | Persistence flag. This parameter is optional. If this parameter is carried, the application is set to the waiting-for-debugging state persistently. That is, the setting takes effect regardless of whether the device is restarted or the application is reinstalled. If this parameter is not carried, the state takes effect only before the device is restarted. This parameter must be used together with the **-b** parameter. Example command: **aa appdebug -b \<bundleName> -p**.|
-  | -c/--cancel | - | Used to cancel the waiting-for-debugging state.|
-  | -g/--get | - | Used to obtain the bundle name and persistence flag of an application in the waiting-for-debugging state.|
+| Name| Level-2 Parameter| Description|
+| -------- | -------- | -------- |
+| -h/--help | - | Help information.|
+| -b/--bundlename | bundleName | Bundle name for which the waiting-for-debugging state is set. The system does not verify the validity of the bundle name.|
+| -p/--persist | - | Persistence flag. This parameter is optional. If this parameter is carried, the application is set to the waiting-for-debugging state persistently. That is, the setting takes effect regardless of whether the device is restarted or the application is reinstalled. If this parameter is not carried, the state takes effect only before the device is restarted. This parameter must be used together with the **-b** parameter. Example command: **aa appdebug -b \<bundleName> -p**.|
+| -c/--cancel | - | Used to cancel the waiting-for-debugging state.|
+| -g/--get | - | Used to obtain the bundle name and persistence flag of an application in the waiting-for-debugging state.|
 
   **Return value**
 
@@ -320,4 +321,34 @@ The following uses the implicit startup of an ability as an example.
   # Obtain the bundle name and persistence flag of an application in the waiting-for-debugging state.
   aa appdebug -g
   # Example of the obtained information: bundle name: com.example.publishsystem, persist: false
+  ```
+
+## process
+  Debugs or optimizes an application. In DevEco Studio, this command is used to integrate debugging and optimization tools.
+
+| Name| Description|
+| -------- | -------- |
+| -h/--help | Help information.|
+| -b | Bundle name. This parameter is mandatory.|
+| -a | Ability name. This parameter is mandatory.|
+| -m | Module name. This parameter is optional.|
+| -p | Optimization mode. This parameter is optional. Either this parameter or **-D** must be specified. This command can be customized.|
+| -D | Debugging mode. This parameter is optional. Either this parameter or **-p** must be specified. This command can be customized.|
+| -S | Used to enter the application sandbox. This parameter is optional.|
+
+  **Return value**
+
+  Returns "start native process successfully." if this command is executed successfully; returns "start native process successfully." if this command fails to be executed; returns "start native process successfully." and prints the help information if the specified parameter is invalid.
+
+  **Method**
+
+  ```bash
+  # Display the help information.
+  aa process -h
+
+  # Debug an application.
+  aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-D <debug-cmd>] [-S]
+
+  # Optimize an application.
+  aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-S]
   ```

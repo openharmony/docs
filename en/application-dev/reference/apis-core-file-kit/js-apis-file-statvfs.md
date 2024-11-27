@@ -12,7 +12,7 @@ The **statfs** module provides APIs for obtaining file system information, inclu
 import { statfs } from '@kit.CoreFileKit';
 ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string):Promise&lt;number&gt;
 
@@ -51,7 +51,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   });
   ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -87,7 +87,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   });
   ```
 
-## statvfs.getFreeSizeSync<sup>10+</sup>
+## statfs.getFreeSizeSync<sup>10+</sup>
 
 getFreeSizeSync(path:string): number
 
@@ -122,7 +122,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   console.info("getFreeSizeSync succeed, Size: " + number);
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
@@ -161,7 +161,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   });
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -197,7 +197,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   });
   ```
 
-## statvfs.getTotalSizeSync<sup>10+</sup>
+## statfs.getTotalSizeSync<sup>10+</sup>
 
 getTotalSizeSync(path: string): number
 

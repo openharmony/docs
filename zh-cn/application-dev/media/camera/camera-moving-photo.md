@@ -49,19 +49,22 @@
 
 3. 查询当前设备当前模式是否支持动态照片能力。
 
-   ```ts
-   function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
-     let isSupported: boolean = false;
-     try {
-       isSupported = photoOutput.isMovingPhotoSupported();
-     } catch (error) {
-       // 失败返回错误码error.code并处理
-       let err = error as BusinessError;
-       console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
-     }
-     return isSupported;
-   }
-   ```
+    > **说明：**
+    > 查询是否支持动态照片前需要先完成相机会话配置、提交和启动会话，详细开发步骤请参考[会话管理](camera-session-management.md)。
+
+    ```ts
+    function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
+      let isSupported: boolean = false;
+      try {
+        isSupported = photoOutput.isMovingPhotoSupported();
+      } catch (error) {
+        // 失败返回错误码error.code并处理
+        let err = error as BusinessError;
+        console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
+      }
+      return isSupported;
+    }
+    ```
 
 4. 使能动态照片拍照能力。
 
@@ -79,11 +82,9 @@
 
 5. 触发拍照，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
 
-
-
 ## 状态监听
 
-注册photoAsset监听回调。
+在相机应用开发过程中，可以随时监听动态照片拍照输出流状态。通过注册photoAsset的回调函数获取监听结果，photoOutput创建成功时即可监听。
 
    ```ts
    let context = getContext(this);

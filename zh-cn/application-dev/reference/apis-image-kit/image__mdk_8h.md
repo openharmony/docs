@@ -36,8 +36,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md#anonymous-enum-13) = 1000,<br/>[OHOS_IMAGE_FORMAT_JPEG](image.md#anonymous-enum-13) = 2000, } | 图像格式枚举值。 | 
-| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md#anonymous-enum-13-1) = 1,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md#anonymous-enum-13-1) = 2,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md#anonymous-enum-13-1) = 3,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md#anonymous-enum-13-1) = 4, } | 图像组成类型枚举值。 | 
+| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md#图像格式) = 1000,<br/>[OHOS_IMAGE_FORMAT_JPEG](image.md#图像格式) = 2000, } | 图像格式枚举值。 | 
+| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md#图像颜色通道类型) = 1,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md#图像颜色通道类型) = 2,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md#图像颜色通道类型) = 3,<br/>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md#图像颜色通道类型) = 4, } | 图像组成类型枚举值。 | 
 
 
 ### 函数

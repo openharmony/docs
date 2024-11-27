@@ -7,7 +7,7 @@ This topic walks you through on how to import an AES 256-bit key and an RSA 2048
 ## How to Develop
 
 1. Set the alias **keyAlias** of the key to import.
-   The key alias cannot exceed 64 bytes.
+   The key alias cannot exceed 128 bytes.
 
 2. Encapsulate the key property set and key material.
    - The key property set must contain [HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg), [HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose).

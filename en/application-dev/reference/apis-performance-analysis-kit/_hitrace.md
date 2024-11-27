@@ -414,6 +414,7 @@ void OH_HiTrace_EndChain ()
 
 Stops tracing the process and clears the trace ID of the calling thread if the given trace ID is valid. Otherwise, no operation is performed.
 
+ 
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
@@ -592,7 +593,7 @@ Creates a **HiTraceId** instance based on a byte array.
 
 | Name| Description| 
 | -------- | -------- |
-| id | **[HiTraceId](_hi_trace_id.md)** instance to be created. | 
+| id | **[HiTraceId](_hi_trace_id.md)** instance to create. | 
 | pIdArray | Byte array. | 
 | len | Length of the byte array.| 
 
@@ -615,7 +616,7 @@ Converts a **HiTraceId** instance into a byte array for caching or transfer.
 
 | Name| Description| 
 | -------- | -------- |
-| id | **HiTraceId** instance to be converted. For details, see [HiTraceId](_hi_trace_id.md). | 
+| id | **HiTraceId** instance to convert. For details, see [HiTraceId](_hi_trace_id.md). | 
 | pIdArray | Byte array. | 
 | len | Length of the byte array.| 
 
@@ -641,7 +642,7 @@ Initializes a **HiTraceId** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| id | **[HiTraceId](_hi_trace_id.md)** instance to be initialized.| 
+| id | **[HiTraceId](_hi_trace_id.md)** instance to initialize.| 
 
 
 ### OH_HiTrace_IsFlagEnabled()
@@ -654,6 +655,7 @@ bool OH_HiTrace_IsFlagEnabled (const HiTraceId * id, HiTrace_Flag flag )
 
 Checks whether the specified trace flag is enabled in a **HiTraceId** instance.
 
+ 
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
@@ -681,6 +683,7 @@ bool OH_HiTrace_IsIdValid (const HiTraceId * id)
 
 Checks whether a **HiTraceId** instance is valid.
 
+ 
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 

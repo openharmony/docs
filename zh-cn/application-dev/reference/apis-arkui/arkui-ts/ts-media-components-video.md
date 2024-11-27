@@ -53,8 +53,8 @@ Video(value: VideoOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 描述        |
-| -------------------- | --------- |
+| 名称                 | 说明           |
+| -------------------- | -------------- |
 | Speed_Forward_0_75_X | 0.75倍速播放。 |
 | Speed_Forward_1_00_X | 1倍速播放。    |
 | Speed_Forward_1_25_X | 1.25倍速播放。 |
@@ -151,7 +151,7 @@ enableAnalyzer(enable: boolean)
 
 设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
 使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
-不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。
+不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时[overlay](ts-universal-attributes-overlay.md)中[CustomBuilder](ts-types.md#custombuilder8)属性将失效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -188,7 +188,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 ### onStart
 
-onStart(event:()&nbsp;=&gt;&nbsp;void)
+onStart(event:&nbsp;VoidCallback)
 
 播放时触发该事件。
 
@@ -196,9 +196,15 @@ onStart(event:()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放的回调函数。        |
+
 ### onPause
 
-onPause(event:()&nbsp;=&gt;&nbsp;void)
+onPause(event:&nbsp;VoidCallback)
 
 暂停时触发该事件。
 
@@ -206,15 +212,27 @@ onPause(event:()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频暂停的回调函数。        |
+
 ### onFinish
 
-onFinish(event:()&nbsp;=&gt;&nbsp;void)
+onFinish(event:&nbsp;VoidCallback)
 
 播放结束时触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放结束的回调函数。        |
 
 ### onError
 
@@ -238,7 +256,7 @@ onStop(event: Callback&lt;void&gt;)
 
 ### onPrepared
 
-onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onPrepared(callback: Callback\<PreparedInfo>)
 
 视频准备完成时触发该事件。
 
@@ -250,11 +268,11 @@ onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| duration | number | 是   | 当前视频的时长，单位为秒。 |
+| callback | Callback\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
 
 ### onSeeking
 
-onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onSeeking(callback: Callback\<PlaybackInfo>)
 
 操作进度条过程时上报时间信息。
 
@@ -266,11 +284,11 @@ onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onSeeked
 
-onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onSeeked(callback: Callback\<PlaybackInfo>)
 
 操作进度条完成后，上报播放时间信息。
 
@@ -282,11 +300,11 @@ onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onUpdate
 
-onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onUpdate(callback: Callback\<PlaybackInfo>)
 
 播放进度变化时触发该事件。
 
@@ -298,11 +316,11 @@ onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onFullscreenChange
 
-onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void)
+onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
@@ -314,8 +332,43 @@ onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| fullscreen | boolean | 是   | 为true表示进入全屏播放状态，为false则表示非全屏播放。 |
+| callback | Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
 
+### FullscreenInfo<sup>14+</sup>对象说明
+
+用于描述当前视频是否进入全屏播放状态。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
+
+### PreparedInfo<sup>14+</sup>对象说明
+
+用于描述当前视频的时长。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| duration    | number  | 是   | 当前视频的时长。<br/>单位：秒。<br/>取值范围：[0,+∞)         |
+
+### PlaybackInfo<sup>14+</sup>对象说明
+
+用于描述当前视频播放的进度。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| time        | number  | 是   | 当前视频播放的进度。<br/>单位：秒。<br/>取值范围：[0,+∞)      |
 
 ## VideoController
 
@@ -446,11 +499,11 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称               | 描述             |
-| ---------------- | -------------- |
-| PreviousKeyframe | 跳转到前一个最近的关键帧。  |
-| NextKeyframe     | 跳转到后一个最近的关键帧。  |
-| ClosestKeyframe  | 跳转到最近的关键帧。     |
+| 名称             | 说明                         |
+| ---------------- | ---------------------------- |
+| PreviousKeyframe | 跳转到前一个最近的关键帧。   |
+| NextKeyframe     | 跳转到后一个最近的关键帧。   |
+| ClosestKeyframe  | 跳转到最近的关键帧。         |
 | Accurate         | 精准跳转，不论是否为关键帧。 |
 
 ## 示例

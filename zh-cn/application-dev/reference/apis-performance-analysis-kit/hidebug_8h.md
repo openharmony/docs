@@ -9,6 +9,8 @@
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
+**引用文件：** &lt;hidebug/hidebug.h&gt;
+
 **起始版本：** 12
 
 **相关模块：**[HiDebug](_hi_debug.md)

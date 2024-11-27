@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **image_source_mdk.h** file declares the APIs used to decode an image source into a pixel map.
+The **image_source_mdk.h** file declares the APIs used to decode an image source into a PixelMap.
 
 **Library**: libimage_source_ndk.z.so
 

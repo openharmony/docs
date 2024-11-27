@@ -526,7 +526,7 @@ Failed to create the PixelMap.
 
 Check whether the input parameters are correct and whether the instance is released in advance.
 
-## 62980246 Failure in Reading the Pixel Map
+## 62980246 Failure in Reading the PixelMap
 
 **Error Message**
 
@@ -534,14 +534,14 @@ Failed to read the pixel map.
 
 **Possible Cause**
 
-1. The pixel map data is incorrect.
-2. You do not have the permission to read the pixel map.
+1. The PixelMap data is incorrect.
+2. You do not have the permission to read the PixelMap.
 
 **Solution**
 
-Re-create the pixel map or change the read permission.
+Re-create the PixelMap or change the read permission.
 
-## 62980247 Failure in Writing the Pixel Map
+## 62980247 Failure in Writing the PixelMap
 
 **Error Message**
 
@@ -549,14 +549,14 @@ Failed to write the pixel map.
 
 **Possible Cause**
 
-1. The pixel map data is incorrect.
-2. You do not have the permission to write the pixel map.
+1. The PixelMap data is incorrect.
+2. You do not have the permission to write the PixelMap.
 
 **Solution**
 
-Re-create the pixel map or change the read permission.
+Re-create the PixelMap or change the read permission.
 
-## 62980248 No Modification to the Pixel Map
+## 62980248 No Modification to the PixelMap
 
 **Error Message**
 
@@ -564,11 +564,11 @@ PixelMap does not allow modification.
 
 **Possible Cause**
 
-Users try to modify a pixel map.
+Users try to modify a PixelMap.
 
 **Solution**
 
-Do not modify the pixel map.
+Do not modify the PixelMap.
 
 ## 62980259 Incorrect Configuration
 
@@ -583,3 +583,120 @@ The configuration is incorrect.
 **Solution**
 
 Correct the configuration.
+
+## 62980286 Failed to Set a Memory Identifier for a PixelMap
+
+**Error Message**
+
+Memory format not supported.
+
+**Possible Cause**
+
+1. The memory type of the PixelMap does not match.
+2. The FD of the PixelMap is invalid.
+3. Unknown kernel error.
+
+**Solution**
+
+Check whether the PixelMap instance has been released. Check whether the memory type matches.
+
+## 7600201 Unsupported Operation
+
+**Error Message**
+
+Unsupported operation.
+
+**Possible Cause**
+
+The operation is not supported.
+
+**Solution**
+
+Use a supported operation.
+
+## 7600202 Unsupported Metadata Read/Write Operation
+
+**Error Message**
+
+Unsupported metadata. Possible causes: Unsupported metadata type.
+
+**Possible Cause**
+
+The metadata read/write operation is not supported. For example, the Exif field to read or write is not supported, or users attempt to obtain specific data from an auxiliary picture of an incorrect type (for example, attempt to obtain GainmapMetadata of a depth map).
+
+**Solution**
+
+Check whether the auxiliary picture type corresponds to the metadata type, and then perform the read and write operations.
+
+## 7600301 Memory Allocation Failure
+
+**Error Message**
+
+Memory alloc failed.
+
+**Possible Cause**
+
+The device memory is insufficient or occupied.
+
+**Solution**
+
+Clear the memory and try again.
+
+## 7600302 Memory Copy Failure
+
+**Error Message**
+
+Memory copy failed.
+
+**Possible Cause**
+
+The memory to copy does not exist, or the device memory is insufficient.
+
+**Solution**
+
+Check whether the memory to copy exists. Clear the memory and try again.
+
+## 7600901 Unknown Error
+
+**Error Message**
+
+Unknown error.
+
+**Possible Cause**
+
+Errors caused by unknown reasons.
+
+**Solution**
+
+Locate the cause based on logs.
+
+## 7700301 Decoding Failure
+
+**Error Message**
+
+Decode failed.
+
+**Possible Cause**
+
+1. The memory of the device is insufficient.
+2. The device does not support the image type.
+3. Image decoding is not performed as instructed.
+
+**Solution**
+
+Check the image data or replace the image.
+
+## 7800301 Encoding Failure
+
+**Error Message**
+
+Encode failed.
+
+**Possible Cause**
+
+1. The encoding format is not supported.
+2. The data passed in is incorrect.
+
+**Solution**
+
+Correct the input data or use another image.

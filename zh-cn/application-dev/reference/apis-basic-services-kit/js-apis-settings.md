@@ -24,9 +24,9 @@ import settings from '@ohos.settings';
 | 名称                          | 类型   | 可读 | 可写 | 说明                                                         |
 |-----------------------------| ------ | ---- | ---- | ------------------------------------------------------------ |
 | DEVICE_SHARED<sup>11+</sup> | string | 是   | 是   | 设备属性共享域                                          |
-| USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域                                           |                                 |
+| USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域                                           |
 
-## date
+## date(暂不支持)
 
 提供设置时间和日期格式的数据项。
 
@@ -41,7 +41,7 @@ import settings from '@ohos.settings';
 | AUTO_GAIN_TIME      | string | 是   | 是   | 是否自动从网络获取日期、时间和时区。 <br>值为true表示自动从网络获取信息；<br/>值为false表示不自动获取。 |
 | AUTO_GAIN_TIME_ZONE | string | 是   | 是   | 是否自动从NITZ获取时区。 <br>值为true表示自动获取；<br/>值为false表示不自动获取。 |
 
-## display
+## display(暂不支持)
 
 提供设置显示效果的数据项。
 
@@ -63,7 +63,7 @@ import settings from '@ohos.settings';
 | WINDOW_ANIMATION_SCALE        | string | 是   | 是   | 普通窗口动画的比例因子。<br/>值为0，表示禁用窗口动画。                                                                              |
 | DISPLAY_INVERSION_STATUS      | string | 是   | 是   | 是否启用显示颜色反转。<br/>值为1，表示启用显示颜色反转；<br/>值为0，表示不启用显示颜色反转。                                                        |
 
-## general
+## general(暂不支持)
 
 提供设置设备常规信息的数据项。
 
@@ -90,7 +90,7 @@ import settings from '@ohos.settings';
 | SKIP_USE_HINTS                   | string | 是   | 是   | 应用程序是否应在首次启动时尝试跳过所有介绍性提示。这适用于临时用户或熟悉环境的用户。<br>值为1，表示应用程序将尝试在第一次启动时跳过所有介绍性提示；<br/>值为0，表示应用程序不会在首次启动时跳过介绍性提示。 |
 | TOUCH_EXPLORATION_STATUS         | string | 是   | 是   | 是否启用触摸浏览。<br>值为1，表示启用触摸浏览；<br/>值为0，表示不启用触摸浏览。 |
 
-## input
+## input(暂不支持)
 
 提供设置有关输入法信息的数据项。
 
@@ -109,7 +109,7 @@ import settings from '@ohos.settings';
 | AUTO_REPLACE_TEXT_INPUT              | string | 是   | 是   | 是否为文本编辑器启用自动更正。自动更正使文本编辑器能够更正拼写错误。<br>值为0，表示不启用自动更正；<br/>值为1，表示启用自动更正。 |
 | SHOW_PASSWORD_TEXT_INPUT             | string | 是   | 是   | 是否在文本编辑器中启用密码显示。密码显示使文本编辑器能够在用户键入密码字符时显示密码字符。<br>值为0，表示不启用密码显示；<br/>值为1，表示启用密码显示。 |
 
-## network
+## network(暂不支持)
 
 提供设置网络信息的数据项。
 
@@ -123,7 +123,7 @@ import settings from '@ohos.settings';
 | HTTP_PROXY_CFG           | string | 是   | 是   | 全局 HTTP 代理的主机名和端口号。主机名和端口号由冒号':'分隔。 |
 | NETWORK_PREFERENCE_USAGE | string | 是   | 是   | 要使用的网络的用户首选项。                                   |
 
-## phone
+## phone(暂不支持)
 
 提供设置来电和去电接听方式的数据项。
 
@@ -135,7 +135,7 @@ import settings from '@ohos.settings';
 | ------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | RTT_CALLING_STATUS | string | 是   | 是   | 是否启用实时文本 (RTT) 呼叫。启用，来电和去电在设备和运营商支持时作为 RTT 呼叫应答。 <br> 值为1，表示启用RTT 呼叫； <br/> 值为0，表示不启用 RTT 呼叫。 |
 
-## sound
+## sound(暂不支持)
 
 提供设置声音效果的数据项。
 
@@ -157,7 +157,7 @@ import settings from '@ohos.settings';
 | VIBRATE_STATUS               | string | 是   | 是   | 设备是否为事件振动。该参数在系统内部使用。 <br>值为1，表示设备会因事件而振动； <br/>值为0，表示设备不因事件振动。 |
 | HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。<br/>值为true，表示启用触觉反馈；<br/>值为false，表示不启用触觉反馈。 |
 
-## TTS
+## TTS(暂不支持)
 
 提供设置文本到语音 (TTS) 转换信息的数据项。
 
@@ -173,7 +173,7 @@ import settings from '@ohos.settings';
 | ENABLED_TTS_PLUGINS | string | 是   | 是   | 用于TTS的已激活插件包列表， 多个插件包以空格分隔。           |
 
 
-## wireless
+## wireless(暂不支持)
 
 提供设置无线网络信息的数据项。
 
@@ -208,7 +208,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+**需要权限**： ohos.permission.MANAGE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -241,7 +241,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+**需要权限**： ohos.permission.MANAGE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -269,7 +269,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').the
 });
 ```
 
-## setting.setValue<sup>11+</sup>
+## settings.setValue<sup>11+</sup>
 
 setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>
 
@@ -279,7 +279,11 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+**需要权限**：  
+写入DEVICE_SHARED、USER_PROPRERTY域  
+需要权限ohos.permission.MANAGE_SETTINGS，仅系统应用可用。  
+写入USER_SECURITY域  
+需要权限ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -308,7 +312,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', set
 });
 ```
 
-## setting.getValue<sup>10+</sup>
+## settings.getValue<sup>10+</sup>
 
 getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
@@ -336,11 +340,11 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
     console.error(`Failed to get the setting. ${err.message} `);
     return;
   }
-  console.log(`callback:value -> ${JSON.stringify(value)}`)
+  console.log(`callback:value -> ${value}`)
 });
 ```
 
-## setting.getValue<sup>10+</sup>
+## settings.getValue<sup>10+</sup>
 
 getValue(context: Context, name: string): Promise\<string>
 
@@ -369,7 +373,7 @@ getValue(context: Context, name: string): Promise\<string>
 import settings from '@ohos.settings';
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-  console.log(`promise:value -> ${JSON.stringify(value)}`)
+  console.log(`promise:value -> ${value}`)
 });
 ```
 
@@ -383,6 +387,10 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
+**需要权限**：   
+读取USER_SECURITY域  
+需要权限ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+
 **参数**：
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
@@ -395,7 +403,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
+| Promise\<string> | Promise对象。返回获得的数据项的值。 |
 
 **示例**：
 
@@ -405,7 +413,7 @@ import settings from '@ohos.settings';
 // 更新数据项亮度的值（该数据项在数据库中已存在，故getValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+  console.log(`Promise:value -> ${value}`);
 });
 ```
 
@@ -453,6 +461,10 @@ getValueSync(context: Context, name: string, defValue: string, domainName: strin
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
+**需要权限**：   
+读取USER_SECURITY域  
+需要权限ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+
 **参数**：
 
 | 参数名        | 类型                   | 必填 | 说明                                                         |
@@ -491,7 +503,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+**需要权限**： ohos.permission.MANAGE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -529,7 +541,11 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+**需要权限**：  
+写入DEVICE_SHARED、USER_PROPRERTY域  
+需要权限ohos.permission.MANAGE_SETTINGS，仅系统应用可用。  
+写入USER_SECURITY域  
+需要权限ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -587,9 +603,14 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
+  if (err) {
+    console.error(`Failed to get the setting. ${err.message} `);
+    return;
+  }
+  console.log(`callback:value -> ${JSON.stringify(val)}`)
   let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
-  console.log(`Promise:value -> $ {value}`);
+  console.log(`Promise:value -> ${value}`);
 });
 ```
 
@@ -607,14 +628,13 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放）|
 
 **返回值**：
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| boolean | 返回设置数据项的值是否成功的结果，true表示设置成功，false表示设置失败。 |
+| boolean | 返回注销指定域名下对指定键的监视器是否成功的结果，true表示注销成功，false表示注销失败。 |
 
 **示例**：
 
@@ -622,10 +642,10 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
+let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
-## settings.enableAirplaneMode
+## settings.enableAirplaneMode(暂不支持)
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -655,7 +675,7 @@ settings.enableAirplaneMode(isEnabled, (err:Error) => {
 })
 ```
 
-## settings.enableAirplaneMode
+## settings.enableAirplaneMode(暂不支持)
 
 enableAirplaneMode(enable: boolean): Promise\<void>
 
@@ -688,7 +708,7 @@ settings.enableAirplaneMode(isEnabled).then(() => {
 })
 ```
 
-## settings.canShowFloating
+## settings.canShowFloating(暂不支持)
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
@@ -714,7 +734,7 @@ settings.canShowFloating((err:Error, status: boolean) => {
 });
 ```
 
-## settings.canShowFloating
+## settings.canShowFloating(暂不支持)
 
 canShowFloating(): Promise\<boolean>
 
@@ -736,7 +756,7 @@ settings.canShowFloating().then((status:boolean) => {
 });
 ```
 
-## settings.getUriSync<sup>8+</sup>
+## settings.getUriSync<sup>8+</sup>(暂不支持)
 
 getUriSync(name: string): string
 
@@ -763,7 +783,7 @@ getUriSync(name: string): string
 let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
-## setting.getURI<sup>(deprecated)</sup>
+## settings.getURI<sup>(deprecated)</sup>(暂不支持)
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
@@ -790,7 +810,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
 })
 ```
 
-## setting.getURI<sup>(deprecated)</sup>
+## settings.getURI<sup>(deprecated)</sup>(暂不支持)
 
 getURI(name: string): Promise\<object>
 
@@ -824,7 +844,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => 
 
 
 
-## setting.getValue<sup>(deprecated)</sup>
+## settings.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
 
@@ -832,7 +852,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue10)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settingsgetvalue10)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -862,7 +882,7 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err:Error,
 });
 ```
 
-## setting.getValue<sup>(deprecated)</sup>
+## settings.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
@@ -870,7 +890,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue10-1)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settingsgetvalue10-1)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -954,7 +974,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **模型约束**：此接口仅可在FA模型下使用。
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
+**需要权限**：ohos.permission.MANAGE_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 

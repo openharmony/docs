@@ -3,7 +3,9 @@
 网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 
 > **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 无特殊说明，接口默认不支持并发。
 
 ## 导入模块
 
@@ -225,6 +227,10 @@ cat server.pem \
 
 直接把证书原文件预置在APP中。目前支持crt和pem格式的证书文件。
 
+**注意：**
+
+当前ohos.net.http和Image组件的证书锁定，会匹配证书链上所有证书的哈希值，如果服务器更新了任意一本证书，都会导致校验失败。如果服务器出现了更新证书的情况，APP版本应当随之更新并推荐消费者尽快升级APP版本，否则可能导致联网失败。
+
 **预置JSON配置文件:**
 
 预置的证书与网络服务器的对应关系通过JSON配置。 
@@ -255,7 +261,9 @@ cat server.pem \
         }
       }
     ]
-  }
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
 }
 ```
 
@@ -297,6 +305,10 @@ cat server.pem \
 可包含0或者1个base-config
 
 必须包含1个domain-config
+
+**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true**
+
+**trust-current-user-ca: 是否信任当前用户安装的证书，默认true**
 
 **base-config(object:指示应用程序范围的安全配置)**
 
@@ -561,7 +573,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
@@ -616,7 +628,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
 
@@ -777,7 +789,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
@@ -831,7 +843,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
 
@@ -886,7 +898,7 @@ let connectionproperties: connection.ConnectionProperties;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   netHandle = connection.getDefaultNetSync();
@@ -935,7 +947,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
@@ -991,7 +1003,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
@@ -1047,10 +1059,10 @@ let getNetCapabilitiesSync: connection.NetCapabilities;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
-  netHandle = connection.getDefaultNetSync();
+
   getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
   console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
 });
@@ -2197,7 +2209,7 @@ interface Data {
 
   connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+    // 当前没有已连接的网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -2290,7 +2302,7 @@ interface Data {
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -2371,7 +2383,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";
@@ -2426,7 +2438,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";
@@ -2473,7 +2485,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";
@@ -2528,7 +2540,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";
@@ -2548,9 +2560,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | ------------------------ | ---- | ---------------------- |
 | NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置，但该网络访问Internet的连通性并未被网络管理成功验证。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的连通性被网络管理成功验证，该能力由网络管理模块设置。<br>请注意，对于新完成连接的网络，由于网络正在进行连通性验证，此值可能无法反映真实的验证结果。对此，您可以通过NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup>检查网络是否正在检测连通性。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_VALIDATED | 16   | 表示网络管理通过该网络与华为云地址成功建立连接，该能力由网络管理模块设置。<br>请注意，网络管理可能会与华为云地址建立连接失败，导致网络能力不具备此标记位，但不完全代表该网络无法访问互联网。另外，对于新完成连接的网络，由于网络正在进行连通性验证，此值可能无法反映真实的验证结果。对此，您可以通过NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup>检查网络是否正在检测连通性。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup> | 31   | 表示网络管理正在检验当前网络的连通性，此值会在网络连接时设置，直到连通性检测结束后不再设置，当此值存在时，NET_CAPABILITY_VALIDATED的值可能不准确。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 

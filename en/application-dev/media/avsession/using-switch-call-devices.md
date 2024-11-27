@@ -55,7 +55,7 @@ Currently, the system provides the default style and custom style for the **AVCa
    }
    private audioRendererInfo: audio.AudioRendererInfo = {
      // Set the parameters related to the call scenario.
-     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: VoIP call.
+     usage: audio.StreamUsage.STREAM_USAGE_VIDEO_COMMUNICATION, // Audio stream usage type: VoIP video call, speaker by default.
      rendererFlags: 0 // AudioRenderer flag. The default value is 0.
    }
    private audioRendererOptions: audio.AudioRendererOptions = {
@@ -172,3 +172,6 @@ The differences are as follows:
      }
    }
    ```
+
+<!--RP1-->
+<!--RP1End-->

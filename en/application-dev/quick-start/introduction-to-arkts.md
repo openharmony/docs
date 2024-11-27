@@ -17,6 +17,8 @@ To ensure best experience for UI app development for OpenHarmony ecosystem, ArkT
 
 This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.<!--Del--> For details about programming specifications, see [ArkTS Coding Style Guide](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md).<!--DelEnd-->
 
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-commonlibrary-overview.md).
+
 ## The Basics
 
 ### Declarations
@@ -42,7 +44,7 @@ hi = 'hello, world';
 A declaration starting with the keyword `const` introduces a read-only constant that can be assigned only once.
 
 ```typescript
-const hello: string = 'hello'
+const hello: string = 'hello';
 ```
 
 A compile-time error occurs if a new value is assigned to a constant.
@@ -113,12 +115,12 @@ The `boolean` type represents logical values that are either `true` or `false`.
 Usually variables of this type are used in conditional statements:
 
 ```typescript
-let isDone: boolean = false
+let isDone: boolean = false;
 
 // ...
 
 if (isDone) {
-  console.log ('Done!')
+  console.log ('Done!');
 }
 ```
 
@@ -150,7 +152,7 @@ let instance: Class <void>
 
 #### `Object` Type
 
-An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.
+An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.`The 'object' type is used to represent types other than the primitive types.
 
 #### `Array` Type
 
@@ -186,12 +188,15 @@ A `union` type is a reference type which is created as a combination of other ty
 
 ```typescript
 class Cat {
+  name: string = 'cat';
   // ...
 }
 class Dog {
+  name: string = 'dog';
   // ...
 }
 class Frog {
+  name: string = 'frog';
   // ...
 }
 type Animal = Cat | Dog | Frog | number
@@ -212,7 +217,7 @@ class Cat { sleep () {}; meow () {} }
 class Dog { sleep () {}; bark () {} }
 class Frog { sleep () {}; leap () {} }
 
-type Animal = Cat | Dog | Frog
+type Animal = Cat | Dog | Frog;
 
 function foo(animal: Animal) {
   if (animal instanceof Frog) {
@@ -367,8 +372,8 @@ If that logical expression is truthy(a value that is considered `true`), then th
 Example:
 
 ```typescript
-let isValid = Math.random() > 0.5 ? true : false
-let message = isValid ? 'Valid' : 'Failed'
+let isValid = Math.random() > 0.5 ? true : false;
+let message = isValid ? 'Valid' : 'Failed';
 ```
 
 #### `For` Statements
@@ -485,7 +490,7 @@ A `break` statement with a label identifier transfers control out of the enclosi
 Example:
 
 ```typescript
-let x = 1
+let x = 1;
 label: while (true) {
   switch (x) {
     case 1:
@@ -505,7 +510,7 @@ Example:
 let sum = 0;
 for (let x = 0; x < 100; x++) {
   if (x % 2 == 0) {
-    continue
+    continue;
   }
   sum += x;
 }
@@ -628,8 +633,8 @@ function sum(...numbers: number[]): number {
   return res;
 }
 
-sum() // returns 0
-sum(1, 2, 3) // returns 6
+sum(); // returns 0
+sum(1, 2, 3); // returns 6
 ```
 
 ### Return Types
@@ -754,8 +759,8 @@ In the following example, class `Person` is defined, which has fields **name** a
 
 ```typescript
 class Person {
-  name: string = ''
-  surname: string = ''
+  name: string = '';
+  surname: string = '';
   constructor (n: string, sn: string) {
     this.name = n;
     this.surname = sn;
@@ -777,8 +782,8 @@ or an instance can be created by using object literals:
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p: Point = {x: 42, y: 42};
 ```
@@ -797,8 +802,8 @@ An instance of the class is used to access an instance field.
 
 ```typescript
 class Person {
-  name: string = ''
-  age: number = 0
+  name: string = '';
+  age: number = 0;
   constructor(n: string, a: number) {
     this.name = n;
     this.age = a;
@@ -823,7 +828,7 @@ The class name is used to access a static field:
 
 ```typescript
 class Person {
-  static numberOfPersons = 0
+  static numberOfPersons = 0;
   constructor() {
      // ...
      Person.numberOfPersons++;
@@ -842,7 +847,7 @@ The following code (invalid in ArkTS) is error-prone:
 
 ```typescript
 class Person {
-  name: string // undefined
+  name: string; // undefined
   
   setName(n:string): void {
     this.name = n;
@@ -867,7 +872,7 @@ Here is how it should look in ArkTS:
 
 ```typescript
 class Person {
-  name: string = ''
+  name: string = '';
   
   setName(n:string): void {
     this.name = n;
@@ -890,7 +895,7 @@ And here how our code behaves if the field `name` can be `undefined`
 
 ```typescript
 class Person {
-  name?: string // The field may be undefined
+  name?: string; // The field may be undefined
 
   setName(n:string): void {
     this.name = n;
@@ -927,8 +932,8 @@ In the following example, a setter is used to forbid setting invalid values of t
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age: number = 0
+  name: string = '';
+  private _age: number = 0;
   get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
@@ -959,8 +964,8 @@ The `calculateArea` method calculates the area of a rectangle by multiplying the
 
 ```typescript
 class RectangleSize {
-  private height: number = 0
-  private width: number = 0
+  private height: number = 0;
+  private width: number = 0;
   constructor(height: number, width: number) {
     this.height = height;
     this.width = width;
@@ -1014,14 +1019,14 @@ Example:
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age = 0
+  name: string = '';
+  private _age = 0;
   get age(): number {
     return this._age;
   }
 }
 class Employee extends Person {
-  salary: number = 0
+  salary: number = 0;
   calculateTaxes(): number {
     return this.salary * 0.42;
   }
@@ -1050,8 +1055,8 @@ It is often used to extend basic functionality of subclass with the required beh
 
 ```typescript
 class RectangleSize {
-  protected height: number = 0
-  protected width: number = 0
+  protected height: number = 0;
+  protected width: number = 0;
 
   constructor (h: number, w: number) {
     this.height = h;
@@ -1091,7 +1096,7 @@ class RectangleSize {
   }
 }
 class Square extends RectangleSize {
-  private side: number = 0
+  private side: number = 0;
   area(): number {
     return this.side * this.side;
   }
@@ -1132,8 +1137,8 @@ If no constructor is defined, then a default constructor with an empty parameter
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p = new Point();
 ```
@@ -1197,8 +1202,8 @@ Example:
 
 ```typescript
 class C {
-  public x: string = ''
-  private y: string = ''
+  public x: string = '';
+  private y: string = '';
   set_y (new_y: string) {
     this.y = new_y // ok, as y is accessible within the class itself
   }
@@ -1215,8 +1220,8 @@ Example:
 
 ```typescript
 class Base {
-  protected x: string = ''
-  private y: string = ''
+  protected x: string = '';
+  private y: string = '';
 }
 class Derived extends Base {
   foo() {
@@ -1234,8 +1239,8 @@ A class composite is written as a comma-separated list of name-value pairs enclo
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 let c: C = {n: 42, s: 'foo'};
@@ -1245,19 +1250,19 @@ Due to the static typing of the ArkTS, object literals can be used in a context 
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 function foo(c: C) {}
 
-let c: C
+let c: C;
 
 c = {n: 42, s: 'foo'};  // type of the variable is used
 foo({n: 42, s: 'foo'}); // type of the parameter is used
 
 function bar(): C {
-  return {n: 42, s: 'foo'} // return type is used
+  return {n: 42, s: 'foo'}; // return type is used
 }
 ```
 
@@ -1265,8 +1270,8 @@ The type of an array element or of a class field can also be used:
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}];
 ```
@@ -1290,12 +1295,58 @@ The K type can be either string or number, while V can be any type.
 
 ```typescript
 interface PersonInfo {
-  age: number
-  salary: number
+  age: number;
+  salary: number;
 }
 let map: Record<string, PersonInfo> = {
   'John': { age: 25, salary: 10},
   'Mary': { age: 21, salary: 20}
+}
+```
+
+### Abstract Classes 
+
+A class with the modifier abstract is known as abstract class. Abstract classes can be used to represent notions that are common to some set of more concrete notions.
+
+A compile-time error occurs if an attempt is made to create an instance of an abstract class:
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  // Compile-time error: Cannot create an instance of an abstract class.
+```
+
+Subclasses of an abstract class can be non-abstract or in turn abstract. A non-abstract subclass of an abstract superclass can be instantiated. As a result, a constructor for the abstract class, and field initializers for non-static fields of that class are executed：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### Abstract Methods 
+
+A method with the modifier abstract is considered an abstract method. Abstract methods do not have bodies, i.e., they can be declared but not implemented.
+
+Only abstract classes can have abstract methods. A compile-time error occurs if a non-abstract class has an abstract method:
+
+```typescript
+class Y {
+  abstract method(p: string)  //Compile-time error: Abstract methods can only appear within an abstract class.
 }
 ```
 
@@ -1311,10 +1362,10 @@ Examples:
 
 ```typescript
 interface Style {
-  color: string // property
+  color: string; // property
 }
 interface AreaSize {
-  calculateAreaSize(): number // method header
+  calculateAreaSize(): number; // method header
   someMethod(): void;    // method header
 }
 ```
@@ -1324,14 +1375,14 @@ Examples of a class implementing an interface:
 ```typescript
 // Interface:
 interface AreaSize {
-  calculateAreaSize(): number // method header
+  calculateAreaSize(): number; // method header
   someMethod(): void;    // method header
 }
 
 // Implementation:
 class RectangleSize implements AreaSize {
-  private width: number = 0
-  private height: number = 0
+  private width: number = 0;
+  private height: number = 0;
   someMethod(): void {
     console.log('someMethod called');
   }
@@ -1350,7 +1401,7 @@ A property field is just a shortcut notation of a getter/setter pair, and the fo
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 ```
 
@@ -1365,21 +1416,21 @@ A class that implements an interface may also use a short or a long notation:
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  color: string = ''
+  color: string = '';
 }
 ```
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  private _color: string = ''
+  private _color: string = '';
   get color(): string { return this._color; }
   set color(x: string) { this._color = x; }
 }
@@ -1391,11 +1442,11 @@ An interface may extend other interfaces like in the example below:
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 interface ExtendedStyle extends Style {
-  width: number
+  width: number;
 }
 ```
 
@@ -1438,7 +1489,7 @@ Type parameters of generic types can be bounded. For example, the `Key` type par
 
 ```typescript
 interface Hashable {
-  hash(): number
+  hash(): number;
 }
 class MyHashMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
@@ -1558,7 +1609,7 @@ In the following example, the method `getNick` returns a nickname if it is set; 
 ```typescript
 class Person {
   // ...
-  nick: string | null = null
+  nick: string | null = null;
   getNick(): string {
     return this.nick ?? '';
   }
@@ -1571,8 +1622,8 @@ Optional chaining operator `?.` allows writing code where the evaluation stops a
 
 ```typescript
 class Person {
-  nick: string | null = null
-  spouse?: Person
+  nick: string | null = null;
+  spouse?: Person;
 
   setSpouse(spouse: Person): void {
     this.spouse = spouse;
@@ -1599,8 +1650,8 @@ Otherwise, the output is `undefined`:
 
 ```typescript
 class Person {
-  nick: string | null = null
-  spouse?: Person
+  nick: string | null = null;
+  spouse?: Person;
 
   constructor(nick: string) {
     this.nick = nick;
@@ -1630,8 +1681,8 @@ A declared name that is not exported is considered private and can be used only 
 
 ```typescript
 export class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
@@ -1735,7 +1786,7 @@ The keyword `this` can only be used in instance methods of a class.
 
 ```typescript
 class A {
-  count: string = 'a'
+  count: string = 'a';
   m(i: string): void {
     this.count = i;
   }
@@ -1751,7 +1802,7 @@ Constraints:
 
 ```typescript
 class A {
-  n: number = 0
+  n: number = 0;
   f1(arg1: this) {} // Compile-time error. Type notation using this is not supported.
   static f2(arg1: number) {
     this.n = arg1;  // Compile-time error. Using this inside standalone functions is not supported.

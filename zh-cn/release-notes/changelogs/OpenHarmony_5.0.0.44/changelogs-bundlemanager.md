@@ -18,7 +18,7 @@
 包管理[@ohos.bundle.bundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleManager.d.ts)中的bundleManager.verifyAbc接口以及bundleManager.deleteAbc接口访问级别为public API，外部开发者可以调用。
 
 变更后：
-包管理[@ohos.bundle.bundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleManager.d.ts)中的bundleManager.verifyAbc接口以及bundleManager.deleteAbc接口访问级别变更为system API，仅供系统应用调用，外部开发者将无法调用相关接口。
+包管理[@ohos.bundle.bundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleManager.d.ts)中的bundleManager.verifyAbc接口以及bundleManager.deleteAbc接口访问级别变更为system API，仅供系统应用调用，外部开发者将无法调用相关接口，非系统应用调用相关接口会返回202错误。
 
 
 **起始API Level**
@@ -41,6 +41,4 @@ API 11
 
 **适配指导**
 
-包管理verifyAbc以及deleteAbc接口访问级别变更为system API，相关接口将不再对外暴露。
-
-外部开发者将无法正常调用verifyAbc以及deleteAbc接口，强行使用会出现编译告警。
+取消对相关接口的调用，非系统应用调用相关接口会返回202错误。

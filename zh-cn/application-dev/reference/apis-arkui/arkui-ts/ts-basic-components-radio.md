@@ -51,7 +51,7 @@ Radio(options: RadioOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 描述                             |
+| 名称            | 说明                           |
 | --------------- | -------------------------------- |
 | TICK            | 选中样式为系统默认TICK图标。  |
 | DOT             | 选中样式为系统默认DOT图标。   |
@@ -165,8 +165,8 @@ onChange(callback: (isChecked: boolean) => void)
 
 
 ## 示例
-### 示例1 
-设置开启状态底板颜色。
+### 示例1 （设置底板颜色）
+该示例通过配置checkedBackgroundColor实现自定义单选框的底板颜色。
 ```ts
 // xxx.ets
 @Entry
@@ -215,8 +215,8 @@ struct RadioExample {
 }
 ```
 ![radio](figures/radio.gif)
-### 示例2 
-设置选中样式为图片。
+### 示例2 （设置选中样式）
+该示例通过配置indicatorType、indicatorBuilder实现自定义选中样式。
 ```ts
 // xxx.ets
 @Entry
@@ -267,8 +267,8 @@ struct RadioExample {
 }
 ```
 ![radio](figures/radio_2.gif)
-### 示例3
-设置自定义单选样式。
+### 示例3（设置自定义样式）
+该示例通过contentModifier实现自定义单选框样式。
 ```ts
 class MyRadioStyle implements ContentModifier<RadioConfiguration> {
   type: number = 0

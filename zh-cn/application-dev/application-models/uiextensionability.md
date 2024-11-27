@@ -32,6 +32,7 @@
 同一个bundle下的[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)配置在同一个进程中，便于多实例间的通信。需要关注的是，各个实例之间的状态会彼此影响，当进程中的一个实例异常退出，将导致进程中所有的实例也都会退出；
 
 **图1** bundle模型配置示意图
+
 ![uiextability-bundle-processmodel](figures/uiextability-bundle-processmodel.png)
 
 **Index.ets示例代码如下：**
@@ -108,18 +109,22 @@ struct Index {
 }
 ```
 **图2** 根据上述代码，生成的Index页面如下：
+
 ![uiextension-bundle-example](figures/uiextability-bundle-example.png)
 
 采用该进程模型，进程名格式为：
 process name [{bundleName}：{UIExtensionAbility的类型}]
 例如，process name [com.ohos.intentexecutedemo:xxx]。
+
 **图3** 进程模型展示
+
 ![uiextension-bundle-process-example](figures/uiextability-bundle-process-example.png)
 
 ### 同UIExtensionAbility类的所有UIExtensionAbility共进程
 根据[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)类进行分配进程，拉起多个同样的UIExtensionAbility实例时，这些实例将配置在同一个进程中。将同UIExtensionAbility类配置在同一个进程下，方便应用针对UIExtensionAbility类型对实例进行管理；
 
 **图4** type模型配置示意图
+
 ![uiextability-type-processmodel](figures/uiextability-type-processmodel.png)
 
 **Index.ets示例代码如下：**
@@ -196,18 +201,22 @@ struct Index {
 }
 ```
 **图5** 根据上述代码，生成的Index页面如下：
+
 ![uiextability-type-example](figures/uiextability-type-example.png)
 
 采用该进程模型，进程名格式为：
 process name [{bundleName}：{UIExtensionAbility名}]
 例如，process name [com.ohos.intentexecutedemo:xxx]。
+
 **图6** 进程模型展示
+
 ![uiextability-type-process-example](figures/uiexteability-type-precess-example.png)
 
 ### UIExtensionAbility实例独立进程
 根据[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)实例进行分配进程，配置了instance的UIExtensionAbility实例，将每个实例独立一个进程。独立进程的场景下，UIExtensionAbility实例之间只能通过跨进程进行通信，但实例之间的状态不会彼此影响，安全性更高；
 
 **图7** instance模型配置示意图
+
 ![uiextability-instance-processmodel](figures/uiextability-instance-processmodel.png)
 
 
@@ -285,12 +294,15 @@ struct Index {
 }
 ```
 **图8** 根据上述代码，生成的Index页面如下：
+
 ![uiextability-instance-example](figures/uiextability-instance-example.png)
 
 采用该进程模型，进程名格式为：
 process name [{bundleName}：{UIExtensionAbility的类型}: {实例后缀}]
 例如，process name [com.ohos.intentexecutedemo:xxx:n]。
+
 **图9** 进程模型展示
+
 ![uiextability-instance-process-example](figures/uiextability-instance-process-example.png)
 
 UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)提供相关能力。本文描述中称被启动的UIExtensionAbility为提供方，称启动UIExtensionAbility的[UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)组件为使用方。

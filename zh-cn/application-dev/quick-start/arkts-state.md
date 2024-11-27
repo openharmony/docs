@@ -49,7 +49,7 @@
 
 ## 观察变化和行为表现
 
-并不是状态变量的所有更改都会引起UI的刷新，只有可以被框架观察到的修改才会引起UI刷新。本小节将介绍什么样的修改才能被观察到，以及观察到变化后，框架的是怎么引起UI刷新的，即框架的行为表现是什么。
+并不是状态变量的所有更改都会引起UI的刷新，只有可以被框架观察到的修改才会引起UI刷新。本小节将介绍什么样的修改才能被观察到，以及观察到变化后，框架是怎么引起UI刷新的，即框架的行为表现是什么。
 
 
 ### 观察变化
@@ -57,9 +57,9 @@
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
   ```ts
-  // for simple type
+  // 简单类型
   @State count: number = 0;
-  // value changing can be observed
+  // 可以观察到值的变化
   this.count = 1;
   ```
 
@@ -219,6 +219,21 @@
 - 和该状态变量不相关的组件或者UI描述不会发生重新渲染，从而实现页面渲染的按需更新。
 
 
+## 限制条件
+
+1. \@State装饰的变量必须初始化，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+@State count: number;
+
+// 正确写法
+@State count: number = 10;
+```
+
+2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
+
+
 ## 使用场景
 
 
@@ -309,29 +324,25 @@ struct MyComponent {
 
 ![Video-state](figures/Video-state.gif)
 
-从该示例中，我们可以了解到\@State变量首次渲染的初始化流程：
+从该示例中，我们可以了解到\@State变量的初始化机制：
 
 
-1. 使用默认的本地初始化：
+1. 没有外部传入的情况下，使用默认的值进行本地初始化：
 
    ```ts
-   @State title: Model = new Model('Hello World');
-   @State count: number = 0;
+   // title没有外部传入，使用本地的值new Model('Hello World')进行初始化
+   MyComponent({ count: 1, increaseBy: 2 })
+   // increaseBy没有外部传入，使用本地的值1进行初始化
+   MyComponent({ title: new Model('Hello World 2'), count: 7 })
    ```
 
-2. 对于\@State来说，命名参数机制传递的值并不是必选的，如果没有命名参数传值，则使用本地初始化的默认值：
+2. 有外部传入的情况下，使用外部传入的值进行初始化：
 
    ```ts
-   class C1 {
-      public count:number;
-      public increaseBy:number;
-      constructor(count: number, increaseBy:number) {
-        this.count = count;
-        this.increaseBy = increaseBy;
-     }
-   }
-   let obj = new C1(1, 2);
-   MyComponent(obj)
+   // count和increaseBy均有外部传入，分别使用传入的1和2进行初始化
+   MyComponent({ count: 1, increaseBy: 2 })
+   // title和count均有外部传入，分别使用传入的new Model('Hello World 2')和7进行初始化
+   MyComponent({ title: new Model('Hello World 2'), count: 7 })
    ```
 
 
@@ -423,7 +434,7 @@ struct SetSample {
 
 ## State支持联合类型实例
 
-@State支持联合类型和undefined和null，在下面的示例中，count类型为number | undefined，点击Button改变count的属性或者类型，视图会随之刷新。
+\@State支持联合类型和undefined和null，在下面的示例中，count类型为number | undefined，点击Button改变count的属性或者类型，视图会随之刷新。
 
 ```ts
 @Entry
@@ -457,7 +468,7 @@ struct MyComponent {
 
 ### 使用箭头函数改变状态变量未生效
 
-箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下， changeCoverUrl的this指向PlayDetailViewModel，而不是被装饰器@State代理的状态变量。
+箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下， changeCoverUrl的this指向PlayDetailViewModel，而不是被装饰器\@State代理的状态变量。
 
 反例：
 
@@ -809,10 +820,10 @@ struct ConsumerChild {
 }
 ```
 
-以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。  
+以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
 当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Object类型，判断是不相等的，因此会触发赋值和刷新。  
-为了避免这种不必要的赋值和刷新，可以通过用@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
-方法一：增加@Observed
+为了避免这种不必要的赋值和刷新，可以通过用\@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
+方法一：增加\@Observed
 
 ```ts
 @Observed
@@ -856,7 +867,7 @@ struct ConsumerChild {
 }
 ```
 
-以上示例，给对应的类增加了@Observed装饰器后，list[0]已经是Proxy类型了，这样再次赋值时，相同的对象，就不会触发刷新。
+以上示例，给对应的类增加了\@Observed装饰器后，list[0]已经是Proxy类型了，这样再次赋值时，相同的对象，就不会触发刷新。
 
 方法二：使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象
 
@@ -988,7 +999,7 @@ struct Index {
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@State装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
+在build方法内，当\@State装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
 
 【反例】
 
@@ -1081,3 +1092,57 @@ struct Index {
   }
 }
 ```
+
+### 自定义组件外改变状态变量
+
+开发者可以在aboutToAppear中注册箭头函数，并以此来改变组件中的状态变量。但需要注意的是在aboutToDisappear中将之前注册的函数置空，否则会因为箭头函数捕获了自定义组件的this实例，导致自定义组件无法被释放，从而造成内存泄漏。
+
+```ts
+class Model {
+  private callback: Function | undefined = () => {}
+
+  add(callback: () => void): void {
+    this.callback = callback;
+  }
+
+  delete(): void {
+    this.callback = undefined;
+  }
+
+  call(): void {
+    if (this.callback) {
+      this.callback();
+    }
+  }
+}
+
+let model: Model = new Model();
+
+@Entry
+@Component
+struct Test {
+  @State count: number = 10;
+
+  aboutToAppear(): void {
+    model.add(() => {
+      this.count++;
+    })
+  }
+
+  build() {
+    Column() {
+      Text(`count值: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call();
+        })
+    }
+  }
+
+  aboutToDisappear(): void {
+    model.delete();
+  }
+}
+```
+
+此外，也可以使用[LocalStorage](./arkts-localstorage.md#自定义组件外改变状态变量)的方式在自定义组件外改变状态变量。

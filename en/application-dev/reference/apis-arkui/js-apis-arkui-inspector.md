@@ -24,19 +24,19 @@ Creates an observer for the specified component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| id     | string | Yes  | Component ID. |
+| id     | string | Yes  | Component ID.|
 
-**Return value** 
+**Return value**
 
 | Type             | Description                                            |
 | ----------------- | ------------------------------------------------ |
-|[ComponentObserver](#componentobserver)| Component observer, which is used to register and unregister listeners. |
+|[ComponentObserver](#componentobserver)| Component observer, which is used to register and unregister listeners.|
 
-**Example** 
+**Example**
 
 ```ts
 let listener:inspector.ComponentObserver = inspector.createComponentObserver('COMPONENT_ID'); // Listen for callback events of the component whose ID is COMPONENT_ID.
@@ -56,11 +56,11 @@ Registers a listener for completion of component layout.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type  | Mandatory | Description|
+| Name  | Type  | Mandatory| Description|
 | -------- | ------ | ---- | -------------------------------------|
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing. |
+| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
 | callback | void   | Yes  | Callback invoked upon completion of component layout or drawing.|
 
 ### off
@@ -73,11 +73,11 @@ Unregisters the listener for completion of component layout.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type  | Mandatory | Description |
+| Name  | Type  | Mandatory| Description|
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing. |
+| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
 | callback | void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
 
 ### on
@@ -90,11 +90,11 @@ Registers a listener for completion of component drawing.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing. |
+| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
 | callback | void   | Yes  | Callback invoked upon completion of component layout or drawing.                                    |
 
 ### off
@@ -107,14 +107,18 @@ Unregisters the listener for completion of component drawing.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing. |
-| callback | void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered. |
+| type     | string | Yes  | Type of the listener. The value must be **'layout'** or **'draw'**.<br>**'layout'**: completion of component layout.<br>**'draw'**: completion of component drawing.|
+| callback | void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered.|
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [UIInspector](./js-apis-arkui-UIContext.md#uiinspector) object associated with the current UI context.
 
   ```ts
   import { inspector } from '@kit.ArkUI'
@@ -136,7 +140,7 @@ Unregisters the listener for completion of component drawing.
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // You are advised to use this.getUIContext().getUIInspector().createComponentObserver().
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{

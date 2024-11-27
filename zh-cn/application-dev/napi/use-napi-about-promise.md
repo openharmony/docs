@@ -84,6 +84,29 @@ hilog.info(0x0000, 'Node-API', 'napi_is_promise string %{public}s', testNapi.isP
 
 napi_create_promise用于创建一个Promise对象。
 
+使用该接口时应注意：
+
+1. 当有异常未处理时调用`napi_create_promise`，会返回`napi_pending_exception`。
+2. 使用`napi_create_promise`后未判断返回值是否为`napi_ok`，之后使用了无效的`deferred`和`promise`导致应用崩溃。
+
+```c++
+napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
+{
+    napi_deferred deferred = nullptr;
+    napi_value promise = nullptr;
+    napi_status status = napi_ok;
+
+    napi_throw_error(env, "500", "common error");
+
+    status = napi_create_promise(env, &deferred, &promise); // 有异常返回napi_pending_exception，且deferred、promise都为nullptr
+    if (status == napi_ok) {
+        // do something
+    }
+
+    return nullptr;
+}
+```
+
 ### napi_resolve_deferred & napi_reject_deferred
 
 用于对Promise关联的deferred对象进行解析，napi_resolve_deferred将其从挂起状态转换为已兑现状态，napi_reject_deferred将其从挂起状态转换为已拒绝状态。

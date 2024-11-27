@@ -744,27 +744,7 @@ ID of the task being executed.
 
 ##### Example
 
-```{.c}
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    static int x = 0;
-    int* xf = &x;
-    void* data = xf;
-    uint64_t timeout1 = 20;
-
-    ffrt::submit([=]() {
-    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
-    ffrt_timer_cb cb;
-    ffrt_timer_start(taskQos, timeout1, data, cb, false);
-    ffrt_usleep(200);
-    }, {}, {});
-    ffrt::wait();
-    return 0;
-}
-
-```
+N/A
 
 #### ffrt_this_task_update_qos
 
@@ -821,7 +801,27 @@ N/A
 
 ##### Example
 
-N/A
+```{.c}
+#include "ffrt.h"
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+
+    ffrt::submit([=]() {
+    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_cb cb;
+    ffrt_timer_start(taskQos, timeout1, data, cb, false);
+    ffrt_usleep(200);
+    }, {}, {});
+    ffrt::wait();
+    return 0;
+} 
+
+```
 
 ### Serial Queue
 
@@ -2548,7 +2548,7 @@ In practice, you may not use pure functions in certain scenarios, with the follo
 ### Suggestion 5: C++ APIs recommended
 
 * The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
-* For details about how to download C++ APIs, see [FFRT C++ APIs](https://gitee.com/wangyulie/resourceschedule_ffrt/tree/master/interfaces/kits).
+* For details about how to download C++ APIs, see [FFRT C++ APIs](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits).
 
 ## Constraints
 

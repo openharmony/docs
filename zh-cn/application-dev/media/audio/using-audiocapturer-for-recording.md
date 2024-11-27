@@ -17,10 +17,10 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 ### 开发步骤及注意事项
 
 1. 配置音频采集参数并创建AudioCapturer实例，音频采集参数的详细信息可以查看[AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8)。
-   
+
    > **说明：**
-   > 当设置Mic音频源（即SourceType为SOURCE_TYPE_MIC）时，需要申请麦克风权限ohos.permission.MICROPHONE，申请方式参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
-     
+   > 当设置Mic音频源（即[SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE）时，需要申请麦克风权限ohos.permission.MICROPHONE，申请方式参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+
    ```ts
     import { audio } from '@kit.AudioKit';
     
@@ -52,37 +52,37 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    ```
 
 2. 调用on('readData')方法，订阅监听音频数据读入回调。
-     
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
 
-    let bufferSize: number = 0;
     class Options {
       offset?: number;
       length?: number;
     }
-   
+
+    let bufferSize: number = 0;
     let path = getContext().cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
-    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-   
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
       }
-      fileIo.writeSync(file.fd, buffer, options);
+      fs.writeSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
-    }
+    };
+
     audioCapturer.on('readData', readDataCallback);
    ```
 
 3. 调用start()方法进入running状态，开始录制音频。
-     
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     audioCapturer.start((err: BusinessError) => {
       if (err) {
         console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
@@ -93,10 +93,10 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    ```
 
 4. 调用stop()方法停止录制。
-     
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
         console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -107,10 +107,10 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    ```
 
 5. 调用release()方法销毁实例，释放资源。
-     
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     audioCapturer.release((err: BusinessError) => {
       if (err) {
         console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
@@ -120,15 +120,14 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     });
    ```
 
-
 ### 完整示例
 
 下面展示了使用AudioCapturer录制音频的完整示例代码。
-  
+
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -137,7 +136,6 @@ class Options {
   length?: number;
 }
 
-let context = getContext(this);
 let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -145,28 +143,26 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型
   capturerFlags: 0 // 音频采集器标志
-}
+};
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
-
+};
 let path = getContext().cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {
    let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
    }
-   fileIo.writeSync(file.fd, buffer, options);
+   fs.writeSync(file.fd, buffer, options);
    bufferSize += buffer.byteLength;
-}
+};
 
 // 初始化，创建实例，设置监听事件
 function init() {
@@ -217,7 +213,7 @@ function stop() {
       if (err) {
         console.error('Capturer stop failed.');
       } else {
-        fileIo.close(file);
+        fs.close(file);
         console.info('Capturer stop success.');
       }
     });

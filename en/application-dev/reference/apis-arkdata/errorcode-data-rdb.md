@@ -63,8 +63,7 @@ The RDB store file has been corrupted.
 
 **Solution**
 
-1. Restore the RDB store using a backup file.
-2. If no RDB backup file is available, delete the RDB store and create it again.
+If data loss is acceptable, delete the RDB store and create a new one. Otherwise, restore the RDB store from the backup file. For details, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 ## 14800012 Empty Result Set or Invalid Position
 
@@ -174,7 +173,7 @@ The key configuration of the RDB store has been modified.
 
 **Possible Causes**
 
-Key configuration, such as **area**, **isEncrypt**, and **securityLevel**, of the RDB store is changed.
+Key configuration, such as **area** and **securityLevel**, of the RDB store is changed.
 
 **Solution**
 

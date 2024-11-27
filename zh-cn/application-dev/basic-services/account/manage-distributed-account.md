@@ -52,6 +52,30 @@ OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-ki
    });
    ```
 
+## 在当前系统账号上登出解绑分布式账号
+
+具体开发实例如下：
+
+1. 定义待登出的分布式账号信息。其中，登录场景下需将event指定为"Ohos.account.event.LOGOUT"。
+
+   ```ts
+   let distributedInfo: distributedAccount.DistributedInfo = {
+       name: 'ZhangSan',
+       id: '12345',
+       event: 'Ohos.account.event.LOGOUT',
+   };
+   ```
+
+2. 调用[setOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9)接口，将指定的分布式账号与当前系统账号解绑。
+
+   ```ts
+   distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
+       console.log('setOsAccountDistributedInfo successfully');
+   }).catch((err: BusinessError) => {
+       console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+   });
+   ```
+
 ## 在指定的系统账号上登录绑定分布式账号
 
 具体开发实例如下：
@@ -84,30 +108,6 @@ OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-ki
        console.log('distributed information: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
-   });
-   ```
-
-## 在当前系统账号上登出解绑分布式账号
-
-具体开发实例如下：
-
-1. 定义待登出的分布式账号信息。其中，登录场景下需将event指定为"Ohos.account.event.LOGOUT"。
-
-   ```ts
-   let distributedInfo: distributedAccount.DistributedInfo = {
-       name: 'ZhangSan',
-       id: '12345',
-       event: 'Ohos.account.event.LOGOUT',
-   };
-   ```
-
-2. 调用[setOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account.md#setosaccountdistributedinfo9)接口，将指定的分布式账号与当前系统账号解绑。
-
-   ```ts
-   distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
-       console.log('setOsAccountDistributedInfo successfully');
-   }).catch((err: BusinessError) => {
-       console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
    });
    ```
 

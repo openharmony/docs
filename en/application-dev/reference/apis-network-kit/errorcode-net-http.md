@@ -182,7 +182,8 @@ This error code is reported if an error occurs while writing received data to th
 
 **Cause**
 
-The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The **destroy** function is called before the data of the last request is fully received.
 
 **Solution**
 
@@ -258,7 +259,7 @@ The TCP connection or the read/write operation times out.
 
 **Solution**
 
-Rectify network faults.
+Check whether the network is stable and the signal strength is strong. If the network is normal, check whether the server is overloaded or service processing is slow.
 
 ## 2300047 Maximum Redirections Reached
 

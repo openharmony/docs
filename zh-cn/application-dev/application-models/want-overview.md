@@ -18,8 +18,7 @@
     显式Want通常用于应用内组件启动，通过在Want对象内指定本应用Bundle名称信息（bundleName）和abilityName来启动应用内目标组件。当有明确处理请求的对象时，显式Want是一种简单有效的启动目标应用组件的方式。
     > **说明：**
     >
-    > API 11及以前版本，支持使用显式want拉起其他应用的UIAbility。
-    > 从API 12开始，不再支持使用显式Want进行应用间跳转，需要通过openLink接口拉起其他应用。
+    > 从API 12开始，已不再推荐三方应用使用指定Ability方式（即显式Want）拉起其他应用，推荐通过指定[应用链接](app-startup-overview.md#应用链接)的方式来实现。
   
   ```ts
   import { Want } from '@kit.AbilityKit';

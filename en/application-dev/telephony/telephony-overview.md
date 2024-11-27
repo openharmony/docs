@@ -1,4 +1,4 @@
-# Telephony Service Overview
+# Introduction to Telephony Kit
 
 The telephony subsystem consists of the following modules that provide APIs to help you develop communication applications:
 

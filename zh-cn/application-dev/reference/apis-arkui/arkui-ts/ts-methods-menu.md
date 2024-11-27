@@ -1,6 +1,6 @@
 # ContextMenu
 
-在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)属性绑定的菜单。
+在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu12)属性绑定的菜单。
 
 >  **说明：**
 >
@@ -12,14 +12,15 @@
 
 static close()
 
-可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。
+可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu12)给组件绑定的菜单。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
 ## 示例
+
+该示例为ContextMenu.close关闭通过bindContextMenu属性绑定的菜单。
 
 >  **说明：**
 >

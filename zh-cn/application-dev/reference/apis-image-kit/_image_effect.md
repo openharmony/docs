@@ -84,8 +84,13 @@
 | -------- | -------- |
 | [OH_ImageEffect](#oh_imageeffect) \* [OH_ImageEffect_Create](#oh_imageeffect_create) (const char \*name) | 创建OH_ImageEffect实例，调用[OH_ImageEffect_Release](#oh_imageeffect_release)进行资源释放。 | 
 | [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_AddFilter](#oh_imageeffect_addfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*filterName) | 添加滤镜。 | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_AddFilterByFilter](#oh_imageeffect_addfilterbyfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, [OH_EffectFilter](#oh_effectfilter) \*filter) | 添加指定滤镜。  | 
 | [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_InsertFilter](#oh_imageeffect_insertfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, const char \*filterName) | 插入滤镜。 | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_InsertFilterByFilter](#oh_imageeffect_insertfilterbyfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, [OH_EffectFilter](#oh_effectfilter) \*filter) | 按指定位置插入滤镜。  | 
 | int32_t [OH_ImageEffect_RemoveFilter](#oh_imageeffect_removefilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*filterName) | 移除滤镜。 | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_RemoveFilterByIndex](#oh_imageeffect_removefilterbyindex) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index) | 移除指定位置滤镜。  | 
+| [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_ReplaceFilter](#oh_imageeffect_replacefilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, const char \*filterName) | 替换滤镜。  | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_ReplaceFilterByFilter](#oh_imageeffect_replacefilterbyfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, const char \*filterName) | 替换指定位置滤镜。  | 
 | int32_t [OH_ImageEffect_GetFilterCount](#oh_imageeffect_getfiltercount) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | 查询已添加滤镜个数。 | 
 | [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_GetFilter](#oh_imageeffect_getfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index) | 查询已添加滤镜。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Configure](#oh_imageeffect_configure) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*key, const [ImageEffect_Any](_image_effect___any.md) \*value) | 设置配置信息。 | 
@@ -97,6 +102,8 @@
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputNativeBuffer](#oh_imageeffect_setoutputnativebuffer) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_NativeBuffer \*nativeBuffer) | 设置输出的NativeBuffer。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputUri](#oh_imageeffect_setinputuri) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*uri) | 设置输入的URI。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputUri](#oh_imageeffect_setoutputuri) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*uri) | 设置输出的URI。 | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputPicture](#oh_imageeffect_setinputpicture) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | 设置输入的Picture。  | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputPicture](#oh_imageeffect_setoutputpicture) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | 设置输出的Picture。  | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Start](#oh_imageeffect_start) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | 启动效果器。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Stop](#oh_imageeffect_stop) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | 停止生效效果。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Release](#oh_imageeffect_release) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | 释放OH_ImageEffect实例资源。 | 
@@ -1416,6 +1423,30 @@ OH_EffectFilter* OH_ImageEffect_AddFilter (OH_ImageEffect * imageEffect, const c
 返回一个指向OH_EffectFilter实例的指针，滤镜名无效时返回空指针。
 
 
+### OH_ImageEffect_AddFilterByFilter()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_AddFilterByFilter(OH_ImageEffect *imageEffect, OH_EffectFilter *filter)
+```
+**描述**
+添加指定滤镜。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imageEffect | 效果器指针。  | 
+| filter | 滤镜指针。  | 
+
+**返回：**
+
+EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+
+
 ### OH_ImageEffect_Configure()
 
 ```
@@ -1461,7 +1492,7 @@ OH_ImageEffect* OH_ImageEffect_Create (const char * name)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 效果器名，用于标识效果器，由用户自定义，不为空的字符串。 | 
+| name | 效果器名，用于标识效果器，由用户自定义，建议为非空的字符串。 | 
 
 **返回：**
 
@@ -1572,6 +1603,31 @@ OH_EffectFilter* OH_ImageEffect_InsertFilter (OH_ImageEffect * imageEffect, uint
 返回一个指向OH_EffectFilter实例的指针，参数无效时返回空指针。
 
 
+### OH_ImageEffect_InsertFilterByFilter()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_InsertFilterByFilter(OH_ImageEffect *imageEffect, uint32_t index, OH_EffectFilter *filter);
+```
+**描述**
+按指定位置插入滤镜。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imageEffect | 效果器指针。  | 
+| index | 插入滤镜位置索引。  | 
+| filter | 滤镜指针。  | 
+
+**返回：**
+
+EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+
+
 ### OH_ImageEffect_Release()
 
 ```
@@ -1621,6 +1677,79 @@ int32_t OH_ImageEffect_RemoveFilter (OH_ImageEffect * imageEffect, const char * 
 **返回：**
 
 所删除的滤镜个数。
+
+
+### OH_ImageEffect_RemoveFilterByIndex()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_RemoveFilterByIndex(OH_ImageEffect *imageEffect, uint32_t index)
+```
+**描述**
+移除指定位置滤镜。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imageEffect | 效果器指针。  | 
+| index | 移除滤镜位置索引。  | 
+
+**返回：**
+
+EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+
+
+### OH_ImageEffect_ReplaceFilter()
+
+```
+OH_EffectFilter *OH_ImageEffect_ReplaceFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName)
+```
+**描述**
+替换滤镜。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imageEffect | 效果器指针。  | 
+| filterName | 滤镜名。  | 
+
+**返回：**
+
+返回一个指向OH_EffectFilter实例的指针，替换失败时返回空指针。
+
+
+### OH_ImageEffect_ReplaceFilterByFilter()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_ReplaceFilterByFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName);
+```
+**描述**
+替换指定位置滤镜。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imageEffect | 效果器指针。  | 
+| index | 替换滤镜位置索引。  | 
+| filterName | 滤镜名。  | 
+
+**返回：**
+
+EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
 
 
 ### OH_ImageEffect_Restore()
@@ -1700,6 +1829,30 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer (OH_ImageEffect * imag
 EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
 
 
+### OH_ImageEffect_SetInputPicture()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
+```
+**描述**
+设置输入的Picture。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imageEffect | 效果器指针。  | 
+| picture | 指向OH_PictureNative实例的指针。  | 
+
+**返回：**
+
+EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+
+
 ### OH_ImageEffect_SetInputPixelmap()
 
 ```
@@ -1768,14 +1921,46 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer (OH_ImageEffect * ima
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| nativeBuffer | 指向OH_NativeBuffer实例的指针。 | 
+| imageEffect | 效果器指针。 |
+| nativeBuffer | 指向OH_NativeBuffer实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_NativeBuffer对象上。 |
 
 **返回：**
 
-EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+EFFECT_SUCCESS，如果方法调用成功。
+
+EFFECT_ERROR_PARAM_INVALID，如果效果器入参为空指针。
+
+EFFECT_PARAM_ERROR，如果参数异常导致方法调用失败。
+
+
+### OH_ImageEffect_SetOutputPicture()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
+```
+**描述**
+设置输出的Picture。
+
+**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| imageEffect | 效果器指针。  |
+| picture | 指向OH_PictureNative实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_PictureNative对象上。 |
+
+**返回：**
+
+EFFECT_SUCCESS，如果方法调用成功。
+
+EFFECT_ERROR_PARAM_INVALID，如果效果器入参为空指针。
+
+EFFECT_PARAM_ERROR，如果参数异常导致方法调用失败。
 
 
 ### OH_ImageEffect_SetOutputPixelmap()
@@ -1794,14 +1979,18 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap (OH_ImageEffect * imageEf
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| pixelmap | 指向OH_PixelmapNative实例的指针。 | 
+| imageEffect | 效果器指针。 |
+| pixelmap | 指向OH_PixelmapNative实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_PixelmapNative对象上。 |
 
 **返回：**
 
-EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+EFFECT_SUCCESS，如果方法调用成功。
+
+EFFECT_ERROR_PARAM_INVALID，如果效果器入参为空指针。
+
+EFFECT_PARAM_ERROR，如果参数异常导致方法调用失败。
 
 
 ### OH_ImageEffect_SetOutputSurface()

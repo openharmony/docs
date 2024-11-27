@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Create table failed.
+Failed to create the in-memory database.
 
 **Description**
 

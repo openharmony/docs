@@ -50,7 +50,7 @@
 
 ## 接口
 
-List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?: Scroller})
+List(value?: [ListOptions](#listoptions14对象说明))
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -60,10 +60,24 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 
 **参数：**
 
-| 参数名       | 类型                                    | 必填 | 说明                                                     |
+| 参数名  | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| value    | [ListOptions](#listoptions14对象说明)  | 否   | 设置List组件参数。 |
+
+## ListOptions<sup>14+</sup>对象说明
+
+用于设置List组件参数。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | space        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
-| initialIndex | number                                      | 否   | 设置当前List初次加载时视口起始位置显示的item的索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| initialIndex | number                                      | 否   | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
 
 ## 属性
@@ -90,7 +104,7 @@ listDirection(value: Axis)
 
 ### divider
 
-divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
+divider(value: [ListDividerOptions](#listdivideroptions14对象说明) | null)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -114,7 +128,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>默认值：0x08000000<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp |
+| value  | [ListDividerOptions](#listdivideroptions14对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
 
 ### scrollBar
 
@@ -154,13 +168,34 @@ List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup�
 
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1 |
+| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1<br/>取值范围：[0, +∞) |
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(count: number, show: boolean)
+
+设置列表中ListItem/ListItemGroup的预加载数量，并配置是否显示预加载节点。
+
+List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：1 <br/>取值范围：[0, +∞)|
+| show  | boolean | 是   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>(deprecated)</sup>
 
 editMode(value: boolean)
 
-设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3)实现删除选中的list项。
+设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
 
 从API version9开始废弃不再使用，无替代接口。
 
@@ -197,7 +232,7 @@ chainAnimation(value: boolean)
 
 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。
 
-链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。
+链式联动效果：List内的ListItem间隔一定距离，该距离可以通过List组件space参数设置，默认为20vp。在手指划动过程中，手指拖动的ListItem是主动对象，相邻的ListItem为从动对象，主动对象驱动从动对象联动，驱动效果遵循弹簧物理动效。
 
 链式动效生效后，List的分割线不显示。
 
@@ -287,6 +322,10 @@ alignListItem(value: ListItemAlign)
 sticky(value: StickyStyle)
 
 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。
+
+> **说明：** 
+>
+> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-layout-constraints.md#pixelround11)指定当前组件向下像素取整解决该问题。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -445,7 +484,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                        |
+| 名称     |  值  | 说明                      |
 | ------ | ------ | ------------------------- |
 | Start  | 0 | ListItem在List中，交叉轴方向首部对齐。 |
 | Center | 1 | ListItem在List中，交叉轴方向居中对齐。 |
@@ -459,7 +498,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                 |
+| 名称     |  值  | 说明                               |
 | ------ | ------ | ---------------------------------- |
 | None   | 0 | ListItemGroup的header不吸顶，footer不吸底。 |
 | Header | 1 | ListItemGroup的header吸顶，footer不吸底。  |
@@ -477,7 +516,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | NONE   | 0 | 默认无项目滚动对齐效果。            |
 | START  | 1 | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
@@ -494,6 +533,23 @@ maintainVisibleContentPosition(enabled: boolean)
 | 名称     | 类型     | 必填 | 说明                   |
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
+
+## ListDividerOptions<sup>14+</sup>对象说明
+
+用于设置List或ListItemGroup组件的分割线样式。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型     | 必填 | 说明                   |
+| ------- | -------- | ---- | ---------------------- |
+| strokeWidth | [Length](ts-types.md#length) | 是   | 分割线的线宽。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线颜色。<br/>默认值：0x08000000 |
+| startMargin | [Length](ts-types.md#length) | 否   | 分割线与列表侧边起始端的距离。<br/>默认值：0，单位：vp<br/> |
+| endMargin | [Length](ts-types.md#length) | 否   | 分割线与列表侧边结束端的距离。<br/>默认值：0，单位：vp<br/> |
 
 ## 事件
 
@@ -577,7 +633,7 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 ### onScrollFrameBegin<sup>9+</sup>
 
-onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain：number })
+onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number })
 
 列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
 
@@ -763,7 +819,7 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 ### onScrollVisibleContentChange<sup>12+</sup>
 onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
 
-有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem/ListItemGroup中的header/ListItemGroup中的footer都算一个子组件。
+有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem、ListItemGroup中的header或footer都算一个子组件。
 
 List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollVisibleContentChange事件。
 
@@ -787,7 +843,7 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | Idle   |  0  | 空闲状态。滚动状态回归空闲时触发，控制器提供的无动画方法控制滚动时触发。 |
 | Scroll |  1  | 滚动状态。手指拖动List，拖动滚动条和滚动鼠标滚轮时触发。|
@@ -978,7 +1034,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | NONE |  0  | 当前页面可视边处于none位置。例如，ListItemGroup中既没有header、footer，也没有ListItem。 |
 | IN_LIST_ITEM_AREA |  1  | 当前页面可视边处于ListItem位置。 |
@@ -987,7 +1043,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 ## 示例
 
-### 示例1
+### 示例1（添加滚动事件）
 该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
 ```ts
 // xxx.ets
@@ -1041,7 +1097,8 @@ struct ListExample {
 ![zh-cn_image_0000001174264378](figures/zh-cn_image_0000001174264378.gif)
 
 
-### 示例2
+### 示例2（设置子元素对齐）
+该示例展示了不同ListItemAlign枚举值下，List组件交叉轴方向子元素对齐效果。
 
 ```ts
 // xxx.ets
@@ -1092,7 +1149,8 @@ struct ListLanesExample {
 ![list](figures/list-alignListItem.gif)
 
 
-### 示例3
+### 示例3（设置编辑模式）
+该示例展示了如何设置当前List组件是否处于可编辑模式。
 
 ```ts
 // xxx.ets
@@ -1149,7 +1207,8 @@ struct ListExample {
 
 ![list](figures/list3.gif)
 
-### 示例4
+### 示例4（设置限位对齐）
+该示例展示了List组件设置居中限位的实现效果。
 
 ```ts
 // xxx.ets
@@ -1200,8 +1259,10 @@ struct ListExample {
 
 ![list](figures/list4.gif)
 
-### 示例5
+### 示例5（跳转准确）
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
+
+如果配合状态管理V2使用，详情见：[List与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#list)。
 ```ts
 // xxx.ets
 @Entry
@@ -1263,7 +1324,7 @@ struct ListExample {
 
 ![list](figures/list5.gif)
 
-### 示例6
+### 示例6（获得子组件索引信息）
 该示例展示了含有group时，获得List组件的Item索引相关信息。
 ```ts
 // xxx.ets
@@ -1372,11 +1433,10 @@ interface TimeTable {
 
 ![list](figures/getItemIndex_listGroup.gif)
 
-### 示例7
+### 示例7（设置边缘渐隐）
+该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度。
 
 ```ts
-// xxx.ets
-//该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度
 import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component

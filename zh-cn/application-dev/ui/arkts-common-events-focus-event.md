@@ -16,8 +16,8 @@
 用来指向当前获焦组件的样式。
 
 - 显示规则：默认情况下焦点态不会显示，只有当应用进入激活态后，焦点态才会显示。因此，虽然获得焦点的组件不一定显示焦点态（取决于是否处于激活态），但显示焦点态的组件必然是获得焦点的。大部分组件内置了焦点态样式，开发者同样可以使用样式接口进行自定义，一旦自定义，组件将不再显示内置的焦点态样式。在焦点链中，若多个组件同时拥有焦点态，系统将采用子组件优先的策略，优先显示子组件的焦点态，并且仅显示一个焦点态。
-- 进入激活态：仅使用外接键盘按下TAB键时才会进入焦点的激活态，进入激活态后，才可以使用键盘TAB键/方向键进行走焦。首次用来激活焦点态的TAB键不会触发走焦。
-- 退出激活态：当应用收到点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），焦点的激活态会退出。
+- 进入激活态：使用外接键盘按下TAB键/使用FocusController的activate(true)方法才会进入焦点的激活态，进入激活态后，才可以使用键盘TAB键/方向键进行走焦。首次用来激活焦点态的TAB键不会触发走焦。
+- 退出激活态：当应用收到FocusController的active(false)方法/点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），焦点的激活态会退出。
 
 
 **层级页面**
@@ -69,7 +69,7 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
 
 - clearFocus
-详见[clearFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+详见[clearFocus](../reference/apis-arkui/js-apis-arkui-UIContext.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
 
 - focusOnTouch
 详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
@@ -772,6 +772,44 @@ struct FocusableExample {
 
 - input方框内设置了焦点组，因此按下TAB键后焦点会快速从input中走出去，而按下方向键后可以在input内走焦。
 - 左上角的Column没有设置焦点组，因此只能通过Tab键一个一个地走焦。
+
+## 焦点与按键事件
+
+当组件获焦且存在点击事件（`onClick`）或单指单击事件（`TapGesture`）时，回车和空格会触发对应的事件回调。
+
+>  **说明：**
+>
+>  1. 点击事件（`onClick`）或单指单击事件（`TapGesture`）在回车、空格触发对应事件回调时，默认不冒泡传递，即父组件对应[按键事件](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md)不会被同步触发。
+>  2. 按键事件（`onKeyEvent`）默认冒泡传递，即同时会触发父组件的按键事件回调。
+>  3. 组件同时存在点击事件（`onClick`）和按键事件（`onKeyEvent`），在回车、空格触发时，两者都会响应。
+>  4. 获焦组件响应点击事件（`onClick`），与焦点激活态无关。
+
+```
+@Entry
+@Component
+struct FocusOnclickExample {
+  @State count: number = 0
+  @State name: string = 'Button'
+
+  build() {
+    Column() {
+      Button(this.name)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+          if (this.count <= 0) {
+            this.name = "count is negative number"
+          } else if (this.count % 2 === 0) {
+            this.name = "count is even number"
+          } else {
+            this.name = "count is odd number"
+          }
+        }).height(60)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![focus-4](figures/focus-4.gif)
 
 ## 组件获焦能力说明
 

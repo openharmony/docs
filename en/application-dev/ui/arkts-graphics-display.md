@@ -1,10 +1,10 @@
 # Image Display (Image)
 
 
-More often than not, you may need to display images in your application, for example, icons in buttons, online images, and local images. This is where the **\<Image>** component comes in handy. The **\<Image>** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
+More often than not, you may need to display images in your application, for example, icons in buttons, online images, and local images. This is where the **Image** component comes in handy. The **Image** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
 
 
-To use the **\<Image>** component, call the following API:
+To use the **Image** component, call the following API:
 
 ```ts
 Image(src: PixelMap | ResourceStr | DrawableDescriptor)
@@ -16,7 +16,7 @@ This API obtains a local or online image from the data source specified by **src
 
 ## Loading Image Resources
 
-The **\<Image>** component supports two types of images: archived and pixel map.
+The **Image** component supports two types of images: archived and pixel map.
 
 
 ### Archived Type Data Sources
@@ -27,7 +27,7 @@ Data sources of the archived type can be classified into local resources, online
 
   To load local images, create an **ets** folder and place the local images in any position in the folder.
 
-  Then, in the **\<Image>** component, set **src** to the local image path, with the root directory being the **ets** folder.
+  Then, in the **Image** component, set **src** to the local image path, with the root directory being the **ets** folder.
 
   ```ts
   Image('images/view.jpg')
@@ -36,9 +36,11 @@ Data sources of the archived type can be classified into local resources, online
 
 - Online resources
 
-  To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
+  To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). Then, in the **Image** component, set **src** to the URL of the online image.
 
-  If an online image has been loaded before, the **\<Image>** component can obtain it from the cache, instead of having to request it from the Internet again. For details about the image cache, see [setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7), [setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7), and [setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7).
+  Currently, the **Image** component supports only simple online images.
+
+  If an online image has been loaded before, the **Image** component can obtain it from the cache, instead of having to request it from the Internet again. For details about the image cache, see [setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7), [setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7), and [setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7). It should be noted that these image caching APIs are not flexible and will not be further developed. For complex scenarios, you are advised to use [ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife).
 
   ```ts
   Image('https://www.example.com/example.JPG') // Replace the URL with the actual URL.
@@ -48,7 +50,7 @@ Data sources of the archived type can be classified into local resources, online
 
   **Resource** objects can be used to import images across bundles and modules. To load **Resource** objects, place images in the **resources** folder, which can be read and converted to the **Resource** objects through **$r**.
 
-  **Figure 1** resources folder
+  **Figure 1** resources 
 
   ![image-resource](figures/image-resource.jpg)
 
@@ -76,8 +78,8 @@ Data sources of the archived type can be classified into local resources, online
 
   1. Call the API to obtain the image URL in the media library.
       ```ts
-      import picker from '@ohos.file.picker';
-      import { BusinessError } from '@ohos.base';
+      import { photoAccessHelper } from '@kit.MediaLibraryKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
       @Entry
       @Component
@@ -86,11 +88,11 @@ Data sources of the archived type can be classified into local resources, online
         // Obtain the image URL set.
         getAllImg() {
           try {
-            let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
-            PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+            let PhotoSelectOptions:photoAccessHelper.PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+            PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
             PhotoSelectOptions.maxSelectNumber = 5;
-            let photoPicker:picker.PhotoViewPicker = new picker.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:picker.PhotoSelectResult) => {
+            let photoPicker:photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
+            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:photoAccessHelper.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err:Error) => {
@@ -139,7 +141,7 @@ Data sources of the archived type can be classified into local resources, online
 
 ### Pixel Map
 
-A pixel map is a pixel image obtained after image decoding. For details, see [Introduction to Image Kit](../media/image/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **\<Image>** component.
+A pixel map is a pixel image obtained after image decoding. For details, see [Introduction to Image Kit](../media/image/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **Image** component.
 
 1. Create a **PixelMap** state variable.
 
@@ -153,10 +155,9 @@ A pixel map is a pixel image obtained after image decoding. For details, see [In
 
    1. Reference the network and media library access permissions.
        ```ts
-       import http from '@ohos.net.http';
-       import ResponseCode from '@ohos.net.http';
-       import image from '@ohos.multimedia.image';
-       import { BusinessError } from '@ohos.base';
+       import { http } from '@kit.NetworkKit';
+       import { image } from '@kit.ImageKit';
+       import { BusinessError } from '@kit.BasicServicesKit';
        ```
    2. Enter the online image address.
        ```ts
@@ -164,7 +165,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [In
        http.createHttp().request("https://www.example.com/xxx.png",
          (error: BusinessError, data: http.HttpResponse) => {
            if (error) {
-             console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
+             console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
              OutData = data
            }
@@ -174,7 +175,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [In
    3. Transcode the data returned by the online image address to a pixel map.  
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
-       if (ResponseCode.ResponseCode.OK === code) {
+       if (http.ResponseCode.OK === code) {
          let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
          let imageSource: image.ImageSource = image.createImageSource(imageData);
        
@@ -222,11 +223,30 @@ A pixel map is a pixel image obtained after image decoding. For details, see [In
          })
        Image(this.image).height(100).width(100)
       ```
+      You can also pass **pixelMap** to create a [PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12) object for displaying images.
+      ```ts
+       import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+       class htp{
+        httpRequest: Function | undefined = undefined
+        set(){
+          if(this.httpRequest){
+            this.httpRequest()
+          }
+        }
+       }
+       Button ("Get Online Image")
+         .onClick(() => {
+           let sethtp = new htp()
+           sethtp.set()
+           this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
+         })
+       Image(this.drawablePixelMap).height(100).width(100)
+      ```
 
 
 ## Displaying Vector Images
 
-The **\<Image>** component can display vector images in SVG format. The supported SVG labels are **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, and **animate**.
+The **Image** component can display vector images in SVG format. The supported SVG labels are **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, and **animate**.
 
 You can use the **fillColor** attribute to change the fill color of an SVG image.
 
@@ -248,7 +268,7 @@ Image($r('app.media.cloud'))
 
 ## Setting Attributes
 
-Setting attributes for the **\<Image>** component can spruce up the image with custom effects. The following are usage examples of common attributes. For details about all attributes, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
+Setting attributes for the **Image** component can spruce up the image with custom effects. The following are usage examples of common attributes. For details about all attributes, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
 
 
 ### Setting the Image Scale Mode
@@ -297,9 +317,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // The image is scaled to fill the display area, and its aspect ratio is not retained.
             .objectFit(ImageFit.Fill)
             .margin(15)
-              // The image is scaled to fill the display area, and its aspect ratio is not retained.
             .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)
@@ -548,7 +568,7 @@ Image($r('app.media.icon'))
 
 ## Adding Events
 
-By binding the **onComplete** event to the **\<Image>** component, you can obtain necessary information about the image after the image is successfully loaded. You can also bind the **onError** event to obtain error information when the image fails to be loaded.
+By binding the **onComplete** event to the **Image** component, you can obtain necessary information about the image after the image is successfully loaded. You can also bind the **onError** event to obtain error information when the image fails to be loaded.
 
 
 ```ts

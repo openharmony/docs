@@ -62,7 +62,7 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | ---------------------------------------- | -------------------------------------- |
 | [OH_NativeXComponent_GetXComponentId](#oh_nativexcomponent_getxcomponentid) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, char \*id, uint64_t \*size) | Obtains the ID of the ArkUI XComponent.           |
 | [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, uint64_t \*width, uint64_t \*height) | Obtains the size of the surface held by the ArkUI XComponent. |
-| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, double \*x, double \*y) | Obtains the offset of the ArkUI XComponent relative to the upper left vertex of the screen.|
+| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, double \*x, double \*y) | Obtains the offset of the surface held by the XComponent relative to the upper left corner of its parent component.|
 | [OH_NativeXComponent_GetTouchEvent](#oh_nativexcomponent_gettouchevent) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) \*touchEvent) | Obtains the touch event scheduled by the ArkUI XComponent.       |
 | [OH_NativeXComponent_GetTouchPointToolType](#oh_nativexcomponent_gettouchpointtooltype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint32_t pointIndex, [OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype) \*toolType) | Obtains the ArkUI XComponent touch point tool type.       |
 | [OH_NativeXComponent_GetTouchPointTiltX](#oh_nativexcomponent_gettouchpointtiltx) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint32_t pointIndex, float \*tiltX) | Obtains the angle between the Y-Z plane of the ArkUI XComponent touch point and the x-axis.    |
@@ -82,14 +82,16 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | Sets the expected frame rate range.                                          |
 | [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | Registers the display update callback for this **OH_NativeXComponent** instance and enables the callback for each frame.|
 | [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | Deregisters the display update callback for this **OH_NativeXComponent** instance and disables the callback for each frame.|
-| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Attaches the UI component created through the native API of ArkUI to this **OH_NativeXComponent** instance. | 
-| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Detaches the native component of ArkUI from this **OH_NativeXComponent** instance. | 
-| int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | Registers a UI input event callback for an **OH_NativeXComponent** instance and enables the callback to be invoked when a UI input event is received. | 
+| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Attaches the UI component created through the native API of ArkUI to this **OH_NativeXComponent** instance. |
+| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Detaches the native component of ArkUI from this **OH_NativeXComponent** instance. |
+| int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | Registers a UI input event callback for an **OH_NativeXComponent** instance and enables the callback to be invoked when a UI input event is received. |
 | int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | Registers a custom event intercept callback for an **OH_NativeXComponent** and enables the callback during the hit test. |
-| int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | Sets whether the soft keyboard is required for an **OH_NativeXComponent** instance. | 
+| int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | Sets whether the soft keyboard is required for an **OH_NativeXComponent** instance. |
 | int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the foreground.|
 | int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked whenever the application is switched to the background.|
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | Obtains the touch event source type of an **OH_NativeXComponent** instance. |
+| [OH_NativeXComponent](#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | Obtains the pointer to an **OH_NativeXComponent** instance based on the specified component instance created by the native API. |
+| int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle); |  |
 
 ### Variables
 
@@ -98,8 +100,8 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | **OH_XCOMPONENT_ID_LEN_MAX** = 128 | Maximum length of the ArkUI XComponent ID. |
 | **OH_MAX_TOUCH_POINTS_NUMBER** = 10 | Maximum number of identifiable touch points in a touch event.           |
 | [OH_NativeXComponent_TouchPoint::id](#id-12) = 0 | Unique identifier of the finger.                     |
-| [OH_NativeXComponent_TouchPoint::screenX](#screenx-13) = 0.0 | X coordinate of the touch point relative to the left edge of the application window where the XComponent is located.|
-| [OH_NativeXComponent_TouchPoint::screenY](#screeny-13) = 0.0 | Y coordinate of the touch point relative to the left edge of the application window where the XComponent is located.|
+| [OH_NativeXComponent_TouchPoint::screenX](#screenx-13) = 0.0 | X coordinate of the touch point relative to the upper left corner of the application window where the XComponent is located.|
+| [OH_NativeXComponent_TouchPoint::screenY](#screeny-13) = 0.0 | Y coordinate of the touch point relative to the upper left corner of the application window where the XComponent is located.|
 | [OH_NativeXComponent_TouchPoint::x](#x-13) = 0.0 | X coordinate of the touch point relative to the left edge of the XComponent.    |
 | [OH_NativeXComponent_TouchPoint::y](#y-13) = 0.0 | Y coordinate of the touch point relative to the upper edge of the XComponent.    |
 | [OH_NativeXComponent_TouchPoint::type](#type-12) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | Touch type of the touch event.                    |
@@ -945,6 +947,27 @@ Returns the status code of the execution.
 
 9
 
+### OH_NativeXComponent_GetNativeXComponent()
+
+```
+OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent (ArkUI_NodeHandle node)
+```
+**Description**
+
+Obtains the pointer to an **OH_NativeXComponent** instance based on the specified component instance created by the native API.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| node | Pointer to the component instance created through the native API. | 
+
+**Returns**
+
+Pointer to the **OH_NativeXComponent** instance.
+
 
 ### OH_NativeXComponent_GetTouchEvent()
 
@@ -1008,7 +1031,7 @@ int32_t OH_NativeXComponent_GetTouchPointTiltY (OH_NativeXComponent * component,
 
 **Description**
 
-Obtains the angle between the X-Z plane of the ArkUI XComponent touch point and the x-axis.
+Obtains the angle between the X-Z plane of the ArkUI XComponent touch point and the y-axis.
 
 **Parameters**
 
@@ -1025,6 +1048,114 @@ Returns the status code of the execution.
 **Since**
 
 9
+
+
+### OH_NativeXComponent_GetTouchPointWindowX()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointWindowX(OH_NativeXComponent * component, uint32_t pointIndex, float * windowX )
+```
+
+**Description**
+
+Obtains the X coordinate of the touch point relative to the upper left corner of the application window where the ArkUI XComponent is located.
+
+**Parameters**
+
+| Name        | Description                           |
+| ---------- | ----------------------------- |
+| component  | Pointer to the **OH_NativeXComponent** instance.       |
+| pointIndex | Pointer to the index of the touch point.                         |
+| windowX    | Pointer to the X coordinate of the touch point relative to the upper left corner of the application window. |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointWindowY()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointWindowY(OH_NativeXComponent * component, uint32_t pointIndex, float * windowY )
+```
+
+**Description**
+
+Obtains the Y coordinate of the touch point relative to the upper left corner of the application window where the ArkUI XComponent is located.
+
+**Parameters**
+
+| Name        | Description                           |
+| ---------- | ----------------------------- |
+| component  | Pointer to the **OH_NativeXComponent** instance.       |
+| pointIndex | Pointer to the index of the touch point.                         |
+| windowY    | Pointer to the Y coordinate of the touch point relative to the upper left corner of the application window. |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointDisplayX()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointDisplayX(OH_NativeXComponent * component, uint32_t pointIndex, float * displayX )
+```
+
+**Description**
+
+Obtains the X coordinate of the touch point relative to the upper left corner of the screen where the ArkUI XComponent is located.
+
+**Parameters**
+
+| Name        | Description                           |
+| ---------- | ----------------------------- |
+| component  | Pointer to the **OH_NativeXComponent** instance.       |
+| pointIndex | Pointer to the index of the touch point.                         |
+| displayX    | Pointer to the X coordinate of the touch point relative to the upper left corner of the screen. |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointDisplayY()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointDisplayY(OH_NativeXComponent * component, uint32_t pointIndex, float * displayY )
+```
+
+**Description**
+
+Obtains the Y coordinate of the touch point relative to the upper left corner of the screen where the ArkUI XComponent is located.
+
+**Parameters**
+
+| Name        | Description                           |
+| ---------- | ----------------------------- |
+| component  | Pointer to the **OH_NativeXComponent** instance.       |
+| pointIndex | Pointer to the index of the touch point.                         |
+| displayY    | Pointer to the Y coordinate of the touch point relative to the upper left corner of the screen. |
+
+**Returns**
+
+Returns the status code of the execution.
+
+**Since**
+
+12
 
 
 ### OH_NativeXComponent_GetTouchPointToolType()
@@ -1089,7 +1220,7 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 
 **Description**
 
-Obtains the offset of the ArkUI XComponent relative to the upper left vertex of the screen.
+Obtains the offset of the surface held by the XComponent relative to the upper left corner of its parent component.
 
 **Parameters**
 
@@ -1097,8 +1228,8 @@ Obtains the offset of the ArkUI XComponent relative to the upper left vertex of 
 | --------- | ----------------------------- |
 | component | Pointer to the **OH_NativeXComponent** instance.|
 | window    | Handle to the **NativeWindow** instance.            |
-| x         | Pointer to the x coordinate of the current surface.        |
-| y         | Pointer to the y coordinate of the current surface.        |
+| x         | Pointer to the X coordinate of the current surface relative to the upper left corner of the XComponent's parent component.        |
+| y         | Pointer to the Y coordinate of the current surface relative to the upper left corner of the XComponent's parent component.        |
 
 **Returns**
 
@@ -1488,6 +1619,38 @@ Returns **OH_NATIVEXCOMPONENT_RESULT_FAILED** if any other error occurs.
 
 12
 
+### OH_NativeXComponent_GetNativeAccessibilityProvider()
+
+```
+int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
+    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
+```
+
+**Description**
+
+Obtains the accessibility provider handle for an ArkUI XComponent.
+
+**Parameters**
+
+| Name     | Description                                   |
+| --------- | --------------------------------------- |
+| component | Pointer to the **OH_NativeXComponent** instance.|
+| handle    | Pointer to the accessibility provider handle.               |
+
+**Returns**
+
+Returns **OH_NATIVEXCOMPONENT_RESULT_SUCCESS** if the operation is successful.
+
+Returns **OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER** if a parameter error occurs.
+
+Returns **OH_NATIVEXCOMPONENT_RESULT_FAILED** if any other error occurs.
+
+**Since**
+
+13
+
+
+
 <!--  -->
 
 ## Variable Description
@@ -1760,7 +1923,7 @@ float OH_NativeXComponent_TouchPoint::screenX = 0.0
 
 **Description**
 
-X coordinate of the touch point relative to the left edge of the application window where the XComponent is located.
+X coordinate of the touch point relative to the upper left corner of the application window where the XComponent is located.
 
 **Since**
 
@@ -1775,7 +1938,7 @@ float OH_NativeXComponent_TouchEvent::screenX = 0.0
 
 **Description**
 
-X coordinate of the touch point relative to the left edge of the screen.
+X coordinate of the touch point relative to the upper left corner of the application window where the XComponent is located.
 
 **Since**
 
@@ -1790,7 +1953,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 **Description**
 
-X coordinate of the clicked point relative to the upper left corner of the screen.
+X coordinate of the click point relative to the upper left corner of the application screen where the XComponent is located.
 
 **Since**
 
@@ -1805,7 +1968,7 @@ float OH_NativeXComponent_TouchPoint::screenY = 0.0
 
 **Description**
 
-Y coordinate of the touch point relative to the left edge of the application window where the XComponent is located.
+Y coordinate of the touch point relative to the upper left corner of the application window where the XComponent is located.
 
 **Since**
 
@@ -1820,7 +1983,7 @@ float OH_NativeXComponent_TouchEvent::screenY = 0.0
 
 **Description**
 
-Y coordinate of the touch point relative to the upper edge of the screen.
+Y coordinate of the touch point relative to the upper left corner of the application window where the XComponent is located.
 
 **Since**
 
@@ -1835,7 +1998,7 @@ float OH_NativeXComponent_MouseEvent::screenY
 
 **Description**
 
-Y coordinate of the clicked point relative to the upper left corner of the screen.
+Y coordinate of the click point relative to the upper left corner of the application window where the XComponent is located.
 
 **Since**
 

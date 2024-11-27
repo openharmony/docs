@@ -85,7 +85,7 @@ HiLog模块实现日志打印功能。
 
 **描述**
 
-字符串常量，标识调用所在的类或者业务。
+字符串常量，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。
 
 **起始版本：** 8
 
@@ -247,7 +247,7 @@ typedef void(* LogCallback) (const LogType type, const LogLevel level, const uns
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
 | domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
-| tag | 日志TAG，字符串，标识调用所在的类或者业务。 | 
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 | 
 | msg | 日志内容，格式化之后的日志字符串。 | 
 
 
@@ -355,7 +355,7 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
 | domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
-| tag | 日志TAG，字符串，标识调用所在的类或者业务。 | 
+| tag | 日志TAG，字符串，标识调用所在的类或者业务。 tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。| 
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
 

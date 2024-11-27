@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+允许对三方应用进程设置保活。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.ACCESS_BBOX_DIR
 
 允许系统应用读取bbox路径下的日志文件。
@@ -84,6 +96,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.ACCESS_LEARN_MORE_DIALOG
+
+允许系统应用拉起“进一步了解”的展示弹窗，获取更多详细信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ### ohos.permission.MANAGE_SETTINGS
 
@@ -480,6 +504,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.RECEIVE_ENTERPRISE_POLICY_EVENT
+
+允许系统应用订阅企业设备管理策略事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
 
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
@@ -1519,7 +1555,7 @@
 
 ### ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-允许应用发送代理通知
+允许应用发送代理通知。
 
 **权限级别**：system_core
 
@@ -2565,7 +2601,7 @@
 
 ### ohos.permission.SET_ADVANCED_SECURITY_MODE
 
-允许应用修改高级安全模式配置。
+允许应用修改坚盾守护模式配置。
 
 权限级别: system_core
 
@@ -2663,7 +2699,7 @@
 
 ### ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
-允许系统应用打开高级安全模式配置界面。
+允许系统应用打开坚盾守护模式配置界面。
 
 **权限级别**：system_basic
 
@@ -3913,6 +3949,232 @@
 
 **起始版本**：12
 
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+允许系统应用订阅备份框架开始恢复的事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.READ_WRITE_USB_DEV
+
+允许应用连接设备，并通过USB调试读写该设备。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.READ_WRITE_USER_FILE
+
+允许应用访问并修改用户目录下的文件。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.READ_WEATHER_DATA
+
+允许应用读取天气数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.ACCESS_MCU_LOG_DIR
+
+允许系统应用访问MCU（microcontroller unit）日志目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+允许应用/服务在后台发起用户身份认证请求。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+允许应用创建或删除恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+允许应用使用恢复密钥重设锁屏密码或恢复用户数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+允许应用获取恢复密钥的简要信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.ACCESS_VIRTUAL_KEYBOARD
+
+允许应用/服务更新/查询虚拟键盘状态。
+
+通过该权限，应用可以更新虚拟键盘状态，服务可以查询虚拟键盘状态。当前仅2in1设备场景下可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.READ_APP_LOCK
+
+允许系统应用读取应用锁状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.WRITE_APP_LOCK
+
+允许系统应用修改应用锁状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+允许应用访问应用锁。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+
+允许应用禁用本应用的代码运行时完整性保护。
+
+针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+
+允许应用申请可写可执行匿名内存。
+
+针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+
+允许应用设置或移除其使用UDMF支持的数据分享范围。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+允许应用设置或移除剪贴板数据的可粘贴范围。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4135,17 +4397,29 @@
 
 **起始版本**：11
 
-### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+### ohos.permission.ACCESS_SUPER_HUB
 
-允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
+允许应用拉起"中转站"。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：12
+
+### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
+
+允许UIExtensionAbility显示在锁屏之上。
 
 **权限级别**：system_core
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+**ACL使能**：false
 
-**起始版本**：12
+**起始版本**：14
 
 ## user_grant，允许ACL跨级申请
 
@@ -4454,3 +4728,17 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+允许应用获取屏幕图像。
+
+应用获取此权限后，可进行截屏、录屏等操作。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：14

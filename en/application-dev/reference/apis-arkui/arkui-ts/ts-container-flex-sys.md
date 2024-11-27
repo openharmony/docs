@@ -1,6 +1,6 @@
 # Flex (System API)
 
-The **\<Flex>** component allows for flexible layout of child components.
+The **Flex** component allows for flexible layout of child components.
 
 > **NOTE**
 >

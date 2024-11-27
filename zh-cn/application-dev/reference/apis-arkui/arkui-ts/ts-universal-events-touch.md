@@ -40,8 +40,7 @@ onTouch(event: (event: TouchEvent) => void): T
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Checkbox、CheckboxGroup、Rating、Radio、Toggle、Hyperlink。暂不支持异步调用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-
+| preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ### getHistoricalPoints<sup>10+</sup>
 
@@ -90,8 +89,6 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大值越大。|
 | timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
 ## 示例
-
-### 示例1
 
 ```ts
 // xxx.ets
@@ -146,47 +143,3 @@ struct TouchExample {
 ```
 
 ![zh-cn_image_0000001209874754](figures/zh-cn_image_0000001209874754.gif)
-
-### 示例2
-该示例实现了Checkbox组件TouchEvent支持preventDefault，如果阻止，有按压态效果但无法选中。
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CheckboxExample {
-  @State isTouchPreventDefault: boolean = true;
-
-  build() {
-    Row() {
-      Column() {
-        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Checkbox({ name: 'Checkbox', group: 'checkboxGroup' })
-            .shape(CheckBoxShape.CIRCLE)
-            .onChange((value: boolean) => {
-              console.info('Checkbox change is' + value)
-            })
-            .onTouch((event) => {
-              if (event != undefined && this.isTouchPreventDefault) {
-                try {
-                  event.preventDefault();
-                } catch (e) {
-                  console.log("onTouch ErrorCode" + JSON.stringify(e))
-                  console.log("onTouch ErrorMessage" + e.message)
-                }
-              }
-            })
-            .mark({
-              strokeColor: Color.Black,
-              size: 50,
-              strokeWidth: 5
-            })
-            .width(30)
-            .height(30)
-          Text('Checkbox').fontSize(20)
-        }.padding(15)
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-![](figures/checkbox_5.gif)

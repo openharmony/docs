@@ -15,80 +15,37 @@ If synchronous tasks are independent of each other, you are advised to use **Tas
 
 > **NOTE**
 >
-> Due to memory isolation between different threads in the [Actor model](actor-model-development-samples.md), common singletons cannot be used across threads. This issue can be solved by exporting a singleton through the sendable module.
+> Due to the memory isolation feature between different threads in the [Actor model](multi-thread-concurrency-overview.md#actor-model), common singletons cannot be used between different threads. This issue can be solved by exporting a singleton through the sendable module.
 
-1. Define a concurrency function that internally calls the synchronous methods.
+1. Define concurrent functions to implement service logic.
 
-2. Create a [task](../reference/apis-arkts/js-apis-taskpool.md#task), call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) to execute the task, and perform operations on the result returned by the task.
+2. Create a task [Task](../reference/apis-arkts/js-apis-taskpool.md#task) and execute the task through the [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) interface.
 
-3. Perform concurrent operations.
+3. Perform operations on the task result.
 
-Simulate a singleton class that contains synchronous calls.
-
-
-```ts
-// Handle.ets code
-"use shared"
-
-@Sendable
-export default class Handle {
-  private static instance: Handle = new Handle();
-  static getInstance(): Handle {
-    // Return a singleton object.
-    return Handle.instance;
-  }
-
-  static syncGet(): void {
-    // Synchronous getter.
-  }
-
-  static syncSet(num: number): number {
-    // Simulate synchronization step 1.
-    console.info("taskpool: this is 1st print!");
-    // Simulate synchronization step 2.
-    console.info("taskpool: this is 2nd print!");
-    return ++num;
-  }
-
-  static syncSet2(num: number): number {
-    // Simulate synchronization step 1.
-    console.info("taskpool: this is syncSet2 1st print!");
-    // Simulate synchronization step 2.
-    console.info("taskpool: this is syncSet2 2nd print!");
-    return ++num;
-  }
-}
-```
-
-
-In the following example, **TaskPool** is used to call related synchronous methods. Specifically, define the concurrent function **func**, which is decorated using the [@Concurrent decorator](../arkts-utils/arkts-concurrent.md). Then define the **asyncGet** function, which is used to create a task, execute the task, and print the returned result. Finally, call the **asyncGet** function in the main thread and observe the execution process.
+In the following example, the service uses TaskPool to call the code of the related synchronization method. Define the concurrent function taskpoolFunc first. Note that the function must be decorated by the [@Concurrent decorator](taskpool-introduction.md#concurrent-decorator). Define the mainFunc function. This function is used to create and execute a task and perform operations on the returned result of the task.
 
 
 ```ts
 // Index.ets code
 import { taskpool} from '@kit.ArkTS';
-import Handle from './Handle'; // Return a static handle.
 
-// Step 1: Define a concurrency function that internally calls the synchronous methods.
+// Step 1: Define a concurrent function to implement the service logic.
 @Concurrent
-async function func(num: number): Promise<number> {
-  // Call the synchronous wait implemented in a static class object.
-  // Call syncSet and use its result as an input parameter of syncSet2 to simulate the synchronous call logic.
-  let tmpNum: number = Handle.syncSet(num);
-  console.info("this is Child_Thread")
-  return Handle.syncSet2(tmpNum);
+async function taskpoolFunc(num: number): Promise<number> {
+  // Implement the corresponding function based on the service logic.
+  let tmpNum: number = num + 100;
+  return tmpNum;
 }
 
-// Step 2: Create and execute a task.
-async function asyncGet(): Promise<void> {
-  // Create task and task2 and pass in the function func.
-  let task: taskpool.Task = new taskpool.Task(func, 1);
-  let task2: taskpool.Task = new taskpool.Task(func, 2);
-  // Execute task and task2 synchronously by using await.
-  let res: number = await taskpool.execute(task) as number;
+async function mainFunc(): Promise<void> {
+  // Step 2: Create and execute a task.
+  let task1: taskpool.Task = new taskpool.Task(taskpoolFunc, 1);
+  let res1: number = await taskpool.execute(task1) as number;
+  let task2: taskpool.Task = new taskpool.Task(taskpoolFunc, res1);
   let res2: number = await taskpool.execute(task2) as number;
-  // Print the task result.
-  console.info("taskpool: task res is: " + res);
+  // Step 3: Perform operations on the returned task result.
+  console.info("taskpool: task res1 is: " + res1);
   console.info("taskpool: task res2 is: " + res2);
 }
 
@@ -104,10 +61,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(async () => {
-            // Step 3: Perform concurrent operations.
-            asyncGet();
-            let num: number = Handle.syncSet(100);
-            console.info("this is Main_Thread!")
+            mainFunc();
           })
       }
       .width('100%')
@@ -122,7 +76,7 @@ struct Index {
 
 Use **Worker** when you want to schedule a series of synchronous tasks using the same handle or depending on the same class object.
 
-1. Create a **Worker** object in the main thread and receive messages from the worker thread.
+1. Create a **Worker** object in the main thread and receive messages from the worker thread. DevEco Studio supports one-click Worker generation. Right-click any position in the {moduleName} directory and choose New > Worker from the shortcut menu to automatically generate the Worker template file and configuration information.
 
     ```ts
     // Index.ets

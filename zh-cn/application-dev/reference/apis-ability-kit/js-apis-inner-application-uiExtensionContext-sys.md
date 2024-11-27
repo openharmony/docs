@@ -55,7 +55,7 @@ startAbilityForResultAsCaller(want: Want, options?: StartOptions): Promise&lt;Ab
 | -------- | ------------------------------------------------------- |
 | 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist.                   |
-| 16000004 | Can not start invisible component.                      |
+| 16000004 | Failed to start the invisible ability.                      |
 | 16000050 | Internal error.                                         |
 | 16000073 | The app clone index is invalid. |
 

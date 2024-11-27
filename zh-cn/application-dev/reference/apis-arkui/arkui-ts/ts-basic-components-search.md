@@ -12,7 +12,7 @@
 
 ## 接口
 
-Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })
+Search(options?: SearchOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -22,8 +22,20 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | 参数名      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
+| options       | [SearchOptions](#searchoptions14对象说明)| 否   | 搜索框组件初始化选项 |
+
+## SearchOptions<sup>14+</sup>对象说明
+
+Search初始化参数。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名      | 类型         | 必填 | 说明        |
+| ----------- | ------------- | ---- | ------------- |
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
+| placeholder | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。                                     |
 | icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
 | controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
 
@@ -118,7 +130,7 @@ textAlign(value: TextAlign)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制、剪切和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -203,7 +215,7 @@ caretStyle(value: CaretStyle)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置Search通过点击以外的方式获焦时，是否绑定输入法。
+设置Search通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -215,7 +227,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                            |
 | ------ | ------- | ---- | ----------------------------------------------- |
-| value  | boolean | 是   | Search获焦时，是否绑定输入法<br/>默认值：true。 |
+| value  | boolean | 是   | Search获焦时，是否主动拉起软键盘。<br/>默认值：true。 |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -541,6 +553,17 @@ enableHapticFeedback(isEnabled: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
 
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ## IconOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -563,6 +586,7 @@ enableHapticFeedback(isEnabled: boolean)
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
+| autoDisable<sup>14+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -570,7 +594,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                    | 描述             |
+| 名称                    | 说明        |
 | ----------------------- | ---------------- |
 | CONSTANT  | 清除按钮常显样式。 |
 | INVISIBLE | 清除按钮常隐样式。 |
@@ -582,7 +606,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 值            | 描述            |
+| 名称                 | 值            | 说明          |
 | ------------------ | ------ | ------------- |
 | NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
@@ -619,7 +643,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### onSubmit
 
-onSubmit(callback: (value: string) => void)
+onSubmit(callback: Callback\<string>)
 
 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
 
@@ -631,13 +655,31 @@ onSubmit(callback: (value: string) => void)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+| callback  | Callback\<string> | 是   | 搜索提交回调，其返回值为当前搜索框中输入的文本内容。 |
+
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: SearchSubmitCallback)
+
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调事件，提交事件时提供保持Search编辑状态的方法。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                          |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | [SearchSubmitCallback](#searchsubmitcallback14) | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调事件。 |
 
 ### onChange
 
 onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
+
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -651,7 +693,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 ### onCopy
 
-onCopy(callback: (value: string) => void)
+onCopy(callback:Callback\<string>)
 
 进行复制操作时，触发该回调。
 
@@ -661,13 +703,13 @@ onCopy(callback: (value: string) => void)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | 是   | 复制的文本内容。 |
+| 参数名    | 类型    | 必填 | 说明             |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | 是   | 复制回调，其返回值为复制的文本内容。 |
 
 ### onCut
 
-onCut(callback: (value: string) => void)
+onCut(callback:Callback\<string>)
 
 进行剪切操作时，触发该回调。
 
@@ -677,13 +719,13 @@ onCut(callback: (value: string) => void)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | 是   | 剪切的文本内容。 |
+| 参数名    | 类型    | 必填 | 说明             |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | 是   | 剪切回调，其返回值为剪切的文本内容。 |
 
 ### onPaste
 
-onPaste(callback: (value: string, event: PasteEvent) => void)
+onPaste(callback:OnPasteCallback )
 
 进行粘贴操作时，触发该回调。
 
@@ -692,15 +734,13 @@ onPaste(callback: (value: string, event: PasteEvent) => void)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| value               | string                                                       | 是   | 粘贴的文本内容。       |
-| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
+| callback | [OnPasteCallback](ts-basic-components-textinput#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
@@ -712,12 +752,11 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 | 参数名         | 类型   | 必填 | 说明                                              |
 | -------------- | ------ | ---- | ------------------------------------------------- |
-| selectionStart | number | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 是   | 文本选择区域结束位置。                            |
+| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
+onContentScroll(callback: OnContentScrollCallback)
 
 文本内容滚动时，触发该回调。
 
@@ -729,8 +768,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
-| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
+| callback | [OnContentScrollCallback](ts-basic-components-textinput#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
 
 ### onEditChange<sup>12+</sup>
 
@@ -883,10 +921,29 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >
 >  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
+## SearchSubmitCallback<sup>14+</sup>
+
+type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
+
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| searchContent | string             | 是   | 当前搜索框中输入的文本内容。 |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。    |
+
 ##  示例
 
-### 示例1
-Search基本使用示例。
+### 示例1（设置与获取光标位置）
+
+该示例通过controller实现了光标位置的设置与获取的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -932,8 +989,10 @@ struct SearchExample {
 
 ![search](figures/search.gif)
 
-### 示例2
-searchButton、searchIcon、cancelButton属性接口使用示例。
+### 示例2（设置搜索和删除图标）
+
+该示例通过searchButton、searchIcon、cancelButton属性展示了设置搜索和删除图标的效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -978,8 +1037,10 @@ struct SearchExample {
 ![searchButton](figures/searchButton.gif)
 
 
-### 示例3
-Search绑定自定义键盘使用示例。
+### 示例3（设置自定义键盘）
+
+该示例通过customKeyboard属性实现了自定义键盘的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1020,23 +1081,25 @@ struct SearchExample {
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
 
-### 示例4
-enterKeyType属性接口使用示例。
+### 示例4（设置输入法回车键类型）
+
+该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct SearchExample {
-  @State Text: string = ''
+  @State text: string = ''
   @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
   build() {
     Column({ space: 20 }) {
-      Search({ placeholder: '请输入文本', value: this.Text })
+      Search({ placeholder: '请输入文本', value: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((value: String) => {
           console.log("trigger search onsubmit" + value);
@@ -1052,9 +1115,9 @@ struct SearchExample {
 
 ![searchEnterKeyType](figures/searchEnterKey.gif)
 
-### 示例5
+### 示例5（设置文本样式）
 
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -1101,13 +1164,15 @@ struct SearchExample {
 
 ![SearchDecoration](figures/search_decoration.png)
 
-### 示例6
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+### 示例6（设置文字特性效果）
+
+该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct search {
+struct SearchExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1127,11 +1192,12 @@ struct search {
 ```
 ![fontFeature](figures/searchFontFeature.png)
 
-### 示例7
+### 示例7（自定义键盘避让）
 
-自定义键盘弹出发生避让示例。
+该示例通过自定义键盘实现了键盘避让的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct SearchExample {
@@ -1200,9 +1266,9 @@ struct SearchExample {
 
 ![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
 
-### 示例8
+### 示例8（设置文本自适应）
 
-该示例实现了使用minFontSize及maxFontSize设置文本自适应字号。
+该示例通过minFontSize、maxFontSize属性展示了文本自适应字号的效果。
 
 ```ts
 // xxx.ets
@@ -1230,9 +1296,9 @@ struct SearchExample {
 
 ![searchAdaptFont](figures/search_adapt_font.png)
 
-### 示例9
+### 示例9（支持插入和删除回调）
 
-该实例展示输入框支持插入和删除回调。
+该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的功能。
 
 ```ts
 // xxx.ets
@@ -1284,15 +1350,15 @@ struct SearchExample {
 
 ![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)
 
-### 示例10
+### 示例10（文本扩展自定义菜单）
 
-editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Index {
+struct SearchExample {
   @State text: string = 'Search editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
@@ -1350,4 +1416,44 @@ struct Index {
 ```
 
 ![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
+
+### 示例11（设置symbol类型清除按钮）
+
+该示例通过searchIcon、cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
+
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State changeValue: string = ''
+  @State submitValue: string = ''
+
+  build() {
+    Column() {
+      Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
+        .searchIcon(new SymbolGlyphModifier($r('sys.symbol.magnifyingglass')).fontColor([Color.Red]))
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: new SymbolGlyphModifier($r('sys.symbol.xmark')).fontColor([Color.Green])
+        })
+        .searchButton('SEARCH')
+        .width('95%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .margin(10)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchSymbolGlyphModifierIcon](figures/searchSymbolGlyphModifierIcon.png)
 

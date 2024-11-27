@@ -28,19 +28,19 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes | Type of the area. |
+| type | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes| Type of the area.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [window.AvoidArea](js-apis-window.md#avoidarea7) | Area where the window cannot be displayed. |
+| [window.AvoidArea](js-apis-window.md#avoidarea7) | Area where the window cannot be displayed.|
 
-**Return value** 
+**Return value**
 
-| ID | Error Message        |
+| ID| Error Message        |
 | -------- | ---------------- |
 | 401      | Parameter error. |
 
@@ -72,14 +72,14 @@ Subscribes to the event indicating changes to the area where the window cannot b
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Type  | Mandatory | Description                  |
+| Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| type     | string | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | Yes | Callback used to return the area information. **type** indicates the type of the area where the window cannot be displayed, and **area** indicates the area. |
+| type     | string | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | Yes| Callback used to return the area information. **type** indicates the type of the area where the window cannot be displayed, and **area** indicates the area.|
 
-**Error codes** 
+**Error codes**
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
 
@@ -110,14 +110,14 @@ Unsubscribes from the event indicating changes to the area where the window cann
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Type  | Mandatory | Description                  |
+| Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| type     | string | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | No | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | No| Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
-**Error codes** 
+**Error codes**
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
 
@@ -146,14 +146,14 @@ Subscribes to the window size change event.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Type                 | Mandatory | Description                  |
+| Name  | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | Yes  | Callback used to return the window size. |
+| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | Yes  | Callback used to return the window size.|
 
-**Error codes** 
+**Error codes**
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
 
@@ -184,14 +184,14 @@ Unsubscribes from the window size change event.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Type                 | Mandatory | Description                  |
+| Name  | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
-**Error codes** 
+**Error codes**
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
 
@@ -222,7 +222,7 @@ Provides the information about the host application window and the **UIExtension
 
 | Name    | Type                                | Description                            |
 | ---------- | ------------------------------------ | -------------------------------- |
-| properties | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) | Information about the host application window and the **UIExtensionComponent**. |
+| properties | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) | Information about the host application window and the **UIExtensionComponent**.|
 
 **Example**
 
@@ -247,7 +247,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 Sets whether to hide insecure windows.
 > **NOTE**
 >
-> Insecure windows refer to the windows that may block the **UIExtensionComponent**, such as global floating windows, host subwindows, and dialog box windows created by the host application, excluding the aforementioned types of windows created by system applications. When the **UIExtensionComponent** is used to present important information, you can hide insecure windows to prevent such information from being obscured. When the **UIExtensionComponent** is not displayed or is destroyed, you must unhide the insecure windows. The **UIExtensionComponent** created using the **CreateModalUIExtension** API will hide insecure windows by default, which cannot be changed manually.
+> Insecure windows refer to the windows that may block the **UIExtensionComponent**, such as global floating windows, host subwindows, and dialog box windows created by the host application, excluding the aforementioned types of windows created by system applications. When the **UIExtensionComponent** is used to present important information, you can hide insecure windows to prevent such information from being obscured. When the **UIExtensionComponent** is not displayed or is destroyed, you must unhide the insecure windows. By default, the **UIExtensionComponent** created using the **CreateModalUIExtension** API hides insecure windows. To cancel this behavior and show insecure windows, apply for the **ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS** permission and call this API to set **shouldHide** to **false**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -255,21 +255,24 @@ Sets whether to hide insecure windows.
 
 **Parameters**
 
-| Name     | Type                     | Mandatory | Description      |
+| Name     | Type                     | Mandatory| Description      |
 | ----------- | ------------------------- | ---- | ---------- |
-| shouldHide  | boolean                   | Yes  | Whether to hide insecure windows. The value **true** means to hide insecure windows, and **false** means the opposite. |
+| shouldHide  | boolean                   | Yes  | Whether to hide insecure windows. The value **true** means to hide insecure windows, and **false** means the opposite.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**Error codes** 
+**Error codes**
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
+| 1300002  | Abnormal state. Possible causes: <br> 1. Permission denied. Interface caller does not have permission "ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS". <br> 2. The UIExtension window proxy is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 
 **Example**
 
@@ -315,22 +318,22 @@ Creates a subwindow for this **UIExtensionHostWindowProxy** instance. This API u
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description          |
+| Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| name   | string | Yes  | Name of the subwindow. |
-| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | Yes | Parameters used for creating the subwindow. |
+| name   | string | Yes  | Name of the subwindow.|
+| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | Yes| Parameters used for creating the subwindow.|
 
 **Return value**
 
 | Type                            | Description                                            |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise used to return the subwindow created. |
+| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise used to return the subwindow created.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401 | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified.<br> 2. Incorrect parameters types.<br> 3. Parameter verification failed. |
 | 801 | Capability not supported on this device. |
@@ -399,19 +402,19 @@ Adds or deletes the watermark flag for this window. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type    | Mandatory | Description                                           |
+| Name| Type    | Mandatory| Description                                           |
 | ------ | ------- | --- | ------------------------------------------------ |
-| enable | boolean | Yes  | Whether to add or delete the flag. The value **true** means to add the watermark flag, and **false** means to delete the watermark flag. |
+| enable | boolean | Yes  | Whether to add or delete the flag. The value **true** means to add the watermark flag, and **false** means to delete the watermark flag.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
@@ -456,7 +459,7 @@ Defines information about the host application window and **UIExtensionComponent
 
 | Name                        | Type       | Mandatory     | Description                            |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | Yes | Position, width, and height of the **UIExtensionComponent**. |
+| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | Yes| Position, width, and height of the **UIExtensionComponent**.|
 
 ## Example
 

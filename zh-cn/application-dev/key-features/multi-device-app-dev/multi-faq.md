@@ -71,7 +71,7 @@ import { AbilityStage, Want } from "@kit.AbilityKit"
 import { deviceInfo } from'@kit.BasicServicesKit'
 
 export default class MyAbilityStage extends AbilityStage {
-    ...
+    //...
     private generateKey(): string {
         // 如果是平板，则将设备类型和毫秒级时间戳叠加作为key，保证每次启动的key都不同
         if (deviceInfo.deviceType === 'tablet') {
@@ -137,10 +137,10 @@ hdc shell reboot
 ```json
 {
   "module": {
-    ...
+    //...
     "abilities": [
       {
-        ...        
+        //...        
         "minWindowWidth": 320,
         "minWindowHeight": 240,
         "maxWindowWidth": 1440,

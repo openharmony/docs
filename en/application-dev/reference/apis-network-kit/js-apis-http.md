@@ -194,7 +194,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -224,6 +224,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 > **NOTE**
 > This API supports only receiving of data not greater than 5 MB.
+>
+> If you need to pass in cookies, add them to the **options** parameter.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -277,7 +279,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -330,6 +332,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 > **NOTE**
 > This API supports only receiving of data not greater than 5 MB.
+>
+> If you need to pass in cookies, add them to the **options** parameter.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -388,7 +392,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -498,7 +502,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -573,7 +577,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -675,7 +679,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -1093,12 +1097,12 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially. If the specified type is **Object**, the value can contain a maximum of 65536 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
-| header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| header                       | Object                          | No  | HTTP request header. If the request method is POST, PUT, DELETE, or null, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
-| usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
 | resumeFrom<sup>11+</sup> | number | No| Download start position. This field can be used only for the GET method. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | resumeTo<sup>11+</sup> | number | No| Download end position. This field can be used only for the GET method. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No| Client certificate.|
@@ -1118,14 +1122,14 @@ Defines an HTTP request method.
 
 | Name   | Value     | Description               |
 | :------ | ------- | :------------------ |
-| OPTIONS | "OPTIONS" | OPTIONS method.|
-| GET     | "GET"     | GET method.    |
-| HEAD    | "HEAD"    | HEAD method.   |
-| POST    | "POST"    | POST method.   |
-| PUT     | "PUT"     | PUT method.    |
-| DELETE  | "DELETE"  | DELETE method. |
-| TRACE   | "TRACE"   | TRACE method.  |
-| CONNECT | "CONNECT" | CONNECT method.|
+| OPTIONS | "OPTIONS" | Describes the communication options of the target resource.|
+| GET     | "GET"     | Requests the representation of the specified resource. The GET request should only retrieve data and should not contain the request content.|
+| HEAD    | "HEAD"    | Requests the same response (but does not have a response body) as the GET request.|
+| POST    | "POST"    | Submits an entity to a specified resource, which usually causes a status change on the server.|
+| PUT     | "PUT"     | Replaces all current representations of the target resource with the requested content.|
+| DELETE  | "DELETE"  | Deletes the specified resource.|
+| TRACE   | "TRACE"   | Performs a message loopback test along the path to the target resource.|
+| CONNECT | "CONNECT" | Establishes a tunnel to the server identified by the target resource.|
 
 ## ResponseCode
 
@@ -1184,7 +1188,7 @@ Defines the response to an HTTP request.
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | Yes  | Type of the return value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
 | responseCode         | [ResponseCode](#responsecode) \| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type'];<br>- status-line: header['status-line'];<br>- date: header.date/header['date'];<br>- server: header.server/header['server'];<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| cookies<sup>8+</sup> | string                                       | Yes  | Cookies returned by the server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                      |
+| cookies<sup>8+</sup> | string                                       | Yes  | Original cookies returned by the server. How to process the cookies is up to your decision.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
 | performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | Yes| Time consumed in each phase of an HTTP request.|
 
 ## ClientCert<sup>11+</sup>

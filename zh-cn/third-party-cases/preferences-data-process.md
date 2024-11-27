@@ -348,5 +348,5 @@ export default class ButtonItemData {
 ```
 
 ## 参考
-- [@ohos.data.preferences (用户首选项)](../application-dev/reference/apis-as/js-apis-data-preferences.md)
+- [@ohos.data.preferences (用户首选项)](../application-dev/reference/apis-arkdata/js-apis-data-preferences.md)
 - [通过用户首选项实现数据持久化](../application-dev/database/data-persistence-by-preferences.md)

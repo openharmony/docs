@@ -4,6 +4,7 @@ The **Preferences** module provides APIs for processing data in the form of key-
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
+The default encryption level of user preferences is EL2, and the persistent files are stored in the corresponding **el2/** directory. If there is no lock screen password, the sendable preferences can be directly accessed after the device is powered on. If there is a lock screen password, the data can be accessed only after at least one successful unlock operation (by PIN, fingerprint, or facial authentication). Avoid direct access to preferences data without the screen unlock operation. For details about how to modify the encryption level, see [Obtaining and Modifying Encryption Levels](../../../application-dev/application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
 
 > **NOTE**
 >
@@ -1874,6 +1875,29 @@ promise.then(() => {
 })
 ```
 
+### flushSync<sup>14+</sup>
+
+flushSync(): void
+
+Flushes the data in the cached **Preferences** instance to the persistent file.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**Example**
+
+```ts
+dataPreferences.flushSync();
+```
 
 ### clear
 

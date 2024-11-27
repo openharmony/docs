@@ -150,13 +150,15 @@
 
 - To read or write images or videos in the media library:
 
-  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [/<SaveButton>](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
+  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md#using-savebutton) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
   - Apply for the <!--RP5-->[ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo) or [ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)<!--RP5End--> permission to read images and videos in the media library.
 
 - To read audio clips in the media library:
 
-  Apply for the restricted permission<!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio) or [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End--> to read or write audio files in the media library.
+  Apply for the restricted permission <!--RP6-->[ohos.permission.READ_AUDIO](permissions-for-system-apps.md#ohospermissionread_audio) or [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)<!--RP6End--> to read or write audio files in the media library.
 
 - To read documents in **Files**:
 
   Use the file Picker to read documents in **Files**. For details, see [Selecting Documents](../../file-management/select-user-file.md#selecting-documents) and [Saving Documents](../../file-management/save-user-file.md#saving-documents).
+
+<!--no_check-->

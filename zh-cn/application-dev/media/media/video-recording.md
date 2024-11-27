@@ -1,4 +1,4 @@
-# 视频录制
+# 使用AVRecorder录制视频(ArkTS)
 
 当前仅支持AVRecorder开发视频录制，集成了音频捕获，音频编码，视频编码，音视频封装功能，适用于实现简单视频录制并直接得到视频本地文件的场景。
 
@@ -11,6 +11,20 @@
 ![Recording status change](figures/video-recording-status-change.png)
 
 状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
+
+
+## 申请权限
+
+在开发此功能前，开发者应根据实际需求申请相关权限：
+- 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+- 当需要使用相机拍摄时，需要申请**ohos.permission.CAMERA**相机权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+- 当需要读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
+- 当需要保存图片或视频文件时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
+  
+> **说明：** 
+> 
+> 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
+
 
 ## 开发步骤及注意事项
 
@@ -55,10 +69,13 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```
 
 3. 配置视频录制参数，调用prepare()接口，此时进入prepared状态。
+
    > **说明：**
    >
    > 配置参数需要注意：
-   > 
+   >
+   > - 配置参数之前需要确保完成对应权限的申请，请参考[申请权限](#申请权限)。
+   >
    > - prepare接口的入参avConfig中仅设置视频相关的配置参数，如示例代码所示。
    >   如果添加了音频参数，系统将认为是“音频+视频录制”。
    > 

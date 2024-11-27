@@ -9,7 +9,7 @@ This topic walks you through on how to randomly generate a DH key. For details a
 ## How to Develop
 
 1. Set the alias (**keyAlias**) of the key to generate.
-   - The key alias cannot exceed 64 bytes.
+   - The key alias cannot exceed 128 bytes.
    - For the keys generated for different services, HUKS isolates the storage paths based on the service identity information to prevent conflicts caused by the same key alias.
 
 2. Initialize the key property set. Encapsulate key properties in [HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) and use a **HuksParam** array to assign values to the **properties** field of [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions).

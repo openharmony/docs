@@ -26,11 +26,11 @@
 ``` 
 /src/main/
 ├── ets/InputMethodExtensionAbility
-│   └──model/KeyboardController.ts			# 显示键盘
-│   └──InputMethodService.ts				# 自定义类继承InputMethodExtensionAbility并加上需要的生命周期回调
-│   └──pages
-│      └── Index.ets						# 绘制键盘，添加输入删除功能
-│      └── KeyboardKeyData.ts			    # 键盘属性定义
+│       └──model/KeyboardController.ts			# 显示键盘
+│       └──InputMethodService.ts				# 自定义类继承InputMethodExtensionAbility并加上需要的生命周期回调
+│       └──pages
+│         └── Index.ets						# 绘制键盘，添加输入删除功能
+│         └── KeyboardKeyData.ts			    # 键盘属性定义
 ├── resources/base/profile/main_pages.json  
 ```
 
@@ -61,7 +61,6 @@
 2. KeyboardController.ts文件。
 
    ```ts
-   import { common } from '@kit.AbilityKit';
    import { display } from '@kit.ArkUI';
    import { inputMethodEngine, InputMethodExtensionContext } from '@kit.IMEKit';
    
@@ -88,7 +87,6 @@
      {
        this.unRegisterListener(); // 去注册事件监听
        if(this.panel) { // 销毁窗口
-         this.panel.hide();
          inputMethodAbility.destroyPanel(this.panel);
        }
        if(this.mContext) {
@@ -128,7 +126,7 @@
          if(this.panel) {
            await this.panel.resize(dWidth, keyHeight);
            await this.panel.moveTo(0, nonBarPosition);
-           await this.panel.setUiContent('inputMethodExtensionAbility/pages/Index');
+           await this.panel.setUiContent('InputMethodExtensionAbility/pages/Index');
          }
        });
      }
@@ -212,7 +210,7 @@
 
    ```ets
    import { numberSourceListData, sourceListType } from './keyboardKeyData';
-   import keyboardController from '../InputMethodExtensionAbility/model/KeyboardController';
+   import keyboardController from '../model/KeyboardController';
    
    @Component
    struct keyItem {
@@ -325,8 +323,8 @@
        "extensionAbilities": [
          {
            "description": "inputMethod",
-           "icon": "$media:icon",
-           "name": "InputMethodExtAbility",
+           "name": "InputMethodExtensionAbility",       
+           "icon": "$media:app_icon",
            "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ts",
            "type": "inputMethod",
            "exported": true,

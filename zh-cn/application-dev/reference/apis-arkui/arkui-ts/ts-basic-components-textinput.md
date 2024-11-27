@@ -47,6 +47,8 @@ TextInput(value?: TextInputOptions)
 >  
 >  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
 >
+>  当输入框设置padding为0时，可设置borderRadius为0避免光标被截断。
+>
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### type
@@ -154,8 +156,6 @@ fontColor(value: ResourceColor)
 
 设置字体颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -168,11 +168,9 @@ fontColor(value: ResourceColor)
 
 ### fontSize
 
-fontSize(value: number | string | Resource)
+fontSize(value: Length)
 
 设置字体大小。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -180,17 +178,15 @@ fontSize(value: number | string | Resource)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
 fontStyle(value: FontStyle)
 
 设置字体样式。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -208,8 +204,6 @@ fontWeight(value: number | FontWeight | string)
 
 设置文本的字体粗细，设置过大可能会在不同字体下有截断。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -218,15 +212,13 @@ fontWeight(value: number | FontWeight | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
 
 ### fontFamily
 
-fontFamily(value: string | Resource)
+fontFamily(value: ResourceStr)
 
 设置字体列表。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -234,13 +226,13 @@ fontFamily(value: string | Resource)
 
 **参数：** 
 
-| 参数名 | 类型                                                 | 必填 | 说明                                                         |
-| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| 参数名 | 类型                                   | 必填 | 说明                                                         |
+| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
-inputFilter(value: ResourceStr, error?: (value: string) => void)
+inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
 
@@ -255,13 +247,13 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 | 参数名 | 类型                                   | 必填 | 说明                               |
 | ------ | -------------------------------------- | ---- | ---------------------------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 正则表达式。                       |
-| error  | (value: string) => void                | 否   | 正则匹配失败时，返回被过滤的内容。 |
+| error  | Callback\<string>                | 否   | 正则匹配失败时，返回被过滤的内容。 |
 
 ### copyOption<sup>9+</sup>
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -397,7 +389,7 @@ showError(value?: ResourceStr | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
-当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2设置下划线)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -449,7 +441,7 @@ passwordIcon(value: PasswordIcon)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置TextInput通过点击以外的方式获焦时，是否绑定输入法。
+设置TextInput通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -461,7 +453,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -560,7 +552,7 @@ enableAutoFill(value: boolean)
 
 passwordRules(value: string)
 
-定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
+定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。<!--RP1--><!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -574,7 +566,7 @@ passwordRules(value: string)
 
 ### cancelButton<sup>11+</sup>
 
-cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
+cancelButton(options: CancelButtonOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
 
@@ -586,7 +578,7 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+| options  | [CancelButtonOptions](ts-basic-components-search#cancebuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 
 ### selectAll<sup>11+</sup>
 
@@ -963,14 +955,40 @@ enableHapticFeedback(isEnabled: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
 
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
+### cancelButton<sup>14+</sup>
+
+cancelButton(value: CancelButtonSymbolOptions)
+
+设置右侧清除按钮样式。不支持内联模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                          | 描述                                                         |
+| 名称                          | 说明                                                     |
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Password                      | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Password                      | 密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Email                         | 邮箱地址输入模式。<br/>支持数字、字母、下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Number                        | 纯数字输入模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PhoneNumber<sup>9+</sup>      | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -988,7 +1006,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 值   | 描述                                                         |
+| 名称                       | 值   | 说明                                                         |
 | -------------------------- | ---- | ------------------------------------------------------------ |
 | USER_NAME                  | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
 | PASSWORD                   | 1    | 【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。 |
@@ -1018,9 +1036,9 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                                       |
-| ------- | ---------------------------------------- |
-| Default | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。      |
+| 名称    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Default | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
 | Inline  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 ## PasswordIcon<sup>10+</sup>对象说明
@@ -1034,6 +1052,8 @@ enableHapticFeedback(isEnabled: boolean)
 | onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
+
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -1043,6 +1063,8 @@ enableHapticFeedback(isEnabled: boolean)
 onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
+
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1056,7 +1078,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 ### onSubmit
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void)
+onSubmit(callback:OnSubmitCallback)
 
 按下输入法回车键触发该回调。
 
@@ -1068,8 +1090,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEve
 
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
-| event<sup>11+</sup> | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
+| callback            | [OnSubmitCallback](#onsubmitcallback14对象说明) | 是   | 提交回调。 |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -1089,9 +1110,9 @@ onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ### onEditChange<sup>8+</sup>
 
-onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
+onEditChange(callback:Callback\<boolean>)
 
-输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1101,11 +1122,11 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 | 参数名    | 类型    | 必填 | 说明                 |
 | --------- | ------- | ---- | -------------------- |
-| isEditing | boolean | 是   | 为true表示正在输入。 |
+| callback | Callback\<boolean> | 是   | 输入状态变化回调，返回值为true表示正在输入。 |
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCopy(callback:Callback\<string>)
 
 进行复制操作时，触发该回调。
 
@@ -1117,11 +1138,11 @@ onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| value | string | 是   | 复制的文本内容。 |
+| callback | Callback\<string> | 是   | 复制回调，其返回值为复制的文本内容。 |
 
 ### onCut<sup>8+</sup>
 
-onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
+onCut(callback:Callback\<string>)
 
 进行剪切操作时，触发该回调。
 
@@ -1133,11 +1154,11 @@ onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| value | string | 是   | 剪切的文本内容。 |
+| callback | Callback\<string> | 是   | 剪切回调，其返回值为剪切的文本内容。 |
 
 ### onPaste<sup>8+</sup>
 
-onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
+onPaste(callback:OnPasteCallback )
 
 进行粘贴操作时，触发该回调。
 
@@ -1146,15 +1167,13 @@ onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&n
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| value               | string                                                       | 是   | 粘贴的文本内容。       |
-| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
+| callback | [OnPasteCallback](#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
@@ -1166,12 +1185,11 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 | 参数名         | 类型   | 必填 | 说明                                    |
 | -------------- | ------ | ---- | --------------------------------------- |
-| selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
-| selectionEnd   | number | 是   | 所选文本的结束位置。                    |
+| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
+onContentScroll(callback: OnContentScrollCallback)
 
 文本内容滚动时，触发该回调。
 
@@ -1183,8 +1201,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
-| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
+| callback | [OnContentScrollCallback](#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
 
 ### onSecurityStateChange<sup>12+</sup>
 
@@ -1367,7 +1384,7 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型  | 必填   | 说明 |
+| 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | text              | string     | 是   | 输入框文本内容。                                   |
 
@@ -1381,10 +1398,80 @@ keepEditableState(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+## OnPasteCallback<sup>14+</sup>对象说明
+
+type OnPasteCallback = (content: string, event: PasteEvent) => void
+
+粘贴回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名              | 类型                                                         | 必填 | 说明                   |
+| ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| content               | string                                                       | 是   | 粘贴的文本内容。       |
+| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
+
+## OnSubmitCallback<sup>14+</sup>对象说明
+
+type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
+
+提交回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名              | 类型                                             | 必填 | 说明                                                         |
+| ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
+| event | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
+
+## OnTextSelectionChangeCallback<sup>14+</sup>对象说明
+
+type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: number) => void
+
+文本选择变化回调或光标位置变化回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名         | 类型   | 必填 | 说明                                    |
+| -------------- | ------ | ---- | --------------------------------------- |
+| selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
+| selectionEnd   | number | 是   | 所选文本的结束位置。                    |
+
+## OnContentScrollCallback<sup>14+</sup>对象说明
+
+type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => void
+
+文本内容滚动回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型   | 必填 | 说明                               |
+| ------------ | ------ | ---- | ---------------------------------- |
+| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
+| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
+
 ## 示例
 
-### 示例1
-TextInput基本使用示例。
+### 示例1（设置与获取光标位置）
+
+该示例通过controller实现了光标位置的设置与获取的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1459,17 +1546,19 @@ struct TextInputExample {
 
 ![TextInput](figures/TextInput.png)
 
-### 示例2
-passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
+### 示例2（设置下划线）
+
+该示例通过showUnderline、showError、showUnit、passwordIcon属性展示了下划线在不同场景的效果。
+
 ```ts
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1: Resource = $r('app.media.onIcon')
-  @State PassWordSrc2: Resource = $r('app.media.offIcon')
-  @State TextError: string = ''
-  @State Text: string = ''
-  @State NameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.ImageOne')
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo')
+  @State textError: string = ''
+  @State text: string = ''
+  @State nameText: string = 'test'
 
   @Builder itemEnd() {
     Select([{ value: 'KB' },
@@ -1497,47 +1586,63 @@ struct TextInputExample {
       // 自定义密码显示图标
       TextInput({ placeholder: 'user define password icon' })
         .type(InputType.Password)
-        .width(380)
+        .width(350)
         .height(60)
-        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
+        .passwordIcon({ onIconSrc: this.passWordSrc1, offIconSrc: this.passWordSrc2 })
       // 下划线模式
       TextInput({ placeholder: 'underline style' })
         .showUnderline(true)
-        .width(380)
+        .width(350)
         .height(60)
         .showError('Error')
         .showUnit(this.itemEnd)
 
-      Text(`用户名：${this.Text}`)
-        .width('95%')
-      TextInput({ placeholder: '请输入用户名', text: this.Text })
+      Text(`用户名：${this.text}`)
+        .width(350)
+      TextInput({ placeholder: '请输入用户名', text: this.text })
         .showUnderline(true)
-        .width(380)
-        .showError(this.TextError)
+        .width(350)
+        .showError(this.textError)
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
-          if (this.Text == this.NameText) {
-            this.TextError = ''
+          if (this.text == this.nameText) {
+            this.textError = ''
           } else {
-            this.TextError = '用户名输入错误'
-            this.Text = ''
+            this.textError = '用户名输入错误'
+            this.text = ''
             // 调用keepEditableState方法，输入框保持编辑态
             event.keepEditableState()
           }
         })
+      // 设置下划线颜色
+      TextInput({ placeholder: '提示文本内容' })
+        .width(350)
+        .showUnderline(true)
+        .underlineColor({
+          normal: Color.Orange,
+          typing: Color.Green,
+          error: Color.Red,
+          disable: Color.Gray
+        });
+      TextInput({ placeholder: '提示文本内容' })
+        .width(350)
+        .showUnderline(true)
+        .underlineColor(Color.Gray);
 
-    }.width('100%')
+    }.width('100%').margin({ top: 10 })
   }
 }
 ```
 
-![TextInputError](figures/TextInputError.png)
+![TextInputError](figures/TextInputUnderline.png)
 
-### 示例3
-TextInput绑定自定义键盘使用示例。
+### 示例3（设置自定义键盘）
+
+该示例通过customKeyboard属性实现了自定义键盘的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1578,14 +1683,15 @@ struct TextInputExample {
 
 ![customKeyboard](figures/textInputCustomKeyboard.png)
 
+### 示例4（设置右侧清除按钮样式）
 
-### 示例4
-cancelButton属性接口使用示例。
+该示例通过cancelButton属性展示了自定义右侧清除按钮样式的效果。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct ClearNodeExample {
+struct TextInputExample {
   @State text: string = ''
   controller: TextInputController = new TextInputController()
 
@@ -1612,8 +1718,10 @@ struct ClearNodeExample {
 
 ![cancelButton](figures/TextInputCancelButton.png)
 
-### 示例5
-TextInput计数器使用示例。
+### 示例5（设置计数器）
+
+该示例通过maxLength、showCounter、showUnderline属性实现了计数器的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1645,13 +1753,14 @@ struct TextInputExample {
 ![TextInputCounter](figures/TextInputShowCounter.jpg)
 
 
-### 示例6
-本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX。
+### 示例6（电话号码格式化）
+
+该示例通过onChange回调实现了电话号码格式化为XXX XXXX XXXX的功能。
 
 ```ts
 @Entry
 @Component
-struct phone_example {
+struct TextInputExample {
   @State submitValue: string = ''
   @State text: string = ''
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
@@ -1791,37 +1900,9 @@ struct phone_example {
 ```
 ![phone_example](figures/phone_number.PNG)
 
-### 示例7
+### 示例7（设置文本断行规则）
 
-本示例展示如何在下划线开启时，设置下划线颜色。
-
-```ts
-@Entry
-@Component
-struct Index {
-
-  build() {
-    Row() {
-      Column() {
-        TextInput({placeholder:'提示文本内容'})
-          .showUnderline(true)
-          .underlineColor({normal:Color.Orange,typing:Color.Green,error:Color.Red,disable:Color.Gray});
-        TextInput({placeholder:'提示文本内容'})
-          .showUnderline(true)
-          .underlineColor(Color.Gray);
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![UnderlineColor](figures/UnderlineColor.png)
-
-
-### 示例8
-示例展示设置不同wordBreak属性的TextInput样式。
+该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -1867,9 +1948,9 @@ struct TextInputExample {
 ```
 ![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
 
-### 示例9
+### 示例8（设置文本样式）
 
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
 @Entry
@@ -1914,26 +1995,25 @@ struct TextInputExample {
 
 ![TextInputDecoration](figures/textinput_decoration.png)
 
-### 示例10
+### 示例9（设置文字特性效果）
 
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
 @Entry
 @Component
-struct textInput {
+struct TextInputExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
-
   build() {
-    Column(){
-      TextInput({text: this.text1})
+    Column() {
+      TextInput({ text: this.text1 })
         .fontSize(20)
-        .margin({top:200})
+        .margin({ top: 200 })
         .fontFeature("\"ss01\" on")
-      TextInput({text : this.text2})
-        .margin({top:10})
+      TextInput({ text: this.text2 })
+        .margin({ top: 10 })
         .fontSize(20)
         .fontFeature("\"ss01\" off")
     }
@@ -1945,29 +2025,32 @@ struct textInput {
 
 ![fontFeature](figures/textInputFontFeature.png)
 
-### 示例11
+### 示例10（自定义键盘避让）
 
-自定义键盘弹出发生避让示例。
+该示例通过自定义键盘实现了键盘避让的效果。
 
 ```ts
 @Entry
 @Component
-struct Input {
+struct TextInputExample {
   controller: TextInputController = new TextInputController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State supportAvoidance: boolean = true
+
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
@@ -1978,18 +2061,19 @@ struct Input {
       }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
     }.backgroundColor(Color.Gray)
   }
+
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -1997,10 +2081,12 @@ struct Input {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      TextInput({ controller: this.controller, text: this.inputValue })
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+      .padding({ bottom: 50 })
+
+      TextInput({ controller: this.controller, text: this.inputValue })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
+        .margin(10)
+        .border({ width: 1 })
 
     }
   }
@@ -2009,9 +2095,9 @@ struct Input {
 
 ![CustomTextInputType](figures/textInputCustomKeyboard.gif)
 
-### 示例12
+### 示例11（设置文本自适应）
 
-该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性实现了文本自适应字号的功能。
 
 ```ts
 @Entry
@@ -2021,22 +2107,31 @@ struct TextInputExample {
     Row() {
       Column() {
         Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'This is the text without the height adaptive policy set'})
+        TextInput({ text: 'This is the text without the height adaptive policy set' })
           .width('80%').height(50).borderWidth(1).margin(1)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
@@ -2051,57 +2146,50 @@ struct TextInputExample {
 
 ![TextInputAdaptFont](figures/textinput_adapt_font.png)
 
-### 示例13
-lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+### 示例12（设置折行规则）
+
+该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
 
 ```ts
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextInputExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextInput({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .maxLines(5)
+        .maxLines(12)
         .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.PNG)
+![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.gif)
 
-### 示例14
-
-该实例展示输入框支持插入和删除回调。
-
+### 示例13（支持插入和删除回调）
+该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的效果。
 ```ts
 // xxx.ets
 @Entry
@@ -2152,9 +2240,9 @@ struct TextInputExample {
 
 ![TextInputInsertAndDelete](figures/TextInputInsertAndDelete.PNG)
 
-### 示例15
+### 示例14（文本扩展自定义菜单）
 
-editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
@@ -2220,3 +2308,29 @@ struct TextInputExample {
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
 
+### 示例15（设置symbol类型清除按钮）
+
+该示例通过cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State text: string = ''
+  symbolModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular)
+
+  build() {
+    Column() {
+      TextInput({ text: this.text, placeholder: 'input your word...' })
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: this.symbolModifier
+        })
+    }
+  }
+}
+```
+
+![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)

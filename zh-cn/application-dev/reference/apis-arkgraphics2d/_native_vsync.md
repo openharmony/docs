@@ -43,10 +43,12 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeVSync_Create](#oh_nativevsync_create) (const char \*name, unsigned int length) | 创建一个OH_NativeVSync实例，每次调用都会产生一个新的实例。 |
+| [OH_NativeVSync](#oh_nativevsync) \* [OH_NativeVSync_Create_ForAssociatedWindow](#oh_nativevsync_create_forassociatedwindow) (uint64_t windowID, const char \*name, unsigned int length) | 创建一个和窗口绑定的OH_NativeVSync实例，每次调用都会产生一个新的实例。 | 
 | [OH_NativeVSync_Destroy](#oh_nativevsync_destroy) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync) | 销毁OH_NativeVSync实例。 |
 | int [OH_NativeVSync_RequestFrame](#oh_nativevsync_requestframe) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | 请求下一次vsync信号，当信号到来时，调用回调函数callback。 如果在同一帧内中多次调用此接口，则只会触发最后一个回调。 | 
 | int [OH_NativeVSync_RequestFrameWithMultiCallback](#oh_nativevsync_requestframewithmulticallback) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | 请求下一次vsync信号，当信号到来时，调用回调函数callback。 如果在同一帧内中多次调用此接口，每一次传入的callback都会被执行。 | 
 | [OH_NativeVSync_GetPeriod](#oh_nativevsync_getperiod) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, long long \*period) |获取vsync周期。|
+| int [OH_NativeVSync_DVSyncSwitch](#oh_nativevsync_dvsyncswitch) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, bool enable) | 启用DVSync以提高自绘制动画场景的流畅性。 DVSync是Decoupled VSync的缩写，它是一种与硬件VSync解耦的帧时序管理策略。<br/>DVSync通过提前发送带有未来时间戳的VSync信号驱动后续动画帧的提前绘制，这些帧会被帧缓冲队列缓存；DVSync通过缓存的帧减少未来可能发生的丢帧，进而提高动画场景的流畅性。<br/>因为DVSync需要占用空闲的自绘制帧缓冲用于缓存提前绘制的动画帧，用户需要确保至少有一个空闲的帧缓冲区，否则不建议启用此功能。<br/>启用DVSync后，用户需要正确响应提前发送的VSync信号，并在前一个VSync对应的动画帧完成后再请求下一个VSync，且自绘制帧需要携带与VSync一致的时间戳。<br/>在动画结束之后，用户需要关闭DVSync。<br/>在不支持DVSync的平台或者如果有另一个应用程序已经启用了DVSync，则当前的启用操作将不会生效，应用程序仍将收到正常的VSync信号。 | 
 
 ## 类型定义说明
 
@@ -80,7 +82,7 @@ VSync回调函数类型。
 
 | 名称 | 描述 |
 | -------- | -------- |
-| timestamp | VSync时间戳。 |
+| timestamp | VSync使用CLOCK_MONOTONIC获取的系统时间戳, 单位为纳秒。 |
 | data | 用户自定义数据。 |
 
 
@@ -136,6 +138,44 @@ enum OHNativeErrorCode
 
 ## 函数说明
 
+
+### OH_NativeVSync_DVSyncSwitch()
+
+```
+int OH_NativeVSync_DVSyncSwitch (OH_NativeVSync* nativeVsync, bool enable )
+```
+
+**描述**
+
+启用DVSync以提高自绘制动画场景的流畅性。 DVSync是Decoupled VSync的缩写，它是一种与硬件VSync解耦的帧时序管理策略。
+
+DVSync通过提前发送带有未来时间戳的VSync信号驱动后续动画帧的提前绘制，这些帧会被帧缓冲队列缓存；DVSync通过缓存的帧减少未来可能发生的丢帧，进而提高动画场景的流畅性。
+
+因为DVSync需要占用空闲的自绘制帧缓冲用于缓存提前绘制的动画帧，用户需要确保至少有一个空闲的帧缓冲区，否则不建议启用此功能。
+
+启用DVSync后，用户需要正确响应提前发送的VSync信号，并在前一个VSync对应的动画帧完成后再请求下一个VSync，且自绘制帧需要携带与VSync一致的时间戳。
+
+在动画结束之后，用户需要关闭DVSync。
+
+在不支持DVSync的平台或者如果有另一个应用程序已经启用了DVSync，则当前的启用操作将不会生效，应用程序仍将收到正常的VSync信号。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeVsync
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| nativeVsync | 一个指向OH_NativeVSync实例的指针。 | 
+| enable | 表示打开或者关闭DVSync，true表示打开，false表示关闭。 | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
+
+
+
 ### OH_NativeVSync_GetPeriod()
 
 
@@ -188,6 +228,34 @@ OH_NativeVSync* OH_NativeVSync_Create (const char * name, unsigned int length )
 **返回:**
 
 返回一个指向OH_NativeVSync实例的指针。
+
+
+### OH_NativeVSync_Create_ForAssociatedWindow()
+
+```
+OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow (uint64_t windowID, const char* name, unsigned int length )
+```
+
+**描述**
+
+创建一个和窗口绑定的OH_NativeVSync实例，每次调用都会产生一个新的实例。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeVsync
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| windowID | 表示窗口ID，窗口子进程索引标识符，可以通过[OH_NativeWindow_GetSurfaceId](_native_window.md#oh_nativewindow_getsurfaceid)接口获取。 | 
+| name | 表示一个名称，与创建的OH_NativeVSync实例关联。 | 
+| length | name的长度。 | 
+
+**返回：**
+
+返回一个指向OH_NativeVSync实例的指针。
+
 
 
 ### OH_NativeVSync_Destroy()

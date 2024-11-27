@@ -297,7 +297,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 类型                          | 说明       |
 | --------------------------- | -------- |
-| [DeviceClass](#deviceclass8deprecated) | 远程设备的类别。 |
+| [DeviceClass](#deviceclassdeprecated) | 远程设备的类别。 |
 
 **示例：**
 
@@ -332,7 +332,7 @@ let devices : Array<string> = bluetooth.getPairedDevices();
 ```
 
 
-## bluetooth.setBluetoothScanMode<sup>8+</sup><sup>(deprecated)</sup>
+## bluetooth.setBluetoothScanMode<sup>(deprecated)</sup>
 
 setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
@@ -349,7 +349,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
-| mode     | [ScanMode](#scanmode8deprecated) | 是    | 蓝牙扫描模式。                      |
+| mode     | [ScanMode](#scanmodedeprecated) | 是    | 蓝牙扫描模式。                      |
 | duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
 
 **返回值：**
@@ -384,7 +384,7 @@ getBluetoothScanMode(): ScanMode
 
 | 类型                    | 说明      |
 | --------------------- | ------- |
-| [ScanMode](#scanmode8deprecated) | 蓝牙扫描模式。 |
+| [ScanMode](#scanmodedeprecated) | 蓝牙扫描模式。 |
 
 **示例：**
 
@@ -575,7 +575,7 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。     |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam8deprecated)&gt; | 是    | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | 是    | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
 
 **返回值：**
 
@@ -609,7 +609,7 @@ off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。             |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam8deprecated)&gt; | 否    | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | 否    | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -626,7 +626,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 ```
 
 
-## bluetooth.on('bondStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetooth.on('bondStateChange')<sup>(deprecated)</sup>
 
 on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
@@ -644,7 +644,7 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#bondstateparam8deprecated)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
 
 **返回值：**
 
@@ -678,7 +678,7 @@ off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。     |
-| callback | Callback&lt;[BondStateParam](#bondstateparam8deprecated)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -782,7 +782,7 @@ sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;
 | 参数名      | 类型                          | 必填   | 说明                      |
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | 是    | 服务的名称。                  |
-| option   | [SppOption](#sppoption8deprecated)     | 是    | spp监听配置参数。              |
+| option   | [SppOption](#sppoptiondeprecated)     | 是    | spp监听配置参数。              |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，服务端Socket的id。 |
 
 **示例：**
@@ -846,7 +846,7 @@ bluetooth.sppAccept(serverNumber, acceptClientSocket);
 ```
 
 
-## bluetooth.sppConnect<sup>8+</sup><sup>(deprecated)</sup>
+## bluetooth.sppConnect<sup>(deprecated)</sup>
 
 sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -864,7 +864,7 @@ sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&
 | 参数名      | 类型                          | 必填   | 说明                             |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | device   | string                      | 是    | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| option   | [SppOption](#sppoption8deprecated)     | 是    | spp客户端连接配置参数。                  |
+| option   | [SppOption](#sppoptiondeprecated)     | 是    | spp客户端连接配置参数。                  |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。        |
 
 **示例：**
@@ -1100,7 +1100,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 | 参数名       | 类型        | 必填   | 说明                                    |
 | --------- | --------- | ---- | ------------------------------------- |
-| profileId | [ProfileId](#profileid8deprecated) | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| profileId | [ProfileId](#profileiddeprecated) | 是    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
 
 **返回值：**
 
@@ -1115,7 +1115,7 @@ let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.Profi
 ```
 
 
-## bluetooth.BLE
+## BLE
 
 ### createGattServer<sup>(deprecated)</sup>
 
@@ -1474,7 +1474,7 @@ let ret : boolean = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 
 ### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 订阅a2dp连接状态变化事件。
 
@@ -1488,7 +1488,7 @@ on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#stat
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -1507,7 +1507,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 取消订阅a2dp连接状态变化事件。
 
@@ -1521,7 +1521,7 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#st
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | 否    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -1560,7 +1560,7 @@ getPlayingState(device: string): PlayingState
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [PlayingState](#playingstate8deprecated) | 远端设备的播放状态。 |
+| [PlayingState](#playingstatedeprecated) | 远端设备的播放状态。 |
 
 **示例：**
 
@@ -1645,7 +1645,7 @@ let ret : boolean = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 
 ### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 订阅HFP连接状态变化事件。
 
@@ -1659,7 +1659,7 @@ on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#stat
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | 是    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 是    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -1679,7 +1679,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 取消订阅HFP连接状态变化事件。
 
@@ -1693,7 +1693,7 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#st
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | 否    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | 否    | 表示回调函数的入参。                               |
 
 **返回值：**
 
@@ -3243,7 +3243,7 @@ gattClient.getRssiValue().then((data : number) => {
 })
 ```
 
-## ScanMode<sup>8+</sup><sup>(deprecated)</sup>
+## ScanMode<sup>(deprecated)</sup>
 
 枚举，扫描模式。
 
@@ -3261,7 +3261,7 @@ gattClient.getRssiValue().then((data : number) => {
 | SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | 可连接general发现模式。 |
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | 可连接limited发现模式。 |
 
-## BondState<sup>8+</sup><sup>(deprecated)</sup>
+## BondState<sup>(deprecated)</sup>
 
 枚举，配对状态。
 
@@ -3277,7 +3277,7 @@ gattClient.getRssiValue().then((data : number) => {
 | BOND_STATE_BONDED  | 2    | 已配对。   |
 
 
-## SppOption<sup>8+</sup><sup>(deprecated)</sup>
+## SppOption<sup>(deprecated)</sup>
 
 描述spp的配置参数。
 
@@ -3290,10 +3290,10 @@ gattClient.getRssiValue().then((data : number) => {
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | 是    | 是    | spp单据的uuid。 |
 | secure | boolean             | 是    | 是    | 是否是安全通道。    |
-| type   | [SppType](#spptype8deprecated) | 是    | 是    | Spp链路类型。    |
+| type   | [SppType](#spptypedeprecated) | 是    | 是    | Spp链路类型。    |
 
 
-## SppType<sup>8+</sup><sup>(deprecated)</sup>
+## SppType<sup>(deprecated)</sup>
 
 枚举，Spp链路类型。
 
@@ -3663,7 +3663,7 @@ gattClient.getRssiValue().then((data : number) => {
 | serviceValue | ArrayBuffer | 是    | 是    | 表示服务数据。    |
 
 
-## PinRequiredParam<sup>8+</sup><sup>(deprecated)</sup>
+## PinRequiredParam<sup>(deprecated)</sup>
 
 描述配对请求参数。
 
@@ -3678,7 +3678,7 @@ gattClient.getRssiValue().then((data : number) => {
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
 
 
-## BondStateParam<sup>8+</sup><sup>(deprecated)</sup>
+## BondStateParam<sup>(deprecated)</sup>
 
 描述配对状态参数。
 
@@ -3693,7 +3693,7 @@ gattClient.getRssiValue().then((data : number) => {
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
 
 
-## StateChangeParam<sup>8+</sup><sup>(deprecated)</sup>
+## StateChangeParam<sup>(deprecated)</sup>
 
 描述profile状态改变参数。
 
@@ -3708,7 +3708,7 @@ gattClient.getRssiValue().then((data : number) => {
 | state    | [ProfileConnectionState](#profileconnectionstatedeprecated) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
-## DeviceClass<sup>8+</sup><sup>(deprecated)</sup>
+## DeviceClass<sup>(deprecated)</sup>
 
 描述蓝牙设备的类别。
 
@@ -3719,13 +3719,13 @@ gattClient.getRssiValue().then((data : number) => {
 
 | 名称              | 类型                                | 可读   | 可写   | 说明               |
 | --------------- | ----------------------------------- | ---- | ---- | ---------------- |
-| majorClass      | [MajorClass](#majorclass8deprecated)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
-| majorMinorClass | [MajorMinorClass](#majorminorclass8deprecated) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
+| majorClass      | [MajorClass](#majorclassdeprecated)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
+| majorMinorClass | [MajorMinorClass](#majorminorclassdeprecated) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
 | classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
 
 
 
-## MajorClass<sup>8+</sup><sup>(deprecated)</sup>
+## MajorClass<sup>(deprecated)</sup>
 
 枚举，蓝牙设备主要类别。
 
@@ -3749,7 +3749,7 @@ gattClient.getRssiValue().then((data : number) => {
 | MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。   |
 
 
-## MajorMinorClass<sup>8+</sup><sup>(deprecated)</sup>
+## MajorMinorClass<sup>(deprecated)</sup>
 
 枚举，主要次要蓝牙设备类别。
 
@@ -3848,7 +3848,7 @@ gattClient.getRssiValue().then((data : number) => {
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
 
 
-## PlayingState<sup>8+</sup><sup>(deprecated)</sup>
+## PlayingState<sup>(deprecated)</sup>
 
 枚举，蓝牙A2DP 播放状态。
 
@@ -3863,7 +3863,7 @@ gattClient.getRssiValue().then((data : number) => {
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
 
 
-## ProfileId<sup>8+</sup><sup>(deprecated)</sup>
+## ProfileId<sup>(deprecated)</sup>
 
 蓝牙profile枚举，API9新增PROFILE_HID_HOST，PROFILE_PAN_NETWORK。
 

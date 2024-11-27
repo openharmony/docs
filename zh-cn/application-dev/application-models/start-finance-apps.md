@@ -1,4 +1,4 @@
-# 拉起金融类应用
+# 拉起金融类应用（startAbilityByType）
 
 本章节介绍如何拉起金融类应用扩展面板。
 
@@ -6,10 +6,10 @@
 
 startAbilityByType接口中type字段为finance，对应的wantParam参数：
 
-| 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
+| 参数名            | 类型                                                         | 必填 | 说明 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| sceneType            | 意图取值 ：1：转账汇款 2：信用卡还款                                | number   | 否，缺省时默认为1   |
-| bankCardNo      | 银行卡卡号                                                     | string   | 否   |
+| sceneType            | number                          | 否 | 意图取值 ：1：转账汇款 2：信用卡还款。默认为1 |
+| bankCardNo      | string                                               | 否  | 银行卡卡号 |
 
 ## 拉起方开发步骤
 1. 导入ohos.app.ability.common模块。 
@@ -94,9 +94,9 @@ startAbilityByType接口中type字段为finance，对应的wantParam参数：
 
     在参数**want.parameters**中会携带Caller方传入的参数，如下表所示：
 
-    | 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
+    | 参数名          | 类型                                                         | 必填 | 说明 |
     | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | bankCardNo  | 银行卡卡号                                                     | string   | 否 |
+    | bankCardNo  | string | 否  | 银行卡卡号 |
 
     应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如转账汇款和信用卡还款，结合接收到的uri开发不同的样式页面。
 

@@ -118,7 +118,7 @@ Adds fly-in and fly-out animations to the component.
 | Name        | Type                 | Mandatory| Description                      |
 | ------------- | --------------------- | ---- | ------------------------- |
 | degree  | number         | Yes  | Degree of control over deformation of the fly-in and fly-out animations. The value range is [0, 1].<br>A value closer to 1 results in more obvious deformation.<br>If a value outside this range is provided, no fly-in and fly-out animations will be displayed.|
-| flyMode      | [FlyMode](#flymode) | Yes  | Scene mode of the fly-in and fly-out animations.<br>**BOTTOM** means that the fly-in and fly-out animations occur from the bottom of the screen,<br>and **TOP** means that the fly-in and fly-out animations occur from the top of the screen.|
+| flyMode      | [FlyMode](#flymode) | Yes  | Scene mode of the fly-in and fly-out animations.<br>**BOTTOM** means that the fly-in and fly-out animations occur from the bottom of the screen, and **TOP** means that the fly-in and fly-out animations occur from the top of the screen.|
 
 
 **Return value**
@@ -203,6 +203,20 @@ let blender : uiEffect.BrightnessBlender =
     positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
 visualEffect.backgroundColorBlender(blender)
 ```
+
+## Blender<sup>13+</sup>
+
+type Blender = BrightnessBlender
+
+Defines the blender type, which is used to describe blending effects.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+| Type                         | Description                                              |
+| ----------------------------- | ------------------------------------------------- |
+| [BrightnessBlender](#brightnessblender) | Blender with a brightening effect.|
 
 ## BrightnessBlender
 A blender that can apply the brightness effect to a component. Before calling any API in **BrightnessBlender**, you must use [createBrightnessBlender](#uieffectcreatebrightnessblender) to create a **BrightnessBlender** instance.

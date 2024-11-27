@@ -89,19 +89,17 @@ Keyboard shortcuts, as system keys, take precedence over the common key event **
 | Response to keyboard shortcuts                                  | The component responds to a keyboard shortcut when the keys specified by **keys** are pressed and the key specified by **value** triggers a down event. (Long-pressing leads to continuous response.)             | –                                       |
 | The component is hidden<br>                              | The component still responds to keyboard shortcuts.                             | –                                       |
 | The component is in the disabled state                             | The component does not respond to keyboard shortcuts.                            | –                                       |
-| 1. The keyboard shortcut is the same as an existing one (including the system-defined ones).<br>2. The **value** parameter contains multiple character keys.<br>3. The **key** parameter has a duplicate modifier key.| In these cases, the keyboard shortcut is not added, and the previously added keyboard shortcuts still work.         | Button('button1').keyboardShortcut('c',[ModifierKey.CTRL])<br>Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br>Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
+| 1. The keyboard shortcut is the same as an existing one (including the system-defined ones).<br>2. The **value** parameter contains multiple character keys.<br>3. The **key** parameter has a duplicate modifier key.| In these cases, the keyboard shortcut is not added, and the previously added keyboard shortcuts still work.         | Button('button1').keyboardShortcut(FunctionKey.F4,[ModifierKey.ALT])<br>Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br>Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
 
 ### System-defined Keyboard Shortcuts That Cannot Be Bound
 
 The following key combinations cannot function as keyboard shortcuts:
 
-- `Ctrl` + `C`
-- `Ctrl` + `A`
-- `Ctrl` + `V`
-- `Ctrl` + `X`
-- `Ctrl` + `Shift` + `Z`
-- `Ctrl` + `Z`
-- `Ctrl` + `Y`
+- `Alt` + `F4`
+- `Alt` + `Shift` + `F4`
+- `Alt` + `TAB`
+- `Alt` + `Shift` + `TAB`
+- `Ctrl` + `Shift` + `ESC`
 
 ### Predefined Key Events
 

@@ -20,6 +20,7 @@
     - [NativeWindow](_native_window.md)
     - [OH_NativeBuffer](_o_h___native_buffer.md)
     - [OH_NativeImage](_o_h___native_image.md)
+    - [NativeColorSpaceManager](_native_color_space_manager.md)
   - 头文件
     - [drawing_bitmap.h](drawing__bitmap_8h.md)
     - [drawing_brush.h](drawing__brush_8h.md)
@@ -54,6 +55,9 @@
     - [drawing_surface.h](drawing__surface_8h.md)
     - [drawing_text_blob.h](drawing__text__blob_8h.md)
     - [drawing_text_declaration.h](drawing__text__declaration_8h.md)
+    - [drawing_text_font_descriptor.h](drawing__text__font__descriptor_8h.md)
+    - [drawing_text_line.h](drawing__text__line_8h.md)
+    - [drawing_text_run.h](drawing__text__run_8h.md)
     - [drawing_text_typography.h](drawing__text__typography_8h.md)
     - [drawing_typeface.h](drawing__typeface_8h.md)
     - [drawing_types.h](drawing__types_8h.md)
@@ -64,6 +68,7 @@
     - [native_display_soloist.h](native__display__soloist_8h.md)
     - [native_image.h](native__image_8h.md)
     - [native_vsync.h](native__vsync_8h.md)
+    - [native_color_space_manager.h](native__color__space__manager_8h.md)
   - 结构体
     - [DisplaySoloist_ExpectedRateRange](_display_soloist___expected_rate_range.md)
     - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
@@ -85,6 +90,7 @@
     - [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)
     - [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)
     - [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) 
+    - [OH_Drawing_String](_o_h___drawing___string.md)
     - [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md)
     - [OH_Filter](_o_h___filter.md)
     - [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md)
@@ -100,6 +106,8 @@
     - [OHHDRMetaData](_o_h_h_d_r_meta_data.md)
     - [Region](_region.md)
     - [Rect](_rect.md)
+    - [ColorSpacePrimaries](_color_space_primaries.md)
+    - [WhitePointArray](_white_point_array.md)
 - 错误码
   - [色彩管理错误码](errorcode-colorspace-manager.md)
 

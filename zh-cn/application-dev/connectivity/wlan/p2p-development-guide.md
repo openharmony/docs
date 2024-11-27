@@ -40,7 +40,7 @@ P2P模式，主要提供了wlan设备的一种点对点连接技术，它可以�
 5. 示例代码：
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 // 创建群组，将当前设备当做GO使用时，需要该步骤
 // netId：-1表示创建临时组，下次和已连接过的设备连接，需要重新进行GO协商，以及wps秘钥协商;
@@ -86,7 +86,7 @@ try {
 6. 示例代码：
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
   
 let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
 	console.info("p2p connection change receive event: " + JSON.stringify(result));
@@ -123,7 +123,7 @@ let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
 					groupName:"",
 					goBand:0,
 				}
-				// 执行P2P连接
+				// 执行P2P连接，作为GO时不能主动发起连接
 				wifiManager.p2pConnect(config);
 			}
 		}

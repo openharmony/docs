@@ -293,6 +293,7 @@
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | 使用捕获设置捕获拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | 释放拍照输出。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持镜像拍照。 | 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | 是否启用镜像拍照。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetActiveProfile](#oh_photooutput_getactiveprofile) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_Profile](_camera___profile.md) \*\*profile) | 获取当前照片输出配置文件。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_DeleteProfile](#oh_photooutput_deleteprofile) ([Camera_Profile](_camera___profile.md) \*profile) | 删除照片配置文件实例。 | 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMovingPhotoSupported](#oh_photooutput_ismovingphotosupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | 检查是否支持动态照片。 | 
@@ -1334,7 +1335,7 @@ typedef void (*OH_PhotoOutput_OnFrameShutterEnd) (Camera_PhotoOutput* photoOutpu
 | 名称 | 描述 | 
 | -------- | -------- |
 | photoOutput | 传递回调的[Camera_PhotoOutput](#camera_photooutput)。 | 
-| Info | 回调传递的[Camera_CaptureStartInfo](_camera___capture_start_info.md)。 | 
+| Info | 回调传递的[Camera_FrameShutterInfo](_camera___frame_shutter_info.md)。 | 
 
 
 ### OH_PhotoOutput_OnFrameStart
@@ -1850,7 +1851,7 @@ enum Camera_SceneMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NORMAL_PHOTO | 普通相机模式。 | 
+| NORMAL_PHOTO | 普通拍照模式。 | 
 | NORMAL_VIDEO | 普通视频模式。 | 
 | SECURE_PHOTO | 安全相机模式。 | 
 
@@ -4559,7 +4560,7 @@ Camera_ErrorCode OH_CaptureSession_SetSessionMode(Camera_CaptureSession* session
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| sceneMode | [CaptureSession_SceneMode](#camera_scenemode-1)实例。 | 
+| sceneMode | [Camera_SceneMode](#camera_scenemode-1)实例。 | 
 
 **返回：**
 
@@ -4651,10 +4652,10 @@ Camera_ErrorCode OH_CaptureSession_SetZoomRatio(Camera_CaptureSession* session, 
 
 **参数:**
 
-| 名称 | 描述 | 
-| -------- | -------- |
-| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| zoom | 要设置的目标缩放比。 | 
+| 名称 | 描述                                                        | 
+| -------- |-----------------------------------------------------------|
+| session | [Camera_CaptureSession](#camera_capturesession)实例。        | 
+| zoom | 要设置的目标缩放比。<br>设置可变焦距比到底层生效需要一定时间，获取正确设置的可变焦距比需要等待1~2帧的时间。 | 
 
 **返回：**
 
@@ -5085,6 +5086,8 @@ Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutpu
 
 **起始版本：** 12
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -5151,6 +5154,36 @@ Camera_ErrorCode OH_PhotoOutput_IsMirrorSupported(Camera_PhotoOutput* photoOutpu
 | -------- | -------- |
 | photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例，用于检查是否支持镜像。 | 
 | isSupported | 是否支持镜像的结果。 | 
+
+**返回：**
+
+错误码[Camera_ErrorCode](#camera_errorcode-1)：
+
+- CAMERA_OK：方法调用成功。
+
+- CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+- CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
+
+
+### OH_PhotoOutput_EnableMirror()
+
+```
+Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bool enabled)
+```
+
+**描述**
+
+是否启用镜像拍照。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称          | 描述                                                      | 
+|-------------|---------------------------------------------------------|
+| photoOutput | [Camera_PhotoOutput](#camera_photooutput)实例，用于是否启用镜像拍照。 | 
+| enabled     | 是否启用镜像拍照的结果，true为开启镜像拍照，false为关闭镜像拍照。        | 
 
 **返回：**
 
@@ -5416,6 +5449,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutpu
 
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
 
+- CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
+
 
 ### OH_PhotoOutput_Release()
 
@@ -5669,6 +5704,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOut
 - CAMERA_OK：方法调用成功。
 
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+- CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
 
 
 ### OH_PreviewOutput_DeleteFrameRates()

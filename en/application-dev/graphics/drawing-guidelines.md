@@ -217,7 +217,7 @@ libnative_drawing.so
         // ...
     }
     ```
-    All callbacks of the **<XComponent>** must be initialized. You can define unnecessary callbacks as null pointers.
+    All callbacks of the **XComponent** must be initialized. You can define unnecessary callbacks as null pointers.
     ```c++
     // OH_NativeXComponent_Callback is a struct.
     OH_NativeXComponent_Callback callback;
@@ -439,11 +439,16 @@ The following describes how to use the two types of APIs to implement text drawi
 5. **Release the variables.**
 
     ```c++
+    // Destroy the typography when it is no longer needed.
     OH_Drawing_DestroyTypography(typography);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTypographyHandler(handler);
+    // Destroy the font collection when it is no longer needed.
     OH_Drawing_DestroyFontCollection(fontCollection);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTextStyle(txtStyle);
     OH_Drawing_DestroyTextStyle(txtStyle2);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     ```
 

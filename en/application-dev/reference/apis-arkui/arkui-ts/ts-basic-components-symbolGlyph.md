@@ -88,9 +88,9 @@ The **sys.symbol.ohos_lungs** icon does not support font weight setting.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description |
-| ------ | ---- | ---- | ----- |
-| value  | number \| string \| [FontWeight](ts-appendix-enums.md#fontweight) | Yes  | Font weight of the **SymbolGlyph** component.<br>Default value: **FontWeight.Normal**|
+| Name| Type                                                        | Mandatory| Description                                               |
+| ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
+| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight of the **SymbolGlyph** component.<br>Default value: **FontWeight.Normal**|
 
 ### renderingStrategy
 
@@ -177,18 +177,6 @@ Sets the symbol effect and effect trigger for the **SymbolGlyph** component.
 ## SymbolEffect<sup>12+</sup>
 
 Defines the **SymbolEffect** class.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-### constructor<sup>12+</sup>
-
-constructor()
-
-A constructor used to create a **SymbolEffect** instance, which is not animated.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -406,10 +394,6 @@ A constructor used to create a **ReplaceSymbolEffect** instance, which comes wit
 
 ## PulseSymbolEffect<sup>12+</sup>
 
-### constructor<sup>12+</sup>
-
-constructor()
-
 A constructor used to create a **PulseSymbolEffect** instance, which comes with a pulse animation effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
@@ -467,7 +451,7 @@ Enumerates symbol effect types. Once applied, the symbol effect becomes active i
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                           |
+| Name    | Description                         |
 | ------ | ----------------------------- |
 | NONE | No effect (default value).|
 | SCALE | Scale effect as a whole.                |
@@ -483,7 +467,7 @@ Enumerates the rendering modes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                           |
+| Name    | Description                         |
 | ------ | ----------------------------- |
 | SINGLE  | Single-color mode (default).<br> The default color is black, and one color can be set.<br> If multiple colors are set, only the first color takes effect.|
 | MULTIPLE_COLOR  |  Multi-color mode.<br> A maximum of three colors can be set. If only one color is set, it updates the color of the first layer, leaving other colors at their default values.<br> The sequence of color settings matches the layering order of the symbol; any colors beyond the number of symbol layers will not take effect.<br> Only color values are accepted. Opacity settings do not take effect.|

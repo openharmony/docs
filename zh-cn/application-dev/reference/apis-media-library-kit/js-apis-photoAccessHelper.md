@@ -1047,13 +1047,11 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 ```ts
 import fs from '@ohos.file.fs';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
     
     try {
-        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
         let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
             title: '123456', 
             fileNameExtension: 'jpg',
@@ -1082,6 +1080,60 @@ async function example() {
         console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
     }
     
+}
+```
+
+### grantPhotoAssetsReadPermission<sup>14+</sup>
+
+grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+<!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| srcFileUris | Array&lt;string&gt; | 是 | 需进行授权的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：** 仅支持处理图片、视频uri。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回已授权的uri列表。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+  console.info('grantPhotoAssetsReadPermissionSDemo.');
+
+  try {
+    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    // 获取需要进行授权的图片/视频uri
+    let srcFileUris: Array<string> = [
+      'file://fileUriDemo1' // 实际场景请使用真实的uri
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.grantPhotoAssetsReadPermission(srcFileUris);
+    console.info('grantPhotoAssetsReadPermissionsuccess, data is ' + desFileUris);
+  } catch (err) {
+    console.error('grantPhotoAssetsReadPermissionfailed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
 }
 ```
 
@@ -1716,6 +1768,60 @@ async function example() {
   }).catch((err: BusinessError) => {
     console.error(`getThumbnail fail with error: ${err.code}, ${err.message}`);
   });
+}
+```
+
+### clone<sup>14+</sup>
+
+clone(title: string): Promise&lt;PhotoAsset&gt;
+
+**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| title| string | 是    | 克隆后资产的标题。 title参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255。<br>- 不允许出现非法字符，包括：. .. \ / : * ? " ' ` < > \| { } [ ] |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;PhotoAsset&gt; | Promise对象，返回[PhotoAsset](#photoasset)。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs.Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { systemDateTime } from '@kit.BasicServicesKit';
+
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let title: string = systemDateTime.getTime().toString();
+    let newAsset: photoAccessHelper.PhotoAsset = await photoAsset.clone(title);
+    console.info('get new asset successfully');
+  } catch (error) {
+    console.error(`failed to get new asset. message =  ${error.code}, ${error.message}`);
+  }
 }
 ```
 
@@ -3579,6 +3685,50 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
+### saveCameraPhoto<sup>13+</sup>
+
+saveCameraPhoto(imageFileType: ImageFileType): void
+
+保存相机拍摄的照片。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| imageFileType | [ImageFileType](#imagefiletype13)  | 是   | 需要保存的类型。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.         |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { image } from '@kit.ImageKit';
+
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('saveCameraPhotoDemo');
+  try {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto(photoAccessHelper.ImageFileType.JPEG);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### discardCameraPhoto<sup>12+</sup>
 
 discardCameraPhoto(): void
@@ -3609,6 +3759,53 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
   } catch (err) {
     console.error(`apply discardCameraPhoto failed with error: ${err.code}, ${err.message}`);
   }
+}
+```
+
+### setOrientation<sup>13+</sup>
+
+setOrientation(orientation: number): void
+
+修改图片的旋转角度。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| orientation | number | 是   | 待修改的图片旋转角度，且只能为0、90、180、270。 |
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('setOrientationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setOrientation(90);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setOrientation successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setOrientation failed with error: ${err.code}, ${err.message}`);
+  });
 }
 ```
 
@@ -3856,6 +4053,10 @@ async function example() {
 
 ## MediaAssetManager<sup>11+</sup>
 
+媒体资产管理类，管理各种媒体资源的读取操作。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ### requestImage<sup>11+</sup>
 
 static requestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
@@ -3866,7 +4067,8 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于本应用保存到媒体库的图片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
@@ -3940,7 +4142,8 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源数据，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源数据，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于本应用保存到媒体库的图片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
@@ -4012,7 +4215,8 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
@@ -4088,7 +4292,8 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求视频资源数据到应用沙箱，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求视频资源数据到应用沙箱，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 对于本应用保存到媒体库的视频资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
@@ -4203,6 +4408,8 @@ static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: str
 
 加载应用沙箱的动态照片。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -4243,6 +4450,77 @@ async function example() {
 
 ```
 
+### quickRequestImage<sup>13+</sup>
+
+static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: QuickImageDataHandler&lt;image.Picture&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，快速请求图片资源。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+
+**参数：**
+
+| 参数名            | 类型                                                                                                        | 必填 | 说明                      |
+|----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
+| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
+| dataHandler    | [QuickImageDataHandler](#quickimagedatahandler13)&lt;[image.Picture](../apis-image-kit/js-apis-image.md#picture13)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](#cancelrequest12)取消请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { image } from '@kit.ImageKit';
+
+class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
+  onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
+    console.info('on image data prepared');
+  }
+}
+
+async function example() {
+  console.info('quickRequestImage');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+  }
+  const handler = new MediaHandler();
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.quickRequestImage(context, photoAsset, requestOptions, handler);
+      console.info('quickRequestImage successfully');
+  });
+}
+```
+
 ## MediaAssetDataHandler<sup>11+</sup>
 
 媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
@@ -4253,8 +4531,8 @@ async function example() {
 
 onDataPrepared(data: T, map?: Map<string, string>): void
 
-媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
-T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。
+媒体资源就绪通知，当所请求的资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。每个资源请求与回调一一对应。
+T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。其中，ArrayBuffer表示图片/视频资源数据，[ImageSource](../apis-image-kit/js-apis-image.md#imagesource)表示图片源，[MovingPhoto](#movingphoto12)表示动态照片对象，boolean表示图片/视频资源是否成功写入应用沙箱。
 
 map支持返回的信息：
 | map键名  | 值说明 |
@@ -4304,6 +4582,45 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
     }
     // 自定义对MovingPhoto的处理逻辑
     console.info('on image data prepared, photo quality is ' + map['quality']);
+  }
+}
+```
+
+## QuickImageDataHandler<sup>13+</sup>
+
+媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onDataPrepared<sup>13+</sup>
+
+onDataPrepared(data: T, imageSource: image.ImageSource, map: Map<string, string>): void
+
+媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
+T支持Picture数据类型。
+
+map支持返回的信息：
+| map键名  | 值说明 |
+|----------|-------|
+| 'quality'  | 图片质量。高质量为'high'，低质量为'low'。 |
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明                                                                            |
+|------|---| ---- |-------------------------------------------------------------------------------|
+| data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
+| imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
+| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。 |
+
+**示例**
+```ts
+import { image } from '@kit.ImageKit';
+
+class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
+  onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
+    console.info('on image data prepared');
   }
 }
 ```
@@ -4391,6 +4708,9 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象并读取内容，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
+
 **参数：**
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
@@ -4472,6 +4792,9 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象并读取内容，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
+
 **参数：**
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
@@ -4551,6 +4874,9 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象并读取内容，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
@@ -4704,7 +5030,7 @@ PhotoAsset的成员类型。
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，不支持基于该字段排序。           |
+| URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，该字段仅支持使用[DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)谓词。            |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
 | SIZE          | 'size'                | 文件大小（单位：字节）。                                                   |
@@ -4725,6 +5051,8 @@ PhotoAsset的成员类型。
 | BURST_KEY<sup>12+</sup>   | 'burst_key'               | 一组连拍照片的唯一标识：uuid。 |
 | LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | LCD图片的宽高，值为width:height拼接而成的字符串。|
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | THUMB图片的宽高，值为width:height拼接而成的字符串。|
+| DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | 大图浏览时间，值为拍摄时对应时区的时间的字符串，不会跟随时区变化。|
+| DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | 拍摄日期（文件拍照时间距1970年1月1日的毫秒数值）。|
 
 ## AlbumKeys
 
@@ -4773,9 +5101,11 @@ title参数规格为：
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                   | 类型                              | 可读 | 可写 | 说明                                              |
-| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
-| deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
+| 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
+| ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
+| deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
+| compatibleMode<sup>13+</sup>      | [CompatibleMode](#compatiblemode13) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
+| mediaAssetProgressHandler<sup>13+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler13) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -4797,6 +5127,17 @@ title参数规格为：
 | ----- |  ---- |  ---- |
 | IMAGE_RESOURCE |  1 |  表示图片资源。 |
 | VIDEO_RESOURCE |  2 |  表示视频资源。 |
+
+## ImageFileType<sup>13+</sup>
+
+枚举，图片保存类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| JPEG  |  1 |  表示jpeg图片类型。 |
+| HEIF  |  2 |  表示heif图片类型。 |
 
 ## ChangeData
 
@@ -4869,7 +5210,7 @@ title参数规格为：
 | BANK_CARD<sup>12+</sup> |  7 | 银行卡。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | 精选单人像。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | 推荐人像。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -4980,7 +5321,7 @@ async function example() {
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
-| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 
 ## PhotoSelectResult
@@ -5023,3 +5364,34 @@ async function example() {
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，DEFAULT或者MOVING_PHOTO。|
+
+## CompatibleMode<sup>13+</sup>
+
+配置转码模式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- | ---- | ---- |
+| FAST_ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
+| COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
+
+## MediaAssetProgressHandler<sup>13+</sup>
+
+媒体资产进度处理器，应用在onProgress方法中获取媒体资产进度。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onProgress<sup>13+</sup>
+
+onProgress(progress: number): void
+
+当所请求的视频资源返回进度时系统会回调此方法。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| progress | number | 是   | 返回的进度百分比，范围为0~100。 |

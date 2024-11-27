@@ -1705,7 +1705,7 @@ struct Parent {
   }
   ```
 
-  After a data item is deleted, the **reloadData** method is called to rebuild the subsequent data items to update the indexes.
+  After a data item is deleted, the **reloadData** method is called to rebuild the subsequent data items to update the indexes. To gurantee that **reload** method will rebuild data items, we must make sure that new keys be generated for the data items. Here `item + index.toString()` gurantee that subsequent data items of the deleted one will be rebuit. If we replace key generator by `item + Data.now().toString()`, new keys will be generated for all remaining data items, so they all will be rebuilt. This way, effect is the same, but the performance is slightly inferior.
 
   **Figure 13** Fixing unexpected data deletion 
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)

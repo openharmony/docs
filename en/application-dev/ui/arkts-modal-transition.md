@@ -17,9 +17,9 @@ Modal transition is a type of transition achieved by a modal – a view that app
 
 ## Creating Modal Transition with bindContentCover
 
-You can bind a full-screen modal to a component through the [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component appears or disappears.
+You can bind a full-screen modal to a component through the [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component appears or disappears.
 
-1. Define [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md).
+1. Define [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover).
 
 2. Define the modal view.
 
@@ -60,7 +60,7 @@ Below is the complete sample code and effect.
 
 
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 interface PersonList {
   name: string,
@@ -71,9 +71,9 @@ interface PersonList {
 @Component
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
-    { name: 'Wang **',cardnum: '1234***********789' },
-    { name: 'Song*',cardnum: '2345***********789' },
-    { name: 'Xu **',cardnum: '3456***********789' },
+    { name: 'Wang **', cardnum: '1234***********789' },
+    { name: 'Song*', cardnum: '2345***********789' },
+    { name: 'Xu **', cardnum: '3456***********789' },
     { name: 'Tang*', cardnum: '4567***********789' }
   ];
   // Step 1: Define bindContentCover.
@@ -244,7 +244,7 @@ struct BindContentCoverDemo {
 
 ## Creating Sheet Transition with bindSheet
 
-You can bind a sheet to a component through the [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) attribute. You can also set the sheet to the preset or custom height for when the component appears. The process of creating a sheet transition is basically the same as that of creating a modal transition.
+You can bind a sheet to a component through the [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) attribute. You can also set the sheet to the preset or custom height for when the component appears. The process of creating a sheet transition is basically the same as that of creating a modal transition using [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover).
 
 Below is the complete sample code and effect.
 
@@ -344,7 +344,7 @@ struct BindSheetDemo {
 
 ## Creating a Menu with bindMenu
 
-You can bind a menu to component through the [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by clicking. Below is the complete sample code and effect.
+You can bind a menu to component through the [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu) attribute. The menu can then be triggered by clicking. Below is the complete sample code and effect.
 
 
 ```ts
@@ -392,7 +392,7 @@ struct BindMenuDemo {
 
 ## Creating a Context Menu with bindContextMenu
 
-You can bind a menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) attribute. The menu can then be triggered by long-pressing or right-clicking.  
+You can bind a menu to component through the [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8) attribute. The menu can then be triggered by long-pressing or right-clicking.  
 
 Below is the complete sample code and effect.
 
@@ -441,6 +441,7 @@ struct BindContextMenuDemo {
           Row(){
             Image(item)
               .width('100%')
+              .draggable(false)
           }
           .padding({ top: 20, bottom: 20, left: 10, right: 10 })
           .bindContextMenu(this.myMenu, ResponseType.LongPress)
@@ -458,7 +459,7 @@ struct BindContextMenuDemo {
 
 ## Creating a Popup with bindPopUp
 
-You can bind a popup to a component through the [bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md) attribute, specifying its content, interaction logic, and display status.
+You can bind a popup to a component through the [bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) attribute, specifying its content, interaction logic, and display status.
 
 Below is the complete sample code and effect.
 
@@ -533,7 +534,7 @@ Below is the complete sample code and effect.
 @Entry
 @Component
 struct ModalTransitionWithIf {
-  private listArr: string[] = ['WLAN', 'Bluetooth','Personal hotspot','Connected devices'];
+  private listArr: string[] = ['WLAN', 'Bluetooth', 'Personal hotspot', 'Connected devices'];
   private shareArr: string[] = ['Projection', 'Printing', 'VPN','Private DNS', 'NFC'];
   // Step 1: Define a state variable to control page display.
   @State isShowShare: boolean = false;

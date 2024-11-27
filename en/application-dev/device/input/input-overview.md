@@ -1,4 +1,4 @@
-# Multimodal Input Overview
+# Introduction to Input Kit
 
 ## Function Description
 
