@@ -38,7 +38,7 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 | excludeFromDock<sup>12+</sup>             | boolean                                                  | 是   | 否   | 判断Ability是否可以在dock区域隐藏图标。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | 是   | 否   | Ability的Skills信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
-| orientationId<sup>13+</sup>    | number      | 是   | 否   | Ability的显示模式资源id。当orientationId不为0时表示当前显示模式为自定义配置，需要使用orientationId去资源管理获取对应的资源。 |
+| orientationId<sup>14+</sup>    | number      | 是   | 否   | Ability的显示模式资源id。当orientationId不为0时表示当前显示模式为自定义配置，需要使用orientationId去资源管理获取对应的资源。 |
 
 ## WindowSize
 
