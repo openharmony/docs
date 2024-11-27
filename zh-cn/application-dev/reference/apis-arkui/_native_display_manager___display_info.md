@@ -25,8 +25,8 @@
 | int32_t [physicalWidth](#physicalwidth) | 显示设备的物理宽度，单位为px，该参数应为非负整数。 | 
 | int32_t [physicalHeight](#physicalheight) | 显示设备的物理高度，单位为px，该参数应为非负整数。 | 
 | uint32_t [refreshRate](#refreshrate) | 显示设备的刷新率，单位为Hz，该参数应为非负整数，。 | 
-| uint32_t [availableWidth](#availablewidth) | 显示设备上屏幕的可用区域宽度，单位为px，该参数为非负整数。 | 
-| uint32_t [availableHeight](#availableheight) | 显示设备上屏幕的可用区域高度，单位为px，该参数为非负整数。 | 
+| uint32_t [availableWidth](#availablewidth) | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为非负整数。 | 
+| uint32_t [availableHeight](#availableheight) | 2in1设备上屏幕的可用区域高度，单位为px，该参数为非负整数。 | 
 | float [densityDPI](#densitydpi) | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为大于0的浮点数，单位为px。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。 | 
 | float [densityPixels](#densitypixels) | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数。该参数为大于0的浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。 | 
 | float [scaledDensity](#scaleddensity) | 显示设备的显示字体的缩放因子。该参数为大于0的浮点数，通常与densityPixels相同。 | 
@@ -50,7 +50,7 @@ uint32_t NativeDisplayManager_DisplayInfo::availableHeight
 
 **描述**
 
-显示设备上屏幕的可用区域高度，单位为px，该参数为非负整数。
+2in1设备上屏幕的可用区域高度，单位为px，该参数为非负整数。
 
 
 ### availableWidth
@@ -61,7 +61,7 @@ uint32_t NativeDisplayManager_DisplayInfo::availableWidth
 
 **描述**
 
-显示设备上屏幕的可用区域宽度，单位为px，该参数为非负整数。
+2in1设备上屏幕的可用区域宽度，单位为px，该参数为非负整数。
 
 
 ### colorSpace
