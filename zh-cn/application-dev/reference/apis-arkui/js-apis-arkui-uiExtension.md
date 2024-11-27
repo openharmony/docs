@@ -218,11 +218,11 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### on('windowRectChange')
+### on('windowRectChange')<sup>14+</sup>
 
 on(type: 'windowRectChange', callback: Callback<window.RectChangeOptions>): void
 
-注册 EmbeddedComponent 位置及大小变化的监听。
+注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -232,8 +232,8 @@ on(type: 'windowRectChange', callback: Callback<window.RectChangeOptions>): void
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即EmbeddedComponent 矩形变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | 是   | 回调函数。返回当前 EmbeddedComponent 矩形变化值及变化原因。                           |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | 是 | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。 |
 
 **错误码：**
 
@@ -253,7 +253,7 @@ import { window } from '@kit.ArkUI';
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
-    // 注册 EmbeddedComponent 位置及大小变化的监听
+    // 注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听
     extensionWindow.on('windowRectChange', (data: window.RectChangeOptions) => {
         console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
     });
@@ -261,11 +261,11 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### off('windowRectChange')
+### off('windowRectChange')<sup>14+</sup>
 
 off(type: 'windowRectChange', callback?: Callback<window.RectChangeOptions>): void
 
-注销 EmbeddedComponent 位置及大小变化的监听。
+注销组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -275,8 +275,8 @@ off(type: 'windowRectChange', callback?: Callback<window.RectChangeOptions>): vo
 
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即EmbeddedComponent 矩形变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | 否   | 回调函数。返回当前 EmbeddedComponent 矩形变化值及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有 EmbeddedComponent 矩形变化的监听。 |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | 否   | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有组件（EmbeddedComponent或UIExtensionComponent）矩形变化的监听。 |
 
 **错误码：**
 
@@ -295,7 +295,7 @@ import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.Abil
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
-    // 注销 EmbeddedComponent 位置及大小变化的监听
+    // 注销组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听
     extensionWindow.off('windowRectChange');
   }
 }
@@ -305,22 +305,22 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 properties: WindowProxyProperties
 
-宿主应用窗口和 EmbeddedComponent 组件的信息。
+宿主应用窗口和组件（EmbeddedComponent或UIExtensionComponent）的信息。
 
 | 参数名     | 类型                                 | 说明                             |
 | ---------- | ------------------------------------ | -------------------------------- |
-| properties | [WindowProxyProperties](#windowproxyproperties) | EmbeddedComponent 组件以及宿主窗口的信息。 |
+| properties | [WindowProxyProperties](#windowproxyproperties) | 组件（EmbeddedComponent或UIExtensionComponent）以及宿主窗口的信息。 |
 
 **示例**
 
 ```ts
 // ExtensionProvider.ts
-import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
-    // 获取 EmbeddedComponent 位置和大小信息
+    // 获取组件（EmbeddedComponent或UIExtensionComponent）位置和尺寸信息
     const rect = extensionWindow.properties.uiExtensionHostWindowProxyRect;
     console.log(`Rect Info: ${JSON.stringify(rect)}`);
   }
@@ -425,11 +425,11 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 ## WindowProxyProperties
 
-用于表示宿主应用窗口和 EmbeddedComponent 组件的信息。
+用于表示宿主应用窗口和组件（EmbeddedComponent或UIExtensionComponent）的信息。
 
 | 名称                         | 类型        | 必填      | 说明                             |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | EmbeddedComponent 的位置和宽高。 |
+| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | 组件（EmbeddedComponent或UIExtensionComponent）的位置和宽高。 |
 
 ## 完整示例
 

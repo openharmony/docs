@@ -218,99 +218,6 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### on('windowRectChange')
-
-on(type: 'windowRectChange', callback: Callback<window.RectChangeOptions>): void
-
-Subscribes to EmbeddedComponent rectangle (position and size) change events.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**Parameters**
-
-| Name  | Type                          | Mandatory| Description                                                    |
-| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | Yes  | Event type. The value is fixed at **'windowRectChange'**, indicating the EmbeddedComponent rectangle change event.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)>; | Yes  | Callback used to return the value and reason of the EmbeddedComponent rectangle change.                          |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**Example**
-
-```ts
-// ExtensionProvider.ts
-import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
-
-export default class EntryAbility extends EmbeddedUIExtensionAbility {
-  onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionWindow = session.getUIExtensionWindowProxy();
-    // Subscribes to EmbeddedComponent rectangle (position and size) change events
-    extensionWindow.on('windowRectChange', (data: window.RectChangeOptions) => {
-        console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
-    });
-  }
-}
-```
-
-### off('windowRectChange')
-
-off(type: 'windowRectChange', callback?: Callback<window.RectChangeOptions>): void
-
-Unsubscribes from EmbeddedComponent rectangle (position and size) change events.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**Parameters**
-
-| Name  | Type                          | Mandatory| Description                                                        |
-| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                         | Yes  | Event type. The value is fixed at **'windowRectChange'**, indicating the EmbeddedComponent rectangle change event.    |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | No  | Callback used to return the value and reason of the EmbeddedComponent rectangle change. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**Example**
-
-```ts
-// ExtensionProvider.ts
-import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
-
-export default class EntryAbility extends EmbeddedUIExtensionAbility {
-  onSessionDestroy(session: UIExtensionContentSession) {
-    const extensionWindow = session.getUIExtensionWindowProxy();
-    // Unsubscribes from EmbeddedComponent rectangle (position and size) change events
-    extensionWindow.off('windowRectChange');
-  }
-}
-```
-
-### properties
-
-properties: WindowProxyProperties
-
-Provides the information about the host application window and the **EmbeddedComponent**.
-
-| Name    | Type                                | Description                            |
-| ---------- | ------------------------------------ | -------------------------------- |
-| properties | [WindowProxyProperties](#windowproxyproperties) | Information about the host application window and the **EmbeddedComponent**.|
-
 ### createSubWindowWithOptions
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
@@ -407,14 +314,6 @@ Describes the information about the area where the window cannot be displayed.
 | type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes| Type of the area where the window cannot be displayed.  |
 | area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | Yes| Area where the window cannot be displayed.|
 
-## WindowProxyProperties
-
-Defines information about the host application window and **EmbeddedComponent**.
-
-| Name                        | Type       | Mandatory     | Description                            |
-| ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | Yes| Position, width, and height of the **EmbeddedComponent**.|
-
 ## Example
 
 This example shows how to use all the available APIs in the EmbeddedUIExtensionAbility. The bundle name of the sample application is **com.example.embeddeddemo**, and the EmbeddedUIExtensionAbility to start is **ExampleEmbeddedAbility**.
@@ -510,9 +409,6 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
       this.extensionWindow?.on('windowSizeChange', (size: window.Size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
-      this.extensionWindow.on('windowRectChange', (data: window.RectChangeOptions) => {
-          console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
-      });
       this.extensionWindow?.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
@@ -520,7 +416,6 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
 
     aboutToDisappear(): void {
       this.extensionWindow?.off('windowSizeChange');
-      this.extensionWindow?.off('windowRectChange');
       this.extensionWindow?.off('avoidAreaChange');
     }
 
@@ -529,10 +424,6 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
         Text(this.message)
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
-        Button("Obtain Component Size").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
-          let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
-          console.info(`Width, height, and position of the EmbeddedComponent: ${JSON.stringify(rect)}`);
-        })
         Button("Obtain Avoid Area Info").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
           let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
           console.info(`System avoid area: ${JSON.stringify(avoidArea)}`);
