@@ -301,7 +301,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### properties
+### properties<sup>14+</sup>
 
 properties: WindowProxyProperties
 
@@ -423,7 +423,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 | type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 窗口规避区类型。   |
 | area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 是| 窗口内容规避区域。 |
 
-## WindowProxyProperties
+## WindowProxyProperties<sup>14+</sup>
 
 用于表示宿主应用窗口和组件（EmbeddedComponent或UIExtensionComponent）的信息。
 
