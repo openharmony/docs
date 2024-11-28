@@ -2473,8 +2473,7 @@ export default class EntryAbility extends UIAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-启动一个[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)。
-
+启动一个UIServiceExtensionAbility。
 
 > **说明：**
 >
