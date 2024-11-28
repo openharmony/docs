@@ -130,6 +130,7 @@ try {
 | authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。           |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。                                               |
 | reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用设备解锁结果。|
+| userId<sup>16+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -143,6 +144,7 @@ try {
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。                      |
 | navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。仅在单指纹、单人脸场景下支持。 |
+| uiContext<sup>16+</sup>            | Context               | 否   | 以模应用方式显示身份认证对话框，仅支持在2in1设备上使用，如果没有此参数或其他类型的设备，身份认证对话框将以模系统方式显示。 |
 
 ## UserAuthResult<sup>10+</sup>
 
@@ -284,7 +286,9 @@ on(type: 'result', callback: IAuthCallback): void
 | 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
-**示例：**
+**示例1：**
+
+以模系统方式认证当前登录用户。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -302,6 +306,44 @@ try {
   };
   const widgetParam: userAuth.WidgetParam = {
     title: '请输入密码',
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.log('auth on success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+**示例2：**
+
+以模应用方式进行当前用户或跨用户身份认证，当前登录用户id为100则认证的是当前用户，当前登录用户id非100则是跨用户认证。
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    userId: 100,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+    uiContext: this.getUIContext().getHostContext(),
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
