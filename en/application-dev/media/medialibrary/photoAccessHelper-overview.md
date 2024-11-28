@@ -9,12 +9,11 @@ With Media Library Kit, you can manage albums and media files, including creatin
 The following capabilities are opened to all applications:
 
 - [Selecting Media Assets Using Picker](photoAccessHelper-photoviewpicker.md)
-- [Creating a Media Asset Using \<SaveButton>](photoAccessHelper-savebutton.md)
+- [Saving Media Assets](photoAccessHelper-savebutton.md)
 
 The following capabilities are restrictedly opened to third-party applications:
 
 > **NOTE**
->
 > To use the restricted open capabilities, the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions). <!--RP1-->The following permissions are opened to third-party applications with certain restrictions.<!--RP1End-->
 
 - [Media asset management](photoAccessHelper-resource-guidelines.md), including:

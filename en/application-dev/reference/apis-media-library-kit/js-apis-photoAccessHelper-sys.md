@@ -5772,6 +5772,8 @@ async function example() {
 
 setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: string): Promise&lt;void&gt;
 
+Sets the attributes for deferred video enhancement.
+
 **System API**: This is a system API.
 
 **Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
