@@ -6,7 +6,7 @@ The uiEffect module provides basic capabilities to apply an effect, for example,
 - [VisualEffect](#visualeffect): applies a visual effect to a component.
 
 > **NOTE**
-> 
+>
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This topic describes only system APIs provided by the module. For details about its public APIs, see [ohos.graphics.uiEffect (Cascading Effect)](js-apis-uiEffect.md).
 
@@ -49,7 +49,7 @@ A class that can apply a filter to a component. Before calling any API in **Filt
 ### pixelStretch
 pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
 
-Applies the pixel stretch effect to the component.
+Applies the pixel stretch effect onto the component.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -77,7 +77,7 @@ filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 ### waterRipple
 waterRipple(progress: number, waveCount: number, x: number, y: number, rippleMode: WaterRippleMode): Filter
 
-Applies the ripple effect to the component.
+Applies the ripple effect onto the component.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -108,7 +108,7 @@ filter.waterRipple(0.5, 2, 0.5, 0.5, uiEffect.WaterRippleMode.SMALL2SMALL)
 ### flyInFlyOutEffect
 flyInFlyOutEffect(degree: number, flyMode: FlyMode): Filter
 
-Adds fly-in and fly-out animations to the component.
+Applies fly-in and fly-out animations onto the component.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -131,6 +131,44 @@ Adds fly-in and fly-out animations to the component.
 
 ```ts
 filter.flyInFlyOutEffect(0.5, uiEffect.FlyMode.TOP)
+```
+
+### distort<sup>13+</sup>
+distort(distortionK: number): Filter
+
+Applies the lens distortion effect onto the component.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+**Parameters**
+| Name        | Type                 | Mandatory| Description                      |
+| ------------- | --------------------- | ---- | ------------------------- |
+| distortionK  | number         | Yes  | Distortion coefficient, indicating the degree of lens distortion. The value range is [-1, 1]. A value less than -1 evaluates to the value **-1**. A value greater than 1 evaluates to the value **1**.|
+
+![image_Add_Distort.png](./figures/image_Add_Distort.png)
+
+The preceding figure shows the rendering results when different distortion coefficients (-1, 0, 0.5, and 1) are applied onto an **Image** component. A negative distortion value results in a barrel distortion, whereas a positive value results in a pincushion distortion. As the distortion value approaches 0, the intensity of the distortion decreases, and at exactly 0, there is no distortion effect.
+
+**Return value**
+
+| Type             | Description                              |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | **Filter** instance with lens distortion effect.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+
+```ts
+filter.distort(-0.5)
 ```
 
 ## TileMode
