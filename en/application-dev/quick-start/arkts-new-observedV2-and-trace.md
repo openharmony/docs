@@ -156,7 +156,7 @@ struct Index {
       Text(`${this.father.son.age}`)
         .onClick(() => {
           this.father.son.age++;
-      })
+        })
     }
   }
 }
@@ -183,7 +183,7 @@ struct Index {
       Text(`${this.son.name}`)
         .onClick(() => {
           this.son.name = "Jack";
-      })
+        })
     }
   }
 }
@@ -205,7 +205,7 @@ struct Index {
       Text(`${Manager.count}`)
         .onClick(() => {
           Manager.count++;
-      })
+        })
     }
   }
 }
@@ -283,7 +283,7 @@ class Person {
 }
 ```
 
-- Classes decorated by @ObservedV2 and @Trace cannot be used together with [\@State](arkts-state.md) or other decorators in the existing state management framework. Otherwise, an error is reported at compile time.
+- Classes decorated by @ObservedV2 and @Trace cannot be used together with [\@State](arkts-state.md) or other decorators of V1. Otherwise, an error is reported at compile time.
 
 ```ts
 // @State is used as an example.
@@ -310,17 +310,17 @@ struct Index {
       Button("change age")
         .onClick(() => {
           this.info.age++;
-      })
+        })
       Button("Change job")
         .onClick(() => {
           this.info.job.jobName = "Doctor";
-      })
+        })
     }
   }
 }
 ```
 
-- Classes extended from \@ObservedV2 cannot be used together with [\@State](arkts-state.md) or other decorators in the existing state management framework. Otherwise, an error is reported during running.
+- Classes extended from \@ObservedV2 cannot be used together with [\@State](arkts-state.md) or other decorators of V1. Otherwise, an error is reported during running.
 
 ```ts
 // @State is used as an example.
@@ -352,11 +352,11 @@ struct Index {
       Button("change age")
         .onClick(() => {
           this.message.age++;
-      })
+        })
       Button("Change job")
         .onClick(() => {
           this.message.job.jobName = "Doctor";
-      })
+        })
     }
   }
 }
@@ -372,7 +372,7 @@ In the following example, **Pencil** is the innermost class in the **Son** class
 
 The example demonstrates how \@Trace is stacked up against [\@Track](arkts-track.md) and [\@State](arkts-state.md) under the existing state management framework: The @Track decorator offers property-level update capability for classes, but not deep observability; \@State can only observe the changes of the object itself and changes at the first layer; in multi-layer nesting scenarios, you must encapsulate custom components and use [\@Observed](arkts-observed-and-objectlink.md) and [\@ObjectLink](arkts-observed-and-objectlink.md) to observe the changes.
 
-* After **Button("change length")** is clicked, the value of **length** changes, which then triggers a UI re-render of the bound UI component, that is, **UINode (1)**. A log "isRender id: 1" is produced.
+* Click **Button("change length")**, in which **length** is a property decorated by \@Trace. The change of **length** can trigger the re-render of the associated UI component, that is, **UINode (1)**, and output the log "isRender id: 1".
 * Because **son** on the custom component **page** is a regular variable, no change is observed for clicks on **Button("assign Son")**.
 * Clicks on **Button("assign Son")** and **Button("change length")** do not trigger UI re-renders. The reason is that, the change to **son** is not updated to the bound component.
 

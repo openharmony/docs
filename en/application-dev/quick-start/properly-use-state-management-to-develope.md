@@ -769,6 +769,8 @@ struct Page {
 }
 ```
 
+
+
 ### Binding Components to Class Objects Decorated with @Observed or Declared as State Variables
 
 Your application may sometimes allow users to reset data - by assigning a new object to the target state variable. The type of the new object is the trick here: If not handled carefully, it may result in the UI not being re-rendered as expected.
@@ -1503,5 +1505,7 @@ Below you can see how the preceding code snippet works.
 When @ObjectLink is used to accept the input item, the **textStyle** variable in the **TextComponent** component can be observed. For @ObjectLink, parameters are passed by reference. Therefore, when the value of **fontSize** in **styleList** is changed in the parent component, this update is properly observed and synced to the corresponding list item in **ForEach**, leading to UI re-rendering.
 
 This is a practical mode of using state management for UI re-rendering.
+
+
 
 <!--no_check-->

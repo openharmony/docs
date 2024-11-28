@@ -7,7 +7,6 @@ When use @Builder to pass data, the parent-child relationship of components is c
 >
 > This decorator is supported since API version 12.
 >
-> 
 
 ## How to Use
 
@@ -174,13 +173,13 @@ struct Parent {
 
 ## Differences Between @LocalBuilder and @Builder
 
-When the **componentBuilder** function is decorated by **@Builder**, the **Child** component is displayed. When the **componentBuilder** function is decorated by @LocalBuild, **Parent** component is displayed.
+When the **componentBuilder** function is decorated by @Builder, the **Child** component is displayed. When the **componentBuilder** function is decorated by @LocalBuilder, **Parent** component is displayed.
 
 **NOTE**
 
-**componentBuilder()** of the @Builder is passed to **customBuilderParam** of the @BuilderParam child component in the form of **this.componentBuilder**. **this** points to the label of **Child**, that is, **Child** is displayed.
+**@Builder componentBuilder()** is passed to the child component **@BuilderParam customBuilderParam** in the form of **this.componentBuilder**. **this** points to the label of **Child**, that is, **Child** is displayed.
 
-**componentBuilder()** of the @Builder is passed to **customBuilderParam** of the @BuilderParam child component in the form of **this.componentBuilder**. **this** points to the label of **Parent**, that is, **Parent** is displayed.
+**@LocalBuilder componentBuilder()** is passed to the child component **@BuilderParam customBuilderParam** in the form of **this.componentBuilder**. **this** points to the label of **Parent**, that is, **Parent** is displayed.
 
 ```ts
 @Component
@@ -283,7 +282,7 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text1
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
       this.privateBuilderSecond() // Call the local @Builder.

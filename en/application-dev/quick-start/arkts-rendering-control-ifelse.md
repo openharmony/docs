@@ -81,9 +81,9 @@ Each branch of the **if** statement includes a build function. Each of such buil
 In the preceding example, if **count** increases from 0 to 1, then **if** updates, the condition **count > 0** is re-evaluated, and the evaluation result changes from **false** to **true**. Therefore, the positive branch build function will be executed, which creates a **Text** component and adds it to the **Column** parent component. If **count** changes back to 0 later, then the **Text** component will be removed from the **Column** component. Since there is no **else** branch, no new build function will be executed.
 
 
-### if ... else ... and Child Component States
+### if/else Statement and Child Component States
 
-This example involves **if...** **else...** and a child component with an \@State decorated variable.
+This example involves an **if/else** statement and a child component with an \@State decorated variable.
 
 
 ```ts
@@ -129,11 +129,11 @@ struct MainView {
 }
 ```
 
-On first render, the **CounterView** (label: **'CounterView \#positive'**) child component is created. This child component carries the \@State decorated variable, named **counter**. When the **CounterView.counter** state variable is updated, the **CounterView** (label: **'CounterView \#positive'**) child component is re-rendered, with its state variable value preserved. When the value of the **MainView.toggle** state variable changes to **false**, the **if** statement inside the **MainView** parent component gets updated, and subsequently the **CounterView** (label: **'CounterView \#positive'**) child component is removed. At the same time, a new **CounterView** (label: **'CounterView \#negative'**) child component is created, with the **counter** state variable set to the initial value **0**.
+On first render, the child component **CounterView(label: 'CounterView \#positive')** is created. This child component carries the \@State decorated variable, named **counter**. When the **CounterView.counter** state variable is updated, the child component **CounterView(label: 'CounterView \#positive')** is re-rendered, with its state variable value preserved. When the value of the **MainView.toggle** state variable changes to **false**, the **if** statement inside the **MainView** parent component gets updated, and subsequently **CounterView(label: 'CounterView \#positive')** is removed. At the same time, a new child component **CounterView(label: 'CounterView \#negative')** is created, with the **counter** state variable set to the initial value **0**.
 
 > **NOTE**
 >
-> **CounterView** (label: **'CounterView \#positive'**) and **CounterView** (label: **'CounterView \#negative'**) are two distinct instances of the same custom component. When the **if** branch changes, there is no update to an existing child component or no preservation of state.
+> **CounterView(label: 'CounterView \#positive')** and **CounterView(label: 'CounterView \#negative')** are two distinct instances of the same custom component. When the **if** branch changes, there is no update to an existing child component or no preservation of state.
 
 The following example shows the required modifications if the value of **counter** needs to be preserved when the **if** condition changes:
 
@@ -237,6 +237,174 @@ struct CompA {
     }
     .width('100%')
     .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+## FAQs
+
+### The if Branch Switching Protection Fails in the Animation Scenario
+
+Switching the **if/else** branch, which is used for data protection, in the animation and continuously using it, data access will throw an exception, causing a crash.
+
+Negative example:
+
+
+```ts
+class MyData {
+  str: string;
+  constructor(str: string) {
+    this.str = str;
+  }
+}
+@Entry
+@Component
+struct Index {
+  @State data1: MyData|undefined = new MyData("branch 0");
+  @State data2: MyData|undefined = new MyData("branch 1");
+
+  build() {
+    Column() {
+      if (this.data1) {
+        // If a Text is added or deleted in the animation, a default transition is added to Text.
+        // However, when the Text is deleted, the component lifecycle is prolonged after the default opacity transition is added. The Text component is not deleted until the transition animation is complete.
+        Text(this.data1.str)
+          .id("1")
+      } else if (this.data2) {
+        // If a Text is added or deleted in the animation, a default transition is added to Text.
+        Text(this.data2.str)
+          .id("2")
+      }
+
+      Button("play with animation")
+        .onClick(() => {
+          animateTo({}, ()=>{
+            // Change the if condition in animateTo, the first-layer component under the if condition is transitioned by default in the animation.
+            if (this.data1) {
+              this.data1 = undefined;
+              this.data2 = new MyData("branch 1");
+            } else {
+              this.data1 = new MyData("branch 0");
+              this.data2 = undefined;
+            }
+          })
+        })
+
+      Button("play directlp")
+        .onClick(() => {
+          // Directly changing the if condition enables proper branch switching, and the default transition is not added even is .
+          if (this.data1) {
+            this.data1 = undefined;
+            this.data2 = new MyData("branch 1");
+          } else {
+            this.data1 = new MyData("branch 0");
+            this.data2 = undefined;
+          }
+        })
+    }.width("100%")
+    .padding(10)
+  }
+}
+```
+
+Positive example:
+
+Method 1: Add a null check protection to data when using data. For example, **Text(this.data1?.str)**.
+
+
+```ts
+class MyData {
+  str: string;
+  constructor(str: string) {
+    this.str = str;
+  }
+}
+@Entry
+@Component
+struct Index {
+  @State data1: MyData|undefined = new MyData("branch 0");
+  @State data2: MyData|undefined = new MyData("branch 1");
+
+  build() {
+    Column() {
+      if (this.data1) {
+        // If a Text is added or deleted in the animation, a default transition is added to Text.
+        // However, when the Text is deleted, the component lifecycle is prolonged after the default opacity transition is added. The Text component is not deleted until the transition animation is complete.
+        // Add a null check protection when using data. If data1 exists, use str in data1.
+        Text(this.data1?.str)
+          .id("1")
+      } else if (this.data2) {
+        // If a Text is added or deleted in the animation, a default transition is added to Text.
+        // Add a null check protection when using data.
+        Text(this.data2?.str)
+          .id("2")
+      }
+
+      Button("play with animation")
+        .onClick(() => {
+          animateTo({}, ()=>{
+            // Change the if condition in animateTo, the first-layer component under the if condition is transitioned by default in the animation.
+            if (this.data1) {
+              this.data1 = undefined;
+              this.data2 = new MyData("branch 1");
+            } else {
+              this.data1 = new MyData("branch 0");
+              this.data2 = undefined;
+            }
+          })
+        })
+    }.width("100%")
+    .padding(10)
+  }
+}
+```
+
+Method 2: Add the **transition(TransitionEffect.IDENTITY)** attribute to the component to be deleted in the **if/else** statement to prevent the system from adding the default transition.
+
+
+```ts
+class MyData {
+  str: string;
+  constructor(str: string) {
+    this.str = str;
+  }
+}
+@Entry
+@Component
+struct Index {
+  @State data1: MyData|undefined = new MyData("branch 0");
+  @State data2: MyData|undefined = new MyData("branch 1");
+
+  build() {
+    Column() {
+      if (this.data1) {
+        // Display the specified null transition effect in the root component of the if/else statement to avoid the default transition animation.
+        Text(this.data1.str)
+          .transition(TransitionEffect.IDENTITY)
+          .id("1")
+      } else if (this.data2) {
+        // Display the specified null transition effect in the root component of the if/else statement to avoid the default transition animation.
+        Text(this.data2.str)
+          .transition(TransitionEffect.IDENTITY)
+          .id("2")
+      }
+
+      Button("play with animation")
+        .onClick(() => {
+          animateTo({}, ()=>{
+            // Change the if condition in animateTo, the first-layer component under the if condition is transitioned by default in the animation.
+            // The default transition will not be added if the specified transition has been displayed.
+            if (this.data1) {
+              this.data1 = undefined;
+              this.data2 = new MyData("branch 1");
+            } else {
+              this.data1 = new MyData("branch 0");
+              this.data2 = undefined;
+            }
+          })
+        })
+    }.width("100%")
+    .padding(10)
   }
 }
 ```
