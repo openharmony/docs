@@ -2,6 +2,9 @@
 
 \@Computed装饰器：计算属性，在被计算的值变化的时候，只会计算一次。主要应用于解决UI多次重用该属性从而重复计算导致的性能问题。
 
+
+状态变量的变化可以触发其关联\@Computed的重新计算。在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，[\@Local](./arkts-new-local.md)。
+
 >**说明：**
 >
 >\@Computed装饰器从API version 12开始支持。
