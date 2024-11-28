@@ -1,8 +1,8 @@
 # @ohos.abilityAccessCtrl (Application Access Control)
 
-The **abilityAccessCtrl** module provides APIs for application permission management, including authentication, authorization, and revocation.
+The **abilityAccessCtrl** module provides APIs for application permission management, including authentication and authorization.
 
-> **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -77,7 +77,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
 atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -121,7 +121,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
 try {
   let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
   console.log(`data->${JSON.stringify(data)}`);
@@ -162,7 +162,7 @@ import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
@@ -177,7 +177,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses an asynchronous callback to return the result.
 
-If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page.
+If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
 
 > **NOTE**
 >
@@ -195,7 +195,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
 | permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
-| requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback invoked to return the result.|
+| requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -207,7 +207,9 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
 
 **Example**
+
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+For details about the process and example of applying for user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
@@ -233,7 +235,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses a promise to return the result.
 
-If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page.
+If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page. Alternatively, call [requestPermissionOnSetting](#requestpermissiononsetting12) to display the permission settings dialog box for the user to grant the permission.
 
 > **NOTE**
 >
@@ -268,7 +270,9 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
 
 **Example**
+
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+For details about the process and example of applying for user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ```ts
 import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
@@ -318,7 +322,7 @@ import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
 atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
   console.log(`promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -364,7 +368,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a third-party application.
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
 console.log(`data->${JSON.stringify(data)}`);
