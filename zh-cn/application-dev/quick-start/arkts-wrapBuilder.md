@@ -2,6 +2,7 @@
 
   当开发者在一个struct内使用了多个全局@Builder函数，来实现UI的不同效果时，多个全局@Builder函数会使代码维护起来非常困难，并且页面不整洁。此时，开发者可以使用wrapBuilder来封装全局@Builder。 
 
+  在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
 
 > **说明：**
 >
