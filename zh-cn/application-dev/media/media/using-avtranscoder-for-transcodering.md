@@ -89,7 +89,7 @@
    let avConfig: media.AVTranscoderConfig = {
      audioBitrate: 100000, // 音频比特率
      audioCodec: media.CodecMimeType.AUDIO_AAC,  // 音频编码格式
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A,  // 视频封装格式
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4,  // 封装格式
      videoBitrate: 2000000, // 视频比特率
      videoCodec: media.CodecMimeType.VIDEO_AVC,  // 视频编码格式
      videoFrameWidth: 640,  // 视频分辨率的宽为640
@@ -151,7 +151,7 @@ export class AVTranscoderDemo {
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // 音频比特率
     audioCodec: media.CodecMimeType.AUDIO_AAC,
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 200000, // 视频比特率
     videoCodec: media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth: 640,  // 视频分辨率的宽
