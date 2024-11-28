@@ -33,12 +33,6 @@ LocalStorage provides two decorators based on the synchronization type of the co
 - [@LocalStorageLink](#localstoragelink): creates a two-way data synchronization with the named attribute in LocalStorage.
 
 
-## Constraints
-
-- Once created, a named attribute cannot have its type changed. Subsequent calls to **Set** must set a value of same type.
-- LocalStorage provides page-level storage. The [getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10) API can only obtain the LocalStorage instance passed through [windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9) in the current stage. If the instance is not available, **undefined** is returned. For the example, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
-
-
 ## \@LocalStorageProp
 
 As mentioned above, if you want to establish a binding between LocalStorage and a custom component, you need to use the \@LocalStorageProp and \@LocalStorageLink decorators. Specially, use \@LocalStorageProp(key) or \@LocalStorageLink(key) to decorate variables in the component, where **key** identifies the attribute in LocalStorage.
@@ -58,20 +52,20 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 ### Rules of Use
 
-| \@LocalStorageProp Decorator | Description                                      |
+| \@LocalStorageProp Decorator| Description                                      |
 | ----------------------- | ---------------------------------------- |
 | Decorator parameters                  | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @LocalStorage](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @LocalStorageProp("AA") a: number \| null = null is recommended; **@LocalStorageProp("AA") a: number = null** is not recommended. |
-| Synchronization type                   | One-way: from the attribute in LocalStorage to the component variable. The component variable can be changed locally, but an update from LocalStorage will overwrite local changes. |
-| Initial value for the decorated variable              | Mandatory. If the attribute does not exist in LocalStorage, it will be created and initialized with this value. |
+| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @LocalStorage](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@LocalStorageProp("AA") a: number \| null = null** is recommended; **@LocalStorageProp("AA") a: number = null** is not recommended. |
+| Synchronization type                   | One-way: from the attribute in LocalStorage to the component variable. The component variable can be changed locally, but an update from LocalStorage will overwrite local changes.|
+| Initial value for the decorated variable              | Mandatory. If the attribute does not exist in LocalStorage, it will be created and initialized with this value.|
 
 
 ### Variable Transfer/Access Rules
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component | Forbidden. |
-| Child component initialization    | Supported. The \@LocalStorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component. |
+| Initialization and update from the parent component| Forbidden.|
+| Child component initialization    | Supported. The \@LocalStorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access from outside the component | Not supported.                                      |
 
   **Figure 1** \@LocalStorageProp initialization rule 
@@ -125,20 +119,20 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 
 ### Rules of Use
 
-| \@LocalStorageLink Decorator | Description                                      |
+| \@LocalStorageLink Decorator| Description                                      |
 | ----------------------- | ---------------------------------------- |
 | Decorator parameters                  | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @LocalStorage](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @LocalStorageLink("AA") a: number \| null = null is recommended. **@LocalStorageLink("AA") a: number = null** is not recommended. |
-| Synchronization type                   | Two-way: from the attribute in LocalStorage to the custom component variable and back |
-| Initial value for the decorated variable              | Mandatory. If the attribute does not exist in LocalStorage, it will be created and initialized with this value. |
+| Allowed variable types              | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in LocalStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @LocalStorage](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@LocalStorageLink("AA") a: number \| null = null** is recommended. **@LocalStorageLink("AA") a: number = null** is not recommended. |
+| Synchronization type                   | Two-way: from the attribute in LocalStorage to the custom component variable and back|
+| Initial value for the decorated variable              | Mandatory. If the attribute does not exist in LocalStorage, it will be created and initialized with this value.|
 
 
 ### Variable Transfer/Access Rules
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component | Forbidden. |
-| Child component initialization    | Supported. The \@LocalStorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component. |
+| Initialization and update from the parent component| Forbidden.|
+| Child component initialization    | Supported. The \@LocalStorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access from outside the component | Not supported.                                      |
 
 
@@ -176,6 +170,30 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 3. When the data decorated by \@LocalStorageLink(key) is a state variable, the change of the data is synchronized to LocalStorage, and the owning custom component is re-rendered.
 
 ![LocalStorageLink_framework_behavior](figures/LocalStorageLink_framework_behavior.png)
+
+
+## Constraints
+
+1. The parameter of \@LocalStorageProp and \@LocalStorageLink must be of the string type. Otherwise, an error is reported during compilation.
+
+```ts
+let storage = new LocalStorage();
+storage.setOrCreate('PropA', 48);
+
+// Incorrect format. An error is reported during compilation.
+@LocalStorageProp() localStorageProp: number = 1;
+@LocalStorageLink() localStorageLink: number = 2;
+
+// Correct format.
+@LocalStorageProp('PropA') localStorageProp: number = 1;
+@LocalStorageLink('PropA') localStorageLink: number = 2;
+```
+
+2. \@StorageProp and \@StorageLink cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
+
+3. Once created, a named attribute cannot have its type changed. Subsequent calls to **Set** must set a value of same type.
+
+4. LocalStorage provides page-level storage. The [getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10) API can only obtain the LocalStorage instance passed through [windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9) in the current stage. If the instance is not available, **undefined** is returned. For the example, see [Example of Sharing a LocalStorage Instance from UIAbility to One or More Pages](#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ## Use Scenarios
@@ -267,7 +285,7 @@ struct CompA {
     }
   }
 }
-```
+ ```
 
 
 ### Simple Example of Using \@LocalStorageProp with LocalStorage
@@ -362,7 +380,7 @@ Check the changes in the **Parent** custom component.
 
 2. Click **countStorage ${this.playCount} incr by 1** to call the **set** API in LocalStorage to update the attributes corresponding to **countStorage** in LocalStorage. The components bound to** playCountLink** in the **Child** component are updated synchronously.
 
-3. The **playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}** **\<Text>** component is not updated synchronously, because **storage.get<number>('countStorage')** returns a regular variable. The update of a regular variable does not cause the **\<Text>** component to be re-rendered.
+3. The **playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}** **Text** component is not updated synchronously, because **storage.get&lt;number&gt;('countStorage')** returns a regular variable. The update of a regular variable does not cause the **Text** component to be re-rendered.
 
 Changes in the **Child** custom component:
 
@@ -467,7 +485,7 @@ let storage = LocalStorage.getShared()
 @Entry(storage)
 @Component
 struct Index {
-  // The LocalStorage instance can be accessed using 
+  // The LocalStorage instance can be accessed using
   // @LocalStorageLink/Prop decorated variables.
   @LocalStorageLink('PropA') propA: number = 1;
 
@@ -479,7 +497,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
         Button("To Page")
           .onClick(() => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/Page'
             })
           })
@@ -516,7 +534,7 @@ struct Page {
 
         Button("Back Index")
           .onClick(() => {
-            router.back()
+            this.getUIContext().getRouter().back()
           })
       }
       .width('100%')
@@ -781,7 +799,7 @@ struct pageTwoStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack()
-        // There is no PropA in the bound LocalStorage instance, and therefore the locally initialized value Hello World is displayed.
+        // If there is no PropB in the bound LocalStorage instance, the locally initialized value Hello World is displayed.
         Text(`${this.PropB}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -810,7 +828,7 @@ struct pageThreeStack {
       Column() {
         NavigationContentMsgStack()
 
-        // There is no PropA in the bound LocalStorage instance, and therefore the locally initialized value pageThreeStack is displayed.
+        // If there is no PropC in the bound LocalStorage instance, the locally initialized value pageThreeStack is displayed.
         Text(`${this.PropC}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -846,7 +864,7 @@ struct NavigationContentMsgStack {
 
 ### Union Type
 
-In the following example, the type of variable **A** is number | null, and the type of variable **B** is number | undefined. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
+In the following example, the type of variable **A** is **number | null**, and the type of variable **B** is **number | undefined**. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
 
 ```ts
 @Component
@@ -961,7 +979,7 @@ struct LocalDateSample {
 >
 > LocalStorage supports the Map type since API version 12.
 
-In this example, the **message** variable decorated by @LocalStorageLink is of the Map\<number, string\> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
+In this example, the **message** variable decorated by @LocalStorageLink is of the **Map\<number, string\>** type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Entry
@@ -1007,7 +1025,7 @@ struct LocalMapSample {
 >
 > LocalStorage supports the Set type since API version 12.
 
-In this example, the **memberSet** variable decorated by @LocalStorageLink is of the Set\<number\> type. After the button is clicked, the value of **memberSet** changes, and the UI is re-rendered.
+In this example, the **memberSet** variable decorated by @LocalStorageLink is of the **Set\<number\>** type. After the button is clicked, the value of **memberSet** changes, and the UI is re-rendered.
 
 ```ts
 @Entry
@@ -1047,4 +1065,37 @@ struct LocalSetSample {
 }
 ```
 
-<!--no_check-->
+### Changing State Variables Outside a Custom Component
+
+```ts
+let storage = new LocalStorage();
+storage.setOrCreate('count', 47);
+
+class Model {
+  storage: LocalStorage = storage;
+
+  call(propName: string, value: number) {
+    this.storage.setOrCreate<number>(propName, value);
+  }
+}
+
+let model: Model = new Model();
+
+@Entry({ storage: storage })
+@Component
+struct Test {
+  @LocalStorageLink('count') count: number = 0;
+
+  build() {
+    Column() {
+      Text(`Value of count: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call('count', this.count + 1);
+        })
+    }
+  }
+}
+```
+
+

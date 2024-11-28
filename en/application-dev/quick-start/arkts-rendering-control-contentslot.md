@@ -85,36 +85,46 @@ struct Parent {
 ### Code Implementation in C
 For details about the basic development knowledge of Node-API, see [Getting Started with the NDK](../napi/ndk-development-overview.md).
 
-This topic only describes how to implement the logic code related to **ContentSlot**. For details about how to create components in C, see section [ArkUI_NativeModule](../reference/apis-arkui/_ark_u_i___native_module.md) in the ArkUI API documents.
+This topic only describes how to implement the logic code related to **ContentSlot**. Create a component on the C side. For details, see [NDK API Overview](../ui/ndk-build-ui-overview.md).
 
 ```c++
-ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
-ArkUI_NativeNode_API_1 *nodeAPI;
+#include "napi/native_api.h"
+#include "arkui/native_type.h"
+#include "arkui/native_node.h"
+#include "arkui/native_node_napi.h"
+#include "arkui/native_interface.h"
+#include "hilog/log.h"
 
-napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
+ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
+ArkUI_NativeNodeAPI_1 *nodeAPI;
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+
+// NativeNode management class defined by Manager for applications.
+napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
     // Solve null pointer and out-of-bounds issues related to Node-API.
     if ((env == nullptr) || (info == nullptr)) {
         return nullptr;
     }
-    
+
     size_t argc = 1;
     napi_value args[1] = { nullptr };
     if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
     }
-    
+
     if (argc != 1) {
         return nullptr;
     }
-    
+
+    nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNode_API_1"));
+
     // Point nodeContentHandle_ to a nodeContent object passed in from ArkTS.
-    OH_ARKUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
-    
-    nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNode_API_1"));
-    
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
+
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
-            ArkUINodeHandle component;
+            ArkUI_NodeHandle component;
             // Create components in C.
             component = CreateNodeHandle();
             // Add the component to the nodeContent manager.
