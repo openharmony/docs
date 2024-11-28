@@ -1322,6 +1322,7 @@
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
         - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
         - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
+        - [在Worker线程中使用相机(ArkTS)](media/camera/camera-worker.md)
         <!--Del-->
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
