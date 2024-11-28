@@ -23,13 +23,14 @@ Apart from [\@Styles](arkts-style.md) used to reuse styles, ArkUI also provides 
 
 ### Rules of Use
 
-- Unlike \@Styles, \@Extend can be defined only globally, that is, outside a component declaration.
-
-> **NOTE**
-> This decorator can be used only in the current file and cannot be exported.
-
 - Unlike \@Styles, \@Extend can encapsulate private attributes, private events, and custom global methods of specified components.
 
+> **NOTE**
+>
+> This decorator can be used only in the current file and cannot be exported.
+>
+> To the export the decorator, you are advised to use [AttributeModifier](../ui/arkts-user-defined-extension-attributeModifier.md).
+- Unlike \@Styles, \@Extend can encapsulate private attributes, private events, and custom global methods of specified components.
   ```ts
   // @Extend(Text) supports the private attribute fontColor of the <Text> component.
   @Extend(Text) function fancy () {

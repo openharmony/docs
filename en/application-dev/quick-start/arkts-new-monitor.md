@@ -19,7 +19,7 @@ To listen for value changes of the state variables in a lower level, you can use
 - A single \@Monitor decorator can listen for the changes of multiple properties at the same time. When these properties change together in an event, the \@Monitor callback method is triggered only once.
 - The \@Monitor decorator has lower-level listening capability and can listen for changes of specified items in nested classes, multi-dimensional arrays, and object arrays. The observation requires that \@ObservedV2 decorate the nested class and \@Trace decorate the member properties in an object array.
 - In the inheritance scenario, you can define \@Monitor for the same property in the parent and child components for listening. When the property changes, the \@Monitor callback defined in the parent and child components is called.
-- Similar to the [\@Watch](arkts-watch.md) decorator, you should define the callback functions by yourselves. The difference is that the \@Watch decorator uses the function name as a parameter, while the \@Monitor directly decorates the callback function. For the comparison between \@Monitor and \@Watch, see [Comparing \@Monitor with \@Watch](#comparing-\@Monitor-with-\@Watch).
+- Similar to the [\@Watch](arkts-watch.md) decorator, you should define the callback functions by yourselves. The difference is that the \@Watch decorator uses the function name as a parameter, while the \@Monitor directly decorates the callback function. For details about the comparison between \@Monitor and \@Watch, see [Comparing \@Monitor with \@Watch](#comparing-monitor-with-watch).
 
 ## Limitations of the \@Watch decorator in State Management V1
 
@@ -337,7 +337,7 @@ class ArrMonitor {
       console.log(`dimensionThree path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
     })
   }
-  // name and age properties of the info class are decorated by @Trace. Can listen for the changes.
+  // name and age properties of the info class are decorated by @Trace. Can listen for the change.
   @Monitor("infoArr.0.name", "infoArr.1.age")
   onInfoArrPropertyChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
@@ -524,7 +524,7 @@ struct Index {
 ```ts
 const t2: string = "t2"; // Constant
 enum ENUM {
-  Enumerated Values of T3 = "t3" // Enumerated value
+  T3 = "t3" // Enum
 };
 let t4: string = "t4"; // Variable
 @ObservedV2
@@ -670,3 +670,349 @@ struct Index {
   }
 }
 ```
+
+## FAQs
+
+### Effective and Expiration Time of Variable Listening by the \@Monitor in the Custom Component
+
+When \@Monitor is defined in a custom component decorated by \@ComponentV2, \@Monitor takes effect after the state variable is initialized and becomes invalid when the component is destroyed.
+
+```ts
+@ObservedV2
+class Info {
+  @Trace message: string = "not initialized";
+
+  constructor() {
+    console.log("in constructor message change to initialized");
+    this.message = "initialized";
+  }
+}
+@ComponentV2
+struct Child {
+  @Param info: Info = new Info();
+  @Monitor("info.message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`Child message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+  aboutToAppear(): void {
+    this.info.message = "Child aboutToAppear";
+  }
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear");
+    this.info.message = "Child aboutToDisappear";
+  }
+  build() {
+    Column() {
+      Text("Child")
+      Button("change message in Child")
+        .onClick(() => {
+          this.info.message = "Child click to change Message";
+        })
+    }
+    .borderColor(Color.Red)
+    .borderWidth(2)
+
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  @Local info: Info = new Info();
+  @Local flag: boolean = false;
+  @Monitor("info.message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`Index message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Button("show/hide Child")
+        .onClick(() => {
+          this.flag = !this.flag
+        })
+      Button("change message in Index")
+        .onClick(() => {
+          this.info.message = "Index click to change Message";
+        })
+      if (this.flag) {
+        Child({ info: this.info })
+      }
+    }
+  }
+}
+```
+
+In the preceding example, you can create and destroy a **Child** component to observe the effective and expiration time of the \@Monitor defined in the custom component. You are advised to follow the steps below:
+
+- When the **Index** component creates an instance of the **Info** class, the log outputs the message: **in constructor message change to initialized**. At this time, the \@Monitor of the **Index** component has not been initialized successfully, so \@Monitor cannot listen for the message change.
+- After the **Index** component is created and the page is loaded, click **change message in Index** button. \@Monitor now can listen for the change and the log outputs the message "Index message change from initialized to Index click to change Message".
+- Click the **show/hide Child** button to create a **Child** component. After this component initializes the \@Param decorated variables and \@Monitor, call the **aboutToAppear** callback of the **Child** component to change the message. In this case, the \@Monitor of the **Index** and **Child** components can listen for the change, and the logs outputs the messages "Index message change from Index click to change Message to Child aboutToAppear" and "Child message change from Index click to change Message to Child aboutToAppear."
+- Click **change message in Child** button to change the message. In this case, the \@Monitor of the **Index** and **Child** components can listen for the change, and the log outputs the messages "Index message change from Child aboutToAppear to Child click to change Message" and "Child message change from Child aboutToAppear to Child click to change Message."
+- Click the **show/hide Child** button to destroy the **Child** component and call the **aboutToDisappear** callback to change the message. In this case, the \@Monitor of the **Index** and **Child** components can listen for the change, and the log outputs the messages "Child aboutToDisappear, Index message change from Child click to change Message to Child aboutToDisappear", and "Child message change from Child click to change Message to Child aboutToDisappear."
+- Click **change message in Index** button to change the message. In this case, the **Child** component is destroyed, and the \@Monitor is deregistered. Only the \@Monitor of the **Index** component can listen for the changes and the log outputs the message "Index message change from Child aboutToDisappear to Index click to change Message."
+
+The preceding steps indicate that the \@Monitor defined in the **Child** component takes effect when the **Child** component is created and initialized, and becomes invalid when the **Child** component is destroyed.
+
+### Effective and Expiration Time of Variable Listening by the \@Monitor in the Class
+
+When \@Monitor is defined in a class decorated by \@ComponentV2, \@Monitor takes effect after the class is created and becomes invalid when the class is destroyed.
+
+```ts
+@ObservedV2
+class Info {
+  @Trace message: string = "not initialized";
+
+  constructor() {
+    this.message = "initialized";
+  }
+  @Monitor("message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+
+  aboutToAppear(): void {
+    this.info.message = "Index aboutToAppear";
+  }
+
+  build() {
+    Column() {
+      Button("change message")
+        .onClick(() => {
+          this.info.message = "Index click to change message";
+        })
+    }
+  }
+}
+```
+
+In the preceding example, \@Monitor takes effect after the **info** class is created, which is later than the **constructor** of the class and earlier than the **aboutToAppear** of the custom component. After the page is loaded, click **change message** button to modify the message variable. The log outputs the messages as below:
+
+```ts
+message change from initialized to Index aboutToAppear
+message change from Index aboutToAppear to Index click to change message
+```
+
+\@Monitor defined in a class becomes invalid when the class is destroyed. However, the garbage collection mechanism determines whether a class is actually destroyed and released. Even if the custom component is destroyed, the class is not destroyed accordingly. As a result, the \@Monitor defined in the class still listens for changes.
+
+```ts
+@ObservedV2
+class InfoWrapper {
+  info?: Info;
+  constructor(info: Info) {
+    this.info = info;
+  }
+  @Monitor("info.age")
+  onInfoAgeChange(monitor: IMonitor) {
+    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+  }
+}
+@ObservedV2
+class Info {
+  @Trace age: number;
+  constructor(age: number) {
+    this.age = age;
+  }
+}
+@ComponentV2
+struct Child {
+  @Param @Require infoWrapper: InfoWrapper;
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+  }
+  build() {
+    Column() {
+      Text(`${this.infoWrapper.info?.age}`)
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  dataArray: Info[] = [];
+  @Local showFlag: boolean = true;
+  aboutToAppear(): void {
+    for (let i = 0; i < 5; i++) {
+      this.dataArray.push(new Info(i));
+    }
+  }
+  build() {
+    Column() {
+      Button("change showFlag")
+        .onClick(() => {
+          this.showFlag = !this.showFlag;
+        })
+      Button("change number")
+        .onClick(() => {
+          console.log("click to change age")
+          this.dataArray.forEach((info: Info) => {
+            info.age += 100;
+          })
+        })
+      if (this.showFlag) {
+        Column() {
+          Text("Childs")
+          ForEach(this.dataArray, (info: Info) => {
+            Child({ infoWrapper: new InfoWrapper(info) })
+          })
+        }
+        .borderColor(Color.Red)
+        .borderWidth(2)
+      }
+    }
+  }
+}
+```
+
+In the preceding example, when you click **change showFlag** to switch the condition of the **if** component, the **Child** component is destroyed. But when you click **change number** to change the value of **age**, the \@Monitor callback defined in **InfoWrapper** is still triggered. This is because the custom component **Child** has executed **aboutToDisappear**, but its member variable **infoWrapper** is not destroyed immediately. When the variable changes, the **onInfoAgeChange** method defined in **infoWrapper** can still be called, therefore, the \@Monitor callback is still triggered.
+
+The result is unstable when you use the garbage collection mechanism to cancel the listening of \@Monitor. You can use either of the following methods to manage the expiration time of the \@Monitor:
+
+1. Define \@Monitor in the custom component. When a custom component is destroyed, the state management framework cancels the listening of \@Monitor. Therefore, after the custom component calls **aboutToDisappear**, the \@Monitor callback will not be triggered even though the data of the custom component may not be released.
+
+```ts
+@ObservedV2
+class InfoWrapper {
+  info?: Info;
+  constructor(info: Info) {
+    this.info = info;
+  }
+}
+@ObservedV2
+class Info {
+  @Trace age: number;
+  constructor(age: number) {
+    this.age = age;
+  }
+}
+@ComponentV2
+struct Child {
+  @Param @Require infoWrapper: InfoWrapper;
+  @Monitor("infoWrapper.info.age")
+  onInfoAgeChange(monitor: IMonitor) {
+    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+  }
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+  }
+  build() {
+    Column() {
+      Text(`${this.infoWrapper.info?.age}`)
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  dataArray: Info[] = [];
+  @Local showFlag: boolean = true;
+  aboutToAppear(): void {
+    for (let i = 0; i < 5; i++) {
+      this.dataArray.push(new Info(i));
+    }
+  }
+  build() {
+    Column() {
+      Button("change showFlag")
+        .onClick(() => {
+          this.showFlag = !this.showFlag;
+        })
+      Button("change number")
+        .onClick(() => {
+          console.log("click to change age")
+          this.dataArray.forEach((info: Info) => {
+            info.age += 100;
+          })
+        })
+      if (this.showFlag) {
+        Column() {
+          Text("Childs")
+          ForEach(this.dataArray, (info: Info) => {
+            Child({ infoWrapper: new InfoWrapper(info) })
+          })
+        }
+        .borderColor(Color.Red)
+        .borderWidth(2)
+      }
+    }
+  }
+}
+```
+
+2. Set the listened object to empty. When the custom component is about to be destroyed, the \@Monitor listened object is set empty. In this way, the \@Monitor cannot listen for the changes of the original object, so that the listening is cancelled.
+
+```ts
+@ObservedV2
+class InfoWrapper {
+  info?: Info;
+  constructor(info: Info) {
+    this.info = info;
+  }
+  @Monitor("info.age")
+  onInfoAgeChange(monitor: IMonitor) {
+    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+  }
+}
+@ObservedV2
+class Info {
+  @Trace age: number;
+  constructor(age: number) {
+    this.age = age;
+  }
+}
+@ComponentV2
+struct Child {
+  @Param @Require infoWrapper: InfoWrapper;
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+    this.infoWrapper.info = undefined; // Disable the InfoWrapper from listening for info.age.
+  }
+  build() {
+    Column() {
+      Text(`${this.infoWrapper.info?.age}`)
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  dataArray: Info[] = [];
+  @Local showFlag: boolean = true;
+  aboutToAppear(): void {
+    for (let i = 0; i < 5; i++) {
+      this.dataArray.push(new Info(i));
+    }
+  }
+  build() {
+    Column() {
+      Button("change showFlag")
+        .onClick(() => {
+          this.showFlag = !this.showFlag;
+        })
+      Button("change number")
+        .onClick(() => {
+          console.log("click to change age")
+          this.dataArray.forEach((info: Info) => {
+            info.age += 100;
+          })
+        })
+      if (this.showFlag) {
+        Column() {
+          Text("Childs")
+          ForEach(this.dataArray, (info: Info) => {
+            Child({ infoWrapper: new InfoWrapper(info) })
+          })
+        }
+        .borderColor(Color.Red)
+        .borderWidth(2)
+      }
+    }
+  }
+}
+```
+

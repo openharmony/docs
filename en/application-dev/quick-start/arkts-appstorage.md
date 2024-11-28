@@ -37,7 +37,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | \@StorageProp Decorator| Description                                                        |
 | ----------------------- | ------------------------------------------------------------ |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @StorageProp("AA") a: number \| null = null is recommended; **@StorageProp("AA") a: number = null** is not recommended.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageProp("AA") a: number \| null = null** is recommended; **@StorageProp("AA") a: number = null** is not recommended. |
 | Synchronization type               | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
 | Initial value for the decorated variable     | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
 
@@ -104,7 +104,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | \@StorageLink Decorator| Description                                      |
 | ------------------ | ---------------------------------------- |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @StorageLink("AA") a: number \| null = null is recommended; **@StorageLink("AA") a: number = null** is not recommended.|
+| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageLink("AA") a: number \| null = null** is recommended; **@StorageLink("AA") a: number = null** is not recommended. |
 | Synchronization type              | Two-way: from the attribute in AppStorage to the custom component variable and vice versa|
 | Initial value for the decorated variable         | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
 
@@ -151,13 +151,14 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 3. When the data decorated by \@StorageLink(key) is a state variable, its change is synchronized to AppStorage, and the owning custom component is re-rendered.
 
-
 ## Use Scenarios
 
 
 ### Example of Using AppStorage and LocalStorage in Application Logic
 
 Since AppStorage is a singleton, its APIs are all static. How these APIs work resembles the non-static APIs of LocalStorage.
+
+
 
 
 ```ts
@@ -507,7 +508,7 @@ export struct TapImage {
 
 ### Union Type
 
-In the following example, the type of variable **A** is number | null, and the type of variable **B** is number | undefined. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
+In the following example, the type of variable **A** is **number | null**, and the type of variable **B** is **number | undefined**. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
 
 ```ts
 @Component
@@ -705,15 +706,41 @@ struct SetSample {
 }
 ```
 
+## FAQs
 
+### Value Changed by \@StorageProp Locally Fails to Update through AppStorage
 
-## Restrictions
+```ts
+AppStorage.setOrCreate('PropA', false);
 
-When using AppStorage together with [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md), pay attention to the following:
+@Entry
+@Component
+struct Index {
+  @StorageProp('PropA') @Watch('onChange') propA: boolean = false;
 
-- After an attribute is created in AppStorage, a call to **PersistentStorage.persistProp()** uses the attribute value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing an Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-an-attribute-in-appstorage-after-persistentstorage).
+  onChange() {
+    console.log(`propA change`);
+  }
 
-- After an attribute is created in AppStorage, a call to **Environment.envProp()** with the same attribute name will fail. This is because environment variables will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable names in AppStorage.
+  aboutToAppear(): void {
+    this.propA = true;
+  }
 
-- Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see <!--Del-->[<!--DelEnd-->**Unrecommended: Using @StorageLink to Implement Event Notification**<!--Del-->](#unrecommended-using-storagelink-to-implement-event-notification)<!--DelEnd-->.
-<!--no_check-->
+  build() {
+    Column() {
+      Text(`${this.propA}`)
+      Button('change')
+        .onClick(() => {
+          AppStorage.setOrCreate('PropA', false);
+          console.log(`PropA: ${this.propA}`);
+        })
+    }
+  }
+}
+```
+
+In the preceding example, the value of **PropA** has been changed to **true** locally before the click event, but the value stored in **AppStorage** is still **false**. When the click event attempts to update the value of **PropA** to **false** through the **setOrCreate** API, the value of @StorageProp remains **true** because the local value and stored value of **PropA** are the same.
+
+To synchronize the two values, use either of the following methods:
+(1) Change \@StorageProp to \@StorageLink.
+(2) Use **AppStorage.setOrCreate('PropA', true)** to change the value locally.
