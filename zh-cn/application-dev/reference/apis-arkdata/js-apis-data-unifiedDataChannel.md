@@ -873,6 +873,7 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | 公共数据通路。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ## Options
 
@@ -1350,5 +1351,83 @@ try {
 } catch (e) {
   let error: BusinessError = e as BusinessError;
   console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
+
+## unifiedDataChannel.setAppShareOptions<sup>14+</sup>
+
+setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
+
+设置应用内拖拽通道数据可使用的范围[ShareOptions](#shareoptions12)，目前仅支持DRAG类型数据通道的管控设置。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                           |
+|----------|----------------------------|----|------------------------------|
+| intention | [Intention](#intention) | 是  | 表示数据操作相关的数据通路类型，目前仅支持DRAG类型数据通道。 |
+| shareOptions | [ShareOptions](#shareoptions12) | 是  | 指示[UnifiedData](#unifieddata)支持的设备内使用范围。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[统一数据管理框架错误码](errorcode-udmf.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 20400001     | Settings already exist.                                      |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  unifiedDataChannel.setAppShareOptions(unifiedDataChannel.Intention.DRAG, unifiedDataChannel.ShareOptions.IN_APP);
+  console.info(`[UDMF]setAppShareOptions success. `);
+}catch (e){
+  let error: BusinessError = e as BusinessError;
+  console.error(`[UDMF]setAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
+
+## unifiedDataChannel.removeAppShareOptions<sup>14+</sup>
+
+removeAppShareOptions(intention: Intention): void
+
+清除[setAppShareOptions](#unifieddatachannelsetappshareoptions14)设置的管控信息。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| intention | [Intention](#intention) | 是   | 表示数据操作相关的数据通路类型，目前仅支持DRAG类型数据通道。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  unifiedDataChannel.removeAppShareOptions(unifiedDataChannel.Intention.DRAG);
+  console.info(`[UDMF]removeAppShareOptions success. `);
+}catch (e){
+  let error: BusinessError = e as BusinessError;
+  console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```
