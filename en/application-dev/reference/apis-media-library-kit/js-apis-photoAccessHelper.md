@@ -1775,6 +1775,7 @@ async function example() {
 
 clone(title: string): Promise&lt;PhotoAsset&gt;
 
+Clones a media asset. The file name can be set, but the file type cannot be changed.
 **Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -5210,7 +5211,7 @@ Enumerates the types of recommended images.
 | BANK_CARD<sup>12+</sup> |  7 | Bank card.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | DRIVER_LICENSE<sup>12+</sup> |  8 | Driver license.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | DRIVING_LICENSE<sup>12+</sup> |  9 | Vehicle license<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | Featured single portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | Recommended portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 **Example**
 

@@ -13,7 +13,7 @@ Camera Kit provides the capability of taking moving photos. For details, see [Mo
 
 ## Saves Moving Photo Assets
 
-Use the **SaveButton** security component to save the assets (image and video) of a moving photo. 
+Use the **SaveButton** security component to save the assets (image and video) of a moving photo.
 
 With the **SaveButton** security component, the application does not need the ohos.permission.WRITE_IMAGEVIDEO permission. When the user taps the button embedded with the **SaveButton** security component, the application obtains the temporary permission to save the assets to the specified media library directory.
 
@@ -23,14 +23,14 @@ For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-co
 
 1. Set the properties of the **SaveButton** security component.
 2. Create a button with **SaveButton**.
-3. Use [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11) API to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
-4. Use [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo.
+3. Call [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11) to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
+4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo.
    
    In the following example, the image and video of the moving photo are specified by the application sandbox **fileUri**s.
    
    You can also specify the assets in **ArrayBuffer**. For details, see [MediaAssetChangeRequest.addResource(type: ResourceType, data: ArrayBuffer)](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1).
 
-5. Use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply changes for the moving photo.
+5. Call [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply changes for the moving photo.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -94,8 +94,8 @@ After obtaining a moving photo object, you can use [MovingPhotoView](movingphoto
 ### Obtaining a Moving Photo object from the Media Library
 
 1. Use **Picker** to select the URI of the Moving photo.
-2. Use [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1) and [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the photo asset corresponding to the URI.
-3. Use [MediaAssetManager.requestMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestmovingphoto12) to obtain the moving photo object.
+2. Call [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1) and [FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the photo asset corresponding to the URI.
+3. Call [MediaAssetManager.requestMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestmovingphoto12) to obtain the moving photo object.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -142,7 +142,7 @@ async function example() {
 
 ### Obtaining a Moving Photo object in an Application Sandbox Directory
 
-Use [MediaAssetManager.loadMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#loadmovingphoto12) to load the moving photo object in the application sandbox directory.
+Call [MediaAssetManager.loadMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#loadmovingphoto12) to load the moving photo object in the application sandbox directory.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -162,7 +162,7 @@ async function example() {
 
 ## Reading Moving Photo Assets
 
-Use [MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12) to export the image and video of a moving photo to the application sandbox directory or read the image and video data from **ArrayBuffer**.
+Call [MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12) to export the image and video of a moving photo to the application sandbox directory or read the image and video data from **ArrayBuffer**.
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
