@@ -33,6 +33,8 @@
       - [Converting HAR to HSP](quick-start/har-to-hsp.md)
       - [Converting HSP to HAR](quick-start/hsp-to-har.md)
       - [Creating a Static Shortcut of the Application](quick-start/typical-scenario-configuration.md)
+      - [Creating an Application Clone](quick-start/app-clone.md)
+      - [Configuring Layered Icons](quick-start/layered-image.md)
   - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS<!--learning-arkts-->
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
@@ -139,6 +141,7 @@
             - [Want Overview](application-models/want-overview.md)
             - [Matching Rules of Explicit Want and Implicit Want](application-models/explicit-implicit-want-mappings.md)
             - [Using Explicit Want to Start an Application Component](application-models/ability-startup-with-explicit-want.md)
+            - [Common action and entities Values (Not Recommended)](application-models/actions-entities.md)
           - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
           - [AppStartup](application-models/app-startup.md)
           <!--Del-->
@@ -151,16 +154,19 @@
         - Inter-Application Redirection<!--inter-app-redirection-->
           - [Overview of Application Redirection](application-models/link-between-apps-overview.md)
           - Starting a Specified Application<!--directional-redirection-->
+            - [Overview of Starting a Specified Application](application-models/app-startup-overview.md)
             - [(Optional) Using canOpenLink to Check Application Accessibility](application-models/canopenlink.md)
             - [Using Deep Linking for Application Redirection](application-models/deep-linking-startup.md)
             <!--Del-->
             - [Using App Linking for Application Redirection](application-models/app-linking-startup.md)
             <!--DelEnd-->
             - [Switching from Explicit Want Redirection to Linking Redirection](application-models/uiability-startup-adjust.md)
-            - [Application URI Description](application-models/app-uri-config.md)
-          - [Starting an Application of the Specified Type](application-models/start-intent-panel.md)
+            - [Application Link Description](application-models/app-uri-config.md)
+          - Starting an Application of the Specified Type<!--specified-type-app-redirection-->
+            - [Overview of Starting an Application of the Specified Type](application-models/start-intent-panel.md)
             - [Using startAbilityByType to Start a Navigation Application](application-models/start-navigation-apps.md)
             - [Using startAbilityByType to Start an Email Application](application-models/start-email-apps.md)
+            - [Using mailto to Start an Email Application](application-models/start-email-apps-by-mailto.md)
             - [Using startAbilityByType to Start a Financial Application](application-models/start-finance-apps.md)
             - [Using startAbilityByType to Start an Image Editing Application](application-models/photoEditorExtensionAbility.md)
             - [Using startAbility to Start a File Application](application-models/file-processing-apps-startup.md)
@@ -288,44 +294,89 @@
       - [RelationalStore Development (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF Development Guide (C/C++)](database/native-unified-data-management-framework-guidelines.md)
     - ArkTS<!--arkts-->
-      - [Introduction to ArkTS](arkts-utils/arkts-commonlibrary-overview.md)
-      - Concurrency<!--concurrency-->
+      - [Introduction to ArkTS](arkts-utils/arkts-overview.md)
+      - ArkTS Utils<!--arkts-utils-->
+        - [ArkTS Utils Overview](arkts-utils/arkts-utils-overview.md)
+        - XML Generation, Parsing, and Conversion<!--xml-generation-parsing-conversion-->
+          - [XML Overview](arkts-utils/xml-overview.md)
+          - [XML Generation](arkts-utils/xml-generation.md)
+          - [XML Parsing](arkts-utils/xml-parsing.md)
+          - [XML Conversion](arkts-utils/xml-conversion.md)
+        - [Buffer Introduction](arkts-utils/buffer.md)
+        - ArkTS Containers<!--containers-->
+          - [Container Overview](arkts-utils/container-overview.md)
+          - [Linear Containers](arkts-utils/linear-container.md)
+          - [Nonlinear Containers](arkts-utils/nonlinear-container.md)
+      - ArkTS Concurrency<!--arkts-concurrency-->
         - [Concurrency Overview](arkts-utils/concurrency-overview.md)
-        - Using Asynchronous Concurrency for Development<!--asynchronous-concurrency-->
-          - [Asynchronous Concurrency Overview (Promise and Async/Await)](arkts-utils/async-concurrency-overview.md)
-          - [Single I/O Task Development (Promise and Async/Await)](arkts-utils/single-io-development.md)
-        - Using Multithreaded Concurrency for Development<!--multithreaded-concurrency-->
-          - [Multithreaded Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [Asynchronous Concurrency](arkts-utils/async-concurrency-overview.md)
+        - Multithreaded Concurrency<!--multithread-concurrency-->
+          - [Multithreaded Concurrency Overview](arkts-utils/multi-thread-concurrency-overview.md)
           - [TaskPool Introduction](arkts-utils/taskpool-introduction.md)
           - [Worker Introduction](arkts-utils/worker-introduction.md)
           - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
-          - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
-          - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
-          - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
-        - Appendix<!--appendixes-->
-          - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
-          - [Serialization Types Supported by TaskPool and Worker](arkts-utils/serialization-support-types.md)
-          - [\@Concurrent Decorator: Declaring and Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
-          - [Sendable Development](arkts-utils/arkts-sendable.md)
-          - [System Objects That Accessed Sendable](arkts-utils/arkts-sendable-system-object-list.md)
-          - [ArkTS Asynchronous Lock](arkts-utils/arkts-async-lock-introduction.md)
-          - [ArkTS Collections](arkts-utils/arkts-collections-introduction.md)
-          - [Sharable Module Development](arkts-utils/arkts-sendable-module.md)
-          - [Behavior Differences Between ArkTS Collections APIs and Native APIs](arkts-utils/arkts-collections-vs-native-api-comparison.md)
-      - Container<!--containers-->
-        - [Container Overview](arkts-utils/container-overview.md)
-        - [Linear Containers](arkts-utils/linear-container.md)
-        - [Nonlinear Containers](arkts-utils/nonlinear-container.md)
-      - XML Generation, Parsing, and Conversion<!--xml-generation-parsing-conversion-->
-        - [XML Overview](arkts-utils/xml-overview.md)
-        - [XML Generation](arkts-utils/xml-generation.md)
-        - [XML Parsing](arkts-utils/xml-parsing.md)
-        - [XML Conversion](arkts-utils/xml-conversion.md)
-      - [Code Obfuscation](arkts-utils/source-obfuscation.md)
-      - Memory Management<!--arkts-memory-management-->
-        - [GC Introduction](arkts-utils/gc-introduction.md)
-      - Module Loading
-        - [Dynamically Loading a Native Module in Synchronous Mode](arkts-utils/js-apis-load-native-module.md)
+        - Inter-Thread Communication<!--interthead-communication-->
+          - [ArkTS Inter-Thread Communication Overview](arkts-utils/interthread-communication-overview.md)
+          - Inter-Thread Communication Objects<!--interthead-communication-object-->
+            - [Common Object](arkts-utils/normal-object.md)
+            - [ArrayBuffer Object](arkts-utils/arraybuffer-object.md)
+            - [SharedArrayBuffer Object](arkts-utils/shared-arraybuffer-object.md)
+            - [Transferable Object (NativeBinding Object)](arkts-utils/transferabled-object.md)
+            - Sendable Object<!--sendable-object-->
+              - [Sendable Object Overview](arkts-utils/arkts-sendable.md)
+              - [Sendable Usage Rules and Constraints](arkts-utils/sendable-constraints.md)
+              - [Asynchronous Lock](arkts-utils/arkts-async-lock-introduction.md)
+              - [ASON Parsing and Generation](arkts-utils/ason-parsing-generation.md)
+              - [Shared Container](arkts-utils/arkts-collections-introduction.md)
+              - [Shared Module](arkts-utils/arkts-sendable-module.md)
+              - [Freezing a Sendable Object](arkts-utils/sendable-freeze.md)
+              - [Sendable Use Scenarios](arkts-utils/sendable-guide.md)
+          - Communication Between Threads<!--interthead-communication-guide-->
+            - [Using TaskPool for Independent Time-Consuming Tasks](arkts-utils/independent-time-consuming-task.md)
+            - [Using TaskPool for Multiple Time-Consuming Tasks](arkts-utils/multi-time-consuming-tasks.md)
+            - [Communication Between the TaskPool Task and Host Thread](arkts-utils/taskpool-communicates-with-mainthread.md)
+            - [Instant Communication Between the Worker Thread and Host Thread](arkts-utils/worker-communicates-with-mainthread.md)
+            - [Worker Thread Synchronously Calling Methods of the Host Thread](arkts-utils/worker-invoke-mainthread-interface.md)
+        - Multithreaded Development<!--multithread-develop-guide-->
+          - [Multithreaded Development Overview](arkts-utils/multithread-develop-overview.md)
+          - Concurrent Time-Consuming Tasks<!--time-consuming-task-->
+            - [Concurrent Time-Consuming Task Scenarios](arkts-utils/time-consuming-task-overview.md)
+            - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
+            - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
+            - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
+          - Concurrent Continuous Tasks<!--long-time-task-->
+            - [Concurrent Continuous Task Scenarios](arkts-utils/long-time-task-overview.md)
+            - [Continuous Task Development (TaskPool)](arkts-utils/long-time-task-guide.md)
+          - Concurrent Resident Tasks<!--resident-task-->
+            - [Concurrent Resident Task Scenarios](arkts-utils/resident-task-overview.md)
+            - [Resident Task Development (Worker)](arkts-utils/resident-task-guide.md)
+          - Multithreaded Development Practice Cases<!--multithread-develop-case-->
+            - [Batch Data Writing to the Database](arkts-utils/batch-database-operations-guide.md)
+            - [Concurrent Loading of Service Modules](arkts-utils/concurrent-loading-modules-guide.md)
+            - [Global Configuration Items](arkts-utils/global-configuration-guide.md)
+            - [ArkUI Data Updates](arkts-utils/makeobserved-sendable.md)
+            - [Data Sharing Between C++ Threads](arkts-utils/native-interthread-shared.md)
+      - [ArkTS Cross-Language Interaction](arkts-utils/arkts-cross-language-interaction.md)
+      - ArkTS Runtime<!--arkts-runtime-->
+        - [ArkTS Runtime Overview](arkts-utils/arkts-runtime-overview.md)
+        - [GC](arkts-utils/gc-introduction.md)
+        - ArkTS Modularization<!--arkts-runtime-module-->
+          - [Introduction to Modular Operation](arkts-utils/module-principle.md)
+          - [Dynamic Import](arkts-utils/arkts-dynamic-import.md)
+          - [Lazy Import](arkts-utils//arkts-lazy-import.md)
+          - [Dynamically Loading a Native Module in Synchronous Mode](arkts-utils/js-apis-load-native-module.md)
+          - [Loading Modules Using Node-API](arkts-utils/load-module-base-nodeapi.md)
+      - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
+        - [ArkTS Compilation Toolchain Overview](arkts-utils/compilation-tool-chain-overview.md)
+        - Ark Bytecode<!--arkts-bytecode-->
+          - [Ark Bytecode Overview](arkts-utils/arkts-bytecode-overview.md)
+          - [Ark Bytecode File Format](arkts-utils/arkts-bytecode-file-format.md)
+          - [Ark Bytecode Fundamentals](arkts-utils/arkts-bytecode-fundamentals.md)
+          - [Naming Rules of Ark Bytecode Functions](arkts-utils/arkts-bytecode-function-name.md)
+          - [Customizing Ark Bytecode During Compilation](arkts-utils/customize-bytecode-during-compilation.md)
+        - [Disassembler](arkts-utils/tool-disassembler.md)
+        - [ArkGuard](arkts-utils/source-obfuscation.md)
+        - [Configuring arkOptions in build-profile.json5](arkts-utils/arkoptions-guide.md)
 
     - ArkUI<!--arkui-->
       - [Introduction to ArkUI](ui/arkui-overview.md)
@@ -360,7 +411,7 @@
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
           - [Page Routing](ui/arkts-router-to-navigation.md)
-        - Using Text<!--arkts-use-text-->.
+        - Using Text<!--arkts-use-text-->
           - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
           - [Text Input (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
           - [Rich Text (RichEditor)](ui/arkts-common-components-richeditor.md)
@@ -426,6 +477,7 @@
         - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
           - [Setting the Theme and Skin](ui/theme_skinning.md)
+          
         <!--Del-->
         - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
         <!--DelEnd-->
@@ -524,6 +576,7 @@
         <!--DelEnd-->
         - [Using NativeWindowEventFilter to Filter Multimodal Input Events (C/C++)](windowmanager/native-window-event-filter.md)
       - Display Management<!--display-manager-->
+        
         - [Using OH_DisplayManager to Obtain Basic Display Information and Listen for Status Changes (C/C++)](displaymanager/native-display-manager.md)
     - ArkWeb<!--arkweb-->
       - [Introduction to ArkWeb](web/web-component-overview.md)
@@ -536,6 +589,9 @@
         - [Managing Location Permissions](web/web-geolocation-permission.md)
         - [Using Incognito Mode](web/web-incognito-mode.md)
         - [Using Motion and Direction Sensors](web/web-sensor.md)
+      - Web Rendering and Layout<!--web-render-layout--->
+        - [Rendering Modes of the Web Component](web/web-render-mode.md)
+        - [Fitting In the Page Content Layout](web/web-fit-content.md)
       - Using Frontend Page JavaScript Code on the Application<!--web-use-frontend-page-js-->
         - [Invoking Frontend Page Functions on the Application](web/web-in-app-frontend-page-function-invoking.md)
         - [Invoking Application Functions on the Frontend Page](web/web-in-page-app-function-invoking.md)
@@ -548,6 +604,7 @@
         - [Resolving Cross-Origin Resource Access](web/web-cross-origin.md)
         - [Intelligent Tracking Prevention](web/web-intelligent-tracking-prevention.md)
         - [Enabling Ads Blocking for Web Components](web/web-adsblock.md)
+        - [Using Secure Shield Mode](web/web-secure-shield-mode.md)
       - Managing Web Page Loading and Browsing Records<!--web-manage-loading-browsing-->
         - [Loading Pages](web/web-page-loading-with-web-components.md)
         - [Managing Page Redirection and Browsing History Navigation](web/web-redirection-and-browsing-history-mgmt.md)
@@ -566,7 +623,7 @@
         - [Printing Frontend Pages](web/web-print.md)
         - [Previewing PDF Files](web/web-pdf-preview.md)
         - [Calculating and Adjusting Safe Area Insets](web/web-safe-area-insets.md)
-      - [Rendering and Drawing Video and Button Components at the Same Layer](web/web-same-layer.md)
+      - [Using Same-Layer Rendering](web/web-same-layer.md)
       - Web Debugging<!--web-debugging-->
         - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
         - [Using Crashpad to Collect Web Component Crash Information](web/web-crashpad.md)
@@ -916,7 +973,7 @@
             - [Anonymous Key Attestation (C/C++)](security/UniversalKeystoreKit/huks-key-anon-attestation-ndk.md)
             <!--Del-->
             - [Non-anonymous Key Attestation (ArkTS)](security/UniversalKeystoreKit/huks-key-attestation-arkts.md)
-            - [Non-anonymous Key attestation (C/C++)](security/UniversalKeystoreKit/huks-key-attestation-ndk.md)
+            - [Non-anonymous Key Attestation (C/C++)](security/UniversalKeystoreKit/huks-key-attestation-ndk.md)
             <!--DelEnd-->
         - Other Operations<!--huks-other-operations-->
           - Checking Key Existence<!--huks-check-key-->
@@ -1158,6 +1215,8 @@
         - [LLDB](tools/lldb-tool.md)
         <!--DelEnd-->
         - [param](tools/param-tool.md)
+        - [power-shell](tools/power-shell.md)
+        - [Access Token Manager](tools/atm-tool.md)
         - Command Line Utilities<!--command-line-utilities-->
           - [Toybox](tools/toybox.md)
           - [mediatool](tools/mediatool.md)
@@ -1211,7 +1270,7 @@
         - [Video Encoding](media/avcodec/video-encoding.md)
         - [Temporal Layered Video Encoding](media/avcodec/video-encoding-temporal-scalability.md)
         - [Video Decoding](media/avcodec/video-decoding.md)
-      - Media Data Muxing and Demuxing<!--file-muxing-demuxing-->.
+      - Media Data Muxing and Demuxing<!--file-muxing-demuxing-->
         - [Media Data Muxing](media/avcodec/audio-video-muxer.md)
         - [Media Data Demuxing](media/avcodec/audio-video-demuxer.md)
     - AVSession Kit<!--avsession-kit-->
@@ -1268,14 +1327,13 @@
         - [Preview (C/C++)](media/camera/native-camera-preview.md)
         - [Secondary Processing of Preview Streams (C/C++)](media/camera/native-camera-preview-imageReceiver.md)
         - [Photo Capture (C/C++)](media/camera/native-camera-shooting.md)
+        - [Deferred Photo Delivery (C/C++)](media/camera/native-camera-deferred-capture.md)
         - [Video Recording (C/C++)](media/camera/native-camera-recording.md)
-        - [Secondary Processing of Video Streams (C/C++)](media/camera/native-camera-recording-imageReceiver.md)
         - [Camera Metadata (C/C++)](media/camera/native-camera-metadata.md)
         - [Using the Flashlight (C/C++)](media/camera/native-camera-torch-use.md)
       - Camera Best Practices (C/C++)<!--camera-best-practices-native-->
         - [Camera Photographing Sample (C/C++)](media/camera/native-camera-shooting-case.md)
         - [Photo Capture Sample (C/C++)](media/camera/native-camera-recording-case.md)
-        - [Sample of Secondary Processing of Video Streams (C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
     - DRM Kit<!--drm-kit-->
       - [Introduction to DRM Kit](media/drm/drm-overview.md)
       - DRM Development (ArkTS)<!--drm-arkts-dev-->
@@ -1308,22 +1366,29 @@
         - [Using Image to Encode Images](media/image/image-encoding-native.md)
     - Media Kit<!--media-kit-->
       - [Introduction to Media Kit](media/media/media-kit-intro.md)
-      - Audio Playback and Recording<!--audio-playback-recording-->
-        - [Using AVPlayer for Audio Playback (ArkTS)](media/media/using-avplayer-for-playback.md)
-        - [Using AVPlayer for Audio Playback (C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
-        - [Using SoundPool for Audio Playback](media/media/using-soundpool-for-playback.md)
-        - [Using AVRecorder for Audio Recording](media/media/using-avrecorder-for-recording.md)
-        - [Obtaining Audio/Video Metadata (ArkTS)](media/media/avmetadataextractor.md)
-      - Video Playback and Recording<!--video-playback-recording-->
-        - [Video Playback](media/media/video-playback.md)
-        - [Adding External Subtitles to Videos](media/media/video-subtitle.md)
-        - [Video Recording](media/media/video-recording.md)
-        - [Using AVScreenCaptureRecorder to Capture Screens and Save Them to a File (ArkTs)](media/media/using-avscreencapture-ArkTs.md)
-        - [Using AVScreenCapture to Obtain Original Streams (C/C++)](media/media/using-avscreencapture-for-buffer.md)
-        - [Using AVScreenCapture to Save Recordings in Files (C/C++)](media/media/using-avscreencapture-for-file.md)
-        - [Obtaining Video Thumbnails (ArkTS)](media/media/avimagegenerator.md)
-      - Video Transcoding
-        - [Using AVTranscoder for Video Transcoding](media/media/using-avtranscoder-for-transcodering.md)
+      - [Media Development Preparation](media/media/media-preparation.md)
+      - Media Development (ArkTS)<!--media-kit-dev--arkts-->
+        - Playback<!--media-playback-arkts-->
+          - [Using AVPlayer for Audio Playback (ArkTS)](media/media/using-avplayer-for-playback.md)
+          - [Using AVPlayer to Play Videos (ArkTS)](media/media/video-playback.md)
+          - [Using AVPlayer to Play Streaming Media (ArkTS)](media/media/streaming-media-playback-development-guide.md)
+          - [Using AVPlayer to Add External Subtitles to Videos (ArkTS)](media/media/video-subtitle.md)
+          - [Using SoundPool to Play Short Sounds (ArkTS)](media/media/using-soundpool-for-playback.md)
+        - Recording<!--media-recording-arkts-->
+          - [Using AVRecorder to Record Audio (ArkTS)](media/media/using-avrecorder-for-recording.md)
+          - [Using AVRecorder to Record Videos (ArkTS)](media/media/video-recording.md)
+          - [Using AVScreenCaptureRecorder to Capture Screens and Write Them to Files (ArkTS)](media/media/using-avscreencapture-ArkTs.md)
+        - Media Information Query<!--media-info-arkts-->
+          - [Using AVMetadataExtractor to Extract Audio and Video Metadata (ArkTS)](media/media/avmetadataextractor.md)
+          - [Using AVImageGenerator to Extract Video Images at a Specified Time (ArkTS)](media/media/avimagegenerator.md)
+        - Video Transcoding<!--media-transcoder-arkts-->
+          - [Using AVTranscoder to Transcode Videos (ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
+      - Media Development (C/C++)<!--media-kit-dev--c-->
+        - Playback<!--media-playback-c-->
+          - [Using AVPlayer to Play Audio (C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
+        - Screen Capture<!--media-recording-c-->
+          - [Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)](media/media/using-avscreencapture-for-buffer.md)
+          - [Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)](media/media/using-avscreencapture-for-file.md)
     - Media Library Kit<!--medialibrary-kit-->
       - [Introduction to Media Library Kit](media/medialibrary/photoAccessHelper-overview.md)
       - [Selecting Media Assets Using Picker](media/medialibrary/photoAccessHelper-photoviewpicker.md)
@@ -1449,6 +1514,7 @@
           - [Asynchronous Task Development Using Node-API](napi/use-napi-asynchronous-task.md)
           - [Thread Safety Development Using Node-API](napi/use-napi-thread-safety.md)
           - [Wrapping a Native Object in an ArkTS Object](napi/use-napi-object-wrap.md)
+          - [Wrapping a Native Object in a Sendable ArkTS Object](napi/use-sendable-napi.md)
           - [Creating an ArkTS Runtime Environment Using Node-API](napi/use-napi-ark-runtime.md)
           - [Loading a Module in the Main Thread Using Node-API](napi/use-napi-load-module.md)
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
@@ -2280,6 +2346,7 @@
           - [Pixel Units](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
           - [Enums](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
           - [Common Event Callback](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
+          - [SVG Tags](reference/apis-arkui/arkui-ts/ts-basic-svg.md)
           <!--Del-->
           - [Enums (System API)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
           <!--DelEnd-->
@@ -2900,10 +2967,10 @@
           - [NFC Error Codes](reference/apis-connectivity-kit/errorcode-nfc.md)
           - [SE Error Codes](reference/apis-connectivity-kit/errorcode-se.md)
         - APIs No Longer Maintained<!--connectivity-arkts-dep-->
-          - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
-          - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
-          - [@ohos.wifi (WLAN) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-wifi.md)
-          - [@ohos.wifiext (WLAN Extension) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-wifiext.md)
+          - [@ohos.bluetooth (Bluetooth) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
+          - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
+          - [@ohos.wifi (WLAN) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-wifi.md)
+          - [@ohos.wifiext (WLAN Extension) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-wifiext.md)
           - [@system.bluetooth (Bluetooth)](reference/apis-connectivity-kit/js-apis-system-bluetooth.md)
           <!--Del-->
           - [@ohos.bluetooth (Bluetooth) (To Be Deprecated) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-sys.md)
@@ -2990,6 +3057,7 @@
           - [MDNS Error Codes](reference/apis-network-kit/errorcode-net-mdns.md)
           - [Traffic Management Error Codes](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN Error Codes](reference/apis-network-kit/errorcode-net-vpn.md)
+          - [Network Security Error Codes](reference/apis-network-kit/errorcode-net-networkSecurity.md)
 
       - Telephony Kit<!--telephony-api-->
         - ArkTS APIs<!--telephony-arkts-->
