@@ -186,7 +186,7 @@ typedef struct Region Region
 
 **Description**
 
-Defines the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.
+Defines a struct for the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.
 
 **Since**: 8
 
@@ -263,22 +263,22 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 | -------- | -------- |
 | SET_BUFFER_GEOMETRY | Setting the geometry for the local window buffer.<br>Variable arguments in the function: [Input] int32_t width and [Input] int32_t height.| 
 | GET_BUFFER_GEOMETRY | Obtaining the geometry of the local window buffer.<br>Variable arguments in the function: [Output] int32_t *height and [Output] int32_t *width.| 
-| GET_FORMAT | Obtaining the format of the local window buffer.<br>Variable argument in the function: [Output] int32_t *format.| 
-| SET_FORMAT | Setting the format for the local window buffer.<br>Variable argument in the function: [Input] int32_t format.| 
-| GET_USAGE | Obtaining the usage mode of the local window buffer.<br>Variable argument in the function: [Output] uint64_t \*usage.| 
-| SET_USAGE | Setting the usage mode for the local window buffer.<br>Variable argument in the function: [Input] uint64_t usage.| 
-| SET_STRIDE | Setting the stride for the local window buffer.<br>Variable argument in the function: [Input] int32_t stride.| 
-| GET_STRIDE | Obtaining the stride of the local window buffer.<br>Variable argument in the function: [Output] int32_t *stride.| 
+| GET_FORMAT | Obtaining the format of the local window buffer.<br>Variable argument in the function: [Output] int32_t \*format.<br>For details about the available options, see [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1).| 
+| SET_FORMAT | Setting the format for the local window buffer.<br>Variable argument in the function: [Input] int32_t format.<br>For details about the available options, see [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1).| 
+| GET_USAGE | Obtaining the usage mode of the local window buffer.<br>Variable argument in the function: [Output] uint64_t \*usage.<br>For details about the available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1).| 
+| SET_USAGE | Setting the usage mode for the local window buffer.<br>Variable argument in the function: [Input] uint64_t usage.<br>For details about the available options, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1).| 
+| SET_STRIDE | Setting the stride for the local window buffer, in bytes.<br>Variable argument in the function: [Input] int32_t stride.| 
+| GET_STRIDE | Obtaining the stride of the local window buffer, in bytes.<br>Variable argument in the function: [Output] int32_t \*stride.| 
 | SET_SWAP_INTERVAL | Setting the swap interval for the local window buffer.<br>Variable argument in the function: [Input] int32_t interval.| 
-| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t *interval.| 
-| SET_TIMEOUT | Setting the timeout duration for requesting the local window buffer.<br>Variable argument in the function: [Input] int32_t timeout.| 
-| GET_TIMEOUT | Obtaining the timeout duration for requesting the local window buffer.<br>Variable argument in the function: [Output] int32_t *timeout.| 
-| SET_COLOR_GAMUT | Setting the color gamut for the local window buffer.<br>Variable argument in the function: [Input] int32_t colorGamut.| 
-| GET_COLOR_GAMUT | Obtaining the color gamut of the local window buffer.<br>Variable argument in the function: [Output] int32_t *colorGamut.| 
-| SET_TRANSFORM | Setting the transform for the local window buffer.<br>Variable argument in the function: [Input] int32_t transform.| 
-| GET_TRANSFORM | Obtaining the transform of the local window buffer.<br>Variable argument in the function: [Output] int32_t *transform.| 
+| GET_SWAP_INTERVAL | Obtaining the swap interval of the local window buffer.<br>Variable argument in the function: [Output] int32_t \*interval.| 
+| SET_TIMEOUT | Setting the timeout duration for requesting the local window buffer, in ms.<br>Default value: 3000 ms.<br>Variable argument in the function: [Input] int32_t timeout.| 
+| GET_TIMEOUT | Obtaining the timeout duration for requesting the local window buffer, in ms.<br>Default value: 3000 ms.<br>Variable argument in the function: [Output] int32_t \*timeout.| 
+| SET_COLOR_GAMUT | Setting the color gamut for the local window buffer.<br>Variable argument in the function: [Input] int32_t colorGamut.<br>For details about the available options, see [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1).| 
+| GET_COLOR_GAMUT | Obtaining the color gamut of the local window buffer.<br>Variable argument in the function: [Output] int32_t \*colorGamut.<br>For details about the available options, see [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1).| 
+| SET_TRANSFORM | Setting the transform for the local window buffer.<br>Variable argument in the function: [Input] int32_t transform.<br>For details about the available options, see [OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1). | 
+| GET_TRANSFORM | Obtaining the transform of the local window buffer.<br>Variable argument in the function: [Output] int32_t \*transform.<br>For details about the available options, see [OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1). | 
 | SET_UI_TIMESTAMP | Setting the UI timestamp for the local window buffer.<br>Variable argument in the function: [Input] uint64_t uiTimestamp.| 
-| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | Obtaining the memory queue size.<br>Variable argument in the function: [Output] int32_t \*size.<br/>This value is available since API version 12.| 
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | Obtaining the memory queue size.<br>Variable argument in the function: [Output] int32_t \*size.| 
 | SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | Setting the brightness of HDR white points.<br>Variable arguments in the function: [Input] float brightness. The value range is [0.0f, 1.0f].| 
 | SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | Setting the brightness of SDR white points.<br>Variable arguments in the function: [Input] float brightness. The value range is [0.0f, 1.0f].| 
 | SET_SOURCE_TYPE<sup>12+</sup> | Setting the source of content displayed in the local window.<br>Variable argument in the function: [Input] int32_t sourceType. For details about the available options, see [OHSurfaceSource](#ohsurfacesource).| 
@@ -357,7 +357,7 @@ Enumerates the rendering scaling modes.
 | OH_SCALING_MODE_SCALE_TO_WINDOW_V2  | Scales the buffer to match the window size.| 
 | OH_SCALING_MODE_SCALE_CROP_V2  | Scales the buffer at the original aspect ratio to enable the smaller side of the buffer to match the window, while making the excess part transparent.| 
 | OH_SCALING_MODE_NO_SCALE_CROP_V2  | Crops the buffer by window size. Pixels outside the cropping rectangle are considered completely transparent.| 
-| OH_SCALING_MODE_SCALE_FIT_V2  | Scales the buffer at the original aspect ratio to fully display the buffer content, while filling the unfilled area of the window with the background color. This mode is not available for the<!--Del--> development board and<!--DelEnd--> emulator.| 
+| OH_SCALING_MODE_SCALE_FIT_V2  | Scales the buffer at the original aspect ratio to fully display the buffer content, while filling the unfilled area of the window with the background color. This mode is not available for the<!--Del--> development board and<!--DelEnd--> Emulator.| 
 
 
 ## Function Description

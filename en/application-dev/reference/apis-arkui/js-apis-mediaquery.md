@@ -32,19 +32,19 @@ Sets the media query condition. This API returns the corresponding media query l
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name   | Type  | Mandatory | Description                                                        |
+| Name   | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| condition | string | Yes  | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax). |
+| condition | string | Yes  | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax).|
 
-**Return value** 
+**Return value**
 
 | Type              | Description                                        |
 | ------------------ | -------------------------------------------- |
-| [MediaQueryListener](#mediaquerylistener) | Media query listener, which is used to register or deregister the listening callback. |
+| [MediaQueryListener](#mediaquerylistener) | Media query listener, which is used to register or deregister the listening callback.|
 
-**Example** 
+**Example**
 
 ```ts
 import { mediaquery } from '@kit.ArkUI';
@@ -72,7 +72,7 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 Registers a media query listener. The callback is triggered when the media attributes change.
 
-> **NOTE** 
+> **NOTE**
 >
 > The **on** or **off** function cannot be called in the registered callback.
 
@@ -82,14 +82,14 @@ Registers a media query listener. The callback is triggered when the media attri
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                    |
+| Name  | Type                                                 | Mandatory| Description                    |
 | -------- | ----------------------------------------------------- | ---- | ------------------------ |
-| type     | string                                                | Yes  | Listener type. The value is fixed at **'change'**. |
+| type     | string                                                | Yes  | Listener type. The value is fixed at **'change'**.|
 | callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | Yes  | Callback registered with media query.    |
 
-**Example** 
+**Example**
 
   See the example of [off](#offchange).
 
@@ -106,14 +106,14 @@ Deregisters a media query listener, so that no callback is triggered when the me
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                            | Mandatory | Description                                                      |
+| Name  | Type                            | Mandatory| Description                                                      |
 | -------- | -------------------------------- | ---- | ---------------------------------------------------------- |
 | type     | string                           | Yes  | Listener type. The value is fixed at **'change'**.                                  |
-| callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | No  | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered. |
+| callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | No  | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
 
-**Example** 
+**Example**
 
   ```ts
 import { mediaquery } from '@kit.ArkUI';
@@ -143,13 +143,17 @@ Provides the media query result.
 
 ### Attributes
 
-| Name   | Type   | Readable | Writable | Description                |
+| Name   | Type   | Readable| Writable| Description                |
 | ------- | ------- | ---- | ---- | -------------------- |
 | matches | boolean | Yes  | No  | Whether the media query condition is met.  |
-| media   | string  | Yes  | No  | Media query condition. |
+| media   | string  | Yes  | No  | Media query condition.|
 
 
 ### Example
+
+> **NOTE**
+>
+> You are advised to use the [getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MediaQuery](js-apis-arkui-UIContext.md#mediaquery) object associated with the current UI context.
 
 ```ts
 import { mediaquery } from '@kit.ArkUI';
@@ -159,7 +163,7 @@ import { mediaquery } from '@kit.ArkUI';
 struct MediaQueryExample {
   @State color: string = '#DB7093'
   @State text: string = 'Portrait'
-  listener = mediaquery.matchMediaSync('(orientation: landscape)')
+  listener = mediaquery.matchMediaSync('(orientation: landscape)') // You are advised to use this.getUIContext().getMediaQuery().matchMediaSync().
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
@@ -172,8 +176,14 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = (mediaQueryResult:mediaquery.MediaQueryResult):void=>this.onPortrait(mediaQueryResult)  // bind current js instance
-    this.listener.on('change', portraitFunc)
+    let portraitFunc = (mediaQueryResult: mediaquery.MediaQueryResult): void => this.onPortrait(mediaQueryResult)
+    // Register the callback.
+    this.listener.on('change', portraitFunc);
+  }
+
+  aboutToDisappear() {
+    // Unregister the callback.
+    this.listener.off('change');
   }
 
   build() {

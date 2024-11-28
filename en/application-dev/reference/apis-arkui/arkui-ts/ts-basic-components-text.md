@@ -25,7 +25,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | No| Text content. This parameter does not take effect if the component contains a **\<Span>** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '**|
+| content | string \| [Resource](ts-types.md#resource) | No| Text content. This parameter does not take effect if the component contains a **Span** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '**|
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | No| Initialization options of the component.|
 
 ## Attributes
@@ -68,7 +68,7 @@ If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **Tex
 
 If **overflow** is set to **TextOverflow.MARQUEE**, the text scrolls in a line, and neither **maxLines** nor **copyOption** takes effect. The **textAlign** attribute takes effect only when the text is not scrollable. With **overflow** set to **TextOverflow.MARQUEE**, the **clip** attribute is set to **true** by default. **TextOverflow.MARQUEE** is not available for [CustomSpan](ts-universal-styled-string.md#customspan) of the styled string.
 
-Since API version 12, **TextOverflow.MARQUEE** is available for the **\<ImageSpan>** component, where the text and images are displayed in scrolling mode in a line.
+Since API version 12, **TextOverflow.MARQUEE** is available for the **ImageSpan** component, where the text and images are displayed in scrolling mode in a line.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -141,6 +141,8 @@ Sets the color, type, and style of the text decorative line.
 baselineOffset(value: number | string)
 
 Sets the offset of the text baseline. If the value specified is a percentage, the default value is used.
+
+Positive values shift the content upwards, while negative values shift it downwards.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -548,9 +550,9 @@ This API must be used together with [enableDataDetector](#enabledatadetector11).
 
 When entities A and B overlap, the following rules are followed:
 
-1. If A ⊂ B, retain B. Otherwise, retain A.
+1. If A is a subset of B (A ⊂ B), then B is retained; otherwise, A is retained.
 
-2. When A ⊄ B and B ⊄ A: If A.start < B.start, retain A; otherwise, retain B.
+2. If A is not a subset of B (A ⊄ B) and B is not a subset of A (B ⊄ A), and if the starting point of A is earlier than that of B (A.start < B.start), then A is retained; otherwise, B is retained.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -571,7 +573,7 @@ Sets the custom context menu on text selection.
 
 The duration required for a long-press gesture is 600 ms for **bindSelectionMenu** and 800 ms for **bindContextMenu**. When both **bindSelectionMenu** and **bindContextMenu** are set and both are configured to be triggered by a long-press gesture, **bindSelectionMenu** is triggered first.
 
-If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) component to prevent the keyboard from being blocked.
+If the custom menu is too long, embed a [Scroll](./ts-container-scroll.md) component to prevent the keyboard from being blocked.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -581,9 +583,9 @@ If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) co
 
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| spanType     | TextSpanType          | Yes  | Span type of the menu.<br>Default value: **TextSpanType.TEXT**              |
+| spanType     | [TextSpanType](#textspantype11)          | Yes  | Span type of the menu.<br>Default value: **TextSpanType.TEXT**              |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | Yes  | Content of the menu.                                            |
-| responseType | TextResponseType  | Yes  | Response type of the menu.<br>Default value: **TextResponseType.LONG_PRESS** |
+| responseType | [TextResponseType](#textresponsetype11)  | Yes  | Response type of the menu.<br>Default value: **TextResponseType.LONG_PRESS**|
 | options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions10) | No  | Options of the menu.                                            |
 
 ### fontFeature<sup>12+</sup>
@@ -618,11 +620,11 @@ For more information about the font features, see [Low-level font feature settin
 
 >  **NOTE**<br/>
 >
->  The **Text** component cannot contain both text and the child component **\<Span>** or **\<ImageSpan>**. If both of them exist, only the content in **\<Span>** or **\<ImageSpan>** is displayed.
+>  The **Text** component cannot contain both text and the child component **Span** or **ImageSpan**. If both of them exist, only the content in **Span** or **ImageSpan** is displayed.
 >
 >  The typesetting engine rounds down the value of [width](ts-universal-attributes-size.md#width) to ensure that the value is an integer. If the typesetting engine rounds up the value instead, the right side of the text may be clipped.
 >
->  When multiple **Text** components are placed in the [\<Row>](ts-container-row.md) container with no specific layout or space allocation settings configured, the components are laid out based on the maximum size of the container. To make sure the sum of the components' main axis sizes does not exceed the main axis size of the container, you can set [layoutWeight](ts-universal-attributes-size.md#layoutweight) or use the [flex layout](ts-universal-attributes-flex-layout.md).
+>  When multiple **Text** components are placed in the [Row](ts-container-row.md) container with no specific layout or space allocation settings configured, the components are laid out based on the maximum size of the container. To make sure the sum of the components' main axis sizes does not exceed the main axis size of the container, you can set [layoutWeight](ts-universal-attributes-size.md#layoutweight) or use the [flex layout](ts-universal-attributes-flex-layout.md).
 
 ### lineSpacing<sup>12+</sup>
 
@@ -1459,7 +1461,7 @@ struct TextExample8 {
         .width('100%')
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
-        Button('Change lineBreakStrategy Value:' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+        Button('Current lineBreakStrategy value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
           this.lineBreakStrategyIndex++
           if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
             this.lineBreakStrategyIndex = 0
@@ -1581,10 +1583,10 @@ struct TextExample11 {
     menuItems.forEach((value, index) => {
       value.icon = $r('app.media.startIcon')
       if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy"
+        value.content = "Copy_custom"
       }
       if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select All"
+        value.content = "Select all_custom"
       }
     })
     let item1: TextMenuItem = {

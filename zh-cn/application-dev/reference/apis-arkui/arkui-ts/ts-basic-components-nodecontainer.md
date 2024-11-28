@@ -39,6 +39,8 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
 ## 示例
 
+通过NodeController挂载BuilderNode节点。
+
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 

@@ -146,6 +146,8 @@ decoration(value: DecorationStyleInterface)
 
 ## 示例
 
+该示例通过fontColor、fontSize、fontStyle、fontWeight属性展示了不同样式的文本效果。
+
 ```ts
 // xxx.ets
 @Entry

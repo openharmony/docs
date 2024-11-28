@@ -26,9 +26,9 @@ import settings from '@ohos.settings';
 | DEVICE_SHARED<sup>11+</sup> | string | 是   | 是   | 设备属性共享域                                          |
 | USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域                                           |
 
-## date(暂不支持)
+## date
 
-提供设置时间和日期格式的数据项。
+提供设置时间和日期格式的数据项。(暂不支持)
 
 ### 属性
 
@@ -41,9 +41,9 @@ import settings from '@ohos.settings';
 | AUTO_GAIN_TIME      | string | 是   | 是   | 是否自动从网络获取日期、时间和时区。 <br>值为true表示自动从网络获取信息；<br/>值为false表示不自动获取。 |
 | AUTO_GAIN_TIME_ZONE | string | 是   | 是   | 是否自动从NITZ获取时区。 <br>值为true表示自动获取；<br/>值为false表示不自动获取。 |
 
-## display(暂不支持)
+## display
 
-提供设置显示效果的数据项。
+提供设置显示效果的数据项。(暂不支持)
 
 ### 属性
 
@@ -63,9 +63,9 @@ import settings from '@ohos.settings';
 | WINDOW_ANIMATION_SCALE        | string | 是   | 是   | 普通窗口动画的比例因子。<br/>值为0，表示禁用窗口动画。                                                                              |
 | DISPLAY_INVERSION_STATUS      | string | 是   | 是   | 是否启用显示颜色反转。<br/>值为1，表示启用显示颜色反转；<br/>值为0，表示不启用显示颜色反转。                                                        |
 
-## general(暂不支持)
+## general
 
-提供设置设备常规信息的数据项。
+提供设置设备常规信息的数据项。(暂不支持)
 
 ### 属性
 
@@ -90,9 +90,9 @@ import settings from '@ohos.settings';
 | SKIP_USE_HINTS                   | string | 是   | 是   | 应用程序是否应在首次启动时尝试跳过所有介绍性提示。这适用于临时用户或熟悉环境的用户。<br>值为1，表示应用程序将尝试在第一次启动时跳过所有介绍性提示；<br/>值为0，表示应用程序不会在首次启动时跳过介绍性提示。 |
 | TOUCH_EXPLORATION_STATUS         | string | 是   | 是   | 是否启用触摸浏览。<br>值为1，表示启用触摸浏览；<br/>值为0，表示不启用触摸浏览。 |
 
-## input(暂不支持)
+## input
 
-提供设置有关输入法信息的数据项。
+提供设置有关输入法信息的数据项。(暂不支持)
 
 ### 属性
 
@@ -109,9 +109,9 @@ import settings from '@ohos.settings';
 | AUTO_REPLACE_TEXT_INPUT              | string | 是   | 是   | 是否为文本编辑器启用自动更正。自动更正使文本编辑器能够更正拼写错误。<br>值为0，表示不启用自动更正；<br/>值为1，表示启用自动更正。 |
 | SHOW_PASSWORD_TEXT_INPUT             | string | 是   | 是   | 是否在文本编辑器中启用密码显示。密码显示使文本编辑器能够在用户键入密码字符时显示密码字符。<br>值为0，表示不启用密码显示；<br/>值为1，表示启用密码显示。 |
 
-## network(暂不支持)
+## network
 
-提供设置网络信息的数据项。
+提供设置网络信息的数据项。(暂不支持)
 
 ### 属性
 
@@ -123,9 +123,9 @@ import settings from '@ohos.settings';
 | HTTP_PROXY_CFG           | string | 是   | 是   | 全局 HTTP 代理的主机名和端口号。主机名和端口号由冒号':'分隔。 |
 | NETWORK_PREFERENCE_USAGE | string | 是   | 是   | 要使用的网络的用户首选项。                                   |
 
-## phone(暂不支持)
+## phone
 
-提供设置来电和去电接听方式的数据项。
+提供设置来电和去电接听方式的数据项。(暂不支持)
 
 ### 属性
 
@@ -135,9 +135,9 @@ import settings from '@ohos.settings';
 | ------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | RTT_CALLING_STATUS | string | 是   | 是   | 是否启用实时文本 (RTT) 呼叫。启用，来电和去电在设备和运营商支持时作为 RTT 呼叫应答。 <br> 值为1，表示启用RTT 呼叫； <br/> 值为0，表示不启用 RTT 呼叫。 |
 
-## sound(暂不支持)
+## sound
 
-提供设置声音效果的数据项。
+提供设置声音效果的数据项。(暂不支持)
 
 ### 属性
 
@@ -157,9 +157,9 @@ import settings from '@ohos.settings';
 | VIBRATE_STATUS               | string | 是   | 是   | 设备是否为事件振动。该参数在系统内部使用。 <br>值为1，表示设备会因事件而振动； <br/>值为0，表示设备不因事件振动。 |
 | HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。<br/>值为true，表示启用触觉反馈；<br/>值为false，表示不启用触觉反馈。 |
 
-## TTS(暂不支持)
+## TTS
 
-提供设置文本到语音 (TTS) 转换信息的数据项。
+提供设置文本到语音 (TTS) 转换信息的数据项。(暂不支持)
 
 ### 属性
 
@@ -173,9 +173,9 @@ import settings from '@ohos.settings';
 | ENABLED_TTS_PLUGINS | string | 是   | 是   | 用于TTS的已激活插件包列表， 多个插件包以空格分隔。           |
 
 
-## wireless(暂不支持)
+## wireless
 
-提供设置无线网络信息的数据项。
+提供设置无线网络信息的数据项。(暂不支持)
 
 ### 属性
 
@@ -645,13 +645,11 @@ const context: Context =  getContext(this);
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
-## settings.enableAirplaneMode(暂不支持)
+## settings.enableAirplaneMode
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
-启用或禁用飞行模式。使用callback异步回调。
-
-此接口暂不支持。
+启用或禁用飞行模式。使用callback异步回调。(暂不支持)
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -675,13 +673,11 @@ settings.enableAirplaneMode(isEnabled, (err:Error) => {
 })
 ```
 
-## settings.enableAirplaneMode(暂不支持)
+## settings.enableAirplaneMode
 
 enableAirplaneMode(enable: boolean): Promise\<void>
 
-启用或禁用飞行模式。使用Promise异步回调。
-
-此接口暂不支持。
+启用或禁用飞行模式。使用Promise异步回调。(暂不支持)
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -708,11 +704,11 @@ settings.enableAirplaneMode(isEnabled).then(() => {
 })
 ```
 
-## settings.canShowFloating(暂不支持)
+## settings.canShowFloating
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
-检查应用是否能够以悬浮窗形式显示。使用callback异步回调。
+检查应用是否能够以悬浮窗形式显示。使用callback异步回调。(暂不支持)
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -734,11 +730,11 @@ settings.canShowFloating((err:Error, status: boolean) => {
 });
 ```
 
-## settings.canShowFloating(暂不支持)
+## settings.canShowFloating
 
 canShowFloating(): Promise\<boolean>
 
-检查应用是否能够以悬浮窗形式显示。使用Promise异步回调。
+检查应用是否能够以悬浮窗形式显示。使用Promise异步回调。(暂不支持)
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -756,11 +752,11 @@ settings.canShowFloating().then((status:boolean) => {
 });
 ```
 
-## settings.getUriSync<sup>8+</sup>(暂不支持)
+## settings.getUriSync<sup>8+</sup>
 
 getUriSync(name: string): string
 
-获取数据项的URI。
+获取数据项的URI。(暂不支持)
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
@@ -783,11 +779,11 @@ getUriSync(name: string): string
 let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
-## settings.getURI<sup>(deprecated)</sup>(暂不支持)
+## settings.getURI<sup>(deprecated)</sup>
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
-获取数据项的URI。使用callback异步回调。
+获取数据项的URI。使用callback异步回调。(暂不支持)
 
 > **说明：**
 >
@@ -810,11 +806,11 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
 })
 ```
 
-## settings.getURI<sup>(deprecated)</sup>(暂不支持)
+## settings.getURI<sup>(deprecated)</sup>
 
 getURI(name: string): Promise\<object>
 
-获取数据项的URI。使用Promise异步回调。
+获取数据项的URI。使用Promise异步回调。(暂不支持)
 
 > **说明：**
 >

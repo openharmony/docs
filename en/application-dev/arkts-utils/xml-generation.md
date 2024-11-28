@@ -20,9 +20,7 @@ The **xml** module provides the **XmlSerializer** class to generate XML files. T
 
 You can call different methods to write different types of content. For example, call **startElement(name: string)** to write a start tag and **setText(text: string)** to write a tag value. 
 
-For details about the APIs of the **XML** module, see [@ohos.xml (XML Parsing and Generation)](../reference/apis-arkts/js-apis-xml.md).
-
-To generate an XML file, proceed as follows:
+For details about the APIs of the **XML** module, see [@ohos.xml (XML Parsing and Generation)](../reference/apis-arkts/js-apis-xml.md).<br>To generate an XML file, proceed as follows:
 
 1. Import the modules.
 
@@ -30,17 +28,17 @@ To generate an XML file, proceed as follows:
    import { xml, util } from '@kit.ArkTS';
    ```
 
-2. Create a buffer and create an **XmlSerializer** object, either based on an object of the ArrayBuffer or DataView type.
+2. Create a buffer and construct an **XmlSerializer** object, either based on an object of the ArrayBuffer or DataView type.
 
    ```ts
-   // 1. Create an XmlSerializer object based on an object of the ArrayBuffer type.
+   // Method 1: Create an XmlSerializer object based on an object of the ArrayBuffer type.
    let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // Create a 2048-byte object of the ArrayBuffer type.
    let thatSer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // Create an XmlSerializer object based on the object of the ArrayBuffer type.
 
-   // 2. Create an XmlSerializer object based on an object of the DataView type.
-   let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // Create a 2048-byte object of the ArrayBuffer type.
-   let dataView: DataView = new DataView(arrayBuffer); // Use an object of the DataView type to operate the object of the ArrayBuffer type.
-   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); // Create an XmlSerializer object based on the object of the DataView type.
+   // Method 2: Create an XmlSerializer object based on an object of the DataView type.
+   // let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); 
+   // let dataView: DataView = new DataView(arrayBuffer); 
+   // let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); 
    ```
 
 3. Call the functions to generate an XML file.

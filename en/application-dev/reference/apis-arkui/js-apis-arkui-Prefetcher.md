@@ -2,7 +2,14 @@
 Used in conjunction with **LazyForEach**, the **Prefetcher** module provides content prefetching capabilities for container components such as **List**, **Grid**, **Waterfall**, and **Swiper** during scrolling, to enhance the user browsing experience.
 
 >  **NOTE**
+>
 >  The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import { BasicPrefetcher, IDataSourcePrefetching, IPrefetcher } from '@kit.ArkUI';
+```
 
 
 ## IPrefetcher
@@ -30,9 +37,13 @@ Sets the prefetching-capable data source to bind to the **Prefetcher** object.
 ```typescript
 class MyPrefetcher implements IPrefetcher {
   private dataSource?: IDataSourcePrefetching;
-  
+
   setDataSource(dataSource: IDataSourcePrefetching): void {
     this.dataSource = dataSource;
+  }
+
+  visibleAreaChanged(minVisible: number, maxVisible: number): void {
+    this.dataSource?.prefetch(minVisible);
   }
 }
 ```
@@ -56,6 +67,10 @@ Called when the boundaries of the visible area change. It works with the **List*
 ```typescript
 class MyPrefetcher implements IPrefetcher {
   private dataSource?: IDataSourcePrefetching;
+
+  setDataSource(dataSource: IDataSourcePrefetching): void {
+    this.dataSource = dataSource;
+  }
 
   visibleAreaChanged(minVisible: number, maxVisible: number): void {
     this.dataSource?.prefetch(minVisible);

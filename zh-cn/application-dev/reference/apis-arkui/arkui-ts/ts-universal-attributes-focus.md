@@ -140,31 +140,6 @@ requestFocus(value: string): boolean
 >
 >  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
 
-
-## FocusController<sup>12+</sup>
-以下clearFocus，requestFocus 两个API需先使用UIContext中的[getFocusController()](../js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
-
-
-### clearFocus<sup>12+</sup>
-
-clearFocus(): void
-
-清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
-
->  **说明：**
->
->  详细介绍请参见[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)。
-
-### requestFocus<sup>12+</sup>
-
-requestFocus(key: string): void
-
-通过组件的id将焦点转移到组件树对应的实体节点。
-
->  **说明：**
->
->  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
-
 ## FocusBoxStyle<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。

@@ -27,9 +27,9 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)  | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported. If the [Image](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging. |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br>**NOTE**<br>The global builder is not supported. If the [Image](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                                                  |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DragEventParam](#drageventparam12)&gt; | Yes  | Callback used to return the result.                                    |
 
@@ -37,12 +37,16 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal handling failed. |
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
 import { dragController } from "@kit.ArkUI";
@@ -86,7 +90,7 @@ struct DragControllerPage {
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // You are advised to use this.getUIContext().getDragController().executeDrag().
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                     // ...
@@ -129,25 +133,29 @@ Initiates a drag action, with the object to be dragged and the drag information 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                            |
+| Name  | Type                                                        | Mandatory| Description                            |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)  | Yes  | Object to be dragged. |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 
-**Return value** 
+**Return value**
 
 | Type                                              | Description                    |
 | -------------------------------------------------- | ------------------------ |
-| Promise&lt;[DragEventParam](#drageventparam12)&gt; | Promise used to return the result. |
+| Promise&lt;[DragEventParam](#drageventparam12)&gt; | Promise used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal handling failed. |
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
 import { dragController, componentSnapshot } from "@kit.ArkUI"
@@ -218,7 +226,7 @@ struct DragControllerPage {
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(dragItemInfo, dragInfo)
+              dragController.executeDrag(dragItemInfo, dragInfo) // You are advised to use this.getUIContext().getDragController().executeDrag().
                 .then((eve) => {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                     // ...
@@ -258,19 +266,19 @@ struct DragControllerPage {
 
 Defines the attributes required for initiating a drag action and information carried in the dragging process.
 
-| Name       | Type                                                  | Mandatory | Description                                    |
+| Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | pointerId   | number                                                 | Yes  | ID of the touch point on the screen when dragging is started.        |
 | data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | No  | Data carried in the dragging process.              |
-| extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently. |
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | No  | Coordinates of the touch point. If this parameter is not set, the touch point is centered. |
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | No  | Custom configuration of the drag preview. |
+| extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently.|
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | No  | Coordinates of the touch point. If this parameter is not set, the touch point is centered.|
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | No  | Custom configuration of the drag preview.|
 
 ## dragController.createDragAction<sup>11+</sup>
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: DragInfo): DragAction
 
-Creates a **DragAction** object, by explicitly specifying one or more drag previews, drag data, and information about the dragged object. When a drag operation initiated by an already created **DragAction** object is still in progress, you cannot create a new **DragAction** object for another drag operation; the API will throw an exception for any attempt to do so.
+Creates a drag action object for initiating drag and drop operations. You need to explicitly specify one or more drag previews, the drag data, and the drag handle point. If a drag operation initiated by an existing drag action object is not completed, no new object can be created, and calling the API will throw an exception. After the lifecycle of the drag action object ends, the callback functions registered on this object become invalid. Therefore, it is necessary to hold this object within a longer scope and replace the old value with a new object returned by **createDragAction** before each drag initiation.
 
 **NOTE**<br>You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
 
@@ -280,26 +288,30 @@ Creates a **DragAction** object, by explicitly specifying one or more drag previ
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                            |
+| Name  | Type                                                        | Mandatory| Description                            |
 | --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
-| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)&gt;  | Yes  | Object to be dragged. |
+| customArray  | Array&lt;[CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)&gt; | Yes  | Object to be dragged.|
 | dragInfo | [DragInfo](#draginfo)                                        | Yes  | Drag information.                      |
 
-**Return value** 
+**Return value**
 
 | Type                                                  | Description              |
 | ------------------------------------------------------ | ------------------ |
-| [DragAction](#dragaction11)| **DragAction** object, which is used to subscribe to drag state changes and start the drag service. |
+| [DragAction](#dragaction11)| **DragAction** object, which is used to subscribe to drag state changes and start the drag service.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal handling failed. |
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
 import { dragController, componentSnapshot } from "@kit.ArkUI";
@@ -363,7 +375,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // You are advised to use this.getUIContext().getDragController().createDragAction().
               if(!this.dragAction){
                 console.info("listener dragAction is null");
                 return
@@ -413,11 +425,16 @@ Starts the drag service. This API uses a promise to return the result.
 
 **Error codes**
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 100001   | Internal handling failed. |
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
+
 ```ts
 import { dragController } from "@kit.ArkUI"
 import { unifiedDataChannel } from '@kit.ArkData';
@@ -438,7 +455,7 @@ struct DragControllerPage {
             extraParams: ''
           }
           try {
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
             if(!dragAction){
               console.info("listener dragAction is null");
               return
@@ -473,6 +490,11 @@ Subscribes to drag state changes.
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | Yes     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance.|
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
+
 ```ts
 import { dragController } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
@@ -493,7 +515,7 @@ struct DragControllerPage {
             extraParams: ''
           }
           try{
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
             if(!dragAction){
               console.info("listener dragAction is null");
               return
@@ -527,6 +549,11 @@ Unsubscribes from drag state changes.
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | No     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
+
 ```ts
 import { dragController } from "@kit.ArkUI"
 import { unifiedDataChannel } from '@kit.ArkData';
@@ -547,7 +574,7 @@ struct DragControllerPage {
             extraParams: ''
           }
           try{
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
             if(!dragAction){
               console.info("listener dragAction is null");
               return
@@ -572,11 +599,11 @@ struct DragControllerPage {
 
 Provides the data reported when the state changes during dragging.
 
-| Name         | Type                                                  | Mandatory | Description                                    |
+| Name         | Type                                                  | Mandatory| Description                                    |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
 | event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event corresponding to the current state.              |
-| extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently. |
+| extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently.|
 
 ## DragStatus<sup>11+</sup>
 
@@ -599,7 +626,7 @@ Describes the dragging start and end states.
 
 Defines the attributes required for initiating a drag action and information carried in the dragging process.
 
-| Name       | Type                                                  | Mandatory | Description                                    |
+| Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | duration    | number                                                 | No  | Animation duration, in ms.<br>Default value: **1000**<br>**NOTE**<br>- If this parameter is set to a value less than 0, the value **0** is used.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
 | curve       | [Curve](arkui-ts/ts-appendix-enums.md#curve) \| [ICurve](js-apis-curve.md#icurve9) | No   | Animation curve.<br>Default value: **Curve.EaseInOut**|                          |
@@ -612,9 +639,9 @@ Defines the attributes required for initiating a drag action and information car
 
 Represents the callback used to return the result after a drag ends.
 
-| Name       | Type                                                        | Mandatory | Description                          |
+| Name       | Type                                                        | Mandatory| Description                          |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event information that includes only the drag result. |
+| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event information that includes only the drag result.|
 | extraParams | string                                                       | Yes  | Additional information about the drag event.            |
 
 ## dragController.getDragPreview<sup>11+</sup>
@@ -631,7 +658,7 @@ Obtains the **DragPreview** object, which represents the preview displayed durin
 
 | Type       | Description                                           |
 | ------------| ------------------------------------------------|
-| [DragPreview](#dragpreview11) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks. |
+| [DragPreview](#dragpreview11) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks.|
 
 **Example**
 
@@ -657,7 +684,7 @@ Sets the foreground color of the drag preview. This API does not work in the **O
 
 **Parameters**
 
-| Name  | Type                            | Mandatory | Description                    |
+| Name  | Type                            | Mandatory| Description                    |
 | -------- | -------------------------------- | ---- | ------------------------ |
 | color    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes  |      Foreground color of the drag preview.                   |
 
@@ -677,12 +704,16 @@ Applies a foreground color animation to the drag preview. This API does not work
 
 **Parameters**
 
-| Name  | Type                            | Mandatory | Description                              |
+| Name  | Type                            | Mandatory| Description                              |
 | -------- | -------------------------------- | ---- | -----------------------------------|
 | options  | [AnimationOptions](#animationoptions11)                | Yes  | Animation settings.                          |
 | handler  | () => void                         | Yes  | Callback used to change attributes such as the background mask color. |
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 1. In the **EntryAbility.ets** file, obtain the UI context and save it to LocalStorage.
   ```ts
@@ -764,7 +795,7 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button ('Drop Here')
+      Button ('Drag Here')
         .margin(10)
         .onDragEnter(() => {
         try {
@@ -802,7 +833,7 @@ struct DragControllerPage {
               extraParams:string = ''
             }
             let eve:tmp = new tmp()
-            dragController.executeDrag(() => {
+            dragController.executeDrag(() => { // You are advised to use this.getUIContext().getDragController().executeDrag().
               this.DraggingBuilder()
             }, dragInfo, (err , eve) => {
               hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')

@@ -761,7 +761,7 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能。详情请参考[DevTools工具](../../web/web-debugging-with-devtools.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8519,7 +8519,7 @@ setUrlTrustList(urlTrustList: string): void
 
 setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
-设置一个路径列表，当file协议访问该路径列表中的资源时，允许跨域访问本地文件。此外，当设置了路径列表时，file协议仅允许访问路径列表中的资源（[fileAccess](ts-basic-components-web.md#fileAccess)的行为将会被此接口行为覆盖）。路径列表中的路径必须满足以下路径格式之一：
+设置一个路径列表，当file协议访问该路径列表中的资源时，允许跨域访问本地文件。此外，当设置了路径列表时，file协议仅允许访问路径列表中的资源（[fileAccess](ts-basic-components-web.md#fileaccess)的行为将会被此接口行为覆盖）。路径列表中的路径必须满足以下路径格式之一：
 
 1.应用文件目录的子目录（应用文件目录通过Ability Kit中的[Context.filesDir](../apis-ability-kit/js-apis-inner-application-context.md#context)获取），例如：
 
@@ -8531,7 +8531,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 * /data/storage/el1/bundle/entry/resource/resfile
 * /data/storage/el1/bundle/entry/resource/resfile/example
 
-当路径列表中有其中一个路径不满足以上条件之一，则会抛出异常码401，并且设置路径列表失败。当设置的路径列表为空，则file协议可访问范围以[fileAccess](ts-basic-components-web.md#fileAccess)的行为为准。
+当路径列表中有其中一个路径不满足以上条件之一，则会抛出异常码401，并且设置路径列表失败。当设置的路径列表为空，则file协议可访问范围以[fileAccess](ts-basic-components-web.md#fileaccess)的行为为准。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8586,7 +8586,7 @@ struct WebComponent {
 
 ```
 
-加载的html文件，位于应用资源目录resource/resfile/index.html。
+加载的html文件，位于应用资源目录resource/rawfile/index.html。
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -8632,7 +8632,7 @@ struct WebComponent {
 </html>
 ```
 
-html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
+html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/rawfile/js/script.js。
 <!--code_no_check-->
 ```javascript
 const body = document.body;

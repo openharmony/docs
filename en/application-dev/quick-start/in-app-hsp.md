@@ -5,7 +5,7 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 > 
 > In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application.
 > 
-> Integrated HSP: a type of HSP that is not coupled with any specific application bundle name during the build and release processes and whose bundle name can be automatically replaced by the toolchain with the host application bundle name.
+> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with any specific application bundle name during the build and release processes and whose bundle name can be automatically replaced by the toolchain with the host application bundle name.
 
 ## Use Scenarios
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
@@ -17,14 +17,13 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 ## Constraints
 
 - An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The version of an HSP must be the same as that of the HAP.
-- No [UIAbility](../application-models/uiability-overview.md) or [ExtensionAbility](../application-models/extensionability-overview.md) can be declared in the configuration file of an HSP.
+- An HSP does not support the declaration of the [UIAbility](../application-models/uiability-overview.md) component and [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file.
 - An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
-- The integrated HSP is only available for the [stage model](application-package-structure-stage.md).
-- The integrated HSP only works with API version 12 or later and uses the normalized OHMUrl format.
+
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section7717162312546)<!--RP1End-->. In this example, an HSP module **library** is created. The basic project directory structure is as follows:
+Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hsp-V5#section7717162312546)<!--RP1End-->. The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
 ```
 MyApplication
 ├── library
@@ -159,14 +158,12 @@ In the entry point file **index.ets**, declare the APIs to be exposed.
 export { ResManager } from './src/main/ets/ResManager';
 ```
 
-
-
 ## Using an HSP
 
 You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module). For details, see <!--RP2-->[Referencing an HSP](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section6161154819195)<!--RP2End-->.
+To use HSP APIs, you need to configure the dependency on HSP APIs in **oh-package.json5**. For details, see <!--RP2-->[Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->.
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
@@ -181,7 +178,6 @@ The APIs can be used as follows in the code of the invoking module:
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -262,11 +258,11 @@ struct Index {
             .resourceManager
             .getStringValue(ResManager.getDesc())
             .then(value => {
-              Logger.info(TAG, `getStringValue is ${value}`);
+              console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;
             })
             .catch((err: BusinessError) => {
-              Logger.info(TAG, `getStringValue promise error is ${err}`);
+              console.error('getStringValue promise error is ' + err);
             });
         })
 
@@ -305,7 +301,6 @@ If you want to add a button in the **entry** module to jump to the menu page (**
 ```ts
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -338,9 +333,8 @@ struct Index {
             url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
           }).then(() => {
             console.log('push page success');
-            Logger.info(TAG, 'push page success');
           }).catch((err: BusinessError) => {
-            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
           })
         })
       }

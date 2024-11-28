@@ -470,7 +470,12 @@ In this case, temporary variables are used instead of state variables, triggerin
 ![](figures/hp_arkui_use_local_var.png)
 
 [Summary]
-| **Computation Method** | **Time Required (for Reference Only)** | **Description** |
+| **Computation Method**| **Time Required (for Reference Only)** | **Description**|
 | ------ | ------- | ------------------------------------- |
-| Changing state variables | 1.01ms | Increases unnecessary query and rendering of ArkUI, causing poor performance. |
-| Using temporary variables for computing | 0.63ms | Streamlines ArkUI behaviors and improve application performance. |
+| Changing state variables | 1.01ms | Increases unnecessary query and rendering of ArkUI, causing poor performance.|
+| Using temporary variables for computing | 0.63ms | Streamlines ArkUI behaviors and improve application performance.|
+<<<<<<< HEAD
+
+<!--no_check-->
+=======
+>>>>>>> 6e550ab2e3feb44199289928e946c293278b1977

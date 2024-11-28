@@ -24,7 +24,7 @@ To avoid losing complex types of the properties when serializing classes, you ca
 
 ## Constraints
 
-1. It can be used only in class.
+1. \@Type can be used only in classes.
 
 2. Types such as collections.Set and collections.Map are not supported.
 
@@ -34,7 +34,7 @@ To avoid losing complex types of the properties when serializing classes, you ca
 
 ## When to Use
 
-### Access Persistent Data
+### Saving Data for Persistence
 
 Data page
 ```ts

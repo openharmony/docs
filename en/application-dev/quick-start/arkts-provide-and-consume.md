@@ -46,17 +46,17 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor.<br>The type must be specified.<br/>The type of the provided and the consumed variables must be the same.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended. |
-| Initial value for the decorated variable | Mandatory. |
-| Support for the **allowOverride** parameter | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see [Support for the allowOverride Parameter](#support-for-the-allowoverride-parameter). |
-
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Provide a: string \**| **undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.
+| Initial value for the decorated variable     | Mandatory.                                   |
+| Support for the **allowOverride** parameter         | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see Support for the allowOverride Parameter.|
 
 | \@Consume Decorator| Description                                      |
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor.<br/>The type must be specified.<br/>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Consume a: string \| undefined**. |
-| Initial value for the decorated variable | Initialization of the decorated variables is forbidden. |
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported. The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Consume a: string \| undefined.
+| Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
+
 
 ## Variable Transfer/Access Rules
 
@@ -181,6 +181,8 @@ struct CompA {
 ## Application Scenarios
 
 The following example shows the two-way synchronization between \@Provide and \@Consume decorated variables. When the buttons in the **CompA** and **CompD** components are clicked, the changes to **reviewVotes** are synchronized to the **CompA** and **CompD** components.
+
+
 
 ```ts
 @Component
@@ -589,6 +591,200 @@ struct CustomWidgetChild {
   build() {
     Column() {
       this.builder({ name: this.name })
+    }
+  }
+}
+```
+
+### Using the a.b(this.object) Format Fails to Trigger UI Re-render
+
+In the **build** method, when the variable decorated by @Provide and @Consume is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, the UI re-render is not triggered when **this.dog.age** and **this.dog.name** in the component is changed by using a static method or using **this** to call the internal method of the component.
+
+[Negative example]
+
+```ts
+class Animal {
+  name:string;
+  type:string;
+  age: number;
+
+  constructor(name:string, type:string, age:number) {
+    this.name = name;
+    this.type = type;
+    this.age = age;
+  }
+
+  static changeName1(animal:Animal) {
+    animal.name = 'Black';
+  }
+  static changeAge1(animal:Animal) {
+    animal.age += 1;
+  }
+}
+
+@Entry
+@Component
+struct Demo1 {
+  @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
+
+  changeAge2(animal:Animal) {
+    animal.age += 2;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Red)
+        .fontSize(30)
+      Button('changeAge1')
+        .onClick(()=>{
+          // The UI cannot be re-rendered using a static method.
+          Animal.changeAge1(this.dog);
+        })
+      Button('changeAge2')
+        .onClick(()=>{
+          // The UI cannot be re-rendered using this.
+          this.changeAge2(this.dog);
+        })
+      Demo2()
+    }
+  }
+}
+
+@Component
+struct Demo2 {
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo2.`)
+        .fontColor(Color.Blue)
+        .fontSize(30)
+      Demo3()
+    }
+  }
+}
+
+@Component
+struct Demo3 {
+  @Consume dog:Animal;
+
+  changeName2(animal:Animal) {
+    animal.name = 'White';
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Yellow)
+        .fontSize(30)
+      Button('changeName1')
+        .onClick(()=>{
+          // The UI cannot be re-rendered using a static method.
+          Animal.changeName1(this.dog);
+        })
+      Button('changeName2')
+        .onClick(()=>{
+          // The UI cannot be re-rendered using this.
+          this.changeName2(this.dog);
+        })
+    }
+  }
+}
+```
+
+You can add a proxy for **this.dog** to re-render the UI by assigning a value to the variable and then calling the variable.
+
+[Positive example]
+
+```ts
+class Animal {
+  name:string;
+  type:string;
+  age: number;
+
+  constructor(name:string, type:string, age:number) {
+    this.name = name;
+    this.type = type;
+    this.age = age;
+  }
+
+  static changeName1(animal:Animal) {
+    animal.name = 'Black';
+  }
+  static changeAge1(animal:Animal) {
+    animal.age += 1;
+  }
+}
+
+@Entry
+@Component
+struct Demo1 {
+  @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
+
+  changeAge2(animal:Animal) {
+    animal.age += 2;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Red)
+        .fontSize(30)
+      Button('changeAge1')
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let a1 = this.dog;
+          Animal.changeAge1(a1);
+        })
+      Button('changeAge2')
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let a2 = this.dog;
+          this.changeAge2(a2);
+        })
+      Demo2()
+    }
+  }
+}
+
+@Component
+struct Demo2 {
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo2.`)
+        .fontColor(Color.Blue)
+        .fontSize(30)
+      Demo3()
+    }
+  }
+}
+
+@Component
+struct Demo3 {
+  @Consume dog:Animal;
+
+  changeName2(animal:Animal) {
+    animal.name = 'White';
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Yellow)
+        .fontSize(30)
+      Button('changeName1')
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let b1 = this.dog;
+          Animal.changeName1(b1);
+        })
+      Button('changeName2')
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let b2 = this.dog;
+          this.changeName2(b2);
+        })
     }
   }
 }

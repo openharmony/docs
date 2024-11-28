@@ -88,4 +88,4 @@
     }
     ```
     > **说明：** 
-    > 安装运行应用前，使用方工程必须配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
+    > 安装运行应用前，使用方工程必须配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)。

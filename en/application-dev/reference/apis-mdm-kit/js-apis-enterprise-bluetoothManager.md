@@ -9,6 +9,8 @@ The **bluetoothManager** module provides Bluetooth management capabilities, incl
 > The APIs of this module can be used only in the stage model.
 >
 > The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+>
+> The global restriction policies are provided by **restrictions**. To disable Bluetooth globally, see [@ohos.enterprise.restrictions](js-apis-enterprise-restrictions.md).
 
 ## Modules to Import
 

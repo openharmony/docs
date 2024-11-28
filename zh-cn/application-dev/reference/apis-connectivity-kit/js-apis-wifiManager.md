@@ -1,5 +1,5 @@
 # @ohos.wifiManager (WLAN)
-该模块主要提供WLAN基础功能（无线接入、无限加密、无限漫游等）、P2P（peer-to-peer）服务的基础功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
+该模块主要提供WLAN基础功能（无线接入、无线加密、无线漫游等）、P2P（peer-to-peer）服务的基础功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -16,7 +16,7 @@ import { wifiManager } from '@kit.ConnectivityKit';
 
 isWifiActive(): boolean
 
-查询WLAN是否已使能。
+查询WLAN开关是否已使能。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -57,7 +57,7 @@ isWifiActive(): boolean
 
 scan(): void
 
-启动WLAN扫描。
+启动WLAN扫描，使用前先使能WLAN。
 
 > **说明：**
 > 从 API version 9开始支持，从API version 10开始废弃。替代接口仅向系统应用开放。
@@ -332,12 +332,12 @@ WLAN热点信息。
 | centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高wifi级别。 |
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hiLink，true:支持，&nbsp;false:不支持。 |
 
 ## DeviceAddressType<sup>10+</sup>
 
-wifi 设备地址（mac/bssid）类型。
+Wi-Fi 设备地址（MAC/bssid）类型。
 
 **系统能力：** SystemCapability.Communication.WiFi.Core
 
@@ -359,12 +359,12 @@ wifi 设备地址（mac/bssid）类型。
 | -------- | -------- | -------- |
 | WIFI_SEC_TYPE_INVALID | 0 | 无效加密类型。 |
 | WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。候选网络配置不支持该加密类型。 |
+| WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。候选网络(添加网络配置信息)配置不支持该加密类型。 |
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
-| WIFI_SEC_TYPE_EAP | 5 | EAP加密类型。 |
+| WIFI_SEC_TYPE_EAP | 5 | EAP authentication (EAP)加密类型。 |
 | WIFI_SEC_TYPE_EAP_SUITE_B | 6 | Suite-B 192位加密类型。 |
-| WIFI_SEC_TYPE_OWE | 7 | 机会性无线加密类型。 |
+| WIFI_SEC_TYPE_OWE | 7 | Opportunistic&nbsp; Wireless&nbsp; Encryption&nbsp;(OWE)机会性无线加密类型。 |
 | WIFI_SEC_TYPE_WAPI_CERT | 8 | WAPI-Cert加密类型。 |
 | WIFI_SEC_TYPE_WAPI_PSK | 9 | WAPI-PSK加密类型。 |
 
@@ -533,7 +533,7 @@ WAPI认证方式的枚举。
 
 ## WifiCategory<sup>12+</sup>
 
-表示热点支持的最高wifi类别。
+表示热点支持的最高Wi-Fi类别。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -547,7 +547,7 @@ WAPI认证方式的枚举。
 
 addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
-添加候选网络配置，使用Promise异步回调。
+添加候选网络配置，使用Promise异步回调，使用前先使能WLAN。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
@@ -853,7 +853,7 @@ getSignalLevel(rssi: number, band: number): number
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | rssi | number | 是 | 热点的信号强度(dBm)。 |
-  | band | number | 是 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
+  | band | number | 是 | WLAN接入点的频段，1表示2.4GHZ；2表示5GHZ。 |
 
 **返回值：**
 
@@ -979,21 +979,21 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bssid | string | 是 | 否 | 热点的BSSID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
-| linkSpeed | number | 是 | 否 | WLAN接入点的上行速度。 |
-| rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度。 |
-| maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率。 |
-| maxSupportedRxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大下行速率。 |
+| band | number | 是 | 否 | WLAN接入点的频段，1表示2.4GHZ；2表示5GHZ。 |
+| linkSpeed | number | 是 | 否 | WLAN接入点的上行速度，单位Mbps/s。 |
+| rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度，单位Mbps/s。 |
+| maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率，单位Mbps/s。 |
+| maxSupportedRxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大下行速率，单位Mbps/s。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
 | isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
-| macAddress | string | 是 | 否 | 设备的MAC地址。 |
+| macAddress | string | 是 | 否 | 设备的MAC地址(wifi连接信息和关于本机里的状态信息可以查看)。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
-| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的WiFi标准。 |
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高wifi级别。 |
+| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的Wi-Fi标准。 |
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
 
 ## ConnState<sup>9+</sup>
@@ -1123,7 +1123,7 @@ isFeatureSupported(featureId: number): boolean
 
 getIpInfo(): IpInfo
 
-获取IP信息。
+获取IPV4信息。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -1159,7 +1159,7 @@ getIpInfo(): IpInfo
 
 ## IpInfo<sup>9+</sup>
 
-IP信息。
+IPV4信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1442,8 +1442,8 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
-| groupOwnerAddr | string | 是 | 否 | 群组IP地址。 
+| isGroupOwner | boolean | 是 | 否 | 是否为Go。 |
+| groupOwnerAddr | string | 是 | 否 | 群组IP地址。 |
 
 
 ## P2pConnectState<sup>9+</sup>
@@ -2027,7 +2027,7 @@ stopDiscoverDevices(): void
 
 on(type: 'wifiStateChange', callback: Callback&lt;number&gt;): void
 
-注册WLAN状态改变事件。
+注册WLAN状态改变事件，在业务退出时，要调用off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2113,7 +2113,7 @@ off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiConnectionChange', callback: Callback&lt;number&gt;): void
 
-注册WLAN连接状态改变事件。
+注册WLAN连接状态改变事件，在业务退出时，要调用off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2195,7 +2195,7 @@ off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiScanStateChange', callback: Callback&lt;number&gt;): void
 
-注册扫描状态改变事件。
+注册扫描状态改变事件，在业务退出时，要调用off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2277,7 +2277,7 @@ off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
-注册RSSI状态改变事件。
+注册RSSI状态改变事件，在业务退出时，要调用off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2348,7 +2348,7 @@ off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 
-注册热点状态改变事件。
+注册热点状态改变事件，在业务退出时，要调用off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2431,7 +2431,7 @@ off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'p2pStateChange', callback: Callback&lt;number&gt;): void
 
-注册P2P开关状态改变事件。
+注册P2P开关状态改变事件，在业务退出时，要调用off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2512,7 +2512,7 @@ off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;): void
 
 on(type: 'p2pConnectionChange', callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
-注册P2P连接状态改变事件。
+注册P2P连接状态改变事件，在业务退出时，要调用off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2583,7 +2583,7 @@ off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 
 on(type: 'p2pDeviceChange', callback: Callback&lt;WifiP2pDevice&gt;): void
 
-注册P2P设备状态改变事件。
+注册P2P设备状态改变事件，在业务退出时，要调用off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;)接口去掉之前的注册回调。
 
 **需要权限：**
 
@@ -2662,7 +2662,7 @@ API 10起：无
 
 on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
-注册P2P对端设备状态改变事件。
+注册P2P对端设备状态改变事件，在业务退出时，要调用off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;)接口去掉之前的注册回调。
 
 **需要权限：**
 
@@ -2741,7 +2741,7 @@ API 10起：无
 
 on(type: 'p2pPersistentGroupChange', callback: Callback&lt;void&gt;): void
 
-注册P2P永久组状态改变事件。
+注册P2P永久组状态改变事件，在业务退出时，要调用off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -2812,7 +2812,7 @@ off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;): void
 
 on(type: 'p2pDiscoveryChange', callback: Callback&lt;number&gt;): void
 
-注册发现设备状态改变事件。
+注册发现设备状态改变事件，在业务退出时，要调用off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;)接口去掉之前的注册回调。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 

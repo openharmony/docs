@@ -25,6 +25,7 @@
 <!--RP4End-->
 
 ## 限制约束
+
 1. Buffer模式不支持10bit的图像数据。
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoEncoder_Destroy接口来销毁实例并释放资源。
 3. 一旦调用Flush，Reset，Stop接口，会触发系统回收OH_AVBuffer，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
@@ -38,16 +39,17 @@
 1. 两者的数据来源不同。
 
 2. 两者的适用场景不同：
-- surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
-- buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
+    - surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
+    - buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
- - Buffer模式下，调用者通过OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，调用者应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
- - Buffer模式下，调用者通过OH_AVBuffer中的attr传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
+    - Buffer模式下，调用者通过OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，调用者应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
+    - Buffer模式下，调用者通过OH_AVBuffer中的attr传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
 ## 状态机调用关系
+
 如下为状态机调用关系图：
 
 ![Invoking relationship of state](figures/state-invocation.png)
@@ -400,7 +402,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
-    - buffer： 回调函数OnNewOutputBuffer传入的参数，Surface模式调用者无法通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
+    - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
     ```c++
     // 获取编码后信息
     OH_AVCodecBufferAttr info;
@@ -686,7 +688,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     送入输入队列进行编码，以下示例中：
 
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
     - stride: 获取到的buffer数据的跨距。
@@ -795,7 +797,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以下示例中：
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识。
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
 
     与“8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
