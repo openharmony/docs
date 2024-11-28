@@ -361,6 +361,28 @@ borderRadius(value: Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
+## borderRadius<sup>16+</sup>
+
+borderRadius(radius: Dimension | BorderRadiuses): T
+
+设置安全控件的边框圆角半径，支持分别设置四个圆角。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| radius |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) |是 |安全控件的边框圆角半径。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
 ## padding
 
 padding(value: Padding | Dimension): T
