@@ -468,6 +468,22 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 > 2. 该接口需要配合NavDestination的[recoverable](./ts-basic-components-navdestination.md#recoverable14)接口使用。
 > 3. 恢复的过程中不可序列化的信息，例如不可序列化的参数与用户设置的onPop等，会被丢弃，无法恢复。
 
+### enableDragBar<sup>14+</sup>
+
+enableDragBar(isEnabled: Optional&lt;boolean&gt;)
+
+控制分栏场景下是否显示拖拽条。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| enableDragBar  | Optional&lt;boolean&gt; | 否   | 是否开启拖拽条，默认为无拖拽条样式 |
+
 ## 事件
 
 ### onTitleModeChange
