@@ -291,6 +291,7 @@ class ViewData {
 @Entry
 @Component
 struct Gallery2 {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 
@@ -380,6 +381,7 @@ class ViewData {
 @Entry
 @Component
 struct Gallery2 {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
   private preIndex: number = -1
@@ -480,6 +482,7 @@ class ViewData {
 @Entry
 @Component
 struct Gallery2 {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 

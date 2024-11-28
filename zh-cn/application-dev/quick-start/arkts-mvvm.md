@@ -101,11 +101,13 @@ struct Index {
       // 待办事项
       Row({space: 15}) {
         if (this.isFinished) {
+          // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           Image($r('app.media.finished'))
             .width(28)
             .height(28)
         }
         else {
+          // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           Image($r('app.media.unfinished'))
             .width(28)
             .height(28)
@@ -184,11 +186,13 @@ struct ThingsComponent1 {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -216,11 +220,13 @@ struct ThingsComponent2 {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -318,11 +324,13 @@ struct ThingsComponent {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -459,9 +467,11 @@ struct ThingsComponent {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         this.displayIcon($r('app.media.finished'));
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         this.displayIcon($r('app.media.unfinished'));
       }
       Text(`${this.things}`)
@@ -696,9 +706,11 @@ View层根据需要来组织，但View层需要区分一下三种组件：
       // 待办事项1
       Row({space: 15}) {
         if (this.isFinished) {
+          // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           this.displayIcon($r('app.media.finished'));
         }
         else {
+          // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           this.displayIcon($r('app.media.unfinished'));
         }
         Text(`${this.things}`)
