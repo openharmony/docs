@@ -970,9 +970,9 @@ httpRequest.on("dataEnd", () => {
 httpRequest.off("dataEnd");
 ```
 
-### on("dataReceiveProgress")<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -997,9 +997,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### off("dataReceiveProgress")<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -1027,9 +1027,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### on("dataSendProgress")<sup>11+</sup>
+### on('dataSendProgress')<sup>11+</sup>
 
-on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
+on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 Registers an observer for events indicating progress of sending HTTP requests.
 
@@ -1051,12 +1051,12 @@ let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
-httpRequest.off("dataSendProgress");
+httpRequest.off('dataSendProgress');
 ```
 
-### off("dataSendProgress")<sup>11+</sup>
+### off('dataSendProgress')<sup>11+</sup>
 
-off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
+off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of sending HTTP requests.
 
