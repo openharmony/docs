@@ -33,7 +33,7 @@ Creates a standard color space object that is sendable.
 
 **Parameters**
 
-| Name          | Type                    | Mandatory | Description                         |
+| Name          | Type                    | Mandatory| Description                         |
 | --------------- | ------------------------ | ---- | -----------------------------|
 | colorSpaceName  | [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)| Yes  | Type of the color space.<br>**UNKNOWN** and **CUSTOM** cannot be used when creating standard color space objects.      |
 
@@ -41,13 +41,13 @@ Creates a standard color space object that is sendable.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).                |
+| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
 | 18600001 | The parameter value is abnormal. |
@@ -70,7 +70,7 @@ Creates a custom color space object that is sendable.
 
 **Parameters**
 
-| Name          | Type                                      | Mandatory | Description                         |
+| Name          | Type                                      | Mandatory| Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | primaries       | [colorSpaceManager.ColorSpacePrimaries](js-apis-colorSpaceManager.md#colorspaceprimaries)| Yes  | Primaries of the color space.              |
 | gamma           | number                                     | Yes  | Gamma of the color space.                |
@@ -79,13 +79,13 @@ Creates a custom color space object that is sendable.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>The color space type is **CUSTOM**, which is one of the enumerated values of [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace).<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use). |
+| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>The color space type is **CUSTOM**, which is one of the enumerated values of [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace).<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
 | 18600001 | The parameter value is abnormal. |
@@ -127,13 +127,13 @@ Obtains the color space type.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)  | Color space type. |
+| [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)  | Color space type.|
 
 **Error codes**
 
 For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
 | 18600001 | The parameter value is abnormal. |
 
@@ -155,13 +155,13 @@ Obtains the coordinates of the white point in the color space.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [collections.Array\<number\>](../apis-arkts/js-apis-arkts-collections.md#collectionsarray)  | Coordinates [x, y] of the white point. |
+| [collections.Array\<number\>](../apis-arkts/js-apis-arkts-collections.md#collectionsarray)  | Coordinates [x, y] of the white point.|
 
 **Error codes**
 
 For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
 | 18600001 | The parameter value is abnormal. |
 
@@ -184,13 +184,13 @@ Obtains the gamma of the color space.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| number  | Gamma of the color space. |
+| number  | Gamma of the color space.|
 
 **Error codes**
 
 For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
 | 18600001 | The parameter value is abnormal. |
 

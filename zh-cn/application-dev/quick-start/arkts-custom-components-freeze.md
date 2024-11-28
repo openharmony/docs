@@ -542,7 +542,7 @@ struct NavigationContentMsgStack {
 
 ### 组件复用
 
-[组件复用](../performance/component-recycle.md)通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
+<!--RP1-->[组件复用](../performance/component-recycle.md)<!--RP1End-->通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
 
 #### 组件复用、if和组件冻结混用场景
 下面是组件复用、if组件和组件冻结混合使用场景的例子，if组件绑定的状态变量变化成false时，触发子组件`ChildComponent`的下树，由于`ChildComponent`被标记了组件复用，所以不会被销毁，而是进入复用池，这个时候如果同时开启了组件冻结，则可以使在复用池里不再刷新。
@@ -611,7 +611,7 @@ struct Page {
 ```
 #### LazyForEach、组件复用和组件冻结混用场景
 在数据很多的长列表滑动场景下，开发者会使用LazyForEach来按需创建组件，同时配合组件复用降低在滑动过程中因创建和销毁组件带来的开销。
-但是开发者如果根据其复用类型不同，设置了[reuseId](../performance/component-recycle.md#接口说明)，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
+但是开发者如果根据其复用类型不同，设置了<!--RP2-->[reuseId](../performance/component-recycle.md#接口说明)<!--RP2End-->，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
 在这种情况下，如果开发者触发List下所有子节点的刷新，就会带来节点刷新数量过大的问题，这个时候，可以考虑搭配组件冻结使用。
 
 如下面例子：
@@ -963,3 +963,117 @@ struct Page {
   }
 }
 ```
+
+## 限制条件
+如下面的例子所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。
+
+```
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
+// 定义一个Params类，用于传递参数
+class Params {
+  index: number = 0;
+
+  constructor(index: number) {
+    this.index = index;
+  }
+}
+
+// 定义一个buildNodeChild组件，它包含一个message属性和一个index属性
+@Component
+struct buildNodeChild {
+  @StorageProp("buildNodeTest") @Watch("onMessageUpdated") message: string = "hello world";
+  @State index: number = 0;
+
+  // 当message更新时，调用此方法
+  onMessageUpdated() {
+    console.log(`FreezeBuildNode builderNodeChild message callback func ${this.message},index：${this.index}`);
+  }
+
+  build() {
+    Text(`buildNode Child message: ${this.message}`).fontSize(30)
+  }
+}
+
+// 定义一个buildText函数，它接收一个Params参数并构建一个Column组件
+@Builder
+function buildText(params: Params) {
+  Column() {
+    buildNodeChild({ index: params.index })
+  }
+}
+
+// 定义一个TextNodeController类，继承自NodeController
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private index: number = 0;
+
+  // 构造函数接收一个index参数
+  constructor(index: number) {
+    super();
+    this.index = index;
+  }
+
+  // 创建并返回一个FrameNode
+  makeNode(context: UIContext): FrameNode | null {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.index));
+    return this.textNode.getFrameNode();
+  }
+}
+
+// 定义一个Index组件，它包含一个message属性和一个data数组
+@Entry
+@Component
+struct Index {
+  @StorageLink("buildNodeTest") message: string = "hello";
+  private data: number[] = [0, 1];
+
+  build() {
+    Row() {
+      Column() {
+        Button("change").fontSize(30)
+          .onClick(() => {
+            this.message += 'a';
+          })
+
+        Tabs() {
+          ForEach(this.data, (item: number) => {
+            TabContent() {
+              FreezeBuildNode({ index: item })
+            }.tabBar(`tab${item}`)
+          }, (item: number) => item.toString())
+        }
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+// 定义一个FreezeBuildNode组件，它包含一个message属性和一个index属性
+@Component({ freezeWhenInactive: true })
+struct FreezeBuildNode {
+  @StorageProp("buildNodeTest") @Watch("onMessageUpdated") message: string = "1111";
+  @State index: number = 0;
+
+  // 当message更新时，调用此方法
+  onMessageUpdated() {
+    console.log(`FreezeBuildNode message callback func ${this.message}, index: ${this.index}`);
+  }
+
+  build() {
+    NodeContainer(new TextNodeController(this.index))
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#FFF0F0F0')
+  }
+}
+```
+
+在上面的示例中：
+
+点击Button("change")。改变message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。未显示的TabContent中的BuilderNode节点下组件的@Watch方法onMessageUpdated也被触发，并没有被冻结。
+
+![builderNode.gif](figures/builderNode.gif)
+

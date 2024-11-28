@@ -505,6 +505,18 @@ Allows an application to activate enterprise devices.
 
 **Valid since**: 12
 
+### ohos.permission.RECEIVE_ENTERPRISE_POLICY_EVENT
+
+Allows a system application to subscribe to the policy events published by the Enterprise Device Management service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
 Allows an application to publish system common events.
@@ -4001,11 +4013,159 @@ Allows a system application to access the microcontroller unit (MCU) log directo
 
 **Valid since**: 12
 
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+Allows a system application or system service to grant third-party applications the temporary permission to save images and videos for the specified period of time.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+Allows a system application or service to initiate user identity authentication from the background.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+Allows an application to create or remove the recovery key.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+Allows an application to utilize the recovery key to reset the lock screen password or restore user data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+Allows an application to obtain brief information of the recovery key.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ### ohos.permission.ACCESS_VIRTUAL_KEYBOARD
 
 Allows an application to update the virtual keyboard status or a service to query the virtual keyboard status.
 
 With this permission, the application can update the virtual keyboard status and the service can query the virtual keyboard status. Currently, this permission is available only for applications or services running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.READ_APP_LOCK
+
+Allows a system application to read the application lock state.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.WRITE_APP_LOCK
+
+Allows a system application to set the application lock state.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+Allows an application to access the application lock.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+
+Allows an application to disable its runtime code integrity protection.
+
+For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+
+Allows an application to apply for writable and executable anonymous memory.
+
+For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+
+Allows an application to set or remove the sharing range of the data supported by UDMF.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+Allows an application to manage the pasteable range of the pasteboard data.
 
 **Permission level**: system_basic
 
@@ -4237,18 +4397,6 @@ Allows a system service to enable distributed hardware resources.
 
 **Valid since**: 11
 
-### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
-
-Allows a system application or system service to grant third-party applications the temporary permission to save images and videos for the specified period of time.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
 ### ohos.permission.ACCESS_SUPER_HUB
 
 Allows an application to access Super Hub.
@@ -4261,54 +4409,6 @@ Allows an application to access Super Hub.
 
 **Valid since**: 12
 
-### ohos.permission.USER_AUTH_FROM_BACKGROUND
-
-Allows a system application or service to initiate user identity authentication from the background.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
-
-### ohos.permission.MANAGE_RECOVERY_KEY
-
-Allows an application to create or remove the recovery key.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 14
-
-### ohos.permission.UTILIZE_RECOVERY_KEY
-
-Allows an application to utilize the recovery key to reset the lock screen password or restore user data.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 14
-
-### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
-
-Allows an application to obtain brief information of the recovery key.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 14
-
 ### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
 
 Allows a UIExtensionAbility to be displayed on the locked screen.
@@ -4320,70 +4420,6 @@ Allows a UIExtensionAbility to be displayed on the locked screen.
 **Enable via ACL**: false
 
 **Valid since**: 14
-
-### ohos.permission.READ_APP_LOCK
-
-Allows a system application to read the application lock state.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
-
-### ohos.permission.WRITE_APP_LOCK
-
-Allows a system application to set the application lock state.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
-
-### ohos.permission.ACCESS_APP_LOCK
-
-Allows an application to access the application lock.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
-
-### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
-
-Allows an application to disable its runtime code integrity protection.
-
-For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
-
-### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
-
-Allows an application to apply for writable and executable anonymous memory.
-
-For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
 
 ## user_grant Permissions (Available via ACL)
 

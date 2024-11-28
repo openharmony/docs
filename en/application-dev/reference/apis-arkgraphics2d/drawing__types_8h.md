@@ -25,12 +25,15 @@ The **drawing_types.h** file declares the data types of the canvas, brush, pen, 
 | struct  [OH_Drawing_Point3D](_o_h___drawing___point3_d.md) | Describes a three-dimensional coordinate point.| 
 | struct  [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | Describes the image information.| 
 | struct  [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) | Describes the style of a rectangle.| 
+| struct  [OH_Drawing_String](_o_h___drawing___string.md) | Describes a string of characters encoded in UTF-16BE (big-endian mode). | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
+| typedef struct [OH_Drawing_Array](_drawing.md#oh_drawing_array) [OH_Drawing_Array](_drawing.md#oh_drawing_array) | Defines a struct for an array object, which is used to store multiple objects of the same type. | 
+| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](_drawing.md#oh_drawing_string) | Defines a struct for a string of characters encoded in UTF-16BE (big-endian mode). | 
 | typedef struct [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas)  [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) | Defines a struct for a rectangular canvas, on which various shapes, images, and texts can be drawn by using the brush and pen.| 
 | typedef struct [OH_Drawing_Pen](_drawing.md#oh_drawing_pen)  [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) | Defines a struct for a pen, which is used to describe the style and color to outline a shape.| 
 | typedef struct [OH_Drawing_Region](_drawing.md#oh_drawing_region)  [OH_Drawing_Region](_drawing.md#oh_drawing_region) | Defines a struct for a region, which represents a closed area on the canvas for more accurate graphic control.| 

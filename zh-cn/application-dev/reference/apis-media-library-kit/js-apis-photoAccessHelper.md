@@ -1084,6 +1084,7 @@ async function example() {
 ```
 
 ### grantPhotoAssetsReadPermission<sup>14+</sup>
+
 grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 <!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
@@ -1773,6 +1774,8 @@ async function example() {
 ### clone<sup>14+</sup>
 
 clone(title: string): Promise&lt;PhotoAsset&gt;
+
+将一个资产进行克隆，支持设置文件名，不支持修改文件类型。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
 

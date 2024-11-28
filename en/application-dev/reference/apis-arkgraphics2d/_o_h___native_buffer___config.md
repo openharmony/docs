@@ -21,13 +21,13 @@ The **OH_NativeBuffer_Config** struct describes the **OH_NativeBuffer** attribut
 
 ### Member Variables
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| [width](#width) | Width, in pixels. |
-| [height](#height) | Height, in pixels. |
-| [format](#format) | Pixel map format. |
-| [usage](#usage) | Description of the buffer usage. |
-| [stride](#stride) | Output parameter. Stride of the local window buffer, in bytes. |
+| [width](#width) | Width, in pixels.|
+| [height](#height) | Height, in pixels.|
+| [format](#format) | Pixel format. For details, see [OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1).|
+| [usage](#usage) | Usage of the buffer. For details, see [OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1).|
+| [stride](#stride) | Output parameter. Stride of the local window buffer, in bytes.|
 
 
 ## Member Variable Description

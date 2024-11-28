@@ -1,4 +1,4 @@
-# Sendable Object
+# Sendable Object Overview
 
 On the traditional JS engine, there is only one way to optimize the concurrent communication overhead of objects. That is, the implementation is moved to the Native side, and the concurrent communication overhead is reduced through the transferable object (transferabled-object.md) transfer or sharing mode. However, developers still have the requirement for concurrent communication of a large number of objects. This problem has not been solved in the JS engine implementation in the industry.
 
@@ -103,7 +103,7 @@ Relationship between SharedHeap and LocalHeap
 The LocalHeap of each concurrent instance is isolated. The SharedHeap is a process-level heap and can be referenced by all concurrent instances. However, SharedHeap cannot reference objects in LocalHeap.
 
 
-## @Sendable decorator
+## @Sendable Decorator
 
 Declare and verify the Sendable class and Sendable function.
 
