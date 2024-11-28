@@ -416,6 +416,7 @@
             - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
         - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
           - [组件导航 (Navigation)(推荐)](ui/arkts-navigation-navigation.md)
+          - [实现组件导航转场](ui/arkts-navigation-transition.md)
           - [页面路由 (@ohos.router)(不推荐)](ui/arkts-routing.md)
           - [Router切换Navigation](ui/arkts-router-to-navigation.md)
         - 使用文本<!--arkts-use-text-->
@@ -440,7 +441,6 @@
           - 转场动画<!--arkts-animation-transition-->
             - [转场动画概述](ui/arkts-transition-overview.md)
             - [出现/消失转场](ui/arkts-enter-exit-transition.md)
-            - [导航转场](ui/arkts-navigation-transition.md)
             - [模态转场](ui/arkts-modal-transition.md)
             - [共享元素转场 (一镜到底)](ui/arkts-shared-element-transition.md)
             - [旋转屏动画增强](ui/arkts-rotation-transition-animation.md)
@@ -1334,6 +1334,7 @@
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
         - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
         - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
+        - [在Worker线程中使用相机(ArkTS)](media/camera/camera-worker.md)
         <!--Del-->
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
@@ -1906,11 +1907,11 @@
         - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/js-apis-data-relationalStore.md)
         - [@ohos.data.sendableRelationalStore (共享关系型数据库)](reference/apis-arkdata/js-apis-data-sendableRelationalStore.md)
         - [@ohos.data.unifiedDataChannel (标准化数据通路)](reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)
-        - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         - [@ohos.data.uniformDataStruct (标准化数据结构)](reference/apis-arkdata/js-apis-data-uniformDataStruct.md)
         - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)
         - [@ohos.data.ValuesBucket (数据集)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
         <!--Del-->
+        - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
         <!--DelEnd-->
         - [@ohos.data.cloudData (端云服务)](reference/apis-arkdata/js-apis-data-cloudData.md)
@@ -2613,6 +2614,7 @@
             - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
             - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
             - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
+            - [oh_display_capture.h](reference/apis-arkui/oh__display__capture_8h.md)
             - [oh_display_info.h](reference/apis-arkui/oh__display__info_8h.md)
             - [oh_display_manager.h](reference/apis-arkui/oh__display__manager_8h.md)
           - 结构体<!--arkui-struct-->
@@ -2644,6 +2646,10 @@
             - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
             - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
             - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
+            - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/_native_display_manager___display_color_space.md)
+            - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/_native_display_manager___display_hdr_format.md)
+            - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/_native_display_manager___display_info.md)
+            - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/_native_display_manager___displays_info.md)
             - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
             - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
       - 错误码<!--arkui-arkts-errcode-->

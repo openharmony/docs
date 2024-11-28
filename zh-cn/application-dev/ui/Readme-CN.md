@@ -29,6 +29,7 @@
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
   - 设置组件导航和页面路由
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
+    - [实现组件导航转场](arkts-navigation-transition.md)
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 使用文本
@@ -53,7 +54,6 @@
     - 转场动画
       - [转场动画概述](arkts-transition-overview.md)
       - [出现/消失转场](arkts-enter-exit-transition.md)
-      - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场 (一镜到底)](arkts-shared-element-transition.md)
       - [旋转屏动画增强](arkts-rotation-transition-animation.md)    

@@ -32,5 +32,8 @@ ArkTS is compatible with the TS and JavaScript (JS) ecosystem, so that you can w
 ArkTS will continue to accommodate ever-changing application development and running requirements, and gradually provides more features, such as enhanced parallelization and concurrency, improved system, and distributed development paradigm.
 
 For details about the ArkTS language, see [Introduction to ArkTS](../arkts-utils/arkts-overview.md).
+<<<<<<< HEAD
 
 <!--no_check-->
+=======
+>>>>>>> 61226540906b7bc6d1526382da6b927f76557516
