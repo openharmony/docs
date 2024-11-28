@@ -16,13 +16,15 @@
 
 ## 申请权限
 
-在开发此功能前，开发者应根据实际需求申请相应权限，申请方式请参考：[申请应用权限](../../security/AccessToken/request-user-authorization.md)。
+在开发此功能前，开发者应根据实际需求申请相关权限：
 
-| 权限名 | 说明 | 授权方式 | 权限级别 |
-| ------ | ----- | --------| ------- |
-| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。| user_grant | normal |
-| ohos.permission.READ_IMAGEVIDEO | 允许应用读取用户外部存储中的媒体文件信息。| user_grant | normal |
-| ohos.permission.WRITE_IMAGEVIDEO | 允许应用读写用户外部存储中的媒体文件信息。| user_grant | normal |
+- 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+- 当需要读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
+- 当需要保存图片或视频文件时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
+  
+> **说明：**
+>
+> 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
 
 ## 开发步骤及注意事项
 
