@@ -780,7 +780,7 @@ Triggered when the list scrolls. The return value is the offset amount by which 
 ### onScrollVisibleContentChange<sup>12+</sup>
 onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
 
-Triggered when a child component enters or leaves the list display area. During index calculation, list item, header of the list item group, and footer of the list item group each are counted as a child component.
+Triggered when a child component enters or leaves the list display area. During index calculation, the list item, header of the list item group, and footer of the list item group each are counted as a child component.
 
 When the list edge scrolling effect is the spring effect, the **onScrollVisibleContentChange** event is not triggered when the user scrolls the list to the edge or releases the list to rebound.
 

@@ -49,6 +49,8 @@ The **priorityGesture** API binds gestures that are preferentially recognized to
 
 By default, the child component preferentially recognizes the gesture specified by **gesture**, and the parent component preferentially recognizes the gesture specified by **priorityGesture** (if set).
 
+With regard to long press gestures, the component with the shortest minimum hold-down time responds first, ignoring the **priorityGesture** settings.
+
 In the following example, the parent component **Column** and child component **Text** are both bound to the tap gesture. As the **Column** is bound to the gesture through **priorityGesture**, the tap gesture recognized by the parent component is preferentially responded to.
 
 
@@ -69,7 +71,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    // When the tap gesture is bound to the parent <Column> component through priorityGesture, the tap gesture event of the <Text> component is ignored when the text area is tapped, and the tap gesture event of the<Column> component is preferentially responded to.
+    // When the tap gesture is bound to the parent Column component with priorityGesture, any tap gesture events from the Text component are ignored. This means that when the text area is tapped, the Column component's tap gesture event is given priority and responded to first.
     .priorityGesture(
       TapGesture()
         .onAction(() => {
@@ -109,7 +111,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    // When parallelGesture is set, the tap gestures on the <Column> component and on the child <Text> component are both recognized.
+    // When parallelGesture is set, the tap gestures on the Column component and on the child Text component are both recognized.
     .parallelGesture(
       TapGesture()
         .onAction(() => {
@@ -118,8 +120,3 @@ struct Index {
   }
 }
 ```
-
-
->**NOTE**
->
->When the parent component and the child component are bound to both the click gesture and the double-click gesture, both the parent component and the child component respond only to the click gesture.
