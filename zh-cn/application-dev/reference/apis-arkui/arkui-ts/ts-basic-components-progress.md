@@ -312,9 +312,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## 示例
 
-### 示例1
+### 示例1（设置进度条的类型）
 
-各进度条基础属性效果。
+该示例通过type属性，实现了设置进度条类型的功能。
 
 ```ts
 // xxx.ets
@@ -376,9 +376,9 @@ struct ProgressExample {
 
 ![progress](figures/arkts-progress.png)
 
-### 示例2
+### 示例2（设置环形进度条属性）
 
-环形进度条视觉属性。
+该示例通过style接口的strokeWidth、shadow属性，实现了环形进度条视觉属性设置功能。
 
 ```ts
 // xxx.ets
@@ -404,9 +404,9 @@ struct ProgressExample {
 ```
 ![ringProgressStyleEffect](figures/arkts-ringProgressStyleEffect.png)
 
-### 示例3
+### 示例3（设置环形进度条动画）
 
-环形进度条动效。
+该示例通过style接口的status、enableScanEffect属性，实现了环形进度条动效的开关功能。
 
 ```ts
 // xxx.ets
@@ -430,9 +430,9 @@ struct ProgressExample {
 ```
 ![ringProgressAnimation](figures/arkts-ringProgressAnimation.gif)
 
-### 示例4
+### 示例4（设置胶囊形进度条属性）
 
-胶囊形进度条视觉属性。
+该示例通过style接口的borderColor、borderWidth、content、font、fontColor、enableScanEffect、showDefaultPercentage属性，实现了胶囊形进度条视觉属性设置功能。
 
 ```ts
 // xxx.ets
@@ -454,9 +454,9 @@ struct ProgressExample {
 ```
 ![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
 
-### 示例5
+### 示例5（设置进度平滑动效）
 
-进度平滑动效。
+该示例通过style接口的enableSmoothEffect属性，实现了进度平滑动效开关的功能。
 
 ```ts
 // xxx.ets
@@ -492,9 +492,9 @@ struct Index {
 ```
 ![progressSmoothEffect](figures/arkts-progressSmoothEffect.gif)
 
-### 示例6
+### 示例6（设置定制内容区）
 
-该示例实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度被填充自定义颜色。
+该示例通过contentModifier接口，实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度被填充自定义颜色。
 
 ```ts
 // xxx.ets
@@ -569,9 +569,9 @@ struct Index {
 ```
 ![progressCustom](figures/arkts-progressCustom.gif)
 
-### 示例7
+### 示例7（设置隐私隐藏）
 
-该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+该示例通过privacySensitive接口，实现了隐私隐藏效果，效果展示需要卡片框架支持。
 
 ```ts
 @Entry
