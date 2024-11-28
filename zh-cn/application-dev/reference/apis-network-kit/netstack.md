@@ -266,10 +266,10 @@ enum NetStack_HashAlgorithm
 ## 函数说明
 
 
-### OH_NetStack_VerifyCertification()
+### OH_NetStack_CertVerification()
 
 ```
-uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
+uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
 ```
 
 **描述**
