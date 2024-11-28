@@ -309,7 +309,7 @@ properties: WindowProxyProperties
 
 | 参数名     | 类型                                 | 说明                             |
 | ---------- | ------------------------------------ | -------------------------------- |
-| properties | [WindowProxyProperties](#windowproxyproperties) | 组件（EmbeddedComponent或UIExtensionComponent）以及宿主窗口的信息。 |
+| properties | [WindowProxyProperties](#windowproxyproperties14) | 组件（EmbeddedComponent或UIExtensionComponent）以及宿主窗口的信息。 |
 
 **示例**
 
