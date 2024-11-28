@@ -970,9 +970,9 @@ httpRequest.on("dataEnd", () => {
 httpRequest.off("dataEnd");
 ```
 
-### on("dataReceiveProgress")<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -997,9 +997,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### off("dataReceiveProgress")<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>): void
 
 取消订阅HTTP流式响应数据接收进度事件。
 
@@ -1027,9 +1027,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### on("dataSendProgress")<sup>11+</sup>
+### on('dataSendProgress')<sup>11+</sup>
 
-on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
+on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 订阅HTTP网络请求数据发送进度事件。
 
@@ -1051,12 +1051,12 @@ let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
-httpRequest.off("dataSendProgress");
+httpRequest.off('dataSendProgress');
 ```
 
-### off("dataSendProgress")<sup>11+</sup>
+### off('dataSendProgress')<sup>11+</sup>
 
-off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
+off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 
 取消订阅HTTP网络请求数据发送进度事件。
 
@@ -1507,11 +1507,11 @@ http协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称  | 说明     |
-| :-------- | :----------- |
-| HTTP1_1   |  协议http1.1 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| HTTP2     |  协议http2 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| HTTP3<sup>11+</sup> | 协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />- 仅对https的URL生效，http则会请求失败。 |
+| 名称  | 值 |说明     |
+| :-------- | :----------- |:----------- |
+| HTTP1_1   | 0 |协议http1.1 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| HTTP2     | 1 |协议http2 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| HTTP3<sup>11+</sup> | 2 |协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />- 仅对https的URL生效，http则会请求失败。 |
 
 ## CertType<sup>11+</sup>
 

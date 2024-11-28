@@ -16,15 +16,15 @@ The meanings of T and S in this topic are as follows:
 | S    | number, boolean, string.                |
 
 
+## Modules to Import
+
+```ts
+import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
+```
+
 ## AppStorageV2
 
 For details about how to use AppStorageV2, see [AppStorageV2: Storing Application-wide UI State](../../quick-start/arkts-new-appstoragev2.md).
-
-### Modules to Import
-
-```ts
-import { AppStorageV2 } from '@kit.ArkUI';
-```
 
 ### connect<sup>12+</sup>
 
@@ -104,9 +104,6 @@ Removes the specified key-value pair from [AppStorageV2](../../quick-start/arkts
 >
 >Attempting to remove a key that does not exist in AppStorageV2 will result in a warning.
 
-**Return value**
-
-None.
 
 **Example**
 
@@ -157,12 +154,6 @@ const keys: Array<string> = AppStorageV2.keys();
 ## PersistenceV2
 
 For details about how to use PersistenceV2, see [PersistenceV2: Persisting Application State](../../quick-start/arkts-new-persistencev2.md).
-
-### Modules to Import
-
-```ts
-import { PersistenceV2 } from '@kit.ArkUI';
-```
 
 ### connect<sup>12+</sup>
 
@@ -269,9 +260,6 @@ Removes the specified key-value pair from [PersistenceV2](../../quick-start/arkt
 >
 >Attempting to remove a key that does not exist in PersistenceV2 will result in a warning.
 
-**Return value**
-
-None.
 
 **Example**
 
@@ -339,9 +327,6 @@ Persists the specified key-value pair data once.
 >
 >It is useless to manually persist the keys that are not in the **connect** state in the memory.
 
-**Return value**
-
-None.
 
 **Example**
 
@@ -359,12 +344,6 @@ PersistenceV2.remove('key_as1');
 ## UIUtils
 
 Provides APIs for handling data transformations related to state management.
-
-### Modules to Import
-
-```ts
-import { UIUtils } from '@kit.ArkUI';
-```
 
 ### getTarget<sup>12+</sup>
 

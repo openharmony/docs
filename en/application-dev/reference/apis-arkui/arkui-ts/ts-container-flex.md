@@ -360,7 +360,7 @@ struct FlexExample2 {
         .backgroundColor(0xAFEEEE)
 
         Text('NoWrap').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Flex({ wrap: FlexWrap.Wrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // The child components are arranged in a single line.
+        Flex({ wrap: FlexWrap.NoWrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // The child components are arranged in a single line.
           Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
           Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
           Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)

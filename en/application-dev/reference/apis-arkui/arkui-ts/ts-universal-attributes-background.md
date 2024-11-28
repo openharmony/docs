@@ -45,6 +45,10 @@ Sets the background color of the component.
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the component.|
 
+>  **NOTE**
+>
+>  If the background color is specified by inactiveColor in [backgroundBlurStyle] (#backgroundblurstyle9), you are advised not to set the background color by using backgroundColor.
+
 ## backgroundImage
 
 backgroundImage(src: ResourceStr | PixelMap, repeat?: ImageRepeat)
@@ -80,7 +84,7 @@ Sets the width and height of the component background image.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. If **height** is set but **width** is not, the image width is adjusted based on the original aspect ratio of the image.|
+| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>**NOTE**<br>If both **width** and **height** are set to values less than or equal to 0, they are treated as 0. If either **width** or **height** is unset or set to a value less than or equal to 0, the other one is adjusted based on the original aspect ratio of the image.|
 
 ## backgroundImagePosition
 
@@ -111,10 +115,10 @@ Sets the position of the component background image.
 | Thin                 | Thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | Regular              | Regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Thick                | Thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
-| BACKGROUND_THIN       | Material that creates the minimum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_REGULAR    | Material that creates a medium shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_THICK      | Material that creates a high shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_ULTRA_THICK | Material that creates the maximum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| BACKGROUND_THIN<sup>10+</sup>       | Material that creates the minimum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_REGULAR<sup>10+</sup>    | Material that creates a medium shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_THICK<sup>10+</sup>      | Material that creates a high shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_ULTRA_THICK<sup>10+</sup> | Material that creates the maximum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | NONE<sup>10+</sup> | No blur.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | COMPONENT_ULTRA_THIN<sup>11+</sup> | Component ultra-thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | COMPONENT_THIN<sup>11+</sup> | Component thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -126,7 +130,7 @@ Sets the position of the component background image.
 
 backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
-Sets the background blur style applied between the content and the background.
+Defines the blur style to apply between the background and content of a component. It encapsulates various blur radius, mask color, mask opacity, saturation, and brightness values through enum values.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -141,11 +145,38 @@ Sets the background blur style applied between the content and the background.
 | value                 | [BlurStyle](#blurstyle9)                 | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
 
+>  **NOTE**
+>
+>  If the background color is specified through **inactiveColor** in **backgroundBlurStyle**, avoid setting the background color again using [backgroundColor] (#backgroundcolor).
+
+## backdropBlur
+
+backdropBlur(value: number, options?: BlurOptions)
+
+Applies a background blur effect to the component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name               | Type                                             | Mandatory| Description                                                        |
+| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value                 | number                                            | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.|
+| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
+
+>  **NOTE**
+>
+>  The **blur** and **backdropBlur** APIs provide real-time blurring by rendering each frame, which can be performance-intensive. For static blur effects where content and radius remain unchanged, you are advised to use the static [blur](../../apis-arkgraphics2d/js-apis-effectKit.md#blur) API to reduce the load.
+
 ## backgroundEffect<sup>11+</sup> 
 
 backgroundEffect(options: BackgroundEffectOptions)
 
-Sets the background effect of the component.
+Sets the background effect of the component, including the blur radius, brightness, saturation, and color.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -169,7 +200,7 @@ Describes the background effect.
 | radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0** |
 | saturation   | number        |   No  |   Saturation.<br>Value range: [0, +∞)<br>Default value: **1** Recommended value range: [0, 50]    |
 | brightness   | number        |   No  |   Brightness.<br>Value range: [0, +∞)<br>Default value: **1** Recommended value range: [0, 2]|
-| color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color.<br>Default value: transparent |
+| color        | [ResourceColor](ts-types.md#resourcecolor)         |   No  |   Color.<br>Default value: transparent |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT** When set to **AVERAGE**, the adaptive color mode takes effect only when the color has transparency.  |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0, 0]** |
 
@@ -220,11 +251,18 @@ Sets the background brightness of the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name           | Type                                    | Mandatory  | Description                                      |
-| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| rate          | number | Yes   | Brightness change rate. A larger change rate indicates a faster decrease and slower increase in brightness.<br>Default value: **0.0**<br>Value range: (0.0, +∞)<br>|
-| lightUpDegree | number | Yes   | Light up degree. A greater degree indicates a greater increase in brightness.<br> Default value: **0.0**<br>Value range: [-1.0, 1.0]<br>|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+| Name         | Type  | Mandatory| Description                                                        |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| rate          | number | Yes  | Brightness change rate. A higher rate means that brightness decreases more quickly. If **rate** is set to **0**, **lightUpDegree** will not take effect, meaning no brightening effect will occur.<br>Default value: **0.0**<br>Value range: (0.0, +∞)|
+| lightUpDegree | number | Yes  | Light up degree. A greater degree indicates a greater increase in brightness.<br> Default value: **0.0**<br>Value range: [-1.0, 1.0]|
+
+>  **NOTE**
+>
+>  The brightness (gray scale value) of each pixel in the component background content is calculated using the following formula:
+>  Y = (0.299R + 0.587G + 0.114B) / 255.0, where **R**, **G**, and **B** represent red, green, and blue channel values of the pixel, respectively, and **Y** is the gray scale value. This formula normalizes the gray scale value to a range of 0 to 1.
+>  The formula for calculating the increase in brightness for each pixel is as follows: ΔY = -rate * Y + lightUpDegree. For example, when rate = 0.5 and lightUpDegree = 0.5, for a pixel with a gray scale value of 0.2, the increase in brightness is -0.5 * 0.2 + 0.5 = 0.4. For a pixel with a gray scale value of 1, the increase in brightness is -0.5 * 1 + 0.5 = 0.
 
 ## Example
 
@@ -398,4 +436,191 @@ When **rate** is set to **0.5** and **lightUpDegree** **-0.1**
 The following figure shows how the component looks without the background brightness set.
 
 ![en-us_image_background_brightness3](figures/en-us_image_background_brightness3.png)
-<!--no_check-->
+
+### Example 5
+This example uses **blur** to apply a foreground blur effect and **backdropBlur** to apply a background blur effect.
+```ts
+// xxx.ets
+@Entry
+@Component
+struct BlurEffectsExample {
+  build() {
+    Column({ space: 10 }) {
+      // Blur the font.
+      Text('font blur').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      Flex({ alignItems: ItemAlign.Center }) {
+        Text('original text').margin(10)
+        Text('blur text')
+          .blur(5).margin(10)
+        Text('blur text')
+          .blur(10).margin(10)
+        Text('blur text')
+          .blur(15).margin(10)
+      }.width('90%').height(40)
+      .backgroundColor(0xF9CF93)
+
+
+      // Blur the background.
+      Text('backdropBlur').fontSize(15).fontColor(0xCCCCCC).width('90%')
+      Text()
+        .width('90%')
+        .height(40)
+        .fontSize(16)
+        .backdropBlur(3)
+        .backgroundImage($r('app.media.image'))
+        .backgroundImageSize({ width: 1200, height: 160 })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![textblur](figures/textblur.png)
+
+### Example 6
+
+This example uses **blendMode** with **backgroundEffect** to implement the gradient effect of text and images.<br>
+If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State shColor: Color = Color.White;
+  @State sizeDate: number = 20;
+  @State rVal: number = 255;
+  @State gVal: number = 255;
+  @State bVal: number = 255;
+  @State aVal: number = 0.1;
+  @State rad: number = 40;
+  @State satVal: number = 0.8;
+  @State briVal: number = 1.5;
+  build() {
+    Stack() {
+      Image($r('app.media.image'))
+      Column() {
+        Column({ space: 0 }) {
+          Column() {
+            Text('11')
+              .fontSize(144)
+              .fontWeight(FontWeight.Bold)
+              .fontColor('rgba(255,255,255,1)')
+              .fontFamily('HarmonyOS-Sans-Digit')
+              .maxLines(1)
+              .lineHeight(120 * 1.25)
+              .height(120 * 1.25)
+              .letterSpacing(4 * 1.25)
+            Text('42')
+              .fontSize(144)
+              .fontWeight(FontWeight.Bold)
+              .fontColor('rgba(255,255,255,1)')
+              .fontFamily('HarmonyOS-Sans-Digit')
+              .maxLines(1)
+              .lineHeight(120 * 1.25)
+              .height(120 * 1.25)
+              .letterSpacing(4 * 1.25)
+              .shadow({
+                color: 'rgba(0,0,0,0)',
+                radius: 20,
+                offsetX: 0,
+                offsetY: 0
+              })
+            Row() {
+              Text('October 16')
+                .fontSize(this.sizeDate)
+                .height(22)
+                .fontWeight('medium')
+                .fontColor('rgba(255,255,255,1)')
+              Text('Monday')
+                .fontSize(this.sizeDate)
+                .height(22)
+                .fontWeight('medium')
+                .fontColor('rgba(255,255,255,1)')
+            }
+          }
+          .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
+          .pixelRound({
+            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            end: PixelRoundCalcPolicy.FORCE_CEIL,
+            bottom: PixelRoundCalcPolicy.FORCE_CEIL
+          })
+        }
+        .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
+        .backgroundEffect({
+          radius: this.rad,
+          saturation: this.satVal,
+          brightness: this.briVal,
+          color: this.getVolumeDialogWindowColor()
+        })
+        .justifyContent(FlexAlign.Center)
+        .pixelRound({
+          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          end: PixelRoundCalcPolicy.FORCE_CEIL,
+          bottom: PixelRoundCalcPolicy.FORCE_CEIL
+        })
+      }
+    }
+  }
+  getVolumeDialogWindowColor(): ResourceColor | string {
+    return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.aVal.toFixed(0)})`;
+  }
+}
+```
+
+![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
+
+### Example 7
+This example demonstrates the differences between using **backgroundEffect**, **backDropBlur**, and **backgroundBlurStyle** to apply blur effects.
+
+```ts
+// xxx.ets
+// xxx.ets
+@Entry
+@Component
+struct BackGroundBlur {
+  private imageSize: number = 150;
+
+  build() {
+    Column({ space: 5 }) {
+      // Use backgroundBlurStyle with an enum value to set blur parameters.
+      Stack() {
+        Image($r('app.media.test'))
+          .width(this.imageSize)
+          .height(this.imageSize)
+        Column()
+          .width(this.imageSize)
+          .height(this.imageSize)
+          .backgroundBlurStyle(BlurStyle.Thin)
+      }
+
+      // backgroundEffect allows for custom settings for blur radius, brightness, saturation, and more.
+      Stack() {
+        Image($r('app.media.test'))
+          .width(this.imageSize)
+          .height(this.imageSize)
+        Column()
+          .width(this.imageSize)
+          .height(this.imageSize)
+          .backgroundEffect({ radius: 20, brightness: 0.6, saturation: 15 })
+      }
+
+      // backdropBlur only sets blur radius and grayscale parameters.
+      Stack() {
+        Image($r('app.media.test'))
+          .width(this.imageSize)
+          .height(this.imageSize)
+        Column()
+          .width(this.imageSize)
+          .height(this.imageSize)
+          .backdropBlur(20, { grayscale: [30, 50] })
+      }
+    }
+    .width('100%')
+    .padding({ top: 5 })
+  }
+}
+```
+
+![backgroundBlur](figures/backgroundBlur.png)

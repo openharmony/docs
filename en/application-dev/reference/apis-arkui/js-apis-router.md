@@ -1,6 +1,8 @@
-# @ohos.router (Page Routing)
+# @ohos.router (Page Routing) (Not Recommended)
 
 The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in the same application, and return to the previous page or a specified page.
+
+For routing management, it is recommended that you use the [Navigation](../../ui/arkts-navigation-navigation.md) component instead as your application routing framework.
 
 > **NOTE**
 >
@@ -11,8 +13,6 @@ The **Router** module provides APIs to access pages through URLs. You can use th
 > - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
->
-> - To achieve a better transition effect, you are advised to use the [Navigation](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
 >
 > - When the **pushUrl** or **pushNamedRoute** API uses a callback to return the result, the information obtained from the callback using APIs such as **getLength** may represent an intermediate state of the stack and might not be consistent with the final state.
 
@@ -36,21 +36,21 @@ Navigates to a specified page in the application.
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -102,16 +102,16 @@ Navigates to a specified page in the application.
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -163,21 +163,21 @@ Navigates to a specified page in the application.
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -230,16 +230,16 @@ Navigates to a specified page in the application.
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -289,23 +289,23 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description              |
+| Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page. |
+| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
@@ -344,18 +344,18 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description              |
+| Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page. |
+| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
@@ -397,23 +397,23 @@ Replaces the current page with another one in the application and destroys the c
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **Example**
@@ -454,16 +454,16 @@ Replaces the current page with another one in the application and destroys the c
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
@@ -505,26 +505,26 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters.|
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
 
-**Example** 
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -573,16 +573,16 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
@@ -634,21 +634,21 @@ Navigates to a page using the named route. This API uses a promise to return the
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
@@ -701,16 +701,16 @@ Navigates to a page using the named route. This API uses a promise to return the
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
@@ -760,23 +760,23 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description              |
+| Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page. |
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page.|
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
@@ -815,18 +815,18 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description              |
+| Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page. |
+| options | [NamedRouterOptions](#namedrouteroptions10) | Yes  | Description of the new page.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
@@ -868,23 +868,23 @@ Replaces the current page with another one using the named route and destroys th
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 
 
 **Return value**
 
 | Type               | Description       |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
 **Example**
@@ -925,16 +925,16 @@ Replaces the current page with another one using the named route and destroys th
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 | callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
@@ -966,7 +966,7 @@ router.replaceNamedRoute({
 
 back(options?: RouterOptions ): void
 
-Returns to the previous page or a specified page.
+Returns to the previous page or a specified page, which deletes all pages between the current page and the target page.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -974,9 +974,9 @@ Returns to the previous page or a specified page.
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description                                                        |
+| Name | Type                           | Mandatory| Description                                                        |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up. The **back** API does not work if **url** is set to a slash (/). |
+| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up. The **back** API does not work if **url** is set to a slash (/).|
 
 **Example**
 
@@ -988,7 +988,7 @@ router.back({url:'pages/detail'});
 
 back(index: number, params?: Object): void;
 
-Returns to the specified page.
+Returns to the specified page, which deletes all pages between the current page and the target page.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -999,7 +999,7 @@ Returns to the specified page.
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
 | index | number | Yes   | Index of the target page to navigate to. |
-| params    | Object      | No   | Parameters carried when returning to the page. |
+| params    | Object      | No   | Parameters carried when returning to the page.|
 
 **Example**
 
@@ -1040,7 +1040,7 @@ Obtains the number of pages in the current stack.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | Number of pages in the stack. The maximum value is **32**. |
+| string | Number of pages in the stack. The maximum value is **32**.|
 
 **Example**
 
@@ -1063,9 +1063,9 @@ Obtains state information about the page at the top of the navigation stack.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| [RouterState](#routerstate) | Page routing state. |
+| [RouterState](#routerstate) | Page routing state.|
 
-**Example** 
+**Example**
 
 ```ts
 let page = router.getState();
@@ -1094,9 +1094,9 @@ Obtains the status information about a page by its index.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| [RouterState](#routerstate) \| undefined | State information about the target page; **undefined** if the specified index does not exist. |
+| [RouterState](#routerstate) \| undefined | State information about the target page; **undefined** if the specified index does not exist.|
 
-**Example** 
+**Example**
 
 ```ts
 let options:router.RouterState | undefined = router.getStateByIndex(1);
@@ -1127,9 +1127,9 @@ Obtains the status information about a page by its URL.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| Array<[RouterState](#routerstate)> | Page routing state. |
+| Array<[RouterState](#routerstate)> | Page routing state.|
 
-**Example** 
+**Example**
 
 ```ts
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
@@ -1147,11 +1147,11 @@ Describes the page routing state.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name | Type  | Mandatory| Description                                                        |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
-| index | number | Yes  | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| name  | string | Yes | Name of the current page, that is, the file name.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| path  | string | Yes  | Path of the current page.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| index | number | Yes  | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| name  | string | Yes | Name of the current page, that is, the file name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| path  | string | Yes  | Path of the current page.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | params<sup>12+</sup>  | Object |  Yes | Parameters carried on the current page.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                        |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
@@ -1168,15 +1168,15 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box. |
+| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Router Error Codes](errorcode-router.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 
 **Example**
@@ -1202,7 +1202,7 @@ Describes the confirm dialog box.
 
 | Name     | Type    | Mandatory  | Description      |
 | ------- | ------ | ---- | -------- |
-| message | string | Yes   | Content displayed in the confirm dialog box. |
+| message | string | Yes   | Content displayed in the confirm dialog box.|
 
 ## router.hideAlertBeforeBackPage<sup>9+</sup>
 
@@ -1234,11 +1234,11 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 | Type  | Description                              |
 | ------ | ---------------------------------- |
-| object | Parameters passed from the page that initiates redirection to the current page. |
+| object | Parameters passed from the page that initiates redirection to the current page.|
 
 **Example**
 
-```
+```ts
 router.getParams();
 ```
 
@@ -1250,11 +1250,10 @@ Describes the page routing options.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | Yes  | URL of the target page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- special value. If the value of url is **"/"**, the application navigates to the home page. By default, the home page is set to the first item in the **src** value array. |
-| params | Object | No  | Data that needs to be passed to the target page during redirection. The received data becomes invalid when the page is switched to another page. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type. |
-
+| url    | string | Yes  | URL of the target page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- special value. If the value of url is **"/"**, the application navigates to the home page. By default, the home page is set to the first item in the **src** value array.|
+| params | Object | No  | Data that needs to be passed to the target page during redirection. The received data becomes invalid when the page is switched to another page. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type.|
 
   > **NOTE**
   >
@@ -1270,8 +1269,8 @@ Enumerates the routing modes.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Standard | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If no routing mode is used, the navigation will be carried out according to the default multi-instance mode. |
-| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page is moved to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode. |
+| Standard | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If no routing mode is used, the navigation will be carried out according to the default multi-instance mode.|
+| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page is moved to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode.|
 
 ## NamedRouterOptions<sup>10+</sup>
 
@@ -1281,10 +1280,10 @@ Describes the named route options.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | name   | string | Yes  | Name of the target named route.                                |
-| params | Object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed. |
+| params | Object | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.<br>**NOTE**<br>The **params** parameter cannot pass objects returned by methods and system APIs, for example, **PixelMap** objects defined and returned by media APIs. To pass such objects, extract from them the basic type attributes to be passed, and then construct objects of the object type.|
 
 ## Examples
 
@@ -1320,6 +1319,10 @@ export default {
 
 ### TypeScript-based Declarative Development Paradigm
 
+> **NOTE**
+> 
+> To avoid confusion with **router** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **router** instance bound to the context through the [getRouter](js-apis-arkui-UIContext.md#getrouter) API.
+
 ```ts
 // Navigate to the target page through router.pushUrl with the params parameter carried.
 import { router } from '@kit.ArkUI';
@@ -1353,6 +1356,7 @@ struct Index {
       params: new routerParams ('This is the value on the first page', [12, 45, 78])
     }
     try {
+      // You are advised to use this.getUIContext().getRouter().pushUrl().
       await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
@@ -1407,6 +1411,7 @@ class routerParams {
 @Component
 struct Second {
   private content: string = "This is the second page."
+  // You are advised to use this.getUIContext().getRouter().getParams().
   @State text: string = (router.getParams() as routerParams).text
   @State data: object = (router.getParams() as routerParams).data
   @State secondData: string = ''
@@ -1447,7 +1452,7 @@ This API is deprecated since API version 9. You are advised to use [pushUrl<sup>
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
 
 
 **Example**
@@ -1489,9 +1494,9 @@ This API is deprecated since API version 9. You are advised to use [replaceUrl<s
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description              |
+| Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page. |
+| options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
 
 **Example**
 
@@ -1524,7 +1529,7 @@ This API is deprecated since API version 9. You are advised to use [showAlertBef
 
 | Name    | Type                                      | Mandatory  | Description       |
 | ------- | ---------------------------------------- | ---- | --------- |
-| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box. |
+| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box.|
 
 **Example**
 

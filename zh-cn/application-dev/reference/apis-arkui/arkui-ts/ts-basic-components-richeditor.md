@@ -4593,7 +4593,7 @@ struct RichEditorExample {
 
 ### 示例23
 
-barState、enableKeyboardOnFocus、getPreviewText使用示例。
+enableKeyboardOnFocus、getPreviewText使用示例。
 
 ```ts
 // xxx.ets
@@ -4609,9 +4609,6 @@ struct RichEditor_example {
   options1: RichEditorOptions = { controller: this.controller1 };
 
   @State e: boolean = true
-  @State bs_num: number = 0
-  @State bs: (BarState | undefined)[] = [BarState.Auto, BarState.On, BarState.Off, undefined]
-  @State bs_string: (String)[] = ["Auto", "On", "Off", "undefined"]
 
   build() {
     Column({space: 3}) {
@@ -4643,21 +4640,10 @@ struct RichEditor_example {
         .width(300)
         .height(100)
         .margin(20)
-        .barState(this.bs[this.bs_num])
         .enableKeyboardOnFocus(this.e)
         .enableHapticFeedback(true)
 
       RichEditor(this.options1).width(300)
-
-      Button('设置barState为：' + this.bs_string[this.bs_num])
-        .height(30)
-        .fontSize(13)
-        .onClick(() => {
-          this.bs_num++
-          if (this.bs_num > (this.bs.length - 1)) {
-            this.bs_num = 0
-          }
-        })
 
       Button('设置enableKeyboardOnFocus为：' + this.e)
         .height(30)
@@ -4678,4 +4664,4 @@ struct RichEditor_example {
 
 ```
 
-![StyledString](figures/example23.gif)
+![StyledString](figures/example_23.gif)

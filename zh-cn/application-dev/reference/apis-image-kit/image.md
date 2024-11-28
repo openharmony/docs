@@ -561,10 +561,10 @@ Pixelmap缩放时采用的缩放算法。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_PixelMap_AntiAliasing_NONE  | 最近邻缩放算法。   | 
-| OH_PixelMap_AntiAliasing_LOW  | 双线性缩放算法。   | 
-| OH_PixelMap_AntiAliasing_MEDIUM  | 双线性缩放算法，同时开启mipmap。   | 
-| OH_PixelMap_AntiAliasing_HIGH  | cubic缩放算法。   | 
+| OH_PixelMap_AntiAliasing_NONE  | 最近邻插值算法。   | 
+| OH_PixelMap_AntiAliasing_LOW  | 双线性插值算法。   | 
+| OH_PixelMap_AntiAliasing_MEDIUM  | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   | 
+| OH_PixelMap_AntiAliasing_HIGH  | 三次插值算法。   | 
 
 
 ## 函数说明
@@ -2561,7 +2561,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, void * buf, size_t len, napi_value * res )
 ```
 **描述**
-创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。该接口传入的buf不支持stride。
+创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。该接口传入的buf不支持stride。该接口不支持DMA内存。
 
 **起始版本：** 10
 
@@ -2692,6 +2692,9 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 **描述**
 设置**PixelMap**对象的裁剪。
 
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Crop](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_crop)。
+
 **起始版本：** 10
 
 **参数:**
@@ -2757,6 +2760,9 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 ```
 **描述**
 设置**PixelMap**对象的翻转。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Flip](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_flip)。
 
 **起始版本：** 10
 
@@ -2891,6 +2897,8 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 ```
 **描述**
 获取**PixelMap**对象图像信息。
+
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo)。
 
 **起始版本：** 10
 
@@ -3050,6 +3058,9 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 **描述**
 设置**PixelMap**对象的旋转。
 
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Rotate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_rotate)。
+
 **起始版本：** 10
 
 **参数:**
@@ -3112,6 +3123,9 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 ```
 **描述**
 设置**PixelMap**对象的缩放。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Scale](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_scale)。
 
 **起始版本：** 10
 
@@ -3178,6 +3192,9 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing (const NativePixelMap * native, float 
 ```
 **描述**
 根据指定的缩放算法和输入的宽高对图片进行缩放。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_ScaleWithAntiAliasing](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_scalewithantialiasing)。
 
 **起始版本：** 12
 
@@ -3325,6 +3342,9 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 ```
 **描述**
 设置**PixelMap**对象的偏移。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Translate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_translate)。
 
 **起始版本：** 10
 

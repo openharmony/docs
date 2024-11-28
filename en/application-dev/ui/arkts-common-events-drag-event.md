@@ -115,7 +115,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
           }
         }
         private getComponentSnapshot(): void {
-        componentSnapshot.createFromBuilder(()=>{this.pixelMapBuilder()},
+        this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
         (error: Error, pixmap: image.PixelMap) => {
             if(error){
               console.log("error: " + JSON.stringify(error))
@@ -181,7 +181,7 @@ The following uses the [Image](../reference/apis-arkui/arkui-ts/ts-basic-compone
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
         this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
-        this.imgState = Visibility.None;
+        this.imgState = Visibility.None；
         // Explicitly set the result to successful, and then pass this value to onDragEnd of the drag source.
         event.setResult(DragResult.DRAG_SUCCESSFUL);
     })
@@ -292,7 +292,7 @@ Since API version 12, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-g
         this.isSelectedGrid[idx] = !this.isSelectedGrid[idx]
         if (this.isSelectedGrid[idx]) {
             let gridItemName = 'grid' + idx
-            componentSnapshot.get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+            this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
                 this.pixmap = pixmap
                 this.previewData[idx] = {
                     pixelMap:this.pixmap
@@ -348,7 +348,7 @@ Since API version 12, the [Grid](../reference/apis-arkui/arkui-ts/ts-container-g
 
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction, componentSnapshot } from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
@@ -399,7 +399,7 @@ struct Index {
   }
   // Use the createFromBuilder API of componentSnapshot to capture a snapshot of a custom builder.
   private getComponentSnapshot(): void {
-    componentSnapshot.createFromBuilder(()=>{this.pixelMapBuilder()},
+    this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
       (error: Error, pixmap: image.PixelMap) => {
         if(error){
           console.log("error: " + JSON.stringify(error))
@@ -507,7 +507,6 @@ struct Index {
 ### Multi-Select Drag and Drop Adaptation Case
 
 ```ts
-import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
@@ -574,7 +573,7 @@ struct GridEts {
               this.numberBadge++;
               let gridItemName = 'grid' + idx
               // Call the get API in componentSnapshot to obtain the component snapshot pixel map on selection.
-              componentSnapshot.get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
                 this.pixmap = pixmap
                 this.previewData[idx] = {
                   pixelMap:this.pixmap

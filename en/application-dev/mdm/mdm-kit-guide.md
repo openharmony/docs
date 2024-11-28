@@ -14,7 +14,7 @@ To develop a device administrator application, perform the following steps:
 
 2. Declare the permissions required by the device administrator application.
 
-3. Develop and debug MDM functionalities. 
+3. Develop and debug MDM functionalities.
 
 <!--RP2--><!--RP2End-->
 
@@ -55,6 +55,7 @@ Example:
 2. Call APIs to implement related functionalities. For example, disable Wi-Fi for devices.
 
    ```ts
+   import { Want } from '@kit.AbilityKit';
    let wantTemp: Want = {
      bundleName: 'com.example.xxx',
      abilityName: 'EnterpriseAdminAbility',
@@ -79,7 +80,7 @@ hdc shell edm disable-admin -n Bundle_name
 ```
 
 > **NOTE**
->
+> 
 > Only one super device administrator application can be enabled on a device.
 >
 > <!--RP5--><!--RP5End-->

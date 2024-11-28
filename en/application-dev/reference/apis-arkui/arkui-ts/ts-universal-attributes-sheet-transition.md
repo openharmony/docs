@@ -47,7 +47,7 @@ Inherits from [BindOptions](#bindoptions).
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**<br>**NOTE**<br>In versions earlier than API version 12, this attribute is ineffective for a bottom sheet in landscape mode; the height is fixed at 8 vp from the top of the screen.<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode; the maximum height is 8 vp from the top of the screen.<br>When a bottom sheet has **detents** set, this attribute is ineffective.<br>For a bottom sheet in portrait mode, the maximum height is 8 vp from the status bar.<br>For center and popup sheets set to **SheetSize.LARGE** or **SheetSize.MEDIUM**, this attribute is ineffective, with the default height being 560 vp. For center and popup sheets, the minimum height is 320 vp, and the maximum height is 90% of the shorter edge of the window. If the height specified by **Length** and the height adaptively set with **SheetSize.FIT_CONTENT** exceed the maximum height, the maximum height is used instead. If they are less than the minimum height, the minimum height is used instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize) \| [Length](ts-types.md#length))?] | No | Array of heights where the sheet can rest.<br>**NOTE**<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode.<br>In earlier versions, this attribute takes effect only for the bottom sheet in portrait mode. The first height in the tuple is the initial height.<br>The sheet can switch between heights by dragging. After the sheet is dragged and released, it switches to the target height or remains at the current height, depending on the velocity and distance.<br> If the velocity exceeds the threshold, the sheet switches to the target height in the same direction as the velocity. If the velocity is less than the threshold, the displacement distance is used for judgement. If the displacement distance is greater than 1/2 of the distance between the current and target positions, the sheet switches to the target height in the same direction as the velocity; otherwise, the sheet remains at the current height.<br> Velocity threshold: 1000; Distance threshold: 50%.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| preferType<sup>11+</sup> | [SheetType](#sheettype11) | No | Type of the sheet.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| preferType<sup>11+</sup> | [SheetType](#sheettype11)| No| Type of the sheet.<br>**NOTE**<br>The types supported by the sheet vary by screen width.<br>1. Width < 600 vp: bottom<br>2. 600 vp <= width < 840 vp: bottom and center<br>3. Width >= 840 vp: bottom, center, and popup<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | No | Whether to display the close icon. By default, the icon is displayed.<br>**NOTE**<br>The value of **Resource** must be of the Boolean type.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 | dragBar         | boolean                                  | No   | Whether to display the drag bar.<br>**NOTE**<br>By default, the drag bar is displayed only when the sheet's **detents** attribute is set to multiple heights and the settings take effect.  <br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No | Background blur of the sheet. By default, there is no background blur.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
@@ -153,30 +153,31 @@ Inherits from [BindOptions](#bindoptions).
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State sheetHeight:number = 300;
+  @State isShow: boolean = false
+  @State isShow2: boolean = false
+  @State sheetHeight: number = 300;
 
-  @Builder myBuilder() {
+  @Builder
+  myBuilder() {
     Column() {
       Button("change height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = 500;
         })
 
       Button("Set Illegal height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = -1;
         })
 
       Button("close modal 1")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
     }
@@ -193,12 +194,20 @@ struct SheetTransitionExample {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          height: this.sheetHeight, 
+          height: this.sheetHeight,
           backgroundColor: Color.Green,
-          onWillAppear: () => {console.log("BindSheet onWillAppear.")}, 
-          onAppear: () => {console.log("BindSheet onAppear.")}, 
-          onWillDisappear: () => {console.log("BindSheet onWillDisappear.")}, 
-          onDisappear: () => {console.log("BindSheet onDisappear.")}
+          onWillAppear: () => {
+            console.log("BindSheet onWillAppear.")
+          },
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onWillDisappear: () => {
+            console.log("BindSheet onWillDisappear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
         })
     }
     .justifyContent(FlexAlign.Center)
@@ -212,13 +221,17 @@ struct SheetTransitionExample {
 
 ### Example 2
 
+This example demonstrates how to use the **detents** property of **bindSheet** to set three different height positions for a sheet.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @Builder myBuilder() {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
     Column() {
       Button("content1")
         .margin(10)
@@ -239,17 +252,12 @@ struct SheetTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(),{
-          detents:[SheetSize.MEDIUM,SheetSize.LARGE,200],
-          backgroundColor:Color.Gray,
-          blurStyle:BlurStyle.Thick,
-          showClose:true,
-          title:{title:"title", subtitle:"subtitle"},
-          preferType: SheetType.CENTER,
-          shouldDismiss:((sheetDismiss: SheetDismiss)=> {
-            console.log("bind sheet shouldDismiss")
-            sheetDismiss.dismiss()
-          })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -263,10 +271,10 @@ struct SheetTransitionExample {
 
 ### Example 3
 
+This example demonstrates how to use the **borderWidth** and **borderColor** properties with **LocalizedEdgeWidths** and **LocalizedEdgeColors** types in **bindSheet**.
+
 ```ts
 // xxx.ets
-// The borderWidth and borderColor attributes of bindSheet use the LocalizedEdgeWidths type and LocalizedEdgeColors type, respectively.
-
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
@@ -302,13 +310,8 @@ struct SheetTransitionExample {
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
-          preferType: SheetType.CENTER,
           borderWidth: { top: LengthMetrics.vp(10), start: LengthMetrics.vp(10), end: LengthMetrics.vp(20) },
           borderColor: { top: Color.Pink, start: Color.Blue, end: Color.Yellow },
-          shouldDismiss: ((sheetDismiss: SheetDismiss) => {
-            console.log("bind sheet shouldDismiss")
-            sheetDismiss.dismiss()
-          })
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -328,10 +331,10 @@ The following shows how the example is represented with right-to-left scripts.
 
 ### Example 4
 
+This example shows how to register **onWillDismiss** and **onWillSpringBackWhenDismiss** with **bindSheet**.
+
 ```ts
 // xxx.ets
-// Registers onWillDismiss and onWillSpringBackWhenDismiss for bindSheet.
-
 @Entry
 @Component
 struct bindSheetExample {
@@ -378,3 +381,58 @@ struct bindSheetExample {
 }
 ```
 ![en-us_sheet](figures/en-us_sheet4.gif)
+
+### Example 5
+
+This example demonstrates how to set **scrollSizeMode** for a sheet.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State isShow: boolean = false;
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Column()
+        .backgroundColor(Color.Blue)
+        .height(200)
+        .width('100%')
+      Column()
+        .backgroundColor(Color.Green)
+        .height(200)
+        .width('100%')
+    }
+  }
+
+  build() {
+    Column() {
+      Button('BindSheet')
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [300, 600, 900],
+          uiContext: this.getUIContext(),
+          mode: SheetMode.OVERLAY,
+          scrollSizeMode: ScrollSizeMode.CONTINUOUS,
+          backgroundColor: Color.Orange,
+          title: { title: 'Title', subtitle: 'Subtitle' }
+        })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+The sheet's content height is not updated until the user stops dragging and releases the sheet.
+
+![en-us_sheet](figures/en-us_sheet5_ltr.gif)
+
+The sheet's content height is updated in real time as the user drags the sheet.
+
+![en-us_sheet](figures/en-us_sheet5_rtl.gif)
+

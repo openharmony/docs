@@ -62,7 +62,7 @@ textOverflow(value: { overflow: TextOverflow })
 
 设置文本超长时的显示方式。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。从API version 11开始，建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断，使用[示例](#示例4)。
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。从API version 11开始，建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断，使用[示例4](#示例4设置文本断行及折行)。
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
@@ -933,10 +933,8 @@ getLayoutManager(): LayoutManager
 
 ## 示例
 
-### 示例1
-
-textAlign、maxLines、textOverflow、lineHeight属性接口使用示例
-
+### 示例1（设置文本布局）
+该示例通过textAlign、lineHeight、baselineOffset、halfLeading属性展示了文本布局的效果。
 ```ts
 // xxx.ets
 @Extend(Text)
@@ -946,61 +944,84 @@ function style(TextAlign: TextAlign) {
   .border({ width: 1 })
   .padding(10)
   .width('100%')
+  .margin(5)
 }
 
 @Entry
 @Component
 struct TextExample1 {
+  @State changeTextAlignIndex: number = 0
+  @State changeDecorationIndex: number = 0
+  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End]
+  @State TextAlignStr: string[] = ['Start', 'Center', 'End']
+  @State TextDecorationType: TextDecorationType[] =
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+  @State TextDecorationStyle: TextDecorationStyle[] =
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      // 文本水平方向对齐方式设置
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      // 设置文本水平方向对齐方式
       // 单行文本
       Text('textAlign').fontSize(9).fontColor(0xCCCCCC)
-      Text('TextAlign set to Center.')
-        .style(TextAlign.Center)
-      Text('TextAlign set to Start.')
-        .style(TextAlign.Start)
-      Text('TextAlign set to End.')
-        .style(TextAlign.End)
+      Text(`TextAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.TextAlign[this.changeTextAlignIndex])
 
       // 多行文本
-      Text('This is the text content with textAlign set to Center.')
-        .style(TextAlign.Center)
-      Text('This is the text content with textAlign set to Start.')
-        .style(TextAlign.Start)
-      Text('This is the text content with textAlign set to End.')
-        .style(TextAlign.End)
+      Text(`This is the text content with textAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.TextAlign[this.changeTextAlignIndex])
+        .margin(5)
 
+      Row() {
+        Button('当前TextAlign类型：' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
+          this.changeTextAlignIndex++
+          if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
+            this.changeTextAlignIndex = 0
+          }
+        })
+      }.justifyContent(FlexAlign.Center).width('100%')
 
-      // 文本超长时显示方式
-      Text('TextOverflow+maxLines').fontSize(9).fontColor(0xCCCCCC)
-      // 超出maxLines截断内容展示
-      Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
-        .textOverflow({ overflow: TextOverflow.Clip })
-        .maxLines(1)
-        .style(TextAlign.Start)
-
-      // 超出maxLines展示省略号
-      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .maxLines(1)
-        .style(TextAlign.Start)
-
+      // 设置文本行高
       Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text with the line height set. This is the text with the line height set.')
         .style(TextAlign.Start)
       Text('This is the text with the line height set. This is the text with the line height set.')
         .style(TextAlign.Start)
         .lineHeight(20)
-    }.height(600).width(340).padding({ left: 35, right: 35, top: 35 })
+
+      // 设置文本基线偏移
+      Text('baselineOffset').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text content with baselineOffset 0.')
+        .baselineOffset(0)
+        .style(TextAlign.Start)
+      Text('This is the text content with baselineOffset 30.')
+        .baselineOffset(30)
+        .style(TextAlign.Start)
+      Text('This is the text content with baselineOffset -20.')
+        .baselineOffset(-20)
+        .style(TextAlign.Start)
+
+      // 设置文本是否居中对齐
+      Text('halfLeading').fontSize(9).fontColor(0xCCCCCC)
+      Text("This is the text with the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(true)
+        .style(TextAlign.Start)
+      Text("This is the text without the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(false)
+        .style(TextAlign.Start)
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
-![textExp1](figures/textExp1.png)
+![textExp1](figures/textExp1.gif)
 
-### 示例2
+### 示例2（设置文本样式）
 
-decoration、baselineOffset、letterSpacing、textCase属性接口使用示例
+该示例通过decoration、letterSpacing、textCase、textShadow属性展示了不同样式的文本效果。
 
 ```ts
 @Extend(Text)
@@ -1009,48 +1030,41 @@ function style() {
   .border({ width: 1 })
   .padding(10)
   .width('100%')
+  .margin(5)
 }
 
 @Entry
 @Component
 struct TextExample2 {
+  @State changeDecorationIndex: number = 0
+  @State TextDecorationType: TextDecorationType[] =
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+  @State TextDecorationStyle: TextDecorationStyle[] =
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Text('decoration').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with the decoration set to LineThrough and the color set to Red.')
         .decoration({
-          type: TextDecorationType.LineThrough,
-          color: Color.Red
-        })
-        .style()
-
-      Text('This is the text content with the decoration set to Overline and the color set to Red.')
-        .decoration({
-          type: TextDecorationType.Overline,
+          type: this.TextDecorationType[this.changeDecorationIndex],
           color: Color.Red,
-          style: TextDecorationStyle.DOTTED
+          style: this.TextDecorationStyle[this.changeDecorationIndex]
         })
         .style()
+        .margin(5)
 
-      Text('This is the text content with the decoration set to Underline and the color set to Red.')
-        .decoration({
-          type: TextDecorationType.Underline,
-          color: Color.Red,
-          style: TextDecorationStyle.WAVY
+      Row() {
+        Button('当前decoration类型：' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
+        this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
+          this.changeDecorationIndex++
+          if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
+            this.changeDecorationIndex = 0
+          }
         })
-        .style()
-
-      // 文本基线偏移
-      Text('baselineOffset').fontSize(9).fontColor(0xCCCCCC)
-      Text('This is the text content with baselineOffset 0.')
-        .baselineOffset(0)
-        .style()
-      Text('This is the text content with baselineOffset 30.')
-        .baselineOffset(30)
-        .style()
-      Text('This is the text content with baselineOffset -20.')
-        .baselineOffset(-20)
-        .style()
+      }.justifyContent(FlexAlign.Center).width('100%')
 
       // 文本字符间距
       Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
@@ -1077,101 +1091,78 @@ struct TextExample2 {
         .textCase(TextCase.UpperCase)
         .style()
 
-    }.height(700).width(350).padding({ left: 35, right: 35, top: 35 })
-  }
-}
-```
-![textExp1](figures/textExp2.png)
-
-### 示例3
-
-textShadow、heightAdaptivePolicy、TextOverflow.MARQUEE使用示例
-
-```ts
-@Extend(Text)
-function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
-  .width('80%')
-  .height(90)
-  .borderWidth(1)
-  .minFontSize(10)
-  .maxFontSize(30)
-  .maxLines(2)
-  .textOverflow({ overflow: TextOverflow.Ellipsis })
-  .heightAdaptivePolicy(HeightAdaptivePolicy)
-}
-
-@Entry
-@Component
-struct TextExample3 {
-  build() {
-    Column() {
-      Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Text('textShadow').fontSize(9).fontColor(0xCCCCCC)
       // 设置文字阴影效果
       Text('textShadow')
-        .width('80%')
-        .height(55)
-        .fontSize(40)
-        .lineHeight(55)
+        .style()
         .textAlign(TextAlign.Center)
+        .fontSize(40)
         .textShadow({
           radius: 10,
           color: Color.Black,
           offsetX: 0,
           offsetY: 0
         })
-        .borderWidth(1)
-      Divider()
-      // 设置文本自适应高度的方式
-      Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
-      Text('This is the text with the height adaptive policy set')
-        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
-      Text('This is the text with the height adaptive policy set')
-        .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
-      Text('This is the text with the height adaptive policy set')
-        .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
-      Divider()
-      Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
-      // 设置文本超长时以跑马灯的方式展示
-      Text('This is the text with the text overflow set marquee')
-        .width(300)
-        .borderWidth(1)
-        .textOverflow({ overflow: TextOverflow.MARQUEE })
-    }
+
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
+![textExp1](figures/textExp2.gif)
 
-![](figures/text_3.gif)
+### 示例3（设置文本超长省略）
 
-### 示例4
-ellipsisMode和wordBreak使用示例
+该示例通过maxLines、textOverflow、ellipsisMode属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
-// xxx.ets
+@Extend(Text)
+function style() {
+  .textAlign(TextAlign.Center)
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+  .margin(5)
+}
+
 @Entry
 @Component
-struct TextExample4 {
+struct TextExample3 {
   @State text: string =
     'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
-  @State ellipsisModeIndex: number = 0;
+  @State ellipsisModeIndex: number = 0
   @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
   @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
-  @State wordBreakIndex: number = 0;
-  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
-  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
-  @State textClip: boolean = false
 
   build() {
-    Column({ space: 10 }) {
-      Text(this.text)
-        .fontSize(16)
-        .border({ width: 1 })
-        .lineHeight(20)
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      // 文本超长时显示方式
+      Text('TextOverflow+maxLines').fontSize(9).fontColor(0xCCCCCC)
+      // 超出maxLines截断内容展示
+      Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
+        .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(1)
+        .style()
+
+      // 超出maxLines展示省略号
+      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .maxLines(1)
+        .style()
+
+      Text('marquee').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本超长时以跑马灯的方式展示
+      Text('This is the text with the text overflow set marquee')
+        .textOverflow({ overflow: TextOverflow.MARQUEE })
+        .style()
+
+      Text('ellipsisMode').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本超长时省略号的位置
+      Text(this.text)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
-        .width(300)
-        .margin({ left: 20, top: 20 })
+        .maxLines(1)
+        .style()
 
       Row() {
         Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
@@ -1181,48 +1172,104 @@ struct TextExample4 {
           }
         })
       }
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
 
-      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
-        .fontSize(12)
-        .border({ width: 1 })
-        .wordBreak(WordBreak.NORMAL)
-        .lineHeight(20)
-        .maxLines(2)
-        .clip(this.textClip)
-        .width(260)
-      Row() {
-        Button('切换clip：' + this.textClip).onClick(() => {
-          this.textClip = !this.textClip
-        })
-      }
+![](figures/textExp3.gif)
 
+### 示例4（设置文本断行及折行）
+
+该示例通过wordBreak、lineBreakStrategy、clip属性展示了文本在不同断行、折行规则下的效果以及文本超长时是否截断。
+
+```ts
+// xxx.ets
+@Extend(Text)
+function style() {
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+  .margin(5)
+}
+
+@Entry
+@Component
+struct TextExample4 {
+  @State text: string =
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
+  @State text2: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttons progress indicators and text You can set the rendering effect of these components in method chaining mode," +
+      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State textClip: boolean = false
+  @State wordBreakIndex: number = 0
+  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
+  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      Text('wordBreak').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本断行规则
       Text(this.text)
-        .fontSize(12)
-        .border({ width: 1 })
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .wordBreak(this.wordBreak[this.wordBreakIndex])
-        .lineHeight(20)
-        .width(260)
+        .style()
+
       Row() {
-        Button('更改wordBreak模式：' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
+        Button('当前wordBreak模式：' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
           this.wordBreakIndex++
           if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
             this.wordBreakIndex = 0
           }
         })
       }
-    }
+
+      Text('clip').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本是否超长截断
+      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
+        .wordBreak(WordBreak.NORMAL)
+        .maxLines(2)
+        .clip(this.textClip)
+        .style()
+      Row() {
+        Button('切换clip：' + this.textClip).onClick(() => {
+          this.textClip = !this.textClip
+        })
+      }
+
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本折行规则
+      Text(this.text2)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+        .style()
+      Row() {
+        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![](figures/textExample4.gif)
+![](figures/textExp4.gif)
 
-### 示例5
-selection和onCopy使用示例
+### 示例5（设置文本选中和复制）
+
+该示例通过selection、onCopy接口展示了文本选中以及触发复制回调的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextExample5 {
@@ -1257,20 +1304,61 @@ struct TextExample5 {
 ```
 ![](figures/textExample5.png)
 
-### 示例6
-enableDataDetector和dataDetectorConfig使用示例
+### 示例6（设置文本自适应）
+
+该示例通过heightAdaptivePolicy属性展示了文本自适应的效果。
 
 ```ts
+// xxx.ets
+@Extend(Text)
+function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
+  .width('80%')
+  .height(90)
+  .borderWidth(1)
+  .minFontSize(10)
+  .maxFontSize(30)
+  .maxLines(2)
+  .margin(5)
+  .textOverflow({ overflow: TextOverflow.Ellipsis })
+  .heightAdaptivePolicy(HeightAdaptivePolicy)
+}
+
 @Entry
 @Component
 struct TextExample6 {
-  @State phoneNumber: string = '(86) (755) ********';
-  @State url: string = 'www.********.com';
-  @State email: string = '***@example.com';
-  @State address: string = 'XX省XX市XX区XXXX';
-  @State datetime: string = 'XX年XX月XX日XXXX';
-  @State enableDataDetector: boolean = true;
-  @State types: TextDataDetectorType[] = [];
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      // 设置文本自适应高度的方式
+      Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text with the height adaptive policy set.')
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+      Text('This is the text with the height adaptive policy set.')
+        .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+      Text('This is the text with the height adaptive policy set.')
+        .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textHeightAdaptivePolicy](figures/textHeightAdaptivePolicy.PNG)
+
+### 示例7（设置文本识别）
+
+该示例通过enableDataDetector、dataDetectorConfig接口实现了文本识别的功能。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample7 {
+  @State phoneNumber: string = '(86) (755) ********'
+  @State url: string = 'www.********.com'
+  @State email: string = '***@example.com'
+  @State address: string = 'XX省XX市XX区XXXX'
+  @State datetime: string = 'XX年XX月XX日XXXX'
+  @State enableDataDetector: boolean = true
+  @State types: TextDataDetectorType[] = []
 
   build() {
     Row() {
@@ -1300,16 +1388,17 @@ struct TextExample6 {
 
 ![](figures/text7.png)
 
-### 示例7
+### 示例8（文本绑定自定义菜单）
 
-bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
+该示例通过bindSelectionMenu、onTextSelectionChange、closeSelectionMenu接口实现了文本绑定自定义菜单的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample7 {
-  controller: TextController = new TextController();
-  options: TextOptions = { controller: this.controller };
+struct TextExample8 {
+  controller: TextController = new TextController()
+  options: TextOptions = { controller: this.controller }
 
   build() {
     Column() {
@@ -1325,16 +1414,16 @@ struct TextExample7 {
         .copyOption(CopyOptions.InApp)
         .bindSelectionMenu(TextSpanType.IMAGE, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS, {
           onDisappear: () => {
-            console.info(`自定义选择菜单关闭时回调`);
+            console.info(`自定义选择菜单关闭时回调`)
           },
           onAppear: () => {
-            console.info(`自定义选择菜单弹出时回调`);
+            console.info(`自定义选择菜单弹出时回调`)
           }
         })
         .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK)
         .bindSelectionMenu(TextSpanType.MIXED, this.SelectMixCustomMenu, TextResponseType.SELECT)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`);
+          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`)
         })
         .borderWidth(1)
         .borderColor(Color.Red)
@@ -1356,7 +1445,7 @@ struct TextExample7 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu();
+              this.controller.closeSelectionMenu()
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
@@ -1373,7 +1462,7 @@ struct TextExample7 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu();
+              this.controller.closeSelectionMenu()
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
@@ -1390,7 +1479,7 @@ struct TextExample7 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu();
+              this.controller.closeSelectionMenu()
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
@@ -1411,77 +1500,72 @@ function MenuStyles() {
 
 ![](figures/textBindSelectionMenu.gif)
 
-### 示例8
-fontFeature、lineSpacing和lineBreakStrategy使用示例。
+### 示例9（设置文本特性与行间距）
+
+该示例通过fontFeature、lineSpacing接口展示了设置文本特性与行间距的效果。
 
 ```ts
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 
-@Extend(Text) function lineSpacingValue(LineSpacing: LengthMetrics|undefined) {
-  .lineSpacing(LineSpacing)
+@Extend(Text)
+function style() {
   .fontSize(12)
   .border({ width: 1 })
+  .width('100%')
+  // .margin(5)
 }
+
 @Entry
 @Component
-struct TextExample8 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
-  @State lineBreakStrategyIndex: number = 0;
-  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+struct TextExample9 {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Text('lineSpacing').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本行间距
       Text('This is a context with no lineSpacing set.')
-        .lineSpacingValue(undefined)
-      Text( 'This is a context with lineSpacing set to 20_px.')
-        .lineSpacingValue(LengthMetrics.px(20))
+        .lineSpacing(undefined)
+        .style()
+      Text('This is a context with lineSpacing set to 20_px.')
+        .lineSpacing(LengthMetrics.px(20))
+        .style()
       Text('This is the context with lineSpacing set to 20_vp.')
-        .lineSpacingValue(LengthMetrics.vp(20))
+        .lineSpacing(LengthMetrics.vp(20))
+        .style()
       Text('This is the context with lineSpacing set to 20_fp.')
-        .lineSpacingValue(LengthMetrics.fp(20))
+        .lineSpacing(LengthMetrics.fp(20))
+        .style()
       Text('This is the context with lineSpacing set to 20_lpx.')
-        .lineSpacingValue(LengthMetrics.lpx(20))
+        .lineSpacing(LengthMetrics.lpx(20))
+        .style()
       Text('This is the context with lineSpacing set to 100%.')
-        .lineSpacingValue(LengthMetrics.percent(1))
+        .lineSpacing(LengthMetrics.percent(1))
+        .style()
+
       Text('fontFeature').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本特性
       Text('This is ss01 on : 0123456789')
-        .fontSize(20)
         .fontFeature("\"ss01\" on")
+        .style()
       Text('This is ss01 off: 0123456789')
-        .fontSize(20)
         .fontFeature("\"ss01\" off")
-      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
-      Text(this.message1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
-      Row() {
-        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
-          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
-          }
-        })
-      }
-    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+        .style()
+    }.height(300).width(350).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![](figures/TextExample8.gif)
+![](figures/TextExample8.PNG)
 
-### 示例9
-getLayoutManager使用示例。
+### 示例10（获取文本信息）
+
+该示例通过getLayoutManager接口调用文本的布局管理对象获取文本信息。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample9 {
+struct TextExample10 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
@@ -1529,7 +1613,7 @@ struct TextExample9 {
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
               this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
-            });
+            })
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.lineMetrics)
@@ -1542,14 +1626,16 @@ struct TextExample9 {
 
 ![textLayoutManager](figures/textLayoutManager.gif)
 
-### 示例10
-textSelectable使用示例，展示了设置TextSelectMode.SELECTABLE_FOCUSABLE属性时能够触发键盘框选文本功能。
+### 示例11（实现键盘框选文本）
+
+该示例通过textSelectable属性实现了设置TextSelectMode.SELECTABLE_FOCUSABLE属性时能够触发键盘框选文本功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample10 {
-  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
+struct TextExample11 {
+  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText'
   
   build() {
     Column() {
@@ -1568,15 +1654,15 @@ struct TextExample10 {
 
 ![textTextSelectableMode](figures/textTextSelectableMode.gif)
 
-### 示例11
+### 示例12（文本扩展自定义菜单）
 
-editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct TextExample11 {
+struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
@@ -1613,17 +1699,17 @@ struct TextExample11 {
           onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
             if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
               console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
+              return true
             }
             if (menuItem.id.equals(TextMenuItemId.COPY)) {
               console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
+              return true
             }
             if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
               console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
+              return false
             }
-            return false;
+            return false
           }
         })
         .margin({ top: 100 })
@@ -1636,44 +1722,15 @@ struct TextExample11 {
 
 ![textEditMenuOptions](figures/textEditMenuOptions.gif)
 
-### 示例12
+### 示例13（配置隐私隐藏）
 
-halfLeading使用示例。
+该示例通过privacySensitive属性展示了文本如何配置隐私隐藏的效果，实际显示需要卡片框架支持。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct TextExample12 {
-  build() {
-    Column({ space: 10 }) {
-      // 设置文本是否居中对齐
-      Text('halfLeading').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
-      Text("This is the text with the halfLeading set.")
-        .lineHeight(60)
-        .halfLeading(true)
-        .borderWidth(1)
-        .width('80%')
-      Text("This is the text without the halfLeading set.")
-        .lineHeight(60)
-        .halfLeading(false)
-        .borderWidth(1)
-        .width('80%')
-    }
-  }
-}
-```
-
-![textHalfLeading](figures/textHalfLeading.PNG)
-
-### 示例13
-
-该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
-
-```ts
-@Entry
-@Component
-struct ImageExample {
+struct TextExample13 {
   build() {
     Column({ space: 10 }) {
       Text("privacySensitive")
