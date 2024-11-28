@@ -2941,6 +2941,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_CMAP_SERVICE
+
+允许系统应用访问通信地图服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.MANAGE_USER_ACCOUNT_INFO
 
 允许系统应用及系统SA调用账号服务。
