@@ -1,6 +1,6 @@
 # Media Kit简介
 
-Media Kit（媒体服务）提供了[AVPlayer](#avplayer)、[SoundPool](#soundpool)、[AVRecorder](#avrecorder)、[AVScreenCapture](#avscreencapture)、[AVMetadataExtractor](#avmetadataextractor)和[AVImageGenerator](#avimagegenerator)用于播放、录制音视频、获取音视频元数据和视频缩略图。
+Media Kit（媒体服务）提供了[AVPlayer](#avplayer)、[SoundPool](#soundpool)、[AVRecorder](#avrecorder)、[AVScreenCapture](#avscreencapture)、[AVMetadataExtractor](#avmetadataextractor)、[AVImageGenerator](#avimagegenerator)和[AVTranscoder](#avtranscoder)用于播放、录制音视频、获取音视频元数据和视频缩略图、视频转码。
 
 在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。
 
@@ -292,3 +292,22 @@ AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerat
 
 ### 支持的格式
 支持的视频源参考[视频解码](../avcodec/video-decoding.md)
+
+## AVTranscoder
+AVTranscoder 主要用于将已压缩编码的视频文件按照指定参数转换为另一种格式的视频。
+
+在手机、平板、2in1设备上，当前版本AVTranscoder提供以下转码服务：
+
+1. 支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
+- 支持的源视频文件格式：
+   - [封装格式](../avcodec/audio-video-demuxer.md)
+   - [音频格式](../avcodec/audio-decoding.md)
+   - [视频格式](../avcodec/video-decoding.md)
+- 支持的目标视频文件格式：
+   - [封装格式](../avcodec/audio-video-muxer.md)
+   - [音频格式](../avcodec/audio-encoding.md)
+   - [视频格式](../avcodec/video-encoding.md)
+
+2. 支持将HDR VIVID视频转换为SDR视频。
+
+3. 支持转码时降低视频分辨率。源视频和目标视频的分辨率需要在240p至4K之间，且目标视频宽、高不能大于源视频宽、高。
