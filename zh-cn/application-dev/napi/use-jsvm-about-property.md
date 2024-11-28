@@ -31,7 +31,7 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_GetPropertyNames
 
@@ -40,15 +40,6 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 cpp部分代码
 
 ```cpp
-// GetPropertyNames注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetPropertyNames},
-};
-static JSVM_CallbackStruct *method = param;
-// GetPropertyNames方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetPropertyNames的样例方法
 static JSVM_Value GetPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -67,22 +58,26 @@ static JSVM_Value GetPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// GetPropertyNames注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetPropertyNames},
+};
+static JSVM_CallbackStruct *method = param;
+// GetPropertyNames方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = '{ data: 0, message: "hello world"}';
+    let script = getPropertyNames(obj);
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let obj = '{ data: 0, message: "hello world"}';
-let script: string = `getPropertyNames(${obj})`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getPropertyNames: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getPropertyNames error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetPropertyNames success
 ```
 
 ### OH_JSVM_SetProperty
@@ -92,19 +87,10 @@ try {
 cpp部分代码
 
 ```cpp
-// SetProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// SetProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_SetProperty的样例方法
 static JSVM_Value SetProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // 接收js侧传入的三个参数：第一个参数为想要设置的object第二个参数为属性，第三个参数为属性对应的值
+    // 接收js侧传入的三个参数：第一个参数为想要设置的object，第二个参数为属性，第三个参数为属性对应的值
     size_t argc = 3;
     JSVM_Value args[3] = {nullptr};
     JSVM_Status status = OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -123,24 +109,26 @@ static JSVM_Value SetProperty(JSVM_Env env, JSVM_CallbackInfo info)
     // 将设置成功后的object返回出去
     return args[0];
 }
+// SetProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// SetProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    setProperty(obj, "code", "hi")
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  setProperty(obj, "code", "hi")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM setProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM setProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_SetProperty success
 ```
 
 ### OH_JSVM_GetProperty
@@ -150,15 +138,6 @@ try {
 cpp部分代码
 
 ```cpp
-// GetProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// GetProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetProperty的样例方法
 static JSVM_Value GetProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -177,24 +156,26 @@ static JSVM_Value GetProperty(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// GetProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// GetProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    getProperty(obj, "message")
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  getProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetProperty success
 ```
 
 ### OH_JSVM_HasProperty
@@ -204,15 +185,6 @@ try {
 cpp部分代码
 
 ```cpp
-// HasProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// HasProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_HasProperty的样例方法
 static JSVM_Value HasProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -234,31 +206,30 @@ static JSVM_Value HasProperty(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &returnReslut);
     return returnReslut;
 }
+// HasProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// HasProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    hasProperty(obj, "data")
+    hasProperty(obj, 0)
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-`
-let scriptTrue: string = script + `\n` + `
-  hasProperty(obj, "data")
-`
-let scriptFalse: string = script + `\n` + `
-  hasProperty(obj, 0)
-`
-try {
-  let resultTrue = napitest.runJsVm(scriptTrue);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM HasProperty: %{public}s', resultTrue);
-  let resultFalse = napitest.runJsVm(scriptFalse);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM HasProperty: %{public}s', resultFalse);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasProperty error: %{public}s', error.message);
-}
+// hasProperty(obj, "data")输出
+JSVM OH_JSVM_HasProperty success:1
+// hasProperty(obj, 0)输出
+JSVM OH_JSVM_HasProperty success:0
 ```
 
 ### OH_JSVM_DeleteProperty
@@ -269,15 +240,6 @@ try {
 cpp部分代码
 
 ```cpp
-// DeleteProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = DeleteProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// DeleteProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"deleteProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_DeleteProperty的样例方法
 static JSVM_Value DeleteProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -305,24 +267,26 @@ static JSVM_Value DeleteProperty(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &ret);
     return ret;
 }
+// DeleteProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = DeleteProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// DeleteProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"deleteProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    deleteProperty(obj, "message")
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  deleteProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM deleteProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM deleteProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_DeleteProperty success:1
 ```
 
 ### OH_JSVM_HasOwnProperty
@@ -332,15 +296,6 @@ try {
 cpp部分代码
 
 ```cpp
-// HasOwnProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasOwnProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// HasOwnProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasOwnProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_HasOwnProperty的样例方法
 static JSVM_Value HasOwnProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -376,31 +331,31 @@ static JSVM_Value HasOwnProperty(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, hasProperty, &result);
     return result;
 }
+// HasOwnProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasOwnProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// HasOwnProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasOwnProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    hasOwnProperty(obj, "message")
+    hasOwnProperty(obj, "__defineGetter__")
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-`
-let scriptTrue: string = script + `\n` + `
-  hasOwnProperty(obj, "message")
-`
-let scriptFalse: string = script + `\n` + `
-  hasOwnProperty(obj, "__defineGetter__")
-`
-try {
-  let resultTrue = napitest.runJsVm(scriptTrue);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM hasOwnProperty: %{public}s', resultTrue);
-  let resultFalse = napitest.runJsVm(scriptFalse);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM hasOwnProperty: %{public}s', resultFalse);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasOwnProperty error: %{public}s', error.message);
-}
+// hasOwnProperty(obj, "message")输出
+JSVM OH_JSVM_HasOwnProperty success:1
+// hasOwnProperty(obj, "__defineGetter__")输出
+// `__defineGetter__`为Object原型方法，非OwnProperty，预期返回0
+JSVM OH_JSVM_HasOwnProperty success:0
 ```
 
 ### OH_JSVM_SetNamedProperty
@@ -410,15 +365,6 @@ try {
 cpp部分代码
 
 ```cpp
-// SetNamedProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetNamedProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// SetNamedProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_SetNamedProperty的样例方法
 static JSVM_Value SetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -448,23 +394,25 @@ static JSVM_Value SetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
     // 返回新创建并设置命名属性的对象
     return newObj;
 }
+// SetNamedProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetNamedProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// SetNamedProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    setNamedProperty("message")
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  setNamedProperty("message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM setNamedProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM setNamedProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_SetNamedProperty success
 ```
 
 ### OH_JSVM_GetNamedProperty
@@ -474,15 +422,6 @@ try {
 cpp部分代码
 
 ```cpp
-// GetNamedProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetNamedProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// GetNamedProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetNamedProperty的样例方法
 static JSVM_Value GetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -505,24 +444,26 @@ static JSVM_Value GetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// GetNamedProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetNamedProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// GetNamedProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    getNamedProperty(obj, "message")
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  getNamedProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getNamedProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getNamedProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetNamedProperty success
 ```
 
 ### OH_JSVM_HasNamedProperty
@@ -532,15 +473,6 @@ try {
 cpp部分代码
 
 ```cpp
-// HasNamedProperty注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasNamedProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// HasNamedProperty方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_HasNamedProperty的样例方法
 static JSVM_Value HasNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -566,43 +498,36 @@ static JSVM_Value HasNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, hasProperty, &result);
     return result;
 }
+// HasNamedProperty注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasNamedProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// HasNamedProperty方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    hasNamedProperty(obj, "message")
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  hasNamedProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM hasNamedProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasNamedProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_HasNamedProperty success:1
 ```
 
 ### OH_JSVM_DefineProperties
 
-用于定义对象的自定义属性。
+用于定义对象的自定义属性，可一次性为对象设置多个属性。
 
 cpp部分代码
 
 ```cpp
-// DefineProperties注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = DefineProperties},
-};
-static JSVM_CallbackStruct *method = param;
-// DefineProperties方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"defineProperties", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// OH_JSVM_DefineProperties的样例方法
+// 属性描述符列表中defineMethodPropertiesExample属性的回调函数
 static JSVM_Value DefineMethodPropertiesExample(JSVM_Env env, JSVM_CallbackInfo info)
 {
     int32_t propValue = 26;
@@ -610,8 +535,7 @@ static JSVM_Value DefineMethodPropertiesExample(JSVM_Env env, JSVM_CallbackInfo 
     OH_JSVM_CreateInt32(env, propValue, &returnValue);
     return returnValue;
 }
-
-// Getter回调函数
+// 属性描述符列表中getterCallback属性的回调函数
 static JSVM_Value GetterCallback(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value result;
@@ -622,6 +546,7 @@ static JSVM_Value GetterCallback(JSVM_Env env, JSVM_CallbackInfo info)
     return result;
 }
 
+// 执行JavaScript字符串的函数
 static JSVM_Value RunScriptAndLogResult(JSVM_Env env, const std::string &srcCode) {
     JSVM_Value sourceCodeValue;
     OH_JSVM_CreateStringUtf8(env, srcCode.c_str(), srcCode.size(), &sourceCodeValue);
@@ -634,23 +559,22 @@ static JSVM_Value RunScriptAndLogResult(JSVM_Env env, const std::string &srcCode
     return jsVmResult;
 }
 
+// OH_JSVM_DefineProperties的样例方法
 static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
     // 接受一个JavaScript侧传入的空object
-    size_t argc = 2;
-    JSVM_Value argv[2] = {nullptr};
+    size_t argc = 1;
+    JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // 创建一个string类型的属性值
-    size_t length = 0;
-    OH_JSVM_GetValueStringUtf8(env, argv[1], nullptr, 0, &length);
-    char *buf = (char *)malloc(length + 1);
-    OH_JSVM_GetValueStringUtf8(env, argv[1], buf, length + 1, &length);
     JSVM_Value stringValue;
     OH_JSVM_CreateStringUtf8(env, "Hello!", JSVM_AUTO_LENGTH, &stringValue);
+    // 创建属性描述符对应的回调函数列表
     JSVM_CallbackStruct param[] = {
         {.data = nullptr, .callback = DefineMethodPropertiesExample},
         {.data = nullptr, .callback = GetterCallback},
 
     };
+    // 创建属性描述符列表，不同类型属性值添加位置参考JSVM_PropertyDescriptor定义
     JSVM_PropertyDescriptor descriptor[] = {
         // 定义method类型的属性值
         {"defineMethodPropertiesExample", nullptr, &param[0], nullptr, nullptr, nullptr, JSVM_DEFAULT},
@@ -658,43 +582,39 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         {"defineStringPropertiesExample", nullptr, nullptr, nullptr, nullptr, stringValue, JSVM_DEFAULT},
         // 定义getter类型的属性值
         {"getterCallback", nullptr, nullptr, &param[1], nullptr, nullptr,JSVM_DEFAULT}};
-    // 创建一个method类型的属性值
-    // 在obj对象上定义了一个函数defineMethodPropertiesExample，在函数defineMethodPropertiesExample中定义了一个变量并返回，
-    // 在调用obj的这个对象时可以调用这个函数
-    static std::string srcMethod;
-    JSVM_Status statusMethod;
-    statusMethod = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[0]), descriptor);
-    // 运行obj.defineMethodPropertiesExample()并将结果返回给JavaScript
-    srcMethod = R"JS(obj.defineMethodPropertiesExample();)JS";
-    JSVM_Value jsVmResult = RunScriptAndLogResult(env, srcMethod);
-    // 创建string类型的属性值
-    static std::string srcString;
-    JSVM_Status statusString;
-    statusString = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[1]), descriptor);
-    // 运行obj.defineStringPropertiesExample()并将结果返回给JavaScript
-    srcString = R"JS(obj.defineStringPropertiesExample;)JS";
-    JSVM_Value jsVmResult1 = RunScriptAndLogResult(env, srcString);
-    // 定义带有getter的属性
-    static std::string srcGetter;
-    JSVM_Status statusGetter;
-    statusGetter = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[2]), descriptor);
-    // 调用obj的getterCallback()并将结果字符串返回给JavaScript
-    srcGetter = R"JS(obj.getterCallback;)JS";
-    JSVM_Value jsVmResult2 = RunScriptAndLogResult(env, srcGetter);
-    if (statusMethod != JSVM_OK || statusString != JSVM_OK || statusGetter != JSVM_OK) {
+    // 根据属性描述符列表为obj对象创建属性
+    JSVM_Status statusProperty;
+    statusProperty = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[0]), descriptor);
+    if (statusProperty != JSVM_OK) {
         OH_JSVM_ThrowError(env, nullptr, "JSVM DefineProperties fail");
         return nullptr;
-    } else if (statusMethod == JSVM_OK) {
+    }
+    // 调用obj对象中添加的属性
+    // 运行obj.defineMethodPropertiesExample()并将结果返回给JavaScript
+    static std::string srcMethod;
+    srcMethod = R"JS(obj.defineMethodPropertiesExample();)JS";
+    JSVM_Value jsVmResult = RunScriptAndLogResult(env, srcMethod);
+    if (jsVmResult != nullptr) {
         int32_t number;
         OH_JSVM_GetValueInt32(env, jsVmResult, &number);
         OH_LOG_INFO(LOG_APP, "JSVM DefineMethodPropertiesExample success:%{public}d", number);
-    } else if (statusString == JSVM_OK) {
+    }
+    // 运行obj.defineStringPropertiesExample()并将结果返回给JavaScript
+    static std::string srcString;
+    srcString = R"JS(obj.defineStringPropertiesExample;)JS";
+    JSVM_Value jsVmResult1 = RunScriptAndLogResult(env, srcString);
+    if (jsVmResult1 != nullptr) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM defineStringPropertiesExample success:%{public}s", buf);
-    } else if (statusGetter == JSVM_OK) {
+    }
+    // 调用obj的getterCallback()并将结果字符串返回给JavaScript
+    static std::string srcGetter;
+    srcGetter = R"JS(obj.getterCallback;)JS";
+    JSVM_Value jsVmResult2 = RunScriptAndLogResult(env, srcGetter);
+    if (jsVmResult2 != nullptr) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
@@ -703,21 +623,29 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return jsVmResult;
 }
+
+// DefineProperties注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = DefineProperties},
+};
+static JSVM_CallbackStruct *method = param;
+// DefineProperties方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"defineProperties", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = {};
+    defineProperties(obj)
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-// 定义method类型的属性
-let script: string = `
-  let obj = {};
-  defineProperties(obj)
-`
-let result = napitest.runJsVm(script);
-hilog.info(0x0000, 'testJSVM', 'Test JSVM defineGetterProperties: %{public}s', result);
+JSVM DefineMethodPropertiesExample success:26
+JSVM defineStringPropertiesExample success:Hello!
+JSVM getterCallback success:Hello world!
 ```
 
 ### OH_JSVM_GetAllPropertyNames
@@ -727,15 +655,6 @@ hilog.info(0x0000, 'testJSVM', 'Test JSVM defineGetterProperties: %{public}s', r
 cpp部分代码
 
 ```cpp
-// GetAllPropertyNames注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetAllPropertyNames},
-};
-static JSVM_CallbackStruct *method = param;
-// GetAllPropertyNames方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getAllPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetAllPropertyNames的样例方法
 static JSVM_Value GetAllPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -757,22 +676,24 @@ static JSVM_Value GetAllPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// GetAllPropertyNames注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetAllPropertyNames},
+};
+static JSVM_CallbackStruct *method = param;
+// GetAllPropertyNames方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getAllPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(
+    let obj = '{ data: 0, message: "hello world", 50: 1}';
+    let script = getAllPropertyNames(obj);
+)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let obj = '{ data: 0, message: "hello world", 50: 1}';
-let script: string = `
-  getAllPropertyNames(${obj})
- `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetAllPropertyNames: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetAllPropertyNames error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetAllPropertyNames success
 ```
