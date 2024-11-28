@@ -1507,11 +1507,11 @@ http协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称  | 说明     |
-| :-------- | :----------- |
-| HTTP1_1   |  协议http1.1 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| HTTP2     |  协议http2 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| HTTP3<sup>11+</sup> | 协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />- 仅对https的URL生效，http则会请求失败。 |
+| 名称  | 值 |说明     |
+| :-------- | :----------- |:----------- |
+| HTTP1_1   | 0 |协议http1.1 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| HTTP2     | 1 |协议http2 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| HTTP3<sup>11+</sup> | 2 |协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />- 仅对https的URL生效，http则会请求失败。 |
 
 ## CertType<sup>11+</sup>
 
