@@ -12,10 +12,10 @@
 
 2. 应用如果需要长期访问某个文件或目录时，可以通过Picker选择文件或文件夹进行临时授权，然后利用persistPermission接口（[ohos.fileshare.persistPermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharepersistpermission11)）对授权进行持久化（在授权方同意被持久化的情况下），例如：文档编辑类应用本次编辑完一个用户文件，期望在历史记录中可以直接选中打开，无需再拉起Picker进行选择授权。
 
-可使用canIUse接口，确认设备是否具有以下系统能力：SystemCapability.FileManagement.File.Environment.FolderObtain。
+可使用canIUse接口，确认设备是否具有以下系统能力：SystemCapability.FileManagement.AppFileService.FolderAuthorization。
 
 ```ts
-if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
+if (!canIUse('SystemCapability.FileManagement.AppFileService.FolderAuthorization')) {
     console.error('this api is not supported on this device');
     return;
 }
