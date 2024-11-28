@@ -99,7 +99,9 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 ## 示例
 
-### 示例1
+### 示例1（设置颜色）
+
+该示例通过color接口，实现了设置加载动效颜色的功能。
 
 ```ts
 // xxx.ets
@@ -119,7 +121,9 @@ struct LoadingProgressExample {
 
 ![LoadingProgress](figures/LoadingProgress.gif)
 
-### 示例2
+### 示例2（设置定制内容区）
+
+该示例通过contentModifier接口，实现了定制内容区的功能，并通过enableLoading接口实现了通过按钮切换是否显示LoadingProgress的效果。
 
 ```ts
 //该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。

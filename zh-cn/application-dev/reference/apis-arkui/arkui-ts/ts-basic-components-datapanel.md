@@ -219,7 +219,9 @@ constructor(colorStops: ColorStop[])
 
 ## 示例
 
-### 示例1
+### 示例1（设置数据面板类型）
+
+该示例通过type属性，实现了设置数据面板的类型的功能。
 
 ```ts
 // xxx.ets
@@ -232,6 +234,7 @@ struct DataPanelExample {
     Column({ space: 5 }) {
       Row() {
         Stack() {
+          // 环形数据面板
           DataPanel({ values: [30], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
             Text('30').fontSize(35).fontColor('#182431')
@@ -246,6 +249,7 @@ struct DataPanelExample {
             .position({ x: 104.42, y: 78.17 })
         }.margin({ right: 44 })
 
+        // 线形数据面板
         Stack() {
           DataPanel({ values: [50, 12, 8, 5], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
@@ -270,7 +274,9 @@ struct DataPanelExample {
 
 ![dataPanel](figures/dataPanel.PNG)
 
-### 示例2
+### 示例2（设置渐变色和阴影）
+
+该示例通过valueColors和trackShadow接口设置LinearGradient颜色，实现了设置渐变色效果和阴影效果。
 
 ```ts
 // xxx.ets
@@ -315,7 +321,51 @@ struct LinearGradientDataPanelExample {
 
 ![LinearGradientDataPanel](figures/LinearGradientDataPanel.PNG)
 
-### 示例3
+### 示例3（设置关闭动画和阴影）
+
+该示例通过closeEffect接口，实现了关闭数据面板动画和阴影的功能。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LinearGradientDataPanelExample {
+  public values1: number[] = [20, 20, 20, 20]
+  public color1: LinearGradient = new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#FFEF629F", offset: 1 }])
+  public color2: LinearGradient = new LinearGradient([{ color: "#FF67F9D4", offset: 0 }, { color: "#FFFF9554", offset: 1 }])
+  public colorShadow1: LinearGradient = new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#65EF629F", offset: 1 }])
+  public colorShadow2: LinearGradient = new LinearGradient([{ color: "#65e26709", offset: 0 }, { color: "#65efbd08", offset: 1 }])
+  public colorShadow3: LinearGradient = new LinearGradient([{ color: "#6572B513", offset: 0 }, { color: "#6508efa6", offset: 1 }])
+  public colorShadow4: LinearGradient = new LinearGradient([{ color: "#65ed08f5", offset: 0 }, { color: "#65ef0849", offset: 1 }])
+  @State color3: string = '#00FF00'
+  @State color4: string = '#20FF0000'
+  @State bgColor: string = '#08182431'
+  @State offsetX: number = 15
+  @State offsetY: number = 15
+  @State radius: number = 5
+  @State colorArray: Array<LinearGradient | ResourceColor> = [this.color1, this.color2, this.color3, this.color4]
+  @State shadowColorArray: Array<LinearGradient | ResourceColor> = [this.colorShadow1, this.colorShadow2, this.colorShadow3, this.colorShadow4]
+
+  build() {
+    Column({ space: 5 }) {
+      Text('LinearGradient').fontSize(9).fontColor(0xCCCCCC).textAlign(TextAlign.Start).width('100%').margin({ top: 20, left: 20})
+      DataPanel({ values: this.values1, max: 100, type: DataPanelType.Circle })
+        .width(300)
+        .height(300)
+        .valueColors(this.colorArray)
+        .strokeWidth(30)
+        .closeEffect(true)
+        .trackBackgroundColor(this.bgColor)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![DataPanelCloseEffect](figures/DataPanelCloseEffect.png)
+
+### 示例4（设置定制内容区）
+
+该示例通过contentModifier接口，实现了定制数据面板内容区的功能。
 
 ```ts
 // xxx.ets
