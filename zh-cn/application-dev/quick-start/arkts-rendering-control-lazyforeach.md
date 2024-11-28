@@ -24,7 +24,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 ## 组件创建规则
 
-在确定键值生成规则后，LazyForEach的第二个参数`itemGenerator`函数会根据键值生成规则为数据源的每个数组项创建组件。组件的创建包括两种情况：[LazyForEach首次渲染](#首次渲染)和[LazyForEach非首次渲染](#非首次渲染)。
+在确定键值生成规则后，LazyForEach的第二个参数`itemGenerator`函数会根据组件创建规则为数据源的每个数组项创建组件。组件的创建包括两种情况：[LazyForEach首次渲染](#首次渲染)和[LazyForEach非首次渲染](#非首次渲染)。
 
 ### 首次渲染
 
@@ -240,6 +240,10 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
+  public getAllData(): string[] {
+    return this.dataArray;
+  }
+
   public addData(index: number, data: string): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
@@ -279,7 +283,7 @@ struct MyComponent {
         }
         .onClick(() => {
           // 点击删除子组件
-          this.data.deleteData(this.data.dataArray.indexOf(item));
+          this.data.deleteData(this.data.getAllData().indexOf(item));
         })
       }, (item: string) => item)
     }.cachedCount(5)
@@ -308,6 +312,10 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
+  }
+
+  public getAllData(): string[] {
+    return this.dataArray;
   }
 
   public addData(index: number, data: string): void {
@@ -356,7 +364,7 @@ struct MyComponent {
           }.margin({ left: 10, right: 10 })
         }
         .onClick(() => {
-          this.moved.push(this.data.dataArray.indexOf(item));
+          this.moved.push(this.data.getAllData().indexOf(item));
           if (this.moved.length === 2) {
           	// 点击交换子组件
           	this.data.moveData(this.moved[0], this.moved[1]);
@@ -1933,7 +1941,7 @@ struct ChildComponent {
 ### string类型数组的BasicDataSource代码
 
 ```ts
-// Basic implementation of IDataSource to handle data listener
+// BasicDataSource实现了IDataSource接口，用于管理listener监听，以及通知LazyForEach数据更新
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];
