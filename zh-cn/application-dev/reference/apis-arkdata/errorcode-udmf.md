@@ -16,8 +16,8 @@ Settings already exist.
 
 **可能原因**
 
-调用[setAppShareOptions](js-apis-data-unifiedDataChannel-sys.md#unifieddatachannelsetappshareoptions12)重复设置拖拽通道数据可使用的范围时，系统会产生此错误码。
+调用[setAppShareOptions](js-apis-data-unifiedDataChannel.md#unifieddatachannelsetappshareoptions14)重复设置拖拽通道数据可使用的范围时，系统会产生此错误码。
 
 **处理步骤**
 
-先调用[removeAppShareOptions](js-apis-data-unifiedDataChannel-sys.md#unifieddatachannelremoveappshareoptions12)清除当前拖拽通道数据可使用的范围后，再调用[setAppShareOptions](js-apis-data-unifiedDataChannel-sys.md#unifieddatachannelsetappshareoptions12)重新设置。
+先调用[removeAppShareOptions](js-apis-data-unifiedDataChannel.md#unifieddatachannelremoveappshareoptions14)清除当前拖拽通道数据可使用的范围后，再调用[setAppShareOptions](js-apis-data-unifiedDataChannel.md#unifieddatachannelsetappshareoptions14)重新设置。
