@@ -88,9 +88,9 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-1](figures/properly-use-state-management-to-develope-1.gif)
 
-In this example, a total of 20 records are displayed on the page through **ForEach**. When you click the **\<Text>** component of **age** in one of the records, the **\<Text>** components of **age** in other 19 records are also re-rendered - reflected by the logs generated for the components of **age**. However, because the **age** values of the other 19 records do not change, the re-rendering of these records is actually redundant.
+In this example, a total of 20 records are displayed on the page through **ForEach**. When you click the **Text** component of **age** in one of the records, the **Text** components of **age** in other 19 records are also re-rendered - reflected by the logs generated for the components of **age**. However, because the **age** values of the other 19 records do not change, the re-rendering of these records is actually redundant.
 
-This redundant re-rendering is due to a characteristic of state management. Assume that there is an @State decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **\<Text>** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
+This redundant re-rendering is due to a characteristic of state management. Assume that there is an @State decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **Text** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
 
 This seemly bug, commonly known as "redundant re-render", is widely observed in simple array, and can adversely affect the UI re-rendering performance when the arrays are large. To make your rendering process run smoothly, it is crucial to reduce redundant re-renders and update components only when necessary.
 
@@ -205,7 +205,7 @@ After optimization, an object array is used in place of the original attribute a
 
 > **NOTE**
 >
-> You are advised to use the [@Track decorator](arkts-track.md) in this scenario since API version 11.
+> You are advised to use the [@Track](arkts-track.md) decorator in this scenario since API version 11.
 
 During development, we sometimes define a large object that contains many style-related properties, and pass the object between parent and child components to bind the properties to the components.
 
@@ -369,6 +369,10 @@ struct Page {
 Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-3](figures/properly-use-state-management-to-develope-3.gif)
+
+Click the **Move** button before optimization. The duration for updating dirty nodes is as follows.
+
+![img](figures/properly-use-state-management-to-develope-11.PNG)
 
 In the above example, **uiStyle** defines multiple properties, which are each associated with multiple components. When some of these properties are changed at the click of a button, all the components associated with **uiStyle** are re-rendered, even though they do not need to (because the properties of these components are not changed). The re-renders of these components can be observed through a series of defined **isRender** functions. When **Move** is clicked to perform the translation animation, the value of **translateY** changes multiple times. As a result, redundant re-renders occur at each frame, which greatly worsen the application performance.
 
@@ -594,15 +598,19 @@ struct Page {
 
 Below you can see how the preceding code snippet works.![properly-use-state-management-to-develope-4](figures/properly-use-state-management-to-develope-4.gif)
 
+Click the **Move** button after optimization. The duration for updating dirty nodes is as follows.
+
+![img](figures/properly-use-state-management-to-develope-12.PNG)
+
 After the optimization, the 15 attributes previously in one class are divided into eight classes, and the bound components are adapted accordingly. The division of properties complies with the following principles:
 
 - Properties that are only used in the same component can be divided into the same new child class, that is, **NeedRenderImage** in the example. This mode of division is applicable to the scenario where components are frequently re-rendered due to changes of unassociated properties.
 - Properties that are frequently used together can be divided into the same new child class, that is, **NeedRenderScale**, **NeedRenderTranslate**, **NeedRenderPos**, and **NeedRenderSize** in the example. This mode of division is applicable to the scenario where properties often appear in pairs or are applied to the same style, for example, **.translate**, **.position**, and **.scale** (which usually receive an object as a parameter).
 - Properties that may be used in different places should be divided into a new child class, that is, **NeedRenderAlpha**, **NeedRenderBorderRadius**, and **NeedRenderFontSize** in the example. This mode of division is applicable to the scenario where a property works on multiple components or works on their own, for example, **.opacity** and **.borderRadius** (which usually work on their own).
 
-As in combination of properties, the principle behind division of properties is that changes to properties of objects nested more than two levels deep cannot be observed. Yet, you can use @Observed and @ObjectLink to transfer level-2 objects between parent and child nodes to observe property changes at level 2 and precisely control the render scope. <!--Del-->For details about division of properties, see [Precisely Controlling Render Scope](../performance/precisely-control-render-scope.md).<!--DelEnd-->
+As in combination of properties, the principle behind division of properties is that changes to properties of objects nested more than two levels deep cannot be observed. Yet, you can use @Observed and @ObjectLink to transfer level-2 objects between parent and child nodes to observe property changes at level 2 and precisely control the render scope. <!--Del-->For details about the division of properties, see [Precisely Controlling Render Scope](https://gitee.com/openharmony/docs/blob/master/en/application-dev/performance/precisely-control-render-scope.md).<!--DelEnd-->
 
-You can also use the @Track decorator to precisely control the render scope, which does not involve division of properties.
+@Track decorator can also precisely control the render scope, which does not involve division of properties.
 
 ```ts
 @Observed
@@ -1238,7 +1246,7 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-7](figures/properly-use-state-management-to-develope-7.gif)
 
-In this example, after you click to change **message**, the image flickers, and the onAppear log is generated for the image, indicating that the component is rebuilt. After **message** is changed, the key of the corresponding list item in **LazyForEach** changes. As a result, **LazyForEach** rebuilds the list item when executing **reloadData**. Though the **\<Text>** component only has its content changed, it is rebuilt, not updated. The **\<Image>** component under the list item is also rebuilt along with the list item, even though its content remains unchanged.
+In this example, after you click to change **message**, the image flickers, and the onAppear log is generated for the image, indicating that the component is rebuilt. After **message** is changed, the key of the corresponding list item in **LazyForEach** changes. As a result, **LazyForEach** rebuilds the list item when executing **reloadData**. Though the **Text** component only has its content changed, it is rebuilt, not updated. The **Image** component under the list item is also rebuilt along with the list item, even though its content remains unchanged.
 
 While both **LazyForEach** and state variables can trigger UI re-renders, their performance overheads are different. **LazyForEach** leads to component rebuilds and higher performance overheads, especially when there is a considerable number of components. By contrast, the use of state variables allows you to keep the update scope within the closely related components. In light of this, it is recommended that you use state variables to trigger component updates in **LazyForEach**, which requires custom components.
 
@@ -1381,9 +1389,9 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-8](figures/properly-use-state-management-to-develope-8.gif)
 
-In this example, the UI is re-rendered properly: The image does not flicker, and no log is generated, which indicates that the **\<Text>** and **\<Image>** components are not rebuilt.
+In this example, the UI is re-rendered properly: The image does not flicker, and no log is generated, which indicates that the **Text** and **Image** components are not rebuilt.
 
-This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. You can also decorate the **message** and **imgSrc** properties in the **StringData** type with [@Track](arkts-track.md) to further narrow down the update scope to the specified **\<Text>** component.
+This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. Decorate the **message** and **imgSrc** properties of the **StringData** type with [@Track](arkts-track.md) to further narrow down the render scope to the specified **Text** component.
 
 ### Using Custom Components to Match Object Arrays in ForEach
 

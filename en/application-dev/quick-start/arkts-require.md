@@ -20,7 +20,7 @@ When \@Require is used together with a regular variable or a variable decorated 
 
 The \@Require decorator can only decorate a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam in a struct.
 
-For details about usage in DevEco Studio Previewer, see [PreviewChecker Rules](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-previewer-previewchecker-0000001910869788-V5).
+For details about the usage in DevEco Studio Previewer, see [PreviewChecker Inspection Rules](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-previewer-previewchecker-V5).
 
 ## Use Scenarios
 
