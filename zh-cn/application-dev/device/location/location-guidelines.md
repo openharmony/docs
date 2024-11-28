@@ -10,6 +10,8 @@
 
 获取设备的位置信息所使用的接口如下，详细说明参见：[Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
+本模块能力仅支持WGS-84坐标系。
+
 **表2** 获取设备的位置信息接口介绍
 
 | 接口名 | 功能描述 | 
@@ -19,6 +21,7 @@
 | [getCurrentLocation(request: CurrentLocationRequest &#124; SingleLocationRequest, callback: AsyncCallback&lt;Location&gt;): void](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation) | 获取当前位置，使用callback回调异步返回结果。| 
 | [getCurrentLocation(request?: CurrentLocationRequest &#124; SingleLocationRequest): Promise&lt;Location&gt;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2) | 获取当前位置，使用Promise方式异步返回结果。| 
 | [getLastLocation(): Location](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetlastlocation) | 获取最近一次定位结果。 | 
+| [isLocationEnabled(): boolean](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerislocationenabled) | 判断位置服务是否已经开启。 | 
 
 ## 开发步骤
 
@@ -29,7 +32,20 @@
    ```ts
    import { geoLocationManager } from '@kit.LocationKit';
    ```
-3. 单次获取当前设备位置。多用于查看当前位置、签到打卡、服务推荐等场景。
+3. 调用获取位置接口之前需要先判断位置开关是否打开。
+   查询当前位置开关状态，返回结果为布尔值，true代表位置开关开启，false代表位置开关关闭，示例代码如下：
+
+   ```ts
+   import { geoLocationManager } from '@kit.LocationKit';
+   try {
+       let locationEnabled = geoLocationManager.isLocationEnabled();
+   } catch (err) {
+       console.error("errCode:" + err.code + ", message:"  + err.message);
+   }
+   ```
+   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)
+
+4. 单次获取当前设备位置。多用于查看当前位置、签到打卡、服务推荐等场景。
    - 方式一：获取系统缓存的最新位置。<br/>
       如果系统当前没有缓存位置会返回错误码。<br/>
       推荐优先使用该接口获取位置，可以减少系统功耗。<br/>
@@ -74,7 +90,10 @@
          console.error("errCode:" + JSON.stringify(err));
        }
       ```
-4. 持续定位。多用于导航、运动轨迹、出行等场景。</br>
+   通过本模块获取到的坐标均为WGS-84坐标系坐标点，如需使用其它坐标系类型的坐标点，请进行坐标系转换后再使用。
+
+   可使用三方地图提供的SDK能力进行坐标系转换。
+5. 持续定位。多用于导航、运动轨迹、出行等场景。</br>
    首先要实例化[ContinuousLocationRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#continuouslocationrequest12)对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。<br/>
    - 设置locationScenario：<br/>
       建议locationScenario参数优先根据应用的使用场景进行设置，该参数枚举值定义参见[UserActivityScenario](../../reference/apis-location-kit/js-apis-geoLocationManager.md#useractivityscenario12)，例如地图在导航时使用NAVIGATION参数，可以持续在室内和室外场景获取位置用于导航。</br>
