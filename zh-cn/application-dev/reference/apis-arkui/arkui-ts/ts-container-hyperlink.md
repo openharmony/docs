@@ -52,6 +52,8 @@ color(value: Color | number | string | Resource)
 
 ## 示例
 
+该示例展示了超链接图片和文本跳转的效果。
+
 ```ts
 @Entry
 @Component
