@@ -79,7 +79,6 @@ import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
-
 struct Index {
   @State message: string = 'Hello World';
 
@@ -96,13 +95,13 @@ struct Index {
           .onClick(() => {
             router.pushUrl({
               url: 'pages/pageOne' // 目标url
-              }, router.RouterMode.Standard, (err) => {
-                if (err) {
-                  console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
-                  return;
-                }
-                console.info('Invoke pushUrl succeeded.');
-              })
+            }, router.RouterMode.Standard, (err) => {
+              if (err) {
+                console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                return;
+              }
+              console.info('Invoke pushUrl succeeded.');
+            })
           })
       }
       .width('100%')
@@ -259,7 +258,7 @@ struct Index {
   build() {
     // 设置NavPathStack并传入Navigation
     Navigation(this.pathStack) {
-        // ...
+      // ...
     }.width('100%').height('100%')
     .title("Navigation")
     .mode(NavigationMode.Stack)
@@ -288,7 +287,7 @@ let size: number = this.pathStack.size()
 this.pathStack.removeByName("pageOne")
 
 // 删除指定索引的页面
-this.pathStack.removeByIndexes([1,3,5])
+this.pathStack.removeByIndexes([1, 3, 5])
 
 // 获取栈中所有页面name集合
 this.pathStack.getAllPathName()
@@ -397,23 +396,21 @@ export struct PageOne {
 **方式四**：通过自定义组件查询接口获取，参考[queryNavigationInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavigationinfo12)。
 
 ```ts
-import { uiObserver } from '@kit.ArkUI';
-
 // 子页面中的自定义组件
 @Component
 struct CustomNode {
-  pathStack : NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack()
 
   aboutToAppear() {
     // query navigation info
-    let  navigationInfo : NavigationInfo = this.queryNavigationInfo() as NavigationInfo
+    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo
     this.pathStack = navigationInfo.pathStack;
   }
 
   build() {
     Row() {
       Button('跳转到PageTwo')
-        .onClick(()=>{
+        .onClick(() => {
           this.pathStack.pushPath({ name: 'pageTwo' })
         })
     }
@@ -453,7 +450,6 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
 ```ts
 @Component
 struct PageOne {
-
   aboutToDisappear() {
   }
 
@@ -464,21 +460,21 @@ struct PageOne {
     NavDestination() {
       // ...
     }
-    .onWillAppear(()=>{
+    .onWillAppear(() => {
     })
-    .onAppear(()=>{
+    .onAppear(() => {
     })
-    .onWillShow(()=>{
+    .onWillShow(() => {
     })
-    .onShown(()=>{
+    .onShown(() => {
     })
-    .onWillHide(()=>{
+    .onWillHide(() => {
     })
-    .onHidden(()=>{
+    .onHidden(() => {
     })
-    .onWillDisappear(()=>{
+    .onWillDisappear(() => {
     })
-    .onDisAppear(()=>{
+    .onDisAppear(() => {
     })
   }
 }
@@ -600,17 +596,18 @@ Navigation作为路由组件，默认支持跨包跳转。
    
     @Builder pageMap(name: string) {
       if (name === 'PageInHSP') {
-   	 // 2.定义路由映射表
-   	 PageInHSP()
+   	    // 2.定义路由映射表
+   	    PageInHSP()
       }
     }
+
     build() {
       Navigation(this.pageStack) {
-   	 Button("Push HSP Page")
-   	   .onClick(() => {
-   		  // 3.跳转到Hsp中的页面
-   		  this.pageStack.pushPath({ name: "PageInHSP"});
-   	 })
+        Button("Push HSP Page")
+          .onClick(() => {
+            // 3.跳转到Hsp中的页面
+            this.pageStack.pushPath({ name: "PageInHSP" });
+          })
       }
       .mode(NavigationMode.Stack)
       .navDestination(this.pageMap)
