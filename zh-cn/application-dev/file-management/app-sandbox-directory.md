@@ -77,7 +77,7 @@
 
 在应用沙箱路径下读写文件，经过映射转换，实际读写的是真实物理路径中的应用文件，应用沙箱路径与真实物理路径对应关系如下表所示。
 
-其中&lt;USERID&gt;当前固定为100，&lt;EXTENSIONPATH&gt;为moduleName-extensionName。应用是否以Extension独立沙箱运行可参考[ExtensionAbility组件](../application-models/extensionability-overview.md)。
+其中&lt;USERID&gt;为当前用户ID，从100开始递增，&lt;EXTENSIONPATH&gt;为moduleName-extensionName。应用是否以Extension独立沙箱运行可参考[ExtensionAbility组件](../application-models/extensionability-overview.md)。
 
 | 应用沙箱路径 | 物理路径 |
 | -------- | -------- |
