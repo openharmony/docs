@@ -149,6 +149,19 @@ TS通过打开编译选项`strictNullChecks`来实现此特性。但是TS是被�
 2. 禁止使用`eval()`
 3. 禁止使用`with() {}`
 4. 禁止以字符串为代码创建函数
+5. 禁止循环依赖
+
+    循环依赖示例:
+    ```typescript
+    // bar.ets
+    import {v} from './foo' // bar.ets依赖foo.ets
+    export let u = 0;
+
+    // foo.ets
+    import {u} from './bar' // foo.ets同时又依赖bar.ets
+    export let v = 0;
+
+    ```
 
 **与标准TS/JS的差异**
 
