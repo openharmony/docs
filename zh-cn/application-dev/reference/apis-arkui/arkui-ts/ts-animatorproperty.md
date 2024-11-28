@@ -25,6 +25,7 @@ animation(value:AnimateParam)
 @State heightSize: number = 100;
 @State rotateAngle: number = 0;
 @State flag: boolean = true;
+@State space: number = 10;
 // ...
 Column({ space: this.space }) // 改变Column构造器中的space动画不生效
   .onClick(() => {
