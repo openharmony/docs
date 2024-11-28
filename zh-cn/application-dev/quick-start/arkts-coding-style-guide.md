@@ -8,7 +8,7 @@
 
 ## 规则来源
 
-ArkTS在保持TypeScript基本语法风格的基础上，进一步强化静态检查和分析。本文部分规则筛选自《[OpenHarmony应用TS&JS编程指南](https://gitee.com/openharmony/docs/tree/master/zh-cn/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)》，为ArkTS语言新增的语法添加了规则，旨在提高代码可读性、执行性能。
+ArkTS在保持TypeScript基本语法风格的基础上，进一步强化静态检查和分析。本文部分规则筛选自《[OpenHarmony应用TS&JS编程指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)》，为ArkTS语言新增的语法添加了规则，旨在提高代码可读性、执行性能。
 
 ## 章节概览
 
@@ -141,7 +141,7 @@ enum UserType {
 };
 ```
 
-### 避免使用否定的布尔变量名，布尔型的局部变量或方法须加上表达是非意义的前缀
+### 避免使用否定的布尔变量名，布尔型的局部变量或方法需加上表达是非意义的前缀
 
 **【级别】建议**
 
@@ -263,7 +263,7 @@ for (let idx = 0; idx < 5; ++idx) {
 }
 ```
 
-### `switch`语句的`case`和`default`须缩进一层
+### `switch`语句的`case`和`default`需缩进一层
 
 **【级别】建议**
 
@@ -288,7 +288,7 @@ switch (condition) {
 }
 ```
 
-### 表达式换行须保持一致性，运算符放行末
+### 表达式换行需保持一致性，运算符放行末
 
 **【级别】建议**
 
