@@ -2314,6 +2314,8 @@ struct TextInputExample {
 
 ```ts
 // xxx.ets
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct TextInputExample {
