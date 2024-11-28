@@ -1,8 +1,8 @@
-# 设置主题换肤
+# 设置应用内主题换肤
 
 ## 概述
 
-对于使用ets声明式前端开发的应用，提供应用内组件的主题能力，支持局部深浅色、动态换肤功能。本功能不支持C-API和Node-API,不支持Ability和窗口的主题设置。
+对于使用ArkTS开发的单框架应用，提供设置应用内组件的主题换肤能力，支持局部深浅色、动态换肤的功能。当前只支持设置应用内主题换肤，不支持Ability和窗口的设置主题换肤，不支持C-API和Node-API。
 本文提供如下场景：
 - [自定义品牌色](#自定义品牌色)
 - [应用级自定义品牌色](#设置应用内组件自定义品牌色)
@@ -11,7 +11,7 @@
 
 
 ## 自定义品牌色
-[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题，属性可选，只需要复写修改的部分，未修改内容继承于系统，参考[系统缺省token色值](#系统缺省token色值)。请参考：
+当单框架应用需要使用换肤能力时，需要自定义主题，[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题的内容，属性可选，只需要复写修改的部分，未修改内容继承于系统，参考[系统缺省token色值](#系统缺省token色值)。请参考：
 
   ```ts
     import { CustomColors, CustomTheme } from '@kit.ArkUI'
@@ -136,7 +136,7 @@
     }
   ```
 
-- 在Ability中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
+- 在UIAbility中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
 
   ```ts
     import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -252,7 +252,7 @@
 ![customTheme](figures/customTheme.gif)
 
 ## 设置应用页面局部深浅色
-通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置深浅色模式，[ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#themecolormode10枚举说明)有三种模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
+通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置三种深浅色模式，跟随系统模式，浅色模式和深色模式。</br>
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。</br>
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
 
