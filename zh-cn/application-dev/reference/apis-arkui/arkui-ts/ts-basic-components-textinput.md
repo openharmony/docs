@@ -521,6 +521,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
+当设置自定义键盘时，可以通过绑定[onKeyPrelme](ts-universal-events-key.md#onkeypreime12)事件规避物理键盘的输入。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -578,7 +580,7 @@ cancelButton(options: CancelButtonOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options  | [CancelButtonOptions](ts-basic-components-search#cancebuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+| options  | [CancelButtonOptions](ts-basic-components-search#cancelbuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 
 ### selectAll<sup>11+</sup>
 

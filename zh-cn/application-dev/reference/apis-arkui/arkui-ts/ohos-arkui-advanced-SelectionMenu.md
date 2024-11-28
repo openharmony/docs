@@ -106,6 +106,8 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 ## 示例
 
+该示例展示了文本绑定不同触发方式的自定义文本选择菜单的效果。
+
 ```ts
 import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
 
