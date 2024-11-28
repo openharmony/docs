@@ -11,7 +11,7 @@
   - [@ohos.hiviewdfx.jsLeakWatcher (JS Leak Watcher)](js-apis-jsleakwatcher.md)
   <!--Del-->
   - [@ohos.hiSysEvent (HiSysEvent)(System API)](js-apis-hisysevent-sys.md)
-  - [@ohos.logLibrary (LogLibrary)(System API)](js-apis-loglibrary-sys.md)
+  - [@ohos.logLibrary (Log Library)(System API)](js-apis-loglibrary-sys.md)
   <!--DelEnd-->
   - APIs No Longer Maintained
     - [@ohos.bytrace (ByTrace)](js-apis-bytrace.md)
@@ -41,7 +41,7 @@
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
     - [HiTraceId](_hi_trace_id.md)
-    - [HiCollie](_hi_hicollie___detection_param.md)
+    - [HiCollie_DetectionParam](_hi_hicollie___detection_param.md)
 - Error Codes
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
   - [HiAppEvent Error Codes](errorcode-hiappevent.md)

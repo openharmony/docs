@@ -3,15 +3,16 @@
 
 ## When to Use
 
-Inter-process communication (IPC) allows the proxy and stub running in different processes to communicate with each other using C/C++ APIs. However, the IPC C/C++ APIs cannot implement cross-process communication directly. The setup of an IPC channel between two processes depends on abilities.
+Inter-Process Communication (IPC) allows the proxy and stub in different processes to communicate with each other using C/C++ APIs.
+The IPC C APIs do not provide the cross-process communication capability. The IPC channel depends on [Ability Kit](../application-models/abilitykit-overview.md).
 
 ![](./figures/_i_p_c_architecture_diagram.png)
 
-For details about how to set up an IPC channel between processes, see [Ability Development](../application-models/capi_nativechildprocess_development_guideline.md). This topic focuses on how to use the IPC C/C++ APIs.
+For details about how to set up an IPC channel, see [Native Child Process Development (C/C++)](../application-models/capi_nativechildprocess_development_guideline.md). This document focuses on the usage of IPC C APIs.
 
 ## Available APIs
 
-**Table 1** IPC C/C++ APIs
+**Table 1** IPC C APIs
 
 | API                              | Description                                                            |
 | ------------------------------------ | ---------------------------------------------------------------- |
@@ -19,7 +20,7 @@ For details about how to set up an IPC channel between processes, see [Ability D
 | OHIPCRemoteStub\* OH_IPCRemoteStub_Create<br>(const char \*descriptor, OH_OnRemoteRequestCallback requestCallback,<br>OH_OnRemoteDestroyCallback destroyCallback, void \*userData); | Creates an **OHIPCRemoteStub** object.|
 |int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy \*proxy,<br> uint32_t code, const OHIPCParcel \*data, OHIPCParcel \*reply,<br> const OH_IPC_MessageOption \*option);|Sends an IPC message.|
 |struct OHIPCRemoteProxy;|Defines an **OHIPCRemoteProxy** object, which is used to send requests to the peer end.<br>The **OHIPCRemoteProxy** object is returned by an ability API. |
-|OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|Creates an **OHIPCDeathRecipient** object, which alllows a notification to be received when the peer **OHIPCRemoteStub** object dies unexpectedly.|
+|OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|Creates an **OHIPCDeathRecipient** object, which triggers a notification when the **OHIPCRemoteStub** object dies unexpectedly.|
 |int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy \*proxy,<br>OHIPCDeathRecipient \*recipient);|Adds a recipient to the **OHIPCRemoteProxy** object to receive notifications of the death of the peer **OHIPCRemoteStub** object.|
 
 For details about the APIs, see [IPC Kit](../reference/apis-ipc-kit/_i_p_c_kit.md).
@@ -27,7 +28,7 @@ For details about the APIs, see [IPC Kit](../reference/apis-ipc-kit/_i_p_c_kit.m
 
 ## How to Develop
 
-The following describes how to use the C/C++ APIs provided by IPC Kit to implement communication between the stub (service provider) and the proxy (service requester) and listen for the death of the peer end.
+The following steps you through on how to use the C APIs provided by [IPC Kit](../reference/apis-ipc-kit/_i_p_c_kit.md) to create a remote stub, set up communication between the stub and a client proxy, and receive death notifications of the remote stub.
 
 ### 1. Adding Dynamic Link Libraries
 
@@ -217,7 +218,7 @@ int IpcCApiStubTest::RequestExitChildProcess() {
 }
 ```
 
-#### Client Proxy Object IpcCApiProxyTest
+#### Proxy Object IpcCApiProxyTest
 
 ```cpp
 // Customize error codes.
@@ -309,7 +310,6 @@ int IpcCApiProxyTest::AsyncAdd(int a, int b, int &result) {
     OH_LOG_INFO(LOG_APP, "asyncReply_:%d", asyncReply_);
     result = asyncReply_;
     OH_IPCParcel_Destroy(data);
-    OH_IPCParcel_Destroy(reply);
     return OH_IPC_SUCCESS;
 }
 
@@ -386,7 +386,7 @@ void IpcCApiProxyTest::OnDeathRecipientCB(void *userData) {
     OH_LOG_INFO(LOG_APP, "the stub is dead!");
 }
 ```
-#### Server Invocation Entry in libipcCapiDemo.so
+#### libipcCapiDemo.so for Server Calls
 
 ```C++
 IpcCApiStubTest g_ipcStubObj;
@@ -453,4 +453,3 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
-<!--no_check-->

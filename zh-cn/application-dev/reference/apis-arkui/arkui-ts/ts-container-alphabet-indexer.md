@@ -494,8 +494,11 @@ onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 | index  | number | 是   | 当前选中的索引。 |
 
 
-## 示例
-### 示例1
+## 示例 
+
+### 示例1（设置提示弹窗显示文本内容）
+
+通过onRequestPopupData事件自定义提示弹窗显示文本内容。
 
 ```ts
 // xxx.ets
@@ -606,7 +609,10 @@ struct AlphabetIndexerSample {
 
 ![alphabet](figures/alphabet.gif)
 
-### 示例2
+### 示例2（开启自适应折叠模式）
+
+通过autoCollapse属性开启自适应折叠模式。
+
 ```ts
 // xxx.ets
 @Entry
@@ -742,10 +748,12 @@ struct AlphabetIndexerSample {
 
 ![alphabetIndexerAutoCollapseSample](figures/alphabetIndexerAutoCollapseSample.gif)
 
-### 示例3
+### 示例3（设置提示弹窗背景模糊材质）
+
+通过popupBackgroundBlurStyle属性实现提示弹窗的背景模糊效果。
 
 ```ts
-// 该示例实现了自定义设置提示弹窗的背景模糊材质
+// xxx.ets
 @Entry
 @Component
 struct AlphabetIndexerSample {

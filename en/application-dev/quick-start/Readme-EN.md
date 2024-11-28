@@ -60,7 +60,8 @@
     - [stateStyles: Polymorphic Style](arkts-statestyles.md)
     - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](arkts-animatable-extend.md)
     - [\@Require Decorator: Validating Constructor Input Parameters](arkts-require.md)
-  - State Management
+  
+- State Management
     - [State Management Overview](arkts-state-management-overview.md)
     - State Management (V1)
       - Component State Management

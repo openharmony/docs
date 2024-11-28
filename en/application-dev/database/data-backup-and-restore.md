@@ -47,7 +47,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
          backup: false,
          autoSync: false,
          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-         securityLevel: distributedKVStore.SecurityLevel.S3
+         securityLevel: distributedKVStore.SecurityLevel.S1
        };
        kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
          if (err) {
@@ -73,7 +73,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-2. Use **put()** to insert data to the KV store.
+2. Call **put()** to insert data to the KV store.
      
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -92,7 +92,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-3. Use **backup()** to back up the KV store.
+3. Call **backup()** to back up the KV store.
      
    ```ts
    let backupFile = 'BK001';
@@ -110,7 +110,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
+4. Call **delete()** to delete data to simulate unexpected deletion or data tampering.
      
    ```ts
    try {
@@ -127,10 +127,9 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-5. Use **restore()** to restore the KV store.
+5. Call **restore()** to restore the KV store.
      
    ```ts
-   let backupFile = 'BK001';
    try {
      kvStore.restore(backupFile, (err) => {
        if (err) {
@@ -145,10 +144,10 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-6. Use **deleteBackup()** to delete the backup file to release storage space.
+6. Call **deleteBackup()** to delete the backup file to release storage space.
      
    ```ts
-   let files = ['BK001'];
+   let files = [backupFile];
    try {
      kvStore.deleteBackup(files).then((data) => {
        console.info(`Succeed in deleting Backup. Data:filename is ${data[0]},result is ${data[1]}.`);
@@ -169,7 +168,7 @@ Two backup modes are available: manual backup and automatic backup. Automatic ba
 
 ### Manual Backup
 
-Use [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup) to manually back up an RDB store. <br>Example:
+Call [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup) to manually back up an RDB store. <br>Example:
 
    ```ts
    import { relationalStore } from '@kit.ArkData';
@@ -221,7 +220,7 @@ To implement hot backup of an RDB store, set **haMode** in [StoreConfig](../refe
      allowRebuild: true
    }
 
-   // Use getRdbStore() to create an RDB store instance.
+   // Call getRdbStore() to create an RDB store instance.
    relationalStore.getRdbStore(context, AUTO_BACKUP_CONFIG, (err, store) => {
      if (err) {
        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
@@ -365,7 +364,7 @@ The following example contains only the code snippet for the restore process. Th
 
 ### Restoring from Automatic Backup Data (for System Applications Only)
 
-Use [restore()](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#restore12) to restore data from the [automatic backup data](#automatic-backup-for-system-applications-only). Only system applications support this operation.
+Call [restore()](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#restore12) to restore data from the [automatic backup data](#automatic-backup-for-system-applications-only). Only system applications support this operation.
 
 The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
 

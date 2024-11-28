@@ -14,18 +14,11 @@
 
 \@ObjectLink和\@Observed类装饰器用于在涉及嵌套对象或数组的场景中进行双向数据同步：
 
-- 被\@Observed装饰的类，可以被观察到属性的变化；
+- 使用new创建被\@Observed装饰的类，可以被观察到属性的变化；
 
 - 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
 - \@Observed用于嵌套类场景中，观察对象类属性变化，要配合自定义组件使用（示例详见[嵌套对象](#嵌套对象)），如果要做数据双/单向同步，需要搭配\@ObjectLink或者\@Prop使用（示例详见[\@Prop与\@ObjectLink的差异](#prop与objectlink的差异)）。
-
-
-## 限制条件
-
-- 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
-
-- \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
 
 
 ## 装饰器说明
@@ -38,7 +31,7 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无                                        |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -197,6 +190,149 @@ struct Parent {
    2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+
+
+## 限制条件
+
+1. 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+
+2. \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
+
+3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+class Test {
+  msg: number;
+
+  constructor(msg: number) {
+    this.msg = msg;
+  }
+}
+
+// 错误写法，编译报错
+@ObjectLink count;
+@ObjectLink test: Test;
+
+// 正确写法
+@ObjectLink count: Info;
+```
+
+4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+// 错误写法，编译报错
+@ObjectLink count: Info = new Info(10);
+
+// 正确写法
+@ObjectLink count: Info;
+```
+
+5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+
+【反例】
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink num: Info;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num.count}`)
+        .onClick(() => {
+          // 错误写法，\@ObjectLink装饰的变量不能被赋值
+          this.num = new Info(10);
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State num: Info = new Info(10);
+
+  build() {
+    Column() {
+      Text(`count的值: ${this.num}`)
+      Child({num: this.num})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink num: Info;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num.count}`)
+        .onClick(() => {
+          // 正确写法，可以更改@ObjectLink装饰变量的成员属性
+          this.num.count = 20;
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State num: Info = new Info(10);
+
+  build() {
+    Column() {
+      Text(`count的值: ${this.num}`)
+      Button('click')
+        .onClick(() => {
+          // 可以在父组件做整体替换
+          this.num = new Info(30);
+        })
+      Child({num: this.num})
+    }
+  }
+}
+```
 
 
 ## 使用场景
@@ -1429,7 +1565,7 @@ struct CounterComp {
       Text(`this.value.counter：increase 7 `)
         .fontSize(30)
         .onClick(() => {
-          // click handler, Text(`this.subValue.counter: ${this.subValue.counter}`) will update
+          // 点击后Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1494,7 +1630,7 @@ struct ParentComp {
 
 【反例】
 
-如果用\@Prop替代\@ObjectLink。点击第一个click handler，UI刷新正常。但是点击第二个onClick事件，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
+如果用\@Prop替代\@ObjectLink。点击Text(`this.subValue.counter: ${this.subValue.counter}`)，UI刷新正常。但是点击Text(`this.value.counter：increase 7 `)，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
 
   this.value.subCounter和this.subValue并不是同一个对象。所以this.value.subCounter的改变，并没有改变this.subValue的拷贝对象，Text(`this.subValue.counter: ${this.subValue.counter}`)不会刷新。
 
@@ -1508,13 +1644,11 @@ struct CounterComp {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.subValue.counter += 7;
         })
       Text(`this.value.counter：increase 7 `)
         .fontSize(20)
         .onClick(() => {
-          // 2nd click handler
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1577,7 +1711,6 @@ struct SubCounterComp {
   build() {
     Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
       .onClick(() => {
-        // 2nd click handler
         this.subValue.counter = 7;
       })
   }
@@ -1590,13 +1723,11 @@ struct CounterComp {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.value.incrCounter();
         })
       SubCounterComp({ subValue: this.value.subCounter })
       Text(`this.value.incrSubCounter()`)
         .onClick(() => {
-          // 3rd click handler
           this.value.incrSubCounter(77);
         })
       Divider().height(2)
@@ -1745,7 +1876,7 @@ struct Index {
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
 
-### ObjectLink更新依赖其所属自定义组件的更新函数
+### \@ObjectLink数据源更新时机
 
 ```ts
 @Observed
@@ -1760,7 +1891,7 @@ class Person {
 }
 
 @Observed
-class Persons {
+class Info {
   person: Person;
 
   constructor(person: Person) {
@@ -1771,31 +1902,20 @@ class Persons {
 @Entry
 @Component
 struct Parent {
-  @State pers01: Persons = new Persons(new Person('1', 1));
-
-  build() {
-    Column() {
-      Child01({ pers: this.pers01 });
-    }
-  }
-}
-
-@Component
-struct Child01 {
-  @ObjectLink @Watch('onChange01') pers: Persons;
+  @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10));
 
   onChange01() {
-    console.log(':::onChange01:' + this.pers.person.name); // 2
+    console.log(':::onChange01:' + this.info.person.name); // 2
   }
 
   build() {
     Column() {
-      Text(this.pers.person.name).height(40)
-      Child02({
-        per: this.pers.person, selectItemBlock: () => {
-          console.log(':::selectItemBlock before', this.pers.person.name); // 1
-          this.pers.person = new Person('2', 2);
-          console.log(':::selectItemBlock after', this.pers.person.name); // 3
+      Text(this.info.person.name).height(40)
+      Child({
+        per: this.info.person, clickEvent: () => {
+          console.log(':::clickEvent before', this.info.person.name); // 1
+          this.info.person = new Person('Jack', 12);
+          console.log(':::clickEvent after', this.info.person.name); // 3
         }
       })
     }
@@ -1803,9 +1923,9 @@ struct Child01 {
 }
 
 @Component
-struct Child02 {
+struct Child {
   @ObjectLink @Watch('onChange02') per: Person;
-  selectItemBlock?: () => void;
+  clickEvent?: () => void;
 
   onChange02() {
     console.log(':::onChange02:' + this.per.name); // 5
@@ -1816,50 +1936,50 @@ struct Child02 {
       Button(this.per.name)
         .height(40)
         .onClick(() => {
-          this.onClickFType();
+          this.onClickType();
         })
     }
   }
 
-  private onClickFType() {
-    if (this.selectItemBlock) {
-      this.selectItemBlock();
+  private onClickType() {
+    if (this.clickEvent) {
+      this.clickEvent();
     }
-    console.log(':::--------此时Child02中的this.per.name值仍然是：' + this.per.name); // 4
+    console.log(':::--------此时Child中的this.per.name值仍然是：' + this.per.name); // 4
   }
 }
 ```
 
-数据源通知@ObjectLink是依赖@ObjectLink所属自定义组件更新，是异步调用。上述示例中，Parent包含Child01，Child01包含Child02，在进行点击时，Child01传箭头函数给Child02，此时调用Child02的点击事件，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child02标记为需要更新的节点，Child02的更新要等待下一次vsync信号，而@ObjectLink的更新依赖其所属自定义组件的更新函数，所以日志4打印的this.per.name的值仍然是1。
+\@ObjectLink的数据源更新依赖其父组件，当父组件中数据源改变引起父组件刷新时，会重新设置子组件\@ObjectLink的数据源。这个过程不是在父组件数据源变化后立刻发生的，而是在父组件实际刷新时才会进行。上述示例中，Parent包含Child，Parent传递箭头函数给Child，在点击时，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child标记为需要父组件更新的节点，因此日志4打印的this.per.name的值仍为1，等到父组件真正更新时，才会更新Child的数据源。
 
-当@ObjectLink @Watch('onChange02') per: Person的@Watch函数执行时，当前已执行Child02的更新函数，@ObjectLink已被通知更新，所以日志5打印的值为2。
+当@ObjectLink @Watch('onChange02') per: Person的\@Watch函数执行时，说明\@ObjectLink的数据源已被父组件更新，此时日志5打印的值为更新后的2。
 
 日志的含义为：
-- 日志1：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值前。
+- 日志1：对Parent @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10)) 赋值前。
 
-- 日志2：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值，执行其@Watch函数，同步执行。
+- 日志2：对Parent @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10)) 赋值，执行其\@Watch函数，同步执行。
 
-- 日志3：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值完成。
+- 日志3：对Parent @State @Watch('onChange01') info: Info = new Info(new Person('Bob', 10)) 赋值完成。
 
-- 日志4：onClickFType方法内selectItemBlock执行完，此时只是将子组件Child02标记为需要更新的节点，未将最新的值更新给Child02 @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
+- 日志4：onClickType方法内clickEvent执行完，此时只是将子组件Child标记为需要父组件更新的节点，未将最新的值更新给Child @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
 
-- 日志5：下一次vsync信号触发Child02更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
+- 日志5：下一次vsync信号触发Child更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其\@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
 
-@Prop父子同步原理同@ObjectLink一致。
+\@Prop父子同步原理同\@ObjectLink一致。
 
-当selectItemBlock中更改this.pers.person.name时，修改会立刻生效，此时日志4打印的值是2。
+当clickEvent中更改this.info.person.name时，修改会立刻生效，此时日志4打印的值是2。
 
 ```ts
-Child02({
-  per: this.pers.person, selectItemBlock: () => {
-    console.log(':::selectItemBlock before', this.pers.person.name); // 1
-    this.pers.person.name = 2;
-    console.log(':::selectItemBlock after', this.pers.person.name); // 3
+Child({
+  per: this.info.person, clickEvent: () => {
+    console.log(':::clickEvent before', this.info.person.name); // 1
+    this.info.person.name = 'Jack';
+    console.log(':::clickEvent after', this.info.person.name); // 3
   }
 })
 ```
 
-此时Child01中Text组件不会刷新，因为this.pers.person.name属于两层嵌套。
+此时Parent中Text组件不会刷新，因为this.info.person.name属于两层嵌套。
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 

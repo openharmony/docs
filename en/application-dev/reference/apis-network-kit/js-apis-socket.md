@@ -5,6 +5,7 @@ The **socket** module implements data transfer over TCP, UDP, Web, and TLS socke
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> You are advised to call the APIs of this module in the worker thread or taskpool to perform network-related operations. Otherwise, the UI thread may be suspended.
 
 ## Modules to Import
 
@@ -6931,6 +6932,7 @@ TLS security options. When **cert** (local certificate) and **key** (private key
 | useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.       |
 | signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication. The default value is **""**.             |
 | cipherSuite           | string                                                 | No| Cipher suite used during communication. The default value is **""**.             |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | No| Two-way authentication. The default value is **false**.             |
 
 ## Protocol<sup>9+</sup>
 

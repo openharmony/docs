@@ -1,6 +1,6 @@
 # Styled String
 
-Styled strings are string objects that facilitate the flexible application of text styles.
+Styled strings are string objects that facilitate the flexible use of text styles. They can be bound to the **Text** component using the [setStyledString](./ts-basic-components-text.md#setstyledstring12) API in **TextController**, and to the **RichEditor** component using the [setStyledString](ts-basic-components-richeditor.md#setstyledstring12) API in **RichEditorStyledStringController**.
 
 >  **NOTE**
 >
@@ -140,7 +140,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ### fromHtml
 
-Converts an HTML-formatted string into a styled string. Currently, the conversion supports the following HTML tags: **\<p>**, **Span**, **\<img>**. Only the styles defined by the **style** attributes of these tags can be converted into corresponding styles in styled strings.
+Converts an HTML-formatted string into a styled string. Currently, the conversion supports the following HTML tags: **\<p>**, **\<span>**, **\<img>**. Only the styles defined by the **style** attributes of these tags can be converted into corresponding styles in styled strings.
 
 static fromHtml(html: string): Promise\<StyledString>
 

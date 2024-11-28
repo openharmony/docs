@@ -3,6 +3,17 @@
 
 Nonlinear containers, underpinned by hash tables or red-black trees, implement a data structure that enables quick search. There are several types of nonlinear containers: **HashMap**, **HashSet**, **TreeMap**, **TreeSet**, **LightWeightMap**, **LightWeightSet**, and **PlainArray**. The types of **key** and **value** in nonlinear containers must meet the ECMA standard.
 
+## Comparison of Non-linear Container Types
+
+| Class| Characteristics and Recommended Application Scenarios|
+| --------- | ------- |
+| HashMap | Stores a set of key-value pairs that have association relationships. The key in the storage element is unique, and the storage location is determined based on the hash value of the key. The access speed is fast, but the sorting cannot be customized. Recommended for quick access, insertion, and deletion of key-value pair data.|
+| HashSet | A set of values. Each value in a storage element is unique. The storage location is determined based on the hash of the value. Null values can be added, but the sorting cannot be customized. It can be used when a non-repeated collection is required or a collection needs to be deduplicated.|
+| TreeMap | Stores a set of key-value pairs that have association relationships. The key in the storage element is unique. You can customize the sorting method. Generally, this mode can be used in scenarios where key-value pairs need to be stored in sequence.|
+| TreeSet | A set of values. The values in the storage element are unique. You can customize the sorting method, but you are not advised to put null values. Generally, this method can be used in scenarios where collections need to be stored in sequence.|
+| LightWeightMap | Stores a set of key-value pairs that have association relationships. The key in the storage element is unique. The bottom layer uses a more lightweight structure and occupies less space. This mode is recommended when key-value pair data needs to be accessed and the memory is insufficient.|
+| LightWeightSet |  Stores a set of values. The values in the storage element are unique. The bottom layer uses a more lightweight structure and occupies less space. This method is recommended when you need a unique set or a set to be deduplicated.|
+| PlainArray | Stores a set of key-value pairs that have association relationships. The key in the storage element is unique. The bottom layer uses a more lightweight structure like LightWeightMap, and the key is of the number type. You are advised to use PlainArray when you need to store KV pairs whose keys are of the number type.|
 
 ## HashMap
 
@@ -18,46 +29,42 @@ You are advised to use **HashMap** when you need to quickly access, remove, and 
 
 **HashMap** provides the following Create, Read, Update, and Delete (CRUD) APIs.
 
-| Operation | Description |
-| -------- | ------ |
-| Create | Use **set(key: K, value: V)** to add an element (a KV pair) to this container. |
-| Read | Use **get(key: K)** to obtain the value of the specified key. |
-| Read | Use **keys()** to return an iterator that contains all the keys in this container. |
-| Read | Use **values()** to return an iterator that contains all the values in this container. |
-| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
-| Read | Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container. |
-| Read | Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access. |
-| Update | Use **replace(key: K, newValue: V)** to change the value of the specified key. |
-| Update | Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to modify an element in this container. |
-| Delete | Use **remove(key: K)** to remove an element with the specified key. |
-| Delete | Use **clear()** to clear this container. |
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Create| set(key: K, value: V) | Adds a key-value pair.|
+| Read| get(key: K) | Value corresponding to the target key.|
+| Read| keys() | Use **keys()** to return an iterator that contains all the keys in this container.|
+| Read| values() | Use **values()** to return an iterator that contains all the values in this container.|
+| Read| entries() | Use **entries()** to return an iterator that contains all the elements in this container.|
+| Read| forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object) | Traverses the elements of the entire map.|
+| Read| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
+| Update| replace(key: K, newValue: V) | Value corresponding to the target key.|
+| Update| forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object) | Modify the elements of the entire map through traversal.|
+| Delete| remove(key: K) | Deletes the matched key-value pair from the map.|
+| Delete| clear() | Clears the entire map.|
 
 ## HashSet
 
 [HashSet](../reference/apis-arkts/js-apis-hashset.md) is used to store a set of values, each of which is unique in a hash set.
 
-**HashSet** uses generics. In a hash set, a value is located based on its hash code. The initial capacity of a hash set is 16, and it has capacity doubled in each dynamic expansion. The type of **value** must comply with the ECMA standard. The bottom layer of **HashSet** is implemented based on a hash table. It uses chaining to avoid collisions in hash tables.
+**HashSet** uses generics. In a hash set, a value is located based on its hash code. The initial capacity of a hash set is 16, and it has capacity doubled in each dynamic expansion. The type of **value** must comply with the ECMA standard. HashSet is implemented based on [HashMap](../reference/apis-arkts/js-apis-hashmap.md) and processes only the value object. The bottom-layer data structure is the same as that of HashMap.
 
-**HashSet** is implemented based on [HashMap](../reference/apis-arkts/js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
-
-Unlike [TreeSet](../reference/apis-arkts/js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
+Compared with [TreeSet](../reference/apis-arkts/js-apis-treeset.md), data in HashSet is stored in an unordered manner, that is, users cannot specify the sorting mode. However, data in TreeSet is stored in an ordered manner, that is, elements can be sorted based on the sorting function specified by users. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
 You are advised to use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
 
 **HashSet** provides the following CRUD APIs.
 
-| Operation | Description |
-| -------- | ------ |
-| Create | Use **add(value: T)** to add a value to this container. |
-| Read | Use **values()** to return an iterator that contains all the values in this container. |
-| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
-| Read | Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
-| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
-| Update | Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to change a value in this container. |
-| Delete | Use **remove(value: T)** to remove a value. |
-| Delete | Use **clear()** to clear this container. |
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Create| add(value: T) | Adds a value.|
+| Read| values() | Use **values()** to return an iterator that contains all the values in this container.|
+| Read| entries() | Use **entries()** to return an iterator that contains all the elements in this container.|
+| Read| forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | Traverses and accesses the elements of the entire set.|
+| Read| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
+| Update| forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | Modify the elements of the entire set through traversal.|
+| Delete| remove(value: T) | Deletes the matched value from the set.|
+| Delete| clear() | Clears the entire set.|
 
 ## TreeMap
 
@@ -71,22 +78,21 @@ You are advised to use **TreeMap** when you need to store KV pairs in sorted ord
 
 **TreeMap** provides the following CRUD APIs.
 
-| Operation | Description |
-| ------- | ------ |
-| Create | Use **set(key: K, value: V)** to add an element (a KV pair) to this container. |
-| Read | Use **get(key: K)** to obtain the value of the specified key. |
-| Read | Use **getFirstKey()** to obtain the first key in this container. |
-| Read | Use **getLastKey()** to obtain the last key in this container. |
-| Read | Use **keys()** to return an iterator that contains all the keys in this container. |
-| Read | Use **values()** to return an iterator that contains all the values in this container. |
-| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
-| Read | Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container. |
-| Read | Use **\[Symbol.iterator]():IterableIterator\<[K,V]>** for data access. |
-| Update | Use **replace(key: K, newValue: V)** to change the value of the specified key. |
-| Update | Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to modify an element in this container. |
-| Delete | Use **remove(key: K)** to remove an element with the specified key. |
-| Delete | Use **clear()** to clear this container. |
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Create| set(key: K, value: V) | Adds a key-value pair.|
+| Read| get(key: K) | Value corresponding to the target key.|
+| Read| getFirstKey() | Use **getFirstKey()** to obtain the first key in this container.|
+| Read| getLastKey() | Use **getLastKey()** to obtain the last key in this container.|
+| Read| keys() | Use **keys()** to return an iterator that contains all the keys in this container.|
+| Read| values() | Use **values()** to return an iterator that contains all the values in this container.|
+| Read| entries() | Use **entries()** to return an iterator that contains all the elements in this container.|
+| Read| forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | Traverses the elements of the entire map.|
+| Read| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
+| Update| replace(key: K, newValue: V) | Value corresponding to the target key.|
+| Update| forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | Modify the elements of the entire map through traversal.|
+| Delete| remove(key: K) | Deletes the matched key-value pair from the map.|
+| Delete| clear() | Clears the entire map.|
 
 ## TreeSet
 
@@ -94,7 +100,7 @@ You are advised to use **TreeMap** when you need to store KV pairs in sorted ord
 
 **TreeSet** uses generics, and the values in a tree set are ordered. The bottom layer of **TreeSet** is a binary tree, which supports quick search of a value through the children (left child and right child) of the tree. The type of **value** must meet the ECMA standard. Values in a tree set are stored in order. The bottom layer of **TreeSet** is implemented based on the red-black tree and supports quick insertion and removal.
 
-**TreeSet** is implemented based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md). In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
+**TreeSet** is implemented based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md). In **TreeSet**, only **value** objects are processed. A TreeSet can be used to store a set of values. The value in an element is unique and can be sorted based on the sorting function specified by the user.
 
 [HashSet](../reference/apis-arkts/js-apis-hashset.md) stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
@@ -102,19 +108,18 @@ You are advised to use **TreeSet** when you need to store data in sorted order.
 
 **TreeSet** provides the following CRUD APIs.
 
-| Operation | Description |
-| -------- | ------ |
-| Create | Use **add(value: T)** to add a value to this container. |
-| Read | Use **values()** to return an iterator that contains all the values in this container. |
-| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
-| Read | Use **getFirstValue()** to obtain the first value in this container. |
-| Read | Use **getLastValue()** to obtain the last value in this container. |
-| Read | Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
-| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
-| Update | Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to change a value in this container. |
-| Delete | Use **remove(value: T)** to remove a value. |
-| Delete | Use **clear()** to clear this container. |
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Create| add(value: T) | Adds a value.|
+| Read| values() | Use **values()** to return an iterator that contains all the values in this container.|
+| Read| entries() | Use **entries()** to return an iterator that contains all the elements in this container.|
+| Read| getFirstValue() | Use **getFirstValue()** to obtain the first value in this container.|
+| Read| getLastValue() | Use **getLastValue()** to obtain the last value in this container.|
+| Read| forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | Traverses and accesses the elements of the entire set.|
+| Read| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
+| Update| forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | Modify the elements of the entire set through traversal.|
+| Delete| remove(value: T) | Deletes the matched value from the set.|
+| Delete| clear() | Clears the entire set.|
 
 ## LightWeightMap
 
@@ -128,25 +133,24 @@ You are advised to use **LightWeightMap** when you need to store and access **KV
 
 **LightWeightMap** provides the following CRUD APIs.
 
-| Operation | Description |
-| -------- | ------ |
-| Create | Use **set(key: K, value: V)** to add an element (a KV pair) to this container. |
-| Read | Use **get(key: K)** to obtain the value of the specified key. |
-| Read | Use **getIndexOfKey(key: K)** to obtain the index of the specified key. |
-| Read | Use **getIndexOfValue(value: V)** to obtain the index of the first occurrence of the specified value. |
-| Read | Use **keys()** to return an iterator that contains all the keys in this container. |
-| Read | Use **values()** to return an iterator that contains all the values in this container. |
-| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
-| Read | Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**). |
-| Read | Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**). |
-| Read | Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container. |
-| Read | Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access. |
-| Update | Use **setValueAt(index: number, newValue: V)** to change the value of an element at a given position (specified by **index**). |
-| Update | Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to modify an element in this container. |
-| Delete | Use **remove(key: K)** to remove an element with the specified key. |
-| Delete | Use **removeAt(index: number)** to remove an element at a given position (specified by **index**). |
-| Delete | Use **clear()** to clear this container. |
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Create| set(key: K, value: V) | Adds a key-value pair.|
+| Read| get(key: K) | Value corresponding to the target key.|
+| Read| getIndexOfKey(key: K) | Obtains the index of a specified key in a map.|
+| Read| getIndexOfValue(value: V) | Obtains the first index of a specified value in a map.|
+| Read| keys() | Use **keys()** to return an iterator that contains all the keys in this container.|
+| Read| values() | Use **values()** to return an iterator that contains all the values in this container.|
+| Read| entries() | Use **entries()** to return an iterator that contains all the elements in this container.|
+| Read| getKeyAt(index: number) | Pointer to the function used to obtain the cookie value of a specified URL.|
+| Read| getValueAt(index: number) | Pointer to the function used to obtain the cookie value of a specified URL.|
+| Read| forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | Traverses the elements of the entire map.|
+| Read| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
+| Update| setValueAt(index: number, newValue: V) | Modifies the value of a specified index.|
+| Update| forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | Modify the elements of the entire map through traversal.|
+| Delete| remove(key: K) | Deletes the key-value pair that matches a specified key in a map.|
+| Delete| removeAt(index: number) | Removes a key-value pair with the specified key.|
+| Delete| clear() | Clears the entire map.|
 
 ## LightWeightSet
 
@@ -162,20 +166,19 @@ You are advised to use **LightWeightSet** when you need a set that has only uniq
 
 **LightWeightSet** provides the following CRUD APIs.
 
-| Operation | Description |
-| -------- | ------ |
-| Create | Use **add(obj: T)** to add a value to this container. |
-| Read | Use **getIndexOf(key: T)** to obtain the index of a key. |
-| Read | Use **values()** to return an iterator that contains all the values in this container. |
-| Read | Use **entries()** to return an iterator that contains all the elements in this container. |
-| Read | Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**). |
-| Read | Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
-| Read | Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access. |
-| Update | Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to change a value in this container. |
-| Delete | Use **remove(key: K)** to remove an element with the specified key. |
-| Delete | Use **removeAt(index: number)** to remove an element at a given position (specified by **index**). |
-| Delete | Use **clear()** to clear this container. |
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Create| add(value: T) | Adds a value.|
+| Read| getIndexOf(key: T) | Key of the value to obtain.|
+| Read| getValueAt(index: number) | Pointer to the function used to obtain the cookie value of a specified URL.|
+| Read| values() | Use **values()** to return an iterator that contains all the values in this container.|
+| Read| entries() | Use **entries()** to return an iterator that contains all the elements in this container.|
+| Read| forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | Traverses and accesses the elements of the entire set.|
+| Read| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
+| Update| forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | Modify the elements of the entire set through traversal.|
+| Delete| remove(key: K) | Deletes the matched key-value pair from the set.|
+| Delete| removeAt(index: number) | Deletes the value of a specified index from a set.|
+| Delete| clear() | Clears the entire set.|
 
 ## PlainArray
 
@@ -189,23 +192,22 @@ You are advised to use PlainArray when you need to store KV pairs whose keys are
 
 **PlainArray** provides the following CRUD APIs.
 
-| Operation | Description |
-| -------- | ------ |
-| Create | Use **add(key: number,value: T)** to add an element (a KV pair) to this container. |
-| Read | Use **get(key: number)** to obtain the value of the specified key. |
-| Read | Use **getIndexOfKey(key: number)** to obtain the index of the specified key. |
-| Read | Use **getIndexOfValue(value: T)** to obtain the index of the specified value. |
-| Read | Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**). |
-| Read | Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**). |
-| Read | Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to traverse the elements in this container. |
-| Read | Use **\[Symbol.iterator]():IterableIterator&lt;[number, T]&gt;** for data access. |
-| Update | Use **setValueAt(index:number, value: T)** to change the value of an element at a given position (specified by **index**). |
-| Update | Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to modify an element in this container. |
-| Delete | Use **remove(key: number)** to remove an element with the specified key. |
-| Delete | Use **removeAt(index: number)** to remove an element at a given position (specified by **index**). |
-| Delete | Use **removeRangeFrom(index: number, size: number)** to remove elements in a specified range. |
-| Delete | Use **clear()** to clear this container. |
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Create| add(key: number,value: T) | Adds a key-value pair.|
+| Read| get(key: number) | Value corresponding to the target key.|
+| Read| getIndexOfKey(key: number) | Obtains the index of a specified key in PlainArray.|
+| Read| getIndexOfValue(value: T) | Obtains the first index of a specified value in a PlainArray.|
+| Read| getKeyAt(index: number) | Pointer to the function used to obtain the cookie value of a specified URL.|
+| Read| getValueAt(index: number) | Pointer to the function used to obtain the cookie value of a specified URL.|
+| Read| forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | Traverses the elements of the entire PlainArray.|
+| Read| \[Symbol.iterator]():IterableIterator&lt;[number, T]&gt; | Creates an iterator for data access.|
+| Update| setValueAt(index:number, value: T) | Modifies the value of a specified index.|
+| Update| forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | Modify the elements of the entire PlainArray through traversal.|
+| Delete| remove(key: number) | Deletes the key-value pair that matches a specified key in PlainArray.|
+| Delete| removeAt(index: number) | Removes a key-value pair with the specified key.|
+| Delete| removeRangeFrom(index: number, size: number) | Deletes elements in a specified range from PlainArray.|
+| Delete| clear() | Clears the entire PlainArray.|
 
 ## Use of Nonlinear Containers
 
@@ -217,38 +219,38 @@ Refer to the code snippet below to add, access, and modify elements in **HashMap
 import { HashMap } from '@kit.ArkTS'; // Import the HashMap module.
 
 let hashMap1: HashMap<string, number> = new HashMap();
-hashMap1.set('a', 123);
+hashMap1.set ('a', 123); // Add an element whose key is'a' and value is 123.
 let hashMap2: HashMap<number, number> = new HashMap();
-hashMap2.set(4, 123); // Add an element.
-console.info(`result: ${hashMap2.hasKey(4)}`); // Check whether an element is contained.
-console.info(`result: ${hashMap1.get('a')}`); // Access an element.
+hashMap2.set (4, 123); // Add an element whose key is 4 and value is 123.
+console.info ('result: ${hashMap2.hasKey (4) }'); // Check whether an element whose key is 4 exists. Output: result: true
+console.info ('result: ${hashMap1.get ('a') }'); // Element whose access key is'a'. Output: result: 123
 
 // TreeMap
 import { TreeMap } from '@kit.ArkTS'; // Import the TreeMap module.
 
 let treeMap: TreeMap<string, number> = new TreeMap();
-treeMap.set('a', 123);
-treeMap.set('6', 356); // Add an element.
-console.info(`result: ${treeMap.get('a')}`); // Access an element.
-console.info(`result: ${treeMap.getFirstKey()}`); // Access the first element.
-console.info(`result: ${treeMap.getLastKey()}`); // Access the last element.
+treeMap.set ('a', 123); // Add an element whose key is'a' and value is 123.
+treeMap.set ('6', 356); // Add an element whose key is '6' and value is 356.
+console.info ('result: ${treeMap.get ('a') }'); // Element whose access key is'a'. Output: result: 123
+console.info ('result: ${treeMap.getFirstKey () }'); // Access the first element. Output: result: 6
+console.info ('result: ${treeMap.getLastKey () }'); // Access the last element. Output: result: a
 
 // LightWeightMap
 import { LightWeightMap } from '@kit.ArkTS'; // Import the LightWeightMap module.
 
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
-lightWeightMap.set('x', 123);
-lightWeightMap.set('8', 356); // Add an element.
-console.info(`result: ${lightWeightMap.get('a')}`); // Access an element.
-console.info(`result: ${lightWeightMap.get('x')}`); // Access an element.
-console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // Access an element.
+lightWeightMap.set ('x', 123); // Add an element whose key is'x' and value is 123.
+lightWeightMap.set ('8', 356); // Add an element whose key is '8' and value is 356.
+console.info ('result: ${lightWeightMap.get ('a') }'); // Element whose access key is'a'. Output: result: undefined
+console.info ('result: ${lightWeightMap.get ('x') }'); // Obtain the value of the element whose access key is 'x'. Output: result: 123
+console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // accesses the element whose key is '8' and obtains its index. Output: result: 0
 
 // PlainArray
 import { PlainArray } from '@kit.ArkTS'; // Import the PlainArray module.
 
 let plainArray: PlainArray<string> = new PlainArray();
-plainArray.add(1, 'sdd');
-plainArray.add(2,'sff'); // Add an element.
-console.info(`result: ${plainArray.get(1)}`); // Access an element.
-console.info(`result: ${plainArray.getKeyAt(1)}`); // Access an element.
+plainArray.add (1,'sdd'); // Add an element whose key is 1 and value is'sdd'.
+plainArray.add (2, 'sff'); // Add an element whose key is 2 and value is'sff'.
+console.info ('result: ${plainArray.get (1) }'); // Access the element whose key is 1 to obtain the value. Output: result: sdd
+console.info ('result: ${plainArray.getKeyAt (1) }'); // Access the element whose index is 1 to obtain the key. Output: result: 2
 ```

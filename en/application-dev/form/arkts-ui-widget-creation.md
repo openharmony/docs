@@ -14,10 +14,11 @@ You can create a widget in either of the following modes:
 To create an ArkTS widget in an existing project, perform the following steps:
 
 1. Right-click a module folder and choose **New** > **Service Widget**.
+
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 > **NOTE**
 >
-> For a project developed using API version 10 or later based on the stage model, you can create a dynamic or static widget from the **Service Widget** menu. After a service widget is created, you can change its type by setting **isDynamic** in the [form_config.json](arkts-ui-widget-configuration.md) configuration file. If **isDynamic** is left empty or set to **true**, the widget is a dynamic widget. If **isDynamic** is set to **false**, the widget is a static widget.
+> For a project developed using API version 10 or later based on the stage model, you can create a dynamic or static widget from the **Service Widget** menu. After a service widget is created, you can change its type by setting **isDynamic** in the [form_config.json](arkts-ui-widget-configuration.md) file. If **isDynamic** is left empty or set to **true**, the widget is a dynamic widget. If **isDynamic** is set to **false**, the widget is a static widget.
    
 2. Select a widget template based on the actual service scenario.
    

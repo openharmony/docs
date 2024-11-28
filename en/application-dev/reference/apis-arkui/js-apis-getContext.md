@@ -14,21 +14,25 @@ Obtains the **Context** object associated with an ability on the page.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type         | Mandatory | Description                            |
+| Name| Type         | Mandatory| Description                            |
 | ------ | ----------- | ---- | ------------------------------- |
 | component  | Object | No  | Ability instance. If no component is passed in or the passed-in parameter type is invalid, the default context is returned. The default context is the context obtained by tracing the call chain of the API. If this API is used in an asynchronous callback or not initially called on the current page, the context of the instance may fail to be traced. In this case, **undefined** is returned.            |
 
 **Return value**
 
-| Type | Description                            |
+| Type| Description                            |
 | ------ | ------------------------------- |
 | [Context](../../application-models/application-context-stage.md) | Context of the ability. The context type depends on the ability type. For example, if this API is called on a page of the UIAbility, the return value type is UIAbilityContext; if this API is called on a page of the ExtensionAbility, the return value type is ExtensionContext.   |
 
 **Example**
 
 Load a page by calling **windowStage.loadContent** in the UIAbility.
+
+> **NOTE**
+> 
+> To avoid confusion with instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](js-apis-arkui-UIContext.md#uicontext) API, and then call **getContext** bound to the context through the [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12) API.
 
 ```ts
 // EntryAbility.ets
@@ -86,6 +90,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
+            // You are advised to use this.getUIContext().getHostContext().
             let context : Context = getContext(this) as Context
             console.info("CacheDir:" + context.cacheDir)
           })

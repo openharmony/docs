@@ -98,14 +98,14 @@ The following outlines how to create single gestures and the event callbacks the
 
 ## Combined Gestures
 
-Combined gestures are created by combining multiple single gestures, and their types are declared with **ArkUI_GroupGestureMode** in **GroupGesture**.
+Combined gestures are created by combining multiple single gestures, and their types are declared with [ArkUI_GroupGestureMode](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_groupgesturemode) in **GroupGesture**.
 
 **ArkUI_GroupGestureMode** supports the following options: **SEQUENTIAL_GROUP** (sequential recognition), **PARALLEL_GROUP** (parallel recognition), **EXCLUSIVE_GROUP** (exclusive recognition).
 
 
 ### Sequential Recognition
 
-For combined gestures with sequential recognition, the value of **ArkUI_GroupGestureMode** is **SEQUENTIAL_GROUP**. In this gesture recognition mode, gestures are recognized in the order they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, subsequent gestures will also fail. Only the last gesture in a sequential group can respond to the **GESTURE_EVENT_ACTION_END** event.
+For combined gestures with sequential recognition, the value of **ArkUI_GroupGestureMode** is **SEQUENTIAL_GROUP**. In this gesture recognition mode, gestures are recognized in the order they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, subsequent gestures will also fail. Only the last gesture in a sequential group can respond to the [GESTURE_EVENT_ACTION_END](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_gestureeventactiontype) event.
 
 The following demonstrates how to create a combined gesture that recognizes a long press followed by a swipe in sequence:
 
@@ -547,4 +547,4 @@ To implement custom gesture judgment, adjust the example of binding gesture even
    ```
 
 
-After the aforementioned modifications, the originally effective long press gesture is intercepted. Consequently, long pressing on the **Column** node will no longer trigger the long press gesture callback.
+After the aforementioned modifications, the originally effective long press gesture is intercepted. Consequently, long pressing the **Column** node will no longer trigger the long press gesture callback.

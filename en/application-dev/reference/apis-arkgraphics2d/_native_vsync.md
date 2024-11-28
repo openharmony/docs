@@ -80,7 +80,7 @@ Defines the pointer to a VSync callback function.
 
 | Name| Description|
 | -------- | -------- |
-| timestamp | VSync timestamp.|
+| timestamp | System timestamp obtained by VSync using **CLOCK_MONOTONIC**, in nanoseconds.|
 | data | User-defined data.|
 
 
@@ -182,7 +182,7 @@ Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is cre
 
 | Name| Description|
 | -------- | -------- |
-| name | Pointer to the name that associates with an **OH_NativeVSync** instance.|
+| name | Pointer to the name that associates with the **OH_NativeVSync** instance.|
 | length | Length of the name.|
 
 **Returns**

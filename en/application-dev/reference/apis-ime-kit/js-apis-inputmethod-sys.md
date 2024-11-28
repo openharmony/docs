@@ -26,27 +26,27 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  |bundleName |  string| Yes | Bundle name of the target input method. |
-  |subtypeId |  string| No | Input method subtype. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|bundleName |  string| Yes| Bundle name of the target input method.|
+|subtypeId |  string| No| Input method subtype.|
 
 **Return value**
 
-  | Type          | Description                    |
-  | -------------- | ----------------------- |
-  | Promise\<void> | Promise that returns no value. |
+| Type          | Description                    |
+| -------------- | ----------------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -92,16 +92,16 @@ Subscribes to the soft keyboard show event of the [input method panel](js-apis-i
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description |
+| Name  | Type| Mandatory| Description|
 | -------- | ---- | ---- | ---- |
-| type     | string | Yes | Event type, which is **'imeShow'**. |
-| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes | Callback used to return the soft keyboard information of the input method panel in the fixed state. |
+| type     | string | Yes| Event type, which is **'imeShow'**.|
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes| Callback used to return the soft keyboard information of the input method panel in the fixed state. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 202      | not system application.  |
 
@@ -129,16 +129,16 @@ Subscribes to the soft keyboard hide event of the [input method panel](js-apis-i
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description |
+| Name  | Type| Mandatory| Description|
 | -------- | ---- | ---- | ---- |
-| type     | string | Yes | Event type, which is **'imeHide'**. |
-| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes | Callback used to return the soft keyboard information of the input method panel in the fixed state. |
+| type     | string | Yes| Event type, which is **'imeHide'**.|
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes| Callback used to return the soft keyboard information of the input method panel in the fixed state. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 202      | not system application.  |
 
@@ -167,10 +167,10 @@ Unsubscribes from the soft keyboard show event of the [input method panel](js-ap
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description  |
+| Name  | Type| Mandatory| Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string | Yes | Event type, which is **'imeShow'**. |
-| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | No | Callback to unregister.<br>If this parameter is not specified, this API unregisters all callbacks for the specified event type. |
+| type     | string | Yes| Event type, which is **'imeShow'**.|
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | No| Callback to unregister.<br>If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
 
 **Example**
 
@@ -194,10 +194,10 @@ Unsubscribes from the soft keyboard hide event of the [input method panel](js-ap
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description  |
+| Name  | Type| Mandatory| Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string | Yes | Event type, which is **'imeHide'**. |
-| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | No | Callback to unregister.<br>If this parameter is not specified, this API unregisters all callbacks for the specified event type. |
+| type     | string | Yes| Event type, which is **'imeHide'**.|
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | No| Callback to unregister.<br>If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
 
 **Example**
 
@@ -221,21 +221,21 @@ Checks whether the input method panel of a specified type is shown.
 
 **Parameters**
 
-| Name   | Type                                                 | Mandatory | Description              |
+| Name   | Type                                                 | Mandatory| Description              |
 | --------- | ----------------------------------------------------- | ---- | ------------------ |
-| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelinfo) | Yes  | Information about the input method panel. |
+| panelInfo | [PanelInfo](./js-apis-inputmethod-panel.md#panelinfo) | Yes  | Information about the input method panel.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether the input method panel is shown.<br>- The value **true** means that the input method panel is shown.<br>- The value **false** means that the input method panel is hidden. |
+| boolean | Whether the input method panel is shown.<br>- The value **true** means that the input method panel is shown.<br>- The value **false** means that the input method panel is hidden.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |

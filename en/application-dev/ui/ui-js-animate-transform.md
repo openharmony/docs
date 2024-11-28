@@ -1,4 +1,4 @@
-# Defining Animations with the transform Attribute
+# Animation with the transform Attribute
 
 
 Set the transform attribute for component rotation, scaling, translation, and skewing.

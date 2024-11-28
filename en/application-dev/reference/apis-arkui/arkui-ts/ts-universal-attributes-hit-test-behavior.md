@@ -12,6 +12,8 @@ hitTestBehavior(value: HitTestMode)
 
 Sets how the component behaves during hit testing.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -24,16 +26,15 @@ Sets how the component behaves during hit testing.
 
 | Name         | Value   | Description                                      |
 | ------------| ---------|----------------------------------- |
-| Default     | 0 |Both the node and its child node respond to the hit test of a touch event, but its sibling node is blocked from the hit test.|
-| Block       | 1 |The node responds to the hit test of a touch event, but its child node and sibling node are blocked from the hit test.|
-| Transparent | 2 |Both the node and its child node respond to the hit test of a touch event, and its sibling node is also considered during the hit test.|
-| None        | 3 |The node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test.|
+| Default     | 0 |Both the node and its child nodes respond to the hit test of a touch event, but its sibling nodes are blocked from the hit test. The hit test for ancestor nodes is not affected.|
+| Block       | 1 |The node responds to the hit test of a touch event, but its child nodes and sibling nodes are blocked from the hit test. Ancestor nodes are also blocked from the hit test.|
+| Transparent | 2 |Both the node and its child nodes respond to the hit test of a touch event, and its sibling nodes are also considered during the hit test. The hit test for ancestor nodes is not affected.|
+| None        | 3 |The node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test. The hit test for ancestor nodes is not affected.|
 
 
 ## Example
 
-Set **hitTestBehavior** to **HitTestMode.Transparent** for the **Text** component, which means that the inner-layer **Stack** component is also considered during hit testing. Therefore, both the **Text** and **Stack** components respond to the **onTouch** event.
-
+Set **hitTestBehavior** to **HitTestMode.Transparent** for the **Text** component, which means that the inner-layer **Stack** component is also considered during hit testing. Therefore, both the **Text** and **Stack** components respond to the **onTouch** event. 
 Set **hitTestBehavior** to **HitTestMode.Block** for the inner-layer **Stack** component, which means that its child nodes and sibling node **Button** are blocked from hit testing. Therefore, neither the inner-layer or out-layer **Button** components respond to the **onTouch** event.
 
 ```ts

@@ -16,7 +16,7 @@ This topic walks you through on how to generate a hash-based message authenticat
 
 2. Initialize the key property set.
 
-3. Use **OH_Huks_GenerateKeyItem** to generate a key. For details about the HMAC specifications, see [Key Generation](huks-key-generation-overview.md#supported-algorithms).
+3. Use [OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem) to generate a key. For details about the HMAC specifications, see [Key Generation](huks-key-generation-overview.md#supported-algorithms).
 
 You can also import a key. For details about the supported algorithms, see [Supported Algorithms](huks-key-import-overview.md#supported-algorithms).
 

@@ -34,8 +34,9 @@ Called to specify how to perform the touch test on the children of this componen
 >
 >The array of child components contains only components for which **id** is set.
 
-
 ## TouchTestInfo
+
+Provides information about the coordinate system, ID, and size of the component where the current touch point is located.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -54,6 +55,8 @@ Called to specify how to perform the touch test on the children of this componen
 
 ## TouchResult
 
+Defines the custom event dispatch result. You can influence event dispatch by returning specific results.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -65,6 +68,8 @@ Called to specify how to perform the touch test on the children of this componen
 
 ## TouchTestStrategy
 
+Describes the event dispatch strategy.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -73,9 +78,9 @@ Called to specify how to perform the touch test on the children of this componen
 
 | Name         | Description                                      |
 | ------------| ----------------------------------------- |
-| DEFAULT     | The default event dispatch mechanism for components is used.|
-| FORWARD_COMPETITION       | The event is dispatched to the specified child component, while the ArkUI touch test process is followed.|
-| FORWARD | The event is dispatched to the specified child component, and the ArkUI touch test process is not followed.|
+| DEFAULT     | Custom dispatch has no effect; the system distributes events based on the hit status of the current node.|
+| FORWARD_COMPETITION       | The specified event is forwarded to a particular child node, and the system determines whether to distribute the event to other sibling nodes.|
+| FORWARD | The specified event is forwarded to a particular child node, and the system no longer distributes the event to other sibling nodes.|
 
 ## Example
 
@@ -148,7 +153,7 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part and drag the list, the list scrolls. After you touch the button, the button responds to the **onClick** event.
+After you touch the blank area in the lower part of the list and start dragging, the list scrolls. After you touch the button, the **onClick** event is triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-competition.gif)
 
@@ -186,7 +191,7 @@ struct ListExample {
         console.info('first' + start)
         console.info('last' + end)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
@@ -221,7 +226,7 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part and drag the list, the list scrolls. After you touch the button, the button does not respond to the **onClick** event.
+After you touch the blank area in the lower part of the list and start dragging, the list scrolls. After you touch the button, the **onClick** event is not triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-forward.gif)
 
@@ -259,7 +264,7 @@ struct ListExample {
         console.info('first' + start)
         console.info('last' + end)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
@@ -289,6 +294,6 @@ struct ListExample {
   }
 }
 ```
-After you touch the blank area in the lower part and drag the list, the list does not scroll. After you touch the button, the button responds to the **onClick** event.
+After you touch the blank area in the lower part of the list and start dragging, the list does not scroll. After you touch the button, the **onClick** event is triggered.
 
 ![onchildtouchtest](figures/on-child-touch-test-default.gif)

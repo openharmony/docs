@@ -1,6 +1,6 @@
 # \@Builder装饰器：自定义构建函数
 
-ArkUI提供了一种轻量的UI元素复用机制\@Builder，该自定义组件内部UI结构固定，仅与使用方进行数据传递，开发者可以将重复使用的UI元素抽象成一个方法，在build方法里调用。
+ArkUI提供了一种轻量的UI元素复用机制\@Builder，其内部UI结构固定，仅与使用方进行数据传递，开发者可以将重复使用的UI元素抽象成一个方法，在build方法里调用。
 
 为了简化语言，我们将\@Builder装饰的函数也称为“自定义构建函数”。
 
@@ -11,15 +11,6 @@ ArkUI提供了一种轻量的UI元素复用机制\@Builder，该自定义组件�
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
-## 限制条件
-
-- \@Builder通过按引用传递的方式传入参数，才会触发动态渲染UI，并且参数只能是一个。
-
-- \@Builder如果传入的参数是两个或两个以上，不会触发动态渲染UI。
-
-- \@Builder传入的参数中同时包含按值传递和按引用传递两种方式，不会触发动态渲染UI。
-
-- \@Builder的参数必须按照对象字面量的形式，把所需要的属性一一传入，才会触发动态渲染UI。
 
 ## 装饰器使用说明
 
@@ -312,6 +303,53 @@ struct PageBuilder {
   }
 }
 ```
+
+## 限制条件
+
+1. \@Builder装饰的函数内部，不允许修改参数值，否则框架会抛出运行时错误。开发者可以在调用\@Builder的自定义组件里改变其参数。
+
+```ts
+interface Temp {
+  paramA: string;
+}
+
+@Builder function overBuilder($$: Temp) {
+  Row() {
+    Column() {
+      Button(`overBuilder === ${$$.paramA}`)
+        .onClick(() => {
+          // 错误写法，不允许在@Builder装饰的函数内部修改参数值
+          $$.paramA = 'Yes';
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+
+  build() {
+    Column() {
+      overBuilder({paramA: this.label})
+      Button('click me')
+        .onClick(() => {
+          this.label = 'ArkUI';
+        })
+    }
+  }
+}
+```
+
+2. \@Builder通过按引用传递的方式传入参数，才会触发动态渲染UI，并且参数只能是一个。
+
+3. \@Builder如果传入的参数是两个或两个以上，不会触发动态渲染UI。
+
+4. \@Builder传入的参数中同时包含按值传递和按引用传递两种方式，不会触发动态渲染UI。
+
+5. \@Builder的参数必须按照对象字面量的形式，把所需要的属性一一传入，才会触发动态渲染UI。
+
 
 ## 使用场景
 

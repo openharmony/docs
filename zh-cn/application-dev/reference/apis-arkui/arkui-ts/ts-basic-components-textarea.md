@@ -1117,8 +1117,10 @@ stopEditing(): void
 
 ## 示例
 
-### 示例1
-TextArea基本使用示例。
+### 示例1（设置与获取光标位置）
+
+该示例通过controller实现了光标位置的设置与获取。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1166,16 +1168,16 @@ struct TextAreaExample {
 
 ![textArea](figures/textArea.gif)
 
-### 示例2
-maxLength、showCounter属性接口使用示例。
+### 示例2（设置计数器）
+
+该示例通过maxLength、showCounter属性实现了计数器的功能。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = 'test'
-  @State counterVisible: boolean = false
-  @State maxNumber: number = -1
+  @State text: string = ''
   controller: TextAreaController = new TextAreaController()
 
   build() {
@@ -1191,9 +1193,12 @@ struct TextAreaExample {
         .margin(20)
         .fontSize(16)
         .fontColor('#182431')
-        .maxLength(4)
-        .showCounter(true)
         .backgroundColor('#FFFFFF')
+        .maxLength(4)
+        .showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
+          //计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
+          //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
+          //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
         .onChange((value: string) => {
           this.text = value
         })
@@ -1202,11 +1207,13 @@ struct TextAreaExample {
 }
 ```
 
-![maxLength](figures/maxLength.png)
+![TextAreaCounter](figures/TextAreaCounter.gif)
 
 
-### 示例3
-TextArea绑定自定义键盘使用示例。
+### 示例3（设置自定义键盘）
+
+该示例通过customKeyboard属性实现了自定义键盘的功能。
+
 ```ts
 // xxx.ets
 @Entry
@@ -1248,45 +1255,15 @@ struct TextAreaExample {
 
 ![customKeyboard](figures/textAreaCustomKeyboard.png)
 
-### 示例4
-TextArea计数器使用示例。
+### 示例4（设置输入法回车键类型）
+
+该示例通过enterKeyType属性实现了动态切换输入法回车键的效果。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
-
-  build() {
-    Column() {
-      TextArea({ text: this.text, controller: this.controller })
-        .placeholderFont({ size: 16, weight: 400 })
-        .width(336)
-        .height(56)
-        .maxLength(6)
-		.showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
-		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
-        //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
-        //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
-        .onChange((value: string) => {
-          this.text = value
-        })
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
-  }
-}
-```
-
-![TextAreaCounter](figures/TextAreaCounter.jpg)
-
-
-### 示例5
-enterKeyType属性接口使用示例。
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
   @State text: string = ''
   @State enterTypes: Array<EnterKeyType> =
     [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next,
@@ -1316,8 +1293,9 @@ struct TextInputExample {
 ![TextAreaEnterKeyType](figures/area_enterkeytype.gif)
 
 
-### 示例6
-示例展示设置不同wordBreak属性的TextArea样式。
+### 示例5（设置文本断行规则）
+
+该示例通过wordBreak属性实现了TextArea不同断行规则下的效果。
 
 ```ts
 // xxx.ets
@@ -1361,9 +1339,9 @@ struct TextAreaExample {
 
 ![TextAreaWordBreak](figures/TextAreaWordBreak.jpeg)
 
-### 示例7
+### 示例6（设置文本样式）
 
-该示例实现了使用lineHeight设置文本的文本行高，使用letterSpacing设置文本字符间距，使用decoration设置文本装饰线样式。
+该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -1409,13 +1387,15 @@ struct TextAreaExample {
 
 ![TextAreaDecoration](figures/textarea_decoration.png)
 
-### 示例8
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果。
+### 示例7（设置文字特性效果）
+
+该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct textArea {
+struct TextAreaExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1437,11 +1417,12 @@ struct textArea {
 ```
 ![fontFeature](figures/textAreaFontFeature.png)
 
-### 示例9
+### 示例8（自定义键盘避让）
 
-自定义键盘弹出发生避让示例
+该示例通过自定义键盘实现了键盘避让的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
@@ -1504,9 +1485,9 @@ struct TextAreaExample {
 ```
 ![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
-### 示例10
+### 示例9（设置文本自适应）
 
-该示例实现了使用minFontSize，maxFontSize及heightAdaptivePolicy设置文本自适应字号。
+该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性展示了文本自适应字号的效果。
 
 ```ts
 // xxx.ets
@@ -1545,16 +1526,17 @@ struct TextAreaExample {
 
 ![TextAreaAdaptFont](figures/textarea_adapt_font.png)
 
-### 示例11
+### 示例10（设置文本行间距）
 
-lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+该示例通过lineSpacing属性展示了文本在不同行间距下的展示效果。
 
 ```ts
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
-struct LineSpacingExample {
+struct TextAreaExample {
   build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
         Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
@@ -1582,9 +1564,9 @@ struct LineSpacingExample {
 
 ![lineSpacing](figures/TextArea_lineSpacing.png)
 
-### 示例12
+### 示例11（设置自动填充）
 
-自动填充示例
+该示例通过contentType、enableAutoFill属性实现了文本自动填充的功能。
 
 ```ts
 // xxx.ets
@@ -1618,11 +1600,12 @@ struct TextAreaExample {
 
 ![CustomTextAreaType](figures/textAreaAutoFillFeature.png)
 
-### 示例13
+### 示例12（设置折行规则）
 
-lineBreakStrategy使用示例，展示了lineBreakStrategy设置不同挡位的效果。
+该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
@@ -1659,9 +1642,9 @@ struct TextAreaExample {
 
 ![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.gif)
 
-### 示例14
+### 示例13（支持插入和删除回调）
 
-该示例展示输入框支持插入和删除回调。
+该示例通过onWillInsert、onDidInsert、onWillDelete、onDidDelete接口实现了插入和删除的功能。
 
 ```ts
 // xxx.ets
@@ -1715,9 +1698,9 @@ struct TextAreaExample {
 
 ![TextAreaInsertAndDelete](figures/TextAreaInsertAndDelete.PNG)
 
-### 示例15
+### 示例14（文本扩展自定义菜单）
 
-editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+该示例通过editMenuOptions接口实现了文本设置自定义菜单扩展项的文本内容、图标以及回调的功能。
 
 ```ts
 // xxx.ets

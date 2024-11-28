@@ -65,6 +65,7 @@ Using the NDK for UI development involves the following tasks.
 | [Building Dialog Boxes](ndk-build-pop-up-window.md)| Introduces how to build dialog boxes.|
 | [Building Custom Components](ndk-build-custom-components.md)| Describes how to build custom components with the NDK to achieve unique UI elements.|
 | [Embedding ArkTS Components](ndk-embed-arkts-components.md)| Explains how to build pages on the native side that include ArkTS components.|
+| [Integrating Accessibility Through XComponent](ndk-accessibility-xcomponent.md)| Describes how to connect third-party systems to the UI platform through **XComponent**.|
 
 
 ## Precautions

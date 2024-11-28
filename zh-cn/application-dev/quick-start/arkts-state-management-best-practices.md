@@ -196,11 +196,12 @@ struct Title {
   @ObjectLink translateObj: Translate;
   build() {
     Row() {
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       Image($r('app.media.icon'))
         .width(50)
         .height(50)
         .translate({
-          x:this.translateObj.translateX // this.translateObj.translateX used in two component both in Row
+          x:this.translateObj.translateX // this.translateObj.translateX 绑定在Image和Text组件上
         })
       Text("Title")
         .fontSize(20)
@@ -225,7 +226,7 @@ struct Page {
       .width(200)
       .height(400)
       .translate({
-        x:this.translateObj.translateX //this.translateObj.translateX used in two components both in Column
+        x:this.translateObj.translateX //this.translateObj.translateX 绑定在Stack和Button组件上
       })
       Button("move")
         .translate({
@@ -256,6 +257,7 @@ class Translate {
 struct Title {
   build() {
     Row() {
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       Image($r('app.media.icon'))
         .width(50)
         .height(50)
@@ -285,7 +287,7 @@ struct Page1 {
           })
         })
     }
-    .translate({ // the component in Column shares the same property translate
+    .translate({ // 子组件Stack和Button设置了同一个translate属性，可以统一到Column上设置
       x: this.translateObj.translateX
     })
   }
@@ -309,6 +311,8 @@ struct Page1 {
 【反例】
 
 ```ts
+import hilog from '@ohos.hilog';
+
 @Entry
 @Component
 struct Index {
@@ -341,6 +345,8 @@ struct Index {
 【正例】
 
 ```ts
+import hilog from '@ohos.hilog';
+
 @Entry
 @Component
 struct Index {

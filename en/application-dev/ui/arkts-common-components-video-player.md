@@ -208,7 +208,7 @@ The video controller is used to control video playback. For details, see [VideoC
 
 - Custom controller
 
-  To use a custom controller, disable the default controller, and then use components such as Button and \<Slider> to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
+  To use a custom controller, disable the default controller, and then use components such as **Button** and **Slider** to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
 
   ```ts
   @Entry
@@ -269,4 +269,4 @@ The video controller is used to control video playback. For details, see [VideoC
 
 ## Remarks
 
-The **Video** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Video Playback](../media/media/video-playback.md).
+The **Video** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Using AVPlayer to Play Videos](../media/media/video-playback.md).
