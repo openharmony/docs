@@ -1,7 +1,7 @@
 # FA模型应用程序包结构
 
 
-基于[FA模型](application-configuration-file-overview-fa.md)开发的应用，其应用程序包结构如下图**应用程序包结构（FA模型）**所示。开发者需要熟悉应用程序包结构相关的基本概念。
+基于[FA模型](application-configuration-file-overview-fa.md)开发的应用，其应用程序包结构如下图*应用程序包结构（FA模型）*所示。开发者需要熟悉应用程序包结构相关的基本概念。
 
 
 FA模型与Stage模型不同之处在于HAP内部文件存放位置不同，FA模型将所有的资源文件、库文件和代码文件都放在assets文件夹中，在文件夹内部进一步区分。
