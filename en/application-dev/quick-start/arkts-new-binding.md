@@ -7,7 +7,6 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 >
 >The **!!** syntax is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 
@@ -66,3 +65,70 @@ struct Star {
   }
 }
 ```
+
+
+### Two-Way Binding Between Built-in Component Parameters
+
+The **!!** operator provides a TypeScript variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync. Add this operator after the variable name, for example, **isShow!!**.
+
+What the internal state is depends on the component. For example, the **isShow** parameter of the [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) component.
+
+#### Rules of Use
+
+- Currently, **!!** supports two-way binding of the following parameters of the basic types, that is, the parameters can synchronize the current menu or popup state. In addition, **!!** supports two-way binding of variables of the basic types as well. When a variable is decorated by [\@Local](arkts-new-local.md) of V2 or [\@State](arkts-state.md) of V1, the change of the variable value triggers the UI re-render.
+
+  | Attribute                                                        | Supported Parameter| Initial API Version|
+  | ------------------------------------------------------------ | --------------- | ----------- |
+  | [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
+  | [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
+  | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
+
+- When the [\@Local](arkts-new-local.md) decorated variable bound to **!!** changes, the UI is rendered synchronously.
+
+
+#### Example
+
+Two-way binding of the **isShow** parameter of the **bindMenu** API:
+
+```ts
+@Entry
+@ComponentV2
+struct BindMenuInterface {
+  @Local isShow: boolean = false;
+
+  build() {
+    Column() {
+      Row() {
+        Text('click show Menu')
+          .bindMenu(this.isShow!!, // Two-way binding.
+            [
+              {
+                value: 'Menu1',
+                action: () => {
+                  console.info('handle Menu1 click');
+                }
+              },
+              {
+                value: 'Menu2',
+                action: () => {
+                  console.info('handle Menu2 click');
+                }
+              },
+            ])
+      }.height('50%')
+      Text("isShow: " + this.isShow).fontSize(18).fontColor(Color.Red)
+      Row() {
+        Button("Click")
+          .onClick(() => {
+            this.isShow = true;
+          })
+          .width(100)
+          .fontSize(20)
+          .margin(10)
+      }
+    }.width('100%')
+  }
+}
+```
+
+![bindMenu](figures/bindmenu_doublebind.gif)

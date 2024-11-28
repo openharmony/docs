@@ -6,7 +6,6 @@ To use the capability of the state variable decorator V2 in a custom component, 
 >
 >The \@ComponentV2 decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 
 ## Overview
@@ -32,16 +31,4 @@ Unless otherwise specified, a custom component decorated by \@ComponentV2 mainta
 
 ## Constraints
 
-When a custom component decorated by \@Component is used together with a custom component decorated by \@ComponentV2, variable is not allowed to pass in the following cases:
-
-- Normal variables (which are not decorated or updated) in a custom component decorated by \@ComponentV2 are constructed and assigned values by the parent component decorated by \@Component or \@CompoentV2.
-
-- Pass object variables (except string, number, boolean, enum, null, and undefined) decorated by \@State, \@Prop, \@Link, \@ObjectLink, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp to the variables decorated by \@Param or \@Event in a custom component decorated by \@ComponentV2.
-
-- Pass the variables decorated by \@Local, \@Param, \@Event, \@Provider, or \@Consumer of the Set, Map, Date, or Array types to the variables decorated by \@State, \@Prop, \@ObjectLink, and \@Provide in a custom component decorated by \@Component.
-
-- The variable decorated by \@Link in the custom component decorated by \@Component is constructed and assigned values by the parent component decorated by \@ComponentV2.
-
-- The variable decorated by \@State, \@Prop, \@Link, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp in a custom component decorated by \@Component, and the type of the variable is a \@ObservedV2 decorated class.
-
-- The variable decorated by \@Param, \@Local, \@Event, \@Provider(), and \@Consumer() in a custom component decorated by \@ComponentV2 and the type of the variable is a \@Observed decorated class.
+For details about how to use the custom components decorated by \@Component and \@ComponentV2 together, see [Mixing Use of Custom Components](./arkts-custom-component-mixed-scenarios.md).

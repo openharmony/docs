@@ -1632,7 +1632,7 @@ The following figure shows how \@ObjectLink works.
 
 \@Prop is used instead of \@ObjectLink. Click **Text(this.subValue.counter: ${this.subValue.counter})**, and the UI is re-rendered properly. However, when you click **Text(this.value.counter: increase 7)**, \@Prop makes a local copy of the variable, and the first **Text** of **CounterComp** is not re-rendered.
 
-**this.value.subCounter** and **this.subValue** are not the same object. Therefore, the change of **this.value.subCounter** does not change the copy object of **this.subValue**, and **Text(this.subValue.counter: ${this.subValue.counter})** is not re-rendered.
+  **this.value.subCounter** and **this.subValue** are not the same object. Therefore, the change of **this.value.subCounter** does not change the copy object of **this.subValue**, and **Text(this.subValue.counter: ${this.subValue.counter})** is not re-rendered.
 
 ```ts
 @Component
@@ -1961,7 +1961,7 @@ struct Child02 {
 }
 ```
 
-The data source notifies that the @ObjectLink re-render depends on the re-render function of the custom component to which @ObjectLink belongs, which uses an asynchronous callback. In the preceding example, **Parent** contains **Child01**, and the latter contains **Child02**. When the button is clicked, the **Child01** points to the **Child02**. In this case, the click event of **Child02** is called. The log printing order is **1** > **2** > **3** > **4** > **5**. When log 4 is printed, the click event ends, in this case, only the child component **Child02** is marked as dirty. The update of **Child02** needs to wait for the next VSYCN. And the @ObjectLink re-render depends on the re-render function of the custom component to which @ObjectLink belongs. Therefore, the value of **this.per.name** in log 4 is still **1**.
+The data source notifies that the @ObjectLink re-render depends on the re-render function of the custom component to which @ObjectLink belongs, which uses an asynchronous callback. In the preceding example, **Parent** contains **Child01**, and the latter contains **Child02**. When the button is clicked, the **Child01** points to the **Child02**. In this case, the click event  of **Child02** is called. The log printing order is **1** > **2** > **3** > **4** > **5**. When log 4 is printed, the click event ends, in this case, only the child component **Child02** is marked as dirty. The update of **Child02** needs to wait for the next VSYCN. And the @ObjectLink re-render depends on the re-render function of the custom component to which @ObjectLink belongs. Therefore, the value of **this.per.name** in log 4 is still **1**.
 
 When the **@ObjectLink @Watch('onChange02') per: Person** is executed, the re-render function of **Child02** has been executed, and @ObjectLink has been notified to be re-rendered. Therefore, the value of log 5 is **2**.
 
@@ -1992,9 +1992,9 @@ Child02({
 
 The Text component in **Child01** is not re-rendered because **this.pers.person.name** is a value with two-layer nesting.
 
-### Using a.b(this.object) to Call build() Without Triggering UI Re-render
+### Using the a.b(this.object) Format Fails to Trigger UI Re-render
 
-In the **build** method, when the variable decorated by @Observed and @ObjectLink is of the object type and this method is called through **a.b(this.object)**, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, the UI re-render is not triggered when **this.weather.temperature** in the component is changed by using a static method or using **this** to call the internal method of the component.
+In the **build** method, when the variable decorated by @Observed and @ObjectLink is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, the UI re-render is not triggered when **this.weather.temperature** in the component is changed by using a static method or using **this** to call the internal method of the component.
 
 [Incorrect Usage]
 
