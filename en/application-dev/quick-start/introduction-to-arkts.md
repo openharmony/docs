@@ -17,7 +17,7 @@ To ensure best experience for UI app development for OpenHarmony ecosystem, ArkT
 
 This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.
 
-For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-overview.md).
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/arkts-overview.md).
 
 ## The Basics
 
@@ -698,7 +698,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin); // pass the function as the parameter
 ```
 
-### Arrow Functions(Lambdas functions)
+### Arrow Functions (Lambdas Functions)
 
 A function can be defined as an arrow function, for example:
 
@@ -734,8 +734,6 @@ let z = f();
 z(); // output: 1
 z(); // output: 2
 ```
-
-In the sample above, the arrow function closure captures the `count` variable.
 
 ### Function Overload Signatures
 
@@ -1780,9 +1778,9 @@ async function test() {
 }
 ```
 
-For more details about dynamic import, see **Dynamic Import**.
+For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### Top-Level Statements
 

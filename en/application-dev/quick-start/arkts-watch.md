@@ -7,7 +7,8 @@
 > **NOTE**
 >
 > Since API version 9, this decorator is supported in ArkTS widgets.
-
+>
+> This decorator can be used in atomic services since API version 11.
 
 ## Overview
 
@@ -20,19 +21,19 @@ An application can request to be notified whenever the value of the \@Watch deco
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Mandatory. Constant string, which is quoted. Reference to a (string) => void custom component member function.|
 | Custom component variables that can be decorated   | All decorated state variables. Regular variables cannot be watched.              |
-| Order of decorators        | It is recommended that the \@State, \@Prop, \@Link, or other decorators precede the \@Watch decorator.|
-
+| Order of decorators        | Place the [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), or [\@Link](./arkts-link.md) decorator in front of the \@Watch decorator.|
+| Called when| The variable changes and is assigned a value. For details, see [Time for \@Watch to be Called](#time-for-watch-to-be-called).|
 
 ## Syntax
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| (changedPropertyName? : string) =&gt; void | This function is a member function of the custom component. **changedPropertyName** indicates the name of the watched attribute.<br>It is useful when you use the same function as a callback to several watched attributes.<br>It takes the attribute name as a string input parameter and returns nothing.|
+| (changedPropertyName?&nbsp;:&nbsp;string)&nbsp;=&gt;&nbsp;void | This function is a member function of the custom component. **changedPropertyName** indicates the name of the watched attribute.<br>It is useful when you use the same function as a callback to several watched attributes.<br>It takes the attribute name as a string input parameter and returns nothing.|
 
 
 ## Observed Changes and Behavior
 
-1. When a state variable change (including the change of the named attribute in AppStorage or LocalStorage) is observed, the corresponding \@Watch callback is triggered.
+1. \@Watch callback is triggered when a change of a state variable (including the change of a key in [AppStorage](./arkts-appstorage.md) and [LocalStorage](./arkts-localstorage.md) that are bound in a two-way manner) is observed.
 
 2. The \@Watch callback is executed synchronously after the variable change in the custom component.
 
@@ -89,7 +90,7 @@ struct CountModifier {
 }
 ```
 
-Processing steps:
+The procedure is as follows:
 
 1. The click event **Button.onClick** of the **CountModifier** custom component increases the value of **count**.
 
@@ -163,7 +164,7 @@ struct BasketModifier {
 }
 ```
 
-Processing steps:
+The procedure is as follows:
 
 1. **Button.onClick** of the **BasketModifier** component adds an item to **BasketModifier shopBasket**.
 
@@ -172,3 +173,134 @@ Processing steps:
 3. The state management framework calls the \@Watch callback **BasketViewer onBasketUpdated** to update the value of **BasketViewer TotalPurchase**.
 
 4. Because \@Link decorated shopBasket changes (a new item is added), the **ForEach** component executes the item Builder to render and build the new item. Because the @State decorated **totalPurchase** variable changes, the **Text** component is also re-rendered. Re-rendering happens asynchronously.
+
+### Time for \@Watch to be Called
+
+To show the \@Watch callback is called when the state variable changes, this example uses the \@Link and \@ObjectLink decorators in the child component to observe different state objects. You can change the state variable in the parent component and observe the calling sequence of the \@Watch callback to learn the relationship between the time for calling, value assignment, and synchronization.
+
+```ts
+@Observed
+class Task {
+  isFinished: boolean = false;
+
+  constructor(isFinished : boolean) {
+    this.isFinished = isFinished;
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State @Watch('onTaskAChanged') taskA: Task = new Task(false);
+  @State @Watch('onTaskBChanged') taskB: Task = new Task(false);
+
+  onTaskAChanged(changedPropertyName: string): void {
+    console.log(`Property of this parent component task is changed: ${changedPropertyName}`);
+  }
+
+  onTaskBChanged(changedPropertyName: string): void {
+    console.log(`Property of this parent component task is changed: ${changedPropertyName}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Parent component task A state: ${this.taskA.isFinished ? 'Finished' : 'Unfinished'}`)
+      Text(`Parent component task B state: ${this.taskB.isFinished ? 'Finished' : 'Unfinished'}`)
+      ChildComponent({ taskA: this.taskA, taskB: this.taskB })
+      Button('Switch Task State')
+        .onClick(() => {
+          this.taskB = new Task(!this.taskB.isFinished);
+          this.taskA = new Task(!this.taskA.isFinished);
+        })
+    }
+  }
+}
+
+@Component
+struct ChildComponent {
+  @ObjectLink @Watch('onObjectLinkTaskChanged') taskB: Task;
+  @Link @Watch('onLinkTaskChanged') taskA: Task;
+
+  onObjectLinkTaskChanged(changedPropertyName: string): void {
+    console.log(`Property of @ObjectLink associated task of the child component is changed: ${changedPropertyName}`);
+  }
+
+  onLinkTaskChanged(changedPropertyName: string): void {
+    console.log(`Property of @Link associated task of the child component is changed: ${changedPropertyName}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Child component task A state: ${this.taskA.isFinished ? 'Finished' : 'Unfinished'}`)
+      Text(`Child component task B state: ${this.taskB.isFinished ? 'Finished' : 'Unfinished'}`)
+    }
+  }
+}
+```
+
+The procedure is as follows:
+
+1. When you click the button to switch the task state, the parent component updates **taskB** associated with \@ObjectLink and **taskA** associated with \@Link.
+
+2. The following information is displayed in sequence in the log:
+    ```
+    Property of this parent component task is changed: taskB
+    Property of this parent component task is changed: taskA
+    Property of @Link associated task of the child component is changed: taskA
+    Property of @ObjectLink associated task of the child component is changed: taskB
+    ```
+
+3. The log shows that the calling sequence of the parent component is the same as the change sequence, but the calling sequence of \@Link and \@ObjectLink in the child component is different from the variable update sequence in the parent component. This is because the variables of the parent component are updated in real time, but \@Link and \@ObjectLink in the child component obtain the updated data at different time. The \@Link associated state is updated synchronously, therefore, state change immediately calls the \@Watch callback. The update of \@ObjectLink associated state depends on the synchronization of the parent component. The \@Watch callback is called only when the parent component updates and passes the updated variables to the child component. Therefore, the calling sequence is slightly later than that of \@Link.
+
+4. This behavior meets the expectation. The \@Watch callback is invoked based on the actual state variable change time.  Similarly, \@Prop may behave similarly to \@ObjectLink, and the time for its callback to be invoked is slightly later.
+
+### Using changedPropertyName for Different Logic Processing
+
+The following example shows how to use **changedPropertyName** in the \@Watch function for different logic processing.
+
+
+```ts
+@Entry
+@Component
+struct UsePropertyName {
+  @State @Watch('countUpdated') apple: number = 0;
+  @State @Watch('countUpdated') cabbage: number = 0;
+  @State fruit: number = 0;
+  // @Watch callback
+  countUpdated(propName: string): void {
+    if (propName == 'apple') {
+      this.fruit = this.apple;
+    }
+  }
+
+  build() {
+    Column() {
+      Text(`Number of apples: ${this.apple.toString()}`).fontSize(30)
+      Text(`Number of cabbages: ${this.cabbage.toString()}`).fontSize(30)
+      Text(`Total number of fruits: ${this.fruit.toString()}`).fontSize(30)
+      Button('Add apples')
+        .onClick(() => {
+          this.apple++;
+        })
+      Button('Add cabbages')
+        .onClick(() => {
+          this.cabbage++;
+        })
+    }
+  }
+}
+```
+
+The procedure is as follows:
+
+1. Click **Button('Add apples')**, the value of **apple** changes.
+
+2. The state management framework calls the \@Watch function **countUpdated** and the value of state variable **apple** is changed; the **if** logic condition is met, the value of **fruit** changes.
+
+3. **Text**s bound to **apple** and **fruit** are rendered again.
+
+4. Click **Button('Add cabbages')**, the value of **cabbage** changes.
+
+5. The state management framework calls the \@Watch function **countUpdated** and the value of state variable **cabbage** is changed; the **if** logic condition is not met, the value of **fruit** does not change.
+
+6. **Text** bound to **cabbage** is rendered again.
