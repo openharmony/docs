@@ -1360,7 +1360,7 @@ setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 
 设置应用内拖拽通道数据可使用的范围[ShareOptions](#shareoptions12)，目前仅支持DRAG类型数据通道的管控设置。
 
-**需要权限:** ohos.permission.MANAGER_UDMF_APP_SHARE_OPTION
+**需要权限:** ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1379,7 +1379,7 @@ setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. |
+| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 20400001     | Settings already exist.                                      |
 
@@ -1402,7 +1402,7 @@ removeAppShareOptions(intention: Intention): void
 
 清除[setAppShareOptions](#unifieddatachannelsetappshareoptions14)设置的管控信息。
 
-**需要权限:** ohos.permission.MANAGER_UDMF_APP_SHARE_OPTION
+**需要权限:** ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1420,7 +1420,7 @@ removeAppShareOptions(intention: Intention): void
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 201          | Permission denied. |
+| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
