@@ -113,7 +113,7 @@ In the following table, the options included in the square brackets ([]) are mut
 | RSA8192 | PSS | SHA256 | [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512] | 9+ |
 | RSA8192 | PSS | SHA384 | [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512] | 9+ |
 | RSA8192 | PSS | SHA512 | [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512] | 9+ |
-| RSA | PSS | MD algorithm that meets the length requirements | MGF1_ MD algorithm that meets the length requirements| 10+ |
+| RSA | PSS | MD algorithm that meets the length requirements| MGF1_ MD algorithm that meets the length requirements| 10+ |
 
 As indicated by the last row in the preceding table, you can specify the RSA key type without the key length to ensure compatibility with the key generated based on the key parameter. In this case, the signing or signature verification operation varies depending on the actual key length.
 

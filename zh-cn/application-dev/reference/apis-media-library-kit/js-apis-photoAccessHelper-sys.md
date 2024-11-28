@@ -5180,6 +5180,8 @@ async function example() {
 
 setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: string): Promise&lt;void&gt;
 
+设置视频的二阶段增强处理类型。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
@@ -5652,7 +5654,7 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| photoAsset | [PhotoAsset](#photoasset) | 是   | 需要修改云增强优先级照片的[PhotoAsset](#photoasset)。 |
+| photoAsset | [PhotoAsset](#photoasset) | 是   | 需要查询云增强配对照片的[PhotoAsset](#photoasset)。 |
 
 **错误码：**
 

@@ -155,24 +155,24 @@
     ```
 - 在同一ets文件中，未使用懒加载变量并再次导出，不支持延迟加载变量被re-export导出。
     
-    这种方式导出的变量c未在B.ets中使用，文件B.ets不触发执行。在文件A.ets中使用变量a时，该变量未初始化，抛js异常。
+    这种方式导出的变量c未在B.ets中使用，文件B.ets不触发执行。在文件A.ets中使用变量c时，该变量未初始化，抛js异常。
     ```typescript
         // A.ets
         import { c } from "./B";
         console.info(c);
 
         // B.ets
-        import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
+        import lazy { c } from "./C";    // 从"C"内获取c对象，标记为延迟加载
         export { c }
 
         // C.ets
-        function c(){};
+        let c = "c";
         export { c }
     ```
     执行结果:
     ```typescript
-        ReferenceError: a is not initaliized
-             at func_main_0 (A.ets:2:1)
+        ReferenceError: c is not initaliized
+             at func_main_0 (A.ets:2:13)
     ```
 
     ```typescript
@@ -181,17 +181,17 @@
         console.info(ns.c);
 
         // B.ets
-        import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
+        import lazy { c } from "./C";    // 从"C"内获取c对象，标记为延迟加载
         export { c }
 
         // C.ets
-        function c(){};
+        let c = "c";
         export { c }
     ```
     执行结果:
     ```typescript
     ReferenceError: module environment is undefined
-        at func_main_0 (A_ns.js:2:1)
+        at func_main_0 (A_ns.js:2:13)
     ```
 
 - 暂不支持lazy-import延迟加载kit。

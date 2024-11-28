@@ -3,8 +3,7 @@
 
 ## Overview
 
-arkXtest is an automated test framework that consists of JsUnit and UiTest.<br>JsUnit is a unit test framework that provides basic APIs for compiling test cases and generating test reports for testing system and application APIs.<br>UiTest is a UI test framework that provides the UI component search and operation capabilities through simple and easy-to-use APIs, and allows you to develop automated test scripts based on GUI operations. This document will help to familiarize you with arkXtest, describing its main functions, implementation principles, environment setup, and test script compilation and execution.
-
+arkXtest is an automated test framework that consists of JsUnit and UiTest.<br>JsUnit is a unit test framework that provides basic APIs for compiling test cases and generating test reports for testing system and application APIs.<br>UiTest is a UI test framework that provides the UI component search and operation capabilities through simple and easy-to-use APIs, and allows you to develop automated test scripts based on GUI operations.<br>This document will help to familiarize you with arkXtest, describing its main functions, implementation principles, environment setup, and test script compilation and execution. In addition, the shell commands are provided for the following features: obtaining screenshots, component trees, recording user operations, and conveniently injecting UI simulation operations, which facilitates testing and verification.
 
 ## Implementation
 
@@ -20,40 +19,30 @@ arkXtest is divided into two parts: unit test framework and UI test framework.<b
 
   ![](figures/TestFlow.PNG)
 
-
 ### UI Test Framework
 
   Figure 3 Main functions of the UI test framework
 
   ![](figures/Uitest.PNG)
 
-
-## Constraints
-
-- The features of the UI test framework are available only in OpenHarmony 3.1 Release and later versions.
-
-## Preparing the Environment
-
-### Environment Requirements
-
-- Software: DevEco Studio 3.0 or later
-
-- Hardware: PC connected to a test device, such as a <!--RP1-->development board<!--RP1End-->.
+## Compile and Execute Tests Based on ArkTS
 
 ### Setting Up the Environment
 
 [Download DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download) and set it up as instructed on the official website.
 
-## Creating and Compiling a Test Script
+### Creating and Compiling a Test Script
 
-### Creating a Test Script
+#### Creating a Test Script
 
 <!--RP2-->
 1. Open DevEco Studio and create a project, in which the **ohos** directory is where the test script is located.
+
 2. Open the **.ets** file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class. For more details, see [DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415).
+
 <!--RP2End-->
 
-### Writing a Unit Test Script
+#### Writing a Unit Test Script
 
 This section describes how to use the unit test framework to write a unit test script. For details about the functionality of the unit test framework, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
 
@@ -89,102 +78,100 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       // Check the top display ability.
-      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
+      console.info("get top ability");
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       done();
     })
   })
 }
 ```
 
-### Writing a UI Test Script
+#### Writing a UI Test Script
 
- <br>To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. For details about the available APIs, see [@ohos.UiTest](../../application-dev/reference/apis-test-kit/js-apis-uitest.md).<br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
+ <br>To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. <!--RP1-->For details about the available APIs, see [@ohos.UiTest](..reference/apis-test-kit/js-apis-uitest.md).<!--RP1End--><br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
-1. Write the demo code in the **index.ets** file.
+1. Write the demo code in the **index.ets**file.
 
-```ts
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World'
+  ```ts
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Hello World'
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Text("Next")
-          .fontSize(50)
-          .margin({top:20})
-          .fontWeight(FontWeight.Bold)
-        Text("after click")
-          .fontSize(50)
-          .margin({top:20})
-          .fontWeight(FontWeight.Bold)
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+          Text("Next")
+            .fontSize(50)
+            .margin({top:20})
+            .fontWeight(FontWeight.Bold)
+          Text("after click")
+            .fontSize(50)
+            .margin({top:20})
+            .fontWeight(FontWeight.Bold)
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
-}
-```
+  ```
 
 2. Write test code in the **.test.ets** file under **ohosTest** > **ets** > **test**.
 
-```ts
-import { describe, it, expect } from '@ohos/hypium';
-// Import the test dependencies.
-import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-import { UIAbility, Want } from '@kit.AbilityKit';
+  ```ts
+  import { describe, it, expect } from '@ohos/hypium';
+  // Import the test dependencies.
+  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+  import { UIAbility, Want } from '@kit.AbilityKit';
 
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-function sleep(time: number) {
-  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
-}
-export default function abilityTest() {
-  describe('ActsAbilityTest', () => {
-    it('testUiExample',0, async (done: Function) => {
-      console.info("uitest: TestUiExample begin");
-      //start tested ability
-      const want: Want = {
-        bundleName: bundleName,
-        abilityName: 'EntryAbility'
-      }
-      await delegator.startAbility(want);
-      await sleep(1000);
-      // Check the top display ability.
-      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
-      // UI test code
-      // Initialize the driver.
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      // Find the button on text 'Next'.
-      let button = await driver.findComponent(ON.text('Next'));
-      // Click the button.
-      await button.click();
-      await driver.delayMs(1000);
-      // Check text.
-      await driver.assertComponentExist(ON.text('after click'));
-      await driver.pressBack();
-      done();
+  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+  function sleep(time: number) {
+    return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+  }
+  export default function abilityTest() {
+    describe('ActsAbilityTest', () => {
+       it('testUiExample',0, async (done: Function) => {
+          console.info("uitest: TestUiExample begin");
+          //start tested ability
+          const want: Want = {
+             bundleName: bundleName,
+             abilityName: 'EntryAbility'
+          }
+          await delegator.startAbility(want);
+          await sleep(1000);
+          // Check the top display ability.
+          const ability: UIAbility = await delegator.getCurrentTopAbility();
+          console.info("get top ability");
+          expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+          // UI test code
+          // Initialize the driver.
+          const driver = Driver.create();
+          await driver.delayMs(1000);
+          // Find the button on text 'Next'.
+          const button = await driver.findComponent(ON.text('Next'));
+          // Click the button.
+          await button.click();
+          await driver.delayMs(1000);
+          // Check text.
+          await driver.assertComponentExist(ON.text('after click'));
+          await driver.pressBack();
+          done();
+       })
     })
-  })
-}
-```
+  }
+  ```
 
-## Running the Test Script
+### Running the Test Script
 
-### In DevEco Studio
+#### In DevEco Studio
 
-You can run a test script in DevEco Studio in any of the following modes:
+To execute the script, you need to connect to a hardware device. You can run a test script in DevEco Studio in any of the following modes:
 
 1. Test package level: All test cases in the test package are executed.
 
@@ -202,11 +189,11 @@ After the test is complete, you can view the test result in DevEco Studio, as sh
 
 **Viewing the Test Case Coverage**
 
-After the test is complete, you can view the test case coverage.
+After the test is complete, you can view the test coverage. For details, see the coverage statistics modes in [Code Test](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5).
 
-### In the CLI
+#### In the CMD
 
-Install the application test package on the test device and run the **aa** command with different execution control keywords in the CLI.
+To run the script, you need to connect to a hardware device, install the application test package on the test device, and run the **aa** command in the cmd window.
 
 > **NOTE**
 >
@@ -239,9 +226,9 @@ The framework supports multiple test case execution modes, which are triggered b
 
 **Running Commands**
 
-- Parameter configuration and commands are based on the stage model.
-- Open the CLI.
-- Run the **aa test** commands.
+> **NOTE**
+>
+>Parameter configuration and commands are based on the stage model.
 
 
 Example 1: Execute all test cases.
@@ -314,24 +301,24 @@ Example 11: Execute test cases for a specified number of times.
 
 - During test execution in the CLI, the log information similar to the following is displayed:
 
-```
-OHOS_REPORT_STATUS: class=testStop
-OHOS_REPORT_STATUS: current=1
-OHOS_REPORT_STATUS: id=JS
-OHOS_REPORT_STATUS: numtests=447
-OHOS_REPORT_STATUS: stream=
-OHOS_REPORT_STATUS: test=stop_0
-OHOS_REPORT_STATUS_CODE: 1
+ ```
+  OHOS_REPORT_STATUS: class=testStop
+  OHOS_REPORT_STATUS: current=1
+  OHOS_REPORT_STATUS: id=JS
+  OHOS_REPORT_STATUS: numtests=447
+  OHOS_REPORT_STATUS: stream=
+  OHOS_REPORT_STATUS: test=stop_0
+  OHOS_REPORT_STATUS_CODE: 1
 
-OHOS_REPORT_STATUS: class=testStop
-OHOS_REPORT_STATUS: current=1
-OHOS_REPORT_STATUS: id=JS
-OHOS_REPORT_STATUS: numtests=447
-OHOS_REPORT_STATUS: stream=
-OHOS_REPORT_STATUS: test=stop_0
-OHOS_REPORT_STATUS_CODE: 0
-OHOS_REPORT_STATUS: consuming=4
-```
+  OHOS_REPORT_STATUS: class=testStop
+  OHOS_REPORT_STATUS: current=1
+  OHOS_REPORT_STATUS: id=JS
+  OHOS_REPORT_STATUS: numtests=447
+  OHOS_REPORT_STATUS: stream=
+  OHOS_REPORT_STATUS: test=stop_0
+  OHOS_REPORT_STATUS_CODE: 0
+  OHOS_REPORT_STATUS: consuming=4
+ ```
 
 | Log Field              | Description      |
 | -------           | -------------------------|
@@ -341,19 +328,20 @@ OHOS_REPORT_STATUS: consuming=4
 | OHOS_REPORT_STATUS: numtests | Total number of test cases in the test package.|
 | OHOS_REPORT_STATUS: stream | Error information of the current test case.|
 | OHOS_REPORT_STATUS: test| Name of the current test case.|
-| OHOS_REPORT_STATUS_CODE | Execution result of the current test case.<br>**0**: pass.<br>**1**: error.<br>**2**: fail.|
+| OHOS_REPORT_STATUS_CODE | Execution result of the current test case. **0**: pass.<br>**1**: error.<br>**2**: fail.|
 | OHOS_REPORT_STATUS: consuming | Time spent in executing the current test case, in milliseconds.|
 
 - After the commands are executed, the following log information is displayed:
 
-```
-OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
-OHOS_REPORT_CODE: 0
+ ```
+  OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
+  OHOS_REPORT_CODE: 0
 
-OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
-OHOS_REPORT_STATUS: taskconsuming=16029
+  OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
+  OHOS_REPORT_STATUS: taskconsuming=16029
 
-```
+ ```
+
 | Log Field              | Description          |
 | ------------------| -------------------------|
 | run    | Total number of test cases in the current test package.|
@@ -363,139 +351,234 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 | Ignore | Number of test cases not yet executed.|
 | taskconsuming| Total time spent in executing the current test case, in milliseconds.|
 
+> **NOTE**
+>
 > When an error occurs in break-on-error mode, check the **Ignore** and interrupt information.
 
-## Recording User Operations
-### Using the Recording Feature
-> You can record the operations performed on the current page to **/data/local/tmp/layout/record.csv**. To end the recording, press **Ctrl+C**.
+## Executing Tests Based on Shell Commands
 
-```shell  
- hdc shell uitest uiRecord record
-```
-### Viewing Recording Data
-You can view the recording data in either of the following ways.
+During development, you can use shell commands to quickly perform operations such as screenshot capturing, screen recording, UI injection simulation, and component tree obtaining.
 
-#### Reading and Printing Recording Data
+> **NOTE**
+>
+> Before running commands in the CLI, make sure hdc-related environment variables have been configured.
 
-```shell  
- hdc shell uitest uiRecord read
-```
-#### Exporting the record.csv File
-```shell  
-hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool indicates the local save path, which can be customized.
-```
-- The following describes the fields in the recording data:
-```
-{
-	"ABILITY": "com.ohos.launcher.MainAbility", // Foreground application page.
-	"BUNDLE": "com.ohos.launcher", // Application.
-	"CENTER_X": "", // Reserved field.
-	"CENTER_Y": "", // Reserved field.
-	"EVENT_TYPE": "pointer", //  
-	"LENGTH": "0", // Total length.
-	"OP_TYPE": "click", // Event type. Currently, click, double-click, long-press, drag, pinch, swipe, and fling types are supported.
-	"VELO": "0.000000", // Hands-off velocity.
-	"direction.X": "0.000000",// Movement along the x-axis.
-	"direction.Y": "0.000000", // Movement along the y-axis.
-	"duration": 33885000.0, // Gesture duration.
-	"fingerList": [{
-		"LENGTH": "0", // Total length.
-		"MAX_VEL": "40000", // Maximum velocity.
-		"VELO": "0.000000", // Hands-off velocity.
-		"W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Starting component bounds.
-		"W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0", // Starting component hierarchy.
-		"W1_ID": "", // ID of the starting component.
-		"W1_Text": "", // Text of the starting component.
-		"W1_Type": "Image", // Type of the starting component.
-		"W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Ending component bounds.
-		"W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Ending component hierarchy.
-		"W2_ID": "", // ID of the ending component.
-		"W2_Text": "", // Text of the ending component.
-		"W2_Type": "Image", // Type of the ending component.
-		"X2_POSI": "47", // X coordinate of the ending point.
-		"X_POSI": "47", // X coordinate of the starting point.
-		"Y2_POSI": "301", // Y coordinate of the ending point.
-		"Y_POSI": "301", // Y coordinate of the starting point.
-		"direction.X": "0.000000", // Movement along the x-axis.
-		"direction.Y": "0.000000" // Movement along the y-axis.
-	}],
-	"fingerNumber": "1" // Number of fingers.
-}
+**Commands**
+| Command           | Parameter  |Description                             |
+|---------------|---------------------------------|---------------------------------|
+| help          | help|  Displays the commands supported by the uitest tool.           |
+| screenCap       |[-p] | Captures the current screen. This parameter is optional.<br>The file can be stored only in **/data/local/tmp/** by default.<br>The file name is in the format of **Timestamp + .png**.|
+| dumpLayout      |[-p] \<-i \| -a>|Obtains the component tree when the daemon is running.<br> **-p**: specifies the path and name of the file, which can be stored only in **/data/local/tmp/** by default. The file name is in the format of **Timestamp + .json**.<br> **-i**: disables filtering of invisible components and window merging.<br> **-a**: stores the data of the **BackgroundColor**, **Content**, **FontColor**, **FontSize** and **extraAttrs** attributes.<br> The preceding attribute data is not saved by default.<br> The **-a** and **-i** parameters cannot be used at the same time.|
+| uiRecord        | uiRecord \<record \| read>|Records UI operations.<br> **record**: starts recording the operations on the current page to **/data/local/tmp/record.csv**. To stop recording, press **Ctrl+C**.<br> **read**: Reads and prints recorded data.<br>For details about the parameters, see [Recording User Operations](#recording-user-operations).|
+| uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| Injects simulated UI operations.<br>For details about the parameters, see [Injecting Simulated UI Operations](#injecting-simulated-ui-operations).                      |
+| --version | --version|Obtains the version information about the current tool.                    |
+| start-daemon|start-daemon| Starts the uitest process.|
+
+### Example of Capturing Screenshots
+
+```bash
+# Specify the file name in the format of Timestamp + .png.
+hdc shell uitest screenCap
+# Save the file in /data/local/tmp/.
+hdc shell uitest screenCap -p /data/local/tmp/1.png
 ```
 
-## Injecting Simulated UI Operations in Shell Command Mode
-> Supported operation types: click, double-click, long press, fling, swipe, drag, text input, and key event.
+### Example of Obtaining the Component Tree
 
-| Name      | Description                                 | Value                                                                                                                                                                                                               | Example                                                                                 |
-|-------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| click       | Simulates a click.                                 | point_x (X coordinate of the click point. Mandatory.)<br> point_y (Y coordinate of the click point. Mandatory.)                                                                                                                                                                     | hdc shell uitest uiInput click point_x point_y                                      |
-| doubleClick | Simulates a double-click.                                 | point_x (X coordinate of the double-click point. Mandatory.)<br> point_y (Y coordinate of the double-click point. Mandatory.)                                                                                                                                                                     | hdc shell uitest uiInput doubleClick point_x point_y                                |
-| longClick   | Simulates a long-click.                                 | point_x (X coordinate of the long-click point. Mandatory.)<br> point_y (Y coordinate of the long-click point. Mandatory.)                                                                                                                                                                     | hdc shell uitest uiInput longClick point_x point_y                                  |
-| fling       | Simulates a fling.                                 | from_x (X coordinate of the fling start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the fling end point. Mandatory.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Unit: px. Optional.)| hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
-| swipe       | Simulates a swipe.                                 | from_x (X coordinate of the swipe start point. Mandatory.)<br> from_y (Y coordinate of the swipe start point. Mandatory.)<br> to_x (X coordinate of the swipe end point. Mandatory.)<br> to_y (Y coordinate of the swipe end point. Mandatory.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Unit: px/s. Optional.)                                              | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
-| drag        | Simulates a drag and drop.                                 | from_x (X coordinate of the drag point. Mandatory.)<br> from_y (Y coordinate of the drag point. Mandatory.)<br> to_x (X coordinate of the drop point. Mandatory.)<br> to_y (Y coordinate of the drop point. Mandatory.)<br> swipeVelocityPps_ (Drag speed. Value range: 200-40000. Default value: 600. Unit: px/s. Optional.)                                      | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
-| dircFling   | Simulates a directional fling.                             | direction (Fling direction. Value range: [0, 1, 2, 3]. Fling direction: [left, right, up, down]. Default value: 0. Optional.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Unit: px. Optional.)                                           | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
-| inputText        | Simulates text input in a text box.                            | point_x (X coordinate of the text box. Mandatory.)<br> point_y (Y coordinate of the text box. Mandatory.)<br> input (Text entered.)                                                                                                                                                  | hdc shell uitest uiInput inputText  point_x point_y text                                  |
-| keyEvent    | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.| keyID (ID of a physical key. Mandatory.)<br> keyID2 (ID of a physical key. Optional.)                                                                                                                                                                    | hdc shell uitest uiInput keyEvent keyID                                             |
+```bash
+hdc shell uitest dumpLayout -p /data/local/tmp/1.json
+```
 
-Example 1: Perform a click.
-```shell  
- hdc shell uitest uiInput click 100 100
+### Recording User Operations
+>**NOTE**
+>
+> During the recording, you should perform the next operation after the recognition result of the current operation is displayed in the command line.
+
+```bash
+# Record the operations on the current page to **/data/local/tmp/record.csv**. To stop the recording, press **Ctrl+C**.
+hdc shell uitest uiRecord record
+# Read and print record data.
+hdc shell uitest uiRecord read
 ```
-Example 2: Perform a double-click.
-```shell  
- hdc shell uitest uiInput doubleClick 100 100
+
+The following describes the fields in the recording data:
+
+ ```
+ {
+	 "ABILITY": "com.ohos.launcher.MainAbility", // Foreground application page.
+	 "BUNDLE": "com.ohos.launcher", // Application.
+	 "CENTER_X": "", // Reserved field.
+	 "CENTER_Y": "", // Reserved field.
+	 "EVENT_TYPE": "pointer", //  
+	 "LENGTH": "0", // Total length.
+	 "OP_TYPE": "click", // Event type. Currently, click, double-click, long-press, drag, pinch, swipe, and fling types are supported.
+	 "VELO": "0.000000", // Hands-off velocity.
+	 "direction.X": "0.000000",// Movement along the x-axis.
+	 "direction.Y": "0.000000", // Movement along the y-axis.
+	 "duration": 33885000.0, // Gesture duration.
+	 "fingerList": [{
+		 "LENGTH": "0", // Total length.
+		 "MAX_VEL": "40000", // Maximum velocity.
+		 "VELO": "0.000000", // Hands-off velocity.
+		 "W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Starting component bounds.
+		 "W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0", // Starting component hierarchy.
+		 "W1_ID": "", // ID of the starting component.
+		 "W1_Text": "", // Text of the starting component.
+		 "W1_Type": "Image", // Type of the starting component.
+		 "W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Ending component bounds.
+		 "W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Ending component hierarchy.
+		 "W2_ID": "", // ID of the ending component.
+		 "W2_Text": "", // Text of the ending component.
+		 "W2_Type": "Image", // Type of the ending component.
+		 "X2_POSI": "47", // X coordinate of the ending point.
+		 "X_POSI": "47", // X coordinate of the starting point.
+		 "Y2_POSI": "301", // Y coordinate of the ending point.
+		 "Y_POSI": "301", // Y coordinate of the starting point.
+		 "direction.X": "0.000000", // Movement along the x-axis.
+		 "direction.Y": "0.000000" // Movement along the y-axis.
+	 }],
+	 "fingerNumber": "1" // Number of fingers.
+ }
+ ```
+
+### Injecting Simulated UI Operations
+
+| Command  | Mandatory| Description             | 
+|------|------|-----------------|
+| help   | Yes   | Displays help information about the uiInput commands.|
+| click   | Yes   | Simulates a click event.     | 
+| doubleClick   | Yes   | Simulates a double-click event.     | 
+| longClick   | Yes   | Simulates a long-click event.    | 
+| fling   | Yes   | Simulates a fling event.  | 
+| swipe   | Yes   | Simulates a swipe event.    | 
+| drag   | Yes   | Simulates a drag event.    | 
+| dircFling   | Yes   | Simulates a directional fling event.    |
+| inputText   | Yes   | Simulates a text input event.    |
+| keyEvent   | Yes   | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.    | 
+
+
+#### Example of Running the click/doubleClick/longClick Commands
+
+| Parameter   | Mandatory| Description           |
+|---------|------|-----------------|
+| point_x | Yes     | The x-coordinate point to click.|
+| point_y | Yes      | The y-coordinate point to click.|
+
+```shell
+# Execute the click event.
+hdc shell uitest uiInput click 100 100
+
+# Execute the double-click event.
+hdc shell uitest uiInput doubleClick 100 100
+
+# Execute a long-click event.
+hdc shell uitest uiInput longClick 100 100
 ```
-Example 3: Perform a long-click.
+
+#### Example of Running the uiInput fling Command
+
+| Parameter | Mandatory            | Description              |      
+|------|------------------|-----------------|
+| from_x   | Yes               | The x-coordinate of the start point.| 
+| from_y   | Yes               | The y-coordinate of the start point.| 
+| to_x   | Yes               | The x-coordinate of the stop point.|
+| to_y   | Yes               | The y-coordinate of the stop point.|
+| swipeVelocityPps_   | No     | Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
+| stepLength_   | No| The step length. The default value is the sliding distance divided by 50.<br>  To achieve better simulation effect, you are advised to use the default values. | 
+
+
 ```shell  
- hdc shell uitest uiInput longClick 100 100
-```
-Example 4: Perform a fling.
-```shell  
+# Execute the fling event. The default value of stepLength_ is used.
 hdc shell uitest uiInput fling 10 10 200 200 500 
-```
-Example 5: Perform a swipe.
+``` 
+
+#### Example of Running the uiInput swipe/drag Command
+
+| Parameter | Mandatory            | Description              |      
+|------|------------------|-----------------|
+| from_x   | Yes               | The x-coordinate of the start point.| 
+| from_y   | Yes               | The y-coordinate of the start point.| 
+| to_x   | Yes               | The x-coordinate of the stop point.|
+| to_y   | Yes               | The y-coordinate of the stop point.|
+| swipeVelocityPps_   | No     | Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
+
 ```shell  
-hdc shell uitest uiInput swipe 10 10 200 200 500 
-```
-Example 6: Perform a drag and drop.
-```shell  
+# Execute the swipe event.
+hdc shell uitest uiInput swipe 10 10 200 200 500
+
+# Execute the drag event.
 hdc shell uitest uiInput drag 10 10 100 100 500 
 ```
-Example 7: Perform a fling-left.
+
+#### Example of Running the uiInput dircFling Command
+
+| Parameter            | Mandatory      | Description|
+|-------------------|-------------|----------|
+| direction         | No| Fling direction, which can be **0**, **1**, **2**, or **3**. The default value is **0**.<br> The value **0** indicates leftward fling, **1** indicates rightward fling, **2** indicates upward fling, and **3** indicates downward fling.   | 
+| swipeVelocityPps_ | No| Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   | 
+| stepLength        | No       | The step length.<br> The default value is the sliding distance divided by 50. To achieve better simulation effect, you are advised to use the default values.|
+
 ```shell  
+# Execute the leftward fling event.
 hdc shell uitest uiInput dircFling 0 500
-```
-Example 8: Perform a fling-right.
-```shell  
+# Execute the rightward fling event.
 hdc shell uitest uiInput dircFling 1 600
-```
-Example 9: Perform a fling-up.
-```shell  
+# Execute the upward fling event.
 hdc shell uitest uiInput dircFling 2 
-```
-Example 10: Perform a fling-down.
-```shell  
+# Execute the downward fling event.
 hdc shell uitest uiInput dircFling 3
 ```
 
-Example 11: Enter text in the text box.
+#### Example of Running the uiInput inputText Command
+
+| Parameter            | Mandatory      | Description|       
+|------|------------------|----------|
+| point_x   | Yes               | The x-coordinate of the input box.| 
+| point_y   | Yes               | The y-coordinate of the input box.|
+| text   | Yes               | Text in the input box. |
+
 ```shell  
-hdc shell uitest uiInput inputText 100 100 hello
+# Execute the input text event.
+hdc shell uitest uiInput inputText 100 100 hello 
 ```
 
-Example 12: Return to the home screen.
+#### Example of Running the uiInput keyEvent Command
+
+| Parameter            | Mandatory      | Description|                
+|------|------|----------|
+| keyID1   | Yes   | ID of a physical key, which can be **KeyCode**, **Back**, **Home**, or **Power**.<br>When the value is set to **Back**, **Home**, or **Power**, the combination keys are not supported.| 
+| keyID2    | No   | ID of a physical key.|
+| keyID3    | No   | ID of a physical key.|
+
+>**NOTE**
+>
+> A maximum of three key values can be passed. <!--RP3-->For details about the key values, see [KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->.
+
 ```shell  
+# Return to the home page.
 hdc shell uitest uiInput keyEvent Home
-```
-Example 13: Return to the previous page.
-```shell  
+# Return to the last page.
 hdc shell uitest uiInput keyEvent Back
-```
-Example 14: Perform a key combination to copy and paste text.
-```shell  
+# Perform a key combination to copy and paste text.
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
+
+### Obtaining the Version Information
+
+```bash
+hdc shell uitest --version
+```
+### Starting the Uitest Process
+
+```shell  
+hdc shell uitest start-daemon
+```
+
+>**NOTE**
+>
+> You need to enable the developer mode for the device.
+> Only the test HAP started by the **aa test** ability can call the ability of the UiTest.
+> <!--RP4-->The <!--RP4End-->[Ability Privilege Level (APL)](../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism) of the <!--RP4End-->test HAP must be **system_basic** or **normal**.
 
 <!--Del-->
 ## Examples
@@ -508,7 +591,7 @@ For details about how to use the available APIs, see [Example of Using Assertion
 #### Defining Unit Test Suites
 For details about how to define and nest the unit test suite, see [Example of Defining Test Suites](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets).
 
-#### Testing Custom Application Functions Using Unit Test
+#### Testing Custom Application Functions Using Unit Test 
 For details about how to test the custom functions in an application, see [Example of Testing Custom Application Functions](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/customExampleTest/customExample.test.ets).
 
 #### Using Data-Driven Capability of the Unit Test
@@ -532,7 +615,7 @@ For details about how to simulate the input of Chinese and English text, see [Ex
 For details about how to simulate capturing a screenshot (in a specified area), see [Example of Simulating Screenshot Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets).
 
 #### Simulating Fling Events
-For details about how to simulate a fling event(the finger leaves the screen after sliding), see [Example of Simulating Fling Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets).
+For details about how to simulate a fling event (the finger leaves the screen after sliding), see [Example of Simulating Fling Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets).
 
 #### Simulating Swipe Events
 For details about how to simulate a swipe event (the finger stays on the screen after sliding), see [Example of Simulating Swipe Events](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/SwipeEvent.test.ets).
@@ -560,7 +643,7 @@ For details about how to simulate a window size adjustment and direction specifi
 
 ### FAQs About Unit Test Cases
 
-**The logs in the test case are printed after the test case result**
+1. The logs in the test case are printed after the test case result
 
 **Problem**
 
@@ -588,7 +671,7 @@ An error occurs during the packaging of the test package, and the test framework
 
 Check whether the test package contains the **OpenHarmonyTestRunner.abc** file. If the file does not exist, rebuild and pack the file and perform the test again.
 
-**Test case execution timeout**
+Test case execution timeout
 
 **Problem**
 

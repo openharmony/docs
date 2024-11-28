@@ -32,7 +32,7 @@ Inherited from [BlurStyleOptions](#blurstyleoptions).
 
 | Name                       | Type                                               | Mandatory| Description                                                        |
 | --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | No  | Color mode used for the foreground blur.<br>Default value: **ThemeColorMode.System**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| colorMode     | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No  | Color mode used for the foreground blur.<br>Default value: **ThemeColorMode.System**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | adaptiveColor | [AdaptiveColor](#adaptivecolor10)   | No  | Adaptive color mode.<br>Default value: **AdaptiveColor.Default**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | blurOptions<sup>11+</sup> | [BlurOptions](#bluroptions11)         | No   | Grayscale blur parameters.<br>Default value: **grayScale: [0,0]**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | scale<sup>12+</sup> | number   | No  | Foreground blur scale.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>**Atomic service API**: This API can be used in atomic services since API version 12.|

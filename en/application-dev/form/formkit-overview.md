@@ -7,7 +7,7 @@ Form Kit provides an effective way of presenting information on the UI – servi
 
 Before you get started, it would be helpful if you have a basic understanding of the following concepts:
 - Widget host: an application that displays the widget content and controls the widget location. An example is the home screen in the preceding figure.
-  - Application icon: an icon for entry to an application, clicking which starts the application process. The icon content does not support interactions.
+  - Application icon: an icon for entry to an application, touching which starts the application process. The icon content does not support interactions.
   - Widget: an interactive UI in various sizes. It may provide buttons to implement different features, such as the button to [update the widget content](arkts-ui-widget-event-formextensionability.md) or [switch to an application](arkts-ui-widget-event-router.md).
 - Widget provider: an application that provides widget content to be displayed. It controls the display content, display logic, and component click events triggered on a widget.
   - FormExtensionAbility: a widget service logic module, which provides lifecycle callbacks invoked when a widget is created, destroyed, or updated.
@@ -38,13 +38,13 @@ ArkTS widgets and JS widgets have different implementation principles and featur
 
 | Category        | JS Widget   | ArkTS Widget |
 | ------------ | --------- | ---------- |
-| Development paradigm    | Web-like paradigm | Declarative paradigm |
+| Development paradigm    | Web-like paradigm| Declarative paradigm|
 | Component capability    | Supported     | Supported      |
 | Layout capability    | Supported     | Supported      |
 | Event capability    | Supported     | Supported      |
 | Custom animation  | Not supported   | Supported      |
 | Custom drawing  | Not supported   | Supported      |
-| Logic code execution | Not supported   | Supported      |
+| Logic code execution| Not supported   | Supported      |
 
 ## Related Kits
 - Ability Kit: Form Kit relies on the Extension abilities of Ability Kit for its internal implementation and interacts with Ability Kit during lifecycle scheduling.

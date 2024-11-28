@@ -118,6 +118,46 @@
 
  ![builderparam-demo2](figures/builderparam-demo2.png)
 
+## 限制条件
+
+- \@BuilderParam装饰的变量接收来自父组件使用\@Builder装饰的函数，且\@Builder函数是参数传递类型，仅支持局部\@Builder函数作为参数传递。
+
+```ts
+@Component
+struct Child {
+  header: string = '';
+  @BuilderParam content: () => void;
+  footer: string = '';
+
+  build() {
+    Column() {
+      Text(this.header)
+      this.content();
+      Text(this.footer)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @Builder
+  test() {
+    Text('Hello')
+  }
+
+  build() {
+    Column() {
+      // 错误写法，@BuilderParam需要被初始化
+      Child()
+      // 正确写法
+      Child({ content: this.test })
+    }
+  }
+}
+```
+
+- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
 ## 使用场景
 

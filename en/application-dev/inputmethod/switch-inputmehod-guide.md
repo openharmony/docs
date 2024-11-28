@@ -4,9 +4,9 @@ You can use the APIs of the input method framework service to easily switch betw
 
 > **NOTE**
 >
-> The following APIs can be called only in the current input method application.
+> 1. The following APIs can be called only in the current input method application.
 >
-> For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod-application-guide.md).
+> 2. For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod-application-guide.md).
 
 ## Switching Between Input Method Subtypes
 
@@ -48,6 +48,7 @@ You can use the APIs of the input method framework service to easily switch betw
        });
      }
    }
+   ```
 
 
    ```
@@ -56,7 +57,7 @@ You can use the APIs of the input method framework service to easily switch betw
 
 In the input method application in use, call [switchInputMethod](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchinputmethod9) with the target [InputMethodProperty](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodproperty8) to switch to another input method.
 
-```ts
+​```ts
 import { inputMethod } from '@kit.IMEKit';
 
 export class KeyboardController {
@@ -70,7 +71,7 @@ export class KeyboardController {
     }
   }
 }
-```
+   ```
 
 ## Switching Between Input Methods and Subtypes
 

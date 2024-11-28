@@ -7,9 +7,17 @@ Let's look at an example. After an image is clicked, it disappears, and a new im
 ![en-us_image_0000001599644876](figures/en-us_image_0000001599644876.gif)|![en-us_image_0000001599644877](figures/en-us_image_0000001599644877.gif)
 ---|---
 
-There are multiple methods to implement shared element transition. Choose one that is appropriate to your use case. The following outlines the basic implementation methods, ranked from most to least recommended.
+There are multiple methods for implementing the shared element transition. During real-world development, choose the method that best meets the requirements of your project.
 
-## Directly Changing the Original Container Without Creating New Containers
+Below is a comparison of the various methods available.
+
+| Implementation Method| Description| Use Case|
+| ------ | ---- | ---- |
+| Implement direct transformation without new containers| No route transitions occur, and you need to implement both expanded and collapsed states within a single component. The component hierarchy remains unchanged after the expansion.| Ideal for simple transitions with minimal overhead, such as opening a page that does not involve loading extensive data or components.|
+| Migrate components across new containers| Employ **NodeController** to migrate components between containers. Initially, adjust the translation and scale attributes of the components based on the position and size of the previous and next layouts to ensure that they align with the initial layout, avoiding visual discontinuity. Then, add animations to reset the translation and scale attributes, thereby creating a smooth, uninterrupted transition from the initial to the final layout.| Suitable for scenarios where creating new objects is resource-intensive, such as when a video live-streaming component is clicked to switch to full screen.|
+| Use geometryTransition| Drawing on system capabilities, bind the same ID for components before and after the transition and encapsulating the transition logic within an **animateTo** block. This allows the system to automatically apply a continuous transition effect.| The system synchronizes the dimensions and positions of the bound components and transitions their opacity for a smooth effect. You need to ensure that width and height animations on bound nodes do not cause abrupt changes. Suitable for scenarios where the overhead of creating new nodes is low.|
+
+## Implement Direct Transformation Without New Containers
 
 This method does not create new containers. Instead, it triggers [transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md) by adding or removing components on an existing container and pairs it with the [property animation](./arkts-attribute-animation-apis.md) of components.
 
@@ -69,7 +77,7 @@ This example implements a shared element transition for the scenario where, as a
         List() {
           // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
           if (!this.isExpand) {
-            Text ('Collapse')
+            Text('Collapse')
               .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.9) }))
           }
         
@@ -81,7 +89,7 @@ This example implements a shared element transition for the scenario where, as a
         
           // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
           if (this.isExpand) {
-            Text ('Expand')
+            Text('Expand')
               .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion() }))
           }
         }
@@ -116,7 +124,7 @@ struct Index {
     if (this.selectedIndex < 0) {
       return;
     }
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -201,7 +209,7 @@ export default struct  Post {
     .onClick(() => {
       this.selecteIndex = -1;
       this.selecteIndex = this.index;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 350,
         curve: Curve.Friction
       }, () => {
@@ -330,7 +338,7 @@ struct ExpandPage {
     .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
     .position({ x: this.AnimationProperties.positionX, y: this.AnimationProperties.positionY })
     .onClick(() => {
-      animateTo({ curve: curves.springMotion(0.6, 0.9),
+      this.getUIContext()?.animateTo({ curve: curves.springMotion(0.6, 0.9),
         onFinish: () => {
           if (this.nodeController != undefined) {
             // Execute the callback to obtain the widget component from the folded node.
@@ -469,7 +477,7 @@ function PostBuilder(data: Data) {
         Column() {
           Text('Click to expand Item ' + data.item)
             .fontSize(20)
-          Text ('Shared element transition')
+          Text('Shared element transition')
             .fontSize(12)
             .fontColor(0x909399)
         }
@@ -1342,7 +1350,7 @@ export const getMyNode = (): MyNodeController | undefined => {
 }
 ```
 
-![zh-cn_image_NavigationNodeTransfer](figures/zh-cn_image_NavigationNodeTransfer.gif)
+![en-us_image_NavigationNodeTransfer](figures/en-us_image_NavigationNodeTransfer.gif)
 
 ### Using with BindSheet
 
@@ -1427,7 +1435,7 @@ struct Index {
       if (this.targetInfo.scale != 0 && this.targetInfo.clipWidth != 0 && this.targetInfo.clipHeight != 0 && !this.isAnimating) {
         this.isAnimating = true;
         // Property animation for shared element transition animation of the modal
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 1000,
           curve: Curve.Friction,
           onFinish: () => {
@@ -1443,13 +1451,13 @@ struct Index {
           this.clipHeight = this.targetInfo.clipHeight;
           // Adjust for height differences caused by sheet height and scaling.
           this.translateY = this.targetInfo.translateY +
-            (px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
-              - px2vp(WindowUtils.navigationIndicatorHeight_px) - px2vp(WindowUtils.topAvoidAreaHeight_px));
+            (this.getUIContext().px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
+              - this.getUIContext().px2vp(WindowUtils.navigationIndicatorHeight_px) - this.getUIContext().px2vp(WindowUtils.topAvoidAreaHeight_px));
           // Adjust for corner radius differences caused by scaling.
           this.radius = this.sheetRadius / this.scaleValue
         })
         // Animate the original image from transparent to fully visible.
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 2000,
           curve: Curve.Friction,
         }, () => {
@@ -1476,15 +1484,15 @@ struct Index {
     let itemTranslateY: number = 0;
 
     if (isUseWidthScale) {
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
       itemClipWidth = '100%';
-      itemClipHeight = px2vp((itemInfo.height) / itemScale);
-      itemTranslateY = px2vp(itemInfo.top - ((vp2px(itemClipHeight) - vp2px(itemClipHeight) * itemScale) / 2));
+      itemClipHeight = this.getUIContext().px2vp((itemInfo.height) / itemScale);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - ((this.getUIContext().vp2px(itemClipHeight) - this.getUIContext().vp2px(itemClipHeight) * itemScale) / 2));
     } else {
-      itemTranslateY = px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
       itemClipHeight = '100%';
-      itemClipWidth = px2vp((itemInfo.width) / itemScale);
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
+      itemClipWidth = this.getUIContext().px2vp((itemInfo.width) / itemScale);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
     }
 
     return {
@@ -1885,7 +1893,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-![zh-cn_image_BindSheetNodeTransfer](figures/zh-cn_image_BindSheetNodeTransfer.gif)
+![en-us_image_BindSheetNodeTransfer](figures/en-us_image_BindSheetNodeTransfer.gif)
 
 ## Using geometryTransition
 
@@ -1946,7 +1954,7 @@ struct IfElseGeometryTransition {
       }
     }
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         curve: curves.springMotion()
       }, () => {
         this.isShow = !this.isShow;
@@ -1988,7 +1996,7 @@ struct Index {
 
   private onAvatarClicked(index: number): void {
     this.selectedIndex = index;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -1998,7 +2006,7 @@ struct Index {
   }
 
   private onPersonalPageBack(index: number): void {
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {

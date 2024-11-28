@@ -279,14 +279,14 @@ Column({ space: 5 }) {
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 
   Row({space: 20}) {
-    Button ('Previous')
+    Button('Previous')
       .onClick(() => {
         this.scroller.scrollPage({
           next: false
         })
       })
 
-    Button ('Next')
+    Button('Next')
       .onClick(() => {
         this.scroller.scrollPage({
           next: true

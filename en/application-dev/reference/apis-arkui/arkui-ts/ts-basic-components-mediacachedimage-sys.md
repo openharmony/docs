@@ -1,6 +1,6 @@
 # MediaCachedImage (System API)
 
-The **\<MediaCachedImage>** component, with APIs that inherit from [Image](ts-basic-components-image.md) and the added capability of loading texture resources (for system applications only), is typically used to display images in applications.
+The **MediaCachedImage** component, with APIs that inherit from [Image](ts-basic-components-image.md) and the added capability of loading texture resources (for system applications only), is typically used to display images in applications.
 
 > **NOTE**
 >

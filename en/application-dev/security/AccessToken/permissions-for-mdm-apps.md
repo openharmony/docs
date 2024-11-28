@@ -225,7 +225,7 @@ Allows a device administrator application to obtain the **Settings** application
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-Allows an enterprise MDM bundle to be installed on enterprise devices.
+Allows installation of enterprise MDM applications on enterprise devices.
 
 **Permission level**: system_core
 
@@ -238,7 +238,7 @@ Allows an enterprise MDM bundle to be installed on enterprise devices.
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-Allows automatic updates of the enterprise MDM applications on enterprise devices.
+Allows automatic updates of enterprise MDM applications on enterprise devices.
 
 **Permission level**: system_core
 
@@ -290,7 +290,7 @@ Allows an application to update the file guard policy.
 
 ## ohos.permission.FILE_GUARD_MANAGER
 
-Allows an application to scan user directories and set file extended properties.
+Allows an application to scan media and sandbox and set file extended properties.
 
 **Permission level**: system_core
 
@@ -469,3 +469,4 @@ Allows an MDM application to query security audit events.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 12
+

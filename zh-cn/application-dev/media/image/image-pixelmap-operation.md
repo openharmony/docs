@@ -67,7 +67,8 @@
 1. 完成[图片解码](image-decoding.md)，获取PixelMap位图对象。
 
 2. 复制（深拷贝）一个新的PixelMap。
-   > **说明：** 若创建新 PixelMap 时指定的 srcPixelFormat 与被复制的 PixelMap 的像素格式不一致，则新 PixelMap 的图片色彩与被复制的 PixelMap 的图片色彩会不一致。
+   > **说明：**
+   > 创建新PixelMap时，必须将`srcPixelFormat`指定为原PixelMap的像素格式，否则新PixelMap的图像会出现异常。
 
      ```ts
       /**

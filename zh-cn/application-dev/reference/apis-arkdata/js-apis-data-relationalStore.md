@@ -32,7 +32,12 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
 
-当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
+加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+
+| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+| ------- | -------------------------------- | ---- |
+| 非加密 | 加密                          | 将数据库以加密方式打开   |
+| 加密 | 非加密                          | 将数据库以非加密方式打开   |
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -128,7 +133,12 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
 
-当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
+加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+
+| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+| ------- | -------------------------------- | ---- |
+| 非加密 | 加密                          | 将数据库以加密方式打开   |
+| 加密 | 非加密                          | 将数据库以非加密方式打开   |
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -2594,7 +2604,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table    | string                                     | 是   | 指定的目标表名。                                             |
-| values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。                                 |
+| values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。             |
 | callback | AsyncCallback&lt;number&gt;                | 是   | 指定callback回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
 
 **错误码：**
@@ -2685,7 +2695,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | table  | string                                     | 是   | 指定的目标表名。             |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。|
 
 **返回值**：
 

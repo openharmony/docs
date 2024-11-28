@@ -16,9 +16,19 @@ Supported
 
 ## APIs
 
-GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: number | string, margin?: number | string})
+GridContainer(value?: GridContainerOptions)
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | GridContainerOptions | No| Options of the **GridContainer** component.|
+
+## GridContainerOptions
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -28,6 +38,8 @@ GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?:
 | margin | number \| string | No| Margin of the grid layout. This parameter cannot be set to a percentage.|
 
 ## SizeType
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------- | -------- |
@@ -40,13 +52,12 @@ GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?:
 
 ## Attributes
 
-The universal attributes and attributes of the **[<Column\>](ts-container-column.md#attributes)** component are supported.
+The universal attributes and attributes of the [Column](ts-container-column.md#attributes) component are supported.
 
 
 ## Events
 
 The universal events are supported.
-
 
 ## Example
 

@@ -364,17 +364,15 @@ Operation result. For details, see [Location_ResultCode](#location_resultcode).
 
 **LOCAION_SUCCESS**: The location function is stopped successfully.
 
-LOCATION_INVALID_PARAM 1. The input parameter is a null pointer.
+**LOCATION_INVALID_PARAM**: The input parameter is a null pointer or is different from the **requestConfig** pointer of [OH_Location_StartLocating](#oh_location_startlocating).
 
-1. The input pointer is not the same as the pointer to **requestConfig** in [OH_Location_StartLocating](#oh_location_startlocating).
+**LOCATION_PERMISSION_DENIED**: Permission verification has failed.
 
-   **LOCATION_PERMISSION_DENIED**: Permission verification has failed.
+**LOCATION_NOT_SUPPORTED**: The device does not support the location function.
 
-   **LOCATION_NOT_SUPPORTED**: The device does not support the location function.
+**LOCATION_SERVICE_UNAVAILABLE**: The location service is abnormal.
 
-   **LOCATION_SERVICE_UNAVAILABLE**: The location service is abnormal.
-
-   **LOCATION_SWITCH_OFF**: The location switch is disabled.
+**LOCATION_SWITCH_OFF**: The location switch is disabled.
 
 **Required Permissions**
 
@@ -494,13 +492,13 @@ void OH_LocationRequestConfig_SetUseScene (Location_RequestConfig * requestConfi
 **Description**
 Sets the use scene in the location request configuration.
 
-**useScene** takes precedence over other parameters in [Location_RequestConfig](#location_requestconfig).
+**useScene** takes precedence over **powerConsumptionScene** in [Location_RequestConfig](#location_requestconfig).
 
 If **useScene** is set, **powerConsumptionScene** is invalid.
 
 Otherwise, **powerConsumptionScene** takes effect.
 
-If neither of the two parameters is set, **useScene** is set to LOCATION_USE_SCENE_DAILY_LIFE_SERVICE by default,
+If neither of the two parameters is set, **useScene** is set to **LOCATION_USE_SCENE_DAILY_LIFE_SERVICE** by default,
 
 and **powerConsumptionScene** is invalid.
 

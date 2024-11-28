@@ -603,6 +603,7 @@
         - [建立应用侧与前端页面数据通道(C/C++)](web/arkweb-ndk-page-data-channel.md)
       - 管理网页交互<!--web-manage-page-interaction-->
         - [Web组件嵌套滚动](web/web-nested-scrolling.md)
+        - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -627,8 +628,9 @@
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
         - [网页中安全区域计算和避让适配](web/web-safe-area-insets.md)
       - [同层渲染](web/web-same-layer.md)
+      - [使用离线Web组件](web/web-offline-mode.md)
       - Web调试维测<!--web-debugging-->
-        - [使用Devtools工具调试前端页面](web/web-debugging-with-devtools.md)
+        - [使用DevTools工具调试前端页面](web/web-debugging-with-devtools.md)
         - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
       <!--Del-->
@@ -1320,6 +1322,7 @@
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
         - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
         - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
+        - [在Worker线程中使用相机(ArkTS)](media/camera/camera-worker.md)
         <!--Del-->
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
@@ -2256,7 +2259,6 @@
         - 导航与切换<!--navigation-and-switching-->
           - [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)
           - [NavDestination](reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)
-          - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [Stepper](reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
           - [StepperItem](reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md)
           - [Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)

@@ -167,7 +167,9 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
-### 示例1
+### 示例1（设置开关的样式）
+
+该示例通过配置ToggleType设置Toggle的勾选框样式、状态按钮样式及开关样式。
 
 ```ts
 // xxx.ets
@@ -235,7 +237,7 @@ struct ToggleExample {
 
 ![toggle](figures/toggle.gif)
 
-### 示例2
+### 示例2（自定义开关类型的样式）
 
 该示例实现了自定义设置Toggle组件Switch样式的圆形滑块半径、关闭状态的背景颜色、圆形滑块颜色、滑轨的圆角。
 
@@ -277,7 +279,7 @@ struct ToggleExample {
 
 ![toggle](figures/toggleSwitchStyle.gif)
 
-### 示例3
+### 示例3（自定义Togge样式）
 
 该示例实现了自定义Toggle样式的功能。自定义样式实现了通过按钮切换圆形颜色的功能：点击蓝圆按钮，圆形背景变蓝色，点击黄圆按钮，圆形背景变黄色。
 

@@ -18,12 +18,16 @@ Polygon(value?: {width?: string | number, height?: string | number})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| width | string \| number | No| 0 | Width.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| 0 | Height.<br>**NOTE**<br>An invalid value is handled as the default value.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value: **0**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -37,6 +41,8 @@ Sets the vertex coordinates of the polygon. An invalid value is handled as the d
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -49,9 +55,11 @@ Sets the vertex coordinates of the polygon. An invalid value is handled as the d
 
 fill(value: ResourceColor)
 
-Color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -65,9 +73,11 @@ Color of the fill area. An invalid value is handled as the default value.
 
 fillOpacity(value: number | string | Resource)
 
-Opacity of the fill area. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
+Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,6 +95,8 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -97,9 +109,11 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-Stroke dashes. An invalid value is handled as the default value.
+Sets the stroke dashes. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,6 +131,8 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -133,6 +149,8 @@ Sets the cap style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -148,6 +166,8 @@ strokeLineJoin(value: LineJoinStyle)
 Sets the join style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -167,6 +187,8 @@ The value must be greater than or equal to 1.0. If the value is in the [0, 1) ra
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -182,6 +204,8 @@ strokeOpacity(value: number | string | Resource)
 Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -199,6 +223,8 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -214,6 +240,8 @@ antiAlias(value: boolean)
 Specifies whether anti-aliasing is enabled.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

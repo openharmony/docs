@@ -768,7 +768,7 @@ struct WaterFlowDemo {
 
 
 ### 示例3（使用分组）
-该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。
+该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#waterflow)。
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'

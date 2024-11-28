@@ -19,6 +19,8 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory  | Description          |
@@ -33,7 +35,9 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name      | Description                |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Description              |
 | -------- | ---------------- |
 | Checkbox | Check box type.<br>**NOTE**<br>Since API version 11, the default style of the **Checkbox** component is changed from rounded square to circle.<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md#margin) is as follows:<br>{<br> top: '14px',<br> right: '14px',<br> bottom: '14px',<br> left: '14px'<br> }.<br>Default size:<br>{width:'20vp', height:'20vp'}|
 | Button   | Button type. The set string, if any, will be displayed inside the button.<br>The default height is 28 vp, and there is no default width.      |
@@ -57,9 +61,9 @@ Sets the background color of the component when it is turned on.
 
 **Parameters**
 
-| Name| Type                                      | Mandatory| Description                    |
-| ------ | ------------------------------------------ | ---- | ------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the component when it is turned on.<br>Default value: **'#ff007dff'**|
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the component when it is turned on.<br>Default value:<br>When **ToggleType** is set to **Switch**, the default value is **$r('sys.color.ohos_id_color_component_activated')**.<br>When **ToggleType** is set to **Checkbox**, the default value is **$r('sys.color.ohos_id_color_component_activated')**.<br>When **ToggleType** is set to **Button**, the default value is **$r('sys.color.ohos_id_color_component_activated')** with the opacity of **$r('sys.color.ohos_id_color_text_highlight_bg')**.|
 
 ### switchPointColor
 
@@ -77,7 +81,7 @@ Sets the color of the circular slider when the component is of the **Switch** ty
 
 | Name| Type                                      | Mandatory| Description                      |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the circular slider when the component is of the **Switch** type.<br>Default value: **'#ffffffff'**|
+| color  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the circular slider when the component is of the **Switch** type.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')**|
 
 ### switchStyle<sup>12+</sup>
 
@@ -85,19 +89,23 @@ switchStyle(value: SwitchStyle)
 
 Sets the style for the component of the **Switch** type. This attribute is valid only when **type** is set to **ToggleType.Switch**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type                                               | Mandatory| Description            |
-| ------ | --------------------------------------------------- | ---- | ---------------- |
-| value  | [SwitchStyle<sup>12+</sup>](#switchstyle12) | Yes | Style of the component of the **Switch** type.|
+| Name| Type                                 | Mandatory| Description            |
+| ------ | ------------------------------------- | ---- | ---------------- |
+| value  | [SwitchStyle](#switchstyle12) | Yes  | Style of the component of the **Switch** type.|
 
 ### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 
 Creates a content modifier.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -109,11 +117,15 @@ Creates a content modifier.
 
 ## SwitchStyle<sup>12+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name             | Type                                       | Mandatory| Description                                                        |
 | ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pointRadius       | number \|  [Resource](ts-types.md#resource) | No  | Radius of the circular slider when the component is of the **Switch** type.<br>**NOTE**<br>This parameter cannot be set in percentage. The value specified is used only when it is greater than or equal to 0.<br>If the vlaue is not specified or the specified one is less than 0, the radius is set using the following formula:<br>(Component height (in vp)/2) - (2 vp x Component height (in vp)/20 vp)|
+| pointRadius       | number \|  [Resource](ts-types.md#resource) | No  | Radius of the circular slider when the component is of the **Switch** type.<br>**NOTE**<br>This parameter cannot be set in percentage. The value specified is used only when it is greater than or equal to 0.<br>If the value is not specified or the specified one is less than 0, the radius is set using the following formula:<br>(Component height (in vp)/2) - (2 vp x Component height (in vp)/20 vp)|
 | unselectedColor   | [ResourceColor](ts-types.md#resourcecolor)  | No  | Background color of the component when it is of the **Switch** type and is disabled.<br>Default value: **0x337F7F7F**|
-| pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the circular slider when the component is of the **Switch** type.<br>Default value: **'#FFFFFFFF'**   |
+| pointColor        | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the circular slider when the component is of the **Switch** type.<br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')**|
 | trackBorderRadius | number \|  [Resource](ts-types.md#resource) | No  | Radius of the slider track border corners when the component is of the **Switch** type.<br>**NOTE**<br>This parameter cannot be set in percentage. If the value specified is less than 0, the radius is set using the default value formula. If the value specified is greater than half of the component height, the latter is used. In other cases, the value specified is used.<br>If the value is not specified or the specified one is less than 0, the radius is set using the default value formula.<br>Default value formula: Component height (in vp)/2|
 
 ## Events
@@ -136,16 +148,21 @@ Triggered when the toggle status changes.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isOn   | boolean | Yes  | Whether the toggle is on.<br>**true**: The toggle changes from off to on. **false**: The toggle changes from on to off.|
+| isOn   | boolean | Yes  | Whether the toggle is on.<br>**true**: The toggle is on. **false**: The toggle is off.|
 
 ## ToggleConfiguration<sup>12+</sup>
 
 You need a custom class to implement the **ContentModifier** API.
 
-| Name | Type   |    Default Value     |  Description             |
-| ------ | ------ | ------ |-------------------------------- |
-| isOn   | boolean| false  | If the **isOn** attribute is not set, the default value **false** is used.<br>If the **isOn** attribute is set, the attribute value is used here.|
-| triggerChange |Callback\<boolean>| - |Triggers toggle status changes.|
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   |    Read-Only   |    Optional   |  Description             |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| isOn   | boolean| No | No| Whether the toggle is on.<br>Default value: **false**|
+| enabled | boolean | No| No| Whether the toggle is enabled.|
+| triggerChange |Callback\<boolean>| No| No|Triggers toggle status changes.|
 
 
 ## Example
@@ -283,11 +300,11 @@ class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
     Circle({ width: 150, height: 150 })
       .fill(config.isOn ? (config.contentModifier as MySwitchStyle).selectedColor : Color.Blue)
     Row() {
-      Button ('Blue '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('Blue '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(false);
         })
-      Button ('Yellow '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+      Button('Yellow '+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
         .onClick(() => {
           config.triggerChange(true);
         })
@@ -302,7 +319,7 @@ struct Index {
     Column({ space: 50 }) {
       Toggle({ type: ToggleType.Switch})
         .enabled(true)
-        .contentModifier (new MySwitchStyle (Color.Yellow, 'light'))
+        .contentModifier(new MySwitchStyle(Color.Yellow, 'light'))
         .onChange((isOn: boolean) => {
           console.info('Switch Log:' + isOn)
         })

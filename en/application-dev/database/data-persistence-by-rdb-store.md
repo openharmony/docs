@@ -5,6 +5,11 @@
 
 A relational database (RDB) store is used to store data in complex relational models, such as the student information including names, student IDs, and scores of each subject, or employee information including names, employee IDs, and positions, based on SQLite. The data is more complex than key-value (KV) pairs due to strict mappings. You can use **RelationalStore** to implement persistence of this type of data.
 
+Querying data from a large amount of data may take time or even cause application suspension. In this case, you can perform batch operations. For details, see [Batch Database Operations](../arkts-utils/batch-database-operations-guide.md). Moreover, observe the following:
+- The number of data records to be queried at a time should not exceed 5000.
+- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if there is a large amount of data needs to be queried.
+- Keep concatenated SQL statements as concise as possible.
+- Query data in batches.
 
 ## Basic Concepts
 
@@ -174,7 +179,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    > 
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
-2. Use **insert()** to insert data to the RDB store. <br>Example:
+2. Call **insert()** to insert data to the RDB store. <br>Example:
    
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
@@ -224,7 +229,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data. <br>Example:
+   Call **update()** to modify data and **delete()** to delete data. <br>Example:
 
    ```ts
    let value6 = 'Rose';
@@ -284,7 +289,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
+   Call **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
 
    ```ts
    let predicates2 = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -315,9 +320,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    >
    > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
-5. Back up the database in the same directory. 
-
-   Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
+5. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
 
    Example: Perform manual backup of an RDB store.
 
@@ -334,9 +337,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    }
    ```
 
-6. Restore data from the database backup. 
-
-   You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
+6. Restore data from the database backup. <br>You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
 
    Example: Call [restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore) to restore an RDB store from the data that is manually backed up.
 
@@ -354,7 +355,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 7. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
+   Call **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
 
    Stage model:
 
@@ -379,3 +380,4 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
+<!--no_check-->

@@ -11,7 +11,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     import { hilog } from '@kit.PerformanceAnalysisKit';
     ```
 
-2. In **EntryFormAbility.ets**, implement the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) lifecycle APIs, including **onAddForm**, whose **want** parameter can be used to obtain the widget information through [FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam).
+2. In **EntryFormAbility.ets**, implement the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) lifecycle API, including **onAddForm**, in which [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) can be used to obtain the widget information through [FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam).
    
       ```ts
       const TAG: string = 'EntryFormAbility';
@@ -20,6 +20,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
       export default class EntryFormAbility extends FormExtensionAbility {
         onAddForm(want: Want): formBindingData.FormBindingData {
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
+          hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
     
           // ...
           // Called when the widget is created. The widget provider should return the widget data binding class.

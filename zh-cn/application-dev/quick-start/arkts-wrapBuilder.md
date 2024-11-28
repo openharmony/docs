@@ -171,35 +171,6 @@ struct Parent{
 
 ## 错误场景
 
-### wrapBuilder必须传入被@Builder修饰的全局函数。
-
-```ts
-function MyBuilder() {
-
-}
-
-const globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        globalBuilder.builder(this.message, 30)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
 ### 重复定义wrapBuilder失效
 
 通过wrapBuilder(MyBuilderFirst)初始化定义builderObj之后，再次对builderObj进行赋值wrapBuilder(MyBuilderSecond)会不起作用，只生效第一次定义的wrapBuilder(MyBuilderFirst)。
