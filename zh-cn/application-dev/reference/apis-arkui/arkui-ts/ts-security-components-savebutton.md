@@ -90,6 +90,7 @@ SaveButton(options:SaveButtonOptions)
 | EXPORT_TO_GALLERY<sup>12+</sup> | 9 | 保存按钮的文字描述为“导出”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | 保存按钮的文字描述为“快速保存图片”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | RESAVE_TO_GALLERY<sup>12+</sup> | 11 | 保存按钮的文字描述为“重新保存”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| SAVE_ALL<sup>16+</sup> | 12 | 保存按钮的文字描述为“全部保存”。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## SaveButtonOnClickResult枚举说明
 
