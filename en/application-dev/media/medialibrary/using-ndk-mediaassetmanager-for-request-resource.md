@@ -7,6 +7,7 @@ The procedure is as follows:
 1. Create a **MediaAssetManager** instance.
 2. Set parameters for requesting an image and request the image.
 3. (Optional) Cancel the request.
+
 ## How to Develop
 
 Add the dynamic library in the CMake script.
@@ -21,10 +22,10 @@ For details about the APIs, see [MediaAssetManager API](../../reference/apis-med
 > **NOTE**<br>
 > The application must have the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Before You Start](photoAccessHelper-preparation.md).
 
-1. Use **OH_MediaAssetManager_Create()** to create a **MediaAssetManager** instance.
+1. Call **OH_MediaAssetManager_Create()** to create a **MediaAssetManager** instance.
 2. Set the URI of the image to request, destination URI, asset requesting policy, and callback used to return the result.
-3. Use **OH_MediaAssetManager_RequestImageForPath()** to copy the image to the target URI.
-4. (Optional) Use **OH_MediaAssetManager_CancelRequest()** to cancel the request.  
+3. Call **OH_MediaAssetManager_RequestImageForPath()** to copy the image to the target URI.
+4. (Optional) Call **OH_MediaAssetManager_CancelRequest()** to cancel the request.
 
 ## Example
 
