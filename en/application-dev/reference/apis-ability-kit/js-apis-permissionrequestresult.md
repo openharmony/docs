@@ -4,24 +4,25 @@ The **PermissionRequestResult** module defines the result of a permission reques
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module can be used only in the stage model.
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Security.AccessToken
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| No| Permissions requested.<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
-| authResults | Array&lt;number&gt; | Yes| No| Result of the permission request.<br>- **-1**: The permission is not authorized and must be set in **Settings** without displaying a dialog box.<br>- **0**: The permission is authorized.<br>- **2**: The permission is not authorized due to an invalid request. The possible causes are as follows:<br>  - The permission is not declared in the configuration file.<br>  - The permission name is invalid.<br>  - Certain conditions are not met when the permission is applied. For details, see [ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location).<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
-| dialogShownResults<sup>12+</sup> | Array&lt;boolean&gt; | Yes| Yes| Whether to display a dialog box.<br>The value **true** means to display a dialog box;<br>the value **false** means the opposite.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| authResults | Array&lt;number&gt; | Yes| No| Result of the permission request.<br>- **-1**: The permission is not granted. If **dialogShownResults** is **true**, it is the first time that the user requests the permission. If **dialogShownResults** is **false**, the permission has been set and no dialog box is displayed. The user can modify the permission settings in **Settings**.<br>- **0**: The permission is granted.<br>- **2**: The permission is not granted due to an invalid request. The possible causes are as follows:<br>- The permission is not declared in the configuration file.<br>- The permission name is invalid.<br>- Conditions for requesting the permission are not met. For details, see [ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location).<br> **Atomic service API**: This API can be used in atomic services since API version 11. |
+| dialogShownResults<sup>12+</sup> | Array&lt;boolean&gt; | Yes| Yes| Whether to display a dialog box.<br>The value **true** means to display a dialog box; the value **false** means the opposite.<br> **Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## Usage
 
 The permission request result is obtained through an **atManager** instance.
 
 **Example**
+
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
