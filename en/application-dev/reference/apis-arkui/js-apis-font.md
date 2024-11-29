@@ -112,7 +112,7 @@ struct FontExample {
 >
 > To use custom fonts globally in an application, register the fonts through the [windowStage.loadContent](js-apis-window.md#loadcontent9) API in the [onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback in the **EntryAbility.ets** file.
 >
-> In an HSP project, avoid using a relative path to register a custom font. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md#accessing-resources-in-an-hsp-through-r).
+> In an HSP project, avoid using a relative path to register a custom font.
 
 ## font.getSystemFontList<sup>10+</sup>
 
@@ -357,4 +357,3 @@ struct FontExample {
   }
 }
 ```
-<!--no_check-->
