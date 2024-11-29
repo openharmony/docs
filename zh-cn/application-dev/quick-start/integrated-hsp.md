@@ -9,11 +9,10 @@
 
 ## 约束限制
 - 集成态HSP只支持[Stage模型](application-package-structure-stage.md)。
-- 集成态HSP需要API12及以上版本，使用[标准化的OHMUrl格式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-build-profile-V13#section511142752919)。
+- 集成态HSP需要API12及以上版本，需要在工程级的[build-profile.json5文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-build-profile-V13#section511142752919)中，将useNormalizedOHMUrl字段设置为true。
 
 ## 开发使用说明
-1. 创建方-集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
-
+1. 创建方-集成态HSP-工程配置：集成态HSP需要在工程级的build-profile.json5文件中，将useNormalizedOHMUrl字段设置为true。
     ```json
     // created_party_project/build-profile.json5
     {
@@ -67,8 +66,7 @@
       }
     ```
 
-6. 使用方-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
-
+6. 使用方-工程配置：集成态HSP需要在工程级的build-profile.json5文件中，将useNormalizedOHMUrl字段设置为true。
     ```json
     // user_project/build-profile.json5
     {
