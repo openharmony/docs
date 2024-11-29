@@ -171,17 +171,22 @@ onOffsetChange(callback: Callback\<number>)
 @Component
 struct RefreshExample {
   @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
   build() {
     Column() {
-      Refresh({ refreshing: $$this.isRefreshing}) {
+      Refresh({ refreshing: $$this.isRefreshing }) {
         List() {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
         }
@@ -217,7 +222,7 @@ struct RefreshExample {
 
 ### 示例2（设置刷新区域显示文本）
 
-通过promptText参数设置刷新区域显示文本。
+通过[promptText](#refreshoptions对象说明)参数设置刷新区域显示文本。
 
 ```ts
 // xxx.ets
@@ -226,17 +231,22 @@ struct RefreshExample {
 struct RefreshExample {
   @State isRefreshing: boolean = false
   @State promptText: string = "Refreshing..."
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
   build() {
     Column() {
-      Refresh({ refreshing: $$this.isRefreshing, promptText: this.promptText}) {
+      Refresh({ refreshing: $$this.isRefreshing, promptText: this.promptText }) {
         List() {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
         }
@@ -272,7 +282,7 @@ struct RefreshExample {
 
 ### 示例3（自定义刷新区域显示内容-builder）
 
-通过builder参数自定义刷新区域显示内容。
+通过[builder](#refreshoptions对象说明)参数自定义刷新区域显示内容。
 
 ```ts
 // xxx.ets
@@ -280,34 +290,38 @@ struct RefreshExample {
 @Component
 struct RefreshExample {
   @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+
   @Builder
-  customRefreshComponent()
-  {
-    Stack()
-    {
-      Row()
-      {
+  customRefreshComponent() {
+    Stack() {
+      Row() {
         LoadingProgress().height(32)
-        Text("Refreshing...").fontSize(16).margin({left:20})
+        Text("Refreshing...").fontSize(16).margin({ left: 20 })
       }
       .alignItems(VerticalAlign.Center)
     }
     .align(Alignment.Center)
     .clip(true)
-    .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+    // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+    .constraintSize({ minHeight: 32 })
     .width("100%")
   }
 
   build() {
     Column() {
-      Refresh({ refreshing: $$this.isRefreshing,builder:this.customRefreshComponent()}) {
+      Refresh({ refreshing: $$this.isRefreshing, builder: this.customRefreshComponent() }) {
         List() {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
         }
@@ -340,9 +354,10 @@ struct RefreshExample {
 
 ### 示例4（自定义刷新区域显示内容-refreshingContent）
 
-通过refreshingContent参数自定义刷新区域显示内容。
+通过[refreshingContent](#refreshoptions对象说明)参数自定义刷新区域显示内容。
 
 ```ts
+// xxx.ets
 import { ComponentContent } from '@ohos.arkui.node';
 
 class Params {
@@ -354,17 +369,18 @@ class Params {
 }
 
 @Builder
-function customRefreshingContent(params:Params) {
+function customRefreshingContent(params: Params) {
   Stack() {
     Row() {
       LoadingProgress().height(32)
-      Text("refreshStatus: "+params.refreshStatus).fontSize(16).margin({left:20})
+      Text("refreshStatus: " + params.refreshStatus).fontSize(16).margin({ left: 20 })
     }
     .alignItems(VerticalAlign.Center)
   }
   .align(Alignment.Center)
   .clip(true)
-  .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  .constraintSize({ minHeight: 32 })
   .width("100%")
 }
 
@@ -372,25 +388,30 @@ function customRefreshingContent(params:Params) {
 @Component
 struct RefreshExample {
   @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
   @State refreshStatus: RefreshStatus = RefreshStatus.Inactive
   private contentNode?: ComponentContent<Object> = undefined
   private params: Params = new Params(RefreshStatus.Inactive)
 
-  aboutToAppear():void {
+  aboutToAppear(): void {
     let uiContext = this.getUIContext()
     this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), this.params)
   }
 
   build() {
     Column() {
-      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
+      Refresh({ refreshing: $$this.isRefreshing, refreshingContent: this.contentNode }) {
         List() {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
         }
@@ -408,7 +429,8 @@ struct RefreshExample {
       .onStateChange((refreshStatus: RefreshStatus) => {
         this.refreshStatus = refreshStatus
         this.params.refreshStatus = refreshStatus
-        this.contentNode?.update(this.params) // 更新自定义组件内容
+        // 更新自定义组件内容
+        this.contentNode?.update(this.params)
         console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
       .onRefreshing(() => {
@@ -428,6 +450,7 @@ struct RefreshExample {
 通过[pullDownRatio](#pulldownratio12)属性和[onOffsetChange](#onoffsetchange12)事件实现最大下拉距离。
 
 ```ts
+// xxx.ets
 import { ComponentContent } from '@ohos.arkui.node';
 
 @Builder
@@ -440,7 +463,8 @@ function customRefreshingContent() {
   }
   .align(Alignment.Center)
   .clip(true)
-  .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  .constraintSize({ minHeight: 32 })
   .width("100%")
 }
 
@@ -448,25 +472,30 @@ function customRefreshingContent() {
 @Component
 struct RefreshExample {
   @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
   @State maxRefreshingHeight: number = 100.0
   @State ratio: number = 1
   private contentNode?: ComponentContent<Object> = undefined
 
-  aboutToAppear():void {
+  aboutToAppear(): void {
     let uiContext = this.getUIContext();
     this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent))
   }
 
   build() {
     Column() {
-      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
+      Refresh({ refreshing: $$this.isRefreshing, refreshingContent: this.contentNode }) {
         List() {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
         }
@@ -482,8 +511,9 @@ struct RefreshExample {
       .pullDownRatio(this.ratio)
       .pullToRefresh(true)
       .refreshOffset(64)
-      .onOffsetChange((offset: number)=>{
-          this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3) // 越接近最大距离，下拉跟手系数越小
+      .onOffsetChange((offset: number) => {
+        // 越接近最大距离，下拉跟手系数越小
+        this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3)
       })
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
@@ -503,7 +533,7 @@ struct RefreshExample {
 
 ### 示例6（实现下拉刷新上拉加载更多）
 
-Refresh组件与List组件组合实现下拉刷新上拉加载更多效果。
+[Refresh](#refresh)组件与[List](ts-container-list.md)组件组合实现下拉刷新上拉加载更多效果。
 
 ```ts
 // xxx.ets
