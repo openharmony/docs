@@ -333,7 +333,11 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 
 **返回：**
 
-音频数据回调结果。
+函数返回值[OH_AudioData_Callback_Result](#oh_audiodata_callback_result)：
+
+AUDIO_DATA_CALLBACK_RESULT_INVALID：音频数据回调结果无效，且音频数据不播放。
+
+AUDIO_DATA_CALLBACK_RESULT_VALID：音频数据回调结果有效，将播放音频数据。
 
 **参见：**
 
@@ -525,8 +529,8 @@ enum OH_AudioData_Callback_Result
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIO_DATA_CALLBACK_RESULT_INVALID  | 表示音频数据回调结果无效。   | 
-| AUDIO_DATA_CALLBACK_RESULT_VALID  | 表示音频数据回调结果有效。   | 
+| AUDIO_DATA_CALLBACK_RESULT_INVALID  | 表示音频数据回调结果无效，且音频数据不播放。   | 
+| AUDIO_DATA_CALLBACK_RESULT_VALID  | 表示音频数据回调结果有效，将播放音频数据。   | 
 
 
 ### OH_AudioDevice_ChangeType

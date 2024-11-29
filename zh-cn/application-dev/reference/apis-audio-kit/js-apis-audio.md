@@ -5374,9 +5374,9 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 
 **返回值：** 
 
-| 类型                                                           | 说明 |
-|--------------------------------------------------------------| ------- |
-| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID ，表示数据有效并将被播放；如果返回 AudioDataCallbackResult.INVALID ，表示数据无效并将不会被播放。|
+| 类型                                                           | 说明                                                                                                          |
+|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID：表示数据有效，将播放音频数据；如果返回 AudioDataCallbackResult.INVALID：表示数据无效，且音频数据不播放。 |
 
 ## AudioRenderer<sup>8+</sup>
 
