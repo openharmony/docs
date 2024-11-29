@@ -11,7 +11,7 @@
 
 ## Overview
 
-\@Track enables property-level UI updates. When a property of a class object is decorated by \@Track, changes to the property will trigger only updates to the UI associated with the property. Properties not decorated by \@Track cannot be used in the UI.
+\@Track enables property-level UI re-renders. When a class object is a state variable, changes to the \@Track decorated property will only trigger re-renders to the UI associated with the property. Properties not decorated by \@Track cannot be used in the UI, otherwise a runtime error will be reported.
 
 
 ## Decorator Description
@@ -20,6 +20,8 @@
 | ------------------ | -------------------- |
 | Decorator parameters  | None.|
 | Allowed variable types| Non-static properties of class objects.|
+
+
 
 ## Observed Changes and Behavior
 
@@ -66,20 +68,20 @@ struct AddLog {
   build() {
     Row() {
       Column() {
-        Text(this.logTrack.str1) // UINode1
+        Text(this.logTrack.str1) // Text1
           .fontSize(this.isRender(1))
           .fontWeight(FontWeight.Bold)
-        Text(this.logTrack.str2) // UINode2
+        Text(this.logTrack.str2) // Text2
           .fontSize(this.isRender(2))
           .fontWeight(FontWeight.Bold)
         Button('change logTrack.str1')
           .onClick(() => {
             this.logTrack.str1 = 'Bye';
           })
-        Text(this.logNotTrack.str1) // UINode3
+        Text(this.logNotTrack.str1) // Text3
           .fontSize(this.isRender(3))
           .fontWeight(FontWeight.Bold)
-        Text(this.logNotTrack.str2) // UINode4
+        Text(this.logNotTrack.str2) // Text4
           .fontSize(this.isRender(4))
           .fontWeight(FontWeight.Bold)
         Button('change logNotTrack.str1')
@@ -96,16 +98,16 @@ struct AddLog {
 
 In the preceding example:
 
-1. All attributes in the **LogTrack** class are decorated by @Track. After the **change logTrack.str1** button is clicked, **UINode1** is re-rendered, but **UINode2** is not, as indicated by that only one log record is generated.
-```ts
-Text 1 is rendered
-```
+1. All attributes in the **LogTrack** class are decorated by @Track. After the **change logTrack.str1** button is clicked, **Text1** is re-rendered, but **Text2** is not, as indicated by that only one log record is generated.
+    ```ts
+    Text 1 is rendered
+    ```
 
-2. None of the attributes in the **logNotTrack** class is decorated by @Track. After the **change logTrack.str1** button is clicked, both **UINode3** and **UINode4** are re-rendered, as indicated by that two log records are generated. Redundant re-renders occur.
-```ts
-Text 3 is rendered
-Text 4 is rendered
-```
+2. None of the attributes in the **logNotTrack** class is decorated by @Track. After the **change logTrack.str1** button is clicked, both **Text3** and **Text4** are re-rendered, as indicated by that two log records are generated. Redundant re-renders occur.
+    ```ts
+    Text 3 is rendered
+    Text 4 is rendered
+    ```
 
 ## Constraints
 
@@ -114,7 +116,7 @@ Text 4 is rendered
 - Whenever possible, avoid any combination of class objects that contain \@Track and those that do not in, for example, union types and class inheritance.
 
 
-## Usage Scenarios
+## Use Scenarios
 
 ### \@Track and Custom Component Updates
 
@@ -152,7 +154,7 @@ struct AddLog {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            // The properties without @Track can be used in the event handler.
+            // Properties that are not decorated by @Track can be used in click events.
             console.log('owner: ' + this.log.owner +
               ' id: ' + this.log.id +
               ' time: ' + this.log.time +

@@ -107,7 +107,7 @@
       - [MVVM (V2)](arkts-mvvm-V2.md)
     - Mixed Use and Migration Guide for V1 and V2
       - [Mixing Use of Custom Components](arkts-custom-component-mixed-scenarios.md)
-      - [Migrating Application from V1 to V2](arkts-v1-v2-migration.md)
+      - [Migrating Applications from V1 to V2](arkts-v1-v2-migration.md)
   - Rendering Control
       - [Rendering Control Overview](arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)

@@ -48,6 +48,7 @@ Custom components have variables. A variable must be decorated by a decorator wh
     }
   }
 
+  @Entry
   @Component
   struct Parent {
     build() {
@@ -63,9 +64,14 @@ Custom components have variables. A variable must be decorated by a decorator wh
 
 - Local initialization: a process where a value is assigned to a variable as its default value in the variable declaration. Example: \@State count: number = 0.
 
-## State Management (V1 Stable Version)
+>**NOTE**
+>
+>Currently, the state management can be used only in the UI main thread and cannot be used in subthreads, Worker, or TaskPool.
 
-State management V1 provides a complete set of features for you to manage state in your application.
+
+## State Management (V1)
+
+You can develop applications in the state management of V1.
 
 ### Decorator Overview
 
@@ -91,7 +97,7 @@ The following figure illustrates the decorators. For details, see [Component Sta
 ![en-us_image_0000001502704640](figures/en-us_image_0000001502704640.png)
 
 
-In the preceding figure, the decorators in the Components area are used for state management at the component level, while others are used for state management at the application level. You can use [@StorageLink](arkts-appstorage.md#storagelink)/[@LocalStorageLink](arkts-localstorage.md#localstoragelink) to implement two-way synchronization of the application and component state, and [@StorageProp](arkts-appstorage.md#storageprop)/[@LocalStorageProp](arkts-localstorage.md#localstorageprop) to implement one-way synchronization.
+In the preceding figure, the decorators in the Components area are used for state management at the component level, while others are used for state management at the application level. You can use [@StorageLink](arkts-appstorage.md#storagelink) or [@LocalStorageLink](arkts-localstorage.md#localstoragelink) to implement two-way synchronization of the application and component state, and [@StorageProp](arkts-appstorage.md#storageprop) or [@LocalStorageProp](arkts-localstorage.md#localstorageprop) to implement one-way synchronization.
 
 
 Decorators for [component state management](arkts-state.md):
@@ -130,15 +136,20 @@ Decorators for [application state management](arkts-application-state-management
 
 
 [$$operator](arkts-two-way-sync.md): provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.
-## State Management (V2 Trial Version)
 
-State management V2 adds new features, such as in-depth observation and attribute-level update, to state management V1.
+###  
 
->**NOTE**
->
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
+ 
 
-### How State Management V2 Stacks Against State Management V2
+-  
+
+-  
+
+## State Management (V2)
+
+State management V2 adds new features, such as in-depth observation and property-level update, to state management V1.
+
+### How State Management V2 Stacks Against State Management V1
 
 State management V1 uses a proxy to observe data. When a state variable is created, a data proxy observer is also created. The observer can sense the proxy change but cannot sense the actual data change. Therefore, the observer has the following restrictions:
 
@@ -161,7 +172,7 @@ State management V2 enhances the observation on the data itself. The data itself
 
 ### Decorator Overview
 
-State management (V2 Trial) offers the following decorators:
+State management of V2 provides a new set of decorators.
 
 - [\@ObservedV2](arkts-new-observedV2-and-trace.md): \@ObservedV2 allows for in-depth observation on the decorated classes. \@ObservedV2 and \@Trace are used in pairs to enable in-depth observation of properties in a class.
 
@@ -185,17 +196,23 @@ State management (V2 Trial) offers the following decorators:
 
 - [!! Syntax](arkts-new-binding.md): The **!!** syntax is syntax sugar used for two-way binding.
 
-### Constraints
+### Capability Comparison Between State Management V1 and V2
 
-The implementation of state management V2 is different from that of state management V1. As such, the two state management frameworks cannot be used together, and the following are not allowed:
+| Decorator of V1  | Decorator of V2                                            | Description                                                        |
+| ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
+| \@Observed   | \@ObservedV2                                           | Indicates that this object is an observable object. However, each of them have different capabilities.<br>\@Observed is used to observe the top-level properties and it takes effect only when it is used together with \@ObjectLink.<br>\@ObservedV2 does not have the observation capability. It only indicates that this class is observable. To observe the class properties, use together with \@Trace.|
+| \@Track      | \@Trace                                                | \@Track is used for accurate observation. If it is not used, class properties cannot be accurately observed.<br>\@Trace decorated properties can be accurately traced and observed.|
+| \@Component  | \@ComponentV2                                          | \@Component is the custom component decorator used with the state variables of V1.<br>@ComponentV2 is the custom component decorator used with the state variables of V2.|
+| \@State      | No external initialization: @Local<br>External initialization once: \@Param and \@Once| \@State and \@Local decorated variables can work as the data source. The difference is that \@State can be initialized through external input, but \@Local cannot.|
+| \@Prop       | \@Param                                                | Similar to \@Param, \@Prop is used to decorate custom component variables. When the input parameter is of the complex type, \@Prop is used to deep copy and \@Param is used to import the parameter.|
+| \@Link       | \@Param\@Event                                         | \@Link implements a two-way synchronization encapsulated by the framework of V1. Developers using V2 can implement the two-way synchronization through @Param and @Event.|
+| \@ObjectLink            | \@Param                   | Compatible. \@ObjectLink needs to be initialized by the instance of the @Observed decorated class, but \@Param does not have this constraint.|
+| \@Provide    | \@Provider                                             | Compatible.                                                      |
+| \@Consume    | \@Consumer                                             | Compatible.                                                      |
+| \@Watch               | \@Monitor                | \@Watch is used to listen for the changes of state variables and their top-level properties in V1. Observable changes of state variables can trigger the \@Watch listening event.<br>\@Monitor is used to listen for the changes of state variables in V2. Used together with \@Trace, in-depth changes can be listened. When a state variable changes frequently in an event, only the final result is used to determine whether to trigger the \@Monitor listening event.|
+| LocalStorage               | Global \@ObservedV2 and \@Trace  | Compatible.|
+| AppStorage               | AppStorageV2   | Compatible.|
+| Environment       | Calls the ability APIs to obtain system environment variables.  | This capability is coupled with the AppStorage. In V2, you can directly call the ability APIs to obtain system environment variables.|
+| PersistentStorage     | PersistenceV2   | The persistence capability of PersistentStorage is coupled with the AppStorage, while that of PersistenceV2 can be used independently.|
 
-- Passing the variables decorated by decorators in V2to the variables decorated by decorators in V1
-- Using the [\@Observed](arkts-observed-and-objectlink.md) and [\@Track](arkts-track.md) decorators in V1 with the [\@ObservedV2](arkts-new-observedV2-and-trace.md) and [\@Trace](arkts-new-observedV2-and-trace.md) decorators in V2
-- Using V1 decorators (\@State, \@Prop, \@Link, \@ObjectLink, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink, \@LocalStorageProp, or \@Watch) in custom components decorated by \@ComponentV2
-- Using V2 decorators (\@Local, \@Param, \@Once, \@Event, \@Monitor, \@Provider, or \@Consumer) in custom components decorated by \@Component
-- Using \@Component and \@ComponentV2 at the same time
-- Using variable decorated by \@State, \@Prop, \@Link, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp in a custom component decorated by \@Component, when the type of the variable is an \@ObservedV2 decorated class
-- Using a variable decorated by \@Param, \@Local, \@Event, \@Provider(), or \@Consumer() in a custom component decorated by \@ComponentV2, when the type of the variable is an \@Observed decorated class
-
-Using a V2 decorator with a V1 decorator may cause undefined behavior, including redundant re-renders and loss of the in-depth observation, attribute observation, or property-level update capability.
-<!--no_check-->
+For details about how to migrate applications from V1 to V2, see [Migrating Applications from V1 to V2](./arkts-v1-v2-migration.md).<br>For details about how to use decorators of V1 and V2 together, see [Mixing Use of Custom Components](./arkts-custom-component-mixed-scenarios.md).

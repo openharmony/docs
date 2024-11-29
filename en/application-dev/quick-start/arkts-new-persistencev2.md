@@ -8,7 +8,6 @@ PersistenceV2 is an optional singleton object within an application. Its purpose
 >
 >PersistenceV2 is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 
 ## Overview
@@ -36,8 +35,8 @@ static connect<T extends object>(
 
 | connect      | Description                                                 |
 | ------------ | ----------------------------------------------------- |
-| Parameter        | **type**: specified type. If no **key** is specified, the name of the **type** is used as the **key**.<br> **keyOrDefaultCreater**: specified key or default constructor.<br> **defaultCreator**: default constructor.                                         |
-| Return value      | After creating or obtaining data, value is returned. Otherwise, **undefined** is returned. |
+| Parameter        | **type**: specified type. If no **key** is specified, the name of the **type** is used as the **key**.<br>**keyOrDefaultCreater**: specified key or default constructor.<br>**defaultCreator**: default constructor.                                         |
+| Return value      | After creating or obtaining data, value is returned. Otherwise, **undefined** is returned.|
 
 >**NOTE**
 >
@@ -49,7 +48,7 @@ static connect<T extends object>(
 >
 >4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. If use invalid characters or null characters, undefined behavior may occur.
 >
->5. When match the key with the [\@Observed](arkts-observed-and-objectlink.md) object, specify the key or customize the **name** attribute.
+>5. When matching the key with the [\@Observed](arkts-observed-and-objectlink.md) object, specify the key or customize the **name** attribute.
 
 ### remove: Deleting the Stored Data of a Specified Key
 
@@ -60,7 +59,7 @@ static remove<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 | remove       | Description                                                 |
 | ------------ | ----------------------------------------------------- |
 | Parameter        | **keyOrType**: key to be deleted. If the key is of the **type**, the key to be deleted is the name of the **type**.                                         |
-| Return value      | None. |
+| Return value      | None.|
 
 >**NOTE**
 >
@@ -75,7 +74,7 @@ static keys(): Array<string>;
 | keys         | Description                                                 |
 | ------------ | ----------------------------------------------------- |
 | Parameter        | None.                                        |
-| Return value      | All keys in PersistenceV2. |
+| Return value      | All keys in PersistenceV2.|
 
 
 ### save: Persisting Stored Data Manually
@@ -87,7 +86,7 @@ static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 | save         | Description                                                 |
 | ------------ | ----------------------------------------------------- |
 | Parameter        | **keyOrType**: key that needs to be manually persist. If the key is of the **Type**, the key is the name of the **Type**.                                         |
-| Return value      | None. |
+| Return value      | None.|
 
 >**NOTE**
 >
@@ -105,7 +104,7 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 | notifyOnError| Description                                                 |
 | ------------ | ----------------------------------------------------- |
 | Parameter        | **callback**: When a serialization or deserialization fails, the callback is executed. Pass in **undefined** can cancel this callback.|
-| Return value      | None. |
+| Return value      | None.|
 
 >**NOTE**
 >
@@ -139,7 +138,7 @@ Page 1
 import { router, PersistenceV2 } from '@kit.ArkUI';
 import { Sample } from '../Sample';
 
-// Receive the callback for serialization failure.
+// Callback used to receive serialization failure.
 PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
   console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
 });
