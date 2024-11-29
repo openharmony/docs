@@ -90,7 +90,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 
 - 受GPU限制，同层标签最大高度不超过8000px，最大纹理大小为8000px。
 
-- 开启同层渲染后，Web组件打开的所有Web页面将不支持统一渲染模式[RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12枚举说明)。
+- 开启同层渲染后，Web组件打开的所有Web页面将不支持同步渲染模式[RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12枚举说明)。
 
 - Video组件：在非全屏Video变为全屏时，Video组件变为非纹理导出模式，视频播放状态保持延续；恢复为非全屏时，变为纹理导出模式，视频播放状态保持延续。
 
@@ -250,7 +250,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
      private type_: string = "";
      private isDestroy_: boolean = false;
 
-     setRenderOption(params: nodeControllerParams) {
+     setRenderOption(params: NodeControllerParams) {
        this.surfaceId_ = params.surfaceId;
        this.renderType_ = params.renderType;
        this.embedId_ = params.embedId;
@@ -461,7 +461,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
     height: number
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string
     type: string
     renderType: NodeRenderType
@@ -481,7 +481,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
     private type_: string = "";
     private isDestroy_: boolean = false;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.embedId_ = params.embedId;
@@ -686,7 +686,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
     height : number
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId : string
     type : string
     renderType : NodeRenderType
@@ -706,7 +706,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
     private type_ : string = "";
     private isDestroy_ : boolean = false;
 
-    setRenderOption(params : nodeControllerParams) {
+    setRenderOption(params : NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.embedId_ = params.embedId;
