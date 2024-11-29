@@ -289,6 +289,3 @@ AVMetadataExtractor 主要用于获取音视频元数据。通过使用 AVMetada
 
 ## AVImageGenerator
 AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerator，开发者可以实现从原始媒体资源中获取视频指定时间的视频帧。
-
-### 支持的格式
-支持的视频源参考[视频解码](../avcodec/video-decoding.md)
