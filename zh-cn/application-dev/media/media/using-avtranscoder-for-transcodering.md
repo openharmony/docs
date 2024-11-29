@@ -1,6 +1,6 @@
 # 使用AVTranscoder实现视频转码(ArkTS)
 
-使用AVTranscoder可以实现视频转码功能，从API 12开始，转码功能已经可以在手机、平板、2in1设备上作为系统提供的基础能力使用。可以通过调用[canIUse](../../reference/common/js-apis-syscap.md)接口来判断当前设备是否支持AVTranscoder，canIUse("SystemCapability.Multimedia.Media.AVTranscoder")返回值为true，表示可以使用转码能力。
+使用AVTranscoder可以实现视频转码功能<!--RP1--><!--RP1End-->。可以通过调用[canIUse](../../reference/common/js-apis-syscap.md)接口来判断当前设备是否支持AVTranscoder，canIUse("SystemCapability.Multimedia.Media.AVTranscoder")返回值为true，表示可以使用转码能力。
 
 本开发指导将以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，向开发者讲解AVTranscoder视频转码相关功能。
 
@@ -93,8 +93,8 @@
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式
      videoBitrate: 2000000, // 视频比特率
      videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式
-     videoFrameWidth: 640, // 视频分辨率的宽
-     videoFrameHeight: 480, // 视频分辨率的高
+     videoFrameWidth: 640, // 视频分辨率的宽为640
+     videoFrameHeight: 480, // 视频分辨率的高为480
    }
    avTranscoder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
