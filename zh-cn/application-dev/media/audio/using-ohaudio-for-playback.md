@@ -315,6 +315,9 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
 
+> **注意：**
+> 当音频录制场景[OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)为`AUDIOSTREAM_USAGE_VOICE_COMMUNICATION`和`AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION`时，不支持主动设置低时延模式，系统会根据设备的能力，决策输出的音频通路。
+
 开发示例
 
 ```C
