@@ -113,7 +113,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-
+该示例实现了带有主标题、副标题、描述、右侧按钮及文本的简单列表项。
 ```ts
 // 该示例主要演示该组件的基础功能使用，包含左侧右侧元素的情况
 import { IconType, ComposeListItem, promptAction } from '@kit.ArkUI';
