@@ -162,369 +162,369 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   - 采集2次整机CPU大中小核频率、各核使用率
 
-  ```
-  # SP_daemon -N 2 -c
+    ```
+    # SP_daemon -N 2 -c
 
-  order:0 timestamp=1501923846459
-  order:1 cpu0Frequency=408000
-  order:2 cpu0Usage=7.142857
-  order:3 cpu0idleUsage=92.857143
-  order:4 cpu0ioWaitUsage=0.000000
-  order:5 cpu0irqUsage=0.000000
-  order:6 cpu0niceUsage=0.000000
-  order:7 cpu0softIrqUsage=0.000000
-  order:8 cpu0systemUsage=5.102041
-  order:9 cpu0userUsage=2.040816
-  ...
+    order:0 timestamp=1501923846459
+    order:1 cpu0Frequency=408000
+    order:2 cpu0Usage=7.142857
+    order:3 cpu0idleUsage=92.857143
+    order:4 cpu0ioWaitUsage=0.000000
+    order:5 cpu0irqUsage=0.000000
+    order:6 cpu0niceUsage=0.000000
+    order:7 cpu0softIrqUsage=0.000000
+    order:8 cpu0systemUsage=5.102041
+    order:9 cpu0userUsage=2.040816
+    ...
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
 
   - 采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
-  ```
-  # SP_daemon -N 2 -PKG ohos.samples.ecg -c
+    ```
+    # SP_daemon -N 2 -PKG ohos.samples.ecg -c
 
-  order:0 timestamp=1705043036099
-  order:1 ProcAppName=ohos.samples.ecg
-  order:2 ProcCpuLoad=0.008766
-  order:3 ProcCpuUsage=0.025100
-  order:4 ProcId=8815
-  order:5 ProcSCpuUsage=0.000000
-  order:6 ProcUCpuUsage=0.025100
-  order:7 cpu0Frequency=1430000
-  order:8 cpu0Usage=29.032258
-  order:9 cpu0idleUsage=70.967742
-  order:10 cpu0ioWaitUsage=0.000000
-  order:11 cpu0irqUsage=2.150538
-  order:12 cpu0niceUsage=0.000000
-  order:13 cpu0softIrqUsage=0.000000
-  order:14 cpu0systemUsage=15.053763
-  order:15 cpu0userUsage=11.827957
-  ...
+    order:0 timestamp=1705043036099
+    order:1 ProcAppName=ohos.samples.ecg
+    order:2 ProcCpuLoad=0.008766
+    order:3 ProcCpuUsage=0.025100
+    order:4 ProcId=8815
+    order:5 ProcSCpuUsage=0.000000
+    order:6 ProcUCpuUsage=0.025100
+    order:7 cpu0Frequency=1430000
+    order:8 cpu0Usage=29.032258
+    order:9 cpu0idleUsage=70.967742
+    order:10 cpu0ioWaitUsage=0.000000
+    order:11 cpu0irqUsage=2.150538
+    order:12 cpu0niceUsage=0.000000
+    order:13 cpu0softIrqUsage=0.000000
+    order:14 cpu0systemUsage=15.053763
+    order:15 cpu0userUsage=11.827957
+    ...
 
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 使用该命令采集时需进入被测应用内。
+    command exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- 使用该命令采集时需进入被测应用内。
 
   - 采集1次整机GPU频率和负载
  
-  ```
-  # SP_daemon -N 1 -g
+    ```
+    # SP_daemon -N 1 -g
 
-  order:0 timestamp=1705041456507
-  order:1 gpuFrequency=279000000
-  order:2 gpuLoad=12.000000
+    order:0 timestamp=1705041456507
+    order:1 gpuFrequency=279000000
+    order:2 gpuLoad=12.000000
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
 
   - 采集2次整机温度
 
-  ```
-  # SP_daemon -N 2 -t
+    ```
+    # SP_daemon -N 2 -t
 
-  order:0 timestamp=1705042469378
-  order:1 Battery=36.000000
-  order:2 shell_back=38.962000
-  order:3 shell_frame=37.962000
-  order:4 shell_front=42.663000
-  order:5 soc_thermal=48.645000
-  order:6 system_h=38.277000
+    order:0 timestamp=1705042469378
+    order:1 Battery=36.000000
+    order:2 shell_back=38.962000
+    order:3 shell_frame=37.962000
+    order:4 shell_front=42.663000
+    order:5 soc_thermal=48.645000
+    order:6 system_h=38.277000
 
-  order:0 timestamp=1705042470389
-  order:1 Battery=36.000000
-  order:2 shell_back=38.962000
-  order:3 shell_frame=37.962000
-  order:4 shell_front=42.663000
-  order:5 soc_thermal=48.486000
-  order:6 system_h=38.277000
+    order:0 timestamp=1705042470389
+    order:1 Battery=36.000000
+    order:2 shell_back=38.962000
+    order:3 shell_frame=37.962000
+    order:4 shell_front=42.663000
+    order:5 soc_thermal=48.486000
+    order:6 system_h=38.277000
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
 
   - 采集1次整机电流和电压
 
-  ```
-  # SP_daemon -N 1 -p
+    ```
+    # SP_daemon -N 1 -p
 
-  order:0 timestamp=1705041491090
-  order:1 currentNow=-255
-  order:2 voltageNow=4377614
+    order:0 timestamp=1705041491090
+    order:1 currentNow=-255
+    order:2 voltageNow=4377614
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
 
   - 采集2次整机内存
 
-  ```
-  # SP_daemon -N 2 -r
-  order:0 timestamp=1705041562521
-  order:1 memAvailable=7339224
-  order:2 memFree=7164708
-  order:3 memTotal=11641840
+    ```
+    # SP_daemon -N 2 -r
+    order:0 timestamp=1705041562521
+    order:1 memAvailable=7339224
+    order:2 memFree=7164708
+    order:3 memTotal=11641840
 
-  order:0 timestamp=1705041563527
-  order:1 memAvailable=7339136
-  order:2 memFree=7164684
-  order:3 memTotal=11641840
+    order:0 timestamp=1705041563527
+    order:1 memAvailable=7339136
+    order:2 memFree=7164684
+    order:3 memTotal=11641840
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
 
   - 采集1次整机和指定应用进程内存
 
-  ```
-  # SP_daemon -N 1 -PKG ohos.samples.ecg -r
+    ```
+    # SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
-  order:0 timestamp=1720427095197
-  order:1 arktsHeapPss=17555
-  order:2 gpuPss=7021
-  order:3 graphicPss=163320
-  order:4 heapAlloc=120344
-  order:5 heapFree=14362
-  order:6 heapSize=133436
-  order:7 memAvailable=2757504
-  order:8 memFree=190852
-  order:9 memTotal=11742716
-  order:10 nativeHeapPss=49102
-  order:11 privateClean=1100020
-  order:12 privateDirty=175169
-  order:13 pss=422172
-  order:14 sharedClean=89348
-  order:15 sharedDirty=19084
-  order:16 stackPss=1588
-  order:17 swap=122076
-  order:18 swapPss=122076
+    order:0 timestamp=1720427095197
+    order:1 arktsHeapPss=17555
+    order:2 gpuPss=7021
+    order:3 graphicPss=163320
+    order:4 heapAlloc=120344
+    order:5 heapFree=14362
+    order:6 heapSize=133436
+    order:7 memAvailable=2757504
+    order:8 memFree=190852
+    order:9 memTotal=11742716
+    order:10 nativeHeapPss=49102
+    order:11 privateClean=1100020
+    order:12 privateDirty=175169
+    order:13 pss=422172
+    order:14 sharedClean=89348
+    order:15 sharedDirty=19084
+    order:16 stackPss=1588
+    order:17 swap=122076
+    order:18 swapPss=122076
 
 
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 使用该命令采集时需进入被测应用内。
-  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）。
+    command exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- 使用该命令采集时需进入被测应用内。
+    >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）。
 
   - 采集2次截图
 
-  ```
-  # SP_daemon -N 2 -snapshot
+    ```
+    # SP_daemon -N 2 -snapshot
 
-  order:0 timestamp=1705041753321
-  order:1 capture=data/local/tmp/capture/screenCap_1705041753321.png
+    order:0 timestamp=1705041753321
+    order:1 capture=data/local/tmp/capture/screenCap_1705041753321.png
 
-  /data/local/tmp/capture created!
+    /data/local/tmp/capture created!
 
-  order:0 timestamp=1705041754324
-  order:1 capture=NA
+    order:0 timestamp=1705041754324
+    order:1 capture=NA
 
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 截图采集是2秒截取一次。
-  >
-  >- 截图报告存放路径为：data/local/tmp/capture。
-  >
-  >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图。
-  >
-  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\。
+    command exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- 截图采集是2秒截取一次。
+    >
+    >- 截图报告存放路径为：data/local/tmp/capture。
+    >
+    >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图。
+    >
+    >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\。
 
   - 采集2次网络速率
 
-  ```
-  # SP_daemon -N 2 -net
+    ```
+    # SP_daemon -N 2 -net
 
-  order:0 timestamp=1705041904832
-  order:1 networkDown=0
-  order:2 networkUp=0
+    order:0 timestamp=1705041904832
+    order:1 networkDown=0
+    order:2 networkUp=0
 
-  order:0 timestamp=1705041905870
-  order:1 networkDown=22931
-  order:2 networkUp=2004
+    order:0 timestamp=1705041905870
+    order:1 networkDown=22931
+    order:2 networkUp=2004
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
 
   - 采集5次指定应用帧率
 
-  ```
-  # SP_daemon -N 5 -PKG ohos.samples.ecg -f
+    ```
+    # SP_daemon -N 5 -PKG ohos.samples.ecg -f
 
-  order:0 timestamp=1705306472232
-  order:1 fps=43
-  order:2 fpsJitters=602261688;;8352083;;8267708;;8305209;;8298437;;8308854;;8313542;;8569271;;8061458;;8300521;;8308333;;8309896;;8429167;;8241667;;8258333;;8318229;;8312500;;8304167;;41760937;;16418750;;8298959;;8319270;;8308334;;8313541;;8302605;;8320312;;8298958;;8326042;;8321354;;8301042;;8310417;;8309895;;8308855;;8331250;;8286458;;8343229;;8278125;;8311458;;8306250;;8312500;;8320834;;8346875;;8283333
-  order:3 refreshrate=120
+    order:0 timestamp=1705306472232
+    order:1 fps=43
+    order:2 fpsJitters=602261688;;8352083;;8267708;;8305209;;8298437;;8308854;;8313542;;8569271;;8061458;;8300521;;8308333;;8309896;;8429167;;8241667;;8258333;;8318229;;8312500;;8304167;;41760937;;16418750;;8298959;;8319270;;8308334;;8313541;;8302605;;8320312;;8298958;;8326042;;8321354;;8301042;;8310417;;8309895;;8308855;;8331250;;8286458;;8343229;;8278125;;8311458;;8306250;;8312500;;8320834;;8346875;;8283333
+    order:3 refreshrate=120
 
-  order:0 timestamp=1705306473234
-  order:1 fps=40
-  order:2 fpsJitters=674427313;;8191145;;8310417;;8319271;;8301562;;8318750;;8302084;;8314062;;8333334;;8283854;;8307812;;8311979;;8310417;;8307813;;8309375;;8323958;;8306250;;8308333;;8317709;;8296875;;8721875;;7895833;;8320833;;8340625;;8276563;;8409896;;8216145;;8310938;;8301042;;8362500;;8252604;;8317708;;8376042;;8256250;;8292187;;8303125;;8313542;;8310417;;8520312
-  order:3 refreshrate=120
-  ...
+    order:0 timestamp=1705306473234
+    order:1 fps=40
+    order:2 fpsJitters=674427313;;8191145;;8310417;;8319271;;8301562;;8318750;;8302084;;8314062;;8333334;;8283854;;8307812;;8311979;;8310417;;8307813;;8309375;;8323958;;8306250;;8308333;;8317709;;8296875;;8721875;;7895833;;8320833;;8340625;;8276563;;8409896;;8216145;;8310938;;8301042;;8362500;;8252604;;8317708;;8376042;;8256250;;8292187;;8303125;;8313542;;8310417;;8520312
+    order:3 refreshrate=120
+    ...
 
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 使用该命令采集时需进入被测应用内，滑动或切换页面。
-  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率。
+    command exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- 使用该命令采集时需进入被测应用内，滑动或切换页面。
+    >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率。
 
  
   - 采集10次指定图层帧率
 
-  ```
-  # SP_daemon -N 10 -VIEW DisplayNode -f
-  order:0 timestamp=1705306822850
-  order:1 fps=15
-  order:2 fpsJitters=876291843;;8314062;;8308334;;8314583;;8310417;;8308333;;8326042;;8314583;;8292708;;8492709;;8143750;;8340104;;8294271;;8302604;;8297396
-  order:3 refreshrate=120
+    ```
+    # SP_daemon -N 10 -VIEW DisplayNode -f
+    order:0 timestamp=1705306822850
+    order:1 fps=15
+    order:2 fpsJitters=876291843;;8314062;;8308334;;8314583;;8310417;;8308333;;8326042;;8314583;;8292708;;8492709;;8143750;;8340104;;8294271;;8302604;;8297396
+    order:3 refreshrate=120
  
-  order:0 timestamp=1705306823852
-  order:1 fps=12
-  order:2 fpsJitters=906667363;;8279167;;8311458;;8315625;;8291146;;8313021;;8323438;;8293750;;8303125;;8313541;;8301563;;8317708
-  order:3 refreshrate=120
-  ...
+    order:0 timestamp=1705306823852
+    order:1 fps=12
+    order:2 fpsJitters=906667363;;8279167;;8311458;;8315625;;8291146;;8313021;;8323438;;8293750;;8303125;;8313541;;8301563;;8317708
+    order:3 refreshrate=120
+    ...
 
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- DisplayNode 是指定的图层名。
-  >
-  >- 使用该命令采集时，需在传入的图层上操作页面。
-  >
-  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）。
+    command exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- DisplayNode 是指定的图层名。
+    >
+    >- 使用该命令采集时，需在传入的图层上操作页面。
+    >
+    >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）。
 
   - 采集1次DDR信息
 
-  ```
-  # SP_daemon -N 1 -d
-  
-  order:0 timestamp=1710916175201
-  order:1 ddrFrequency=1531000000
-  
-  command exec finished!
-  #
-  ```
-  <!--RP4--><!--RP4End-->
+    ```
+    # SP_daemon -N 1 -d
+    
+    order:0 timestamp=1710916175201
+    order:1 ddrFrequency=1531000000
+    
+    command exec finished!
+    #
+    ```
+    <!--RP4--><!--RP4End-->
 
   - 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、电压、内存信息、DDR信息、网络速率、屏幕截图
  
-  ```
-  # SP_daemon -N 10 ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
+    ```
+    # SP_daemon -N 10 ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
-  order:0 timestamp=1705042018276
-  order:1 cpu0Frequency=490000
-  order:2 cpu0Usage=33.000000
-  order:3 cpu0idleUsage=67.000000
-  order:4 cpu0ioWaitUsage=0.000000
-  order:5 cpu0irqUsage=1.000000
-  order:6 cpu0niceUsage=0.000000
-  order:7 cpu0softIrqUsage=0.000000
-  order:8 cpu0systemUsage=14.000000
-  order:9 cpu0userUsage=18.000000
-  ...
-  order:115 gpuFrequency=279000000
-  order:116 gpuload=61.000000
-  order:117 Battery=28.000000
-  order:118 shell_back=31.529000
-  order:119 shell_frame=30.529000
-  order:120 shell_front=30.548000
-  order:121 soc_thermal=49.624000
-  order:122 system_h=30.150000
-  order:123 currentNow=278
-  order:124 voltageNow=4250532
-  order:125 memAvailable=6354252
-  order:126 memFree=5971776
-  order:127 memTotal=11530092
-  order:128 ddrFrequency=1531000000
-  order:129 networkDown=0
-  order:130 networkUp=0
-  order:131 capture=data/local/tmp/capture/screenCap_1711190737580.png
+    order:0 timestamp=1705042018276
+    order:1 cpu0Frequency=490000
+    order:2 cpu0Usage=33.000000
+    order:3 cpu0idleUsage=67.000000
+    order:4 cpu0ioWaitUsage=0.000000
+    order:5 cpu0irqUsage=1.000000
+    order:6 cpu0niceUsage=0.000000
+    order:7 cpu0softIrqUsage=0.000000
+    order:8 cpu0systemUsage=14.000000
+    order:9 cpu0userUsage=18.000000
+    ...
+    order:115 gpuFrequency=279000000
+    order:116 gpuload=61.000000
+    order:117 Battery=28.000000
+    order:118 shell_back=31.529000
+    order:119 shell_frame=30.529000
+    order:120 shell_front=30.548000
+    order:121 soc_thermal=49.624000
+    order:122 system_h=30.150000
+    order:123 currentNow=278
+    order:124 voltageNow=4250532
+    order:125 memAvailable=6354252
+    order:126 memFree=5971776
+    order:127 memTotal=11530092
+    order:128 ddrFrequency=1531000000
+    order:129 networkDown=0
+    order:130 networkUp=0
+    order:131 capture=data/local/tmp/capture/screenCap_1711190737580.png
 
-  ...
+    ...
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
 
   - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、DDR信息、网络速率、屏幕截图
  
    <!--RP5-->
-  ```
-  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
+    ```
+    # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
-  order:0 timestamp=1705042018276
-  order:1 ProcAppName=ohos.samples.ecg
-  order:2 ProcCpuLoad=0.000001
-  order:3 ProcCpuUsage=0.000000
-  order:4 ProcId=13131
-  order:5 ProcSCpuUsage=0.000000
-  order:6 ProcUCpuUsage=0.000000
-  order:7 cpu0Frequency=418000
-  order:8 cpu0Usage=27.884616
-  order:9 cpu0idleUsage=72.115385
-  order:10 cpu0ioWaitUsage=0.000000
-  order:11 cpu0irqUsage=0.961538
-  order:12 cpu0niceUsage=0.000000
-  order:13 cpu0softIrqUsage=0.000000
-  order:14 cpu0systemUsage=12.500000
-  order:15 cpu0userUsage=14.423077
-  ...
-  order:115 gpuFrequency=279000000
-  order:116 gpuload=61.000000
-  order:117 Battery=28.000000
-  order:118 shell_back=31.529000
-  order:119 shell_frame=30.529000
-  order:120 shell_front=30.548000
-  order:121 soc_thermal=49.624000
-  order:122 system_h=30.150000
-  order:123 currentNow=278
-  order:124 voltageNow=4250532
-  order:125 fps=3
-  order:126 fpsJitters=881659966;;108846354;;8289583
-  order:127 refreshrate=120
-  order:128 arktsHeapPss=16464
-  order:129 gpuPss=7021
-  order:130 graphicPss=163320
-  order:131 heapAlloc=118870
-  order:132 heapFree=14076
-  order:133 heapSize=131948
-  order:134 memAcailable=2776508
-  order:135 memFree=258668
-  order:136 memTotal=11742716
-  order:137 nativeHeapPss=45361
-  order:138 privateClean=104828
-  order:139 privateDirty=175189
-  order:140 pss=419476
-  order:141 sharedClean=87744
-  order:142 sharedDirty=19084
-  order:143 stackPss=1592
-  order:144 swap=125408
-  order:145 swapPss=125408
-  order:146 ddrFrequency=749000000
-  order:147 networkDown=7893
-  order:148 networkUp=1546
-  order:149 capture=data/local/tmp/capture/screenCap_1711190737580.png
+    order:0 timestamp=1705042018276
+    order:1 ProcAppName=ohos.samples.ecg
+    order:2 ProcCpuLoad=0.000001
+    order:3 ProcCpuUsage=0.000000
+    order:4 ProcId=13131
+    order:5 ProcSCpuUsage=0.000000
+    order:6 ProcUCpuUsage=0.000000
+    order:7 cpu0Frequency=418000
+    order:8 cpu0Usage=27.884616
+    order:9 cpu0idleUsage=72.115385
+    order:10 cpu0ioWaitUsage=0.000000
+    order:11 cpu0irqUsage=0.961538
+    order:12 cpu0niceUsage=0.000000
+    order:13 cpu0softIrqUsage=0.000000
+    order:14 cpu0systemUsage=12.500000
+    order:15 cpu0userUsage=14.423077
+    ...
+    order:115 gpuFrequency=279000000
+    order:116 gpuload=61.000000
+    order:117 Battery=28.000000
+    order:118 shell_back=31.529000
+    order:119 shell_frame=30.529000
+    order:120 shell_front=30.548000
+    order:121 soc_thermal=49.624000
+    order:122 system_h=30.150000
+    order:123 currentNow=278
+    order:124 voltageNow=4250532
+    order:125 fps=3
+    order:126 fpsJitters=881659966;;108846354;;8289583
+    order:127 refreshrate=120
+    order:128 arktsHeapPss=16464
+    order:129 gpuPss=7021
+    order:130 graphicPss=163320
+    order:131 heapAlloc=118870
+    order:132 heapFree=14076
+    order:133 heapSize=131948
+    order:134 memAcailable=2776508
+    order:135 memFree=258668
+    order:136 memTotal=11742716
+    order:137 nativeHeapPss=45361
+    order:138 privateClean=104828
+    order:139 privateDirty=175189
+    order:140 pss=419476
+    order:141 sharedClean=87744
+    order:142 sharedDirty=19084
+    order:143 stackPss=1592
+    order:144 swap=125408
+    order:145 swapPss=125408
+    order:146 ddrFrequency=749000000
+    order:147 networkDown=7893
+    order:148 networkUp=1546
+    order:149 capture=data/local/tmp/capture/screenCap_1711190737580.png
 
-  ...
+    ...
 
-  command exec finished!
-  #
-  ```
+    command exec finished!
+    #
+    ```
    <!--RP5End-->
 
   >**说明**
@@ -533,100 +533,101 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   - 采集当前界面fps
 
-  ```
-  # SP_daemon -profilerfps 10
-  set num:10 success
-  fps:0|1711692357278
-  fps:0|1711692358278
-  fps:1|1711692359278
-  fps:0|1711692360278
-  fps:0|1711692361278
-  fps:0|1711692362278
-  fps:0|1711692363278
-  fps:0|1711692364278
-  fps:26|1711692365278
-  fps:53|1711692366278
-  SP_daemon exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
+    ```
+    # SP_daemon -profilerfps 10
+    set num:10 success
+    fps:0|1711692357278
+    fps:0|1711692358278
+    fps:1|1711692359278
+    fps:0|1711692360278
+    fps:0|1711692361278
+    fps:0|1711692362278
+    fps:0|1711692363278
+    fps:0|1711692364278
+    fps:26|1711692365278
+    fps:53|1711692366278
+    SP_daemon exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
 
   - fps分段采集
 
-  ```
-  # SP_daemon -profilerfps 100 -sections 10
-  set num:100 success
-  fps:0|1711692393278
-  fps:0|1711692394278
-  fps:0|1711692395278
-  fps:44|1711692396278
-  sectionsFps:0|1711692396278
-  sectionsFps:0|1711692396378
-  sectionsFps:40|1711692396478
-  sectionsFps:60|1711692396578
-  sectionsFps:60|1711692396678
-  sectionsFps:60|1711692396778
-  sectionsFps:60|1711692396878
-  sectionsFps:40|1711692396978
-  sectionsFps:60|1711692397078
-  sectionsFps:60|1711692397178
-  fps:51|1711692397278
+    ```
+    # SP_daemon -profilerfps 100 -sections 10
+    set num:100 success
+    fps:0|1711692393278
+    fps:0|1711692394278
+    fps:0|1711692395278
+    fps:44|1711692396278
+    sectionsFps:0|1711692396278
+    sectionsFps:0|1711692396378
+    sectionsFps:40|1711692396478
+    sectionsFps:60|1711692396578
+    sectionsFps:60|1711692396678
+    sectionsFps:60|1711692396778
+    sectionsFps:60|1711692396878
+    sectionsFps:40|1711692396978
+    sectionsFps:60|1711692397078
+    sectionsFps:60|1711692397178
+    fps:51|1711692397278
 
-  ...
+    ...
 
-  SP_daemon exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 该段打印里100表示采集的次数，可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集。
-  >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
+    SP_daemon exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- 该段打印里100表示采集的次数，可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集。
+    >
+    >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
 
   - 启停服务
 
-  ```
-  开始采集
-  # SP_daemon -start -c
-  SP_daemon Collection begins
-  command exec finished!
-  #
-  
-  结束采集
-  # SP_daemon -stop
-  SP_daemon Collection ended
-  Output Path: data/local/tmp/smartperf/1/t_index_info_csv
-  command exec finished!
-  #
+    ```
+    开始采集
+    # SP_daemon -start -c
+    SP_daemon Collection begins
+    command exec finished!
+    #
+    
+    结束采集
+    # SP_daemon -stop
+    SP_daemon Collection ended
+    Output Path: data/local/tmp/smartperf/1/t_index_info_csv
+    command exec finished!
+    #
 
-  ```
-  >**说明**
-  >
-  >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -p -r -d -net -snapshot。
-  >
-  >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot。
-  >
-  >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令。
-  >
-  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D:\。
+    ```
+    >**说明**
+    >
+    >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -p -r -d -net -snapshot。
+    >
+    >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot。
+    >
+    >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令。
+    >
+    >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D:\。
 
   - 获取屏幕分辨率
 
-  ```
-  # SP_daemon -screen
-  activeMode: 1260x2720, refreshrate=120
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率。
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv 。
+    ```
+    # SP_daemon -screen
+    activeMode: 1260x2720, refreshrate=120
+    command exec finished!
+    #
+    ```
+    >**说明**
+    >
+    >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率。
+    >
+    >- 该命令需单独采集，采集结果不写入data.csv 。
 
 #### 输出和查看采集结果
+
 输出和查看采集结果前，需先执行上述的采集命令。
 
   - 采集结果默认输出路径：/data/local/tmp/data.csv
