@@ -53,7 +53,7 @@ When a user needs to share files such as images and videos, use Picker to start 
    console.info('file fd: ' + file.fd);
    ```
 
-2. Use [fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read the file based on the FD, and close the FD after the data is read.
+2. Call [fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read the file based on the FD, and close the FD after the data is read.
 
    ```ts
    let buffer = new ArrayBuffer(4096);
