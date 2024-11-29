@@ -86,11 +86,13 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     - API version 12开始**推荐**使用[OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_onwritedatacallback)代替[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
 
-      能填满回调所需长度数据的情况下，返回AUDIO_DATA_CALLBACK_RESULT_VALID，系统会取用完整长度的数据缓冲进行播放。请不要在未填满数据的情况下返回AUDIO_DATA_CALLBACK_RESULT_VALID，否则会导致杂音、卡顿等现象。
-
-      在无法按时根据回调时间填充完整长度数据的情况。这时开发者可以选择暂停播放或填充静音数据。此时如果已经收到回调，可以返回AUDIO_DATA_CALLBACK_RESULT_INVALID，这样本次缓冲数据就不会被添加到播放过程中。
-
-      回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度,开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
+      > **注意：**
+      > 
+      > - 能填满回调所需长度数据的情况下，返回AUDIO_DATA_CALLBACK_RESULT_VALID，系统会取用完整长度的数据缓冲进行播放。请不要在未填满数据的情况下返回AUDIO_DATA_CALLBACK_RESULT_VALID，否则会导致杂音、卡顿等现象。
+      > 
+      > - 在无法填满回调所需长度数据的情况下，建议开发者返回AUDIO_DATA_CALLBACK_RESULT_INVALID，系统不会处理该段音频数据，然后会再次向应用请求数据，确认数据填满后返回AUDIO_DATA_CALLBACK_RESULT_VALID。
+      > 
+      > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度,开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
 
       从API version 12开始可通过[OH_AudioStreamBuilder_SetFrameSizeInCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback)设置audioDataSize的大小。
 
@@ -153,11 +155,15 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     - API version 11使用回调函数[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
 
-      该函数不支持返回回调结果，系统默认回调中的数据均为有效数据。请确保填满回调所需长度数据，否则会导致杂音、卡顿等现象。
-
-      在无法按时根据回调时间填充完整长度数据的情况。这时开发者可以选择暂停播放或填充静音数据。此时如果已经收到回调，开发者需要主动处理将buffer置空，这样本次缓冲数据就不会被添加到播放过程中。
-
-      回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度,开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
+      > **注意：**
+      > 
+      > - 该函数不支持返回回调结果，系统默认回调中的数据均为有效数据。请确保填满回调所需长度数据，否则会导致杂音、卡顿等现象。
+      > 
+      > - 在无法填满回调所需长度数据的情况下，建议开发者选择暂时停止写入数据（不暂停音频流），阻塞回调函数，等待数据充足时，再继续写入数据，确保数据填满。
+      > 
+      > - 开发者如果不希望播放本次回调中的音频数据,可以主动将回调中的数据块置空（置空后，也会被系统统计到已写入的数据，播放静音帧）。
+      > 
+      > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度,开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
 
       ```c++
       // 自定义写入数据函数
