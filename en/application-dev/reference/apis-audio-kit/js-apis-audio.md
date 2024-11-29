@@ -4318,13 +4318,14 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported()
+let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported();
 if (blockMic == true) {
-  audioRoutingManager.on('micBlockStatusChanged', async(deviceBlockStatusInfo: ESObject) =>{
-  if (deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.Blocked ||
-    deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.UNBlocked) {
-    console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
-  })
+  audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+    if (micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.BLOCKED ||
+      micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.UNBLOCKED) {
+      console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
+    }
+  });
 }
 ```
 
