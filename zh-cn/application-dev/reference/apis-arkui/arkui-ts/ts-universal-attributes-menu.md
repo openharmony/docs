@@ -16,9 +16,7 @@
 >
 >  - 若组件是可拖动节点，绑定bindContextMenu未指定preview时，菜单弹出会浮起拖拽预览图且菜单选项和预览图不会发生避让。对此，开发者可根据使用场景设置preview或者将目标节点设置成不可拖动节点。
 >
->  - 从API Version 12开始，菜单支持长按500ms弹出子菜单。
->
->  - 从API Version 12开始，菜单支持按压态跟随手指移动。
+>  - 从API Version 12开始，菜单支持长按500ms弹出子菜单，支持按压态跟随手指移动。
 >
 >    1. 仅支持使用[Menu组件](ts-basic-components-menu.md)且子组件包含[MenuItem](ts-basic-components-menuitem.md)或[MenuItemGroup](ts-basic-components-menuitemgroup.md)的场景。
 >
