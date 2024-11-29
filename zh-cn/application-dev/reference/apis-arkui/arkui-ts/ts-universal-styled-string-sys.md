@@ -57,7 +57,8 @@ unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
 
 ## 示例
 
-序列化和反序列化接口示例。
+该示例通过marshalling、unmarshalling属性实现了属性字符串序列化和反序列化的功能。
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
