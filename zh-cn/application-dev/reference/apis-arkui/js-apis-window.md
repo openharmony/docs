@@ -249,8 +249,8 @@ import { window } from '@kit.ArkUI';
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式，深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色 |
-| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20-28，默认值28 |
+| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式，深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色,默认跟随系统，深浅色模式指定则固定 |
+| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20-40，默认值28 |
 | spacingBetweenButtons         | number        | 是   | 是   | 按钮间距，取值范围12-24，默认值12 |
 | closeButtonRightMargin        | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围8-22，默认值20|
 
