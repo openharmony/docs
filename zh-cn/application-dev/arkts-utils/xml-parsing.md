@@ -1,13 +1,13 @@
 # XML解析
 
 
-对于以XML作为载体传递的数据，实际使用中需要对相关的节点进行解析，一般包括[解析XML标签和标签值](#解析xml标签和标签值)、[解析XML属性和属性值](#解析xml属性和属性值)、[解析XML事件类型和元素深度](#解析xml事件类型和元素深度)三类场景。
+对于以XML作为载体传递的数据，实际使用中需要对相关的节点进行解析，一般包括[解析XML标签和标签值](#解析xml标签和标签值)、[解析XML属性和属性值](#解析xml属性和属性值)、[解析XML事件类型和元素深度](#解析xml事件类型和元素深度)三类操作。如在Web服务中，XML是SOAP（Simple Object Access Protocol）协议的基础，SOAP消息通常以XML格式封装，包含请求和响应参数，通过解析这些XML消息，Web服务可以处理来自客户端的请求并生成相应的响应。
 
 
 XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的ArrayBuffer或DataView，输出为解析得到的信息。
 
 
-  **表1** XML解析选项
+  **表1** XML解析选项，其详细介绍请参见[ParseOptions](../reference/apis-arkts/js-apis-xml.md#parseoptions)。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -35,7 +35,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 2. 对XML文件编码后调用XmlPullParser。
 
-   可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。
+   可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。(两种构造方式返回结果无区别可任选一种)
 
     ```ts
     let strXml: string =
@@ -57,10 +57,16 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 3. 自定义回调函数，本例直接打印出标签及标签值。
 
     ```ts
-    let str: string = '';
     function func(name: string, value: string): boolean {
-      str = name + value;
-      console.info(str);
+      if (name == 'note') {
+        console.info(name);
+      }
+      if (value == 'Play' || value == 'Work') {
+        console.info('    ' + value);
+      }
+      if (name == 'title' || name == 'lens') {
+        console.info('  ' + name);
+      }
       return true; //true:继续解析 false:停止解析
     }
     ```
@@ -76,12 +82,12 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 	```
 	note
-	title
-	Play
-	title
-	lens
-	Work
-	lens
+	  title
+	    Play
+	  title
+	  lens
+	    Work
+	  lens
 	note
 	```
 
