@@ -39,7 +39,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   .mode(NavigationMode.Stack)
   ```
 
-  ![单页面1](figures/单页面1.jpg)
+  ![导航单栏模式](figures/导航单栏模式.jpg)
 
 - 分栏模式
 
@@ -80,7 +80,7 @@ Navigation组件通过mode属性设置页面的显示模式。
           List({ space: 12 }) {
             ForEach(this.arr, (item:number) => {
               ListItem() {
-                Text("NavRouter" + item)
+                Text("Page" + item)
                   .width("100%")
                   .height(72)
                   .backgroundColor('#FFFFFF')
@@ -170,7 +170,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   }
   ```
 
-  ![分栏](figures/分栏.jpg)
+  ![导航分栏模式](figures/导航分栏模式.jpg)
 
 
 ## 设置标题栏模式
@@ -318,12 +318,18 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
 3. 带错误码的跳转，跳转结束会触发异步回调，返回错误码信息。
 
     ```ts
-    this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
-    .catch((error: BusinessError) => {
-      console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
-    }).then(() => {
-      console.info('Push destination succeed.');
-    });
+    this.pageStack.pushDestination({name: "PageOne", param: "PageOne Param"})
+      .catch((error: BusinessError) => {
+        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      }).then(() => {
+        console.info('Push destination succeed.');
+      });
+    this.pageStack.pushDestinationByName("PageOne", "PageOne Param")
+      .catch((error: BusinessError) => {
+        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      }).then(() => {
+        console.info('Push destination succeed.');
+      });
     ```
 
 ### 页面返回
@@ -349,6 +355,13 @@ NavPathStack通过Replace相关接口去实现页面替换功能。
 // 将栈顶页面替换为PageOne
 this.pageStack.replacePath({ name: "PageOne", param: "PageOne Param" })
 this.pageStack.replacePathByName("PageOne", "PageOne Param")
+// 带错误码的替换，跳转结束会触发异步回调，返回错误码信息
+this.pageStack.replaceDestination({name: "PageOne", param: "PageOne Param"})
+  .catch((error: BusinessError) => {
+    console.error(`Replace destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+  }).then(() => {
+    console.info('Replace destination succeed.');
+  })
 ```
 
 ### 页面删除
@@ -360,6 +373,19 @@ NavPathStack通过Remove相关接口去实现删除页面栈中特定页面的�
 this.pageStack.removeByName("PageOne")
 // 删除指定索引的页面
 this.pageStack.removeByIndexes([1,3,5])
+// 删除指定id的页面
+this.pageStack.removeByNavDestinationId("1");
+```
+
+### 移动页面
+
+NavPathStack通过Move相关接口去实现移动页面栈中特定页面到栈顶的功能。
+
+```ts
+// 移动栈中name为PageOne的页面到栈顶
+this.pageStack.moveToTop("PageOne");
+// 移动栈中索引为1的页面到栈顶
+this.pageStack.moveIndexToTop(1);
 ```
 
 ### 参数获取
