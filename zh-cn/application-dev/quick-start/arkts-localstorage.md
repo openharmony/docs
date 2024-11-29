@@ -7,6 +7,10 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参�
 本文仅介绍LocalStorage使用场景和相关的装饰器：\@LocalStorageProp和\@LocalStorageLink。
 
 
+在阅读本文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+
+LocalStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发Storage对应key的增删改查，建议配合[LocalStorage API文档](../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9)阅读。
+
 > **说明：**
 >
 > LocalStorage从API version 9开始支持。
