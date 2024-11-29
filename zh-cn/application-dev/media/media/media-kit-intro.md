@@ -292,28 +292,3 @@ AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerat
 
 ### 支持的格式
 支持的视频源参考[视频解码](../avcodec/video-decoding.md)
-
-## AVTranscoder
-AVTranscoder 主要用于将已压缩编码的视频文件按照指定参数转换为另一种格式的视频。
-
-当前版本AVTranscoder提供以下转码服务：
-
-支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
-- 支持的源视频格式：
-    - [解封装格式](../avcodec/audio-video-demuxer.md)
-    - [音频解码格式](../avcodec/audio-decoding.md)
-    - [视频解码格式](../avcodec/video-decoding.md)
-       <!--Del-->
-       > **说明：**
-       > 当前不支持H.265。
-       <!--DelEnd-->
-- 支持的目标视频格式：
-    - [封装格式](../avcodec/audio-video-muxer.md)
-    - [音频编码格式](../avcodec/audio-encoding.md)
-    - [视频编码格式](../avcodec/video-encoding.md)
-      <!--Del-->
-      > **说明：**
-      > 当前不支持H.265。
-      <!--DelEnd-->
-
-<!--RP1--><!--RP1End-->
