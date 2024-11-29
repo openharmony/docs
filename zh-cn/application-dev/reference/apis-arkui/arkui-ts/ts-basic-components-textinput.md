@@ -2313,9 +2313,9 @@ struct TextInputExample {
 该示例通过cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
 
 ```ts
-// xxx.ets
 import { SymbolGlyphModifier } from '@kit.ArkUI';
 
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
