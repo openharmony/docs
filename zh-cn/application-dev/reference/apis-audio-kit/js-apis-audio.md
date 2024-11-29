@@ -4276,13 +4276,14 @@ on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): v
 **示例：**
 
 ```ts
-let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported()
+let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported();
 if (blockMic == true) {
-  audioRoutingManager.on('micBlockStatusChanged', async(deviceBlockStatusInfo: ESObject) =>{
-  if (deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.Blocked ||
-    deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.UNBlocked) {
-    console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
-  })
+  audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+    if (micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.BLOCKED ||
+      micBlockStatusChanged.blockStatus == audio.DeviceBlockStatus.UNBLOCKED) {
+      console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
+    }
+  });
 }
 ```
 
