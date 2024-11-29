@@ -3602,6 +3602,89 @@ try {
 }
 ```
 
+### on('displayIdChange')<sup>14+</sup>
+
+on(type: 'displayIdChange', callback: Callback&lt;number&gt;): void
+
+开启本窗口所处屏幕变化事件的监听。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'displayIdChange'，即本窗口所处屏幕变化的事件。 |
+| callback | Callback&lt;number&gt;   | 是   | 回调函数。当本窗口所处屏幕发生变化后的回调。回调函数返回number类型参数，表示窗口所处屏幕的displayId。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+
+**示例：**
+
+```ts
+try {
+  windowClass.on('displayIdChange', (number) => {
+    console.info('Window displayId changed, displayId=' + number);
+  });
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+### off('displayIdChange')<sup>14+</sup>
+
+off(type: 'displayIdChange', callback?: Callback&lt;number&gt;): void
+
+关闭本窗口所处屏幕变化事件的监听。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | 是   | 监听事件，固定为'displayIdChange'，即本窗口所处屏幕变化的事件。 |
+| callback | Callback&lt;number&gt;    | 否   | 回调函数。当本窗口所处屏幕发生变化时的回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口所处屏幕变化事件的回调。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+
+**示例：**
+
+```ts
+const callback = (bool: number) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('displayIdChange', callback);
+  // 关闭指定callback的监听
+  windowClass.off('displayIdChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('displayIdChange');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### on('windowVisibilityChange')<sup>11+</sup>
 
 on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
