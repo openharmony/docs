@@ -29,8 +29,8 @@ convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 | 参数名  | 类型                              | 必填 | 说明            |
 | ------- | --------------------------------- | ---- | --------------- |
-| xml     | string                            | 是   | 传入的xml文本。 |
-| options | [ConvertOptions](#convertoptions) | 否   | 转换选项 , 默认值是ConvertOptions对象 , 由其中各个属性的默认值组成。  |
+| xml     | string                            | 是   | 传入的xml文本，若包含“&”字符，请使用实体引用“\&amp;”替换。|
+| options | [ConvertOptions](#convertoptions) | 否   | 转换选项，默认值是ConvertOptions对象，由其中各个属性的默认值组成。 |
 
 **返回值：**
 
