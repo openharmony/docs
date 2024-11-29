@@ -1778,7 +1778,7 @@ async function test() {
 }
 ```
 
-For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
+For more details about dynamic import, see [Dynamic Import](../arkts-utils/arkts-dynamic-import.md).
 
 <!--RP2--><!--RP2End-->
 

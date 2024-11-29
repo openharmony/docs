@@ -37,5 +37,4 @@ You can use either ArkTS or C++ APIs for camera development.
 | Deferred photo delivery| [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)| -  |
 | Moving photos| [Moving Photos (ArkTS)](camera-moving-photo.md)| - |
 | Video Recording| [Video Recording (ArkTS)](camera-recording.md)| [Video Recording (C/C++)](native-camera-recording.md)|
-| Secondary processing of video streams| - | [Secondary Processing of Video Streams (C/C++)](native-camera-recording-imageReceiver.md)|
 | Metadata| [Camera Metadata (ArkTS)](camera-metadata.md)| [Camera Metadata (C/C++)](native-camera-metadata.md)|
