@@ -98,7 +98,7 @@
   - [使用镜像能力](arkts-mirroring-display.md)
   - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置
-    - [设置主题换肤](theme_skinning.md)
+    - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
   - 跨进程拉起页面
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
