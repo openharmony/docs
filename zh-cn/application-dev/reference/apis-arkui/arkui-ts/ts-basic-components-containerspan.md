@@ -60,6 +60,8 @@ attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
 
 ## 示例
 
+该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
+
 ```ts
 // xxx.ets
 @Component
