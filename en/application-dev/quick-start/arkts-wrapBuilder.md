@@ -1,12 +1,30 @@
 # wrapBuilder: Encapsulating Global @Builder
 
-
- **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
+When you use multiple global @Builder functions in a struct to implement different UI effects, the code maintenance becomes difficult and the page is not neat. In this case, you can use **wrapBuilder** to encapsulate the global @Builder.
 
 
 > **NOTE**
 >
 > This API is supported since API version 11.
+
+After the @Builder method assigns a value to a variable or array, the variable or array cannot be used in the UI method.
+
+```ts
+@Builder
+function builderElement() {}
+
+let builderArr: Function[] = [builderElement];
+@Builder
+function testBuilder() {
+  ForEach(builderArr, (item: Function) => {
+    item();
+  })
+}
+```
+
+In the preceding code, **builderArr** is an array consisting of @Builder methods. When each @Builder method is obtained from **ForEach**, the @Builder method cannot be used in the UI method.
+
+ To solve this problem, **wrapBuilder** is introduced as the global @Builder encapsulation function. **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
 
 ## Available APIs
 
@@ -28,7 +46,7 @@ declare class WrappedBuilder< Args extends Object[]> {
 
 >**NOTE**<br>The template parameter **Args extends Object[]** is a parameter list of the builder function to be wrapped.
 
-Example:
+Example
 
 ```ts
 let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder)
@@ -41,9 +59,9 @@ let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] //
 
 Of the **WrappedBuilder** object it returns, the **builder** attribute method can be used only inside the struct.
 
-## Use Scenario 1
+## Assigning a Value to a Variable Using the @Builder Method
 
-In this example, **wrapBuilder** is assigned to **globalBuilder**, and **MyBuilder** is passed in to **wrapBuilder** as its input parameter. In this way, **MyBuilder** is assigned to **globalBuilder** indirectly.
+The **MyBuilder** method decorated by @Builder is used as the parameter of **wrapBuilder**, and **wrapBuilder** is assigned to the **globalBuilder** variable, which solves the problem that the @Builder method cannot be used after being assigned to the variable.
 
 ```ts
 @Builder
@@ -71,7 +89,7 @@ struct Index {
 }
 ```
 
-## Use Scenario 2
+##  Assigning a Value to a Variable by the @Builder Method to Use the Variable in UI Syntax
 
 In this example, the custom component **Index** uses **ForEach** to render different \@Builder functions. You can use the **wrapBuilder** array declared in **builderArr** to present different \@Builder function effects. In this way, the code is neat.
 
@@ -115,7 +133,7 @@ struct Index {
 }
 ```
 
-## Use Scenario 3
+## Passing Parameters by Reference
 
 If parameters are passed in by reference, the UI re-rendering is triggered.
 
@@ -149,12 +167,13 @@ struct Parent{
 
 ## Incorrect Usage
 
-```
+### wrapBuilder Accepts Only a Global Function Decorated by @Builder
+
+```ts
 function MyBuilder() {
 
 }
 
-// wrapBuilder accepts only a global function decorated by @Builder.
 const globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
 
 @Entry
@@ -169,6 +188,51 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         globalBuilder.builder(this.message, 30)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### wrapBuilder Redefinition Failure
+
+After **builderObj** is initialized and defined through **wrapBuilder(MyBuilderFirst)**, if you assign a new value to **builderObj**, **wrapBuilder(MyBuilderSecond)** does not take effect. Only the first defined **wrapBuilder(MyBuilderFirst)** takes effect.
+
+```ts
+@Builder
+function MyBuilderFirst(value: string, size: number) {
+  Text('MyBuilderFirst: ' + value)
+    .fontSize(size)
+}
+
+@Builder
+function MyBuilderSecond(value: string, size: number) {
+  Text('MyBuilderSecond: ' + value)
+    .fontSize(size)
+}
+
+interface BuilderModel {
+  globalBuilder: WrappedBuilder<[string, number]>;
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  @State builderObj: BuilderModel = { globalBuilder: wrapBuilder(MyBuilderFirst) };
+
+  aboutToAppear(): void {
+    setTimeout(() => {
+      this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
+    },1000)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        this.builderObj.globalBuilder.builder(this.message, 20)
       }
       .width('100%')
     }

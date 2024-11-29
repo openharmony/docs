@@ -19,7 +19,7 @@ The HSP has requirements on the consistency of bundle names and signatures and t
     ```
 2. Delete the **main_pages.json** file from the **resource\base\profile** folder.
 
-3. Replace the content in the **hvigorfile.ts** file with the following:
+3. Replace the content in the **hvigorfile.ts** file of the HSP module with the following content:
     ```ts
     // MyApplication\library\hvigorfile.ts
     import { harTasks } from '@ohos/hvigor-ohos-plugin';

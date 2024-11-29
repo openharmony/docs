@@ -63,7 +63,7 @@
   
 - State Management
     - [State Management Overview](arkts-state-management-overview.md)
-    - State Management (V1 Stable Version)
+    - State Management (V1)
       - Component State Management
         - [\@State Decorator: State Owned by Component](arkts-state.md)
         - [\@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components](arkts-prop.md)
@@ -85,7 +85,7 @@
       - [MVVM](arkts-mvvm.md)
       - [Best Practices for State Management](arkts-state-management-best-practices.md)
       - [Proper Use of State Management](properly-use-state-management-to-develope.md)
-    - State Management (V2 Trial Version)
+    - State Management (V2)
       - V2 Exclusive Decorators
         - [\@ObservedV2 and \@Trace Decorators: Observing Class Property Changes](arkts-new-observedV2-and-trace.md)
         - [\@ComponentV2 Decorator: Custom Component](arkts-new-componentV2.md)
@@ -106,6 +106,9 @@
         - [getTarget API: Obtaining Original Objects](arkts-new-getTarget.md)
         - [makeObserved API: Changing Unobservable Data to Observable Data](arkts-new-makeObserved.md)
       - [MVVM (V2)](arkts-mvvm-V2.md)
+    - Mixed Use and Migration Guide for V1 and V2
+      - [Mixing Use of Custom Components](arkts-custom-component-mixed-scenarios.md)
+      - [Migrating Applications from V1 to V2](arkts-v1-v2-migration.md)
   - Rendering Control
       - [Rendering Control Overview](arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)
