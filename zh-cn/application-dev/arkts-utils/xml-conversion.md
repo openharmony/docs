@@ -24,6 +24,10 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
 
 2. 输入待转换的XML，设置转换选项，支持的转换选项及含义具体可见[ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions)。
 
+   > **说明：**
+   >
+   > 传入的XML文本中，若包含“&”字符，请使用实体引用“\&amp;”替换。
+
    ```ts
    let xml: string =
     '<?xml version="1.0" encoding="utf-8"?>' +
