@@ -1,6 +1,8 @@
 # 使用AVTranscoder实现视频转码(ArkTS)
 
-使用AVTranscoder可以实现视频转码功能，本开发指导将以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，向开发者讲解AVTranscoder视频转码相关功能。
+使用AVTranscoder可以实现视频转码功能，从API 12开始，转码功能已经可以在手机、平板、2in1设备上作为系统提供的基础能力使用。可以通过调用[canIUse](../../reference/common/js-apis-syscap.md)接口来判断当前设备是否支持AVTranscoder，canIUse("SystemCapability.Multimedia.Media.AVTranscoder")返回值为true，表示可以使用转码能力。
+
+本开发指导将以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，向开发者讲解AVTranscoder视频转码相关功能。
 
 ## 开发步骤及注意事项
 
@@ -45,7 +47,7 @@
    })
    ```
 
-3. 设置资源：设置属性fdSrc。
+3. 设置源视频文件fd：设置属性fdSrc。
    > **说明：**
    >
    > 下面代码示例中的fdSrc仅作示意使用，开发者需根据实际情况，确认资源有效性并设置：
@@ -64,7 +66,7 @@
    this.avTranscoder.fdSrc = fileDescriptor;
    ```
 
-4. 设置资源：设置属性fdDst。
+4. 设置目标视频文件fd：设置属性fdDst。
    > **说明：**
    >
    > - 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
@@ -87,10 +89,10 @@
    
    let avConfig: media.AVTranscoderConfig = {
      audioBitrate: 100000, // 音频比特率
-     audioCodec: media.CodecMimeType.AUDIO_AAC,
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式
      videoBitrate: 2000000, // 视频比特率
-     videoCodec: media.CodecMimeType.VIDEO_AVC,
+     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式
      videoFrameWidth: 640,  // 视频分辨率的宽
      videoFrameHeight: 480, // 视频分辨率的高
    }
@@ -149,11 +151,11 @@ export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // 音频比特率
-    audioCodec: media.CodecMimeType.AUDIO_AAC,
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+    audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式
     videoBitrate: 200000, // 视频比特率
-    videoCodec: media.CodecMimeType.VIDEO_AVC,
-    videoFrameWidth: 640,  // 视频分辨率的宽
+    videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式
+    videoFrameWidth: 640, // 视频分辨率的宽
     videoFrameHeight: 480, // 视频分辨率的高
   }
 
