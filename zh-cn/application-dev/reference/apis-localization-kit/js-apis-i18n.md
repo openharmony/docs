@@ -462,7 +462,7 @@ static getTemperatureType(): TemperatureType;
 
 **示例：**
   ```ts
-  let tpye: TemperatureType= i18n.System.getTemperatureType;
+  let tpye: TemperatureType = i18n.System.getTemperatureType;
   ```
 
 ### getTemperatureName<sup>16+</sup>
