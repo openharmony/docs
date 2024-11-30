@@ -3633,8 +3633,8 @@ on(type: 'displayIdChange', callback: Callback&lt;number&gt;): void
 
 ```ts
 try {
-  windowClass.on('displayIdChange', (number) => {
-    console.info('Window displayId changed, displayId=' + JSON.stringify(number));
+  windowClass.on('displayIdChange', (data) => {
+    console.info('Window displayId changed, displayId=' + JSON.stringify(data));
   });
 } catch (exception) {
   console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
