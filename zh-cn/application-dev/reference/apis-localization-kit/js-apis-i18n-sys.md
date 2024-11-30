@@ -363,6 +363,10 @@ static setTemperatureType(type: TemperatureType): void;
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
