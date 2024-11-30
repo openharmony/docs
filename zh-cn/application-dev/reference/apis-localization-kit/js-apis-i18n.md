@@ -444,6 +444,91 @@ static getUsingLocalDigit(): boolean
   ```
 
 
+### getTemperatureType<sup>16+</sup>
+
+static getTemperatureType(): TemperatureType;
+
+获取当前用户的偏好温度单位类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| TemperatureType| 温度单位类型。 |
+
+**示例：**
+  ```ts
+  let tpye: TemperatureType= i18n.System.getTemperatureType;
+  ```
+
+### getTemperatureName<sup>16+</sup>
+
+static getTemperatureName(type: TemperatureType): string;
+
+判断当前语言和地区是否匹配。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| type| TemperatureType | 是    | 温度单位类型的枚举。 |
+
+**返回值：**
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| string | 返回对应温度单位类型枚举的名称，包括celsius，fahrenhe，kelvin。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **说明**
+>
+> 401和890001的报错信息请以接口的实际报错为准。
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let res: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);  // res = celsius
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+
+## TemperatureType<sup>16+</sup>
+
+温度单位类型的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** ：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| CELSIUS | 1 | 摄氏度。 |
+| FAHRENHEIT | 2 | 华氏度。 |
+| KELVIN | 3 | 开尔文。 |
+
+
 ## i18n.isRTL
 
 isRTL(locale: string): boolean
