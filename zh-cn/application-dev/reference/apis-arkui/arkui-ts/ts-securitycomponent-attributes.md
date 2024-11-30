@@ -383,6 +383,28 @@ padding(value: Padding | Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
+## align<sup>16+</sup>
+
+align(alignType: Alignment): T
+
+设置安全控件图标文本的对齐方式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式，图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响。<br/>默认值：Alignment.Center|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
 ## textIconSpace
 
 textIconSpace(value: Dimension): T
@@ -512,7 +534,6 @@ constraintSize(value: ConstraintSizeOptions): T
 > 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct Index {
@@ -535,6 +556,12 @@ struct Index {
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
         SaveButton().size({width:200, height:100})
+        SaveButton()
+          .size({width:200, height:100})
+          .align(Alignment.Start)
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
+          .size({width:150, height:80})
+          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35})
         SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
