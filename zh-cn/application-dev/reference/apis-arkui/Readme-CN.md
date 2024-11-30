@@ -103,7 +103,6 @@
       - [图形变换](arkui-ts/ts-universal-attributes-transformation.md)
       - [图像效果](arkui-ts/ts-universal-attributes-image-effect.md)
       - [形状裁剪](arkui-ts/ts-universal-attributes-sharp-clipping.md)
-      - [栅格设置](arkui-ts/ts-universal-attributes-grid.md)
       - [颜色渐变](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup控制](arkui-ts/ts-universal-attributes-popup.md)
       - [菜单控制](arkui-ts/ts-universal-attributes-menu.md)
@@ -395,6 +394,7 @@
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
+    - [栅格设置](arkui-ts/ts-universal-attributes-grid.md)
 - JS组件 
   - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
   - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
