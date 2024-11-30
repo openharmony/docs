@@ -297,7 +297,7 @@ API version 14及以后，使用drawImage接口时，若传入9个参数，且�
 **示例**
 
 ```ts
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component
