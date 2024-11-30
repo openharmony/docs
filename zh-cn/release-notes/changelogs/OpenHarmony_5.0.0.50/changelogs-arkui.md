@@ -60,7 +60,7 @@ TextInput组件showCounter接口。
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.2 Image组件draggable接口默认值由false变更为true
+## cl.arkui.2 当Image组件的draggable接口接收到异常值时，其默认值将由false更改为true
 
 **访问级别**
 
@@ -68,7 +68,7 @@ TextInput组件showCounter接口。
 
 **变更原因**
 
-Image组件的draggable接口默认值由false变更为true，默认支持拖拽。
+当Image组件的draggable接口接收到异常参数，如undefined或null时，其默认值将从false更改为true，从而默认启用拖拽功能。
 
 **变更影响**
 
