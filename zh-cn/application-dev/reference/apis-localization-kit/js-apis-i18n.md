@@ -458,7 +458,7 @@ static getTemperatureType(): TemperatureType;
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| TemperatureType(#temperaturetype16) | 温度单位类型。 |
+| [TemperatureType](#temperaturetype16) | 温度单位类型。 |
 
 **示例：**
   ```ts
@@ -479,7 +479,7 @@ static getTemperatureName(type: TemperatureType): string;
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| type| TemperatureType(#temperaturetype16) | 是    | 温度单位类型的枚举。 |
+| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位类型的枚举。 |
 
 **返回值：**
 
