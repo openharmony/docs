@@ -314,7 +314,6 @@ Describes the information about the area where the window cannot be displayed.
 | type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes| Type of the area where the window cannot be displayed.  |
 | area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | Yes| Area where the window cannot be displayed.|
 
-
 ## Example
 
 This example shows how to use all the available APIs in the EmbeddedUIExtensionAbility. The bundle name of the sample application is **com.example.embeddeddemo**, and the EmbeddedUIExtensionAbility to start is **ExampleEmbeddedAbility**.
