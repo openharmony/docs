@@ -349,7 +349,7 @@ zh-cn/application-dev/connectivity/subscribe-remote-state.md @zhang_yixin13 @luo
 
 
 [开发-Localization Kit]
-zh-cn/application-dev/internationalization/ @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/internationalization/ @ningningW @yliupy @yangqing3 @sunyaozu
 
 
 [开发-Location Kit]
@@ -1048,10 +1048,10 @@ zh-cn/application-dev/reference/apis-input-kit/ @hhh2 @ningningW @mayunteng @sta
 zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md @luodh0157 @zhang_yixin13 @zhaopeng_gitee @zhang-yang123321
 
 [API参考-Localization Kit]
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @ningningW @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @ningningW @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @ningningW @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @ningningW @yliupy @yangqing3 @sunyaozu
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-resource-manager.md  @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/rawfile.md  @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/raw__dir_8h.md  @ningningW @budda-wang @yangqing3
