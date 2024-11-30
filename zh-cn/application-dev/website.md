@@ -415,6 +415,7 @@
             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
             - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
         - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
+          - [组件导航和页面路由概述](ui/arkts-navigation-introduction.md)
           - [组件导航 (Navigation)(推荐)](ui/arkts-navigation-navigation.md)
           - [实现组件导航转场](ui/arkts-navigation-transition.md)
           - [页面路由 (@ohos.router)(不推荐)](ui/arkts-routing.md)
