@@ -39,9 +39,9 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| radius | string \| number \| Array&lt;string \| number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0。<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radius | string \| number \| Array&lt;string \| number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## RoundedRectOptions<sup>14+</sup>对象说明
 用于描述Rect绘制属性。
@@ -54,10 +54,10 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| radiusWidth | string \| number | 否 | 圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。
-| radiusHeight | string \| number | 否 | 圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。 |圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radiusWidth | string \| number | 否 | 圆角宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。
+| radiusHeight | string \| number | 否 | 圆角高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。
 
 ## 属性
 
@@ -79,7 +79,7 @@ radiusWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度。<br/>默认值：0<br/>默认单位：vp |
 
 ### radiusHeight
 
@@ -97,7 +97,7 @@ radiusHeight(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度。<br/>默认值：0<br/>默认单位：vp |
 
 ### radius
 
@@ -115,7 +115,7 @@ radius(value: number | string | Array&lt;string&nbsp;|&nbsp;number&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                         |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 是   | 圆角半径大小。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 是   | 圆角半径大小。<br/>默认值：0<br/>默认单位：vp |
 
 ### fill
 
@@ -187,7 +187,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -205,7 +205,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -297,7 +297,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -318,7 +318,9 @@ antiAlias(value: boolean)
 | value  | boolean | 是   | 是否开启抗锯齿效果。<br/>默认值：true |
 
 ## 示例
-### 示例1
+### 示例1（组件属性绘制）
+
+使用fill、fillOpacity、stroke、radius属性分别绘制矩形的填充颜色、透明度、边框颜色、圆角。
 
 ```ts
 // xxx.ets
@@ -365,7 +367,9 @@ struct RectExample {
 
 ![zh-cn_image_0000001174264386](figures/zh-cn_image_0000001174264386.png)
 
-### 示例2
+### 示例2（绘制渐变色矩形）
+
+使用通用属性linearGradient、clipShape绘制渐变色的矩形。
 
 ```ts
 // xxx.ets
