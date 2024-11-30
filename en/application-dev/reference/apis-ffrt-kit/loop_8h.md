@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **loop.h** file declares the loop interfaces in C.
+The **loop.h** file declares the FFRT loop interfaces in C.
 
 **System capability**: SystemCapability.Resourceschedule.Ffrt.Core
 
@@ -27,7 +27,7 @@ The **loop.h** file declares the loop interfaces in C.
 | Name| Description| 
 | -------- | -------- |
 | FFRT_C_API ffrt_loop_t [ffrt_loop_create](_f_f_r_t.md#ffrt_loop_create) ([ffrt_queue_t](_f_f_r_t.md) queue) | Creates a loop. | 
-| FFRT_C_API int [ffrt_loop_destory](_f_f_r_t.md#ffrt_loop_destory) (ffrt_loop_t loop) | Destroys a loop. | 
+| FFRT_C_API int [ffrt_loop_destroy](_f_f_r_t.md#ffrt_loop_destroy) (ffrt_loop_t loop) | Destroys a loop. | 
 | FFRT_C_API int [ffrt_loop_run](_f_f_r_t.md#ffrt_loop_run) (ffrt_loop_t loop) | Runs a loop. | 
 | FFRT_C_API void [ffrt_loop_stop](_f_f_r_t.md#ffrt_loop_stop) (ffrt_loop_t loop) | Stops a loop. | 
 | FFRT_C_API int [ffrt_loop_epoll_ctl](_f_f_r_t.md#ffrt_loop_epoll_ctl) (ffrt_loop_t loop, int op, int fd, uint32_t events, void\* data, [ffrt_poller_cb](_f_f_r_t.md#ffrt_poller_cb) cb) | Manages listening events on a loop. | 

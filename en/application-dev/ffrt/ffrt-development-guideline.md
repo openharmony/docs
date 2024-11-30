@@ -61,7 +61,7 @@ This topic walks you through how to implement parallel programming based on the 
 | ffrt_skip(ffrt_task_handle_t handle)     | Skips a task.|
 | ffrt_wait_deps(const ffrt_deps_t* deps)    | Waits until the dependent tasks are complete.|
 | ffrt_loop_create(ffrt_queue_t queue)    | Creates a loop.|
-| ffrt_loop_destory(ffrt_loop_t loop)    | Destroys a loop.|
+| ffrt_loop_destroy(ffrt_loop_t loop)    | Destroys a loop.|
 | ffrt_loop_run(ffrt_loop_t loop)    | Runs a loop.|
 | ffrt_loop_stop(ffrt_loop_t loop)    | Stops a loop.|
 | ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void* data, ffrt_poller_cb cb)    | Manages listening events on a loop.|
@@ -1924,7 +1924,7 @@ Expected output
 loop is not null.
 ```
 
-#### ffrt_loop_destory
+#### ffrt_loop_destroy
 
 Destroys a loop.
 
@@ -2244,7 +2244,7 @@ Timeout of the timer.
 
 `data`
 
-Pointer to the input parameter of the callback function invoked upon event changes.
+Pointer to the input parameter in the callback function invoked upon event changes.
 
 `cb`
 

@@ -1252,7 +1252,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 - **DRM_ERR_OK**: The operation is successful.
 - **DRM_ERR_NO_MEMORY**: The memory fails to be allocated due to insufficient memory.
 - **DRM_ERR_INVALID_VAL**: The value of **mediaKeySession** is a null pointer or invalid, or the value of another parameter of the pointer type is a null pointer.
-- **DRM_ERR_UNKNOWN**: An internal error occurs. Check the log details.
+- **DRM_ERR_UNKNOWN**: An internal error occurs or the DRM scheme on the device does not support offline media key release. Check the log details.
 
 
 ### OH_MediaKeySession_GetContentProtectionLevel()
@@ -1340,7 +1340,7 @@ Processes a response to a request for releasing offline media keys.
 Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 - **DRM_ERR_OK**: The operation is successful.
 - **DRM_ERR_INVALID_VAL**: The value of **mediaKeySession** is a null pointer or invalid, or the value of another parameter of the pointer type is a null pointer.
-- **DRM_ERR_UNKNOWN**: An internal error occurs. Check the log details.
+- **DRM_ERR_UNKNOWN**: An internal error occurs or the DRM scheme on the device does not support offline media key release. Check the log details.
 
 
 ### OH_MediaKeySession_RequireSecureDecoderModule()
@@ -1640,7 +1640,7 @@ Obtains the value of a configuration item in the form of an array.
 | Name| Description| 
 | -------- | -------- |
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
-| configName | Pointer to the name of the configuration item.| 
+| configName | Pointer to the name of the configuration item in the form of a character array. It is determined by the DRM scheme on the device and cannot be empty.| 
 | value | Pointer to the value of the configuration item.| 
 | valueLen | Pointer to the length of the value.| 
 
@@ -1965,8 +1965,8 @@ Sets a configuration item in the form of an array.
 | Name| Description| 
 | -------- | -------- |
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
-| configName | Pointer to the name of the configuration item.| 
-| value | Pointer to the value of the configuration item.| 
+| configName | Pointer to the name of the configuration item in the form of a character array. It is determined by the DRM scheme on the device and cannot be empty.| 
+| value | Pointer to the value of the configuration item in the form of a character array. It is determined by the DRM scheme on the device and cannot be empty.| 
 | valueLen | Length of the value.| 
 
 **Returns**
@@ -1994,8 +1994,8 @@ Sets a configuration item in the form of a string.
 | Name| Description| 
 | -------- | -------- |
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
-| configName | Pointer to the name of the configuration item.| 
-| value | Pointer to the value of the configuration item, in the form of a string.| 
+| configName | Pointer to the name of the configuration item in the form of a string. It is determined by the DRM scheme on the device and cannot be empty.| 
+| value | Pointer to the value of the configuration item in the form of a string. It is determined by the DRM scheme on the device and cannot be empty.| 
 
 **Returns**
 
