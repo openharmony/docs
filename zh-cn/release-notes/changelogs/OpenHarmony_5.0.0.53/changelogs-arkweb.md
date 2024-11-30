@@ -14,7 +14,10 @@ woff等在线字体资源首次加载时不再指定仅从缓存中读取。
 
 该变更为兼容性变更。
 
-从API version 14开始，首次加载woff等在线字体资源时，不再触发错误码为-400（ERR_CACHE_MISS）的onErrorReceive回调。
+变更前：首次加载woff等在线字体资源时，会触发错误码为-400（ERR_CACHE_MISS）的onErrorReceive回调。
+
+变更后：首次加载woff等在线字体资源时，不再触发错误码为-400（ERR_CACHE_MISS）的onErrorReceive回调。
+
 
 **起始API Level**
 
