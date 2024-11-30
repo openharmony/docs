@@ -5,12 +5,15 @@
 
 > **说明：**
 >
-> 通过浏览器拉起应用页面时，浏览器会将uri中scheme和host中的大写字母自动转化为小写字母，导致无法正确匹配应用。因此建议scheme和host中不要包含大写字母。
+> - 通过浏览器拉起应用页面时，浏览器会将uri中scheme和host中的大写字母自动转化为小写字母，导致无法正确匹配应用。因此建议scheme和host中不要包含大写字母。
+> - path、pathStartWith、pathRegex的取值前后均不需要加斜杠`/`。例如对于应用链接`https://developer.huawei.com/consumer/cn/support`，path字段应配置为`consumer/cn/support`。
 
 - scheme：协议名称。常见的取值有http、https、file、ftp等，也可以自定义。
 - host：域名或IP地址。例如域名`developer.huawei.com`或IP地址`127.0.0.1`。
 - port：端口号。例如`developer.huawei.com:80`后面的80即为端口号。
-- path：路径，表示域名服务器上的目录或文件路径，该字段在scheme存在时才有意义。例如`developer.huawei.com/consumer/`中`consumer`。
+- path：路径，表示域名服务器上的目录或文件路径，该字段在scheme存在时才有意义。path字段不支持通配符，如果需要使用通配符，可以采用pathRegex字段。
+    
+
 - pathStartWith：路径前缀，该字段在scheme存在时才有意义，表示域名服务器上的目录或文件路径的前缀，用于前缀匹配。
 - pathRegex：路径正则，该字段在scheme存在时才有意义，表示域名服务器上的目录或文件路径的正则表达式，用于正则匹配。
 - [linkFeature](#linkfeature标签说明)：应用的功能类型（如文件打开、分享、导航等）。取值为长度不超过127字节的字符串，不支持中文。
