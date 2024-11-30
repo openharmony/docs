@@ -3606,7 +3606,7 @@ try {
 
 on(type: 'displayIdChange', callback: Callback&lt;number&gt;): void
 
-开启本窗口所处屏幕变化事件的监听。
+开启本窗口所处屏幕变化事件的监听。当用户或者系统将窗口移动到其他屏幕时，可以从此接口监听到这个行为。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -3634,7 +3634,7 @@ on(type: 'displayIdChange', callback: Callback&lt;number&gt;): void
 ```ts
 try {
   windowClass.on('displayIdChange', (number) => {
-    console.info('Window displayId changed, displayId=' + number);
+    console.info('Window displayId changed, displayId=' + JSON.stringify(number));
   });
 } catch (exception) {
   console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
