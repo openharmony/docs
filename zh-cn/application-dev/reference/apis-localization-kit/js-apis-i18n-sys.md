@@ -395,7 +395,7 @@ static setFirstDayOfWeek(type: WeekDay): void;
 
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [WeekDay](./js-apis-i18n.md#WeekDay) | 是    | 周一至周日中的某一天。 |
+| type | [WeekDay](./js-apis-i18n.md#weekday16) | 是    | 周一至周日中的某天。 |
 
 **错误码：**
 
