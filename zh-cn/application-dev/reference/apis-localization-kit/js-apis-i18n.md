@@ -509,7 +509,7 @@ static getTemperatureName(type: TemperatureType): string;
     let res: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);  // res = celsius
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.getTemperatureName failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
