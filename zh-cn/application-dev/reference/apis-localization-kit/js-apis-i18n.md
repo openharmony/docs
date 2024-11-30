@@ -517,7 +517,7 @@ static getTemperatureName(type: TemperatureType): string;
 
 static getFirstDayOfWeek(): WeekDay;
 
-获取当前用户的偏好温度单位类型。
+获取当前用户的周起始日。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
