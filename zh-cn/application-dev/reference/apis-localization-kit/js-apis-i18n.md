@@ -462,14 +462,14 @@ static getTemperatureType(): TemperatureType;
 
 **示例：**
   ```ts
-  let tpye: TemperatureType = i18n.System.getTemperatureType;
+  let tpye: TemperatureType = i18n.System.getTemperatureType();
   ```
 
 ### getTemperatureName<sup>16+</sup>
 
 static getTemperatureName(type: TemperatureType): string;
 
-判断当前语言和地区是否匹配。
+获取温度单位类型对应的显示名称。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -479,7 +479,7 @@ static getTemperatureName(type: TemperatureType): string;
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位类型的枚举。 |
+| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位类型。 |
 
 **返回值：**
 
