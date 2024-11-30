@@ -334,6 +334,48 @@ static setUsingLocalDigit(flag: boolean): void
   }
   ```
 
+### setTemperatureType<sup>16+</sup>
+
+static setTemperatureType(type: TemperatureType): void;
+
+设置系统是否使用本地数字。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | 是    | 温度单位类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    i18n.System.setTemperatureType(i18n.TemperatureType.CELSIUS); // 设置温度单位类型为摄氏度
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+
 ## SystemLocaleManager<sup>10+</sup>
 
 ### constructor<sup>10+</sup>
