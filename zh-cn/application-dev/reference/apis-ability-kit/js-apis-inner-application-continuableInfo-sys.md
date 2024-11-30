@@ -16,6 +16,6 @@
 | 名称       | 类型   | 只读   | 必填   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
 | srcDeviceId | string | 否    | 是    | 表示任务迁移源设备ID。 |
-| bundleName | string | 否    | 是    | 表示任务所属源端应用包名。 |
+| bundleName | string | 否    | 是    | 表示任务所属对端应用包名。 |
 | srcBundleName<sup>12+</sup> | string | 否    | 否    | 表示任务所属源端应用包名，默认与bundleName相同。 |
 | continueType<sup>12+</sup> | string | 否    | 否    | 表示任务所属应用迁移类型。 |
