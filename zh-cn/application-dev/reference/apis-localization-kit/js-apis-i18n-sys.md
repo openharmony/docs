@@ -371,7 +371,7 @@ static setTemperatureType(type: TemperatureType): void;
     i18n.System.setTemperatureType(i18n.TemperatureType.CELSIUS); // 设置温度单位类型为摄氏度
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
+    console.error(`call System.setTemperatureType failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
