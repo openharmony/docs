@@ -499,7 +499,7 @@ static getTemperatureName(type: TemperatureType): string;
 
 > **说明**
 >
-> 401和890001的报错信息请以接口的实际报错为准。
+> 890001的报错信息请以接口的实际报错为准。
 
 **示例：**
   ```ts
