@@ -379,6 +379,51 @@ static setTemperatureType(type: TemperatureType): void;
   }
   ```
 
+### setFirstDayOfWeek<sup>16+</sup>
+
+static setFirstDayOfWeek(type: WeekDay): void;
+
+设置用户偏好的周起始日
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| type | [WeekDay](./js-apis-i18n.md#WeekDay) | 是    | 周一至周日中的某一天。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    i18n.System.setFirstDayOfWeek(i18n.WeekDay.MON); // 设置用户偏好的周起始日为周一
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setFirstDayOfWeek failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 
 ## SystemLocaleManager<sup>10+</sup>
 
