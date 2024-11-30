@@ -531,7 +531,7 @@ static getFirstDayOfWeek(): WeekDay;
 
 **示例：**
   ```ts
-  let type: i18n.WeekDay= i18n.System.getFirstDayOfWeek();
+  let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
   ```
 
 ## TemperatureType<sup>16+</sup>
