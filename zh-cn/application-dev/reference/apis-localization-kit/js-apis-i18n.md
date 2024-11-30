@@ -513,6 +513,26 @@ static getTemperatureName(type: TemperatureType): string;
   }
   ```
 
+### getFirstDayOfWeek<sup>16+</sup>
+
+static getFirstDayOfWeek(): WeekDay;
+
+获取当前用户的偏好温度单位类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WeekDay](#weekday16) | 周一至周日中的某天。 |
+
+**示例：**
+  ```ts
+  let type: i18n.WeekDay= i18n.System.getFirstDayOfWeek();
+  ```
 
 ## TemperatureType<sup>16+</sup>
 
@@ -528,6 +548,23 @@ static getTemperatureName(type: TemperatureType): string;
 | FAHRENHEIT | 2 | 华氏度。 |
 | KELVIN | 3 | 开尔文。 |
 
+## WeekDay<sup>16+</sup>
+
+周一至周日的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** ：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| MON | 1 | 周一。 |
+| TUE | 2 | 周二。 |
+| WED | 3 | 周三。 |
+| THU | 1 | 周四。 |
+| FRI | 2 | 周五。 |
+| SAT | 3 | 周六。 |
+| SUN | 3 | 周日。 |
 
 ## i18n.isRTL
 
