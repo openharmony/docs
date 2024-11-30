@@ -301,6 +301,14 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 | ---------------- | ----------------------------------- |
 | Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+
 **示例**：
 
 ```js
@@ -562,6 +570,14 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
 | boolean          | 返回设置数据项的值是否成功发结果。返回true表示设置成功，false表示设置失败。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
 
 **示例**：
 
