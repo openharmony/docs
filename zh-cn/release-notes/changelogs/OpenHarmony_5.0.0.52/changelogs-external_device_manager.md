@@ -73,7 +73,7 @@ drivers/external_device_manager。
 例如校验HID的权限错误码：
 
   ```C++
-  ...
+  //...
   int32_t ret;
   ret = OH_Hid_CreateDevice(hidDevice, hidEventProperties);
   if (ret == HID_DDK_NO_PERM) {
