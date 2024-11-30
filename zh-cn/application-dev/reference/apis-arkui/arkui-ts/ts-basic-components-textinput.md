@@ -580,7 +580,7 @@ cancelButton(options: CancelButtonOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options  | [CancelButtonOptions](ts-basic-components-search#cancelbuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+| options  | [CancelButtonOptions](ts-basic-components-search.md#cancelbuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 
 ### selectAll<sup>11+</sup>
 
