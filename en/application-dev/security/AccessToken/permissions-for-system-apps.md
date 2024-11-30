@@ -4251,6 +4251,18 @@ Allows an application to access Super Hub.
 
 **Valid since**: 12
 
+### ohos.permission.USE_USER_ACCESS_MANAGER
+
+Allows an application to query and configure user identity authentication policies, and verify the authentication result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
+
 ### ohos.permission.MANAGE_RECOVERY_KEY
 
 Allows an application to create or remove the recovery key.
