@@ -7888,7 +7888,7 @@ enableAutoDeviceSwitch(enabled: boolean): void
 
 | 错误码ID   | 错误信息                                                                                                                                       |
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 7400102  | Operation not allowed.                                                                                                                         |
 | 7400103  | Session not config.                                                                                                                            |
 | 7400201  | Camera service fatal error.                                                                                                                    |
