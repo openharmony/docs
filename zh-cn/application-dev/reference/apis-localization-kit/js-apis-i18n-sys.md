@@ -338,7 +338,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 static setTemperatureType(type: TemperatureType): void;
 
-设置系统是否使用本地数字。
+设置用户偏好的温度单位类型
 
 **系统接口**：此接口为系统接口。
 
