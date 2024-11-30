@@ -300,7 +300,10 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 | ---------------- | ----------------------------------- |
 | Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
 
-**错误码**：201 - Permission denied.
+**错误码**：
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
 
 **示例**：
 
@@ -564,7 +567,10 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 | ---------------- | ----------------------------------- |
 | boolean          | 返回设置数据项的值是否成功发结果。返回true表示设置成功，false表示设置失败。 |
 
-**错误码**：201 - Permission denied.
+**错误码**：
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
 
 **示例**：
 
