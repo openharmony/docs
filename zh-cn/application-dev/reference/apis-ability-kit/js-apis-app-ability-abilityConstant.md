@@ -35,13 +35,14 @@ Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| CONTINUATION           | 3    | 跨端设备迁移启动ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| SHARE<sup>10+</sup>           | 5    | 通过原子化服务分享启动ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动Ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动Ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| CONTINUATION           | 3    | 跨端迁移启动Ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动Ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| SHARE<sup>10+</sup>           | 5    | 通过原子化服务分享启动Ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
 | INSIGHT_INTENT<sup>11+</sup>           | 9    | 通过洞察意图来启动Ability。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| PREPARE_CONTINUATION<sup>12+</sup>           | 10    | 跨端迁移提前启动Ability。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 **示例：**
 
