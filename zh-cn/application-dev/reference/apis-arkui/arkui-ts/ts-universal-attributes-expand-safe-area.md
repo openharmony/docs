@@ -48,7 +48,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 >   
 >  组件延伸到安全区域下，在安全区域处的事件，如点击事件等可能会被系统拦截，优先给状态栏等系统组件响应。
 >  
->  滚动类容器内的组件不建议设置expandSafeArea属性，如果设置，需要按照组件嵌套关系，将当前节点到滚动类祖先容器间所有直接节点设置expandSafeArea属性，否则expandSafeArea属性在滚动后可能会失效，写法参考[示例6](#示例6滚动类容器扩展安全区)。
+>  滚动类容器内的组件不建议设置expandSafeArea属性，如果设置，需要按照组件嵌套关系，将当前节点到滚动类祖先容器间所有直接节点设置expandSafeArea属性，否则expandSafeArea属性在滚动后可能会失效，写法参考[示例5](#示例5滚动类容器扩展安全区)。
 > 
 >  expandSafeArea属性仅作用于当前组件，不会向父组件或子组件传递，因此使用过程中，所有相关组件均需配置。
 > 
@@ -75,8 +75,6 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 >  **说明：**
 >
 >  KeyboardAvoidMode.RESIZE是压缩Page的大小，Page下设置百分比宽高的组件会跟随Page压缩，直接设置宽高的组件会按设置的固定大小布局。设置KeyboardAvoidMode.RESIZE时，expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])不生效。
->
->  KeyboardAvoidMode.NONE配置Page不避让键盘，Page会被抬起的键盘遮盖。
 
 ## getKeyboardAvoidMode
 
@@ -243,75 +241,7 @@ struct KeyboardAvoidExample2 {
 
 ![keyboardAvoidMode1](figures/keyboardAvoidMode2.jpg)
 
-### 示例5（切换避让模式）
-
-该示例通过调用setKeyboardAvoidMode来实现OFFSET、RESIZE和NONE模式之间的切换，实现三种不同的键盘避让效果。
-
-```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { KeyboardAvoidMode } from '@kit.ArkUI';
-@Entry
-@Component
-
-struct KeyboardAvoidExample3 {
-  build() {
-    Column() {
-      Row({space:15}) {
-        Button('OFFSET')
-          .onClick(() => {
-            this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
-            hilog.info(0x0000, 'keyboardAvoidMode: %{public}s', JSON.stringify(this.getUIContext().getKeyboardAvoidMode()));
-          })
-          .layoutWeight(1)
-        Button('RESIZE')
-          .onClick(() => {
-            this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
-            hilog.info(0x0000, 'keyboardAvoidMode: %{public}s', JSON.stringify(this.getUIContext().getKeyboardAvoidMode()));
-          })
-          .layoutWeight(1)
-        Button('NONE')
-          .onClick(() => {
-            this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.NONE);
-            hilog.info(0x0000, 'keyboardAvoidMode: %{public}s', JSON.stringify(this.getUIContext().getKeyboardAvoidMode()));
-          })
-          .layoutWeight(1)
-      }
-      .height("30%")
-      .width("100%")
-      .backgroundColor(Color.Gray)
-
-      TextArea()
-        .width("100%")
-        .borderWidth(1)
-      
-      Text("I can see the bottom of the page")
-        .width("100%")
-        .textAlign(TextAlign.Center)
-        .backgroundColor(Color.Pink)
-        .layoutWeight(1)
-      
-      TextArea()
-        .width("100%")
-        .borderWidth(1)
-    }
-    .width('100%')
-    .height("100%")
-  }
-}
-```
-OFFSET模式
-
-![keyboardAvoidMode3-1](figures/keyboardAvoidMode3-1.jpg)
-
-RESIZE模式
-
-![keyboardAvoidMode3-2](figures/keyboardAvoidMode3-2.jpg)
-
-NONE模式
-
-![keyboardAvoidMode3-3](figures/keyboardAvoidMode3-3.jpg)
-
-### 示例6（滚动类容器扩展安全区）
+### 示例5（滚动类容器扩展安全区）
 
 该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果。
 
