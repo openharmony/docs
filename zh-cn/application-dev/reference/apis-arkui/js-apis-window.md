@@ -3670,7 +3670,7 @@ off(type: 'displayIdChange', callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-const callback = (bool: number) => {
+const callback = (displayId: number) => {
   // ...
 }
 try {
