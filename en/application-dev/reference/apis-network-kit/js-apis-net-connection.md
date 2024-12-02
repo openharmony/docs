@@ -261,9 +261,7 @@ The following is an example configuration of the certificate pin:
         }
       }
     ]
-  },
-  "trust-global-user-ca": false,
-  "trust-current-user-ca": false,
+  }
 }
 ```
 
@@ -305,10 +303,6 @@ The following is an example configuration of the application-level certificate:
 This field can contain zero or one **base-config**.
 
 This field must contain one **domain-config**.
-
-**trust-global-user-ca**: This field specifies whether to trust the CA certificate manually installed by the enterprise MDM system or device administrator. The default value is **true**.
-
-**trust-current-user-ca**: This field specifies whether to trust the certificate installed by the current user. The default value is **true**.
 
 **base-config (object: application-wide security configuration)**
 
@@ -1890,7 +1884,7 @@ For details about the error codes, see [Network Connection Management Error Code
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exists.      |
+| 2101007 | The callback does not exist.      |
 
 **Example**
 
