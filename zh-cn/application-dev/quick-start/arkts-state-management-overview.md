@@ -206,7 +206,7 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 ### 状态管理V1与V2能力对比
 
-| V1装饰器名   | V2装饰器名                                             | 说明                                                         |
+| V1能力   | V2能力                                             | 说明                                                         |
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
 | \@Observed   | \@ObservedV2                                           | 表明当前对象为可观察对象。但两者能力并不相同。 <br/>\@Observed可观察第一层的属性，需要搭配\@ObjectLink使用才能生效。 <br/>\@ObservedV2本身无观察能力，仅代表当前class可被观察，如果要观察其属性，需要搭配\@Trace使用。 |
 | \@Track      | \@Trace                                                | V1装饰器\@Track为精确观察，不使用则无法做到类属性的精准观察。 <br/>V2\@Trace装饰的属性可以被精确跟踪观察。 |
@@ -223,5 +223,9 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 | Environment       | 调用Ability接口获取系统环境变量   | Environment获取环境变量能力和AppStorage耦合。在V2中可直接调用Ability接口获取系统环境变量。 |
 | PersistentStorage     | PersistenceV2   | PersistentStorage持久化能力和AppStorage耦合，PersistenceV2持久化能力可独立使用。 |
 | @Reusable     | 暂未提供   | 组件复用。 |
+| $$            | !!         | 双向绑定。V2建议使用!!实现双向绑定。 |
+| @CustomDialog | [openCustomDialog](../../application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口   | 自定义弹窗。V2建议使用openCustomDialog实现自定义弹窗功能。 |
+| withTheme     | 暂未提供   | 主题。用于设置应用局部页面自定义主题风格。 |
+| 高级组件     | 暂未提供   | 高级组件。例如：[DownloadFileButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)、[ProgressButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)、[SegmentButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md) |
 
 有关V1向V2的迁移可参考[迁移指导](./arkts-v1-v2-migration.md)，有关V1与V2的混用可参考[混用文档](./arkts-custom-component-mixed-scenarios.md)。
