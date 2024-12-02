@@ -45,19 +45,19 @@
 
 1. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的abilities标签中配置跨端迁移标签`continuable`。
 
-    ```json
-    {
-      "module": {
-        // ...
-        "abilities": [
-          {
-            // ...
-            "continuable": true, // 配置UIAbility支持迁移
-          }
-        ]
-      }
-    }
-    ```
+   ```json
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "continuable": true, // 配置UIAbility支持迁移
+         }
+       ]
+     }
+   }
+   ```
 
    > **说明：**
    >
@@ -68,7 +68,7 @@
     当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例触发迁移时，[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
     - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-    - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。
+    - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验，建议应用在校验版本兼容性失败后，提示用户拒绝接续的原因。
 
     - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
 
@@ -82,30 +82,59 @@
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-
+    
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     export default class MigrationAbility extends UIAbility {
       // 在onContinue中准备迁移数据
       onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
         let targetVersion = wantParam.version;
         let targetDevice = wantParam.targetDevice;
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
-
-        // 获取本端应用的版本号
-        let versionSrc: number = -1; // 请填充具体获取版本号的代码
-
-        // 兼容性校验
-        if (targetVersion !== versionSrc) {
-          // 在兼容性校验不通过时返回MISMATCH
-          return AbilityConstant.OnContinueResult.MISMATCH;
-        }
-
+    
         // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
         const continueInput = '迁移的数据';
         wantParam['data'] = continueInput;
+    
+        return AbilityConstant.OnContinueResult.AGREE;
+      }
+    }
+    ```
 
+    若应用侧需要进行应用版本号兼容性校验，可参考以下示例：
+
+    ```ts
+    import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    
+    const TAG: string = '[MigrationAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    
+    export default class MigrationAbility extends UIAbility {
+      // 在onContinue中准备迁移数据
+      onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+        let targetVersion = wantParam.version;
+        let targetDevice = wantParam.targetDevice;
+        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
+    
+        // 应用可自行设置最低版本号
+    	let versionThreshold: number = -1;
+        // 兼容性校验
+        if (targetVersion < versionThreshold) {
+          // 建议在校验版本兼容性失败后，提示用户拒绝接续的原因
+          promptAction.showToast({
+              message: '应用版本号校验失败，请您升级应用版本',
+              duration: 2000
+          })
+          // 在兼容性校验不通过时返回MISMATCH
+          return AbilityConstant.OnContinueResult.MISMATCH;
+        }
+    
+        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
+        const continueInput = '迁移的数据';
+        wantParam['data'] = continueInput;
+    
         return AbilityConstant.OnContinueResult.AGREE;
       }
     }
