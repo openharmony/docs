@@ -1,6 +1,6 @@
 # Flex
 
-以弹性方式布局子组件的容器组件。
+Flex是以弹性方式布局子组件的容器组件，提供更加有效的方式对容器内的子元素进行排列、对齐和分配剩余空间。
 
 > **说明：**
 >
@@ -34,6 +34,8 @@ Flex(value?: FlexOptions)
 
 ## FlexOptions对象说明
 
+表示Flex子组件的排列对齐方式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -45,7 +47,7 @@ Flex(value?: FlexOptions)
 | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否     | 所有子组件在Flex容器主轴上的对齐格式。<br/>**默认值：** FlexAlign.Start<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。                    |
 | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否     | 所有子组件在Flex容器交叉轴上的对齐格式。 <br/>**默认值：** ItemAlign.Start<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。                 |
 | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否     | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。<br/>**默认值：** FlexAlign.Start<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。  |
-| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | 否   | 所有子组件在Flex容器主轴或交叉轴的space。<br/>**默认值：** {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} <br/>space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | 否   | 所有子组件在Flex容器主轴或交叉轴的间距。<br/>**默认值：** {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} <br/>space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## FlexSpaceOptions<sup>12+</sup>
 
@@ -60,8 +62,8 @@ Flex(value?: FlexOptions)
 
 ## 示例
 
-### 示例1
-
+### 示例1（子组件排列方向）
+该示例通过设置direction实现不同的子组件排列方向效果。
 ```ts
 // xxx.ets
 @Entry
@@ -125,8 +127,8 @@ struct FlexExample1 {
 
 ![zh-cn_image_0000001219744189](figures/zh-cn_image_0000001219744189.PNG)
 
-### 示例2
-
+### 示例2（子组件单/多行排列）
+该示例通过设置wrap实现子组件单行或多行的排列效果。
 ```ts
 // xxx.ets
 @Entry
@@ -173,8 +175,8 @@ struct FlexExample2 {
 
 ![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.png)
 
-### 示例3
-
+### 示例3（子组件在主轴上的对齐格式）
+该示例通过设置justifyContent实现子组件在主轴上不同的对齐效果。
 ```ts
 // xxx.ets
 @Component
@@ -224,8 +226,8 @@ struct FlexExample3 {
 
 ![zh-cn_image_0000001174582854](figures/zh-cn_image_0000001174582854.PNG)
 
-### 示例4
-
+### 示例4（子组件在交叉轴上的对齐方式）
+该示例通过设置alignItems实现子组件在主轴上的不同的对齐效果。
 ```ts
 // xxx.ets
 @Component
@@ -275,8 +277,8 @@ struct FlexExample4 {
 
 ![zh-cn_image_0000001174422904](figures/zh-cn_image_0000001174422904.png)
 
-### 示例5
-
+### 示例5（多行内容的对齐方式）
+该示例通过设置alignContent实现多行内容的不同对齐效果。
 ```ts
 // xxx.ets
 @Component
@@ -338,8 +340,8 @@ struct FlexExample5 {
 
 ![zh-cn_image_0000001174422906](figures/zh-cn_image_0000001174422906.PNG)
 
-### 示例6
-
+### 示例6（子组件单/多行排列时的主/交叉轴间距）
+该示例通过设置space为单/多行排列的子组件确定在主/交叉轴上的间距。
 ```ts
 import {LengthMetrics} from '@kit.ArkUI';
 

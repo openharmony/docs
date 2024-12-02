@@ -1,0 +1,12 @@
+diff a/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md b/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	(rejected hunks)
+@@ -388,8 +390,8 @@ struct FlexExample2 {
+ 
+ ![zh-cn_image_0000001174422907](figures/zh-cn_image_0000001174422907.PNG)
+ 
+-### 示例7
+-该示例实现了flex在宽度设置auto后可以自适应子组件布局的能力。
++### 示例7（宽度自适应的Flex容器）
++该示例实现了Flex在宽度设置auto后可以自适应子组件布局的能力。
+ ```ts
+ @Component
+ struct Demo {
