@@ -7,6 +7,8 @@ Declares ArkWeb APIs for obtaining native APIs and the basic native API types.
 
 **Library**: libohweb.so
 
+**File to include**: <web/arkweb_interface.h>
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Since**: 12

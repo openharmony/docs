@@ -229,20 +229,20 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | G711mu      | 8000                                                                                            |   1    |
    | AMR(amrnb)  | 8000                                                                                            |   1    |
    | AMR(amrwb)  | 16000                                                                                           |   1    |
-   | APE         | 16000                                                                                           |  1~2   |
+   | APE         | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000、176400、192000 |  1~2   |
 
    ```cpp
    // 设置解码分辨率
    int32_t ret;
    // 配置音频采样率（必须）
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
-   // 配置音频码率（必须）
+   // 配置音频码率（可选）
    constexpr uint32_t DEFAULT_BITRATE = 32000;
    // 配置音频声道数（必须）
    constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
    // 配置最大输入长度（可选）
    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1152;
-   // 配置是否为ADTS解码（acc）
+   // 配置是否为ADTS解码（aac解码时可选）
    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format

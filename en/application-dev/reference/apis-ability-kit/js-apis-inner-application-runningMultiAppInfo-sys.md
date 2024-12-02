@@ -1,9 +1,9 @@
- # RunningMultiAppInfo (System API)
+# RunningMultiAppInfo (System API)
 
 The RunningMultiAppInfo module defines the information of an application in multi-app mode in the running state.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.

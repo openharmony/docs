@@ -1754,7 +1754,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 | name     | string                    | 是    | 应用账号的名称。     |
 | owner    | string                    | 是    | 应用账号所有者的包名。  |
 | authType | string                    | 是    | 鉴权类型。        |
-| token    | string                    | 是    | 授权令牌。 |
+| token    | string                    | 是    | 授权令牌。如果授权令牌不存在，则不执行任何操作。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null；否则为错误对象。     |
 
 **错误码：**
@@ -1801,7 +1801,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 | name     | string | 是    | 应用账号的名称。     |
 | owner    | string | 是    | 应用账号所有者的包名。  |
 | authType | string | 是    | 鉴权类型。        |
-| token    | string | 是    | 授权令牌。 |
+| token    | string | 是    | 授权令牌。如果授权令牌不存在，则不执行任何操作。 |
 
 **返回值：**
 

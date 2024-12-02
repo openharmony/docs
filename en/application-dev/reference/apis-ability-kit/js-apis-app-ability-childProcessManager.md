@@ -1,6 +1,6 @@
 # @ohos.app.ability.childProcessManager (childProcessManager)
 
-The **childProcessManager** module provides the child process management capability. Currently, it provides APIs to start the child process and is available only for tablets.
+The **childProcessManager** module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for tables.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ The **childProcessManager** module provides the child process management capabil
 import { childProcessManager } from '@kit.AbilityKit';
 ```
 
-## childProcessManager.StartMode
+## StartMode
 
 Enumerates the child process start modes.
 
@@ -40,7 +40,7 @@ A PID is returned once the child process is created. However, this does not mean
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
-  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
+  | startMode | [StartMode](#startmode) | Yes| Start mode of the child process.|
 
 **Return value**
 
@@ -109,7 +109,7 @@ A PID is returned once the child process is created. However, this does not mean
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
-  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
+  | startMode | [StartMode](#startmode) | Yes| Start mode of the child process.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the subprocess is started, **err** is **undefined** and **data** is the PID of the child process. Otherwise, **data** is an error object.|
 
 **Error codes**
@@ -195,6 +195,7 @@ The child process supports parameter transfer and asynchronous ArkTS API calls (
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **Example**
 

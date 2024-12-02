@@ -43,6 +43,7 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 ## 示例
 
+该示例实现了一个简单的带加载进度的文本下载按钮
 ```ts
 import { ProgressButton } from '@kit.ArkUI'
 

@@ -31,7 +31,7 @@ Currently, the following security components are available:
 
 - [SaveButton](savebutton.md)
   
-  The **SaveButton** component comes with the privilege for writing data to the media library. When it is tapped, the application obtains one-time permission to access the **mediaLibrary** APIs within 10 seconds.
+  The **SaveButton** component comes with the privilege for writing data to the media library. When it is tapped, the application can access the **mediaLibrary** APIs within 10 seconds.
 
   You can use the **SaveButton** component when your application needs to save image or videos to the media library. This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
@@ -70,7 +70,7 @@ The following figure illustrates the working mechanism.
 6. After the authorization is successful, the security component calls **OnClick()** to notify the application layer of the authorization success.
 
 7. The application calls the related API to perform the operation, for example, obtain location information, read data from the pasteboard, or create a file in the media library.
-   The permission usage and authorization validity period vary with security components. For details, see the related development guide.
+   The permission usage and authorization validity period vary with the security component. For details, see the development guide of the specific security component.
 
 8. The corresponding service calls the permission manager service or security component manager service to obtain the authorization result and return the authentication result.
 
@@ -82,6 +82,7 @@ Due to the automatic authorization feature, many restrictions are imposed on sec
 If the authorization fails due to invalid component style, check the device error logs with the keyword "SecurityComponentCheckFail".
 
 > **NOTE**
+>
 > Pay attention to logs of all levels related to the keyword.
 
 Possible causes include but are not limited to the following:

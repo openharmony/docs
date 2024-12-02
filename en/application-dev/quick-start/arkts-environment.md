@@ -1,7 +1,7 @@
-# Environment: Querying Device Environment
+# Environment: Device Environment Query
 
 
-You may want your application to behave differently based on the device environment where the application is running, for example, switching to dark mode or a specific language. In this case, you need Environment for device environment query.
+If you need the environment parameters of the device where the application runs to set different scenarios, such as multi-language support and dark/light color mode, use Environment to query the parameters.
 
 
 Environment is a singleton object created by the ArkUI framework at application startup. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple types only.
@@ -13,8 +13,8 @@ Environment is a singleton object created by the ArkUI framework at application 
 | ------------------ | ------------------ | ------------------ |
 | accessibilityEnabled              | boolean                  | Whether to enable accessibility.                |
 | colorMode              | ColorMode                  | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.                |
-| fontScale              | number                  | Font scale. Range: [0.85, 1.45].                |
-| fontWeightScale              | number                  | Font weight scale. Range: [0.6, 1.6].               |
+| fontScale              | number                  | Font scale. To enable the font scale to change with the system, set the [configuration](./app-configuration-file.md#configuration) tag.               |
+| fontWeightScale              | number                  | Font weight.               |
 | layoutDirection              | LayoutDirection                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
 | languageCode              | string                  | Current system language. The value is in lowercase, for example, **zh**.                |
 
@@ -82,7 +82,7 @@ if (lang.get() === 'en') {
 ```
 
 
-## Restrictions
+## Constraints
 
 
 Environment can be called only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.

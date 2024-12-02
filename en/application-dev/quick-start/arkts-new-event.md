@@ -31,17 +31,17 @@ When using \@Event to decorate a component:
 
 ## Constraints
 
-- \@Event can be used only in custom components decorated by \@ComponentV2. \@Event does not take effect if the decorated variable is not a function.
+- \@Event can be used only in custom components decorated by \@ComponentV2. It does not take effect if the decorated variable is not a function.
 
   ```ts
   @ComponentV2
   struct Index {
     @Event changeFactory: ()=>void = ()=>{}; // Correct usage.
-    @Event message: string = "abcd"; // Incorrect usage. The variable decorated is not a function.
+    @Event message: string = "abcd"; // Incorrect usage. Variable of the non-function type is decorated.
   }
   @Component
   struct CompA {
-    @Event changeFactory: ()=>void = ()=>{}; // Incorrect usage.
+    @Event changeFactory: ()=>void = ()=>{}; // Incorrect usage. An error is reported during compilation.
   }
   ```
 
@@ -87,6 +87,7 @@ struct Child {
   build() {
     Column() {
       Text(`${this.title}`)
+        .fontColor(this.fontColor)
       Button("change to Title Two")
         .onClick(() => {
           this.changeFactory(2);
@@ -98,7 +99,7 @@ struct Child {
     }
   }
 }
-````
+```
 
 Note that using \@Event to change the value of the parent component takes effect immediately. However, the process of synchronizing the change from the parent component to the child component is asynchronous. That is, after the method of \@Event is called, the value of the child component does not change immediately. This is because \@Event passes the actual change capability of the child component value to the parent component for processing. After the parent component determines how to process the value, the final value is synchronized back to the child component before rendering.
 

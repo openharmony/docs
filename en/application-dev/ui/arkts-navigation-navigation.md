@@ -602,7 +602,7 @@ During the switching between **NavDestination** components, the [geometryTransit
     // Set id of the source page.
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
@@ -614,7 +614,7 @@ During the switching between **NavDestination** components, the [geometryTransit
     // Set id of the destination page.
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
@@ -634,8 +634,8 @@ During the switching between **NavDestination** components, the [geometryTransit
         .height(40)
         .margin(20)
         .onClick(() => {
-            animateTo({ duration: 1000 }, () => {
-            this.pageStack.pushPath({ name: 'ToPage' }, false)
+            this.getUIContext()?.animateTo({ duration: 1000 }, () => {
+              this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })
     }
@@ -752,6 +752,6 @@ You can implement cross-package dynamic routing through a custom routing table.
 1. Define page navigation configuration items.
    - Use resource files for definition. The [resource manager](../reference/apis-localization-kit/js-apis-resource-manager.md) parses resource files during running.
    - Configure the route loading configuration items in the .ets file, including the route page name (alias of the page in the **pushPath** API), name of the module where the file is located (name of the HSP/HAR module), and path of the page to be loaded in the module (relative to the **src** directory).
-2. Load the target navigation page. Use [import](../quick-start/arkts-dynamic-import.md) to load the module where the target page is located during running. After the module is loaded, call the method in the module, load the target page to be displayed in the module by importing the method of the module, and return the **Builder** function defined after the page is loaded.
-3. Trigger page navigation. Execute the **Builder** function loaded in step 2 in the [.navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10) attribute of **Navigation** to navigate to the target page.
+2. Load the target navigation page. Use **import** to load the module where the target page is located during running. After the module is loaded, call the method in the module, load the target page to be displayed in the module by importing the method of the module, and return the **Builder** function defined after the page is loaded.
+3. Trigger page navigation. Execute the **Builder** function loaded in step 2 on the [navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10) attribute of **Navigation** to navigate to the target page.
 <!--no_check-->

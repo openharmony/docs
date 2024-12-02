@@ -9,17 +9,19 @@ HiAppEvent提供接口用于订阅系统资源泄漏事件。
 
 **params属性：**
 
-| 名称    | 类型   | 说明                       |
-| ------- | ------ | ------------------------- |
-| time     | number | 事件触发时间，单位为毫秒。 |
-| bundle_version | string | 应用版本。 |
-| bundle_name | string | 应用名称。 |
-| pid | number | 应用的进程id。|
-| uid | number | 应用的用户id。 |
-| resource_type | string | 资源类型，取值范围详见resource_type属性。 |
-| memory | object | （resource_type为pss_memory或js_heap专有）内存信息，详见memory属性。 |
-| fd | object | （resource_type为fd专有）文件描述符信息，详见fd属性。 |
-| thread | object | （resource_type为thread专有）线程信息，详见thread属性。 |
+| 名称             | 类型    | 说明                                                                   |
+|----------------|-------|----------------------------------------------------------------------|
+| time           | number | 事件触发时间，单位为毫秒。                                                        |
+| bundle_version | string | 应用版本。                                                                |
+| bundle_name    | string | 应用名称。                                                                |
+| pid            | number | 应用的进程id。                                                             |
+| uid            | number | 应用的用户id。                                                             |
+| resource_type  | string | 资源类型，取值范围详见resource_type属性。                                          |
+| memory         | object | （resource_type为pss_memory或js_heap专有）内存信息，详见memory属性。                 |
+| fd             | object | （resource_type为fd专有）文件描述符信息，详见fd属性。                                  |
+| thread         | object | （resource_type为thread专有）线程信息，详见thread属性。                             |
+| external_log   | string[] | 故障日志文件路径。为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，日志文件处理完后请及时删除。 |
+| log_over_limit | Boolean  | 生成的故障日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。        |
 
 **resource_type属性：**
 

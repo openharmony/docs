@@ -137,79 +137,79 @@ In classes decorated by \@ObservedV2, properties decorated by \@Trace are observ
 
 - Changes to properties decorated by \@Trace in nested classes decorated by \@ObservedV2
 
-  ```ts
-  @ObservedV2
-  class Son {
-    @Trace age: number = 100;
-  }
-  class Father {
-    son: Son = new Son();
-  }
-  @Entry
-  @ComponentV2
-  struct Index {
-    father: Father = new Father();
-  
-    build() {
-      Column() {
-        // If age is changed, the Text component is re-rendered.
-        Text(`${this.father.son.age}`)
-          .onClick(() => {
-            this.father.son.age++;
+```ts
+@ObservedV2
+class Son {
+  @Trace age: number = 100;
+}
+class Father {
+  son: Son = new Son();
+}
+@Entry
+@ComponentV2
+struct Index {
+  father: Father = new Father();
+
+  build() {
+    Column() {
+      // If age is changed, the Text component is re-rendered.
+      Text(`${this.father.son.age}`)
+        .onClick(() => {
+          this.father.son.age++;
         })
-      }
     }
   }
-  
-  ```
+}
+
+```
 
 - Changes to properties decorated by \@Trace in inherited classes decorated by \@ObservedV2
 
-  ```ts
-  @ObservedV2
-  class Father {
-    @Trace name: string = "Tom";
-  }
-  class Son extends Father {
-  }
-  @Entry
-  @ComponentV2
-  struct Index {
-    son: Son = new Son();
-  
-    build() {
-      Column() {
-        // If name is changed, the Text component is re-rendered.
-        Text(`${this.son.name}`)
-          .onClick(() => {
-            this.son.name = "Jack";
+```ts
+@ObservedV2
+class Father {
+  @Trace name: string = "Tom";
+}
+class Son extends Father {
+}
+@Entry
+@ComponentV2
+struct Index {
+  son: Son = new Son();
+
+  build() {
+    Column() {
+      // If name is changed, the Text component is re-rendered.
+      Text(`${this.son.name}`)
+        .onClick(() => {
+          this.son.name = "Jack";
         })
-      }
     }
   }
-  ```
+}
+```
 
 - Changes to static properties decorated by \@Trace in classes decorated by \@ObservedV2
 
-  ```ts
-  @ObservedV2
-  class Manager {
-    @Trace static count: number = 1;
-  }
-  @Entry
-  @ComponentV2
-  struct Index {
-    build() {
-      Column() {
-        // If count is changed, the Text component is re-rendered.
-        Text(`${Manager.count}`)
-          .onClick(() => {
-            Manager.count++;
+```ts
+@ObservedV2
+class Manager {
+  @Trace static count: number = 1;
+}
+@Entry
+@ComponentV2
+struct Index {
+  build() {
+    Column() {
+      // If count is changed, the Text component is re-rendered.
+      Text(`${Manager.count}`)
+        .onClick(() => {
+          Manager.count++;
         })
-      }
     }
   }
-  ```
+}
+```
 
 - Changes caused by the APIs listed below to properties of built-in types decorated by \@Trace
 
@@ -226,141 +226,141 @@ Note the following constraints when using the \@ObservedV2 and \@Trace decorator
 
 - The member property that is not decorated by \@Trace cannot trigger UI re-renders.
 
-  ```ts
-  @ObservedV2
-  class Person {
-    id: number = 0;
-    @Trace age: number = 8;
-  }
-  @Entry
-  @ComponentV2
-  struct Index {
-    person: Person = new Person();
-  
-    build() {
-      Column() {
-        // age is decorated by @Trace and can trigger re-renders when used in the UI.
-        Text(`${this.person.age}`)
-        // id is not decorated by @Trace and cannot trigger re-renders when used in the UI.
-        Text(`${this.person.id}`) // UI is not re-rendered when id changes.
-      }
+```ts
+@ObservedV2
+class Person {
+  id: number = 0;
+  @Trace age: number = 8;
+}
+@Entry
+@ComponentV2
+struct Index {
+  person: Person = new Person();
+
+  build() {
+    Column() {
+      // age is decorated by @Trace and can trigger re-renders when used in the UI.
+      Text(`${this.person.age}`)
+      // id is not decorated by @Trace and cannot trigger re-renders when used in the UI.
+      Text(`${this.person.id}`) // UI is not re-rendered when id changes.
     }
   }
-  ```
+}
+```
 
 - \@Trace cannot be used in classes that are not decorated by \@ObservedV2.
 
-  ```ts
-  class User {
-    id: number = 0;
-    @Trace name: string = "Tom"; // Incorrect usage. An error is reported at compile time.
-  }
-  ```
+```ts
+class User {
+  id: number = 0;
+  @Trace name: string = "Tom"; // Incorrect usage. An error is reported at compile time.
+}
+```
 
 - \@Trace is a decorator for properties in classes and cannot be used in a struct.
 
-  ```ts
-  @ComponentV2
-  struct Comp {
-    @Trace message: string = "Hello World"; // Incorrect usage. An error is reported at compile time.
-  
-    build() {
-    }
+```ts
+@ComponentV2
+struct Comp {
+  @Trace message: string = "Hello World"; // Incorrect usage. An error is reported at compile time.
+
+  build() {
   }
-  ```
+}
+```
 
 - \@ObservedV2 and \@Trace cannot be used together with [\@Observed](arkts-observed-and-objectlink.md) and [\@Track](arkts-track.md).
 
-  ```ts
-  @Observed
-  class User {
-    @Trace name: string = "Tom"; // Incorrect usage. An error is reported at compile time.
-  }
-  
-  @ObservedV2
-  class Person {
-    @Track name: string = "Jack"; // Incorrect usage. An error is reported at compile time.
-  }
-  ```
+```ts
+@Observed
+class User {
+  @Trace name: string = "Tom"; // Incorrect usage. An error is reported at compile time.
+}
 
-- Classes decorated by @ObservedV2 and @Trace cannot be used together with [\@State](arkts-state.md) or other decorators in the existing state management framework. Otherwise, an error is reported at compile time.
+@ObservedV2
+class Person {
+  @Track name: string = "Jack"; // Incorrect usage. An error is reported at compile time.
+}
+```
 
-  ```ts
-  // @State is used as an example.
-  @ObservedV2
-  class Job {
-    @Trace jobName: string = "Teacher";
-  }
-  @ObservedV2
-  class Info {
-    @Trace name: string = "Tom";
-    @Trace age: number = 25;
-    job: Job = new Job();
-  }
-  @Entry
-  @Component
-  struct Index {
-    @State info: Info = new Info(); // As @State is not allowed here, an error is reported at compile time.
-  
-    build() {
-      Column() {
-        Text(`name: ${this.info.name}`)
-        Text(`age: ${this.info.age}`)
-        Text(`jobName: ${this.info.job.jobName}`)
-        Button("change age")
-          .onClick(() => {
-            this.info.age++;
+- Classes decorated by @ObservedV2 and @Trace cannot be used together with [\@State](arkts-state.md) or other decorators of V1. Otherwise, an error is reported at compile time.
+
+```ts
+// @State is used as an example.
+@ObservedV2
+class Job {
+  @Trace jobName: string = "Teacher";
+}
+@ObservedV2
+class Info {
+  @Trace name: string = "Tom";
+  @Trace age: number = 25;
+  job: Job = new Job();
+}
+@Entry
+@Component
+struct Index {
+  @State info: Info = new Info(); // As @State is not allowed here, an error is reported at compile time.
+
+  build() {
+    Column() {
+      Text(`name: ${this.info.name}`)
+      Text(`age: ${this.info.age}`)
+      Text(`jobName: ${this.info.job.jobName}`)
+      Button("change age")
+        .onClick(() => {
+          this.info.age++;
         })
-        Button("Change job")
-          .onClick(() => {
-            this.info.job.jobName = "Doctor";
+      Button("Change job")
+        .onClick(() => {
+          this.info.job.jobName = "Doctor";
         })
-      }
     }
   }
-  ```
+}
+```
 
-- Classes extended from \@ObservedV2 cannot be used together with [\@State](arkts-state.md) or other decorators in the existing state management framework. Otherwise, an error is reported during running.
+- Classes extended from \@ObservedV2 cannot be used together with [\@State](arkts-state.md) or other decorators of V1. Otherwise, an error is reported during running.
 
-  ```ts
-  // @State is used as an example.
-  @ObservedV2
-  class Job {
-    @Trace jobName: string = "Teacher";
-  }
-  @ObservedV2
-  class Info {
-    @Trace name: string = "Tom";
-    @Trace age: number = 25;
-    job: Job = new Job();
-  }
-  class Message extends Info {
-      constructor() {
-          super();
-      }
-  }
-  @Entry
-  @Component
-  struct Index {
-    @State message: Message = new Message(); // As @State is not allowed here, an error is reported during running.
-  
-    build() {
-      Column() {
-        Text(`name: ${this.message.name}`)
-        Text(`age: ${this.message.age}`)
-        Text(`jobName: ${this.message.job.jobName}`)
-        Button("change age")
-          .onClick(() => {
-            this.message.age++;
+```ts
+// @State is used as an example.
+@ObservedV2
+class Job {
+  @Trace jobName: string = "Teacher";
+}
+@ObservedV2
+class Info {
+  @Trace name: string = "Tom";
+  @Trace age: number = 25;
+  job: Job = new Job();
+}
+class Message extends Info {
+    constructor() {
+        super();
+    }
+}
+@Entry
+@Component
+struct Index {
+  @State message: Message = new Message(); // As @State is not allowed here, an error is reported during running.
+
+  build() {
+    Column() {
+      Text(`name: ${this.message.name}`)
+      Text(`age: ${this.message.age}`)
+      Text(`jobName: ${this.message.job.jobName}`)
+      Button("change age")
+        .onClick(() => {
+          this.message.age++;
         })
-        Button("Change job")
-          .onClick(() => {
-            this.message.job.jobName = "Doctor";
+      Button("Change job")
+        .onClick(() => {
+          this.message.job.jobName = "Doctor";
         })
-      }
     }
   }
-  ```
+}
+```
 
 - Instances of \@ObservedV2 decorated classes cannot be serialized using **JSON.stringify**.
 
@@ -372,7 +372,7 @@ In the following example, **Pencil** is the innermost class in the **Son** class
 
 The example demonstrates how \@Trace is stacked up against [\@Track](arkts-track.md) and [\@State](arkts-state.md) under the existing state management framework: The @Track decorator offers property-level update capability for classes, but not deep observability; \@State can only observe the changes of the object itself and changes at the first layer; in multi-layer nesting scenarios, you must encapsulate custom components and use [\@Observed](arkts-observed-and-objectlink.md) and [\@ObjectLink](arkts-observed-and-objectlink.md) to observe the changes.
 
-* After **Button("change length")** is clicked, the value of **length** changes, which then triggers a UI re-render of the bound UI component, that is, **UINode (1)**. A log "isRender id: 1" is produced.
+* Click **Button("change length")**, in which **length** is a property decorated by \@Trace. The change of **length** can trigger the re-render of the associated UI component, that is, **UINode (1)**, and output the log "isRender id: 1".
 * Because **son** on the custom component **page** is a regular variable, no change is observed for clicks on **Button("assign Son")**.
 * Clicks on **Button("assign Son")** and **Button("change length")** do not trigger UI re-renders. The reason is that, the change to **son** is not updated to the bound component.
 
@@ -607,7 +607,7 @@ struct Index {
 ### Decorating an Object Array with \@Trace
 
 * In the following example, the **personList** object array and the **age** property in the **Person** class are decorated by \@Trace. As such, changes to **personList** and **age** can be observed.
-* Clicking the **Text** component changes the value of **age** and thereby triggers a UI re-render of the **Text** component.
+* Clicking the **Text** component changes the value of **age** and thereby triggers a UI re-render of the **Text** component
 
 ```ts
 let nextId: number = 0;

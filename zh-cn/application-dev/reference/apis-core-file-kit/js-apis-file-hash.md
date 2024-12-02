@@ -30,7 +30,7 @@ import { hash } from '@kit.CoreFileKit';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
 
-## Hash.hash
+## hash.hash
 
 hash(path: string, algorithm: string): Promise&lt;string&gt;
 
@@ -74,7 +74,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
   });
   ```
 
-## Hash.hash
+## hash.hash
 
 hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -114,7 +114,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
     }
   });
   ```
-## Hash.createHash<sup>12+</sup>
+## hash.createHash<sup>12+</sup>
 
 createHash(algorithm: string): HashStream;
 

@@ -6,7 +6,7 @@ Before we dive into the page and custom component lifecycle, it would be helpful
 
 - Custom component: \@Component decorated UI unit, which can combine multiple built-in components for component reusability and invoke component lifecycle callbacks.
 
-- Page: UI page of an application. A page can consist of one or more custom components. A custom component decorated with [@Entry](arkts-create-custom-components.md#basic-structure-of-a-custom-component) is used as the entry component of the page. Exactly one component is decorated with \@Entry in a single source file. Only components decorated by \@Entry can invoke the lifecycle callbacks of a page.
+- Page: UI page of an application. A page can consist of one or more custom components. A custom component decorated with @Entry is used as the default entry component of the page. Exactly one component can be decorated with \@Entry in a single source file. Only components decorated by \@Entry can call the lifecycle callbacks of a page.
 
 
 The following lifecycle callbacks are provided for a page, that is, a custom component decorated with \@Entry:
@@ -66,7 +66,13 @@ Re-rending of a custom component is triggered when its state variable is changed
 A custom component is deleted when the branch of the **if** statement or the number of arrays in **ForEach** changes.
 
 
-1. Before the component is deleted, the **aboutToDisappear** callback is invoked to mark the component for deletion. The component deletion mechanism of ArkUI is as follows: (1) The backend component is directly removed from the component tree and destroyed; (2) The reference to the destroyed component is released from the frontend components; (3) The JS Engine garbage collects the destroyed component.
+1. Before the component is deleted, the **aboutToDisappear** callback is invoked to mark the component for deletion. The component deletion mechanism of ArkUI is as follows:
+
+   (1) The backend component is directly removed from the component tree and destroyed.
+
+   (2) The reference to the destroyed component is released from the frontend components.
+
+   (3) The JS Engine garbage collects the destroyed component.
 
 2. The custom component and all its variables are deleted. Any variables linked to this component, such as [@Link](arkts-link.md), [@Prop](arkts-prop.md), or [@StorageLink](arkts-appstorage.md#storagelink) decorated variables, are unregistered from their [synchronization sources](arkts-state-management-overview.md#basic-concepts).
 
@@ -76,8 +82,6 @@ Use of **async await** is not recommended inside the **aboutToDisappear** callba
 
 The following example shows when the lifecycle callbacks are invoked:
 
-
-
 ```ts
 // Index.ets
 import { router } from '@kit.ArkUI';
@@ -86,7 +90,7 @@ import { router } from '@kit.ArkUI';
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
-  @State btnColor:string = "#FF007DFF"
+  @State btnColor:string = "#FF007DFF";
 
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageShow() {
@@ -100,8 +104,8 @@ struct MyComponent {
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onBackPress() {
     console.info('Index onBackPress');
-    this.btnColor ="#FFEE0606"
-    return true // The value true means that the page executes its own return logic, and false (default) means that the default return logic is used.
+    this.btnColor ="#FFEE0606";
+    return true // The value true means that the page executes its own return logic instead of the , and false (default) means that the default return logic is used.
   }
 
   // Component lifecycle
@@ -127,9 +131,9 @@ struct MyComponent {
       }
       // When this.showChild is false, delete the Child child component and invoke Child aboutToDisappear.
       Button('delete Child')
-      .margin(20)
-      .backgroundColor(this.btnColor)
-      .onClick(() => {
+        .margin(20)
+        .backgroundColor(this.btnColor)
+        .onClick(() => {
         this.showChild = false;
       })
       // Push to the page and execute onPageHide.
@@ -138,7 +142,6 @@ struct MyComponent {
           router.pushUrl({ url: 'pages/page' });
         })
     }
-
   }
 }
 
@@ -147,7 +150,7 @@ struct Child {
   @State title: string = 'Hello World';
   // Component lifecycle
   aboutToDisappear() {
-    console.info('[lifeCycle] Child aboutToDisappear')
+    console.info('[lifeCycle] Child aboutToDisappear');
   }
 
   // Component lifecycle
@@ -157,13 +160,16 @@ struct Child {
 
   // Component lifecycle
   aboutToAppear() {
-    console.info('[lifeCycle] Child aboutToAppear')
+    console.info('[lifeCycle] Child aboutToAppear');
   }
 
   build() {
-    Text(this.title).fontSize(50).margin(20).onClick(() => {
-      this.title = 'Hello ArkUI';
-    })
+    Text(this.title)
+      .fontSize(50)
+      .margin(20)
+      .onClick(() => {
+        this.title = 'Hello ArkUI';
+      })
   }
 }
 ```
@@ -173,23 +179,23 @@ struct Child {
 @Component
 struct page {
   @State textColor: Color = Color.Black;
-  @State num: number = 0
+  @State num: number = 0;
 
   onPageShow() {
-    this.num = 5
+    this.num = 5;
   }
 
   onPageHide() {
     console.log("page onPageHide");
   }
 
-  onBackPress() {// If the value is not set, false is used.
-    this.textColor = Color.Grey
-    this.num = 0
+  onBackPress() { // If the value is not set, false is used.
+    this.textColor = Color.Grey;
+    this.num = 0;
   }
 
   aboutToAppear() {
-    this.textColor = Color.Blue
+    this.textColor = Color.Blue;
   }
 
   build() {
@@ -200,7 +206,7 @@ struct page {
         .fontColor(this.textColor)
         .margin(20)
         .onClick(() => {
-          this.num += 5
+          this.num += 5;
         })
     }
     .width('100%')

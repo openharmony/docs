@@ -526,7 +526,7 @@ Failed to create the PixelMap.
 
 Check whether the input parameters are correct and whether the instance is released in advance.
 
-## 62980246 Failure in Reading the Pixel Map
+## 62980246 Failure in Reading the PixelMap
 
 **Error Message**
 
@@ -534,14 +534,14 @@ Failed to read the pixel map.
 
 **Possible Cause**
 
-1. The pixel map data is incorrect.
-2. You do not have the permission to read the pixel map.
+1. The PixelMap data is incorrect.
+2. You do not have the permission to read the PixelMap.
 
 **Solution**
 
-Re-create the pixel map or change the read permission.
+Re-create the PixelMap or change the read permission.
 
-## 62980247 Failure in Writing the Pixel Map
+## 62980247 Failure in Writing the PixelMap
 
 **Error Message**
 
@@ -549,14 +549,14 @@ Failed to write the pixel map.
 
 **Possible Cause**
 
-1. The pixel map data is incorrect.
-2. You do not have the permission to write the pixel map.
+1. The PixelMap data is incorrect.
+2. You do not have the permission to write the PixelMap.
 
 **Solution**
 
-Re-create the pixel map or change the read permission.
+Re-create the PixelMap or change the read permission.
 
-## 62980248 No Modification to the Pixel Map
+## 62980248 No Modification to the PixelMap
 
 **Error Message**
 
@@ -564,11 +564,11 @@ PixelMap does not allow modification.
 
 **Possible Cause**
 
-Users try to modify a pixel map.
+Users try to modify a PixelMap.
 
 **Solution**
 
-Do not modify the pixel map.
+Do not modify the PixelMap.
 
 ## 62980259 Incorrect Configuration
 

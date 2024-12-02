@@ -32,7 +32,7 @@ Called to initialize the service logic when a UIExtensionAbility is being create
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| launchParam<sup>12+</sup> | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIExtensionAbility, and the reason for the last abnormal exit.|
+| launchParam<sup>12+</sup> | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | Yes| Parameters for starting the UIExtensionAbility, and the reason for the last abnormal exit.|
 
 **Example**
 

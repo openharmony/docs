@@ -171,7 +171,7 @@ Tabs组件在不为BottomTabBarStyle样式时，切换页面时默认加载300ms
 @Entry
 @Component
 struct TabsExample {
-  ...
+  // ...
   private controller: TabsController = new TabsController();
 
   build() {
@@ -198,7 +198,7 @@ struct TabsExample {
 @Entry
 @Component
 struct TabsExample {
-  ...
+  // ...
   private controller: TabsController = new TabsController();
 
   build() {

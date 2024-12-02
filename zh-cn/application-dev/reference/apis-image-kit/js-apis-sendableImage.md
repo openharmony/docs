@@ -159,7 +159,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region7)  | 是   | 裁剪的尺寸。                         |
+| region                 | [Region](../apis-image-kit/js-apis-image.md#region8)  | 是   | 裁剪的尺寸。                         |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -1302,7 +1302,7 @@ crop(region: image.Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/js-apis-image.md#region7) | 是   | 裁剪的尺寸。|
+| region | [Region](../apis-image-kit/js-apis-image.md#region8) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
@@ -1343,7 +1343,7 @@ cropSync(region: image.Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/js-apis-image.md#region7)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](../apis-image-kit/js-apis-image.md#region8)   | 是   | 裁剪的尺寸。                  |
 
 **错误码：**
 
@@ -2082,6 +2082,8 @@ readLatestImage(): Promise\<Image>
 
 从ImageReceiver读取最新的图片，并使用promise返回结果。
 
+**注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
@@ -2113,6 +2115,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 从ImageReceiver读取下一张图片，并使用promise返回结果。
+
+**注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 

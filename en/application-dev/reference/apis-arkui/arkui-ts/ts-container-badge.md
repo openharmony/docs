@@ -1,6 +1,6 @@
 # Badge
 
-The **\<Badge>** component is a container that can be attached to another component for tagging.
+The **Badge** component is a container that can be attached to another component for tagging.
 
 >  **NOTE**
 >
@@ -58,7 +58,7 @@ This component supports the scaling effect for visibility transition since API v
 
 ## BadgeParam
 
-Provides basic parameters for creating a **\<Badge>** component.
+Provides basic parameters for creating a **Badge** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -126,7 +126,7 @@ Inherits from [BadgeParam](#badgeparam) and has all attributes of **BadgeParam**
 | Name                     | Type                                                        | Mandatory| Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | color                     | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color.<br>Default value: **Color.White**                          |
-| fontSize                  | number \| string                                   | No  | Font size.<br>Default value: **10**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage.|
+| fontSize                  | number \| string                                   | No  | Font size.<br>Default value: **10**<br>Unit: fp<br>**NOTE**<br>This parameter cannot be set in percentage.|
 | badgeSize                 | number \| string                                   | No  | Badge size.<br>Default value: **16**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
 | badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Badge color.<br>Default value: **Color.Red**                         |
 | fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Font weight of the text.<br>Default value: **FontWeight.Normal**<br>**NOTE**<br>This parameter cannot be set in percentage.|

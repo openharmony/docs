@@ -538,8 +538,8 @@ URL的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 入参对象。 |
-| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
+| url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串<br/>- URL：URL对象<br/>- 在url是相对URL时使用。 |
 
 **示例：**
 
@@ -582,8 +582,12 @@ URL静态成员函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 入参对象。 |
-| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
+| url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串<br/>- URL：URL对象<br/>- 在url是相对URL时使用。 |
+
+> **说明：**
+>
+> 当入参url是相对URL时，调用该接口解析后的URL并不是简单地将入参url和base直接拼接。url内容为相对路径格式时，会相对于base的当前目录进行解析，包括base中path字段最后一个斜杠前的所有路径片段，但不包括其后的部分（参照示例中url1）。url内容为指向根目录的格式时，会相对于 base 的原始地址（origin）进行解析（参照示例中url2）。
 
 **错误码：**
 
@@ -597,9 +601,18 @@ URL静态成员函数。
 **示例：**
 
 ```ts
-let mm = 'https://username:password@host:8080';
+let mm = 'https://username:password@host:8080/test/test1/test3';
 let urlObject = url.URL.parseURL(mm);
-let result = urlObject.toString(); // Output 'https://username:password@host:8080/'
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/test/test1/test3'
+// url内容为相对路径格式时，此时base参数的path为test/test1,解析后的URL的path为/test/path2/path3
+let url1 = url.URL.parseURL('path2/path3', 'https://www.huawei.com/test/test1'); // Output 'https://www.huawei.com/test/path2/path3'
+// url内容为指向根目录的格式时，此时base参数的path为/test/test1/test3，解析后的URL的path为/path1/path2
+let url2 = url.URL.parseURL('/path1/path2', urlObject); // Output 'https://username:password@host:8080/path1/path2'
+url.URL.parseURL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output 'https://www.exampleUrl/path/path1'
+url.URL.parseURL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
+url.URL.parseURL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
+url.URL.parseURL('https://www.example.com', ); // Output 'https://www.example.com/'
+url.URL.parseURL('https://www.example.com', urlObject); // Output 'https://www.example.com/'
 ```
 
 ### toString

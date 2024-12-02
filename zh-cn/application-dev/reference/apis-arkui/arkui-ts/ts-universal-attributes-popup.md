@@ -18,7 +18,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -109,7 +109,9 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 ## 示例
 
-### 示例1
+### 示例1（弹出不同类型的气泡）
+
+该示例为bindPopup通过配置popup弹出PopupOptions、CustomPopupOptions类型的气泡。
 
 ```ts
 // xxx.ets
@@ -189,7 +191,9 @@ struct PopupExample {
 
 ![](figures/popup.gif)
 
-### 示例2
+### 示例2（设置气泡的文本样式）
+
+该示例为bindPopup通过配置messageOptions弹出自定义文本样式的气泡。
 
 ```ts
 // xxx.ets
@@ -200,22 +204,17 @@ struct PopupExample {
   @State handlePopup: boolean = false
   @State customPopup: boolean = false
 
-  // popup构造器定义气泡内容
-  @Builder popupBuilder() {
-    Row() {
-      Text('Custom Popup Message').fontSize(10)
-    }.height(50).padding(5)
-  }
-
   build() {
-    Column({space: 100}) {
-      Button('PopupOptions')
+    Column({ space: 100 }) {
+      Button('PopupOptions').margin(100)
         .onClick(() => {
           this.handlePopup = !this.handlePopup
         })
-        .bindPopup(this.handlePopup, {  // PopupOptions类型气泡的内容
+        .bindPopup(this.handlePopup, {
+          // PopupOptions类型气泡的内容
           message: 'This is a popup with PopupOptions',
-          messageOptions: { // 气泡的文本样式
+          messageOptions: {
+            // 气泡的文本样式
             textColor: Color.Red,
             font: {
               size: '14vp',
@@ -224,7 +223,7 @@ struct PopupExample {
             }
           },
           placement: Placement.Bottom,
-          enableArrow: false,
+          enableArrow: false, // 气泡弹出时不显示箭头
           targetSpace: '15vp',
           onStateChange: (e) => {
             console.info(JSON.stringify(e.isVisible))
@@ -233,28 +232,16 @@ struct PopupExample {
             }
           }
         })
-      Button('CustomPopupOptions')
-        .onClick(() => {
-          this.customPopup = !this.customPopup
-        })
-        .bindPopup(this.customPopup, {  // CustomPopupOptions类型气泡的内容
-          builder: this.popupBuilder,
-          targetSpace: '15vp',
-          enableArrow: false, // 气泡弹出时不显示箭头
-          onStateChange: (e) => {
-            if (!e.isVisible) {
-              this.customPopup = false
-            }
-          }
-        })
     }.margin(20)
   }
 }
 ```
 
-![](figures/popup_02.gif)
+![popup_02](figures/popup_02.gif)
 
-### 示例3
+### 示例3（设置气泡的样式）
+
+该示例为bindPopup通过配置arrowHeight、arrowWidth、radius、shadow、popupColor，实现气泡箭头以及气泡本身的样式。
 
 ```ts
 // xxx.ets
@@ -300,9 +287,9 @@ struct PopupExample {
 
 ![](figures/popup_04.gif)
 
-### 示例4
+### 示例4（设置气泡的动效）
 
-本示例通过transition实现了自定义气泡显示/退出动效。
+该示例为bindPopup通过配置transition，实现气泡的显示和退出动效。
 
 ```ts
 // xxx.ets
@@ -369,11 +356,13 @@ struct PopupExample {
 
 ![](figures/popup_05.gif)
 
-### 示例5
+### 示例5（为气泡添加事件）
+
+该示例为bindPopup通过配置onWillDismiss，实现当气泡退出时，拦截退出事件并执行回调函数。
 
 ```ts
 // xxx.ets
-//该示例实现了设置bindPopup的onWillDismiss属性为回调函数时，拦截退出事件并执行回调函数
+
 @Entry
 @Component
 struct PopupExample {
@@ -418,11 +407,13 @@ struct PopupExample {
 
 ![](figures/popup_004.gif)
 
-### 示例6
+### 示例6（为气泡拦截退出事件）
+
+该示例通过配置onWillDismiss的boolean类型为false时，拦截气泡的退出事件。
 
 ```ts
 // xxx.ets
-//该示例实现了设置bindPopup的onWillDismiss属性为false时，拦截退出事件
+
 @Entry
 @Component
 struct PopupExample {

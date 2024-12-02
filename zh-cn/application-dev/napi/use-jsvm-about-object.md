@@ -44,6 +44,21 @@ cpp部分代码
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // GetPrototype注册回调
+// OH_JSVM_GetPrototype的样例方法
+static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    size_t argc = 1;
+    JSVM_Value argv[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
+    JSVM_Value result{nullptr};
+    JSVM_Status status = OH_JSVM_GetPrototype(env, argv[0], &result);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM GetPrototype fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM GetPrototype success");
+    }
+    return result;
+}
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetPrototype},
 };
@@ -52,43 +67,15 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getPrototype", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// OH_JSVM_GetPrototype的样例方法
-static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // 创建一个空对象
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    const char *testNameStr = "set and get proto";
-    JSVM_Value propValue = nullptr;
-    JSVM_Value key = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &key);
-    OH_JSVM_CreateStringUtf8(env, testNameStr, strlen(testNameStr), &propValue);
-    OH_JSVM_SetProperty(env, obj, key, propValue);
-    // 获取属性
-    JSVM_Value propResult = nullptr;
-    JSVM_Status status = OH_JSVM_GetProperty(env, obj, key, &propResult);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM GetPrototype fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetPrototype success");
-    }
-    return propResult;
-}
+// 样例测试js
+const char* srcCallNative = R"JS(const myObject = {};
+    const proto = getPrototype(myObject);
+    console.log(proto === Object.prototype);)JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `getPrototype()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getPrototype: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getPrototype error: %{public}s', error.message);
-}
+JSVM GetPrototype success
 ```
 
 ### OH_JSVM_CreateObject
@@ -102,15 +89,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CreateObject注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateObject},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateObject方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CreateObject的样例方法
 static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -133,21 +111,22 @@ static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_SetProperty(env, object, name, value);
     return object;
 }
+// CreateObject注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateObject},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateObject方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(createObject())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `createObject()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createObject: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createObject error: %{public}s', error.message);
-}
+JSVM CreateObject success
 ```
 
 ### OH_JSVM_ObjectFreeze
@@ -161,15 +140,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// ObjectFreeze注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = ObjectFreeze},
-};
-static JSVM_CallbackStruct *method = param;
-// ObjectFreeze方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"objectFreeze", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_ObjectFreeze的样例方法
 static JSVM_Value ObjectFreeze(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -189,25 +159,23 @@ static JSVM_Value ObjectFreeze(JSVM_Env env, JSVM_CallbackInfo info)
     // 将冻结后修改过的属性返回JavaScript侧
     return argv[0];
 }
+// ObjectFreeze注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = ObjectFreeze},
+};
+static JSVM_CallbackStruct *method = param;
+// ObjectFreeze方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"objectFreeze", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
+  objectFreeze(obj))JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 55, message: "hello world"};
-  objectFreeze(obj)
-`
-try {
-  let result = napitest.runJsVm(script);
-  // 冻结后的对象还是之前的属性值并未修改
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM objectFreeze: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM objectFreeze error: %{public}s', error.message);
-}
+Test JSVM OH_JSVM_ObjectFreeze success
 ```
 
 ### OH_JSVM_ObjectSeal
@@ -221,15 +189,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// ObjectSeal注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = ObjectSeal},
-};
-static JSVM_CallbackStruct *method = param;
-// ObjectSeal方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"objectSeal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_ObjectSeal的样例方法
 static JSVM_Value ObjectSeal(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -262,25 +221,23 @@ static JSVM_Value ObjectSeal(JSVM_Env env, JSVM_CallbackInfo info)
     // 将封闭后改动过的对象返回JavaScript侧
     return argv[0];
 }
+// ObjectSeal注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = ObjectSeal},
+};
+static JSVM_CallbackStruct *method = param;
+// ObjectSeal方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"objectSeal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
+  objectSeal(obj))JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 55, message: "hello world"};
-  objectSeal(obj)
-`
-try {
-  let result = napitest.runJsVm(script);
-  // 封闭后的对象输出后显示可以修改但不能删除和新增
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM objectSeal: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM objectSeal error: %{public}s', error.message);
-}
+Test JSVM OH_JSVM_ObjectSeal success
 ```
 
 ### OH_JSVM_Typeof
@@ -294,15 +251,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetTypeof注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetTypeof},
-};
-static JSVM_CallbackStruct *method = param;
-// GetTypeof方法别名，TS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getTypeof", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_Typeof的样例方法
 static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
@@ -359,23 +307,22 @@ static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return type;
 }
+// GetTypeof注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetTypeof},
+};
+static JSVM_CallbackStruct *method = param;
+// GetTypeof方法别名，TS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getTypeof", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(getTypeof(true);)JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-getTypeof(true);
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetTypeof: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetTypeof: %{public}s', error.message);
-}
+JSVM Input type is boolean
 ```
 
 ### OH_JSVM_Instanceof
@@ -389,15 +336,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// InstanceOf注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = InstanceOf},
-};
-static JSVM_CallbackStruct *method = param;
-// InstanceOf方法别名，TS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"instanceOf", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_Instanceof的样例方法
 static JSVM_Value InstanceOf(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -416,16 +354,17 @@ static JSVM_Value InstanceOf(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &returnValue);
     return returnValue;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-      class Person {
+// InstanceOf注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = InstanceOf},
+};
+static JSVM_CallbackStruct *method = param;
+// InstanceOf方法别名，TS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"instanceOf", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(class Person {
         name;
         age;
         constructor(name, age) {
@@ -434,14 +373,12 @@ let script: string = `
         }
       }
      instanceOf(new Person('Alice', 30), Person);
-     ;
-        `;
-try {
-  let result = napitest.runJsVm(script.toString());
-  hilog.info(0x0000, 'JSVM', 'InstanceOf: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'InstanceOf: %{public}s', error.message);
-} 
+     ;)JS";
+```
+
+预期的输出结果
+```ts
+JSVM InstanceOf：1
 ```
 
 ### OH_JSVM_TypeTagObject
@@ -459,17 +396,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// SetTypeTagToObject，CheckObjectTypeTag注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetTypeTagToObject},
-    {.data = nullptr, .callback = CheckObjectTypeTag},
-};
-static JSVM_CallbackStruct *method = param;
-// SetTypeTagToObject，CheckObjectTypeTag方法别名，TS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setTypeTagToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"checkObjectTypeTag", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 #define NUMBERINT_FOUR 4
 // 定义一个静态常量JSVM_TypeTag数组存储类型标签
 static const JSVM_TypeTag TagsData[NUMBERINT_FOUR] = {
@@ -490,14 +416,15 @@ static JSVM_Value SetTypeTagToObject(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetValueInt32(env, args[1], &index);
     // 给参数（对象）设置类型标签
     JSVM_Status status = OH_JSVM_TypeTagObject(env, args[0], &TagsData[index]);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM SetTypeTagToObject fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM SetTypeTagToObject success");
-    }
     // 将bool结果转换为JSVM_Value并返回
     JSVM_Value result = nullptr;
-    OH_JSVM_GetBoolean(env, true, &result);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM SetTypeTagToObject fail");
+        OH_JSVM_GetBoolean(env, false, &result);
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM SetTypeTagToObject success");
+        OH_JSVM_GetBoolean(env, true, &result);
+    }
     return result;
 }
 // OH_JSVM_CheckObjectTypeTag的样例方法
@@ -523,48 +450,38 @@ static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, checkResult, &checked);
     return checked;
 }
+// SetTypeTagToObject，CheckObjectTypeTag注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetTypeTagToObject},
+    {.data = nullptr, .callback = CheckObjectTypeTag},
+};
+static JSVM_CallbackStruct *method = param;
+// SetTypeTagToObject，CheckObjectTypeTag方法别名，TS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setTypeTagToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"checkObjectTypeTag", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(
+         class Obj {
+           data;
+           message;
+         }
+         let obj= { data: 0, message: "hello world"};
+         setTypeTagToObject(obj, 0);
+         checkObjectTypeTag(obj,0);)JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-         class Obj {
-           data;
-           message;
-         }
-         let obj= { data: 0, message: "hello world"};
-         setTypeTagToObject(obj, 0)
-       `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'SetTypeTagToObject: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'SetTypeTagToObject: %{public}s', error.message);
-}
-let script: string = `
-         class Obj {
-           data;
-           message;
-         }
-         let obj= { data: 0, message: "hello world"};
-         setTypeTagToObject(obj,0)
-         checkObjectTypeTag(obj,0);
-       `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'CheckObjectTypeTag: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'CheckObjectTypeTag: %{public}s', error.message);
-}
+JSVM SetTypeTagToObject success
+JSVM SetTypeTagToObject:1
 ```
 
 ### OH_JSVM_CreateExternal
 
-创建一个包装了外部指针的JavaScript对象
+创建一个包装了外部指针的JavaScript对象。
+**注意**：JavaScript对象被垃圾回收时，包装的外部指针指向的内容不被GC直接管理，仅调用传入的第三个参数对应的函数（如果传入时不为nullptr）。
 
 cpp部分代码
 
@@ -573,6 +490,30 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+// OH_JSVM_CreateExternal的样例方法
+static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    size_t dataSize = 10;
+    void *data = malloc(dataSize);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "JSVM Failed to malloc.");
+        return nullptr;
+    }
+    memset(data, 0, dataSize);
+    const char* testStr = "test";
+    JSVM_Value external = nullptr;
+    JSVM_Status status = OH_JSVM_CreateExternal(
+        env, data, [](JSVM_Env env, void *data, void *hint) {free(data);}, (void *)testStr, &external);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM Failed to create external data, status:%{public}d.", status);
+        free(data);
+        data = nullptr;
+        return nullptr;
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM CreateExternal success");
+    }
+    return external;
+}
 // CreateExternal注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateExternal},
@@ -582,49 +523,18 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// OH_JSVM_CreateExternal的样例方法
-static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t dataSize = 10;
-    void *data = malloc(dataSize);
-    memset(data, 0, dataSize);
-    const char testStr[] = "test";
-    JSVM_Value external = nullptr;
-    JSVM_Status status = OH_JSVM_CreateExternal(
-        env, (void *)testStr, [](JSVM_Env env, void *data, void *hint) {}, (void *)testStr, &external);
-    JSVM_Value returnValue = nullptr;
-    bool type = false;
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM Failed to create external data, status:%{public}d.", status);
-        return nullptr;
-    } else {
-        type = true;
-        OH_LOG_INFO(LOG_APP, "JSVM CreateExternal:%{public}d", type);
-    }
-    OH_JSVM_GetBoolean(env, type, &returnValue);
-    // 返回结果
-    return returnValue;
-}
+// 样例测试js
+const char* srcCallNative = R"JS(createExternal())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `createExternal()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createExternal: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createExternal error: %{public}s', error.message);
-}
+JSVM CreateExternal success
 ```
 
 ### OH_JSVM_GetValueExternal
 
-OH_JSVM_CreateExternal可以创建包装自定义的C/C++对象并将其公开给JavaScript代码，而OH_JSVM_GetValueExternal就是用来获得OH_JSVM_CreateExternal所创建的外部对象的。
+OH_JSVM_CreateExternal可以创建包装自定义的C/C++对象并将其公开给JavaScript代码，而OH_JSVM_GetValueExternal就是用来获得OH_JSVM_CreateExternal所包装的外部对象的指针。
 
 cpp部分代码
 
@@ -633,6 +543,30 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+// OH_JSVM_GetValueExternal的样例方法
+static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    static int data = 0x12345;
+    JSVM_Value externalValue = nullptr;
+    JSVM_Status status = OH_JSVM_CreateExternal(env, (void*)&data, nullptr, nullptr, &externalValue);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateExternal fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CreateExternal sucess");
+    }
+    void *data_value;
+    status = OH_JSVM_GetValueExternal(env, externalValue, &data_value);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM GetValueExternal fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueExternal sucess");
+    }
+    // 将符号位转化为int类型传出去
+    JSVM_Value returnValue = nullptr;
+    int retData = *static_cast<int *>(data_value);
+    OH_JSVM_CreateInt32(env, retData, &returnValue);
+    return returnValue;
+}
 // GetValueExternal注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueExternal},
@@ -642,43 +576,14 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// OH_JSVM_GetValueExternal的样例方法
-static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    void *data = (void *)0x12345;
-    JSVM_Value externalValue = nullptr;
-    JSVM_Status status = OH_JSVM_CreateExternal(env, data, nullptr, nullptr, &externalValue);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateExternal fail");
-    }
-    void *data_value;
-    status = OH_JSVM_GetValueExternal(env, externalValue, &data_value);
-    bool type = false;
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM GetValueExternal fail");
-    }
-    type = true;
-    OH_LOG_INFO(LOG_APP, "JSVM API Get ValueExternal:%{public}p", data_value);
-    // 将符号位转化为int类型传出去
-    JSVM_Value returnValue = nullptr;
-    OH_JSVM_CreateInt32(env, 0, &returnValue);
-    return returnValue;
-}
+// 样例测试js
+const char* srcCallNative = R"JS(getValueExternal())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `getValueExternal()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueExternal: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueExternal error: %{public}s', error.message);
-}
+JSVM OH_JSVM_CreateExternal sucess
+JSVM GetValueExternal sucess
 ```
 
 ### OH_JSVM_CreateSymbol
@@ -692,6 +597,23 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+// OH_JSVM_CreateSymbol的样例方法
+static JSVM_Value CreateSymbol(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    JSVM_Value result = nullptr;
+    const char *des = "only";
+    OH_JSVM_CreateStringUtf8(env, des, JSVM_AUTO_LENGTH, &result);
+    JSVM_Value returnSymbol = nullptr;
+    OH_JSVM_CreateSymbol(env, result, &returnSymbol);
+    JSVM_ValueType valuetypeSymbol;
+    OH_JSVM_Typeof(env, returnSymbol, &valuetypeSymbol);
+    if (valuetypeSymbol == JSVM_SYMBOL) {
+        OH_LOG_INFO(LOG_APP, "JSVM CreateSymbol Success");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM CreateSymbol fail");
+    }
+    return returnSymbol;
+}
 // CreateSymbol注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateSymbol},
@@ -701,40 +623,13 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createSymbol", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// OH_JSVM_CreateSymbol的样例方法
-static JSVM_Value CreateSymbol(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    JSVM_Value result = nullptr;
-    const char *des = "only";
-    OH_JSVM_CreateStringUtf8(env, des, JSVM_AUTO_LENGTH, &result);
-    JSVM_Value returnSymbol = nullptr;
-    OH_JSVM_CreateSymbol(env, result, &returnSymbol);
-    JSVM_Value returnValue = nullptr;
-    bool type = false;
-    JSVM_ValueType valuetypeSymbol;
-    OH_JSVM_Typeof(env, returnSymbol, &valuetypeSymbol);
-    if (valuetypeSymbol == JSVM_SYMBOL) {
-        OH_LOG_INFO(LOG_APP, "JSVM CreateSymbol Success");
-        type = true;
-    }
-    OH_JSVM_GetBoolean(env, type, &returnValue);
-    return returnValue;
-}
+// 样例测试js
+const char* srcCallNative = R"JS(createSymbol())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `createSymbol()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createSymbol: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createSymbol error: %{public}s', error.message);
-}
+JSVM CreateSymbol Success
 ```
 
 ### OH_JSVM_SymbolFor
@@ -748,15 +643,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// SymbolFor注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SymbolFor},
-};
-static JSVM_CallbackStruct *method = param;
-// SymbolFor方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"symbolFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // 定义一个常量，用于存储最大字符串长度
 static const int MAX_BUFFER_SIZE = 128;
 // OH_JSVM_SymbolFor的样例方法
@@ -771,32 +657,29 @@ static JSVM_Value SymbolFor(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value symbol = nullptr;
     OH_JSVM_CreateSymbol(env, description, &symbol);
     JSVM_Value result_symbol = nullptr;
-    JSVM_Status status = OH_JSVM_SymbolFor(env, nullptr, 0, &result_symbol);
-    JSVM_Value returnValue = nullptr;
-    bool type = false;
+    JSVM_Status status = OH_JSVM_SymbolFor(env, buffer, copied, &result_symbol);
     JSVM_ValueType valuetypeSymbol;
     OH_JSVM_Typeof(env, result_symbol, &valuetypeSymbol);
     if (valuetypeSymbol == JSVM_SYMBOL && status == JSVM_OK) {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_SymbolFor success");
-        type = true;
     }
-    OH_JSVM_GetBoolean(env, type, &returnValue);
     // 返回结果
-    return returnValue;
+    return result_symbol;
 }
+// SymbolFor注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SymbolFor},
+};
+static JSVM_CallbackStruct *method = param;
+// SymbolFor方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"symbolFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(symbolFor())JS";
 ```
 
-ArkTS侧示例代码
-
+预期的输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `symbolFor()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM symbolFor: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM symbolFor error: %{public}s', error.message);
-}
+JSVM OH_JSVM_SymbolFor success
 ```

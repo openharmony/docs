@@ -21,7 +21,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
     
     export default class MyAbilityStage extends AbilityStage {
       onCreate(): void {
-        // 应用的HAP在首次加载的时，为该Module初始化操作
+        // 应用HAP首次加载时触发，可以在此执行该Module的初始化操作（例如资源预加载、线程创建等）。
       }
 
       onAcceptWant(want: Want): string {

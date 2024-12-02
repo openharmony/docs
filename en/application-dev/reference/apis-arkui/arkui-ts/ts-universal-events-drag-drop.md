@@ -28,7 +28,7 @@ For components that can serve as the drag source by default, a custom **onDragSt
 - If a custom drag preview is returned, it is used in place of the default drag preview.
 - If drag data is set, it is used in place of the default drag data.
 
-No custom drag preview is supported for dragging selected text in the following components: [Text](ts-basic-components-text.md), [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md)
+No custom drag preview is supported for dragging selected text in the following components: [Text](ts-basic-components-text.md), [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md) When **onDragStart** is used together with menu preview or any component that can serve as the drag source by default is used, custom content on menu items and the preview cannot be dragged.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -52,7 +52,7 @@ No custom drag preview is supported for dragging selected text in the following 
 
 onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 
-Called when a dragged item enters a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
+Triggered when a dragged item enters a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -68,7 +68,7 @@ Called when a dragged item enters a valid drop target. This event takes effect o
 
 onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 
-Called when a dragged item moves in a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
+Triggered when a dragged item moves in a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -84,7 +84,7 @@ Called when a dragged item moves in a valid drop target. This event takes effect
 
 onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
-Called when a dragged item leaves a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
+Triggered when a dragged item leaves a valid drop target. This event takes effect only when a listener for the [onDrop](#ondrop) event is enabled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -100,7 +100,7 @@ Called when a dragged item leaves a valid drop target. This event takes effect o
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
-Called when a dragged item is dropped on a valid drop target. If **event.setResult()** is not explicitly used, the default value **DRAG_SUCCESSFUL** will be used as the result.
+Triggered when a dragged item is dropped on a valid drop target. If you do not call **event.setResult()** in **onDrop** to set the drag result, the system considers that the data is successfully received.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -153,7 +153,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.|
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [\<Image>](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [Image](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
 
@@ -165,8 +165,8 @@ Invoked when the component enters a state prior to a drop and drop operation.
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
-| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<ListItem>** component.|
-| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<List>** component.|
+| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter takes effect only in the drag event of the **ListItem** component.|
+| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **List** component.|
 
 ## DragEvent
 
@@ -180,7 +180,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the custom drop animation when the dragging ends.<br>If this parameter is set to **true**, the default drop animation is disabled, and the custom one is used.<br>If this parameter is set to **false** or is not set, the default drop animation is enabled. In this case, to avoid conflicts, the application should not implement any custom drop animation.|
+| useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the custom drop animation when the dragging ends.<br>If this parameter is set to **true**, the default drop animation is disabled, and the custom one is used.<br>If this parameter is set to **false** or is not set, the default drop animation is enabled. If the drop target can accept data, it will show a shrinking disappearance animation; if not, it will show an enlarging disappearance animation.<br>When the default drop animation is not disabled, avoid implementing custom animations to prevent conflicts.|
 |dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Copy or paste mode.|
 
 ### Methods
@@ -204,7 +204,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
 | getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. However, the **Fn** key on external keyboards is not supported.|
 
 
 **Error codes**
@@ -233,7 +233,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ## DragBehavior<sup>10+</sup>
 
-Describes the drag behavior. When [DragResult](#dragresult10) is set to **DROP_ENABLED**, you can define **DragBehavior** as either **COPY** or **MOVE**. **DragBehavior** serves to inform you about the intended method of data handling – whether it's a copy or a move – but it does not actually dictate the real processing of the data. The behavior is reported back to the drag source through **onDragEnd**, enabling the initiator of the drag to discern whether the operation results in a copy or a move of the data.
+Describes the drag behavior. When [DragResult](#dragresult10) is set to **DROP_ENABLED**, you can define **DragBehavior** as either **COPY** or **MOVE**. **DragBehavior** serves to inform you about the intended method of data handling – whether it's a copy or a move –but it does not actually dictate the real processing of the data. The behavior is reported back to the drag source through **onDragEnd**, enabling the initiator of the drag to discern whether the operation results in a copy or a move of the data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -422,11 +422,7 @@ struct Index {
               this.imageHeight = Number(rect.height);
               this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({ duration: 1000 }, () => {
-                this.imageWidth = 100;
-                this.imageHeight = 100;
-                this.imgState = Visibility.None;
-              })
+              this.imgState = Visibility.None;
               // If result is explicitly set to successful, the value is passed in to onDragEnd of the drag source.
               event.setResult(DragResult.DRAG_SUCCESSFUL);
             })

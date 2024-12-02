@@ -66,7 +66,7 @@ Called when the system adjusts the memory level.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| New memory level.|
+| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | Yes| New memory level.|
 
 **Example**
 

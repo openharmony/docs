@@ -32,7 +32,7 @@
     - [@ohos.arkui.uiExtension (uiExtension) (System API)](js-apis-arkui-uiExtension-sys.md)
     - [@ohos.deviceStatus.dragInteraction (Drag Interaction) (System API)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager) (System API)](js-apis-plugincomponent-sys.md)
-    - @ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
+    - [@ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (System API)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext) (System API)](js-apis-arkui-UIContext-sys.md)
     - [@ohos.promptAction (Prompt) (System API)](js-apis-promptAction-sys.md)
@@ -44,7 +44,6 @@
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
-      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
@@ -52,6 +51,7 @@
     - [@ohos.display (Display)](js-apis-display.md)
     - [@ohos.PiPWindow (PiP Window)](js-apis-pipWindow.md)
     - [@ohos.window (Window)](js-apis-window.md)
+    - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (Window Animation Management) (System API)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility) (System API)](js-apis-application-windowExtensionAbility-sys.md)
@@ -68,6 +68,7 @@
     - [@system.mediaquery (Media Query)](js-apis-system-mediaquery.md)
     - [@system.prompt (Prompt)](js-apis-system-prompt.md)
     - [@system.router (Page Routing)](js-apis-system-router.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS Components
   - Universal Component Information
     - Universal Events
@@ -78,6 +79,7 @@
       - [Key Event](arkui-ts/ts-universal-events-key.md)
       - [Focus Event](arkui-ts/ts-universal-focus-event.md)
       - [Mouse Event](arkui-ts/ts-universal-mouse-key.md)
+      - [Hover Event](arkui-ts/ts-universal-events-hover.md)
       - [Accessibility Hover Event](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [Component Area Change Event](arkui-ts/ts-universal-component-area-change-event.md)
       - [Component Size Change Event](arkui-ts/ts-universal-component-size-change-event.md)
@@ -323,12 +325,12 @@
   - Dialog Boxes
     - [Alert Dialog Box (AlertDialog)](arkui-ts/ts-methods-alert-dialog-box.md)
     - [Action Sheet (ActionSheet)](arkui-ts/ts-methods-action-sheet.md)
-    - [Custom Dialog Box](arkui-ts/ts-methods-custom-dialog-box.md)
+    - [Custom Dialog Box (CustomDialog)](arkui-ts/ts-methods-custom-dialog-box.md)
     - [Calendar Picker Dialog Box (CalendarPickerDialog)](arkui-ts/ts-methods-calendarpicker-dialog.md)
     - [Date Picker Dialog Box (DatePickerDialog)](arkui-ts/ts-methods-datepicker-dialog.md)
     - [Time Picker Dialog Box (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [Text Picker Dialog Box (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
-    - [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)
+    - [Dialog Box (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
   - Service Widgets
     - [FormLink](arkui-ts/ts-container-formlink.md)
     - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)

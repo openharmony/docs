@@ -6,19 +6,19 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
 
 - **ArkTS**
 
-  ArkTS is the preferred programming language for application development in OpenHarmony. As a superset of [TypeScript](https://www.typescriptlang.org/) (TS for short), it contains all TS features and added features – declarative UI description, custom components, dynamic extension of UI elements, state management, and rendering control. State management provides clear page re-render processes and pipes through decorators with different functions. State management covers UI component states and application states, with which you are able to build an application-wide data update and UI rendering process. To learn more about ArkTS, see [Getting Started with ArkTS](../quick-start/arkts-get-started.md).
+  ArkTS is the preferred programming language for application development. As a superset of [TypeScript](https://www.typescriptlang.org/) (TS for short), it contains all TS features and added features, including declarative UI description, custom components, dynamic UI element extension, state management, and rendering control. State management in ArkTS provides clear page re-render processes and pipes through decorators with different functions. It covers UI component states and application states, allowing for a comprehensive data update and UI rendering mechanism across the application. To learn more about ArkTS, see [Getting Started with ArkTS](../quick-start/arkts-get-started.md).
 
 - **Layout**
 
-  The layout defines how components are laid out in the UI. ArkUI offers a diverse array of layouts. Besides the basic layouts – linear, stack, flex, relative, and grid, you also have access to the advanced list, grid, and swiper layouts.
+  Layout defines how components are laid out in the UI. ArkUI offers a diverse array of layouts. Besides the basic layouts, such as linear, stack, flex, and relative, you also have access to the advanced layouts, including list, grid, and swiper, for more complex UI design needs.
 
 - **Component**
 
-  Components are essential elements of the UI, working together to shape the UI. They can be classified as built-in components – those directly provided by the ArkUI framework, and custom components – those defined by developers. The built-in components include buttons, radio buttons, progress indicators, and text. You can set the rendering effect of these components in method chaining mode. You can combine built-in components to form custom components. In this way, page components are divided into independent UI units to implement independent creation, development, and reuse of different units on pages, making pages more engineering-oriented.
+  Components are essential elements of the UI, working together to shape the UI. They can be classified as built-in components provided by ArkUI and custom components defined by developers. The built-in components include buttons, radio buttons, progress indicators, and text. You can set the rendering effect of these components in method chaining mode. You can combine built-in components to create custom components. In this way, page components are divided into independent UI units to implement individual creation, development, and reuse of different units on pages, making pages more engineering-oriented.
 
 - **Page routing and component navigation**
 
-  An application may contain a good many pages, and each page may come with multiple components. You can implement page routing to navigate users between pages and use navigation component to navigate them between components.
+  An application may contain a good many pages, and each page may come with multiple components. You can implement page routing to navigate users between pages and use navigation components to navigate them between components.
 
 - **Graphics**
 
@@ -32,6 +32,9 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
 
   Interaction events are important for interactions between the UI and users. ArkUI allows users to interact with your application UI, with support for various universal events and gesture events. Universal events include touch events, mouse events, key events, and focus events. Gesture events accept single gestures (tap, long press, pan, pinch, rotation, and swipe), and a combination of gestures.
 
+- **Customization**
+
+  ArkUI offers comprehensive customization capabilities for UI development and personalization: custom combinations, extensions, nodes, and rendering techniques.
 
 ## Highlights
 
@@ -64,7 +67,7 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
   Provides the parsing capability for the UI paradigm syntax and allows for cross-language API calls for a high-performance operating environment of the TS language.
 
 - **Declarative UI backend engine**
-  Provides UI rendering pipelines that are compatible with different development paradigms, multiple basic components, layout calculation, dynamic effects, and interaction events, with state management and drawing capabilities.
+  Provides UI rendering pipelines that are compatible with different development paradigms, multiple basic components, layout calculation, animations, and interaction events, with state management and drawing capabilities.
 
 - **Render engine**
   Provides efficient drawing capabilities, which enable rendering instructions collected by the rendering pipeline to be drawn to the screen.
@@ -77,13 +80,34 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
 
 The table below lists the main tasks involved in UI development with ArkUI.
 
-
 | Task         | Description                                 | Guide                                    |
 | ----------- | ----------------------------------- | ---------------------------------------- |
 | Get started with ArkTS    | Learn the basic syntax, state management, and rendering control scenarios of ArkTS.        | - [Basic Syntax Overview](../quick-start/arkts-basic-syntax-overview.md)<br>- [State Management](../quick-start/arkts-state-management-overview.md)<br>- [Rendering Control](../quick-start/arkts-rendering-control-ifelse.md)|
 | Develop the layout       | Understand the common layouts.            | - [Layout Overview](arkts-layout-development-overview.md)<br>|
-| Add components       | Learn the usage of common built-in components, custom components, and GUI elements supported by APIs.| - [Common Components](arkts-common-components-button.md)<br>- [Custom Components](../quick-start/arkts-create-custom-components.md)<br>- [Popup and Menu](arkts-popup-and-menu-components-popup.md)|
-| Set page routing and component navigation| Learn how to set page routes and navigation between components.               | - [Page Routing](arkts-routing.md)<br>- [Navigation](arkts-navigation-navigation.md)|
-| Use graphics       | Understand how to display images, draw custom geometry, and make custom graphics on the canvas.  | - [Displaying Images](arkts-graphics-display.md)<br>- [Drawing Geometric Shapes](arkts-geometric-shape-drawing.md)<br>- [Drawing Custom Graphics Using the Canvas](arkts-drawing-customization-on-canvas.md)|
-| Apply animations       | Learn the typical scenarios of applying animations on components and pages.                 | - [Property Animation](arkts-attribute-animation-overview.md)<br>- [Transition Animation](arkts-transition-overview.md)<br>- [Component Animation](arkts-component-animation.md)<br>- [Animated Curve](arkts-traditional-curve.md)<br>- [Animation Smoothing](arkts-animation-smoothing.md)<br>- [Animation Effects](arkts-blur-effect.md)|
+| Add components       | Understand how to use common built-in components and UI elements supported through APIs.| - [Common Components](arkts-common-components-button.md)<br>- [Custom Components](../quick-start/arkts-create-custom-components.md)<br>- [Popup and Menu](arkts-popup-and-menu-components-popup.md)|
+| Set component navigation and page routing| Learn how to set up navigation between components and page routing.               | - [Component Navigation (Recommended)](arkts-navigation-navigation.md)<br>- [Page Routing](arkts-routing.md)|
+| Use text| Discover how to work with text components such as text boxes, rich text, and styled strings.               | - [Text Display](arkts-common-components-text-display.md)<br>- [Text Input](arkts-common-components-text-input.md)<br>- [Rich Text](arkts-common-components-richeditor.md)<br>- [Symbol Glyph](arkts-common-components-symbol.md)<br>- [Styled String](arkts-styled-string.md)|
+| Use dialog boxes| Learn how to implement modal and custom dialog boxes.| - [Modal Dialog Box](arkts-modal-dialog.md)<br>- [Custom Dialog Box](arkts-uicontext-custom-dialog.md)|
+| Use graphics       | Understand how to display images, draw custom geometry, and make custom graphics on the canvas.  | - [Drawing Geometric Shapes](arkts-geometric-shape-drawing.md)<br>- [Drawing Custom Graphics Using the Canvas](arkts-drawing-customization-on-canvas.md)|
+| Apply animations       | Learn the typical scenarios of applying animations on components and pages.                 | - [Property Animation](arkts-attribute-animation-overview.md)<br>- [Transition Animation](arkts-transition-overview.md)<br>- [Particle Animation](arkts-particle-animation.md)<br>- [Component Animation](arkts-component-animation.md)<br>- [Traditional Curve](arkts-traditional-curve.md)<br>- [Animation Smoothing](arkts-animation-smoothing.md)<br>- [Blur Effect](arkts-blur-effect.md)<br>- [Frame Animation](arkts-animator.md)|
 | Bind events       | Learn the basic concepts of events and how to use common events and gesture events.          | - [Universal Events](arkts-common-events-touch-screen-event.md)<br>- [Gesture Events](arkts-gesture-events-binding.md)|
+| Use customization capabilities       | Learn the basic concepts of custom capabilities and how to apply them.      | - [Custom Node](arkts-user-defined-node.md)<br>- [Custom Extension](arkts-user-defined-modifier.md)|
+| Use the mirroring capability       | Learn the basic concepts of the mirroring capability and how to apply it.      | - [Using the Mirroring Capability](arkts-mirroring-display.md)|
+| Support aging-friendly design       | Learn about the use cases and methods for aging-friendly design.      | - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)|
+| Set the theme      | Explore application-level and page-level theme setting capabilities.      | <!--RP1--><!--RP1End-->- [Setting Theme Skinning](theme_skinning.md)|
+| Use the UI context API for UI operations      | Learn how to use the corresponding APIs in **UIContext** to obtain objects bound to instances.      | - [Using the UI Context API for UI Operations](arkts-global-interface.md)|
+| Use NDK APIs to build UIs| Understand the capabilities provided by ArkUI NDK APIs and how to create UIs through NDK APIs.      | - [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md)<br>- [Listening for Component Events](ndk-listen-to-component-events.md)<br>- [Using Animations](ndk-use-animation.md)<br>- [Developing a Long List with Lazy Loading](ndk-loading-long-list.md)<br>- [Building Dialog Boxes](ndk-build-pop-up-window.md)<br>- [Building Custom Components](ndk-build-custom-components.md)<br>- [Embedding ArkTS Components](ndk-embed-arkts-components.md)|
+
+## General Rules
+
+- **Default Unit**
+
+  The default unit for input parameters representing length is vp, which means that input parameters of number type, as well as the number units in [Length](../reference/apis-arkui/arkui-ts/ts-types.md#length) and [Dimension](../reference/apis-arkui/arkui-ts/ts-types.md#dimension10) types, are in vp.
+
+- **Abnormal Value Processing**
+
+  If the input parameter is **undefined**, **null**, or an invalid value, the following processing rules apply:
+
+  (1) If a default value is specified for the parameter, it is used.
+
+  (2) If no default value is specified for the parameter, the property or API associated with that parameter is ineffective.

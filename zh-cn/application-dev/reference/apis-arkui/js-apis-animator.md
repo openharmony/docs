@@ -570,7 +570,6 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    let _this = this
     this.backAnimator = animator.create({// 建议使用 this.getUIContext.creatAnimator()接口
       duration: 2000,
       easing: "ease",
@@ -582,18 +581,18 @@ struct AnimatorTest {
       end: 200
     })
     this.backAnimator.onFinish = ()=> {
-      _this.flag = true
-      console.info(_this.TAG, 'backAnimator onfinish')
+      this.flag = true
+      console.info(this.TAG, 'backAnimator onfinish')
     }
     this.backAnimator.onRepeat = ()=> {
-      console.info(_this.TAG, 'backAnimator repeat')
+      console.info(this.TAG, 'backAnimator repeat')
     }
     this.backAnimator.onCancel = ()=> {
-      console.info(_this.TAG, 'backAnimator cancel')
+      console.info(this.TAG, 'backAnimator cancel')
     }
     this.backAnimator.onFrame = (value:number)=> {
-      _this.wid = value
-      _this.hei = value
+      this.wid = value
+      this.hei = value
     }
   }
 

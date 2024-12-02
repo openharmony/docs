@@ -7,7 +7,7 @@ Subscribers can receive sticky common events that have been sent. If the events 
 
 ## Available APIs
 
-For details, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md).
+For details, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10).
 
 | API| Description|
 | -------- | -------- |
@@ -21,15 +21,14 @@ For details, see [API Reference](../../reference/apis-basic-services-kit/js-apis
 2. Import the module.
 
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import hilog from '@ohos.hilog';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
-3. Call the [`removeStickyCommonEvent()`](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10) method to remove the corresponding sticky common event.
+3. Call [removeStickyCommonEvent()](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10) to remove the corresponding sticky common event.
 
    > **NOTE**
    >
@@ -37,13 +36,14 @@ For details, see [API Reference](../../reference/apis-basic-services-kit/js-apis
 
    ```ts
    // Remove the sticky common event. Replace the event field with the actual event name.
-   commonEventManager.removeStickyCommonEvent('event', (err: Base.BusinessError) => {
+   commonEventManager.removeStickyCommonEvent('event', (err: BusinessError) => {
      // sticky_event indicates the name of the target sticky common event.
      if (err) {
        hilog.error(DOMAIN_NUMBER, TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;
      }
      //...
-     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removeing sticky event.`);
+     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removing sticky event.`);
    });
    ```
+

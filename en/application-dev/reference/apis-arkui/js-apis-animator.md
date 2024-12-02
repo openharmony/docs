@@ -12,7 +12,7 @@ The **Animator** module provides APIs for applying animation effects, including 
 >
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
 >
-> Since API version 10, you can use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+> Since API version 10, you can use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext), which ensures that your animation is executed in the intended UI instance.
 
 ## Modules to Import
 
@@ -47,9 +47,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**Example** 
+**Example**
+
+> **NOTE**
+>
+> For precise animation control, use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to specify the UI context.
 
   ```ts
 import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
@@ -64,7 +68,7 @@ let options: AnimatorOptions = {
    begin: 200.0,
    end: 400.0
 };
-animator.create(options);
+animator.create (options);// You are advised to use UIContext.creatAnimator().
   ```
 
 ## AnimatorResult
@@ -93,7 +97,7 @@ For details about the error codes, see [Animator Error Codes](errorcode-animator
 
 | ID  | Error Message |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The specified page is not found or the object property list is not obtained.|
 
 
@@ -387,6 +391,8 @@ onrepeat: () => void
 
 Called when this animation repeats.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
@@ -546,6 +552,10 @@ class DateT{
 
 ### ArkTS-based Declarative Development Paradigm
 
+> **NOTE**
+>
+> For precise animation control, use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to specify the UI context.
+
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -560,8 +570,7 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    let _this = this
-    this.backAnimator = animator.create({
+    this.backAnimator = animator.create({// You are advised to use this.getUIContext.creatAnimator().
       duration: 2000,
       easing: "ease",
       delay: 0,
@@ -572,18 +581,18 @@ struct AnimatorTest {
       end: 200
     })
     this.backAnimator.onFinish = ()=> {
-      _this.flag = true
-      console.info(_this.TAG, 'backAnimator onfinish')
+      this.flag = true
+      console.info(this.TAG, 'backAnimator onfinish')
     }
     this.backAnimator.onRepeat = ()=> {
-      console.info(_this.TAG, 'backAnimator repeat')
+      console.info(this.TAG, 'backAnimator repeat')
     }
     this.backAnimator.onCancel = ()=> {
-      console.info(_this.TAG, 'backAnimator cancel')
+      console.info(this.TAG, 'backAnimator cancel')
     }
     this.backAnimator.onFrame = (value:number)=> {
-      _this.wid = value
-      _this.hei = value
+      this.wid = value
+      this.hei = value
     }
   }
 

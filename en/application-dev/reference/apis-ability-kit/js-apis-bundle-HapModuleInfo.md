@@ -12,7 +12,7 @@ The **HapModuleInfo** module provides information about an HAP module. Unless ot
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name                             | Type                                                        | Readable| Writable| Description                |
+| Name                             | Type                                                        | Read-Only| Optional| Description                |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
 | name                              | string                                                       | Yes  | No  | Module name.            |
 | description                       | string                                                       | Yes  | No  | Module description.        |

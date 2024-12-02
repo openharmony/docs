@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OHOS::Media::OhosImageComponent** struct defines the information about an image component.
+The **OHOS::Media::OhosImageComponent** struct describes the information about an image component.
 
 **System capability**: SystemCapability.Multimedia.Image
 

@@ -34,8 +34,8 @@ You can implement the call service in either of the following ways:
 |                                  Name                                            | Description                                                        |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | hasVoiceCapability(): boolean;                                                      | Checks whether the voice function is available.                                       |
-|<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Makes a call. This is a system API.                                     |
-| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Redirects to the dial screen and displays the called number.                                 |
+|<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | Makes a call. This is a system API.                                     |
+| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | Redirects to the dial screen and displays the called number.                                 |
 
 The **observer** module provides the functions of subscribing to and unsubscribing from the call service status. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-observer.md).
 
@@ -115,3 +115,4 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
+

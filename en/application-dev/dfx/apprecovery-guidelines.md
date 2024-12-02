@@ -15,15 +15,15 @@ In API version 10, application recovery is applicable to multiple abilities of a
 
 The application recovery APIs are provided by the **appRecovery** module, which can be imported via **import**. For details, see [Development Example](#development-example).
 
-### Available APIs
+### Application Recovery APIs
 
 | API                                                      | Description                                                |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
 | enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void;<sup>9+</sup> | Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.|
-| saveAppState(): boolean;<sup>9+</sup> | Saves the state of the ability that supports recovery in the current application. |
-| restartApp(): void;<sup>9+</sup> | Restarts the current process and starts the ability specified by **setRestartWant**. If no ability is specified, a foreground ability that supports recovery is restarted. |
-| saveAppState(context?: UIAbilityContext): boolean;<sup>10+</sup> | Saves the ability state specified by **Context**. |
-| setRestartWant(want: Want): void;<sup>10+</sup> | Sets the abilities to restart when **restartApp** is actively called and **RestartFlag** is not **NO_RESTART**. The abilities must be under the same bundle name and must be a **UIAbility**. |
+| saveAppState(): boolean;<sup>9+</sup> | Saves the state of the ability that supports recovery in the current application.|
+| restartApp(): void;<sup>9+</sup> | Restarts the current process and starts the ability specified by **setRestartWant**. If no ability is specified, a foreground ability that supports recovery is restarted.|
+| saveAppState(context?: UIAbilityContext): boolean;<sup>10+</sup> | Saves the ability state specified by **Context**.|
+| setRestartWant(want: Want): void;<sup>10+</sup> | Sets the abilities to restart when **restartApp** is actively called and **RestartFlag** is not **NO_RESTART**. The abilities must be under the same bundle name and must be a **UIAbility**.|
 
 No error will be thrown if the preceding APIs are used in the troubleshooting scenario. The following are some notes on API usage:
 
@@ -68,7 +68,7 @@ If you have enabled application recovery, the recovery framework first checks wh
 
 Common fault types include JavaScript application crash, application freezing, and C++ application crash. Generally, an application is closed when a crash occurs. Application freezing occurs when the application does not respond. The fault type can be ignored for the upper layer of an application. The recovery framework implements fault management in different scenarios based on the fault type.
 
-| Fault  | Fault Listening | State Saving | Automatic Restart | Log Query |
+| Fault  | Fault Listening | State Saving| Automatic Restart| Log Query|
 | ----------|--------- |--------- |--------- |--------- |
 | [JS_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Supported|Supported|Supported|Supported|
 | [APP_FREEZE](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported|Supported|Supported|Supported|
@@ -252,7 +252,7 @@ export default class EntryAbility extends UIAbility {
 
 #### Restart Flag for the Failed Ability
 
-If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
+If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
 
 ```ts
 import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';

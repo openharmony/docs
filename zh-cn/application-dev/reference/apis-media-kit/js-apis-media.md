@@ -719,7 +719,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
-| 5400106  | Unsupport format.     |
+| 5400106  | Unsupported format.     |
 
 **示例：**
 
@@ -834,8 +834,10 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
+let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
@@ -866,7 +868,7 @@ prepare(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **示例：**
 
@@ -905,7 +907,7 @@ prepare(): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **示例：**
 
@@ -2485,6 +2487,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit'
+import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
@@ -2918,8 +2921,6 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 ## PlaybackInfo<sup>12+</sup>
 
 通过key-value方式获取播放信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -4143,7 +4144,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.             |
 | 5400104  | Time out.              |
 | 5400105  | Service died.          |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.    |
 | 5400107  | Audio interrupted.     |
 
 **示例：**
@@ -4205,6 +4206,8 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 **示例：**
 
 ```ts
+import { audio } from '@kit.AudioKit'
+
 let capturerChangeInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCapturerChangeInfo) => {
@@ -4262,13 +4265,15 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
+let context = getContext(this) as common.UIAbilityContext
 
 // 例:处理photoAsset回调，保存video
-async saveVideo(asset: photoAccessHelper.PhotoAsset) {
+async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4376,7 +4381,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -4806,7 +4811,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.              |
 | 5400104  | Time out.            |
 | 5400105  | Service died.           |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.      |
 
 **示例：**
 
@@ -6800,7 +6805,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | permission denied     |
 
 **示例：**
 
@@ -7553,8 +7558,6 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
-| preferredAudioLanguage | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
-| preferredSubtitleLanguage | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
@@ -7876,6 +7879,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 201      | permission denied.     |
 | 5400103  | IO error. Return by ErrorCallback. |
 | 5400105  | Service died. Return by ErrorCallback. |
 

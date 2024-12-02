@@ -308,7 +308,7 @@ typedef struct OhosPixelMapInfos
 ## 枚举类型说明
 
 
-### anonymous enum [1/3]
+### 图像格式
 
 ```
 anonymous enum
@@ -324,7 +324,7 @@ anonymous enum
 | OHOS_IMAGE_FORMAT_JPEG | JPEG 编码格式 | 
 
 
-### anonymous enum [2/3]
+### PixelMap透明度类型
 
 ```
 anonymous enum
@@ -342,7 +342,7 @@ PixelMap透明度类型的枚举。
 | OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL  | 预除的格式   | 
 
 
-### anonymous enum [3/3]
+### 方法返回的错误码
 
 ```
 anonymous enum
@@ -360,13 +360,13 @@ anonymous enum
 | OHOS_IMAGE_RESULT_BAD_PARAMETER | 无效值 | 
 
 
-### anonymous enum [1/3]
+### 图像颜色通道类型
 
 ```
 anonymous enum
 ```
 **描述**
-图像组成类型枚举值。
+图像颜色通道类型枚举值。
 
 **起始版本：** 10
 
@@ -378,7 +378,7 @@ anonymous enum
 | OHOS_IMAGE_COMPONENT_FORMAT_JPEG | Jpeg 格式 | 
 
 
-### anonymous enum [2/3]
+### PixelMap 编辑类型
 
 ```
 anonymous enum
@@ -394,13 +394,13 @@ PixelMap 编辑类型的枚举。
 | OHOS_PIXEL_MAP_EDITABLE  | 可编辑的格式   | 
 
 
-### anonymous enum [3/3]
+### 像素格式
 
 ```
 anonymous enum
 ```
 **描述**
-Pixel格式的枚举。
+像素格式的枚举。
 
 **废弃版本：** 10
 
@@ -408,13 +408,11 @@ Pixel格式的枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y  | 亮度信息   | 
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_U  | 色度信息   | 
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_V  | 色差值信息   | 
-| OHOS_IMAGE_COMPONENT_FORMAT_JPEG  | Jpeg 格式   | 
+| OHOS_PIXEL_MAP_FORMAT_NONE  | 未知的格式  | 
+| OHOS_PIXEL_MAP_FORMAT_RGBA_8888  | RGBA_8888格式   | 
+| OHOS_PIXEL_MAP_FORMAT_RGB_565  | RGB_565格式   | 
 
-
-### anonymous enum
+### PixelMap缩放类型
 
 ```
 anonymous enum
@@ -563,10 +561,10 @@ Pixelmap缩放时采用的缩放算法。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_PixelMap_AntiAliasing_NONE  | 最近邻缩放算法。   | 
-| OH_PixelMap_AntiAliasing_LOW  | 双线性缩放算法。   | 
-| OH_PixelMap_AntiAliasing_MEDIUM  | 双线性缩放算法，同时开启mipmap。   | 
-| OH_PixelMap_AntiAliasing_HIGH  | cubic缩放算法。   | 
+| OH_PixelMap_AntiAliasing_NONE  | 最近邻插值算法。   | 
+| OH_PixelMap_AntiAliasing_LOW  | 双线性插值算法。   | 
+| OH_PixelMap_AntiAliasing_MEDIUM  | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   | 
+| OH_PixelMap_AntiAliasing_HIGH  | 三次插值算法。   | 
 
 
 ## 函数说明
@@ -600,7 +598,11 @@ UnAccessPixels
 
 **返回：**
 
-操作成功则返回OHOS_IMAGE_RESULT_SUCCESS；如果操作失败，则返回错误码。
+参考[IRNdkErrCode](#irndkerrcode-1)。
+
+如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
+
+如果操作失败返回IMAGE_RESULT_BAD_PARAMETER。
 
 
 ### OH_GetImageInfo()
@@ -625,7 +627,11 @@ int32_t OH_GetImageInfo (napi_env env, napi_value value, OhosPixelMapInfo * info
 
 **返回：**
 
-如果获取并保存信息成功，则返回**0**; 如果操作失败，则返回错误码。
+参考[IRNdkErrCode](#irndkerrcode-1)。
+
+如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
+
+如果操作失败返回IMAGE_RESULT_BAD_PARAMETER。
 
 **参见：**
 
@@ -1049,6 +1055,8 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取最新的一张图片。
 
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
+
 **起始版本：** 10
 
 **参数:**
@@ -1097,6 +1105,8 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 ```
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取下一张图片。
+
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
 
 **起始版本：** 10
 
@@ -2551,7 +2561,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, void * buf, size_t len, napi_value * res )
 ```
 **描述**
-创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。该接口传入的buf不支持stride。
+创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。该接口传入的buf不支持stride。该接口不支持DMA内存。
 
 **起始版本：** 10
 
@@ -2682,6 +2692,9 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 **描述**
 设置**PixelMap**对象的裁剪。
 
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Crop](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_crop)。
+
 **起始版本：** 10
 
 **参数:**
@@ -2747,6 +2760,9 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 ```
 **描述**
 设置**PixelMap**对象的翻转。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Flip](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_flip)。
 
 **起始版本：** 10
 
@@ -2881,6 +2897,8 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 ```
 **描述**
 获取**PixelMap**对象图像信息。
+
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo)。
 
 **起始版本：** 10
 
@@ -3040,6 +3058,9 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 **描述**
 设置**PixelMap**对象的旋转。
 
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Rotate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_rotate)。
+
 **起始版本：** 10
 
 **参数:**
@@ -3102,6 +3123,9 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 ```
 **描述**
 设置**PixelMap**对象的缩放。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Scale](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_scale)。
 
 **起始版本：** 10
 
@@ -3168,6 +3192,9 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing (const NativePixelMap * native, float 
 ```
 **描述**
 根据指定的缩放算法和输入的宽高对图片进行缩放。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_ScaleWithAntiAliasing](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_scalewithantialiasing)。
 
 **起始版本：** 12
 
@@ -3315,6 +3342,9 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 ```
 **描述**
 设置**PixelMap**对象的偏移。
+
+> **说明：**
+> 从API version 12开始，推荐使用新接口[OH_PixelmapNative_Translate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_translate)。
 
 **起始版本：** 10
 

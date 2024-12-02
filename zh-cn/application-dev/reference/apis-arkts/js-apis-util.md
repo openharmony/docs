@@ -1331,7 +1331,7 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
 
@@ -1518,7 +1518,7 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
@@ -4118,6 +4118,7 @@ isGeneratorFunction(value: Object): boolean
   export function* foo() {}
   ```
 
+  <!--code_no_check-->
   ```ts
   import { foo } from './test'
 
@@ -4158,6 +4159,7 @@ isGeneratorObject(value: Object): boolean
   export const generator = foo();
   ```
 
+  <!--code_no_check-->
   ```ts
   import { generator } from './test'
 
@@ -4621,6 +4623,7 @@ isSymbolObject(value: Object): boolean
   export const symbols = Symbol('foo');
   ```
 
+  <!--code_no_check-->
   ```ts
   import { symbols } from './test'
 
@@ -4953,6 +4956,7 @@ isModuleNamespaceObject(value: Object): boolean
   }
   ```
 
+  <!--code_no_check-->
   ```ts
   import * as nameSpace from './test';
 

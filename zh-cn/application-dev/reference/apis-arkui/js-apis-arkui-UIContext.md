@@ -217,6 +217,15 @@ struct AnimateToExample {
   @State heightSize: number = 100
   @State rotateAngle: number = 0
   private flag: boolean = true
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+  }
 
   build() {
     Column() {
@@ -226,7 +235,7 @@ struct AnimateToExample {
         .margin(30)
         .onClick(() => {
           if (this.flag) {
-            uiContext.animateTo({
+            this.uiContext?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 3,
@@ -239,28 +248,37 @@ struct AnimateToExample {
               this.heightSize = 60
             })
           } else {
-            uiContext.animateTo({}, () => {
+            this.uiContext?.animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
             })
           }
           this.flag = !this.flag
         })
-      Button('change rotate angle')
+      Button('stop rotating')
         .margin(50)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
-        .onClick(() => {
-          uiContext.animateTo({
+        .onAppear(() => {
+          // 组件出现时开始做动画
+          this.uiContext?.animateTo({
             duration: 1200,
             curve: Curve.Friction,
             delay: 500,
             iterations: -1, // 设置-1表示动画无限循环
             playMode: PlayMode.Alternate,
-            onFinish: () => {
-              console.info('play end')
+            expectedFrameRateRange: {
+              min: 10,
+              max: 120,
+              expected: 60,
             }
           }, () => {
             this.rotateAngle = 90
+          })
+        })
+        .onClick(() => {
+          this.uiContext?.animateTo({ duration: 0 }, () => {
+            // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
+            this.rotateAngle = 0
           })
         })
     }.width('100%').margin({ top: 5 })
@@ -1146,14 +1164,13 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
 | 类型   | 说明                               |
 | ------ | ---------------------------------- |
 | string | 获取组件树及组件属性的JSON字符串。 |
-
 
 **错误码**：
 
@@ -1185,7 +1202,7 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
 | id      | string          | 是   | 指定的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)id。 |
 | depth   | number          | 是   | 获取子组件的层数。当取值0时，获取指定的组件及其所有的子孙组件的属性。当取值1时，仅获取指定的组件的属性。当取值2时，指定的组件及其1层子组件的属性。以此类推。 |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -5399,7 +5416,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | 是   | 拖拽信息。                                                   |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 

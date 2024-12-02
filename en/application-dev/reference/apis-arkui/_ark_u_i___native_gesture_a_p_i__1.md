@@ -34,7 +34,7 @@ Defines the gesture APIs.
 | int32_t(\* [removeGestureFromNode](#removegesturefromnode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, ArkUI_GestureRecognizer \*recognizer) | Removes a gesture from a node. | 
 | int32_t(\* [setGestureInterrupterToNode](#setgestureinterruptertonode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult)(\*interrupter)(ArkUI_GestureInterruptInfo \*info)) | Sets a gesture interruption callback for a node. | 
 | [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype)(\* [getGestureType](#getgesturetype) )(ArkUI_GestureRecognizer \*recognizer) | Obtains the type of a gesture. | 
-| int32_t(\* [setInnerGestureParallelTo](#setinnergestureparallelto) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, ArkUI_GestureRecognizer \*(\*parallelInnerGesture)(ArkUI_ParallelInnerGestureEvent \*event)) | Sets the callback function for the parallel internal gesture event. | 
+| int32_t(\* [setInnerGestureParallelTo](#setinnergestureparallelto) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, ArkUI_GestureRecognizer \*(\*parallelInnerGesture)([ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) \*event)) | Sets the callback function for the parallel internal gesture event. | 
 
 
 ## Member Variable Description

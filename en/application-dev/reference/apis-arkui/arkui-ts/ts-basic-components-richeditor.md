@@ -42,6 +42,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >  **NOTE**
 >
 >  The **align** attribute supports only the start, center, and end options.
+> 
+>  The **borderImage** attribute is not supported.
 
 ### customKeyboard
 
@@ -52,8 +54,6 @@ Sets a custom keyboard.
 When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.
 
 The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.
-
-The custom keyboard is displayed on top of the current page, without compressing or raising the page.
 
 The custom keyboard cannot obtain focus, but it blocks gesture events.
 
@@ -89,7 +89,7 @@ Sets the custom context menu on text selection. If the custom menu is too long, 
 | ------------ | ------------------------------------------------------------ | ---- | --------------------------------------------------------- |
 | spanType     | [RichEditorSpanType](#richeditorspantype)                    | Yes  | Menu type.<br> Default value:<br>RichEditorSpanType.TEXT    |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | Yes  | Menu content.                                             |
-| responseType |  [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11) | Yes  | Response type of the menu.<br> Default value:<br>ResponseType.LongPress |
+| responseType |  [ResponseType](ts-appendix-enums.md#responsetype8) \| [RichEditorResponseType<sup>11+</sup>](#richeditorresponsetype11) | Yes  | Response type of the menu.<br> Default value:<br>ResponseType.LongPress |
 | options      | [SelectionMenuOptions](#selectionmenuoptions10)              | No  | Menu options.                                             |
 
 ### copyOptions
@@ -151,7 +151,15 @@ When **copyOption** is set to **CopyOptions.None**, the menu displayed after an 
 
 dataDetectorConfig(config: TextDataDetectorConfig)
 
-Configures text recognition settings. This API must be used together with [enableDataDetector](#enabledatadetector11). It takes effect only when **enableDataDetector** is set to **true**.
+Configures text recognition settings.
+
+This API must be used together with [enableDataDetector](#enabledatadetector11). It takes effect only when **enableDataDetector** is set to **true**.
+
+When entities A and B overlap, the following rules are followed:
+
+1. If A ⊂ B, retain B. Otherwise, retain A.
+
+2. When A ⊄ B and B ⊄ A: If A.start < B.start, retain A; otherwise, retain B.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -161,7 +169,7 @@ Configures text recognition settings. This API must be used together with [enabl
 
 | Name | Type                                               | Mandatory | Description                                                        |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [TextDataDetectorConfig](ts-text-common.md#textdatadetectorconfig11) | Yes  | Text recognition configuration.<br>Default value: {<br>types: [ ],<br>onDetectResultUpdate: null<br>} |
+| config | [TextDataDetectorConfig](ts-text-common.md#textdatadetectorconfig11) | Yes  | Text recognition configuration.|
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -178,6 +186,18 @@ Sets whether to enable preview text.
 | Name | Type   | Mandatory | Description                             |
 | ------ | ------- | ---- | --------------------------------- |
 | enable  | boolean | Yes  | Whether to enable preview text.<br>Default value: **true** |
+
+>  **NOTE**
+>
+>  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
+> ```json
+> "metadata": [
+>  {
+>     "name": "can_preview_text",
+>     "value": "true",
+>  }
+> ]
+> ```
 
 ### placeholder<sup>12+</sup>
 
@@ -335,6 +355,24 @@ This callback is not supported when the **RichEditor** component constructed wit
 | ------ | ------------------------------------------- | ---- | -------------------- |
 | callback | Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\> | Yes  | Callback invoked when content is about to be entered in the input method.<br/>[RichEditorInsertValue](#richeditorinsertvalue) indicates whether content will be entered in the input method.<br>**true**: Content is inserted.<br>**false**: Content is not inserted. |
 
+### onDidIMEInput<sup>12+</sup>
+
+onDidIMEInput(callback:Callback\<TextRange>)
+
+Triggered when text input in the input method is complete.
+
+This callback is not supported when the **RichEditor** component constructed with [RichEditorStyledStringOptions](#richeditorstyledstringoptions12) is used.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                |
+| ------ | ------------------------------------------- | ---- | -------------------- |
+| callback | Callback\<[TextRange](ts-text-common.md#textrange12)\> | Yes| Callback invoked when text input in the input method is complete.<br>**TextRange** indicates the text range for the current input. |
+
 ### onIMEInputComplete
 
 onIMEInputComplete(callback:Callback\<[RichEditorTextSpanResult](#richeditortextspanresult)\>)
@@ -487,7 +525,7 @@ This callback is not supported when the **RichEditor** component constructed wit
 
 | Name | Type | Mandatory | Description |
 | -- | -- | -- | -- |
-| callback | [OnDidChangeCallback](#ondidchangecallback12) | Yes | Content range before and after the text and image change. |
+| callback | [OnDidChangeCallback](ts-text-common.md#ondidchangecallback12) | Yes | Content range before and after the text and image change. |
 
 ### onCut<sup>12+</sup>
 
@@ -601,15 +639,28 @@ Provides the span position information.
 
 Provides the span type information.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Value    | Description          |
 | ----- | ---- | ------------ |
-| TEXT  | 0 | Text span.  |
-| IMAGE | 1 | Image span.  |
-| MIXED | 2 | Mixed span, which contains both text and imagery. |
+| TEXT  | 0 | Text span.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| IMAGE | 1 | Image span.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| MIXED | 2 | Mixed span, which contains both text and imagery.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| BUILDER<sup>12+</sup> | 3 | Builder span.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+
+## RichEditorResponseType<sup>11+</sup>
+
+Provides the response type of the menu.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name        | Description         |
+| ---------- | ------------- |
+| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
+| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
+| SELECT | The menu is displayed when the component is selected.|
 
 ## RichEditorTextStyleResult
 
@@ -625,6 +676,7 @@ Provides the text span style information returned by the backend.
 | fontWeight | number                                   | Yes   | Font weight.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | fontFamily | string                                   | Yes   | Font family.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | decoration | [DecorationStyleResult](ts-universal-styled-string.md#decorationstyleresult) | Yes   | Text decorative line.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| textShadow<sup>12+</sup> |  Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | No   | Text shadow.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | lineHeight<sup>12+</sup> | number       | No   | Line height. The default unit is fp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | letterSpacing<sup>12+</sup>| number       | No   | Letter spacing. The default unit is fp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fontFeature<sup>12+</sup> | string | No | Font feature.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -668,9 +720,9 @@ Provides the symbol span style information returned by the backend.
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | Yes | Color of the symbol span.<br> Default value: depending on the rendering strategy |
 | fontSize | number \| string \| [Resource](ts-types.md#resource) | Yes | Size of the symbol span. The default unit is fp.<br>The default value follows the theme.|
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes | Weight of the symbol span.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
-| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11)	| Yes | Rendering strategy of the symbol span.<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_folder_badge_plus** supports the **MULTIPLE_COLOR** and **MULTIPLE_OPACITY** modes.|
-| effectStrategy | [SymbolEffectStrategy]ts-basic-components-symbolGlyph.md#symboleffectstrategy11)	| Yes | Effect strategy of the symbol span.<br>Default value: **SymbolEffectStrategy.NONE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_wifi** supports the hierarchical effect.|
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string  | Yes| Weight of the symbol span.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
+| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11)	| Yes| Rendering strategy of the symbol span.<br>Default value: **SymbolRenderingStrategy.SINGLE**|
+| effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11)	| Yes| Effect strategy of the symbol span.<br>Default value: **SymbolEffectStrategy.NONE**|
 
 ## RichEditorImageSpanResult
 
@@ -697,7 +749,7 @@ Provides the image span style information returned by the backend.
 | Name           | Type                                      | Mandatory  | Description       |
 | ------------- | ---------------------------------------- | ---- | --------- |
 | size          | [number, number]                         | Yes   | Width and height of the image, in px. Default value: varies by the value of **objectFit**. If the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes   | Vertical alignment mode of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | Yes   | Vertical alignment mode of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | Yes   | Scale mode of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | No  | Image layout style. |
 
@@ -736,21 +788,11 @@ Defines the options for initializing the **RichEditor** component.
 | ---------- | ---------------------------------------- | ---- | ------- |
 | controller | [RichEditorStyledStringController](#richeditorstyledstringcontroller12) | Yes   | Controller for the **RichEditor** component. |
 
-## SelectionOptions<sup>12+</sup>
-
-Defines options for **setSelection**.
+## RichEditorChangeValue<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name        | Type                                      | Mandatory  | Description     |
-| ---------- | ---------------------------------------- | ---- | ------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | No   | Menu display policy. |
-
-## RichEditorChangeValue<sup>12+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                   | Type                                      | Mandatory  | Description                 |
 | --------------------- | ---------------------------------------- | ---- | ------------------- |
@@ -806,6 +848,8 @@ Sets the cursor position.
 closeSelectionMenu(): void
 
 Closes the custom or default context menu on selection.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -872,7 +916,7 @@ On non-2-in-1 devices, when **options** is set to **MenuPolicy.DEFAULT**, the fo
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | Yes   | Start position of the text selection. |
 | selectionEnd   | number | Yes   | End position of the text selection. |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | No   | Configuration of options. |
+| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12) | No   | Configuration of options. |
 
 ### isEditing<sup>12+</sup>
 
@@ -906,6 +950,8 @@ getLayoutManager(): LayoutManager
 
 Obtains a **LayoutManager** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -920,13 +966,15 @@ getPreviewText(): PreviewText
 
 Obtains the preview text.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| [PreviewText](#previewtext12) | Preview text. |
+| [PreviewText](ts-text-common.md#previewtext12) | Preview text. |
 
 ## RichEditorController
 
@@ -1005,6 +1053,8 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 Adds an image span. If the cursor in the component is blinking, the cursor position is updated to be after the inserted image span.
 
+To avoid potential loading issues, do not directly add a network image.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1030,16 +1080,16 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 >
 > - This API adds a builder span to take up space in the layout. It calls the system **measure** method to calculate the actual length, width, and position.
 > - You can use [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11) to set the index of the builder in the **RichEditor** component (with one character as the unit).
-> - This builder span is not focusable. It supports dragging and some universal attributes. Its capabilities regarding placeholder and deletion are equivalent to the image span, and its length is considered as one character.
-> - The builder span does not allow for custom menus set through [bindSelectionMenu](#attributes).
-> - The information about the builder span cannot be obtained through [getSpans](#getspans), [getSelection](#getselection11), [onSelect](#events), or [aboutToDelete](#events).
+> - This builder span is unfocusable, draggable, and equipped with certain universal attributes. It behaves similarly to an image span in terms of placeholder and deletion functionality, and it is treated as a single character in length.
+> - Custom menus set using [bindSelectionMenu](#bindselectionmenu) are not supported.
+> - The information about the builder span cannot be obtained through [getSpans](#getspans), [getSelection](#getselection11), [onSelect](#onselect), or [aboutToDelete](#abouttodelete).
 > - The builder span cannot be updated using [updateSpanStyle](#updatespanstyle) or [updateParagraphStyle](#updateparagraphstyle11).
 > - Copying or pasting the builder span does not take effect.
 > - The layout constraints of the builder span are passed in from the **RichEditor** component. If the size of the outermost component in the builder span is not set, the size of the **RichEditor** is used as the value of **maxSize**.
 > - The gesture event mechanism of the builder span is the same as the universal gesture event mechanism. If transparent transmission is not set in the builder, only the child components in the builder respond.
 > - If the cursor in the component is blinking, the cursor position is updated to be after the inserted image span.
 
-The following universal attributes are supported: [size](ts-universal-attributes-size.md#size), [padding](ts-universal-attributes-size.md#padding), [margin](ts-universal-attributes-size.md#margin), [aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio), [borderStyle](ts-universal-attributes-border.md#borderstyle), [borderWidth](ts-universal-attributes-border.md#borderwidth), [borderColor](ts-universal-attributes-border.md#bordercolor), [borderRadius](ts-universal-attributes-border.md#borderradius), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9), [opacity](ts-universal-attributes-opacity.md), [blur](ts-universal-attributes-image-effect.md#blur), [backdropBlur](ts-universal-attributes-image-effect.md#backdropblur), [shadow](ts-universal-attributes-image-effect.md#shadow), [grayscale](ts-universal-attributes-image-effect.md#grayscale), [brightness](ts-universal-attributes-image-effect.md#brightness), [saturate](ts-universal-attributes-image-effect.md#saturate),
+The following universal attributes are supported: [size](ts-universal-attributes-size.md#size), [padding](ts-universal-attributes-size.md#padding), [margin](ts-universal-attributes-size.md#margin), [aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio), [borderStyle](ts-universal-attributes-border.md#borderstyle), [borderWidth](ts-universal-attributes-border.md#borderwidth), [borderColor](ts-universal-attributes-border.md#bordercolor), [borderRadius](ts-universal-attributes-border.md#borderradius), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9), [opacity](ts-universal-attributes-opacity.md), [blur](ts-universal-attributes-image-effect.md#blur), [backdropBlur](ts-universal-attributes-background.md), [shadow](ts-universal-attributes-image-effect.md#shadow), [grayscale](ts-universal-attributes-image-effect.md#grayscale), [brightness](ts-universal-attributes-image-effect.md#brightness), [saturate](ts-universal-attributes-image-effect.md#saturate),
 [contrast](ts-universal-attributes-image-effect.md#contrast), [invert](ts-universal-attributes-image-effect.md#invert), [sepia](ts-universal-attributes-image-effect.md#sepia), [hueRotate](ts-universal-attributes-image-effect.md#huerotate), [colorBlend](ts-universal-attributes-image-effect.md#colorblend7), [linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur12), [clip](ts-universal-attributes-sharp-clipping.md#clip12), [mask](ts-universal-attributes-sharp-clipping.md#mask12), [foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle), [accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup), [accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext), [accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription), [accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel), [sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect12), [lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect12), [pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect12)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -1141,6 +1191,10 @@ Calling this API will not close the custom context menu on selection by default.
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | Yes | Style options of the text, image, or symbol span. |
 
+>  **NOTE**
+>
+>  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and infinity as **end**.
+
 ### updateParagraphStyle<sup>11+</sup>
 
 updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
@@ -1159,7 +1213,7 @@ Updates the paragraph style.
 
 ### getSpans
 
-getSpans(value?: RichEditorRange): Array<RichEditorTextSpanResult| RichEditorImageSpanResult>
+getSpans(value?: RichEditorRange): Array<RichEditorImageSpanResult| RichEditorTextSpanResult>
 
 Obtains span information.
 
@@ -1259,7 +1313,7 @@ For details, see [Example](ohos-arkui-advanced-SelectionMenu.md#example).
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | Yes   | Start position of the text selection. |
 | selectionEnd   | number | Yes   | End position of the text selection. |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | No   | Configuration of options. |
+| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12) | No   | Configuration of options. |
 
 ### getSelection<sup>11+</sup>
 
@@ -1291,13 +1345,21 @@ Converts a styled string into a span.
 
 | Name  | Type                               | Mandatory  | Description      |
 | ----- | ----------------------------------- | ---- | ---------- |
-| value | [RichEditorRange](#richeditorrange) | No   | Source range. |
+| value | [StyledString](ts-universal-styled-string.md#styledstring) | Yes   | Styled string before conversion.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
 | Array<[RichEditorSpan](#richeditorspan12)>  | Text and image span information. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | The parameter check failed.  |
 
 ### toStyledString<sup>12+</sup>
 
@@ -1320,6 +1382,15 @@ Converts the component content within the given range into a styled string.
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
 | [StyledString](ts-universal-styled-string.md#styledstring) | Styled string after conversion. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | The parameter check failed.  |
+
 
 ## RichEditorStyledStringController<sup>12+</sup>
 
@@ -1393,7 +1464,7 @@ Register a callback for text content changes, which will be invoked when the tex
 
 | Name  | Type  | Mandatory  | Description               |
 | ----- | ------ | ---- | ------------------- |
-| listener | [StyledStringChangedListener](#styledstringchangedlistener12) | Yes   | Callback listener for text content changes. |
+| listener | [StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12) | Yes   | Callback listener for text content changes. |
 
 ## RichEditorSelection
 
@@ -1413,23 +1484,21 @@ Provides information about the selected content.
 
 Defines the text span style options.
 
+Inherits [RichEditorRange](#richeditorrange).
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name       | Type                                      | Mandatory  | Description                             |
 | --------- | ---------------------------------------- | ---- | ------------------------------- |
-| start     | number                                   | No   | Start position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used. |
-| end       | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, it indicates infinity. |
 | textStyle | [RichEditorTextStyle](#richeditortextstyle) | Yes   | Text style.                          |
-
->  **NOTE**
->
->  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and infinity as **end**.
 
 ## RichEditorUpdateImageSpanStyleOptions
 
 Defines the image span style options.
+
+Inherits [RichEditorRange](#richeditorrange).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1437,17 +1506,13 @@ Defines the image span style options.
 
 | Name        | Type                                      | Mandatory  | Description                             |
 | ---------- | ---------------------------------------- | ---- | ------------------------------- |
-| start      | number                                   | No   | Start position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used. |
-| end        | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, it indicates infinity. |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | Yes   | Image style.                          |
-
->  **NOTE**
->
->  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and infinity as **end**.
 
 ## RichEditorUpdateSymbolSpanStyleOptions<sup>11+</sup>
 
 Defines the symbol span style options.
+
+Inherits [RichEditorRange](#richeditorrange).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1459,13 +1524,11 @@ Defines the symbol span style options.
 | end         | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a value beyond the range, it indicates infinity. |
 | symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | Yes   | Style of the symbol span.                          |
 
->  **NOTE**
->
->  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and infinity as **end**.
-
 ## RichEditorParagraphStyleOptions<sup>11+</sup>
 
 Describes the paragraph style options.
+
+Inherits [RichEditorRange](#richeditorrange).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1473,15 +1536,11 @@ Describes the paragraph style options.
 
 | Name   | Type                                      | Mandatory  | Description                                |
 | ----- | ---------------------------------------- | ---- | ---------------------------------- |
-| start | number                                   | No   | Start position of the paragraph whose style needs to be updated. If this parameter is left empty or set to a negative value, the value **0** will be used.    |
-| end   | number                                   | No   | End position of the span whose style needs to be updated. If this parameter is left empty or set to a negative value or a value beyond the range, it indicates infinity. |
 | style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | Yes   | Paragraph style.                             |
 
 >  **NOTE**
 >
 >  Applicable scope of the API: spans involved in the specified range.
->  If the value of **start** is greater than that of **end**, the value **0** will be used as **start** and infinity as **end**.
-
 
 ## RichEditorParagraphStyle<sup>11+</sup>
 
@@ -1588,7 +1647,7 @@ Provides the image span style information.
 | Name                       | Type                                      | Mandatory  | Description                                      |
 | ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | No   | Width and height of the image. Default value: varies by the value of **objectFit**. If the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                              |
-| verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| verticalAlign             | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | No   | Scale mode of the image.<br> Default value: **ImageFit.Cover**<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
 | layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | No   | Image layout style. Default value: **{"borderRadius":"","margin":""}**<br><br>**Atomic service API**: This API can be used in atomic services since API version 12.                         |
 
@@ -1727,6 +1786,8 @@ Defines the behavior-triggered callbacks.
 
 Whether to support keyboard avoidance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name           | Type             | Mandatory  | Description                              |
@@ -1754,6 +1815,8 @@ type MenuOnAppearCallback = (start: number, end: number) => void
 
 Represents the callback invoked when the custom context menu on selection is displayed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type                                            | Mandatory | Description                                                    |
@@ -1764,53 +1827,14 @@ Represents the callback invoked when the custom context menu on selection is dis
 ## PasteEventCallback<sup>12+</sup>
 
 Triggered when the paste is about to be completed.<br>
+
 type PasteEventCallback = (event?: PasteEvent) => void
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type                                            | Mandatory | Description                                                    |
+| Name    | Type                                            | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| event  | [PasteEvent](#pasteevent11) | No  | Defines the custom paste event. |
-
-## OnDidChangeCallback<sup>12+</sup>
-
-type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
-
-Represents the callback invoked after text changes.
-
-**Parameters**
-
-| Name | Type | Mandatory | Description |
-| -- | -- | -- | -- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | Yes | Range of the text to be changed. |
-| rangeAfter | [TextRange](ts-universal-attributes-text-style.md#textrange12) | Yes | Range of the text added. |
-
-## StyledStringChangedListener<sup>12+</sup>
-Defines the listener for changes of the styled string text content.
-| Name | Type | Mandatory | Description |
-| -- | -- | -- | -- |
-| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | No | Callback invoked when text is about to change. |
-| onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | No | Callback invoked when text is changed. |
-
-## StyledStringChangeValue<sup>12+</sup>
-Describes the text changes of the styled string.
-
-| Name | Type | Mandatory | Description |
-| -- | -- | -- | -- |
-| range | TextRange | Yes | Range of the styled string to be replaced in the original string. |
-| replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | Yes | Styled string used for replacement. |
-
-
-## PreviewText<sup>12+</sup>
-
-Preview text.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Type                                            | Mandatory | Description                                                    |
-| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| offset | number | Yes  | Start position of the preview text. |
-| value    | string         | Yes  | Content of the preview text.        |
+| event  | [PasteEvent](#pasteevent11) | No  | Custom paste event.|
 
 ## Example
 
@@ -1846,7 +1870,7 @@ struct Index {
       .height("20%")
 
       Row() {
-        Button ("Update Style: Bold").onClick(() => {
+        Button("Update Style: Bold").onClick(() => {
           this.controller.updateSpanStyle({
             start: this.start,
             end: this.end,
@@ -2906,7 +2930,7 @@ struct Index {
         .draggable(false)
 
       Column({ space: 5 }) {
-        Button ("Align left").onClick () => {
+        Button("Align Left").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Start,
@@ -2914,7 +2938,7 @@ struct Index {
           })
         })
 
-        Button ("Align right").onClick(() => {
+        Button("Align Right").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.End,
@@ -2922,7 +2946,7 @@ struct Index {
           })
         })
 
-        Button ("Center").onClick ((). => {
+        Button("Center").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Center,
@@ -3151,7 +3175,7 @@ struct Index {
         })
         Divider()
         Row({ space: 5 }) {
-          Button ("Increase Bullet Indent").onClick(() => {
+          Button("Increase Bullet Indent").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
               margin += Indentation
@@ -3189,7 +3213,7 @@ struct Index {
         }
         Divider()
         Row({ space: 5 }) {
-          Button ("Increase Indent").onClick(() => {
+          Button("Increase Indent").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
               margin += Indentation
@@ -3426,7 +3450,7 @@ struct Index {
       .height("20%")
 
       Row() {
-        Button ("Get Span Info").onClick () => {
+        Button("Get Span Info").onClick(() => {
           console.info('getSpans='+JSON.stringify(this.controller.getSpans({ start:1, end:5 })))
           console.info('getParagraphs='+JSON.stringify(this.controller.getParagraphs({ start:1, end:5 })))
           this.content = ""
@@ -3450,7 +3474,7 @@ struct Index {
             }
           })
         })
-        Button ("Get Selection").onClick () => {
+        Button("Get Selection").onClick(() => {
           this.content = "";
           let select = this.controller.getSelection()
           console.info("selection start " + select.selection[0] + " end " + select.selection[1])
@@ -4088,7 +4112,7 @@ struct RichEditorExample {
         .onPaste(()=>{
           console.log('Test log: onPaste')
         })
-      Text ('Test text Hello')
+      Text('Test text Hello')
         .lineHeight(50)
         .fontSize(24)
         .draggable(true)
@@ -4213,10 +4237,11 @@ struct LineBreakStrategyExample {
 
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
 
-### Example: 20
+### Example 20
 This example shows the usage of a styled string.
 
 ```ts
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 import { image } from '@kit.ImageKit'
 
@@ -4247,6 +4272,9 @@ struct Index {
     fontSize: LengthMetrics.vp(30),
     fontStyle: FontStyle.Italic
   })
+
+  controller1: RichEditorController = new RichEditorController()
+  options1: RichEditorOptions = { controller: this.controller1 };
   // Create a styled string object.
   mutableStyledString: MutableStyledString = new MutableStyledString("Initial styled string",
     [{ start: 0, length: 5, styledKey: StyledStringKey.FONT, styledValue: this.fontStyle1 }]);
@@ -4269,7 +4297,7 @@ struct Index {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap");
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'));
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -4288,7 +4316,7 @@ struct Index {
 
 
   build() {
-    Column() {
+    Column({space:6}) {
       Column() {
         Text("Selection information")
           .fontSize(20)
@@ -4296,8 +4324,6 @@ struct Index {
         Text("selection range: " + this.selection).width("100%")
         Text("selection content: " + this.content).width("100%")
       }
-      .borderWidth(1)
-      .borderColor(Color.Black)
       .width("100%")
       .height("10%")
 
@@ -4307,7 +4333,7 @@ struct Index {
           .width("100%")
         Text("range: " + this.range).width("100%")
         Text("replacementString: " + this.replaceString).width("100%")
-        Tex ("onWillChange callback")
+        Text("onWillChange callback")
           .fontSize(20)
           .width("100%")
         Text("rangeBefore: " + this.rangeBefore).width("100%")
@@ -4327,12 +4353,20 @@ struct Index {
         })
         .height("20%")
         .width("100%")
+
+      RichEditor(this.options1)
+        .onReady(() => {
+        this.controller1.addTextSpan("Convert into Styled String");
+      })
+        .height("10%")
+        .width("100%")
         .borderWidth(1)
         .borderColor(Color.Black)
 
-      Column() {
-        Row() {
-          Button("Insert Image").onClick () => {
+        Row({space:2}) {
+          Button("Insert Image")
+            .stateEffect(true)
+            .onClick(() => {
             if (this.imagePixelMap !== undefined) {
               let imageStyledString = new MutableStyledString(new ImageAttachment({
                 value: this.imagePixelMap,
@@ -4350,15 +4384,26 @@ struct Index {
             }
           })
           Button("Insert Text").onClick () => {
-              // Obtain the styled string displayed in the component.
-              this.richEditorStyledString = this.controller.getStyledString();
-              this.richEditorStyledString.appendStyledString(this.styledString);
-              // Display the styled string after the text is inserted on the component.
-              this.controller.setStyledString(this.richEditorStyledString);
-              this.controller.setCaretOffset(this.richEditorStyledString.length);
+            // Obtain the styled string displayed in the component.
+            this.richEditorStyledString = this.controller.getStyledString();
+            this.richEditorStyledString.appendStyledString(this.styledString);
+            // Display the styled string after the text is inserted on the component.
+            this.controller.setStyledString(this.richEditorStyledString);
+            this.controller.setCaretOffset(this.richEditorStyledString.length);
+          })
+          Button("Delete Selected").onClick(() => {
+            // Obtain the selection.
+            let richEditorSelection = this.controller.getSelection();
+            let start = richEditorSelection.start ? richEditorSelection.start : 0;
+            let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            // Obtain the styled string displayed in the component.
+            this.richEditorStyledString = this.controller.getStyledString();
+            this.richEditorStyledString.removeString(start, end - start);
+            // Display the styled string after the content is deleted on the component.
+            this.controller.setStyledString(this.richEditorStyledString);
           })
         }
-        Row() {
+        Row({space:2}) {
           Button("Get Selection").onClick(() => {
             // Obtain the selection.
             let richEditorSelection = this.controller.getSelection();
@@ -4389,29 +4434,26 @@ struct Index {
             // Display the styled string after the style change on the component.
             this.controller.setStyledString(this.richEditorStyledString);
           })
-          Button("Delete Selected").onClick(() => {
-            // Obtain the selection.
-            let richEditorSelection = this.controller.getSelection();
-            let start = richEditorSelection.start ? richEditorSelection.start : 0;
-            let end = richEditorSelection.end ? richEditorSelection.end : 0;
-            // Obtain the styled string displayed in the component.
-            this.richEditorStyledString = this.controller.getStyledString();
-            this.richEditorStyledString.removeString(start, end - start);
-            // Display the styled string after the content is deleted on the component.
-            this.controller.setStyledString(this.richEditorStyledString);
+        }
+        Row({space:2}){
+          // Convert a styled string into a span.
+          Button("Call fromStyledString").onClick(() => {
+            this.controller1.addTextSpan("Call fromStyledString: " +JSON.stringify(this.controller1.fromStyledString(this.mutableStyledString)))
+          })
+          // Convert the component content within the given range into a styled string.
+          Button("Call toStyledString").onClick(() => {
+            this.controller.setStyledString(this.controller1.toStyledString({start:0,end:13}))
           })
         }
-      }
-      .width("100%")
     }
   }
 }
 ```
 
-![StyledString](figures/richEditorStyledString.gif)
+
 
 ### Example 21
-This example shows the usage of **NodeAdapter**.
+This example shows the usage of **LayoutManager**.
 
 ```ts
 @Entry

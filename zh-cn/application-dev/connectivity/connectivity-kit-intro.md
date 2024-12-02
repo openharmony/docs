@@ -59,7 +59,7 @@ WLAN系统为用户提供接入WLAN网络功能（STA模式）、点对点的数
   详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 - **AP模式**<br/>
-  AP模式为加入无线局域网的成员设备（即客户端）提供下行数据业务，它提供以无线方式组建无线局域网WLAN，相当际WLAN的中心设备。
+  AP模式为加入无线局域网的成员设备（即客户端）提供下行数据业务，它提供以无线方式组建无线局域网WLAN，相当于WLAN的中心设备。
   详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 ### NFC简介
@@ -89,4 +89,4 @@ Connectivity能力作为系统为应用提供的一种基础通信服务，需�
 
 针对蓝牙相关的业务，有以下相关实例可供参考：
 
-- [`bluetooth`](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)
+- [`bluetooth`](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Connectivity/Bluetooth)

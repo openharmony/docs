@@ -10,7 +10,9 @@ A text picker dialog box is a dialog box that allows users to select text from t
 >
 > Since API version 10, you can use the [showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
-## TextPickerDialog.show
+## TextPickerDialog
+
+### show
 
 static show(options?: TextPickerDialogOptions)
 
@@ -47,8 +49,8 @@ Inherits from [TextPickerOptions](ts-basic-components-textpicker.md#textpickerop
 | onAccept | (value: [TextPickerResult](#textpickerresult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onChange | (value: [TextPickerResult](#textpickerresult)) => void | No| Callback invoked when the selected item changes.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**NOTE**<br>Setting this parameter to **BlurStyle.NONE** disables the background blur. When **backgroundBlurStyle** is set to a value other than **NONE**, do not set **backgroundColor**. If you do, the color display may not produce the expected visual effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onDidAppear<sup>12+</sup> | () => void | No| Event callback when the dialog box appears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onDidAppear**. The settings take effect next time the dialog box appears.<br>3. If the user closes the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**.<br>4. If the dialog box is closed before its entrance animation is finished, this callback is not invoked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onDidDisappear<sup>12+</sup> | () => void | No| Event callback when the dialog box disappears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onWillAppear<sup>12+</sup> | () => void | No| Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onAccept/onCancel/onChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -67,6 +69,10 @@ Inherits from [TextPickerOptions](ts-basic-components-textpicker.md#textpickerop
 | index | number \| number []<sup>10+</sup> | No| No| Index of the selected item in the range. (For a multi-column picker, **index** is of the array type.)|
 
 ## Example
+
+>  **NOTE**
+>
+> You are advised to use the [showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ### Example 1
 
@@ -87,7 +93,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            TextPickerDialog.show({ // You are advised to use this.getUIContext().showTextPickerDialog() to obtain the UI context.
               range: this.fruits,
               selected: this.select,
               disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
@@ -149,7 +155,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            TextPickerDialog.show({ // You are advised to use this.getUIContext().showTextPickerDialog() to obtain the UI context.
               range: this.fruits,
               selected: this.select,
               disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},

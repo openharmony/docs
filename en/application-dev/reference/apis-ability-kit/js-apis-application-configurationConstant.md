@@ -12,7 +12,7 @@ The **ConfigurationConstant** module provides the enumerated values of the envir
 import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 ```
 
-## ConfigurationConstant.ColorMode
+## ColorMode
 
 Enumerates the color modes.
 

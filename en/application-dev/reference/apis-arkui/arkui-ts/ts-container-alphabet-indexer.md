@@ -113,7 +113,7 @@ Sets the background color of the pop-up text.
 
 | Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the pop-up text.<br>Default value:<br>API version 11 and earlier: **0xFFFFFFFF**<br>API version 12 and later: **#66808080**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the pop-up text.<br>The background blur effect of the pop-up text can affect the background color. You can disable the effect by setting [popupBackgroundBlurStyle](#popupbackgroundblurstyle12) to **NONE**.<br>Default value:<br>API version 11 and earlier: **0xFFFFFFFF**<br>API version 12 and later: **#66808080**|
 
 ### usingPopup
 
@@ -376,7 +376,7 @@ Sets the background blur style of the pop-up window.
 
 | Name| Type                                        | Mandatory| Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the pop-up window.<br>Default value: **COMPONENT_REGULAR**|
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the pop-up window.<br>The background blur effect can affect [popupBackground](#popupbackground). You can disable the effect by setting it to **NONE**.<br>Default value: **COMPONENT_REGULAR**|
 
 ### popupTitleBackground<sup>12+</sup>   
 
@@ -716,12 +716,12 @@ struct AlphabetIndexerSample {
               .onClick(() => {
                 this.isNeedAutoCollapse = true;
               })
-            Button ('30% of Index Bar Height')
+            Button('30% of Index Bar Height')
               .margin('5vp')
               .onClick(() => {
                 this.indexerHeight = '30%';
               })
-            Button ('70% of Index Bar Height')
+            Button('70% of Index Bar Height')
               .margin('5vp')
               .onClick(() => {
                 this.indexerHeight = '70%';

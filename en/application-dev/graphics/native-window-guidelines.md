@@ -33,6 +33,9 @@ libnative_window.so
 
 **Including Header Files**
 ```c++
+#include <sys/poll.h>
+#include <sys/mman.h>
+#include <unistd.h>
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include <native_window/external_window.h>
 ```
@@ -66,7 +69,9 @@ libnative_window.so
         {
             // Obtain an OHNativeWindow instance.
             OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
-            // ...
+            // After this callback is triggered, the reference count for the window is initialized to 1. If the window-related APIs and XComponent destructor are concurrently used,
+            // you must manually adjust the reference count by using OH_NativeWindow_NativeObjectReference to increase it and OH_NativeWindow_NativeObjectUnreference to decrease it.
+            // This manual management of the reference count by 1 helps to avoid issues with dangling or null pointers that could occur during concurrent calls to window APIs following the destruction of an XComponent.
         }
         void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
         {
@@ -78,7 +83,8 @@ libnative_window.so
         {
             // Obtain an OHNativeWindow instance.
             OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
-            // ...
+            // After this callback is triggered, the reference count for the window is decremented by 1. When the reference count reaches 0, the window is destructed.
+            // Once the window is destructed, no further API calls should be made through the window. This operation results in a crash caused by dangling or null pointers.
         }
         void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
         {
@@ -114,9 +120,12 @@ libnative_window.so
 3. Request an **OHNativeWindowBuffer** from the graphics queue.
     ```c++
     OHNativeWindowBuffer* buffer = nullptr;
-    int fenceFd;
+    int releaseFenceFd = -1;
     // Obtain the OHNativeWindowBuffer instance by calling OH_NativeWindow_NativeWindowRequestBuffer.
-    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
+    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &releaseFenceFd);
+    if (ret != 0 || buffer == nullptr) {
+        return;
+    }
     // Obtain the buffer handle by calling OH_NativeWindow_GetBufferHandleFromNative.
     BufferHandle* bufferHandle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
     ```
@@ -134,7 +143,21 @@ libnative_window.so
     ```
 
 5. Write the produced content to the **OHNativeWindowBuffer**.
+
+   Before this operation, wait until **releaseFenceFd** is available. (Note that **poll** needs to be called only when **releaseFenceFd** is not **-1**.) If no data waiting for **releaseFenceFd** is available (POLLIN), problems such as artifacts, cracks, and High Efficiency Bandwidth Compression (HEBC) faults may occur. **releaseFenceFd** is a file handle created by the consumer process to indicate that the consumer has consumed the buffer, the buffer is readable, and the producer can start to fill in the buffer.
     ```c++
+    int retCode = -1;
+    uint32_t timeout = 3000;
+    if (releaseFenceFd != -1) {
+        struct pollfd pollfds = {0};
+        pollfds.fd = releaseFenceFd;
+        pollfds.events = POLLIN;
+        do {
+            retCode = poll(&pollfds, 1, timeout);
+        } while (retCode == -1 && (errno == EINTR || errno == EAGAIN));
+        close(releaseFenceFd); // Prevent FD leakage.
+    }
+
     static uint32_t value = 0x00;
     value++;
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr); // Use the address obtained by mmap() to access the memory.
@@ -146,11 +169,14 @@ libnative_window.so
     ```
 
 5. Flush the **OHNativeWindowBuffer** to the graphics queue.
+
+   Note that **acquireFenceFd** of **OH_NativeWindow_NativeWindowFlushBuffer** cannot be the same as **releaseFenceFd** obtained by **OH_NativeWindow_NativeWindowRequestBuffer**. **acquireFenceFd** is the file handle passed in by the producer, and the default value **-1** can be passed. Based on **acquireFenceFd**, the consumer, after obtaining the buffer, determines when to render and display the buffered content.
     ```c++
     // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the OHNativeWindowBuffer are changed.
     Region region{nullptr, 0};
+    int acquireFenceFd = -1;
     // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
-    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
+    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, acquireFenceFd, region);
     ```
 6. Unmap memory.
     ```c++

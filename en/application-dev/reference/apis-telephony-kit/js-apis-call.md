@@ -128,7 +128,7 @@ call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
 
 makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
-Launches the call screen and displays the dialed number. This API uses an asynchronous callback to return the result.
+Launches the call screen and displays the dialed number. This API uses an asynchronous callback to return the result. This API can be called only in a UIAbility.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -172,7 +172,7 @@ call.makeCall("138xxxxxxxx", (err: BusinessError) => {
 
 makeCall\(phoneNumber: string\): Promise\<void\>
 
-Launches the call screen and displays the dialed number. This API uses a promise to return the result.
+Launches the call screen and displays the dialed number. This API uses a promise to return the result. This API can be called only in a UIAbility.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -208,6 +208,52 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 import { BusinessError } from '@kit.BasicServicesKit';
 
 call.makeCall("138xxxxxxxx").then(() => {
+    console.log(`makeCall success`);
+}).catch((err: BusinessError) => {
+    console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.makeCall<sup>12+</sup>
+
+makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
+
+Launches the call screen and displays the dialed number. This API uses a promise to return the result. You need to declare the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission if you want to call the API in the background.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Applications.Contacts
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| context | Context | Yes  | Application context.|
+| phoneNumber | string | Yes  | Phone number.|
+
+**Return value**
+
+| Type               | Description                             |
+| ------------------- | --------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.telephony (Telephony) Error Codes](errorcode-telephony.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameters types;|
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+// Obtain the application context.
+let context = getContext(this) as Context;
+call.makeCall(context, "138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
 }).catch((err: BusinessError) => {
     console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);

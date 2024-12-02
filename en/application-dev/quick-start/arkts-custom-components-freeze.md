@@ -1,6 +1,21 @@
 # Freezing a Custom Component
 
-When a custom component is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Watch decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **\<TabContent>**, **LazyForEach**, and **\<Navigation>**.
+Freezing a custom component is designed to optimize the performance of complex UI pages, especially for scenarios where multiple page stacks, long lists, or grid layouts are involved. In these cases, when the state variable is bound to multiple UI components, the change of the state variables may trigger the re-render of a large number of UI components, resulting in frame freezing and response delay. To improve the UI re-render performance, you can try to use the custom component freezing function.
+
+Principles of freezing a component are as follows:
+1. Setting the **freezeWhenInactive** attribute to activate the component freezing mechanism.
+2. After this function is enabled, the system re-renders only the activated custom components. In this way, the UI framework can narrow down the re-render scope to the (activated) custom components that are visible to users, improving the re-render efficiency in complex UI scenarios.
+3. When an inactive custom component turns into the active state, the state management framework performs necessary re-render operations on the custom component to ensure that the UI is correctly displayed.
+
+In short, component freezing aims to optimize UI re-render performance on complex UIs. When there are multiple invisible custom components, such as multiple page stacks, long lists, or grids, you can freeze the components to re-render visible custom components as required, and the re-render of the invisible custom components is delayed until they become visible.
+
+Note that the active or inactive state of a component is not equivalent to its visibility. Component freezing applies only to the following scenarios:
+
+1. Page routing: The current top page of the navigation stack is in the active state, and the non-top invisible page is in the inactive state.
+2. TabContent: Only the custom component in the currently displayed TabContent is in the active state.
+3. LazyForEach: Only the custom component in the currently displayed LazyForEach is in the active state, and the component of the cache node is in the inactive state.
+4. Navigation: Only the custom component in the currently displayed NavDestination is in the active state.
+In other scenarios, for example, masked components in a stack layout are not considered to be in an inactive state although they are invisible. Therefore, component freezing cannot be applied to these components.
 
 
 > **NOTE**
@@ -11,11 +26,9 @@ When a custom component is inactive, it can be frozen so that its state variable
 
 ### Page Routing
 
-- When page A calls the **router.pushUrl** API to jump to page B, page A is hidden and invisible. In this case, if the state variable on page A is updated, page A is not re-rendered.
+When page A calls the **router.pushUrl** API to jump to page B, page A is hidden and invisible. In this case, if the state variable on page A is updated, page A is not re-rendered.
 
-- The freezing feature does not work when the application is running in the background.
-
-Page A:
+Page A
 
 ```ts
 import { router } from '@kit.ArkUI';
@@ -31,7 +44,7 @@ struct FirstTest {
 
   build() {
     Column() {
-      Text(`From fist Page ${this.storageLink}`).fontSize(50)
+      Text(`From first Page ${this.storageLink}`).fontSize(50)
       Button('first page storageLink + 1').fontSize(30)
         .onClick(() => {
           this.storageLink += 1
@@ -45,7 +58,7 @@ struct FirstTest {
 }
 ```
 
-Page B:
+Page B
 
 ```ts
 import { router } from '@kit.ArkUI';
@@ -89,11 +102,12 @@ In the preceding example:
 4. When the **back** button is clicked, page B is destroyed, and page A changes from inactive to active. At this time, if the state variable of page A is updated, the @Watch decorated **first** method of page A is called again.
 
 
-### \<TabContent>
+### TabContent
 
-- You can freeze invisible **\<TabContent>** components in the **\<Tabs>** container so that they do not trigger UI re-rendering.
+- You can freeze invisible **TabContent** components in the **Tabs** container so that they do not trigger UI re-rendering.
 
-- During initial rendering, only the **\<TabContent>** component that is being displayed is created. All **\<TabContent>** components are created only after all of them have been switched to.
+- During initial rendering, only the **TabContent** component that is being displayed is created. All **TabContent** components are created only after all of them have been switched to.
+
 
 ```ts
 @Entry
@@ -146,11 +160,11 @@ struct FreezeChild {
 
 In the preceding example:
 
-1. When **change message** is clicked, the value of **message** changes, and the @Watch decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
+1. When **change message** is clicked, the value of **message** changes, and the @Watch decorated **onMessageUpdated** method of the **TabContent** component being displayed is called.
 
-2. When you click **two** to switch to another **\<TabContent>** component, it switches from inactive to active, and the corresponding @Watch decorated **onMessageUpdated** method is called.
+2. When you click **two** to switch to another **TabContent** component, it switches from inactive to active, and the corresponding @Watch decorated **onMessageUpdated** method is called.
 
-3. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
+3. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **onMessageUpdated** method of the **TabContent** component being displayed is called.
 
 ![TabContent.gif](figures/TabContent.gif)
 
@@ -311,7 +325,9 @@ In the preceding example:
 
 ### Navigation
 
-- Freezing an invisible page does not trigger component update. When the page is returned, the @Watch callback is triggered to refresh the page.
+- When the navigation destination page is invisible, its child custom components are set to the inactive state and will not be re-rendered. When return to this page, its child custom components are restored to the active state and the @Watch callback is triggered to re-render the page.
+
+- In the following example, **NavigationContentMsgStack** is set to the inactive state, which does not respond to the change of the state variables, and does not trigger component re-rendering.
 
 ```ts
 @Entry

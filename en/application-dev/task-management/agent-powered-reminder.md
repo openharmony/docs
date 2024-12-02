@@ -4,7 +4,7 @@
 
 ### Introduction
 
-After an application switches to the background or an application process is terminated, it may have scheduled tasks for reminding users, for example, flash sale reminders for shopping applications. To meet this requirement, the system provides agent-powered reminders (implemented by **reminderAgentManager**). When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.
+After an application switches to the background or an application process is terminated, it may have scheduled tasks for reminding users, for example, clock reminders. To meet this requirement, the system provides agent-powered reminders (implemented by **reminderAgentManager**). When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.<!--RP1--><!--RP1End-->
 
 - Timer: reminders based on countdown timers
 
@@ -17,7 +17,8 @@ After an application switches to the background or an application process is ter
 - **Quantity limit**: A third-party application supports a maximum of 30 valid reminders. A system application supports a maximum of 10,000 valid reminders. The entire system supports a maximum of 12,000 valid reminders. (A reminder is considered valid as long as it is published.)
 
 - **Redirection limit**: The application that is redirected to upon a click on the notification must be the application that requested the agent-powered reminder.
-<!--RP1--><!--RP1End-->
+
+<!--RP2--><!--RP2End-->
 
 
 ## Available APIs
@@ -115,7 +116,7 @@ The table below uses promise as an example to describe the APIs used for develop
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 5*60, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
         content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.
@@ -153,7 +154,7 @@ The table below uses promise as an example to describe the APIs used for develop
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 5*60, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
         content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.

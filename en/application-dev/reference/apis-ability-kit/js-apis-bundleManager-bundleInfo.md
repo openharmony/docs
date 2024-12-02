@@ -10,7 +10,7 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                             | Type                                                        | Readable| Writable| Description                                                        |
+| Name                             | Type                                                        | Read-Only| Optional| Description                                                        |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                              | string                                                       | Yes  | No  | Bundle name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | vendor                            | string                                                       | Yes  | No  | Vendor of the bundle.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -37,13 +37,13 @@ Provides the detailed information of the permissions to request from the system.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                 | Type                   | Readable| Writable| Description                |
+| Name                 | Type                   | Read-Only| Optional| Description                |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------|
-| name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
-| moduleName<sup>10+</sup>            | string                  | Yes  | Yes  | Name of the module that requests the permission.  |
-| reason                | string                  | Yes  | Yes  | Reason for requesting the permission. |
-| reasonId              | number                  | Yes  | Yes  | ID of the reason for requesting the permission.|
-| usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Use scenario and timing for using the permission.|
+| name                  | string                  | No  | No  | Name of the permission to request.  |
+| moduleName<sup>10+</sup>            | string                  | No  | No  | Name of the module that requests the permission.  |
+| reason                | string                  | No  | No  | Reason for requesting the permission. |
+| reasonId              | number                  | No  | No | ID of the reason for requesting the permission.|
+| usedScene             | [UsedScene](#usedscene) | No  | No  | Use scenario and timing for using the permission.|
 
 
 
@@ -55,10 +55,10 @@ Describes the use scenario and timing for using the permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| abilities | Array\<string> | Yes  | Yes  | Abilities that use the permission.  |
-| when      | string         | Yes  | Yes  | Time when the permission is used.         |
+| abilities | Array\<string> | No  | No  | Abilities that use the permission.  |
+| when      | string         | No  | No  | Time when the permission is used.         |
 
 ## SignatureInfo
 
@@ -68,8 +68,9 @@ Describes the signature information of the bundle.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | Yes  | No  | Application ID.                |
 |fingerprint| string         | Yes  | No  | Fingerprint information of the bundle. This field changes when the used signing certificate changes.           |
 |appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
+

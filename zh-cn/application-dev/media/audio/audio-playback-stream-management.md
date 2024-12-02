@@ -43,7 +43,7 @@
 
 在进行应用开发的过程中，开发者需要使用getStreamManager()创建一个AudioStreamManager实例，进而通过该实例管理音频流。开发者可通过调用on('audioRendererChange')监听音频流的变化，在音频流状态变化、设备变化时获得通知。同时可通过off('audioRendererChange')取消相关事件的监听。另外，开发者可以主动调用getCurrentAudioRendererInfoArray()来查询播放流的唯一ID、播放流客户端的UID、音频流状态等信息。
 
-详细API含义可参考[音频管理API文档AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9)。
+详细API含义可参考[AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9)。
 
 ## 开发步骤及注意事项
 

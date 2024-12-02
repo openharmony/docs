@@ -147,7 +147,9 @@ onHoverStatusChange事件处理。
 
 ## 示例
 
-### 示例1
+### 示例1（设置二分栏）
+
+该示例实现了折叠屏二分栏在展开态、悬停态以及折叠态的区域控制。
 
 ```ts
 import { FoldSplitContainer } from '@kit.ArkUI';
@@ -196,8 +198,9 @@ struct TwoColumns {
 | ----- | ------ | ------ |
 | ![](figures/foldsplitcontainer-1.png) | ![](figures/foldsplitcontainer-2.png) | ![](figures/foldsplitcontainer-3.png) | 
 
+### 示例2（设置三分栏）
 
-### 示例2
+该示例实现了折叠屏三分栏在展开态、悬停态以及折叠态的区域控制。
 
 ```ts
 import { FoldSplitContainer } from '@kit.ArkUI';
@@ -259,7 +262,9 @@ struct ThreeColumns {
 | ----- | ------ | ------ |
 | ![](figures/foldsplitcontainer-4.png) | ![](figures/foldsplitcontainer-5.png) | ![](figures/foldsplitcontainer-6.png) | 
 
-### 示例3
+### 示例3（展开态布局信息）
+
+该示例通过配置ExpandedRegionLayoutOptions实现折叠屏展开态的布局信息。
 
 ```ts
 import {

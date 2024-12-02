@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager) (System API)
 
-The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-BundleInfo-sys.md), [ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md), [Ability](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
+The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-BundleInfo-sys.md), [ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -5272,5 +5272,171 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAllAppCloneBundleInfo failed. Cause: %{public}s', message);
+}
+```
+### bundleManager.verifyAbc<sup>11+</sup>
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
+
+Verifies an .abc file. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUN_DYN_CODE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
+| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the verification is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700201 | Failed to verify the abc file. |
+
+**Example**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+  bundleManager.verifyAbc(abcPaths, true, (err, data) => {
+    if (err) {
+      hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+    }
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc<sup>11+</sup>
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
+
+Verifies an .abc file. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUN_DYN_CODE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
+| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.      |
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700201 | Failed to verify the abc file. |
+
+**Example**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+  bundleManager.verifyAbc(abcPaths, true).then((data) => {
+    hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.deleteAbc<sup>11+</sup>
+
+deleteAbc(abcPath: string): Promise\<void>
+
+Deletes an .abc file based on the specified file path. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUN_DYN_CODE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPath  | string | Yes  | Path of the .abc file.|
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700202 | Failed to delete the abc file. |
+
+**Example**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPath: string = '/data/storage/el2/base/a.abc';
+
+try {
+  bundleManager.deleteAbc(abcPath).then((data) => {
+    hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
 }
 ```

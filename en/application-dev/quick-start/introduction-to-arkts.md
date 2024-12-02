@@ -15,7 +15,9 @@ Interoperability with JavaScript was a critical consideration in the ArkTS langu
 
 To ensure best experience for UI app development for OpenHarmony ecosystem, ArkTS provides support for ArkUI, including its declarative syntax and other features. Since this feature is outside the scope of the "stock" TypeScript, a verbose ArkUI example is provided in a separate chapter.
 
-This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.<!--Del--> For details about programming specifications, see [ArkTS Coding Style Guide](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md).<!--DelEnd-->
+This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.
+
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/arkts-overview.md).
 
 ## The Basics
 
@@ -150,7 +152,7 @@ let instance: Class <void>
 
 #### `Object` Type
 
-An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.
+An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.`The 'object' type is used to represent types other than the primitive types.
 
 #### `Array` Type
 
@@ -696,7 +698,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin); // pass the function as the parameter
 ```
 
-### Arrow Functions(Lambdas functions)
+### Arrow Functions (Lambdas Functions)
 
 A function can be defined as an arrow function, for example:
 
@@ -732,8 +734,6 @@ let z = f();
 z(); // output: 1
 z(); // output: 2
 ```
-
-In the sample above, the arrow function closure captures the `count` variable.
 
 ### Function Overload Signatures
 
@@ -1304,6 +1304,52 @@ let map: Record<string, PersonInfo> = {
 }
 ```
 
+### Abstract Classes 
+
+A class with the modifier abstract is known as abstract class. Abstract classes can be used to represent notions that are common to some set of more concrete notions.
+
+A compile-time error occurs if an attempt is made to create an instance of an abstract class:
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  // Compile-time error: Cannot create an instance of an abstract class.
+```
+
+Subclasses of an abstract class can be non-abstract or in turn abstract. A non-abstract subclass of an abstract superclass can be instantiated. As a result, a constructor for the abstract class, and field initializers for non-static fields of that class are executed：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### Abstract Methods 
+
+A method with the modifier abstract is considered an abstract method. Abstract methods do not have bodies, i.e., they can be declared but not implemented.
+
+Only abstract classes can have abstract methods. A compile-time error occurs if a non-abstract class has an abstract method:
+
+```typescript
+class Y {
+  abstract method(p: string)  //Compile-time error: Abstract methods can only appear within an abstract class.
+}
+```
+
 ## Interfaces
 
 An interface declaration introduces a new type. Interfaces are a common way of defining contracts between various part of codes.
@@ -1405,6 +1451,16 @@ interface ExtendedStyle extends Style {
 ```
 
 An extended interface contains all properties and methods of the interface it extends, and can also add its own properties and methods.
+
+
+### Abstract class and interface
+
+Abstract classes and interfaces cannot be instantiated. Abstract classes are abstractions of classes, used to capture the general characteristics of subclasses, and interfaces are abstractions of behavior. The difference between abstract classes and interfaces in ArkTS is as follows:
+
+* Abstract classes can only inherit from a single source, while interfaces can be implemented in multiple layers;
+* In abstract classes, there can be implementations of methods, but interfaces are completely abstract and there is no implementation of methods;
+* The interface cannot contain static code blocks and static methods, while abstract classes can have static code blocks and static functions;
+* Abstract classes can have constructors, while interfaces cannot have constructors.
 
 ## Generic Types and Functions
 
@@ -1724,7 +1780,7 @@ async function test() {
 
 For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### Top-Level Statements
 

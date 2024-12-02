@@ -32,16 +32,10 @@ Unless otherwise specified, a custom component decorated by \@ComponentV2 mainta
 
 ## Constraints
 
-When a custom component decorated by \@Component is used together with a custom component decorated by \@ComponentV2, variable is not allowed to pass in the following cases:
-
-- Normal variables (which are not decorated or updated) in a custom component decorated by \@ComponentV2 are constructed and assigned values by the parent component decorated by \@Component or \@CompoentV2.
-
-- Pass object variables (except string, number, boolean, enum, null, and undefined) decorated by \@State, \@Prop, \@Link, \@ObjectLink, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp to the variables decorated by \@Param or \@Event in a custom component decorated by \@ComponentV2.
-
-- Pass the variables decorated by \@Local, \@Param, \@Event, \@Provider, or \@Consumer of the Set, Map, Date, or Array types to the variables decorated by \@State, \@Prop, \@ObjectLink, and \@Provide in a custom component decorated by \@Component.
-
-- The variable decorated by \@Link in the custom component decorated by \@Component is constructed and assigned values by the parent component decorated by \@ComponentV2.
-
-- The variable decorated by \@State, \@Prop, \@Link, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp in a custom component decorated by \@Component, and the type of the variable is a \@ObservedV2 decorated class.
-
-- The variable decorated by \@Param, \@Local, \@Event, \@Provider(), and \@Consumer() in a custom component decorated by \@ComponentV2 and the type of the variable is a \@Observed decorated class.
+For details about how to use the custom components decorated by \@Component and \@ComponentV2 together, see [Mixing Use of Custom Components](./arkts-custom-component-mixed-scenarios.md).
+- The non-state variable in the \@ComponentV2 decorated custom component receives the variable passed by the parent component.
+- The variable of the object type decorated by \@State, \@Prop, \@Link, \@ObjectLink, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink or \@LocalStorageProp is passed to the variable decorated by \@Param or \@Event in the \@ComponentV2 decorated custom component.
+- The variable of the Array, Set, Map, or Date type decorated by \@Local, \@Param, \@Event, \@Provider, or \@Consumer is passed to the variable decorated by @State, \@Prop, \@ObjectLink, or \@Provide in the \@Component decorated custom component.
+- The @Link decorated variable in the \@Component decorated custom component receives the variable passed by the \@ComponentV2 decorated parent component.
+- In the \@Component decorated custom component, use \@State, \@Prop, \@Link, \@Provide, \@Consume, \@StorageLink, \@StorageProp, \@LocalStorageLink or \@LocalStorageProp to decorate the class decorated by \@ObservedV2.
+- In the \@ComponentV2 decorated custom component, use \@Local, \@Param, \@Event, \@Provider(), or \@Consumer() to decorate the class decorated by \@Observed.

@@ -110,7 +110,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 组件内转场通过NODE_XX_TRANSITION属性（XX包括：OPACITY、TRANSLATE、SCALE、ROTATE、MOVE）配置转场参数，在组件插入和删除时显示过渡动效（通过NODE_TRANSFORM_CENTER属性设置NODE_SCALE_TRANSITION和NODE_ROTATE_ROTATE动效的中心点坐标）。主要用于容器组件中子组件插入和删除时，提升用户体验。
 
-1. 创建可交互界面，界面中包含Button，点击可以控制转场节点的添加和移除。
+1. 创建可交互界面，界面中包含Button，点击可以控制转场节点的添加和移除。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool flag = false;
@@ -118,11 +118,8 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
    ArkUI_NodeHandle childNode;
    ArkUI_NodeHandle buttonNode;
    
-   void mainViewMethod(OH_NativeXComponent *component)
+   void mainViewMethod(ArkUI_NodeContentHandle handle)
    {
-       if (!component) {
-           return;
-       }
        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -156,7 +153,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
        parrentNode = column;
        buttonNode = buttonShow;
        nodeAPI->addChild(column, buttonShow);
-       OH_NativeXComponent_AttachNativeRootNode(component, column);
+       OH_ArkUI_NodeContent_AddNode(handle, column);
    }
    ```
 

@@ -28,6 +28,8 @@ import { AttributeUpdater } from '@kit.ArkUI'
 >  otherwise, it may cause functionality issues when **updateConstructorParams** is used.
 >  
 >  5. Currently, **updateConstructorParams** supports only the **Button**, **Image**, **Text**, and **Span** components.
+>  
+>  6. **AttributeUpdater** does not support operations related to state management, such as switching between light and dark modes.
 
 ## Initializer
 type Initializer\<T> = () => T
@@ -56,9 +58,9 @@ Defines the function for updating attributes in normal state.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                                    |
+| Name| Type  | Mandatory| Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| instance | T | Yes | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
+| instance | T | Yes| Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
 
 ### initializeModifier
 initializeModifier(instance: T): void
@@ -71,11 +73,11 @@ Initialize the attributes to the values initially set by **AttributeUpdater** fo
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                                    |
+| Name| Type  | Mandatory| Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| instance | T | Yes | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
+| instance | T | Yes| Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
 
-**Example** 
+**Example**
 
 This example shows how to use **initializeModifier** to initialize attribute values.
 
@@ -126,7 +128,7 @@ Obtains the attribute class instance corresponding to the component in **Attribu
 | -------------------- | ------------------------------------------------------------ |
 | T \| undefined |Returns the attribute class instance of the component in **AttributeUpdater** if it exists; returns **undefined** otherwise.|
 
-**Example** 
+**Example**
 
 This example shows how to directly update attributes through **AttributeUpdater**.
 
@@ -175,7 +177,7 @@ Represents construction parameters used for updating component attributes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Example** 
+**Example**
 
 This example demonstrates how to use **updateConstructorParams**.
 
@@ -215,7 +217,7 @@ struct attributeDemo3 {
 
 ### onComponentChanged
 
-onComponentChanged(instance: T): void
+onComponentChanged(component: T): void
 
 Invoked to notify the application that the component bound to the same custom **Modifier** object changes.
 
@@ -225,11 +227,11 @@ Invoked to notify the application that the component bound to the same custom **
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                                    |
+| Name| Type  | Mandatory| Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| instance | T | Yes | Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
+| component | T | Yes| Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
 
-**Example** 
+**Example**
 
 ```ts
 // xxx.ets

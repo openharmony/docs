@@ -35,14 +35,14 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Provides the capability of accessing the **NativeWindow**. | 
 | typedef struct NativeWindowBuffer [OHNativeWindowBuffer](#ohnativewindowbuffer) | Provides the declaration of a **NativeWindowBuffer** struct.| 
 | typedef void(\* [OH_OnFrameAvailable](#oh_onframeavailable)) (void \*context) | Defines the callback function triggered when a frame is available. | 
-| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | Defines an **OH_NativeImage** listener, which is registered through {\@link OH_NativeImage_SetOnFrameAvailableListener}. The listener triggers a callback when a frame is available. | 
+| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | Defines an **OH_NativeImage** listener, which is registered through  **OH_NativeImage_SetOnFrameAvailableListener**. The listener triggers a callback when a frame is available. | 
 | typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes. | 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000,NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
 
 ### Functions
 
@@ -62,7 +62,7 @@ The **OH_NativeImage** module provides the capabilities of **NativeImage**. Func
 | int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | Obtains, based on the rotation angle set by the producer, the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function. |
 | int32_t [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*nativeWindowBuffer, int \*fenceFd) | Obtains an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance on the consumer side.<br>This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).<br>This function creates an **OHNativeWindowBuffer**.<br>When using the **OHNativeWindowBuffer**, call **OH_NativeWindow_NativeObjectReference** to increase its reference count by one.<br>When finishing using the **OHNativeWindowBuffer**, call **OH_NativeWindow_NativeObjectUnreference** to decrease the reference count by one.<br>This function must be used in pair with [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer). Otherwise, memory leak occurs.<br>When **fenceFd** is used up, you must close it.| 
 | int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | Releases an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance.<br>The system will close **fenFd**. You do not need to close it.| 
-| [OH_NativeImage](#oh_nativeimage) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | Creates an **OH_NativeImage** instance as the consumer of the surface.<br>This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).<br>This function must be used in pair with [OH_NativeImage_Destroy](#oh_nativeimage_destroy). Otherwise, memory leak occurs.| 
+| [OH_NativeImage](#oh_nativeimage) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | Creates an **OH_NativeImage** instance as the consumer of the surface.<br>This function is used only for memory cycling of the surface consumer. Memory rendering is not proactively performed in the created **OH_NativeImage** instance.<br>This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).<br>This function must be used in pair with **OH_NativeImage_AcquireNativeWindowBuffer** and **OH_NativeImage_ReleaseNativeWindowBuffer**.<br>This function must be used in pair with [OH_NativeImage_Destroy](#oh_nativeimage_destroy). Otherwise, memory leak occurs.<br>This function is not thread-safe.| 
 
 ## Type Description
 
@@ -161,7 +161,7 @@ enum OHNativeErrorCode
 ```
 **Description**
 
-Enumerates the error codes.
+Defines an enum for the error codes.
 
 **Since**: 12
 
@@ -200,9 +200,15 @@ OH_NativeImage* OH_ConsumerSurface_Create ()
 
 Creates an **OH_NativeImage** instance as the consumer of the surface.
 
+This function is used only for memory cycling of the surface consumer. Memory rendering is not proactively performed in the created **OH_NativeImage** instance.
+
 This function cannot be used together with [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage).
 
+This function must be used in pair with **OH_NativeImage_AcquireNativeWindowBuffer** and **OH_NativeImage_ReleaseNativeWindowBuffer**.
+
 This function must be used in pair with [OH_NativeImage_Destroy](#oh_nativeimage_destroy). Otherwise, memory leak occurs.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -234,6 +240,7 @@ When finishing using the **OHNativeWindowBuffer**, call **OH_NativeWindow_Native
 This function must be used in pair with [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer). Otherwise, memory leak occurs.
 
 When **fenceFd** is used up, you must close it.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -267,6 +274,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer (OH_NativeImage* image, OHNativ
 Releases an **OHNativeWindowBuffer** instance through an **OH_NativeImage** instance.
 
 The system will close **fenFd**. You do not need to close it.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -302,6 +310,11 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 
 Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance.
 
+This function is not thread-safe.
+
+When **OH_NativeImage** is being destructed, the corresponding **OHNativeWindow** instance is released. If the **OHNativeWindow** pointer is obtained by using this function, set the pointer to null when releasing the **OH_NativeImage** instance, so as to prevent subsequent wild pointers.
+
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
 **Since**: 9
@@ -328,6 +341,7 @@ int32_t OH_NativeImage_AttachContext (OH_NativeImage * image, uint32_t textureId
 Attaches an **OH_NativeImage** instance to the current OpenGL ES context.
 
 The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -354,6 +368,8 @@ OH_NativeImage* OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarge
 **Description**
 
 Creates an **OH_NativeImage** instance to be associated with the OpenGL ES texture ID and target.
+This function must be used in pair with **OH_NativeImage_Destroy**. Otherwise, memory leak occurs.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -382,6 +398,7 @@ void OH_NativeImage_Destroy (OH_NativeImage ** image)
 Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed,
 
 the pointer to the **OH_NativeImage** instance is assigned **NULL**.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -403,6 +420,7 @@ int32_t OH_NativeImage_DetachContext (OH_NativeImage * image)
 **Description**
 
 Detaches an **OH_NativeImage** instance from the current OpenGL ES context.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -428,6 +446,7 @@ int32_t OH_NativeImage_GetSurfaceId (OH_NativeImage * image, uint64_t * surfaceI
 **Description**
 
 Obtains the surface ID of an **OH_NativeImage** instance.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -454,6 +473,7 @@ int64_t OH_NativeImage_GetTimestamp (OH_NativeImage * image)
 **Description**
 
 Obtains the timestamp of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -505,8 +525,9 @@ Returns **0** if the operation is successful; returns an error code defined in [
 int32_t OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage* image, float matrix[16] )
 ```
 **Description**
-
 Obtains, based on the rotation angle set by the producer, the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.
+The matrix is updated only after **OH_NativeImage_UpdateSurfaceImage** is called.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -532,6 +553,8 @@ int32_t OH_NativeImage_SetOnFrameAvailableListener (OH_NativeImage * image, OH_O
 **Description**
 
 Registers a listener to listen for frame availability events.
+Do not call other functions of this module in the callback.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -558,6 +581,7 @@ int32_t OH_NativeImage_UnsetOnFrameAvailableListener (OH_NativeImage * image)
 **Description**
 
 Deregisters the listener used to listen for frame availability events.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -583,6 +607,9 @@ int32_t OH_NativeImage_UpdateSurfaceImage (OH_NativeImage * image)
 **Description**
 
 Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.
+This function must be called in a thread of the OpenGL ES context.
+This function must be called after the **OH_OnFrameAvailableListener** callback is triggered.
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeImage
 

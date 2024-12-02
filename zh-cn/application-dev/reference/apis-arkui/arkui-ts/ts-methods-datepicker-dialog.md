@@ -108,9 +108,9 @@ static show(options?: DatePickerDialogOptions)
 >
 > 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
 
-### 示例1
+### 示例1（弹出日期选择弹窗）
 
-DatePickerDialog基本使用
+该示例通过点击按钮弹出日期选择弹窗。
 
 ```ts
 // xxx.ets
@@ -201,9 +201,9 @@ struct DatePickerDialogExample {
 
 ![DataPickerDialog](figures/DatePickerDialog.gif)
 
-### 示例2
+### 示例2（自定义样式）
 
-按钮支持自定义样式
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle、acceptButtonStyle、cancelButtonStyle实现了自定义文本以及按钮样式。
 
 ```ts
 // xxx.ets

@@ -66,7 +66,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
                 let context = getContext() as common.UIAbilityContext;
     
                 // Use TaskPool to execute the concurrency function that contains the intensive I/O operations.
-                // In the case of a large array, the distribution of I/O intensive tasks also preempts the main thread. Therefore, multiple threads are required.
+                // In the case of a large array, the distribution of I/O intensive tasks also preempts the UI main thread. Therefore, multiple threads are required.
                 taskpool.execute(concurrentTest, context).then(() => {
                   // Process the scheduling result.
                   console.info("taskpool: execute success")

@@ -1047,13 +1047,11 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 ```ts
 import fs from '@ohos.file.fs';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
     
     try {
-        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
         let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
             title: '123456', 
             fileNameExtension: 'jpg',
@@ -3360,7 +3358,7 @@ setTitle(title: string): void
 title参数规格为：
 - 不应包含扩展名。
 - 文件名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **错误码：**
 
@@ -3710,7 +3708,7 @@ setAlbumName(name: string): void
 
 相册名的参数规格为：
 - 相册名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
 
@@ -4257,8 +4255,8 @@ async function example() {
 
 onDataPrepared(data: T, map?: Map<string, string>): void
 
-媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
-T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。
+媒体资源就绪通知，当所请求的资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。每个资源请求与回调一一对应。
+T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。其中，ArrayBuffer表示图片/视频资源数据，[ImageSource](../apis-image-kit/js-apis-image.md#imagesource)表示图片源，[MovingPhoto](#movingphoto12)表示动态照片对象，boolean表示图片/视频资源是否成功写入应用沙箱。
 
 map支持返回的信息：
 | map键名  | 值说明 |
@@ -4717,7 +4715,7 @@ PhotoAsset的成员类型。
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，不支持基于该字段排序。           |
+| URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，该字段仅支持使用[DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)谓词。           |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
 | SIZE          | 'size'                | 文件大小（单位：字节）。                                                   |
@@ -4993,7 +4991,7 @@ async function example() {
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
-| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 
 ## PhotoSelectResult

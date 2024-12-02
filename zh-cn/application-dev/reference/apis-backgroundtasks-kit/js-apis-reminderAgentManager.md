@@ -849,7 +849,7 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 | tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
 | autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
 | snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明延迟提醒的slot类型(不适用于倒计时提醒类型)。 |
-| customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri。 |
+| customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri，提示音文件必须放在resources/rawfile目录下，支持m4a、aac、mp3、ogg、wav、flac、amr等格式。 |
 
 ## ReminderRequestCalendar
 

@@ -495,7 +495,9 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 ## 示例
 
-###  示例1
+###  示例1（设置渲染和动效策略）
+
+该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
 
 ```ts
 // xxx.ets
@@ -581,9 +583,9 @@ struct Index {
 ```
 ![symbol](figures/symbolGlyph.gif)
 
-###  示例2
+###  示例2（设置动效）
 
-SymbolGlyph使用symbolEffect属性实现可变颜色动效和替换动效。
+该示例通过symbolEffect属性展示了可变颜色动效和替换动效的效果。
 
 ```ts
 // xxx.ets

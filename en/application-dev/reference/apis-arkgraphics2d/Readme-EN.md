@@ -15,6 +15,7 @@
   - Modules
     - [Drawing](_drawing.md)
     - [EffectKit](effect_kit.md)
+    - [NativeDisplaySoloist](_native_display_soloist.md)
     - [NativeVsync](_native_vsync.md)
     - [NativeWindow](_native_window.md)
     - [OH_NativeBuffer](_o_h___native_buffer.md)
@@ -59,9 +60,11 @@
     - [effect_types.h](effect__types_8h.md)
     - [external_window.h](external__window_8h.md)
     - [native_buffer.h](native__buffer_8h.md)
+    - [native_display_soloist.h](native__display__soloist_8h.md)
     - [native_image.h](native__image_8h.md)
     - [native_vsync.h](native__vsync_8h.md)
   - Structs
+    - [DisplaySoloist_ExpectedRateRange](_display_soloist___expected_rate_range.md)
     - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
     - [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)
     - [OH_Drawing_FontAdjustInfo](_o_h___drawing___font_adjust_info.md)
@@ -98,3 +101,4 @@
     - [Rect](_rect.md)
 - Error Codes
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
+

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for basic native API types.
+Defines the basic Native API types.
 
 **Since**: 12
 

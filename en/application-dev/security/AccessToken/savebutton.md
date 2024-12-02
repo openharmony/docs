@@ -2,7 +2,7 @@
 
 The **SaveButton** component comes with the privilege for saving data, which allows an application to temporarily save data without any authorization.
 
-When it is tapped, the application obtains one-time permission to access the **mediaLibrary** APIs within 10 seconds. You can use this component when your application needs to save images or videos to the media library.
+When it is tapped, the application obtains the permission to access the **mediaLibrary** APIs within 10 seconds. You can use this component when your application needs to save images or videos to the media library.
 
 This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
@@ -33,9 +33,9 @@ For example, to save the image in the dialog box shown above, the application on
 
 2. Set the image asset and add the **SaveButton** component.
    
-   The **SaveButton** component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options. When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
+   **SaveButton** is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is mandatory. The icon and text cannot be customized. You can only select from the existing options. When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
 
-   The following example uses the default parameters. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).<br>In addition, all security components inherit from the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
+   The following example uses the default parameters. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md). In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
    
    ```ts
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -78,15 +78,17 @@ For example, to save the image in the dialog box shown above, the application on
              .height(400)
              .width('100%')
    
-           SaveButton().onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
-             if (result === SaveButtonOnClickResult.SUCCESS) {
-               const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-               // Obtain temporary authorization to save the image without requesting the related permission for the application.
-               savePhotoToGallery(context);
-             } else {
-               promptAction.showToast ({ message: 'Failed to set the permission.' })
-             }
-           })
+           SaveButton()
+             .padding({top: 12, bottom: 12, left: 24, right: 24})
+             .onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
+               if (result === SaveButtonOnClickResult.SUCCESS) {
+                 const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                 // Obtain temporary authorization to save the image without requesting the related permission for the application.
+                 savePhotoToGallery(context);
+               } else {
+                 promptAction.showToast ({ message: 'Failed to set the permission.' })
+               }
+             })
          }
          .width('100%')
        }

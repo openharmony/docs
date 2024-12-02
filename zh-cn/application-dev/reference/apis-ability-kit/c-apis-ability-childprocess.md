@@ -62,13 +62,13 @@ typedef void (*OH_Ability_OnNativeChildProcessStarted)(int errCode, OHIPCRemoteP
 | 名称          | 描述                                                                                                                                                                                                                                  |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | errCode     | NCP_NO_ERROR - 创建子进程成功<br>NCP_ERR_LIB_LOADING_FAILED - 加载动态库文件失败或动态库中未实现必要的导出函数<br>NCP_ERR_CONNECTION_FAILED - 动态库中实现的OnConnect方法未返回有效的IPC Stub指针<br>详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)定义。 |
-| remoteProxy | 子进程的IPC对象指针，出现异常时可能为nullptr； 使用完毕后需要调用[OH_IPCRemoteProxy_Destory](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)方法释放。                                                                                       |
+| remoteProxy | 子进程的IPC对象指针，出现异常时可能为nullptr； 使用完毕后需要调用[OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)方法释放。                                                                                       |
 
 **参见：**
 
 [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess)
 
-[OH_IPCRemoteProxy_Destory](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
+[OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
 
 
 

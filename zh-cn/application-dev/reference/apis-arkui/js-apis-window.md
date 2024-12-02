@@ -223,7 +223,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                  | 类型                  | 只读 | 可选 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 否   | 否   | 窗口尺寸。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                  |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 否   | 否   | 窗口尺寸，可在页面生命周期[onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或应用生命周期[onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground)阶段获取。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                  |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 否   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | isFullScreen                          | boolean                   | 否   | 否   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                  |
@@ -1401,7 +1401,7 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
-全屏模式窗口不支持该操作。
+仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -1442,7 +1442,7 @@ try {
   let promise = windowClass.moveWindowToAsync(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
-    let rect = windowClass.getWindowProperties().windowRect;
+    let rect = windowClass?.getWindowProperties().windowRect;
     console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
@@ -1461,7 +1461,7 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
+系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -1519,7 +1519,7 @@ resize(width: number, height: number): Promise&lt;void&gt;
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
+系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -1580,7 +1580,7 @@ resizeAsync(width: number, height: number): Promise&lt;void&gt;
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
+系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -1626,7 +1626,7 @@ try {
   let promise = windowClass.resizeAsync(500, 1000);
   promise.then(() => {
     console.info('Succeeded in changing the window size.');
-    let rect = windowClass.getWindowProperties().windowRect;
+    let rect = windowClass?.getWindowProperties().windowRect;
     console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
@@ -1674,7 +1674,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前应用窗口内容规避的区域。如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口。
 
@@ -1862,7 +1862,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1932,7 +1932,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 设置主窗口三键导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2906,7 +2906,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启当前窗口系统规避区变化的监听。
+开启当前应用窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3558,7 +3558,7 @@ try {
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
 
-开启窗口模式变化的监听。
+开启窗口模式变化的监听，当窗口windowStatus发生变化时进行通知（此时窗口属性可能还没有更新）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4174,21 +4174,22 @@ setWindowBackgroundColor(color: string): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-private SetUIContent(windowClass: window.Window) {
-    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
-      if (err.code) {
-        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-      let color: string = '#00ff33';
-      try {
-        windowClass.setWindowBackgroundColor(color);
-      } catch (exception) {
-        console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
-      };
-    });
-}
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
+  let errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in loading the content.');
+  let color: string = '#00ff33';
+  try {
+    windowClass?.setWindowBackgroundColor(color);
+  } catch (exception) {
+    console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
+  };
+});
 ```
 
 ### setWindowBrightness<sup>9+</sup>
@@ -4808,6 +4809,8 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 设置窗口内容布局的比例，使用Promise异步回调。
 
+通过其他接口如[resize](#resize9)、[resizeAsync](#resizeasync12)设置窗口大小时，不受ratio约束。
+
 仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -4818,7 +4821,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                        |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。ratio的有效范围会随[WindowLimits](#windowlimits11)变化而变化。如果先设置了[WindowLimits](#windowlimits11)，后设置的ratio与其冲突，会返回错误码；如果先设置了ratio，后设置的[WindowLimits](#windowlimits11)与其冲突，窗口的宽高比可能会不跟随设置的宽高比（ratio）。 |
 
 **返回值：**
 
@@ -4873,6 +4876,8 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口内容布局的比例，使用callback异步回调。
 
+通过其他接口如[resize](#resize9)、[resizeAsync](#resizeasync12)设置窗口大小时，不受ratio约束。
+
 仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -4883,7 +4888,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名             | 类型    | 必填 | 说明                                         |
 | ------------------ | ------- | ---- |--------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。ratio的有效范围会随[WindowLimits](#windowlimits11)变化而变化。如果先设置了[WindowLimits](#windowlimits11)，后设置的ratio与其冲突，会返回错误码；如果先设置了ratio，后设置的[WindowLimits](#windowlimits11)与其冲突，窗口的宽高比可能会不跟随设置的宽高比（ratio）。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **错误码：**
@@ -5355,6 +5360,7 @@ try {
 setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
 
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅2in1设备可用。
+当异形窗口大小发生变化时，实际的显示内容为掩码大小和窗口大小的交集部分。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5448,6 +5454,8 @@ try {
 setWindowDecorVisible(isVisible: boolean): void
 
 设置窗口标题栏是否可见，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+设置窗口标题栏不可见后，当主窗口进入全屏沉浸状态时，此时鼠标Hover到上方窗口标题栏热区上会显示悬浮标题栏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5574,6 +5582,8 @@ setWindowDecorHeight(height: number): void
 设置窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 <!--RP1End-->
 
+当主窗口进入全屏沉浸状态时，此时鼠标Hover到窗口标题栏热区时，会显示悬浮标题栏，悬浮标题栏高度固定为37vp。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -5652,7 +5662,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 getTitleButtonRect(): TitleButtonRect
 
-<!--RP3-->获取主窗口或启用装饰的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域，此接口仅可在2in1设备上使用。<!--RP3End-->
+获取主窗口或启用装饰的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6129,7 +6139,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6478,7 +6488,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
+系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -6524,7 +6534,7 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
 应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
-系统窗口存在大小限制，宽度范围：[0, 1920]，高度范围：[0, 1920]，单位为vp。
+系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
 设置的宽度与高度受到此约束限制，规则：
 若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
@@ -6929,7 +6939,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 > **说明：**
 >
@@ -6985,7 +6995,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 > **说明：**
 >
@@ -8165,11 +8175,11 @@ WindowStage生命周期。
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| SHOWN      | 1      | 切到前台。 |
-| ACTIVE     | 2      | 获焦状态。 |
-| INACTIVE   | 3      | 失焦状态。 |
-| HIDDEN     | 4      | 切到后台。 |
-| RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如从多任务列表中，点击应用后返回到前台的状态。 |
+| SHOWN      | 1      | 切到前台，例如点击应用图标启动，无论是首次启动还是从后台启动均会触发。 |
+| ACTIVE     | 2      | 获焦状态，例如应用窗口处理点击事件后的状态、应用启动后的状态。 |
+| INACTIVE   | 3      | 失焦状态，例如打开新应用或点击其他窗口后，原获焦窗口的状态。 |
+| HIDDEN     | 4      | 切到后台，例如应用上滑退出、应用窗口关闭。 |
+| RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如应用打开后，可以与用户交互的状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
 ## SubWindowOptions<sup>11+</sup>

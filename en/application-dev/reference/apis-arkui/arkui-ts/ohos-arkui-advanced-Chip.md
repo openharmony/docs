@@ -60,13 +60,13 @@ Defines the type and style parameters of the chip.
 >
 > 3. Default font colors for **prefixSymbol** and **suffixSymbol**: **normalFontColor**: **[$r('sys.color.ohos_id_color_primary')]**; **activatedFontColor**: **[$r('sys.color.ohos_id_color_text_primary_contrary')]**. The default value of **fontColor** is **16**.
 >
-> 4. The default value of **fillColor** is **$r('sys.color.ohos_id_color_secondary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_primary')** for **suffixIcon**. The color parsing of **fillColor** is the same as that of the **\<Image>** component.
+> 4. The default value of **fillColor** is **$r('sys.color.ohos_id_color_secondary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_primary')** for **suffixIcon**. The color parsing of **fillColor** is the same as that of the **Image** component.
 >
-> 5. The default value of **activatedFillColor** is **$r('sys.color.ohos_id_color_text_primary_contrary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_text_primary_contrary')** for **suffixIcon**. The color parsing of **activatedFillColor** is the same as that of the **\<Image>** component.
+> 5. The default value of **activatedFillColor** is **$r('sys.color.ohos_id_color_text_primary_contrary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_text_primary_contrary')** for **suffixIcon**. The color parsing of **activatedFillColor** is the same as that of the **Image** component.
 
 ## ChipSize
 
-Defines the size type of the chip.
+Enumerates the size types of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -79,7 +79,7 @@ Defines the size type of the chip.
 
 ## IconCommonOptions
 
-Defines the common icon attributes of the chip.
+Defines the common icon options of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -99,9 +99,9 @@ Defines the common icon attributes of the chip.
 
 ## PrefixIconOptions
 
-Defines the attributes of the prefix icon.
+Defines the prefix icon options.
 
-Inherits from [IconCommonOptions](#iconcommonoptions).
+Inherits [IconCommonOptions](#iconcommonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -109,9 +109,9 @@ Inherits from [IconCommonOptions](#iconcommonoptions).
 
 ## SuffixIconOptions
 
-Defines the attributes of the suffix icon.
+Defines the suffix icon options.
 
-Inherits from [IconCommonOptions](#iconcommonoptions).
+Inherits [IconCommonOptions](#iconcommonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -123,7 +123,7 @@ Inherits from [IconCommonOptions](#iconcommonoptions).
 
 ## ChipSymbolGlyphOptions<sup>12+</sup>
 
-Defines the options for prefix and suffix icons.
+Defines the prefix and suffix icon options.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -141,7 +141,7 @@ Defines the options for prefix and suffix icons.
 
 ## LabelOptions
 
-Defines the text attributes of the chip.
+Defines the label options of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

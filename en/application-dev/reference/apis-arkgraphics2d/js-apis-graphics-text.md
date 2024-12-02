@@ -256,10 +256,10 @@ Describes a text style.
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
 | decoration    | [Decoration](#decoration)                            | Yes| Yes| Text decoration. The default value is the initial decoration.            |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| Yes| Font color. The default color is white.                        |
-| fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**.                         |
+| fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                        |
 | fontStyle     | [FontStyle](#fontstyle)                              | Yes| Yes| Font style. The default value is **NORMAL**.                         |
 | baseline      | [TextBaseline](#textbaseline)                        | Yes| Yes| Text baseline type. The default value is **ALPHABETIC**.              |
-| fontFamilies  | Array\<string>                                       | Yes| Yes| Font families. The default value is the system fonts.                   |
+| fontFamilies  | Array\<string>                                       | Yes| Yes| List of font families. By default, the list corresponds to the system's default fonts.                   |
 | fontSize      | number                                               | Yes| Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.  |
 | letterSpacing | number                                               | Yes| Yes| Letter spacing, in units of px. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
 | wordSpacing   | number                                               | Yes| Yes| Word spacing, in units of px. The value is a floating point number. The default value is **0.0**.                |
@@ -268,7 +268,7 @@ Describes a text style.
 | halfLeading   | boolean                                              | Yes| Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
 | ellipsis      | string                                               | Yes| Yes| Ellipsis content, which will be used to replace the extra content.      |
 | ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                       |
-| locale        | string                                               | Yes| Yes| Locale, for example, **'en'**. For details, see the ISO 639-1 specifications. The default value is a null string.|
+| locale        | string                                               | Yes| Yes| Locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified Chinese, and **'zh-Hant'** indicates Traditional Chinese. For details, see ISO 639-1. The default value is an empty string.|
 | baselineShift | number                                               | Yes| Yes| Shift of the baseline. The value is a floating point number. The default value is **0.0px**.                |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | Yes| Yes| Array of font features.|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | Yes| Yes| Array of font variations.|
@@ -286,7 +286,7 @@ Describes the strut style, which determines the line spacing, baseline alignment
 | fontFamilies   | Array\<string>                                       | Yes  | Yes| Font families. The default value is the system fonts.                                              |
 | fontStyle      | [FontStyle](#fontstyle)                              | Yes  | Yes| Font style. The default value is **NORMAL**.                                              |
 | fontWidth      | [FontWidth](#fontwidth)                              | Yes  | Yes| Font width. The default value is **NORMAL**.                                               |
-| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**.                                                     |
+| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                            |
 | fontSize       | number                                               | Yes  | Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.                             |
 | height         | number                                               | Yes  | Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.                                        |
 | leading        | number                                               | Yes  | Yes| Custom leading to be applied to the strut. The value is a floating point number. The default value is **-1.0**.                         |
@@ -340,7 +340,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-Loads a font. This API returns the result synchronously.
+Loads a font from a file in the specified path. This API returns the result synchronously. In this API, **name** specifies the alias of the font, and the custom font effect can be displayed only when the value of **name** is set in **fontFamilies** in **[TextStyle](#textstyle)**. The supported font file formats are .ttf and .otf.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -349,28 +349,40 @@ Loads a font. This API returns the result synchronously.
 | Name| Type              | Mandatory| Description                             |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | name  | string             | Yes  | Name of the font.                                               |
-| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes  | Path of the font file to import. The value must be **File://***absolute path of the font file* or **rawfile/***directory or file name*.|
+| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes  | Path of the font file to import. The value must be **file://***absolute path of the font file* or **rawfile/***directory or file name*.|
 
 **Example**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function textFunc() {
-  let fontCollection = new text.FontCollection;
-  fontCollection.loadFontSync('test', 'File://');
-}
+let fontCollection: text.FontCollection = new text.FontCollection();
 
 @Entry
 @Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
+struct RenderTest {
+  LoadFontSyncTest() {
+    fontCollection.loadFontSync('Clock_01', 'file:///system/fonts/HarmonyClock_01.ttf')
+    let fontFamilies: Array<string> = ["Clock_01"]
+    let myTextStyle: text.TextStyle = {
+      fontFamilies: fontFamilies
+    };
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
     }
+    let paragraphBuilder: text.ParagraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    let textData = "Test loadFontSync to load the font HarmonyClock_01.ttf."
+    paragraphBuilder.addText(textData);
+    let paragraph: text.Paragraph = paragraphBuilder.build();
+    paragraph.layoutSync(600);
+  }
+
+  aboutToAppear() {
+    this.LoadFontSyncTest();
+  }
+
+  build() {
   }
 }
 ```
@@ -413,7 +425,7 @@ Describes a paragraph style.
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
 | textStyle            | [TextStyle](#textstyle)                    | Yes  | Yes  | Text style applied to the paragraph. The default value is the initial text style.|
 | textDirection        | [TextDirection](#textdirection)            | Yes  | Yes  | Text direction. The default value is **LTR**.                         |
-| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**.                    |
+| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**. |
 | wordBreak            | [WordBreak](#wordbreak)                    | Yes  | Yes  | Word break type. The default value is **BREAK_WORD**.                   |
 | maxLines             | number                                     | Yes  | Yes  | Maximum number of lines. The value is an integer. The default value is **1e9**.                 |
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
@@ -1373,9 +1385,9 @@ Inserts a symbol into the paragraph being built.
 
 **Parameters**
 
-| Name   | Type   | Mandatory| Description                      |
-| -------- | ------- | ---- | -------------------------- |
-| symbolId | number  | Yes  | Symbol to insert, in hexadecimal format.|
+| Name   | Type   | Mandatory| Description                                                       |
+| -------- | ------- | ---- | ----------------------------------------------------------- |
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json). |
 
 **Example**
 
@@ -1415,7 +1427,7 @@ struct Index {
 
 Implements a carrier that describes the basic text line structure of a paragraph.
 
-Before calling any of the following APIs, you must use [getTextLines()](#gettextlines) of the [Paragraph](#paragraph) class to create a **TextLine** object.
+Before calling any of the following APIs, you must use [getTextLines ()](#gettextlines) of the [Paragraph](#paragraph) class to create a **TextLine** object.
 
 ### getGlyphCount
 
@@ -1495,7 +1507,7 @@ struct Index {
 
 getGlyphRuns(): Array\<Run>
 
-Obtains the glyph runs in this text line.
+Obtains the runs in this text line.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1503,7 +1515,7 @@ Obtains the glyph runs in this text line.
 
 | Type        | Description                        |
 | ------------ | --------------------------- |
-| Array\<[Run](#run)>  | Array of the glyph runs obtained.|
+| Array\<[Run](#run)>  | Array of the runs obtained.|
 
 **Example**
 
@@ -1584,7 +1596,7 @@ Before calling any of the following APIs, you must use [getGlyphRuns()](#getglyp
 
 getGlyphCount(): number
 
-Obtains the number of glyphs in this glyph run.
+Obtains the number of glyphs in this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1621,7 +1633,7 @@ struct Index {
 
 getGlyphs(): Array\<number>
 
-Obtains the index of each glyph in this glyph run.
+Obtains the index of each glyph in this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1629,7 +1641,7 @@ Obtains the index of each glyph in this glyph run.
 
 | Type           | Description                            |
 | --------------- | -------------------------------- |
-| Array\<number>  | Array holding the index of each glyph in this glyph run.|
+| Array\<number>  | Array holding the index of each glyph in the run.|
 
 **Example**
 
@@ -1658,7 +1670,7 @@ struct Index {
 
 getPositions(): Array<common2D.Point>
 
-Obtains the index of each glyph relative to the respective line in this glyph run.
+Obtains the position of each glyph relative to the respective line in this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1666,7 +1678,7 @@ Obtains the index of each glyph relative to the respective line in this glyph ru
 
 | Type                  | Description                                  |
 | ---------------------- | ------------------------------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the index of each glyph relative to the respective line in this glyph run.|
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the position of each glyph relative to the respective line in the run.|
 
 **Example**
 
@@ -1695,7 +1707,7 @@ struct Index {
 
 getOffsets(): Array<common2D.Point>
 
-Obtains the offset of each glyph in this glyph run relative to its index.
+Obtains the offset of each glyph in this run relative to its index.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1703,7 +1715,7 @@ Obtains the offset of each glyph in this glyph run relative to its index.
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the offset of each glyph in this glyph run relative to its index.|
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array holding the offset of each glyph in the run relative to its index.|
 
 **Example**
 
@@ -1732,7 +1744,7 @@ struct Index {
 
 getFont(): drawing.Font
 
-Obtains the **Font** object of this glyph run.
+Obtains the **Font** object of this run.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1740,7 +1752,7 @@ Obtains the **Font** object of this glyph run.
 
 | Type                  | Description          |
 | ------------------------------------------------- | -------------------------- |
-| [drawing.Font](js-apis-graphics-drawing.md#font)  | **Font** object of this glyph run.|
+| [drawing.Font](js-apis-graphics-drawing.md#font)  | **Font** object of this run.|
 
 **Example**
 
@@ -1770,7 +1782,7 @@ struct Index {
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-Paints this glyph run on the canvas with the coordinate point (x, y) as the upper left corner.
+Paints this run on the canvas with the coordinate point (x, y) as the upper left corner.
 
 **System capability**: SystemCapability.Graphics.Drawing
 

@@ -10,7 +10,10 @@
 | -------- | -------- | -------- | -------- |
 | name | 需要使用的权限名称。 | 字符串 | **必填**，需为系统已定义的权限，取值范围请参考[应用权限列表](permissions-for-all.md)。
 | reason | 申请权限的原因。 | 字符串 | **可选填写**，该字段用于应用上架校验，当申请的权限为user_grant权限时必填，并且需要进行多语种适配。<br>使用string类资源引用。格式为$string: \*\*\*。<br/>可参考[权限使用理由的文案内容规范](#权限使用理由的文案内容规范)。 |
-| usedScene | 权限使用的场景。包括abilities和when两个子项。<br/>- abilities：使用权限的UIAbility或者ExtensionAbility组件的名称。<br/>- when：调用时机。 | 对象 | usedScene**必填**。<br/>- abilities：**可选填写**，可以配置为多个UIAbility或者ExtensionAbility名称的字符串数组。<br/>- when：**可选填写**，但如果配置此字段，只能填入固定值inuse（使用时）、always（始终），不能为空。<br/>当申请的权限为user_grant权限时建议填写。 |
+| usedScene | 权限使用的场景，该字段用于应用上架校验。包括abilities和when两个子项。<br/>- abilities：使用权限的UIAbility或者ExtensionAbility组件的名称。<br/>- when：调用时机。 | 对象 | usedScene**必填**。<br/>- abilities：**可选填写**，可以配置为多个UIAbility或者ExtensionAbility名称的字符串数组。<br/>- when：**可选填写**，但如果配置此字段，只能填入固定值inuse（使用时）、always（始终），不能为空。<br/>当申请的权限为user_grant权限时建议填写。 |
+
+> **说明：**
+> 已在子模块中申请的权限，无需在主项目重复添加，权限将在整个应用生效。
 
 ## 声明样例
 

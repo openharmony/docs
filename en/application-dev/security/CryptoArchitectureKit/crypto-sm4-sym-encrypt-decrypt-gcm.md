@@ -46,11 +46,15 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12); // 12 bytes
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -58,7 +62,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     }; 
-    // Obtain the GCM authTag from the doFinal result in encryption and fill it in the params parameter of Cipher.init in decryption.
+    // Obtain the GCM authTag from the Cipher.doFinal result in encryption and fill it in the params parameter of Cipher.init in decryption.
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -75,7 +79,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
     let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
     let encryptUpdate = await cipher.update(plainText);
-    // In GCM mode, pass in null in cipher.doFinal in encryption. Obtain the tag data and fill it in the gcmParams object.
+    // In GCM mode, pass in null in Cipher.doFinal in encryption. Obtain the tag data and fill it in the gcmParams object.
     gcmParams.authTag = await cipher.doFinal(null);
     return encryptUpdate;
   }
@@ -84,7 +88,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
     let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
     let decryptUpdate = await decoder.update(cipherText);
-    // In GCM mode, pass in null in cipher.doFinal in decryption. Verify the tag data passed in *Cipher.init. If the verification fails, an exception will be thrown.
+    // In GCM mode, pass in null in Cipher.doFinal in decryption. Verify the tag data passed in Cipher.init. If the verification fails, an exception will be thrown.
     let decryptData = await decoder.doFinal(null);
     if (decryptData == null) {
       console.info('GCM decrypt success, decryptData is null');
@@ -120,12 +124,15 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
 
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12); // 12 bytes
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes

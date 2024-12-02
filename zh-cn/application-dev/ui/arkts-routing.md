@@ -1,7 +1,7 @@
 # 页面路由 (@ohos.router)(不推荐)
 
 
-页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
+页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)这几个方面，介绍如何通过Router模块实现页面路由。
 
 >**说明：**
 >
@@ -45,6 +45,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Home页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -67,6 +68,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Login页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -89,6 +91,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Setting页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -129,13 +132,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ```ts
 import { router } from '@kit.ArkUI';
+
 class DataModelInfo {
   age: number = 0;
 }
 
 class DataModel {
   id: number = 0;
-  info: DataModelInfo|null = null;
+  info: DataModelInfo | null = null;
 }
 
 function onJumpClick(): void {
@@ -204,6 +208,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back();
   ```
 
@@ -216,6 +221,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home'
   });
@@ -225,6 +231,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage' //myPage为返回的命名路由页面别名
   });
@@ -239,6 +246,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home',
     params: {
@@ -251,6 +259,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
@@ -279,6 +288,7 @@ struct Home {
       const info: string = params.info as string; // 获取info属性的值
     }
   }
+
   ...
 }
 ```
@@ -374,7 +384,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result:promptAction.ShowDialogSuccessResponse) => {
+  }).then((result: promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // 用户点击了“取消”按钮
       console.info('User canceled the operation.');
@@ -384,7 +394,7 @@ function onBackClick() {
       // 调用router.back()方法，返回上一个页面
       router.back();
     }
-  }).catch((err:Error) => {
+  }).catch((err: Error) => {
     let message = (err as BusinessError).message
     let code = (err as BusinessError).code
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
@@ -435,7 +445,8 @@ export struct MyComponent {
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import '@ohos/library/src/main/ets/pages/Index';  // 引入共享包中的命名路由页面
+import '@ohos/library/src/main/ets/pages/Index'; // 引入共享包中的命名路由页面
+
 @Entry
 @Component
 struct Index {
@@ -485,4 +496,4 @@ struct Index {
 
 针对页面路由开发，有以下相关实例可供参考：
 
-- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)

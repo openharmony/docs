@@ -1,11 +1,11 @@
 # Ellipse
 
-The **\<Ellipse>** component is used to draw an ellipse.
+The **Ellipse** component is used to draw an ellipse.
 
 >  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
+> This API can be used in atomic services since API version 11.
 
 ## Child Components
 
@@ -18,12 +18,16 @@ Ellipse(options?: {width?: string | number, height?: string | number})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
+| width | string \| number | No| Width.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value: **0**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -36,6 +40,8 @@ fill(value: ResourceColor)
 Sets the color of the fill area. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,6 +59,8 @@ Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less t
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -68,6 +76,8 @@ stroke(value: ResourceColor)
 Sets the stroke color. If this attribute is not set, the component does not have any stroke. If the value is invalid, no stroke will be drawn.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,6 +95,8 @@ Sets stroke dashes. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -100,6 +112,8 @@ strokeDashOffset(value: number | string)
 Sets the offset of the start point for drawing the stroke. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,6 +131,8 @@ Sets the cap style of the stroke.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -129,9 +145,11 @@ Sets the cap style of the stroke.
 
 strokeLineJoin(value: LineJoinStyle)
 
-Sets the join style of the stroke. This attribute does not work for the **\<Ellipse>** component, which does not have corners.
+Sets the join style of the stroke. This attribute does not work for the **Ellipse** component, which does not have corners.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,9 +163,11 @@ Sets the join style of the stroke. This attribute does not work for the **\<Elli
 
 strokeMiterLimit(value: number | string)
 
-Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **\<Ellipse>** component, because it does not have a miter join.
+Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **Ellipse** component, because it does not have a miter join.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,6 +185,8 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 ev
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -181,6 +203,8 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -196,6 +220,8 @@ antiAlias(value: boolean)
 Specifies whether anti-aliasing is enabled.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

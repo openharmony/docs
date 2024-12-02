@@ -29,7 +29,7 @@
     }
     ```
 
-3. 在resource\base下新增profile文件夹，在profile下新增一个main_pages.json文件，并配置如下内容。
+3. 在resources\base下新增profile文件夹，在profile下新增一个main_pages.json文件，并配置如下内容。
     ```json
     // MyApplication\library\src\main\resources\base\profile\main_pages.json
     {
@@ -61,9 +61,9 @@
     }
     ```
 
-5. 删除MyApplication\library\build-profile.json5文件的consumerFiles字段配置。
+5. 删除HAR模块的build-profile.json5文件中的consumerFiles字段配置。
 
-6. 修改hvigorfile.ts文件，将下面内容替换该文件内容。
+6. 修改HAR模块的hvigorfile.ts文件，将下面内容替换该文件内容。
     ```ts
     // MyApplication\library\hvigorfile.ts
     import { hspTasks } from '@ohos/hvigor-ohos-plugin';

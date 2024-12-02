@@ -39,16 +39,16 @@ For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-de
 
 
 1. Use [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_DECRYPT_MODE**, and specify the key for decryption (**OH_CryptoSymKey**). When ECB mode is used, pass in **null** in **params**.
-
 2. Use [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (ciphertext) to be decrypted.
-
 3. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
+
 **Example**
 
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTest3DesEcb()
 {
@@ -57,8 +57,8 @@ static OH_Crypto_ErrCode doTest3DesEcb()
     OH_CryptoSymCipher *decCtx = nullptr;
     OH_CryptoSymKey *keyCtx = nullptr;
     OH_CryptoSymCipherParams *params = nullptr;
-    uint8_t plainText[] = "this is test";
-    Crypto_DataBlob input = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
+    char *plainText = const_cast<char *>("this is test!");
+    Crypto_DataBlob input = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
     Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
 

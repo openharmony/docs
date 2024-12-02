@@ -29,17 +29,7 @@ Creates a fixed container for a menu. This API does not have any parameters.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-## subMenuExpandingMode<sup>12+</sup>
-
-Enumerates the submenu expanding modes.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name          | Description                               |
-|--------------|-----------------------------------|
-| SIDE_EXPAND  | Default mode. Submenus are expanded on the side on the same plane.           |
-| EMBEDDED_EXPAND | Embedded mode. Submenus are expanded while embedded within the main menu.             |
-| STACK_EXPAND | Stack mode. Submenus are expanded above the main menu. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## Attributes
 
@@ -73,10 +63,9 @@ Sets the size of all text within the menu.
 
 **Parameters**
 
-| Name | Type                    | Mandatory | Description                  |
-| ------ | ------------------------ | ---- | ---------------------- |
-| value  | [Font](ts-types.md#font) | Yes  | Size of all text within the menu. |
-
+| Name| Type                    | Mandatory| Description                                                        |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | Yes  | Size of all text within the menu.<br>Default value:<br>{<br>      size: 16,<br>      family: 'HarmonyOS Sans',<br>      weight: FontWeight.Medium,<br>      style: FontStyle.Normal<br>} |
 ### fontColor<sup>10+</sup>
 
 fontColor(value: ResourceColor)
@@ -91,7 +80,7 @@ Sets the font color of all text within the menu.
 
 | Name | Type                                      | Mandatory | Description                  |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of all text within the menu. |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of all text within the menu.<br>Default value: **'#E5000000'**|
 
 ### radius<sup>10+</sup>
 
@@ -107,7 +96,7 @@ Sets the radius of the menu border corners.
 
 | Name | Type                                                        | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | Yes  | Radius of the menu border corners.<br> The default value follows the theme.<br> Since API version 12, if the sum of the two maximum corner radii in the horizontal direction exceeds the menu's width, or if the sum of the two maximum corner radii in the vertical direction exceeds the menu's height, the default corner radius will be used for all four corners of the menu. |
+| value  | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | Yes  | Radius of the menu border corners.<br>Default value: **8vp** for 2-in-1 devices and **20vp** for other devices<br><br> Since API version 12, if the sum of the two maximum corner radii in the horizontal direction exceeds the menu width, or if the sum of the two maximum corner radii in the vertical direction exceeds the menu height, the default corner radius will be used for all four corners of the menu.|
 
 ### width<sup>10+</sup>
 
@@ -173,7 +162,21 @@ Sets the submenu expanding mode of the menu.
 
 | Name | Type                        | Mandatory | Description          |
 | ------ | ---------------------------- | ---- |--------------|
-| mode  | SubMenuExpandingMode | Yes  | Submenu expanding mode of the menu. |
+| mode  | [SubMenuExpandingMode](#submenuexpandingmode12) | Yes  | Submenu expanding mode of the menu.<br>Default value: **SubMenuExpandingMode.SIDE_EXPAND** |
+
+## SubMenuExpandingMode<sup>12+</sup>
+
+Enumerates the submenu expanding modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Description                                      |
+| --------------- | ------------------------------------------ |
+| SIDE_EXPAND     | Default mode. Submenus are expanded on the side on the same plane.|
+| EMBEDDED_EXPAND | Embedded mode. Submenus are expanded while embedded within the main menu.    |
+| STACK_EXPAND    | Stack mode. Submenus are expanded above the main menu.      |
 
 ## Example
 
@@ -243,7 +246,7 @@ struct Index {
 }
 ```
 
-![menu1](figures/menu1.png)
+![menu](figures/menu.png)
 
 ### Example 2
 
