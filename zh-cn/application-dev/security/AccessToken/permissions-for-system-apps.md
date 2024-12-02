@@ -4187,6 +4187,18 @@
 
 **起始版本**：14
 
+### ohos.permission.ACCESS_APP_INSTALL_DIR
+
+允许系统应用访问安装文件目录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。

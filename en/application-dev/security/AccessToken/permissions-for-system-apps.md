@@ -4187,6 +4187,18 @@ Allows an application to manage the pasteable range of the pasteboard data.
 
 **Valid since**: 14
 
+### ohos.permission.ACCESS_APP_INSTALL_DIR
+
+Allows a system application to access the application installation directory.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：14
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
