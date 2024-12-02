@@ -73,6 +73,7 @@ import { media } from '@kit.MediaKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { audio } from '@kit.AudioKit'
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -99,7 +100,7 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // avplayer 设置播放源后触发该状态上报
           console.info('AVPlayer state initialized called.');
-          this.avPlayer.audioRendererInfo = {
+          avPlayer.audioRendererInfo = {
             usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
             rendererFlags: 0
           }
