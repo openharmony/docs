@@ -2,26 +2,22 @@
 
 相机应用开发的主要流程包含开发准备、设备输入、会话管理、预览、拍照和录像等。
 
+## 申请权限
+
 在开发相机应用时，需要先申请相机相关权限，确保应用拥有访问相机硬件及其他功能的权限，需要的权限如下表。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。
 
+- 使用相机拍摄前，需要申请**ohos.permission.CAMERA**相机权限。
+- 当需要使用麦克风同时录制音频时，需要申请**ohos.permission.MICROPHONE**麦克风权限。
+- 当需要拍摄的图片/视频显示地理位置信息时，需要申请**ohos.permission.MEDIA_LOCATION**，来访问用户媒体文件中的地理位置信息。
 
-| 权限名 | 说明 | 授权方式 | 
-| -------- | -------- | -------- |
-| ohos.permission.CAMERA | 允许应用使用相机拍摄照片和录制视频。 | user_grant | 
-| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。<br/>如需同时录制音频，需要申请该权限。 | user_grant | 
-| ohos.permission.WRITE_MEDIA | 允许应用读写用户外部存储中的媒体文件信息（可选）。 | user_grant | 
-| ohos.permission.READ_MEDIA | 允许应用读取用户外部存储中的媒体文件信息（可选）。 | user_grant | 
-| ohos.permission.MEDIA_LOCATION | 允许应用访问用户媒体文件中的地理位置信息（可选）。 | user_grant | 
+以上权限均需要通过弹窗向用户申请授权，具体申请方式及校验方式，请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
-
-以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
-
-
-具体申请方式及校验方式，请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
-
-
-> **说明：**
-> 即使用户曾被授予过权限，应用在调用此权限保护的接口前，也应该先检查是否有权限。不能把之前授予的状态持久化，因为用户在动态授予后可能通过“设置”取消应用权限。
+- 当需要读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
+- 当需要保存图片或视频文件时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
+  
+> **说明：** 
+> 
+> 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
 
 ## 开发指导
 
