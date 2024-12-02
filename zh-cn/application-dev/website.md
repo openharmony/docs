@@ -592,6 +592,7 @@
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听(C/C++)](displaymanager/native-display-manager.md)
     - ArkWeb（方舟Web）<!--arkweb-->
       - [ArkWeb简介](web/web-component-overview.md)
+      - [ArkWeb进程](web/web_component_process.md)
       - [Web组件的生命周期](web/web-event-sequence.md)
       - 设置基本属性和事件<!--web-set-attributes-events-->
         - [设置UserAgent](web/web-default-userAgent.md)
