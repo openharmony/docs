@@ -104,6 +104,9 @@
           - [getTarget API: Obtaining Original Objects](quick-start/arkts-new-getTarget.md)
           - [makeObserved API: Changing Unobservable Data to Observable Data](quick-start/arkts-new-makeObserved.md)
         - [MVVM (V2)](quick-start/arkts-mvvm-V2.md)
+      - Mixed Use and Migration Guide for V1 and V2<!--v1v2-migration-->
+        - [Mixing Use of Custom Components](quick-start/arkts-custom-component-mixed-scenarios.md)
+        - [Migrating Applications from V1 to V2](quick-start/arkts-v1-v2-migration.md)
     - Rendering Control<!--arkts-rendering-control-->
       - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
@@ -362,7 +365,7 @@
         - ArkTS Modularization<!--arkts-runtime-module-->
           - [Introduction to Modular Operation](arkts-utils/module-principle.md)
           - [Dynamic Import](arkts-utils/arkts-dynamic-import.md)
-          - [Lazy Import](arkts-utils//arkts-lazy-import.md)
+          - [Lazy Import](arkts-utils/arkts-lazy-import.md)
           - [Dynamically Loading a Native Module in Synchronous Mode](arkts-utils/js-apis-load-native-module.md)
           - [Loading Modules Using Node-API](arkts-utils/load-module-base-nodeapi.md)
       - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
@@ -408,8 +411,9 @@
             - [Menu](ui/arkts-popup-and-menu-components-menu.md)
         - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
+          - [Navigation Transition](ui/arkts-navigation-transition.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
-          - [Page Routing](ui/arkts-router-to-navigation.md)
+          - [Transition from Router to Navigation](ui/arkts-router-to-navigation.md)
         - Using Text<!--arkts-use-text-->
           - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
           - [Text Input (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
@@ -432,7 +436,6 @@
           - Transition Animation<!--arkts-animation-transition-->
             - [Transition Animation Overview](ui/arkts-transition-overview.md)
             - [Enter/Exit Transition](ui/arkts-enter-exit-transition.md)
-            - [Navigation Transition](ui/arkts-navigation-transition.md)
             - [Modal Transition](ui/arkts-modal-transition.md)
             - [Shared Element Transition](ui/arkts-shared-element-transition.md)
             - [Screen Rotation Transition Animation](ui/arkts-rotation-transition-animation.md)
@@ -4071,7 +4074,7 @@
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
-    - Vulkan<!--vulkan-->
+    - Vulkan<!--vulkan-guide-->
       - [Vulkan Development](reference/native-lib/vulkan-guidelines.md)
       - [Vulkan Capabilities](reference/native-lib/vulkan.md)
       - Vulkan Extensions<!--vulkan-extensions-->
