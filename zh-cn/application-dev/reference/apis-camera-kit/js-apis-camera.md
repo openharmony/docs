@@ -7723,7 +7723,7 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
-查询当前Session是否支持指定的与配置类型。
+查询当前Session是否支持指定的预配置类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
