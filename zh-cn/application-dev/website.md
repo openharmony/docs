@@ -66,7 +66,7 @@
       - [@Reusable装饰器：组件复用](quick-start/arkts-reusable.md)
     - 状态管理<!--arkts-state-management-->
       - [状态管理概述](quick-start/arkts-state-management-overview.md)
-      - 状态管理（V1稳定版）<!--arkts-state-management-v1-->
+      - 状态管理（V1）<!--arkts-state-management-v1-->
         - 管理组件拥有的状态<!--arkts-component-state-management-->
           - [\@State装饰器：组件内状态](quick-start/arkts-state.md)
           - [\@Prop装饰器：父子单向同步](quick-start/arkts-prop.md)
@@ -88,7 +88,7 @@
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
-      - 状态管理（V2试用版）<!--arkts-state-management-v2-->
+      - 状态管理（V2）<!--arkts-state-management-v2-->
         - V2所属装饰器<!--arkts-v2-decorators-->
           - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
           - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
@@ -1092,15 +1092,16 @@
         - USB服务<!--usb-->
           - [USB服务开发概述](basic-services/usb/usb-overview.md)
           - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
+          - [常见问题](basic-services/usb/../faqs/faqs-usb.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
           - [示例服务器开发指导](basic-services/update/sample-server-guidelines.md)
         <!--DelEnd-->
         - 剪贴板服务<!--pasteboard-->
+          - [申请访问剪贴板权限](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
           - [使用剪贴板进行复制粘贴](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
           - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
-          - [申请访问剪贴板权限](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
@@ -2090,7 +2091,6 @@
             - [Graphics](reference/apis-arkui/js-apis-arkui-graphics.md)
             - [NodeController](reference/apis-arkui/js-apis-arkui-nodeController.md)
             - [RenderNode](reference/apis-arkui/js-apis-arkui-renderNode.md)
-            - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
@@ -2115,6 +2115,7 @@
           - [@system.mediaquery (媒体查询)](reference/apis-arkui/js-apis-system-mediaquery.md)
           - [@system.prompt (弹窗)](reference/apis-arkui/js-apis-system-prompt.md)
           - [@system.router (页面路由)](reference/apis-arkui/js-apis-system-router.md)
+          - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS组件<!--arkui-declarative-comp-->
         - 组件通用信息
           - 通用事件
@@ -3083,9 +3084,12 @@
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
           - [@ohos.net.http (数据请求)](reference/apis-network-kit/js-apis-http.md)
           - [@ohos.net.mdns (MDNS管理)](reference/apis-network-kit/js-apis-net-mdns.md)
+          - [@ohos.net.policy (网络策略管理)](reference/apis-network-kit/js-apis-net-policy.md)
           - [@ohos.net.socket (Socket连接)](reference/apis-network-kit/js-apis-socket.md)
           - [@ohos.net.statistics (流量管理)](reference/apis-network-kit/js-apis-net-statistics.md)
+          - [@ohos.net.sharing (网络共享管理)](reference/apis-network-kit/js-apis-net-sharing.md)
           - [@ohos.net.vpnExtension (VPN增强管理)](reference/apis-network-kit/js-apis-net-vpnExtension.md)
+          - [@ohos.net.vpn (VPN管理)](reference/apis-network-kit/js-apis-net-vpn.md)
           - [@ohos.net.webSocket (WebSocket连接)](reference/apis-network-kit/js-apis-webSocket.md)
           - [@ohos.net.networkSecurity (Network Security)](reference/apis-network-kit/js-apis-networkSecurity.md)
           - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](reference/apis-network-kit/js-apis-VpnExtensionAbility.md)
