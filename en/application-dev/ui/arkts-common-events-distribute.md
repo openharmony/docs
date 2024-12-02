@@ -22,6 +22,8 @@ Both touch and mouse events in ArkUI are initiated by touch testing, which direc
 
 ## Touch Testing
 
+Touch testing refers to the process of identifying which components are hit based on the current touch point when a finger or mouse cursor is pressed down, and collecting the entire event response chain.
+
 Several factors significantly affect the results of touch testing:
 
 - **TouchTest**: The entry method for touch testing, without external APIs
@@ -44,7 +46,7 @@ Several factors significantly affect the results of touch testing:
 
 - **hitTestBehavior** can be modified by the **InterceptTouch** event.
 
-- If touch targets, enable/disable control, opacity, or other settings do not meet the component's interaction requirements, the event will immediately bubble up to the parent node.
+- If touch targets, enable/disable control, or other settings do not meet the component's interaction requirements, the event will immediately bubble up to the parent node.
 
   ![TouchTest](figures/TouchTest.png)
 
@@ -56,19 +58,19 @@ For details, see [Hit Test Control](../reference/apis-arkui/arkui-ts/ts-universa
 
 - The impact of child components on the parent component's touch test depends on the last child component that does not block the touch test.
 
-- **HitTestMode.Default**: the default mode when the **hitTestBehavior** attribute is not specified. If the component itself is hit, it will block other siblings but not children.
+- **HitTestMode.Default**: This mode is used by default when the **hitTestBehavior** attribute is not specified. In this mode, if the component itself is hit, it will block the touch testing of sibling components, but will not block the touch testing of child components.
 
   ![hitTestModeDefault](figures/hitTestModeDefault.png)
 
-- **HitTestMode.None**: The component does not receive events and does not prevent siblings or children from continuing the touch test.
+- **HitTestMode.None**: In this mode, the component neither receives events nor interferes with the touch testing of its sibling components or child components.
 
   ![hitTestModeNone](figures/hitTestModeNone.png)
 
-- **HitTestMode.Block**: This mode blocks touch tests of the children. If the component itself is hit, it will block the touch test for siblings and the parent.
+- **HitTestMode.Block**: This mode blocks the touch testing of child components. If the component itself is hit during a touch test, it will also block the touch testing of sibling components and parent components.
 
   ![hitTestModeBlock](figures/hitTestModeBlock.png)
 
-- **HitTestMode.Transparent**: The component participates in the touch test without blocking siblings or the parent.
+- **HitTestMode.Transparent**: This mode allows the component to participate in touch testing itself, without blocking the touch testing of sibling components or parent components.
 
   ![hitTestModeTransparent](figures/hitTestModeTransparent.png)
 

@@ -4344,7 +4344,7 @@ struct Index {
               this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
             }
           })
-          Button("Update Selection Style").onClick () => {
+          Button("Update Selection Style").onClick(() => {
             // Obtain the selection.
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;

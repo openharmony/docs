@@ -325,7 +325,7 @@
   - Dialog Boxes
     - [Alert Dialog Box (AlertDialog)](arkui-ts/ts-methods-alert-dialog-box.md)
     - [Action Sheet (ActionSheet)](arkui-ts/ts-methods-action-sheet.md)
-    - [Custom Dialog Box](arkui-ts/ts-methods-custom-dialog-box.md)
+    - [Custom Dialog Box (CustomDialog)](arkui-ts/ts-methods-custom-dialog-box.md)
     - [Calendar Picker Dialog Box (CalendarPickerDialog)](arkui-ts/ts-methods-calendarpicker-dialog.md)
     - [Date Picker Dialog Box (DatePickerDialog)](arkui-ts/ts-methods-datepicker-dialog.md)
     - [Time Picker Dialog Box (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)

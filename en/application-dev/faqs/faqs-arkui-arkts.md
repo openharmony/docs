@@ -98,7 +98,7 @@ To listen for object changes in an array, use the \@Observed and \@ObjectLink de
 
 **Reference**
 
-[\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](../quick-start/arkts-observed-and-objectlink.md)
+[\@Observed and \@ObjectLink: Observing Property Changes in Nested Class Objects](../quick-start/arkts-observed-and-objectlink.md)
 
 
 ## How do I transfer values through the parent component to \@Link decorated variables in a child component? (API version 9)
