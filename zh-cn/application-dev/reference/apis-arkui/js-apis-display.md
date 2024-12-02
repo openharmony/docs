@@ -149,6 +149,20 @@ import { display } from '@kit.ArkUI';
 | physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
 | physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
 
+## ScreenShape<sup>16+</sup>
+
+显示设备的屏幕形状枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| UNKNOWN | 0 | 表示设备屏幕形状未知。|
+| RECTANGLE | 1 | 表示设备屏幕形状为矩形。|
+| CIRCLE | 2 | 表示设备屏幕形状为圆形。|
+
 ## display.getDisplayByIdSync<sup>12+</sup>
 
 getDisplayByIdSync(displayId: number): Display
@@ -1098,6 +1112,7 @@ promise.then((data: Array<display.Display>) => {
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| screenShape<sup>16+</sup> | [ScreenShape](#screenshape16) | 是 | 否 | 显示设备的屏幕形状。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void

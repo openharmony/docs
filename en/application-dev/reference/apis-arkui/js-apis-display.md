@@ -145,6 +145,20 @@ Describes the display mode of a foldable device and the corresponding physical s
 | physicalWidth   | number | Yes| No| Width of the foldable device, in px. The value must be an integer greater than 0.|
 | physicalHeight  | number | Yes| No| Height of the foldable device, in px. The value must be an integer greater than 0.|
 
+## ScreenShape<sup>16+</sup>
+
+Enumerates the screen shape of the display.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| UNKNOWN | 0 | The screen shape is unknown.|
+| RECTANGLE | 1 | The screen shape is rectangle.|
+| CIRCLE | 2 | The screen shape is circle.|
+
 ## display.getDisplayByIdSync<sup>12+</sup>
 
 getDisplayByIdSync(displayId: number): Display
@@ -1041,6 +1055,7 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes| No| All HDR formats supported by the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                              |
 | availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area on the screen of a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
 | availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area on the screen of a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| screenShape<sup>16+</sup> | [ScreenShape](#screenshape16) | Yes| No| Screen shape of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 16.                                                                                                 |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
