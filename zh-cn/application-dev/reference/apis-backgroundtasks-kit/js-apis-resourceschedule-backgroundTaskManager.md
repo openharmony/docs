@@ -21,7 +21,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 >  **说明：**
 >
-> 短时任务的申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。
+> 短时任务的申请和使用过程中的约束与限制请参考[指南](../../task-management/transient-task.md#约束与限制)。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -224,7 +224,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务类型。                              |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。           |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，申请长时任务成功时，err为undefined，否则为错误对象。    |
 
@@ -300,7 +300,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，使用promise异步回调。
+申请长时任务，使用promise异步回调。在一个长时任务中仅能申请一种类型。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -313,7 +313,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务类型。                              |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
@@ -509,7 +509,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，使用promise异步回调。
+申请长时任务，使用promise异步回调。支持在一个长时任务中可以申请多种类型。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -522,7 +522,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录制<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。|
+| bgModes    | string[] | 是    | 长时任务类型，支持的类型请参考[BackgroundMode](#backgroundmode)。<br> **说明** ：支持传入一个或多个类型。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
@@ -639,7 +639,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，使用promise异步回调。
+更新长时任务类型，使用promise异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -652,7 +652,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录制<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。
+| bgModes    | string[] | 是    | 更新后的长时任务类型，支持的类型请参考[BackgroundMode](#backgroundmode)。<br> **说明** ：支持传入一个或多个类型。 |
 
 **返回值**：
 
@@ -713,7 +713,7 @@ export default class EntryAbility extends UIAbility {
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | 是    | 短时任务的请求ID。                               |
-| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/>短时任务申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
+| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
 
 ## BackgroundMode
 
@@ -730,7 +730,7 @@ export default class EntryAbility extends UIAbility {
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 | VOIP<sup>13+</sup> | 8    | 音视频通话。                 |
-| TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
+| TASK_KEEPING            | 9    | 计算任务（仅对2in1开放）。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>
 
