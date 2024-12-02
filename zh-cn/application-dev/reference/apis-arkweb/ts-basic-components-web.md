@@ -451,7 +451,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1007,11 +1007,11 @@ textZoomAtio(textZoomAtio: number)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-    @State atio: number = 150
+    @State ratio: number = 150
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomAtio(this.atio)
+          .textZoomAtio(this.ratio)
       }
     }
   }
@@ -3280,7 +3280,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
 
-应用中的一个页面执行了onRenderExited之后所有Web组件都会退出。
+多个Web组件可能共享单个渲染进程，每个受影响的Web组件都会触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3631,7 +3631,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
     controller: webview.WebviewController = new webview.WebviewController();
     responseWeb: WebResourceResponse = new WebResourceResponse();
     heads: Header[] = new Array();
-    @State webData: string = "<!DOCTYPE html>\n" +
+    webData: string = "<!DOCTYPE html>\n" +
       "<html>\n" +
       "<head>\n" +
       "<title>intercept test</title>\n" +
@@ -5639,7 +5639,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -5653,7 +5653,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
@@ -6141,7 +6141,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -6155,7 +6155,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
