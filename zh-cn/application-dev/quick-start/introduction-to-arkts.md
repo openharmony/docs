@@ -97,6 +97,15 @@ factorial(n3)  //  1
 factorial(n4)  //  9.33262154439441e+157 
 ```
 
+`number`类型在表示大整数时会造成精度丢失。在开发时可以按需使用`BigInt`类型来确保精度：
+
+```typescript
+
+let bigIntger: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
+console.log('bigIntger' + bigIntger.toString());
+
+```
+
 #### `Boolean`类型
 
 `boolean`类型由`true`和`false`两个逻辑值组成。
@@ -674,7 +683,7 @@ console.log(x);
 type trigFunc = (x: number) => number // 这是一个函数类型
 
 function do_action(f: trigFunc) {
-   f(3.141592653589); // 调用函数
+  f(3.141592653589); // 调用函数
 }
 
 do_action(Math.sin); // 将函数作为参数传入
@@ -1668,7 +1677,7 @@ export function Distance(p1: Point, p2: Point): number {
 导入绑定`* as A`表示绑定名称“A”，通过`A.name`可访问从导入路径指定的模块导出的所有实体：
 
 ```typescript
-import * as Utils from './utils'
+import * as Utils from './utils';
 Utils.X // 表示来自Utils的X
 Utils.Y // 表示来自Utils的Y
 ```
@@ -1676,7 +1685,7 @@ Utils.Y // 表示来自Utils的Y
 导入绑定`{ ident1, ..., identN }`表示将导出的实体与指定名称绑定，该名称可以用作简单名称：
 
 ```typescript
-import { X, Y } from './utils'
+import { X, Y } from './utils';
 X // 表示来自utils的X
 Y // 表示来自utils的Y
 ```
@@ -1684,7 +1693,7 @@ Y // 表示来自utils的Y
 如果标识符列表定义了`ident as alias`，则实体`ident`将绑定在名称`alias`下：
 
 ```typescript
-import { X as Z, Y } from './utils'
+import { X as Z, Y } from './utils';
 Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
