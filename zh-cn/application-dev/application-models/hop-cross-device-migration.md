@@ -68,7 +68,7 @@
     当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例触发迁移时，[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
     - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-    - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验，建议应用在校验版本兼容性失败后，提示用户拒绝接续的原因。
+    - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验，建议应用在校验版本兼容性失败后，提示用户接续失败的原因。
 
     - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
 
@@ -125,7 +125,7 @@
         if (targetVersion < versionThreshold) {
           // 建议在校验版本兼容性失败后，提示用户拒绝接续的原因
           promptAction.showToast({
-              message: '应用版本号校验失败，请您升级应用版本',
+              message: '应用版本号校验失败，目标端版本号过低，请您升级应用版本',
               duration: 2000
           })
           // 在兼容性校验不通过时返回MISMATCH
