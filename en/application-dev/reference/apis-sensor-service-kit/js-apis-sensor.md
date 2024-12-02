@@ -34,7 +34,7 @@ Subscribes to data of the acceleration sensor.
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error codes** 
+**Error codes**
 
 For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
@@ -83,7 +83,7 @@ Subscribes to data of the uncalibrated acceleration sensor.
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error codes**  
+**Error codes**
 
 For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
@@ -3792,7 +3792,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name        | Type               | Mandatory| Description          |
 | -------------- | ------------------- | ---- | -------------- |
-| rotationMatrix | Array&lt;number&gt; | Yes  | Rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes  | Rotation vector.|
 
 **Return value**
 
@@ -4315,11 +4315,11 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                |
-| ---- | ------ | ---- | ---- | ------------------------------------ |
-| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s².|
-| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s².|
-| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s².|
+| Name| Type  | Readable| Writable| Description                                                      |
+| ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s². The value is equal to the reported physical quantity.|
+| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s². The value is equal to the reported physical quantity.|
+| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s². The value is equal to the reported physical quantity.|
 
 
 ## LinearAccelerometerResponse
@@ -4376,11 +4376,11 @@ Describes the orientation sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                             |
-| ----- | ------ | ---- | ---- | --------------------------------- |
-| alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees.|
-| beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees.|
-| gamma | number | Yes  | Yes  | Rotation angle of the device around the y-axis, in degrees.|
+| Name | Type  | Readable| Writable| Description                                                 |
+| ----- | ------ | ---- | ---- | ----------------------------------------------------- |
+| alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees. The value ranges from 0 to 360. |
+| beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees. The value ranges from 0 to ±180.|
+| gamma | number | Yes  | Yes  | Rotation angle of the device around the y-axis, in degrees. The value ranges from 0 to ±90. |
 
 
 ## RotationVectorResponse
@@ -4407,11 +4407,11 @@ Describes the gyroscope sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                            |
-| ---- | ------ | ---- | ---- | -------------------------------- |
-| x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s.|
-| y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s.|
-| z    | number | Yes  | Yes  | Angular velocity of rotation around the z-axis of the device, in rad/s.|
+| Name| Type  | Readable| Writable| Description                                                  |
+| ---- | ------ | ---- | ---- | ------------------------------------------------------ |
+| x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
+| y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
+| z    | number | Yes  | Yes  | Angular velocity of rotation around the z-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
 
 
 ## GyroscopeUncalibratedResponse
@@ -4663,7 +4663,6 @@ Describes a geomagnetic response object.
 | deflectionAngle | number | Yes  | Yes  | Magnetic declination, which is the angle between true north (geographic north) and the magnetic north (the horizontal component of the field).|
 | levelIntensity  | number | Yes  | Yes  | Horizontal intensity of the magnetic field vector field.                                |
 | totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                                  |
-
 
 ## LocationOptions
 
@@ -5756,7 +5755,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 
 Subscribes to only one data change of the proximity sensor.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is deprecated since API version 9. You are advised to use [sensor.once.PROXIMITY](#proximity9-1)<sup>9+</sup> instead.
 
@@ -6854,6 +6853,7 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 | timeMillis      | number                              | Yes   | Time for obtaining the magnetic declination, in milliseconds.|
 
 **Return value**
+
 | Type                                                      | Description                      |
 | ---------------------------------------------------------- | -------------------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
@@ -7076,7 +7076,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | Name                  | Type                 | Mandatory  | Description       |
 | --------------------- | ------------------- | ---- | --------- |
 | currentRotationMatrix | Array&lt;number&gt; | Yes   | Current rotation matrix.|
-| preRotationMatrix     | Array&lt;number&gt; | Yes   | Peer rotation matrix.  |
+| preRotationMatrix     | Array&lt;number&gt; | Yes   | Rotation vector to rotate.  |
 
 **Return value**
 
@@ -7311,7 +7311,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | Peer rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation vector to rotate.|
 
 **Return value**
 

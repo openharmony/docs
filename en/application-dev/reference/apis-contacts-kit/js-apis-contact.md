@@ -57,10 +57,10 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 	  }]
     }, (err: BusinessError, data) => {
       if (err) {
-        console.error(`Failed to addContact. Code:${err.code}, message: ${err.message}`);
+        console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
         return;
       }
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
 ```
 
@@ -98,10 +98,10 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 	  }]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
   ```
 
@@ -154,9 +154,9 @@ Adds a contact. This API uses a promise to return the result.
 	  }]
   });
   promise.then((data) => {
-    console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -199,9 +199,9 @@ Adds a contact. This API uses a promise to return the result.
 	  }]
   });
   promise.then((data) => {
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -238,10 +238,10 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
   let context = getContext(this) as Context; 
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in deleteContact.');
+      console.info('Succeeded in deleting Contact.');
   });
 ```
 
@@ -272,10 +272,10 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.deleteContact('xxx', (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in deleteContact.');
+      console.info('Succeeded in deleting Contact.');
   });
   ```
 
@@ -318,9 +318,9 @@ Deletes a contact based on the specified contact key. This API uses a promise to
   let context = getContext(this) as Context;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleteContact.`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -356,9 +356,9 @@ Deletes a contact based on the specified contact key. This API uses a promise to
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleteContact.`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -369,7 +369,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -404,10 +404,10 @@ Updates a contact based on the specified contact information. This API uses an a
 	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -421,7 +421,7 @@ Updates a contact based on the specified contact information. This API uses an a
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10).
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -446,10 +446,10 @@ Updates a contact based on the specified contact information. This API uses an a
 	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -460,7 +460,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -498,10 +498,10 @@ Updates a contact based on the specified contact information. This API uses an a
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -515,7 +515,7 @@ Updates a contact based on the specified contact information. This API uses an a
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10-1).
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -543,10 +543,10 @@ Updates a contact based on the specified contact information. This API uses an a
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -557,7 +557,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 Updates a contact based on the specified contact information and attributes. This API uses a promise to return the result.
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -600,9 +600,9 @@ Updates a contact based on the specified contact information and attributes. Thi
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -616,7 +616,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10-2).
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -648,9 +648,9 @@ Updates a contact based on the specified contact information and attributes. Thi
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1000,10 +1000,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
   let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1033,10 +1033,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1075,10 +1075,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1111,10 +1111,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1158,9 +1158,9 @@ Queries my card based on the specified contact attributes. This API uses a promi
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -1197,9 +1197,9 @@ Queries my card based on the specified contact attributes. This API uses a promi
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1228,10 +1228,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContact((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to selectContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in selectContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1260,9 +1260,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContact();
   promise.then((data) => {
-      console.info(`Succeeded in selectContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1294,10 +1294,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1324,9 +1324,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1361,10 +1361,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1402,9 +1402,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1441,10 +1441,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1475,10 +1475,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1521,10 +1521,10 @@ Queries a contact based on the specified key and holder. This API uses an asynch
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1560,10 +1560,10 @@ Queries a contact based on the specified key and holder. This API uses an asynch
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1603,10 +1603,10 @@ Queries a contact based on the specified key and attributes. This API uses an as
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1640,10 +1640,10 @@ Queries a contact based on the specified key and attributes. This API uses an as
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1688,10 +1688,10 @@ Queries a contact based on the specified key, holder, and attributes. This API u
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1730,10 +1730,10 @@ Queries a contact based on the specified key, holder, and attributes. This API u
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1783,9 +1783,9 @@ Queries a contact based on the specified key, holder, and attributes. This API u
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1814,7 +1814,7 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 **Return Value**
 | Type                              | Description                                 |
 | ---------------------------------- | ------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise which is thequeried contact.|
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is thequeried contact.|
 
 **Example**
 
@@ -1828,9 +1828,9 @@ Queries a contact based on the specified key, holder, and attributes. This API u
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1866,10 +1866,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   let context = getContext(this) as Context;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1899,10 +1899,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1943,10 +1943,10 @@ Queries contacts based on the specified holder. This API uses an asynchronous ca
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1981,10 +1981,10 @@ Queries contacts based on the specified holder. This API uses an asynchronous ca
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2023,10 +2023,10 @@ Queries contacts based on the specified attributes. This API uses an asynchronou
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2059,10 +2059,10 @@ Queries contacts based on the specified attributes. This API uses an asynchronou
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2106,10 +2106,10 @@ Queries contacts based on the specified holder and attributes. This API uses an 
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2147,10 +2147,10 @@ Queries contacts based on the specified holder and attributes. This API uses an 
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2198,9 +2198,9 @@ Queries contacts based on the specified holder and attributes. This API uses a p
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`queryContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2243,9 +2243,9 @@ Queries contacts based on the specified holder and attributes. This API uses a p
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -2282,10 +2282,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2316,10 +2316,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2362,10 +2362,10 @@ Queries contacts based on the specified phone number and holder. This API uses a
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2401,10 +2401,10 @@ Queries contacts based on the specified phone number and holder. This API uses a
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2444,10 +2444,10 @@ Queries contacts based on the specified phone number and attributes. This API us
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2481,10 +2481,10 @@ Queries contacts based on the specified phone number and attributes. This API us
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2529,10 +2529,10 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2571,10 +2571,10 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2624,9 +2624,9 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2670,9 +2670,9 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2709,10 +2709,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2743,10 +2743,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2788,10 +2788,10 @@ Queries a contact based on the specified email and holder. This API uses an asyn
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2827,10 +2827,10 @@ Queries a contact based on the specified email and holder. This API uses an asyn
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2870,10 +2870,10 @@ Queries a contact based on the specified email and attributes. This API uses an 
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2907,10 +2907,10 @@ Queries a contact based on the specified email and attributes. This API uses an 
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2955,10 +2955,10 @@ Queries a contact based on the specified email, holder, and attributes. This API
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2997,10 +2997,10 @@ Queries a contact based on the specified email, holder, and attributes. This API
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3050,9 +3050,9 @@ Queries a contact based on the specified email, holder, and attributes. This API
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3096,9 +3096,9 @@ Queries a contact based on the specified email, holder, and attributes. This API
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3134,10 +3134,10 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   let context = getContext(this) as Context;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryGroups. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3167,10 +3167,10 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3211,10 +3211,10 @@ Queries all groups of this contact based on the specified holder. This API uses 
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3249,10 +3249,10 @@ Queries all groups of this contact based on the specified holder. This API uses 
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3298,9 +3298,9 @@ Queries all groups of this contact based on the specified holder. This API uses 
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3340,9 +3340,9 @@ Queries all groups of this contact based on the specified holder. This API uses 
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3378,10 +3378,10 @@ Queries all applications that have created contacts. This API uses an asynchrono
   let context = getContext(this) as Context;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3411,10 +3411,10 @@ Queries all applications that have created contacts. This API uses an asynchrono
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryHolders((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3455,9 +3455,9 @@ Queries all applications that have created contacts. This API uses a promise to 
   let context = getContext(this) as Context;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3487,9 +3487,9 @@ Queries all applications that have created contacts. This API uses a promise to 
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryHolders();
   promise.then((data) => {
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3526,10 +3526,10 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3560,10 +3560,10 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3605,10 +3605,10 @@ Queries the key of a contact based on the specified contact ID and holder. This 
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3644,10 +3644,10 @@ Queries the key of a contact based on the specified contact ID and holder. This 
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3694,9 +3694,9 @@ Queries the key of a contact based on the specified contact ID and holder. This 
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3737,9 +3737,9 @@ Queries the key of a contact based on the specified contact ID and holder. This 
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryKey Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3816,18 +3816,6 @@ let myContact: contact.Contact = {
 ```
 
 
-  Or, create data by configuring a new Contact object.
-
-```js
-let myContact = new contact.Contact();
-let name = new contact.Name();
-name.fullName = "fullName";
-let phoneNumber = new contact.PhoneNumber();
-phoneNumber.phoneNumber = "138xxxxxxxx";
-myContact.name = name;
-myContact.phoneNumbers = [phoneNumber];
-```
-
 
 ## ContactAttributes
 
@@ -3856,14 +3844,6 @@ let contactAttributes: contact.ContactAttributes = {
         contact.Attribute.ATTR_PHONE
     ]
 };
-```
-
-Or, create data by configuring a **ContactAttributes** object.
-
-
-```js
-let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
 
 
@@ -3976,13 +3956,6 @@ let holder: contact.Holder = {
 };
 ```
 
-  Or, create data by configuring a **Holder** object.
-
-```js
-let holder = new contact.Holder();
-holder.holderId = 1;
-```
-
 
 ## Event
 
@@ -4053,13 +4026,6 @@ let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
-```
-
-  Or, create data by configuring a **Group** object.
-
-```js
-let group = new contact.Group();
-group.title = "title";
 ```
 
 
@@ -4147,14 +4113,6 @@ let name: contact.Name = {
 };
 ```
 
-  Or, create data by configuring a **Name** object.
-
-```js
-let name = new contact.Name();
-name.familyName = "familyName";
-name.fullName = "fullName";
-```
-
 
 ## NickName
 
@@ -4179,14 +4137,6 @@ let nickName: contact.NickName = {
 };
 ```
 
-  Or, create data by configuring a **NickName** object.
-
-```js
-let nickName = new contact.NickName();
-nickName.nickName = "nickName";
-```
-
-
 ## Note
 
 Defines a contact's note.
@@ -4208,13 +4158,6 @@ Defines a contact's note.
 let note: contact.Note = {
     noteContent: "noteContent"
 };
-```
-
-  Or, create data by configuring a **Note** object.
-
-```js
-let note = new contact.Note();
-note.noteContent = "noteContent";
 ```
 
 
@@ -4241,14 +4184,6 @@ let organization: contact.Organization = {
     name: "name",
     title: "title"
 };
-```
-
-  Or, create data by configuring an **Organization** object.
-
-```js
-let organization = new contact.Organization();
-organization.name = "name";
-organization.title = "title";
 ```
 
 
@@ -4337,13 +4272,6 @@ Defines a contact's portrait.
 let portrait: contact.Portrait = {
     uri: "uri"
 };
-```
-
-  Or, create data by configuring a new **Portrait** object.
-
-```js
-let portrait = new contact.Portrait();
-portrait.uri = "uri";
 ```
 
 
@@ -4527,11 +4455,4 @@ Defines a contact's website.
 let website: contact.Website = {
     website: "website"
 };
-```
-
-  Or, create data by configuring a new **Website** object.
-
-```js
-let website = new contact.Website();
-website.website = "website";
 ```

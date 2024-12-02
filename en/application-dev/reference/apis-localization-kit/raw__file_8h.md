@@ -5,9 +5,13 @@
 
 Provides functions related to rawfiles, including searching for, reading, and closing rawfiles.
 
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Library**: librawfile.z.so
+
 **Since**: 8
 
-**Related module**: [Rawfile](rawfile.md)
+**Related module**: [Rawfile] (rawfile.md)
 
 
 ## Summary
