@@ -106,6 +106,10 @@
           - [Repeat: Reusing Child Components](quick-start/arkts-new-rendering-control-repeat.md)
           - [getTarget API: Obtaining Original Objects](quick-start/arkts-new-getTarget.md)
           - [makeObserved API: Changing Unobservable Data to Observable Data](quick-start/arkts-new-makeObserved.md)
+        - [MVVM (V2)](quick-start/arkts-mvvm-V2.md)
+      - Mixed Use and Migration Guide for V1 and V2
+       - [Mixing Use of Custom Components](quick-start/arkts-custom-component-mixed-scenarios.md)
+       - [Migrating Applications from V1 to V2](quick-start/arkts-v1-v2-migration.md)
     - Rendering Control<!--arkts-rendering-control-->
       - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
@@ -363,7 +367,7 @@
         - ArkTS Modularization<!--arkts-runtime-module-->
           - [Introduction to Modular Operation](arkts-utils/module-principle.md)
           - [Dynamic Import](arkts-utils/arkts-dynamic-import.md)
-          - [Lazy Import](arkts-utils//arkts-lazy-import.md)
+          - [Lazy Import](arkts-utils/arkts-lazy-import.md)
           - [Dynamically Loading a Native Module in Synchronous Mode](arkts-utils/js-apis-load-native-module.md)
           - [Loading Modules Using Node-API](arkts-utils/load-module-base-nodeapi.md)
       - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
