@@ -42,6 +42,7 @@
 | typedef enum [OH_AACProfile](_codec_base.md#oh_aacprofile-1) [OH_AACProfile](_codec_base.md#oh_aacprofile) | AAC档次。 | 
 | typedef enum [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) [OH_AVCProfile](_codec_base.md#oh_avcprofile) | AVC档次。 | 
 | typedef enum [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) [OH_HEVCProfile](_codec_base.md#oh_hevcprofile) | HEVC档次。 | 
+| typedef enum [OH_VVCProfile](_codec_base.md#oh_vvcprofile-1) [OH_VVCProfile](_codec_base.md#oh_vvcprofile) | VVC档次。 | 
 | typedef enum [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1) [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) | 封装器支持的输出文件格式。 | 
 | typedef enum [OH_AVSeekMode](_codec_base.md#oh_avseekmode-1) [OH_AVSeekMode](_codec_base.md#oh_avseekmode) | 跳转模式。 | 
 | typedef enum [OH_ScalingMode](_codec_base.md#oh_scalingmode-1) [OH_ScalingMode](_codec_base.md#oh_scalingmode) | 缩放模式，只在surface模式下使用。 | 
@@ -51,6 +52,7 @@
 | typedef enum [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient-1) [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient) | 矩阵系数。 | 
 | typedef enum [OH_AVCLevel](_codec_base.md#oh_avclevel-1) [OH_AVCLevel](_codec_base.md#oh_avclevel) | AVC级别。  | 
 | typedef enum [OH_HEVCLevel](_codec_base.md#oh_hevclevel-1) [OH_HEVCLevel](_codec_base.md#oh_hevclevel) | HEVC级别。  | 
+| typedef enum [OH_VVCLevel](_codec_base.md#oh_vvclevel-1) [OH_VVCLevel](_codec_base.md#oh_vvclevel) | VVC级别。  | 
 | typedef enum [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode) | 时域图片组参考模式。  | 
 
 
@@ -62,6 +64,7 @@
 | [OH_AACProfile](_codec_base.md#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | AAC档次。 | 
 | [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
 | [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。 | 
+| [OH_VVCProfile](_codec_base.md#oh_vvcprofile-1) {<br/>VVC_PROFILE_MAIN_10 = 1, <br/>VVC_PROFILE_MAIN_12 = 2, <br/>VVC_PROFILE_MAIN_12_INTRA = 10, <br/>VVC_PROFILE_MULTI_MAIN_10 = 17, <br/>VVC_PROFILE_MAIN_10_444 = 33, <br/>VVC_PROFILE_MAIN_12_444 = 34, <br/>VVC_PROFILE_MAIN_16_444 = 36, <br/>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br/>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br/>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br/>VVC_PROFILE_MAIN_10_STILL = 65, <br/>VVC_PROFILE_MAIN_12_STILL = 66, <br/>VVC_PROFILE_MAIN_10_444_STILL = 97, <br/>VVC_PROFILE_MAIN_12_444_STILL = 98, <br/>VVC_PROFILE_MAIN_16_444_STILL = 100 <br/>} | VVC档次。 | 
 | [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10<br/>} | 封装器支持的输出文件格式。 | 
 | [OH_AVSeekMode](_codec_base.md#oh_avseekmode-1) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
 | [OH_ScalingMode](_codec_base.md#oh_scalingmode-1) {<br/>SCALING_MODE_SCALE_TO_WINDOW = 1,<br/>SCALING_MODE_SCALE_CROP = 2<br/>} | 缩放模式。 | 
@@ -71,6 +74,7 @@
 | [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient-1) {<br/>MATRIX_COEFFICIENT_IDENTITY = 0,<br/>MATRIX_COEFFICIENT_BT709 = 1,<br/>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br/>MATRIX_COEFFICIENT_FCC = 4,<br/>MATRIX_COEFFICIENT_BT601_625 = 5,<br/>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br/>MATRIX_COEFFICIENT_YCGCO = 8,<br/>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br/>MATRIX_COEFFICIENT_BT2020_CL = 10,<br/>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br/>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br/>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br/>MATRIX_COEFFICIENT_ICTCP = 14<br/>} | 矩阵系数。 | 
 | [OH_AVCLevel](_codec_base.md#oh_avclevel-1) {<br/>AVC_LEVEL_1 = 0, <br/>AVC_LEVEL_1b = 1, <br/>AVC_LEVEL_11 = 2, <br/>AVC_LEVEL_12 = 3,<br/>AVC_LEVEL_13 = 4, <br/>AVC_LEVEL_2 = 5, <br/>AVC_LEVEL_21 = 6, <br/>AVC_LEVEL_22 = 7,<br/>AVC_LEVEL_3 = 8, <br/>AVC_LEVEL_31 = 9, <br/>AVC_LEVEL_32 = 10, <br/>AVC_LEVEL_4 = 11,<br/>AVC_LEVEL_41 = 12, <br/>AVC_LEVEL_42 = 13, <br/>AVC_LEVEL_5 = 14, <br/>AVC_LEVEL_51 = 15, <br/>AVC_LEVEL_52 = 16, <br/>AVC_LEVEL_6 = 17, <br/>AVC_LEVEL_61 = 18, <br/>AVC_LEVEL_62 = 19<br/>} | AVC级别。  | 
 | [OH_HEVCLevel](_codec_base.md#oh_hevclevel-1) {<br/>HEVC_LEVEL_1 = 0, <br/>HEVC_LEVEL_2 = 1, <br/>HEVC_LEVEL_21 = 2, <br/>HEVC_LEVEL_3 = 3,<br/>HEVC_LEVEL_31 = 4, <br/>HEVC_LEVEL_4 = 5, <br/>HEVC_LEVEL_41 = 6, <br/>HEVC_LEVEL_5 = 7,<br/>HEVC_LEVEL_51 = 8, <br/>HEVC_LEVEL_52 = 9, <br/>HEVC_LEVEL_6 = 10, <br/>HEVC_LEVEL_61 = 11,<br/>HEVC_LEVEL_62 = 12<br/>} | HEVC级别。  | 
+| [OH_VVCLevel](_codec_base.md#oh_vvclevel-1) {<br/>VVC_LEVEL_1 = 16, <br/>VVC_LEVEL_2 = 32, <br/>VVC_LEVEL_21 = 35, <br/>VVC_LEVEL_3 = 48, <br/>VVC_LEVEL_31 = 51, <br/>VVC_LEVEL_4 = 64, <br/>VVC_LEVEL_41 = 67, <br/>VVC_LEVEL_5 = 80, <br/>VVC_LEVEL_51 = 83, <br/>VVC_LEVEL_52 = 86, <br/>VVC_LEVEL_6 = 96, <br/>VVC_LEVEL_61 = 99, <br/>VVC_LEVEL_62 = 102, <br/>VVC_LEVEL_63 = 105, <br/>VVC_LEVEL_155 = 255<br/>} | VVC级别。  | 
 | [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode-1) { <br/>ADJACENT_REFERENCE = 0, <br/>JUMP_REFERENCE = 1, <br/>UNIFORMLY_SCALED_REFERENCE = 2 <br/>} | 时域图片组参考模式。  | 
 
 
