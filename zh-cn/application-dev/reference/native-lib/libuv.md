@@ -766,13 +766,7 @@ libuv中`uv_queue_work`在UI线程的工作流程为：将`work_cb`抛到FFRT对
 
 特别强调，开发者需要明确，`uv_queue_work`函数仅用于抛异步任务，**异步任务的execute回调被提交到线程池后会经过调度执行，因此并不保证多次提交的任务之间的时序关系**。
 
-`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute回调置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用`napi_send_event`接口。
-
-`napi_send_event`函数的声明为：
-
-```cpp
-napi_status napi_send_event(napi_env env, const std::function<void()> cb, napi_event_priority priority);
-```
+`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute回调置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用[napi_threadsafe_function相关函数](#跨线程共享和调用的线程安全函数)。
 
 #### libuv timer使用规范
 
