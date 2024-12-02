@@ -107,7 +107,7 @@
           - [getTarget API: Obtaining Original Objects](quick-start/arkts-new-getTarget.md)
           - [makeObserved API: Changing Unobservable Data to Observable Data](quick-start/arkts-new-makeObserved.md)
         - [MVVM (V2)](quick-start/arkts-mvvm-V2.md)
-      - Mixed Use and Migration Guide for V1 and V2
+      - Mixed Use and Migration Guide for V1 and V2<!--v1v2-migration-->
        - [Mixing Use of Custom Components](quick-start/arkts-custom-component-mixed-scenarios.md)
        - [Migrating Applications from V1 to V2](quick-start/arkts-v1-v2-migration.md)
     - Rendering Control<!--arkts-rendering-control-->
@@ -413,8 +413,9 @@
             - [Menu](ui/arkts-popup-and-menu-components-menu.md)
         - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
+          - [Navigation Transition](ui/arkts-navigation-transition.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
-          - [Page Routing](ui/arkts-router-to-navigation.md)
+          - [Transition from Router to Navigation](ui/arkts-router-to-navigation.md)
         - Using Text<!--arkts-use-text-->
           - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
           - [Text Input (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
@@ -422,6 +423,8 @@
           - [Symbol Glyph (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [Styled String (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
         - Using Dialog Box<!--arkts-use-dialog-->
+          - [Modal Dialog Box (ModelDialog)](ui/arkts-modal-dialog.md)
+          - [Global Custom Dialog Box Independent of UI Components (Recommended)](ui/arkts-uicontext-custom-dialog.md)
           - [Custom Dialog Box (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
         - Using Graphics<!--arkts-draw-graphics-->
           - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
@@ -435,7 +438,6 @@
           - Transition Animation<!--arkts-animation-transition-->
             - [Transition Animation Overview](ui/arkts-transition-overview.md)
             - [Enter/Exit Transition](ui/arkts-enter-exit-transition.md)
-            - [Navigation Transition](ui/arkts-navigation-transition.md)
             - [Modal Transition](ui/arkts-modal-transition.md)
             - [Shared Element Transition](ui/arkts-shared-element-transition.md)
             - [Screen Rotation Transition Animation](ui/arkts-rotation-transition-animation.md)
@@ -481,7 +483,7 @@
         - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
           - [Setting the Theme and Skin](ui/theme_skinning.md)
-          
+        - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         <!--Del-->
         - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
         <!--DelEnd-->
