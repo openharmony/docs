@@ -17,7 +17,7 @@
 >
 >  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
->  Tabs子组件TabContent显示之后不会销毁，若需要页面懒加载和释放，可以参考[11](#示例11)。
+>  Tabs子组件TabContent显示之后不会销毁，若需要页面懒加载和释放，可以参考[示例11](#示例11页面懒加载和释放)。
 
 
 ## 接口
@@ -435,7 +435,7 @@ Tab页签切换后触发的事件。
 
 >  **说明：**
 >
->  使用自定义页签时，在onChange事件中联动可能会导致滑动页面切换后才执行页签联动，引起自定义页签切换效果延迟。建议在[onAnimationStart](#onanimationstart11)中监听并刷新当前索引，以确保动效能够及时触发。具体实现可参考[示例1](#示例1)。
+>  使用自定义页签时，在onChange事件中联动可能会导致滑动页面切换后才执行页签联动，引起自定义页签切换效果延迟。建议在[onAnimationStart](#onanimationstart11)中监听并刷新当前索引，以确保动效能够及时触发。具体实现可参考[示例1](#示例1自定义页签切换联动)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -709,7 +709,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 ## 示例
 
-### 示例1
+### 示例1（自定义页签切换联动）
 
 本示例通过onAnimationStart、onChange实现切换时自定义tabBar和TabContent的联动。
 
@@ -766,6 +766,7 @@ struct TabsExample {
       .onChange((index: number) => {
         // currentIndex控制TabContent显示页签
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
@@ -785,7 +786,7 @@ struct TabsExample {
 
 ![tabs2](figures/tabs2.gif)
 
-### 示例2
+### 示例2（分割线基本属性）
 
 本示例通过divider实现了分割线各种属性的展示。
 
@@ -895,7 +896,7 @@ struct TabsDivider1 {
 
 ![tabs3](figures/tabs3.gif)
 
-### 示例3
+### 示例3（设置TabBar渐隐）
 
 本示例通过fadingEdge实现了切换子页签渐隐和不渐隐。
 
@@ -1009,7 +1010,7 @@ struct TabsOpaque {
 
 ![tabs4](figures/tabs4.gif)
 
-### 示例4
+### 示例4（设置TabBar叠加在TabContent内容上）
 
 本示例通过barOverlap实现了TabBar是否背后变模糊并叠加在TabContent之上。
 
@@ -1060,7 +1061,7 @@ struct barHeightTest {
 
 ![tabs5](figures/tabs5.gif)
 
-### 示例5
+### 示例5（设置TabBar栅格化可见区域）
 
 本示例通过barGridAlign实现了以栅格化方式设置TabBar的可见区域。
 
@@ -1165,7 +1166,7 @@ struct TabsExample5 {
 
 ![tabs5](figures/tabs6.gif)
 
-### 示例6
+### 示例6（设置Scrollable模式下的TabBar的布局样式）
 
 本示例实现了barMode的ScrollableBarModeOptions参数，该参数仅在Scrollable模式下有效。
 
@@ -1283,7 +1284,7 @@ struct TabsExample6 {
 
 ![tabs5](figures/tabs7.gif)
 
-### 示例7
+### 示例7（自定义Tabs页面切换动画）
 
 本示例通过customContentTransition实现了自定义Tabs页面的切换动画。
 
@@ -1372,7 +1373,8 @@ struct TabsCustomAnimationExample {
 ```
 
 ![tabs5](figures/tabs8.gif)
-### 示例8
+
+### 示例8（页面切换拦截）
 
 本示例通过onContentWillChange实现了自定义页面手势滑动切换拦截。
 
@@ -1452,7 +1454,8 @@ struct TabsExample {
 ```
 
 ![tabs9](figures/tabs9.gif)
-### 示例9
+
+### 示例9（自定义TabBar切换动画）
 
 本示例通过onChange、onAnimationStart、onAnimationEnd、onGestureSwipe等接口实现了自定义TabBar的切换动画。
 
@@ -1623,7 +1626,7 @@ struct TabsExample {
 
 ![tabs10](figures/tabs10.gif)
 
-### 示例10
+### 示例10（预加载子节点）
 
 本示例通过preloadItems接口实现了预加载指定子节点。
 
@@ -1700,7 +1703,7 @@ struct MyComponent {
 }
 ```
 
-### 示例11
+### 示例11（页面懒加载和释放）
 
 本示例通过使用自定义TabBar与Swiper配合LazyForEach实现页面懒加载和释放。
 
