@@ -6127,7 +6127,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setDecorButtonStyle(decorStyle: DecorButtonStyle): void;
 
-设置装饰栏按钮样式,仅对2in1设备的主窗、子窗生效
+设置装饰栏按钮样式,仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -6191,7 +6191,7 @@ export default class EntryAbility extends UIAbility {
 
 getDecorButtonStyle(): DecorButtonStyle;
 
-获取装饰栏按钮样式,仅对2in1设备的主窗、子窗生效
+获取装饰栏按钮样式,仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
