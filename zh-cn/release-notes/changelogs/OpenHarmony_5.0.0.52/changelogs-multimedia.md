@@ -38,6 +38,6 @@ void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const
 
 **适配指导**
 
-新API版本中，应用监听IO相关错误时，需新增5411001 ~ 5411011内的错误码监听。
+从API version 14开始，应用监听IO相关错误时，需新增5411001 ~ 5411011内的错误码监听。
 
 参考[Media错误码说明文档](../../../application-dev/reference/apis-media-kit/errorcode-media.md)。
