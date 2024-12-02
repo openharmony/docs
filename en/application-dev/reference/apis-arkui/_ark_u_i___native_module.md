@@ -5437,7 +5437,7 @@ Obtains the animation duration, in milliseconds.
 
 **Returns**
 
-Duration,
+Returns the animation duration.
 
 
 ### OH_ArkUI_AnimateOption_GetExpectedFrameRateRange()
