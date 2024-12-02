@@ -27,18 +27,24 @@
    ```
 
 3. 读取并修改目标区域像素数据，写回原图。
+   > **说明：**
+   > 建议readPixelsToBuffer和writeBufferToPixels成对使用，readPixels和writePixels成对使用，避免因图像像素格式不一致，造成PixelMap图像出现异常。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   // 场景一：将读取的整张图像像素数据结果写入ArrayBuffer中
-   const readBuffer = new ArrayBuffer(pixelBytesNumber);
-   pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+   // 场景一：读取并修改整张图片数据
+   // 按照PixelMap的像素格式，读取PixelMap的图像像素数据，并写入缓冲区中。
+   const buffer = new ArrayBuffer(pixelBytesNumber);
+   pixelMap.readPixelsToBuffer(buffer).then(() => {
      console.info('Succeeded in reading image pixel data.');
    }).catch((error : BusinessError) => {
      console.error('Failed to read image pixel data. And the error is: ' + error);
    })
-   
-   // 场景二：读取指定区域内的图片数据，结果写入area.pixels中
+   // 按照PixelMap的像素格式，读取缓冲区中的图像像素数据，并写入PixelMap。
+   pixelMap.writeBufferToPixels(buffer, () => {});
+
+   // 场景二：读取并修改指定区域内的图片数据
+   // 固定按照BGRA_8888格式，读取PixelMap指定区域内的图像像素数据，并写入PositionArea.pixels缓冲区中，该区域由PositionArea.region指定。
    const area : image.PositionArea = {
      pixels: new ArrayBuffer(8),
      offset: 0,
@@ -50,19 +56,13 @@
    }).catch((error : BusinessError) => {
      console.error('Failed to read the image data in the area. And the error is: ' + error);
    })
-   
-   // 对于读取的图片数据，可以独立使用（创建新的pixelMap），也可以对area.pixels进行所需修改
-   // 将图片数据area.pixels写入指定区域内
+   // 固定按照BGRA_8888格式，读取PositionArea.pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由PositionArea.region指定。
    pixelMap.writePixels(area).then(() => {
      console.info('Succeeded to write pixelMap into the specified area.');
    })
-   
-   // 将图片数据结果写入pixelMap中
-   const writeColor = new ArrayBuffer(96);
-   pixelMap.writeBufferToPixels(writeColor, () => {});
    ```
 
-## 复制（深拷贝）新的PixelMap
+## 开发示例-复制（深拷贝）新的PixelMap
 
 1. 完成[图片解码](image-decoding.md)，获取PixelMap位图对象。
 
