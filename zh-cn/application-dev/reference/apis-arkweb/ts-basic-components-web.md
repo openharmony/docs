@@ -7899,10 +7899,10 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称      | 值 | 说明                                   |
 | ------- | -- | ------------------------------------ |
-| Default<sup>9+</sup> | 0 | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
-| None    | 1 | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
-| Online  | 2 | 加载资源不使用cache，全部从网络中获取。               |
-| Only    | 3 | 只从cache中加载资源。                        |
+| Default<sup>9+</sup> | 0 | 优先使用未过期cache加载资源，无效或无cache时从网络获取。 |
+| None    | 1 | 优先使用cache(含过期)加载资源，无cache时从网络获取。     |
+| Online  | 2 | 强制从网络获取最新资源，不使用任何cache。               |
+| Only    | 3 | 仅使用本地cache加载资源。                        |
 
 ## FileSelectorMode<sup>9+</sup>枚举说明
 
