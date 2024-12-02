@@ -38,8 +38,8 @@ Path(options?: PathOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
-| height | string \| number | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
+| width | string \| number | 否 | 路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
+| height | string \| number | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
 | [commands](ts-drawing-components-path.md#commands) | string  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。默认值：''<br/>异常值按照默认值处理。 |
 
 ## 属性
@@ -62,7 +62,7 @@ commands(value: string)
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ------ | ------ | ---- | ----------------------------- |
-| value  | string | 是   | 线条绘制的路径。<br/>默认值：'' |
+| value  | string | 是   | 线条绘制的路径。<br/>默认值：''<br/>默认单位：px |
 
 ### fill
 
@@ -134,7 +134,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 线条间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 线条间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -152,7 +152,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 线条绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 线条绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -244,7 +244,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 线条宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 线条宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -284,6 +284,8 @@ commands支持的绘制命令如下：
 例如： commands('M0 20 L50 50 L50 100 Z')定义了一个三角形，起始于位置（0，20），接着绘制点（0，20）到点（50，50）的直线，再绘制点（50，50）到点（50，100）的直线，最后绘制点（50，100）到（0，20）的直线关闭路径，形成封闭三角形。
 
 ## 示例
+
+使用commands、fillOpacity、stroke属性分别绘制路径、透明度、边框颜色。
 
 ```ts
 // xxx.ets

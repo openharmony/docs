@@ -37,8 +37,8 @@ Polyline(options?: PolylineOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -60,7 +60,7 @@ points(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------- |
-| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | 是   | 折线经过坐标点列表。<br/>默认值：[] |
+| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | 是   | 折线经过坐标点列表。<br/>默认值：[]<br/>默认单位：vp |
 
 ### fill
 
@@ -132,7 +132,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 线条间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 线条间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -150,7 +150,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 线条绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 线条绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -242,7 +242,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 线条宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 线条宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -273,6 +273,8 @@ antiAlias(value: boolean)
 | Point | [number,&nbsp;number] | 第一个参数为x轴坐标，第二个参数为y轴坐标（相对坐标）。 |
 
 ## 示例
+
+使用points、fillOpacity、stroke、strokeLineJoin、strokeLineCap属性分别绘制折线的经过坐标、透明度、边框颜色、拐角样式、端点样式。
 
 ```ts
 // xxx.ets

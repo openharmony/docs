@@ -39,8 +39,8 @@ Ellipse(options?: EllipseOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -116,7 +116,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -134,7 +134,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -224,7 +224,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -245,6 +245,8 @@ antiAlias(value: boolean)
 | value  | boolean | 是   | 是否开启抗锯齿效果。<br/>默认值：true |
 
 ## 示例
+
+使用fillOpacity、stroke分别绘制椭圆的透明度、边框颜色。
 
 ```ts
 // xxx.ets

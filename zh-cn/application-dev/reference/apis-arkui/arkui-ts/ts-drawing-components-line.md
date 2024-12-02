@@ -38,8 +38,8 @@ Line(options?: LineOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
-| height | string \| number | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
+| width | string \| number | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
+| height | string \| number | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
 
 ## 属性
 
@@ -151,7 +151,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                      |
 | ------ | ----------------------------------------- | ---- | ------------------------- |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -169,7 +169,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -259,7 +259,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -281,7 +281,9 @@ antiAlias(value: boolean)
 
 ## 示例
 
-### 示例1
+### 示例1（组件属性绘制）
+
+使用startPoint、endPoint、fillOpacity、stroke、strokeDashArray、strokeDashOffset属性分别绘制直线的起始点、结束点、透明度、直线颜色、边框间隙、绘制起点。
 
 ```ts
 // xxx.ets
@@ -335,7 +337,9 @@ struct LineExample {
 
 ![zh-cn_image_0000001219982725](figures/zh-cn_image_0000001219982725.png)
 
-### 示例2
+### 示例2（边框端点绘制）
+
+使用strokeLineCap绘制直线的边框端点样式。
 
 ```ts
 // xxx.ets
@@ -381,7 +385,9 @@ struct LineExample1 {
 
 ![zh-cn_image1_0000001219982725](figures/zh-cn_image1_0000001219982725.png)
 
-### 示例3
+### 示例3（边框间隙绘制）
+
+使用strokeDashArray绘制直线的边框间隙。
 
 ```ts
 // xxx.ets
