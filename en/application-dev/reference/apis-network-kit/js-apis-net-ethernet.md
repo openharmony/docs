@@ -3,7 +3,7 @@
 The **ethernet** module provides Ethernet management functions such as obtaining the network IP address.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -11,7 +11,20 @@ The **ethernet** module provides Ethernet management functions such as obtaining
 import { ethernet } from '@kit.NetworkKit';
 ```
 
-## ethernet.getMacAddress
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy;
+
+Defines the network proxy configuration.
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+| Type| Description                                      |
+| ------- | ----------------------------------------|
+| connection.HttpProxy     | Network proxy configuration.     |
+
+
+## ethernet.getMacAddress<sup>14+</sup>
 
 getMacAddress(): Promise\<Array\<MacAddressInfo>>
 
@@ -25,7 +38,7 @@ Obtains the names and MAC addresses of all Ethernet NICs. This API uses a promis
 
 | Type                                                   | Description                              |
 |-------------------------------------------------------| ---------------------------------- |
-| Promise\<Array[\<MacAddressInfo>](#macaddressinfo)> | Promise used to return the result.       |
+| Promise\<Array[\<MacAddressInfo>](#macaddressinfo14)> | Promise used to return the result.       |
 
 **Error codes**
 
@@ -48,7 +61,7 @@ ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
 });
 ```
 
-## MacAddressInfo
+## MacAddressInfo<sup>14+</sup>
 Defines the name and MAC address of an Ethernet NIC.
 
 **System capability**: SystemCapability.Communication.NetManager.Ethernet
