@@ -2761,12 +2761,12 @@ getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import { pasteboard } from '@kit.BasicServicesKit'
+import { pasteboard, BusinessError } from '@kit.BasicServicesKit'
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getMimeTypes().then((data: Array<String>) => {
     console.info('Succeeded in getting mimeTypes. mimeTypes: ' + data.sort().join(','));
-}) catch (err) {
+}).catch((err: BusinessError) => {
     console.error('Failed to get mimeTypes. Cause:' + err.message);
-};
+});
 ```
