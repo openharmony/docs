@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so |  
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。  | 
 
 
 ### 类型定义
@@ -89,6 +89,8 @@
 | int32_t [OH_ArkUI_MouseEvent_GetMouseButton](#oh_arkui_mouseevent_getmousebutton) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标事件的按键类型的值。  | 
 | int32_t [OH_ArkUI_MouseEvent_GetMouseAction](#oh_arkui_mouseevent_getmouseaction) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标事件的鼠标动作类型的值。  | 
 | int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 
+| int32_t [OH_ArkUI_UIInputEvent_GetDeviceId](#oh_arkui_uiinputevent_getdeviceid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前按键的输入设备ID。  | 
+| int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。  | 
 
 
 ## 类型定义说明
@@ -533,6 +535,7 @@ int64_t OH_ArkUI_PointerEvent_GetHistoryEventTime (const ArkUI_UIInputEvent * ev
 
 返回UI输入事件发生的时间，如果参数异常则返回0。
 
+
 ### OH_ArkUI_PointerEvent_GetHistoryPointerCount()
 
 ```
@@ -672,7 +675,6 @@ float OH_ArkUI_PointerEvent_GetHistoryTiltY (const ArkUI_UIInputEvent * event, u
 **返回：**
 
 返回当前带有指向性的输入事件中相对XZ平面的角度。
-
 
 ### OH_ArkUI_PointerEvent_GetHistoryTouchAreaHeight()
 
@@ -1226,6 +1228,28 @@ int32_t OH_ArkUI_UIInputEvent_GetAction (const ArkUI_UIInputEvent * event)
 返回当前UI输入事件的操作类型，如果参数异常则返回0。
 
 
+### OH_ArkUI_UIInputEvent_GetDeviceId()
+
+```
+int32_t OH_ArkUI_UIInputEvent_GetDeviceId (const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+获取当前按键的输入设备ID。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+当前按键的输入设备ID。
+
+
 ### OH_ArkUI_UIInputEvent_GetEventTime()
 
 ```
@@ -1246,6 +1270,30 @@ int64_t OH_ArkUI_UIInputEvent_GetEventTime (const ArkUI_UIInputEvent * event)
 **返回：**
 
 返回UI输入事件发生的时间，如果参数异常则返回0。
+
+
+### OH_ArkUI_UIInputEvent_GetPressedKeys()
+
+```
+int32_t OH_ArkUI_UIInputEvent_GetPressedKeys (const ArkUI_UIInputEvent * event, int32_t * pressedKeyCodes, int32_t * length )
+```
+**描述：**
+
+获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'|'Alt'|'Shift'|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| pressedKeyCodes | 输出参数，表示所有按下键的数组，指向的内存空间需要调用者申请。  | 
+| length | 作为输入参数表示传入的pressedKeyCodes数组长度，作为输出参数表示实际按下按键的个数。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR](_ark_u_i___native_module.md) 内存分配不足。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### OH_ArkUI_UIInputEvent_GetSourceType()
