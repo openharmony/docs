@@ -239,6 +239,21 @@ import { window } from '@kit.ArkUI';
 | id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | displayId<sup>12+</sup>               | number                    | 是   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
+## DecorButtonStyle<sup>14+</sup>
+
+系统装饰栏按钮样式。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+| 名称       | 类型      | 可读 | 可写 | 说明               |
+| ---------- | ------------- | ---- | ---- | ------------------ |
+| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式。深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色。未设置则默认跟随系统颜色模式。 |
+| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp。 |
+| spacingBetweenButtons  | number        | 是   | 是   | 按钮间距，取值范围12vp-24vp，默认值12vp。 |
+| closeButtonRightMargin | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围8vp-22vp，默认值20vp。 |
+
 ## ColorSpace<sup>8+</sup>
 
 色域模式。
@@ -6193,6 +6208,91 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
     console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 })
+```
+
+### setDecorButtonStyle<sup>14+</sup>
+
+setDecorButtonStyle(decorStyle: DecorButtonStyle): void
+
+设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import { ConfigurationConstant } from '@kit.AbilityKit';
+
+try {
+  let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+  let style: window.DecorButtonStyle = {
+    colorMode: colorMode,
+    buttonBackgroundSize: 24,
+    spacingBetweenButtons: 12,
+    closeButtonRightMargin: 20
+  };
+  windowClass.setDecorButtonStyle(style);
+  console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+} catch (exception) {
+  console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### getDecorButtonStyle<sup>14+</sup>
+
+getDecorButtonStyle(): DecorButtonStyle
+
+获取装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [DecorButtonStyle](#decorbuttonstyle14) | 返回当前窗口装饰栏上的按钮样式，窗口装饰按钮区域位于窗口的右上角。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+try {
+  let decorButtonStyle = windowClass.getDecorButtonStyle();
+  console.info('Succeeded in getting the style of button. Data: ' + JSON.stringify(decorButtonStyle));
+} catch (exception) {
+  console.error(`Failed to get the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### getWindowDecorHeight<sup>11+</sup>
