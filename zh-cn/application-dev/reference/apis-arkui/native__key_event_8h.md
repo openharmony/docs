@@ -9,7 +9,7 @@
 
 **引用文件：** <arkui/native_key_event.h>
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full \@kit ArkUI
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full 
 
 **起始版本：** 14
 
