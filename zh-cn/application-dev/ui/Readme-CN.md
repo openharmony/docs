@@ -40,7 +40,7 @@
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗
-    - [模态弹窗 (ModelDialog)](arkts-modal-dialog.md)
+    - [模态弹窗 (ModalDialog)](arkts-modal-dialog.md)
     - [不依赖UI组件的全局自定义弹窗 (推荐)](arkts-uicontext-custom-dialog.md)
     - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
   - 显示图形
