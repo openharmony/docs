@@ -9,7 +9,7 @@ If **argv** is not **nullptr**, the arguments actually passed by JS will be copi
 **Example (incorrect)**
 
 ```cpp
-static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+static napi_value IncorrectDemo1(napi_env env, napi_callback_info info) {
     // argc is not correctly initialized and is set to a random value. If the length of argv is less than the number of arguments specified by argc, data overwriting occurs.
     size_t argc;
     napi_value argv[10] = {nullptr};
@@ -158,8 +158,13 @@ void callbackTest(CallbackContext* context)
         // Using callback function back to JS thread
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
+            napi_handle_scope scope = nullptr; 
+            napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
+                if (work != nullptr) {
+                    delete work;
+                }
+                delete context;
                 return;
             }
             napi_value callback = nullptr;
@@ -181,7 +186,7 @@ void callbackTest(CallbackContext* context)
 
 ## Object Wrapping
 
-**[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()** , use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
+**[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()**, use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
 
 The **napi_wrap** interface is defined as follows:
 
@@ -399,7 +404,7 @@ The **napi_get_arraybuffer_info** interface is defined as follows:
 napi_get_arraybuffer_info(napi_env env, napi_value arraybuffer, void** data, size_t* byte_length)
 ```
 
-The parameter **data** specifies the buffer header pointer to ArrayBuffer. This buffer can be read and written in the given range but cannot be released. The buffer memory is managed by the ArrayBuffer Allocator in the engine and is released with the lifecycle of the JS object **ArrayBuffer**.
+The parameter **data** specifies the buffer header pointer to **ArrayBuffer**. This buffer can be read and written in the given range but cannot be released. The buffer memory is managed by the ArrayBuffer Allocator in the engine and is released with the lifecycle of the JS object **ArrayBuffer**.
 
 **Example (incorrect)**
 

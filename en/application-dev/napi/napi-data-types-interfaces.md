@@ -409,11 +409,11 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 | API| Description|
 | -------- | -------- |
-| napi_async_init | Creates an asynchronous context. The capabilities related to **async_hook** are not supported currently.|
-| napi_make_callback | Allows a JS function to be called in the asynchronous context. The capabilities related to **async_hook** are not supported currently.|
-| napi_async_destroy | Destroys the previously created asynchronous context. The capabilities related to **async_hook** are not supported currently.|
-| napi_open_callback_scope | Opens a callback scope. The capabilities related to **async_hook** are not supported currently.|
-| napi_close_callback_scope | Closes the callback scope. The capabilities related to **async_hook** are not supported currently.|
+| napi_async_init | Creates an asynchronous context. The capabilities related to **async_hook** are not supported.|
+| napi_make_callback | Allows a JS function to be called in the asynchronous context. The capabilities related to **async_hook** are not supported.|
+| napi_async_destroy | Destroys the previously created asynchronous context. The capabilities related to **async_hook** are not supported.|
+| napi_open_callback_scope | Opens a callback scope. The capabilities related to **async_hook** are not supported.|
+| napi_close_callback_scope | Closes the callback scope. The capabilities related to **async_hook** are not supported.|
 
 ### Comparing JS Values
 
@@ -498,7 +498,7 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  napi_native_binding_detach_callback detach_cb,
                                                  napi_native_binding_attach_callback attach_cb,
                                                  void* native_object,
-                                                 void* hint);  
+                                                 void* hint);
 ```
 
 ### Environment Lifecycle
