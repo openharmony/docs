@@ -97,9 +97,9 @@ childrenMainSize(value: ChildrenMainSize)
 
 ## 示例
 
-### 示例1
+### 示例1（设置吸顶/吸底）
 
-该示例展示了ListItemGroup的header吸顶和footer吸底的效果。
+该示例通过stick实现了Header吸顶和Footer吸底的效果。
 
 ```ts
 // xxx.ets
@@ -177,7 +177,7 @@ interface TimeTable {
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_listitemgroup.gif)
 
-### 示例2
+### 示例2（设置卡片样式）
 
 该示例展示了ListItemGroup的卡片样式效果。
 
@@ -238,7 +238,7 @@ interface ArrObject {
 ```
 ![ListItemGroupStyle](figures/listItemGroup2.jpeg)
 
-### 示例3
+### 示例3（设置Header/Footer）
 
 该示例通过ComponentContent设置Header/Footer。
 

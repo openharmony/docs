@@ -130,7 +130,7 @@ Defines the top and bottom padding of the chip group, used to control the overal
 | Name  | Type           | Mandatory| Description                                                     |
 | ------ | -------------- | ---- | ------------------------------------------------            |
 | top    | [Length](ts-types.md#length)         | Yes  | Top padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.       |
-| bottom | [Length](ts-types.md#length)         | Yes  | Top padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.        |
+| bottom | [Length](ts-types.md#length)         | Yes  | Bottom padding. Percentage values are not supported.<br>Default value: **14**<br>If this parameter is set to **undefined**, the default value is used.        |
 
 ## SuffixImageIconOptions<sup>14+</sup>
 

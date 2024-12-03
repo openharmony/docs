@@ -65,7 +65,7 @@ app.json5配置文件包含以下标签。
 | targetAPIVersion | 标识应用运行需要的API目标版本。取值范围为0~2147483647。 | 数值 | 应用编译构建时由build-profile.json5中的compileSdkVersion自动生成。 |
 | apiReleaseType | 标识应用运行需要的API目标版本的类型，采用字符串类型表示。取值为“CanaryN”、“BetaN”或者“Release”，其中，N代表大于零的整数。<br/>-&nbsp;Canary：受限发布的版本。<br/>-&nbsp;Beta：公开发布的Beta版本。<br/>-&nbsp;Release：公开发布的正式版本。 | 字符串 | 应用编译构建时根据当前使用的SDK的Stage自动生成。即便手动配置了取值，编译构建时也会被覆盖。 |
 | accessible | 标识应用是否能访问应用的安装目录，仅针对Stage模型的系统应用和预置应用生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| multiProjects | 标识当前工程是否支持多个工程的联合开发。<br/>-&nbsp;true：当前工程支持多个工程的联合开发。多工程开发可参考<!--RP1-->[多工程构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-multi-projects-V5)<!--RP1End-->。<br/>-&nbsp;false：当前工程不支持多个工程的联合开发。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| multiProjects | 标识当前工程是否支持多个工程的联合开发。<br/>-&nbsp;true：当前工程支持多个工程的联合开发。多工程开发可参考[多工程构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-multi-projects-V13)。<br/>-&nbsp;false：当前工程不支持多个工程的联合开发。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | asanEnabled | 标识应用程序是否开启asan检测，用于辅助定位buffer越界造成的crash问题。<br/>-&nbsp;true：当前工程开启asan检测。<br/>-&nbsp;false：当前工程不开启asan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | tablet | 标识对tablet设备做的特殊配置，可以配置的属性字段有上文提到的：minAPIVersion。<br/>如果使用该属性对tablet设备做了特殊配置，则应用在tablet设备中会采用此处配置的属性值，并忽略在app.json5公共区域配置的属性值。 | 对象 | 该标签可缺省，缺省时tablet设备使用app.json5公共区域配置的属性值。 |
 | tv | 标识对tv设备做的特殊配置，可以配置的属性字段有上文提到的：minAPIVersion。<br/>如果使用该属性对tv设备做了特殊配置，则应用在tv设备中会采用此处配置的属性值，并忽略在app.json5公共区域配置的属性值。 | 对象 | 该标签可缺省，缺省时tv设备使用app.json5公共区域配置的属性值。 |
@@ -118,7 +118,7 @@ icon标签示例：
 
 ## appEnvironments标签
 
-此标签标识应用配置的环境变量。
+此标签标识应用配置的环境变量。应用运行时有时会依赖一些三方库，这些三方库会使用到一些自定义的环境变量，为了不修改三方库的实现逻辑，可以在工程的配置文件中设置自定义的环境变量，以供运行时期使用。
 
 **表2** appEnvironments标签说明
 

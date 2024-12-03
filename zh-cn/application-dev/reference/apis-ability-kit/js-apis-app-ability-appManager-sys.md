@@ -20,7 +20,7 @@ import { appManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -170,161 +170,6 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on('applicationState')
-
-on(type: 'applicationState', observer: ApplicationStateObserver): number
-
-注册全部应用程序的状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | --- |
-| number | 已注册观测器的数字代码，可用于off接口取消注册观测器。|
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**示例：**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-
-try {
-  const observerId = appManager.on('applicationState', applicationStateObserver);
-  console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
-## appManager.on('applicationState')
-
-on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
-
-注册指定应用程序的状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
-| bundleNameList | `Array<string>` | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | --- |
-| number | 已注册观测器的数字代码，可用于off接口注销观测器。|
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**示例：**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-
-let bundleNameList = ['bundleName1', 'bundleName2'];
-
-try {
-  const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-  console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
 ## appManager.on('appForegroundState')<sup>11+</sup>
 
 on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
@@ -438,7 +283,7 @@ off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -512,98 +357,6 @@ function unregisterApplicationStateObserverCallback(err: BusinessError) {
 
 try {
   appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
-## appManager.off('applicationState')
-
-off(type: 'applicationState', observerId: number): Promise\<void>
-
-取消注册应用程序状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
-| observerId | number | 是 | 表示观测器的编号代码。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise\<void> | 以Promise方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**示例：**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let observerId = 0;
-
-// 1.注册应用状态监听器
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-
-try {
-  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-
-// 2.注销应用状态监听器
-try {
-  appManager.off('applicationState', observerId).then((data) => {
-    console.log(`unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}`);
-  }).catch((err: BusinessError) => {
-    console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
-  });
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
@@ -738,19 +491,19 @@ try {
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。
+获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -790,19 +543,19 @@ try {
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。
+获取当前所有前台应用的信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | 返回前台进程应用程序的数组。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 返回前台进程应用程序的数组。 |
 
 **错误码**：
 
@@ -841,7 +594,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -903,7 +656,7 @@ killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: bo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -969,7 +722,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1020,7 +773,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1075,7 +828,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1121,66 +874,6 @@ try {
 }
 ```
 
-## appManager.killProcessesByBundleName<sup>14+</sup>
-
-killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?: number): Promise\<void>
-
-通过Bundle名称终止进程。使用Promise异步回调。
-
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 表示Bundle名称。 |
-| clearPageStack | boolean | 是 | 表示是否清除页面堆栈。true表示清除，false表示不清除。 |
-| appIndex | number | 否 | 应用分身Id。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**示例：**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let bundleName = 'bundleName';
-let isClearPageStack = false;
-let appIndex = 1;
-
-try {
-  appManager.killProcessesByBundleName(bundleName, isClearPageStack, appIndex).then((data) => {
-    console.log('killProcessesByBundleName success.');
-  }).catch((err: BusinessError) => {
-    console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
-  });
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
 ## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
@@ -1191,7 +884,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1246,7 +939,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1300,7 +993,7 @@ getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1351,7 +1044,7 @@ getProcessMemoryByPid(pid: number): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1404,7 +1097,7 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1455,7 +1148,7 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1508,7 +1201,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1561,7 +1254,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1713,11 +1406,11 @@ try {
 
 ## ApplicationState
 
-应用状态，该类型为枚举，可配合[AbilityStateData](js-apis-inner-application-appStateData-sys.md)返回相应的应用状态。
+应用状态，该类型为枚举，可配合[AbilityStateData](js-apis-inner-application-abilityStateData.md)返回相应的应用状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
@@ -1793,7 +1486,7 @@ preloadApplication(bundleName: string, userId: number, mode: PreloadMode, appInd
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -1858,7 +1551,7 @@ getRunningMultiAppInfo(bundleName: string): Promise\<RunningMultiAppInfo>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -1902,62 +1595,6 @@ try {
     })
 } catch (err) {
   hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
-}
-```
-
-## appManager.isAppRunning<sup>12+</sup>
-
-isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
-
-判断应用是否在运行。使用Promise异步回调。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 查询的应用包名。 |
-| appCloneIndex | number | 否 | 分身应用索引。 |
-
-**返回值：**
-
-| 类型           | 说明              |
-| -------------- | ---------------- |
-| Promise\<boolean> | Promise对象。返回true表示应用正在运行，返回false表示应用未运行。 |
-
-**错误码**：
-
-  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 201 | The application does not have permission to call the interface. |
-| 202 | Not system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 16000050 | Internal error. |
-| 16000073 | The app clone index is invalid. |
-
-**示例：**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let bundleName = "ohos.samples.etsclock";
-  appManager.isAppRunning(bundleName).then((data: boolean) => {
-      hilog.info(0x0000, 'testTag', `data: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
-    })
-} catch (err) {
-  hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
 }
 ```
 
@@ -2041,7 +1678,7 @@ getSupportedProcessCachePids(bundleName : string): Promise\<Array\<number>>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -2098,7 +1735,7 @@ clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2157,7 +1794,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 
 **系统能力**: SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2221,7 +1858,7 @@ getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<Ke
 
 **系统能力**: SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2266,5 +1903,62 @@ try {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
   console.error(`[appManager] getKeepAliveBundles error: ${code}, ${message}`);
+}
+```
+
+
+## appManager.killProcessesInBatch<sup>14+</sup>
+
+killProcessesInBatch(pids: Array\<number>): Promise\<void>
+
+批量查杀进程。本接口当前仅支持2in1设备。
+
+**需要权限**: ohos.permission.KILL_APP_PROCESSES
+
+**系统能力**: SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pids    | Array\<number>   | 是    | 要查杀的进程ID。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let pids: Array<number> = [100, 101, 102];
+  appManager.killProcessesInBatch(pids).then(() => {
+    console.log(`killProcessesInBatch success`);
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessesInBatch fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] killProcessesInBatch error: ${code}, ${message}`);
 }
 ```

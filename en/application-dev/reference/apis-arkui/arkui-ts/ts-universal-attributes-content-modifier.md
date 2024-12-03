@@ -36,7 +36,7 @@ Builder of the custom content area.
 
 | Name | Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| T    | Component attribute class, which is used to distinguish different information required by different components after content areas are customized, for example, **ButtonConfiguration** for the **\<Button>** component and **CheckBoxConfiguration** of the **\<Checkbox>** component. |
+| T    | Component attribute class, which is used to distinguish different information required by different components after content areas are customized, for example, **ButtonConfiguration** for the **Button** component and **CheckBoxConfiguration** of the **Checkbox** component. |
 
 **Value range of the T parameter:**
 

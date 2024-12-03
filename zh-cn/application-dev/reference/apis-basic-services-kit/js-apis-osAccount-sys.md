@@ -355,6 +355,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：**
 
@@ -413,6 +414,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：**
 

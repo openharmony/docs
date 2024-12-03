@@ -28,19 +28,25 @@ Example: Initiate the facial and lock screen password authentication with the au
 
 ```ts
 import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-const widgetParam: userAuth.WidgetParam = {
-  title: 'Verify identity',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  // Set authentication parameters.
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // Set the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
   // Start user authentication.
   userAuthInstance.start();

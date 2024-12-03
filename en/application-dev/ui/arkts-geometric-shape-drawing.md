@@ -1,14 +1,14 @@
 # Drawing Geometric Shapes (Shape)
 
 
-The drawing components are used to draw graphs on the page. The **\<Shape>** component is the parent component of the drawing components. The attributes of **\<Shape>** are universal attributes supported by all the drawing components. For details, see [Shape](../reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md).
+The drawing components are used to draw graphs on the page. The **Shape** component is the parent component of the drawing components. The attributes of **Shape** are universal attributes supported by all the drawing components. For details, see [Shape](../reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md).
 
 
 ## Creating a Drawing Component
 
 A drawing component can be created in either of the following ways:
 
-- Create a drawing component with **\<Shape>** as their parent to implement the effect similar to SVG. The API used is as follows:
+- Create a drawing component with **Shape** as their parent to implement the effect similar to SVG. The API used is as follows:
 
   ```ts
   Shape(value?: PixelMap)

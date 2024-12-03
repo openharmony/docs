@@ -1900,7 +1900,7 @@ on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.height)}`);
   });
 } catch(err) {
   console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
@@ -1994,7 +1994,7 @@ off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.height)}`);
   });
 } catch(err) {
     console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);

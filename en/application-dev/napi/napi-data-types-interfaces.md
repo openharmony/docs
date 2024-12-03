@@ -477,7 +477,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_call_function | Calls a JS function from a C/C++ addon.|
 | napi_get_cb_info | Obtains detailed information about the call, such as the parameters and **this** pointer, from the given callback info.|
 
-### Extension
+### Extended Capabilities
 
 [Node-API extended symbols](../reference/native-lib/napi.md#node-api-extended-symbols)
 

@@ -922,7 +922,7 @@ Nullable\<T> {
 | ROTATION_180 | 应用方向为180度。|
 | ROTATION_270 | 应用方向为270度。|
 
-## BlurStyleActivePolicy<sup>13+</sup>
+## BlurStyleActivePolicy<sup>14+</sup>
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 

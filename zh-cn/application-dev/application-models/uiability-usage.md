@@ -94,3 +94,41 @@ export default class EntryAbility extends UIAbility {
     }
   }
   ```
+
+- 当业务完成后，开发者如果想要终止当前[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例，可以在通过调用[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
+
+  ```ts
+  import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct Page_UIAbilityComponentsBasicUsage {
+    // 页面展示
+    build() {
+      Column() {
+        //...
+        Button('FuncAbilityB')
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            try {
+              context.terminateSelf((err: BusinessError) => {
+                if (err.code) {
+                  // 处理业务逻辑错误
+                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+                  return;
+                }
+                // 执行正常业务
+                console.info('terminateSelf succeed');
+              });
+            } catch (err) {
+              // 捕获同步的参数错误
+              let code = (err as BusinessError).code;
+              let message = (err as BusinessError).message;
+              console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+            }
+          })
+      }
+    }
+  }
+  ```

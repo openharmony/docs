@@ -26,7 +26,7 @@ libace_napi.z.so
 
 ## 已从Node-API组件标准库中导出的符号列表
 
-从Node-API标准库导出的接口，其使用方法及行为基于[Node.js](https://nodejs.org/docs/latest-v10.x/api/n-api.html)，并进行了部分[能力拓展](#node-api组件扩展的符号列表)。
+从Node-API标准库导出的接口，其使用方法及行为基于[Node.js](https://nodejs.org/docs/latest-v12.x/api/n-api.html)，并进行了部分[能力拓展](#node-api组件扩展的符号列表)。
 
 |符号类型|符号名|说明|起始支持API版本|
 | --- | --- | --- | --- |
@@ -182,7 +182,7 @@ libace_napi.z.so
 
 **返回：**
 
-- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+- 当code为空指针时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
 
 - 该导出接口允许code属性设置失败。
 
@@ -190,7 +190,7 @@ libace_napi.z.so
 
 **返回：**
 
-- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+- 当code为空指针时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
 
 - 该导出接口允许code属性设置失败。
 
@@ -198,7 +198,7 @@ libace_napi.z.so
 
 **返回：**
 
-- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+- 当code为空指针时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
 
 - 该导出接口允许code属性设置失败。
 
@@ -247,6 +247,12 @@ libace_napi.z.so
 **参数：**
 
 - value: 标准库中仅支持Object、Function、Symbol类型，而该导出接口对value的类型没有限制。
+
+### napi_delete_reference
+
+**说明：**
+
+- 在OpenHarmory中，如果创建强引用时注册了napi_finalize回调函数，调用该接口的时候会触发该napi_finalize回调。
 
 ### napi_create_symbol
 
@@ -354,6 +360,8 @@ libace_napi.z.so
 
 - 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
 
+- 当设置的index超大的时候，标准库中会直接抛出异常并中断进程，OpenHarmony中会尝试分配内存，若分配失败则不对object进行修改。
+
 ### napi_get_element
 
 **返回：**
@@ -377,6 +385,8 @@ libace_napi.z.so
 **返回：**
 
 - 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+- 若在遍历设置属性的过程中触发异常，标准库中会直接将异常抛出，OpenHarmony中会清除异常继续执行。
 
 ### napi_type_tag_object
 
@@ -412,6 +422,11 @@ libace_napi.z.so
 
 ### napi_wrap
 
+**参数：**
+
+- finalize_cb: 标准库允许为空， OpenHarmony在该参数为空时，返回napi_invalid_arg。
+- result: 标准库返回弱引用， OpenHarmony在result不为空时返回强引用。
+
 **返回：**
 
 - 参数js_object不为Object或Function对象时，该导出接口返回napi_object_expected。
@@ -427,6 +442,10 @@ libace_napi.z.so
 **返回：**
 
 - 参数js_object不为Object或Function对象时，该导出接口返回napi_object_expected。
+
+**说明：**
+
+- 如果封装中关联有finalize回调，OpenHarmony中该导出接口将在移除封装前调用它。
 
 ### napi_create_async_work
 
@@ -624,6 +643,10 @@ libace_napi.z.so
 
 - 回调主动抛出异常时，OpenHarmony会触发JSCrash。
 
+**说明：**
+
+- 标准库中返回弱引用， OpenHarmony在result不为空时返回强引用。
+
 ### napi_fatal_exception
 
 **参数：**
@@ -635,6 +658,18 @@ libace_napi.z.so
 **返回：**
 
 - 参数env不是有效的napi_env（例如此env已被释放）时，该导出接口返回napi_generic_failure。
+
+### napi_create_array_with_length
+
+**返回：**
+
+- 当length数值过大时，标准库中会直接抛出异常并中断进程，OpenHarmony中会尝试分配内存，若分配失败则抛出异常并返回长度为0的array。
+
+### napi_create_arraybuffer
+
+**返回：**
+
+- 当length数值过大时，标准库中会直接抛出异常并中断进程，OpenHarmony中会尝试分配内存，若分配失败则抛出异常并返回undefined。
 
 ## 未从Node-API组件标准库中导出的符号列表
 

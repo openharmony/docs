@@ -133,7 +133,7 @@ The following uses the acceleration sensor as an example to describe the develop
            return nullptr;
        }
        Sensor_Info **sensors = OH_Sensor_CreateInfos(count); // Create an array of instances with the given number.
-       if (sensor == nullptr) {
+       if (sensors == nullptr) {
            return nullptr;
        }        
        ret = OH_Sensor_GetInfos(sensors, &count); // Obtain information about all sensors on the device.
@@ -245,9 +245,15 @@ The following uses the acceleration sensor as an example to describe the develop
 
 10. Introduce the NAPI APIs to the **index.d.ts** file in **types/libentry**.
 
-   ```c
-   export const getSensorInfos: () => number;
-   export const subscriber: () => number;
-   ```
+    ```c
+     export const getSensorInfos: () => number;
+     export const subscriber: () => number;
+    ```
 
-   
+11. Delete deprecated functions from the **Index.ets** file.
+
+    ```js
+    .onClick(() => {
+        hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+    })
+    ```

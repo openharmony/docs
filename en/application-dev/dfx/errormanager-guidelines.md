@@ -3,7 +3,6 @@
 ## Overview
 
 If coding specification issues or errors exist in the code of an application, the application may encounter unexpected errors, for example, uncaught exceptions or application lifecycle timeouts, while it is running. In such a case, the application may exit unexpectedly. Error logs, however, are usually stored on users' local storage, making it inconvenient to locate faults. With the APIs provided by the **errorManager** module, the related errors and logs will be reported to your service platform for fault locating before application exits.
-After using the error manager interface to listen for exceptions and errors, the application will not exit. It is recommended to add a synchronous exit operation after the callback function is executed. If it is only for obtaining error logs, it is recommended to use [hiappevent](hiappevent-watcher-crash-events-arkts.md).
 
 ## Available APIs
 
@@ -23,11 +22,6 @@ When an asynchronous callback is used, the return value can be processed directl
 
 
 **ErrorObserver APIs**
-
-> **Explanation:**
->
-> Registering the Erromanager.on interface in the main thread, the current version does not 
-> support capturing exceptions in child threads (such as taskpool).
 
 | API                        | Description                                                        |
 | ------------------------------ | ------------------------------------------------------------ |
@@ -52,8 +46,8 @@ When an asynchronous callback is used, the return value can be processed directl
 
 ## Development Example
 
-> **Attention:**
-> It is recommended to add a synchronous exit operation at the end of handling abnormal callback functions, otherwise multiple abnormal callbacks may occur.
+> **NOTE**
+> You are advised to add a synchronous exit function at the end of the exception callback. Otherwise, multiple exception callbacks may be invoked.
 
 ```ts
 import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
@@ -71,7 +65,7 @@ let callback: errorManager.ErrorObserver = {
         if (typeof(errorObj.stack) === 'string') {
             console.log('onException, stack: ', errorObj.stack);
         }
-        //After the callback function is executed, a synchronous exit method is used to avoid multiple triggers.
+        //After the callback is executed, exit the process synchronously to avoid triggering exceptions for multiple times.
         let pro = new process.ProcessManager();
         pro.exit(0);
     }

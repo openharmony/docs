@@ -33,7 +33,7 @@ import { inputMethod } from '@kit.IMEKit';
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法包名。|
 | id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法扩展在应用内唯一标识，与name一起组成输入法扩展的全局唯一标识。|
-| label<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法对外显示名称。|
+| label<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法扩展对外显示名称。优先使用InputmethodExtensionAbility中配置的label，若未配置，自动使用应用入口ability的label，当应用入口ability未配置label时，自动使用应用AppScope中配置的label。|
 | labelId<sup>10+</sup>    | number | 是 | 是 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
 | iconId<sup>9+</sup>    | number | 是 | 是 | 非必填。输入法图标资源号。 |

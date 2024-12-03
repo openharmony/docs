@@ -11,14 +11,14 @@ To print logs, you can use HiLog or console APIs. This topic focuses on how to u
 
 HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [HiLog](../reference/apis-performance-analysis-kit/js-apis-hilog.md).
 
-| API | Description |
+| API| Description| 
 | -------- | -------- |
-| isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed. |
-| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window. |
-| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes.. |
-| warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system. |
-| error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors. |
-| fatal(domain: number, tag: string, format: string, ...args: any[]) | Outputs FATAL logs, which indicate program or functionality crashes that cannot be rectified. |
+| isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed.|
+| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
+| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes..|
+| warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system.|
+| error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors.|
+| fatal(domain: number, tag: string, format: string, ...args: any[]) | Outputs FATAL logs, which indicate program or functionality crashes that cannot be rectified.|
 
 ### Parameters
 
@@ -30,21 +30,21 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 
 - **domain**: service domain of logs. The value range is 0x0000 to 0xFFFF. You can define the value as required.
 
-- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call.
+- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call. A tag can contain a maximum of 31 bytes. If a tag contains more than 31 bytes, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.
 
 - **level**: log level. For details about the value, see [LogLevel](../reference/apis-performance-analysis-kit/js-apis-hilog.md#loglevel).
 
 - **format**: format of the log to output. The value is a string in the "%{private flag}specifier" format.
-  | Private Flag | Description |
+  | Private Flag| Description|
   | -------- | -------- |
-  | private | The output is **\<private>**, which indicates that the log information is invisible. |
-  | public | The log information is displayed. |
-  | Not specified | The default value **\<private>** is used. |
+  | private | The output is **\<private>**, which indicates that the log information is invisible.|
+  | public | The log information is displayed.|
+  | Not specified| The default value **\<private>** is used.|
 
-  | Specifier | Description | Example |
+  | Specifier| Description| Example|
   | -------- | -------- | -------- |
-  | d/i | Prints logs of the **number** and **bigint** types. | 123 |
-  | s | Prints logs of the **string**, **undefined**, **boolean**, and **null** types. | "123" |
+  | d/i | Prints logs of the **number** and **bigint** types.| 123 |
+  | s | Prints logs of the **string**, **undefined**, **boolean**, and **null** types.| "123" |
 
   You can set multiple parameters in the **format** string, for example, **%s World**, where **%s** is a variable of the string type and its value is defined by **args**. <!--Del-->
 
@@ -119,3 +119,6 @@ Add a click event in a button, which prints a log when the button is clicked.
    Specifically, select the current device and process, set the log level to **Verbose**, and enter **testTag** in the search box. Then, only the logs that meet the filter criteria are displayed.
 
    In this example, the printed log is "hello World 3".
+
+<!--RP1-->
+<!--RP1End-->

@@ -1459,6 +1459,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
+> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1553,6 +1554,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
+> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 

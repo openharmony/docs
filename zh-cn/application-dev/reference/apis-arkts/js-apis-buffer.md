@@ -579,8 +579,8 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | source | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 实例对象。 |
-| fromEnc | string | 是 | 当前编码。 |
-| toEnc | string | 是 | 目标编码。 |
+| fromEnc | string | 是 | 当前编码。 支持的格式范围为[BufferEncoding](#bufferencoding)。 |
+| toEnc | string | 是 | 目标编码。 支持的格式范围为[BufferEncoding](#bufferencoding)。 |
 
 **返回值：**
 

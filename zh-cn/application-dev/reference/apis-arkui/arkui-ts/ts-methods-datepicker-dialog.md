@@ -110,9 +110,9 @@ static show(options?: DatePickerDialogOptions)
 >
 > 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
 
-### 示例1
+### 示例1（弹出日期选择弹窗）
 
-DatePickerDialog基本使用
+该示例通过点击按钮弹出日期选择弹窗。
 
 ```ts
 // xxx.ets
@@ -203,9 +203,9 @@ struct DatePickerDialogExample {
 
 ![DataPickerDialog](figures/DatePickerDialog.gif)
 
-### 示例2
+### 示例2（自定义样式）
 
-按钮支持自定义样式
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle、acceptButtonStyle、cancelButtonStyle实现了自定义文本以及按钮样式。
 
 ```ts
 // xxx.ets
@@ -270,7 +270,7 @@ struct DatePickerDialogExample {
 >
 > 如需完全自定义实现日期滑动选择器弹窗，可以通过先使用[自定义弹窗 (CustomDialog)](ts-methods-custom-dialog-box.md)，然后使用[DatePicker组件](ts-basic-components-datepicker.md)来实现。
 
-### 示例3
+### 示例3（悬停态弹窗）
 
 该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
 

@@ -25,7 +25,7 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 - 安全与隐私：无痕浏览模式、广告拦截、坚盾守护模式等。
 
-- 维测能力：[Devtools工具](web-debugging-with-devtools.md)调试能力，使用crashpad收集Web组件崩溃信息。
+- 维测能力：[DevTools工具](web-debugging-with-devtools.md)调试能力，使用crashpad收集Web组件崩溃信息。
 
 - 其他高阶能力：与原生组件同层渲染、Web组件的网络托管、Web组件的媒体播放托管、Web组件输入框拉起自定义输入法、<!--RP1--><!--RP1End-->等。
 

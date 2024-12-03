@@ -792,8 +792,6 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
@@ -835,7 +833,6 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
@@ -1466,7 +1463,6 @@ getPlaybackInfo(): Promise\<PlaybackInfo>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 let playbackInfo: media.PlaybackInfo | undefined = undefined;
@@ -1524,7 +1520,6 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -1580,7 +1575,6 @@ deselectTrack(index: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -2906,8 +2900,9 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。 |
-| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。 |
+| SPEED_FORWARD_3_00_X<sup>13+</sup> | 7    | 表示视频播放正常播速的3.00倍。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -2938,7 +2933,6 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -2980,7 +2974,6 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 function printfPlaybackInfo(obj: media.PlaybackInfo, key: string) {
   let property: Object = obj[key];
@@ -7272,7 +7265,6 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
@@ -7341,7 +7333,6 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
@@ -7399,7 +7390,6 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -7447,7 +7437,6 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -7528,8 +7517,6 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 **示例1：**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 ```
@@ -7537,7 +7524,6 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 **示例2：**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 

@@ -138,7 +138,7 @@ Obtains the system font list.
 
 > **NOTE**
 >
-> To obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context, you are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 ```ts
 // xxx.ets
@@ -206,7 +206,7 @@ Obtains information about a system font based on the font name.
 
 > **NOTE**
 >
-> To obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context, you are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 ```ts
 // xxx.ets

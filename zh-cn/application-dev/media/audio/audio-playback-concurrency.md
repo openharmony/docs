@@ -135,7 +135,7 @@
 
   - 继续（INTERRUPT_HINT_RESUME）：音频流可恢复播放或录制，仅会接收到PAUSE（暂停提示）之后收到。
 
-      此操作无法由系统强制执行，其对应的InterruptForceType一定为INTERRUPT_SHARE类型。
+    此操作无法由系统强制执行，其对应的InterruptForceType一定为INTERRUPT_SHARE类型。
 
   - 暂停（INTERRUPT_HINT_PAUSE）：音频暂停，暂时失去音频焦点。后续待焦点可用时，会再收到INTERRUPT_HINT_RESUME。
   - 停止（INTERRUPT_HINT_STOP）：音频停止，彻底失去音频焦点。

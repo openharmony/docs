@@ -20,7 +20,7 @@ import { uriPermissionManager } from '@kit.AbilityKit';
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
-Grants the permission on a URI to an application. This API uses an asynchronous callback to return the result.
+Grants the URI permission to an application. The permission will be revoked once the application exits. This API uses an asynchronous callback to return the result.
 
 An application can grant its own URIs to another application. If it has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can also grant the any accessible URI of another application.
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -34,9 +34,9 @@ An application can grant its own URIs to another application. If it has the ohos
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
-| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | Yes| Read or write permission on the file to grant.|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
 | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 
@@ -50,7 +50,7 @@ An application can grant its own URIs to another application. If it has the ohos
 | 16000050 | Internal error. |
 | 16000058 | Invalid URI flag. |
 | 16000059 | Invalid URI type. |
-| 16000060 | Sandbox application can not grant URI permission. |
+| 16000060 | A sandbox application cannot grant URI permission. |
 
 
 **Example**
@@ -79,7 +79,7 @@ An application can grant its own URIs to another application. If it has the ohos
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
-Grants the permission on a URI to an application. This API uses a promise to return the result.
+Grants the URI permission to an application. The permission will be revoked once the application exits. This API uses a promise to return the result.
 
 An application can grant its own URIs to another application. If it has the ohos.permission.PROXY_AUTHORIZATION_URI permission, it can also grant the any accessible URI of another application.
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -93,7 +93,7 @@ An application can grant its own URIs to another application. If it has the ohos
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
-| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | Yes| Read or write permission on the file to grant.|
+| flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | Yes| Read or write permission on the file to grant.|
 | targetBundleName | string | Yes| Bundle name of the application, to which the permission is granted.|
 
 **Return value**
@@ -114,7 +114,7 @@ An application can grant its own URIs to another application. If it has the ohos
 | 16000050 | Internal error. |
 | 16000058 | Invalid URI flag. |
 | 16000059 | Invalid URI type. |
-| 16000060 | Sandbox application can not grant URI permission. |
+| 16000060 | A sandbox application cannot grant URI permission. |
 
 **Example**
     
@@ -159,7 +159,7 @@ This API can be used to revoke the URI permission of another application obtaine
 | -------- | -------- | -------- | -------- |
 | uri | string | Yes| URI of the file, for example, **fileshare:///com.samples.filesharetest.FileShare/person/10**.|
 | targetBundleName | string | Yes| Bundle name of the application, from which the permission is revoked.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **0** is returned; otherwise, **-1** is returned.|
 
 **Error codes**
 

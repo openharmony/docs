@@ -12,6 +12,7 @@
 ## Available APIs
 
 The following table lists the APIs used to manipulate data of the **ArrayBuffer** type.  
+
 | API| Description|
 | -------- | -------- |
 | napi_is_arraybuffer | Checks whether a value is an **ArrayBuffer** object. Note that this API cannot be used to check whether a value is a **TypedArray** object. To check whether a value is a **TypedArray** object, use **napi_is_typedarray**.|
@@ -207,6 +208,10 @@ try {
 
 Use **napi_create_arraybuffer** to create an ArkTS **ArrayBuffer** object with the specified byte length in C/C++. If the caller wants to directly operate the buffer, return the underlying buffer to the caller. To write data to this buffer from ArkTS, you need to create a **TypedArray** or **DataView** object.
 
+> **NOTE**
+>
+> If **byte_length** of **napi_create_arraybuffer** is **0** or an excessively large value, nullptr will be returned in **data**. Therefore, it is necessary to check whether **data** is empty before using it.
+
 CPP code:
 
 ```cpp
@@ -227,6 +232,9 @@ static napi_value CreateArraybuffer(napi_env env, napi_callback_info info)
     void *data;
     // Create an ArrayBuffer object.
     napi_create_arraybuffer(env, length, &data, &result);
+    if (data != nullptr) {
+        // Check data before using it for subsequent operations.
+    }
     // Return the ArrayBuffer object.
     return result;
 }

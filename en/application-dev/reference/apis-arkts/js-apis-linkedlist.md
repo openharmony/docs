@@ -10,7 +10,7 @@ Unlike **[List](js-apis-list.md)**, which is a singly linked list, **LinkedList*
 >
 > Although using \[index\] in **LinkedList** can obtain an element with the given index, this operation will result in undefined results. Due to this reason, **get()** method is recommended.
 
-**Recommended use case**: Use **LinkedList** for frequent insertion and removal operations.
+**Recommended use case**: Use **LinkedList** for frequent insertion and removal operations when a doubly linked list is required.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -870,10 +870,6 @@ let result = linkedList.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
-
-> **NOTE**
->
-> This API cannot be used in .ets files.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

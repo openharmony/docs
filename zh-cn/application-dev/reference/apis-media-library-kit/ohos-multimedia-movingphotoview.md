@@ -119,7 +119,7 @@ autoPlay(isAutoPlay: boolean)
 
 repeatPlay(isRepeatPlay: boolean)
 
-设置循环播放，重复播放视频。 repeatPlay与autoPlay及长按播放互斥，repeatPlay设置时，autoplay和长按播放均不生效。
+设置循环播放，重复播放视频。 repeatPlay与autoPlay及长按播放互斥，repeatPlay设置时，autoPlay和长按播放均不生效。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 

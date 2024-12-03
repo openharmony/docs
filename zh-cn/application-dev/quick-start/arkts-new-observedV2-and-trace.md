@@ -2,6 +2,9 @@
 
 为了增强状态管理框架对类对象中属性的观测能力，开发者可以使用\@ObservedV2装饰器和\@Trace装饰器装饰类以及类中的属性。
 
+
+\@ObservedV2和\@Trace提供了对嵌套类对象属性变化直接观测的能力，是状态管理V2中相对核心的能力之一。在阅读本文当前，建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)来了解状态管理V2整体的能力架构。
+
 >**说明：**
 >
 >\@ObservedV2与\@Trace装饰器从API version 12开始支持。

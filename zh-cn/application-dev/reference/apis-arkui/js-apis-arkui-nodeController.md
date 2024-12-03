@@ -122,6 +122,8 @@ rebuild(): void
 
 ### 示例
 
+通过NodeController挂载BuilderNode节点。
+
 ```ts
 import {  NodeController, BuilderNode, Size, FrameNode ,UIContext } from '@kit.ArkUI';
 

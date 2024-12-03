@@ -532,10 +532,10 @@ struct Index {
     Column() {
       Text('Toast').fontSize(30)
       Row({ space: 50 }) {
-        Button ("OK").onClick () => {
+        Button("OK").onClick(() => {
           promptAction.closeCustomDialog(this.customDialogComponentId)
         })
-        Button ("Cancel").onClick () => {
+        Button("Cancel").onClick(() => {
           promptAction.closeCustomDialog(this.customDialogComponentId)
         })
       }
@@ -585,11 +585,11 @@ function customDialogBuilder() {
   Column() {
     Text('Custom dialog Message').fontSize(10)
     Row() {
-      Button ("OK").onClick () => {
+      Button("OK").onClick(() => {
         promptAction.closeCustomDialog(customDialogId)
       })
       Blank().width(50)
-      Button ("Cancel").onClick () => {
+      Button("Cancel").onClick(() => {
         promptAction.closeCustomDialog(customDialogId)
       })
     }

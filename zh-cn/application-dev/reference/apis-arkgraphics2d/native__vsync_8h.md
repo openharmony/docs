@@ -35,8 +35,9 @@
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeVSync_Create](_native_vsync.md#oh_nativevsync_create) (const char \*name, unsigned int length) | 创建一个OH_NativeVSync实例，每次调用都会产生一个新的实例 |
-| [OH_NativeVSync_Destroy](_native_vsync.md#oh_nativevsync_destroy) (OH_NativeVSync \*nativeVsync) | 销毁OH_NativeVSync实例 |
+| [OH_NativeVSync_Create](_native_vsync.md#oh_nativevsync_create) (const char \*name, unsigned int length) | 创建一个OH_NativeVSync实例，每次调用都会产生一个新的实例。 |
+| [OH_NativeVSync](_native_vsync.md#oh_nativevsync) \* [OH_NativeVSync_Create_ForAssociatedWindow](_native_vsync.md#oh_nativevsync_create_forassociatedwindow) (uint64_t windowID, const char \*name, unsigned int length) | 创建一个和窗口绑定的OH_NativeVSync实例，每次调用都会产生一个新的实例。 | 
+| [OH_NativeVSync_Destroy](_native_vsync.md#oh_nativevsync_destroy) (OH_NativeVSync \*nativeVsync) | 销毁OH_NativeVSync实例。 |
 | int [OH_NativeVSync_RequestFrame](_native_vsync.md#oh_nativevsync_requestframe) ([OH_NativeVSync](_native_vsync.md#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](_native_vsync.md#oh_nativevsync_framecallback) callback, void \*data) | 请求下一次vsync信号，当信号到来时，调用回调函数callback。 如果在同一帧内中多次调用此接口，则只会触发最后一个回调。 | 
 | int [OH_NativeVSync_RequestFrameWithMultiCallback](_native_vsync.md#oh_nativevsync_requestframewithmulticallback) ([OH_NativeVSync](_native_vsync.md#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](_native_vsync.md#oh_nativevsync_framecallback) callback, void \*data) | 请求下一次vsync信号，当信号到来时，调用回调函数callback。 如果在同一帧内中多次调用此接口，每一次传入的callback都会被执行。 | 
 | [OH_NativeVSync_GetPeriod](_native_vsync.md#oh_nativevsync_getperiod) (OH_NativeVSync \*nativeVsync, long long \*period) |获取vsync周期。|

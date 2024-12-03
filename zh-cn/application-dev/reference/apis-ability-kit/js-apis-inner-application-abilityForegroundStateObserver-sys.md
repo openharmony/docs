@@ -19,7 +19,7 @@ import { abilityManager } from '@kit.AbilityKit';
 
 | 名称                             | 类型                    | 可读 | 可写 | 说明   |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAbilityStateChanged   | AsyncCallback\<void>   | 是   | 否   | Ability前后台状态发生变化时执行的回调函数。传入参数类型是[AbilityStateData](js-apis-inner-application-appStateData-sys.md)。 |
+| onAbilityStateChanged   | AsyncCallback\<void>   | 是   | 否   | Ability前后台状态发生变化时执行的回调函数。传入参数类型是[AbilityStateData](js-apis-inner-application-abilityStateData.md)。 |
 
 **示例：**
 ```ts

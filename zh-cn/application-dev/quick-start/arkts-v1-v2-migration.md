@@ -1740,7 +1740,7 @@ struct Index {
 ```
 
 ### PersistentStorage->PersistenceV2
-v1中PersistentStorage提供了持久化UI数据的能力，而V2则提供了更加方便使用的PersistenceV2接口来替代它。
+V1中PersistentStorage提供了持久化UI数据的能力，而V2则提供了更加方便使用的PersistenceV2接口来替代它。
 - PersistentStorage持久化的触发时机依赖AppStorage的观察能力，且与AppStorage耦合，开发者无法自主选择写入或读取持久化数据的时机。
 - PersistentStorage使用序列化和反序列化，并没有传入类型，所以在持久化后，会丢失其类型，且对象的属性方法不能持久化。
 
@@ -2291,6 +2291,7 @@ struct MyImage1 {
   @Link modifier: CommonModifier;
 
   build() {
+    // 此处'app.media.app_icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     Image($r('app.media.app_icon'))
       .attributeModifier(this.modifier as MyModifier)
   }
@@ -2356,6 +2357,7 @@ struct MyImage1 {
   @Param @Require modifier: CommonModifier;
 
   build() {
+    // 此处'app.media.app_icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     Image($r('app.media.app_icon'))
       .attributeModifier(this.modifier as MyModifier)
   }

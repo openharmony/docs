@@ -697,7 +697,7 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      ForEach(Array.from(this.set.values()), (item: number) => {  // 显示 Set
+      ForEach(Array.from(this.setMap.values()), (item: number) => {  // 显示 Set
         Text(`${item}`)
           .fontSize(30)
       })
@@ -728,7 +728,7 @@ struct Index {
         message: this.message,
         undefineVal: this.undefineVal,
         info: this.info,
-        set: this.set
+        setMap: this.set
       })
     }
     .height('100%')

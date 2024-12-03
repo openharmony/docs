@@ -17,7 +17,7 @@ For details about the parameters, return value, and error codes, see [getAvailab
 
 1. [Request](prerequisites.md#requesting-permissions) the ohos.permission.ACCESS_BIOMETRIC permission.
 
-2. Use [getAvailableStatus](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetavailablestatus9) to check whether the device supports the specified authentication type (**UserAuthType**) and authentication trust level (**AuthTrustLevel**).
+2. Call [getAvailableStatus](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthgetavailablestatus9) to check whether the device supports the specified authentication type ([UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8)) and authentication trust level ([AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)).
 
 Example: Check whether the device supports facial authentication of ATL1 or higher.
 

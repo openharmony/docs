@@ -1,4 +1,4 @@
-# Defining Animations for SVG Components
+# Animation for SVG Components
 
 You can use child components in the **\<svg>** component to animate attributes over time.
 

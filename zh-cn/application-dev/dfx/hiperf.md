@@ -13,14 +13,14 @@ hiperf为开发人员提供用于调试的命令行工具，用于抓取特定�
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h/--help  | 帮助命令。 |
-| --debug | 输出debug日志。 |
+| --debug | 输出debug级别日志。 |
 | --hilog | 日志写入hilog。 |
 | --logpath | 日志路径。 |
 | --logtag | 日志等级。 |
 | --mixlog | 混合日志输出。|
 | --much | 输出尽可能多的日志。 |
 | --nodebug | 无日志输出。 |
-| --verbose | 输出debug日志。 |
+| --verbose | 输出verbose级别日志。 |
 
 ## 帮助命令
 
@@ -49,7 +49,7 @@ hiperf [command] --help
 | -h/--help  | 帮助命令。 |
 | hw | 硬件事件。 |
 | sw | 软件事件。 |
-| tp | 跟踪tracepoint事件。 |
+| tp | tracepoint事件。 |
 | cache | 硬件缓存事件。 |
 | raw | 原始pmu事件。 |
 
@@ -98,7 +98,7 @@ hiperf list hw
 | --exclude-thread | 不采集线程名，以逗号隔开，不能和-a一起使用。 |
 | --offcpu | 跟踪线程何时脱离cpu调度。 |
 | -j | 分支堆栈采样，过滤器支持any、any_call、any_ret、ind_call、ind_jmp、cond、call。 |
-| -s/--callstack | 回栈模式。 |
+| -s/--callstack | 设置回栈模式。 |
 | --kernel-callchain | 采集内核态堆栈，必须和-s fp/dwarf一起使用。 |
 | --callchain-useronly | 只收集用户态堆栈。 |
 | --delay-unwind | -s dwarf被设置时栈会在录制时展开，设置此选项栈会在录制后展开。 |
@@ -113,7 +113,7 @@ hiperf list hw
 | --data-limit | 输出数据达到指定大小停止采集，默认无限制。 |
 | -o | 设置输出文件路径。 |
 | -z | 以压缩文件形式输出。 |
-| --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，记录将推出。 |
+| --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，记录将退出。 |
 | --verbose | 输出更详细的报告。 |
 | --control [command]| 采集命令控制参数。命令包括prepare/start/pause/resume/stop。 |
 | --dedup_stack | 删除记录中的重复堆栈，不能和-a一起使用。 |
@@ -157,7 +157,7 @@ hiperf record -p 267 -d 10 -s dwarf
 | --chkms | 设置查询的间隔时间，取值范围：1 - 200，默认10。 |
 | --per-core | 每个cpu核的打印计数。 |
 | --pre-thread | 每个线程的打印计数。 |
-| --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，记录将推出。 |
+| --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，记录将退出。 |
 | --verbose | 输出更详细的报告。 |
 | --dumpoptions | dump命令选项。 |
 

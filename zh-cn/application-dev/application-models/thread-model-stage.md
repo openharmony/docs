@@ -4,8 +4,8 @@
 Stage模型下的线程主要有如下三类：
 - 主线程
   - 执行UI绘制。
-  - 管理主线程的ArkTS引擎实例，使多个UIAbility组件能够运行在其之上。
-  - 管理其他线程的ArkTS引擎实例，例如使用TaskPool（任务池）创建任务或取消任务、启动和终止Worker线程。
+  - 管理主线程的[ArkTS引擎](../arkts-utils/arkts-runtime-overview.md)实例，使多个UIAbility组件能够运行在其之上。
+  - 管理其他线程的[ArkTS引擎](../arkts-utils/arkts-runtime-overview.md)实例，例如使用TaskPool（任务池）创建任务或取消任务、启动和终止Worker线程。
   - 分发交互事件。
   - 处理应用代码的回调，包括事件处理和生命周期管理。
   - 接收TaskPool以及Worker线程发送的消息。

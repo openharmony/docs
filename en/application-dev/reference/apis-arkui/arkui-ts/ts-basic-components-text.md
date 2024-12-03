@@ -58,7 +58,7 @@ When **textAlign** is set to **TextAlign.JUSTIFY**, you must set the [wordBreak]
 
 ### textOverflow
 
-textOverflow(value: { overflow: TextOverflow })
+textOverflow(options: TextOverflowOptions)
 
 Sets the display mode when the text is too long.
 
@@ -80,7 +80,7 @@ Since API version 12, **TextOverflow.MARQUEE** is available for the **ImageSpan*
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Yes  | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**|
+| options | [TextOverflowOptions](#textoverflowoptions13) | Yes  | Display mode when the text is too long.|
 
 ### maxLines
 
@@ -550,9 +550,9 @@ This API must be used together with [enableDataDetector](#enabledatadetector11).
 
 When entities A and B overlap, the following rules are followed:
 
-1. If A ⊂ B, retain B. Otherwise, retain A.
+1. If A is a subset of B (A ⊂ B), then B is retained; otherwise, A is retained.
 
-2. When A ⊄ B and B ⊄ A: If A.start < B.start, retain A; otherwise, retain B.
+2. If A is not a subset of B (A ⊄ B) and B is not a subset of A (B ⊄ A), and if the starting point of A is earlier than that of B (A.start < B.start), then A is retained; otherwise, B is retained.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -724,7 +724,7 @@ Sets the minimum font scale factor for text.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: (0,1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: (0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
 
 ### maxFontScale<sup>12+</sup>
 
@@ -886,6 +886,22 @@ Provides the [span](ts-basic-components-span.md) type information.
 | RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
 | LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
 | SELECT | The menu is displayed when the component is selected.|
+
+## TextOverflowOptions<sup>13+</sup>
+
+Describes the display mode when the text is too long.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | Yes  | Display mode when the text is too long.<br>Default value: **TextOverflow.Clip**|
 
 ## Events
 
@@ -1522,7 +1538,7 @@ struct TextExample8 {
         .width('100%')
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
-        Button('Change lineBreakStrategy Value:' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+        Button('Current lineBreakStrategy value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
           this.lineBreakStrategyIndex++
           if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
             this.lineBreakStrategyIndex = 0
@@ -1644,10 +1660,10 @@ struct TextExample11 {
     menuItems.forEach((value, index) => {
       value.icon = $r('app.media.startIcon')
       if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy"
+        value.content = "Copy_custom"
       }
       if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select All"
+        value.content = "Select all_custom"
       }
     })
     let item1: TextMenuItem = {
