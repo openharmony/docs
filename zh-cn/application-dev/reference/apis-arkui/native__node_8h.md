@@ -29,7 +29,7 @@
 | struct&nbsp;&nbsp;[ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md) | ArkUI提供的Native侧Node类型接口集合。  | 
 
 
-###  定义
+### 宏定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
