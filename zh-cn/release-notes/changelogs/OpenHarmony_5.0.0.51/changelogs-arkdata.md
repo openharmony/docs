@@ -56,7 +56,7 @@ getKVStore/分布式键值型数据库（distributedKVStore）
 
 **起始 API Level**
 
-14
+9
 
 **变更发生的版本**
 
