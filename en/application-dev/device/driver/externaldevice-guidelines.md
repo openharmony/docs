@@ -12,7 +12,7 @@ Peripheral management applies to all devices that can be ported to the OpenHarmo
 
 DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers.
 
-[Download and install](https://developer.huawei.com/consumer/en/download/) DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-tools-overview-V13).
+Download and install DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-tools-overview-V13).
 
 ### SDK Version Configuration
 
