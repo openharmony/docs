@@ -1,26 +1,26 @@
-# Using AVScreenCapture to Obtain Original Streams (C/C++)
+# Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)
 
 Screen capture is mainly used to record the main screen.
 
-You can call the C APIs of the **AVScreenCapture** module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
+You can call the C APIs of the AVScreenCapture module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
 
-The **AVScreenCapture**, **Window**, and **Graphics** modules together implement the entire video capture process.
+The AVScreenCapture, Window, and Graphics modules together implement the entire video capture process.
 
-By default, the main screen is captured, and the **Graphics** module generates the screen capture frame data based on the main screen and places the data to the display data buffer. The screen capture framework obtains the data from the buffer for processing.
+By default, the main screen is captured, and the Graphics module generates the screen capture frame data based on the main screen and places the data to the display data buffer. The player framework obtains the data from the buffer for processing.
 
-The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
+The full screen capture process involves creating an AVScreenCapture instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
 Screen capture automatically stops upon system user switching, and **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES** is reported.
 
-This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
+This topic describes how to use the AVScreenCapture APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
 
-If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
+If microphone data collection is configured, configure the permission ohos.permission.MICROPHONE and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
 ## How to Develop
 
-After an **AVScreenCapture** instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
+After an AVScreenCapture instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
 
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
@@ -43,7 +43,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     #include "unistd.h"
     ```
 
-2. Create an **AVScreenCapture** instance, named **capture** in this example.
+2. Create an AVScreenCapture instance, named **capture** in this example.
 
     ```c++
     OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
@@ -84,7 +84,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-4. Enable the microphone.
+4. (Optional) Enable the microphone.
 
     ```c++
     bool isMic = true;
@@ -132,9 +132,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
 
 ## Sample Code
 
-Refer to the sample code below to implement screen capture using **AVScreenCapture**.
+Refer to the sample code below to implement screen capture using AVScreenCapture.
 
-For details about how to create an **OH_AVBuffer** instance, see [Buffer Output](../avcodec/video-decoding.md#buffer-output).
+For details about how to create an OH_AVBuffer instance, see [Buffer Output](../avcodec/video-decoding.md#buffer-output).
 
 For details about screen capture in surface mode, see [Surface Input](../avcodec/video-encoding.md#surface-input).
 
@@ -270,7 +270,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
     //     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
 
-    // (Optional) Adjust the screen capture resolution after the capture starts. For details about the resolution range, see the AVCODEC encoding and decoding capabilities.
+    // (Optional) Adjust the screen capture resolution after the capture starts. For details about the resolution range, see the AVCodec encoding and decoding capabilities.
     // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
 
     sleep(10); // Capture the screen for 10s.

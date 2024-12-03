@@ -1,6 +1,6 @@
 # Circle
 
- The **Circle** component is used to draw a circle.
+The **Circle** component is used to draw a circle.
 
 >  **NOTE**
 >
@@ -14,16 +14,32 @@ Not supported
 
 ## APIs
 
-Circle(options?: {width?: string | number, height?: string | number})
+Circle(value?: CircleOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width of the circle.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height of the circle.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
+| value | [CircleOptions](#circleoptions) | No| Options of the circle.|
+
+## CircleOptions
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number| No| Width of the circle.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| height | string \| number| No| Height of the circle.<br>Default value: **0**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -145,7 +161,7 @@ Sets the join style of the stroke. This attribute does not work for the **Circle
 
 strokeMiterLimit(value: number | string)
 
-Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **Circle** component, because it does not have a miter join.
+Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **Circle** component, which does not have a miter join.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

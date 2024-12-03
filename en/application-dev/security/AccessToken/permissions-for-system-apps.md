@@ -3591,7 +3591,7 @@ Allows an application to access the mappings between applications and domain nam
 
 ### ohos.permission.ALLOW_CONNECT_CAR
 
-Allows an application to connect to an automobile head unit.
+Allows an application to connect to a telematics device.
 
 **Permission level**: system_basic
 
@@ -3651,15 +3651,15 @@ Allows a system application to use the camera in the background.
 
 ### ohos.permission.START_RESTORE_NOTIFICATION
 
-Allows a system application to subscribe to the restore start event.
+Allows a system application to subscribe to the restore start event of the backup and restore framework.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：13
+**Valid since**: 13
 
 ## system_grant Permissions (Unavailable via ACL)
 

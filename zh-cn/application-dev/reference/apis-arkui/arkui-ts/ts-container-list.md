@@ -160,7 +160,7 @@ List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup�
 
 editMode(value: boolean)
 
-设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3)实现删除选中的list项。
+设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
 
 从API version9开始废弃不再使用，无替代接口。
 
@@ -287,6 +287,10 @@ alignListItem(value: ListItemAlign)
 sticky(value: StickyStyle)
 
 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。
+
+> **说明：** 
+>
+> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-layout-constraints.md#pixelround11)指定当前组件向下像素取整解决该问题。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -953,7 +957,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 ## 示例
 
-### 示例1
+### 示例1（添加滚动事件）
 该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
 ```ts
 // xxx.ets
@@ -1007,7 +1011,8 @@ struct ListExample {
 ![zh-cn_image_0000001174264378](figures/zh-cn_image_0000001174264378.gif)
 
 
-### 示例2
+### 示例2（设置子元素对齐）
+该示例展示了不同ListItemAlign枚举值下，List组件交叉轴方向子元素对齐效果。
 
 ```ts
 // xxx.ets
@@ -1058,7 +1063,8 @@ struct ListLanesExample {
 ![list](figures/list-alignListItem.gif)
 
 
-### 示例3
+### 示例3（设置编辑模式）
+该示例展示了如何设置当前List组件是否处于可编辑模式。
 
 ```ts
 // xxx.ets
@@ -1115,7 +1121,8 @@ struct ListExample {
 
 ![list](figures/list3.gif)
 
-### 示例4
+### 示例4（设置限位对齐）
+该示例展示了List组件设置居中限位的实现效果。
 
 ```ts
 // xxx.ets
@@ -1166,8 +1173,10 @@ struct ListExample {
 
 ![list](figures/list4.gif)
 
-### 示例5
+### 示例5（跳转准确）
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
+
+如果配合状态管理V2使用，详情见：[List与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#list)。
 ```ts
 // xxx.ets
 @Entry

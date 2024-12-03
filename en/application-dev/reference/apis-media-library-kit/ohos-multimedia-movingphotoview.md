@@ -4,8 +4,8 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 
 > **NOTE**
 >
-> This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
-> Currently, the **MovingPhotoView** component cannot be used in Previewer.
+> - This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> - Currently, the **MovingPhotoView** component cannot be used in Previewer.
 
 ## Modules to Import
 
@@ -20,7 +20,9 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. The number of [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) being used at the same time cannot exceed three. Otherwise, frame freezing may occur during the playback.
+> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback. Otherwise, frame freezing may occur during the playback.
+
+
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -29,15 +31,15 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | Name | Type                                                 | Mandatory| Description      |
 | ------- | --------------------------------------------------------- | ---- | -------------- |
-| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information.|
+| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information. <br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## MovingPhotoViewOptions
 
 
 | Name     | Type                                                                                        | Mandatory| Description                                                                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).|
-| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.                                                                                               |
+| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
 
 ## Properties
 
@@ -58,13 +60,13 @@ Sets whether to mute the player.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player;<br>the value **false** means the opposite.|
+| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite. |
 
 ### objectFit
 
 objectFit(value: ImageFit)
 
-Set the display mode of the moving photo.
+Sets the display mode of the moving photo.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -77,15 +79,82 @@ Set the display mode of the moving photo.
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
 | value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>Default value: **Cover**|
 
+### autoPlayPeriod<sup>13+</sup>
+
+autoPlayPeriod(startTime: number, endTime: number)
+
+Sets the autoplay period, which is a configuration item of **autoPlay**.
+
+Before this API is called, [autoPlay](#autoplay13) must be set to **true**. Otherwise, the specified video play period (**startTime**, **endTime**) does not take effect.
+
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+
+| Name | Type   | Mandatory| Description                        |
+| ------- | ------- | ---- | ---------------------------- |
+| startTime| number| Yes  | Start playback time, in ms.<br>Value range: [0, 3000]|
+| endTime| number| Yes  | End playback time, in ms.<br>Value range: [0, 3000]|
+
+### autoPlay<sup>13+</sup>
+
+autoPlay(isAutoPlay: boolean)
+
+Sets autoplay. After the moving photo is played once, a static image is displayed.
+
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+
+| Name | Type   | Mandatory| Description                        |
+| ------- | ------- | ---- | ---------------------------- |
+| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay; the value **false** means the opposite.<br>Default value: **false** |
+
+### repeatPlay<sup>13+</sup>
+
+repeatPlay(isRepeatPlay: boolean)
+
+Sets repeat play. **repeatPlay** is mutually exclusive with **autoPlay** and **Long Press**, and takes precedence over them.
+
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+
+| Name | Type   | Mandatory| Description                        |
+| ------- | ------- | ---- | ---------------------------- |
+| isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false** |
+
 ## Events
 
 In addition to [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md), the following events are supported.
+
+### onComplete<sup>13+</sup>
+
+onComplete(callback: MovingPhotoViewEventCallback)
+
+Called when the image of a moving photo is loaded.
+
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+
+| Name  | Type                                                         | Mandatory| Description                          |
+| -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback to be invoked when the image of a moving photo is loaded. |
 
 ### onStart
 
 onStart(callback: MovingPhotoViewEventCallback)
 
-Called when the moving photo is played.
+Called when a moving photo starts playing.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -153,7 +222,7 @@ Called when the playback fails.
 
 onStop(callback: MovingPhotoViewEventCallback)
 
-Called when the playback is stopped (by **stop()**).
+Called when the playback is stopped by **stop()**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -197,6 +266,7 @@ Stops playback. Once started again, the playback starts from the beginning.
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ## Example
+
 
 ```ts
 // xxx.ets
@@ -263,7 +333,13 @@ struct MovingPhotoViewDemo {
             .width('100%')
             .height('100%')
             .muted(this.isMuted)
-            .objectFit(ImageFit.Contain)
+            .autoPlay(true)
+            .repeatPlay(false)
+            .autoPlayPeriod(0, 600)
+            .objectFit(ImageFit.Cover)
+            .onComplete(() => {
+              console.log('Completed');
+            })
             .onStart(() => {
               console.log('onStart')
             })
@@ -335,3 +411,16 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+

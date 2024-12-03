@@ -2,6 +2,9 @@
 
 为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved12)。
 
+
+makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档前，建议提前阅读：[\@Trace](./arkts-new-observedV2-and-trace.md)。
+
 >**说明：**
 >
 >从API version 12开始，开发者可以使用UIUtils中的makeObserved接口将普通不可观察数据变为可观察数据。
@@ -12,9 +15,9 @@
 
   - class的定义在三方包中：开发者无法手动对class中需要观察的属性加上@Trace标签，可以使用makeObserved使得当前对象可以被观察。
 
-  - 当前类的成员属性不能被修改：因为@Trace观察类属性会动态修改类的属性，这个行为在@Sendable装饰的class中是不被允许的，可以使用makeObserved。
+  - 当前类的成员属性不能被修改：因为@Trace观察类属性会动态修改类的属性，这个行为在@Sendable装饰的class中是不被允许的，此时可以使用makeObserved。
 
-  - interface或者JSON.parse返回的匿名对象：这类场景往往没有明确的class声明，开发者无法使用@Trace标记当前属性可以被观察，可以使用makeObserved。
+  - interface或者JSON.parse返回的匿名对象：这类场景往往没有明确的class声明，开发者无法使用@Trace标记当前属性可以被观察，此时可以使用makeObserved。
 
 
 - 使用makeObserved接口需要导入UIUtils。

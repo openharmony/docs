@@ -5325,7 +5325,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ### packToData<sup>13+</sup>
 
-packToData(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
+packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -5338,7 +5338,7 @@ packToData(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
 | source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
 
 **错误码：**
 
@@ -5347,7 +5347,7 @@ packToData(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5382,7 +5382,7 @@ imagePackerApi.packToData(imageSourceApi, packOpts)
 
 ### packToData<sup>13+</sup>
 
-packToData(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
+packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -5395,7 +5395,7 @@ packToData(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 | 参数名 | 类型                            | 必填 | 说明               |
 | ------ | ------------------------------- | ---- | ------------------ |
 | source | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap源。 |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
 
 **返回值：**
 
@@ -5410,7 +5410,7 @@ packToData(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5760,7 +5760,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5821,7 +5821,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5875,7 +5875,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5937,7 +5937,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -8146,10 +8146,10 @@ PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)�
 
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
-| NONE                | 0      | 默认为最近邻缩放算法。        |
-| LOW                 | 1      | 双线性缩放算法。     |
-| MEDIUM              | 2      | 双线性缩放算法，同步开启mipmap。|
-| HIGH                | 3      | cubic缩放算法。 |
+| NONE                | 0      | 最近邻插值算法。   |
+| LOW                 | 1      | 双线性插值算法。   |
+| MEDIUM              | 2      | 双线性插值算法，同时开启Mipmap。缩小图片时建议使用。   |
+| HIGH                | 3      | 三次插值算法。   |
 
 ## 补充说明
 ### SVG标签说明

@@ -7,6 +7,8 @@ Defines a set of animation APIs of ArkUI on the native side.
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <arkui/native_animate.h>
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Since**: 12

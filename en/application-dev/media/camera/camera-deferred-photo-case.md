@@ -1,5 +1,7 @@
 # High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 This topic provides sample code that covers the complete high-performance photo capture process to help you understand the complete API calling sequence.
 
 Before referring to the sample code, you are advised to read [High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Photo Capture](camera-shooting.md).
@@ -51,14 +53,14 @@ async function savePicture(photoObj: camera.Photo): Promise<void> {
   await photoObj.release(); 
 }
 
-// Flush the thumbnail by calling the mediaLibrary API.
+// Flush the thumbnail by calling the media library API.
 async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
   try {
     // Create a photoAsset.
     let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let testFileName = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await accessHelper.createAsset(testFileName);
-    // Pass the thumbnail proxy class object to the mediaLibrary.
+    // Pass the thumbnail proxy class object to the media library.
     let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
     mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
     let res = await accessHelper.applyChanges(mediaRequest);
@@ -242,7 +244,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
       AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
     });
-    // Call the mediaLibrary API to flush the thumbnail.
+    // Call the media library API to flush the thumbnail.
     saveDeferredPhoto(proxyObj).then(() => {
       // Release the thumbnail proxy class object after the flushing is complete.
       proxyObj.release();

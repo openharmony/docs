@@ -13,7 +13,7 @@ Since API version 10, ArkTS further strengthens its static check and analysis in
 
 - Restricted operator semantics: For performance and code readability purposes, ArkTS restricts the semantics of some operators. For example, it confines the use of unary plus operators to numbers.
 
-- Structural typing not supported. The support for structural typing requires a lot of consideration and careful implementation in the language, compiler, and runtime. Currently, ArkTS does not support this feature. It may be supported in later versions depending on the requirements and feedback.
+- Structural typing not supported. The support for structural typing requires a lot of considerations and careful implementation in the language, compiler, and runtime. Currently, ArkTS does not support this feature. It may be supported in later versions depending on the requirements and feedback.
 
 
 The added features offered by ArkTS for the ArkUI framework include the following:
@@ -31,4 +31,4 @@ ArkTS is compatible with the TS and JavaScript (JS) ecosystem, so that you can w
 
 ArkTS will continue to accommodate ever-changing application development and running requirements, and gradually provides more features, such as enhanced parallelization and concurrency, improved system, and distributed development paradigm.
 
-For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-commonlibrary-overview.md).
+For details about the ArkTS language, see [Introduction to ArkTS](../arkts-utils/arkts-overview.md).

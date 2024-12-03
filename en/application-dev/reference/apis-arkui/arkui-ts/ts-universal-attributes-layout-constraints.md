@@ -22,7 +22,7 @@ Sets the aspect ratio of the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br><br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **Row** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **Row** component is 0.|
+| value  | number | Yes  | Aspect ratio of the component, which can be obtained using the following formula: Width/Height. If **width**, **height**, and **aspectRatio** are all set, **height** is ignored, and the width and height are calculated based on **width** and aspectRatio. After **aspectRatio** is set, the width and height of the component are constrained by the size of the parent component's content area.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br><br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **Row** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **Row** component is 0.|
 
 ## displayPriority
 
@@ -58,7 +58,7 @@ Describes the rounding strategy for component pixel-level alignment.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | Yes| Rounding strategy for component pixel-level alignment.<br>**NOTE**<br>This attribute is applicable in scenarios where artifacts occur due to floating-point drawing.|
+| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | Yes| Rounding strategy for component pixel-level alignment.<br>**NOTE**<br>This attribute is applicable in scenarios where artifacts occur due to floating-point drawing.<br>The current pixel rounding rule is as follows:<br>In the horizontal direction, the distance from the component's left and right boundaries to the screen's left edge is rounded.<br>In the vertical direction, the distance from the component's top and bottom boundaries to the screen's top edge is rounded.<br>After the rounded positions of the top, bottom, left, and right boundaries are calculated, the final width and height of the component can be determined. Therefore, the rounding result is not only related to the component's width and height but also to its position. Even if the component's width and height are set to be the same, due to different floating-point positions described, the final width and height of the component may also be different after rounding.|
 
 ## Example
 

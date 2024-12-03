@@ -42,8 +42,8 @@ An error occurs when the NFC service executes the tag service logic.
 5. Binding with the NFC service has not been established.
 
 **Solution**
-1. Check whether the NFC parameters match the API to invoke.
-2. Enable NFC for the device.
+1. Check whether the NFC parameters match the API to call.
+2. Instruct the user to enable NFC if it is disabled.
 3. Connect to the tag and then perform the read and write operations.
 4. Touch and read the card again.
 5. Exit the app and read the card again.
@@ -91,10 +91,28 @@ Tag I/O operation failed.
 The NFC tag I/O operation fails.
 
 **Possible Causes**
-1. The NFC tag does not support the read/write operation performed.
+1. The NFC tag does not support the read/write operation.
 
 **Solution**
 1. Implement error handling and display error messages based on service scenarios.
+
+## 3100301
+
+**Error Message**
+
+Card emulation running state is abnormal in service.
+
+**Description**
+
+An error occurs when the NFC service executes the card emulation service logic.
+
+**Possible Causes**
+1. NFC is disabled during card emulation.
+2. The NFC chip returns an error status or response timeout.
+
+**Solution**
+1. Instruct the user to enable NFC if it is disabled.
+2. Instruct the user to disable and enable NFC to initialize the hardware again.
 
 ## 3200101
 
@@ -108,7 +126,7 @@ An error occurs when the service logic of the active NFC tag is executed.
 
 **Possible Causes**
 1. The parameter values of the active NFC tag do not match the API called.
-2. The active NFC tag chip does not respond within the specified time or returns an error state.
+2. The active NFC tag chip does not respond within the specified time or returns an error status.
 
 **Solution**
 1. Check that the active NFC tag parameters match the API called.

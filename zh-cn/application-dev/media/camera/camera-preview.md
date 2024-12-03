@@ -37,7 +37,7 @@
    }
    ```
 
-4. 使能。通过[Session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+4. 使能。通过[Session.start](../../reference/apis-camera-kit/js-apis-camera.md#start11)方法输出预览流，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
@@ -102,7 +102,7 @@
   }
   ```
 
-- 通过注册固定的error回调函数获取监听预览输出错误结果，回调返回预览输出接口使用错误时对应的错误码，错误码类型参见[CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+- 通过注册固定的error回调函数获取监听预览输出错误结果，回调返回预览输出接口使用错误时对应的错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
   function onPreviewOutputError(previewOutput: camera.PreviewOutput): void {

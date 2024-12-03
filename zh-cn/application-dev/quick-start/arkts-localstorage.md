@@ -7,6 +7,10 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参�
 本文仅介绍LocalStorage使用场景和相关的装饰器：\@LocalStorageProp和\@LocalStorageLink。
 
 
+在阅读本文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+
+LocalStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发Storage对应key的增删改查，建议配合[LocalStorage API文档](../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9)阅读。
+
 > **说明：**
 >
 > LocalStorage从API version 9开始支持。
@@ -31,12 +35,6 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 - [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量与LocalStorage中给定属性建立单向同步关系。
 
 - [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量与LocalStorage中给定属性建立双向同步关系。
-
-
-## 限制条件
-
-- LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
-- LocalStorage是页面级存储，[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## \@LocalStorageProp
@@ -178,6 +176,30 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 ![LocalStorageLink_framework_behavior](figures/LocalStorageLink_framework_behavior.png)
 
 
+## 限制条件
+
+1. \@LocalStorageProp/\@LocalStorageLink的参数必须为string类型，否则编译期会报错。
+
+```ts
+let storage = new LocalStorage();
+storage.setOrCreate('PropA', 48);
+
+// 错误写法，编译报错
+@LocalStorageProp() localStorageProp: number = 1;
+@LocalStorageLink() localStorageLink: number = 2;
+
+// 正确写法
+@LocalStorageProp('PropA') localStorageProp: number = 1;
+@LocalStorageLink('PropA') localStorageLink: number = 2;
+```
+
+2. \@StorageProp与\@StorageLink不支持装饰Function类型的变量，框架会抛出运行时错误。
+
+3. LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
+
+4. LocalStorage是页面级存储，[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
+
+
 ## 使用场景
 
 
@@ -191,9 +213,9 @@ let propA: number | undefined = storage.get('PropA') // propA == 47
 let link1: SubscribedAbstractProperty<number> = storage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = storage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() == 47
-link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
-link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
+link1.set(48); // 双向同步: link1.get() == link2.get() == prop.get() == 48
+prop.set(1); // 单向同步: prop.get() == 1; 但 link1.get() == link2.get() == 48
+link1.set(49); // 双向同步: link1.get() == link2.get() == prop.get() == 49
 ```
 
 
@@ -253,12 +275,12 @@ struct CompA {
 
   build() {
     Column({ space: 15 }) {
-      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
+      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // 由于LocalStorage中PropA已经被初始化，因此this.parentLinkNumber的值为47
         .onClick(() => {
           this.parentLinkNumber += 1;
         })
 
-      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // initial value from LocalStorage will be 50, because 'PropB' initialized already
+      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // 由于LocalStorage中PropB已经被初始化，因此this.parentLinkObject.code的值为50
         .onClick(() => {
           this.parentLinkObject.code += 1;
         })
@@ -462,13 +484,10 @@ windowStage.loadContent('pages/Index', this.storage);
 import { router } from '@kit.ArkUI';
 
 // 通过getShared接口获取stage共享的LocalStorage实例
-let storage = LocalStorage.getShared()
-
-@Entry(storage)
+@Entry({ storage: LocalStorage.getShared() })
 @Component
 struct Index {
-  // can access LocalStorage instance using 
-  // @LocalStorageLink/Prop decorated variables
+  // 可以使用@LocalStorageLink/Prop与LocalStorage实例中的变量建立联系
   @LocalStorageLink('PropA') propA: number = 1;
 
   build() {
@@ -495,9 +514,7 @@ struct Index {
 // Page.ets
 import { router } from '@kit.ArkUI';
 
-let storage = LocalStorage.getShared()
-
-@Entry(storage)
+@Entry({ storage: LocalStorage.getShared() })
 @Component
 struct Page {
   @LocalStorageLink('PropA') propA: number = 2;

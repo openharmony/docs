@@ -2071,11 +2071,11 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 constructor(name: string, priority?: Priority)
 
-SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回相同的串行队列。
+SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回同一个串行队列。
 
 > **说明：**
 >
-> - 不支持在同一线程重复构造相同的串行队列。
+> - 底层通过单例模式保证了：创建同名串行队列时，获取到同一个实例。
 > - 不支持修改串行队列的优先级。
 
 **系统能力：** SystemCapability.Utils.Lang

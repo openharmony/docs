@@ -544,7 +544,7 @@ DAC模块适配包含以下四个步骤：
     
         static void VirtualDacRelease(struct HdfDeviceObject *device)
         {
-            // 定义设备资源子节点结构体指
+            // 定义设备资源子节点结构体指针
             const struct DeviceResourceNode *childNode = NULL;
             // 入参指针判空
             if (device == NULL || device->property == NULL) {

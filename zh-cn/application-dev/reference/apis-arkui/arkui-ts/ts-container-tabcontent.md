@@ -625,7 +625,9 @@ onWillHide(event: VoidCallback)
 
 ## 示例
 
-### 示例1
+### 示例1（自定义页签切换联动）
+
+本示例通过onAnimationStart、onChange实现切换时自定义tabBar和TabContent的联动。
 
 ```ts
 // xxx.ets
@@ -721,6 +723,7 @@ struct TabContentExample {
       .onChange((index: number) => {
         // currentIndex控制TabContent显示页签
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
@@ -740,7 +743,9 @@ struct TabContentExample {
 
 ![tabContent](figures/tabContent1.gif)
 
-### 示例2
+### 示例2（自定义侧边页签）
+
+本示例通过vertical、barPosition实现侧边页签。
 
 ```ts
 // xxx.ets
@@ -786,6 +791,7 @@ struct TabContentExample {
       .onChange((index: number) => {
         // currentIndex控制TabContent显示页签
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
@@ -805,7 +811,9 @@ struct TabContentExample {
 
 ![tabContent](figures/tabContent2.gif)
 
-### 示例3
+### 示例3（子页签/底部页签/侧边页签样式对比）
+
+本示例使用了SubTabBarStyle、BottomTabBarStyle实现了子页签、底部页签和侧边页签。
 
 ```ts
 // xxx.ets
@@ -975,7 +983,9 @@ struct TabBarStyleExample {
 
 ![tabbarStyle](figures/TabBarStyle.jpeg)
 
-### 示例4
+### 示例4（设置子页签下划线基本属性）
+
+本示例通过SubTabBarStyle中的indicator属性，实现了子页签下划线基本属性的展示。
 
 ```ts
 // xxx.ets
@@ -1211,7 +1221,9 @@ struct TabsAttr {
 
 ![tabContent3](figures/tabContent3.gif)
 
-### 示例5
+### 示例5（设置子页签文本自适应高度属性）
+
+本示例通过heightAdaptivePolicy实现了子页签文本高度自适应。
 
 ```ts
 // xxx.ets
@@ -1299,7 +1311,9 @@ struct TabsTextOverflow {
 
 ![tabContent4](figures/tabContent4.png)
 
-### 示例6
+### 示例6（设置底部页签基本属性）
+
+本示例通过padding、verticalAlign、layoutMode、symmetricExtensible实现了底部页签基本属性的展示。
 
 ```ts
 // xxx.ets
@@ -1449,7 +1463,7 @@ struct TabContentExample6 {
 
 ![tabContent4](figures/tabContent5.gif)
 
-### 示例7
+### 示例7（设置子页签/底部页签文本颜色）
 
 本示例通过labelStyle中的unselectedColor和selectedColor改变底部页签以及子页签的文本颜色。
 通过iconStyle中的unselectedColor和selectedColor改变底部页签的图标颜色。
@@ -1543,8 +1557,10 @@ struct TabBarStyleExample {
 
 ![tabContent](figures/tabContent6.gif)
 
-### 示例8
+### 示例8（设置自定义子页签）
+
 该示例实现了通过ComponentContent设置SubTabBarStyle。
+
 ```ts
 // xxx.ets
 import { ComponentContent, UIContext } from "@kit.ArkUI"
@@ -1620,8 +1636,10 @@ struct Index {
 
 ![tabContent7](figures/tabContent7.gif)
 
-### 示例9
+### 示例9（设置底部页签使用symbol图标）
+
 该示例实现了BottomTabBarStyle图片传入Symbol。
+
 ```ts
 // xxx.ets
 import { SymbolGlyphModifier } from '@kit.ArkUI'

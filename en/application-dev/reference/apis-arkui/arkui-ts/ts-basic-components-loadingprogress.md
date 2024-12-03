@@ -2,6 +2,8 @@
 
 The **LoadingProgress** component is used to create a loading animation.
 
+The loading animation stops when the component is invisible. The component's visibility is determined by the value of **ratios** in the [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event callback: If the value is greater than 0, the component is visible.
+
 >  **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
@@ -22,6 +24,8 @@ Creates a **LoadingProgress** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -38,11 +42,11 @@ Sets the foreground color for the **LoadingProgress** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                                        |
+| Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Foreground color of the **LoadingProgress** component.<br>Default value:<br>API version 10 or earlier: **'#99666666'**<br>API version 11 or later: **'#ff666666'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Foreground color of the **LoadingProgress** component.<br>Default value:<br>API version 10 or earlier: **'#99666666'**<br>API version 11 or later: **'#ff666666'**|
 
 ### enableLoading<sup>10+</sup>
 
@@ -50,17 +54,16 @@ enableLoading(value: boolean)
 
 Sets whether to show the loading animation. The component still takes up space in the layout when the loading animation is not shown. The universal attribute [Visibility.Hidden](ts-universal-attributes-visibility.md#visibility) hides the entire component area, including the borders and paddings. In contrast, **enableLoading=false** only hides the loading animation itself and does not affect the borders or other elements.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                          |
+| Name| Type   | Mandatory| Description                                          |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| value  | boolean | Yes  | Whether to show the loading animation.<br>Default value: **true** |
+| value  | boolean | Yes  | Whether to show the loading animation.<br>Default value: **true**|
 
 ### contentModifier<sup>12+</sup>
 
@@ -68,13 +71,15 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 Creates a content modifier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                            |
+| Name| Type                                         | Mandatory| Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<LoadingProgressConfiguration>](#loadingprogressconfiguration12) | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
+| modifier  | [ContentModifier\<LoadingProgressConfiguration>](#loadingprogressconfiguration12)| Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
 ## Events
 
@@ -84,9 +89,13 @@ The [universal events](ts-universal-events-click.md) are supported.
 
 You need a custom class to implement the **ContentModifier** API.
 
-| Name | Type   |    Default Value     |  Description             |
-| ------ | ------ | ------ |-------------------------------- |
-| enableloading | boolean | true |Whether to show the loading animation.<br>Default value: **true** |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   |    Read Only   |    Optional   |  Description             |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| enableLoading | boolean | No| No|Whether to show the loading animation.<br>Default value: **true**|
 
 ## Example
 
@@ -241,7 +250,7 @@ struct LoadingProgressDemoExample {
         }.width('100%').margin({ top: 5 })
       }.height('85%')
 
-      Button ('Switch config.enableloading').onClick(() => {
+      Button ('Switch config.enableloading').onClick () => {
         this.clickFlag++
         this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length
         console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex])

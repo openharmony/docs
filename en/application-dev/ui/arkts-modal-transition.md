@@ -152,7 +152,7 @@ struct BindContentCoverDemo {
       }
       .padding({ top: 20, bottom: 20 })
 
-      Text ('OK')
+      Text('OK')
         .width('90%')
         .height(40)
         .textAlign(TextAlign.Center)

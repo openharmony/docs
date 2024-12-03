@@ -400,7 +400,7 @@ The \@Param decorator has the following constraints:
   }
   ```
 
-- \@Param decorated variables cannot be changed in the child component. However, when the decorated variable is of object type, changing the object properties in the child component is allowed.
+- The \@Param decorated variables cannot be changed in the child component. However, when the decorated variable is of object type, changing the object properties in the child component is allowed.
 
   ```ts
   @ObservedV2
@@ -433,7 +433,7 @@ The \@Param decorator has the following constraints:
         Text(`info.name: ${this.info.name}`)
         Button("change info")
           .onClick(() => {
-            this.info = new Info("Jack"); // Incorrect usage. The @Param variables cannot be changed in the child component.
+            this.info = new Info("Jack"); // Incorrect usage. The @Param decorated variable cannot be changed in the child component.
           })
         Button("Child change info.name")
           .onClick(() => {

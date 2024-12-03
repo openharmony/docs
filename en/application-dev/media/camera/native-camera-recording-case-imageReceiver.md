@@ -2,6 +2,8 @@
 
 ## Development Process
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 After obtaining the output stream capabilities supported by the camera, create a video stream. The development process is as follows:
 
 ![Recording Development Process](figures/recording-ndk-imageReceiver-development-process.png)

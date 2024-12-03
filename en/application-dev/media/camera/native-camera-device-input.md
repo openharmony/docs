@@ -1,5 +1,7 @@
 # Device Input Management (C/C++)
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 A camera application invokes and controls a camera device to perform basic operations such as preview, photo capture, and video recording.
 
 ## How to Develop
@@ -104,25 +106,24 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 5. Call [OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode) to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**. Different types of output streams must be added based on the value of [Camera_SceneMode](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode) specified by the camera device.
 
-
-      ```c++
-      // Obtain the output streams supported by the camera device.
-      Camera_OutputCapability* cameraOutputCapability = nullptr;
-      const Camera_Profile* previewProfile = nullptr;
-      const Camera_Profile* photoProfile = nullptr;
-      ret = OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(cameraManager, &cameras[cameraDeviceIndex], sceneModes[sceneModeIndex]
+   ```c++
+   // Obtain the output streams supported by the camera device.
+   Camera_OutputCapability* cameraOutputCapability = nullptr;
+   const Camera_Profile* previewProfile = nullptr;
+   const Camera_Profile* photoProfile = nullptr;
+   ret = OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(cameraManager, &cameras[cameraDeviceIndex], sceneModes[sceneModeIndex]
                                                                      &cameraOutputCapability);
-      if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
-      }
-      // The following uses the NORMAL_PHOTO mode as an example. You need to add the preview stream and photo stream.
-      if (cameraOutputCapability->previewProfilesSize < 0) {
-         OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
-      }
-      previewProfile = cameraOutputCapability->previewProfiles[0];
+   if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+   OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
+   }
+   // The following uses the NORMAL_PHOTO mode as an example. You need to add the preview stream and photo stream.
+   if (cameraOutputCapability->previewProfilesSize < 0) {
+   OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
+   }
+   previewProfile = cameraOutputCapability->previewProfiles[0];
    
-      if (cameraOutputCapability->photoProfilesSize < 0) {
-         OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
-      }
-      photoProfile = cameraOutputCapability->photoProfiles[0];
-      ```
+   if (cameraOutputCapability->photoProfilesSize < 0) {
+   OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
+   }
+   photoProfile = cameraOutputCapability->photoProfiles[0];
+   ```

@@ -13,7 +13,7 @@ The **Shape** component is the parent component of the drawing components. The a
 
 ## Child Components
 
-The following child components are supported: [\<Rect>](ts-drawing-components-rect.md), [\<Path>](ts-drawing-components-path.md), [Circle](ts-drawing-components-circle.md), [Ellipse](ts-drawing-components-ellipse.md), [Polyline](ts-drawing-components-polyline.md), [\<Polygon>](ts-drawing-components-polygon.md), [Image](ts-basic-components-image.md), [Text](ts-basic-components-text.md), [Column](ts-container-column.md), [Row](ts-container-row.md), Shape
+The following child components are supported: Rect](ts-drawing-components-rect.md), [Path](ts-drawing-components-path.md), [Circle](ts-drawing-components-circle.md), [Ellipse](ts-drawing-components-ellipse.md), [Polyline](ts-drawing-components-polyline.md), [Polygon](ts-drawing-components-polygon.md), [Image](ts-basic-components-image.md), [Text](ts-basic-components-text.md), [Column](ts-container-column.md), [Row](ts-container-row.md), Shape
 
 
 ## APIs
@@ -22,32 +22,258 @@ Shape(value?: PixelMap)
 
 Since API version 9, this API is supported in ArkTS widgets, except that **PixelMap** objects are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No| - | Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No| Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target.|
 
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Default Value| Description|
+### viewPort
+
+viewPort(value: { x?: number | string; y?: number | string; width?: number | string; height?: number | string })
+
+Sets the viewport of the shape.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | View port of the shape.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>If of the string type, the value cannot be a percentage.<br>An invalid value is handled as the default value.|
-| fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | Color of the fill area.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| fillOpacity | [Length](ts-types.md#length) | 1 | Opacity of the fill area.<br>The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.<br>This API can be used in ArkTS widgets since API version 9.|
-| stroke | [ResourceColor](ts-types.md#resourcecolor) | - | Stroke color. If this attribute is not set, the component does not have any stroke.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>If the value is invalid, no stroke will be drawn.|
-| strokeDashArray | Array&lt;[Length](ts-types.md#length)&gt; | [] | Stroke dashes.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>Line segments may overlap when they intersect. An invalid value is handled as the default value.|
-| strokeDashOffset | number \| string | 0 | Offset of the start point for drawing the stroke.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>An invalid value is handled as the default value.|
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | Cap style of the stroke.<br>This API can be used in ArkTS widgets since API version 9.|
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.<br>This API can be used in ArkTS widgets since API version 9.|
-| strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute works only when **strokeLineJoin** is set to **LineJoinStyle.Miter**.  The value must be greater than or equal to 1.0. If the value is in the [0, 1) range, the value **1.0** will be used. In other cases, the default value will be used.|
-| strokeOpacity | [Length](ts-types.md#length) | 1 | Stroke opacity.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.|
-| strokeWidth | number \| string | 1 | Stroke width.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>If of the string type, this parameter cannot be set in percentage. A percentage is processed as 1px.|
-| antiAlias | boolean | true | Whether anti-aliasing is enabled.<br>This API can be used in ArkTS widgets since API version 9.|
-| mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | Mesh effect. The first parameter is an array of lengths (column + 1) * (row + 1) * 2, which records the position of each vertex of the distorted bitmap. The second parameter is the number of columns in the mesh matrix. The third parameter is the number of rows in the mesh matrix.<br>This API can be used in ArkTS widgets since API version 9.|
+| value | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | Yes| Viewport of the shape.<br>Default value: **{ x:0, y:0, width:0, height:0 } **|
+
+### fill
+
+fill(value: ResourceColor)
+
+Sets the color of the fill area. An invalid value is handled as the default value.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                  |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the fill area.<br>Default value: **Color.Black**|
+
+### fillOpacity
+
+fillOpacity(value: number | string | Resource)
+
+Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                          |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------ |
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Opacity of the fill area.<br>Default value: **1**|
+
+### stroke
+
+stroke(value: ResourceColor)
+
+Sets the stroke color. If this attribute is not set, the component does not have any stroke. If the value is invalid, no stroke will be drawn.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description      |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Stroke color.|
+
+### strokeDashArray
+
+strokeDashArray(value: Array&lt;any&gt;)
+
+Sets the stroke dashes. An invalid value is handled as the default value.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description                     |
+| ------ | ---------------- | ---- | ------------------------- |
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+
+### strokeDashOffset
+
+strokeDashOffset(value: number | string)
+
+Sets the offset of the start point for drawing the stroke. An invalid value is handled as the default value.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                      | Mandatory| Description                                |
+| ------ | -------------------------- | ---- | ------------------------------------ |
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+
+### strokeLineCap
+
+strokeLineCap(value: LineCapStyle)
+
+Sets the cap style of the stroke.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                             | Mandatory| Description                                            |
+| ------ | ------------------------------------------------- | ---- | ------------------------------------------------ |
+| value  | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | Yes  | Cap style of the stroke.<br>Default value: **LineCapStyle.Butt**|
+
+### strokeLineJoin
+
+strokeLineJoin(value: LineJoinStyle)
+
+Sets the join style of the stroke.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                              |
+| ------ | --------------------------------------------------- | ---- | -------------------------------------------------- |
+| value  | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | Yes  | Join style of the stroke.<br>Default value: **LineJoinStyle.Miter**|
+
+### strokeMiterLimit
+
+strokeMiterLimit(value: number | string)
+
+Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter. This attribute works only when **strokeLineJoin** is set to **LineJoinStyle.Miter**.
+
+The value must be greater than or equal to 1.0. If the value is in the [0, 1) range, the value **1.0** will be used. In other cases, the default value will be used.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                      | Mandatory| Description                                          |
+| ------ | -------------------------- | ---- | ---------------------------------------------- |
+| value  | number \| string | Yes  | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**|
+
+### strokeOpacity
+
+strokeOpacity(value: number | string | Resource)
+
+Sets the stroke opacity. The value range is [0.0, 1.0]. If the value passed in is less than **0.0**, the opacity is set to **0.0**. If the value passed in is greater than **1.0**, the opacity is set to **1.0**. Any other value is regarded as **1.0**.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                      |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------- |
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Stroke opacity.<br>Default value: **1**|
+
+### strokeWidth
+
+strokeWidth(value: number | string)
+
+Sets the stroke width. If of the string type, this parameter cannot be set in percentage. A percentage is processed as 1px.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                    |
+| ------ | ---------------------------- | ---- | ------------------------ |
+| value  | number \| string | Yes  | Stroke width.<br>Default value: **1**|
+
+### antiAlias
+
+antiAlias(value: boolean)
+
+Specifies whether anti-aliasing is enabled.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                 |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
+
+### mesh<sup>8+</sup>
+
+mesh(value: Array&lt;number&gt;, column: number, row: number)
+
+Sets the mesh effect.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type               | Mandatory| Description                                                        |
+| ------ | ------------------- | ---- | ------------------------------------------------------------ |
+| value  | Array&lt;number&gt; | Yes  | An array of lengths (column + 1) * (row + 1) * 2, which records the position of each vertex of the distorted bitmap.|
+| column | number              | Yes  | Number of columns in the mesh matrix.                                              |
+| row    | number              | Yes  | Number of rows in the mesh matrix.                                              |
 
 ## Example
 

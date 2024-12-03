@@ -14,6 +14,8 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
 
+如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)<!--RP1--><!--RP1End-->。
+
 ## 基本知识
 
 ### 声明
@@ -138,7 +140,7 @@ let instance: Class <void>
 
 #### `Object`类型
 
-`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。
+`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除非基本类型外的类型。
 
 #### `Array`类型
 
@@ -878,7 +880,7 @@ class Person {
     this.name = n;
   }
 
-  // 编译时错误：name可以是"undefined"，所以将这个API的返回值类型标记为string
+  // 编译时错误：name可以是"undefined"，所以这个API的返回值类型不能仅定义为string类型
   getNameWrong(): string {
     return this.name;
   }
@@ -1409,6 +1411,16 @@ interface ExtendedStyle extends Style {
 
 继承接口包含被继承接口的所有属性和方法，还可以添加自己的属性和方法。
 
+
+### 抽象类和接口
+
+抽象类与接口都无法实例化。抽象类是类的抽象，抽象类用来捕捉子类的通用特性，接口是行为的抽象。在ArkTS中抽象类与接口的区别如下：
+
+* 一个类只能继承一个抽象类，而一个类可以实现一个或多个接口；
+* 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+* 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
+* 抽象类可以有构造函数，而接口不能有构造函数。
+
 ## 泛型类型和函数
 
 泛型类型和函数允许创建的代码在各种类型上运行，而不仅支持单一类型。
@@ -1718,7 +1730,7 @@ async function test() {
 
 更多的使用动态import的业务场景和使用实例见[动态import](../arkts-utils/arkts-dynamic-import.md)。
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### 顶层语句
 

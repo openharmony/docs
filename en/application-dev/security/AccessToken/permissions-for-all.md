@@ -3,7 +3,7 @@
 Before requesting permissions for your application, read and understand the [Workflow for Requesting Permissions](determine-application-mode.md) and this topic to determine the permissions required.
 
 > **NOTE**
-> 
+>
 > "Enable via ACL" is not involved for permissions of the normal level.
 
 ## system_grant Permissions
@@ -440,11 +440,14 @@ For security purposes, this permission cannot be granted to applications in a di
 
 **Procedure**:
 
-1. Request the foreground location permissions in the dialog box. You can request either of the following permissions:
+1. [Declare permissions](declare-permissions.md) in the **module.json5** file.
+
+   You must request the foreground location permission before requesting the background permission. Therefore, you must declare both the ohos.permission.LOCATION_IN_BACKGROUND permission and the foreground location permission. The foreground location permissions include the following:
    - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location).
    - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) and [ohos.permission.LOCATION](#ohospermissionlocation).
-2. After the user grants the foreground location permissions, display a message to direct the user to go to the **Settings** screen to grant the ohos.permission.LOCATION_IN_BACKGROUND permission.
-3. The permission is granted to the application if the user selects **Always allow** on the **Settings** screen.
+2. Request the foreground location permission from the user through a pop-up window.
+3. After the user grants the foreground location permissions, display a message to direct the user to go to the **Settings** screen to grant the ohos.permission.LOCATION_IN_BACKGROUND permission.
+4. The permission is granted to the application if the user selects **Always allow** on the **Settings** screen.
 
    Paths:
    <!--RP1-->

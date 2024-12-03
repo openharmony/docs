@@ -25,17 +25,17 @@ The @AnimatableExtend decorator is used to define an attribute method for the no
 ```
 
 - \@AnimatableExtend can be defined only globally.
-- The parameter of the \@AnimatableExtend decorated function must be of the number type or a custom type that implements the **AnimtableArithmetic\<T\>** API.
+- The parameter of the \@AnimatableExtend decorated function must be of the number type or a custom type that implements the **AnimatableArithmetic\<T\>** API.
 - In the \@AnimatableExtend decorated function body, only the attribute methods of the component specified in brackets immediately following \@AnimatableExtend can be called.
 
-### AnimtableArithmetic\<T\> Description
-To perform animation when complex data types are involved, you must implement the addition, subtraction, multiplication, and equivalence judgment functions in the **AnimtableArithmetic\<T\>** API.
-| Name| Input Parameter Type| Return Value Type| Description
-| -------- | -------- |-------- |-------- |
-| plus | AnimtableArithmetic\<T\> | AnimtableArithmetic\<T\> | Addition function.|
-| subtract | AnimtableArithmetic\<T\> | AnimtableArithmetic\<T\> | Subtraction function.|
-| multiply | number | AnimtableArithmetic\<T\> | Multiplication function.|
-| equals | AnimtableArithmetic\<T\> | boolean | Equivalence judgment function.|
+### Available APIs
+To perform animation when complex data types are involved, you must implement the addition, subtraction, multiplication, and equivalence judgment functions in the **AnimatableArithmetic\<T\>** API.
+| Name| Input Parameter Type| Return Value Type | Description |
+| -------- | --------  |--------   |--------  |
+| plus | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Addition function.|
+| subtract | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Subtraction function.|
+| multiply | number | AnimatableArithmetic\<T\> | Multiplication function.|
+| equals | AnimatableArithmetic\<T\> | boolean | Equivalence judgment function.|
 
 ## Example
 

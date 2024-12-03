@@ -206,7 +206,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
 ![vertial-arrangement-child-column](figures/vertial-arrangement-child-column.png)
 
-- justifyContent(FlexAlign.Start)：元素在垂直方向方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
+- justifyContent(FlexAlign.Start)：元素在垂直方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
 
   ```ts
   Column({}) {
@@ -223,7 +223,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700501](figures/zh-cn_image_0000001562700501.png)
 
-- justifyContent(FlexAlign.Center)：元素在垂直方向方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
+- justifyContent(FlexAlign.Center)：元素在垂直方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
 
   ```ts
   Column({}) {
@@ -240,7 +240,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700517](figures/zh-cn_image_0000001562700517.png)
 
-- justifyContent(FlexAlign.End)：元素在垂直方向方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
+- justifyContent(FlexAlign.End)：元素在垂直方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
 
   ```ts
   Column({}) {

@@ -405,11 +405,11 @@ mWorker.terminate();
 // Worker的实现为默认模板，此处省略
 ```
 
-## 其它
+## 防止重复释放获取的buffer
 
-**【规则】** 使用napi_get_arraybuffer_info接口，第三个参数data资源开发者不允许释放，data的生命周期受引擎管理。
+**【规则】** 使用napi_get_arraybuffer_info等接口，参数data资源开发者不允许释放，data的生命周期受引擎管理。
 
-napi_get_arraybuffer_info接口定义如下：
+这里以napi_get_arraybuffer_info为例，该接口定义如下：
 
 ```cpp
 napi_get_arraybuffer_info(napi_env env, napi_value arraybuffer, void** data, size_t* byte_length)
@@ -428,6 +428,18 @@ size_t arrayBufferSize;
 napi_status result = napi_get_arraybuffer_info(env, arrayBuffer, &arrayBufferPtr, &arrayBufferSize);
 delete arrayBufferPtr; // 这一步是禁止的，创建的arrayBufferPtr生命周期由引擎管理，不允许用户自己delete，否则会double free
 ```
+
+|Node-API中受当前规则约束的接口有：|
+|----------------------------------|
+| napi_create_arraybuffer          |
+| napi_create_sendable_arraybuffer |
+| napi_get_arraybuffer_info        |
+| napi_create_buffer               |
+| napi_get_buffer_info             |
+| napi_get_typedarray_info         |
+| napi_get_dataview_info           |
+
+## 其他
 
 **【建议】** 合理使用napi_object_freeze和napi_object_seal来控制对象以及对象属性的可变性。
 

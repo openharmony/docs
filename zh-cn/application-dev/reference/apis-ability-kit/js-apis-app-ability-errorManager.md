@@ -13,6 +13,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 ## errorManager.on('error')
 
+> **注意：**
+> 
+> 在主线程注册errormanager.on接口，当前版本不支持捕获子线程（如：taskpool）中的异常。
+>
+> 使用errormanager.on接口应用不会退出，建议在回调函数执行完后，增加同步退出操作。
+
 on(type: 'error', observer: ErrorObserver): number
 
 注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。

@@ -37,7 +37,7 @@ Describes a resource in a scene.
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | No| No| Name. There is no special format requirement.|
 | resourceType | [SceneResourceType](#sceneresourcetype) | Yes| No| Scene resource type. The default value is undefined.|
-| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Resource to load. The default value is undefined.|
+| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | Yes| Yes| Resource to load. The default value is undefined.|
 
 ### destroy
 destroy(): void
@@ -189,7 +189,6 @@ Called when the animation starts to play. The start operation is triggered by ca
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 **Example**
-
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';

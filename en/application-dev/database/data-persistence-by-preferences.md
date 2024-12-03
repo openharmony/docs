@@ -91,7 +91,7 @@ The following table lists the APIs used for persisting user preference data. For
 
 3. Write data.
 
-   Use **putSync()** to save data to the cached **Preferences** instance. After data is written, you can use **flush()** to persist the **Preferences** instance data to a file if necessary.
+   Call **putSync()** to save data to the cached **Preferences** instance. After data is written, you can use **flush()** to persist the **Preferences** instance data to a file if necessary.
 
    > **NOTE**
    >
@@ -115,7 +115,7 @@ The following table lists the APIs used for persisting user preference data. For
 
 4. Read data.
 
-   Use **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned.
+   Call **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned.
 
    Example:
 
@@ -131,7 +131,7 @@ The following table lists the APIs used for persisting user preference data. For
 
 5. Delete data.
 
-   Use **deleteSync()** to delete a KV pair.<br>Example:
+   Call **deleteSync()** to delete a KV pair.<br>Example:
 
 
    ```ts
@@ -182,7 +182,7 @@ The following table lists the APIs used for persisting user preference data. For
 
 8. Delete a **Preferences** instance from the memory.
 
-   Use **deletePreferences()** to delete a **Preferences** instance from the memory. If the **Preferences** instance has a persistent file, the persistent file and its backup and corrupted files will also be deleted.
+   Call **deletePreferences()** to delete a **Preferences** instance from the memory. If the **Preferences** instance has a persistent file, the persistent file and its backup and corrupted files will also be deleted.
 
    > **NOTE**
    >

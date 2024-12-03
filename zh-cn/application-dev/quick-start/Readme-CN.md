@@ -30,6 +30,7 @@
     - [HSP转HAR指导](hsp-to-har.md)
     - [创建应用静态快捷方式](typical-scenario-configuration.md)
     - [创建应用分身](app-clone.md)
+    - [创建应用多实例](multiInstance.md)
     - [配置分层图标](layered-image.md)
 
 - [资源分类与访问](resource-categories-and-access.md)
@@ -60,9 +61,10 @@
     - [stateStyles：多态样式](arkts-statestyles.md)
     - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
     - [@Require装饰器：校验构造传参](arkts-require.md)
+    - [@Reusable装饰器：组件复用](arkts-reusable.md)
   - 状态管理
     - [状态管理概述](arkts-state-management-overview.md)
-    - 状态管理（V1稳定版）
+    - 状态管理（V1）
       - 管理组件拥有的状态
         - [\@State装饰器：组件内状态](arkts-state.md)
         - [\@Prop装饰器：父子单向同步](arkts-prop.md)
@@ -84,7 +86,7 @@
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
-    - 状态管理（V2试用版）
+    - 状态管理（V2）
       - V2所属装饰器
         - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
         - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
@@ -105,6 +107,9 @@
         - [getTarget接口：获取状态管理框架代理前的原始对象](arkts-new-getTarget.md)
         - [makeObserved接口：将非观察数据变为可观察数据](arkts-new-makeObserved.md)
       - [MVVM模式（状态管理V2）](arkts-mvvm-V2.md)
+    - V1V2混用和迁移指导
+      - [自定义组件混用场景指导](arkts-custom-component-mixed-scenarios.md)
+      - [V1->V2迁移指导](arkts-v1-v2-migration.md)
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

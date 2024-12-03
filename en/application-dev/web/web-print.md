@@ -1,6 +1,16 @@
 # Printing Frontend Pages
 
-With the **Web** component, you can print HTML pages through W3C standards-compliant APIs or application APIs. To start off, declare the [ohos.permission.PRINT](../security/AccessToken/declare-permissions.md) permission.
+With the **Web** component, you can print HTML pages through W3C standards-compliant APIs or application APIs.
+
+To start off, declare related permissions in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.PRINT"
+      }
+    ]
+  ```
 
 ## Initiating a Print Task Through the W3C Standards-compliant API
 The printing process with W3C is as follows: A print adapter is created, the print application is started, the current web page content is rendered, and the PDF file generated after rendering is transferred to the print framework through the file descriptor (FD). Use the **window.print()** method to print the current document or open the print dialog box. This method does not have any parameter; simply call it in JavaScript.
@@ -84,7 +94,7 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
   ```
 
 ## Initiating a Print Task Through the Application API
-On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter) to create a print adapter and pass the adapter to the **print** API to initiate printing.
+On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter11) to create a print adapter and pass the adapter to the **print** API to initiate printing.
 
 ```ts
 // xxx.ets

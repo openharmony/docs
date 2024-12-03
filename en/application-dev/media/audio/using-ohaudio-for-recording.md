@@ -2,9 +2,13 @@
 
 **OHAudio** is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
+OHAudio audio recording state transition
+
+![OHAudioCapturer status change](figures/ohaudiocapturer-status-change.png)
+
 ## Prerequisites
 
-To use the playback or recording capability of **OHAudio**, you must first import the corresponding header files.
+To use the recording capability of **OHAudio**, you must first import the corresponding header files.
 
 ### Linking the Dynamic Library in the CMake Script
 
@@ -201,3 +205,5 @@ Code snippet:
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```
+<!--RP1-->
+<!--RP1End-->

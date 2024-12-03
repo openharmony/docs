@@ -136,6 +136,8 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
 ## 示例
 
+该示例实现了折叠屏悬停能力。
+
 ```ts
 @Entry
 @Component

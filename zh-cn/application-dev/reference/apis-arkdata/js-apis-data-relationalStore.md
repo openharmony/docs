@@ -32,7 +32,12 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
 
-当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
+加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+
+| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+| ------- | -------------------------------- | ---- |
+| 非加密 | 加密                          | 将数据库以加密方式打开   |
+| 加密 | 非加密                          | 将数据库以非加密方式打开   |
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -128,7 +133,12 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
 
-当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
+加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
+
+| 当前开库的加密类型  | 首次创建数据库的加密类型           | 结果 |
+| ------- | -------------------------------- | ---- |
+| 非加密 | 加密                          | 将数据库以加密方式打开   |
+| 加密 | 非加密                          | 将数据库以非加密方式打开   |
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -544,7 +554,7 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
@@ -2594,7 +2604,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | table    | string                                     | 是   | 指定的目标表名。                                             |
-| values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。                                 |
+| values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。             |
 | callback | AsyncCallback&lt;number&gt;                | 是   | 指定callback回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
 
 **错误码：**
@@ -2685,7 +2695,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 | 参数名 | 类型                                       | 必填 | 说明                         |
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | table  | string                                     | 是   | 指定的目标表名。             |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。 |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。|
 
 **返回值**：
 
@@ -8206,15 +8216,19 @@ async function getDataByName(name: string, context: ctx.UIAbilityContext) {
   }
 }
 
-const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
-const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+async function run() {
+  const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
+  const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
 
-if (sendableValuesBucket) {
-  const columnCount = sendableValuesBucket.size;
-  const age = sendableValuesBucket.get('age');
-  const name = sendableValuesBucket.get('name');
-  console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+  if (sendableValuesBucket) {
+    const columnCount = sendableValuesBucket.size;
+    const age = sendableValuesBucket.get('age');
+    const name = sendableValuesBucket.get('name');
+    console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+  }
 }
+
+run()
 ```
 
 ### isColumnNull

@@ -9,6 +9,8 @@
 > - 本模块接口为系统接口。
 >
 > - 本模块接口仅可在Stage模型下使用。
+>
+> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于200KB数据的传输。
 
 
 ## 导入模块
@@ -316,7 +318,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-订阅/取消订阅RDB数据变更的结果。
+订阅/取消订阅RDB数据变更的结果，回调支持传输不大于200KB的数据。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -324,7 +326,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 指定回调的uri。 |
 | templateId | [TemplateId](#templateid10) | 是 | 处理回调的templateId。 |
-| data | Array&lt;string&gt; | 是 | 指定回调的数据。 |
+| data | Array&lt;string&gt; | 是 | 指定回调的数据。若处理回调数据时发生错误，则回调将不会被触发。 |
 
 ## PublishedDataChangeNode<sup>10+</sup>
 

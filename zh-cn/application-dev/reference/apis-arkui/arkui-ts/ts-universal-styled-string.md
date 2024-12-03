@@ -956,9 +956,9 @@ constructor(value?: ParagraphStyleInterface)
 
 ## 示例
 
-### 示例1
+### 示例1（属性字符串处理）
 
-属性字符串接口基本使用示例
+该示例通过insertString、removeStyles、replaceStyle、getStyles接口实现属性字符串的插入、删除、替换、查看。
 
 ```ts
 // xxx.ets
@@ -1122,9 +1122,9 @@ struct styled_string_demo1 {
 
 ![](figures/styledstring_1.PNG)
 
-### 示例2
+### 示例2（设置事件）
 
-属性字符串支持事件接口示例
+该示例通过styledKey、styledValue接口实现属性字符串绑定事件。
 
 ```ts
 // xxx.ets
@@ -1210,9 +1210,9 @@ struct styled_string_demo2 {
 
 ![](figures/styledstring_2.png)
 
-### 示例3
+### 示例3（设置文本样式）
 
-属性字符串支持文本样式接口示例
+该示例通过getStyles、setStyle接口实现属性字符串查询和设置样式。
 
 ```ts
 // xxx.ets
@@ -1396,9 +1396,9 @@ struct styled_string_demo3 {
 ```
 ![](figures/styledstring_3.png)
 
-### 示例4
+### 示例4（设置图片）
 
-属性字符串图片接口使用示例
+该示例通过ImageAttachment接口实现属性字符串设置图片。
 
 ```ts
 // xxx.ets
@@ -1525,9 +1525,9 @@ struct styled_string_demo4 {
 
 ![](figures/styledstring_4.png)
 
-### 示例5
+### 示例5（设置文本行高和段落样式）
 
-属性字符串LineHeightStyle、ParagraphStyle使用示例
+该示例通过LineHeightStyle、ParagraphStyle接口实现属性字符串设置文本行高和段落样式。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
@@ -1671,9 +1671,9 @@ struct Index {
 
 ![](figures/styledstring_5.png)
 
-### 示例6
+### 示例6（设置自定义绘制Span）
 
-属性字符串自定义绘制Span使用示例
+该示例通过CustomSpan接口实现属性字符串设置自定义绘制Span。
 
 ```ts
 // xxx.ets
@@ -1798,9 +1798,9 @@ struct styled_string_demo6 {
 
 ![](figures/styledstring_6.gif)
 
-### 示例7
+### 示例7（支持存储自定义扩展信息）
 
-属性字符串UserDataSpan使用示例
+该示例通过UserDataSpan接口实现属性字符串支持存储自定义扩展信息的功能。
 
 ```ts
 // xxx.ets

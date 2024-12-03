@@ -34,7 +34,7 @@ Obtains the localized display of the text for the specified country.
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Valid country code.           |
-| locale       | string  | Yes   | Valid locale ID for the specified country.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
 | sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
 
 **Return value**
@@ -83,7 +83,7 @@ Obtains the localized display of the text for the specified language. For exampl
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Valid language ID.           |
-| locale       | string  | Yes   | Valid locale ID for the specified language.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
 | sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
 
 **Return value**
@@ -290,7 +290,7 @@ Obtains the system locale.
 
 | Type    | Description     |
 | ------ | ------- |
-| string | System locale ID.|
+| string | Locale information.|
 
 **Example**
   ```ts
@@ -458,7 +458,7 @@ Checks whether a locale uses a right-to-left (RTL) language.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| locale | string | Yes   | Locale ID.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. |
 
 **Return value**
 
@@ -486,7 +486,7 @@ Obtains a **Calendar** object.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Valid locale ID, for example, **zh-Hans-CN**.                |
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.                |
 | type   | string | No   | Valid calendar type. The value can be **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, or **persian**.<br>The default value is the default calendar type of the locale. For details, see [Calendar Setting](../../internationalization/i18n-calendar.md).|
 
 **Return value**
@@ -516,7 +516,7 @@ Creates an **entityRecognizer** object.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | No   | Valid locale ID, for example, **zh-Hans-CN**.|
+| locale | string | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current system locale.|
 
 **Error codes**
 
@@ -581,7 +581,7 @@ Defines a list of entities.
 
 | Name | Type  | Readable  | Writable  | Description               |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | Yes   | Yes   | Entity type. Only phone number and date are supported.|
+| type | string | Yes   | Yes   | Entity type. The value can be **phone_number** or **date**.|
 | begin | number | Yes   | Yes   | Start position of an entity.|
 | end | number | Yes   | Yes   | End position of an entity.|
 
@@ -870,13 +870,13 @@ Obtains the displayed name of the **Calendar** object for the specified locale.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Locale ID.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Return value**
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | Displayed name of the **Calendar** object for the specified locale. For example, **buddhist** is displayed as **Buddhist Calendar** if the locale is **en-US**.|
+| string | Name of the **Calendar** object displayed for the specified locale. For example, **buddhist** is displayed as **Buddhist Calendar** if the locale is **en-US**.|
 
 **Example**
   ```ts
@@ -1125,7 +1125,6 @@ Formats a phone number.
   console.log(formatResult); // formatResult: 130 493
   ```
 
-
 ### getLocationName<sup>9+</sup>
 
 getLocationName(number: string, locale: string): string
@@ -1141,7 +1140,7 @@ Obtains the home location of a phone number.
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
 | number | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
-| locale | string | Yes   | Valid locale ID.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Return value**
 
@@ -1198,7 +1197,7 @@ Creates an **IndexUtil** object.
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | No   | A string containing locale information, including the language, script, and country/region.<br>The default value is the system locale.|
+| locale | string | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.<br>The default value is the system locale.|
 
 **Return value**
 
@@ -1255,7 +1254,7 @@ Adds the index list of a new locale to the index list of the current locale to f
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Example**
   ```ts
@@ -1306,7 +1305,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region.<br>The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.<br>The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
 
 **Return value**
 
@@ -1629,7 +1628,7 @@ Obtains the localized representation of a **TimeZone** object.
 
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | No   | A string containing locale information, including the language, script, and country/region. The default value is the system locale.               |
+| locale | string  | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. The default value is the system locale.               |
 | isDST  | boolean | No   | Whether DST is considered in the localized representation of the **TimeZone** object. The default value is **false**.|
 
 **Return value**
@@ -1757,7 +1756,7 @@ Obtains the localized representation of a time zone city in the specified locale
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | cityID | string | Yes   | Time zone city ID.|
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region. |
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. |
 
 **Return value**
 
@@ -1935,7 +1934,7 @@ Converts the input string from the source format to the target format.
 
   // Chinese surname pronunciation
   let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let result = nameTransliter.transform('单老师'); // result: shàn lǎo shī
+  let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
   let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
   ```
 
@@ -2251,7 +2250,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
 | toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
 | value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
-| locale   | string                 | Yes   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.               |
+| locale   | string                 | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.               |
 | style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**. The default value is **short**.<br>For details about the meaning or display effect of different values, see [Number and Unit of Measurement Formatting](../../internationalization/i18n-numbers-weights-measures.md).|
 
 **Return value**
@@ -2281,7 +2280,7 @@ Obtains the sequence of the year, month, and day in the specified locale.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.|
 
 **Return value**
 
@@ -2310,7 +2309,7 @@ Obtains the localized expression for the specified time of the specified locale.
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | Yes   | Specified time, for example, **16**.|
-| locale | string | No   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current locale.|
+| locale | string | No   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region. for example, **zh-Hans-CN**.<br>The default value is the current locale.|
 
 **Return value**
 
@@ -2353,8 +2352,8 @@ Obtains the locale that best matches a region from the specified locale list.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | Yes   | Locale ID, for example, **zh-Hans-CN**.|
-| localeList | string[] | Yes  | Locale ID list.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), for example, **zh-Hans-CN**.|
+| localeList | string[] | Yes  | Locale list.|
 
 **Return value**
 
@@ -2721,7 +2720,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
-| locale       | string  | Yes   | Locale ID.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
@@ -2751,7 +2750,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
-| locale       | string  | Yes   | Locale ID.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
@@ -2782,7 +2781,7 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Specified language.           |
-| locale       | string  | Yes   | Locale ID.    |
+| locale       | string  | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.     |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**

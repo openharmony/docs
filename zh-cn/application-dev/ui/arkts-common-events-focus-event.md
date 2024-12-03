@@ -69,7 +69,7 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
 
 - clearFocus
-详见[clearFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+详见[clearFocus](../reference/apis-arkui/js-apis-arkui-UIContext.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
 
 - focusOnTouch
 详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。

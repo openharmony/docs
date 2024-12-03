@@ -2,12 +2,12 @@
 
 ## 代码混淆简介
 
-针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。 
+针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。
 
->**说明：** 
+>**说明：**
 >
 > 1. 在 DevEco Studio5.0.3.600之前，新建工程的默认设置是开启代码混淆功能，它会自动对 API10及更高版本的 Stage 模型进行代码混淆。此操作仅适用于以[release模式](#说明)编译的代码，并且混淆仅限于参数名和局部变量名。
-> 2. 在 DevEco Studio5.0.3.600及之后，新建工程的默认设置已更改为关闭代码混淆功能。如果开发者希望开启代码混淆，需要将模块的`build-profile.json5`文件中的`ruleOptions.enable`字段的值设置为 true。此外，混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。需要注意的是，开启这四项规则可能会导致应用在运行时崩溃，因此建议开发者参考[排查指南](#如何排查功能异常)来修正应用功能。
+> 2. 在 DevEco Studio5.0.3.600及之后，新建工程的默认设置已更改为关闭代码混淆功能。如果开发者希望开启代码混淆，需要将模块的`build-profile.json5`文件中的`ruleOptions.enable`字段的值设置为 true。此外，混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。需要注意的是，开启这四项规则可能会导致应用在运行时崩溃，因此建议开发者参考[开启指导](#代码混淆开启指导)来修正应用功能。
 
 ### 使用约束
 
@@ -717,11 +717,52 @@ end-for
 
 ![obfuscation-product](figures/obfuscation-product.png)
 
+## 代码混淆开启指导
+
+1. 使用混淆的前置条件：
+    1. 查看当前模块是否开启混淆开关及选择release构建模式。
+    2. 阅读文档，了解[混淆选项的能力](#混淆选项)与[混淆选项所需要保留白名单的场景](#保留选项)。
+3. 依次开启混淆选项，逐一适配与验证应用功能：
+    1. 开启`-enable-toplevel-obfuscation`选项，如果代码中有globalThis访问全局变量，会出现访问失败的情况，需要使用`-keep-global-name`来保留此全局变量名称。
+    2. 待上述选项应用适配成功后，开启`-enable-property-obfuscation`选项。此选项开启后以下场景需要适配：
+        1. 若代码中存在静态定义，动态访问的情况或者动态定义，静态访问的情况，需要使用`-keep-property-name`保留属性名称。示例：
+            ```
+            // 静态定义，动态访问: 属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
+            const obj = {
+              staticName: value  // 静态定义属性
+            };
+            const fieldName = 'static' + 'Name';  // 动态构建属性名
+            console.log(obj[fieldName]);  // 使用方括号语法动态访问属性
+            ```
+            ```
+            // 动态定义，静态访问: 属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设你知道属性名的结果）
+            const obj = {
+              [dynamicExpression]: value  // 动态定义属性
+            };
+            console.log(obj.dynamicPropertyName);  // 使用点语法静态访问属性
+            ```
+        2. 若代码中使用点语法访问未在ArkTS/TS/JS代码中定义的字段，比如访问native实现的so库，字段固定的json文件与数据库等场景：
+            1. 若在代码中引用so库的api，如```import testNapi from 'library.so';testNapi.foo();```需要使用`-keep-property-name` foo保留属性名称。
+            2. 若在代码中使用json文件中的字段，需要使用`-keep-property-name`保留json文件中的字段名称。
+            3. 若在代码中使用数据库相关的字段，需要使用`-keep-property-name`保留数据库中的字段名称。
+        3. 若构建HAR模块并发布给其他模块使用的场景，要在HAR模块中的consumer-rules.txt文件中将不能被二次混淆的属性使用`-keep-property-name`保留。consumer-rules.txt文件在构建HAR时会生成obfuscation.txt文件。此HAR被其它模块依赖时，Deveco Studio会解析obfuscation.txt文件，读取文件中的白名单。
+        4. 验证应用功能，排查遗漏的场景。若应用出现功能异常，依据混淆后的报错栈从对应的[中间产物](#如何查看混淆效果)中找到报错行的代码，排查需要配置的白名单并使用`-keep-property-name`进行保留。
+    3. 待上述选项应用适配成功后，开启`-enable-export-obfuscation`选项。此选项开启后以下场景需要适配：
+        1. 若构建HSP模块，它会提供接口及其属性给其它模块调用，因此需要将对外接口使用`-keep-global-name`来保留、将对外暴露的class/interface等语法中的属性使用`-keep-property-name`保留。
+        2. 若构建HAR模块并发布给其他模块使用的场景，要在HAR模块中的obfuscation-rules.txt文件中将对外接口使用`-keep-global-name`来保留、将对外暴露的class/interface等语法中的属性使用`-keep-property-name`保留。
+        3. 若在代码中引用so库的api，如```import { napiA } from 'library.so'```；需要使用`-keep-global-name` napiA保留so接口名称。
+        4. 验证应用功能以及模块被依赖时的接口调用功能，排查遗漏的场景。若应用出现功能异常，依据混淆后的报错栈从对应的[中间产物](#如何查看混淆效果)中找到报错行的代码，排查需要配置的白名单并进行保留。
+    4. 待上述选项应用适配成功后，开启`-enable-filename-obfuscation`选项。此选项开启后以下场景需要适配：
+        1. 若代码中有动态import语句，如```const path = './filePath'; import(path)```，会出现文件引用失败的情况，需要使用`-keep-file-name` filePath来保留这个文件名。
+        2. 若应用中有描述路由表信息的[routerMap配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/module-configuration-file-V5#routermap%E6%A0%87%E7%AD%BE)，其中的pageSourceFile字段标记页面在模块的路径，需要使用`-keep-file-name`来保留这个路径。
+        3. 若代码中有传入ohmUrl进行页面跳转，如```router.pushUrl({url: '@bundle:com.example.routerPage/Library/Index')```，使用`-keep-file-name`来保留这个路径。
+        4. 验证应用功能，排查遗漏的场景。若应用出现功能异常，且报错栈中的路径为混淆后的路径，可以在模块中的`build/default/[...]/release/obfuscation/nameCache.json`文件中查询到原始路径，进而找到源码文件。另外，[插件hstack](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-command-line-hstack-V5)支持自动还原混淆后的报错堆栈。在定位到需要保留的路径后，使用`-keep-file-name`来保留此路径。
+
 ## 说明
 
-* 目前不支持在hvigor构建流程中插入自定义混淆插件
-* 混淆的HAR包被模块依赖，若模块开启混淆，则HAR包会被二次混淆
-* DevEco Studio右上角Product选项，将其中Build Mode选择release，可开启release编译模式
+* 目前不支持在hvigor构建流程中插入自定义混淆插件。
+* 混淆的HAR包被模块依赖，若模块开启混淆，则HAR包会被二次混淆。
+* DevEco Studio右上角Product选项，将其中Build Mode选择release，可开启release编译模式。  
 ![product-release](figures/product-release.png)
 
 ## FAQ
@@ -750,8 +791,11 @@ end-for
 | 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
 
 ### 如何查看混淆效果
+下图为应用编译的简要流程图：
 
-开发人员可以在编译产物build目录中找到混淆后的文件，以及混淆生成的名称映射表及系统API白名单文件。
+![compilation-process](figures/compilation-process.png)
+
+在混淆结束后会将中间产物落盘，因此可以在编译产物build目录中找到混淆后的中间产物以查看混淆效果，同时可以找到混淆生成的名称映射表及系统API白名单文件。
 
 * 混淆后的文件目录：`build/default/[...]/release/模块名`
 * 混淆名称映射表及系统API白名单目录：`build/default/[...]/release/obfuscation`
@@ -761,13 +805,13 @@ end-for
   ![build-product](figures/build-product.png)
 
 ### 如何排查功能异常
-
+#### 排查功能异常步骤
 1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
-2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。
-    1.[-enable-toplevel-obfuscation](#混淆选项)为顶层作用域名称混淆开关。
-    2.[-enable-property-obfuscation](#混淆选项)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](#保留选项)来保留指定的属性名称。
-    3.[-enable-export-obfuscation](#混淆选项)为导出名称混淆，一般与1、2选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](#保留选项)来指定保留导出/导入名称。
-    4.[-enable-filename-obfuscation](#混淆选项)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径，需要使用[-keep-file-name](#保留选项)来保留这些文件路径及名称。
+2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。  
+    1. [-enable-toplevel-obfuscation](#混淆选项)为顶层作用域名称混淆开关。
+    2. [-enable-property-obfuscation](#混淆选项)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](#保留选项)来保留指定的属性名称。
+    3. [-enable-export-obfuscation](#混淆选项)为导出名称混淆，一般与`-enable-toplevel-obfuscation`和`-enable-property-obfuscation`选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](#保留选项)来指定保留导出/导入名称。
+    4. [-enable-filename-obfuscation](#混淆选项)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径，需要使用[-keep-file-name](#保留选项)来保留这些文件路径及名称。
 3. 参考FAQ中的[常见报错案例](#常见报错案例)，若是相似场景可参考对应的解决方法快速解决。
 4. 若常见案例中未找到相似案例，建议依据各项配置功能正向定位（若不需要相应功能，可删除对应配置项）。
 5. 应用运行时崩溃分析方法：
@@ -779,6 +823,27 @@ end-for
     3.增强日志输出：在疑似异常的功能代码中，对处理的数据字段增加日志记录。
     4.分析并确定关键字段：通过对新增日志输出的分析，识别是否由于混淆导致该字段的数据异常。
     5.配置白名单保护关键字段：将确认在混淆后对应用功能产生直接影响的关键字段添加到白名单中。
+
+#### 排查非预期的混淆能力
+若出现预期外的混淆效果，检查是否是依赖的本地模块/三方库开启了某些混淆选项。
+
+示例：
+假设当前模块未配置`-compact`，但是混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
+
+1. 查看当前模块的oh-package.json5中的dependencies，此字段记录了当前模块的依赖信息。
+2. 在依赖的模块/三方库中的混淆配置文件内检索"-comapct"：
+    * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
+    * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
+
+**说明**：
+三方库中obfuscation.txt不建议配置如下开关选项，这些选项会在主模块开启混淆时生效，进而出现预期外的混淆效果，甚至会出现应用运行时崩溃。因此建议联系发布此三方库方删除这些选项并重新出包。
+```
+-enable-property-obfuscation
+-enable-string-property-obfuscation
+-enable-toplevel-obfuscation
+-remove-log
+-compact
+```
 
 ### 常见报错案例
 
@@ -941,6 +1006,6 @@ AppAbility
 原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的接口在HAP与HSP中被混淆成不同的名称。
 
 **解决方案：**
+
 1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
 2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
-

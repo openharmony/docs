@@ -1,12 +1,10 @@
 # DataPanel
 
-The **DataPanel** component displays proportions in a chart.
+The **DataPanel** component is used to display proportions in a chart.
 
 >  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 
 
 ## Child Components
@@ -22,6 +20,8 @@ DataPanel(options: DataPanelOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -30,7 +30,11 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelOptions
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name           | Type  | Mandatory | Description|
 | ----------------- | -------- | ----- | -------- |
@@ -41,9 +45,11 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------| ------------ |
@@ -143,6 +149,8 @@ contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
 
 Creates a content modifier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -158,19 +166,27 @@ Inherits from [MultiShadowOptions](ts-types.md#multishadowoptions10) and has all
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
 | colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | No| Array of shadow colors for data segments.<br>Default value: same as the value of **valueColors**<br>**NOTE**<br>If the number of the set shadow colors is less than that of the data segments, the number of the displayed shadow colors is the same as the former.<br>If the number of the set shadow colors is greater than that of the data segments, the number of the displayed shadow colors is the same as the latter.|
 
 ## LinearGradient<sup>10+</sup>
 
-Describes the linear gradient.
+### constructor
 
-LinearGradient(colorStops: ColorStop[])
+constructor(colorStops: ColorStop[])
+
+Describes the linear gradient.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name         | Type| Mandatory| Description|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name        | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
 | colorStops | [ColorStop](#colorstop10)[] | Yes| Gradient colors and color stops.|
 
@@ -181,6 +197,8 @@ Describes the gradient color stop.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color value.|
@@ -190,10 +208,14 @@ Describes the gradient color stop.
 
 You need a custom class to implement the **ContentModifier** API.
 
-| Name | Type   |    Default Value     |  Description             |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   |    Mandatory     |  Description             |
 | ------ | ------ | ------ |-------------------------------- |
-| values | number[] | - | Current values of the data panel. The maximum length is 9.|
-| maxValue | number | 100 | Maximum value displayed in the data panel.|
+| values | number[] | Yes| Current values of the data panel. The maximum length is 9.|
+| maxValue | number | Yes| Maximum value displayed in the data panel.<br>Default value: **100**|
 
 ## Example
 
@@ -305,7 +327,9 @@ function buildDataPanel(config: DataPanelConfiguration) {
         ChildItem({ item: item, index: index, max:config.maxValue})
       }, (item: string) => item)
     }.padding(10)
-    Line().width(360).backgroundColor("#ff373737").margin({bottom:5})
+    Column() {
+      Line().width("100%").backgroundColor("#ff373737").margin({bottom:5})
+    }.padding({left: 20, right: 20})
     Row() {
       Text('Length=' + config.values.length + '    ').margin({ left: 10 }).align(Alignment.Start)
       Text('Max=' + config.maxValue).margin({ left: 10 }).align(Alignment.Start)
@@ -330,6 +354,7 @@ struct Index {
       Row() {
         DataPanel({ values: [12.3, 21.1, 13.4, 35.2, 26.0, 32.0], max: 140, type: DataPanelType.Circle })
           .width(400).height(260)
+          .constraintSize({maxWidth: "100%"})
           .padding({ top: 10 })
           .contentModifier(new DataPanelBuilder())
       }.margin(15).backgroundColor("#fff5f5f5")

@@ -766,13 +766,7 @@ libuv中`uv_queue_work`在UI线程的工作流程为：将`work_cb`抛到FFRT对
 
 特别强调，开发者需要明确，`uv_queue_work`函数仅用于抛异步任务，**异步任务的execute回调被提交到线程池后会经过调度执行，因此并不保证多次提交的任务之间的时序关系**。
 
-`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute回调置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用`napi_send_event`接口。
-
-`napi_send_event`函数的声明为：
-
-```cpp
-napi_status napi_send_event(napi_env env, const std::function<void()> cb, napi_event_priority priority);
-```
+`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute回调置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用[napi_threadsafe_function相关函数](#跨线程共享和调用的线程安全函数)。
 
 #### libuv timer使用规范
 
@@ -898,7 +892,7 @@ static napi_value TestTimer(napi_env env, napi_callback_info info) {
 
 **场景二：** 如果需要在指定的子线程抛定时器，请使用线程安全函数`uv_async_send`实现。
 
-ArkTS测：
+ArkTS侧：
 
 ```typescript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -935,7 +929,7 @@ struct Index {
 }
 ```
 
-Native C++测：
+Native C++侧：
 
 ```c++
 #include <napi/native_api.h>
@@ -1041,9 +1035,17 @@ int uv_async_send(uv_async_t* handle)
 
 uv_loop_t* loop = nullptr;
 uv_async_t* async = nullptr;
+int g_counter = 10;
 void async_handler(uv_async_t* handle)
 {
     printf("ohos async print\n");
+    if (--g_counter == 0) {
+        // 调用uv_close关闭async，在主循环中释放内存。
+        uv_close((uv_handle_t*)async, [](uv_handle_t* handle) {
+            printf("delete async\n");
+            delete (uv_async_t*)handle;
+        });
+    }
 }
 
 int main()
@@ -1053,16 +1055,10 @@ int main()
     uv_async_init(loop, async, async_handler);
     std::thread subThread([]() {
         for (int i = 0; i < 10; i++) {
-            usleep(100);
+            usleep(100); // 避免多次调用uv_async_send只执行一次
             printf("%dth: subThread triggered\n", i);
             uv_async_send(async);
         }
-        // 调用uv_close关闭async，在主循环中释放内存。
-        uv_close((uv_handle_t*)async, [](uv_handle_t* handle) {
-            printf("delete async\n");
-            delete (uv_async_t*)handle;
-        });
-        uv_stop(loop);
     });
     subThread.detach();
     return uv_run(loop, UV_RUN_DEFAULT);
@@ -1097,6 +1093,7 @@ ohos async print
 8th:subThread triggered
 ohos async print
 9th:subThread triggered
+ohos async print
 delete async
 ```
 

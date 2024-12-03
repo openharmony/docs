@@ -970,9 +970,9 @@ httpRequest.on("dataEnd", () => {
 httpRequest.off("dataEnd");
 ```
 
-### on("dataReceiveProgress")<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -997,9 +997,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### off("dataReceiveProgress")<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -1027,9 +1027,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### on("dataSendProgress")<sup>11+</sup>
+### on('dataSendProgress')<sup>11+</sup>
 
-on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
+on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 Registers an observer for events indicating progress of sending HTTP requests.
 
@@ -1051,12 +1051,12 @@ let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
-httpRequest.off("dataSendProgress");
+httpRequest.off('dataSendProgress');
 ```
 
-### off("dataSendProgress")<sup>11+</sup>
+### off('dataSendProgress')<sup>11+</sup>
 
-off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
+off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of sending HTTP requests.
 
@@ -1097,7 +1097,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially. If the specified type is **Object**, the value can contain a maximum of 65536 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
-| header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| header                       | Object                          | No  | HTTP request header. If the request method is POST, PUT, DELETE, or null, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |

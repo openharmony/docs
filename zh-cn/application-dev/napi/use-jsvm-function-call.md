@@ -14,213 +14,119 @@
 |----------------------------|--------------------------------|
 | OH_JSVM_GetCbInfo          | 从给定的callback info中获取有关调用的详细信息，如参数和this指针。|
 | OH_JSVM_CallFunction       | 在C/C++侧调用JavaScript方法。|
-| OH_JSVM_CreateFunction     | 用于创建JavaScript函数,用于从JavaScript环境中调用C/C++代码中的函数|
+| OH_JSVM_IsFunction         | 判断对象是否为函数对象 |
+| OH_JSVM_CreateFunction     | 用于创建JavaScript函数,用于从JavaScript环境中调用C/C++代码中的函数, 需要设置到一个js对象中才可以进行调用。 |
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
-### OH_JSVM_GetCbInfo
+### OH_JSVM function整合测试
 
-获取有关函数调用的详细信息。
-
-cpp部分代码
-
-```cpp
-// hello.cpp
-#include "napi/native_api.h"
+cpp测试全量代码，入口为TEST_FUNC
+``` cpp
+#include "hilog/log.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// GetCbArgs注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetCbArgs},
-};
-static JSVM_CallbackStruct *method = param;
-// GetCbArgs方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getCbArgs", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// OH_JSVM_GetCbInfo的样例方法
-static JSVM_Value GetCbArgs(JSVM_Env env, JSVM_CallbackInfo info)
-{
+
+#define LOG_DOMAIN 0x3200
+#define LOG_TAG "APP"
+
+#define CHECK_RET(cond) \
+  if ((cond)) { \
+    const JSVM_ExtendedErrorInfo* info; \
+    OH_JSVM_GetLastErrorInfo(env, &info); \
+    OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : ""); \
+    return -1;   \
+  }
+
+#define CHECK(cond) \
+  if (!(cond)) { \
+     OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__, cond); \
+     return -1;   \
+  }
+
+JSVM_Value NativeCreateFunctionTest(JSVM_Env env, JSVM_CallbackInfo info) {
+    void *data;
     size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    JSVM_Status status = OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetCbInfo: failed");
-        return nullptr;
+    JSVM_Value argv[1] = {nullptr};
+    JSVM_Value thisArg;
+    // 获取callback 参数信息
+    JSVM_Status ret = OH_JSVM_GetCbInfo(env, info, &argc, &argv[0], &thisArg, &data);
+    if (ret != JSVM_OK) {
+      const JSVM_ExtendedErrorInfo* info;
+      OH_JSVM_GetLastErrorInfo(env, &info);
+      OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", __FILE__, __LINE__, ret, info != nullptr ? info->errorMessage : "");
+      return nullptr;
     }
-    // 此处需要8个字节的缓冲区，具体大小根据实际情况调整
-    size_t bufSize = 8;
-    char buf[bufSize];
-    size_t result = 0;
-    OH_JSVM_GetValueStringUtf8(env, args[0], buf, bufSize, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM args[0] is: %{public}s", buf);
-    return args[0];
+    char message[256];
+    OH_JSVM_GetValueStringLatin1(env, argv[0], message, 256, nullptr);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "jsvm: %{public}s; callback data null", message);
+    } else {
+        OH_LOG_INFO(LOG_APP, "jsvm: %{public}s; %{public}s", message, (char*)data);
+    }
+    return nullptr;
 }
-```
 
-ArkTS 侧示例代码
+static int32_t TEST_FUNC() {
+    JSVM_InitOptions initOptions{};
+    JSVM_VM vm;
+    JSVM_Env env = nullptr;
+    JSVM_VMScope vmScope;
+    JSVM_EnvScope envScope;
+    JSVM_HandleScope handleScope;
+    JSVM_Value result;
+    static bool isVMInit = false;
+    if (!isVMInit) {
+        isVMInit = true;
+        // 单个进程只用初始化一次
+        OH_JSVM_Init(&initOptions);
+    }
+    CHECK_RET(OH_JSVM_CreateVM(nullptr, &vm));
+    CHECK_RET(OH_JSVM_CreateEnv(vm, 0, nullptr, &env));
+    CHECK_RET(OH_JSVM_OpenVMScope(vm, &vmScope));
+    CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   const str = 'message';
-   getCbArgs(str);
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetCbArgs:%{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetCbArgs: %{public}s', error.message);
-}
-```
+    // 创建并检查函数
+    char hello[] = "Hello World!";
+    JSVM_CallbackStruct cb = {NativeCreateFunctionTest, (void*)hello};
+    JSVM_Value func;
+    CHECK_RET(OH_JSVM_CreateFunction(env, "", JSVM_AUTO_LENGTH, &cb, &func));
+    bool isFunction = false;
+    CHECK_RET(OH_JSVM_IsFunction(env, func, &isFunction));
+    CHECK(isFunction);
 
-### OH_JSVM_CallFunction
-
-在C/C++侧对JavaScript函数进行调用。
-
-cpp部分代码
-
-```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// CallFunction注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CallFunction},
-};
-static JSVM_CallbackStruct *method = param;
-// CallFunction方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"callFunction", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// OH_JSVM_CallFunction的样例方法
-static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    // 获取JavaScript侧入参
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // 获取全局对象，这里用global是因为OH_JSVM_CallFunction的第二个参数是JS函数的this入参。
+    // 将函数设置到全局对象中
     JSVM_Value global;
-    OH_JSVM_GetGlobal(env, &global);
-    // 调用JavaScript方法
-    JSVM_Value result = nullptr;
-    JSVM_Status status = OH_JSVM_CallFunction(env, global, args[0], 0, nullptr, &result);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CallFunction: failed");
-        return nullptr;
-    }
-    // 将传入的JavaScript方法的执行结果打印出来
-    int32_t resultValue = 0;
-    OH_JSVM_GetValueInt32(env, result, &resultValue);
-    OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CallFunction reslut is: %{public}d", resultValue);
-    OH_LOG_INFO(LOG_APP, "If the resultValue is 10, the example runs successfully");
-    return result;
+    CHECK_RET(OH_JSVM_GetGlobal(env, &global));
+    JSVM_Value key;
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, "NativeFunc", JSVM_AUTO_LENGTH, &key));
+    CHECK_RET(OH_JSVM_SetProperty(env, global, key, func));
+
+    // 通过call 接口调用函数
+    JSVM_Value argv[1] = {nullptr};
+    OH_JSVM_CreateStringUtf8(env, "jsvm api call funtion", JSVM_AUTO_LENGTH, &argv[0]);
+    CHECK_RET(OH_JSVM_CallFunction(env, global, func, 1, argv, &result));
+
+    // 通过script调用函数
+    JSVM_Script script;
+    JSVM_Value jsSrc;
+    const char* srcCallNative = R"JS(NativeFunc('js source call funtion');)JS";
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+    CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
+    CHECK_RET(OH_JSVM_CloseVMScope(vm, vmScope));
+    CHECK_RET(OH_JSVM_DestroyEnv(env));
+    CHECK_RET(OH_JSVM_DestroyVM(vm));
+    return 0;
 }
 ```
-
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-    function returnNumber(){
-        return 10;
-    }
-    callFunction(returnNumber)
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM callFunction: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM callFunction error: %{public}s', error.message);
-}
+预期的输出
 ```
-
-### OH_JSVM_CreateFunction
-
-将一个C/C++函数包装为可在JavaScript中调用的函数，并返回一个表示该函数的JSVM_Value。
-
-cpp部分代码
-
-```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// CreateFunction注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateFunction},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateFunction方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createFunction", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// CalculateArea自定义函数
-static JSVM_Value CalculateArea(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // 获取js侧传入的两个参数
-    size_t argc = 2;
-    JSVM_Value args[2] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    double width;
-    OH_JSVM_GetValueDouble(env, args[0], &width);
-    double height;
-    OH_JSVM_GetValueDouble(env, args[1], &height);
-    JSVM_Value area;
-    OH_JSVM_CreateDouble(env, width * height, &area);
-    return area;
-}
-static double width = 1.4;
-static double height = 5.0;
-// OH_JSVM_CreateFunction的样例使用方法
-static JSVM_Value CreateFunction(JSVM_Env env, JSVM_CallbackInfo info) {
-    // 创建名为param的回调结构体传入OH_JSVM_CreateFunction
-    JSVM_CallbackStruct param;
-    param.data = nullptr;
-    param.callback = CalculateArea;
-    JSVM_Value funcValue = nullptr;
-    // 创建名为calculateArea的JavaScript函数
-    JSVM_Status status = OH_JSVM_CreateFunction(env, "calculateArea", JSVM_AUTO_LENGTH, &param, &funcValue);
-    if (funcValue == nullptr || status != JSVM_OK) {
-        OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_CreateFunction failed");
-    }
-    // 创建参数
-    JSVM_Value args[2] = {nullptr};
-    OH_JSVM_CreateDouble(env, width, &args[0]);
-    OH_JSVM_CreateDouble(env, height, &args[1]);
-    JSVM_Value global;
-    OH_JSVM_GetGlobal(env, &global);
-    // 调用calculateArea函数并传入参数
-    JSVM_Value ret = nullptr;
-    OH_JSVM_CallFunction(env, global, funcValue, 2, args, &ret);
-    // 返回calculateArea函数执行后的的结果
-    int32_t result = 0;
-    OH_JSVM_GetValueInt32(env, ret, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM If 7 is printed here, the use case is correct: %{public}d", result);
-    return ret;
-}
-```
-
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `createFunction()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createFunction: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createFunction error: %{public}s', error.message);
-}
+jsvm: jsvm api call funtion; Hello World!
+jsvm: js source call funtion; Hello World!
 ```

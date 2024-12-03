@@ -555,11 +555,11 @@ hdc shell uitest uiInput inputText 100 100 hello
 > 最多支持传入是三个键值，<!--RP3-->键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->。
 
 ```shell  
-# 执行执行返回主页操作。
+# 返回主页。
 hdc shell uitest uiInput keyEvent Home
-# 执行返回主页操作。
+# 返回。
 hdc shell uitest uiInput keyEvent Back
-# 执行组合键粘贴操作。
+# 组合键粘贴。
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
 
@@ -577,8 +577,10 @@ hdc shell uitest start-daemon
 >**说明**
 >
 > 设备需调成开发者模式。
+>
 > 仅元能力aa test拉起的测试hap才能调用Uitest的能力。
-> <!--RP4-->测试hap的[APL等级级别](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)需为system_basic、normal<!--RP4End-->。
+>
+> 测试hap的<!--RP4-->[APL等级级别](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)<!--RP4End-->需为system_basic、normal。
 
 <!--Del-->
 ## 相关实例

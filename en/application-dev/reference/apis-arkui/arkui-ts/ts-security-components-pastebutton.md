@@ -1,6 +1,6 @@
 # PasteButton
 
-The **PasteButton** security component allows you to obtain temporary pasteboard permission from the user by their touching the component.
+The **PasteButton** security component represents a Paste button that allows you to obtain temporary pasteboard permissions from users with a simple button touch.
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ### PasteButton
 
-PasteButton(option:PasteButtonOptions)
+PasteButton(options:PasteButtonOptions)
 
 Creates a Paste button that contains the specified elements.
 
@@ -40,9 +40,16 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | [PasteButtonOptions](#pastebuttonoptions) | No| Options for creating the Paste button.<br>Default value:<br>{<br>icon: PasteIconStyle.LINES,<br>text: PasteDescription.PASTE,<br>buttonType: ButtonType.Capsule <br>} |
+| options | [PasteButtonOptions](#pastebuttonoptions) | Yes| Options for creating the Paste button.<br>Default value:<br>{<br>icon: PasteIconStyle.LINES,<br>text: PasteDescription.PASTE,<br>buttonType: ButtonType.Capsule <br>} |
 
 ## PasteButtonOptions
+
+Describes the icon, text, and other specific elements for the Paste button.
+
+> **NOTE**
+> 
+> At least one of **icon** or **text** must be provided.<br>
+> If neither **icon** nor **text** is provided, the **options** parameter in [[PasteButton](#pastebutton-1) will not take effect, and the created Paste button will be in the default style.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -50,13 +57,13 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [PasteIconStyle](#pasteiconstyle) | No| Icon style of the Paste button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
-| text | [PasteDescription](#pastedescription) | No| Text on the Paste button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Paste button.<br>If this parameter is not specified, the system uses a capsule-type button.|
+| icon | [PasteIconStyle](#pasteiconstyle) | No| Icon style of the Paste button.<br>If this parameter is not specified, there is no icon.|
+| text | [PasteDescription](#pastedescription) | No| Text on the Paste button.<br>If this parameter is not specified, there is no text description.|
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background style of the Paste button.<br>If this parameter is not specified, the system uses a capsule-type button.|
 
 ## Attributes
 
-This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md#attributes)
+This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md).
 
 ## PasteIconStyle
 
@@ -131,6 +138,18 @@ struct Index {
           .backgroundColor(0x10007dff)
         // Create a button with an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
         PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .width(30)
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .size({width: 30, height: 30})
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        PasteButton({icon:PasteIconStyle.LINES, text:PasteDescription.PASTE, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
       }.width('100%')
     }.height('100%')
   }

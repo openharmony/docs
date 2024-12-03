@@ -3,7 +3,9 @@
 The network connection management module provides basic network management capabilities. You can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> Unless otherwise specified, the APIs of this module do no support concurrent calls.
 
 ## Modules to Import
 
@@ -259,7 +261,9 @@ The following is an example configuration of the certificate pin:
         }
       }
     ]
-  }
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
 }
 ```
 
@@ -301,6 +305,10 @@ The following is an example configuration of the application-level certificate:
 This field can contain zero or one **base-config**.
 
 This field must contain one **domain-config**.
+
+**trust-global-user-ca**: This field specifies whether to trust the CA certificate manually installed by the enterprise MDM system or device administrator. The default value is **true**.
+
+**trust-current-user-ca**: This field specifies whether to trust the certificate installed by the current user. The default value is **true**.
 
 **base-config (object: application-wide security configuration)**
 

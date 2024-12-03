@@ -12,7 +12,7 @@ You can create text in either of the following ways:
 - Entering strings
 
   ```ts
-  Text ('I am a piece of text')
+  Text('I am a piece of text')
   ```
 
 
@@ -46,8 +46,8 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
 
   ```ts
-  Text (' I'm Text') {
-    Span (' I'm Span')
+  Text('I am Text') {
+    Span('I am Span')
   }
   .padding(10)
   .borderWidth(1)
@@ -62,12 +62,12 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
   ```ts
   Text() {
-    Span('I'm Span1,') .fontSize (16).fontColor (Color.Grey)
+    Span('I am Span1,').fontSize(16).fontColor(Color.Grey)
       .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
-    Span('I'm Span2').fontColor (Color.Blue).fontSize (16)
+    Span('I am Span2').fontColor(Color.Blue).fontSize(16)
       .fontStyle(FontStyle.Italic)
       .decoration({ type: TextDecorationType.Underline, color: Color.Black })
-    Span('I'm Span3').fontSize(16).fontColor(Color.Grey)
+    Span('I am Span3').fontSize(16).fontColor(Color.Grey)
       .decoration({ type: TextDecorationType.Overline, color: Color.Green })
   }
   .borderWidth(1)
@@ -99,7 +99,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
     Span('I am Upper-span').fontSize(12)
       .textCase(TextCase.UpperCase)
       .onClick(()=>{
-        console.info ('I'm Span - onClick')
+        console.info('I am Span - onClick')
       })
   }
   ```
@@ -146,7 +146,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
     .fontSize(12)
     .border({ width: 1 })
     .padding(10)
-  Text ('When the text overflows the container, it scrolls.')      
+  Text('When the text overflows the container, it scrolls.')      
     .width(250)
     .textOverflow({ overflow: TextOverflow.MARQUEE })                 
     .maxLines(1)       
@@ -330,7 +330,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 
 ## Adding Events
 
-The **Text** component supports the [universal events](../reference/arkui-ts/ts-universal-events-click.md). It can be bound to the **onClick**, **onTouch**, or other events to respond to user operations.
+The **Text** component supports the universal events. It can be bound to the **onClick**, **onTouch**, or other events to respond to user operations.
 
 
 ```ts
@@ -359,7 +359,7 @@ struct TextExample {
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
           .fontWeight(300)
-        Text ("Top Hit")
+        Text("Top Hit")
           .margin({ left: 6 })
           .textAlign(TextAlign.Center)
           .fontSize(10)
@@ -380,7 +380,7 @@ struct TextExample {
           .constraintSize({ maxWidth: 200 })
           .maxLines(1)
           .textOverflow({ overflow: TextOverflow.Ellipsis })
-        Text ("Hot")
+        Text("Hot")
           .margin({ left: 6 })
           .textAlign(TextAlign.Center)
           .fontSize(10)
@@ -401,7 +401,7 @@ struct TextExample {
           .maxLines(1)
           .constraintSize({ maxWidth: 200 })
           .textOverflow({ overflow: TextOverflow.Ellipsis })
-        Text ("Hot")
+        Text("Hot")
           .margin({ left: 6 })
           .textAlign(TextAlign.Center)
           .fontSize(10)
@@ -430,3 +430,4 @@ struct TextExample {
 ```
 
 ![en-us_image_0000001562820805](figures/en-us_image_0000001562820805.png)
+<!--RP1--><!--RP1End-->

@@ -1,5 +1,7 @@
 # Dual-Channel Preview (ArkTS)
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 Dual-channel preview means that an application can use two preview streams at the same time. One preview stream is used for display on the screen, and the other is used for other operations such as image processing, so as to improve the processing efficiency.
 
 The camera application controls the camera hardware to implement basic operations such as image display (preview), photo saving (photo capture), and video recording. The camera model is developed on the surface model. That is, an application transfers data through the surface. Specifically, it obtains the photo stream through the surface of an **ImageReceiver** object and the preview stream through the surface of an **XComponent** object.
@@ -198,7 +200,7 @@ The figure below shows the recommended API calling process of the dual-channel p
 
    > **NOTE**
    >
-   > Check whether the width of the image is the same as rowStride. If they are different, perform the following operations:
+   > Check whether the width of the image is the same as **rowStride**. If they are different, perform the following operations:
 
    Method 1: Remove the stride data from **component.byteBuffer**, obtain a new buffer by means of copy, and process the buffer by calling the API that does not support stride.
 

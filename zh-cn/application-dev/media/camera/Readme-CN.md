@@ -18,6 +18,7 @@
   - [分段式拍照(ArkTS)](camera-deferred-capture.md)
   - [动态照片(ArkTS)](camera-moving-photo.md)
   - [相机基础动效(ArkTS)](camera-animation.md)
+  - [在Worker线程中使用相机(ArkTS)](camera-worker.md)
   <!--Del-->
   - [深度信息(仅对系统应用开放)(ArkTS)](camera-depth-data.md)
   <!--DelEnd-->
@@ -40,10 +41,8 @@
   - [拍照(C/C++)](native-camera-shooting.md)
   - [分段式拍照(C/C++)](native-camera-deferred-capture.md)
   - [录像(C/C++)](native-camera-recording.md)
-  - [录像流二次处理(C/C++)](native-camera-recording-imageReceiver.md)
   - [元数据(C/C++)](native-camera-metadata.md)
   - [手电筒使用(C/C++)](native-camera-torch-use.md)
 - 相机最佳实践(C/C++)
   - [拍照实现方案(C/C++)](native-camera-shooting-case.md)
   - [录像实现方案(C/C++)](native-camera-recording-case.md)
-  - [录像流二次处理的实现方案(C/C++)](native-camera-recording-case-imageReceiver.md)

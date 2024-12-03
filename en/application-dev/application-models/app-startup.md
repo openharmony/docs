@@ -7,7 +7,7 @@ During application initialization, a series of startup tasks are triggered. If t
 
 AppStartup offers an efficient approach to application initialization. By enabling the asynchronous initiation of startup tasks, it ensures a smoother startup process. The centralized configuration of task execution order and interdependencies in a single file simplifies and clarifies the startup codebase, enhancing maintainability.
 
-AppStartup supports startup tasks in automatic or manual mode. By default, the automatic mode is used. After an [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is created, the configured startup tasks are loaded and executed in automatic mode. You can also call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup tasks in manual mode after a UIAbility is created.
+AppStartup supports startup tasks in automatic or manual mode. By default, the automatic mode is used. During the creation of an [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md), the configured startup tasks are loaded and executed in automatic mode. You can also call [startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) to execute the startup tasks in manual mode after a UIAbility is created.
 
 **Figure 1** Startup procedure
 
@@ -15,7 +15,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, the a
 
 ## Constraints
 
-- AppStartup can be used only in entry [modules](../quick-start/application-package-overview.md#module-types).
+- AppStartup can be used only in the UIAbility of an entry [module](../quick-start/application-package-overview.md#module-types).
 
 - Circular dependencies are not allowed between startup tasks.
 
@@ -126,21 +126,22 @@ AppStartup supports startup tasks in automatic or manual mode. By default, the a
         | runOnThread | Thread where the startup task is executed.<br>- **mainThread**: executed in the main thread.<br>- **taskPool**: executed in an asynchronous thread.| String| Yes (initial value: **mainThread**)|
         | waitOnMainThread | Whether the main thread needs to wait until the startup task finishes execution. This parameter is valid only when **runOnThread** is set to **taskPool**.<br>- **true**: The main thread loads the application home page only the startup task finishes execution.<br>- **false**: The main thread does not wait for the startup task to finish execution.| Boolean| Yes (initial value: **true**)|
         
-    3. Add the index of the AppStartup configuration file to the **appStartup** tag in the [module.json5 file](../quick-start/module-configuration-file.md).
-    
-        The following is an example of the **module.json5** file:
-    
-          ```json
-              {
-                "module": {
-                  "name": "entry",
-                  "type": "entry",
-                  // ...
-                  "appStartup": "$profile:startup_config," // AppStartup configuration file
-                  // ...
-                }
-              }
-          ```
+
+3. Add the index of the AppStartup configuration file to the **appStartup** tag in the [module.json5 file](../quick-start/module-configuration-file.md).
+
+    The following is an example of the **module.json5** file:
+
+    ```json
+    {
+    "module": {
+    "name": "entry",
+    "type": "entry",
+    // ...
+    "appStartup": "$profile:startup_config," // AppStartup configuration file
+    // ...
+    }
+    }
+    ```
 
 ### Setting Startup Parameters
 
@@ -189,7 +190,7 @@ The following uses the **StartupTask_001.ets** file in [startup_config.json](#de
 
 > **NOTE**
 > 
-> **StartupTask** follows the [Sendable](../arkts-utils/arkts-sendable.md) protocol. Therefore, the Sendable annotation must be added when this API is inherited.
+> **StartupTask** follows the [Sendable protocol](../arkts-utils/arkts-sendable.md#sendable-protocol). Therefore, the Sendable annotation must be added when this API is inherited.
 
 ```ts
 import { StartupTask, common } from '@kit.AbilityKit';

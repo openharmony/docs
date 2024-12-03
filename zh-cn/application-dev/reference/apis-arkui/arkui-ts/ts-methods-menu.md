@@ -18,8 +18,9 @@ static close()
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
 ## 示例
+
+该示例为ContextMenu.close关闭通过bindContextMenu属性绑定的菜单。
 
 >  **说明：**
 >

@@ -3358,7 +3358,7 @@ setTitle(title: string): void
 title参数规格为：
 - 不应包含扩展名。
 - 文件名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **错误码：**
 
@@ -3752,7 +3752,7 @@ setAlbumName(name: string): void
 
 相册名的参数规格为：
 - 相册名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
 
@@ -4324,7 +4324,7 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011       | System inner fail.         |
+| 14000011       | Internal system error.         |
 
 **示例：**
 
@@ -4451,7 +4451,7 @@ map支持返回的信息：
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
 | imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
-| map<sup>13+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。 |
+| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。 |
 
 **示例**
 ```ts

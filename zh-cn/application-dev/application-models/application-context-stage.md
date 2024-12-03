@@ -226,7 +226,9 @@
 - EL5：对于用户隐私敏感数据文件，锁屏后默认不可读写，如果锁屏后需要读写文件，则锁屏前可以调用[Access](../reference/apis-ability-kit/js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess)接口申请继续读写文件，或者锁屏后也需要创建新文件且可读写，放在（EL5）的应用级加密分区更合适。
 
 要实现获取和设置当前加密分区，可以通过读写[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)的`area`属性来实现。
+
 ```ts
+// EntryAbility.ets
 import { UIAbility, contextConstant, AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
@@ -254,6 +256,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 ```ts
+// Index.ets
 import { contextConstant, common } from '@kit.AbilityKit';
 import { promptAction } from '@kit.ArkUI';
 

@@ -10,6 +10,7 @@ In certain circumstances, you may need to add a specific feature, such as a clic
 >
 > This decorator can be used in atomic services since API version 11.
 
+
 ## Rules of Use
 
 
@@ -106,7 +107,7 @@ Example:
         Child({
           // Pass this.componentBuilder to @BuilderParam customBuilderParam of the Child component. this points to the Child, that is, the value of the label variable is Child.
           customBuilderParam: this.componentBuilder,
-          // Pass ():void=>{this.componentBuilder()} to @BuilderParam customChangeThisBuilderPara of the Child component.
+          // Pass ():void=>{this.componentBuilder()} to @BuilderParam customChangeThisBuilderParam of the Child component.
           // this of the arrow function points to the host object, so the value of the label variable is Parent.
           customChangeThisBuilderParam: (): void => { this.componentBuilder() }
         })
@@ -355,7 +356,7 @@ struct ParentPage {
       ChildPage({
         // Pass this.componentBuilder to @BuilderParam customBuilderParam of the ChildPage component. this points to ChildPage, that is, the value of the label variable is Child Page.
         customBuilderParam: this.componentBuilder,
-        // Pass ():void=>{this.componentBuilder()} to @BuilderParam customChangeThisBuilderPara of the ChildPage component.
+        // Pass ():void=>{this.componentBuilder()} to @BuilderParam customChangeThisBuilderParam of the ChildPage component.
         // this of the arrow function points to the host object, so the value of the label variable is Parent Page.
         customChangeThisBuilderParam: (): void => { this.componentBuilder() }
       })
@@ -423,7 +424,7 @@ struct ParentPage {
 
   build() {
     Column() {
-        // When this.componentBuilder() is called, this points to the **ParentPage** component decorated by the @Entry. Therefore, the value of the label variable is Parent Page.
+      // When this.componentBuilder() is called, this points to the **ParentPage** component decorated by the @Entry. Therefore, the value of the label variable is Parent Page.
       this.componentBuilder()
       ChildPage({
         // Pass this.componentBuilder to @BuilderParam customBuilderParam of the ChildPage component. this points to ChildPage, that is, the value of the label variable is Child Page.
@@ -436,7 +437,7 @@ struct ParentPage {
         .width('100%')
         .height(5)
         .backgroundColor('#000000').margin(10)
-        // When the global overBuilder() is called, this points to the entire current page. Therefore, the displayed content is Hello World.
+      // When the global overBuilder() is called, this points to the entire current page. Therefore, the displayed content is Hello World.
       overBuilder()
       ChildPage({
         // Pass the global overBuilder to @BuilderParam customBuilderParam of the ChildPage component. this points to the entire current page, that is, the displayed content is Hello World.
@@ -491,7 +492,8 @@ struct ParentPage {
   build() {
     Column() {
       ChildPage({
-        customChangeThisBuilderParam: this.componentBuilder // Incorrect parameter passing.
+        // this points to the ChildPage component.
+        customChangeThisBuilderParam: this.componentBuilder
       })
       Button('Click to change label')
         .onClick(() => {
@@ -503,6 +505,7 @@ struct ParentPage {
 ```
 
 Use the arrow function to pass the \@Builder to the custom component **ChildPage** and this points to the parent component **ParentPage**. Therefore, if the value of label is changed in the parent component, the **ChildPage** detects the change and renders the UI again.
+The dynamic UI rendering can also be implemented by changing @Builder to @LocalBuilder.
 
 [Correct Example]
 

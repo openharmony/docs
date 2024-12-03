@@ -6,7 +6,7 @@ BFCache功能启用后，Web组件会在用户离开当前页面时在内存中�
 
 ## Web组件开启BFCache
 
-开发者需要在调用[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化ArkWeb内核之前调用[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启BFCache。enableBackForwardCache可以接收一个[BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12)参数，用于控制是否允许具备同层渲染特性和视频托管特性的页面进入BFCache。
+开发者需要在调用[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化ArkWeb内核之前调用[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启BFCache。enableBackForwardCache可以接收一个[BackForwardCacheSupportedFeatures](../reference/apis-arkweb/js-apis-webview.md#backforwardcachesupportedfeatures12)参数，用于控制是否允许具备同层渲染特性和视频托管特性的页面进入BFCache。
 
 ```ts
 // EntryAbility.ets

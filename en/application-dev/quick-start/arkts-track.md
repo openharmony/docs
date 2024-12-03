@@ -11,7 +11,7 @@
 
 ## Overview
 
-\@Track enables property-level UI updates. When a property of a class object is decorated by \@Track, changes to the property will trigger only updates to the UI associated with the property. Properties not decorated by \@Track cannot be used in the UI.
+\@Track enables property-level UI re-renders. When a class object is a state variable, changes to the \@Track decorated property will only trigger re-renders to the UI associated with the property. Properties not decorated by \@Track cannot be used in the UI, otherwise a runtime error will be reported.
 
 
 ## Decorator Description
@@ -20,6 +20,8 @@
 | ------------------ | -------------------- |
 | Decorator parameters  | None.|
 | Allowed variable types| Non-static properties of class objects.|
+
+
 
 ## Observed Changes and Behavior
 
@@ -97,15 +99,15 @@ struct AddLog {
 In the preceding example:
 
 1. All attributes in the **LogTrack** class are decorated by @Track. After the **change logTrack.str1** button is clicked, **UINode1** is re-rendered, but **UINode2** is not, as indicated by that only one log record is generated.
-```ts
-Text 1 is rendered
-```
+    ```ts
+    Text 1 is rendered
+    ```
 
 2. None of the attributes in the **logNotTrack** class is decorated by @Track. After the **change logTrack.str1** button is clicked, both **UINode3** and **UINode4** are re-rendered, as indicated by that two log records are generated. Redundant re-renders occur.
-```ts
-Text 3 is rendered
-Text 4 is rendered
-```
+    ```ts
+    Text 3 is rendered
+    Text 4 is rendered
+    ```
 
 ## Constraints
 
@@ -114,7 +116,7 @@ Text 4 is rendered
 - Whenever possible, avoid any combination of class objects that contain \@Track and those that do not in, for example, union types and class inheritance.
 
 
-## Usage Scenarios
+## Use Scenarios
 
 ### \@Track and Custom Component Updates
 
