@@ -1884,7 +1884,7 @@ For details about the error codes, see [Network Connection Management Error Code
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exists.      |
+| 2101007 | The callback does not exist.      |
 
 **Example**
 
