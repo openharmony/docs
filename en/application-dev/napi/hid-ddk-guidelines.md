@@ -12,7 +12,7 @@ The HID driver development kit (DDK) is a toolset that helps you develop HID dev
 
 * To use the open APIs of the HID DDK, you need to declare the matching ACL permissions in **module.json5**, for example, **ohos.permission.ACCESS_DDK_HID**.
 
-## **Available APIs**
+## Available APIs
 
 | Name| Description|
 | -------- | -------- |
@@ -41,7 +41,7 @@ libhid.z.so
 
 1. Create a device.
 
-    Use **OH_Hid_CreateDevice** in **hid_ddk_api.h** to create an HID device. If the operation is successful, **deviceId** (a non-negative number) is returned. If the operation fails, an error code (a negative number) is returned.
+    Use **OH_Hid_CreateDevice** in **hid_ddk_api.h** to create a HID device. If the operation is successful, **deviceId** (a non-negative number) is returned. If the operation fails, an error code (a negative number) is returned.
 
     ```c++
    // Construct HID device properties.
@@ -75,7 +75,7 @@ libhid.z.so
     int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
     ```
 
-2. Sends events to a HID device.
+2. Send an event to a HID device.
 
     Use **OH_Hid_EmitEvent** of **hid_ddk_api.h** to send an event to the device with the specified **deviceId**.
 
