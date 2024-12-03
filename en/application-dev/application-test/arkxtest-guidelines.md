@@ -89,7 +89,7 @@ export default function abilityTest() {
 
 #### Writing a UI Test Script
 
- <br>To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. <!--RP1-->For details about the available APIs, see [@ohos.UiTest](..reference/apis-test-kit/js-apis-uitest.md).<!--RP1End--><br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
+ <br>To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. <!--RP1-->For details about the available APIs, see [@ohos.UiTest](../reference/apis-test-kit/js-apis-uitest.md).<!--RP1End--><br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
 1. Write the demo code in the **index.ets**file.
 
@@ -443,18 +443,18 @@ The following describes the fields in the recording data:
 
 ### Injecting Simulated UI Operations
 
-| Command  | Mandatory| Description             | 
+| Command  | Mandatory| Description             |
 |------|------|-----------------|
 | help   | Yes   | Displays help information about the uiInput commands.|
-| click   | Yes   | Simulates a click event.     | 
-| doubleClick   | Yes   | Simulates a double-click event.     | 
-| longClick   | Yes   | Simulates a long-click event.    | 
-| fling   | Yes   | Simulates a fling event.  | 
-| swipe   | Yes   | Simulates a swipe event.    | 
-| drag   | Yes   | Simulates a drag event.    | 
+| click   | Yes   | Simulates a click event.     |
+| doubleClick   | Yes   | Simulates a double-click event.     |
+| longClick   | Yes   | Simulates a long-click event.    |
+| fling   | Yes   | Simulates a fling event.  |
+| swipe   | Yes   | Simulates a swipe event.    |
+| drag   | Yes   | Simulates a drag event.    |
 | dircFling   | Yes   | Simulates a directional fling event.    |
 | inputText   | Yes   | Simulates a text input event.    |
-| keyEvent   | Yes   | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.    | 
+| keyEvent   | Yes   | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.    |
 
 
 #### Example of Running the click/doubleClick/longClick Commands
@@ -477,30 +477,30 @@ hdc shell uitest uiInput longClick 100 100
 
 #### Example of Running the uiInput fling Command
 
-| Parameter | Mandatory            | Description              |      
+| Parameter | Mandatory            | Description              |
 |------|------------------|-----------------|
-| from_x   | Yes               | The x-coordinate of the start point.| 
-| from_y   | Yes               | The y-coordinate of the start point.| 
+| from_x   | Yes               | The x-coordinate of the start point.|
+| from_y   | Yes               | The y-coordinate of the start point.|
 | to_x   | Yes               | The x-coordinate of the stop point.|
 | to_y   | Yes               | The y-coordinate of the stop point.|
-| swipeVelocityPps_   | No     | Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
-| stepLength_   | No| The step length. The default value is the sliding distance divided by 50.<br>  To achieve better simulation effect, you are advised to use the default values. | 
+| swipeVelocityPps_   | No     | Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.|
+| stepLength_   | No| The step length. The default value is the sliding distance divided by 50.<br>  To achieve better simulation effect, you are advised to use the default values. |
 
 
 ```shell  
 # Execute the fling event. The default value of stepLength_ is used.
 hdc shell uitest uiInput fling 10 10 200 200 500 
-``` 
+```
 
 #### Example of Running the uiInput swipe/drag Command
 
-| Parameter | Mandatory            | Description              |      
+| Parameter | Mandatory            | Description              |
 |------|------------------|-----------------|
-| from_x   | Yes               | The x-coordinate of the start point.| 
-| from_y   | Yes               | The y-coordinate of the start point.| 
+| from_x   | Yes               | The x-coordinate of the start point.|
+| from_y   | Yes               | The y-coordinate of the start point.|
 | to_x   | Yes               | The x-coordinate of the stop point.|
 | to_y   | Yes               | The y-coordinate of the stop point.|
-| swipeVelocityPps_   | No     | Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
+| swipeVelocityPps_   | No     | Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.|
 
 ```shell  
 # Execute the swipe event.
@@ -514,8 +514,8 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 
 | Parameter            | Mandatory      | Description|
 |-------------------|-------------|----------|
-| direction         | No| Fling direction, which can be **0**, **1**, **2**, or **3**. The default value is **0**.<br> The value **0** indicates leftward fling, **1** indicates rightward fling, **2** indicates upward fling, and **3** indicates downward fling.   | 
-| swipeVelocityPps_ | No| Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   | 
+| direction         | No| Fling direction, which can be **0**, **1**, **2**, or **3**. The default value is **0**.<br> The value **0** indicates leftward fling, **1** indicates rightward fling, **2** indicates upward fling, and **3** indicates downward fling.   |
+| swipeVelocityPps_ | No| Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   |
 | stepLength        | No       | The step length.<br> The default value is the sliding distance divided by 50. To achieve better simulation effect, you are advised to use the default values.|
 
 ```shell  
@@ -531,9 +531,9 @@ hdc shell uitest uiInput dircFling 3
 
 #### Example of Running the uiInput inputText Command
 
-| Parameter            | Mandatory      | Description|       
+| Parameter            | Mandatory      | Description|
 |------|------------------|----------|
-| point_x   | Yes               | The x-coordinate of the input box.| 
+| point_x   | Yes               | The x-coordinate of the input box.|
 | point_y   | Yes               | The y-coordinate of the input box.|
 | text   | Yes               | Text in the input box. |
 
@@ -544,9 +544,9 @@ hdc shell uitest uiInput inputText 100 100 hello
 
 #### Example of Running the uiInput keyEvent Command
 
-| Parameter            | Mandatory      | Description|                
+| Parameter            | Mandatory      | Description|
 |------|------|----------|
-| keyID1   | Yes   | ID of a physical key, which can be **KeyCode**, **Back**, **Home**, or **Power**.<br>When the value is set to **Back**, **Home**, or **Power**, the combination keys are not supported.| 
+| keyID1   | Yes   | ID of a physical key, which can be **KeyCode**, **Back**, **Home**, or **Power**.<br>When the value is set to **Back**, **Home**, or **Power**, the combination keys are not supported.|
 | keyID2    | No   | ID of a physical key.|
 | keyID3    | No   | ID of a physical key.|
 
