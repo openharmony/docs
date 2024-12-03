@@ -179,7 +179,7 @@ void bad_close()
     int fd = open(DEV_NULL_FILE, O_RDONLY);
     close(fd);
     sleep(2);
-    // This close expected to be detect by fdsan
+    // This close is expected to be detected by fdsan.
     close(fd);
 }
 

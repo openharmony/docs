@@ -26,7 +26,7 @@ As the common data type in programming, string is a sequence of characters used 
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code involved in string-related APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in string management.
 
 ### OH_JSVM_GetValueStringUtf8
 
@@ -39,15 +39,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetValueStringUtf8 callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueStringUtf8},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueStringUtf8 and associate it with a callback. This allows the GetValueStringUtf8 callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueStringUtf8", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+#include <cstdlib>
 // Define OH_JSVM_GetValueStringUtf8.
 static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -68,28 +60,30 @@ static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateStringUtf8(env, buf, length, &result);
     return result;
 }
+// Register the GetValueStringUtf8 callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueStringUtf8},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getValueStringUtf8 and associate it with a callback. This allows the GetValueStringUtf8 callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueStringUtf8", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let data = "aaBC+-$%^Hello 123";
+    let script = getValueStringUtf8(data);
+)JS";
 ```
 
-ArkTS code:
+**Expected output**
 
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let data = `"aaBC+-$ %^Hello 123"`;
-  let script: string = `getValueStringUtf8(${data})`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf8: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf8 error: %{public}s', error.message);
-}
-try {
-  let script: string = `getValueStringUtf8(50)`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf8: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf8 error: %{public}s', error.message);
-}
+JSVM GetValueStringUtf8 success: aaBC+-$%^Hello 123
 ```
+
+**NOTE**<br>The call fails if the input parameter **arg** of **getValueStringUtf8()** is not of the string type.
 
 ### OH_JSVM_CreateStringUtf8
 
@@ -102,15 +96,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the CreateStringUtf8 callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateStringUtf8},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createStringUtf8 and associate it with a callback. This allows the CreateStringUtf8 callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createStringUtf8", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+#include <string>
 // Define OH_JSVM_CreateStringUtf8.
 static JSVM_Value CreateStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -126,20 +112,27 @@ static JSVM_Value CreateStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the CreateStringUtf8 callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateStringUtf8},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createStringUtf8 and associate it with a callback. This allows the CreateStringUtf8 callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createStringUtf8", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let script = createStringUtf8();
+)JS";
 ```
 
-ArkTS code:
+**Expected output**
+
 
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string = `createStringUtf8()`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createStringUtf8: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createStringUtf8 error: %{public}s', error.message);
-}
+JSVM CreateStringUtf8 success: Hello, World!, successes to create UTF-8 string!
 ```
 
 ### OH_JSVM_GetValueStringUtf16
@@ -155,16 +148,8 @@ CPP code:
 #include <hilog/log.h>
 #include <codecvt>
 #include <locale>
+#include <cstdlib>
 
-// Register the GetValueStringUtf16 callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueStringUtf16},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueStringUtf16 and associate it with a callback. This allows the GetValueStringUtf16 callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueStringUtf16", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetValueStringUtf16.
 // Set the maximum length of the string buffer.
 static const int MAX_BUFFER_SIZE = 128;
@@ -192,28 +177,30 @@ static JSVM_Value GetValueStringUtf16(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
+// Register the GetValueStringUtf16 callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueStringUtf16},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getValueStringUtf16 and associate it with a callback. This allows the GetValueStringUtf16 callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueStringUtf16", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let data = "ahello.";
+    let script = getValueStringUtf16(data);
+)JS";
 ```
 
-ArkTS code:
+**Expected output**
 
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let data = `"ahello. "`;
-  let script: string = `getValueStringUtf16(${data})`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf16: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf16 error: %{public}s', error.message);
-}
-try {
-  let script: string = `getValueStringUtf16(50)`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf16: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueStringUtf16 error: %{public}s', error.message);
-}
+JSVM GetValueStringUtf16 success: ahello.
 ```
+
+**NOTE**<br>The call fails if the input parameter **arg** of **getValueStringUtf16()** is not of the string type.
 
 ### OH_JSVM_CreateStringUtf16
 
@@ -228,16 +215,8 @@ CPP code:
 #include <hilog/log.h>
 #include <codecvt>
 #include <locale>
+#include <cstring>
 
-// Register the CreateStringUtf16 callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateStringUtf16},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createStringUtf16 and associate it with a callback. This allows the CreateStringUtf16 callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createStringUtf16", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_CreateStringUtf16.
 static JSVM_Value CreateStringUtf16(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -257,22 +236,26 @@ static JSVM_Value CreateStringUtf16(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the CreateStringUtf16 callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateStringUtf16},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createStringUtf16 and associate it with a callback. This allows the CreateStringUtf16 callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createStringUtf16", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let script = createStringUtf16();
+)JS";
 ```
 
-ArkTS code:
+**Expected output**
 
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string = `
-        createStringUtf16()
-  `;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createStringUtf16: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createStringUtf16 error: %{public}s', error.message);
-}
+JSVM CreateStringUtf16 success: Hello, World!, successes to create UTF-16 string!
 ```
 
 ### OH_JSVM_GetValueStringLatin1
@@ -286,15 +269,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetValueStringLatin1 callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueStringLatin1},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueStringLatin1 and associate it with a callback. This allows the GetValueStringLatin1 callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueStringLatin1", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+#include <cstdlib>
 // Define OH_JSVM_GetValueStringLatin1.
 // Set the maximum length of the string buffer.
 static const int MAX_BUFFER_SIZE = 128;
@@ -315,38 +290,31 @@ static JSVM_Value GetValueStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateStringLatin1(env, buf, length, &jsvmRes);
     return jsvmRes;
 }
+// Register the GetValueStringLatin1 callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueStringLatin1},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getValueStringLatin1 and associate it with a callback. This allows the GetValueStringLatin1 callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueStringLatin1", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let data = "中文";
+    let script = getValueStringLatin1(data);
+)JS";
 ```
 
-ArkTS code:
+**Expected output**
 
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  // The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.
-  let data = `"中文"`;
-  let script: string = `getValueStringLatin1(${data})`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueStringLatin1: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueStringLatin1 error: %{public}s', error.message);
-}
-try {
-  // If non-character data is passed in, undefined will be returned.
-  let script: string = `getValueStringLatin1(10)`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueStringLatin1: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueStringLatin1 error: %{public}s', error.message);
-}
-try {
-  // Passing in characters of other languages will not cause garbled characters.
-  let data = `"abo ABP=-&*/"`;
-  let script: string = `getValueStringLatin1(${data})`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueStringLatin1: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueStringLatin1 error: %{public}s', error.message);
-}
+// The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.
+JSVM GetValueStringLatin1 success: - 
 ```
+
+**NOTE**<br>The call fails if the input parameter **arg** of **getValueStringLatin1()** is not of the string type.
 
 ### OH_JSVM_CreateStringLatin1
 
@@ -359,21 +327,14 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <cstring>
 // Register the CreateStringLatin1 callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateStringLatin1},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createStringLatin1 and associate it with a callback. This allows the CreateStringLatin1 callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createStringLatin1", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Set the maximum length of the string buffer.
 static const int MAX_BUFFER_SIZE = 128;
 // Define OH_JSVM_CreateStringLatin1.
 static JSVM_Value CreateStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    const char *str = "Hello, World! éçñ, successes to create Latin1 string! 111";
+    const char *str = "Hello, World! éçñ, successes to create Latin1 string!";
     size_t length = JSVM_AUTO_LENGTH;
     JSVM_Value result = nullptr;
     JSVM_Status status = OH_JSVM_CreateStringLatin1(env, str, length, &result);
@@ -387,19 +348,24 @@ static JSVM_Value CreateStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateStringLatin1},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createStringLatin1 and associate it with a callback. This allows the CreateStringLatin1 callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createStringLatin1", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let script = createStringLatin1();
+)JS";
 ```
 
-ArkTS code:
+**Expected output**
 
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string = `createStringLatin1()`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createStringLatin1: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createStringLatin1 error: %{public}s', error.message);
-}
+JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
 ```
 <!--no_check-->
