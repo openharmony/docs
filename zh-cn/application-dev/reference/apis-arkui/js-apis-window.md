@@ -249,7 +249,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式，深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色,默认跟随系统，深浅色模式指定则固定 |
+| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式，深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色，默认跟随系统，深浅色模式指定则固定 |
 | buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp |
 | spacingBetweenButtons         | number        | 是   | 是   | 按钮间距，取值范围12vp-24vp，默认值12vp |
 | closeButtonRightMargin        | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围8vp-22vp，默认值20vp|
@@ -6127,7 +6127,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setDecorButtonStyle(decorStyle: DecorButtonStyle): void;
 
-设置装饰栏按钮样式,仅对2in1设备的主窗和使能窗口标题的子窗生效。
+设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -6191,7 +6191,7 @@ export default class EntryAbility extends UIAbility {
 
 getDecorButtonStyle(): DecorButtonStyle;
 
-获取装饰栏按钮样式,仅对2in1设备的主窗和使能窗口标题的子窗生效。
+获取装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
