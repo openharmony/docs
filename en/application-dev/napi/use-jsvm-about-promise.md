@@ -139,7 +139,7 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[3] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     // The first parameter is the data to be passed to Resolve(), the second parameter is the data to be passed to reject(), and the third parameter is the Promise state.
-    bool status;
+    bool status = false;
     OH_JSVM_GetValueBool(env, args[2], &status);
     // Create a Promise object.
     JSVM_Deferred deferred = nullptr;
