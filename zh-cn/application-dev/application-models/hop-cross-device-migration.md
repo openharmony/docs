@@ -67,18 +67,23 @@
 
     当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例触发迁移时，[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
-    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-    - 应用兼容性检测（可选）：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验，建议应用在校验版本兼容性失败后，提示用户迁移失败的原因；如果开发者判断迁移过程中的兼容性问题不影响当前应用的功能，或者迁移风险较小，可以选择不进行校验。
-
-    - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
-
+    1. 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
+    
+    2. （可选）检测应用兼容性：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。应用在校验版本兼容性失败后，需要提示用户迁移失败的原因。
+        > **说明：**
+        > 
+        > 如果迁移过程中的兼容性问题对于应用迁移体验影响较小或无影响，可以跳过该步骤。
+    
+    3. 返回迁移结果：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
+    
     &nbsp;
     `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
+
     | 字段|含义|
     | ---- | ---- |
     | version | 对端应用的版本号 |
     | targetDevice | 对端设备的networkId |
-
+    
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
