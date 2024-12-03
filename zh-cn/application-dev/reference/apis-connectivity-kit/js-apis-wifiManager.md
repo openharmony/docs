@@ -1004,7 +1004,7 @@ getLinkedInfoSync(): WifiLinkedInfo;
     let linkInfo = wifiManager.getLinkedInfoSync();
     console.info("get linked info:" + JSON.stringify(linkInfo));
   } catch(error) {
-    console.info("get linked info failed:" + JSON.stringify(error));
+    console.error("get linked info failed:" + JSON.stringify(error));
   }
 ```
 
