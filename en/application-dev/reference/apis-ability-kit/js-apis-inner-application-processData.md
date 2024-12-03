@@ -1,11 +1,10 @@
-# ProcessData (System API)
+# ProcessData
 
-The **ProcessData** module defines process data. If a lifecycle change listener is registered by calling [registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver), the **onProcessCreated** callback in [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) is invoked when the lifecycle of an application or ability changes.
+The ProcessData module defines process data. If a lifecycle change listener is registered by calling [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate), the **onProcessCreated** callback in [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) is invoked when the lifecycle of an application or ability changes.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are system APIs.
+> The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -17,16 +16,14 @@ import { appManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name                    | Type    | Read-only | Mandatory | Description                      |
+| Name                    | Type    | Read-Only| Mandatory| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
 | pid         | number   | No  | Yes  | Process ID.                   |
 | bundleName  | string   | No  | Yes | Bundle name of the application.                 |
 | uid         | number   | No  | Yes  | UID of the application.                 |
-| isContinuousTask<sup>9+</sup>         | boolean   | No  | Yes  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
-| isKeepAlive<sup>9+</sup>         | boolean   | No  | Yes  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
-| state<sup>9+</sup>       | number   | No  | Yes  | Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
+| isContinuousTask         | boolean   | No  | Yes  | Whether the task is a continuous task. The value **true** means that the task is a continuous task, and **false** means the opposite.                |
+| isKeepAlive         | boolean   | No  | Yes  | Whether the process is a resident task. The value **true** means that the process is a resident, and **false** means the opposite.                  |
+| state       | number   | No  | Yes  | Application state. The options are as follows:<br>**0**: newly created.<br>**1**: ready.<br>**2**: running in the foreground.<br>**4**: running in the background.<br>**5**: terminated.    |
 
 **Example**
 ```ts
