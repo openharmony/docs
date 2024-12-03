@@ -75,7 +75,7 @@
        >
        > 如果迁移过程中的兼容性问题对于应用迁移体验影响较小或无影响，可以跳过该步骤。
     
-    3. 返回迁移结果：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](typora://app/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
+    3. 返回迁移结果：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
     
     &nbsp;
     `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
