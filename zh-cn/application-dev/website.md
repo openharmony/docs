@@ -427,7 +427,7 @@
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
         - 使用弹窗<!--arkts-use-dialog-->
-          - [模态弹窗 (ModelDialog)](ui/arkts-modal-dialog.md)
+          - [模态弹窗 (ModalDialog)](ui/arkts-modal-dialog.md)
           - [不依赖UI组件的全局自定义弹窗 (推荐)](ui/arkts-uicontext-custom-dialog.md)
           - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
         - 显示图形<!--arkts-draw-graphics-->
