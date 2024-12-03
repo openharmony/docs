@@ -7,7 +7,9 @@
 Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标应用。隐式Want的uri匹配规则详见[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)。
 
 
-## 目标应用配置module.json5文件
+## 目标应用操作指导
+
+### 配置module.json5文件
 
 为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[skills标签](../quick-start/module-configuration-file.md#skills标签)。其中，uri字段的scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
 
@@ -47,6 +49,33 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 }
 ```
 
+### 获取并解析目标方传入的应用链接
+
+在目标应用的UIAbility的onCreate()或者onNewWant()生命周期回调中，获取、解析拉起方传入的应用链接。
+
+```ts
+
+// 以EntryAbility.ets为例
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { url } from '@kit.ArkTS';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // 从want中获取传入的链接信息。
+    // 如传入的url为：link://www.example.com/programs?action=showall
+    let uri = want?.uri;
+    if (uri) {
+      // 从链接中解析query参数，拿到参数后，开发者可根据自己的业务需求进行后续的处理。
+      let urlObject = url.URL.parseURL(want?.uri);
+      let action = urlObject.params.get('action');
+      // 例如，当action为showall时，展示所有的节目。
+      if (action === "showall") {
+         // ...
+      }
+    }
+  }
+}
+```
 
 ## 拉起方应用实现应用跳转
 
