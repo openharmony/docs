@@ -4,7 +4,7 @@ This section describes how to start a specified application in linking mode.
 
 > **NOTE**
 > 
-> Since API version 12, third-party applications cannot start other applications by specifying an ability (implicit Want mode). For details about how to switch from the implicit Want mode to the linking mode, see [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md).
+> Since API version 12, it is not recommended that third-party applications start other applications by specifying an ability (implicit Want mode). For details about how to switch from the implicit Want mode to the [linking mode](app-startup-overview.md#application-links), see [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md).
 
 
 ## Application Links

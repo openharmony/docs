@@ -47,16 +47,16 @@ Subscribes to an event.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes | Event name. |
-| callback | Function | Yes | Callback invoked when the event is triggered. |
+| event | string | Yes| Event name.|
+| callback | Function | Yes| Callback invoked when the event is triggered.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -65,19 +65,31 @@ When the callback is triggered by **emit**, the invoker is the **EventHub** obje
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   value: number = 12;
 
   onCreate() {
-    this.context.eventHub.on('myEvent', this.eventFunc);
+    try {
+      this.context.eventHub.on('myEvent', this.eventFunc);
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
+    }
   }
 
   onForeground() {
-    // Result
-    // eventFunc is called, value: undefined
-
-    this.context.eventHub.emit('myEvent');
+    try {
+      // Result
+      // eventFunc is called, value: undefined
+      this.context.eventHub.emit('myEvent');
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
+    }
   }
 
   eventFunc() {
@@ -91,21 +103,34 @@ When the callback uses an arrow function, the invoker is the **EntryAbility** ob
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   value: number = 12;
 
   onCreate() {
-    // Anonymous functions can be used to subscribe to events.
-    this.context.eventHub.on('myEvent', () => {
-      console.log(`anonymous eventFunc is called, value: ${this.value}`);
-    });
+    try {
+      // Anonymous functions can be used to subscribe to events.
+      this.context.eventHub.on('myEvent', () => {
+        console.log(`anonymous eventFunc is called, value: ${this.value}`);
+      });
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
+    }
   }
 
   onForeground() {
-    // Result
-    // anonymous eventFunc is called, value: 12
-    this.context.eventHub.emit('myEvent');
+    try {
+      // Result
+      // anonymous eventFunc is called, value: 12
+      this.context.eventHub.emit('myEvent');
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
+    }
   }
 
   eventFunc() {
@@ -128,16 +153,16 @@ Unsubscribes from an event.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes | Event name. |
-| callback | Function | No | Callback for the event. If **callback** is unspecified, the given event with all callbacks is unsubscribed. |
+| event | string | Yes| Event name.|
+| callback | Function | No| Callback for the event. If **callback** is unspecified, the given event with all callbacks is unsubscribed.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -145,14 +170,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    this.context.eventHub.on('myEvent', this.eventFunc1);
-    this.context.eventHub.off('myEvent', this.eventFunc1); // Unsubscribe from the myEvent event with the callback eventFunc1.
-    this.context.eventHub.on('myEvent', this.eventFunc1);
-    this.context.eventHub.on('myEvent', this.eventFunc2);
-    this.context.eventHub.off('myEvent'); // Unsubscribe from the myEvent event with all the callbacks (eventFunc1 and eventFunc2).
+    try {
+      this.context.eventHub.on('myEvent', this.eventFunc1);
+      this.context.eventHub.off('myEvent', this.eventFunc1); // Unsubscribe from the myEvent event with the callback eventFunc1.
+      this.context.eventHub.on('myEvent', this.eventFunc1);
+      this.context.eventHub.on('myEvent', this.eventFunc2);
+      this.context.eventHub.off('myEvent'); // Unsubscribe from the myEvent event with all the callbacks (eventFunc1 and eventFunc2).
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
+    }
   }
 
   eventFunc1() {
@@ -177,16 +209,16 @@ Triggers an event.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes | Event name. |
-| ...args | Object[] | No | Variable parameters, which are passed to the callback when the event is triggered. |
+| event | string | Yes| Event name.|
+| ...args | Object[] | No| Variable parameters, which are passed to the callback when the event is triggered.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -194,6 +226,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -201,15 +234,21 @@ export default class EntryAbility extends UIAbility {
   }
 
   onDestroy() {
-    // Result
-    // eventFunc is called,undefined,undefined
-    this.context.eventHub.emit('myEvent');
-    // Result
-    // eventFunc is called,1,undefined
-    this.context.eventHub.emit('myEvent', 1);
-    // Result
-    // eventFunc is called,1,2
-    this.context.eventHub.emit('myEvent', 1, 2);
+    try {
+      // Result
+      // eventFunc is called,undefined,undefined
+      this.context.eventHub.emit('myEvent');
+      // Result
+      // eventFunc is called,1,undefined
+      this.context.eventHub.emit('myEvent', 1);
+      // Result
+      // eventFunc is called,1,2
+      this.context.eventHub.emit('myEvent', 1, 2);
+    } catch (e) {
+      let code: number = (e as BusinessError).code;
+      let msg: string = (e as BusinessError).message;
+      console.error(`EventHub emit error, code: ${code}, msg: ${msg}`);
+    }
   }
 
   eventFunc(argOne: number, argTwo: number) {

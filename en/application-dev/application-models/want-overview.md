@@ -17,8 +17,7 @@
     Explicit Want is usually used to start another application component in the same application. You can use the bundle name and ability name in the **Want** object to specify the target component. When there is an explicit object to process the request, explicit Want is a simple and effective way to start the target application component.
     > **NOTE**
     >
-    > In API version 11 and earlier versions, you can use explicit Want to start the UIAbility of another application.
-    > Since API version 12, the explicit Want launch mode is no longer supported for inter-application redirection. You must use **openLink** to start the UIAbility of another application.
+    > Since API version 12, it is not recommended that third-party applications start other applications by specifying an ability (implicit Want mode). Instead, the [linking mode](app-startup-overview.md#application-links) is recommended.
   
   ```ts
   import { Want } from '@kit.AbilityKit';
@@ -57,5 +56,4 @@
   > 
   > - In the scenario for starting the ServiceExtensionAbility component:
   >   - If the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed in contains **abilityName**, the ServiceExtensionAbility component cannot be started through implicit Want.
-  > 
   >   - If the **want** parameter passed in contains **bundleName**, the **startServiceExtensionAbility()** method can be used to implicitly start the ServiceExtensionAbility component. By default, the ServiceExtensionAbility component with the highest priority is returned. If all the matching ServiceExtensionAbility components have the same priority, the first ServiceExtensionAbility component is returned.

@@ -5,6 +5,7 @@ The **FeatureAbility** module provides APIs that enable user interaction. You ca
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the FA model.
 
 ## Constraints
@@ -27,9 +28,9 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 >
 > For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -83,7 +84,7 @@ Starts an ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model.
+**Model restriction**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -132,12 +133,12 @@ Obtains a **dataAbilityHelper** object.
 > **NOTE**
 >
 > For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+>
 > To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
 
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -175,10 +176,9 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 >
 > For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
+**Model restriction**: This API can be used only in the FA model.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model.
-
 
 **Parameters**
 
@@ -231,9 +231,10 @@ Starts an ability. This API uses a promise to return the result when the ability
 >
 > For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
+**Model restriction**: This API can be used only in the FA model.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model.
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description           |
@@ -289,9 +290,9 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 Terminates this ability. This API uses an asynchronous callback to return the result. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -344,9 +345,9 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 Terminates this ability. This API uses a promise to return the result. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -403,9 +404,9 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 Checks whether the main window of this ability has the focus. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -434,6 +435,8 @@ hasWindowFocus(): Promise\<boolean>
 
 Checks whether the main window of this ability has the focus. This API uses a promise to return the result.
 
+**Model restriction**: This API can be used only in the FA model.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
@@ -459,9 +462,9 @@ getWant(callback: AsyncCallback\<Want>): void
 
 Obtains the Want corresponding to the ability to start. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -490,9 +493,9 @@ getWant(): Promise\<Want>
 
 Obtains the Want corresponding to the ability to start. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
 
@@ -517,9 +520,9 @@ getContext(): Context
 
 Obtains the application context.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
 
@@ -549,9 +552,9 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 Terminates this ability. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -578,9 +581,9 @@ terminateSelf(): Promise\<void>
 
 Terminates this ability. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
 
@@ -610,10 +613,9 @@ Connects this ability to a ServiceAbility.
 > For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 > To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
 
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -661,9 +663,9 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 Disconnects this ability from a specific ServiceAbility. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -710,11 +712,11 @@ featureAbility.disconnectAbility(connectId, (error) => {
 
 disconnectAbility(connection: number): Promise\<void>
 
-Disconnects this ability from a specific a ServiceAbility. This API uses a promise to return the result.
+Disconnects this ability from a specific ServiceAbility. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -768,9 +770,9 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 Obtains the window corresponding to this ability. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
 
@@ -801,9 +803,9 @@ getWindow(): Promise\<window.Window>
 
 Obtains the window corresponding to this ability. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+**Model restriction**: This API can be used only in the FA model.
 
-**Note**: This API can be used only in the FA model.
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Return value**
 
@@ -830,14 +832,7 @@ featureAbility.getWindow().then((data: window.Window) => {
 
 Defines the window configuration corresponding to this ability. The configuration is obtained through **featureAbility.AbilityWindowConfiguration**.
 
-**Example**
-
-<!--code_no_check_fa-->
-```ts
-import { featureAbility } from '@kit.AbilityKit';
-
-featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
-```
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -849,12 +844,30 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 | WINDOW_MODE_SPLIT_SECONDARY | 101  | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window.|
 | WINDOW_MODE_FLOATING        | 102  | The PageAbility is displayed in floating window mode.|
 
+**Example**
+
+<!--code_no_check_fa-->
+```ts
+import { featureAbility } from '@kit.AbilityKit';
+
+featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
+```
 
 ## AbilityStartSetting<sup>7+</sup>
 
 Defines the window property corresponding to this ability. The **abilityStartSetting** property is an object defined in the format of [**key: string]: any**, where **key** is an enumerated value of **AbilityStartSetting** and **value** is an enumerated value of **AbilityWindowConfiguration**.
 
 The value is obtained through **featureAbility.AbilityStartSetting**.
+
+**Model restriction**: This API can be used only in the FA model.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+| Name                          | Value             | Description                                      |
+| ---------------------------- | --------------- | ---------------------------------------- |
+| BOUNDS_KEY      | 'abilityBounds' | Ability window size.|
+| WINDOW_MODE_KEY | 'windowMode'    | Ability window display mode.|
+| DISPLAY_ID_KEY  | 'displayId'     | Display device ID.|
 
 **Example**
 
@@ -865,17 +878,11 @@ import { featureAbility } from '@kit.AbilityKit';
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
-
-| Name                          | Value             | Description                                      |
-| ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY      | 'abilityBounds' | Ability window size.|
-| WINDOW_MODE_KEY | 'windowMode'    | Ability window display mode.|
-| DISPLAY_ID_KEY  | 'displayId'     | Display device ID.|
-
 ## ErrorCode<sup>7+</sup>
 
 Enumerates the error codes that may be returned when an ability is started.
+
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -889,6 +896,8 @@ Enumerates the error codes that may be returned when an ability is started.
 ## DataAbilityOperationType<sup>7+</sup>
 
 Enumerates the operation types of a DataAbility. The DataAbility can use an enumerated value to specify the operation type when operating data in batches.
+
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
