@@ -67,43 +67,24 @@
 
     当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例触发迁移时，[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
-    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-    - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验，建议应用在校验版本兼容性失败后，提示用户接续失败的原因。
-
-    - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
-
+    1. 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
+    
+    2. （可选）检测应用兼容性：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。应用在校验版本兼容性失败后，需要提示用户迁移失败的原因。
+    
+       > **说明：**
+       >
+       > 如果迁移过程中的兼容性问题对于应用迁移体验影响较小或无影响，可以跳过该步骤。
+    
+    3. 返回迁移结果：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](typora://app/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
+    
     &nbsp;
     `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
+    
     | 字段|含义|
     | ---- | ---- |
     | version | 对端应用的版本号 |
     | targetDevice | 对端设备的networkId |
-
-    ```ts
-    import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
     
-    const TAG: string = '[MigrationAbility]';
-    const DOMAIN_NUMBER: number = 0xFF00;
-    
-    export default class MigrationAbility extends UIAbility {
-      // 在onContinue中准备迁移数据
-      onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-        let targetVersion = wantParam.version;
-        let targetDevice = wantParam.targetDevice;
-        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
-    
-        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
-        const continueInput = '迁移的数据';
-        wantParam['data'] = continueInput;
-    
-        return AbilityConstant.OnContinueResult.AGREE;
-      }
-    }
-    ```
-
-    若应用侧需要进行应用版本号兼容性校验，可参考以下示例：
-
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -119,11 +100,11 @@
         let targetDevice = wantParam.targetDevice;
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
     
-        // 应用可自行设置最低版本号
+        // 应用可根据源端版本号自行设置最低版本号，源端版本号可从app.json5文件中的versionCode字段获取
     	let versionThreshold: number = -1;
         // 兼容性校验
         if (targetVersion < versionThreshold) {
-          // 建议在校验版本兼容性失败后，提示用户拒绝接续的原因
+          // 建议在校验版本兼容性失败后，提示用户拒绝迁移的原因
           promptAction.showToast({
               message: '应用版本号校验失败，目标端版本号过低，请您升级应用版本',
               duration: 2000
@@ -140,7 +121,7 @@
       }
     }
     ```
-
+    
 3. 对端设备的UIAbility通过实现[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口，来恢复迁移数据和加载UI。
 
     不同的启动方式下会调用不同的接口，详见下图。
