@@ -186,7 +186,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 | ------------- | ------------------------------------------------------- | ---- | ------------------ |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
 | bundleName | string                   | 是   | 被委托应用包名。被委托应用仅支持enterprise_mdm和enterprise_normal两种类型，应用的分发类型具体请参考[指南](https://gitee.com/nezha-father/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)。 |
-| policies |  Array&lt;string&gt;                   | 是   | 被委托策略列表。 |
+| policies |  Array&lt;string&gt;                   | 是   | [委托策略列表](#可委托策略列表)。 |
 
 **错误码**：
 
@@ -376,7 +376,7 @@ try {
 |snapshot_skip|[restrictions.addDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsadddisallowedlistforaccount14)<br>[restrictions.removeDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsremovedisallowedlistforaccount14)<br>[restrictions.getDisallowedListForAccount](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedlistforaccount14)|feature传入snapshotSkip，禁用屏幕快照能力的应用名单。<br>feature传入snapshotSkip，从禁用屏幕快照能力的应用名单中移除。<br>feature传入snapshotSkip，查询禁用屏幕快照能力的应用名单。|
 |password_policy|[securityManager.setPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagersetpasswordpolicy12)<br>[securityManager.getPasswordPolicy](js-apis-enterprise-securityManager.md#securitymanagergetpasswordpolicy12)|设置设备口令策略。<br>获取设备口令策略|
 |clipboard_policy|[securityManager.setAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagersetappclipboardpolicy12)<br>[securityManager.getAppClipboardPolicy](js-apis-enterprise-securityManager.md#securitymanagergetappclipboardpolicy12)|设置设备剪贴板策略。<br>获取设备剪贴板策略。|
-|watermark_image_policy|||
+|watermark_image_policy|[securityManager.setWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagersetwatermarkimage14)<br>[securityManager.cancelWatermarkImage](js-apis-enterprise-securityManager.md#securitymanagercancelwatermarkimage14)|设置水印策略，当前仅支持2in1使用。<br>取消水印策略，当前仅支持2in1使用。|
 |ntp_server|[systemManager.setNTPServer](js-apis-enterprise-systemManager.md#systemmanagersetntpserver)<br>[systemManager.getNTPServer](js-apis-enterprise-systemManager.md#systemmanagergetntpserver)|设置NTP服务器的策略。<br>获取NTP服务器信息。|
 |set_update_policy|[systemManager.setOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagersetotaupdatepolicy)<br>[systemManager.getOtaUpdatePolicy](js-apis-enterprise-systemManager.md#systemmanagergetotaupdatepolicy)|设置升级策略。<br>查询升级策略。|
 |notify_upgrade_packages|[systemManager.notifyUpdatePackages](js-apis-enterprise-systemManager.md#systemmanagernotifyupdatepackages)<br>[systemManager.getUpdateResult](js-apis-enterprise-systemManager.md#systemmanagergetupdateresult)|通知系统更新包信息。<br>获取系统更新结果。|
