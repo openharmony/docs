@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager)
 
-AbilityManager模块提供获取Ability相关信息和状态信息进行的能力。
+AbilityManager模块提供获取Ability相关信息和运行状态信息的能力。
 
 > **说明：**
 >
