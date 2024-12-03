@@ -207,7 +207,7 @@ ImageAttributeModifier不支持new方式创建ColorFilter对象传入colorFilter
 
 **起始API Level**
 
-API 14
+API 9
 
 **变更发生版本**
 
