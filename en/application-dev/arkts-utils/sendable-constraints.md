@@ -462,4 +462,4 @@ When using **Sendable** in HAR, enable the configuration of generating TS files.
 
 ## Rules for Interaction with the UI
 
-The Sendable data needs to be used together with the [makeObserved](../quick-start/arkts-new-makeObserved.md) to observe the data changes of the Sendable object. For details, see [Using makeObserved Together with @Sendable Decorated Classes](../quick-start/arkts-new-makeObserved.md#using-makeobserved-together-with-sendable-decorated-classes).
+The Sendable data needs to be used together with the [makeObserved](../quick-start/arkts-new-makeObserved.md) to observe the data changes of the Sendable object. For details, see [Using makeObserved and @Sendable Decorated Class Together](../quick-start/arkts-new-makeObserved.md#using-makeobserved-and-sendable-decorated-class-together).
