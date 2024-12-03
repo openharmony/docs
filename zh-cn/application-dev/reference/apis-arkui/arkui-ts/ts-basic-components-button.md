@@ -294,7 +294,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
 | Circle  | 圆形按钮。              |
 | Normal  | 普通按钮（默认不带圆角）。      |
-| ROUNDED_RECTANGLE<sup>14+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp） |
+| ROUNDED_RECTANGLE<sup>14+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。 |
 
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
