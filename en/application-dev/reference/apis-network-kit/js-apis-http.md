@@ -1507,11 +1507,11 @@ Enumerates HTTP protocol versions.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name | Description    |
-| :-------- | :----------- |
-| HTTP1_1   |  HTTP1.1<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| HTTP2     |  HTTP2<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| HTTP3<sup>11+</sup> | HTTP3 protocol. If the system or server does not support HTTP3, the HTTP protocol of an earlier version is used.<br>This field is valid only for HTTPS URLs. For HTTP URLs, the request fails.|
+| Name | Value|Description    |
+| :-------- | :----------- |:----------- |
+| HTTP1_1   | 0 |HTTP1.1<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| HTTP2     | 1 |HTTP2<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| HTTP3<sup>11+</sup> | 2 |HTTP3 protocol. If the system or server does not support HTTP3, the HTTP protocol of an earlier version is used.<br>This field is valid only for HTTPS URLs. For HTTP URLs, the request fails.|
 
 ## CertType<sup>11+</sup>
 

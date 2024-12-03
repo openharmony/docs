@@ -23,7 +23,7 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 | -------- | -------- |
 | [Sensor_Type](_sensor.md#sensor_type) | Defines an enum for sensor types. |
 | [Sensor_Result](_sensor.md#sensor_result)                    | Defines an enum for sensor result codes.                |
-| [Sensor_Accuracy](_sensor.md#sensor_accuracy) | Defines an enum for accuracy levels of data reported by a sensor. |
+| [Sensor_Accuracy](_sensor.md#sensor_accuracy) | Defines an enum that enumerates the accuracy levels of data reported by a sensor. |
 | [Sensor_Info](_sensor.md#sensor_info) | Defines a struct for the sensor information. |
 | [Sensor_Event](_sensor.md#sensor_event) | Defines a struct for the sensor data information. |
 | [Sensor_SubscriptionId](_sensor.md#sensor_subscriptionid) | Defines a struct for the sensor subscription ID, which uniquely identifies a sensor. |
@@ -38,7 +38,7 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 | -------- | -------- |
 | [Sensor_Type](_sensor.md#sensor_type) {<br>SENSOR_TYPE_ACCELEROMETER = 1,<br>SENSOR_TYPE_GYROSCOPE = 2, <br>SENSOR_TYPE_AMBIENT_LIGHT = 5,<br>SENSOR_TYPE_MAGNETIC_FIELD = 6,<br>SENSOR_TYPE_BAROMETER = 8, <br>SENSOR_TYPE_HALL = 10,<br>SENSOR_TYPE_PROXIMITY = 12,<br>SENSOR_TYPE_ORIENTATION = 256,<br>SENSOR_TYPE_GRAVITY = 257, <br>SENSOR_TYPE_ROTATION_VECTOR = 259,<br>SENSOR_TYPE_PEDOMETER_DETECTION = 265, <br>SENSOR_TYPE_PEDOMETER = 266,<br>SENSOR_TYPE_HEART_RATE = 278<br>} | Enumerates the sensor types. |
 | [Sensor_Result](_sensor.md#sensor_result) {<br>SENSOR_SUCCESS = 0, <br>SENSOR_PERMISSION_DENIED = 201, <br>SENSOR_PARAMETER_ERROR = 401, <br>SENSOR_SERVICE_EXCEPTION = 14500101<br>} | Enumerates the sensor result codes. |
-| [Sensor_Accuracy](_sensor.md#sensor_accuracy) { <br>SENSOR_ACCURACY_UNRELIABLE = 0,<br>SENSOR_ACCURACY_LOW = 1, <br>SENSOR_ACCURACY_MEDIUM = 2,<br>SENSOR_ACCURACY_HIGH = 3<br>} | Defines an enum for accuracy levels of data reported by a sensor. |
+| [Sensor_Accuracy](_sensor.md#sensor_accuracy) { <br>SENSOR_ACCURACY_UNRELIABLE = 0,<br>SENSOR_ACCURACY_LOW = 1, <br>SENSOR_ACCURACY_MEDIUM = 2,<br>SENSOR_ACCURACY_HIGH = 3<br>} | Defines an enum that enumerates the accuracy levels of data reported by a sensor. |
 
 
 ### Functions
@@ -63,8 +63,8 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 | [OH_SensorSubscriptionId_SetType](_sensor.md#oh_sensorsubscriptionid_settype) ([Sensor_SubscriptionId](_sensor.md#sensor_subscriptionid) *id, const [Sensor_Type](_sensor.md#sensor_type) sensorType) | Sets the sensor type. |
 | [OH_Sensor_CreateSubscriptionAttribute](_sensor.md#oh_sensor_createsubscriptionattribute) (void) | Creates a [Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) instance. |
 | [OH_Sensor_DestroySubscriptionAttribute](_sensor.md#oh_sensor_destroysubscriptionattribute) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) *attribute) | Destroys a [Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) instance and reclaims memory. |
-| [OH_SensorSubscriptionAttribute_SetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_setsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) *attribute, const int64_t samplingInterval) | Sets the interval for reporting sensor data. |
-| [OH_SensorSubscriptionAttribute_GetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_getsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) *attribute, int64_t *samplingInterval) | Obtains the interval for reporting sensor data. |
+| [OH_SensorSubscriptionAttribute_SetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_setsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) *attribute, const int64_t samplingInterval) | Sets the sensor data reporting interval. |
+| [OH_SensorSubscriptionAttribute_GetSamplingInterval](_sensor.md#oh_sensorsubscriptionattribute_getsamplinginterval) ([Sensor_SubscriptionAttribute](_sensor.md#sensor_subscriptionattribute) *attribute, int64_t *samplingInterval) | Obtains the sensor data reporting interval. |
 | [OH_Sensor_CreateSubscriber](_sensor.md#oh_sensor_createsubscriber) (void) | Creates a [Sensor_Subscriber](_sensor.md#sensor_subscriber) instance.|
 | [OH_Sensor_DestroySubscriber](_sensor.md#oh_sensor_destroysubscriber) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) *subscriber) | Destroys a [Sensor_Subscriber](_sensor.md#sensor_subscriber) instance and reclaims memory. |
 | [OH_SensorSubscriber_SetCallback](_sensor.md#oh_sensorsubscriber_setcallback) ([Sensor_Subscriber](_sensor.md#sensor_subscriber) *subscriber, const [Sensor_EventCallback](_sensor.md#sensor_eventcallback) callback) | Sets a callback function to report sensor data. |
