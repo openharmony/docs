@@ -18,8 +18,11 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法, 其获取�
 外层跨语言交互的部分可以参考 [使用 JSVM-API 实现 JS 与 C/C++ 语言交互开发流程](./use-jsvm-process.md)。
 
 ```c++
-#include "jsvm.h"
-void test(JSVM_Env env) {
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+
+void UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
     // 编译参数准备
     JSVM_Value jsSrc;
     JSVM_Script script;
@@ -48,7 +51,7 @@ void test(JSVM_Env env) {
         OH_JSVM_RunScript(env, script, &result);
         int value = 0;
         OH_JSVM_GetValueInt32(env, result, &value);
-        std::cout << "first run result: " << value << std::endl;
+        OH_LOG_INFO(LOG_APP, "first run result: %{public}d\n", value);
 
         if (dataPtr && lengthPtr && *dataPtr == nullptr) {
             // 将js源码编译出的脚本保存到 cache, 可以避免重复编译, 带来性能提升
@@ -74,15 +77,25 @@ void test(JSVM_Env env) {
         OH_JSVM_RunScript(env, script, &result);
         int value = 0;
         OH_JSVM_GetValueInt32(env, result, &value);
-        std::cout << "second run result: " << value << std::endl;
+        OH_LOG_INFO(LOG_APP, "second run result: %{public}d\n", value);
 
         OH_JSVM_CloseHandleScope(env, handleScope);
     }
-    std::cout << "cache rejected: " << cacheRejected << std::endl;
+    OH_LOG_INFO(LOG_APP, "cache rejected: %{public}d\n", cacheRejected);
 }
+
+// Register a WasmDemo callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = UseCodeCache}
+};
+static JSVM_CallbackStruct *method = param;
+// Register the C++ WasmDemo callback as a JSVM globalThis.UseCodeCache property for the JS to call.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"UseCodeCache", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-上述函数运行后预期将输出下面的字符串
+预期输出结果
 ```
 first run result: 98304
 second run result: 98304
