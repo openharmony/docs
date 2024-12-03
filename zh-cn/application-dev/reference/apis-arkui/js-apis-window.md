@@ -6153,37 +6153,20 @@ setDecorButtonStyle(decorStyle: DecorButtonStyle): void;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
+import { ConfigurationConstant } from '@kit.AbilityKit';
 
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // 加载主窗口对应的页面
-    windowStage.loadContent('pages/Index', (err) => {
-      let mainWindow: window.Window | undefined = undefined;
-      // 获取应用主窗口。
-      windowStage.getMainWindow().then(
-        data => {
-          mainWindow = data;
-          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
-          let style: window.DecorButtonStyle = {
-            colorMode: colorMode,
-            buttonBackgroundSize: 24,
-            spacingBetweenButtons: 12,
-            closeButtonRightMargin: 20
-          };
-          mainWindow.setDecorButtonStyle(style);
-        }
-      ).catch((err: BusinessError) => {
-          if(err.code){
-            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-          }
-      });
-    });
-  }
+try {
+  let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+  let style: window.DecorButtonStyle = {
+    colorMode: colorMode,
+    buttonBackgroundSize: 24,
+    spacingBetweenButtons: 12,
+    closeButtonRightMargin: 20
+  };
+  windowClass.setDecorButtonStyle(style);
+  console.info('Succeeded to set the style of button. Data: ' + JSON.stringify(style));
+} catch (exception) {
+  console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -6216,30 +6199,11 @@ getDecorButtonStyle(): DecorButtonStyle;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        let decorButtonStyle = windowClass.getDecorButtonStyle();
-        console.info('Succeeded to get the style of button style. Data: ' + JSON.stringify(decorButtonStyle));
-      } catch (exception) {
-        console.error(`Failed to get the style of button style. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  let decorButtonStyle = windowClass.getDecorButtonStyle();
+  console.info('Succeeded to get the style of button. Data: ' + JSON.stringify(decorButtonStyle));
+} catch (exception) {
+  console.error(`Failed to get the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
