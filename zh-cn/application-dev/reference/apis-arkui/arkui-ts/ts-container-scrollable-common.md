@@ -322,6 +322,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果。|
+| effectEdge<sup>16+</sup> | number | 否 | 设置边缘效果生效的边缘。如果设置[EffectEdge](#effectedge16枚举说明).START表示只有起始边生效；如果设置[EffectEdge](#effectedge16枚举说明).END表示只有末尾边生效；默认值为[EffectEdge](#effectedge16枚举说明).START \| [EffectEdge](#effectedge16枚举说明).END表示双边同时生效；当设置为其它异常值 则默认双边同时生效。 |
 
 ## FadingEdgeOptions<sup>14+</sup>对象说明
 
@@ -332,6 +333,19 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | 参数名           | 类型                                                         | 必填 | 描述                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 设置边缘渐隐长度。如果设置小于0的值则取默认值。默认长度为32vp。<br/>如果设置的长度超过容器高度的一半时，渐隐长度取容器高度的一半。 |
+
+## EffectEdge<sup>16+</sup>枚举说明
+
+表示当前边缘效果要生效的边缘。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 值   | 说明         |
+| ----- | ---- | ------------ |
+| START | 1    | 起始边生效。 |
+| END   | 2    | 末尾边生效。 |
 
 ## ContentClipMode<sup>14+</sup>枚举说明
 
