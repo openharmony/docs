@@ -101,6 +101,8 @@ Invoked when the value decreases.
 
 ## Example
 
+This example shows the basic usage of the **Counter** component. Users can touch the **+** or **-** button to adjust the value.
+
 ```ts
 // xxx.ets
 @Entry

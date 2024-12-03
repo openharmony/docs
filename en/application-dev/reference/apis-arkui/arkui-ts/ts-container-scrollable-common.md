@@ -125,7 +125,7 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 flingSpeedLimit(speedLimit: number): T
 
-Sets the maximum starting fling speed when the fling animation starts. If this attribute is set to a value less than or equal to 0, the default value is used.
+Sets the maximum initial velocity at the start of the fling animation that occurs after gesture-driven scrolling ends. If this attribute is set to a value less than or equal to 0, the default value is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -135,7 +135,40 @@ Sets the maximum starting fling speed when the fling animation starts. If this a
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | Yes  | Maximum starting fling speed when the fling animation starts.<br>Default value: **12000**<br>Unit: vp/s|
+| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **12000**<br>Unit: vp/s|
+
+### fadingEdge<sup>13+</sup>
+
+fadingEdge(enabled: Optional&lt;boolean&gt;, options?: FadingEdgeOptions): T
+
+Sets whether to enable the edge fading effect and the length of the fading edge.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                             | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enabled | Optional&lt;boolean&gt;                                 | Yes  | Whether to enable the edge fading effect. When set to enabled, this API supersedes the **.overlay()** API of the component.<br>When the edge fading effect is enabled, avoid setting background-related attributes on the component, as this will affect the display of the effect.<br>Default value: **false**|
+| options | [FadingEdgeOptions](#fadingedgeoptions13) | No  | Object defining edge fading effect properties, such as the fading edge length.|
+
+### clipContent<sup>14+</sup>
+
+clipContent(clip: ContentClipMode | RectShape): T
+
+Sets the content clipping area for this scrollable component.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                             | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| clip | [ContentClipMode](#contentclipmode14) \| [RectShape](../js-apis-arkui-shape.md#rectshape)   | Yes  | Clipping to apply, which is effective only for the content (that is, child components) of the scrollable component, not the background. When a custom rectangular area is passed through **RectShape**, only width, height, and [offset](../js-apis-arkui-shape.md#offset) relative to the component's upper left corner are supported, and rounded corners are not supported.<br></div>Default value: The default value for **Grid** and **Scroll** is **ContentClipMode.BOUNDARY**, and the default value for **List** and **WaterFlow** is **ContentClipMode.CONTENT_ONLY**.|
 
 
 ## Events
@@ -245,7 +278,7 @@ Triggered when the scrollable component scrolls.
 
 This API is supported since API version 11.
 
-This API is deprecated since API version 12. You are advised to use [onDidScroll](#ondidscroll12) instead.
+This API is deprecated since API version 12. For the **Scroll** component, the **onScroll** event is triggered before layout calculations, and you are advised to use [onWillScroll](#onwillscroll12) instead. For the **List**, Grid, and **WaterFlow** components, the **onScroll** event is triggered after layout calculations, and you are advised to use [onDidScroll](#ondidscroll12) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -289,6 +322,31 @@ This API is deprecated since API version 12. You are advised to use [onDidScroll
 | Name  | Type | Mandatory| Description             |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | Yes| Whether to enable the scroll effect when the component content is smaller than the component itself.|
+
+## FadingEdgeOptions<sup>13+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Type                                                        | Mandatory| Description                                                        |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Length of the fading edge. If the value is smaller than 0, the default length, 32 vp, is used.<br>If the value exceeds half the height of the container, it is adjusted to exactly half the height of the container.|
+
+## ContentClipMode<sup>14+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+The figure below illustrates the clipping areas corresponding to each enumeration value after the component has been configured with margin and padding attributes.
+![ContentClipMode](figures/ContentClipMode.png)
+
+| Name    |  Value | Description                                      |
+| ------ | ------ | ---------------------------------------- |
+| CONTENT_ONLY   |  0  | Clip to the content area, corresponding to the green area in the figure.|
+| BOUNDARY |  1  | Clip to the component area, corresponding to the entire blue area in the figure.|
+| SAFE_AREA  |  2  | Clip to the safe area configured for the component, corresponding to the entire yellow area in the figure.|
 
 ## OnWillScrollCallback<sup>12+</sup>
 

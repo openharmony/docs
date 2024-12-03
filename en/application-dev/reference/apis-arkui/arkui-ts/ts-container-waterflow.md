@@ -169,12 +169,10 @@ Describes the configuration of the water flow item section.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
 | Name| Type| Mandatory| Description|
 |------|-----|-----|-----|
-| itemsCount | number | Yes| Number of water flow items in the section. The value must be a positive integer.|
-| crossCount | number | No| Number of columns (in vertical layout) or rows (in horizontal layout).<br>Default value: **1**|
+| itemsCount | number | Yes| Number of water flow items in the section. The value must be a positive integer. If the **splice**, **push**, or **update** APIs receive a section where the **itemsCount** value is less than 0, these APIs will not be executed.|
+| crossCount | number | No| Number of columns (in vertical layout) or rows (in horizontal layout).<br>Default value: **1**<br> If the value is less than 1, the default value is used.|
 | columnsGap | [Dimension](ts-types.md#dimension10) | No| Gap between columns. If this parameter is not set, the value of **columnsGap** for the water flow is used. If this parameter is set to an invalid value, 0 vp is used.|
 | rowsGap | [Dimension](ts-types.md#dimension10) | No| Gap between rows. If this parameter is not set, the value of **rowsGap** for the water flow is used. If this parameter is set to an invalid value, 0 vp is used.|
 | margin | [Margin](ts-types.md#margin) \| [Dimension](ts-types.md#dimension10) | No| Padding of the section. A value of the Length type specifies the margin for all the four sides.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the **WaterFlow** component is used as the base value for the top, bottom, left, and right margins.|
@@ -211,8 +209,8 @@ Obtains the main axis size of a specified water flow item based on its index.
 
 | Name| Value| Description|
 | ------ | ------ | -------------------- |
-| ALWAYS_TOP_DOWN | 0 | Default layout mode from top to bottom. The water flow item within the viewport depends on the layout information of all water flow items above it. As such, in cases of redirection or changing the number of columns, it is necessary to calculate the layout information for all water flow items above.|
-| SLIDING_WINDOW | 1 | Sliding window layout mode. It only takes into account the layout information within the viewport and has no dependency on water flow items above the viewport. As such, in cases of redirection backward or switching the number of columns, only the layout of water flow items within the viewport needs to be handled. This mode is recommended for applications that frequently switch between different numbers of columns.<br>**NOTE**<br>1. During a non-animated redirection to a distant location, the layout of water flow items is based on the target position, either before or after it. If you then swipe back to the position prior to the redirection, the layout of the content may not be consistent with its previous state. This can lead to misalignment of the top nodes when you swipe back to the top after the redirection. To counteract this issue, in this layout mode, an automatic adjustment of the layout is made after reaching the top of the viewport to ensure that the top is aligned. In cases with multiple sections, the section at the top of the viewport will be adjusted once the swipe action is completed.<br> 2. The mode does not support the use of a scrollbar; even if a scrollbar is set, it will not be displayed.<br> 3. This mode does not support the [scrollTo](ts-container-scroll.md#scrollto) API of [scroller](#waterflowoptions).<br> 4. If a jump action (for example, by calling a non-animated [scrollToIndex](ts-container-scroll.md#scrolltoindex) or [scrollEdge](ts-container-scroll.md#scrolledge)) and an input offset (such as from a swipe gesture or a scrolling animation) are both initiated within the same frame, both will be executed.|
+| ALWAYS_TOP_DOWN | 0 | Default layout mode where water flow items are arranged from top to bottom. Items in the viewport depend on the layout of all items above them. As such, in cases of redirection or switching the number of columns, the layout of all items above the viewport must be recalculated.|
+| SLIDING_WINDOW | 1 | Sliding window mode. This mode only takes into account the layout in the viewport, without depending on water flow items above the viewport. As such, in cases of redirection backward or switching the number of columns, only the water flow items within the viewport need to be laid out. This mode is recommended for applications that involves frequent switching between different numbers of columns.<br>**NOTE**<br>1. During a non-animated redirection to a distant location, water flow items are laid out forward or backward based on the target position. If the user then swipes back to the position prior to the redirection, the layout of the content may not be consistent with its previous state. This can lead to misalignment of the top nodes when the user swipes back to the top after the redirection. To counteract this issue, in this layout mode, the layout will be automatically adjusted after reaching the top of the viewport to ensure that the top is aligned. If there are multiple sections, adjustments will be made to the sections within the viewport when scrolling ends.<br> 2. The mode does not support the use of scrollbars; they will not be displayed even if set.<br> 3. This mode does not support the [scrollTo](ts-container-scroll.md#scrollto) API of [scroller](#waterflowoptions).<br> 4. The total offset returned by the [currentOffset](ts-container-scroll.md#currentoffset) API of [scroller](#waterflowoptions) is inaccurate after a redirection or data update. This offset will be recalibrated when the user swipes back to the top.<br> 5. If a jump action (for example, by calling [scrollToIndex](ts-container-scroll.md#scrolltoindex) without animation or [scrollEdge](ts-container-scroll.md#scrolledge)) and an input offset (such as from a swipe gesture or a scrolling animation) are both initiated within the same frame, both will be executed.<br> 6. If the [scrollToIndex](ts-container-scroll.md#scrolltoindex) API is called without animation to jump to a distant position (beyond the range of visible water flow items in the window), the total offset is not calculated in the sliding window mode, so the total offset remains unchanged. Consequently, the [onDidScroll](ts-container-scroll.md#ondidscroll12) event is not triggered.|
 
 
 ## Attributes
@@ -389,7 +387,7 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 cachedCount(value: number)
 
-Number of items to be cached. This attribute is effective only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). Items that exceed the display and cache range are released. A value less than 0 evaluates to the default value.
+Sets the number of items to be cached. This attribute is effective only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). After this attribute is set, items that exceed the display and cache range are released. A value less than 0 evaluates to the default value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -400,6 +398,27 @@ Number of items to be cached. This attribute is effective only in [LazyForEach](
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
 | value  | number | Yes  | Number of water flow items to be preloaded (cached).<br> Default value: **1**|
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(value: number, show: boolean)
+
+Sets the number of water flow items to be cached (preloaded) and specifies whether to display the cached nodes.
+
+When this attribute is used in conjunction with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes, the cached nodes can be displayed.
+
+In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled, water flow items that are outside the display and cache range will be released.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| value  | number | Yes  | Number of water flow items to be preloaded (cached).<br> Default value: **1**|
+| show  | boolean | Yes  | Whether to display the cached water flow items.<br> Default value: **false**|
 
 ## Events
 
@@ -471,8 +490,8 @@ This event is triggered when either of the preceding indexes changes.
 
 ## Example
 
-### Example 1
-This example shows the basic usage of **WaterFlow**:
+### Example 1: Using a Basic WaterFlow Component
+This example demonstrates the basic usage of the **WaterFlow** component, including data loading, attribute setting, and event callbacks.
 ```ts
 // WaterFlowDataSource.ets
 
@@ -705,10 +724,10 @@ struct WaterFlowDemo {
 
 ![zh-cn_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
 
-### Example 2
-This example shows the usage of **auto-fill**:
+### Example 2: Implementing Automatic Column Count Calculation
+This example showcases how to implement automatic column count calculation using the **auto-fill** feature.
 ```ts
-//index.ets
+// Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
@@ -769,8 +788,9 @@ struct WaterFlowDemo {
 ![waterflow_auto-fill.png](figures/waterflow_auto-fill.png)
 
 
-### Example 3
-This example shows how to use **WaterFlowSections**.
+### Example 3: Grouping
+This example illustrates the initialization of grouping and the different effects of various APIs such as **splice**, **push**, **update**, **values**, and **length**.
+For details about how to use these features in conjunction with state management V2, see [WaterFlow](../../../quick-start/arkts-v1-v2-migration.md#waterflow).
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
@@ -985,9 +1005,8 @@ struct WaterFlowDemo {
 
 ![waterflowSections.png](figures/waterflowSections.png)
 
-### Example 4
-This example implements the feature of using the pinch gesture to change the number of columns.
-
+### Example 4: Using the Pinch Gesture to Change the Column Count
+This example demonstrates how to use [priorityGesture](ts-gesture-settings.md) and [PinchGesture](ts-basic-gestures-pinchgesture.md) to implement the feature of using a pinch gesture to change the number of columns in a layout.
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
@@ -1102,3 +1121,66 @@ struct WaterFlowDemo {
 ```
 
 ![pinch](figures/waterflow-pinch.gif)
+
+### Example 5: Setting the Edge Fading Effect
+This example demonstrates how to enable the edge fading effect for the **WaterFlow** component using the [fadingEdge](ts-container-scrollable-common.md#fadingedge13) API and set the length of the fading edge using the **fadingEdgeLength** parameter.
+```ts
+// Index.ets
+import { LengthMetrics } from '@kit.ArkUI'
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  scroller: Scroller = new Scroller()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // Calculate the width and height of a water flow item.
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // Set the width and height array of the water flow item.
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+
+      WaterFlow({ scroller:this.scroller }) {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            Column() {
+              Text("N" + item).fontSize(12).height('16')
+            }
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('repeat(auto-fill,80)')
+      .columnsGap(10)
+      .rowsGap(5)
+      .height('90%')
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+
+    }
+  }
+}
+```
+
+![fadingEdge_waterFlow](figures/fadingEdge_waterFlow.gif)
