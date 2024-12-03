@@ -14,65 +14,88 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法, 其获取�
 
 下面的伪代码是一个典型的使用方法, 其中第二次编译, 如果 cacheRejected 的值没有被置为 true, 那么说明 code cache 使用成功, 这次运行将会极大加快。
 
-其中使用到的 JSVM-API 可以参考 [JSVM-API 简介](../reference/common/_j_s_v_m.md), 这里仅展示调用的步骤。
+其中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md), 这里仅展示调用的步骤。
+外层跨语言交互的部分可以参考 [使用 JSVM-API 实现 JS 与 C/C++ 语言交互开发流程](./use-jsvm-process.md)。
 
 ```c++
+#include "jsvm.h"
+void test(JSVM_Env env) {
+    // 编译参数准备
+    JSVM_Value jsSrc;
+    JSVM_Script script;
+    size_t length = 0;
+    const uint8_t* dataPtr = nullptr;
+    bool cacheRejected = true;
+    static std::string src = R"JS(
+        a = 65536;
+        b = 32768;
+        c = a + b;
+    )JS";
 
-JSVM_Env env;
+    // 生成 code cache
+    {
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
 
-...
+        // 源码字符串转换为 js 字符串
+        OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
 
-using namespace std;
-static string src = R"JS(
-const concat = (...args) => args.reduce((a, b) => a + b);
-throw new Error("exception triggered")
-)JS";
+        // 编译js代码
+        OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script);
 
-// 编译参数准备
-JSVM_Value jsSrc;
-JSVM_Script script;
-size_t length = 0;
-const uint8_t* dataPtr = nullptr,
-bool cacheRejected = false;
+        // 执行js代码
+        JSVM_Value result;
+        OH_JSVM_RunScript(env, script, &result);
+        int value = 0;
+        OH_JSVM_GetValueInt32(env, result, &value);
+        std::cout << "first run result: " << value << std::endl;
 
-// 生成 code cache
-{
-	JSVM_HandleScope handleScope;
-	OH_JSVM_OpenHandleScope(env, &handleScope);
+        if (dataPtr && lengthPtr && *dataPtr == nullptr) {
+            // 将js源码编译出的脚本保存到 cache, 可以避免重复编译, 带来性能提升
+            OH_JSVM_CreateCodeCache(env, script, &dataPtr, &length);
+        }
 
-	// 源码字符串转换为 js 字符串
-	OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
+        OH_JSVM_CloseHandleScope(env, handleScope);
+    }
 
-	// 编译js代码
-	OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script);
+    // 使用 code cache
+    {
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
 
-	// 执行js代码
-	JSVM_Value result;
-	OH_JSVM_RunScript(env, script, &result);
+        // 源码字符串转换为 js 字符串
+        OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
 
-	if (dataPtr && lengthPtr && *dataPtr == nullptr) {
-	    // 将js源码编译出的脚本保存到 cache, 可以避免重复编译, 带来性能提升
-	    OH_JSVM_CreateCodeCache(env, script, dataPtr, lengthPtr);
-	}
+        // 使用 code cache 编译js代码
+        OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script);
 
-	OH_JSVM_CloseHandleScope(env, handleScope);
-}
+        // 执行js代码
+        JSVM_Value result;
+        OH_JSVM_RunScript(env, script, &result);
+        int value = 0;
+        OH_JSVM_GetValueInt32(env, result, &value);
+        std::cout << "second run result: " << value << std::endl;
 
-// 使用 code cache
-{
-	JSVM_HandleScope handleScope;
-	OH_JSVM_OpenHandleScope(env, &handleScope);
-
-	// 源码字符串转换为 js 字符串
-	OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
-
-	// 使用 code cache 编译js代码
-	OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script);
-
-	// 执行js代码
-	JSVM_Value result;
-	OH_JSVM_RunScript(env, script, &result);
-
-	OH_JSVM_CloseHandleScope(env, handleScope);
+        OH_JSVM_CloseHandleScope(env, handleScope);
+    }
+    std::cout << "cache rejected: " << cacheRejected << std::endl;
 }
 ```
+
+上述函数运行后预期将输出下面的字符串
+```
+first run result: 98304
+second run result: 98304
+cache rejected: 0
+```
+
+## 注意事项
+
+上述代码中使用了 code cache 进行编译: `OH_JSVM_CompileScript(env, jsSrc, dataPtr, length, true, &cacheRejected, &script);`
+这个接口的传入参数中包含了 cacheRejected，其作用是接收实际的编译过程中，code cache 是否被拒绝的状态，这里包含了多种情况：
+
+- code cache 校验失败
+- code cache 校验成功
+- 内存中存在编译缓存，code cache 没有被校验
+
+对于第一种情况，这个参数会被置为 true，而后两种情况都是 false，因此需要注意即使 reject 为 false，也不能说明 code cache 被接收了。
