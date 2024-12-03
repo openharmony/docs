@@ -29,7 +29,7 @@
 | [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  | 
 | [native_gesture.h](native__gesture_8h.md) | 提供NativeGesture接口的类型定义。  | 
 | [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。  | 
-| [native_key_event.h](native__key__event_8h.md) | 提供NativeKeyEvent相关接口定义。  | 
+| [native_key_event.h](native__key_event_8h.md) | 提供NativeKeyEvent相关接口定义。  | 
 | [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。  | 
 | [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。  | 
 | [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。  | 
