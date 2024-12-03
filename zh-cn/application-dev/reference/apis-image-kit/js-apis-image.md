@@ -8263,6 +8263,8 @@ PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)�
 
 缩放时的缩放算法。
 
+**原子化服务API**：从API version 14 开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                   |   值   | 说明              |
