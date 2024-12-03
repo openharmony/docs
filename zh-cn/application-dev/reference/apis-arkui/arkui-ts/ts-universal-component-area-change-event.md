@@ -33,6 +33,8 @@ onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 
 ## 示例
 
+该示例通过Text组件设置组件区域变化事件，当Text布局变化时可以触发onAreaChange事件，获取相关参数。
+
 ```ts
 // xxx.ets
 @Entry

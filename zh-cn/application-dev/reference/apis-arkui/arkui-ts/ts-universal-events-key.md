@@ -81,7 +81,9 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
-## 示例1
+## 示例1（触发onKeyEvent回调）
+
+该示例通过按钮设置了按键事件，按钮获焦时可触发onKeyEvent回调。
 
 ```ts
 // xxx.ets
@@ -113,8 +115,9 @@ struct KeyEventExample {
 
  ![keyEvent](figures/keyEvent.gif) 
 
-## 示例2
-通过key事件可获取到所按按键的unicode码值
+## 示例2（获取uniCode码值）
+
+该示例通过key事件获取到所按按键的unicode码值。
 
 ```ts
 // xxx.ets

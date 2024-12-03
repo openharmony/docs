@@ -83,6 +83,8 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 
 ## 示例
 
+该示例通过PanGesture实现了单指/双指拖动手势的识别。
+
 ```ts
 // xxx.ets
 @Entry
