@@ -249,10 +249,10 @@ import { window } from '@kit.ArkUI';
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式，深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色，默认跟随系统，深浅色模式指定则固定 |
-| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp |
-| spacingBetweenButtons         | number        | 是   | 是   | 按钮间距，取值范围12vp-24vp，默认值12vp |
-| closeButtonRightMargin        | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围8vp-22vp，默认值20vp|
+| colorMode   | [ConfigurationConstant.ColorMode](../apis-ability-kit/js-apis-app-ability-configurationConstant.md#colormode) | 是   | 是   | 颜色模式。深色模式下按钮颜色适配为浅色，浅色模式下按钮颜色适配为深色。未设置则默认跟随系统颜色模式。 |
+| buttonBackgroundSize   | number        | 是   | 是   | 按钮高亮显示时的大小，取值范围20vp-40vp，默认值28vp。 |
+| spacingBetweenButtons  | number        | 是   | 是   | 按钮间距，取值范围12vp-24vp，默认值12vp。 |
+| closeButtonRightMargin | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围8vp-22vp，默认值20vp。 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -6125,7 +6125,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 ### setDecorButtonStyle<sup>14+</sup>
 
-setDecorButtonStyle(decorStyle: DecorButtonStyle): void;
+setDecorButtonStyle(decorStyle: DecorButtonStyle): void
 
 设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
@@ -6137,7 +6137,7 @@ setDecorButtonStyle(decorStyle: DecorButtonStyle): void;
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 设置装饰栏按钮样式 |
+| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
 
 **错误码：**
 
@@ -6164,7 +6164,7 @@ try {
     closeButtonRightMargin: 20
   };
   windowClass.setDecorButtonStyle(style);
-  console.info('Succeeded to set the style of button. Data: ' + JSON.stringify(style));
+  console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
 } catch (exception) {
   console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -6172,7 +6172,7 @@ try {
 
 ### getDecorButtonStyle<sup>14+</sup>
 
-getDecorButtonStyle(): DecorButtonStyle;
+getDecorButtonStyle(): DecorButtonStyle
 
 获取装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
@@ -6184,7 +6184,7 @@ getDecorButtonStyle(): DecorButtonStyle;
 
 | 类型                                  | 说明                                                         |
 | ------------------------------------- | ------------------------------------------------------------ |
-| [DecorButtonStyle](#decorbuttonstyle14) | 窗口装饰栏上的按钮样式，该区域位置坐标相对窗口右上角。 |
+| [DecorButtonStyle](#decorbuttonstyle14) | 返回当前窗口装饰栏上的按钮样式，窗口装饰按钮区域位于窗口的右上角。 |
 
 **错误码：**
 
@@ -6194,6 +6194,7 @@ getDecorButtonStyle(): DecorButtonStyle;
 | -------- | ------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 | 1300004  | Unauthorized operation. |
 
 **示例：**
@@ -6201,7 +6202,7 @@ getDecorButtonStyle(): DecorButtonStyle;
 ```ts
 try {
   let decorButtonStyle = windowClass.getDecorButtonStyle();
-  console.info('Succeeded to get the style of button. Data: ' + JSON.stringify(decorButtonStyle));
+  console.info('Succeeded in getting the style of button. Data: ' + JSON.stringify(decorButtonStyle));
 } catch (exception) {
   console.error(`Failed to get the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
 }
