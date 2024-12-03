@@ -88,31 +88,6 @@
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    
-    const TAG: string = '[MigrationAbility]';
-    const DOMAIN_NUMBER: number = 0xFF00;
-    
-    export default class MigrationAbility extends UIAbility {
-      // 在onContinue中准备迁移数据
-      onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-        let targetVersion = wantParam.version;
-        let targetDevice = wantParam.targetDevice;
-        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
-    
-        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
-        const continueInput = '迁移的数据';
-        wantParam['data'] = continueInput;
-    
-        return AbilityConstant.OnContinueResult.AGREE;
-      }
-    }
-    ```
-
-    若应用侧需要进行应用版本号兼容性校验，可参考以下示例：
-
-    ```ts
-    import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
     import { promptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
@@ -125,11 +100,11 @@
         let targetDevice = wantParam.targetDevice;
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
     
-        // 应用可自行设置最低版本号
+         // 应用可根据源端版本号自行设置最低版本号，源端版本号可从app.json5文件中的versionCode字段获取
         let versionThreshold: number = -1;
         // 兼容性校验
         if (targetVersion < versionThreshold) {
-          // 建议在校验版本兼容性失败后，提示用户拒绝接续的原因
+          // 建议在校验版本兼容性失败后，提示用户拒绝迁移的原因
           promptAction.showToast({
               message: '应用版本号校验失败，目标端版本号过低，请您升级应用版本',
               duration: 2000
