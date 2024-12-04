@@ -5,7 +5,6 @@
 
 The ChildProcess module provides APIs to manage child processes. You can call the APIs to create a native child process and establish an IPC channel between the parent and child processes to implement multi-process application development.
 
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Since**: 12
@@ -63,13 +62,13 @@ Defines a callback function for notifying the child process startup result.
 | Name         | Description                                                                                                                                                                                                                                 |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | errCode     | NCP_NO_ERROR - The child process is created successfully.<br>NCP_ERR_LIB_LOADING_FAILED - Loading the dynamic library file fails or the necessary export function is not implemented in the dynamic library.<br>NCP_ERR_CONNECTION_FAILED - The OnConnect method implemented in the dynamic library does not return a valid IPC stub pointer.<br>For details, see [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode).|
-| remoteProxy | Pointer to the IPC object of the child process. If an exception occurs, the value may be nullptr. The pointer must be released by calling [OH_IPCRemoteProxy_Destory](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy) when it is no longer needed.                                                                                      |
+| remoteProxy | Pointer to the IPC object of the child process. If an exception occurs, the value may be nullptr. The pointer must be released by calling [OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy) when it is no longer needed.                                                                                      |
 
 **See**
 
 [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess)
 
-[OH_IPCRemoteProxy_Destory](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
+[OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
 
 
 
