@@ -54,7 +54,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 | const char \* [OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapability \*capability) | 获取编解码器名称。  | 
 | int32_t [OH_AVCapability_GetMaxSupportedInstances](#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | 获取编解码器支持的最大实例数。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | 获取编码器支持的比特率范围。  | 
-| bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](#oh_bitratemode) bitrateMode) | 检查编码器是否支持特定的比特率模式。  | 
+| bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_codec_base.md#oh_bitratemode) bitrateMode) | 检查编码器是否支持特定的比特率模式。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | 获取编码器支持的质量范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | 获取编码器支持的编码器复杂性范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | 获取音频编解码器支持的采样率。  | 
