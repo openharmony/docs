@@ -35,7 +35,7 @@ VideoEncoder模块提供用于视频编码的接口。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的码率控制模式。  | 
+| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的码率控制模式。（API14废弃）  | 
 
 
 ### 函数
@@ -115,6 +115,18 @@ enum OH_VideoEncodeBitrateMode
 | CBR  | 恒定码率模式。   | 
 | VBR  | 可变码率模式。   | 
 | CQ  | 恒定QP模式。   | 
+
+**废弃版本：** 14 
+
+**替代接口：** [OH_BitrateMode](_codec_base.md#oh_bitratemode-1)
+
+**替代枚举值：**
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| BITRATE_MODE_CBR  | 恒定码率模式。 | 
+| BITRATE_MODE_VBR  | 可变码率模式。 | 
+| BITRATE_MODE_CQ  | 恒定QP模式。 | 
 
 
 ## 函数说明
