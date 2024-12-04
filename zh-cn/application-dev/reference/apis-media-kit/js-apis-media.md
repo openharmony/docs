@@ -2482,7 +2482,6 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit'
 import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
@@ -2523,8 +2522,6 @@ addSubtitleFromUrl(url: string): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit'
-
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer()
