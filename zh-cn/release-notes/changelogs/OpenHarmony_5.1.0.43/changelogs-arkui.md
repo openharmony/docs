@@ -145,3 +145,115 @@ struct Star {
   }
 }
 ```
+
+## cl.arkui.2 装饰器@Computed编译在特定场景下新增两个ERROR报错提示
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+@Computed不能和双向绑定!!连用，@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效，且产生编译时报错。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+1. 当@Computed装饰的属性和双向绑定范式一起使用时，编译时ERROR报错提示
+
+```ts
+@Entry
+@ComponentV2
+struct TestComputed {
+    @Local str: string = 'hello,world'
+
+    @Computed
+    get strFun() {
+        return this.str
+    }
+
+    build() {
+        Scroll() {
+            Column() {
+                Text(this.str)
+                Child({ childStr: this.strFun!! })
+            }
+        }
+    }
+}
+
+@ComponentV2
+struct Child {
+    @Param childStr: string = 'childStr'
+    @Event $childStr: (val: string) => void
+
+    build() {
+        Column() {
+            Button('ChildChange')
+                .onClick(() => {
+                    this.$childStr('newStr')
+                })
+        }
+    }
+}
+```
+
+变更前：编译时不报错
+
+变更后：编译时报错
+
+```
+A property decorated by '@Computed' cannot be used with two-way bind syntax.
+```
+
+2. @Computed装饰的get属性方法，不能写set方法，编译进行ERROR报错提示
+
+```ts
+@Entry
+@ComponentV2
+struct TestComputed {
+    @Local str: string = 'hello,world'
+
+    @Computed
+    get strFun() {
+        return this.str
+    }
+
+    set strFun(value: string) {
+        this.str = value
+    }
+
+    build() {
+        Scroll() {
+            Column() {
+                Text(this.str)
+            }
+        }
+    }
+}
+```
+
+变更前：编译时不报错
+
+变更后：编译时报错
+
+```
+A property decorated by '@Computed' cannot define a set method.
+```
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.43开始。
+
+**变更的接口/组件**
+
+@Computed
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
