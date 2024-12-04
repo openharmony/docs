@@ -112,7 +112,7 @@ The notification attribute **isUnremovable** is set to true.
 
 **Solution**
 
-See [NotificationRequest](./js-apis-notificationManager.md#notificationrequest) to check the notification attribute **isUnremovable**.
+Enable notification deletion. For details, see [NotificationRequest](./js-apis-inner-notification-notificationRequest.md).
 
 ## 1600007 Notification Not Found
 
@@ -313,7 +313,6 @@ No corresponding proxy relationship is configured.
 
 Check the proxy relationship configuration.
 
-
 ## 2300007 Network Access Failure
 
 **Error Message**
@@ -349,4 +348,4 @@ This error code is reported when the bundle name is incorrect or the application
 
 **Solution**
 
-Verify the bundle name and make sure the application is installed.
+1. Verify the bundle name and make sure the application is installed.

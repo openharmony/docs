@@ -12,7 +12,7 @@ For details about the APIs used to develop a file manager, see [User File Access
    > - The ohos.permission.FILE_ACCESS_MANAGER permission allows your application to use the user file access framework APIs.
    >
    > - The ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permission allows your application to obtain information about file management server applications supported by the system.
-   
+
 2. Import dependent modules.
 
    ```ts
@@ -150,7 +150,7 @@ For details about the APIs used to develop a file manager, see [User File Access
        if (!fileUri) {
          console.error("createFile return undefined object");
        }
-       console.info("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+       console.info("createFile success, fileUri: " + JSON.stringify(fileUri));
      } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -162,7 +162,7 @@ For details about the APIs used to develop a file manager, see [User File Access
 
 For details about the APIs, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
-The **notify** interface can be used to observe not only the changes of directories, but also the device online/offline status.
+You can use **notify()** to observe not only the changes of directories, but also the device online/offline status.
 
 
 1. Apply for permissions required.<br>
@@ -171,7 +171,7 @@ The **notify** interface can be used to observe not only the changes of director
 
    > **NOTE**
    >
-   > - The ohos.permission.FILE_ACCESS_MANAGER permission allows your application to use the user file access framework APIs.
+   > - The ohos.permission.FILE_ACCESS_MANAGER permission allows your application to call the user file access framework APIs.
    >- The ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permission allows your application to obtain information about file management server applications supported by the system.
    
 2. Import dependent modules.

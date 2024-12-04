@@ -12,7 +12,9 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。<!--Del-->编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。<!--DelEnd-->
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
+
+如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)<!--RP1--><!--RP1End-->。
 
 ## 基本知识
 
@@ -138,7 +140,7 @@ let instance: Class <void>
 
 #### `Object`类型
 
-`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。
+`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除非基本类型外的类型。
 
 #### `Array`类型
 
@@ -878,7 +880,7 @@ class Person {
     this.name = n;
   }
 
-  // 编译时错误：name可以是"undefined"，所以将这个API的返回值类型标记为string
+  // 编译时错误：name可以是"undefined"，所以这个API的返回值类型不能仅定义为string类型
   getNameWrong(): string {
     return this.name;
   }
@@ -1261,6 +1263,52 @@ let map: Record<string, PersonInfo> = {
 }
 ```
 
+### 抽象类 
+
+带有修饰符abstract的类称为抽象类。抽象类可用于表示一组更具体的概念所共有的概念。
+
+如果尝试创建抽象类的实例，则会发生编译时的错误：
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  //编译时错误：不能创建抽象类的具体实例
+```
+
+抽象类的子类可以是抽象类也可以是非抽象类。抽象父类的非抽象子类可以实例化。因此，执行抽象类的构造函数和该类非静态字段的字段初始化器：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) { 
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### 抽象方法
+
+带有abstract修饰符的方法称为抽象方法，抽象方法可以被声明但不能被实现。
+
+只有抽象类内才能有抽象方法，如果非抽象类具有抽象方法，则会发生编译时错误：
+
+```typescript
+class Y {
+  abstract method(p: string)  //编译时错误：抽象方法只能在抽象类内。
+}
+```
+
 ## 接口
 
 接口声明引入新类型。接口是定义代码协定的常见方式。
@@ -1362,6 +1410,16 @@ interface ExtendedStyle extends Style {
 ```
 
 继承接口包含被继承接口的所有属性和方法，还可以添加自己的属性和方法。
+
+
+### 抽象类和接口
+
+抽象类与接口都无法实例化。抽象类是类的抽象，抽象类用来捕捉子类的通用特性，接口是行为的抽象。在ArkTS中抽象类与接口的区别如下：
+
+* 一个类只能继承一个抽象类，而一个类可以实现一个或多个接口；
+* 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+* 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
+* 抽象类可以有构造函数，而接口不能有构造函数。
 
 ## 泛型类型和函数
 
@@ -1670,9 +1728,9 @@ async function test() {
 }
 ```
 
-更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)。
+更多的使用动态import的业务场景和使用实例见[动态import](../arkts-utils/arkts-dynamic-import.md)。
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### 顶层语句
 
@@ -1728,6 +1786,6 @@ function foo(arg1: number) {
 
 ### ArkUI示例
 
-[MVVM应用示例](arkts-mvvm.md#mvvm应用示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
+[MVVM代码示例](arkts-mvvm.md#代码示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
 
 有关ArkUI功能的更多详细信息，请参见ArkUI[基本语法概述](arkts-basic-syntax-overview.md)。

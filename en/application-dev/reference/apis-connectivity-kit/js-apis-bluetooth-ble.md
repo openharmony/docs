@@ -2454,14 +2454,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Callback mode.
 let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) => {
-    if (!code) {
-        let services: Array<ble.GattService> = gattServices;
+    if (code && code.code != 0) {
         console.info('bluetooth code is ' + code.code);
-        console.info('bluetooth services size is ', services.length);
-
-        for (let i = 0; i < services.length; i++) {
-            console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
-        }
+        return;
+    }
+    let services: Array<ble.GattService> = gattServices;
+    console.info('bluetooth services size is ', services.length);
+    for (let i = 0; i < services.length; i++) {
+        console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
     }
 }
 
@@ -3660,7 +3660,7 @@ Unsubscribes from MTU status changes for the client.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be unregistered. |
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
@@ -3913,7 +3913,7 @@ Defines the parameters for starting BLE advertising for the first time.
 
 | Name               | Type                            | Readable | Writable | Description                     |
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
-| advertisingSettings<sup>11+</sup> | AdvertiseSetting                | Yes   | Yes   | Parameters related advertising settings.   |
+| advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | Yes   | Yes   | Parameters related advertising settings.   |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the advertising packet.     |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | Yes   | Yes   | Content of the response to the scan request.|
 | duration<sup>11+</sup>    | number   | Yes   | Yes   | Duration for the advertising, in 10 ms.<br> Value range: **1** (10 ms) to **65535** (655350 ms)<br>If this parameter is not specified or set to 0, advertising packet are sent continuously.   |

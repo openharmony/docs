@@ -6,7 +6,7 @@ You will learn how to use native image APIs to process images.
 
 **Adding Dependencies**
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libace_napi.z.so** and **libpixelmap_ndk.z.so** (on both of which the native image APIs depend) and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libace_napi.z.so** and **libpixelmap_ndk.z.so** (on both of which the image APIs depend) and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
@@ -34,7 +34,7 @@ EXTERN_C_END
 
 **Calling the Native APIs**
 
-For details about the APIs, see [Image API Reference](../../reference/apis-image-kit/image.md).
+For details about the APIs, see [Image](../../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 
@@ -60,12 +60,16 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         createOps.alphaType = 0;
         size_t bufferSize = createOps.width * createOps.height * 4;
         void *buff = malloc(bufferSize);
+        if (buff == nullptr) {
+            return udfVar;
+        }
 
         char *cc = (char *)buff;
         for (int i = 0; i < 96; i++) {
             *(cc++) = (char)i;
         }
         int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelMap);
+        free(buff);
         if (res != IMAGE_RESULT_SUCCESS || pixelMap == nullptr) {
             return udfVar;
         }
@@ -113,7 +117,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         napi_value result = nullptr;
         napi_get_undefined(env, &result);
         
-        // Initialize the PixelMap object.
+        // Initialize a NativePixelMap object.
         NativePixelMap *native = OH_PixelMap_InitNativePixelMap(env, argValue[0]);
         if (native == nullptr) {
             return result;
@@ -206,19 +210,19 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     import { image } from '@kit.ImageKit';
 
     export const createPixelMapTest: () => image.PixelMap;
-    export const transform: (a: image.PixelMap) => image.PixelMap;
+    export const transform: (a: image.PixelMap) => void;
     ```
 
 2. Open **src\main\ets\pages\index.ets**, import ***libentry*.so** (where **libentry** varies according to the project name), call the native APIs, and pass in the JS resource object. The sample code is as follows:
 
     ```js
-    import testNapi from 'libentry.so'
+    import testNapi from 'libentry.so';
     import { image } from '@kit.ImageKit';
 
     @Entry
     @Component
     struct Index {
-    @State _PixelMap : image.PixelMap | undefined = undefined;
+    @State _pixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {

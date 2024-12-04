@@ -505,7 +505,7 @@ Enumerates the **OH_NativeBuffer** image standards.
 | -------- | -------- |
 | OH_VIDEO_HDR_HLG | Video HLG.| 
 | OH_VIDEO_HDR_HDR10 | Video HDR10.| 
-| OH_VIDEO_HDR_VIVID | Video HDR Vivid.| 
+| OH_VIDEO_HDR_VIVID | Video HDR Vivid.|
 
 
 ### OH_NativeBuffer_TransformType

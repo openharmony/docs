@@ -426,6 +426,6 @@ import { usageStatistics } from '@kit.BackgroundTasksKit'
 
 针对设备使用信息统计，有以下相关实例可供参考：
 
-- [存储空间统计（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/StorageStatistic)
+- [存储空间统计（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/SystemFeature/DeviceManagement/StorageStatistic)
 
-- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics)
+- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics)

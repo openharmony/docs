@@ -55,4 +55,4 @@
 
 针对数字版权保护开发，有以下相关实例可供参考：
 
-- [媒体管理合集（ArkTS）(Full SDK)（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/MediaCollections)
+- [媒体管理合集（ArkTS）(Full SDK)（API11）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/SystemFeature/FileManagement/MediaCollections)

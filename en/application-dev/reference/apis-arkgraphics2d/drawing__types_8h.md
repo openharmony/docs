@@ -5,7 +5,7 @@
 
 The **drawing_types.h** file declares the data types of the canvas, brush, pen, bitmap, and path used to draw 2D graphics.
 
-**File to include**: &lt;native_drawing/drawing_types.h&gt;
+**File to include**: **&lt;native_drawing/drawing_types.h&gt;
 
 **Library**: libnative_drawing.so
 

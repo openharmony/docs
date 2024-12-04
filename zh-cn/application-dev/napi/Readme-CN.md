@@ -42,7 +42,7 @@
       - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
       - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
       - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
-      - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
+      - [Native与sendable ArkTS对象绑定](use-sendable-napi.md)
       - [使用Node-API接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
       - [使用Node-API接口在主线程中进行模块加载](use-napi-load-module.md)
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)

@@ -1,103 +1,32 @@
-# Extended Audio Concurrency Strategy (C/C++)
+# Using AudioSession to Manage Audio Focus (C/C++)
 
-The audio system offers a default concurrency strategy based on the audio stream type. If the default concurrency strategy cannot meet your service requirements, you can use an audio session to customize a strategy. The audio session is an extension of the default audio concurrency strategy. Example scenarios are as follows:
+In the scenario where multiple audio streams are concurrently playing, the system has preset a [default audio focus strategy](audio-playback-concurrency.md#audio-focus-strategy) for unified audio focus management of all streams (including playback and recording).
 
-- When an application that continuously plays a short sound does not want to be paused when running in the background, it can obtain an audio session to ensure a seamless integration of the entire playback process.
+An application can use an audio session provided by the audio session manager to actively manage the audio focus. Specifically, it can customize an audio focus strategy and determine the timing for releasing the audio focus, thereby meeting its specific service needs.
 
-- If the default concurrency strategy does not meet service requirements, an application can request an audio session and specify a strategy.
-
-The following figure shows the audio session process.
-
-![AudioSession status change](figures/audiosession-status-change.png)
+This topic describes the usage and precautions of the C APIs related to the audio session. For more information about the audio focus and audio session, see [Introduction to Audio Focus and Audio Session](audio-playback-concurrency.md).
 
 ## Prerequisites
 
-To use the audio session management capability provided by OHAudio, add the corresponding header file.
+To use the audio session manager provided by OHAudio, add the corresponding header file.
 
-### Linking the Dynamic Link Library in the CMake Script
+### Linking the Dynamic Library in the CMake Script
 
 ``` cmake
 target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 
-### Adding Header Files
+### Adding a Header File
 
-Include the **native_audio_session_manager.h** header file so that the application can use the functions related to audio playback.
+Include the [native_audio_session_manager.h](../../reference/apis-audio-kit/native__audio__session__manager_8h.md) header file.
 
 ```cpp
 #include <ohaudio/native_audio_session_manager.h>
 ```
 
-## Audio Session Strategy
-
-In scenarios where multiple audio streams are active, an application can proactively establish an audio session strategy to manage how other applications handle audio streams once it has acquired audio focus.
-
-### Audio Concurrency Mode
-
-When the default concurrency strategy cannot meet service requirements, you can configure the audio concurrency mode.
-
-Four audio concurrency modes are provided. 
-
-- **CONCURRENCY_DEFAULT**: default concurrency strategy, which is used no audio session is used.
-
-- **CONCURRENCY_MIX_WITH_OTHERS**: mixes audio streams with other applications that are concurrently playing audio.
-
-  It is assumed that application A adopts **CONCURRENCY_MIX_WITH_OTHERS** and is playing audio streams, and application B applies to play audio streams at a later time. The relationship between applications A and B is described in the table below.
-
-  | Application Behavior Before Mode Configuration| Application Behavior After Mode Configuration|
-  | ------------ | ------------------ |
-  | Application A rejects the playback request of application B.| Application A mixes its audio playback with that of application B.|
-  | Application A pauses the playback of application B.| Application A mixes its audio playback with that of application B.|
-  | Application A lowers the volume of application B.| Application A mixes its audio playback with that of application B.|
-  | Application B lowers the volume of application A.| If applications and B have similar types, application A mixes its audio playback with that of application B.|
-  | Application B pauses the playback of application A.| If applications and B have similar types, application A mixes its audio playback with that of application B.|
-  | Application B stops the playback of application A.| If applications and B have similar types, application A mixes its audio playback with that of application B.|
-
-  It is assumed that application A is playing audio streams, and application B adopts **CONCURRENCY_MIX_WITH_OTHERS** and applies to play audio streams at a later time. The relationship between applications A and B is described in the table below.
-
-  | Application Behavior Before Mode Configuration| Application Behavior After Mode Configuration|
-  | ------------ | ------------------ |
-  | Application A rejects the playback request of application B.| If applications and B have similar types, application A mixes its audio playback with that of application B.|
-  | Application A pauses the playback of application B.| If applications and B have similar types, application A mixes its audio playback with that of application B.|
-  | Application A lowers the volume of application B.| If applications and B have similar types, application A mixes its audio playback with that of application B.|
-  | Application B lowers the volume of application A.| Application A mixes its audio playback with that of application B.|
-  | Application B pauses the playback of application A.| Application A mixes its audio playback with that of application B.|
-  | Application B stops the playback of application A.| Application A mixes its audio playback with that of application B.|
-
-- **CONCURRENCY_DUCK_OTHERS**: lowers the volume of the application that is currently playing the audio.
-
-  It is assumed that application A is playing audio streams, and application B adopts **CONCURRENCY_DUCK_OTHERS** and applies to play audio streams at a later time. The relationship between applications A and B is described in the table below.
-
-  | Application Behavior Before Mode Configuration| Application Behavior After Mode Configuration|
-  | ------------ | ------------------ |
-  | Application B pauses the playback of application A.| Application B lowers the volume of application A.|
-  | Application B stops the playback of application A.| Application B lowers the volume of application A.|
-
-- **CONCURRENCY_PAUSE_OTHERS**: pauses the application that is currently playing the audio.
-
-  It is assumed that application A is playing audio streams, and application B that adopts **CONCURRENCY_PAUSE_OTHERS** applies to play audio streams at a later time. The relationship between applications A and B is described in the table below.
-
-  | Application Behavior Before Mode Configuration| Application Behavior After Mode Configuration|
-  | ------------ | ------------------ |
-  | Application B stops the playback of application A.| Application B pauses the playback of application A.|
-
-## Audio Session Deactivation Event
-
-It is recommended that an application listen for audio session deactivation events. When such an event occurs, the system performs corresponding operations on the related audio stream based on the reason of the deactivation.
-
-If the application wants to customize a concurrency strategy through the audio session again, it must activate the audio session first.
-
-### Reasons for Audio Session Deactivation
-
-Two audio session deactivation reasons are preset:
-
-- **DEACTIVATED_LOWER_PRIORITY**: The focus of the application that is playing audio streams is forcibly cleared.
-
-- **DEACTIVATED_TIME_OUT**: The default duration is reached after the application creates an audio session or stops audio playback. In this case, the volume of the application that was lowered in volume by this session will be restored to its original level, and the application that was paused by this session will receive a stop playback focus event.
-
 ## Obtaining an Audio Session Manager
 
-Create an **OH_AudioSessionManager** instance. Before using audio session management, you must call **OH_AudioManager_GetAudioSessionManager** to create an **OH_AudioSessionManager** instance.
+Create an [OH_AudioSessionManager](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager) instance. Before using any APIs of **OH_AudioSessionManager**, you must use [OH_AudioManager_GetAudioSessionManager](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiomanager_getaudiosessionmanager) to obtain an **OH_AudioSessionManager** instance.
 
   ```cpp
   OH_AudioSessionManager *audioSessionManager;
@@ -106,7 +35,9 @@ Create an **OH_AudioSessionManager** instance. Before using audio session manage
 
 ## Activating an Audio Session
 
-Call **OH_AudioSessionManager_ActivateAudioSession** to activate an audio session.
+Call [OH_AudioSessionManager_ActivateAudioSession](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_activateaudiosession) to activate an audio session.
+
+During the activation, specify an [audio session strategy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_strategy). The strategy contains the [OH_AudioSession_ConcurrencyMode](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_concurrencymode) parameter, which is used to declare the audio concurrency strategy.
 
   ```cpp
   OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
@@ -114,23 +45,29 @@ Call **OH_AudioSessionManager_ActivateAudioSession** to activate an audio sessio
   OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
   ```
 
-## Deactivating an Audio Session
-
-Call **OH_AudioSessionManager_DeactivateAudioSession** to deactivate an audio session when it is no longer needed.
-
-  ```cpp
-  OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
-  ```
-
 ## Checking Whether an Audio Session Is Activated
 
-Call **OH_AudioSessionManager_IsAudioSessionActivated** to check whether an audio session is activated.
+Call [OH_AudioSessionManager_IsAudioSessionActivated](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_isaudiosessionactivated) to check whether an audio session is activated.
 
   ```cpp
   bool isActivated = OH_AudioSessionManager_IsAudioSessionActivated(audioSessionManager);
   ```
 
-## Registering and Unregistering the Audio Session Deactivation Event Callback
+## Deactivating an Audio Session
+
+Call [OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_deactivateaudiosession) to deactivate an audio session.
+
+  ```cpp
+  OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
+  ```
+
+## Listening for Audio Session Deactivation Events
+
+When using the audio session, you are advised to listen for the [OH_AudioSession_DeactivatedEvent](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent) event.
+
+When an audio session is deactivated (not proactively), the application receives [OH_AudioSession_DeactivatedEvent](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent), which contains [OH_AudioSession_DeactivatedReason](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedreason).
+
+Upon this event, the application can perform operations based on service requirements, for example, releasing resources or reactivating the audio session.
 
 ### Defining a Callback
 
@@ -149,19 +86,20 @@ Call **OH_AudioSessionManager_IsAudioSessionActivated** to check whether an audi
   ```
 
 ### Registering a Callback to Listen for Audio Session Deactivation Events
-Call **OH_AudioSessionManager_RegisterSessionDeactivatedCallback** to register a callback to listen for audio session deactivation events.
 
-  ```cpp
-  OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
-  ```
+Call [OH_AudioSessionManager_RegisterSessionDeactivatedCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_registersessiondeactivatedcallback) to register a callback to listen for audio session deactivation events.
+
+```cpp
+OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
+```
 
 ### Unregistering the Callback Used to Listen for Audio Session Deactivation Events
 
-Call **OH_AudioSessionManager_UnregisterSessionDeactivatedCallback** to unregister the callback used to listen for audio session deactivation events.
+Call [OH_AudioSessionManager_UnregisterSessionDeactivatedCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosessionmanager_unregistersessiondeactivatedcallback) to cancel listening for audio session deactivation events.
 
-  ```cpp
-  OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
-  ```
+```cpp
+OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
+```
 
 ## Sample Code
 

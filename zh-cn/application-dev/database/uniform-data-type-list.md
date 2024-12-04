@@ -1,4 +1,4 @@
-# Uniform Type Descriptor(UTD)预置列表
+# UTD预置列表
 
 标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决系统中的类型模糊问题，即针对同一种数据类型，存在不同的类型描述方式：MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使用image/jpeg、.jpg、.jpeg或image/picture等方式进行描述。
 
@@ -102,8 +102,8 @@
 | general.xar-archive                 | general.archive               | .xar                                   | application/x-xar                                                                      | XAR压缩文件类型                          |
 | general.lza-archive                 | general.archive               | .lza                                   | application/x-lzh-compressed                                                           | LZA压缩文件类型                          |
 | general.arj-archive                 | general.archive               | .arj                                   | application/x-arj                                                                      | ARJ压缩文件类型                          |
-| general.lzma-archive                | general.archive               | .lzma                                  | application/x-lzma                                                                     |                                    | 压缩文件类型 |
-| general.lzma86-archive              | general.archive               | .lzma86                                |                                           -                                            | 压缩文件类型                             |
+| general.lzma-archive                | general.archive               | .lzma                                  | application/x-lzma                                                                     | LZMA压缩文件类型                             |
+| general.lzma86-archive              | general.archive               | .lzma86                                |                                           -                                            | LZMA86压缩文件类型                             |
 | general.hfs-disk-image              | general.disk-image            | .hfs                                   |                                           -                                            | HFS镜像文件类型                          |
 | general.img-disk-image              | general.disk-image            | .img                                   | application/x-raw-disk-image                                                           | IMG镜像文件类型                          |
 | general.virtual-cd                  | general.disk-image            | .vcd                                   | application/x-cdlink                                                                   | CD镜像文件类型                           |

@@ -1,7 +1,7 @@
 # CPU密集型任务开发指导 (TaskPool和Worker)
 
 
-CPU密集型任务是指需要占用系统资源处理大量计算能力的任务，需要长时间运行，这段时间会阻塞线程其它事件的处理，不适宜放在主线程进行。例如图像处理、视频编码、数据分析等。
+CPU密集型任务是指需要占用系统资源处理大量计算能力的任务，需要长时间运行，这段时间会阻塞线程其它事件的处理，不适宜放在UI主线程进行。例如图像处理、视频编码、数据分析等。
 
 
 基于多线程并发机制处理CPU密集型任务可以提高CPU利用率，提升应用程序响应速度。
@@ -79,7 +79,7 @@ struct Index {
 
    ![newWorker](figures/newWorker.png)
 
-2. 在主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程。
+2. 在宿主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象。
 
     ```ts
     // Index.ets
@@ -122,7 +122,7 @@ struct Index {
    ```
 
 5. 在Worker线程中通过调用[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息内容，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
-    例如在Worker线程中定义预测模型及其训练过程，同时与主线程进行信息交互。
+    例如在Worker线程中定义预测模型及其训练过程，同时与宿主线程进行信息交互。
 
     ```ts
     // MyWorker.ts
@@ -143,13 +143,13 @@ struct Index {
       case 0:
       // 进行训练
        optimize();
-      // 训练之后发送主线程训练成功的消息
+      // 训练之后发送宿主线程训练成功的消息
        workerPort.postMessage({ type: 'message', value: 'train success.' });
        break;
       case 1:
       // 执行预测
        const output: number = predict(e.data.value as number);
-      // 发送主线程预测的结果
+      // 发送宿主线程预测的结果
        workerPort.postMessage({ type: 'predict', value: output });
        break;
       default:

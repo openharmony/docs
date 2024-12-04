@@ -4,7 +4,7 @@
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-The **picker** module encapsulates APIs of **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, documents, and audio clips. The application can select the picker as required. The APIs of this module must be called in a UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
+The **picker** module encapsulates APIs of **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker** to provide capabilities for selecting and saving images and videos, documents, and audio clips. The application can select the Picker as required. The APIs of this module must be called in a UIAbility. Otherwise, the **photoPicker** or **FilePicker** application cannot be started.
 
 ## Modules to Import
 
@@ -64,7 +64,7 @@ constructor()
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-A constructor used to create a **DocumentViewPicker** instance. This constructor is not recommended because there is a possibility that the operation fails.
+A constructor used to create a **DocumentViewPicker** instance. This constructor is not recommended due to the potential risk of operation failure.
 
 **Example**
 
@@ -385,7 +385,7 @@ constructor()
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-A constructor used to create an **AudioViewPicker** instance. This constructor is not recommended because there is a possibility that the operation fails.
+A constructor used to create an **AudioViewPicker** instance. This constructor is not recommended due to the potential risk of operation failure.
 
 **Example**
 
@@ -671,10 +671,10 @@ Defines the options for selecting documents.
 
 | Name                   | Type                                         | Mandatory| Description                                      |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | No  | Maximum number of documents that can be selected.<br>Value range: 1 to 500.<br>Only the devices that have the required system capability can select folders, and only one folder can be selected at a time. <br>Default value: **1**. <br/>**System capability**: SystemCapability.FileManagement.UserFileService |
+| maxSelectNumber<sup>10+</sup>       | number                                      | No  | Maximum number of documents that can be selected.<br>Value range: 1 to 500.<br>Only the devices that have the required system capability can select folders, and only one folder can be selected at a time. <br>Default value: **1**.<br/>**System capability**: SystemCapability.FileManagement.UserFileService |
 | defaultFilePathUri<sup>10+</sup>    | string                                      | No  | Path of the documents or folder to select.                           |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  | File name extension types of the documents to select. <br/>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description (optional), and the second part is the file name extension information. If there is no "\|", the option does not have the description. Multiple file name extensions separated by a commas (,) are allowed in an option. The number of elements in an string array cannot exceed 100. <br/>By default, all documents are selected.<br/>This parameter is available only to the devices that have the required system capability.  <br/>**System capability**: SystemCapability.FileManagement.UserFileService |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  | Resource types that can be selected, for example, file, folder, or both. The default value is **File**.<br/>This parameter is available only to the devices that have the required system capability. <br/>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | No  | File name extension types of the documents to select. <br/>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description (optional), and the second part is the file name extension information. If there is no "\|", the option does not have the description. Multiple file name extensions separated by a comma (,) are allowed in an option. The number of elements in a string array cannot exceed 100. <br/>This parameter is available only to the devices that have the required system capability. By default, all documents are selected. <br/>**System capability**: SystemCapability.FileManagement.UserFileService  |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | No  | Resource types that can be selected, for example, file, folder, or both. <br/>This parameter is available only to the devices that have the required system capability. <br/>The default value is **File**.<br/>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
 | authMode<sup>12+</sup>    | boolean                              | No  | Whether to start Picker.<br>Default value: **false**. <br/>If **authMode** is **true**, **defaultFilePathUri** is mandatory, which specifies the URI of the file allowed to access. <br/>This parameter is available only to the devices that have the required system capability.<br>**System capability**: SystemCapability.FileManagement.UserFileService.FolderSelection |
 
 ## DocumentPickerMode<sup>12+</sup>
@@ -702,8 +702,8 @@ Defines the options for saving documents.
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names.  |
 | defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the documents or folder to save. |
-| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to save.<br/>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the file name extension information. If there is no "\|", the option does not have the description.<br/>By default, all documents are saved. |
-| pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | No  | Mode for starting Picker.<br>Default value: **DEFAULT**. <br/>If **pickerMode** is **DOWNLOAD**, the settings of **newFileNames**, **defaultFilePathUri**, and **fileSuffixChoices** do not take effect. |
+| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to save.<br/>The value is a string array. Each element specifies an option, which includes at most two parts with a vertical bar (\|) in between. The first part is the description, and the second part is the file name extension information. If there is no "\|", the option does not have the description. By default, all documents are saved.|
+| pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | No  | Mode for starting Picker.<br>Default value: **DEFAULT**<br/>If **pickerMode** is **DOWNLOAD**, the settings of **newFileNames**, **defaultFilePathUri**, and **fileSuffixChoices** do not take effect.|
 
 ## AudioSelectOptions
 
@@ -742,8 +742,6 @@ Provides APIs for selecting and saving images/videos. You are advised to use [Ph
 
 constructor(context: Context)
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 A constructor used to create a **PhotoViewPicker** instance. This constructor is recommended. For details about how to obtain the context, see [getContext](../apis-arkui/js-apis-getContext.md).
@@ -780,9 +778,11 @@ struct Index {
 
 constructor()
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-A constructor used to create a **PhotoViewPicker** instance. This constructor is not recommended because there is a possibility that the operation fails.
+A constructor used to create a **PhotoViewPicker** instance. This constructor is not recommended due to the potential risk of operation failure.
 
 **Example**
 
@@ -799,8 +799,8 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 > **NOTE**
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select) instead.
->
-> The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -851,8 +851,8 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 > **NOTE**
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-1) instead.
->
-> The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -900,8 +900,8 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 > **NOTE**
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-2) instead.
->
-> The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by [photoAccessHelper.getAssets](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets). For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -945,8 +945,8 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 > **NOTE**
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
->
-> This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+
+> **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -994,8 +994,8 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 > **NOTE**
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
->
-> This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+
+> **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1040,8 +1040,8 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 > **NOTE**
 >
 > This API is supported since API version 9 and deprecated since API version 12. Use [SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton) instead.
->
-> This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
+
+> **NOTE**<br>This API saves files in **Files**, not in **Gallery**. For details about how to use the returned URIs, see [Using a Document URI](../../file-management/user-file-uri-intro.md#using-a-document-uri).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 

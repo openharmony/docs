@@ -180,7 +180,9 @@ Menu子菜单展开样式枚举。
 
 ## 示例
 
-### 示例1
+### 示例1（设置多级菜单）
+
+该示例通过配置MenuItem中的builder参数实现多级菜单。
 
 ```ts
 @Entry
@@ -248,9 +250,9 @@ struct Index {
 
 ![menu](figures/menu.png)
 
-### 示例2
+### 示例2（设置symbol类型图标）
 
-普通菜单(使用symbol类型图标)
+该示例通过配置symbolStartIcon、symbolEndIcon实现symbol类型图标的菜单。
 
 ```ts
 // xxx.ets

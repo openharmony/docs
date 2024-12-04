@@ -185,7 +185,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
 
  其中fileAccess提供了文件基础操作的API，fileExtensionInfo提供了应用开发的关键结构体。
 
-3. 提供监听回调方法
+3. 提供监听回调方法。
 
    ```ts
    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
@@ -197,9 +197,9 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
    }
    ```
 
-4. 注册监听设备和取消设备监听
+4. 注册监听设备和取消设备监听。
 
-  开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量)，传入方法registerObserver()中，就能监听设备上下线状态。传入方法unregisterObserver()中，就能就能取消设备上线，下线状态。
+  开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量)，传入方法registerObserver()中，就能监听设备上下线状态。传入方法unregisterObserver()中，就能取消设备上线，下线状态。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';

@@ -1,4 +1,4 @@
-# 异步并发概述 (Promise和async/await)
+# 异步并发 (Promise和async/await)
 
 
 Promise和async/await提供异步并发能力，是标准的JS异步语法。异步代码会被挂起并在之后继续执行，同一时间只有一段代码执行，适用于单次I/O任务的场景开发，例如一次网络请求、一次文件读写等操作。无需另外启动线程执行。
@@ -15,14 +15,14 @@ Promise有三种状态：pending（进行中）、fulfilled（已完成）和rej
 
 ```ts
 const promise: Promise<number> = new Promise((resolve: Function, reject: Function) => {
-setTimeout(() => {
-  const randomNumber: number = Math.random();
-  if (randomNumber > 0.5) {
-    resolve(randomNumber);
-  } else {
-    reject(new Error('Random number is too small'));
-  }
-}, 1000);
+  setTimeout(() => {
+    const randomNumber: number = Math.random();
+    if (randomNumber > 0.5) {
+      resolve(randomNumber);
+    } else {
+      reject(new Error('Random number is too small'));
+    }
+  }, 1000);
 })
 ```
 
@@ -58,7 +58,7 @@ async function myAsyncFunction(): Promise<string> {
     }, 3000);
   });
   console.info(result); // 输出： Hello, world!
-  return result
+  return result;
 }
 
 @Entry
@@ -85,7 +85,7 @@ struct Index {
 
 在上述示例代码中，使用了await关键字来等待Promise对象的解析，并将其解析值存储在result变量中。
 
-需要注意的是，由于要等待异步操作完成，因此需要将整个操作包在async函数中。除了在async函数中使用await外，还可以使用try/catch块来捕获异步操作中的异常。
+需要注意的是，由于要等待异步操作完成，因此需要将整个操作包在async函数中，并搭配await关键字使用。除了在async函数中使用await外，还可以使用try/catch块来捕获异步操作中的异常。
 
 ```ts
 async function myAsyncFunction(): Promise<void> {

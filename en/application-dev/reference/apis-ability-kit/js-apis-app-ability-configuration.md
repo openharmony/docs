@@ -26,12 +26,12 @@ import { Configuration } from '@kit.AbilityKit';
 | hasPointerDevice  | boolean | No| Yes| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | fontSizeScale<sup>12+<sup> | number | No| Yes| Font size scale ratio. The value ranges from 0 to 3.2. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fontWeightScale<sup>12+<sup> | number | No| Yes| Font weight scale ratio. The value ranges from 0 to 1.25. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| mcc<sup>12+<sup> | string | No | Yes| Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| mnc<sup>12+<sup> | string | No | Yes| Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| mcc<sup>12+<sup> | string | No | Yes| Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| mnc<sup>12+<sup> | string | No | Yes| Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 **Example**
 
-  ```ts
+```ts
 import { UIAbility, AbilityConstant, EnvironmentCallback, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -52,7 +52,7 @@ export default class EntryAbility extends UIAbility {
         let mnc = config.mnc;
       },
       onMemoryLevel(level) {
-        console.log('onMemoryLevel level: ${level}');
+        console.log(`onMemoryLevel level: ${level}`);
       }
     };
     try {
@@ -64,4 +64,4 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-  ```
+```

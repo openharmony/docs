@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so | 
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。  | 
 
 
 ### 类型定义

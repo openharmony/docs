@@ -42,7 +42,7 @@
       - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
       - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
       - [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
-      - [Calling Back ArkTS APIs in a Non-ArkTS Thread](use-uv-queue-work.md)
+      - [Wrapping a Native Object in a Sendable ArkTS Object](use-sendable-napi.md)
       - [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md).
       - [Loading a Module in the Main Thread Using Node-API](use-napi-load-module.md)
       - [Running or Stopping an Event Loop in an Asynchronous Thread Using Extended Node-API](use-napi-event-loop.md)
@@ -59,7 +59,7 @@
     - JSVM-API Use Cases
       - [Working with Task Queues Using JSVM-API](use-jsvm-execute_tasks.md)
       - [Working with VM Snapshots Using JSVM-API](use-jsvm-create-snapshot.md)
-      - [Developing Wasm Using JSVM-API](use-jsvm-about-wasm.md)
+      - [Working with Wasm Using JSVM-API](use-jsvm-about-wasm.md)
     - Typical JSVM-API Scenarios
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - JSVM-API Tuning and Performant Coding Cases

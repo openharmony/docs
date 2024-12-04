@@ -103,7 +103,7 @@ The connection object fails to be created.
 **Solution**
 Do not set up connections frequently. Try again later.
 
-##  1500008 Failed to Read Data
+##  1500008 Failed to Read the Data
 
 **Error Message**
 Failed to read the data.

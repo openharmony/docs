@@ -1,6 +1,6 @@
-# Camera Photographing (ArkTS)
+# Photo Capture (ArkTS)
 
-Photographing is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
+Photo capture is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
@@ -37,25 +37,15 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-3. Set the callback for the **photoAvailable** event and save the photo buffer as an image.
+3. Set the callback for the **'photoAvailable'** event and save the photo buffer as an image.
 
     For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+    To view the saved images and videos in Gallery, you must save them to the media library. For details, see [Creating a Media Asset Using SaveButton](../medialibrary/photoAccessHelper-savebutton.md).
+
+    Specifically, when [photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11) is called and a buffer is obtained, the buffer must be stored in the security component to the media library.
    ```ts
    let context = getContext(this);
-
-   async function savePicture(buffer: ArrayBuffer, img: image.Image) {
-     let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-     let options: photoAccessHelper.CreateOptions = {
-       title: Date.now().toString()
-     };
-     let photoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg', options);
-     // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
-     let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-     await fs.write(file.fd, buffer);
-     fs.closeSync(file);
-     img.release(); 
-   }
 
    function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
    // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
@@ -80,7 +70,10 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
             console.error('byteBuffer is null');
             return;
           }
-          savePicture(buffer, imageObj);
+          // To view the saved image and video resources in Gallery, use a security component to create media assets.
+
+          // After the buffer processing is complete, the buffer must be released. Otherwise, no buffer is available for subsequent photo capture.
+          imageObj.release(); 
         });
       });
    }
@@ -88,7 +81,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 4. Set camera parameters.
 
-   You can set camera parameters to adjust photographing functions, including the flash, zoom ratio, and focal length.
+   You can set camera parameters to adjust photo capture functions, including the flash, zoom ratio, and focal length.
 
    ```ts
    function configuringSession(photoSession: camera.PhotoSession): void {
@@ -160,15 +153,17 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-5. Trigger photographing.
+5. Trigger photo capture.
 
-   Call [capture](../../reference/apis-camera-kit/js-apis-camera.md#capture-2) in the **PhotoOutput** class to capture a photo. In this API, the first parameter specifies the settings (for example, photo quality and rotation angle) for photographing, and the second parameter is a callback function.
+   Call [capture](../../reference/apis-camera-kit/js-apis-camera.md#capture-2) in the **PhotoOutput** class to capture a photo. In this API, the first parameter specifies the settings (for example, photo quality and rotation angle) for photo capture, and the second parameter is a callback function.
+
+   To obtain the photo rotation angle (specified by **rotation**), call [getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12) in the [PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput) class.
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
      let settings: camera.PhotoCaptureSetting = {
        quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // Set the photo quality to high.
-       rotation: camera.ImageRotation.ROTATION_0, // Set the rotation angle of the photo to 0.
+       rotation: camera.ImageRotation.ROTATION_0, // The photo rotation angle, camera.ImageRotation.ROTATION_0, is obtained through getPhotoRotation.
        location: captureLocation, // Set the geolocation information of the photo.
        mirror: false // Disable mirroring (disabled by default).
      };
@@ -186,7 +181,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 During camera application development, you can listen for the status of the photo output stream, including the start of the photo stream, the start and end of the photo frame, and the errors of the photo output stream.
 
-- Register the **'captureStart'** event to listen for photographing start events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the bottom layer starts exposure for photographing for the first time. The capture ID is returned.
+- Register the **'captureStart'** event to listen for photo capture start events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the camera device starts photo capture. The capture ID is returned.
 
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
@@ -199,7 +194,7 @@ During camera application development, you can listen for the status of the phot
   }
   ```
 
-- Register the **'captureEnd'** event to listen for photographing end events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the photographing is complete. [CaptureEndInfo](../../reference/apis-camera-kit/js-apis-camera.md#captureendinfo) is returned.
+- Register the **'captureEnd'** event to listen for photo capture end events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the photo capture is complete. [CaptureEndInfo](../../reference/apis-camera-kit/js-apis-camera.md#captureendinfo) is returned.
 
   ```ts
   function onPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
@@ -209,6 +204,19 @@ During camera application development, you can listen for the status of the phot
       }
       console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
       console.info(`frameCount : ${captureEndInfo.frameCount}`);
+    });
+  }
+  ```
+
+- Register the **'captureReady'** event to obtain the result of the next photo capture. This event can be registered when a **PhotoOutput** instance is created and is triggered when the camera device is ready for taking a photo. The information about the next photo capture is returned.
+
+  ```ts
+  function onPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void {
+    photoOutput.on('captureReady', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
+      console.info(`photo capture ready`);
     });
   }
   ```

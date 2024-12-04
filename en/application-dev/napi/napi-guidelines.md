@@ -9,7 +9,7 @@ If **argv** is not **nullptr**, the arguments actually passed by JS will be copi
 **Example (incorrect)**
 
 ```cpp
-static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+static napi_value IncorrectDemo1(napi_env env, napi_callback_info info) {
     // argc is not correctly initialized and is set to a random value. If the length of argv is less than the number of arguments specified by argc, data overwriting occurs.
     size_t argc;
     napi_value argv[10] = {nullptr};
@@ -41,7 +41,7 @@ static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
     napi_value* argv = new napi_value[argc];
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // Service code.
-    // ... ...
+    // ...
     // argv is an object created by new and must be manually released when it is not required.
     delete argv;
     return nullptr;
@@ -51,16 +51,16 @@ static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
     // napi_get_cb_info writes the arguments (of the quantity specified by argc) passed by JS or undefined to argv.
-    napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // Service code.
-    // ... ...
+    // ...
     return nullptr;
 }
 ```
 
 ## Lifecycle Management
 
-**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leakage.
+**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leaks.
 
 Each **napi_value** belongs to a specific **HandleScope**, which is opened and closed by **napi_open_handle_scope** and **napi_close_handle_scope**, respectively. After a **HandleScope** is closed, its **napi_value** is automatically released.
 
@@ -143,6 +143,10 @@ In this example, if an exception occurs in step 1 or step 2, step 3 will not be 
 
 The Node-API framework will not be used when the **uv_queue_work** method is called. In this case, you must use **napi_handle_scope** to manage the lifecycle of **napi_value**.
 
+> **NOTE**
+>
+> This rule focuses on the **napi_value** lifecycle. If you only want to throw tasks to the JS thread, you are advised not to use **uv_queue_work**. To throw tasks, use [napi_threadsafe_function](./use-napi-thread-safety.md) APIs.
+
 **Example (correct)**
 
 ```cpp
@@ -154,11 +158,15 @@ void callbackTest(CallbackContext* context)
     context->retData = 1;
     work->data = (void*)context;
     uv_queue_work(
-        loop, work, [](uv_work_t* work) {},
-        // using callback function back to JS thread
+        loop, work,
+        // Note that uv_queue_work creates a thread and executes the callback. If you only want to throw tasks to the JS thread, you are advised not to use uv_queue_work to avoid creation of redundant threads.
+        [](uv_work_t* work) {
+            // Execute service logic.
+        },
+        // The callback is executed on the JS thread where the loop is located.
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; 
+            napi_handle_scope scope = nullptr;
             napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
                 if (work != nullptr) {
@@ -203,7 +211,7 @@ Generally, you can directly pass in **nullptr** for the last parameter **result*
 // Case 1: Pass in nullptr via the last parameter in napi_wrap. In this case, the created napi_ref is a weak reference, which is managed by the system and does not need manual release.
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
 
-// Case 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, memory leakage may occur.
+// Case 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, a memory leak may occur.
 napi_ref result;
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
 // When js_object and result are no longer used, call napi_remove_wrap to release result.
@@ -252,6 +260,10 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
     void* data = nullptr;
 
     napi_create_arraybuffer(env, arrSize * sizeof(int32_t), &data, &arrBuffer);
+    // data is a null pointer. Cancel the write of data.
+    if (data == nullptr) {
+        return arrBuffer;
+    }
     int32_t* i32Buffer = reinterpret_cast<int32_t*>(data);
     for (int i = 0; i < arrSize; i++) {
         // Using arrayBuffer allows data to be directly modified in the buffer, which eliminates the interaction with the runtime.
@@ -271,7 +283,7 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
 >
 > The following data is the accumulated data written in thousands of cycles. To better reflect the difference, the core frequency of the device has been limited.
 
-| Container Type   | Benchmark Data (us) |
+| Container Type   | Benchmark Data (us)|
 | ----------- | ------------------- |
 | JSArray     | 1566.174            |
 | ArrayBuffer | 3.609               |
@@ -393,17 +405,17 @@ mWorker.terminate();
 // The implementation of worker is the default template, which is omitted here.
 ```
 
-## Others
+## Avoiding Releasing the Obtained Buffer Repeatedly
 
-**[Rule]** Manual release is not allowed for the third parameter **data** in **napi_get_arraybuffer_info**. Its lifecycle is managed by the engine.
+**[Rule]** The parameter **data** in certain APIs, such as **napi_get_arraybuffer_info**, cannot be released manually. Its lifecycle is managed by the engine.
 
-The **napi_get_arraybuffer_info** interface is defined as follows:
+The following uses **napi_get_arraybuffer_info** as an example to describe the interface definition:
 
 ```cpp
 napi_get_arraybuffer_info(napi_env env, napi_value arraybuffer, void** data, size_t* byte_length)
 ```
 
-The parameter **data** specifies the buffer header pointer to ArrayBuffer. This buffer can be read and written in the given range but cannot be released. The buffer memory is managed by the ArrayBuffer Allocator in the engine and is released with the lifecycle of the JS object **ArrayBuffer**.
+The parameter **data** specifies the buffer header pointer to **ArrayBuffer**. This buffer can be read and written in the given range but cannot be released. The buffer memory is managed by the ArrayBuffer Allocator in the engine and is released with the lifecycle of the JS object **ArrayBuffer**.
 
 **Example (incorrect)**
 
@@ -416,6 +428,18 @@ size_t arrayBufferSize;
 napi_status result = napi_get_arraybuffer_info(env, arrayBuffer, &arrayBufferPtr, &arrayBufferSize);
 delete arrayBufferPtr; // This operation is not allowed and may cause a double free of the buffer. The lifecycle of the created arrayBufferPtr is managed by the engine and cannot be manually deleted.
 ```
+
+|Applicable APIs|
+|----------------------------------|
+| napi_create_arraybuffer          |
+| napi_create_sendable_arraybuffer |
+| napi_get_arraybuffer_info        |
+| napi_create_buffer               |
+| napi_get_buffer_info             |
+| napi_get_typedarray_info         |
+| napi_get_dataview_info           |
+
+## Others
 
 **[Suggestion]** Properly use **napi_object_freeze** and **napi_object_seal**.
 

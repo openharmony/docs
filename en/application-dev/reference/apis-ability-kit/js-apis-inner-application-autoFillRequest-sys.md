@@ -20,11 +20,10 @@ Defines the information about an auto-fill request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | Yes  | Type of the element to be automatically filled in.         |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
-| customData<sup>12+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | Yes  | Custom data.            |
 | isPopup<sup>12+</sup>    | boolean               | Yes  | Whether a dialog box is displayed for the auto-fill request.<br>**true**: A dialog box is displayed<br>**false**: A modal window is displayed             |
 
 ## SaveRequest
@@ -33,7 +32,7 @@ Defines the information about an auto-saving request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
 
@@ -43,7 +42,7 @@ Defines the information about an auto-update request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
 
@@ -53,7 +52,7 @@ Defines the information about the response to an auto-fill request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
 
@@ -71,18 +70,17 @@ Called when an auto-fill request is successfully processed.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------ |
-| response | [FillResponse](../apis/#fillresponse)  | Yes | Information about the response to the auto-fill response. |
+| response | [FillResponse](../apis/#fillresponse)  | Yes| Information about the response to the auto-fill response.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 202  | Permission denied, non-system app called system api. |
-| 401  | Mandatory parameters are left unspecified. |
+| 401  | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -170,11 +168,8 @@ Called when an auto-fill request fails to be processed.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 202 | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -246,7 +241,7 @@ struct AutoFillPage {
 }
 ```
 
-### FillRequestCallback.onCancel<sup>12+</sup>
+### FillRequestCallback.onCancel
 
 onCancel(fillContent?: string): void
 
@@ -256,17 +251,16 @@ Called when an auto-fill request is canceled.
 
 **Parameters**
 
-| Name                   | Type  | Mandatory | Description                |
+| Name                   | Type  | Mandatory| Description                |
 | ------------------------- | ------ | ---- | -------------------- |
-| fillContent | string | No  | Content returned to the input method framework when the auto-fill request is canceled. |
+| fillContent<sup>12+</sup> | string | Content returned to the input method framework when the auto-fill request is canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 202  | Permission denied, non-system app called system api. |
 | 401  | Parameter error. Possible causes: 1. The input parameter is not valid parameter;2. Mandatory parameters are left unspecified. |
 | 16000050 | Internal error. |
 
@@ -339,7 +333,7 @@ struct AutoFillPage {
 }
 ```
 
-### FillRequestCallback.setAutoFillPopupConfig<sup>12+</sup>
+### FillRequestCallback.setAutoFillPopupConfig
 
 setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 
@@ -349,18 +343,18 @@ Sets the size and position of an auto-fill pop-up.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------ |
-| autoFillPopupConfig | [AutoFillPopupConfig](js-apis-inner-application-autoFillPopupConfig-sys.md) | Yes | Size and position of the auto-fill pop-up. |
+| autoFillPopupConfig | [AutoFillPopupConfig](js-apis-inner-application-autoFillPopupConfig-sys.md) | Yes| Size and position of the auto-fill pop-up.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 202  | Permission denied, non-system app called system api. |
-| 401  | Mandatory parameters are left unspecified. |
+| 401  | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 202  | Permission verification failed. Possible causes: non-system app called system api. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -394,7 +388,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 
   onUpdateRequest(request: autoFillManager.UpdateRequest): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onUpdateRequest');
-    console.log("get fill request viewData: ", JSON.stringify(request.viewData));
+    console.log(`get fill request viewData: ${JSON.stringify(request.viewData)}.`);
     let storage = LocalStorage.getShared();
     let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
@@ -417,8 +411,8 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
   onFillRequest(session: UIExtensionContentSession, request: autoFillManager.FillRequest, callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     hilog.info(0x0000, 'testTag', 'Fill RequestCallback: %{public}s ', JSON.stringify(callback));
-    console.log('testTag', "Get fill request viewData: ", JSON.stringify(request.viewData));
-    console.log('testTag', "Get fill request type: ", JSON.stringify(request.type));
+    console.log(`testTag. Get fill request viewData: ${JSON.stringify(request.viewData)}.`);
+    console.log(`testTag. Get fill request type: ${JSON.stringify(request.type)}.`);
 
     try {
       let localStorageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData | autoFillManager.AutoFillType> = {
@@ -428,7 +422,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
         'autoFillType': request.type
       }
       let storage_fill = new LocalStorage(localStorageData);
-      console.info('testTag', 'session: ', session);
+      console.info(`testTag. Session: ${JSON.stringify(session)}.`);
       let size: autoFillManager.PopupSize = {
         width: 400,
         height: 200
@@ -478,9 +472,8 @@ Called when a saving request is successfully processed.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 202 | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -563,9 +556,8 @@ Called when a saving request fails to be processed.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 202 | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **Example**

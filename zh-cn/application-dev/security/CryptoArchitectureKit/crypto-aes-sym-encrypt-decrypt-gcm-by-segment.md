@@ -29,7 +29,7 @@
    - 由于已使用update传入数据，此处data传入null。
    - doFinal输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
 
-6. 读取GcmParamsSpec.authTag作为解密的认证信息。
+6. 读取[GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag作为解密的认证信息。
    
    在GCM模式下，需要从加密后的数据中取出末尾16字节，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
@@ -221,16 +221,16 @@
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
     return decryptBlob;
   }
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-    let symKey = await aesGenerator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = aesGenerator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
-  async function main() {
+  function main() {
     let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-    let symKey = await genSymKeyByData(keyData);
+    let symKey = genSymKeyByData(keyData);
     let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 假设信息总共43字节，根据utf-8解码后，也是43字节
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessageUpdateBySegment(symKey, plainText);

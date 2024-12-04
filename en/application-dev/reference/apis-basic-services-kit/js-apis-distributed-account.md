@@ -22,8 +22,8 @@ Obtains a **DistributedAccountAbility** instance.
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
+  | Type | Description |
+  | -------- | -------- |
 | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.|
 
 **Example**
@@ -47,9 +47,9 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -90,9 +90,9 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
 
 **Error codes**
 
@@ -122,7 +122,7 @@ Obtains distributed account information. This API uses a promise to return the r
 queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
 Queries distributed account information. This API uses an asynchronous callback to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9) instead.
 
@@ -132,9 +132,9 @@ Queries distributed account information. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
 
 **Example**
   ```ts
@@ -157,7 +157,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 Queries distributed account information. This API uses a promise to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1) instead.
 
@@ -167,9 +167,9 @@ Queries distributed account information. This API uses a promise to return the r
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
 
 **Example**
   ```ts
@@ -195,10 +195,10 @@ Sets the distributed account information. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes | Distributed account information to set. |
+  | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -242,15 +242,15 @@ Sets the distributed account information. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes | Distributed account information to set. |
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Error codes**
 
@@ -286,7 +286,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 Updates the distributed account information. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9) instead.
 
@@ -296,9 +296,9 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes | New distributed account information. |
 | callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
@@ -322,25 +322,24 @@ Updates the distributed account information. This API uses an asynchronous callb
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 Updates the distributed account information. This API uses a promise to return the result.
-> **NOTE**
+> **NOTE** 
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1) instead.
-
 **System capability**: SystemCapability.Account.OsAccount
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only for system applications)
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
+  | Name | Type | Mandatory | Description |
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes | New distributed account information. |
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+  | Type | Description |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value. |
 
 **Example**
   ```ts
@@ -364,8 +363,8 @@ Represents the distributed information about a system account.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| name | string |Yes| Name of the distributed account. It must be a non-null string.|
-| id | string |Yes| UID of the distributed account. It must be a non-null string.|
+| name | string |Yes | Name of the distributed account. It must be a non-null string. |
+| id | string |Yes | UID of the distributed account. It must be a non-null string. |
 | event | string |Yes | Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
 | nickname<sup>9+</sup> | string |No | Nickname of the distributed account. By default, no value is passed in. |
 | avatar<sup>9+</sup> | string |No | Avatar of the distributed account. By default, no value is passed in. |

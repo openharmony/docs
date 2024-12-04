@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Low Lever Debugger (LLDB) is a next-generation, high-performance debugger. For details, visit the [LLDB official website](https://lldb.llvm.org/).
+Low Level Debugger (LLDB) is a next-generation, high-performance debugger. For details, visit the [LLDB official website](https://lldb.llvm.org/).
 
 LLDB used in OpenHarmony is developed on [LLVM 15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4). It is the default debugger in DevEco Studio and supports debugging of C and C++ applications.
 

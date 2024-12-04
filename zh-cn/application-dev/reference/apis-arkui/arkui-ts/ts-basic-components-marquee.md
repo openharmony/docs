@@ -180,6 +180,7 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
+该示例通过设置start、step、loop、fromStart、src展示了跑马灯运行的效果。  
 
 ```ts
 // xxx.ets

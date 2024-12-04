@@ -1,4 +1,4 @@
-# Using AVRecorder for Audio Recording
+# Using AVRecorder to Record Audio (ArkTS)
 
 You will learn how to use the AVRecorder to develop audio recording functionalities including starting, pausing, resuming, and stopping recording.
 
@@ -15,7 +15,7 @@ For details about the state, see [AVRecorderState](../../reference/apis-media-ki
 
 Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
-1. Create an **AVRecorder** instance. The AVRecorder is in the **idle** state.
+1. Create an AVRecorder instance. The AVRecorder is in the **idle** state.
 
    > **NOTE**
    >
@@ -24,7 +24,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
@@ -34,20 +34,20 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
    | error | Mandatory; used to listen for AVRecorder errors.|
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    // Callback function for state changes.
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.log(`current state is ${state}`);
      // You can add the action to be performed after the state is switched.
    })
-   
+
    // Callback function for errors.
    avRecorder.on('error', (err: BusinessError) => {
      console.error(`avRecorder failed, code is ${err.code}, message is ${err.message}`);
@@ -69,13 +69,13 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // Audio bit rate.
      audioChannels: 2, // Number of audio channels.
-     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
+     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, ACC, MP3, and G711MU are supported.
      audioSampleRate: 48000, // Audio sampling rate.
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, only M4A is supported.
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, MP4, M4A, MP3, and WAV are supported.
    }
    let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
@@ -134,7 +134,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 ## Sample Code
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
-  
+
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -144,9 +144,9 @@ export class AudioRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // Audio bit rate.
     audioChannels: 2, // Number of audio channels.
-    audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, only AAC is supported.
+    audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, ACC, MP3, and G711MU are supported.
     audioSampleRate: 48000, // Audio sampling rate.
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, only M4A is supported.
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, MP4, M4A, MP3, and WAV are supported.
   };
   private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.

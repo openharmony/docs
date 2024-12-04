@@ -15,13 +15,14 @@ sendableContextManager模块提供Context与[SendableContext](js-apis-inner-appl
 - 主线程向子线程传递Sendable数据时，需要将Context转换为SendableContext。
 - 子线程使用Sendable数据时，需要将SendableContext转换为Context。
 
-这里的Context与[createModuleContext](js-apis-inner-application-context.md#contextcreatemodulecontext)方法创建的Context不同，具体差异如下：
+这里的Context与[createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法创建的Context不同，具体差异如下：
 - 与SendableContext相互转换的Context：ArkTS并发实例持有的应用侧Context是不同的实例，底层对应同一个Context对象。当一个实例中Context属性和方法被修改时，相关实例中的Context属性和方法将会同步修改。其中，Context实例中的eventHub属性比较特殊，不同实例中的eventHub是独立的对象，不支持跨ArkTS实例使用。
-- 通过[createModuleContext](js-apis-inner-application-context.md#contextcreatemodulecontext)创建的Context：ArkTS并发实例持有的应用侧Context是不同的实例，底层对应不同的Context对象。
+- 通过[createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)创建的Context：ArkTS并发实例持有的应用侧Context是不同的实例，底层对应不同的Context对象。
 
 ## 约束限制
 
-“Context转换为SendableContext”和“SendableContext转换为Context”两个环节中的Context类型必须保持一致。目前支持转换的Context包括[Context](js-apis-inner-application-context.md)、[ApplicationContext](js-apis-inner-application-applicationContext.md)、[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+- “Context转换为SendableContext”和“SendableContext转换为Context”两个环节中的Context类型必须保持一致。目前支持转换的Context包括[Context](js-apis-inner-application-context.md)、[ApplicationContext](js-apis-inner-application-applicationContext.md)、[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+- SendableContext转换为Context后，不支持跨线程传递。
 
 ## 导入模块
 

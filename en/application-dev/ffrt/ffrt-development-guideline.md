@@ -61,7 +61,7 @@ This topic walks you through how to implement parallel programming based on the 
 | ffrt_skip(ffrt_task_handle_t handle)     | Skips a task.|
 | ffrt_wait_deps(const ffrt_deps_t* deps)    | Waits until the dependent tasks are complete.|
 | ffrt_loop_create(ffrt_queue_t queue)    | Creates a loop.|
-| ffrt_loop_destory(ffrt_loop_t loop)    | Destroys a loop.|
+| ffrt_loop_destroy(ffrt_loop_t loop)    | Destroys a loop.|
 | ffrt_loop_run(ffrt_loop_t loop)    | Runs a loop.|
 | ffrt_loop_stop(ffrt_loop_t loop)    | Stops a loop.|
 | ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void* data, ffrt_poller_cb cb)    | Manages listening events on a loop.|
@@ -744,27 +744,7 @@ ID of the task being executed.
 
 ##### Example
 
-```{.c}
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    static int x = 0;
-    int* xf = &x;
-    void* data = xf;
-    uint64_t timeout1 = 20;
-
-    ffrt::submit([=]() {
-    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
-    ffrt_timer_cb cb;
-    ffrt_timer_start(taskQos, timeout1, data, cb, false);
-    ffrt_usleep(200);
-    }, {}, {});
-    ffrt::wait();
-    return 0;
-}
-
-```
+N/A
 
 #### ffrt_this_task_update_qos
 
@@ -821,7 +801,27 @@ N/A
 
 ##### Example
 
-N/A
+```{.c}
+#include "ffrt.h"
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+
+    ffrt::submit([=]() {
+    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_cb cb;
+    ffrt_timer_start(taskQos, timeout1, data, cb, false);
+    ffrt_usleep(200);
+    }, {}, {});
+    ffrt::wait();
+    return 0;
+} 
+
+```
 
 ### Serial Queue
 
@@ -1924,7 +1924,7 @@ Expected output
 loop is not null.
 ```
 
-#### ffrt_loop_destory
+#### ffrt_loop_destroy
 
 Destroys a loop.
 
@@ -2244,7 +2244,7 @@ Timeout of the timer.
 
 `data`
 
-Pointer to the input parameter of the callback function invoked upon event changes.
+Pointer to the input parameter in the callback function invoked upon event changes.
 
 `cb`
 
@@ -2547,8 +2547,8 @@ In practice, you may not use pure functions in certain scenarios, with the follo
 
 ### Suggestion 5: C++ APIs recommended
 
-* The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
-* For details about how to download C++ APIs, see [FFRT C++ APIs] (https://gitee.com/wangyulie/resourceschedule_ffrt/tree/master/interfaces/kits).
+* The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file. 
+* For details about how to download C++ APIs, see [FFRT C++ APIs](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits).
 
 ## Constraints
 

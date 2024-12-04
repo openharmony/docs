@@ -748,7 +748,7 @@ try {
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-Obtains applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md).
+Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md).
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -795,7 +795,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS or ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -852,7 +852,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS or ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -956,7 +956,7 @@ try {
 
 killProcessesByBundleName(bundleName: string): Promise\<void>
 
-Kills a process by bundle name. This API uses a promise to return the result.
+Kills a process by bundle name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -974,7 +974,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1748,7 +1748,7 @@ Checks whether an application is running. This API uses a promise to return the 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
-| appCloneIndex | number | No| Index of the app clone.|
+| appCloneIndex | number | No| Index of an application clone.|
 
 **Return value**
 

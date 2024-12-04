@@ -7,7 +7,7 @@ The packing tool supports the generation of HAP (module package of the ability t
 
 ## Constraints
 
-The packing tool must run in Java8 or later.
+The packing tool must run in Java 8 or later.
 
 
 ## HAP Packing Command
@@ -105,8 +105,8 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | Name                | Mandatory| Option         | Description                                                          |
 |--------------------|-------|-------------|--------------------------------------------------------------|
 | --mode             | Yes    | app         | Packing mode. Each HAP file to pack into the APP file must pass the validity check.                                          |
-| --hap-path         | No    | NA          | Path of the HAP file. The file name extension must be .hap. If there are multiple HAP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HAP file is stored.|
-| --hsp-path         | No    | NA          | Path of the HSP file. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HSP file is stored.|
+| --hap-path         | No    | NA          | Path of the HAP files. The file name extension must be .hap. If there are multiple HAP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HAP files are stored.|
+| --hsp-path         | No    | NA          | Path of the HSP files. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HSP files are stored.|
 | --pack-info-path   | Yes    | NA          | Path of the **pack.info** file. The file name must be **pack.info**.                                            |
 | --out-path         | Yes    | NA          | Path of the target file. The file name extension must be .app.                                       |
 | --signature-path   | No    | NA          | Path of the signature file.                                                       |
@@ -219,14 +219,14 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 | Name            | Mandatory| Option           | Description                                                 |
 |----------------|-------|---------------|-----------------------------------------------------|
 | --mode         | Yes    | packageNormalize | Command type.                                              |
-| --hsp-list     | Yes    | Path of the HSP files     | Path of the HSP file. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,). The value can also be the directory (folder) where the HSP files are stored.|
+| --hsp-list     | Yes    | Path of the HSP files     | Path of the HSP files. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,). The value can also be the directory (folder) where the HSP files are stored.|
 | --bundle-name  | Yes    | Bundle name           | New bundle name, to which the passed-in bundle name will be changed.                            |
 | --version-code | Yes    | Internal version number          | New version number, to which the passed-in version number will be changed. The value must be an integer greater than 0.                |
 | --out-path     | Yes    | NA            | Target file path, which must be a directory (folder).                                    |
 
-## RES Packing Command
+## Packing Commands for RES Files
 
-Used to generate an HAP file for the **pack.res** file.
+This command is used to generate an HAP file for the **pack.res** file.
 
 Packing command example:
 
@@ -244,7 +244,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 | --out-path       | Yes    | NA            | Path of the target file. The file name extension must be .res.             |
 | --force          | No    | true or false  | The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.|
 
-## FastApp Packing Commands
+## Packing Commands for FastApp Files
 
 You can use the JAR package of the packing tool to generate an APP file for a fast application by passing in packing options and path of the HAP or HSP files. The APP file is used to release the application to the application market.
 
@@ -264,7 +264,7 @@ java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <p
 |--------------------|-------|------------|-------------------------------------------------------------------------------------------------------|
 | --mode             | Yes    | fastApp    | Packing mode. Each HAP file to pack into the APP file must pass the validity check.                                                                                   |
 | --hap-path         | No    | NA         | Path of the HAP file directory, which contains all files of the HAP. If there are multiple HAP file directories, separate them with commas (,).                                             |
-| --hsp-path         | No    | NA         | Path of the HSP file. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,). 2. Path of the HSP file directory, which contains all files of the HSP. If there are multiple HSP file directories, separate them with commas (,).|
+| --hsp-path         | No    | NA         | Path of the HSP files. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,). 2. Path of the HSP file directory, which contains all files of the HSP. If there are multiple HSP file directories, separate them with commas (,).|
 | --pack-info-path   | Yes    | NA         | Path of the **pack.info** file. The file name must be **pack.info**.                                                                                     |
 | --out-path         | Yes    | NA         | Path of the target file. The file name extension must be .app.                                                                                |
 | --signature-path   | No    | NA         | Path of the signature file.                                                                                                |

@@ -1,6 +1,6 @@
 #  Select
 
-The **<Select\>** component provides a drop-down list box that allows users to select among multiple options.
+The **Select** component provides a drop-down list box that allows users to select among multiple options.
 
 >  **NOTE**
 >
@@ -16,21 +16,23 @@ Select(options: Array\<[SelectOption](#selectoption)\>)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name | Type                                      | Mandatory | Description      |
+| Name | Type                                          | Mandatory| Description          |
 | ------- | ---------------------------------------------- | ---- | -------------- |
-| options | Array\<[SelectOption](#selectoption)\>  | Yes  | Options in the drop-down list box. |
+| options | Array\<[SelectOption](#selectoption)\> | Yes  | Options in the drop-down list box.|
 
 ## SelectOption
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type                           | Mandatory | Description      |
+| Name| Type                           | Mandatory| Description      |
 | ------ | ----------------------------------- | ---- | -------------- |
-| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Value of an option in the drop-down list box. |
-| icon   | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of an option in the drop-down list box. |
-| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Symbol icon of an option in the drop-down menu.<br>**symbolIcon** is at a higher priority than **icon**.|
+| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Value of an option in the drop-down list box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| icon   | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of an option in the drop-down list box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Symbol icon of an option in the drop-down menu.<br>**symbolIcon** is at a higher priority than **icon**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
 
@@ -48,11 +50,11 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                    |
+| Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| value  | number \| [Resource](ts-types.md#resource)<sup>11+</sup> | Yes  | Index of the initial selected option in the drop-down list box. |
+| value  | number \| [Resource](ts-types.md#resource)<sup>11+</sup> | Yes  | Index of the initial selected option in the drop-down list box.|
 
 ### value
 
@@ -66,25 +68,27 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                | Mandatory | Description                    |
+| Name| Type                                                | Mandatory| Description                    |
 | ------ | ---------------------------------------------------- | ---- | ------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | Yes  | Text of the drop-down button. |
+| value  | [ResourceStr](ts-types.md#resourcestr)<sup>11+</sup> | Yes  | Text of the drop-down button.|
 
 ### controlSize<sup>12+</sup>
 
 controlSize(value: ControlSize)
 
-Sets the size of the **\<Select>** component.
+Sets the size of the **Select** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                         | Mandatory | Description                                            |
+| Name| Type                                         | Mandatory| Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ControlSize](ts-basic-components-button.md#controlsize11)<sup>11+</sup>  | Yes  | Size of the **\<Select>** component.<br>Default value: **ControlSize.NORMAL** |
+| value  | [ControlSize](ts-basic-components-button.md#controlsize11)<sup>11+</sup> | Yes  | Size of the **Select** component.<br>Default value: **ControlSize.NORMAL**|
 
 The priorities of **controlSize**, **width**, and **height** are as follows:
 
@@ -100,13 +104,15 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
 Creates a content modifier for the drop-down list box.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                            |
+| Name| Type                                         | Mandatory| Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12)  | Yes  | Content modifier to apply to the drop-down list box.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
+| modifier  | [ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12) | Yes  | Content modifier to apply to the drop-down list box.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
 ### divider<sup>12+</sup>
 
@@ -114,10 +120,12 @@ divider(options: Optional\<DividerOptions> | null)
 
 Sets the divider style. If this attribute is not set, the divider is displayed based on the default value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-| Name | Type   | Mandatory | Description                                                                 |
+| Name| Type   | Mandatory| Description                                                                 |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
 | options  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12)> \| null | Yes  | Divider options.<br>1. If **DividerOptions** is set, the divider is displayed in the configured style.<br>Default value:<br>{<br>strokeWidth: '1px' , <br>color: '#33182431'<br>}<br>2. If this parameter is set to **null**, the divider is not displayed.<br>3. If the value of **strokeWidth** is too larger, the divider may overlap the text. The divider extends both upwards and downwards from the bottom of each item.<br>4. The default values for **startMargin** and **endMargin** are consistent with the style of the divider when the **divider** attribute is not set. If the sum of **startMargin** and **endMargin** is equal to the value of **optionWidth**, the divider is not displayed. If the sum of **startMargin** and **endMargin** exceeds the value of **optionWidth**, the divider line is displayed in the default style.|
 
@@ -125,17 +133,17 @@ Sets the divider style. If this attribute is not set, the divider is displayed b
 
 font(value: Font)
 
-Sets the text font of the drop-down button. When **size** is set to **0**, the text is not displayed. When **size** is set to a negative value, the text is displayed at its default size.
+Sets the text font of the drop-down button. If **size** is set to **0**, the text is not displayed. If **size** is set to a negative value, the text is displayed at its default size.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                    | Mandatory | Description                                                        |
+| Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text font of the drop-down button.<br>Default value:<br>API version 11 and earlier versions:<br>{<br>size: '16fp',<br>weight: FontWeight.Medium<br>} <br>Since API version 12:<br>The default value of **size** is **14fp** when **controlSize** is set to **controlSize.SMALL** and **16fp** otherwise.|
+| value  | [Font](ts-types.md#font) | Yes  | Text font of the drop-down button.<br>Default value:<br>API version 11 and earlier versions:<br>{<br>size: $r('sys.float.ohos_id_text_size_button1'),<br>weight: FontWeight.Medium<br>} <br>Since API version 12: The default value of **size** is **$r('sys.float.ohos_id_text_size_button2')** in the case of **controlSize.SMALL** and **$r('sys.float.ohos_id_text_size_button1')** in other cases.|
 
 ### fontColor
 
@@ -147,11 +155,11 @@ Sets the font color of the drop-down button.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                             |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the drop-down button.<br>Default value: **'\#E5182431'** |
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the drop-down button.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')** with the opacity of **$r('sys.color.ohos_id_alpha_content_primary')**|
 
 ### selectedOptionBgColor
 
@@ -163,11 +171,11 @@ Sets the background color of the selected option in the drop-down list box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                             |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the selected option in the drop-down list box.<br>Default value: **'\#33007DFF'** |
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the selected option in the drop-down list box.<br>Default value: **$r('sys.color.ohos_id_color_component_activated')** with the opacity of **$r('sys.color.ohos_id_alpha_highlight_bg')**|
 
 ### selectedOptionFont
 
@@ -179,11 +187,11 @@ Sets the text font of the selected option in the drop-down list box. When **size
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                    | Mandatory | Description                                                        |
+| Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text font of the selected option in the drop-down list box.<br>Default value:<br>{<br>size: '16fp',<br>weight: FontWeight.Regular<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text font of the selected option in the drop-down list box.<br>Default value:<br>{<br>size: $r('sys.color.ohos_id_text_size_body1'),<br>weight: FontWeight.Regular<br>} |
 
 ### selectedOptionFontColor
 
@@ -195,11 +203,11 @@ Sets the font color of the selected option in the drop-down list box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                               |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the selected option in the drop-down list box.<br>Default value: **'\#ff007dff'** |
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of the selected option in the drop-down list box.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**|
 
 ### optionBgColor
 
@@ -211,11 +219,11 @@ Sets the background color of options in the drop-down list box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                         |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of an option in the drop-down list box.<br>Default value: **'\#ffffffff'** |
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of an option in the drop-down list box.<br>Default value:<br>Versions earlier than API version 11: **Color.White**<br>Since API version 11: **Color.Transparent**|
 
 ### optionFont
 
@@ -227,11 +235,11 @@ Sets the text font of options in the drop-down list box. When **size** is set to
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                    | Mandatory | Description                                                        |
+| Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text font of options in the drop-down list box.<br>Default value:<br>{<br>size: '16fp',<br>weight: FontWeight.Regular<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text font of options in the drop-down list box.<br>Default value:<br>{<br>size: $r('sys.float.ohos_id_text_size_body1'),<br>weight: FontWeight.Regular<br>} |
 
 ### optionFontColor
 
@@ -243,11 +251,11 @@ Sets the font color of options in the drop-down list box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                           |
-| ------ | ------------------------------------------ | ---- | ----------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of options in the drop-down list box.<br>Default value: **'\#ff182431'** |
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of options in the drop-down list box.<br>Default value: **$r('sys.color.ohos_id_color_text_primary')**|
 
 ### space<sup>10+</sup>
 
@@ -259,11 +267,11 @@ Sets the spacing between the text and arrow of an option. This attribute cannot 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                        | Mandatory | Description                                            |
+| Name| Type                        | Mandatory| Description                                            |
 | ------ | ---------------------------- | ---- | ------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Spacing between the text and arrow of an option.<br>Default value: **8** |
+| value  | [Length](ts-types.md#length) | Yes  | Spacing between the text and arrow of an option.<br>Default value: **8**|
 
 ### arrowPosition<sup>10+</sup>
 
@@ -275,11 +283,11 @@ Sets the alignment between the text and arrow of an option.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description                                                        |
+| Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ArrowPosition](#arrowposition10)  | Yes  | Alignment between the text and arrow of an option.<br>Default value: **ArrowPosition.END** |
+| value  | [ArrowPosition](#arrowposition10) | Yes  | Alignment between the text and arrow of an option.<br>Default value: **ArrowPosition.END**|
 
 ### menuAlign<sup>10+</sup>
 
@@ -291,12 +299,12 @@ Sets the alignment between the drop-down button and the drop-down menu.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name   | Type                                     | Mandatory | Description                                                        |
+| Name   | Type                                     | Mandatory| Description                                                        |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| alignType | [MenuAlignType](#menualigntype10)  | Yes  | Alignment type.<br>Default value: **MenuAlignType.START**              |
-| offset    | [Offset](ts-types.md#offset)              | No  | Offset of the drop-down menu relative to the drop-down button after alignment based on the alignment type.<br> Default value: **{dx: 0, dy: 0}** |
+| alignType | [MenuAlignType](#menualigntype10) | Yes  | Alignment type.<br>Default value: **MenuAlignType.START**              |
+| offset    | [Offset](ts-types.md#offset)              | No  | Offset of the drop-down menu relative to the drop-down button after alignment based on the alignment type.<br> Default value: **{dx: 0, dy: 0}**|
 
 ### optionWidth<sup>11+</sup>
 
@@ -304,19 +312,17 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 Sets the width for the option in the drop-down list box. This attribute cannot be set in percentage. **OptionWidthMode** specifies whether to inherit the width of the drop-down list button.
 
-If set to **undefined**, null, or a negative number, this attribute does not take effect. In this case, the default width of two columns is used.
-
-If the value is less than the minimum width 56 vp, the default width of two columns is used. The value must be greater than or equal to 0.
+If an invalid value or a value less than the minimum width of 56 vp is set, the attribute does not take effect, and the option width uses the default value, which is two columns.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description              |
+| Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Dimension](ts-types.md#dimension10) \| [OptionWidthMode](#optionwidthmode11)  | Yes  | Width of the option in the drop-down list box. |
+| value  | [Dimension](ts-types.md#dimension10) \| [OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | Yes  | Width of the option in the drop-down list box.|
 
 ### optionHeight<sup>11+</sup>
 
@@ -324,19 +330,19 @@ optionHeight(value: Dimension)
 
 Sets the maximum height for the option in the drop-down list box. This attribute cannot be set in percentage. The default and maximum value is 80% of the available height of the screen.
 
-If set to **undefined**, null, or a negative number, this attribute does not take effect. In this case, the default value is used.
+If set to an invalid value or 0, this attribute does not take effect. In this case, the default value is used.
 
-The value must be greater than 0 If the actual height of all options in the drop-down list box is less than the preset height, the options are displayed at their actual height.
+If the actual height of all options in the drop-down list box is less than the preset height, the options are displayed at their actual height.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                | Mandatory | Description                    |
+| Name| Type                                | Mandatory| Description                    |
 | ------ | ------------------------------------ | ---- | ------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) | Yes  | Maximum height of the option in the drop-down list box. |
+| value  | [Dimension](ts-types.md#dimension10) | Yes  | Maximum height of the option in the drop-down list box.|
 
 ### menuBackgroundColor<sup>11+</sup>
 
@@ -344,13 +350,15 @@ menuBackgroundColor(value: ResourceColor)
 
 Sets the background color of the drop-down list box.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                            |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the drop-down list box.<br>Default value: **Color.Transparent** |
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the drop-down list box.<br>Default value:<br>Versions earlier than API version 11: **$r('sys.color.ohos_id_color_card_bg')**<br>Since API version 11: **Color.Transparent**|
 
 ### menuBackgroundBlurStyle<sup>11+</sup>
 
@@ -358,52 +366,53 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 Sets the background blur style of the drop-down list box.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters** 
-
-| Name | Type                                        | Mandatory | Description                                                        |
-| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the drop-down list box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK** |
-
-## OptionWidthMode<sup>11+</sup>
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name       | Description                          |
-| ----------- | ------------------------------ |
-| FIT_CONTENT | Uses the default width, that is, width of two columns.           |
-| FIT_TRIGGER | Inherits the width of the drop-down list button. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                        | Mandatory| Description                                                        |
+| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the drop-down list box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
 
 ## ArrowPosition<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name               | Description              |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name               | Description            |
 | ------------------- | ------------------ |
-| END<sup>10+</sup>   | The text is in front of the arrow. |
-| START<sup>10+</sup> | The arrow is in front of the text. |
+| END<sup>10+</sup>   | The text is in front of the arrow.|
+| START<sup>10+</sup> | The arrow is in front of the text.|
 
 ## MenuAlignType<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name               | Description              |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name               | Description            |
 | ------------------- | ------------------ |
-| START               | Aligned with the start edge in the same direction as the language in use. |
-| CENTER              | Aligned with the center. |
-| END                 | Aligned with the end edge in the same direction as the language in use. |
+| START               | Aligned with the start edge in the same direction as the language in use.|
+| CENTER              | Aligned with the center.|
+| END                 | Aligned with the end edge in the same direction as the language in use.|
 
 ## MenuItemConfiguration<sup>12+</sup>
 
-| Name | Type                                        | Mandatory | Description                                                        |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type                                        | Mandatory| Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text content of the option in the drop-down list box. |
-| icon  | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option in the drop-down list box. |
+| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text content of the option in the drop-down list box.|
+| icon  | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of the option in the drop-down list box.|
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Symbol icon of the option in the drop-down list box.|
-| selected  | boolean | Yes  | Whether the option in the drop-down list box is selected.<br>Default value: **false** |
-| index  | number | Yes  | Index of the option in the drop-down list box. |
-| triggerSelect  | (index: number, value: string) => void | Yes  | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: text of the selected option.<br>**NOTE**<br>The value of **index** will be assigned to the **index** parameter in the [onSelect](#onselect) callback; the value of **value** will be returned to the **\<Select>** component for display and will also be assigned to the **value** parameter in the [onSelect](#onselect) callback. |
+| selected  | boolean | Yes  | Whether the option in the drop-down list box is selected.<br>Default value: **false**|
+| index  | number | Yes  | Index of the option in the drop-down list box.|
+| triggerSelect  | (index: number, value: string) :void | Yes  | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: text of the selected option.<br>**NOTE**<br>The value of **index** will be assigned to the **index** parameter in the [onSelect](#onselect) callback; the value of **value** will be returned to the **Select** component for display and will also be assigned to the **value** parameter in the [onSelect](#onselect) callback.|
 
 ## Events
 
@@ -417,11 +426,11 @@ Invoked when an option in the drop-down list box is selected.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description          |
+| Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| index  | number | Yes  | Index of the selected option. |
+| index  | number | Yes  | Index of the selected option.|
 | value  | string | Yes  | Value of the selected option.  |
 
 ##  Example 1
@@ -437,10 +446,10 @@ struct SelectExample {
   @State arrowPosition: ArrowPosition = ArrowPosition.END
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: $r("app.media.selecticon") },
-        { value: 'bbb', icon: $r("app.media.selecticon") },
-        { value: 'ccc', icon: $r("app.media.selecticon") },
-        { value: 'ddd', icon: $r("app.media.selecticon") }])
+      Select([{ value: 'aaa', icon: $r("app.media.selection") },
+        { value: 'bbb', icon: $r("app.media.selection") },
+        { value: 'ccc', icon: $r("app.media.selection") },
+        { value: 'ddd', icon: $r("app.media.selection") }])
         .selected(this.index)
         .value(this.text)
         .font({ size: 16, weight: 500 })

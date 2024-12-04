@@ -1,6 +1,6 @@
 # Permissions for All Applications
 
-Before requesting permissions for your application, read and understand the [Workflow for Using Permissions](determine-application-mode.md) and this topic to determine the permissions required.
+Before requesting permissions for your application, read and understand the [Workflow for Requesting Permissions](determine-application-mode.md) and this topic to determine the permissions required.
 
 > **NOTE**
 > 

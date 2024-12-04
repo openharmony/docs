@@ -12,15 +12,15 @@
 >
 >  - 当窗口大小发生变化时，菜单自动隐藏。
 >
->  - 从API Version 12开始，菜单支持长按500ms弹出子菜单。
+>  - 动效曲线使用弹簧曲线，在动效退出时，由于弹簧曲线的回弹震荡，菜单消失后有较长的拖尾，使得其他事件无法响应。
 >
->  - 从API Version 12开始，菜单支持按压态跟随手指移动。
+>  - 若组件是可拖动节点，绑定bindContextMenu未指定preview时，菜单弹出会浮起拖拽预览图且菜单选项和预览图不会发生避让。对此，开发者可根据使用场景设置preview或者将目标节点设置成不可拖动节点。
+>
+>  - 从API Version 12开始，菜单支持长按500ms弹出子菜单，支持按压态跟随手指移动。
 >
 >    1. 仅支持使用[Menu组件](ts-basic-components-menu.md)且子组件包含[MenuItem](ts-basic-components-menuitem.md)或[MenuItemGroup](ts-basic-components-menuitemgroup.md)的场景。
 >
 >    2. 仅支持[MenuPreviewMode](#menupreviewmode11)为NONE的菜单。
-
->    3. 动效曲线使用弹簧曲线，在动效退出时，由于弹簧曲线的回弹震荡，菜单消失后有较长的拖尾，使得其他事件无法响应。
 
 
 ## bindMenu
@@ -154,7 +154,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 | 名称  | 类型                                       | 必填 | 描述                                 |
 | ----- | ------------------------------------------ | ---- | ------------------------------------ |
-| scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。<br/>**说明：** <br/>缩放比例需要根据实际开发场景设置，建议设置值为小于预览图宽度或布局的最大限制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：**<br />菜单退出动效过程中，进行横竖屏切换，菜单会避让。二级菜单不继承自定义动效。弹出过程可以点击二级菜单，退出动效执行过程不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 |
 | hoverScale<sup>12+</sup> | [AnimationRange](#animationrange11)\<number> | 否   | 设置预览自定义长按场景下，浮起原组件截图的缩放动画开始和结束时相对预览原图缩放比例，且有与预览图的切换的过渡动效。 <br/>**说明：**<br /> 倍率设置参数小于等于0时，不生效。<br />[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)场景下，不生效。<br /> 设置transition接口时，不生效。<br /> 使用此接口且同时使用scale接口时，scale接口起始值不生效。<br /> 为保障最佳体验，最终预览图尺寸不建议小于原组件截图尺寸。当前预览动效宽高会受组件截图和自定义预览大小影响，请根据实际使用情况自行保障展示效果。|
 
@@ -172,9 +172,9 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 ## 示例
 
-### 示例1
+### 示例1（弹出普通菜单）
 
-普通菜单
+该示例为bindMenu通过配置MenuElement弹出普通菜单。
 
 ```ts
 // xxx.ets
@@ -207,9 +207,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/zh-cn_image_0000001174582862.gif)
 
-### 示例2
+### 示例2（弹出自定义菜单）
 
-自定义内容菜单
+该示例为bindMenu通过配置CustomBuilder弹出自定义菜单。
 
 ```ts
 @Entry
@@ -257,9 +257,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001186807708](figures/zh-cn_image_0000001186807708.gif)
 
-### 示例3
+### 示例3（长按弹出菜单）
 
-菜单(长按触发显示)
+该示例为bindContextMenu通过配置responseType.LongPress弹出菜单。
 
 ```ts
 // xxx.ets
@@ -295,9 +295,9 @@ struct ContextMenuExample {
 
 ![longMenu](figures/longMenu.gif)
 
-### 示例4
+### 示例4（右键弹出指向型菜单）
 
-指向性菜单(右键触发显示)
+该示例为bindContextMenu通过配置responseType.RightClick、enableArrow弹出指向型菜单。
 
 ```ts
 // xxx.ets
@@ -338,9 +338,9 @@ struct DirectiveMenuExample {
 
 ![zh-cn_image_0000001689126950](figures/zh-cn_image_0000001689126950.png)
 
-### 示例5
+### 示例5（长按弹出菜单的截图预览样式）
 
-长按悬浮菜单（预览内容为截图形式）
+该示例为bindContextMenu通过配置responseType.LongPress、preview的MenuPreviewMode类型弹出菜单预览样式。
 
 ```ts
 // xxx.ets
@@ -382,9 +382,9 @@ struct Index {
 
 ![preview-image](figures/preview-image.png)
 
-### 示例6
+### 示例6（长按弹出菜单的自定义预览样式）
 
-长按悬浮菜单（自定义预览内容）
+该示例为bindContextMenu通过配置responseType.LongPress、preview的CustomBuilder类型弹出菜单自定义预览样式。
 
 ```ts
 // xxx.ets
@@ -434,9 +434,9 @@ struct Index {
 
 ![preview-builder](figures/preview-builder.png)
 
-### 示例7
+### 示例7（设置状态变量弹出菜单）
 
-通过绑定isShown控制菜单（自定义预览内容）
+该示例为bindContextMenu通过配置isShown弹出菜单预览样式。
 
 ```ts
 // xxx.ets
@@ -492,9 +492,9 @@ struct Index {
 }
 ```
 
-### 示例8
+### 示例8（设置菜单和预览的动效）
 
-通过transition自定义菜单和预览的显示/退出动效属性
+该示例为bindContextMenu通过配置transition，实现自定义菜单以及菜单预览时的显示和退出动效。
 
 ```ts
 // xxx.ets
@@ -560,9 +560,9 @@ struct MenuExample {
 
 ![preview-builder](figures/menu2.gif)
 
-### 示例9
+### 示例9（设置symbol类型图标）
 
-普通菜单(使用symbol类型图标)
+该示例为bindMenu通过配置MenuElement的symbolIcon弹出菜单。
 
 ```ts
 // xxx.ets
@@ -600,9 +600,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
 
-### 示例10
+### 示例10（设置一镜到底动效）
 
-通过hoverScale实现组件截图到自定义预览图的一镜到底过渡动效
+该示例为bindContextMenu通过配置preview中hoverScale，实现组件截图到自定义预览图的一镜到底过渡动效。
 
 ```ts
 // xxx.ets

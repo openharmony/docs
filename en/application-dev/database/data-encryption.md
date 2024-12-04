@@ -7,7 +7,7 @@ OpenHarmony provides the database encryption capability to effectively protect t
 
 The encrypted database can be accessed only using an API, and the database file cannot be opened in other ways. Whether a database is encrypted is set when the database is created, and the setting cannot be changed.
 
-Both KV stores and RDB stores support database encryption.
+Both KV stores and RDB stores support database encryption. For RDB stores, you can custom the encryption/decryption keys and other parameters.
 
 
 ## Encrypting a KV Store
@@ -16,7 +16,6 @@ When a KV store is created, the **encrypt** parameter in **options** specifies w
 
 For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
-  
 ```ts
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -70,11 +69,15 @@ if (kvStore !== undefined) {
 
 ## Encrypting an RDB Store 
 
-When an RDB store is created, the **encrypt** parameter in **StoreConfig** specifies whether to encrypt it. The value **true** means to encrypt the RDB store, and the value **false** (default) means the opposite.
+The **encrypt** property in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig) specifies whether to encrypt the RDB store. The value **true** means to encrypt the RDB store, and **false** means the opposite.
 
-For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
+If **encrypt** is **true**, you can set parameters such as the key and algorithm used for encryption/decryption in **cryptoParam**.
 
-  
+The **cryptoParam** parameter is optional.
+
+If **cryptoParam** is not set, the default configuration is used for database encryption and decryption.
+
+
 ```ts
 import { relationalStore } from '@kit.ArkData';
 
@@ -94,3 +97,50 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
   console.info('Succeeded in getting RdbStore.');
 })
 ```
+
+If **cryptoParam** is set, the specified key and algorithm are used for database encryption and decryption.
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+
+let context = getContext(this);
+
+// Initialize the key to be used.
+let key = new Uint8Array(32);
+for (let i = 0; i < 32; i++) {
+    key[i] = i;
+}
+
+// Initialize the encryption algorithm.
+const CRYPTO_PARAM : relationalStore.CryptoParam = {
+    encryptionKey: key,     // (Mandatory) Key used to open the encrypted database. If this parameter is not specified, the database generates and saves the key and uses the generated key to open the database file.
+    iterationCount: 25000,  // (Optional) Number of iterations. The value must be greater than or equal to 0. If this parameter is not specified or is set to 0, the default value 10000 and the default encryption algorithm are used.
+    encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_CBC, // (Optional) Encryption/Decryption algorithm. If this parameter is not specified, the default algorithm AES_256_GCM is used.
+    hmacAlgo: relationalStore.HmacAlgo.SHA256,   // (Optional) HMAC algorithm. If this parameter is not specified, the default value SHA256 is used.
+    kdfAlgo: relationalStore.KdfAlgo.KDF_SHA512, // (Optional) KDF algorithm. If this parameter is not specified, the default value (same as the HMAC algorithm) is used.
+    cryptoPageSize: 2048                         // (Optional) Page size used for encryption/decryption. The value must be an integer within the range of 1024 to 65536 and a power of 2. The default value is 1024.
+}
+
+const STORE_CONFIG : relationalStore.StoreConfig = {
+    name: "encrypted.db",
+    securityLevel: relationalStore.SecurityLevel.S3,
+    encrypt: true,
+    cryptoParam: CRYPTO_PARAM
+}
+
+async function run() {
+    let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+    if (store == null) {
+      console.error('Failed to get RdbStore.');
+    } else {
+      console.info('Succeeded in getting RdbStore.');
+    }
+    // Clear the key.
+    CRYPTO_PARAM.encryptionKey.fill(0);
+}
+
+run();
+```
+
+If you do not care about the algorithm and other parameters used for encryption, leave **cryptoParam** unspecified. In this case, the default encryption configuration is used. If you want to customize the encryption configuration or open an encrypted database that is not configured by default, set **cryptoParam**.
+

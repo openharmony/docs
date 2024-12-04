@@ -22,7 +22,7 @@ align(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、Text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、Text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#textalign)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
 
 ## direction
 
@@ -180,6 +180,13 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 ## Bias对象说明
 
+设置组件在锚点约束下的偏移参数。
+<br/>以水平方向Bias为例，其值为组件到左锚点的距离 D<sub>start</sub>与组件到水平方向锚点间总距离 D<sub>start</sub> +  D<sub>end</sub>的比值。镜像语言下，D<sub>start</sub>为组件到右锚点的距离。下图中D<sub>width</sub>表示组件宽度。
+<br/>![bias_horizontal_example.png](figures/bias_horizontal_example.png)
+<br/>竖直方向同理，其值为组件到上锚点的距离D<sub>top</sub>与组件到竖直方向锚点间总距离D<sub>top</sub> + D<sub>bottom</sub>的比值。下图中D<sub>height</sub>表示组件高度。
+<br/>![bias_vertical_example.png](figures/bias_vertical_example.png)
+
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
@@ -191,7 +198,8 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 chainMode(direction: Axis, style: ChainStyle)
 
-指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足[规则说明](ts-container-relativecontainer.md#规则说明)中成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
+详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

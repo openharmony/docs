@@ -73,7 +73,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 
 **Example 1**
 
@@ -119,7 +119,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types;  3. Parameter verification failed. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types;  3. Parameter verification failed. |
 
 **Example 1**
 
@@ -502,7 +502,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 401      | Possible causes: Incorrect parameters types. |
 
 **Example**
 
@@ -741,8 +741,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900002 | The number of records exceeds the upper limit. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -843,7 +842,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -906,7 +905,7 @@ The **localOnly** and **shareOption** attributes of [PasteDataProperty](#pasteda
 
 getRecord(index: number): PasteDataRecord
 
-Obtains the specified record in the pasteboard.
+Obtains the record with a specific index from the pasteboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -931,7 +930,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1014,7 +1013,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1027,7 +1026,7 @@ let hasType: boolean = pasteData.hasType(pasteboard.MIMETYPE_TEXT_PLAIN);
 
 removeRecord(index: number): void
 
-Removes the record with the specified index from the pasteboard.
+Removes the record with a specific index from the pasteboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1046,7 +1045,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1059,7 +1058,7 @@ pasteData.removeRecord(0);
 
 replaceRecord(index: number, record: PasteDataRecord): void
 
-Replaces the record with the specified index in the pasteboard with a new record.
+Replaces the record with a specific index from the pasteboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1079,7 +1078,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 12900001 | The index is out of the record. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1088,6 +1087,57 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 pasteData.replaceRecord(0, record);
 ```
+
+### pasteStart<sup>12+</sup>
+
+pasteStart(): void
+
+Notifies the clipboard service to retain the cross-device channel before reading data from the clipboard.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+    if (err) {
+        console.error('Failed to get PasteData. Cause: ' + err.message);
+        return;
+    }
+    pasteData.pasteStart();
+    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    pasteData.pasteComplete();
+});
+```
+
+### pasteComplete<sup>12+</sup>
+
+pasteComplete(): void
+
+Notifies the clipboard service that the paste is complete.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+    if (err) {
+        console.error('Failed to get PasteData. Cause: ' + err.message);
+        return;
+    }
+    pasteData.pasteStart();
+    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    pasteData.pasteComplete();
+});
+```
+
 ### addHtmlRecord<sup>(deprecated)</sup>
 
 addHtmlRecord(htmlText: string): void
@@ -1198,7 +1248,7 @@ pasteData.addUriRecord('dataability:///com.example.myapplication1/user.txt');
 
 getRecordAt(index: number): PasteDataRecord
 
-Obtains the specified record in the pasteboard.
+Obtains the record with a specific index from the pasteboard.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getRecord](#getrecord9).
@@ -1223,7 +1273,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1261,7 +1311,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1273,7 +1323,7 @@ let hasType: boolean = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
 
 removeRecordAt(index: number): boolean
 
-Removes the record with the specified index from the pasteboard.
+Removes the record with a specific index from the pasteboard.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [removeRecord](#removerecord9).
@@ -1298,7 +1348,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1310,7 +1360,7 @@ let isRemove: boolean = pasteData.removeRecordAt(0);
 
 replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
-Replaces the record with the specified index in the pasteboard with a new record.
+Replaces the record with a specific index from the pasteboard.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [replaceRecord](#replacerecord9).
@@ -1369,7 +1419,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1402,7 +1452,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1436,7 +1486,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1505,7 +1555,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | -------- |
 | 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1551,7 +1601,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | -------- |
 | 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1592,7 +1642,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 12900003 | Another copy or paste operation is in progress. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1671,7 +1722,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1740,7 +1791,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1808,7 +1859,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1878,7 +1929,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -1949,7 +2000,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **Example**
 
@@ -2100,7 +2151,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401 | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 12900005 | Request timed out. |
 
 **Example**
@@ -2206,7 +2257,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 12900005 | Request timed out. |
 
 **Example**
@@ -2375,7 +2426,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
 
@@ -2425,7 +2476,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 12900005 | Request timed out. |
 
 **Example**

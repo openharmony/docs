@@ -5,7 +5,7 @@
 ## 开发步骤
 
 1. 完成分布式组网。
-   首先将需要进行跨设备访问的设备进行同账号认证完成组网，两个设备是否在同一局域网均可。
+   将需要跨设备访问的两个设备登录同一账号，保证设备蓝牙和Wi-Fi功能开启，蓝牙无需互连，Wi-Fi无需接入同一个局域网。
 
 2. 访问跨设备文件。
    同一应用不同设备之间实现跨设备文件访问，只需要将对应的文件放在应用沙箱的分布式文件路径即可。
@@ -31,6 +31,7 @@
      // 关闭文件
      fs.closeSync(file.fd);
    } catch (error) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    } 
    ```
@@ -84,6 +85,7 @@
        let buf = buffer.from(arrayBuffer, 0, num);
        console.info('read result: ' + buf.toString());
      } catch (error) {
+       let err: BusinessError = error as BusinessError;
        console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
      }
    }).catch((error: BusinessError) => {

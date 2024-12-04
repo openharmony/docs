@@ -12,7 +12,7 @@
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",

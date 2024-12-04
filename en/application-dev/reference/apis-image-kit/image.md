@@ -20,10 +20,10 @@ The **Image** module enables access to image APIs.
 | [image_mdk.h](image__mdk_8h.md) | Declares the APIs used to access the image rectangle, size, format, and component data.| 
 | [image_mdk_common.h](image__mdk__common_8h.md) | Declares the common enums and structs used by the image APIs.|
 | [image_packer_mdk.h](image__packer__mdk_8h.md) | Declares the APIs used to pack an image into a buffer or file.| 
-| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | Declares the APIs used to lock, access, and unlock a pixel map.| 
-| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | (Deprecated) Declares the APIs used to lock, access, and unlock a pixel map.| 
+| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | Declares the APIs used to lock, access, and unlock a PixelMap.| 
+| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | (Deprecated) Declares the APIs used to lock, access, and unlock a PixelMap.| 
 | [image_receiver_mdk.h](image__receiver__mdk_8h.md) | Declares the APIs used to obtain image data from the native layer.| 
-| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs used to decode an image source into a pixel map.|
+| [image_source_mdk.h](image__source__mdk_8h.md) | Declares the APIs used to decode an image source into a PixelMap.|
 
 
 ### Structs
@@ -34,9 +34,9 @@ The **Image** module enables access to image APIs.
 | struct  [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) | Defines the information about an image component. | 
 | struct  [OhosImageSize](_ohos_image_size.md) | Defines the image size. | 
 | struct  [ImagePacker_Opts_](_image_packer___opts__.md) | Defines the image packing options. | 
-| struct  [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | Defines the information about a pixel map. | 
-| struct  [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | Defines the options for creating a pixel map. | 
-| struct  [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map. | 
+| struct  [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | Defines the information about a PixelMap. | 
+| struct  [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | Defines the options for creating a PixelMap. | 
+| struct  [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a PixelMap. | 
 | struct  [OhosImageReceiverInfo](_ohos_image_receiver_info.md) | Defines the information about an image receiver. | 
 | struct  [OhosImageRegion](_ohos_image_region.md) | Defines the region of an image source to decode. | 
 | struct  [OhosImageSourceOps](_ohos_image_source_ops.md) | Defines the image source options. | 
@@ -64,8 +64,8 @@ The **Image** module enables access to image APIs.
 | typedef struct ImageNative_ [ImageNative](#imagenative) | Defines an image object at the native layer. | 
 | typedef struct ImagePacker_Native_ [ImagePacker_Native](#imagepacker_native) | Defines an image packer object at the native layer. | 
 | typedef struct [ImagePacker_Opts_](_image_packer___opts__.md) [ImagePacker_Opts](#imagepacker_opts) | Defines the alias of the image packing options. | 
-| typedef struct NativePixelMap_ [NativePixelMap](#nativepixelmap) | Defines the data type name of the pixel map at the native layer. | 
-| typedef struct [OhosPixelMapInfos](_ohos_pixel_map_infos.md) [OhosPixelMapInfos](#ohospixelmapinfos) | Defines the information about a pixel map. | 
+| typedef struct NativePixelMap_ [NativePixelMap](#nativepixelmap) | Defines the data type name of the PixelMap at the native layer. | 
+| typedef struct [OhosPixelMapInfos](_ohos_pixel_map_infos.md) [OhosPixelMapInfos](#ohospixelmapinfos) | Defines the information about a PixelMap. | 
 | typedef struct ImageReceiverNative_ [ImageReceiverNative](#imagereceivernative) | Defines the data type name of the image receiver at the native layer. | 
 | typedef void(\* [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)) () | Defines the callbacks for the image interface at the native layer. | 
 | typedef struct ImageSourceNative_ [ImageSourceNative](#imagesourcenative) | Defines an image source object at the native layer. | 
@@ -78,12 +78,12 @@ The **Image** module enables access to image APIs.
 | { OHOS_IMAGE_FORMAT_YCBCR_422_SP = 1000,<br>OHOS_IMAGE_FORMAT_JPEG = 2000 } | Enumerates the image formats.| 
 | { OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y = 1,<br>OHOS_IMAGE_COMPONENT_FORMAT_YUV_U = 2,<br>OHOS_IMAGE_COMPONENT_FORMAT_YUV_V = 3,<br>OHOS_IMAGE_COMPONENT_FORMAT_JPEG = 4 } | Enumerates the image components.| 
 | [IRNdkErrCode](#irndkerrcode-1) {<br>IMAGE_RESULT_SUCCESS = 0, IMAGE_RESULT_BAD_PARAMETER = -1,<br>IMAGE_RESULT_IMAGE_RESULT_BASE = IMAGE_RESULT_BASE,<br>IMAGE_RESULT_ERR_IPC = IMAGE_RESULT_BASE + 1,<br>IMAGE_RESULT_ERR_SHAMEM_NOT_EXIST = IMAGE_RESULT_BASE + 2,<br>IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL = IMAGE_RESULT_BASE + 3,<br>IMAGE_RESULT_DECODE_ABNORMAL = IMAGE_RESULT_BASE + 4,<br>IMAGE_RESULT_DATA_ABNORMAL = IMAGE_RESULT_BASE + 5,<br>IMAGE_RESULT_MALLOC_ABNORMAL = IMAGE_RESULT_BASE + 6,<br>IMAGE_RESULT_DATA_UNSUPPORT = IMAGE_RESULT_BASE + 7,<br>IMAGE_RESULT_INIT_ABNORMAL = IMAGE_RESULT_BASE + 8,<br>IMAGE_RESULT_GET_DATA_ABNORMAL = IMAGE_RESULT_BASE + 9,<br>IMAGE_RESULT_TOO_LARGE = IMAGE_RESULT_BASE + 10,<br>IMAGE_RESULT_TRANSFORM = IMAGE_RESULT_BASE + 11,<br>IMAGE_RESULT_COLOR_CONVERT = IMAGE_RESULT_BASE + 12,<br>IMAGE_RESULT_CROP = IMAGE_RESULT_BASE + 13,<br>IMAGE_RESULT_SOURCE_DATA = IMAGE_RESULT_BASE + 14,<br>IMAGE_RESULT_SOURCE_DATA_INCOMPLETE = IMAGE_RESULT_BASE + 15,<br>IMAGE_RESULT_MISMATCHED_FORMAT = IMAGE_RESULT_BASE + 16,<br>IMAGE_RESULT_UNKNOWN_FORMAT = IMAGE_RESULT_BASE + 17,<br>IMAGE_RESULT_SOURCE_UNRESOLVED = IMAGE_RESULT_BASE + 18,<br>IMAGE_RESULT_INVALID_PARAMETER = IMAGE_RESULT_BASE + 19,<br>IMAGE_RESULT_DECODE_FAILED = IMAGE_RESULT_BASE + 20,<br>IMAGE_RESULT_PLUGIN_REGISTER_FAILED = IMAGE_RESULT_BASE + 21,<br>IMAGE_RESULT_PLUGIN_CREATE_FAILED = IMAGE_RESULT_BASE + 22,<br>IMAGE_RESULT_ENCODE_FAILED = IMAGE_RESULT_BASE + 23,<br>IMAGE_RESULT_ADD_PIXEL_MAP_FAILED = IMAGE_RESULT_BASE + 24,<br>IMAGE_RESULT_HW_DECODE_UNSUPPORT = IMAGE_RESULT_BASE + 25,<br>IMAGE_RESULT_DECODE_HEAD_ABNORMAL = IMAGE_RESULT_BASE + 26,<br>IMAGE_RESULT_DECODE_EXIF_UNSUPPORT = IMAGE_RESULT_BASE + 27,<br>IMAGE_RESULT_PROPERTY_NOT_EXIST = IMAGE_RESULT_BASE + 28,<br>IMAGE_RESULT_MEDIA_DATA_UNSUPPORT = IMAGE_RESULT_BASE + 30,<br>IMAGE_RESULT_MEDIA_TOO_LARGE = IMAGE_RESULT_BASE + 31,<br>IMAGE_RESULT_MEDIA_MALLOC_FAILED = IMAGE_RESULT_BASE + 32,<br>IMAGE_RESULT_MEDIA_END_OF_STREAM = IMAGE_RESULT_BASE + 33,<br>IMAGE_RESULT_MEDIA_IO_ABNORMAL = IMAGE_RESULT_BASE + 34,<br>IMAGE_RESULT_MEDIA_MALFORMED = IMAGE_RESULT_BASE + 35,<br>IMAGE_RESULT_MEDIA_BUFFER_TOO_SMALL = IMAGE_RESULT_BASE + 36,<br>IMAGE_RESULT_MEDIA_OUT_OF_RANGE = IMAGE_RESULT_BASE + 37,<br>IMAGE_RESULT_MEDIA_STATUS_ABNORMAL = IMAGE_RESULT_BASE + 38,<br>IMAGE_RESULT_MEDIA_VALUE_INVALID = IMAGE_RESULT_BASE + 39,<br>IMAGE_RESULT_MEDIA_NULL_POINTER = IMAGE_RESULT_BASE + 40,<br>IMAGE_RESULT_MEDIA_INVALID_OPERATION = IMAGE_RESULT_BASE + 41,<br>IMAGE_RESULT_MEDIA_ERR_PLAYER_NOT_INIT = IMAGE_RESULT_BASE + 42,<br>IMAGE_RESULT_MEDIA_EARLY_PREPARE = IMAGE_RESULT_BASE + 43,<br>IMAGE_RESULT_MEDIA_SEEK_ERR = IMAGE_RESULT_BASE + 44,<br>IMAGE_RESULT_MEDIA_PERMISSION_DENIED = IMAGE_RESULT_BASE + 45,<br>IMAGE_RESULT_MEDIA_DEAD_OBJECT = IMAGE_RESULT_BASE + 46,<br>IMAGE_RESULT_MEDIA_TIMED_OUT = IMAGE_RESULT_BASE + 47,<br>IMAGE_RESULT_MEDIA_TRACK_NOT_ALL_SUPPORTED = IMAGE_RESULT_BASE + 48,<br>IMAGE_RESULT_MEDIA_ADAPTER_INIT_FAILED = IMAGE_RESULT_BASE + 49,<br>IMAGE_RESULT_MEDIA_WRITE_PARCEL_FAIL = IMAGE_RESULT_BASE + 50,<br>IMAGE_RESULT_MEDIA_READ_PARCEL_FAIL = IMAGE_RESULT_BASE + 51,<br>IMAGE_RESULT_MEDIA_NO_AVAIL_BUFFER = IMAGE_RESULT_BASE + 52,<br>IMAGE_RESULT_MEDIA_INVALID_PARAM = IMAGE_RESULT_BASE + 53,<br>IMAGE_RESULT_MEDIA_CODEC_ADAPTER_NOT_EXIST = IMAGE_RESULT_BASE + 54,<br>IMAGE_RESULT_MEDIA_CREATE_CODEC_ADAPTER_FAILED = IMAGE_RESULT_BASE + 55,<br>IMAGE_RESULT_MEDIA_CODEC_ADAPTER_NOT_INIT = IMAGE_RESULT_BASE + 56,<br>IMAGE_RESULT_MEDIA_ZCODEC_CREATE_FAILED = IMAGE_RESULT_BASE + 57,<br>IMAGE_RESULT_MEDIA_ZCODEC_NOT_EXIST = IMAGE_RESULT_BASE + 58,<br>IMAGE_RESULT_MEDIA_JNI_CLASS_NOT_EXIST = IMAGE_RESULT_BASE + 59,<br>IMAGE_RESULT_MEDIA_JNI_METHOD_NOT_EXIST = IMAGE_RESULT_BASE + 60,<br>IMAGE_RESULT_MEDIA_JNI_NEW_OBJ_FAILED = IMAGE_RESULT_BASE + 61,<br>IMAGE_RESULT_MEDIA_JNI_COMMON_ERROR = IMAGE_RESULT_BASE + 62,<br>IMAGE_RESULT_MEDIA_DISTRIBUTE_NOT_SUPPORT = IMAGE_RESULT_BASE + 63,<br>IMAGE_RESULT_MEDIA_SOURCE_NOT_SET = IMAGE_RESULT_BASE + 64,<br>IMAGE_RESULT_MEDIA_RTSP_ADAPTER_NOT_INIT = IMAGE_RESULT_BASE + 65,<br>IMAGE_RESULT_MEDIA_RTSP_ADAPTER_NOT_EXIST = IMAGE_RESULT_BASE + 66,<br>IMAGE_RESULT_MEDIA_RTSP_SURFACE_UNSUPPORT = IMAGE_RESULT_BASE + 67,<br>IMAGE_RESULT_MEDIA_RTSP_CAPTURE_NOT_INIT = IMAGE_RESULT_BASE + 68,<br>IMAGE_RESULT_MEDIA_RTSP_SOURCE_URL_INVALID = IMAGE_RESULT_BASE + 69,<br>IMAGE_RESULT_MEDIA_RTSP_VIDEO_TRACK_NOT_FOUND = IMAGE_RESULT_BASE + 70,<br>IMAGE_RESULT_MEDIA_RTSP_CAMERA_NUM_REACH_MAX = IMAGE_RESULT_BASE + 71,<br>IMAGE_RESULT_MEDIA_SET_VOLUME = IMAGE_RESULT_BASE + 72,<br>IMAGE_RESULT_MEDIA_NUMBER_OVERFLOW = IMAGE_RESULT_BASE + 73,<br>IMAGE_RESULT_MEDIA_DIS_PLAYER_UNSUPPORTED = IMAGE_RESULT_BASE + 74,<br>IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 75,<br>IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 76,<br>IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 150,<br>IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 151,<br>IMAGE_RESULT_MEDIA_PIXELMAP_NOT_ALLOW_MODIFY = IMAGE_RESULT_BASE + 152,<br>IMAGE_RESULT_MEDIA_CONFIG_FAILED = IMAGE_RESULT_BASE + 153,<br>IMAGE_RESULT_JNI_ENV_ABNORMAL = IMAGE_RESULT_BASE + 154,<br>IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED = IMAGE_RESULT_BASE + 155,<br>IMAGE_RESULT_CREATE_SURFACE_FAILED = IMAGE_RESULT_BASE + 156,<br>IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED = IMAGE_RESULT_BASE + 157,<br>IMAGE_RESULT_GET_SURFACE_FAILED = IMAGE_RESULT_BASE + 158,<br>IMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED = IMAGE_RESULT_BASE + 159,<br>IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED = IMAGE_RESULT_BASE + 160,<br>IMAGE_RESULT_REGISTER_LISTENER_FAILED = IMAGE_RESULT_BASE + 161,<br>IMAGE_RESULT_REGISTER_BUFFER_FAILED = IMAGE_RESULT_BASE + 162,<br>IMAGE_RESULT_FREAD_FAILED = IMAGE_RESULT_BASE + 163,<br>IMAGE_RESULT_PEEK_FAILED = IMAGE_RESULT_BASE + 164,<br>IMAGE_RESULT_SEEK_FAILED = IMAGE_RESULT_BASE + 165,<br>IMAGE_RESULT_STREAM_SIZE_ERROR = IMAGE_RESULT_BASE + 166,<br>IMAGE_RESULT_FILE_FD_ERROR = IMAGE_RESULT_BASE + 167,<br>IMAGE_RESULT_FILE_DAMAGED = IMAGE_RESULT_BASE + 168,<br>IMAGE_RESULT_CREATE_DECODER_FAILED = IMAGE_RESULT_BASE + 169,<br>IMAGE_RESULT_CREATE_ENCODER_FAILED = IMAGE_RESULT_BASE + 170,<br>IMAGE_RESULT_CHECK_FORMAT_ERROR = IMAGE_RESULT_BASE + 171,<br>IMAGE_RESULT_THIRDPART_SKIA_ERROR = IMAGE_RESULT_BASE + 172,<br>IMAGE_RESULT_HW_DECODE_FAILED = IMAGE_RESULT_BASE + 173,<br>IMAGE_RESULT_ALLOCATER_TYPE_ERROR = IMAGE_RESULT_BASE + 174,<br>IMAGE_RESULT_ALPHA_TYPE_ERROR = IMAGE_RESULT_BASE + 175,<br>IMAGE_RESULT_INDEX_INVALID = IMAGE_RESULT_BASE + 176,<br>IMAGE_RESULT_MEDIA_UNKNOWN = IMAGE_RESULT_BASE + 200<br>} | Enumerates the return values that may be used by the interface.| 
-| { OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN = 0,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE = 1,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL = 2,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL = 3 } | Enumerates the pixel map alpha types.| 
-| { OHOS_PIXEL_MAP_READ_ONLY = 0,<br>OHOS_PIXEL_MAP_EDITABLE = 1 } | Enumerates the pixel map editing types.| 
-| [OH_PixelMap_AntiAliasingLevel](#oh_pixelmap_antialiasinglevel) { <br>OH_PixelMap_AntiAliasing_NONE = 0, <br>OH_PixelMap_AntiAliasing_LOW = 1, <br>OH_PixelMap_AntiAliasing_MEDIUM = 2, <br>OH_PixelMap_AntiAliasing_HIGH = 3 <br>} | Enumerates the antialiasing levels used for scaling pixel maps. | 
+| { OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN = 0,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE = 1,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL = 2,<br>OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL = 3 } | Enumerates the PixelMap alpha types.| 
+| { OHOS_PIXEL_MAP_READ_ONLY = 0,<br>OHOS_PIXEL_MAP_EDITABLE = 1 } | Enumerates the PixelMap editing types.| 
+| [OH_PixelMap_AntiAliasingLevel](#oh_pixelmap_antialiasinglevel) { <br>OH_PixelMap_AntiAliasing_NONE = 0, <br>OH_PixelMap_AntiAliasing_LOW = 1, <br>OH_PixelMap_AntiAliasing_MEDIUM = 2, <br>OH_PixelMap_AntiAliasing_HIGH = 3 <br>} | Enumerates the antialiasing levels used for scaling PixelMaps. | 
 | { OHOS_IMAGE_RESULT_SUCCESS = 0,<br>OHOS_IMAGE_RESULT_BAD_PARAMETER = -1 } | Enumerates the error codes returned by the functions.| 
-| { OHOS_PIXEL_MAP_FORMAT_NONE = 0,<br>OHOS_PIXEL_MAP_FORMAT_RGBA_8888 = 3,<br>OHOS_PIXEL_MAP_FORMAT_RGB_565 = 2 } | Enumerates the pixel map formats.| 
-| { OHOS_PIXEL_MAP_SCALE_MODE_FIT_TARGET_SIZE = 0,<br>OHOS_PIXEL_MAP_SCALE_MODE_CENTER_CROP = 1 } | Enumerates the pixel map scale modes.| 
+| { OHOS_PIXEL_MAP_FORMAT_NONE = 0,<br>OHOS_PIXEL_MAP_FORMAT_RGBA_8888 = 3,<br>OHOS_PIXEL_MAP_FORMAT_RGB_565 = 2 } | Enumerates the PixelMap formats.| 
+| { OHOS_PIXEL_MAP_SCALE_MODE_FIT_TARGET_SIZE = 0,<br>OHOS_PIXEL_MAP_SCALE_MODE_CENTER_CROP = 1 } | Enumerates the PixelMap scale modes.| 
 
 
 ### Functions
@@ -102,9 +102,9 @@ The **Image** module enables access to image APIs.
 | int32_t [OH_ImagePacker_PackToFile](#oh_imagepacker_packtofile) ([ImagePacker_Native](#imagepacker_native) \*native, napi_value source, [ImagePacker_Opts](#imagepacker_opts) \*opts, int fd) | Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a file based on the specified **ImagePacker_Opts** struct.| 
 | int32_t [OH_ImagePacker_Release](#oh_imagepacker_release) ([ImagePacker_Native](#imagepacker_native) \*native) | Releases an [ImagePacker_Native](#imagepacker_native) object.| 
 | int32_t [OH_PixelMap_CreatePixelMap](#oh_pixelmap_createpixelmap) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, napi_value \*res) | Creates a **PixelMap** object. | 
-| int32_t [OH_PixelMap_CreatePixelMapWithStride](#oh_pixelmap_createpixelmapwithstride) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, int32_t rowStride, napi_value \*res) | Creates a **PixelMap** object. Currently, only BGRA input streams are supported. For a pixel map in RGBA format (with the size greater than 512\*512), DMA memory is used by default. | 
+| int32_t [OH_PixelMap_CreatePixelMapWithStride](#oh_pixelmap_createpixelmapwithstride) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, int32_t rowStride, napi_value \*res) | Creates a **PixelMap** object. Currently, only BGRA input streams are supported. For a PixelMap in RGBA format (with the size greater than 512\*512), DMA memory is used by default. | 
 | int32_t [OH_PixelMap_CreateAlphaPixelMap](#oh_pixelmap_createalphapixelmap) (napi_env env, napi_value source, napi_value \*alpha) | Creates a **PixelMap** object that contains only alpha channel information. | 
-| [NativePixelMap](#nativepixelmap) \* [OH_PixelMap_InitNativePixelMap](#oh_pixelmap_initnativepixelmap) (napi_env env, napi_value source) | Initializes a **PixelMap** object. | 
+| [NativePixelMap](#nativepixelmap) \* [OH_PixelMap_InitNativePixelMap](#oh_pixelmap_initnativepixelmap) (napi_env env, napi_value source) | Initializes a **NativePixelMap** object. | 
 | int32_t [OH_PixelMap_GetBytesNumberPerRow](#oh_pixelmap_getbytesnumberperrow) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*num) | Obtains the number of bytes per row of a **NativePixelMap** object. | 
 | int32_t [OH_PixelMap_GetIsEditable](#oh_pixelmap_getiseditable) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*editable) | Checks whether a **NativePixelMap** object is editable. | 
 | int32_t [OH_PixelMap_IsSupportAlpha](#oh_pixelmap_issupportalpha) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*alpha) | Checks whether a **NativePixelMap** object supports alpha channels. | 
@@ -179,14 +179,14 @@ The **Image** module enables access to image APIs.
 | int32_t [OhosImageSourceOps::density](#density-12) | Defines the pixel density of the image source. | 
 | int32_t [OhosImageSourceOps::pixelFormat](#pixelformat-13) | Defines the pixel format of the image source. It is usually used to describe the YUV buffer. | 
 | struct [OhosImageSize](_ohos_image_size.md) [OhosImageSourceOps::size](#size-17) | Defines the pixel width and height of the image source. | 
-| int8_t [OhosImageDecodingOps::editable](#editable) | Defines whether the output pixel map is editable. | 
-| int32_t [OhosImageDecodingOps::pixelFormat](#pixelformat-23) | Defines the pixel format of the output pixel map. | 
-| int32_t [OhosImageDecodingOps::fitDensity](#fitdensity) | Defines the pixel density of the output pixel map. | 
-| uint32_t [OhosImageDecodingOps::index](#index) | Defines the index of the output pixel map. | 
+| int8_t [OhosImageDecodingOps::editable](#editable) | Defines whether the output PixelMap is editable. | 
+| int32_t [OhosImageDecodingOps::pixelFormat](#pixelformat-23) | Defines the pixel format of the output PixelMap. | 
+| int32_t [OhosImageDecodingOps::fitDensity](#fitdensity) | Defines the pixel density of the output PixelMap. | 
+| uint32_t [OhosImageDecodingOps::index](#index) | Defines the index of the output PixelMap. | 
 | uint32_t [OhosImageDecodingOps::sampleSize](#samplesize) | Defines the size of the sample. | 
 | uint32_t [OhosImageDecodingOps::rotate](#rotate) | Defines the decoding rotation options. | 
-| struct [OhosImageSize](_ohos_image_size.md) [OhosImageDecodingOps::size](#size-27) | Defines the pixel width and height of the output pixel map. | 
-| struct [OhosImageRegion](_ohos_image_region.md) [OhosImageDecodingOps::region](#region) | Defines the region of the output pixel map. | 
+| struct [OhosImageSize](_ohos_image_size.md) [OhosImageDecodingOps::size](#size-27) | Defines the pixel width and height of the output PixelMap. | 
+| struct [OhosImageRegion](_ohos_image_region.md) [OhosImageDecodingOps::region](#region) | Defines the region of the output PixelMap. | 
 | int32_t [OhosImageSourceInfo::pixelFormat](#pixelformat-33) | Defines the pixel format of the image source. It is set in [OH_ImageSource_Create](#oh_imagesource_create). | 
 | int32_t [OhosImageSourceInfo::colorSpace](#colorspace) | Defines the color space of the image source. | 
 | int32_t [OhosImageSourceInfo::alphaType](#alphatype) | Defines the alpha type of the image source. | 
@@ -290,7 +290,7 @@ typedef struct NativePixelMap_ NativePixelMap
 
 **Description**
 
-Defines the data type name of the pixel map at the native layer.
+Defines the data type name of the PixelMap at the native layer.
 
 **Since**: 10
 
@@ -316,7 +316,7 @@ typedef struct OhosPixelMapInfos
 
 **Description**
 
-Defines the information about a pixel map.
+Defines the information about a PixelMap.
 
 **Since**: 10
 
@@ -350,7 +350,7 @@ anonymous enum
 
 **Description**
 
-Enumerates the pixel map alpha types.
+Enumerates the PixelMap alpha types.
 
 **Since**: 10
 
@@ -410,7 +410,7 @@ anonymous enum
 
 **Description**
 
-Enumerates the pixel map editing types.
+Enumerates the PixelMap editing types.
 
 **Since**: 10
 
@@ -428,7 +428,7 @@ anonymous enum
 
 **Description**
 
-Enumerates the pixel map formats.
+Enumerates the PixelMap formats.
 
 **Deprecated from**: 10
 
@@ -450,7 +450,7 @@ anonymous enum
 
 **Description**
 
-Enumerates the pixel map scale modes.
+Enumerates the PixelMap scale modes.
 
 **Since**: 10
 
@@ -501,7 +501,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_PLUGIN_REGISTER_FAILED | Failed to register the plug-in.| 
 | IMAGE_RESULT_PLUGIN_CREATE_FAILED | Failed to create the plug-in.| 
 | IMAGE_RESULT_ENCODE_FAILED | Failed to encode the image.| 
-| IMAGE_RESULT_ADD_PIXEL_MAP_FAILED | Failed to add the pixel map.| 
+| IMAGE_RESULT_ADD_PIXEL_MAP_FAILED | Failed to add the PixelMap.| 
 | IMAGE_RESULT_HW_DECODE_UNSUPPORT | Hardware decoding is not supported.| 
 | IMAGE_RESULT_DECODE_HEAD_ABNORMAL | Failed to decode the image header.| 
 | IMAGE_RESULT_DECODE_EXIF_UNSUPPORT | Exchangeable Image File (EXIF) is not supported for image decoding.| 
@@ -553,9 +553,9 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_MEDIA_DIS_PLAYER_UNSUPPORTED | The distributed media player is not supported.| 
 | IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED | Failed to decode the ICC.| 
 | IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED | Failed to encode the ICC.| 
-| IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED | Failed to read the pixel map.| 
-| IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED | Failed to write the pixel map.| 
-| IMAGE_RESULT_MEDIA_PIXELMAP_NOT_ALLOW_MODIFY | The pixel map cannot be modified.| 
+| IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED | Failed to read the PixelMap.| 
+| IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED | Failed to write the PixelMap.| 
+| IMAGE_RESULT_MEDIA_PIXELMAP_NOT_ALLOW_MODIFY | The PixelMap cannot be modified.| 
 | IMAGE_RESULT_MEDIA_CONFIG_FAILED | Configuration failed.| 
 | IMAGE_RESULT_JNI_ENV_ABNORMAL | The JNI environment is abnormal.| 
 | IMAGE_RESULT_SURFACE_GRALLOC_BUFFER_FAILED | Failed to allocate memory for the surface.| 
@@ -591,7 +591,7 @@ enum OH_PixelMap_AntiAliasingLevel
 
 **Description**
 
-Enumerates the antialiasing levels used for scaling pixel maps.
+Enumerates the antialiasing levels used for scaling PixelMaps.
 
 **Since**: 12
 
@@ -1283,6 +1283,8 @@ int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 
 Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.
 
+If the [ImageNative](image.md#imagenative) object stores the camera preview stream data (YUV image data), the width and height in [OhosImageSize](_ohos_image_size.md) obtained correspond to the width and height of the YUV image. If the [ImageNative](image.md#imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [OhosImageSize](_ohos_image_size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [ImageNative](image.md#imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera.
+
 **Since**: 10
 
 **Parameters**
@@ -1569,7 +1571,7 @@ int32_t OH_ImageSource_CreateFromData (napi_env env, uint8_t * data, size_t data
 
 **Description**
 
-Creates an **ImageSource** object at the JavaScript native layer based on the specified image source buffer resource (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct.
+Creates an **ImageSource** object at the JavaScript native layer based on the specified image source buffer resource (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct. The buffer data must be undecoded. Do not pass the pixel buffer data such as RBGA and YUV. If you want to create a PixelMap based on the pixel buffer data, call [OH_PixelMap_CreatePixelMap](./image__pixel__map__mdk_8h.md).
 
 **Since**: 11
 
@@ -2603,7 +2605,7 @@ Creates a **PixelMap** object that contains only alpha channel information.
 | Name| Description| 
 | -------- | -------- |
 | env | Pointer to the NAPI environment. | 
-| source | Options for setting the **PixelMap** object. | 
+| source | **PixelMap** object at the application layer. | 
 | alpha | Pointer to the alpha channel. | 
 
 **Returns**
@@ -2763,7 +2765,7 @@ int32_t OH_PixelMap_CreatePixelMapWithStride (napi_env env, OhosPixelMapCreateOp
 
 **Description**
 
-Creates a **PixelMap** object. Currently, only BGRA input streams are supported. For a pixel map in RGBA format (with the size greater than 512\*512), DMA memory is used by default.
+Creates a **PixelMap** object. Currently, only BGRA input streams are supported. For a PixelMap in RGBA format (with the size greater than 512\*512), DMA memory is used by default.
 
 **Since**: 12
 
@@ -3127,7 +3129,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 
 **Description**
 
-Initializes a **PixelMap** object.
+Initializes a **NativePixelMap** object.
 
 **Since**: 10
 
@@ -3136,7 +3138,7 @@ Initializes a **PixelMap** object.
 | Name| Description| 
 | -------- | -------- |
 | env | Pointer to the NAPI environment. | 
-| source | Options for setting the **PixelMap** object. | 
+| source | **PixelMap** object at the application layer. |
 
 **Returns**
 
@@ -3755,7 +3757,7 @@ int8_t OhosImageDecodingOps::editable
 
 **Description**
 
-Defines whether the output pixel map is editable.
+Defines whether the output PixelMap is editable.
 
 **Since**: 10
 
@@ -3781,7 +3783,7 @@ int32_t OhosImageDecodingOps::fitDensity
 
 **Description**
 
-Defines the pixel density of the output pixel map.
+Defines the pixel density of the output PixelMap.
 
 **Since**: 10
 
@@ -3819,7 +3821,7 @@ uint32_t OhosImageDecodingOps::index
 
 **Description**
 
-Defines the index of the output pixel map.
+Defines the index of the output PixelMap.
 
 **Since**: 10
 
@@ -4055,7 +4057,7 @@ int32_t OhosImageDecodingOps::pixelFormat
 
 **Description**
 
-Defines the pixel format of the output pixel map.
+Defines the pixel format of the output PixelMap.
 
 **Since**: 10
 
@@ -4081,7 +4083,7 @@ struct OhosImageRegion OhosImageDecodingOps::region
 
 **Description**
 
-Defines the region of the output pixel map.
+Defines the region of the output PixelMap.
 
 **Since**: 10
 
@@ -4133,7 +4135,7 @@ struct OhosImageSize OhosImageDecodingOps::size
 
 **Description**
 
-Defines the pixel width and height of the output pixel map.
+Defines the pixel width and height of the output PixelMap.
 
 **Since**: 10
 

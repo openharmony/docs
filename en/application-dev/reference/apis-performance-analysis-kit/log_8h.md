@@ -40,6 +40,8 @@ Output:
 05-06 15:01:06.870 1051 1051 W 0201/MY_TAG: Failed to visit <private>, reason:503.
 ```
 
+**File to include**: <hilog/log.h>
+
 **Since**: 8
 
 **Related module**: [HiLog](_hi_log.md)

@@ -70,7 +70,7 @@ Sets the placeholder text color.
 
 placeholderFont(value?: Font)
 
-Sets the placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.
+Sets the placeholder text style, including the font size, font width, font family, and font style. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -203,7 +203,7 @@ Sets the caret style.
 
 enableKeyboardOnFocus(value: boolean)
 
-Sets whether to enable the input method when the component obtains focus in a way other than clicking.
+Sets whether to enable the input method when the **Search** component obtains focus in a way other than clicking.
 
  
 
@@ -215,7 +215,7 @@ Sets whether to enable the input method when the component obtains focus in a wa
 
 | Name| Type   | Mandatory| Description                                           |
 | ------ | ------- | ---- | ----------------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the input method when the component obtains focus.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the input method when the component obtains focus in a way other than clicking.<br>Default value: **true**|
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -340,7 +340,7 @@ Sets the color, type, and style of the text decorative line.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | TextDecorationOptions | Yes  | Text decorative line options.<br>Default value: {<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>} |
+| value  | [TextDecorationOptions](ts-types.md#textdecorationoptions12) | Yes  | Text decorative line options.<br>Default value: {<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -513,6 +513,29 @@ Preview text is in a temporary state and does not support text interception. As 
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | Yes  | Whether to enable preview text.<br>Default value: **true**|
 
+>  **NOTE**
+>
+>  This API is disabled by default in C API scenarios. To enable preview text in such scenarios, set [metadata](../../../../application-dev/quick-start/module-structure.md#internal-structure-of-the-metadata-attribute) in the **module.json5** file of the project as follows:
+> ```json
+> "metadata": [
+>  {
+>     "name": "can_preview_text",
+>     "value": "true",
+>  }
+> ]
+> ```
+
+>  **NOTE**
+>
+>  To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ## IconOptions<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -610,6 +633,8 @@ Invoked when users click the search icon or the search button, or touch the sear
 onChange(callback: EditableTextOnChangeCallback)
 
 Invoked when the input in the text box changes.
+
+In this callback, if cursor operations are performed, you must adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -734,7 +759,7 @@ Invoked when text is about to be inserted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<InsertValue, boolean> | Yes  | Callback triggered when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12), boolean> | Yes  | Callback invoked when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not invoked for text preview.<br>It is available only for system input methods.|
 
 ### onDidInsert<sup>12+</sup>
 
@@ -750,7 +775,7 @@ Invoked when text is inserted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<InsertValue> | Yes  | Callback triggered when text is inserted.<br>It is available only for system input methods.|
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12)> | Yes  | Callback invoked when text is inserted.<br>It is available only for system input methods.|
 
 ### onWillDelete<sup>12+</sup>
 
@@ -766,7 +791,7 @@ Invoked when text is about to be deleted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<DeleteValue, boolean> | Yes  | Callback triggered when text is about to be deleted.<br>It returns **true** if the text is deleted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12), boolean> | Yes  | Callback invoked when text is about to be deleted.<br>It returns **true** if the text is deleted; returns **false** otherwise.<br>This callback is not invoked for text preview.<br>It is available only for system input methods.|
 
 ### onDidDelete<sup>12+</sup>
 
@@ -782,7 +807,7 @@ Called when text is deleted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<DeleteValue> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
+| callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12)> | Yes  | Callback invoked when text is deleted.<br>It is available only for system input methods.|
 
 ## SearchController
 
@@ -999,16 +1024,16 @@ This example shows how to set the **enterKeyType** attribute.
 @Entry
 @Component
 struct SearchExample {
-  @State Text: string = ''
+  @State text: string = ''
   @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
   build() {
     Column({ space: 20 }) {
-      Search({ placeholder: 'Enter text', value: this.Text })
+      Search({ placeholder: 'Enter text', value: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((value: String) => {
           console.log("trigger search onsubmit" + value);
@@ -1109,17 +1134,20 @@ This example shows how to support custom keyboard avoidance.
 struct SearchExample {
   controller: SearchController = new SearchController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State supportAvoidance: boolean = true
+
   // Create a custom keyboard component.
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // Disable the custom keyboard.
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
@@ -1136,16 +1164,16 @@ struct SearchExample {
 
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -1153,10 +1181,15 @@ struct SearchExample {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      Search({ controller: this.controller, value: this.inputValue})
-        // Bind the custom keyboard.
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+      .padding({ bottom: 50 })
+
+      Search({ controller: this.controller, value: this.inputValue })// Bind a custom keyboard.
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
+        .margin(10)
+        .border({ width: 1 })
+        .onChange((value: string) => {
+          this.inputValue = value
+        })
     }
   }
 }
@@ -1314,3 +1347,43 @@ struct Index {
 ```
 
 ![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
+
+### Example 11
+
+This example shows how to set icon styles for **searchIcon** and **cancelButton** using **SymbolGlyphModifier**.
+
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State changeValue: string = ''
+  @State submitValue: string = ''
+
+  build() {
+    Column() {
+      Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
+        .searchIcon(new SymbolGlyphModifier($r('sys.symbol.magnifyingglass')).fontColor([Color.Red]))
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: new SymbolGlyphModifier($r('sys.symbol.xmark')).fontColor([Color.Green])
+        })
+        .searchButton('SEARCH')
+        .width('95%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .margin(10)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchSymbolGlyphModifierIcon](figures/searchSymbolGlyphModifierIcon.png)

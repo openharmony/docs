@@ -44,7 +44,6 @@
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
-      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
@@ -52,6 +51,7 @@
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
+    - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
@@ -68,6 +68,7 @@
     - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件
   - 组件通用信息
     - 通用事件

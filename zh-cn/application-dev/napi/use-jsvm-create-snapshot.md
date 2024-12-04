@@ -18,14 +18,13 @@ JavaScript虚拟机（JSVM）的快照创建功能，将当前运行时的JavaSc
 |OH_JSVM_CreateEnvFromSnapshot| 基于虚拟机的起始快照，创建一个新的环境 |
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
-
-### OH_JSVM_CreateSnapshot
+### OH_JSVM_CreateSnapshot & OH_JSVM_CreateEnvFromSnapshot
 
 用于创建和使用虚拟机的启动快照。
 
 cpp部分代码
 
+**注意事项**: 需要在OH_JSVM_Init的时候，将JSVM对外部的依赖注册到initOptions.externalReferences中。
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
@@ -33,34 +32,66 @@ cpp部分代码
 #include <hilog/log.h>
 #include <fstream>
 
-// CreateAndUseSnapshot注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateAndUseSnapshot},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateAndUseSnapshot方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createAndUseSnapshot", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+#define LOG_DEMAIN 0x0202
+#define LOG_TAG "TEST_TAG"
+
+static int g_aa = 0;
+
+#define CHECK_RET(theCall)                                                                                             \
+    do {                                                                                                               \
+        JSVM_Status cond = theCall;                                                                                    \
+        if ((cond) != JSVM_OK) {                                                                                       \
+            const JSVM_ExtendedErrorInfo *info;                                                                        \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
+            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
+            return -1;                                                                                                 \
+        }                                                                                                              \
+    } while (0)
+
+#define CHECK(theCall)                                                                                                 \
+    do {                                                                                                               \
+        JSVM_Status cond = theCall;                                                                                    \
+        if ((cond) != JSVM_OK) {                                                                                       \
+            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__,  \
+                         cond);                                                                                        \
+            return -1;                                                                                                 \
+        }                                                                                                              \
+    } while (0)
+
+// 用于调用theCall并检查其返回值是否为JSVM_OK。
+// 如果不是，则调用GET_AND_THROW_LAST_ERROR处理错误并返回retVal。
+#define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
+    do {                                                                                                               \
+        JSVM_Status cond = theCall;                                                                                    \
+        if (cond != JSVM_OK) {                                                                                         \
+            const JSVM_ExtendedErrorInfo *info;                                                                        \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
+            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
+            return retVal;                                                                                             \
+        }                                                                                                              \
+    } while (0)
+
+// JSVM_CALL_BASE的简化版本，返回nullptr
+#define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
 
 static const int MAX_BUFFER_SIZE = 128;
 // CreateHelloString()函数需绑定到JSVM虚拟机, 用于OH_JSVM_CreateSnapshot虚拟机快照的正常创建
-static JSVM_Value CreateHelloString(JSVM_Env env, JSVM_CallbackInfo info)
-{
+static JSVM_Value CreateHelloString(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Value outPut;
     OH_JSVM_CreateStringUtf8(env, "Hello world!", JSVM_AUTO_LENGTH, &outPut);
     return outPut;
 }
 // 提供外部引用的方式以便JavaScript环境可以调用绑定的函数
 static JSVM_CallbackStruct helloCb = {CreateHelloString, nullptr};
-// 外部引用
+
 static intptr_t externals[] = {
     (intptr_t)&helloCb,
     0,
 };
 
-static JSVM_Value RunVMScript(JSVM_Env env, std::string &src)
-{
+static JSVM_Value RunVMScript(JSVM_Env env, std::string &src) {
     // 打开handleScope作用域
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
@@ -100,10 +131,7 @@ static void CreateVMSnapshot() {
     const char *blobData = nullptr;
     size_t blobSize = 0;
     JSVM_Env envs[1] = {env};
-    JSVM_Status status = OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
-    if (status == JSVM_OK) {
-        OH_LOG_INFO(LOG_APP, "Test JSVM OH_JSVM_CreateSnapshot success, blobSize = : %{public}ld", blobSize);
-    }
+    OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
     // 将snapshot保存到文件中
     // 保存快照数据，/data/storage/el2/base/files/test_blob.bin为沙箱路径
     // 以包名为com.example.jsvm为例，实际文件会保存到/data/app/el2/100/base/com.example.jsvm/files/test_blob.bin
@@ -117,6 +145,7 @@ static void CreateVMSnapshot() {
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
 }
+
 static void RunVMSnapshot() {
     // blobData的生命周期不能短于vm的生命周期
     // 从文件中读取snapshot
@@ -146,13 +175,11 @@ static void RunVMSnapshot() {
     std::string src = "createHelloString()";
     JSVM_Value result = RunVMScript(env, src);
     // 环境关闭前检查脚本运行结果
-    if (result == nullptr) {
-        OH_JSVM_ThrowError(env, nullptr, "Test JSVM RunVMSnapshot-RunVMScript result is nullptr");
-        return;
-    }
     char str[MAX_BUFFER_SIZE];
     OH_JSVM_GetValueStringUtf8(env, result, str, MAX_BUFFER_SIZE, nullptr);
-    OH_LOG_INFO(LOG_APP, "Test JSVM RunVMSnapshot-RunVMScript result is: %{public}s", str);
+    if (strcmp(str, "Hello world!") !=0) {
+        OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d", __FILE__, __LINE__);   
+    }
     // 关闭并销毁环境和虚拟机
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
@@ -161,10 +188,8 @@ static void RunVMSnapshot() {
     return;
 }
 
-static JSVM_Value CreateAndUseSnapshot(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // OH_JSVM_Init(&initOptions)需在开发流程中的RunJsVm()中第一次初始化（只能初始化一次）
-    // JSVM_InitOptions initOptions 赋值是在开发流程中完成的
+static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info) {
+    // 在创建虚拟机快照时，如果存在对外部的依赖，需要在OH_JSVM_Init时，将外部依赖注册到initOptions.externalReferences中
     // 创建虚拟机快照并将快照保存到文件中
     CreateVMSnapshot();
     // snapshot可以记录下特定的js执行环境，可以跨进程通过snapshot快速还原出js执行上下文环境
@@ -173,21 +198,114 @@ static JSVM_Value CreateAndUseSnapshot(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateInt32(env, 0, &result);
     return result;
 }
+
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = AdjustExternalMemory},
+};
+static JSVM_CallbackStruct *method = param;
+// AdjustExternalMemory方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"adjustExternalMemory", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试JS
+const char *srcCallNative = R"JS(adjustExternalMemory();)JS";
+
+static int32_t TestJSVM() {
+    JSVM_InitOptions initOptions = {0};
+    JSVM_VM vm;
+    JSVM_Env env = nullptr;
+    JSVM_VMScope vmScope;
+    JSVM_EnvScope envScope;
+    JSVM_HandleScope handleScope;
+    JSVM_Value result;
+    // 初始化JavaScript引擎实例
+    if (g_aa == 0) {
+        g_aa++;
+        initOptions.externalReferences = externals;
+      int argc = 0;
+      char **argv = nullptr;
+      initOptions.argc = &argc;
+      initOptions.argv = argv;
+      CHECK(OH_JSVM_Init(&initOptions));
+    }
+    // 创建JSVM环境
+    CHECK(OH_JSVM_CreateVM(nullptr, &vm));
+    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
+    CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
+    CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
+
+    // 通过script调用测试函数
+    JSVM_Script script;
+    JSVM_Value jsSrc;
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+    // 销毁JSVM环境
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+    CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
+    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_DestroyVM(vm));
+    return 0;
+}
+
+static napi_value RunTest(napi_env env, napi_callback_info info)
+{
+    TestJSVM();
+    return nullptr;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports) {
+    OH_LOG_INFO(LOG_APP, "JSVM Init");
+    napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
+    };
+                                       
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-    createAndUseSnapshot()
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createAndUseSnapshot: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createAndUseSnapshot error: %{public}s', error.message);
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            // runtest
+            napitest.runTest();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
+执行结果
+在LOG中输出：Test JSVM RunVMSnapshot read file blobSize = : 300064

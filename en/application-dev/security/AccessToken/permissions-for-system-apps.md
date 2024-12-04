@@ -1,6 +1,6 @@
 # Permissions for System Applications
 
-Before requesting permissions for your application, read and understand the [Workflow for Using Permissions](determine-application-mode.md) and this topic to determine the permissions required.
+Before requesting permissions for your application, read and understand the [Workflow for Requesting Permissions](determine-application-mode.md) and this topic to determine the permissions required.
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ Before requesting permissions for your application, read and understand the [Wor
 
 The following lists the system_grant permissions that can be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.PRE_START_ATOMIC_SERVICE
 
@@ -3641,7 +3641,7 @@ Allows a modal UIExtension to unhide non-secure windows.
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -3899,7 +3899,7 @@ Allows a system ability to send the projection cable plug-in and plug-out events
 
 The following lists the user_grant permissions that can be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.READ_AUDIO
 

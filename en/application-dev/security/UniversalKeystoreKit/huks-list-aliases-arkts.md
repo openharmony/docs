@@ -2,14 +2,16 @@
 
 
 This topic walks you through on how to query key aliases.
+>**NOTE**<br>
+> The mini-system devices do not support query of key aliases.
 
 
 ## How to Develop
 
 1. Initialize the key property set.
-
-   Set the tag for querying the key aliases. The tag can only be **HUKS_TAG_AUTH_STORAGE_LEVEL**.
-
+   
+   Set the tag for querying the key aliases. The tag can only be [HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel).
+   
 2. Use [listAliases](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukslistaliases12) to query the key aliases.
 
 ```ts

@@ -110,7 +110,7 @@ libnative_rdb_ndk.z.so
    // Module name. 
    config.moduleName = "xxx";
    // Security level of the database file.
-   config.securityLevel = OH_Rdb_SecurityLevel::S3;
+   config.securityLevel = OH_Rdb_SecurityLevel::S1;
    // Whether the database is encrypted.
    config.isEncrypt = false;
    // Memory size occupied by config.

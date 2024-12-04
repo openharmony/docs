@@ -18,7 +18,7 @@ PersistentStorage creates a two-way synchronization with attributes in AppStorag
 PersistentStorage accepts the following types and values:
 
 - Primitive types such as number, string, boolean, and enum.
-- Objects that can be reconstructed by **JSON.stringify()** and **JSON.parse()**, but not property methods of the objects.
+- Objects that can be reconstructed by **JSON.stringify()** and **JSON.parse()**, but member methods of the objects are not supported.
 - Map type since API version 12: The overall value changes of the Map instance can be observed; you can call the **set**, **clear**, and **delete** APIs to update the instance; the updated value is persisted. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
 - Set type since API version 12: The overall value changes of the Set instance can be observed; you can call the **add**, **clear**, and **delete** APIs to update the instance; the updated value is persisted. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 - Date type since API version 12: The overall value changes of the Date instance can be observed; you can call the following APIs to update the Date properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. the updated value is persisted. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
@@ -72,7 +72,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
    
    
       ```ts
-   @StorageLink('aProp') aProp: number = 48;
+      @StorageLink('aProp') aProp: number = 48;
       ```
 
 The complete code is as follows:
@@ -156,7 +156,7 @@ After reading the data stored in PersistentStorage, the sample code checks wheth
 
 ### Union Types
 
-PersistentStorage supports union types, **undefined**, and **null**. In the following example, the **persistProp** API is used to initialize **"P"** to **undefined**. **@StorageLink("P")** is used to bind variable **p** of the number | undefined | null type to the component. After the button is clicked, the value of **P** changes, and the UI is re-rendered. In addition, the value of **P** is persisted.
+PersistentStorage supports union types, **undefined**, and **null**. In the following example, the **persistProp** API is used to initialize **"P"** to **undefined**. **@StorageLink("P")** is used to bind variable **p** of the **number | undefined | null** type to the component. After the button is clicked, the value of **P** changes, and the UI is re-rendered. In addition, the value of **P** is persisted.
 
 ```ts
 PersistentStorage.persistProp("P", undefined);

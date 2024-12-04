@@ -102,9 +102,9 @@ Sets the height of the panel in the **PanelType.CUSTOM** type.
 
 ### fullHeight
 
-fullHeight(value: number | string)
+fullHeight(value: string | number)
 
-Sets the height of the panel in the **PanelMode.Full** type.
+Sets the height of the panel in the **PanelType.Full** type.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -118,7 +118,7 @@ Sets the height of the panel in the **PanelMode.Full** type.
 
 ### halfHeight
 
-halfHeight(value: number | string)
+halfHeight(value: string | number)
 
 Sets the height of the panel in **PanelMode.Half** mode.
 
@@ -134,7 +134,7 @@ Sets the height of the panel in **PanelMode.Half** mode.
 
 ### miniHeight
 
-miniHeight(value: number | string)
+miniHeight(value: string | number)
 
 Sets the height of the panel in **PanelMode.Mini** mode.
 
@@ -240,6 +240,10 @@ onChange(event: (width: number, height: number, mode: PanelMode) =&gt; void)
 
 Triggered when the status of the panel changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name   | Type       | Mandatory| Description                                                                                 |
@@ -253,6 +257,10 @@ Triggered when the status of the panel changes.
 onHeightChange(callback: (value: number) => void)
 
 Triggered when the height of the panel changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 

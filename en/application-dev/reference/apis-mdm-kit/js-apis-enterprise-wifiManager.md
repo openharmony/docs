@@ -1,6 +1,6 @@
 # @ohos.enterprise.wifiManager (Wi-Fi Management)
 
-The **wifiManager** module provides APIs for Wi-Fi management of enterprise devices.
+The **wifiManager** module provides Wi-Fi management capabilities for enterprise devices, including obtaining the Wi-Fi status.
 
 > **NOTE**
 >
@@ -9,6 +9,8 @@ The **wifiManager** module provides APIs for Wi-Fi management of enterprise devi
 > The APIs of this module can be used only in the stage model.
 >
 > The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+>
+> The global restriction policies are provided by **restrictions**. To disable Wi-Fi globally, see [@ohos.enterprise.restrictions](js-apis-enterprise-restrictions.md).
 
 ## Modules to Import
 
@@ -20,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActiveSync(admin: Want): boolean
 
-Checks whether Wi-Fi is active through the specified device administrator application.
+Checks whether Wi-Fi is active through the specified device administrator application. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -36,8 +38,8 @@ Checks whether Wi-Fi is active through the specified device administrator applic
 
 **Return value**
 
-| Type   | Description                                                   |
-| ------- | ------------------------------------------------------- |
+| Type   | Description                                                      |
+| ------- | ---------------------------------------------------------- |
 | boolean | Returns **true** if Wi-Fi is active; returns **false** otherwise.|
 
 **Error codes**
