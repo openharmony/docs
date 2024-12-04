@@ -372,6 +372,7 @@
           - [延迟加载（lazy import）](arkts-utils/arkts-lazy-import.md)
           - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
           - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
+          - [模块加载副作用及优化](arkts-utils/arkts-module-side-effects.md)
       - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
         - [ArkTS编译工具链概述](arkts-utils/compilation-tool-chain-overview.md)
         - 方舟字节码<!--arkts-bytecode-->
