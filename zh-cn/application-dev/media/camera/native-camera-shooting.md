@@ -153,7 +153,7 @@
        // 释放资源
 	   delete[] components;
 	   OH_ImageNative_Release(imageNative);
-       ret = OH_NativeBuffer_Unmap(nativeBuffer);// 在处理完之后，解除映射并释放缓冲区
+       ret = OH_NativeBuffer_Unmap(nativeBuffer); // 在处理完之后，解除映射并释放缓冲区
        if (ret != 0) {
            OH_LOG_ERROR(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Unmap error:%{public}d", ret);
        }
