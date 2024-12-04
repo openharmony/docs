@@ -13,8 +13,8 @@
 
 | 算法/分组模式/填充模式 | 备注 | API级别 | <!--DelCol4-->是否必选规格 | 
 | -------- | -------- | -------- | -------- |
-| <!--DelRow-->AES/ECB/NoPadding<br/>AES/ECB/PKCS7 | - | 8+ | 否 |
-| AES/CBC/NoPadding<br/>AES/CBC/PKCS7<br/>AES/CTR/NoPadding | IV参数必选 | 8+ | 是 |
+| <!--DelRow-->AES/ECB/NoPadding<br/>AES/ECB/PKCS7 | ECB模式下，若填充模式选择为NoPadding，因为该模式下要求明文数据必须按照固定长度的块进行加密，如果输入的数据长度不是16的倍数，就需要业务方自行填充，以满足块长度的要求。 | 8+ | 否 |
+| AES/CBC/NoPadding<br/>AES/CBC/PKCS7<br/>AES/CTR/NoPadding | IV参数必选；CBC模式下，若填充模式选择为NoPadding，因为该模式下要求明文数据必须按照固定长度的块进行加密，如果输入的数据长度不是16的倍数，就需要业务方自行填充，以满足块长度的要求。 | 8+ | 是 |
 | AES/GCM/NoPadding | 加密：Nonce参数必选<br/>解密：Nonce、AEAD参数必选 | 8+ | 是 |
 | RSA/ECB/NoPadding<br/>RSA/ECB/PKCS1_V1_5<br/>RSA/ECB/OAEP | OAEP填充模式支持的摘要算法：SHA256/SHA384/SHA512 | 8+ | 是 |
 | <!--DelRow-->SM4/ECB/NoPadding<br/>SM4/ECB/PKCS7<br/>SM4/CBC/PKCS7 | CBC模式下 IV 参数必选, ECB模式不推荐使用 | 9+ | 否 |
