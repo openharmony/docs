@@ -561,10 +561,10 @@ static getFirstDayOfWeek(): WeekDay;
 | MON | 1 | 周一。 |
 | TUE | 2 | 周二。 |
 | WED | 3 | 周三。 |
-| THU | 1 | 周四。 |
-| FRI | 2 | 周五。 |
-| SAT | 3 | 周六。 |
-| SUN | 3 | 周日。 |
+| THU | 4 | 周四。 |
+| FRI | 5 | 周五。 |
+| SAT | 6 | 周六。 |
+| SUN | 7 | 周日。 |
 
 ## i18n.isRTL
 
