@@ -4037,6 +4037,18 @@
 
 **起始版本**：12
 
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+允许执行补丁结果检查。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
 允许应用/服务在后台发起用户身份认证请求。
@@ -4766,15 +4778,3 @@
 **ACL使能**：true
 
 **起始版本**：14
-
-### ohos.permission.CHECK_QUICKFIX_RESULT
-
-允许执行补丁结果检查。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
