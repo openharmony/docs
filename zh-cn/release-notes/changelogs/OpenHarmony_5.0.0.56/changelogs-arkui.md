@@ -36,9 +36,10 @@ API 12
 
 当子组件使用了组件冻结，父组件没有使用组件冻结的情况下，当组件处于inactive时，子组件组件冻结功能生效。示例如下：
 
-页面A：
+页面1：
 
 ```ts
+// Page1.ets
 import { router } from '@kit.ArkUI';
 
 @ObservedV2
@@ -50,11 +51,9 @@ export class Book {
   }
 }
 
-export let book: Book = new Book("Pilgrimage to the West");
-
 @Entry
 @ComponentV2
-export struct FirstTest {
+export struct Page1 {
   build() {
     Column() {
       Child()
@@ -66,25 +65,24 @@ export struct FirstTest {
 export struct Child {
   @Local bookTest: Book = new Book("A Midsummer Night’s Dream");
 
-  @Monitor("book.name")
+  @Monitor("bookTest.name")
   onMessageChange(monitor: IMonitor) {
     console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   textUpdate(): number{
     console.log("The text is update");
-    return 50;
+    return 25;
   }
 
   build() {
     Column() {
-      Text(`The Monitor book name is  ${this.bookTest.name}`).fontSize(50)
-      Text(`The text book name is  ${book.name}`).fontSize(this.textUpdate())
+      Text(`The book name is  ${this.bookTest.name}`).fontSize(this.textUpdate())
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page' });
-          setTimeout(function() {
-            this.book = new Book("Jane Austen oPride and Prejudice");
+          router.pushUrl({ url: 'pages/Page2' });
+          setTimeout(() => {
+            this.bookTest = new Book("Jane Austen oPride and Prejudice");
           }, 1000);
         })
     }
@@ -92,15 +90,15 @@ export struct Child {
 }
 ```
 
-页面B：
+页面2：
 
 ```ts
+// Page2.ets
 import { router } from '@kit.ArkUI';
-import { book } from './Index';
 
 @Entry
 @ComponentV2
-struct SecondTest {
+struct Page2 {
   build() {
     Column() {
       Text(`This is the page`).fontSize(50)
@@ -108,24 +106,30 @@ struct SecondTest {
         .onClick(() => {
           router.back();
         })
-      Button('Change the book name')
-        .onClick(() => {
-          book.name = "The Old Man and the Sea";
-        })
     }
   }
 }
 ```
 
+如果开发者不关注组件冻结的功能是否生效，只是调用了其接口，会发现组件冻结能力在该场景下并没有生效，即在跳转到页面2后，改变状态变量`@Local bookTest`，页面1的Child组件还会刷新，其@Monitor也会调用。
 
-在上面的用例中，页面A的子组件Child，开启了组件冻结功能，当点击Button跳转到页面B的时候，修改状态变量bookTest，因为Child组件开启了组件冻结，状态变量将不响应更新，即@Monitor不会调用，状态变量关联的节点不会刷新。同理，修改状态变量book，也不会触发刷新。
+trace如下：
+![Example Image](../../figures/freeze2.png)
 
-如果开发者不关注freezeWhenInactive的功能，只是加了这个标签，会发现变更前页面还会刷新，也会有对应的回调，变更后，就不回调了。如果还想触发回调，建议不使用组件冻结功能。示例如下：
+变更后，修复了上面示例中组件冻结接口不生效的行为，变更后的行为是：
+- 页面1的子组件Child，设置`freezeWhenInactive: true`, 开启了组件冻结功能。
+- 点击Button跳转到页面2，然后延迟1s更新状态变量`bookTest`。在更新`bookTest`的时候，已经跳转到页面2，页面1的组件处于inactive状态，又因为Child组件开启了组件冻结，状态变量`@Local bookTest`将不响应更新，其@Monitor不会调用，状态变量关联的节点不会刷新。
+
+变更后trace如下：
+![Example Image](../../figures/freeze1.png)
+
+如果开发者希望Page1在不可见的时候依旧刷新，和正常触发@Monitor回调，建议不使用组件冻结功能，即不设置`freezeWhenInactive: true`。示例如下：
 
 
-页面A：
+页面1：
 
 ```ts
+// Page1.ets
 import { router } from '@kit.ArkUI';
 
 @ObservedV2
@@ -137,11 +141,9 @@ export class Book {
   }
 }
 
-export let book: Book = new Book("Pilgrimage to the West");
-
 @Entry
 @ComponentV2
-export struct FirstTest {
+export struct Page1 {
   build() {
     Column() {
       Child()
@@ -151,39 +153,42 @@ export struct FirstTest {
 
 @ComponentV2
 export struct Child {
-  @Local book: Book = new Book("A Midsummer Night’s Dream");
+  @Local bookTest: Book = new Book("A Midsummer Night’s Dream");
 
-  @Monitor("book.name")
+  @Monitor("bookTest.name")
   onMessageChange(monitor: IMonitor) {
     console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
+  textUpdate(): number{
+    console.log("The text is update");
+    return 25;
+  }
+
   build() {
     Column() {
-      Text(`The Monitor book name is  ${this.book.name}`).fontSize(50)
-      Text(`The text book name is  ${book.name}`).fontSize(50)
+      Text(`The book name is  ${this.bookTest.name}`).fontSize(this.textUpdate())
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page' });
-          setTimeout(function() {
-            this.book = new Book("Jane Austen oPride and Prejudice");
+          router.pushUrl({ url: 'pages/Page2' });
+          setTimeout(() => {
+            this.bookTest = new Book("Jane Austen oPride and Prejudice");
           }, 1000);
-
         })
     }
   }
 }
 ```
 
-页面B：
+页面2：
 
 ```ts
+// Page2.ets
 import { router } from '@kit.ArkUI';
-import { book } from './Index';
 
 @Entry
 @ComponentV2
-struct SecondTest {
+struct Page2 {
   build() {
     Column() {
       Text(`This is the page`).fontSize(50)
@@ -191,16 +196,13 @@ struct SecondTest {
         .onClick(() => {
           router.back();
         })
-      Button('Change the book name')
-        .onClick(() => {
-          book.name = "The Old Man and the Sea";
-        })
     }
   }
 }
 ```
 
-当子组件Child不使用组件冻结功能时，跳转到页面B，修改状态变量将响应更新，@Monitor被调用，状态变量关联的节点将会刷新。
+当子组件Child不使用组件冻结功能时，跳转到页面2，修改状态变量将响应更新，@Monitor被调用，状态变量关联的节点将会刷新。
+
 
 ## cl.arkui.2 当AttributeModifer的applyNormalAttribute方法中instance参数设置为资源类型数据时更新的行为发生变更
 
