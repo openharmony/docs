@@ -735,7 +735,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 
 0：成功。 
 
-401：参数异常。
+-2：参数异常。
 
 
 ### OH_NativeXComponent_DetachNativeRootNode()
@@ -760,7 +760,7 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 
 0：成功。 
 
-401：参数异常。
+-2：参数异常。
 
 
 
@@ -1727,6 +1727,13 @@ void(* OH_NativeXComponent_MouseEvent_Callback::DispatchMouseEvent) (OH_NativeXC
 
 当鼠标事件被触发时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1847,6 +1854,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceChanged) (OH_NativeXComponent *com
 
 当surface改变时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1862,6 +1876,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceCreated) (OH_NativeXComponent *com
 
 创建surface时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1876,6 +1897,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceDestroyed) (OH_NativeXComponent *c
 **描述:**
 
 当surface被销毁时调用。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
 
 **起始版本：**
 
