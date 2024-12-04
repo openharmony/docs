@@ -118,9 +118,10 @@
            }
            // 传给其他不需要stride的接口处理
        }
-       // 释放buffer,保证bufferQueue正常轮转
-       OH_NativeBuffer_Unmap(imageBuffer);
+       // 释放资源
+       OH_NativeBuffer_Unmap(imageBuffer); // 释放buffer,保证bufferQueue正常轮转
        errCode = OH_ImageNative_Release(image);
+	   delete[] types;
    }
    
    void OnImageReceiver() {
