@@ -966,7 +966,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   });
 ```
 
-## wifiManager.getLinkedInfoSync<sup>16</sup>
+## wifiManager.getLinkedInfoSync<sup>16+</sup>
 
 getLinkedInfoSync(): WifiLinkedInfo;
 
