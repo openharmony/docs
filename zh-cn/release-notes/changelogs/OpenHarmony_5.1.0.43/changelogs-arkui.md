@@ -146,7 +146,7 @@ struct Star {
 }
 ```
 
-## cl.arkui.2 装饰器@Computed编译报错新增
+## cl.arkui.2 装饰器@Computed编译在特定场景下新增两个ERROR报错提示
 
 **访问级别**
 
@@ -160,6 +160,8 @@ struct Star {
 
 该变更为不兼容变更。
 
+1. 当@Computed装饰的属性和双向绑定范式一起使用时，编译时ERROR报错提示
+
 ```ts
 @Entry
 @ComponentV2
@@ -169,10 +171,6 @@ struct TestComputed {
     @Computed
     get strFun() {
         return this.str
-    }
-
-    set strFun(value: string) {
-        this.str = value
     }
 
     build() {
@@ -201,18 +199,47 @@ struct Child {
 }
 ```
 
-变更前：
-编译时不报错
+变更前：编译时不报错
 
-变更后：
-编译时报错以下两个信息
-
-```
-A property decorated by '@Computed' cannot define a set method.
-```
+变更后：编译时报错
 
 ```
 A property decorated by '@Computed' cannot be used with two-way bind syntax.
+```
+
+2. @Computed装饰的get属性方法，不能写set方法，编译进行ERROR报错提示
+
+```ts
+@Entry
+@ComponentV2
+struct TestComputed {
+    @Local str: string = 'hello,world'
+
+    @Computed
+    get strFun() {
+        return this.str
+    }
+
+    set strFun(value: string) {
+        this.str = value
+    }
+
+    build() {
+        Scroll() {
+            Column() {
+                Text(this.str)
+            }
+        }
+    }
+}
+```
+
+变更前：编译时不报错
+
+变更后：编译时报错
+
+```
+A property decorated by '@Computed' cannot define a set method.
 ```
 
 **起始API Level**
