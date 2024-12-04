@@ -74,7 +74,7 @@ typedef void(* DRM_MediaKeySystemInfoCallback) (DRM_MediaKeySystemInfo *mediaKey
 
 **废弃版本：** 14 
 
-**替代接口：**[OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback](#oh_avdemuxer_setdemuxermediakeysysteminfocallback)
+**替代接口：**[Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)
 
 
 ## 函数说明
