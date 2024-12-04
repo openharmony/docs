@@ -53,7 +53,7 @@ static JSVM_Value CreatePromise(JSVM_Env env, JSVM_CallbackInfo info) {
         }
     }
     if (envID == -1) {
-        OH_LOG_ERROR(LOG_APP, "JSVM API TEST: CreatePromise envID faild");
+        OH_LOG_ERROR(LOG_APP, "JSVM API TEST: CreatePromise envID failed");
         return nullptr;
     }
     JSVM_Value promise;
