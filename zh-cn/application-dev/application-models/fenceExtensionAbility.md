@@ -25,9 +25,9 @@
 
 开发者在实现一个[FenceExtensionAbility](../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)提供方时，需要在DevEco Studio工程中手动新建一个FenceExtensionAbility，具体步骤如下。
 
-1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为fenceExtensionability。
+1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为fenceextensionability。
 
-2. 在fenceExtensionability目录，右键选择“New &gt; File”，新建一个.ets文件并命名为MyFenceExtensionAbility.ets。
+2. 在fenceextensionability目录，右键选择“New &gt; File”，新建一个.ets文件并命名为MyFenceExtensionAbility.ets。
 
 3. 打开MyFenceExtensionAbility.ets，导入FenceExtensionAbility的依赖包，自定义类继承FenceExtensionAbility并实现onFenceStatusChange和onDestroy接口。
 
