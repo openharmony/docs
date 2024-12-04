@@ -4766,3 +4766,15 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+允许执行补丁结果检查。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
