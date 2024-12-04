@@ -2,11 +2,12 @@
 
 当@ComponentV2装饰的自定义组件处于非激活状态时，状态变量将不响应更新，即@Monitor不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，Navigation。
 
-
 > **说明：**
 >
 > 从API version 12开始，支持@ComponentV2装饰的自定义组件冻结功能。
-> 
+>
+> 从API version 16开始，支持自定义组件冻结功能的混用场景冻结。
+>
 > 和@Component的组件冻结不同， @ComponentV2装饰的自定义组件不支持LazyForEach场景下的缓存节点组件冻结。
 
 
@@ -329,3 +330,138 @@ struct NavigationContentMsgStack {
 9.再次点击“Back Page”回到PageOne，此时，仅pageOneStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
 10.再次点击“Back Page”回到初始页。
+
+### 组件混用场景
+
+组件冻结混用场景即当支持组件冻结的场景彼此之间组合使用，对于不同的API version版本，冻结行为会有不同。在API version 15及以下，支持冻结的外层组件会将其内层组件的所有节点设置为active状态，从API version 16开始，外层组件在激活时，只会将内层组件的屏上节点设置为active状态。
+
+#### 页面路由和TabContent的混用
+
+```ts
+import router from '@ohos.router';
+
+@ComponentV2
+struct ChildOfParamComponent {
+  @Require @Param child_val: number;
+
+  @Monitor('child_val') onChange(m: IMonitor) {
+    console.log(`Appmonitor ChildOfParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Child Param： ${this.child_val}`);
+    }
+  }
+}
+
+@ComponentV2
+struct ParamComponent {
+  @Require @Param val: number;
+
+  @Monitor('val') onChange(m: IMonitor) {
+    console.log(`Appmonitor ParamComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Text(`val： ${this.val}`);
+      ChildOfParamComponent({child_val: this.val});
+    }
+  }
+}
+
+@ComponentV2
+struct DelayComponent {
+  @Require @Param delayVal1: number;
+
+  @Monitor('delayVal1') onChange(m: IMonitor) {
+    console.log(`Appmonitor DelayComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Text(`Delay Param： ${this.delayVal1}`);
+    }
+  }
+}
+
+@Entry
+@ComponentV2 ({freezeWhenInactive: true})
+struct TabsComponent {
+  private controller: TabsController = new TabsController();
+  @Local tabState: number = 47;
+
+  @Monitor('tabState') onChange(m: IMonitor) {
+    console.log(`Appmonitor TabsComponent: changed ${m.dirty[0]}: ${m.value()?.before} -> ${m.value()?.now}`);
+  }
+
+  build() {
+    Column({space: 10}) {
+      Button(`Incr state ${this.tabState}`)
+        .fontSize(25)
+        .onClick(() => {
+          console.log('Button increment state value');
+          this.tabState = this.tabState + 1;
+        })
+
+      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller}) {
+        TabContent() {
+          ParamComponent({val: this.tabState});
+        }.tabBar('Update')
+        TabContent() {
+          DelayComponent({delayVal1: this.tabState});
+        }.tabBar('DelayUpdate')
+      }
+      .vertical(false)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .barWidth(400).barHeight(150).animationDuration(400)
+      .width('100%')
+      .height(200)
+      .backgroundColor(0xF5F5F5)
+
+      Button('Next Page')
+        .onClick(() => {
+          router.pushUrl({
+            url: 'pages/Page2'
+          });
+        })
+    }
+  }
+}
+```
+
+```ts
+import router from '@ohos.router'
+
+@Entry
+@Component
+struct Second {
+  build() {
+    Column() {
+      Button() {
+        Text('Back')
+        .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .margin({
+        top: 40
+      })
+      .onClick(() => {
+        router.back();
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+在API version 15及以下：
+
+点击Next page进入下一个页面并返回，会解冻Tabcontent所有的标签。
+
+在API Version 16及以上：
+
+点击Next page进入下一个页面并返回，只会解冻对应标签的节点。
