@@ -2020,6 +2020,39 @@ struct styled_string_demo8 {
 ![](figures/styledString_8.gif)
 
 
+### 示例9（设置超链接）
+
+该示例通过UrlStyle接口，实现了对属性字符串中超链接设置的支持。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct styled_string {
+  urlString: StyledStringValue = new UrlStyle( "https://www.example.com" );
+  mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
+    start: 0,
+    length: "Hello".length,
+    styledKey: StyledStringKey.URL,
+    styledValue: this.urlString
+  }]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString)
+  }
+  build() {
+    Column() {
+      Column() {
+        Text(undefined, { controller: this.controller }).key('mutableStyledString').fontSize(30)
+      }
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![](figures/styledString_9.gif)
+
+
 
 
 
