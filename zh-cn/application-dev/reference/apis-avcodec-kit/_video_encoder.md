@@ -120,14 +120,6 @@ enum OH_VideoEncodeBitrateMode
 
 **替代接口：** [OH_BitrateMode](_codec_base.md#oh_bitratemode-1)
 
-**替代枚举值：**
-
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| BITRATE_MODE_CBR  | 恒定码率模式。 | 
-| BITRATE_MODE_VBR  | 可变码率模式。 | 
-| BITRATE_MODE_CQ  | 恒定QP模式。 | 
-
 
 ## 函数说明
 
