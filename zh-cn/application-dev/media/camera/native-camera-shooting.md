@@ -150,11 +150,14 @@
        // 调用NAPI层buffer回调
        auto cb = (void (*)(void *, size_t))(bufferCb);
        cb(virAddr, nativeBufferSize);
-       // 在处理完之后，解除映射并释放缓冲区
-       ret = OH_NativeBuffer_Unmap(nativeBuffer);
+       // 释放资源
+	   delete[] components;
+	   OH_ImageNative_Release(imageNative);
+       ret = OH_NativeBuffer_Unmap(nativeBuffer);// 在处理完之后，解除映射并释放缓冲区
        if (ret != 0) {
            OH_LOG_ERROR(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Unmap error:%{public}d", ret);
        }
+	   OH_LOG_INFO(LOG_APP, "OnPhotoAvailable end");
    }
 
    // 注册单段式拍照回调
