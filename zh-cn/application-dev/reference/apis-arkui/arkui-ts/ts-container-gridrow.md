@@ -139,7 +139,7 @@ GridRow(option?: GridRowOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | WindowSize | 以窗口为参照。 |
 | ComponentSize | 以容器为参照。 |
@@ -152,7 +152,7 @@ GridRow(option?: GridRowOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Row | 栅格元素按照行方向排列。 |
 | RowReverse | 栅格元素按照逆序行方向排列。 |

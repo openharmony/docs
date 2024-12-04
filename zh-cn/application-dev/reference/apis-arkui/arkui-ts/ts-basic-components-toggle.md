@@ -13,7 +13,7 @@
 
 ## 接口
 
-Toggle(options: { type: ToggleType, isOn?: boolean })
+Toggle(options: ToggleOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -25,9 +25,20 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 参数名 | 类型 | 必填   | 说明           |
 | ---- | ---------- | -----| -------------- |
-| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch |
-| isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| options | [ToggleOptions](#toggleoptions14对象说明) | 是   | Toggle的信息。 |
 
+## ToggleOptions<sup>14+</sup>对象说明
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                              | 必填 | 说明                                                         |
+| ---- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。<br/>默认值：ToggleType.Switch                   |
+| isOn | boolean                           | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 ## ToggleType枚举说明
 
@@ -37,7 +48,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 描述                 |
+| 名称       | 说明               |
 | -------- | ---------------- |
 | Checkbox | 提供单选框样式。<br>**说明：**<br/>API version 11开始，Checkbox默认样式由圆角方形变为圆形。<br/>[通用属性margin](ts-universal-attributes-size.md#margin)的默认值为：<br>{<br>&nbsp;top: '14px',<br>&nbsp;right: '14px',<br>&nbsp;bottom: '14px',<br>&nbsp;left: '14px'<br> }。<br/>默认尺寸为:<br>{width:'20vp', height:'20vp'}。 |
 | Button   | 提供状态按钮样式，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。<br/>默认尺寸为:高为28vp，宽无默认值。       |
@@ -167,7 +178,9 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
-### 示例1
+### 示例1（设置开关的样式）
+
+该示例通过配置ToggleType设置Toggle的勾选框样式、状态按钮样式及开关样式。
 
 ```ts
 // xxx.ets
@@ -235,7 +248,7 @@ struct ToggleExample {
 
 ![toggle](figures/toggle.gif)
 
-### 示例2
+### 示例2（自定义开关类型的样式）
 
 该示例实现了自定义设置Toggle组件Switch样式的圆形滑块半径、关闭状态的背景颜色、圆形滑块颜色、滑轨的圆角。
 
@@ -277,7 +290,7 @@ struct ToggleExample {
 
 ![toggle](figures/toggleSwitchStyle.gif)
 
-### 示例3
+### 示例3（自定义Togge样式）
 
 该示例实现了自定义Toggle样式的功能。自定义样式实现了通过按钮切换圆形颜色的功能：点击蓝圆按钮，圆形背景变蓝色，点击黄圆按钮，圆形背景变黄色。
 

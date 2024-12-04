@@ -161,7 +161,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 ### onDateChange<sup>10+</sup>
 
-onDateChange(callback: (value: Date) => void)
+onDateChange(callback: Callback\<Date>)
 
 选择日期时触发该事件。
 
@@ -171,9 +171,9 @@ onDateChange(callback: (value: Date) => void)
 
 **参数：** 
 
-| 参数名 | 类型 | 必填 | 说明                                                         |
-| ------ | ---- | ---- | ------------------------------------------------------------ |
-| value  | Date | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
+| 参数名   | 类型                                      | 必填 | 说明                                                         |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | [Callback](ts-types.md#callback12)\<Date> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
 
 ## DatePickerResult对象说明
 
@@ -187,8 +187,9 @@ onDateChange(callback: (value: Date) => void)
 | month | number | 否   | 否   | 选中日期的月(0~11)，0表示1月，11表示12月。 |
 | day   | number | 否   | 否   | 选中日期的日。                             |
 
-
 ## 示例
+
+该示例实现了日期选择器组件，点击按钮可以切换公历农历。
 
 
 ```ts

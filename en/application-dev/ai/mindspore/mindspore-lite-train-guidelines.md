@@ -59,12 +59,12 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
 The development process consists of the following main steps:
 
-1. Prepare the model.
+1. Prepare the required model.
 
-    The prepared model is in **.ms** format. This topic uses [lenet_train.ms](https://gitee.com/openharmony-sig/compatibility/tree/master/test_suite/resource/master/standard%20system/acts/resource/ai/mindspore/lenet_train/lenet_train.ms) as an example. To use a custom model, perform the following steps:
+    The prepared model is in `.ms` format. This topic uses [lenet_train.ms](https://gitee.com/openharmony-sig/compatibility/blob/master/test_suite/resource/master/standard%20system/acts/resource/ai/mindspore/lenet_train/lenet_train.ms) as an example. To use a custom model, perform the following steps:
 
-    - Use Python to create a network model based on the MindSpore architecture and export the model as a **.mindir** file. For details, see [Quick Start](https://www.mindspore.cn/tutorials/en/r2.1/beginner/quick_start.html).
-    - Convert the **.mindir** model file into an **.ms** file. For details about the conversion procedure, see [Converting MindSpore Lite Models](https://www.mindspore.cn/lite/docs/en/r2.1/use/converter_train.html). The **.ms** file can be imported to the device to implement training based on the MindSpore device framework.
+    - Use Python to create a network model based on the MindSpore architecture and export the model as a `.mindir` file. For details, see [Quick Start](https://www.mindspore.cn/tutorials/en/r2.1/beginner/quick_start.html).
+    - Convert the `.mindir` model file into an `.ms` file. For details about the conversion procedure, see [Converting MindSpore Lite Models](https://www.mindspore.cn/lite/docs/en/r2.1/use/converter_train.html). The `.ms` file can be imported to the device to implement training based on the MindSpore device framework.
 
 2. Create a context and set parameters such as the device type and training configuration.
 
@@ -467,4 +467,3 @@ int TrainDemo(int argc, const char **argv) {
 int main(int argc, const char **argv) { return TrainDemo(argc, argv); }
 
 ```
-<!--no_check-->

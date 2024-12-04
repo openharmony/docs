@@ -1,5 +1,5 @@
 # SaveButton
- 
+
 安全控件的保存控件，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
 
 > **说明：**
@@ -67,7 +67,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
 | LINES | 1 | 保存按钮展示线条样式图标。 |
@@ -76,7 +76,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -97,7 +97,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 保存按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |

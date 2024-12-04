@@ -1,6 +1,6 @@
 # Badge
 
-可以附加在单个组件上用于信息标记的容器组件。
+信息标记组件，可以附加在单个组件上用于信息提醒的容器组件。
 
 >  **说明：**
 >
@@ -22,7 +22,7 @@
 
 Badge(value: BadgeParamWithNumber)
 
-创建数字标记组件。
+根据数字创建标记组件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -68,7 +68,7 @@ Badge(value: BadgeParamWithString)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position) | 否| 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。|
+| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position) | 否| 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。（0，0）为组件左上角位置。|
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 
@@ -117,20 +117,18 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 
 ## BadgeStyle对象说明
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                      | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 文本颜色。<br/>默认值：Color.White                           |
-| fontSize                  | number&nbsp;\|&nbsp;string                                   | 否   | 文本大小。<br/>默认值：10<br/>单位：fp<br/>**说明：** <br/>不支持设置百分比。 |
-| badgeSize                 | number&nbsp;\|&nbsp;string                                   | 否   | Badge的大小。<br/>默认值：16<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。当设置为非法值时，按照默认值处理。 |
-| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Badge的颜色。<br/>默认值：Color.Red                          |
+| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 文本颜色。<br/>默认值：Color.White<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fontSize                  | number&nbsp;\|&nbsp;string                                   | 否   | 文本大小。<br/>默认值：10<br/>单位：fp<br/>**说明：** <br/>不支持设置百分比。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| badgeSize                 | number&nbsp;\|&nbsp;string                                   | 否   | Badge的大小。<br/>默认值：16<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。当设置为非法值时，按照默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Badge的颜色。<br/>默认值：Color.Red<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本的字体粗细。<br/>默认值：FontWeight.Normal<br/>**说明：** <br/>不支持设置百分比。 |
-| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 底板描边颜色。<br/>默认值：Color.Red                          |
+| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 底板描边颜色。<br/>默认值：Color.Red                         |
 | borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 底板描边粗细。<br/>默认值：1<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
 
 ## 属性
@@ -143,7 +141,9 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 
 ## 示例
 
-### 示例1
+### 示例1（设置标记组件内容）
+
+该示例通过value和count属性，实现了传入空值、字符、数字时标记组件展现不同的效果。
 
 ```ts
 // xxx.ets
@@ -196,6 +196,7 @@ struct BadgeExample {
 
   build() {
     Column() {
+      // 红点类型的标记组件
       Text('dotsBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
       Tabs() {
         TabContent()
@@ -211,6 +212,7 @@ struct BadgeExample {
       .height(56)
       .backgroundColor('#F1F3F5')
 
+      // 根据字符创建的标记组件
       Column() {
         Text('stringBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
         List({ space: 12 }) {
@@ -240,6 +242,7 @@ struct BadgeExample {
           .align(Alignment.Start)
         }.width(336)
 
+        // 根据数字创建的标记组件
         Text('numberBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
         List() {
           ListItem() {
@@ -290,7 +293,9 @@ struct BadgeExample {
 
 ![badge](figures/badge.png)
 
-### 示例2
+### 示例2（设置数字控制标记显隐）
+
+该示例通过count属性，实现了设置数字0和1时标记组件的隐藏和显示效果。
 
 ```ts
 // 该示例实现了Badge组件显隐时缩放

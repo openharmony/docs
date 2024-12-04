@@ -13,8 +13,8 @@ The **Metadata** module provides the configuration about the module, UIAbility, 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-| Name    | Type  | Readable| Writable| Description      |
+| Name    | Type  | Read-Only| Optional| Description      |
 | -------- | ------ | ---- | ---- | ---------- |
-| name     | string | Yes  | Yes  | Metadata name.|
-| value    | string | Yes  | Yes  | Metadata value.  |
-| resource | string | Yes  | Yes  | Metadata resource.|
+| name     | string | No  | No  | Metadata name.|
+| value    | string | No  | No  | Metadata value.  |
+| resource | string | No  | No  | Metadata resource.|

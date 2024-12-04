@@ -33,7 +33,7 @@ Places a function to be executed in the internal queue of the task pool. The fun
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Return value**
@@ -81,7 +81,7 @@ Verifies the passed-in parameter types and return value type of a concurrent fun
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | A | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Return value**
@@ -469,7 +469,7 @@ function testExecutePeriodically(args: number): void {
   while ((Date.now() - t) < args) {
     continue;
   }
-  taskpool.Task.sendData(args); // Send a message to the main thread.
+  taskpool.Task.sendData(args); // Send a message to the host thread.
 }
 
 function printResult(data: number): void {
@@ -544,7 +544,7 @@ function testExecutePeriodically(args: number): void {
   while ((Date.now() - t) < args) {
     continue;
   }
-  taskpool.Task.sendData(args); // Send a message to the main thread.
+  taskpool.Task.sendData(args); // Send a message to the host thread.
 }
 
 function printResult(data: number): void {
@@ -779,7 +779,7 @@ Checks whether a function is a concurrent function.
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md).<br>**false**: The function is not a concurrent function.|
+| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator).<br>**false**: The function is not a concurrent function.|
 
 **Error codes**
 
@@ -903,7 +903,7 @@ A constructor used to create a **Task** instance.
 
 | Name| Type     | Mandatory| Description                                                                 |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
@@ -942,7 +942,7 @@ A constructor used to create a **Task** instance, with the task name specified.
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | Yes  | Task name.                                                  |
-| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
@@ -1109,7 +1109,7 @@ Sets the task clone list. Before using this API, you must create a **Task** inst
 
 > **NOTE**
 >
-> This API must be used together with the [@Sendable decorator](../../arkts-utils/arkts-sendable.md#sendable-decorator-declaring-and-verifying-a-sendable-class). Otherwise, an exception is thrown.
+> This API must be used together with the [@Sendable decorator](../../arkts-utils/arkts-sendable.md#sendable-decorator). Otherwise, an exception is thrown.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1119,7 +1119,7 @@ Sets the task clone list. Before using this API, you must create a **Task** inst
 
 | Name   | Type                     | Mandatory| Description                                         |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data) or ArrayBuffer.<br>- All [Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class) instances or ArrayBuffer objects passed in to **cloneList** are transferred in copy mode between threads. This means that any modification to the destination objects does not affect the original objects.|
+| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types) or ArrayBuffer.<br>- All [Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class) instances or ArrayBuffer objects passed in to **cloneList** are transferred in copy mode between threads. This means that any modification to the destination objects does not affect the original objects.|
 
 **Error codes**
 
@@ -1189,7 +1189,7 @@ export class DeriveClass extends BaseClass {
 <!--code_no_check-->
 ```ts
 // index.ets
-// The main thread calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their attributes.
+// The host thread (UI main thread) calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their attributes.
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { BaseClass, DeriveClass } from './sendable'
@@ -1817,7 +1817,7 @@ A constructor used to create a **GenericsTask** object.
 
 | Name| Type     | Mandatory| Description                                                                 |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | A | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
@@ -1870,7 +1870,7 @@ A constructor used to create a **GenericsTask** instance, with the task name spe
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | Yes  | Name of the generic task.                                                  |
-| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | A | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
@@ -1962,7 +1962,7 @@ Adds the function to be executed to this task group. Before using this API, you 
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
@@ -2079,7 +2079,7 @@ A constructor used to create a **SequenceRunner** instance. This instance repres
 
 > **NOTE**
 >
-> - The same queue cannot be created repeatedly in the same thread.
+> - The bottom layer uses the singleton mode to ensure that the same instance is obtained when a serial queue with the same name is created.
 > - The priority of a queue cannot be modified.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -2256,7 +2256,7 @@ Describes the internal information about a task pool.
 ## Additional Information
 
 ### Sequenceable Data Types
-The following sequenceable data types are supported: All Primitive Type (excluding symbol), Date, String, RegExp, Array, Map, Set, Object, ArrayBuffer, and TypedArray. [Serialization Types Supported by TaskPool and Worker](../../arkts-utils/serialization-support-types.md)
+The following sequenceable data types are supported: [common object](../../arkts-utils/normal-object.md), [ArrayBuffer object](../../arkts-utils/arraybuffer-object.md), [SharedArrayBuffer object](../../arkts-utils/shared-arraybuffer-object.md), [Transferable object (NativeBinding object)](../../arkts-utils/transferabled-object.md), and [Sendable object](../../arkts-utils/arkts-sendable.md).
 
 ### Using the Task Pool in Simple Mode
 
@@ -2269,6 +2269,7 @@ function printArgs(args: string): string {
   console.info("func: " + args);
   return args;
 }
+
 async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(task)
   let task: taskpool.Task = new taskpool.Task(printArgs, "create task, then execute");
@@ -2276,6 +2277,7 @@ async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(function)
   console.info("taskpool.execute(function) result: " + await taskpool.execute(printArgs, "execute task by func"));
 }
+
 taskpoolExecute();
 ```
 
@@ -2293,9 +2295,9 @@ import { c } from "./b";
 
 @Concurrent
 function printArgs(a: string): string {
-    console.info(a);
-    console.info(c);
-    return a;
+  console.info(a);
+  console.info(c);
+  return a;
 }
 
 async function taskpoolExecute(): Promise<void> {
@@ -2344,6 +2346,7 @@ function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
   return newArr;
 }
+
 export async function func1(): Promise<void> {
   console.info("taskpoolTest start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
@@ -2396,13 +2399,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
   // Cancel the task 1s later.
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task);
     } catch (e) {
@@ -2438,13 +2441,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task); // The task has been executed and fails to be canceled.
     } catch (e) {
@@ -2552,21 +2555,19 @@ let state: number = 0;
 let duration: number = 0;
 let name: string = "";
 let threadIS = Array.from(taskpoolInfo.threadInfos)
-for(let threadInfo of threadIS) {
+for (let threadInfo of threadIS) {
   tid = threadInfo.tid;
-  if (threadInfo.taskIds != undefined && threadInfo.priority != undefined )
-  {
+  if (threadInfo.taskIds != undefined && threadInfo.priority != undefined) {
     taskIds.length = threadInfo.taskIds.length;
     priority = threadInfo.priority;
   }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
 let taskIS = Array.from(taskpoolInfo.taskInfos)
-for(let taskInfo of taskIS) {
+for (let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;
-  if (taskInfo.duration != undefined )
-  {
+  if (taskInfo.duration != undefined) {
     duration = taskInfo.duration;
     name = taskInfo.name;
   }

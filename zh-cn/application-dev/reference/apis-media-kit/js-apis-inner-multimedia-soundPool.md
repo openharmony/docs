@@ -1,6 +1,6 @@
 # SoundPool (音频池)
 
-音频池加载播放实例，音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。
+音频池提供了短音频的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。
 
 SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.createSoundPool](js-apis-media.md#mediacreatesoundpool10)完成音频池实例的创建。
 
@@ -203,7 +203,7 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取。     |
+| fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。     |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | callback | AsyncCallback\<number> | 是   | 获取回调的soundID，有效值大于0。 |
@@ -218,7 +218,7 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 | 5400103  | I/O error. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
-**示例：**
+**示例1：**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -241,7 +241,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let fileSize: number = 1; //通过fileIo.stat()获取size值
     let uri: string = "";
-    //获取fd的描述信息
+    //获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -255,6 +255,42 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
         }
       });
     }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
+  }
+});
+
+```
+
+**示例2：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+let soundID: number = 0;
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`Succeeded in createSoundPool`)
+    //test_01.mp3为rawfile目录资源下面的音频
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
+      if (error) {
+        console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        soundID = soundId_;
+        console.info('Succeeded in loading soundId:' + soundId_);
+      }
+    });
   }
 });
 
@@ -277,7 +313,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取。     |
+| fd     | number | 是   | 资源句柄，通过过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。     |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
@@ -297,7 +333,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 | 5400103  | I/O error. Return by promise. |
 | 5400105  | Service died. Return by promise. |
 
-**示例：**
+**示例1：**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -320,7 +356,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let fileSize: number = 1; //通过fileIo.stat()获取size值
     let uri: string = "";
-    //获取fd的描述信息
+    //获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -331,6 +367,40 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
       }, (err: BusinessError) => {
         console.error('Failed to load soundpool and catch error is ' + err.message);
       });
+    });
+  }
+});
+
+```
+
+**示例2：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//创建soundPool实例
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+let soundID: number = 0;
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`Succeeded in createSoundPool`)
+    //test_01.mp3为rawfile目录资源下面的音频
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
+    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
+      console.info('Succeeded in loading soundpool');
+      soundID = soundId;
+    }, (err: BusinessError) => {
+      console.error('Failed to load soundpool and catch error is ' + err.message);
     });
   }
 });

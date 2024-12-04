@@ -1,10 +1,10 @@
 # Audio Decoding
 
-You can call the native APIs provided by the audio codec module to decode audio, that is, to decode media data into PCM streams.
+You can call the native APIs provided by the AudioCodec module to decode audio, that is, to decode media data into PCM streams.
 
 Currently, the following decoding capabilities are supported:
 
-| Container Specification| Audio Decoding Type                |
+| Container Format| Audio Decoding Type                |
 | -------- | :--------------------------- |
 | mp4      | AAC, MPEG (MP3), FLAC, Vorbis<!--RP1--><!--RP1End--> |
 | m4a      | AAC                          |
@@ -27,10 +27,13 @@ Currently, the following decoding capabilities are supported:
 - Audio editing
 
   Decode audio and transmit the data for audio editing (for example, adjusting the playback speed of a channel). Audio editing is performed based on PCM streams.
+> **NOTE**
+>
+> Streams generated in the MP3 audio encoding process cannot be directly decoded through the MP3 audio decoding process. The following process is recommended: PCM stream -> MP3 audio encoding -> muxing -> demuxing -> MP3 audio decoding.
 
 ## How to Develop
 
-Read [Audio Codec](../../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
+Read [AudioCodec](../../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
 
 Refer to the code snippet below to complete the entire audio decoding process, including creating a decoder, setting decoding parameters (such as the sampling rate, bit rate, and number of audio channels), and starting, refreshing, resetting, and destroying the decoder.
 
@@ -38,9 +41,13 @@ During application development, you must call the APIs in the defined sequence. 
 
 The figure below shows the call relationship of audio decoding.
 
+- The dotted line indicates an optional operation.
+
+- The solid line indicates a mandatory operation.
+
 ![Call relationship of audio decoding](figures/audio-codec.png)
 
-### Linking the Dynamic Link Library in the CMake Script
+### Linking the Dynamic Libraries in the CMake Script
 
 ```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -73,7 +80,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
     ```cpp
-    // Specify whether encoding is used. The value **false** means decoding.
+    // Specify whether encoding is used. The value false means decoding.
     bool isEncoder = false;
     // Create a decoder by MIME type.
     OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, isEncoder);
@@ -154,9 +161,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-4. (Optional) Call **OH_AudioCodec_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
+4. (Optional) Call **OH_AudioCodec_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Media Data Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
 
-    Add the header file.
+    Add the header files.
 
     ```c++
     #include <multimedia/drm_framework/native_mediakeysystem.h>
@@ -164,7 +171,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    Link the dynamic link library in the cmake script.
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -205,16 +212,28 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    |                              |                             Description                            |                AAC                 | FLAC|               Vorbis               | MPEG |       G711mu        |          AMR (AMR-NB and AMR-WB)        |          APE                      |
    | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :-------------------------------: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            Sampling rate.                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |                Mandatory               |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            Number of audio channels.                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |                Mandatory               |
-   | OH_MD_KEY_MAX_INPUT_SIZE     |                         Maximum input size.                        |                Optional               | Optional|                Optional                | Optional|        Optional          |               Optional               |                Optional               |
-   | OH_MD_KEY_AAC_IS_ADTS        |                           ADTS or not.                          |        Optional. The default value is 1 latm.        |  -   |                 -                  |  -   |         -             |               -                  |                 -                  |
-   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        Output audio stream format.                       | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|   -   | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|  Optional| Optional (default: SAMPLE_S16LE)| Optional (SAMPLE_S16LE, SAMPLE_F32LE)|               Optional               |
+   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            Sampling rate                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |                Mandatory               |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            Number of audio channels                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |                Mandatory               |
+   | OH_MD_KEY_MAX_INPUT_SIZE     |                         Maximum input size                        |                Optional               | Optional|                Optional                | Optional|        Optional          |               Optional               |                Optional               |
+   | OH_MD_KEY_AAC_IS_ADTS        |                           ADTS or not                          |        Optional (Default value: 1 latm)        |  -   |                 -                  |  -   |         -             |               -                  |                 -                  |
+   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        Output audio stream format                       | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|   -   | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|  Optional| Optional (default: SAMPLE_S16LE)| Optional (SAMPLE_S16LE, SAMPLE_F32LE)|               Optional               |
    | MD_KEY_BITRATE               |                             Optional                            |                Optional               | Optional|                Optional               | Optional|         Optional          |              Optional                |               Optional               |
    | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                  |                -                  |
    | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                 |                -                  |
    | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header stitching|                 -                  |      |   Mandatory (Either this parameter or the combination of **MD_KEY_IDENTIFICATION_HEADER** and **MD_KEY_SETUP_HEADER** must be selected.)   |  -   |           -            |                -                 |                -                  |
    
+   The sample below lists the value range of each audio decoding type.
+   | Audio Decoding Type|                                          Sampling Rate (Hz)                                             | Audio Channel Count|
+   | ----------- | ----------------------------------------------------------------------------------------------  | :----: |
+   | AAC         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000                |  1–8  |
+   | FLAC       | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 192000        |  1–8  |
+   | Vorbis      | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000|  1–8  |
+   | MPEG (MP3)   | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000                                    |  1–2  |
+   | G711mu      | 8000                                                                                            |   1    |
+   | AMR (amrnb)  | 8000                                                                                            |   1    |
+   | AMR (amrwb)  | 16000                                                                                           |   1    |
+   | APE         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000|  1–2  |
+
    ```cpp
    // Set the decoding resolution.
    int32_t ret;
@@ -276,7 +295,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    Link the dynamic link library in the cmake script.
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)

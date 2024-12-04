@@ -1,6 +1,6 @@
 # Styled String
 
-Styled strings are string objects that facilitate the flexible application of text styles.
+Styled strings are string objects that facilitate the flexible use of text styles. They can be bound to the **Text** component using the [setStyledString](./ts-basic-components-text.md#setstyledstring12) API in **TextController**, and to the **RichEditor** component using the [setStyledString](ts-basic-components-richeditor.md#setstyledstring12) API in **RichEditorStyledStringController**.
 
 >  **NOTE**
 >
@@ -11,7 +11,7 @@ Styled strings are string objects that facilitate the flexible application of te
 ## Rules of Use
 
 * If a styled string conflicts with the current style settings in a component, the style set in the styled string takes effect.
-* If a styled string conflicts with the child components in [Text](./ts-basic-components-text.md), the style set in the styled string is applied to the **Text** component, and style settings of the child components, including [\<Span>](./ts-basic-components-span.md), are ignored.
+* If a styled string conflicts with the child components in [Text](./ts-basic-components-text.md), the style set in the styled string is applied to the **Text** component, and style settings of the child components, including [Span](./ts-basic-components-span.md), are ignored.
 * @State is not supported.
 
 ## StyledString

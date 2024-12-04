@@ -25,11 +25,11 @@ Beta is a branch pulled from Master in the OpenHarmony community irregularly. Th
 
 A tag version is a stable and reliable version created by applying patches to an LTS or a Release branch, with the purpose of fixing individual bugs, security vulnerabilities, and other necessary adaptation modifications.
 
-The release versions are available in the [**Release Notes** folder](../).
+The release versions are available in the [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes) folder.
 
 ## Lifecycle Policies
 
-The OpenHarmony community provides maintenance and technical support for Release and LTS branches based on the OpenHarmony Version Lifecycle Management. The OpenHarmony community provides maintenance and technical support based on the *OpenHarmony Version Lifecycle Management*.
+The OpenHarmony community provides maintenance and technical support for Release and LTS branches based on [OpenHarmony Version Lifecycle Management](https://gitee.com/openharmony/release-management/blob/master/openHarmony-version-lifecycle-management.md).
 
 ### Maintenance Schedule
 
@@ -41,6 +41,8 @@ The following table lists the maintenance schedule of the LTS and Release branch
 | 3.0-LTS       | LTS      | 2021-09-30| 2023-09-30   | 2025-03-30|
 | 3.1-Release   | Release  | 2022-03-30| 2023-03-30   | 2024-03-30|
 | 3.2-Release   | Release  | 2023-4-9 | 2024-4-9    | 2025-4-9 |
+| 4.0-Release   | Release  | 2023-10-26 | 2024-10-26    | 2025-10-26 |
+| 4.1-Release   | Release  | 2024-03-30| 2025-03-30   | 2026-3-30 |
 
 Run the following commands to download the source code of each branch:
 
@@ -50,9 +52,13 @@ Run the following commands to download the source code of each branch:
 | 3.0-LTS       | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
 | 3.1-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
 | 3.2-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.2-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
+| 4.0-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-4.0-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-4.0-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
+| 4.1-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-4.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-4.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
 
 
 
 ### Version Plan
 
 The OpenHarmony Release SIG periodically releases, updates, and maintains branch version plans. For details, visit [OpenHarmony-SIG-RoadMap](https://gitee.com/openharmony-sig/oh-inner-release-management/blob/master/OpenHarmony-SIG-RoadMap.md).
+
+ <!--no_check--> 

@@ -99,9 +99,9 @@ struct LengthMetricsUnitDemo {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------- | ------------------------------- | ------------------ | ---------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
 | [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度。<br/>默认值：1(px)<br/>默认单位：vp <br/> linewidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。               |
-| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
 | [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
 | [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
 | [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。 |
@@ -1312,6 +1312,8 @@ stroke(): void
 
   ![zh-cn_image_0000001238832389](figures/zh-cn_image_0000001238832389.png)
 
+### stroke
+
 stroke(path: Path2D): void
 
 根据指定的路径，进行边框绘制操作。
@@ -1781,7 +1783,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
-依据圆弧经过的点和圆弧半径创建圆弧路径。
+依据给定的控制点和圆弧半径创建圆弧路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1793,10 +1795,10 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | --------------- |
-| x1     | number | 是    | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp。 |
-| y1     | number | 是    | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp。 |
-| x2     | number | 是    | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp。 |
-| y2     | number | 是    | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp。 |
+| x1     | number | 是    | 第一个控制点的x坐标值。<br>默认单位：vp。 |
+| y1     | number | 是    | 第一个控制点的y坐标值。<br>默认单位：vp。 |
+| x2     | number | 是    | 第二个控制点的x坐标值。<br>默认单位：vp。 |
+| y2     | number | 是    | 第二个控制点的y坐标值。<br>默认单位：vp。 |
 | radius | number | 是    | 圆弧的圆半径值。<br>默认单位：vp。 |
 
 **示例：**
@@ -1816,9 +1818,35 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.moveTo(100, 20)
-            this.context.arcTo(150, 20, 150, 70, 50)
+            // 切线
+            this.context.beginPath()
+            this.context.strokeStyle = '#808080'
+            this.context.lineWidth = 1.5;
+            this.context.moveTo(360, 20);
+            this.context.lineTo(360, 170);
+            this.context.lineTo(110, 170);
+            this.context.stroke();
+            
+            // 圆弧
+            this.context.beginPath()
+            this.context.strokeStyle = '#000000'
+            this.context.lineWidth = 3;
+            this.context.moveTo(360, 20)
+            this.context.arcTo(360, 170, 110, 170, 150)
             this.context.stroke()
+            
+            // 起始点
+            this.context.beginPath();
+            this.context.fillStyle = '#00ff00';
+            this.context.arc(360, 20, 4, 0, 2 * Math.PI);
+            this.context.fill();
+            
+            // 控制点
+            this.context.beginPath();
+            this.context.fillStyle = '#ff0000';
+            this.context.arc(360, 170, 4, 0, 2 * Math.PI);
+            this.context.arc(110, 170, 4, 0, 2 * Math.PI);
+            this.context.fill();
           })
       }
       .width('100%')
@@ -1828,6 +1856,10 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   ```
 
   ![zh-cn_image_0000001238712419](figures/zh-cn_image_0000001238712419.png)
+
+  > 此示例中，arcTo()创建的圆弧为黑色，圆弧的两条切线为灰色。控制点为红色，起始点为绿色。
+  >
+  > 可以想象两条切线：一条切线从起始点到第一个控制点，另一条切线从第一个控制点到第二个控制点。arcTo()在这两条切线间创建一个圆弧，并使圆弧与这两条切线都相切。
 
 
 ### ellipse
@@ -2043,7 +2075,7 @@ struct Fill {
 }
 ```
 
- ![zh-cn_image_000000127777774](figures/zh-cn_image_000000127777774.png)
+ ![zh-cn_image_000000127777774](figures/zh-cn_image_000000127777774.jpg)
 
 
 ### clip
@@ -2150,7 +2182,7 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
   }
   ```
 
-  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
+  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.jpg)
 
 
 ### reset<sup>12+</sup>
@@ -2749,10 +2781,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
-| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
-| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。  |
-| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。  |
-| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。  |
+| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。 |
+| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
+| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
+| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。|
 | dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp。 |
@@ -3273,6 +3305,12 @@ restore(): void
 
 对保存的绘图上下文进行恢复。
 
+> **说明：**
+>
+> 当restore()次数未超出save()次数时，从栈中弹出存储的绘制状态并恢复CanvasRenderingContext2D对象的属性、剪切路径和变换矩阵的值。</br>
+> 当restore()次数超出save()次数时，此方法不做任何改变。</br>
+> 当没有保存状态时，此方法不做任何改变。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -3552,6 +3590,16 @@ on(type: 'onAttach', callback: () => void): void
 | type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
 | callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调 |
 
+> **说明：**
+>
+> CanvasRenderingContext2D对象在同一时间只能与一个Canvas组件绑定。</br>
+> 当CanvasRenderingContext2D对象和Canvas组件发生绑定时，会触发'onAttach'回调，表示可以获取到[canvas](#canvas13)。</br>
+> 避免在'onAttach'中执行绘制方法，应保证Canvas组件已经'[onReady](ts-components-canvas-canvas.md#事件)'再进行绘制。</br>
+> 触发'onAttach'回调的一般场景：</br>
+> 1、Canvas组件创建时绑定CanvasRenderingContext2D对象;</br>
+> 2、CanvasRenderingContext2D对象新绑定一个Canvas组件时。</br>
+  
+
 ### on('onDetach')<sup>13+</sup>
 
 on(type: 'onDetach', callback: () => void): void
@@ -3568,6 +3616,13 @@ on(type: 'onDetach', callback: () => void): void
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
 | callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调 |
+
+> **说明：**
+>
+> 当CanvasRenderingContext2D对象和Canvas组件解除绑定时，会触发'onDetach'回调，表示应停止绘制行为。</br>
+> 触发'onDetach'回调的一般场景：</br>
+> 1、Canvas组件销毁时解除绑定CanvasRenderingContext2D对象;</br>
+> 2、CanvasRenderingContext2D对象新绑定一个Canvas组件，会先解除已有的绑定。</br>
 
 ### off('onAttach')<sup>13+</sup>
 
@@ -3908,8 +3963,8 @@ struct ImageAnalyzerExample {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---------- | -------------- | ------ | ---------------- | ------------------------ |
-| width                    | number | 是 | 否 | 只读属性，字符串的宽度。 |
-| height                   | number | 是 | 否 | 只读属性，字符串的高度。 |
+| width                    | number | 是 | 否 | 只读属性，文本方块的宽度。 |
+| height                   | number | 是 | 否 | 只读属性，文本方块的高度。 |
 | actualBoundingBoxAscent  | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界顶部的距离。 |
 | actualBoundingBoxDescent | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界底部的距离。 |
 | actualBoundingBoxLeft    | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界左侧的距离。 |

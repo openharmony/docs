@@ -42,7 +42,7 @@
       - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
       - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
       - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
-      - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
+      - [Native与sendable ArkTS对象绑定](use-sendable-napi.md)
       - [使用Node-API接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
       - [使用Node-API接口在主线程中进行模块加载](use-napi-load-module.md)
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
@@ -62,6 +62,7 @@
       - [使用JSVM-API接口进行WebAssembly模块相关开发](use-jsvm-about-wasm.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+      - [JSVM-API Tracing](use-jsvm-about-trace.md)
       - JSVM-API调优&高性能使用示例
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)

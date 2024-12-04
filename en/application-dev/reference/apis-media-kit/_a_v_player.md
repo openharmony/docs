@@ -96,7 +96,7 @@ The AVPlayer module provides APIs related to media playback.
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | Sets a callback to return the media key system information for an AVPlayer.| 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Obtains the media key system information to create a media key session.| 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](../apis-drm-kit/_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | Sets the decryption information.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetOnInfoCallback](#oh_avplayer_setoninfocallback) (OH_AVPlayer \*player, [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) callback, void \*userData) | Sets a callback for the event indicating that the AVPlayer receives a message.. | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetOnInfoCallback](#oh_avplayer_setoninfocallback) (OH_AVPlayer \*player, [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) callback, void \*userData) | Sets a callback for the event indicating that the AVPlayer receives a message. | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetOnErrorCallback](#oh_avplayer_setonerrorcallback) (OH_AVPlayer \*player, [OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback) callback, void \*userData) | Sets a callback for the event indicating that an error occurs in the AVPlayer. | 
 
 
@@ -271,7 +271,7 @@ Defines the callback when an error occurs in the AVPlayer. This type is availabl
 
 **Deprecated from**: 12
 
-**Substitute**: [OH_AVPlayerOnError](#oh_avplayeronerror)
+**Substitute**: [OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback)
 
 **Parameters**
 
@@ -387,7 +387,7 @@ typedef void(* Player_MediaKeySystemInfoCallback) (OH_AVPlayer *player, DRM_Medi
 
 **Description**
 
-Defines a callback invoked when media key system information of the AVPlayer is updated.
+Defines the callback invoked when media key system information of the AVPlayer is updated.
 
 **Since**: 12
 
@@ -1554,6 +1554,7 @@ OH_AVErrCode OH_AVPlayer_SetVideoSurface (OH_AVPlayer *player, OHNativeWindow *w
 **Description**
 
 Sets a playback window.
+This function must be called after **SetSource** and before **Prepare**.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 

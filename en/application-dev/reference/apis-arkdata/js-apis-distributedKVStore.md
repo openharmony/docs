@@ -457,7 +457,7 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 > **NOTE**
 >
-> If the database file is corrupted, the auto rebuild logic will be triggered and the newly created distributed KV store instance will be returned. The database file corruption may be caused by abnormal behaviors, such as the operation for clearing data or a failure in querying data. Back up data in a timely manner to prevent data loss.
+> If the database file is corrupted, the auto rebuild logic will be triggered and the newly created distributed KV store instance will be returned. The database file corruption may be caused by abnormal behaviors, such as the operation for clearing data or a failure in querying data. Back up data in a timely manner to prevent data loss. 
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -6391,7 +6391,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
 | keyPrefix | string                                                       | Yes  | Key prefix to match. It cannot contain '^'; otherwise, the predicate becomes invalid and all data in the RDB store will be returned.|
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -6457,7 +6457,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 | Type                                                  | Description                                                        |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 

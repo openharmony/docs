@@ -1,10 +1,10 @@
 # Non-anonymous Key Attestation (ArkTS)
 
-The caller must have the ohos.permission.ATTEST_KEY permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Using Permissions](../AccessToken/determine-application-mode.md).
+The caller must have the [ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key) permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Requesting Permissions](../AccessToken/determine-application-mode.md).
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
 2. Initializes a parameter set.
 

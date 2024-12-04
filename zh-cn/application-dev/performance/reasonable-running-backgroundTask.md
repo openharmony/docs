@@ -1,6 +1,5 @@
-﻿# 合理运行后台任务
-
-## 简介
+# 合理运行后台任务
+## 简介 
 
 设备返回主界面、锁屏、应用切换等操作会使应用退至后台。为了降低设备耗电速度、保障用户使用流畅度，系统会对退至后台的应用进行管控，包括进程挂起和进程终止。为了保障后台音乐播放、日历提醒等功能的正常使用，系统提供了受规范约束的后台任务，扩展应用在后台的运行时间。  
 本文将介绍各类后台任务的基本概念和适用场景，并且通过对短时任务和长时任务两个场景的性能分析说明合理运行后台任务的必要性。
@@ -15,7 +14,7 @@
 
 下面代码在申请短时任务后执行了一个耗时计算任务。源代码可访问[短时任务示例程序](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/backgroundTask/src/main/ets/view/TransientTaskView.ets)获取。
 
-```javascript
+```typescript
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import { BusinessError } from '@ohos.base';
 import util from '@ohos.util';
@@ -120,7 +119,7 @@ struct Index {
 
 在后台运行短时任务，会占用系统 CPU，在后台执行过多的短时任务就有可能会导致前台的应用卡顿，因此建议非必要情况不使用短时任务，使用时也避免同时申请过多的短时任务。
 
-更多短时任务的使用限制和注意事项可以参考[短时任务约束与限制](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/task-management/transient-task.md/#%E7%BA%A6%E6%9D%9F%E4%B8%8E%E9%99%90%E5%88%B6)。
+更多短时任务的使用限制和注意事项可以参考[短时任务约束与限制](../task-management/transient-task.md#约束与限制)。
 
 ## 长时任务
 
@@ -153,16 +152,16 @@ struct Index {
 ```javascript
 {
   "module": {
-    ...
+    // ...
     "abilities": [
       {
         "name": "EntryAbility",
-        ...
+        // 后台模式类型
         "backgroundModes": [
           "location"
         ]
       }
-    ],
+    ]
   }
 }
 ```

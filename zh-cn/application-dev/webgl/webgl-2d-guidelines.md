@@ -45,7 +45,7 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 | ------------ | -------------------- | ------------------------------------------------------------ |
 | GLenum     | unsigned long     | 用于枚举。        |
 | GLboolean  | boolean            | 纹理true或者false。 |
-| GLbitfield | unsigned long      | 无符号整数，可以包含多个位标志。每个位标志都代表一个特定的选项 |
+| GLbitfield | unsigned long      | 无符号整数，可以包含多个位标志。每个位标志都代表一个特定的选项。|
 | GLbyte     | byte               | 纹理八位（一个字节），2的补码表示的有符号整数。                |
 | GLshort    | short              | 16位2的补码表示的有符号整数。                             |
 | GLint      | long               | 32位2的补码表示的有符号整数。                           |
@@ -115,7 +115,11 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 
    顶点着色器需要对顶点坐标进行必要的转换，在每个顶点基础上进行其他调整或计算，然后通过将其保存在由GLSL提供的特殊变量中来返回变换后的顶点。
 
+   在矩阵计算之前需要先引入gl-matrix开源工具库，可以从[gl-matrix官网](https://glmatrix.net/)下载，也可以使用npm命令下载：
+   `npm install gl-matrix`
    ```js
+   // 引入mat4
+   import { mat4 } from 'gl-matrix'
    const vsSource = `
        attribute vec4 aVertexPosition;
        uniform mat4 uModelViewMatrix;

@@ -2020,6 +2020,192 @@ function enableMirror(videoOutput: camera.VideoOutput): void {
 }
 ```
 
+## MetadataOutput
+
+metadata流。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### addMetadataObjectTypes<sup>13+</sup> 
+
+addMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
+
+新增需要上报的检测对象类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名                  | 类型                                               | 必填 | 说明                          |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function addMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.addMetadataObjectTypes(types);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`addMetadataObjectTypes error. error code: ${err.code}`);
+  }
+}
+```
+
+### removeMetadataObjectTypes<sup>13+</sup> 
+
+removeMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
+
+删除需要上报的检测对象类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名                  | 类型                                               | 必填 | 说明                          |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.                                   |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.removeMetadataObjectTypes(types);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`removeMetadataObjectTypes error. error code: ${err.code}`);
+  }
+}
+```
+
+## MetadataObjectType
+
+枚举，metadata元数据检测类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值   | 说明              |
+| -------------------------- | ---- | ----------------- |
+| HUMAN_BODY<sup>13+</sup>                 | 1    | 用于检测人体的metadata类型。 |
+| CAT_FACE<sup>13+</sup>                   | 2    | 用于检测猫脸的metadata类型。 |
+| CAT_BODY<sup>13+</sup>                   | 3    | 用于检测猫的身体的metadata类型。 |
+| DOG_FACE<sup>13+</sup>                   | 4    | 用于检测狗脸的metadata类型。 |
+| DOG_BODY<sup>13+</sup>                   | 5    | 用于检测狗的身体的metadata类型。 |
+| SALIENT_DETECTION<sup>13+</sup>          | 6    | 用于显著性检测。 |
+
+## Emotion<sup>13+</sup>
+枚举，人脸检测信息中的情绪类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值   | 说明              |
+| -------------------------- | ---- | ----------------- |
+| NEUTRAL                 | 0    | 平静。 |
+| SADNESS                   | 1    | 悲伤。 |
+| SMILE                   | 2    | 微笑。 |
+| SURPRISE                   | 3    | 惊讶。 |
+
+## MetadataObject
+
+相机检测元数据信息的基础类型，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称         | 类型                                        | 只读 | 可选 |说明                |
+| -----------  | ------------------------------------------- | ---- | ---- | ----------------- |
+| objectId<sup>13+</sup>     | number                                      |  是  |  否  | metadataObject Id序号。|
+| confidence<sup>13+</sup>   | number                                      |  是  |  否  | 检测置信度，取值范围[0,1]。|
+
+## MetadataFaceObject<sup>13+</sup>
+
+相机检测到的人脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                    | 类型                              | 只读 | 可选 |说明                |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                             |  是  |  否  | 左眼区域框|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                            |  是  |  否  | 右眼区域框。|
+| emotion                | [Emotion](#emotion13)             |  是  |  否  | 检测到的情绪类型。|
+| emotionConfidence      | number                            |  是  |  否  | 情绪检测置信度，取值范围[0,1]。|
+| pitchAngle             | number                            |  是  |  否  | 俯仰角度，取值范围[-90, 90]，以向下为正。|
+| yawAngle               | number                            |  是  |  否  | 左右旋转角度，取值范围[-90, 90]，以向右为正。|
+| rollAngle              | number                            |  是  |  否  | 平面内旋转角度，取值范围[-180, 180]，以顺时针方向为正。|
+
+## MetadataHumanBodyObject<sup>13+</sup>
+
+相机检测到的人体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## MetadataCatFaceObject<sup>13+</sup>
+
+相机检测到的猫脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                    | 类型                              | 只读 | 可选 |说明                |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 左眼区域框。|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 右眼区域框。|
+
+## MetadataCatBodyObject<sup>13+</sup>
+
+相机检测到的猫的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## MetadataDogFaceObject<sup>13+</sup>
+
+相机检测到的狗脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                    | 类型                              | 只读 | 可选 |说明                |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 左眼区域框。|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 右眼区域框。|
+
+## MetadataDogBodyObject<sup>13+</sup>
+
+相机检测到的狗的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## MetadataSalientDetectionObject<sup>13+</sup>
+
+相机检测到的显著性元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
 ## PortraitEffect
 
 人像效果类型。
@@ -2338,15 +2524,31 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 }
 ```
 
+## TripodStatus<sup>13+</sup>
+
+枚举，脚架状态枚举。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称       | 值   | 说明                                  |
+|----------|-----|-------------------------------------|
+| INVALID  | 0   | 错误状态/默认未检测到脚架状态。**系统接口：** 此接口为系统接口。 |
+| ACTIVE   | 1   | 脚架活动状态。**系统接口：** 此接口为系统接口。          |
+| ENTERING | 2   | 进入脚架稳定状态。**系统接口：** 此接口为系统接口。        |
+| EXITING  | 3   | 退出脚架稳定状态。**系统接口：** 此接口为系统接口。          |
+
+
 ## SceneFeatureType<sup>12+</sup>
 
 枚举，场景特性枚举。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                     | 值        | 说明         |
-| ----------------------- | --------- | ------------ |
-| MOON_CAPTURE_BOOST       | 0      | 月亮场景。**系统接口：** 此接口为系统接口。            |
+| 名称                            | 值   | 说明                        |
+|-------------------------------|-----|---------------------------|
+| MOON_CAPTURE_BOOST            | 0   | 月亮场景。**系统接口：** 此接口为系统接口。  |
+| TRIPOD_DETECTION<sup>13+</sup> | 1   | 使用脚架拍摄的场景。**系统接口：** 此接口为系统接口。  |
+| LOW_LIGHT_BOOST<sup>13+</sup> | 1   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 
@@ -2358,6 +2560,18 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 | -------- | ---------- | -------- | -------- | ---------- |
 | featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    是    | 特性类型。 |
 | detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景。 |
+
+## TripodDetectionResult<sup>13+</sup>
+
+TripodDetectionResult extends [SceneFeatureDetectionResult](#scenefeaturedetectionresult12)
+
+脚架检测信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型                              |   只读   |   必填   | 说明      |
+| -------- |---------------------------------| -------- | -------- |---------|
+| tripodStatus | [TripodStatus](#tripodstatus13) |   是     |    是    | 脚架状态信息。 |
 
 ## SceneDetection<sup>12+</sup>
 
@@ -3527,6 +3741,83 @@ function unregisterFeatureDetectionStatus(photoSession: camera.PhotoSession, fea
 }
 ```
 
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+监听LCD闪光灯状态变化。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                                       |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | 是   | 监听事件，固定为'lcdFlashStatus'，session创建成功可监听。 |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | 是   | 回调函数，用于获取当前lcd flash状态。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                      |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
+  photoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>12+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+注销监听LCD闪光灯状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                                                               |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | 是   | 监听事件，固定为'lcdFlashStatus'，session创建成功可取消监听。                       |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | 否   | 回调函数，可选，有就是匹配on('lcdFlashStatus') callback（callback对象不可是匿名函数）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                      |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**示例：**
+
+```ts
+function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
+  photoSession.off('lcdFlashStatus');
+}
+```
+
 ## VideoSessionForSys<sup>11+</sup>
 
 VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
@@ -3616,6 +3907,83 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 ```ts
 function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
   videoSession.off('macroStatusChanged');
+}
+```
+
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+监听LCD闪光灯状态变化。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                                       |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | 是   | 监听事件，固定为'lcdFlashStatus'，session创建成功可监听。 |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | 是   | 回调函数，用于获取当前lcd flash状态。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                      |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
+  videoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>12+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+注销监听LCD闪光灯状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                                                               |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | 是   | 监听事件，固定为'lcdFlashStatus'，session创建成功可取消监听。                       |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | 否   | 回调函数，可选，有就是匹配on('lcdFlashStatus') callback（callback对象不可是匿名函数）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                      |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**示例：**
+
+```ts
+function unregisterLcdFlashStatus(videoSession: camera.VideoSession): void {
+  videoSession.off('lcdFlashStatus');
 }
 ```
 
@@ -3798,6 +4166,83 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 ```ts
 function unregisterSmoothZoomInfo(portraitPhotoSession: camera.PortraitPhotoSession): void {
   portraitPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+监听LCD闪光灯状态变化。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                                       |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | 是   | 监听事件，固定为'lcdFlashStatus'，session创建成功可监听。 |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | 是   | 回调函数，用于获取当前lcd flash状态。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                      |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSession): void {
+  portraitPhotoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>12+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+注销监听LCD闪光灯状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                                                               |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | 是   | 监听事件，固定为'lcdFlashStatus'，session创建成功可取消监听。                       |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | 否   | 回调函数，可选，有就是匹配on('lcdFlashStatus') callback（callback对象不可是匿名函数）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                      |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**示例：**
+
+```ts
+function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSession): void {
+  portraitPhotoSession.off('lcdFlashStatus');
 }
 ```
 
@@ -7200,6 +7645,52 @@ isLcdFlashSupported(): boolean
 ```ts
 function isLcdFlashSupported(nightPhotoSession: camera.NightPhotoSession): boolean {
   return nightPhotoSession.isLcdFlashSupported();
+}
+```
+
+## Flash<sup>11+</sup>
+
+Flash extends [FlashQuery](js-apis-camera.md#flashquery12)
+
+闪光灯类，对设备闪光灯操作。
+
+### enableLcdFlash<sup>13+</sup>
+
+enableLcdFlash(enabled: boolean): void
+
+使能或去使能LCD闪光灯。
+
+进行设置之前，需要先检查：设备是否支持LCD闪光灯，可使用方法[isLcdFlashSupported](#islcdflashsupported12)。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名       | 类型                     | 必填 | 说明                                               |
+| --------- | ----------------------- | ---- |--------------------------------------------------|
+| enabled | boolean | 是   | 使能或去使能LCD闪光灯。传参为null或者undefined，作为0处理，去使能LCD闪光灯。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableLcdFlash(session: camera.PhotoSessionForSys | camera.VideoSessionForSys | camera.NightPhotoSession): void {
+  try {
+    session.enableLcdFlash(true);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setFlashMode call failed. error code: ${err.code}`);
+  }
 }
 ```
 

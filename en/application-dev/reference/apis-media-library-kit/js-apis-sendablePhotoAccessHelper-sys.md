@@ -24,7 +24,7 @@ Creates an asset with the specified file name. This API uses a promise to return
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -36,13 +36,13 @@ The file name must comply with the following specifications:
 
 | Name     | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | -------------------------- |
-| displayName | string | Yes  | File name of the asset to create. |
+| displayName | string | Yes  | File name of the asset to create.|
 
 **Return value**
 
-| Type                                     | Description                               |
-| ---------------------------------------- | ----------------------------------------- |
-| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset. |
+| Type                                    | Description                                   |
+| ---------------------------------------- | --------------------------------------- |
+| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset.|
 
 **Error codes**
 
@@ -82,7 +82,7 @@ Creates an asset with the specified file name and options. This API uses a promi
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -94,14 +94,14 @@ The file name must comply with the following specifications:
 
 | Name     | Type                                                        | Mandatory| Description                      |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| displayName | string                                                       | Yes  | File name of the asset to create. |
-| options     | [PhotoCreateOptions](js-apis-photoAccessHelper-sys.md#photocreateoptions) | Yes  | Options for creating the asset.  |
+| displayName | string                                                       | Yes  | File name of the asset to create.|
+| options     | [PhotoCreateOptions](js-apis-photoAccessHelper-sys.md#photocreateoptions) | Yes  | Options for creating the asset.    |
 
 **Return value**
 
-| Type                                     | Description                               |
-| ---------------------------------------- | ----------------------------------------- |
-| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset. |
+| Type                                    | Description                                   |
+| ---------------------------------------- | --------------------------------------- |
+| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created asset.|
 
 **Error codes**
 
@@ -245,7 +245,7 @@ Opens the source file to obtain the file descriptor (FD). This API uses a promis
 
 | Type                 | Description                       |
 | --------------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the FD obtained. |
+| Promise&lt;number&gt; | Promise used to return the FD obtained.|
 
 **Error codes**
 
@@ -339,6 +339,62 @@ async function example() {
     fetchResult.close();
   } catch (err) {
     console.error(`getAnalysisDataDemofailed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getFaceId<sup>13+</sup>
+
+getFaceId(): Promise\<string>
+
+Obtains the face identifier on the cover of a portrait album or group photo album.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ\_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type               | Description                               |
+| :------------------ | :---------------------------------- |
+| Promise&lt;string&gt; | Promise used to return **tag_id**  of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| :------- | :----------------------------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 14000011 | Internal system error                                        |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('getFaceIdDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("user_display_level", 1);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult =
+      await phAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.SMART,
+        sendablePhotoAccessHelper.AlbumSubtype.PORTRAIT,
+        fetchOptions);
+    let album = await fetchResult?.getFirstObject();
+    let faceId = await album?.getFaceId();
+    console.info(`getFaceId successfully, faceId: ${faceId}`);
+    fetchResult.close();
+  } catch (err) {
+    console.error(`getFaceId failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```

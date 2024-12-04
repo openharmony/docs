@@ -50,7 +50,7 @@ Progress(options: ProgressOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 描述                                       |
+| 名称                     | 说明                                     |
 | ---------------------- | ---------------------------------------- |
 | Linear                 | 线性样式。从API version9开始，高度大于宽度的时候自适应垂直显示。   |
 | Ring      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
@@ -66,7 +66,7 @@ Progress(options: ProgressOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 描述                                       |
+| 名称        | 说明                                     |
 | --------- | ---------------------------------------- |
 | Linear    | 线性样式。                                    |
 | Ring<sup>8+</sup>      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
@@ -74,7 +74,7 @@ Progress(options: ProgressOptions)
 | ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
 | Capsule<sup>8+</sup>   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。高度大于宽度的时候自适应垂直显示。 |
 
-##  ProgressStyleMap说明 
+##  ProgressStyleMap对象说明 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -132,17 +132,13 @@ color(value: ResourceColor | LinearGradient)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 进度条前景色。<br/>默认值：<br/>- Capsule：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10：'\#33006cde'<br/>&nbsp;&nbsp;&nbsp;API version 11及以上：'\#33007dff'<br/>- Ring：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10及以上：起始端：'\#ff86c1ff'，结束端：'\#ff254ff7'<br/>- 其他样式：'\#ff007dff' |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 进度条前景色。<br/>默认值：<br/>- Capsule：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10：'\#33006cde'<br/>&nbsp;&nbsp;&nbsp;API version 11及以上：'\#33007dff'<br/>- Ring：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10及以上：起始端：'\#ff86c1ff'，结束端：'\#ff254ff7'<br/>- 其他样式：'\#ff007dff' |
 
 ### style<sup>8+</sup>
 
 style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| LinearStyleOptions \| ScaleRingStyleOptions \| EclipseStyleOptions)
 
 设置组件的样式。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -171,6 +167,8 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 设置隐私敏感。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -301,7 +299,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                    | 描述             |
+| 名称                    | 说明      |
 | ----------------------- | ---------------- |
 | LOADING  | 加载中。 |
 | PROGRESSING | 进度更新中。 |
@@ -312,9 +310,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## 示例
 
-### 示例1
+### 示例1（设置进度条的类型）
 
-各进度条基础属性效果。
+该示例通过type属性，实现了设置进度条类型的功能。
 
 ```ts
 // xxx.ets
@@ -376,9 +374,9 @@ struct ProgressExample {
 
 ![progress](figures/arkts-progress.png)
 
-### 示例2
+### 示例2（设置环形进度条属性）
 
-环形进度条视觉属性。
+该示例通过style接口的strokeWidth、shadow属性，实现了环形进度条视觉属性设置功能。
 
 ```ts
 // xxx.ets
@@ -404,17 +402,15 @@ struct ProgressExample {
 ```
 ![ringProgressStyleEffect](figures/arkts-ringProgressStyleEffect.png)
 
-### 示例3
+### 示例3（设置环形进度条动画）
 
-环形进度条动效。
+该示例通过style接口的status、enableScanEffect属性，实现了环形进度条动效的开关功能。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct ProgressExample {
-  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
-                                                              { color: Color.Orange, offset: 1.0 }])
   build() {
     Column({ space: 15 }) {
       Text('Loading Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -432,9 +428,9 @@ struct ProgressExample {
 ```
 ![ringProgressAnimation](figures/arkts-ringProgressAnimation.gif)
 
-### 示例4
+### 示例4（设置胶囊形进度条属性）
 
-胶囊形进度条视觉属性。
+该示例通过style接口的borderColor、borderWidth、content、font、fontColor、enableScanEffect、showDefaultPercentage属性，实现了胶囊形进度条视觉属性设置功能。
 
 ```ts
 // xxx.ets
@@ -456,9 +452,9 @@ struct ProgressExample {
 ```
 ![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
 
-### 示例5
+### 示例5（设置进度平滑动效）
 
-进度平滑动效。
+该示例通过style接口的enableSmoothEffect属性，实现了进度平滑动效开关的功能。
 
 ```ts
 // xxx.ets
@@ -494,9 +490,9 @@ struct Index {
 ```
 ![progressSmoothEffect](figures/arkts-progressSmoothEffect.gif)
 
-### 示例6
+### 示例6（设置定制内容区）
 
-该示例实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度被填充自定义颜色。
+该示例通过contentModifier接口，实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度被填充自定义颜色。
 
 ```ts
 // xxx.ets
@@ -571,9 +567,9 @@ struct Index {
 ```
 ![progressCustom](figures/arkts-progressCustom.gif)
 
-### 示例7
+### 示例7（设置隐私隐藏）
 
-该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+该示例通过privacySensitive接口，实现了隐私隐藏效果，效果展示需要卡片框架支持。
 
 ```ts
 @Entry

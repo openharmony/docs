@@ -25,12 +25,15 @@ The **drawing_types.h** file declares the data types of the canvas, brush, pen, 
 | struct  [OH_Drawing_Point3D](_o_h___drawing___point3_d.md) | Describes a three-dimensional coordinate point.| 
 | struct  [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | Describes the image information.| 
 | struct  [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) | Describes the style of a rectangle.| 
+| struct  [OH_Drawing_String](_o_h___drawing___string.md) | Describes a string of characters encoded in UTF-16BE (big-endian mode). | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
+| typedef struct [OH_Drawing_Array](_drawing.md#oh_drawing_array) [OH_Drawing_Array](_drawing.md#oh_drawing_array) | Defines a struct for an array object, which is used to store multiple objects of the same type. | 
+| typedef struct [OH_Drawing_String](_o_h___drawing___string.md) [OH_Drawing_String](_drawing.md#oh_drawing_string) | Defines a struct for a string of characters encoded in UTF-16BE (big-endian mode). | 
 | typedef struct [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas)  [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) | Defines a struct for a rectangular canvas, on which various shapes, images, and texts can be drawn by using the brush and pen.| 
 | typedef struct [OH_Drawing_Pen](_drawing.md#oh_drawing_pen)  [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) | Defines a struct for a pen, which is used to describe the style and color to outline a shape.| 
 | typedef struct [OH_Drawing_Region](_drawing.md#oh_drawing_region)  [OH_Drawing_Region](_drawing.md#oh_drawing_region) | Defines a struct for a region, which represents a closed area on the canvas for more accurate graphic control.| 
@@ -55,6 +58,7 @@ The **drawing_types.h** file declares the data types of the canvas, brush, pen, 
 | typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | Defines a struct for an image filter, which is used to operate all color bits that make up image pixels.| 
 | typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)  [OH_Drawing_Font](_drawing.md#oh_drawing_font) | Defines a struct for a font.| 
 | typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)  [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | Defines a struct for a memory stream.| 
+| typedef struct [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) | Defines a struct for font arguments.| 
 | typedef struct [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface)  [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface) | Defines a struct for a typeface.| 
 | typedef struct [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob)  [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob) | Defines a struct for a text blob, an immutable container that holds multiple texts. Each text blob consists of glyphs and position.| 
 | typedef struct [OH_Drawing_Image](_drawing.md#oh_drawing_image)  [OH_Drawing_Image](_drawing.md#oh_drawing_image) | Defines a struct for an image that describes a two-dimensional pixel array.| 
@@ -70,7 +74,8 @@ The **drawing_types.h** file declares the data types of the canvas, brush, pen, 
 | typedef enum [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding)  [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) | Defines an enum for text encoding types.| 
 | typedef struct [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr)  [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) | Defines a struct for the font manager, which is used for font management.| 
 | typedef struct [OH_Drawing_FontStyleSet](_drawing.md#oh_drawing_fontstyleset)  [OH_Drawing_FontStyleSet](_drawing.md#oh_drawing_fontstyleset) | Defines a struct for a font style set, which is used for font style family matching.| 
-
+| typedef struct [OH_Drawing_RecordCmdUtils](_drawing.md#oh_drawing_recordcmdutils) [OH_Drawing_RecordCmdUtils](_drawing.md#oh_drawing_recordcmdutils) | Defines the recording command tool, which is used to generate recording commands.| 
+| typedef struct [OH_Drawing_RecordCmd](_drawing.md#oh_drawing_recordcmd) [OH_Drawing_RecordCmd](_drawing.md#oh_drawing_recordcmd) | Defines the recording command class, which is used to store the set of recording commands.|
 
 ### Enums
 

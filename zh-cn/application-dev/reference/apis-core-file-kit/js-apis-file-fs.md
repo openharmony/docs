@@ -1453,7 +1453,7 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 文件的应用沙箱路径或文件URI，使用URI作为入参时，仅支持打开文件。                                   |
+| path   | string | 是   | 文件的应用沙箱路径或文件URI，使用URI作为入参时，仅支持打开文件，不支持创建。                                   |
 | mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。(path为URI时不支持创建文件)<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 
 **返回值：**
@@ -1496,7 +1496,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | 是   | 文件的应用沙箱路径或URI，使用URI作为入参时，仅支持打开文件。                                   |
+| path     | string                          | 是   | 文件的应用沙箱路径或URI，使用URI作为入参时，仅支持打开文件，不支持创建。                                   |
 | mode  | number | 是   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。(path为URI时不支持创建文件)<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 | callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
@@ -1569,7 +1569,7 @@ openSync(path: string, mode?: number): File
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 打开文件的应用沙箱路径或URI，使用URI作为入参时，仅支持打开文件。                                   |
+| path   | string | 是   | 打开文件的应用沙箱路径或URI，使用URI作为入参时，仅支持打开文件，不支持创建。                                   |
 | mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。(path为URI时不支持创建文件)<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 
 **返回值：**
@@ -3834,7 +3834,7 @@ createRandomAccessFileSync(file: string | File, mode?: number,
 
 createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
-基于文件路径创建文件流，使用Promise异步返回。
+基于文件路径创建文件流，使用Promise异步返回。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3873,7 +3873,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-基于文件路径创建文件流，使用callback异步回调。
+基于文件路径创建文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3908,7 +3908,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 createStreamSync(path: string, mode: string): Stream
 
-以同步方法基于文件路径创建文件流。
+以同步方法基于文件路径创建文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3943,7 +3943,7 @@ createStreamSync(path: string, mode: string): Stream
 
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
-基于文件描述符打开文件流，使用Promise异步返回。
+基于文件描述符打开文件流，使用Promise异步返回。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3975,16 +3975,20 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
     stream.closeSync();
   }).catch((err: BusinessError) => {
     console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
+    // 文件流打开失败后，文件描述符需要手动关闭
     fs.closeSync(file);
   });
   ```
+
+> **注意：**
+>
+> 使用文件描述符创建的文件流，文件描述符的生命周期也交由文件流对象，在调用文件流的close()函数后，初始的文件描述符也会被关闭。
 
 ## fs.fdopenStream
 
 fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-基于文件描述符打开文件流，使用callback异步回调。
+基于文件描述符打开文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4009,19 +4013,24 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
+      stream.closeSync();
     } else {
       console.info("fdopen stream succeed");
+      // 文件流打开失败后，文件描述符需要手动关闭
       fs.closeSync(file);
     }
-    stream.closeSync();
   });
   ```
+
+> **注意：**
+>
+> 使用文件描述符创建的文件流，文件描述符的生命周期也交由文件流对象，在调用文件流的close()函数后，初始的文件描述符也会被关闭。
 
 ## fs.fdopenStreamSync
 
 fdopenStreamSync(fd: number, mode: string): Stream
 
-以同步方法基于文件描述符打开文件流。
+以同步方法基于文件描述符打开文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4048,9 +4057,12 @@ fdopenStreamSync(fd: number, mode: string): Stream
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let stream = fs.fdopenStreamSync(file.fd, "r+");
-  fs.closeSync(file);
   stream.closeSync();
   ```
+
+> **注意：**
+>
+> 使用文件描述符创建的文件流，文件描述符的生命周期也交由文件流对象，在调用文件流的close()函数后，初始的文件描述符也会被关闭。
 
 ## fs.createReadStream<sup>12+</sup>
 
@@ -5749,7 +5761,9 @@ open接口flags参数常量。文件打开标签。
 
 ## ReadStream<sup>12+</sup>
 
-文件可读流，需要先通过[fs.createReadStream](#fscreatereadstream12)方法来构建一个ReadStream实例。
+文件可读流，需要先通过[fs.createReadStream](#fscreatereadstream12)方法来构建一个ReadStream实例。ReadStream继承自数据流基类[stream](../apis-arkts/js-apis-stream.md#readable)。
+
+**规格**：ReadStream读到的数据为解码后的字符串，其编码格式当前仅支持'utf-8'。
 
 ### 属性
 
@@ -5816,7 +5830,7 @@ close(): void
 
 ## WriteStream<sup>12+</sup>
 
-文件可写流，需要先通过[fs.createWriteStream](#fscreatewritestream12)方法来构建一个WriteStream实例。
+文件可写流，需要先通过[fs.createWriteStream](#fscreatewritestream12)方法来构建一个WriteStream实例。WriteStream继承自数据流基类[stream](../apis-arkts/js-apis-stream.md#writable)。
 
 ### 属性
 

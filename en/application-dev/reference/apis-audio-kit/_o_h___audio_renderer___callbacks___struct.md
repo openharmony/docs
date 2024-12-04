@@ -51,6 +51,7 @@ Defines a function pointer to the callback function used to process audio playba
 | renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](_o_h_audio.md#oh_audiostreambuilder_generaterenderer).|
 | userData | Pointer to the data storage area customized by the application.|
 | error | Audio playback error result defined by [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result), which can be **AUDIOSTREAM_ERROR_INVALID_PARAM**, **AUDIOSTREAM_ERROR_ILLEGAL_STATE**, or **AUDIOSTREAM_ERROR_SYSTEM**.|
+| length | Length of the buffer.|
 
 
 ### OH_AudioRenderer_OnInterruptEvent
@@ -100,6 +101,8 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnWriteData)(OH_Au
 **Description**
 
 Defines a function pointer to the callback function used to write audio data.
+
+Once the callback function finishes its execution, the audio service queues the data pointed to by **buffer** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **buffer** with the exact length (specified by **length**) of data designated for playback; otherwise, noises may occur during playback.
 
 **Parameters**
 

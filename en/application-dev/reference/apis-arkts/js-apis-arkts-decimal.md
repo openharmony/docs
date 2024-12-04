@@ -2406,7 +2406,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 ```ts
 let a: Decimal = new Decimal(987.654321);
 let b: Decimal = a.toSignificantDigits(6);
-console.info("test Decimal toSignificantDigits:" + b.toString()); // '9876.54'
+console.info("test Decimal toSignificantDigits:" + b.toString()); // '987.654'
 ```
 
 ### toSignificantDigits
@@ -2445,7 +2445,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 ```ts
 let a: Decimal = new Decimal(987.654321);
 let b: Decimal = a.toSignificantDigits(6, Decimal.ROUND_UP);
-console.info("test Decimal toSignificantDigits:" + b.toString()); // '9876.55'
+console.info("test Decimal toSignificantDigits:" + b.toString()); // '987.655'
 ```
 
 ### toNumber
@@ -2499,7 +2499,7 @@ Decimal.set({ toExpPos: 5 })
 b = a.toString() // b:'7.5e+5'
 
 let c: Decimal = new Decimal(0.000000123)
-console.info("test Decimal toString:" + c.toString()); // '0.000000123'
+console.info("test Decimal toString:" + c.toString()); // '1.23e-7'
 
 Decimal.set({ toExpNeg: -7 })
 b = c.toString() // b:'1.23e-7'
@@ -4136,7 +4136,7 @@ console.info("test Decimal round:" + a.toString()); // '3'
 
 static set(object: DecimalConfig):void
 
-Sets the properties for this **Decimal** object.
+Sets the properties for this **Decimal** object. The properties set by calling this API take effect globally.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4158,7 +4158,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 10200001 | The value of 'DecimalConfig.properties' is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 
-**Example**
+**Example 1**
 
 ```ts
 let a : Decimal = new Decimal(1.2345678901234567);
@@ -4209,6 +4209,49 @@ let c0 : Decimal = new Decimal('9.999e500') // '9.999e+500'
 let c1 : Decimal = new Decimal('1e501') // 'Infinity'
 
 Decimal.set({ maxE: 4 })
-let d0 : Decimal = new Decimal(99999) // '99999'
+let d0 : Decimal = new Decimal(99999) // '9.9999e+4'
 let d1 : Decimal = new Decimal(100000) // 'Infinity'
+```
+
+**Example 2**
+
+```ts
+// /entry/src/main/ets/pages/test.ets
+export function test(){
+  let a : Decimal = new Decimal(1.2345678901234567);
+  Decimal.set({
+    precision: 5,
+    rounding: 0,
+    toExpNeg: -7,
+    toExpPos: 7,
+    maxE: 9e15,
+    minE: -9e15,
+    modulo: 1,
+    crypto: false
+  })
+  let b : Decimal = a.add(0.5);
+  console.info("test Decimal set:" + b.toString()); // "1.7346"
+}
+```
+
+```ts
+// /entry/src/main/ets/pages/Index.ets
+import {test} from './test'
+
+let a : Decimal = new Decimal(1.2345678901234567);
+Decimal.set({
+  precision: 6,
+  rounding: 1,
+  toExpNeg: -7,
+  toExpPos: 7,
+  maxE: 9e15,
+  minE: -9e15,
+  modulo: 1,
+  crypto: false
+})
+let b : Decimal = a.add(0.5);
+console.info("test Decimal set:" + b.toString()); // "1.73456"
+test();
+b = b.add(0);                                     // "1.7346"
+console.info("test Decimal set:" + b.toString()); // "1.7346"
 ```

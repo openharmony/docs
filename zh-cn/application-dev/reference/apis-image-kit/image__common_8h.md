@@ -19,9 +19,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [Image_Size](_image___size.md) | 图像大小结构体。  | 
-| struct  [Image_Region](_image___region.md) | 待解码的图像源区域结构体。  | 
-| struct  [Image_String](_image___string.md) | 字符串结构。  | 
+| struct  [Image_Size](_image___size.md) | 图像大小结构体。 | 
+| struct  [Image_Region](_image___region.md) | 待解码的图像源区域结构体。 | 
+| struct  [Image_String](_image___string.md) | 字符串结构。 | 
 
 
 ### 类型定义
@@ -30,6 +30,7 @@
 | -------- | -------- |
 | typedef struct [Image_Size](_image___size.md) [Image_Size](_image___native_module.md#image_size) | 声明图像大小结构。 | 
 | typedef struct [Image_Region](_image___region.md) [Image_Region](_image___native_module.md#image_region) | 声明要解码的图像源区域结构体类型名称。 | 
+| typedef struct [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) | 声明用于Picture的元数据。 | 
 | typedef struct [Image_String](_image___string.md) [Image_String](_image___native_module.md#image_string) | 声明字符串结构的名称。 | 
 | typedef struct [Image_String](_image___string.md) [Image_MimeType](_image___native_module.md#image_mimetype) | 声明一个图片格式类型的名称。 | 
 
@@ -38,7 +39,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) {<br/>IMAGE_SUCCESS = 0, <br/>IMAGE_BAD_PARAMETER = 401, <br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, <br/>IMAGE_DMA_NOT_EXIST = 7600173, <br/>IMAGE_DMA_OPERATION_FAILED = 7600174, <br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, <br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br/>IMAGE_INVALID_REGION = 7600204, <br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302, <br/>IMAGE_UNKNOWN_ERROR = 7600901, <br/>IMAGE_BAD_SOURCE = 7700101, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) {<br/>IMAGE_SUCCESS = 0,<br/>IMAGE_BAD_PARAMETER = 401,<br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103,<br/>IMAGE_DMA_NOT_EXIST = 7600173,<br/>IMAGE_DMA_OPERATION_FAILED = 7600174,<br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202,<br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br/>IMAGE_INVALID_REGION = 7600204,<br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302,<br/>IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
+| [Image_MetadataType](_image___native_module.md#image_metadatatype) {<br/>EXIF_METADATA = 1,<br/>FRAGMENT_METADATA = 2<br/>} | 定义元数据类型。 | 
 
 
 ### 变量
@@ -175,7 +177,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](_image___native_module.md#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | 此标签指示拍摄图像时相机或输入设备的灵敏度。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](_image___native_module.md#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | 连拍次数。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](_image___native_module.md#ohos_image_property_face_conf) = "HwMnoteFaceConf" | 人脸置信度。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](_image___native_module.md#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | 左眼中心。被用于 **OH_ImageSource_GetImageProperty** 和 **OH_ImageSource_ModifyImageProperty**。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](_image___native_module.md#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | 左眼中心。被用于 [OH_ImageSource_GetImageProperty](_image___native_module.md#oh_imagesourcenative_getimageproperty) 和 [OH_ImageSource_ModifyImageProperty](_image___native_module.md#oh_imagesourcenative_modifyimageproperty)。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](_image___native_module.md#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | 嘴中心。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](_image___native_module.md#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | 脸部指针。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](_image___native_module.md#ohos_image_property_face_rect) = "HwMnoteFaceRect" | 脸部矩形。  | 
@@ -185,4 +187,19 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_FRONT_CAMERA](_image___native_module.md#ohos_image_property_front_camera) = "HwMnoteFrontCamera" | 是否是前置相机自拍。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_POINTER](_image___native_module.md#ohos_image_property_scene_pointer) = "HwMnoteScenePointer" | 场景指针。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](_image___native_module.md#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | 场景算法版本信息。  | 
-| static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](_image___native_module.md#ohos_image_property_gif_loop_count) = "GIFLoopCount" | GIF图片循环次数  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](_image___native_module.md#ohos_image_property_gif_loop_count) = "GIFLoopCount" | GIF图片循环次数。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](_image___native_module.md#ohos_image_property_x_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的X坐标。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](_image___native_module.md#ohos_image_property_y_in_original) = "XInOriginal" | 水印裁剪图左上角在原始图中的Y坐标。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](_image___native_module.md#ohos_image_property_fragment_width) = "FragmentImageWidth"| 水印裁剪图的宽。  | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](_image___native_module.md#ohos_image_property_fragment_height) = "FragmentImageHeight" | 水印裁剪图的高。  | 
+
+
+### 函数
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Create](_image___native_module.md#oh_picturemetadata_create) ([Image_MetadataType](_image___native_module.md#image_metadatatype) metadataType, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*metadata) | 创建OH_PictureMetadata指针。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_GetProperty](_image___native_module.md#oh_picturemetadata_getproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key获取Metadata的单条属性。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_SetProperty](_image___native_module.md#oh_picturemetadata_setproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | 根据key修改Metadata的单条属性。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Release](_image___native_module.md#oh_picturemetadata_release) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata) | 释放OH_PictureMetadata指针。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Clone](_image___native_module.md#oh_picturemetadata_clone) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*oldMetadata, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*newMetadata) | 拷贝元数据。 | 

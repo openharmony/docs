@@ -248,7 +248,7 @@ Unsubscribes from an event.
 **Example**
 
 ```ts
-// Unregister the callbacks of all events whose eventID is **eventId**.
+// Unregister the callbacks of all events whose eventID is eventId.
 emitter.off("eventId");
 ```
 
@@ -256,7 +256,7 @@ emitter.off("eventId");
 
 off(eventId: number, callback: Callback\<EventData\>): void
 
-Unsubscribes from an event. If the specified callback has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event. If **Callback\<EventData\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -272,7 +272,7 @@ Unsubscribes from an event. If the specified callback has been registered throug
 **Example**
 
 ```ts
-// Unregister the emitterCallback callback for the event whose eventID is 1.
+// Unregister the callbacks of all events whose eventID is 1.
 // If the callback has not been registered, no processing is performed.
 emitter.off(1, () => {
   console.info('callback');
@@ -283,7 +283,7 @@ emitter.off(1, () => {
 
 off(eventId: string, callback: Callback\<EventData\>): void
 
-Unsubscribes from an event. If the specified callback has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event. If **Callback\<EventData\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -299,7 +299,7 @@ Unsubscribes from an event. If the specified callback has been registered throug
 **Example**
 
 ```ts
-// Unregister the emitterCallback callback for the event whose eventID is eventId.
+// Unregister the callback of the event whose eventID is eventId.
 // If the callback has not been registered, no processing is performed.
 emitter.off("eventId", () => {
   console.info('callback');
@@ -310,7 +310,7 @@ emitter.off("eventId", () => {
 
 off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
-Unsubscribes from an event. If the specified callback has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event. If **Callback\<GenericEventData<T\>\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -368,7 +368,7 @@ Emits the specified event.
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -403,7 +403,7 @@ Emits the specified event.
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -473,7 +473,7 @@ Emits an event of a specified priority.
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -531,7 +531,7 @@ emitter.emit("eventId", options, eventData);
 
 ## emitter.getListenerCount<sup>11+</sup>
 
-getListenerCount(eventId: number|string): number
+getListenerCount(eventId: number | string): number
 
 Obtains the number of subscriptions to a specified event.
 
@@ -543,7 +543,7 @@ Obtains the number of subscriptions to a specified event.
 
 | Name | Type          | Mandatory| Description    |
 | ------- | -------------- | ---- | -------- |
-| eventId | number\|string | Yes  | Event ID. The value of the string type cannot be an empty string.|
+| eventId | number \| string | Yes  | Event ID. The value of the string type cannot be an empty string.|
 
 **Example**
 
@@ -581,7 +581,7 @@ Describes an event to subscribe to or emit. The **EventPriority** settings do no
 
 ## EventData
 
-Describes the data passed in the event.
+Describes data passed in the event.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

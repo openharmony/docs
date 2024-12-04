@@ -104,6 +104,7 @@ typedef enum {
 ```
 
 ### JSVM_RegExpFlags
+
 正则表达式标志位。
 
 ```c++
@@ -124,13 +125,14 @@ typedef enum {
 ### 编译选项相关类型
 #### JSVM_CompileOptions
 
-配合编译接口 OH_JSVM_CompileScriptWithOptions 使用，是其参数中 options 数组的元素类型
+配合编译接口 OH_JSVM_CompileScriptWithOptions 使用，是其参数中 options 数组的元素类型。
 
 其中：
-- id 代表这个编译选项的类型
-- content 代表编译选项的内容
+- id 代表这个编译选项的类型。
+- content 代表编译选项的内容。
 
-id 的值和 content 的类型需要对应使用，详细对应关系参考下面对各个选项类型的介绍
+id 的值和 content 的类型需要对应使用，详细对应关系参考下面对各个选项类型的介绍。
+
 ```c
 typedef struct {
     /** compile option id. */
@@ -149,7 +151,8 @@ typedef struct {
 
 #### JSVM_CompileOptionId
 
-JSVM_CompileOptions 中的 id 对应类型， 每个值都有其对应的 content 类型, 其中 JSVM_COMPILE_ENABLE_SOURCE_MAP 对应的类型为 bool，当同时传入的 JSVM_ScriptOrigin 中 sourceMapUrl 不为空时生效
+JSVM_CompileOptions 中的 id 对应类型， 每个值都有其对应的 content 类型, 其中 JSVM_COMPILE_ENABLE_SOURCE_MAP 对应的类型为 bool，当同时传入的 JSVM_ScriptOrigin 中 sourceMapUrl 不为空时生效。
+
 ```c
 typedef enum {
     /** compile mode. */
@@ -169,10 +172,10 @@ typedef enum {
 
 当 id 为 JSVM_COMPILE_MODE，content 的类型，每个值代表一种编译模式：
 
-- JSVM_COMPILE_MODE_DEFAULT : 默认的编译选项
-- JSVM_COMPILE_MODE_CONSUME_CODE_CACHE : 消耗 codecache 进行编译
-- JSVM_COMPILE_MODE_EAGER_COMPILE : 进行全量编译，不再进行 lazy compile
-- JSVM_COMPILE_MODE_PRODUCE_COMPILE_PROFILE/JSVM_COMPILE_MODE_CONSUME_COMPILE_PROFILE : 当前暂无效果，请等待后续更新
+- JSVM_COMPILE_MODE_DEFAULT : 默认的编译选项。
+- JSVM_COMPILE_MODE_CONSUME_CODE_CACHE : 消耗 codecache 进行编译。
+- JSVM_COMPILE_MODE_EAGER_COMPILE : 进行全量编译，不再进行 lazy compile。
+- JSVM_COMPILE_MODE_PRODUCE_COMPILE_PROFILE/JSVM_COMPILE_MODE_CONSUME_COMPILE_PROFILE : 当前暂无效果，请等待后续更新。
 
 ```c
 typedef enum {
@@ -194,8 +197,8 @@ typedef enum {
 
 当 id 为 JSVM_COMPILE_CODE_CACHE 时，content 的类型：
 
-- cache : 指向 code cache 的指针
-- length : code cache 的大小
+- cache : 指向 code cache 的指针。
+- length : code cache 的大小。
 
 ```c
 typedef struct {
@@ -208,10 +211,11 @@ typedef struct {
 
 #### JSVM_ScriptOrigin
 
-当 id 为 JSVM_COMPILE_SCRIPT_ORIGIN 时，content 的类型，存放待编译的源码信息：
+当 id 为 JSVM_COMPILE_SCRIPT_ORIGIN 时，content 的类型，存放待编译脚本的源码信息：
 
-- sourceMapUrl : sourceMap 的路径，当前仅支持运行设备上的本地路径, 可以为空
-- resourceName : 待编译的 js script 的名字，
+- sourceMapUrl : sourceMap 的路径，当前仅支持运行设备上的本地路径, 可以为空。
+- resourceName : 待编译的 js script 的名字。
+
 ```c
 typedef struct {
     /** Sourcemap url. */
@@ -267,13 +271,9 @@ typedef struct {
 
 JSVM-API包含以下回调类型：
 
-**JSVM_CallbackInfo**
-
-表示用户定义的Native函数，暴露给JavaScript，即JS侧调用的接口；一般不在此Callback中创建Handle或者CallbackScope。
-
 **JSVM_CallbackStruct**
 
-用户提供的Native函数的回调函数指针和数据，JSVM_CallbackStruct将通过JSVM-API暴露给JavaScript。
+用户提供的 Native callback 的回调函数指针和数据，JSVM_CallbackStruct 将通过 JSVM-API 暴露给 JavaScript。例如，可以使用 OH_JSVM_CreateFunction 接口创建绑定到 Native callback 的 JS 函数，其中 Native callback 就是通过 JSVM_CallbackStruct 结构定义。除非在对象生命周期管理中有特殊要求，一般不在此 callback 中创建 handle 或者 callback scope。
 
 ```c++
 typedef struct {
@@ -284,13 +284,17 @@ typedef struct {
 
 **JSVM_Callback**
 
-表示用户定义的Native函数，暴露给JavaScript，即JS侧调用的接口；除非在对象生命周期管理中有特殊要求，一般不在此callback中创建handle或者callback scope。
+JSVM_CallbackStruct 指针类型的类型别名。
 
-基本用法如下:
+定义如下:
 
 ```c++
 typedef JSVM_CallbackStruct* JSVM_Callback;
 ```
+
+**JSVM_CallbackInfo**
+
+用户定义的 Native callback，第一个参数类型是 JSVM_Env，第二个参数类型是 JSVM_CallbackInfo。JSVM_CallbackInfo 表示从 JS 侧调用到 Native 侧时携带的调用信息，如参数列表。在实现 Native callback 时，一般使用 OH_JSVM_GetCbInfo 接口从 JSVM_CallbackInfo 中提取调用信息。
 
 **JSVM_Finalize**
 
@@ -299,7 +303,7 @@ typedef JSVM_CallbackStruct* JSVM_Callback;
 写法如下：
 
 ```c++
-typedef void (JSVM_Finalize)(JSVM_Env env, void finalizeData, void* finalizeHint);
+typedef void (*JSVM_Finalize)(JSVM_Env env, void* finalizeData, void* finalizeHint);
 ```
 
 **JSVM_PropertyHandlerConfigurationStruct**

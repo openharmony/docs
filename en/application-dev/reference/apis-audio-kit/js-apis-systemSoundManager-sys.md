@@ -188,7 +188,7 @@ Sets the file name for this tone.
 
 ```ts
 let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
-let fileName = 'textFileName'; 
+let fileName = 'textFileName';
 toneAttrs.setFileName(fileName);
 ```
 
@@ -348,7 +348,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 ```ts
 let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
 ```
-## ToneHapticsFeature<sup>12+</sup>
+## ToneHapticsFeature<sup>13+</sup>
 
 Enumerates the haptics styles for system ringtones.
 
@@ -360,6 +360,148 @@ Enumerates the haptics styles for system ringtones.
 | ----------------------------- | -- | -------------------- |
 | STANDARD| 0  | Standard haptics style.|
 | GENTLE   | 1  | Gentle haptics style.|
+
+## ToneHapticsType<sup>13+</sup>
+
+type ToneHapticsType = RingtoneType | SystemToneType
+
+Enumerates the haptics types for system ringtones.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+| Name                                | Description        |
+| ------------------------------------|------------|
+| [RingtoneType](#ringtonetype)       | Ringtone type.|
+| [SystemToneType](#systemtonetype11) | System alert tone type.|
+
+## ToneHapticsMode<sup>13+</sup>
+
+Enumerates the haptics modes in system ringtone scenarios.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+| Name                         | Value| Description                |
+| ----------------------------- | -- | -------------------- |
+| NONE        | 0  | No haptics.|
+| SYNC        | 1  | Sync mode, where the haptic feedback is aligned with the system ringtone.|
+| NON_SYNC    | 2  | Non-sync mode, where the haptic feedback is not aligned with the system ringtone.|
+
+## ToneHapticsSettings<sup>13+</sup>
+
+Describes the haptics settings of a system ringtone.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+| Name         | Type| Read-Only| Optional| Description                |
+| ------------ | -- | -- | -- | -------------------- |
+| mode | [ToneHapticsMode](#tonehapticsmode13) | No| No| Haptics mode.|
+| hapticsUri | string                          | No| Yes| URI of the haptics resource. The URI, obtained by calling [getToneHapticsList](#gettonehapticslist13), is valid only in the non-sync mode and should be ignored in other haptics modes.|
+
+## ToneHapticsAttrs<sup>13+</sup>
+
+Manages haptics attributes of system ringtones. Before calling any API in **ToneHapticsAttrs<sup>13+</sup>**, you must call [getToneHapticsList] (#gettonehapticslist13) or [getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone13) to obtain an instance.
+
+### getUri<sup>13+</sup>
+
+getUri(): string
+
+Obtains the URI of this haptics resource.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Return value**
+
+| Type   | Description |
+|--------|-----|
+| string | URI, for example, **'/data/storage/el2/base/haptics/synchronized/alarms/test.json'**.|
+
+**Error codes**
+
+| ID  | Error Message             |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**Example**
+
+```ts
+toneHapticsAttrs.getUri();
+```
+
+### getTitle<sup>13+</sup>
+
+getTitle(): string
+
+Obtains the title of this haptics resource.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Return value**
+
+| Type   | Description |
+|--------|-----|
+| string | Title.|
+
+**Error codes**
+
+| ID  | Error Message             |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**Example**
+
+```ts
+toneHapticsAttrs.getTitle();
+```
+
+### getFileName<sup>13+</sup>
+
+getFileName(): string
+
+Obtains the file name of this haptics resource.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Return value**
+
+| Type   | Description |
+|--------|-----|
+| string | File name.|
+
+**Error codes**
+
+| ID  | Error Message             |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**Example**
+
+```ts
+toneHapticsAttrs.getFileName();
+```
+
+## ToneHapticsAttrsArray<sup>13+</sup>
+
+type ToneHapticsAttrsArray = Array&lt;ToneHapticsAttrs&gt;
+
+Describes the haptics attribute array of a system ringtone.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+| Type                                    | Description     |
+|----------------------------------------|---------|
+| Array&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | Array of haptics attributes.|
 
 ## systemSoundManager.getSystemSoundManager
 
@@ -1606,6 +1748,268 @@ systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
   console.info(`Promise returned to indicate that the customized tone has been deleted.`);
 }).catch ((err: BusinessError) => {
   console.error(`Failed to delete customized tone ${err}`);
+});
+```
+
+### getToneHapticsSettings<sup>13+</sup>
+
+getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;ToneHapticsSettings&gt;
+
+Obtains the haptics settings of the system ringtone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                                         |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| type  | [ToneHapticsType](#tonehapticstype13)    | Yes  | Haptics type of the system ringtone.|
+
+**Return value**
+
+| Type                 | Description                   |
+|---------------------|-----------------------|
+| Promise&lt;[ToneHapticsSettings](#tonehapticssettings13)&gt; | Promise used to return the haptics settings.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message             |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: systemSoundManager.ToneHapticsSettings) => {
+  console.info(`Promise returned to indicate that the value of the tone haptics settings is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the tone haptics settings ${err}`);
+});
+```
+
+### setToneHapticsSettings<sup>13+</sup>
+
+setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: ToneHapticsSettings): Promise&lt;void&gt;
+
+Sets the haptics settings for the system ringtone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                                         |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| type  | [ToneHapticsType](#tonehapticstype13)    | Yes  | Haptics type of the system ringtone.|
+| settings  | [ToneHapticsSettings](#tonehapticssettings13)    | Yes  | Haptics settings of the system ringtone.|
+
+**Return value**
+
+| Type                 | Description                   |
+|---------------------|-----------------------|
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message             |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400102 | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+let toneHapticsSettings: systemSoundManager.ToneHapticsSettings = {
+  mode: systemSoundManager.ToneHapticsMode.NON_SYNC,
+  hapticsUri: '/data/storage/el2/base/haptics/synchronized/alarms/test.json', // Use the URI obtained through getToneHapticsList.
+}
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.setToneHapticsSettings(context, type, toneHapticsSettings).then(() => {
+  console.info(`Promise returned to indicate a successful setting of the tone haptics.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set the tone haptics settings ${err}`);
+});
+```
+
+### getToneHapticsList<sup>13+</sup>
+
+getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapticsAttrsArray&gt;
+
+Obtains the haptics attributes of the system ringtone in sync or non-sync mode. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                                         |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| isSynced  | boolean    | Yes  | Whether the haptics feedback is synchronized with the ringtone.|
+
+**Return value**
+
+| Type                 | Description                   |
+|---------------------|-----------------------|
+| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray13)&gt; | Promise used to return the haptics attributes.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message             |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getToneHapticsList(context, false).then((value: systemSoundManager.ToneHapticsAttrsArray) => {
+  console.info(`Promise returned to indicate that the value of the attribute list of tone haptics is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute list of tone haptics ${err}`);
+});
+```
+
+### getHapticsAttrsSyncedWithTone<sup>13+</sup>
+
+getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt;ToneHapticsAttrs&gt;
+
+Obtains the attributes of the haptics feedback synchronized with the system ringtone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                                         |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
+| toneUri  | string    | Yes  | URI of the system ringtone. The URI can be obtained by calling [getRingtoneAttrList] (#getringtoneattrlist12) or [getSystemToneAttrList] (#getsystemtoneattrlist12).|
+
+**Return value**
+
+| Type                 | Description                   |
+|---------------------|-----------------------|
+| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | Promise used to return the haptics attributes.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message             |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400102 | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+let toneUri: string = '/data/storage/el2/base/RingTone/alarms/test.ogg'; // Use the actual URI of the system ringtone.
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then((value: systemSoundManager.ToneHapticsAttrs) => {
+  console.info(`Promise returned to indicate that the value of the attribute of tone haptics is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute of tone haptics ${err}`);
+});
+```
+
+### openToneHaptics<sup>13+</sup>
+
+openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
+
+Enables haptics for the system ringtone. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name  | Type      | Mandatory| Description                                                                                 |
+| -------- | ---------| ---- |-------------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.          |
+| hapticsUri      | string   | Yes  | URI of the haptics resource. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+
+**Return value**
+
+| Type                   | Description            |
+|-----------------------|----------------|
+| Promise&lt;number&gt; | Promise used to return the FD.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message             |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400102 | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: Context = getContext(this);
+let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // Use the actual URI of the haptics resource.
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.openToneHaptics(context, hapticsUri).then((value: number) => {
+  console.info(`Promise returned to indicate the value of fd.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to open haptics ${err}`);
 });
 ```
 

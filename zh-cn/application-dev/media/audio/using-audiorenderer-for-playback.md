@@ -41,7 +41,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 
@@ -61,35 +61,93 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     });
     ```
 
-2. 调用on('writeData')方法，订阅监听音频数据写入回调。
+2. 调用on('writeData')方法，订阅监听音频数据写入回调，推荐使用API version 12支持返回回调结果的方式。
 
-    ```ts
-    import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+   - API version 12开始该方法支持返回回调结果，系统可以根据开发者返回的值来决定此次回调中的数据是否播放。
 
-    let bufferSize: number = 0;
-    class Options {
-      offset?: number;
-      length?: number;
-    }
+     > **注意：**
+     > 
+     > - 能填满回调所需长度数据的情况下，返回audio.AudioDataCallbackResult.VALID，系统会取用完整长度的数据缓冲进行播放。请不要在未填满数据的情况下返回audio.AudioDataCallbackResult.VALID，否则会导致杂音、卡顿等现象。
+     > 
+     > - 在无法填满回调所需长度数据的情况下，建议开发者返回audio.AudioDataCallbackResult.INVALID，系统不会处理该段音频数据，然后会再次向应用请求数据，确认数据填满后返回audio.AudioDataCallbackResult.VALID。
+     > 
+     > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度，开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
 
-    let path = getContext().cacheDir;
-    // 确保该沙箱路径下存在该资源
-    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+     ```ts
+     import { audio } from '@kit.AudioKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { fileIo as fs } from '@kit.CoreFileKit';
 
-    let writeDataCallback = (buffer: ArrayBuffer) => {
+     class Options {
+       offset?: number;
+       length?: number;
+     }
 
-      let options: Options = {
-        offset: bufferSize,
-        length: buffer.byteLength
-      }
-      fileIo.readSync(file.fd, buffer, options);
-      bufferSize += buffer.byteLength;
-    }
+     let bufferSize: number = 0;
+     let path = getContext().cacheDir;
+     // 确保该沙箱路径下存在该资源
+     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 
-    audioRenderer.on('writeData', writeDataCallback);
-    ```
+     let writeDataCallback = (buffer: ArrayBuffer) => {
+       let options: Options = {
+         offset: bufferSize,
+         length: buffer.byteLength
+       };
+
+       try {
+         fs.readSync(file.fd, buffer, options);
+         bufferSize += buffer.byteLength;
+         // 系统会判定buffer有效，正常播放。
+         return audio.AudioDataCallbackResult.VALID;
+       } catch (error) {
+         console.error('Error reading file:', error);
+         // 系统会判定buffer无效，不播放。
+         return audio.AudioDataCallbackResult.INVALID;
+       }
+     };
+
+     audioRenderer.on('writeData', writeDataCallback);
+     ```
+
+   - API version 11该方法不支持返回回调结果，系统默认回调中的数据均为有效数据。
+
+     > **注意：**
+     > 
+     > - 请确保填满回调所需长度数据，否则会导致杂音、卡顿等现象。
+     > 
+     > - 在无法填满回调所需长度数据的情况下，建议开发者选择暂时停止写入数据（不暂停音频流），阻塞回调函数，等待数据充足时，再继续写入数据，确保数据填满。
+     > 
+     > - 开发者如果不希望播放本次回调中的音频数据，可以主动将回调中的数据块置空（置空后，也会被系统统计到已写入的数据，播放静音帧）。
+     > 
+     > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度，开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
+
+     ```ts
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { fileIo as fs } from '@kit.CoreFileKit';
+
+     class Options {
+       offset?: number;
+       length?: number;
+     }
+
+     let bufferSize: number = 0;
+     let path = getContext().cacheDir;
+     // 确保该沙箱路径下存在该资源
+     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+     let writeDataCallback = (buffer: ArrayBuffer) => {
+       // 如果开发者不希望播放某段buffer，可在此处添加判断并对buffer进行置空处理。
+       let options: Options = {
+         offset: bufferSize,
+         length: buffer.byteLength
+       };
+       fs.readSync(file.fd, buffer, options);
+       bufferSize += buffer.byteLength;
+     };
+
+     audioRenderer.on('writeData', writeDataCallback);
+     ```
 
 3. 调用start()方法进入running状态，开始渲染音频。
 
@@ -123,7 +181,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     audioRenderer.release((err: BusinessError) => {
       if (err) {
         console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -151,7 +209,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -160,7 +218,6 @@ class Options {
   length?: number;
 }
 
-let context = getContext(this);
 let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -168,28 +225,36 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
   rendererFlags: 0 // 音频渲染器标志
-}
+};
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
 let path = getContext().cacheDir;
 // 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
+  };
+
+  try {
+    fs.readSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    return audio.AudioDataCallbackResult.VALID;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    return audio.AudioDataCallbackResult.INVALID;
   }
-  fileIo.readSync(file.fd, buffer, options);
-   bufferSize += buffer.byteLength;
-}
+};
 
 // 初始化，创建实例，设置监听事件
 function init() {
@@ -257,7 +322,7 @@ async function stop() {
       if (err) {
         console.error('Renderer stop failed.');
       } else {
-        fileIo.close(file);
+        fs.close(file);
         console.info('Renderer stop success.');
       }
     });

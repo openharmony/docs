@@ -92,7 +92,7 @@ The user ID is different from the system user ID, or the application is not a sy
 ##  1500007 Failed to Send a Request Through IPC
 
 **Error Message**
-Failed to send the message.
+Failed to send the message to the common event service.
 
 **Description**
 This error code is reported when the attempt to send a request through IPC fails.
@@ -103,10 +103,10 @@ The connection object fails to be created.
 **Solution**
 Do not set up connections frequently. Try again later.
 
-##  1500008 Failed to Read Data
+##  1500008 Failed to Initialize the Common Event Service
 
 **Error Message**
-Failed to read the data.
+Failed to initialize the common event service.
 
 **Description**
 This error code is reported when an error occurs on the server.
@@ -117,10 +117,10 @@ A service exception occurs when the server processes data.
 **Solution**
 Try again later.
 
-##  1500009 System Error
+##  1500009 Failed to Obtain System Parameters
 
 **Error Message**
-System error.
+Failed to obtain system parameters.
 
 **Description**
 This error code is reported when an exception occurs in the system during service processing, for example, when the current system time fails to be obtained.

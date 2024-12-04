@@ -26,7 +26,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
    - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
    - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
-6. Obtain [GcmParamsSpec.authTag](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec) as the authentication information for decryption.
+6. Obtain [GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag as the authentication information for decryption.
    In GCM mode, extract the last 16 bytes from the encrypted data as the authentication information for initializing the **Cipher** instance in decryption. In the example, **authTag** is of 16 bytes.
 
 
@@ -46,18 +46,22 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12);
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
     let dataTag = new Uint8Array(arr);
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
-    }; 
+    };
     // Obtain the GCM authTag from the Cipher.doFinal result in encryption and fill it in the params parameter of Cipher.init in decryption.
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
@@ -120,12 +124,15 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
 
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12);
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -166,16 +173,16 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     }
     return decryptUpdate;
   }
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-    let symKey = await aesGenerator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = aesGenerator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
-  async function main() {
+  function main() {
     let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-    let symKey = await genSymKeyByData(keyData);
+    let symKey = genSymKeyByData(keyData);
     let message = "This is a test";
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessage(symKey, plainText);

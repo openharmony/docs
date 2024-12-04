@@ -9,7 +9,7 @@
 
 > **NOTE**
 >
-> _1. This template provides the recommended development guide document framework and writing instructions for typical knowledge points. In your writing, complete the development task scenario analysis and development guide outline design based on the specific **solution/feature/function/module**, and then write the content based on this template._
+> _1. This template provides the recommended development guide document framework and writing instructions for typical knowledge points. In your writing, complete the development task scenario analysis and development guide outline design based on the specific **kit/solution/feature/function/module**, and then write the content based on this template._
 >
 > _2. Do not add any content between level-1 title (marked with #) and level-2 title (marked with ##)._
 >
@@ -20,7 +20,7 @@
 
 _**1. Target audience**: internal and external developers (including product managers). Guidelines for UX designers are usually carried by UX design specifications and are not covered in the development guide. If UX design specifications need to be mentioned in the development guide, use hyperlinks._
 
-_**2. Content positioning**: Introduce what the solution/feature/function/module is, why it is required, and how to design, develop, and release related applications/devices. The development guide aims to help developers learn necessary knowledge and achieve specified task objectives in actual development activities._
+_**2. Content positioning**: Introduce what the kit/solution/feature/function/module is, why it is required, and how to design, develop, and release related applications/devices. The development guide aims to help developers learn necessary knowledge and achieve specified task objectives in actual development activities._
 
 _**3. User-oriented**: Always provide developer-concerned, perceptible, and useful content from the perspective of developers._
 
@@ -28,20 +28,20 @@ _**4. Task-oriented**: Focus on actual tasks of developers, and provide complete
 
 _**5. Reference purposes**: This template only provides the basic document framework. You can adjust the content based on the actual requirements._
 
-_**6. Content that is open only to system applications**: For content that is open only to system applications, topic-level isolation is recommended in terms of concepts, principles, and development scenarios. In other words, use an independent .md file to carry the content, and append "(for System Applications Only) to the title._
+_**6. Content that is open only to system applications**: For content that is open only to system applications, topic-level isolation is recommended in terms of concepts, principles, and development scenarios. In other words, use an independent .md file to carry the content, and append "(for System Applications Only)" to the title._
 
 
-## Introduction to *Example* Kit
+## Introduction to *Example* (Replace it with a specific kit/solution/feature/function/module name.)
 
-_Mandatory. At the very beginning, describe the basic information about what the kit is, why the kit is needed, and when to use the kit, helping developers have a preliminary understanding of the kit._
+_Mandatory. At the very beginning, describe the basic information about what it is, why it is needed, and when to use it, helping developers have a preliminary understanding of the kit/solution/feature/function/module name._
 
 _**[Developers' Concerns]**_
 
-_What is the solution/feature/function/module (definition)?  What problems can it solve or what benefits can it bring (purpose/customer benefits - why)?_
+_What is the kit/solution/feature/function/module (definition)?  What problems can it solve or what benefits can it bring (purpose/customer benefits - why)?_
 
 _**[Key Writing Points]**_
 
-- _Provide easy-to-understand and scenario-specific descriptions. Refer to the SCQA method below to introduce the scenarios and characteristics of the solution/feature/function/module._
+- _Provide easy-to-understand and scenario-specific descriptions. Refer to the SCQA method below to introduce the scenarios and characteristics of the kit/solution/feature/function/module._
   - _S: situation. Introduce a familiar scenario._
   - _C: complication. Describe the conflict between the situation and requirement._
   - _Q: question. Ask a question. What can I do in such a case?_
@@ -63,11 +63,11 @@ Form Kit provides an effective way of presenting information on the UI – servi
 
 ### Available Capabilities
 
-_Optional. Introduce the key open capabilities of the kit to support developers in model selection._
+_Optional. Introduce the key open capabilities of the kit/solution/feature/function/module to support developers in model selection._
 
 _**[Developers' Concerns]**_
 
-_What key open capabilities does the kit provide?  _
+_What key open capabilities does the kit/solution/feature/function/module provide?  _
 
 _**[Key Writing Points]**_
 
@@ -88,11 +88,11 @@ _**[Writing Requirements]**_
 
 ### Features
 
-_Optional. Introduce the highlights and advantages of the kit compared with counterparts in the industry to support developers in model selection._
+_Optional. Introduce the highlights and advantages of the kit/solution/feature/function/module compared with counterparts in the industry to support developers in model selection._
 
 _**[Developers' Concerns]**_
 
-_What are the advantages of this kit?  _
+_What are the advantages of this kit/solution/feature/function/module?  _
 
 _**[Key Writing Points]**_
 
@@ -122,7 +122,7 @@ _Optional. Describe the basic concepts that are common to all task scenarios._
 
 _**[Developers' Concerns]**_
 
-_What are the unique concepts that I need to know when using the solution/feature/function/module?_
+_What are the unique concepts that I need to know when using the kit/solution/feature/function/module?_
 
 _**[Key Writing Points]**_
 
@@ -165,7 +165,7 @@ _Optional. Describe the working principles that are common to all task scenarios
 
 _**[Developers' Concerns]**_
 
-_How does the solution/feature/function/module work? What are the API calling and triggering time of key steps? I want to understand its principles for better use and debugging._
+_How does the kit/solution/feature/function/module work? What are the API calling and triggering time of key steps? I want to understand its principles for better use and debugging._
 
 _**[Key Writing Points]**_
 
@@ -199,7 +199,7 @@ _Optional. Describe constraints that are common to all task scenarios._
 
 _**[Developers' Concerns]**_
 
-_What are the constraints for using the solution/feature/function/module? How well is the solution/feature/function/module implemented? Can it meet my requirements?_
+_What are the constraints for using the kit/solution/feature/function/module? How well is the kit/solution/feature/function/module implemented? Can it meet my requirements?_
 
 _**[Key Writing Points]**_
 
@@ -215,15 +215,17 @@ _**[Key Writing Points]**_
 
 ***[Example]***
 
+- This function is available only for XXX devices of XXX and later versions.
+
 - Data synchronization can be implemented across devices only for the applications with the same bundleName.
 
 - Each distributed data object occupies 100 KB to 150 KB of memory. Therefore, you are advised not to create too many distributed data objects.
 
 - The maximum size of a distributed data object is 500 KB.
 
-### Relationship with Other Kits
+### Relationship with Other Kits/Solutions/Features/Functions/Modules (Writing Based on the Actual Conditions)
 
-_Optional. Some kits need to be used together with others or have similar or related scenarios. Specify the relationship between the kits here._
+_Optional. Some kits/solutions/features/functions/modules need to be used together with others or have similar or related scenarios. Specify the relationship between them here._
 
 ***[Example]***
 
@@ -311,9 +313,9 @@ _Provide the criteria for checking whether the environment is set up successfull
 
 _Optional._
 
-- _If the task scenarios and relationships between scenarios of the kit solution/feature/function/module are not explicitly presented and it is inappropriate to provide the information in the topic "Introduce to *Example* Kit", use this topic to introduce the task scenarios (how they are divided) and describe the relationship between scenarios (when to select each scenario)._
+- _If the task scenarios and relationships between scenarios of the kit/solution/feature/function/module are not explicitly presented and it is inappropriate to provide the information in the topic "Introduce to *Example*", use this topic to introduce the task scenarios (how they are divided) and describe the relationship between scenarios (when to select each scenario)._
 
-- _If the task scenario is relatively simple, you can briefly describe it in "Introduce to *Example* Kit"._
+- _If the task scenario is relatively simple, you can briefly describe it in "Introduce to *Example*"._
 
 
 ## *Example Task Scenario* Development (Use a specific scenario name. If there is only one scenario, use the solution/feature/function/module name.)
@@ -322,7 +324,7 @@ _Mandatory._
 
 _**[Developers' Concerns]**_
 
-_How do I use or access the solution/feature/function/module?_
+_How do I use or access the kit/solution/feature/function/module?_
 
 _**[Key Writing Points]**_
 
@@ -336,7 +338,7 @@ _Provide scenarios that are close to actual development scenarios._
 
 _Optional._
 
-_Describe the contents directly related to a task scenario. The knowledge points and key writing points are the same as those in "Introduce to *Example* Kit". In this section, you need to introduce this specific task scenario and describe basic concepts, working principles, constraints, and samples that are directly related to the task scenario. If there is nothing in common, delete it._
+_Describe the contents directly related to a task scenario. In this section, you need to introduce this specific task scenario and describe development roadmap, selection suggestions, concepts, working principles, and constraints. The requirements for writing the concepts and principles are the same as those provided in "Introduction to *Example*." If there is nothing in common, delete it._
 
 ### Development Process
 
@@ -399,33 +401,29 @@ _Mandatory._
 
 **[Example (Excerpt)]**
 
-1. Import the required modules.
+1. Import the PhotoPicker module.
 
    ```javascript
-   import formBindingData from '@ohos.application.formBindingData'
-   import formInfo from '@ohos.application.formInfo'
-   import formProvider from '@ohos.application.formProvider'
+   import {
+     PhotoPickerComponent,
+     PickerController,
+     ...
+   } from '@kit.MediaLibraryKit';
+   import { photoAccessHelper } from '@ohos.file.PhotoPickerComponent';
    ```
    
-2. Implement the lifecycle callbacks of **LifecycleForm**.
+2. Create a **PickerOptions** instance and a **PickerController** instance for a **Picker** component.
+   
+   Through the **PickerOptions** instance, you can configure the grid style (such as the background color of the check box and text color), sliding preview direction, and maximum number of options of the **Picker** component.
+   
+   Through the **PickerController** instance, the application can send data to the **Picker** component.
 
    ```javascript
-   export default {
-       onCreate(want) {
-           console.log('FormAbility onCreate');
-           // Persistently store widget information for subsequent use, such as widget instance retrieval or update.
-           let obj = {
-               "title": "titleOnCreate",
-               "detail": "detailOnCreate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           return formData;
-       },
-       onCastToNormal(formId) {
-           // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
-           console.log('FormAbility onCastToNormal');
-       },
-   }
+   // Set parameters during component initialization.
+   pickerOptions: PickerOptions = new PickerOptions();
+
+   // After the component is initialized, control its behavior.
+   @State pickerController: PickerController = new PickerController();  
    ```
 
 
@@ -444,7 +442,7 @@ _Optional._
 
 _**[Developers' Concerns]**_
 
-_What are the typical problems that may occur in the development process of the solution/feature/function/module? How do I locate and solve these problems?_
+_What are the typical problems that may occur in the development process of the kit/solution/feature/function/module? How do I locate and solve these problems?_
 
 _**[Key Writing Points]**_
 
@@ -456,21 +454,6 @@ _Describe the problems that may occur during the development and the solutions t
 
 
 
-### 1. XX problem (simple problem)
+### 1. Example question
 
-XXX
-
-
-### 2. XX problem (complex problem)
-
-**Symptom**
-
-XXX
-
-**Possible Causes**
-
-XXX
-
-**Solution**
-
-XXX
+For details about the template, see [FAQ Template](faq-template.md).

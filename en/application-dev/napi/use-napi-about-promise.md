@@ -84,6 +84,29 @@ hilog.info(0x0000, 'Node-API', 'napi_is_promise string %{public}s', testNapi.isP
 
 Use **napi_create_promise** to create a **Promise** object.
 
+When using this API, observe to the following:
+
+- If **napi_create_promise** is called when there is an exception not handled, **napi_pending_exception** will be returned.
+- After calling **napi_create_promise**, always check whether the return value is **napi_ok**. If **deferred** and **promise** are used, the application will crash.
+
+```c++
+napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
+{
+    napi_deferred deferred = nullptr;
+    napi_value promise = nullptr;
+    napi_status status = napi_ok;
+
+    napi_throw_error(env, "500", "common error");
+
+    status = napi_create_promise(env, &deferred, &promise); // If there is an error, return napi_pending_exception with deferred and promise set to nullptr.
+    if (status == napi_ok) {
+        // do something
+    }
+
+    return nullptr;
+}
+```
+
 ### napi_resolve_deferred & napi_reject_deferred
 
 Use **napi_resolve_deferred** to change the promise state from **pending** to **fulfilled**, and use **napi_reject_deferred** to change the promise state from **pending** to **rejected**.

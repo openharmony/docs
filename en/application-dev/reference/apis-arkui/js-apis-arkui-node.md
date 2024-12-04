@@ -21,7 +21,9 @@ The **Node** module provides level-2 module APIs of custom nodes to export and u
 > Custom nodes are not available in DevEco Studio Previewer.
 
 ## Obtaining UI Context
-To obtain the UI context, use any of the following methods:<br>1. Call [getUIContext()](./js-apis-window.md#getuicontext10) in **ohos.window** to obtain the **UIContext **instance.
+To obtain the UI context, use any of the following methods:
+
+1. Call [getUIContext()](./js-apis-window.md#getuicontext10) in **ohos.window** to obtain the **UIContext **instance.
 
 2. Call the built-in method [getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext) of the custom component.
 

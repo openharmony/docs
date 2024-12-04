@@ -1,22 +1,42 @@
 # Introduction to ArkWeb
 
+## When to Use
 
-In addition to displaying web page content on applications, ArkWeb provides you with some other helpful functions, including:
+ArkWeb provides **Web** components to display web page content in applications. You can use the components in the following scenarios:
+- Web page integration: Applications can use **Web** components to embed web page content to reduce development costs and improve development and operation efficiency. 
 
+- Web browsing: Browser applications can use **Web** components to open third-party web pages, browse web pages in traceless mode, and set advertisement blocking.
 
-- **Page loading**: provides a full set of basic frontend page loading capabilities, which allow you to load network pages, local pages, and HTML text data.
+- Applet: Host applications of applets can use **Web** components to render the pages of the applets.
 
-- **Page interaction**: supports a wide range of page interaction modes, which allow you to set the dark mode for frontend pages, load pages in a new window, manage location permissions and cookies, and use frontend page JavaScript code on the application.
+## Available Capabilities
 
-- **Page debugging**: uses [DevTools](web-debugging-with-devtools.md) to debug frontend pages.
+The **Web** component provides various capabilities for you to control web pages, including:
 
+- Web page loading: declarative loading and off-screen loading of web pages.
 
-To help you better understand the features of the **Web** component, the following will exemplify use of the **Web** component in common application scenarios.
+- Lifecycle management: component lifecycle status change and web page loading status change notification.
+
+- Common attributes and events: management of user agent, cookie and storage, font and dark mode, and permission.
+
+- Interaction with the application UI: The custom text selection menu, context menu, and file upload page can interact with the application UI.
+
+- Interaction between applications and web pages through JavaScriptProxy.
+
+- Security and privacy: traceless browsing mode, advertisement blocking, and Secure Shield mode.
+
+- Maintenance and debugging capability: [DevTools](web-debugging-with-devtools.md) for debugging, crashpad for collecting crash information of the **Web** component.
+
+- Other advanced capabilities: same-layer rendering with native components, network and media playback takeover, and custom input method for **Web** component text boxes <!--RP1--><!--RP1End-->.
+
+## Constraints
+
+- **Web** kernel version: ArkWeb is developed based on Chromium M114.
 
 ## Samples
 
-The following samples are provided to help you better understand how to develop the **Web** component:
+The following samples are provided to help you better understand how to develop **Web** components:
 
-- [Using the Web Component (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebCookie)
+- [Using Web Components (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebCookie)
 
-- [Using the Web Component in Developing Lottery Mini-programs (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)
+- [Using Web Components in Developing Lottery Applets (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)

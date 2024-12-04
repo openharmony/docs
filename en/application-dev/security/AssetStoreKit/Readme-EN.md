@@ -1,4 +1,4 @@
-# Asset Store Kit (Asset Store Service)
+# Asset Store Kit
 
 - [Introduction to Asset Store Kit](asset-store-kit-overview.md)
 - Scenarios

@@ -222,7 +222,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 
-Called when the application backup or restore ends. If the callback is successfully invoked, **bundleName** is returned. If the callback fails to be invoked, an **err** object is returned. Since API version 12, **err** and **bundleName** are returned.
+Called when the application backup or restore ends. If the callback is successfully invoked, **bundleName** is returned. Otherwise, an **err** object is returned. Since API version 12, **err** and **bundleName** are returned.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -647,7 +647,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| boolean | Whether the backup or restore timeout is set successfully.|
+| boolean | A Boolean value indicating whether the backup or restore timeout is set successfully.|
 
 **Error codes**
 
@@ -1284,8 +1284,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   async function appendBundles() {
+    let fileData : backup.FileData = {
+      fd : -1
+    }
     try {
-      let fileData = await backup.getLocalCapabilities();
+      fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
       let restoreApps: Array<string> = [
         "com.example.hiworld",
@@ -1399,8 +1402,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
   async function appendBundles() {
+    let fileData : backup.FileData = {
+      fd : -1
+    }
     try {
-      let fileData = await backup.getLocalCapabilities();
+      fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
       let restoreApps: Array<string> = [
         "com.example.hiworld",

@@ -4,7 +4,8 @@ Basic Services Kit provides basic capabilities for application developers, from 
 
 ## When to Use
 
-Among the various use cases, Basic Services Kit is typically used in the following:
+Basic Services Kit is typically used in the following scenarios:
+
 
 - Pasteboard read/write
   - Intra-device copy and paste: For example, copy a piece of text in application A and paste it to another application.
@@ -20,7 +21,7 @@ Among the various use cases, Basic Services Kit is typically used in the followi
 
 ## Capability Scope
 
-Depending on different use cases, this Kit provides the following capabilities:
+This kit provides the following capabilities:
 
 - Data file processing
   - [Pasteboard](../reference/apis-basic-services-kit/js-apis-pasteboard.md): provides the copy and paste support. You can use the provided APIs to operate pasteboard content of the plain text, HTML, URI, pixel map, and other types.
@@ -29,7 +30,7 @@ Depending on different use cases, this Kit provides the following capabilities:
   - [Upload and download](../reference/apis-basic-services-kit/js-apis-request.md): provides basic upload, download, and background transmission agent capabilities.
 
 - Inter-process/Inter-thread communication
-  - [Common event](../reference/apis-basic-services-kit/js-apis-commonEvent.md): provides inter-process communication capabilities, including the capabilities to publish, subscribe to, and unsubscribe from common events. For details about the development guide, see [Introduction to Common Events](common-event/common-event-overview.md).
+  - [Common event](../reference/apis-basic-services-kit/js-apis-commonEventManager.md): provides inter-process communication capabilities, including the capabilities to publish, subscribe to, and unsubscribe from common events. For details about the development guide, see [Introduction to Common Events](common-event/common-event-overview.md).
   - [Emitter](../reference/apis-basic-services-kit/js-apis-emitter.md): provides intra-thread communication capabilities, including the capabilities to publish, subscribe to, and unsubscribe from custom events. For details about the development guide, see [Using Emitter for Inter-Thread Communication](common-event/itc-with-emitter.md).
 
 - Device management
@@ -48,8 +49,11 @@ Depending on different use cases, this Kit provides the following capabilities:
 
 ## Relationship with Other Kits
 
-- [ArkTS Kit](../arkts-utils/arkts-commonlibrary-overview.md): [Multithreaded concurrency (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md) in ArkTS Kit needs to use Emitter in this Kit for inter-thread communication.
+- [ArkTS Kit](../arkts-utils/arkts-overview.md): [Multithreaded concurrency (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md) in ArkTS Kit needs to use Emitter in this kit for inter-thread communication.
 
-- [Ability Kit](../application-models/abilitykit-overview.md): Common events in this Kit are required for inter-process communication in Ability Kit.
+- [Ability Kit](../application-models/abilitykit-overview.md): Common events in this kit are required for inter-process communication in Ability Kit.
 
-- [Core File Kit](../file-management/core-file-kit-intro.md): Core File Kit provides file access and management capabilities. You can use Core File Kit for application file access, file sharing, and data backup and restore, and use this Kit to implement file compression, file upload and download, and file printing.
+- [Core File Kit](../file-management/core-file-kit-intro.md): Core File Kit provides file access and management capabilities. You can use Core File Kit for application file access, file sharing, and data backup and restore, and use this kit to implement file compression, file upload and download, and file printing.
+
+<!--no_check-->
+

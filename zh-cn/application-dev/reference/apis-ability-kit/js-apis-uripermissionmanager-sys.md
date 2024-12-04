@@ -20,7 +20,7 @@ import { uriPermissionManager } from '@kit.AbilityKit';
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
-授权URI给指定应用。使用callback异步回调。
+授权URI给指定应用，目标应用退出后权限将被回收。使用callback异步回调。
 
 允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
 **系统API**：该接口为系统接口，三方应用不支持调用。
@@ -34,7 +34,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | 是 | URI的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权URI的应用包名 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回0表示有权限，返回-1表示无权限。 | 
 
@@ -79,7 +79,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
-授权URI给指定应用。使用Promise异步回调。
+授权URI给指定应用，目标应用退出后权限将被回收。使用Promise异步回调。
 
 允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
 **系统API**：该接口为系统接口，三方应用不支持调用。
@@ -93,7 +93,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | 是 | URI的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权URI的应用包名 |  
 
 **返回值：**

@@ -9,7 +9,7 @@ The **app_unpacking_tool.jar** package can be found in the OpenHarmony SDK downl
 
 ## Constraints
 
-The unpacking tool must run in Java8 or later.
+The unpacking tool must run in Java 8 or later.
 
 
 ## Unpacking Commands
@@ -212,7 +212,7 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 | distroFilter         | DistroFilter struct                           | Information distributed by the application market by device form.    | NA               |
 | srcEntrance          | String                                        | Entry code path of the application.          | This field is newly added to the stage model.         |
 | process              | String                                        | Process name of the HAP.                     | This field is newly added to the stage model.      |
-| mainElement          | String                  | Entry ability name or ExtensionAbility name of the HAP file.| This field is newly added to the stage model. In the FA model , the value of **mainAbility** is automatically assigned to **mainElement**.|
+| mainElement          | String                  | Entry ability name or ExtensionAbility name of the HAP file.| This field is newly added to the stage model. In the FA model, the value of **mainAbility** is automatically assigned to **mainElement**.|
 | uiSyntax             | String                                        | Syntax type of a JS component.        | This field is newly added to the stage model.      |
 | pages                | List\<String>                                 | Information about each page in a JS component.      | This field is newly added to the stage model.      |
 | extensionAbilityInfos| List\<ExtensionAbilityInfo>                   | Information about the ExtensionAbility.      | This field is newly added to the stage model.       |

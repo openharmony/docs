@@ -87,7 +87,6 @@
      {
        this.unRegisterListener(); // 去注册事件监听
        if(this.panel) { // 销毁窗口
-         this.panel.hide();
          inputMethodAbility.destroyPanel(this.panel);
        }
        if(this.mContext) {

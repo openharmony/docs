@@ -2,11 +2,11 @@
 
 ## 简介
 
-在应用开发中，经常会需要处理一些耗时的任务，如果全部放在主线程中执行就会导致阻塞，从而引起卡顿或者掉帧现象，降低用户体验，此时就可以将这些耗时操作放到子线程中处理。通常情况下，子线程可以独立完成自己的任务，但是很多时候需要将数据从主线程传递到子线程，或者将子线程的执行结果返回给主线程。本篇文章将通过以下几种场景和示例，呈现如何在OpenHarmony应用开发中实现主线程和子线程的数据通信。
+在应用开发中，经常会需要处理一些耗时的任务，如果全部放在UI主线程中执行就会导致阻塞，从而引起卡顿或者掉帧现象，降低用户体验，此时就可以将这些耗时操作放到子线程中处理。通常情况下，子线程可以独立完成自己的任务，但是很多时候需要将数据从宿主线程传递到子线程，或者将子线程的执行结果返回给宿主线程。本篇文章将通过以下几种场景和示例，呈现如何在OpenHarmony应用开发中实现宿主线程和子线程的数据通信。
 
 ## 独立的耗时任务
 
-如果耗时任务是可以独立执行的，只需要在任务执行完毕后将结果返回给主线程，可以通过以下方式实现。
+如果耗时任务是可以独立执行的，只需要在任务执行完毕后将结果返回给宿主线程，可以通过以下方式实现。
 
 首先，引入TaskPool模块。
 
@@ -47,7 +47,7 @@ taskpool.execute(lodePictureTask).then((res: IconItemSource[]) => {
 
 ## 多个任务同时执行
 
-如果有多个任务同时执行，由于任务的复杂度不同，执行时间会不一样，返回数据的时间也是不可控的。如果主线程需要所有任务执行完毕的数据，可以通过下面这种方式实现。
+如果有多个任务同时执行，由于任务的复杂度不同，执行时间会不一样，返回数据的时间也是不可控的。如果宿主线程需要所有任务执行完毕的数据，可以通过下面这种方式实现。
 ```typescript
 ......
 let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
@@ -63,13 +63,13 @@ taskpool.execute(taskGroup).then((ret: IconItemSource[][]) => {
 })
 ......
 ```
-在该场景中，将需要执行的Task放到了一个TaskGroup里面，当TaskGroup中所有的Task都执行完毕后，会把每个Task运行的结果都放在一个数组中返回到主线程，而不是每执行完一个Task就返回一次，这样就可以在返回的数据里拿到所有的Task执行结果，方便主线程使用。
+在该场景中，将需要执行的Task放到了一个TaskGroup里面，当TaskGroup中所有的Task都执行完毕后，会把每个Task运行的结果都放在一个数组中返回到宿主线程，而不是每执行完一个Task就返回一次，这样就可以在返回的数据里拿到所有的Task执行结果，方便宿主线程使用。
 
 除此以外，如果Task需要处理的数据量较大（比如一个列表中有10000条数据），把这些数据都放在一个Task中处理也是比较耗时的。那么就可以将原始数据拆分成多个列表，并将每个子列表分配给一个独立的Task进行执行，并且等待全部执行完毕后拼成完整的数据，这样可以节省处理时间，提升用户体验。
 
-## Task任务与主线程通信
+## Task任务与宿主线程通信
 
-如果一个Task，不仅需要返回最后的执行结果，而且需要定时通知主线程状态、数据的变化，或者需要分段返回数量级较大的数据（比如从数据库中读取大量数据），可以通过下面这种方式实现。
+如果一个Task，不仅需要返回最后的执行结果，而且需要定时通知宿主线程状态、数据的变化，或者需要分段返回数量级较大的数据（比如从数据库中读取大量数据），可以通过下面这种方式实现。
 
 首先，实现一个方法，用来接收Task发送的消息。
 ```typescript
@@ -77,9 +77,9 @@ function notice(data: number): void {
   console.info("子线程任务已执行完，共加载图片: ", data);
 }
 ```
-然后，在需要执行的Task任务中，添加sendData()接口将消息发送给主线程。
+然后，在需要执行的Task任务中，添加sendData()接口将消息发送给宿主线程。
 ```typescript
-// 通过Task的sendData方法，即时通知主线程信息
+// 通过Task的sendData方法，即时通知宿主线程信息
 @Concurrent
 export function loadPictureSendData(count: number): IconItemSource[] {
   let iconItemSourceList: IconItemSource[] = [];
@@ -98,7 +98,7 @@ export function loadPictureSendData(count: number): IconItemSource[] {
   return iconItemSourceList;
 }
 ```
-最后，在主线程通过onReceiveData()接口接收消息。
+最后，在宿主线程通过onReceiveData()接口接收消息。
 ```typescript
 ......
 let lodePictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
@@ -109,18 +109,18 @@ taskpool.execute(lodePictureTask).then((res: IconItemSource[]) => {
 })
 ......
 ```
-这样主线程就可以通过notice()接口接收到Task发送的数据。
+这样宿主线程就可以通过notice()接口接收到Task发送的数据。
 
-## Worker和主线程的即时消息通信
+## Worker和宿主线程的即时消息通信
 
-在ArkTS中，Worker相对于Taskpool存在一定的差异性，有数量限制但是可以长时间存在。一个[Worker](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/arkts-utils/worker-introduction.md/)中可能会执行多个不同的任务，每个任务执行的时长或者返回的结果可能都不相同，主线程需要根据情况调用Worker中的不同方法，Worker则需要及时地将结果返回给主线程，此时可以通过下面的方法实现。
+在ArkTS中，Worker相对于Taskpool存在一定的差异性，有数量限制但是可以长时间存在。一个[Worker](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/arkts-utils/worker-introduction.md/)中可能会执行多个不同的任务，每个任务执行的时长或者返回的结果可能都不相同，宿主线程需要根据情况调用Worker中的不同方法，Worker则需要及时地将结果返回给宿主线程，此时可以通过下面的方法实现。
 
 首先，创建一个Worker，可以根据参数执行不同的任务。
 ```typescript
 import { worker, MessageEvents, ThreadWorkerGlobalScope } from '@kit.ArkTS';
  
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-// Worker接收主线程的消息，根据数据类型调用对应的方法
+// Worker接收宿主线程的消息，根据数据类型调用对应的方法
 workerPort.onmessage = (e: MessageEvents): void => {
   if (typeof e.data === "string") {
     try {
@@ -137,7 +137,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   }
 }
 ```
-然后在主线程中创建这个Worker的对象，在点击Button的时候调用postMessage向Worker发送消息，通过Worker的onmessage方法接收Worker返回的数据。
+然后在宿主线程中创建这个Worker的对象，在点击Button的时候调用postMessage向Worker发送消息，通过Worker的onmessage方法接收Worker返回的数据。
 ```typescript
 import { worker, MessageEvents } from '@kit.ArkTS';
 ......
@@ -182,13 +182,13 @@ Button('将图片变成5个', { type: ButtonType.Normal, stateEffect: true })
   })
 ......
 ```
-在这段示例代码中，Worker做了2种不同的处理：当传入的数据是个string类型时，调用callGlobalCallObjectMethod同步调用主线程中的接口；当传入Array类型的时候，将Array的前4条数据返回给主线程。这样就可以实现主线程和Worker间的即时通信，方便主线程使用Worker的运行结果。
+在这段示例代码中，Worker做了2种不同的处理：当传入的数据是个string类型时，调用callGlobalCallObjectMethod同步调用宿主线程中的接口，此处宿主线程为UI主线程；当传入Array类型的时候，将Array的前4条数据返回给宿主线程。这样就可以实现宿主线程和Worker间的即时通信，方便宿主线程使用Worker的运行结果。
 
-## Worker子线程同步调用主线程的接口
+## Worker子线程同步调用宿主线程的接口
 
-如果一个接口在主线程中已经实现了，Worker需要调用该接口，那么可以使用下面这种方式实现。
+如果一个接口在宿主线程中已经实现了，Worker需要调用该接口，那么可以使用下面这种方式实现。
 
-首先，在主线程实现需要调用的接口，并且创建Worker对象，在Worker上注册需要调用的接口。
+首先，在宿主线程实现需要调用的接口，并且创建Worker对象，在Worker上注册需要调用的接口。
 ```typescript
 import { worker } from '@kit.ArkTS';
 // 创建Worker对象

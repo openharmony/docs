@@ -1,5 +1,3 @@
-
-
 # PanGesture
 
 **PanGesture** is used to trigger a pan gesture when the movement distance of a finger on the screen reaches the minimum value.
@@ -11,7 +9,7 @@
 
 ## APIs
 
-PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: number } | [PanGestureOptions](#pangestureoptions))
+PanGesture(value?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOptions](#pangestureoptions))
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -45,7 +43,7 @@ Enumerates the pan directions. Unlike **SwipeDirection**, **PanDirection** does 
 
 The attributes of the pan gesture recognizer can be dynamically modified using the **PanGestureOptions** API. This avoids modifying attributes through state variables, which will cause a UI re-render.
 
-PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance?: number })
+PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance?: number })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -55,7 +53,7 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | --------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | fingers   | number                                | No  | Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.<br>Default value: **1** |
 | direction | [PanDirection](#pandirection)  | No  | Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All** |
-| distance  | number                                | No  | Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.<br>If the value specified is less than **0**, the default value **5** is used.<br>An inappropriate value can lead to slow response or lagging. |
+| distance  | number                                | No  | Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.<br>If the value specified is less than **0**, the default value **5** is used.<br>To avoid slow response and lagging during scrolling, set a reasonable pan distance.|
 
 **APIs**
 
@@ -78,11 +76,10 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 
 ## Attributes
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name | Type   |Description                                       |
+| Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the pan gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the pan gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool)>  | Allowed event input types for the pan gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
 

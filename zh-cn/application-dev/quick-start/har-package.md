@@ -2,19 +2,21 @@
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。
 
 ## 使用场景
-- 作为二方库，发布到[OHPM](https://ohpm.openharmony.cn/)私仓，供公司内部其他应用使用。
-- 作为三方库，发布到[OHPM](https://ohpm.openharmony.cn/)中心仓，供其他应用使用。
+- 支持应用内共享，也可以发布后供其他应用使用。
+- 作为二方库，发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-ohpm-repo-V13)，供公司内部其他应用使用。
+- 作为三方库，发布到[OHPM中心仓](https://ohpm.openharmony.cn/)，供其他应用使用。
+- 多包（HAP/HSP）引用相同的HAR时，会造成多包间代码和资源的重复拷贝，从而导致应用包膨大。
 
 ## 约束限制
 
 - HAR不支持在设备上单独安装/运行，只能作为应用模块的依赖项被引用。
-- HAR不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件与[ExtensionAbility](../application-models/extensionability-overview.md)组件。
+- HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但支持[UIAbility](../application-models/uiability-overview.md)组件。
 - HAR不支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面，但是可以包含pages页面，并通过[命名路由](../ui/arkts-routing.md#命名路由)的方式进行跳转。
 - HAR不支持引用AppScope目录中的资源。在编译构建时，AppScope中的内容不会打包到HAR中，因此会导致HAR资源引用失败。
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建
-通过DevEco Studio创建一个HAR模块，详见<!--RP1-->[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-V5#section643521083015)<!--RP1End-->。
+通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-V13#section643521083015)。
 
 
 ## 开发
@@ -110,7 +112,7 @@ HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ```
 
-### 资源
+### 导出资源
 在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
 - AppScope（仅API9的Stage模型支持）。
 - HAP包自身模块。
@@ -132,7 +134,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 介绍如何配置HAR依赖，并引用HAR的ArkUI组件、接口、资源。
 
-引用HAR前，需要先配置对HAR的依赖，详见<!--RP2-->[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->。
+引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13)。
 
 ### 引用HAR的ArkUI组件
 
@@ -298,7 +300,7 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 > 仅Stage模型的ArkTS工程支持混淆。  
 > HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
-HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-build-obfuscation-0000001731754312-V5)，配置如下所示：
+HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-build-obfuscation-V13)，配置如下所示：
 
   ```json
   {
@@ -365,7 +367,7 @@ HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 发布
 
-详见<!--RP3-->[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-publish-V5)<!--RP3End-->。
+详见[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-publish-V13)。
 
 ## 相关实例
 

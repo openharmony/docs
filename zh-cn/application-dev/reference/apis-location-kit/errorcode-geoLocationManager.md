@@ -70,7 +70,7 @@ Failed to obtain the geographical location.
 
 1.请移动至开阔地带再发起定位。
 
-2.请检查设备是否能联网，设备是否插入SIM卡，WiFi开关是否开启等。
+2.请检查设备是否能联网，设备是否插入SIM卡，Wi-Fi开关是否开启等。
 
 3.请检查定位请求中的maxAccuracy字段是否合理。
 
@@ -216,24 +216,46 @@ No response to the request.
 
 请停止调用相关接口。
 
-## 3301800 启动WiFi或蓝牙扫描失败
+## 3301800 启动Wi-Fi或蓝牙扫描失败
 
 **错误信息**
 
-Failed to start WiFi or Bluetooth scanning.
+Failed to start Wi-Fi or Bluetooth scanning.
 
 **错误描述**
 
-在订阅WiFi蓝牙扫描信息时，可能会先启动WiFi蓝牙扫描，如果启动扫描失败则会返回错误码给APP。
+在订阅Wi-Fi蓝牙扫描信息时，可能会先启动Wi-Fi蓝牙扫描，如果启动扫描失败则会返回错误码给APP。
 
 **可能原因**
 
-1.WiFi或蓝牙服务内部错误导致启动扫描失败。
+1.Wi-Fi或蓝牙服务内部错误导致启动扫描失败。
 
 2.低电量场景下，受功耗管控，导致无法发起扫描。
 
-3.WiFi或蓝牙开关未开启。
+3.Wi-Fi或蓝牙开关未开启。
 
 **处理步骤**
 
-重新关闭开启WiFi或蓝牙开关。
+重新关闭开启Wi-Fi或蓝牙开关。
+
+## 3301900 由于Wi-Fi未连接导致获取Wi-Fi热点的MAC地址失败
+
+**错误信息**
+
+Failed to obtain the hotpot MAC address because the Wi-Fi is not connected.
+
+**错误描述**
+
+设备未连接Wi-Fi热点或路由器，导致获取Wi-Fi热点或路由器的MAC地址失败。
+
+**可能原因**
+
+1.Wi-Fi开关未开启。
+
+2.开启Wi-Fi开关但未连接热点或路由器。
+
+**处理步骤**
+
+1.请打开Wi-Fi开关。
+
+2.请连接路由器或者热点。

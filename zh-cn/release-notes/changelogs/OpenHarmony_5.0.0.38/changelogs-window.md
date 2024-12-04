@@ -60,30 +60,82 @@ OH_NativeWindowManager_RegisterKeyEventFilter接口中，回调函数OH_NativeWi
 
 startAbility/openLink
 
-涉及相关接口：
-|UIAbilityContext|ServiceExtensionContext|UIExtensionContext|
-|---|---|---|
-|startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|
-|startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|
-|startAbility(want: Want, options?: StartOptions)|startAbility(want: Want, options?: StartOptions)|startAbility(want: Want, options?: StartOptions)|
-|startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;)|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;void&gt;)|startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;)|
-|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;)|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;)|
-|startAbilityForResult(want: Want, options?: StartOptions)|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)|startAbilityForResult(want: Want, options?: StartOptions)|
-|startAbilityByCall(want: Want)|startAbilityAsCaller(want: Want, callback: AsyncCallback&lt;void&gt;)|openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;)|
-|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|openAtomicService(appId: string, options?: AtomicServiceOptions)|
-|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityForResultAsCaller(want: Want, options?: StartOptions)|
-|openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;)|startAbilityByCall(want: Want)||
-|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;AbilityResult&gt;)|startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;)||
-|startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)||
-|startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions)|startRecentAbility(want: Want, options?: StartOptions)||
-|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;void&gt;)|startAbilityByCallWithAccount(want: Want, accountId: number)||
-|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|openLink(link:string, options?: OpenLinkOptions)||
-|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)|||
-|startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|||
-|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|||
-|startRecentAbility(want: Want, options?: StartOptions)|||
-|startAbilityByCallWithAccount(want: Want, accountId: number)|||
-|startAbilityAsCaller(want: Want, callback: AsyncCallback&lt;void&gt;)|||
+涉及相关接口:  
+UIAbilityContext:
+- startAbility(want: Want, options?: StartOptions)
+- startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+- startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityByCall(want: Want)
+- startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;)
+- startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;)
+- startAbilityForResult(want: Want, options?: StartOptions)
+- startAbilityAsCaller(want: Want, options?: StartOptions)
+- startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions)
+- startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;AbilityResult&gt;)
+- startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)
+- startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;void&gt;)
+- startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startRecentAbility(want: Want, options?: StartOptions)
+- startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+- startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityByCallWithAccount(want: Want, accountId: number)
+- startAbilityAsCaller(want: Want, callback: AsyncCallback&lt;void&gt;)
+- openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;)
+
+ServiceExtensionContext:
+- startAbility(want: Want, options?: StartOptions)
+- startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+- startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)
+- startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;void&gt;)
+- startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityByCall(want: Want)
+- startAbilityAsCaller(want: Want, options?: StartOptions)
+- startAbilityAsCaller(want: Want, callback: AsyncCallback&lt;void&gt;)
+- startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startRecentAbility(want: Want, options?: StartOptions)
+- startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+- startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityByCallWithAccount(want: Want, accountId: number)
+- openLink(link:string, options?: OpenLinkOptions)
+
+UIExtensionContext:
+- startAbility(want: Want, options?: StartOptions)
+- startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+- startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
+- startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;)
+- startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;)
+- startAbilityForResult(want: Want, options?: StartOptions)
+- startAbilityForResultAsCaller(want: Want, options?: StartOptions)
+- openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;)
+- openAtomicService(appId: string, options?: AtomicServiceOptions)
+
+AbilityDelegator:
+- startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+
+InsightIntentContext:
+- startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+
+FeatureAbility:
+- startAbility(parameter: StartAbilityParameter, callback: AsyncCallback&lt;number&gt;)
+- startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback&lt;AbilityResult&gt;)
+
+StaticSubscriberExtensionContext:
+- startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+
+InputMethodExtensionContext:
+- startAbility(want: Want)
+
+AccessibilityExtensionContext:
+- startAbility(want: Want)
+
+FormExtensionContext:
+- startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)
+
+WindowExtensionContext:
+- startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)
 
 **适配指导**
 

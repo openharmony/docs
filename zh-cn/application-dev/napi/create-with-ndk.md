@@ -17,6 +17,6 @@
    ![zh-cn_image_0000001782486161](figures/zh-cn_image_0000001782486161.png)
 
 3. 在工程配置页面，根据向导配置工程的基本信息后，单击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
-   在工程entry/src/main目录下会包含cpp目录，该目录文件的详细介绍请参见<!--RP1-->[C++工程目录结构](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section3732132312179)<!--RP1End-->。
+   在工程entry/src/main目录下会包含cpp目录，该目录文件的详细介绍请参见<!--RP1-->[C++工程目录结构](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-V5)<!--RP1End-->。
 
    ![oh-menu](figures/oh-menu.PNG)

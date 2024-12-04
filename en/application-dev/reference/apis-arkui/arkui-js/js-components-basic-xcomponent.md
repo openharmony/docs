@@ -34,7 +34,7 @@ In addition to the [universal events](js-components-common-events.md), the follo
 
 | Name                              | Description                                    |
 | -------------------------------- | ---------------------------------------- |
-| onLoad(context?: object) => void | Triggered when the plug-in is loaded.<br>**context**: context of an **\<XComponent>** object. The APIs contained in the context are defined by developers.|
+| onLoad(context?: object) => void | Triggered when the plug-in is loaded.<br>**context**: context of an **\<xComponent>** object. The APIs contained in the context are defined by developers.|
 | onDestroy() => void              | Triggered when the plug-in is destroyed.                            |
 
 ## Methods
@@ -43,13 +43,13 @@ In addition to the [universal methods](js-components-common-methods.md), the fol
 
 | Name                      | Parameter                                      | Return Value Type | Description                                      |
 | ------------------------ | ---------------------------------------- | ------ | ---------------------------------------- |
-| getXComponentSurfaceId   | -                                        | string | Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used for @ohos interfaces, such as camera-related interfaces.|
-| setXComponentSurfaceSize | {<br>surfaceWidth: number,<br>surfaceHeight: number  <br>} | -      | Sets the width and height of the surface held by the **\<XComponent>**.            |
+| getXComponentSurfaceId   | -                                        | string | Obtains the ID of the surface held by the **\<xComponent>**. The ID can be used for @ohos interfaces, such as camera-related interfaces.|
+| setXComponentSurfaceSize | {<br>surfaceWidth: number,<br>surfaceHeight: number  <br>} | -      | Sets the width and height of the surface held by the **\<xComponent>**.            |
 | getXComponentContext     | -                                        | object | Obtains the instance object of the xcomponent method extended by the developer.              |
 
 ## Example
 
-Provide a surface-type **\<XComponent>** to support camera preview and other capabilities.
+Provide a surface-type **\<xComponent>** to support camera preview and other capabilities.
 
    ```html
 <!-- xxx.hml -->

@@ -3,12 +3,13 @@
 
 A custom dialog box is a dialog box you customize by using APIs of the **CustomDialogController** class. It can be used for user interactions, showing an ad, prize, alert, software update message, and more. For details, see [Custom Dialog Box](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md).
 
+> **NOTE**
+>
+> Currently, ArkUI dialog boxes do not close automatically when you switch pages unless you manually call **close**. If you need a dialog box to close in sync with page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](arkts-navigation-navigation.md#page-display-mode).
 
 ## Creating a Custom Dialog Box
 
-1. Use the \@CustomDialog decorator to create a custom dialog box.
-
-2. Set the content for the \@CustomDialog decorated dialog box.
+1. Use the \@CustomDialog decorator to create a custom dialog box. You can define the content of the dialog box within the decorator.
 
    ```ts
    @CustomDialog
@@ -19,14 +20,14 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
    
      build() {
        Column() {
-         Text ('I am content')
+         Text('I am content')
            .fontSize(20)
            .margin({ top: 10, bottom: 10 })
        }
      }
    }
    ```
-   
+
 3. Create a builder that is bound to the decorator.
 
    ```ts
@@ -38,7 +39,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
       })
     }
    ```
-   
+
 4. Click the component bound to the **onClick** event to display the dialog box.
 
    ```ts
@@ -48,7 +49,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
      dialogController: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample(),
      })
-   
+
      build() {
        Column() {
          Button('click me')
@@ -59,7 +60,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
      }
    }
    ```
-   
+
    ![en-us_image_0000001562700493](figures/en-us_image_0000001562700493.png)
 
 
@@ -76,19 +77,19 @@ Custom dialog boxes can be used for data interactions to complete a series of re
      cancel?: () => void
      confirm?: () => void
      controller: CustomDialogController
-   
+
      build() {
        Column() {
-         Text('I am content') .fontSize(20).margin({ top: 10, bottom: 10 })
+         Text('I am content').fontSize(20).margin({ top: 10, bottom: 10 })
          Flex({ justifyContent: FlexAlign.SpaceAround }) {
-           Button('cancel')
+           Button('Cancel')
              .onClick(() => {
                this.controller.close()
                if (this.cancel) {
                  this.cancel()
                }
              }).backgroundColor(0xffffff).fontColor(Color.Black)
-           Button('confirm')
+           Button('Obtain')
              .onClick(() => {
                this.controller.close()
                if (this.confirm) {
@@ -113,15 +114,15 @@ Custom dialog boxes can be used for data interactions to complete a series of re
            confirm: ()=> { this.onAccept() },
          }),
        })
-   
+
        onCancel() {
          console.info('Callback when the first button is clicked')
        }
-   
+
        onAccept() {
          console.info('Callback when the second button is clicked')
        }
-   
+
        build() {
          Column() {
            Button('click me')
@@ -134,13 +135,11 @@ Custom dialog boxes can be used for data interactions to complete a series of re
    ```
 
       ![en-us_image_0000001511421320](figures/en-us_image_0000001511421320.png)
-   
+
    3. Use the button in the dialog box to implement route redirection and obtain the parameters passed in from the redirection target page.
-   
+
    ```ts
    // Index.ets
-   import { router } from '@kit.ArkUI';
-   
    @CustomDialog
    struct CustomDialogExample {
      @Link textValue: string
@@ -149,7 +148,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
      }
      confirm: () => void = () => {
      }
-   
+
      build() {
        Column({ space: 20 }) {
          if (this.textValue != '') {
@@ -172,7 +171,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
                if (this.controller != undefined && this.textValue != '') {
                  this.controller.close()
                } else if (this.controller != undefined) {
-                 router.pushUrl({
+                 this.getUIContext().getRouter().pushUrl({
                    url: 'pages/Index2'
                  })
                  this.controller.close()
@@ -182,7 +181,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
        }.borderRadius(10).padding({ top: 20 })
      }
    }
-   
+
    @Entry
    @Component
    struct CustomDialogUser {
@@ -198,32 +197,32 @@ Custom dialog boxes can be used for data interactions to complete a series of re
          textValue: $textValue
        })
      })
-   
+
      // Set dialogController to null when the custom component is about to be destroyed.
      aboutToDisappear() {
        this.dialogController = null // Set dialogController to null.
      }
-   
+
      onPageShow() {
-       const params = router.getParams() as Record<string, string>; // Obtain the passed parameter object.
+       const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // Obtain the passed parameter object.
        if (params) {
          this.dialogController?.open()
          this.textValue = params.info as string; // Obtain the value of the id attribute.
        }
      }
-   
+
      onCancel() {
        console.info('Callback when the first button is clicked')
      }
-   
+
      onAccept() {
        console.info('Callback when the second button is clicked')
      }
-   
+
      exitApp() {
        console.info('Click the callback in the blank area')
      }
-   
+
      build() {
        Column() {
          Button('click me')
@@ -236,11 +235,9 @@ Custom dialog boxes can be used for data interactions to complete a series of re
      }
    }
    ```
-   
+
    ```ts
    // Index2.ets
-   import { router } from '@kit.ArkUI';
-   
    @Entry
    @Component
    struct Index2 {
@@ -250,7 +247,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
          Button(this.message)
            .fontSize(50)
            .fontWeight(FontWeight.Bold).onClick(() => {
-           router.back({
+           this.getUIContext().getRouter().back({
              url: 'pages/Index',
              params: {
                info: 'Hello World'
@@ -261,7 +258,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
      }
    }
    ```
-   
+
    ![DialogRouter](figures/DialogRouter.gif)
 
 ## Defining the Custom Dialog Box Animation
@@ -324,6 +321,62 @@ struct CustomDialogUser {
 ```
 
 ![openAnimator](figures/openAnimator.gif)
+
+## Defining the Custom Dialog Box Style
+You can set style parameters, such as the width, height, background color, and shadow, for a custom dialog box.
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Text('I am content').fontSize(16).margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State textValue: string = ''
+  @State inputValue: string = 'Click Me'
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample(),
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false,
+    backgroundColor: 0xd9ffffff,
+    cornerRadius: 20,
+    width: '80%',
+    height: '100px',
+    borderWidth: 1,
+    borderStyle: BorderStyle.Dashed,// borderStyle must be used with borderWidth in pairs.
+    borderColor: Color.Blue,// borderColor must be used with borderWidth in pairs.
+    shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+  })
+
+  // Set dialogController to null when the custom component is about to be destroyed.
+  aboutToDisappear() {
+    this.dialogController = null // Set dialogController to null.
+  }
+
+  build() {
+    Column() {
+      Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![custom_style](figures/custom_style.gif)
 
 ## Nesting a Custom Dialog Box
 

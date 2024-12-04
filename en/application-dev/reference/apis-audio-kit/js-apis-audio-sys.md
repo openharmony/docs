@@ -49,7 +49,7 @@ import { audio } from '@kit.AudioKit';
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
-}
+};
 let tonePlayer: audio.TonePlayer;
 
 audio.createTonePlayer(audioRendererInfo, (err, data) => {
@@ -95,7 +95,7 @@ async function createTonePlayerBefore(){
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_DTMF,
     rendererFlags : 0
-  }
+  };
   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
 ```
@@ -137,17 +137,17 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+};
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
+};
 
 audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
@@ -440,11 +440,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
   'key_example': 'value_example'
-}
+};
+
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
 }).catch ((err: BusinessError) => {
-    console.error(`Failed to set the audio extra parameters ${err}`);
+  console.error(`Failed to set the audio extra parameters ${err}`);
 });
 ```
 
@@ -490,7 +491,7 @@ let subKeys: Array<String> = ['key_example'];
 audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
   console.info(`Promise returned to indicate that the value of the audio extra parameters is obtained ${value}.`);
 }).catch ((err: BusinessError) => {
-    console.error(`Failed to get the audio extra parameters ${err}`);
+  console.error(`Failed to get the audio extra parameters ${err}`);
 });
 ```
 
@@ -587,6 +588,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
 let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
@@ -625,9 +627,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.disableSafeMediaVolume().then(() => {
-    console.info('disableSafeMediaVolume success.');
+  console.info('disableSafeMediaVolume success.');
 }).catch ((err: BusinessError) => {
-    console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+  console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
 });
 ```
 
@@ -639,7 +641,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](js-apis-audio.md#onvolumechange9) in **AudioVolumeManager**.
 
-Subscribes to system volume change events. This API uses an asynchronous callback to return the result.
+Subscribes to the system volume change event, which is triggered when the system volume is changed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -651,7 +653,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Event type. The event **'volumeChange'** is triggered when the system volume is changed.|
+| type     | string                                 | Yes  | Event type. The value is fixed at **'volumeChange'**.|
 | callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the changed volume.|
 
 **Example**
@@ -668,7 +670,7 @@ audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-Subscribes to ringer mode change events. This API uses an asynchronous callback to return the result.
+Subscribes to the ringer mode change event, which is triggered when [audioringmode](js-apis-audio.md#audioringmode) is changed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -682,7 +684,7 @@ Subscribes to ringer mode change events. This API uses an asynchronous callback 
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Event type. The event **'ringerModeChange'** is triggered when the ringer mode is changed.|
+| type     | string                                    | Yes  | Event type. The value is fixed at **'ringerModeChange'**.|
 | callback | Callback<[AudioRingMode](js-apis-audio.md#audioringmode)> | Yes  | Callback used to return the changed ringer mode.                                                  |
 
 **Example**
@@ -1770,6 +1772,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1783,7 +1786,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isSpatializationSupportedForDevice: boolean = audioSpatializationManager.isSpatializationSupportedForDevice(deviceDescriptor);
   console.info(`AudioSpatializationManager isSpatializationSupportedForDevice: ${isSpatializationSupportedForDevice}`);
@@ -1822,6 +1826,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
   console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
@@ -1868,6 +1873,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1881,7 +1887,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isHeadTrackingSupportedForDevice: boolean = audioSpatializationManager.isHeadTrackingSupportedForDevice(deviceDescriptor);
   console.info(`AudioSpatializationManager isHeadTrackingSupportedForDevice: ${isHeadTrackingSupportedForDevice}`);
@@ -1930,7 +1937,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
@@ -1984,7 +1992,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(enable).then(() => {
   console.info(`setSpatializationEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2047,8 +2056,9 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
-let enabled: boolean = true
+};
+let enabled: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(deviceDescriptor, enabled).then(() => {
   console.info(`setSpatializationEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2089,6 +2099,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
   console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -2135,6 +2146,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -2148,7 +2160,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled(deviceDescriptor);
   console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -2162,7 +2175,7 @@ try {
 
 on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
-Subscribes to spatial audio rendering status changes.
+Subscribes to the spatial audio rendering status change event, which is triggered when the spatial audio rendering status is changed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2176,7 +2189,7 @@ Subscribes to spatial audio rendering status changes.
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
+| type     | string                                               | Yes  | Event type. The value is fixed at **'spatializationEnabledChange'**.|
 | callback | Callback<boolean\> | Yes  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.   |
 
 **Error codes**
@@ -2203,7 +2216,7 @@ audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEn
 
 on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-Subscribes to spatial audio rendering status changes.
+Subscribes to the spatial audio rendering status change event, which is triggered when the spatial audio rendering status is changed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2213,7 +2226,7 @@ Subscribes to spatial audio rendering status changes.
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | Yes  | Event type. The event **'spatializationEnabledChangeForAnyDevice'** is triggered when the status of spatial audio rendering changes.|
+| type     | string                                               | Yes  | Event type. The value is fixed at **'spatializationEnabledChangeForAnyDevice'**.|
 | callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of spatial audio rendering.   |
 
 **Error codes**
@@ -2241,7 +2254,7 @@ audioSpatializationManager.on('spatializationEnabledChangeForAnyDevice', (audioS
 
 off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
-Unsubscribes from spatial audio rendering status changes.
+Unsubscribes from the spatial audio rendering status change event. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2255,7 +2268,7 @@ Unsubscribes from spatial audio rendering status changes.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
+| type     | string                                              | Yes  | Event type. The value is fixed at **'spatializationEnabledChange'**.|
 | callback | Callback<boolean\> | No  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
 
 **Error codes**
@@ -2271,15 +2284,24 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import { audio } from '@kit.AudioKit';
+// Cancel all subscriptions to the event.
 audioSpatializationManager.off('spatializationEnabledChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let spatializationEnabledChangeCallback = (isSpatializationEnabled: boolean) => {
+  console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
+};
+
+audioSpatializationManager.on('spatializationEnabledChange', spatializationEnabledChangeCallback);
+
+audioSpatializationManager.off('spatializationEnabledChange', spatializationEnabledChangeCallback);
 ```
 
 ### off('spatializationEnabledChangeForAnyDevice')<sup>12+</sup>
 
 off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-Unsubscribes from spatial audio rendering status changes.
+Unsubscribes from the spatial audio rendering status change event. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2289,8 +2311,8 @@ Unsubscribes from spatial audio rendering status changes.
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | Yes  | Event type. The event **'spatializationEnabledChangeForAnyDevice'** is triggered when the status of spatial audio rendering changes.|
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of spatial audio rendering.   |
+| type     | string                                               | Yes  | Event type. The value is fixed at **'spatializationEnabledChangeForAnyDevice'**.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of spatial audio rendering.|
 
 **Error codes**
 
@@ -2306,7 +2328,19 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
+// Cancel all subscriptions to the event.
 audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let spatializationEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+};
+
+audioSpatializationManager.on('spatializationEnabledChangeForAnyDevice', spatializationEnabledChangeForAnyDeviceCallback);
+
+audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice', spatializationEnabledChangeForAnyDeviceCallback);
 ```
 
 ### setHeadTrackingEnabled<sup>(deprecated)</sup>
@@ -2348,7 +2382,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
@@ -2402,7 +2437,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
   console.info(`setHeadTrackingEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2465,8 +2501,9 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
-let enable: boolean = true
+};
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(deviceDescriptor, enable).then(() => {
   console.info(`setHeadTrackingEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2507,6 +2544,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
   console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -2553,6 +2591,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -2566,7 +2605,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled(deviceDescriptor);
   console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -2580,7 +2620,7 @@ try {
 
 on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
-Subscribes to head tracking status changes.
+Subscribes to the head tracking status change event, which is triggered when the head tracking status is changed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2594,7 +2634,7 @@ Subscribes to head tracking status changes.
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
+| type     | string                                               | Yes  | Event type. The value is fixed at **'headTrackingEnabledChange'**.|
 | callback | Callback<boolean\> | Yes  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
@@ -2621,7 +2661,7 @@ audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnable
 
 on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-Subscribes to head tracking status changes.
+Subscribes to the head tracking status change event, which is triggered when the head tracking status is changed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2631,7 +2671,7 @@ Subscribes to head tracking status changes.
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the status of head tracking changes.|
+| type     | string                                               | Yes  | Event type. The value is fixed at **'headTrackingEnabledChangeForAnyDevice'**.|
 | callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of head tracking.   |
 
 **Error codes**
@@ -2650,7 +2690,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 
 audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
-    console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
   console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
 });
 ```
@@ -2659,7 +2699,7 @@ audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', (audioSpa
 
 off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
-Unsubscribes from head tracking status changes.
+Unsubscribes from the head tracking status change event. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2673,7 +2713,7 @@ Unsubscribes from head tracking status changes.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
+| type     | string                                              | Yes  | Event type. The value is fixed at **'headTrackingEnabledChange'**.|
 | callback | Callback<boolean\> | No  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
@@ -2690,14 +2730,25 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
+// Cancel all subscriptions to the event.
 audioSpatializationManager.off('headTrackingEnabledChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let headTrackingEnabledChangeCallback = (isHeadTrackingEnabled: boolean) => {
+  console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+};
+
+audioSpatializationManager.on('headTrackingEnabledChange', headTrackingEnabledChangeCallback);
+
+audioSpatializationManager.off('headTrackingEnabledChange', headTrackingEnabledChangeCallback);
 ```
 
 ### off('headTrackingEnabledChangeForAnyDevice')<sup>12+</sup>
 
-off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<boolean\>): void
+off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-Unsubscribes from head tracking status changes.
+Unsubscribes from the head tracking status change event. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2707,8 +2758,8 @@ Unsubscribes from head tracking status changes.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the status of head tracking changes.|
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of head tracking.   |
+| type     | string                                              | Yes  | Event type. The value is fixed at **'headTrackingEnabledChangeForAnyDevice'**.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of head tracking.|
 
 **Error codes**
 
@@ -2724,7 +2775,19 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
+// Cancel all subscriptions to the event.
 audioSpatializationManager.off('headTrackingEnabledChangeForAnyDevice');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let headTrackingEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+};
+
+audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', headTrackingEnabledChangeForAnyDeviceCallback);
+
+audioSpatializationManager.off('headTrackingEnabledChangeForAnyDevice', headTrackingEnabledChangeForAnyDeviceCallback);
 ```
 
 ### updateSpatialDeviceState<sup>11+</sup>
@@ -2761,12 +2824,14 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let spatialDeviceState: audio.AudioSpatialDeviceState = {
   address: "123",
   isSpatializationSupported: true,
   isHeadTrackingSupported: true,
   spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
-}
+};
+
 try {
   audioSpatializationManager.updateSpatialDeviceState(spatialDeviceState);
   console.info(`AudioSpatializationManager updateSpatialDeviceState success`);
@@ -2810,6 +2875,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
   console.info(`AudioSpatializationManager setSpatializationSceneType success`);
@@ -2848,6 +2914,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
   console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
@@ -2882,7 +2949,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
   isSpatializationSupported: true,
   isHeadTrackingSupported: true,
   spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
-}
+};
 ```
 
 ## AudioSpatialDeviceType<sup>11+</sup>

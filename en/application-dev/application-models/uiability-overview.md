@@ -20,9 +20,15 @@ Each UIAbility component instance is displayed as a mission in the system applic
 
 You can develop a single UIAbility or multiple UIAbilities for your application based on service requirements.
 
-- If you want your application to be displayed as one mission in Recents, use one UIAbility and multiple pages.
+- If you want your application to be displayed as one mission in **Recents**, use the pattern of "one UIAbility + multiple pages" to avoid unnecessary resource loading.
 
-- If you want your application to be displayed as multiple missions in Recents or multiple windows to be opened simultaneously, use multiple UIAbilities.
+- If you want your application to be displayed as multiple missions in **Recents** or to have multiple windows opened simultaneously, use multiple UIAbilities to implement different features.
+  
+   For example, if you develop the message list and the audio/video call of an instant messaging application using different UIAbilities, users can easily switch from one window to another or display both windows in split-screen mode on the same screen.
+
+> **NOTE**
+>
+> **Recents** is used for quickly viewing and managing all missions or applications running on the current device.
 
 ## Declaration Configuration
 

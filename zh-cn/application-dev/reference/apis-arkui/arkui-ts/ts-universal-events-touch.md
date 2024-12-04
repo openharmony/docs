@@ -40,7 +40,7 @@ onTouch(event: (event: TouchEvent) => void): T
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| preventDefault<sup>12+</sup>      | () => void |  阻止默认事件，具体功能暂未实现。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ### getHistoricalPoints<sup>10+</sup>
 

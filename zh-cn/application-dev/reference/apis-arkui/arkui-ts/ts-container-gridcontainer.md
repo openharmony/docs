@@ -41,7 +41,7 @@ GridContainer(value?: GridContainerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | XS | 最小宽度类型设备。 |
 | SM | 小宽度类型设备。 |
@@ -58,7 +58,6 @@ GridContainer(value?: GridContainerOptions)
 ## 事件
 
 支持通用事件。
-
 
 ## 示例
 

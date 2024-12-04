@@ -12,10 +12,10 @@ Mouse events can trigger the following callbacks.
 
 | Name                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| onHover(event: (isHover: boolean) =&gt; void) | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component. |
-| onMouse(event: (event?: MouseEvent) =&gt; void) | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered. |
+| onHover(event: (isHover: boolean) =&gt; void) | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
+| onMouse(event: (event?: MouseEvent) =&gt; void) | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
-When the component is bound to the **onHover** callback, you can use the [hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md) attribute to set the hover effect of the component in hover state.
+When the component is bound to the **onHover** callback, you can use the [hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md#hovereffect) attribute to set the hover effect of the component in hover state.
 
 
   **Figure 1** Mouse event data flow 
@@ -269,11 +269,11 @@ Sets the hover effect of the component in hover state. The parameter value type 
 
   **Table 1** HoverEffect
 
-| Value | Description                                    |
+| Value| Description                                    |
 | -------------- | ---------------------------------------- |
 | Auto           | Default hover effect, which varies by component.                    |
-| Scale          | Scale effect. When the mouse pointer is placed over the component, the component is scaled up from 100% to 105%. When the mouse pointer is moved away, the component is scaled down from 105% to 100%. |
-| Highlight      | Background fade-in and fade-out effect. When the mouse pointer is placed over the component, a white layer with 5% opacity is applied to the background color of the component, resulting in a dimmed background. When the mouse pointer is moved away, the background color of the component is restored to the original style. |
+| Scale          | Scale effect. When the mouse pointer is placed over the component, the component is scaled up from 100% to 105%. When the mouse pointer is moved away, the component is scaled down from 105% to 100%.|
+| Highlight      | Background fade-in and fade-out effect. When the mouse pointer is placed over the component, a white layer with 5% opacity is applied to the background color of the component, resulting in a dimmed background. When the mouse pointer is moved away, the background color of the component is restored to the original style.|
 | None           | No effect.                                 |
 
 
@@ -323,7 +323,7 @@ After being triggered by a device such as a peripheral keyboard, a key event has
 
 When a text box has focus and the input method is enabled, most key events are consumed by the input method. For example, a letter key is used by the input method to enter a letter in the text box, and an arrow key is used by the input method to switch to the desired candidate word. Yet, if a keyboard shortcut is bound to the text box, the shortcut responds to the event first, and the event will not be consumed by the input method.
 
-After the key event is sent to the ArkUI framework, it first identifies the complete focus chain, and then sends the key event from one node to the next, following the leaf-to-root path. 
+After the key event is sent to the ArkUI framework, it first identifies the complete focus chain, and then sends the key event from one node to the next, following the leaf-to-root path.
 
 The key event process for the **Web** component differs from the aforementioned process. The **Web** component does not match keyboard shortcuts when **onKeyPreIme** returns **false**. The unconsumed key event will be re-dispatched back to ArkUI through **ReDispatch** during the third key press dispatch. It is within this **ReDispatch** that operations such as matching keyboard shortcuts are performed again.
 
@@ -339,7 +339,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 The difference between the preceding two methods lies only in the triggering time. For details, see [Key Event Data Flow](#key-event-data-flow). The return value of **onKeyPreIme** determines whether the key event will be dispatched for the page keyboard shortcut, input method, and **onKeyEvent**.
 
 
-The methods are triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis-input-kit/js-apis-keycode.md), **keyText**, [KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
+The methods are triggered when the bound component has focus and a key event occurs on the component. The callback parameter [KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis-input-kit/js-apis-keycode.md#keycode), **keyText**, [KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
 
 
 

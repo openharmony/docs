@@ -11,7 +11,13 @@ The ErrorManager module provides APIs for registering and unregistering error ob
 import { errorManager } from '@kit.AbilityKit';
 ```
 
-## ErrorManager.on('error')
+## errorManager.on('error')
+
+> **NOTE**
+> 
+> The **errormanager.on** API is registered only in the main thread. Currently, exceptions in child threads (such as TaskPool threads) cannot be captured.
+>
+> The application does not exit during the use of **errormanager.on**. You are advised to add the synchronous exit operation after the callback function is executed.
 
 on(type: 'error', observer: ErrorObserver): number
 
@@ -41,7 +47,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | Id does not exist. |
+| 16000003 | The specified ID does not exist. |
 
 **Example**
     
@@ -72,7 +78,7 @@ try {
 }
 ```
 
-## ErrorManager.off('error')
+## errorManager.off('error')
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -97,7 +103,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | Id does not exist. |
+| 16000003 | The specified ID does not exist. |
 
 **Example**
     
@@ -122,7 +128,7 @@ try {
 }
 ```
 
-## ErrorManager.off('error')
+## errorManager.off('error')
 
 off(type: 'error', observerId: number): Promise\<void>
 
@@ -152,7 +158,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 16000003 | Id does not exist. |
+| 16000003 | The specified ID does not exist. |
 
 **Example**
     
@@ -177,7 +183,7 @@ try {
 }
 ```
 
-## ErrorManager.on('loopObserver')<sup>12+</sup>
+## errorManager.on('loopObserver')<sup>12+</sup>
 
 on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
@@ -217,7 +223,7 @@ let observer: errorManager.LoopObserver = {
 errorManager.on("loopObserver", 1, observer);
 ```
 
-## ErrorManager.on('unhandledRejection')<sup>12+</sup>
+## errorManager.on('unhandledRejection')<sup>12+</sup>
 
 on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
@@ -266,7 +272,7 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 });
 ```
 
-## ErrorManager.off('loopObserver')<sup>12+</sup>
+## errorManager.off('loopObserver')<sup>12+</sup>
 
 off(type: 'loopObserver', observer?: LoopObserver): void
 
@@ -299,7 +305,7 @@ import { errorManager } from '@kit.AbilityKit';
 errorManager.off("loopObserver");
 ```
 
-## ErrorManager.off('unhandledRejection')<sup>12+</sup>
+## errorManager.off('unhandledRejection')<sup>12+</sup>
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 

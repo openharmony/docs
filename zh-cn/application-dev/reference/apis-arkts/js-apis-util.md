@@ -830,8 +830,8 @@ TextDecoder的构造函数。
 **示例：**
 
 ```ts
-let result = new util.TextDecoder();
-let retStr = result.encoding;
+let textDecoder = new util.TextDecoder();
+let retStr = textDecoder.encoding;
 ```
 ### create<sup>9+</sup>
 
@@ -865,8 +865,8 @@ let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
   ignoreBOM : true
 }
-let result = util.TextDecoder.create('utf-8', textDecoderOptions)
-let retStr = result.encoding
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let retStr = textDecoder.encoding;
 ```
 
 ### decodeToString<sup>12+</sup>
@@ -911,8 +911,8 @@ let decodeToStringOptions: util.DecodeToStringOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
-let retStr = textDecoder.decodeToString(result, decodeToStringOptions);
+let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -962,15 +962,15 @@ let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -1041,15 +1041,15 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 ```ts
 let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decode( result , {stream: false});
+let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
 ```
 
@@ -1234,10 +1234,10 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeIntoUint8Array('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1270,10 +1270,10 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeInto('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeInto('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -1331,7 +1331,7 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
 
@@ -1518,7 +1518,7 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
@@ -3824,11 +3824,15 @@ isAsyncFunction(value: Object): boolean
   ```
 
 
-### isBooleanObject<sup>8+</sup>
+### isBooleanObject<sup>(deprecated)</sup>
 
 isBooleanObject(value: Object): boolean
 
 检查输入的value是否是一个Boolean对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3856,11 +3860,15 @@ isBooleanObject(value: Object): boolean
   ```
 
 
-### isBoxedPrimitive<sup>8+</sup>
+### isBoxedPrimitive<sup>(deprecated)</sup>
 
 isBoxedPrimitive(value: Object): boolean
 
 检查输入的value是否是Boolean或Number或String或Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4118,6 +4126,7 @@ isGeneratorFunction(value: Object): boolean
   export function* foo() {}
   ```
 
+  <!--code_no_check-->
   ```ts
   import { foo } from './test'
 
@@ -4158,6 +4167,7 @@ isGeneratorObject(value: Object): boolean
   export const generator = foo();
   ```
 
+  <!--code_no_check-->
   ```ts
   import { generator } from './test'
 
@@ -4362,11 +4372,15 @@ isNativeError(value: Object): boolean
   ```
 
 
-### isNumberObject<sup>8+</sup>
+### isNumberObject<sup>(deprecated)</sup>
 
 isNumberObject(value: Object): boolean
 
 检查输入的value是否是Number对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4560,11 +4574,15 @@ isSetIterator(value: Object): boolean
   ```
 
 
-### isStringObject<sup>8+</sup>
+### isStringObject<sup>(deprecated)</sup>
 
 isStringObject(value: Object): boolean
 
 检查输入的value是否是String对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4592,11 +4610,15 @@ isStringObject(value: Object): boolean
   ```
 
 
-### isSymbolObject<sup>8+</sup>
+### isSymbolObject<sup>(deprecated)</sup>
 
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4621,6 +4643,7 @@ isSymbolObject(value: Object): boolean
   export const symbols = Symbol('foo');
   ```
 
+  <!--code_no_check-->
   ```ts
   import { symbols } from './test'
 
@@ -4953,6 +4976,7 @@ isModuleNamespaceObject(value: Object): boolean
   }
   ```
 
+  <!--code_no_check-->
   ```ts
   import * as nameSpace from './test';
 

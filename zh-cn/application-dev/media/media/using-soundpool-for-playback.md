@@ -1,4 +1,4 @@
-# 使用SoundPool开发音频播放功能
+# 使用SoundPool播放短音频(ArkTS)
 
 使用SoundPool（音频池）提供的接口，可以实现低时延短音播放。
 
@@ -12,6 +12,10 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
 在应用开发过程中，开发者应通过监听方法检查当前播放状态并按照一定顺序调用接口，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
+> **说明：**
+> 
+> 使用SoundPool播放短音频时，涉及音频焦点管控策略的问题，请参考[音频焦点指南](../audio/audio-playback-concurrency.md)。
+
 ## 开发步骤及注意事项
 
 1. 调用createSoundPool方法创建SoundPool实例。
@@ -22,6 +26,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     import { BusinessError } from '@kit.BasicServicesKit';
 
     let soundPool: media.SoundPool;
+    // audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，
+    // STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。
     let audioRendererInfo: audio.AudioRendererInfo = {
       usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags : 0
@@ -64,16 +70,19 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 5. 调用load方法进行音频资源加载。
+
     可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load)。
+
+    当系统加载完毕音频资源文件的时候，会通过loadComplete回调，通知用户资源加载完成，请在收到回调之后，再进行后续的play操作。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
    
     let soundID: number;
     let uri: string;
     async function load() {
-      await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+      await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
         console.info("file fd: " + file.fd);
         uri = 'fd://' + (file.fd).toString()
       }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
@@ -86,7 +95,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     }
     ```
 
-6. 配置播放参数PlayParameters，并调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
+6. 配置播放参数PlayParameters，并在收到loadComplete回调通知之后，调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
   
     ```ts
     let soundID: number;
@@ -210,12 +219,14 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 ```ts
 import { audio } from '@kit.AudioKit';
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
 let streamId: number = 0;
 let soundId: number = 0;
+// audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，
+// STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
@@ -236,7 +247,7 @@ async function create() {
   finishPlayCallback();
   setErrorCallback();
   // 加载音频资源
-  await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+  await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
     uri = 'fd://' + (file.fd).toString()
   }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
@@ -252,7 +263,7 @@ function loadCallback() {
 function finishPlayCallback() {
   // 播放完成回调
   soundPool.on('playFinished', () => {
-    console.info("recive play finished message");
+    console.info("receive play finished message");
     // 可进行下次播放
   })
 }
@@ -263,7 +274,7 @@ function setErrorCallback() {
   })
 }
 async function PlaySoundPool() {
-  // 开始播放,这边play也可带播放播放的参数PlayParameters
+  // 开始播放，这边play也可带播放播放的参数PlayParameters，请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作
   soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
       console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)

@@ -6,7 +6,6 @@
 >
 >The \@Computed decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 
@@ -18,7 +17,8 @@ For complex computing, \@Computed provides better performance.
 \@Computed syntax:
 
 ```ts
-@Computed get varName(): T {
+@Computed
+get varName(): T {
     return value;
 }
 ```
@@ -29,43 +29,89 @@ For complex computing, \@Computed provides better performance.
 | Initialization from the parent component     | Forbidden.|
 | Child component initialization     | \@Param  |
 | Execution time       | When \@ComponentV2 is initialized, the computed property will be triggered. When the computed value changes, the computed property will be also triggered.|
+|Value assignment allowed        | No. @Computed decorated properties are read-only. For details, see [Constraints](#constraints).|
 
 ## Constraints
 
-- When \@Computed is used to decorate the **getter** method, the computed property cannot be changed in this method.
+- \@Computed is a method decorator, which can decorate only the **getter** method.
 
-```ts
-@Computed
-get fullName() {
-  this.lastName += 'a'; // error
-  return this.firstName + ' ' + this.lastName;
-}
-```
-- \@Computed cannot be used together with **!!**. That is, \@Computed decorates the **getter** accessor, which is not synchronized by the child components nor assigned a value.
+  ```ts
+  @Computed
+  get fullName() { // Correct format.
+    return this.firstName + ' ' + this.lastName;
+  }
+  @Computed val: number = 0; // Incorrect format. An error is reported during compilation.
+  @Computed
+  func() { // Incorrect usage. An error is reported during compilation.
+  }
+  ```
+- In the **getter** method decorated by \@Computed, the properties involved in computation cannot be changed.
 
+  ```ts
+  @Computed
+  get fullName() {
+    this.lastName += 'a'; // Error. The properties involved in computation cannot be changed.
+    return this.firstName + ' ' + this.lastName;
+  }
+  ```
 
-```ts
-@Computed
-get fullName() {
-  return this.firstName + ' ' + this.lastName;
-}
+- \@Computed cannot be used together with **!!**. That is, \@Computed decorates the **getter** accessor, which is not synchronized by the child components nor assigned a value. **setter** of the computed property implemented by the developer does not take effect, and a runtime error is reported.
 
-Child({ fullName: this.fullName!! }) // error
-```
+  ```ts
+  @ComponentV2
+  struct Child {
+    @Param double: number = 100;
+    @Event $double: (val: number) => void;
+  
+    build() {
+      Button('ChildChange')
+        .onClick(() => {
+          this.$double(200);
+        })
+    }
+  }
+  
+  @Entry
+  @ComponentV2
+  struct Index {
+    @Local count: number = 100;
+  
+    @Computed
+    get double() {
+      return this.count * 2;
+    }
+  
+    // The @Computed decorated property is read-only. The setter implemented by the developer does not take effect, and a runtime error is reported.
+    set double(newValue : number) {
+      this.count = newValue / 2;
+    }
+  
+    build() {
+      Scroll() {
+        Column({ space: 3 }) {
+          Text(`${this.count}`)
+          // Incorrect format. The @Computed decorated property method is read-only and cannot be used together with two-way binding.
+          Child({ double: this.double!! })
+        }
+      }
+    }
+  }
+  ```
+
 - The capability provided by \@Computed for the status management V2 can be used only in \@ComponentV2 and \@ObservedV2.
 - Be cautious about loop solving when multiple \@Computed are used together.
 
-```ts
-@Local a : number = 1;
-@Computed
-get b() {
-  return this.a + ' ' + this.c;  // error: b -> c -> b
-}
-@Computed
-get c() {
-  return this.a + ' ' + this.b; // error: c -> b -> c
-}
-```
+  ```ts
+  @Local a : number = 1;
+  @Computed
+  get b() {
+    return this.a + ' ' + this.c;  // Incorrect format. A loop b -> c -> b exists.
+  }
+  @Computed
+  get c() {
+    return this.a + ' ' + this.b; // Incorrect format. A loop c -> b -> c exists.
+  }
+  ```
 
 ## Use Scenarios
 ### When the computed property changes, the **getter** accessor decorated by \@Computed is solved only once.
@@ -265,7 +311,6 @@ struct Child {
       Text(`Total: ${this.total} `).fontSize(30)
       Text(`Discount: ${this.qualifiesForDiscount} `).fontSize(30)
     }
-
   }
 }
 ```

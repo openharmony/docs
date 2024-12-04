@@ -20,7 +20,7 @@
 
 | 接口                       | 功能说明                       |
 |----------------------------|--------------------------------|
-| OH_JSVM_CreateError、OH_JSVM_CreateTypeError、OH_JSVM_CreateRangeError、OH_JSVM_CreateSyntaxError | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS |
+| OH_JSVM_CreateError、OH_JSVM_CreateTypeError、OH_JSVM_CreateRangeError、OH_JSVM_CreateSyntaxError | 在C/C++中需要创建一个错误对象时，可以使用这些函数。|
 | OH_JSVM_Throw | 当在C/C++中出现了错误或异常情况时，通过使用OH_JSVM_CreateError或OH_JSVM_GetLastErrorInfo方法创建或获取JavaScript Error对象，使用该方法抛出已有的JavaScript Error对象。 |
 | OH_JSVM_ThrowError、OH_JSVM_ThrowTypeError、OH_JSVM_ThrowRangeError、OH_JSVM_ThrowSyntaxError | 当在C/C++中出现了错误或异常情况时，可以使用这些函数来抛出JavaScript中的异常。 |
 | OH_JSVM_IsError              | 查询JSVM_Value以检查它是否表示错误对象。|
@@ -29,7 +29,7 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_Throw
 
@@ -43,22 +43,25 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// JsVmThrow注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateThrowError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmThrow方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// 捕获清除并打印错误,该函数作为公共函数，在本文档后续样例中不再声明和定义
+static void GetLastErrorAndClean(JSVM_Env env) {
+    // 调用OH_JSVM_GetAndClearLastException接口获取并清除最后一个未处理的异常。即使存在挂起的JavaScript异常，也可以调用此API
+    JSVM_Value result = nullptr;
+    JSVM_Status status = OH_JSVM_GetAndClearLastException(env, &result);
+    // 打印错误信息
+    JSVM_Value message;
+    JSVM_Value errorCode;
+    OH_JSVM_GetNamedProperty((env), result, "message", &message);
+    OH_JSVM_GetNamedProperty((env), result, "code", &errorCode);
+    char messagestr[256];
+    char codeStr[256];
+    OH_JSVM_GetValueStringUtf8(env, message, messagestr, 256, nullptr);
+    OH_JSVM_GetValueStringUtf8(env, errorCode, codeStr, 256, nullptr);
+    OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s, error code: %{public}s", messagestr, codeStr);
+}
+
+// OH_JSVM_CreateError的样例方法
 static JSVM_Value JsVmCreateThrowError(JSVM_Env env, JSVM_CallbackInfo info) {
-{
-    size_t argc = 1;
-    JSVM_Value argv[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // 在JSVM环境中创建一个字符串，并将其存储在errorCode变量中
     JSVM_Value errorCode = nullptr;
     OH_JSVM_CreateStringUtf8(env, "-1", JSVM_AUTO_LENGTH, &errorCode);
@@ -70,26 +73,25 @@ static JSVM_Value JsVmCreateThrowError(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_CreateError(env, errorCode, errorMessage, &error);
     // 通过OH_JSVM_Throw接口将对象抛出
     OH_JSVM_Throw(env, error);
+    GetLastErrorAndClean(env);
     return nullptr;
 }
+
+// JsVmThrow注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateThrowError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmThrow方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmCreateThrowError();)JS";
 ```
-
-接口声明
-
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   jsVmCreateThrowError();
-`
-try {
-  testNapi.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_Throw errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
-}
+JSVM error message: HasError, error code: -1
 ```
 
 ### OH_JSVM_ThrowError
@@ -100,24 +102,14 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// JsVmThrowError注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmThrowError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmThrowError方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_ThrowError的样例方法
 static JSVM_Value JsVmThrowError(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     if (argc == 0) {
-        // 如果没有传递参数，直接抛出异常
+        // 如果没有传递参数，直接抛出错误
         OH_JSVM_ThrowError(env, "-1", "has Error");
     } else if (argc == 1) {
         size_t length;
@@ -127,36 +119,29 @@ static JSVM_Value JsVmThrowError(JSVM_Env env, JSVM_CallbackInfo info)
         // 获取入参的字符串内容。
         OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
         // 作为error信息填入到OH_JSVM_ThrowError接口中。
-        OH_JSVM_ThrowError(env, nullptr, buffer);
+        OH_JSVM_ThrowError(env, "self defined error code", buffer);
         delete[] buffer;
     }
+    GetLastErrorAndClean(env);
     return nullptr;
 }
+// JsVmThrowError注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmThrowError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmThrowError方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmThrowError();jsVmThrowError("self defined error message");)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let firstScript: string = `jsVmThrowError()`
-try {
-    napitest.runJsVm(firstScript);
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'Test OH_JSVM_ThrowError errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
-}
-
-try {
-    let errMessage = `\"has Error\"`
-    let sencodeScript: string =
-        `
-            jsVmThrowError(${errMessage})
-        `
-    napitest.runJsVm(sencodeScript);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_ThrowError errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
-}
+JSVM error message: has Error, error code: -1
+JSVM error message: self defined error message, error code: self defined error code
 ```
 
 ### OH_JSVM_ThrowTypeError
@@ -167,25 +152,13 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// JsVmThrowTypeError注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmThrowTypeError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmThrowTypeError方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmThrowTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// 这里直接抛出一个带有errorMessage的TypeError
-static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info)
-{
+// OH_JSVM_ThrowTypeError的样例方法
+static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     if (argc == 0) {
-        // 如果没有传递参数，直接抛出异常
+        // 如果没有传递参数，直接抛出错误
         OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
     } else if (argc == 1) {
         size_t length;
@@ -195,38 +168,29 @@ static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info)
         // 获取入参的字符串内容
         OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
         // 作为error信息填入到OH_JSVM_ThrowError接口中
-        OH_JSVM_ThrowTypeError(env, nullptr, buffer);
+        OH_JSVM_ThrowTypeError(env, "self defined error code", buffer);
         delete[] buffer;
     }
+    GetLastErrorAndClean(env);
     return nullptr;
 }
+// JsVmThrowTypeError注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmThrowTypeError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmThrowTypeError方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmThrowTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmThrowTypeError();jsVmThrowTypeError("self defined error message");)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string =
-  `
-      jsVmThrowTypeError()
-  `
-  napitest.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_TypeError');
-}
-
-try {
-  let script: string =
-  `
-      jsVmThrowTypeError("has type Error")
-  `
-  napitest.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_TypeError');
-}
+JSVM error message: throwing type error, error code: -1
+JSVM error message: self defined error message, error code: self defined error code
 ```
 
 ### OH_JSVM_ThrowRangeError
@@ -237,17 +201,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// JsVmThrowRangeError注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmThrowRangeError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmThrowRangeError方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmThrowRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_ThrowRangeError的样例方法
 static JSVM_Value JsVmThrowRangeError(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // js侧传入两个参数
@@ -258,29 +212,30 @@ static JSVM_Value JsVmThrowRangeError(JSVM_Env env, JSVM_CallbackInfo info)
     if (argc != 2) {
         // 这里抛出一个RangeError
         OH_JSVM_ThrowRangeError(env, "OH_JSVM_ThrowRangeError", "Expected two numbers as arguments");
+        GetLastErrorAndClean(env);
         return nullptr;
     }
     JSVM_Value result = nullptr;
     OH_JSVM_GetBoolean(env, true, &result);
     return result;
 }
+// JsVmThrowRangeError注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmThrowRangeError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmThrowRangeError方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmThrowRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmThrowRangeError(1);)JS";
 ```
 
-ArkTS侧示例代码
 
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string =
-  `
-      jsVmThrowRangeError(1)
-  `
-  napitest.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_ThrowRangeError');
-}
+JSVM error message: Expected two numbers as arguments, error code: OH_JSVM_ThrowRangeError
 ```
 
 ### OH_JSVM_ThrowSyntaxError
@@ -291,17 +246,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// JsVmThrowSyntaxError注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmThrowSyntaxError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmThrowSyntaxError方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmThrowSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_ThrowSyntaxError的样例方法
 static JSVM_Value JsVmThrowSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     // JS侧传入运行的JS代码
     size_t argc = 1;
@@ -316,26 +261,29 @@ static JSVM_Value JsVmThrowSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         // 如果JSVM_RunScript接口返回状态不为JSVM_OK，则抛出一个SyntaxError
         OH_JSVM_ThrowSyntaxError(env, "JsVmThrowSyntaxError", "throw syntax error");
+        GetLastErrorAndClean(env);
         return nullptr;
     }
     JSVM_Value result = nullptr;
     OH_JSVM_GetBoolean(env, true, &result);
     return result;
 }
+// JsVmThrowSyntaxError注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmThrowSyntaxError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmThrowSyntaxError方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmThrowSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmThrowSyntaxError();)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-    let script: string =` jsVmThrowSyntaxError()`
-    napitest.runJsVm(script);
-} catch(error) {
-    hilog.error(0x0000, 'testTag', 'Test jsVmThrowSyntaxError error message: %{public}s,', error.message);
-}
+JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 ```
 
 ### OH_JSVM_IsError
@@ -346,8 +294,25 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
+// OH_JSVM_IsError的样例方法
+static JSVM_Value JsVmIsError(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
+    // 调用接口OH_JSVM_IsError判断入参是否为一个error对象
+    bool result = false;
+    // 如果JSVM_Value为一个error对象，则设置result为true的布尔值，否则设置为false
+    JSVM_Status status = OH_JSVM_IsError(env, args[0], &result);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "JSVM API call OH_JSVM_IsError success, result is %{public}d", result);
+    }else {
+        OH_LOG_INFO(LOG_APP, "JSVM API call OH_JSVM_IsError failed");
+    }
+    // 取出result通过OH_JSVM_GetBoolean接口将取出的bool值转换为JSVM_Value类型的值返回出去
+    JSVM_Value returnValue = nullptr;
+    OH_JSVM_GetBoolean(env, result, &returnValue);
+    return returnValue;
+}
 // JsVmIsError注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmIsError},
@@ -357,34 +322,13 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmIsError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-static JSVM_Value JsVmIsError(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // 调用接口OH_JSVM_IsError判断入参是否为一个error对象
-    bool result = false;
-    // 如果JSVM_Value为一个error对象，则设置result为true的布尔值，否则设置为false
-    OH_JSVM_IsError(env, args[0], &result);
-    // 取出result通过OH_JSVM_GetBoolean接口将取出的bool值转换为JSVM_Value类型的值返回出去
-    JSVM_Value returnValue = nullptr;
-    OH_JSVM_GetBoolean(env, result, &returnValue);
-    return returnValue;
-}
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmIsError(Error()))JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string =
-  `
-      jsVmIsError(Error())
-  `
-const isError = napitest.runJsVm(script);
-hilog.info(0x0000, 'testTag', 'Test OH_JSVM_IsError error: %{public}s', isError);
+JSVM API call OH_JSVM_IsError success, result is 1
 ```
 
 ### OH_JSVM_CreateTypeError
@@ -395,19 +339,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// JsVmCreateTypeError注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateTypeError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmCreateTypeError方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_CreateTypeError的样例方法
 static JSVM_Value JsVmCreateTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
     // 在JSVM环境中创建一个字符串，并将其存储在errorCode变量中
     JSVM_Value errorCode = nullptr;
@@ -424,18 +356,22 @@ static JSVM_Value JsVmCreateTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
+// JsVmCreateTypeError注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateTypeError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmCreateTypeError方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmCreateTypeError();)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string =`
-     jsVmCreateTypeError()
-  `
-napitest.runJsVm(script);
+JSVM API Create TypeError SUCCESS
 ```
 
 ### OH_JSVM_CreateRangeError
@@ -446,19 +382,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// JsVmCreateRangeError注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateRangeError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmCreateRangeError方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_CreateRangeError的样例方法
 static JSVM_Value JsVmCreateRangeError(JSVM_Env env, JSVM_CallbackInfo info) {
     // 在JSVM环境中创建一个字符串，并将其存储在errorCode变量中
     JSVM_Value errorCode = nullptr;
@@ -475,41 +399,32 @@ static JSVM_Value JsVmCreateRangeError(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
+// JsVmCreateRangeError注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateRangeError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmCreateRangeError方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmCreateRangeError();)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string =
-   `
-    jsVmCreateRangeError()
-   `
-napitest.runJsVm(script);
+JSVM API CreateRangeError SUCCESS
 ```
-
 ### OH_JSVM_CreateSyntaxError
+
+用于创建并获取一个带文本信息的JavaScript SyntaxError。
 
 cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-
-// JsVmCreateSyntaxError注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateSyntaxError},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmThrow方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_CreateSyntaxError的样例方法
 static JSVM_Value JsVmCreateSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     // 在JSVM环境中创建一个字符串，并将其存储在errorCode变量中
     JSVM_Value errorCode = nullptr;
@@ -526,19 +441,22 @@ static JSVM_Value JsVmCreateSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
+// JsVmCreateSyntaxError注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateSyntaxError},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmThrow方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmCreateSyntaxError();)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string =
-  `
-  let error = jsVmCreateSyntaxError()
-  `
-napitest.runJsVm(script);
+JSVM API CreateSyntaxError SUCCESS
 ```
 
 ### OH_JSVM_GetAndClearLastException
@@ -549,19 +467,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// JsVmGetAndClearLastException注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmGetAndClearLastException},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmGetAndClearLastException方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmGetAndClearLastException", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_GetAndClearLastException的样例方法
 static JSVM_Value JsVmGetAndClearLastException(JSVM_Env env, JSVM_CallbackInfo info) {
     // 抛出异常，创造异常情况
     OH_JSVM_ThrowError(env, "OH_JSVM_ThrowError errorCode", "OH_JSVM_ThrowError errorMessage");
@@ -575,19 +481,22 @@ static JSVM_Value JsVmGetAndClearLastException(JSVM_Env env, JSVM_CallbackInfo i
     }
     return result;
 }
+// JsVmGetAndClearLastException注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmGetAndClearLastException},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmGetAndClearLastException方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmGetAndClearLastException", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmGetAndClearLastException();)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string =
- `
-   jsVmGetAndClearLastException()
-`
-napitest.runJsVm(script);
+JSVM API OH_JSVM_GetAndClearLastException SUCCESS
 ```
 
 ### OH_JSVM_IsExceptionPending
@@ -598,19 +507,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// JsVmIsExceptionPending注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmIsExceptionPending},
-};
-static JSVM_CallbackStruct *method = param;
-// JsVmIsExceptionPending方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmIsExceptionPending", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// OH_JSVM_GetAndClearLastException的样例方法
 static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Status status;
     bool isExceptionPending = false;
@@ -636,33 +533,57 @@ static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return nullptr;
 }
+// JsVmIsExceptionPending注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmIsExceptionPending},
+};
+static JSVM_CallbackStruct *method = param;
+// JsVmIsExceptionPending方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmIsExceptionPending", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmIsExceptionPending();)JS";
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string =
-              `
-    let error = jsVmIsExceptionPending()
-    `
-napitest.runJsVm(script);
+JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 ```
 
 ### OH_JSVM_GetLastErrorInfo
 
-用于获取最后一次发生的错误信息，包括错误码、错误消息以及错误进栈信息，即使存在挂起的JavaScript异常，也可以调用此API。
+用于获取调用JSVM接口最后一次发生的错误信息（接口返回值不为JSVM_OK），包括错误码、错误消息以及错误进栈信息，即使存在挂起的JavaScript异常，也可以调用此API。
+注意: 通过OH_JSVM_ThrowError等接口主动触发的Error不会被该接口获取，除非调用接口时返回值不为JSVM_OK。
 
 cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+// OH_JSVM_GetLastErrorInfo的样例方法
+static JSVM_Value JsVmGetLastErrorInfo(JSVM_Env env, JSVM_CallbackInfo info) {
+    // 获取输入参数（这里以字符串message作为参数传入）
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
+    // 将传入的字符串参数以OH_JSVM_GetValueInt32取出，主动制造错误
+    int32_t value = 0;
+    OH_JSVM_GetValueInt32(env, args[0], &value);
+    // 调用接口OH_JSVM_GetLastErrorInfo获取最后一次错误信息
+    const JSVM_ExtendedErrorInfo *errorInfo;
+    OH_JSVM_GetLastErrorInfo(env, &errorInfo);
 
+    // 取出错误消息作为返回值带出去打印
+    JSVM_Value result = nullptr;
+    OH_LOG_INFO(LOG_APP,
+                "JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS, error message is %{public}s, error code is %{public}d",
+                errorInfo->errorMessage, errorInfo->errorCode);
+    // 对异常进行处理，防止程序由于抛异常而退出
+    JSVM_Value result1 = nullptr;
+    OH_JSVM_GetAndClearLastException(env, &result1);
+    OH_JSVM_CreateInt32(env, errorInfo->errorCode, &result);
+    return result;
+}
 // JsVmGetLastErrorInfo注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmGetLastErrorInfo},
@@ -672,32 +593,11 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmGetLastErrorInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-static JSVM_Value JsVmGetLastErrorInfo(JSVM_Env env, JSVM_CallbackInfo info) {
-    // 获取输入参数（这里以字符串message作为参数传入）
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // 将传入的字符串参数以OH_JSVM_GetValueInt32取出，主动制造错误
-    int32_t value = 0;
-     OH_JSVM_GetValueInt32(env, args[0], &value);
-    // 调用接口OH_JSVM_GetLastErrorInfo获取最后一次错误信息
-    const JSVM_ExtendedErrorInfo *errorInfo;
-    OH_JSVM_GetLastErrorInfo(env, &errorInfo);
-    // 取出错误消息作为返回值带出去打印
-    JSVM_Value result = nullptr;
-    OH_LOG_INFO(LOG_APP, "JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS");
-
-    OH_JSVM_CreateInt32(env, errorInfo->errorCode, &result);
-    return result;
-}
+// 样例测试js
+const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";}
 ```
 
-ArkTS侧示例代码
-
+预期输出结果
 ```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `jsVmGetLastErrorInfo()`
-napitest.runJsVm(script);
+JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS, error message is A number was expected, error code is 6
 ```

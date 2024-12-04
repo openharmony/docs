@@ -1,14 +1,14 @@
-# Video Playback
+# Using AVPlayer to Play Videos (ArkTS)
 
 The system provides two solutions for video playback development:
 
 - **AVPlayer** class: provides ArkTS and JS APIs to implement audio and video playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding video, and rendering video. It is applicable to end-to-end playback of media assets and can be used to play video files in MP4 and MKV formats.
 
-- **\<Video>** component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../../ui/arkts-common-components-video-player.md).
+- **Video** component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../../ui/arkts-common-components-video-player.md).
 
 In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file.
 
-The full playback process includes creating an **AVPlayer** instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
+The full playback process includes creating an AVPlayer instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
 **Figure 1** Playback state transition 
 
@@ -23,12 +23,13 @@ This topic describes only how to implement the playback of a media asset. In pra
 - If you want the application to continue playing the media asset in the background or when the screen is off, use the [AVSession](../avsession/avsession-access-scene.md) and [continuous task](../../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
 - If the media asset being played involves audio, the playback may be interrupted by other applications based on the system audio management policy. (For details, see [Processing Audio Interruption Events](../audio/audio-playback-concurrency.md).) It is recommended that the player application proactively listen for audio interruption events and handle the events accordingly to avoid the inconsistency between the application status and the expected effect.
 - When a device is connected to multiple audio output devices, the application can listen for audio output device changes through [on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo11) and perform the processing accordingly.
+- To access online media resources, you must request the ohos.permission.INTERNET permission.
 
 ## How to Develop
 
 Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for the API reference.
 
-1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the idle state.
+1. Call **createAVPlayer()** to create an AVPlayer instance. The AVPlayer is the idle state.
 
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
    | Event Type| Description|
@@ -38,9 +39,9 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.|
    | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.|
    | seekDone | Used to listen for the completion status of the **seek()** request.<br>This event is reported when the AVPlayer seeks to the playback position specified in **seek()**.|
-   | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays video at the speed specified in **setSpeed()**.|
-   | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays video at the volume specified in **setVolume()**.|
-   | bitrateDone | Used to listen for the completion status of the **setBitrate()** request, which is used for HTTP Live Streaming (HLS) streams.<br>This event is reported when the AVPlayer plays video at the bit rate specified in **setBitrate()**.|
+   | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays videos at the speed specified in **setSpeed()**.|
+   | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays videos at the volume specified in **setVolume()**.|
+   | bitrateDone | Used to listen for the completion status of the **setBitrate()** request, which is used for HTTP Live Streaming (HLS) streams.<br>This event is reported when the AVPlayer plays videos at the bit rate specified in **setBitrate()**.|
    | availableBitrates | Used to listen for available bit rates of HLS resources. The available bit rates are provided for **setBitrate()**.|
    | bufferingUpdate | Used to listen for network playback buffer information.|
    | startRenderFrame | Used to listen for the rendering time of the first frame during video playback.<br>This event is reported when the AVPlayer enters the playing state and the first frame of the video image is rendered to the display. Generally, the application can use this event to remove the video cover, achieving smooth connection between the cover and the video image.|
@@ -61,7 +62,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
 
 4. Obtain and set the surface ID of the window to display the video.
-   The application obtains the surface ID from the **\<XComponent>**. For details about the process, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+   The application obtains the surface ID from the **XComponent**. For details about the process, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
 5. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the scale type and volume.
 
@@ -76,7 +77,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 ```ts
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -86,6 +87,11 @@ export class AVPlayerDemo {
   private isSeek: boolean = true; // Specify whether the seek operation is supported.
   private fileSize: number = -1;
   private fd: number = 0;
+
+  constructor(surfaceID: string) {
+    this.surfaceID = surfaceID;
+  }
+
   // Set AVPlayer callback functions.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // startRenderFrame: callback function invoked when the first frame starts rendering.
@@ -166,7 +172,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
-    let file = await fileIo.open(path);
+    let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.url = fdPath;
@@ -203,7 +209,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -214,11 +220,11 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // Obtain the size of the file to be played.
-    this.fileSize = fileIo.statSync(path).size;
+    this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.dataSrc = src;
@@ -238,7 +244,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf);
+        num = fs.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -248,7 +254,7 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // The seek operation is not supported.

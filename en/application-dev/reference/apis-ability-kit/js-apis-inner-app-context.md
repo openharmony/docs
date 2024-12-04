@@ -458,7 +458,7 @@ getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 Obtains the external cache directory of the application. This API uses an asynchronous callback to return the result.
 
-**NOTE**
+> **NOTE**
 >
 > This API is deprecated since API version 7.
 
@@ -492,7 +492,7 @@ getExternalCacheDir(): Promise\<string>
 
 Obtains the external cache directory of the application. This API uses a promise to return the result.
 
-**NOTE**
+> **NOTE**
 >
 > This API is deprecated since API version 7.
 
@@ -617,7 +617,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses a promise to return the result.
 
-**NOTE**
+> **NOTE**
 >
 > This API is deprecated since API version 9. You are advised to use **window.setShowOnLockScreen**, which is a system API.
 
@@ -654,7 +654,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 Sets whether to wake up the screen when this feature is restored. This API uses an asynchronous callback to return the result.
 
-**NOTE**
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 12. Its substitute, **window.setWakeUpScreen**, is available only to system applications.
 
@@ -686,7 +686,7 @@ setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 Sets whether to wake up the screen when this feature is restored. This API uses a promise to return the result.
 
-**NOTE**
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 12. Its substitute **window.setWakeUpScreen** is available only to system applications.
 
@@ -1200,7 +1200,7 @@ Obtains the module information of the application. This API uses an asynchronous
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is an **HapModuleInfo** object.|
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is a **HapModuleInfo** object.|
 
 **Example**
 
@@ -1230,7 +1230,7 @@ Obtains the module information of the application. This API uses a promise to re
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is an **HapModuleInfo** object.|
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is a **HapModuleInfo** object.|
 
 **Example**
 

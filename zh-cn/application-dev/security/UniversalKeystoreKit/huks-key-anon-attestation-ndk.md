@@ -9,7 +9,7 @@
 
 ## 开发步骤
 
-1. 确定密钥别名keyAlias，密钥别名最大长度为64字节。
+1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
 
 2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset)构造参数集paramSet，参数集中必须包含[OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg)，[OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize)，[OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose)属性。
 
@@ -122,7 +122,7 @@ static napi_value AnonAttestKey(napi_env env, napi_callback_info info)
         
         (void)ConstructDataToCertChain(&certChain);
         /* 3.证明密钥 */
-        ohResult = OH_Huks_AttestKeyItem(&genAlias, attestParamSet, &certChain);
+        ohResult = OH_Huks_AnonAttestKeyItem(&genAlias, anonAttestParamSet, &certChain);
     } while (0);
     FreeCertChain(&certChain, CERT_COUNT);
     OH_Huks_FreeParamSet(&genParamSet);

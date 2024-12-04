@@ -14,7 +14,7 @@ The default animation of a component exhibits the following features:
 
 - Reduce development workload, as the APIs are readily available.
 
-For more effects, see [Component Overview](../reference/apis-arkui/arkui-ts/ts-components-summary.md).
+For more effects, see [Component Overview](../reference/apis-arkui/arkui-ts/ts-container-flex.md).
 
 Below is the sample code and effect:
 
@@ -300,7 +300,7 @@ export struct TaskSwitchMainPage {
                 if (this.cardOffset < cardOffsetMax) {
                   this.cardOffset = cardOffsetMax;
                 }
-                // When panning right to a position beyond the rightmost position
+                // When panning right to a position beyond the leftmost position
                 if (this.cardOffset > this.displayWidth / 4) {
                   this.cardOffset = this.displayWidth / 4;
                 }
@@ -346,3 +346,4 @@ export struct TaskSwitchMainPage {
 ```
 
 ![en-us_image_0000001599808406](figures/en-us_image_0000001599808406.gif)
+<!--RP1--><!--RP1End-->

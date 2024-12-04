@@ -1,6 +1,6 @@
 # Camera Development Preparations
 
-The main process of camera application development includes development preparations, device input management, session management, preview, photographing, and video recording.
+The main process of camera application development includes development preparations, device input management, session management, preview, photo capture, and video recording.
 
 Before developing a camera application, you must request camera-related permissions (as described in the table below) to ensure that the application has the permission to access the camera hardware and other services. Before requesting permissions, ensure that the [basic principles for using permissions](../../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met.
 
@@ -31,11 +31,11 @@ You can use either ArkTS or C++ APIs for camera development.
 | ------- | ------------- | --------- |
 | Input management| [Device Input Management (ArkTS)](camera-device-input.md)| [Device Input Management (C/C++)](native-camera-device-input.md)|
 | Session management| [Camera Session Management (ArkTS)](camera-session-management.md)| [Camera Session Management (C/C++)](native-camera-session-management.md)|
-| Preview | [Camera Preview (ArkTS)](camera-preview.md)| [Camera Preview (C/C++)](native-camera-preview.md)|
+| Preview | [Preview (ArkTS)](camera-preview.md)| [Preview (C/C++)](native-camera-preview.md)|
 | Secondary processing of preview streams| -  | [Secondary Processing of Preview Streams (C/C++)](native-camera-preview-imageReceiver.md)|
-| Photographing| [Camera Photographing (ArkTS)](camera-shooting.md)| [Camera Photographing (C/C++)](native-camera-shooting.md)|
+| Photo capture| [Photo Capture (ArkTS)](camera-shooting.md)| [Photo Capture (C/C++)](native-camera-shooting.md)|
 | Deferred photo delivery| [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)| -  |
 | Moving photos| [Moving Photos (ArkTS)](camera-moving-photo.md)| - |
-| Recording| [Camera Recording (ArkTS)](camera-recording.md)| [Camera Recording (C/C++)](native-camera-recording.md)|
+| Video Recording| [Video Recording (ArkTS)](camera-recording.md)| [Video Recording (C/C++)](native-camera-recording.md)|
 | Secondary processing of video streams| - | [Secondary Processing of Video Streams (C/C++)](native-camera-recording-imageReceiver.md)|
 | Metadata| [Camera Metadata (ArkTS)](camera-metadata.md)| [Camera Metadata (C/C++)](native-camera-metadata.md)|

@@ -20,7 +20,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs
    import { image } from '@kit.ImageKit';
    // Obtain the total number of bytes of this PixelMap object.
    let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
-   // Obtain the number of bytes per row of this PixelMap object.p
+   // Obtain the number of bytes per row of this PixelMap object.
    let rowCount : number = pixelMap.getBytesNumberPerRow();
    // Obtain the pixel density of the image. Pixel density refers to the number of pixels per inch of an image. A larger value of the pixel density indicates a finer image.
    let getDensity : number = pixelMap.getDensity();
@@ -61,3 +61,43 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs
    const writeColor = new ArrayBuffer(96);
    pixelMap.writeBufferToPixels(writeColor, () => {});
    ```
+
+## Cloning (Deep Copying) a PixelMap
+
+1. Complete [image decoding](image-decoding.md) and obtain a **PixelMap** object.
+
+2. Clone (deep copy) this **PixelMap** object to obtain a new PixelMap.
+   > **NOTE**
+   > 
+   > If **srcPixelFormat** specified for the new PixelMap is different from the pixel format of the current PixelMap, the color of the new PixelMap is different from that of the current PixelMap.
+
+     ```ts
+      /**
+       * Clone (deep copy) a PixelMap.
+       *
+       * @param pixelMap - PixelMap to clone.
+       * @param desiredPixelFormat - Pixel format of the new PixelMap. If this parameter is not specified, the pixel format of the current PixelMap is used.
+       * @return Returns a new PixelMap.
+       **/
+      clonePixelMap(pixelMap: PixelMap, desiredPixelFormat?: image.PixelMapFormat): PixelMap {
+        // Obtain the image information of the current PixelMap.
+        const imageInfo = pixelMap.getImageInfoSync();
+        // Read the pixels of the current PixelMap and write the result to a buffer array based on the pixel format of the PixelMap.
+        const buffer = new ArrayBuffer(pixelMap.getPixelBytesNumber());
+        pixelMap.readPixelsToBufferSync(buffer);
+        // Generate initialization options based on the image information of the current PixelMap.
+        const options: image.InitializationOptions = {
+          // Pixel format of the current PixelMap.
+          srcPixelFormat: imageInfo.pixelFormat,
+          // Pixel format of the new PixelMap.
+          pixelFormat: desiredPixelFormat ?? imageInfo.pixelFormat,
+          // Size of the current PixelMap.
+          size: imageInfo.size
+        };
+        // Generate a new PixelMap based on the initialization options and buffer array.
+        return image.createPixelMapSync(buffer, options);
+      }
+     ```
+
+<!--RP1-->
+<!--RP1End-->

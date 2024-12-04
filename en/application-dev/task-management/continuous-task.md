@@ -1,4 +1,4 @@
-# Continuous Task
+# Continuous task (ArkTS)
 
 
 ## Overview
@@ -19,18 +19,17 @@ The table below lists the types of continuous tasks, which are used in various s
 | Name| Description| Item| Example Scenario|
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | Data transfer| dataTransfer | The browser downloads a large file in the background.|
-| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | A music application plays music in the background.|
+| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | A music application plays music in the background.<br>It can be used in atomic services.|
 | AUDIO_RECORDING | Audio recording| audioRecording | A recorder records audio in the background.|
 | LOCATION | Positioning and navigation| location | A navigation application provides navigation in the background.|
 | BLUETOOTH_INTERACTION | Bluetooth-related task| bluetoothInteraction | Transfer a file through Bluetooth.|
-| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Carry out distributed service connection.|
+| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Carry out distributed service connection.<br>It can be used in atomic services.|
 | <!--DelRow-->WIFI_INTERACTION | WLAN-related task (for system applications only)| wifiInteraction  | Transfer a file over WLAN.|
-| <!--DelRow-->VOIP | Voice and video calls (for system applications only)| voip  | Use a system chat application to make an audio call in the background.|
+| VOIP<sup>13+</sup> | Audio and video calls| voip  | Use a chat application to make an audio and video call in the background.|
 | TASK_KEEPING | <!--RP1-->Computing task (for specific devices only)<!--RP1End--> | taskKeeping  | Run antivirus software.|
 
-- Only applications that use the [network management](../network/net-mgmt-overview.md) service can request a continuous task of the DATA_TRANSFER type to upload and download data in the background and avoid being suspended. If an application calls the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) to delegate the upload and download task to the system, the application will be suspended regardless of whether it has requested such a continuous task. For a continuous task used for download, the application needs to update the download progress. If the progress is not updated for more than 10 minutes, the continuous task will be canceled. You are advised to use APIs of API version 12 to request a continuous task for download and update the progress.
+- If an application calls the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) to delegate the upload and download task to the system, the application will be suspended regardless of whether it has requested such a continuous task. For a continuous task used for download, the application needs to update the download progress. If the progress is not updated for more than 10 minutes, the continuous task will be canceled. You are advised to use the [new API](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning12) to request a continuous task of the DATA_TRANSFER type and update the notification progress.
 - Only audio and video applications that use [AVSession](../media/avsession/avsession-overview.md) can request a continuous task of the AUDIO_PLAYBACK type to implement background playback.
-
 
 ### Constraints
 
@@ -74,7 +73,7 @@ The following walks you through how to request a continuous task for recording. 
 
 2. Declare the background mode and add configurations such as **uris**.
    - (Mandatory) Declare the background mode. Specifically, declare the type of the continuous task for the target UIAbility in the **module.json5** file. (Set the corresponding configuration item in the configuration file.)
-   - (Optional) Add configurations such as **uris**. For a continuous task, the first element is used to obtain the notification title. If implicit redirection is used, use the format shown in the code snippet below. The position of **uris** in your configuration must comply with the code snippet, and **scheme** must be modified based on your service scenario.
+   - (Optional) Add configurations such as **uris**. If redirection features such as deep linking and app linking are used, refer to the sample code below. The mandatory parameters cannot be modified. For details about the optional parameters, see [Overview of Application Redirection](../application-models/link-between-apps-overview.md).
    
    ```json
     "module": {
@@ -85,16 +84,23 @@ The following walks you through how to request a continuous task for recording. 
                 "audioRecording"
                 ], 
                 "skills": [
-                    // Add the uris configuration for implicit redirection.
+                    // Mandatory: entities and actions values for the request for a continuous task.
                     {
                         "entities": [
-                           "entity.system.home"
+                            "entity.system.home"
                         ],
                         "actions": [
                             "action.system.home"
                         ]    
                     },
+                    // Optional: required for redirection features such as deep linking and app linking.
                     {
+                        "entities": [
+                            "test"
+                        ],
+                        "actions": [
+                            "test"
+                        ],
                         "uris": [
                             {
                                 "scheme": "test"
@@ -217,6 +223,7 @@ The following walks you through how to request a continuous task for recording. 
     }
    ```
    <!--Del-->
+
    The code snippet below shows how an application requests a continuous task across devices or applications.
    
    ```ts
@@ -340,8 +347,10 @@ The following walks you through how to request a continuous task for recording. 
       }
     };
    ```
+
    <!--DelEnd-->
 
+<!--Del-->
 ### FA Model
 
 1. Start and connect to a ServiceAbility.
@@ -489,4 +498,5 @@ The following walks you through how to request a continuous task for recording. 
 
     export default new ServiceAbility();
     ```
+<!--DelEnd-->
 

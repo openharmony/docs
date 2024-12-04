@@ -182,7 +182,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | 201      | Permission verification failed.                                                                                                                                    |
   | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
-  | 15400001 | Create table failed.                                                                                                                                               |
+  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **示例：**
 
@@ -221,7 +221,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
   | -------- | -------- |
   | 201      | Permission verification failed. |
   | 401      | Parameter error. Incorrect parameter types. |
-  | 15400001 | Create table failed. |
+  | 15400001 | Failed to create the in-memory database. |
 
 **示例：**
 
@@ -266,7 +266,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
   | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | 201      | Permission verification failed.                                                                                                                                    |
   | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
-  | 15400001 | Create table failed.                                                                                                                                               |
+  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **示例：**
 

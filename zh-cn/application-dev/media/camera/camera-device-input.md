@@ -1,6 +1,7 @@
 # 设备输入(ArkTS)
 
-在开发一个相机应用前，需要先创建一个独立的相机设备，应用通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
+相机应用可通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
 
 ## 开发步骤
 
@@ -11,48 +12,16 @@
    ```ts
    import { camera } from '@kit.CameraKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { common } from '@kit.AbilityKit';
-   ```
-
-2. 通过[getCameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameragetcameramanager)方法，获取cameraManager对象。
-
-   Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-
-   ```ts
-   function getCameraManager(context: common.BaseContext): camera.CameraManager {
-     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-     return cameraManager;
-   }
    ```
 
    > **说明：**
    >
-   > 如果获取对象失败，说明相机可能被占用或无法使用。如果被占用，须等到相机被释放后才能重新获取。
+   > 在相机设备输入之前需要先完成相机管理，详细开发步骤请参考[相机管理](camera-device-management.md)。
 
-3. 通过cameraManager类中的[getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)方法，获取当前设备支持的相机列表，列表中存储了设备支持的所有相机ID。若列表不为空，则说明列表中的每个ID都支持独立创建相机对象；否则，说明当前设备无可用相机，不可继续后续操作。
-
-   ```ts
-   function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
-     let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-     if (cameraArray != undefined && cameraArray.length > 0) {
-       for (let index = 0; index < cameraArray.length; index++) {
-         console.info('cameraId : ' + cameraArray[index].cameraId);  // 获取相机ID
-         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // 获取相机位置
-         console.info('cameraType : ' + cameraArray[index].cameraType);  // 获取相机类型
-         console.info('connectionType : ' + cameraArray[index].connectionType);  // 获取相机连接类型
-       }
-       return cameraArray;
-     } else {
-       console.error("cameraManager.getSupportedCameras error");
-       return [];
-     }
-   }
-   ```
-
-4. 通过[getSupportedOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedoutputcapability11)方法，获取当前设备支持的所有输出流，如预览流、拍照流等。输出流在[CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)中的各个profile字段中。
+2. 通过[cameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager)类中的[createCameraInput](../../reference/apis-camera-kit/js-apis-camera.md#createcamerainput)方法创建相机输入流。
 
    ```ts
-   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager, sceneMode: camera.SceneMode): Promise<camera.CameraOutputCapability | undefined> {
+   async function createInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraInput | undefined> {
      // 创建相机输入流
      let cameraInput: camera.CameraInput | undefined = undefined;
      try {
@@ -70,33 +39,50 @@
      });
      // 打开相机
      await cameraInput.open();
-     // 获取相机设备支持的输出流能力
-     let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice, sceneMode);
-     if (!cameraOutputCapability) {
-       console.error("cameraManager.getSupportedOutputCapability error");
-       return undefined;
-     }
-     console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
-     return cameraOutputCapability;
+     return cameraInput;
    }
    ```
 
+3. 通过[getSupportedSceneModes](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedscenemodes11)方法，获取当前相机设备支持的模式列表，列表中存储了相机设备支持的所有模式[SceneMode](../../reference/apis-camera-kit/js-apis-camera.md#scenemode11)。
 
-## 状态监听
-
-在相机应用开发过程中，可以随时监听相机状态，包括新相机的出现、相机的移除、相机的可用状态。在回调函数中，通过相机ID、相机状态这两个参数进行监听，如当有新相机出现时，可以将新相机加入到应用的备用相机中。
-
-  通过注册cameraStatus事件，通过回调返回监听结果，callback返回CameraStatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[CameraStatusInfo](../../reference/apis-camera-kit/js-apis-camera.md#camerastatusinfo)。
-
-```ts
-function onCameraStatus(cameraManager: camera.CameraManager): void {
-  cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    if (err !== undefined && err.code !== 0) {
-      console.error(`Callback Error, errorCode: ${err.code}`);
-      return;
+    ```ts
+    function getSupportedSceneMode(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Array<camera.SceneMode> {
+      // 获取相机设备支持的模式列表
+      let sceneModeArray: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraDevice);
+      if (sceneModeArray != undefined && sceneModeArray.length > 0) {
+        for (let index = 0; index < sceneModeArray.length; index++) {
+          console.info('Camera SceneMode : ' + sceneModeArray[index]);  
+      }
+        return sceneModeArray;
+      } else {
+          console.error("cameraManager.getSupportedSceneModes error");
+          return [];
+      }
     }
-    console.info(`camera: ${cameraStatusInfo.camera.cameraId}`);
-    console.info(`status: ${cameraStatusInfo.status}`);
-  });
-}
-```
+    ```
+
+4. 通过[getSupportedOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedoutputcapability11)方法，获取当前相机设备支持的所有输出流，如预览流、拍照流、录像流等。输出流在[CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability)中的各个profile字段中，根据相机设备指定模式[SceneMode](../../reference/apis-camera-kit/js-apis-camera.md#scenemode11)的不同，需要添加不同类型的输出流。
+
+   ```ts
+   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager, sceneMode: camera.SceneMode): Promise<camera.CameraOutputCapability | undefined> {
+      // 获取相机设备支持的输出流能力
+      let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice, sceneMode);
+      if (!cameraOutputCapability) {
+        console.error("cameraManager.getSupportedOutputCapability error");
+        return undefined;
+      }
+      console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
+      // 以NORMAL_PHOTO模式为例，需要添加预览流、拍照流
+      // previewProfiles属性为获取当前设备支持的预览输出流
+      let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
+      if (!previewProfilesArray) {
+        console.error("createOutput previewProfilesArray == null || undefined");
+      }
+      //photoProfiles属性为获取当前设备支持的拍照输出流
+      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
+      if (!photoProfilesArray) {
+        console.error("createOutput photoProfilesArray == null || undefined");
+      }
+      return cameraOutputCapability;
+   } 
+   ```

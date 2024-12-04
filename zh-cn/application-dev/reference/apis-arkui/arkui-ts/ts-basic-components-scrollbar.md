@@ -30,13 +30,13 @@ ScrollBar(value: ScrollBarOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-## enableNestedScroll<sup>13+</sup>
+## enableNestedScroll<sup>14+</sup>
 
 enableNestedScroll(value: boolean)
 
 设置滚动条是否嵌套滚动。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -45,6 +45,14 @@ enableNestedScroll(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
 | value  | boolean | 是   | 是否执行嵌套滚动。设置为true执行嵌套滚动，设置为false不嵌套滚动。 <br/>默认值：false |
+
+>  **说明：**
+>
+> 滚动条使能嵌套滚动时，滚动条的滚动偏移量会先发给绑定的内层滚动组件，内层滚动组件再根据设置的嵌套滚动优先级依次传递给外层父滚动组件。
+>
+> WaterFlow组件的布局模式为移动窗口式（SLIDING_WINDOW）时，不支持嵌套滚动。
+>
+> 设置嵌套滚动模式为PARALLEL时，父子组件同时滚动，需要开发者在onScrollFrameBegin中按照所需逻辑，自行设置父子组件滚动顺序。
 
 ## ScrollBarOptions对象说明
 
@@ -72,7 +80,7 @@ enableNestedScroll(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Vertical | 纵向滚动条。 |
 | Horizontal | 横向滚动条。 |

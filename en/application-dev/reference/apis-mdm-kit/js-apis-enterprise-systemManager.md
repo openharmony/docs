@@ -117,7 +117,7 @@ try {
 
 setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
-Sets the over-the-air (OTA) update policy through the specified device administrator application.
+Sets the over-the-air (OTA) update policy through the specified device administrator application. In intranet updates, call [systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages) to notify the system of the update packages and then call this API to set the upgrade policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -266,7 +266,7 @@ try {
 
 notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;void&gt;
 
-Notifies the system of the update packages.
+Notifies the system of the update packages. In intranet updates, call this API to notify the system of the update packages, and then call [systemManager.setOtaUpdatePolicy](#systemmanagersetotaupdatepolicy) to set the update policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -444,8 +444,8 @@ Represents the details about a system update package.
 | Name               | Type    | Mandatory | Description           |
 | ----------------- | ------ | --- | ------------- |
 | type       | [PackageType](#packagetype) | Yes  | Type of the system update package.  |
-| path | string | Yes  | Path of the system update package.|
-| fd       | number | No  | File descriptor (FD) of the system update package. |
+| path | string | Yes  | Path of the system update package. If **fd** is specified, pass in the update package name here.|
+| fd       | number | No  | File descriptor (FD) of the system update package. Currently, you cannot pass in **path** only. The **fd** parameter must also be passed in. |
 
 ## PackageDescription
 

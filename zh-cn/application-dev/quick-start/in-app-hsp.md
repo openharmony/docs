@@ -17,12 +17,12 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 ## 约束限制
 
 - HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。HSP的版本号必须与HAP版本号一致。
-- HSP不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件与[ExtensionAbility](../application-models/extensionability-overview.md)组件。
+- HSP不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但支持[UIAbility](../application-models/uiability-overview.md)（除入口ability外）组件。
 - HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见<!--RP1-->[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hsp-V5#section7717162312546)<!--RP1End-->，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 MyApplication
 ├── library
@@ -164,7 +164,7 @@ export { ResManager } from './src/main/ets/ResManager';
 介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
 ### 引用HSP中的接口
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见<!--RP2-->[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->。
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13)。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts

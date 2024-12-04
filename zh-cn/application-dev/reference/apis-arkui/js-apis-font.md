@@ -132,7 +132,7 @@ getSystemFontList(): Array\<string>
 
 >  **说明：**
 >
->  该接口仅在2in1设备上生效。
+>  该接口仅在2in1和移动设备上生效。
 
 **示例：**
 

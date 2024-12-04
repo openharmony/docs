@@ -37,12 +37,12 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [OH_NativeBuffer](#oh_nativebuffer)  [OH_NativeBuffer](#oh_nativebuffer) | Provides the declaration of an **OH_NativeBuffer** struct.| 
-| typedef enum [OH_NativeBuffer_Usage](#oh_nativebuffer_usage)  [OH_NativeBuffer_Usage](#oh_nativebuffer_usage) | Defines an enum for the **OH_NativeBuffer** usages.| 
-| typedef enum [OH_NativeBuffer_Format](#oh_nativebuffer_format)  [OH_NativeBuffer_Format](#oh_nativebuffer_format) | Defines an enum for the **OH_NativeBuffer** formats.| 
-| typedef enum [OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace)  [OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace) | Defines an enum for the color spaces of an **OH_NativeBuffer** instance.| 
-| typedef enum [OH_NativeBuffer_TransformType](#oh_nativebuffer_transformtype)  [OH_NativeBuffer_TransformType](#oh_nativebuffer_transformtype) | Defines an enum for the transform types of an **OH_NativeBuffer** instance.| 
-| typedef enum [OH_NativeBuffer_ColorGamut](#oh_nativebuffer_colorgamut)  [OH_NativeBuffer_ColorGamut](#oh_nativebuffer_colorgamut) | Defines an enum for the color gamuts of an **OH_NativeBuffer** instance.| 
-| typedef enum [OHNativeErrorCode](_native_window.md#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes.| 
+| typedef enum [OH_NativeBuffer_Usage](#oh_nativebuffer_usage-1)  [OH_NativeBuffer_Usage](#oh_nativebuffer_usage) | Defines an enum for the **OH_NativeBuffer** usages.| 
+| typedef enum [OH_NativeBuffer_Format](#oh_nativebuffer_format-1)  [OH_NativeBuffer_Format](#oh_nativebuffer_format) | Defines an enum for the **OH_NativeBuffer** formats.| 
+| typedef enum [OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace-1)  [OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace) | Defines an enum for the color spaces of an **OH_NativeBuffer** instance.| 
+| typedef enum [OH_NativeBuffer_TransformType](#oh_nativebuffer_transformtype-1)  [OH_NativeBuffer_TransformType](#oh_nativebuffer_transformtype) | Defines an enum for the transform types of an **OH_NativeBuffer** instance.| 
+| typedef enum [OH_NativeBuffer_ColorGamut](#oh_nativebuffer_colorgamut-1)  [OH_NativeBuffer_ColorGamut](#oh_nativebuffer_colorgamut) | Defines an enum for the color gamuts of an **OH_NativeBuffer** instance.| 
+| typedef enum [OHNativeErrorCode](_native_window.md#ohnativeerrorcode-1)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes.| 
 | typedef struct [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)  [OH_NativeBuffer_Config](#oh_nativebuffer_config) | Defines the **OH_NativeBuffer** attribute configuration, which is used when you apply for a new **OH_NativeBuffer** instance or query the attributes of an existing instance.| 
 | typedef struct [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)  [OH_NativeBuffer_Plane](#oh_nativebuffer_plane) | Defines a struct for the plane information of an image.| 
 | typedef struct [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)  [OH_NativeBuffer_Planes](#oh_nativebuffer_planes) | Defines a struct for the plane information of images in an **OH_NativeBuffer** instance.| 
@@ -51,7 +51,7 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 | typedef struct [OH_NativeBuffer_Smpte2086](_o_h___native_buffer___smpte2086.md)  [OH_NativeBuffer_Smpte2086](#oh_nativebuffer_smpte2086) | Defines a struct for the SMPTE ST 2086 static metadata.| 
 | typedef struct [OH_NativeBuffer_Cta861](_o_h___native_buffer___cta861.md)  [OH_NativeBuffer_Cta861](#oh_nativebuffer_cta861) | Defines a struct for the CTA-861.3 static metadata.| 
 | typedef struct [OH_NativeBuffer_StaticMetadata](_o_h___native_buffer___static_metadata.md)  [OH_NativeBuffer_StaticMetadata](#oh_nativebuffer_staticmetadata) | Defines a struct for the HDR static metadata.| 
-| typedef enum [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)  [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey) | Defines an enum for the keys that specify the HDR metadata of an **OH_NativeBuffer** instance.| 
+| typedef enum [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1)  [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey) | Defines an enum for the keys that specify the HDR metadata of an **OH_NativeBuffer** instance.| 
 
 
 ### Enums
@@ -64,7 +64,7 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 | [OH_NativeBuffer_TransformType](#oh_nativebuffer_transformtype-1) {<br>NATIVEBUFFER_ROTATE_NONE = 0, NATIVEBUFFER_ROTATE_90, NATIVEBUFFER_ROTATE_180, NATIVEBUFFER_ROTATE_270,<br>NATIVEBUFFER_FLIP_H, NATIVEBUFFER_FLIP_V, NATIVEBUFFER_FLIP_H_ROT90, NATIVEBUFFER_FLIP_V_ROT90,<br>NATIVEBUFFER_FLIP_H_ROT180, NATIVEBUFFER_FLIP_V_ROT180, NATIVEBUFFER_FLIP_H_ROT270, NATIVEBUFFER_FLIP_V_ROT270<br>} | Enumerates the transform types of an **OH_NativeBuffer** instance.| 
 | [OH_NativeBuffer_ColorGamut](#oh_nativebuffer_colorgamut-1) {<br>NATIVEBUFFER_COLOR_GAMUT_NATIVE = 0, NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT601 = 1, NATIVEBUFFER_COLOR_GAMUT_STANDARD_BT709 = 2, NATIVEBUFFER_COLOR_GAMUT_DCI_P3 = 3,<br>NATIVEBUFFER_COLOR_GAMUT_SRGB = 4, NATIVEBUFFER_COLOR_GAMUT_ADOBE_RGB = 5, NATIVEBUFFER_COLOR_GAMUT_DISPLAY_P3 = 6, NATIVEBUFFER_COLOR_GAMUT_BT2020 = 7,<br>NATIVEBUFFER_COLOR_GAMUT_BT2100_PQ = 8, NATIVEBUFFER_COLOR_GAMUT_BT2100_HLG = 9, NATIVEBUFFER_COLOR_GAMUT_DISPLAY_BT2020 = 10<br>} | Enumerates the color gamuts of an **OH_NativeBuffer** instance.| 
 | [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000,NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
-| [OH_NativeBuffer_MetadataType](#oh_nativebuffer_metadatatype-1) { OH_VIDEO_HDR_HLG, OH_VIDEO_HDR_HDR10, OH_VIDEO_HDR_VIVID } | Enumerates the **OH_NativeBuffer** image standards.| 
+| [OH_NativeBuffer_MetadataType](#oh_nativebuffer_metadatatype-1) { OH_VIDEO_HDR_HLG, OH_VIDEO_HDR_HDR10, OH_VIDEO_HDR_VIVID,OH_VIDEO_NONE = -1 } | Enumerates the **OH_NativeBuffer** image standards.| 
 | [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1) { OH_HDR_METADATA_TYPE, OH_HDR_STATIC_METADATA, OH_HDR_DYNAMIC_METADATA } | Enumerates the keys that specify the HDR metadata of an **OH_NativeBuffer** instance.| 
 
 
@@ -505,7 +505,8 @@ Enumerates the **OH_NativeBuffer** image standards.
 | -------- | -------- |
 | OH_VIDEO_HDR_HLG | Video HLG.| 
 | OH_VIDEO_HDR_HDR10 | Video HDR10.| 
-| OH_VIDEO_HDR_VIVID | Video HDR Vivid.| 
+| OH_VIDEO_HDR_VIVID | Video HDR Vivid.|
+| OH_VIDEO_NONE<sup>13+</sup> | No metadata.|
 
 
 ### OH_NativeBuffer_TransformType
@@ -611,6 +612,10 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config* config)
 
 Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** struct. A new **OH_NativeBuffer** instance is created each time this function is called.
 
+This function must be used in pair with **OH_NativeBuffer_Unreference**. Otherwise, memory leak occurs.
+
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -635,6 +640,8 @@ int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWind
 **Description**
 
 Converts an **OHNativeWindowBuffer** instance to an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -662,6 +669,8 @@ int32_t OH_NativeBuffer_GetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_
 
 Obtains the color space of an **OH_NativeBuffer** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 12
@@ -688,6 +697,8 @@ void OH_NativeBuffer_GetConfig (OH_NativeBuffer *buffer, OH_NativeBuffer_Config*
 
 Obtains the attributes of an **OH_NativeBuffer** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -709,6 +720,8 @@ int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 **Description**
 
 Obtains the metadata value of an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -738,6 +751,8 @@ uint32_t OH_NativeBuffer_GetSeqNum (OH_NativeBuffer *buffer)
 
 Obtains the sequence number of an **OH_NativeBuffer** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -762,6 +777,10 @@ int32_t OH_NativeBuffer_Map (OH_NativeBuffer *buffer, void **virAddr )
 **Description**
 
 Maps the ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.
+
+This function must be used in pair with **OH_NativeBuffer_Unmap**.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -788,6 +807,8 @@ int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_N
 **Description**
 
 Maps the multi-channel ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -816,6 +837,10 @@ int32_t OH_NativeBuffer_Reference (OH_NativeBuffer *buffer)
 
 Increases the reference count of an **OH_NativeBuffer** instance by 1.
 
+This function must be used in pair with **OH_NativeBuffer_Unreference**. Otherwise, memory leak occurs.
+
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -840,6 +865,8 @@ int32_t OH_NativeBuffer_SetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_
 **Description**
 
 Sets the color space for an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -866,6 +893,8 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 **Description**
 
 Sets a metadata value for an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -895,6 +924,8 @@ int32_t OH_NativeBuffer_Unmap (OH_NativeBuffer *buffer)
 
 Unmaps the ION memory corresponding to an **OH_NativeBuffer** instance from the process address space.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -919,6 +950,8 @@ int32_t OH_NativeBuffer_Unreference (OH_NativeBuffer *buffer)
 **Description**
 
 Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 

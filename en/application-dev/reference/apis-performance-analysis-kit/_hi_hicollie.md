@@ -144,7 +144,6 @@ Registers a callback to periodically detect service thread stuck events.
 
 ```
 HiCollie_ErrorCode OH_HiCollie_Init_JankDetection(OH_HiCollie_BeginFunc* beginFunc, OH_HiCollie_EndFunc* endFunc, HiCollie_DetectionParam param);
-
 ```
 
 **Description**
@@ -159,7 +158,7 @@ Registers a callback to detect service thread jank events. To monitor thread jan
 | -------- | -------- |
 | beginFunc | Callback used before the service thread processes the event. If you want to cancel the detection, pass a null pointer to **beginFunc** and **endFunc**.|
 | endFunc | Callback used after the service thread processed the event. If you want to cancel the detection, pass a null pointer to **beginFunc** and **endFunc**.|
-| param | Parameters of the user-defined jank event detection. Extended parameters for future development use. For details, see [HiCollie_DetectionParam](_hi_hicollie___detection_param.md).|
+| param | Custom extended parameter used in the jank detection, which is provided for future development. See [HiCollie_DetectionParam](_hi_hicollie___detection_param.md).|
 
 **Returns**
 
@@ -170,7 +169,6 @@ Registers a callback to detect service thread jank events. To monitor thread jan
 
 ```
 HiCollie_ErrorCode OH_HiCollie_Report(bool* isSixSecond);
-
 ```
 
 **Description**

@@ -1,4 +1,4 @@
-# @ohos.sendableResourceManager (Resource Management)
+# @ohos.sendableResourceManager (Resource Manager)
 
 The **sendableResourceManager** module provides the [resourceToSendableResource](#sendableresourcemanagerresourcetosendableresource) and [sendableResourceToResource](#sendableresourcemanagersendableresourcetoresource) APIs to implement conversion between [Resource](#resource) and [SendableResource](#sendableresource) objects.
 

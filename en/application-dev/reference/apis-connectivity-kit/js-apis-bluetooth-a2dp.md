@@ -142,6 +142,8 @@ Enumerates the Bluetooth codec types.
 | CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC.|
 | CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC.|
 | CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC.|
+| CODEC_TYPE_L2HCST<sup>13+</sup>  | 3 | L2HCST.|
+| CODEC_TYPE_LDAC<sup>13+</sup>    | 4 | LDAC.|
 
 
 ## CodecChannelMode<sup>11+</sup>

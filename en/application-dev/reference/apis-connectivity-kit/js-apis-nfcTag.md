@@ -1,7 +1,6 @@
 # @ohos.nfc.tag (Standard NFC Tags)
 
 The **tag** module provides APIs for operating and managing NFC tags. The following tag read modes are available:
-
 - Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
 - Foreground mode: A foreground application has priority to read the NFC tag discovered.
 
@@ -50,11 +49,11 @@ To enable NFC tages to be read without starting an application, declare NFC-rela
     }
 }
 ```
-> **NOTE**
+> **NOTE**<br>
 >
-> - The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
-> - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
-> - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
+>- The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
+>- The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
+>- The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
 
 ## **Modules to Import**
 
@@ -102,9 +101,9 @@ export default class EntryAbility extends UIAbility {
         if (isNfcATag) {
             let nfcA : tag.NfcATag | null = null;
             try {
-                nfcA = tag.getNfcATag(tagInfo);
+                nfcA = tag.getNfcA(tagInfo);
             } catch (error) {
-                console.error("tag.getNfcATag catch error: " + error);
+                console.error("tag.getNfcA catch error: " + error);
             }
             // Other code to read or write this tag.
         }
@@ -131,6 +130,7 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
 
 > **NOTE**
+>
 > This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcA](#taggetnfca9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
@@ -540,7 +540,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
+Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API can be called only by an application running in the foreground and must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -610,13 +610,11 @@ import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
 function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
-    if (err as BusinessError) {
-        if (!err) {
-            console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
-        } else {
-            console.log("foreground callback err: " + (err as BusinessError).message);
-            return;
-        }
+    if (!err) {
+        console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.log("foreground callback err: " + err.message);
+        return;
     }
   // other Operations of taginfo
 }
@@ -740,13 +738,11 @@ let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) th
 let elementName : bundleManager.ElementName;
 
 function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
-    if (err as BusinessError) {
-        if (!err) {
-            console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
-        } else {
-            console.error("offCallback err: " + (err as BusinessError).message);
-            return;
-        }
+    if (!err) {
+        console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.error("offCallback err: " + err.message);
+        return;
     }
   // other Operations of taginfo
 }

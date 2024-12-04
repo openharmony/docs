@@ -112,7 +112,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 async function getPreferOutputDeviceForRendererInfo() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -131,7 +131,7 @@ import { audio } from '@kit.AudioKit';
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 // 监听最高优先级输出设备变化
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {

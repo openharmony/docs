@@ -1,10 +1,10 @@
 # Rect
 
-The **\<Rect>** component is used to draw a rectangle.
+The **Rect** component is used to draw a rectangle.
 
 >  **NOTE**
 >
->  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -14,22 +14,19 @@ Not supported
 
 ## APIs
 
-Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
-  {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
+Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |{width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number | No| Width.<br>Default value: **0**<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height.<br>Default value:<br>An invalid value is handled as the default value.|
-| radius | string \| number \| Array&lt;string \| number&gt; | No| Radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>This attribute works in a similar manner as **radiusWidth**/**radiusHeight**. When they are used together, it takes precedence over **radiusWidth**/**radiusHeight**.<br>Default value: **0**<br>An invalid value is handled as the default value.|
-| radiusWidth | string \| number | No| Width of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.|
-| radiusHeight | string \| number | No| Height of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| value | {width?: string \| number,height?: string \| number,radius?: string \| number \| Array&lt;string \| number&gt;} \| {width?: string \| number,height?: string \| number,radiusWidth?: string \| number,radiusHeight?: string \| number} | No| **width**: width<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**height**: height<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**radius**: radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>This attribute works in a similar manner as **radiusWidth**/**radiusHeight**. When they are used together, it takes precedence over **radiusWidth**/**radiusHeight**.<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**radiusWidth**: width of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**radiusHeight**: height of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -41,7 +38,7 @@ radiusWidth(value: number | string)
 
 Sets the width of the rounded corner. If not set, the height of the rounded corner is the same as its width. An invalid value is handled as the default value.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 7.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -59,7 +56,7 @@ radiusHeight(value: number | string)
 
 Height of the rounded corner. If not set, the width of the rounded corner is the same as its height.  An invalid value is handled as the default value.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 7.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -353,16 +350,16 @@ struct RectExample {
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
-        .clip(new Rect({ width: 100, height: 100, radius: 40 }))
+        .clipShape(new Rect({ width: 100, height: 100, radius: 40 }))
       Rect()
         .width(100)
         .height(100)
-        // Set the color of the fill area. To display the color gradient of the background, set .fillOpacity(0.0).
+          // Set the color of the fill area. To display the color gradient of the background, set .fillOpacity(0.0).
         .fill(Color.Pink)
-        // Set the radius of the rounded corner to 40.
+          // Set the radius of the rounded corner to 40.
         .radius(40)
         .stroke(Color.Black)
-        // Set the color gradient. It takes effect only for a 100 x 100 rectangular area. The boundary of the gradient does not contain rounded corners.
+          // Set the color gradient. It takes effect only for a 100 x 100 rectangular area. The boundary of the gradient does not contain rounded corners.
         .linearGradient({
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]

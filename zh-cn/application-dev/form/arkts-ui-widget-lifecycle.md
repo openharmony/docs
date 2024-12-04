@@ -11,7 +11,7 @@
     import { hilog } from '@kit.PerformanceAnalysisKit';
     ```
 
-2. 在EntryFormAbility.ets中，实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参want中可以通过[FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
+2. 在EntryFormAbility.ets中，实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中可以通过[FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
    
       ```ts
       const TAG: string = 'EntryFormAbility';
@@ -20,6 +20,7 @@
       export default class EntryFormAbility extends FormExtensionAbility {
         onAddForm(want: Want): formBindingData.FormBindingData {
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
+          hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
     
           // ...
           // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类

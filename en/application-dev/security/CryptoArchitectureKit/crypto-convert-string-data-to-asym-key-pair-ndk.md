@@ -28,7 +28,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
    The default number of primes for creating an RSA asymmetric key is **2**. The **PRIMES_2** parameter is omitted in the string parameter here.
 
 2. Use [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the binary data into an asymmetric key pair (**OH_CryptoKeyPair**).
-3. Use [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) to convert the public key in the asymmetric key object into PKCS #1 or X.509 format and convert the private key into PKCS #1 or PKCS #8 format.
+3. Use [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) to convert the public key in the asymmetric key object into PKCS #1 or X.509 format.
 
 Example: Convert binary data into an RSA key pair.
 
@@ -70,7 +70,7 @@ static OH_Crypto_ErrCode doTestPemDataCovertAsymKey()
       OH_CryptoKeyPair_Destroy(dupKeyPair);
       return ret;
    }
-   OH_Crypto_FreeDataBlob(retBlob);
+   OH_Crypto_FreeDataBlob(&retBlob);
    OH_CryptoAsymKeyGenerator_Destroy(ctx);
    OH_CryptoKeyPair_Destroy(dupKeyPair);
    return ret;

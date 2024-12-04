@@ -149,7 +149,7 @@ Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarM
    const event: calendarManager.Event = {
      // 日程标题
      title: 'title',
-     // 日程类型
+     // 日程类型，不推荐三方开发者使用calendarManager.EventType.IMPORTANT，重要日程类型不支持一键服务跳转功能及无法自定义提醒时间
      type: calendarManager.EventType.NORMAL,
      // 日程开始时间
      startTime: date.getTime(),

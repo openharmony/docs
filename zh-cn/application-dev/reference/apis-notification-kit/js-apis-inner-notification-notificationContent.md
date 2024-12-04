@@ -8,6 +8,8 @@
 
 ## NotificationContent
 
+通知内容。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 类型                                                                        | 只读 | 可选 | 说明               |
@@ -28,10 +30,10 @@
 
 | 名称           | 类型    | 只读 | 可选 | 说明                               |
 | -------------- | ------ | ---- |-----| ---------------------------------- |
-| title          | string |  否  |  否  | 通知标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。         |
-| text           | string |  否  |  否  | 通知内容（不可为空字符串，大小不超过200字节，超出部分会被截断）。         |
-| additionalText | string |  否  |  是  | 通知附加内容，是对通知内容的补充（大小不超过200字节，超出部分会被截断）。   |
-| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  是  | 通知在锁屏界面显示的图片。当前仅支持实况窗类型通知。   |
+| title          | string |  否  |  否  | 通知标题（不可为空字符串，大小不超过1024字节，超出部分会被截断）。         |
+| text           | string |  否  |  否  | 通知内容（不可为空字符串，大小不超过3072字节，超出部分会被截断）。         |
+| additionalText | string |  否  |  是  | 通知附加内容，是对通知内容的补充（大小不超过3072字节，超出部分会被截断）。   |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  是  | 通知在锁屏界面显示的图片。当前仅支持实况窗类型通知。图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。   |
 
 ## NotificationLongTextContent
 
@@ -45,9 +47,9 @@
 
 | 名称           | 类型    | 只读 | 可选 | 说明                             |
 | -------------- | ------ | ---- | --- | -------------------------------- |
-| longText       | string |  否  | 否  | 通知的长文本（不可为空字符串，大小不超过1024字节，超出部分会被截断）。                     |
-| briefText      | string |  否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过200字节，超出部分会被截断）。   |
-| expandedTitle  | string |  否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。                 |
+| longText       | string |  否  | 否  | 通知的长文本（不可为空字符串，大小不超过3072字节，超出部分会被截断）。                     |
+| briefText      | string |  否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过1024字节，超出部分会被截断）。   |
+| expandedTitle  | string |  否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过1024字节，超出部分会被截断）。                 |
 
 
 ## NotificationMultiLineContent
@@ -62,9 +64,9 @@
 
 | 名称           | 类型            | 只读 | 可选 | 说明                             |
 | -------------- | --------------- | --- | --- | -------------------------------- |
-| briefText      | string          | 否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过200字节，超出部分会被截断）。 |
-| longTitle      | string          | 否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。|
-| lines          | Array\<string\> | 否  | 否  | 通知的多行文本（大小不超过200字节，超出部分会被截断）。                  |
+| briefText      | string          | 否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过1024字节，超出部分会被截断）。 |
+| longTitle      | string          | 否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过1024字节，超出部分会被截断）。|
+| lines          | Array\<string\> | 否  | 否  | 通知的多行文本（每行大小不超过1024字节，超出部分会被截断）。                  |
 
 
 ## NotificationPictureContent
@@ -79,8 +81,8 @@
 
 | 名称           | 类型                                          | 只读 | 可选 | 说明                               |
 | -------------- | -------------------------------------------- | ---- | --- |------------------------------------|
-| briefText      | string                                       |  否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过200字节，超出部分会被截断）。 |
-| expandedTitle  | string                                       |  否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。    |
+| briefText      | string                                       |  否  | 否  | 通知概要内容，是对通知内容的总结（不可为空字符串，大小不超过1024字节，超出部分会被截断）。 |
+| expandedTitle  | string                                       |  否  | 否  | 通知展开时的标题（不可为空字符串，大小不超过1024字节，超出部分会被截断）。    |
 | picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  | 否  | 通知的图片内容(图像像素的总字节数不能超过2MB)。|
 
 
@@ -126,16 +128,28 @@
 
 ## NotificationTime<sup>11+</sup>
 
-描述通知时间。
+描述通知计时信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 类型              | 只读 | 可选 | 说明                             |
 | -------------- | ---------------- | --- | --- | -------------------------------- |
-| initialTime    | number           | 否  | 是  | 起始时间。<br>数据格式：时间戳。<br>单位：ms。                |
+| initialTime    | number           | 否  | 是  | 计时起始时间。单位：ms。                |
 | isCountDown    | boolean          | 否  | 是  | 是否倒计时。                     |
 | isPaused       | boolean          | 否  | 是  | 是否暂停。                       |
 | isInTitle      | boolean          | 否  | 是  | 时间是否展示在title中。           |
+
+**示例：**
+
+```ts
+// 该通知从3秒开始倒计时，并且时间展示在title中。
+time: {
+    initialTime: 3000,
+    isCountDown: true,
+    isPaused: false,
+    isInTitle: true,
+}
+```
 
 
 ## NotificationProgress<sup>11+</sup>

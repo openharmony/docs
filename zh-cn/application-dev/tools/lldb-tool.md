@@ -77,37 +77,37 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
    2. 运行LLDB工具，并指定要调试的文件为a.out。
 
-      ```lldb
+      ```shell
       ./lldb a.out
       ```
 
    3. 在代码中main函数处设置断点。
 
-      ```lldb
+      ```shell
       (lldb) b main
       ```
 
    4. 运行应用，使其停在断点处。
 
-      ```lldb
+      ```shell
       (lldb) run
       ```
 
    5. 继续运行应用。
 
-      ```lldb
+      ```shell
       (lldb) continue
       ```
 
    6. 列出所有断点。
 
-      ```lldb
+      ```shell
       (lldb) breakpoint list
       ```
 
    7. 显示当前帧的参数和局部变量。
 
-      ```lldb
+      ```shell
       (lldb) frame variable
       ```
 
@@ -115,7 +115,7 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
    9. 退出调试。
 
-      ```lldb
+      ```shell
       (lldb) quit
       ```
 
@@ -123,7 +123,7 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
    此处以在Mac环境调试一个使用clang编译器生成的带有调试信息的带用户输入的可执行文件a.out为例。
    
-   1. 在命令行窗口1启动应用。（窗口会返回一条信息“Please input a number of type int”）
+   1. 在命令行窗口1启动应用。（窗口会返回一条信息“Please input a number of type int”。）
       ```shell
       ./a.out
       ```
@@ -135,13 +135,13 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
    
    3. attach应用。
    
-      ```lldb
+      ```shell
       (lldb) process attach --name a.out
       ```
    
-   4. 在`hello.cpp`的第10行设置断点
+   4. 在`hello.cpp`的第10行设置断点。
    
-      ```lldb
+      ```shell
       (lldb) breakpoint set --file hello.cpp --line 12
       ```
    
@@ -153,7 +153,7 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
    
    6. 在命令行窗口2继续运行应用，使应用停在断点处。
    
-      ````lldb
+      ````shell
       (lldb) continue
       ````
    
@@ -161,13 +161,13 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
    
    8. detach应用。
    
-      ```lldb
+      ```shell
       (lldb) detach
       ```
    
    9. 退出调试。
    
-      ```lldb
+      ```shell
       (lldb) quit
       ```
    
@@ -218,32 +218,32 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
 4. 在LLDB命令行窗口进行远端选择与连接。
 
-   ```lldb
+   ```shell
    (lldb) platform select remote-ohos
    (lldb) platform connect connect://localhost:8080 
    ```
 
 5. 指定要调试的设备上的二进制文件a.out。
 
-   ```lldb
+   ```shell
    (lldb) target create /data/local/tmp/a.out
    ```
 
 6. 在代码中main函数处设置断点。
 
-   ```lldb
+   ```shell
    (lldb) b main
    ```
 
 7. 启动应用。
 
-   ```lldb
+   ```shell
    (lldb) run
    ```
 
 8. 查看当前目标进程的源码。
 
-   ```lldb
+   ```shell
    (lldb) source list
    ```
 
@@ -251,6 +251,6 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
 10. 退出调试。
 
-    ```lldb
+    ```shell
     (lldb) quit
     ```

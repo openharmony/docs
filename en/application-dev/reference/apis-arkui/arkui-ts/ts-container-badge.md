@@ -1,6 +1,6 @@
 # Badge
 
-The **\<Badge>** component is a container that can be attached to another component for tagging.
+The **Badge** component is a container that can be attached to another component for tagging.
 
 >  **NOTE**
 >
@@ -58,7 +58,7 @@ This component supports the scaling effect for visibility transition since API v
 
 ## BadgeParam
 
-Provides basic parameters for creating a **\<Badge>** component.
+Provides basic parameters for creating a **Badge** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -117,20 +117,18 @@ Inherits from [BadgeParam](#badgeparam) and has all attributes of **BadgeParam**
 
 ## BadgeStyle
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                     | Type                                                        | Mandatory| Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color.<br>Default value: **Color.White**                          |
-| fontSize                  | number \| string                                   | No  | Font size.<br>Default value: **10**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage.|
-| badgeSize                 | number \| string                                   | No  | Badge size.<br>Default value: **16**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
-| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Badge color.<br>Default value: **Color.Red**                         |
+| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color.<br>Default value: **Color.White**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| fontSize                  | number \| string                                   | No  | Font size.<br>Default value: **10**<br>Unit: fp<br>**NOTE**<br>This parameter cannot be set in percentage.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| badgeSize                 | number \| string                                   | No  | Badge size.<br>Default value: **16**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Badge color.<br>Default value: **Color.Red**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 | fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Font weight of the text.<br>Default value: **FontWeight.Normal**<br>**NOTE**<br>This parameter cannot be set in percentage.|
-| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Border color of the background.<br>Default value: **Color.Red**                         |
+| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Border color of the background.<br>Default value: **Color.Red**                        |
 | borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | No  | Border width of the background.<br>Default value: **1**<br>Unit: vp<br>**NOTE**<br>This parameter cannot be set in percentage.|
 
 ## Attributes

@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块API使用时建议放在worker线程或者taskpool中做网络操作，否则可能会导致UI线程卡顿。
 
 ## 导入模块
 
@@ -3038,9 +3039,22 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 import { socket } from '@kit.NetworkKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
-  console.log(JSON.stringify(data))
-});
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
+    console.log(JSON.stringify(data))
+  });
+})
 ```
 
 ### off('connect')<sup>10+</sup>
@@ -3070,13 +3084,26 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 import { socket } from '@kit.NetworkKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let callback = (data: socket.TCPSocketConnection) => {
-  console.log('on connect message: ' + JSON.stringify(data));
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-tcpServer.on('connect', callback);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-tcpServer.off('connect', callback);
-tcpServer.off('connect');
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  let callback = (data: socket.TCPSocketConnection) => {
+    console.log('on connect message: ' + JSON.stringify(data));
+  }
+  tcpServer.on('connect', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  tcpServer.off('connect', callback);
+  tcpServer.off('connect');
+})
 ```
 
 ### on('error')<sup>10+</sup>
@@ -3110,9 +3137,22 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
-});
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  tcpServer.on('error', (err: BusinessError) => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
+})
 ```
 
 ### off('error')<sup>10+</sup>
@@ -3143,13 +3183,26 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-tcpServer.on('error', callback);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-tcpServer.off('error', callback);
-tcpServer.off('error');
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  let callback = (err: BusinessError) => {
+    console.log("on error, err:" + JSON.stringify(err));
+  }
+  tcpServer.on('error', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  tcpServer.off('error', callback);
+  tcpServer.off('error');
+})
 ```
 
 ## TCPSocketConnection<sup>10+</sup>
@@ -3751,7 +3804,7 @@ constructLocalSocketInstance(): LocalSocket
 **返回值：**
 
 | 类型                               | 说明                    |
-  | :--------------------------------- | :---------------------- |
+| :--------------------------------- | :---------------------- |
 | [LocalSocket](#localsocket11) | 返回一个LocalSocket对象。 |
 
 **示例：**
@@ -6879,6 +6932,7 @@ TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双�
 | useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
 | cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。              |
 
 ## Protocol<sup>9+</sup>
 
@@ -6929,6 +6983,8 @@ TLSSocketServer连接。在调用TLSSocketServer的方法前，需要先通过[s
 listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，创建和初始化TLS会话，实现建立连接过程，加载证书秘钥并验证，使用callback方式作为异步方法。
+
+**注意：**IP地址设置为0.0.0.0时，可以监听本机所有地址。
 
 **需要权限**：ohos.permission.INTERNET
 

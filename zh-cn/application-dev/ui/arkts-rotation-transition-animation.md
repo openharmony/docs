@@ -35,7 +35,7 @@ struct rotation {
 需要在EntryAbility.ets文件的onWindowStageCreate方法中添加处理逻辑以获取屏幕的显示方向
 ```ts
 onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
+
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     let mainWindow: window.Window;

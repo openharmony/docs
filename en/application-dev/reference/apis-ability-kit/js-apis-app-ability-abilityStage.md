@@ -150,7 +150,7 @@ Called when the system has decided to adjust the memory level. For example, this
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
 
 **Example**
     

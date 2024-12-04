@@ -14,7 +14,7 @@
 
 ## 接口
 
-Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
+Column(options?: ColumnOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -26,7 +26,19 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>从API version 9开始，space为负数或者[justifyContent](ts-container-column.md#justifycontent8)设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0<br/>单位：vp<br/>**说明：**<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| options | [ColumnOptions](#columnoptions14对象说明) | 否 | 纵向布局元素垂直方向间距。 |
+
+## ColumnOptions<sup>14+</sup>对象说明
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>space为负数或者[justifyContent](ts-container-column.md#justifycontent8)设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0<br/>单位：vp<br/>**说明：**<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 ## 属性
 

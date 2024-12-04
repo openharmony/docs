@@ -12,15 +12,15 @@ The **tagSession** module provides common APIs for establishing connections and 
 import { tag } from '@kit.ConnectivityKit';
 ```
 
-## tagSession
+## TagSession
 
-Provides common APIs for establishing connections and transferring data. **tagSession** is the base class of all [NFC tag technologies](js-apis-nfctech.md).
+Provides common APIs for establishing connections and transferring data. **TagSession** is the base class of all [NFC tag technologies](js-apis-nfctech.md).
 
 A child class instance is required to access the following interfaces. You can use **get**XXX() to obtain a child class instance.
 
 The specific API varies with the NFC tag technology in use. For details, see [NFC Tags](js-apis-nfcTag.md).
 
-### tagSession.getTagInfo<sup>(deprecated)</sup>
+### getTagInfo<sup>(deprecated)</sup>
 
 getTagInfo(): tag.TagInfo
 
@@ -35,9 +35,9 @@ Obtains the **tagInfo** object provided by the NFC service when the tag is dispa
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| TagInfo  | **Taginfo** object obtained. |
+| TagInfo  | **Taginfo** object obtained.|
 
 **Example**
 
@@ -51,14 +51,14 @@ let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
 console.info("tag tagInfo: " + tagInfo);
 ```
 
-### tagSession.connectTag<sup>(deprecated)</sup>
+### connectTag<sup>(deprecated)</sup>
 
 connectTag(): boolean;
 
 Connects to this tag. Call this API to set up a connection before reading data from or writing data to a tag.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.connect](#tagsessionconnect9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.connect](#connect9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -66,9 +66,9 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean  | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -82,7 +82,7 @@ let connectStatus : boolean = tag.getIsoDep(tagInfo).connectTag();
 console.info("connectStatus: " + connectStatus);
 ```
 
-### tagSession.connect<sup>9+</sup>
+### connect<sup>9+</sup>
 
 connect(): void;
 
@@ -98,7 +98,7 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -120,14 +120,14 @@ try {
 }
 ```
 
-### tagSession.reset()<sup>(deprecated)</sup>
+### reset()<sup>(deprecated)</sup>
 
 reset(): void
 
 Resets the connection to this tag.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.resetConnection](#tagsessionresetconnection9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.resetConnection](#resetconnection9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -144,7 +144,7 @@ import { tag } from '@kit.ConnectivityKit';
 tag.getIsoDep(tagInfo).reset(); 
 ```
 
-### tagSession.resetConnection()<sup>9+</sup>
+### resetConnection()<sup>9+</sup>
 
 resetConnection(): void
 
@@ -160,7 +160,7 @@ Resets the connection to this tag.
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -182,22 +182,22 @@ try {
 }
 ```
 
-### tagSession.isTagConnected<sup>(deprecated)</sup>
+### isTagConnected<sup>(deprecated)</sup>
 
 isTagConnected(): boolean
 
 Checks whether the tag is connected.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.isConnected](#tagsessionisconnected9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.isConnected](#isconnected9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the tag is connected; returns **false** otherwise. |
+| boolean  | Returns **true** if the tag is connected; returns **false** otherwise.|
 
 **Example**
 
@@ -211,7 +211,7 @@ let isTagConnected = tag.getIsoDep(tagInfo).isTagConnected();
 console.info("isTagConnected: " + isTagConnected);
 ```
 
-### tagSession.isConnected<sup>9+</sup>
+### isConnected<sup>9+</sup>
 
 isConnected(): boolean
 
@@ -223,15 +223,15 @@ Checks whether the tag is connected.
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the tag is connected; returns **false** otherwise. |
+| boolean  | Returns **true** if the tag is connected; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |801 | Capability not supported.          |
 
@@ -252,14 +252,14 @@ try {
 }
 ```
 
-### tagSession.getMaxSendLength<sup>(deprecated)</sup>
+### getMaxSendLength<sup>(deprecated)</sup>
 
 getMaxSendLength(): number
 
 Obtains the maximum length of the data that can be sent to this tag.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.getMaxTransmitSize](#tagsessiongetmaxtransmitsize9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.getMaxTransmitSize](#getmaxtransmitsize9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -267,9 +267,9 @@ Obtains the maximum length of the data that can be sent to this tag.
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number  | Maximum data length obtained. The value cannot be a negative number. |
+| number  | Maximum data length obtained. The value cannot be a negative number.|
 
 **Example**
 ```js
@@ -282,7 +282,7 @@ let maxSendLen = tag.getIsoDep(tagInfo).getMaxSendLength();
 console.info("tag maxSendLen: " + maxSendLen);
 ```
 
-### tagSession.getMaxTransmitSize<sup>9+</sup>
+### getMaxTransmitSize<sup>9+</sup>
 
 getMaxTransmitSize(): number
 
@@ -296,15 +296,15 @@ Obtains the maximum length of the data that can be sent to this tag.
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number  | Maximum data length obtained. The value cannot be a negative number. |
+| number  | Maximum data length obtained. The value cannot be a negative number.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -325,14 +325,14 @@ try {
 }
 ```
 
-### tagSession.getSendDataTimeout<sup>(deprecated)</sup>
+### getSendDataTimeout<sup>(deprecated)</sup>
 
 getSendDataTimeout(): number
 
 Obtains the timeout period for sending data to this tag, in milliseconds.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.getTimeout](#tagsessiongettimeout9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.getTimeout](#gettimeout9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -340,9 +340,9 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number. |
+| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number.|
 
 **Example**
 
@@ -356,7 +356,7 @@ let sendDataTimeout = tag.getIsoDep(tagInfo).getSendDataTimeout();
 console.info("tag sendDataTimeout: " + sendDataTimeout);
 ```
 
-### tagSession.getTimeout<sup>9+</sup>
+### getTimeout<sup>9+</sup>
 
 getTimeout(): number
 
@@ -370,15 +370,15 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number. |
+| number  | Timeout period obtained, in milliseconds. The value cannot be a negative number.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
@@ -400,14 +400,14 @@ try {
 }
 ```
 
-### tagSession.setSendDataTimeout<sup>(deprecated)</sup>
+### setSendDataTimeout<sup>(deprecated)</sup>
 
 setSendDataTimeout(timeout: number): boolean
 
 Sets the maximum time allowed for sending data to this tag, in ms.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.setTimeout](#tagsessionsettimeout9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.setTimeout](#settimeout9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -415,15 +415,15 @@ Sets the maximum time allowed for sending data to this tag, in ms.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                  |
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| timeout | number | Yes | Timeout period to set, in milliseconds. The value cannot be a negative number. |
+| timeout | number | Yes| Timeout period to set, in milliseconds. The value cannot be a negative number.|
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| boolean  | Returns **true** if the timeout period is set successfully; returns **false** otherwise. |
+| boolean  | Returns **true** if the timeout period is set successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -438,7 +438,7 @@ let setStatus = tag.getIsoDep(tagInfo).setSendDataTimeout(timeoutMs);
 console.info("tag setSendDataTimeout setStatus: " + setStatus);
 ```
 
-### tagSession.setTimeout<sup>9+</sup>
+### setTimeout<sup>9+</sup>
 
 setTimeout(timeout: number): void
 
@@ -452,15 +452,15 @@ Sets the maximum time allowed for sending data to this tag, in ms.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                  |
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| timeout | number | Yes | Timeout period to set, in milliseconds. The value cannot be a negative number. |
+| timeout | number | Yes| Timeout period to set, in milliseconds. The value cannot be a negative number.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -484,14 +484,14 @@ try {
 }
 ```
 
-### tagSession.sendData<sup>(deprecated)</sup>
+### sendData<sup>(deprecated)</sup>
 
 sendData(data: number[]): Promise<number[]>
 
 Sends data to this tag. This API uses a promise to return the result.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.transmit](#tagsessiontransmit9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [tagSession.transmit](#transmit9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -499,13 +499,13 @@ Sends data to this tag. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                  |
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes | Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
+| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
 | Promise<number[]> | Promise used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -536,14 +536,14 @@ function tagSessionDemo() {
 }
 ```
 
-### tagSession.sendData<sup>(deprecated)</sup>
+### sendData<sup>(deprecated)</sup>
 
 sendData(data: number[], callback: AsyncCallback<number[]>): void
 
 Sends data to this tag. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This parameter is supported since API version 7 and discarded since API version 9. Use [tagSession.transmit](#tagsessiontransmit9-1) instead.
+> This parameter is supported since API version 7 and deprecated since API version 9. Use [tagSession.transmit](#transmit9-1) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -551,10 +551,10 @@ Sends data to this tag. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                  |
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes | Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
-| callback | AsyncCallback<number[]> | Yes | Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
+| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| callback | AsyncCallback<number[]> | Yes| Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Example**
 
@@ -584,7 +584,7 @@ function tagSessionDemo() {
 }
 ```
 
-### tagSession.transmit<sup>9+</sup>
+### transmit<sup>9+</sup>
 
 transmit(data: number[]): Promise<number[]>
 
@@ -598,13 +598,13 @@ Transmits data to this tag. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                  |
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | ------------------ | --------------------------|
 | Promise<number[]> | Promise used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
@@ -612,7 +612,7 @@ Transmits data to this tag. This API uses a promise to return the result.
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
@@ -654,7 +654,7 @@ function tagSessionDemo() {
 }
 ```
 
-### tagSession.transmit<sup>9+</sup>
+### transmit<sup>9+</sup>
 
 transmit(data: number[], callback: AsyncCallback<number[]>): void
 
@@ -668,16 +668,16 @@ Transmits data to this tag. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                  |
+| Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| callback | AsyncCallback<number[]> | Yes | Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
+| callback | AsyncCallback<number[]> | Yes| Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |

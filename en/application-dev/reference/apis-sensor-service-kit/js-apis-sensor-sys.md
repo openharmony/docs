@@ -37,7 +37,7 @@ Subscribes to data of the color sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -85,7 +85,7 @@ Subscribes to data of the Sodium Adsorption Ratio (SAR) sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -133,7 +133,7 @@ Unsubscribes from data of the color sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -186,7 +186,7 @@ Unsubscribes from data of the SAR sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
