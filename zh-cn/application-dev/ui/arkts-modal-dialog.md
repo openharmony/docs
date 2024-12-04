@@ -1,4 +1,4 @@
-# 模态弹窗 (ModelDialog)
+# 模态弹窗 (ModalDialog)
 
 ## 概述
 
