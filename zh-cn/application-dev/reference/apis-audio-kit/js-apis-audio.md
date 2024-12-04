@@ -414,8 +414,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称      |  值       | 说明   |
 | --------- | -------- |------|
-| CHANNEL_1 | 0x1 << 0 | 单声道。 |
-| CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_1 | 1 | 单声道。 |
+| CHANNEL_2 | 2 | 双声道。 |
 | CHANNEL_3<sup>11+</sup> | 3 | 三声道。 |
 | CHANNEL_4<sup>11+</sup> | 4 | 四声道。 |
 | CHANNEL_5<sup>11+</sup> | 5 | 五声道。 |
