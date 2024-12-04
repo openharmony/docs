@@ -1052,6 +1052,8 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 Starts an ability in the foreground or background in the cross-device scenario and obtains the caller object for communicating with the ability. This API uses a promise to return the result. It can be called only by the main thread.
 
+This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
+
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
@@ -1670,7 +1672,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md).|
+| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
@@ -1729,7 +1731,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md).|
+| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 
@@ -1781,9 +1783,9 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-Shows the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
+Shows the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices. It can be called only by the main thread.
 
-Before calling this API, ensure that the application has been added to the status bar.
+To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#processmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1878,9 +1880,9 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-Hides the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
+Hides the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices. It can be called only by the main thread.
 
-Before calling this API, ensure that the application has been added to the status bar.
+To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#processmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1974,7 +1976,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br><!--RP1-->This API applies only to devices whose **deviceTypes** is **default**.<!--RP1End-->
+Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br><!--RP1--><!--RP1End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2370,5 +2372,3 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
- <!--no_check--> 

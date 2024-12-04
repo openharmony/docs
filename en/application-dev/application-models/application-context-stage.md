@@ -228,7 +228,9 @@ In practice, you need to select a proper encryption level based on scenario-spec
 - EL5: By default, sensitive user privacy files cannot be read or written on the lock screen. If such files need to be read or written on the lock screen, you can call [Access](../reference/apis-ability-kit/js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess) to apply for reading or writing files before the screen is locked or create new files that can be read and written after the screen is locked. It is more appropriate to place these files in EL5.
 
 You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md).
+
 ```ts
+// EntryAbility.ets
 import { UIAbility, contextConstant, AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
@@ -256,6 +258,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 ```ts
+// Index.ets
 import { contextConstant, common } from '@kit.AbilityKit';
 import { promptAction } from '@kit.ArkUI';
 

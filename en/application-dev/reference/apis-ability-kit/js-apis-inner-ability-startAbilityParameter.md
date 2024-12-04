@@ -20,8 +20,8 @@ import ability from '@ohos.ability.ability';
 | Name              |   Type  | Mandatory  | Description                                   |
 | ------------------- | -------- | ---- | -------------------------------------- |
 | want                | [Want](js-apis-app-ability-want.md)|   Yes  | Want information about the target ability.                    |
-| abilityStartSetting | { [key: string]: any } | No   | Special attribute of the target ability. This attribute can be passed in the call. |
-| abilityStartSettings<sup>11+<sup> | Record\<string, Object> | No   | Special attribute of the target ability. This attribute can be passed in the call. You are advised to use this attribute to replace **abilityStartSetting**. When this attribute is set, **abilityStartSetting** does not take effect. |
+| abilityStartSetting | { [key: string]: any } | No   | Special attribute of the target ability. This attribute can be passed in the call.|
+| abilityStartSettings<sup>11+<sup> | Record\<string, Object> | No   | Special attribute of the target ability. This attribute can be passed in the call. You are advised to use this attribute to replace **abilityStartSetting**. When this attribute is set, **abilityStartSetting** does not take effect.|
 
 **Example**
 

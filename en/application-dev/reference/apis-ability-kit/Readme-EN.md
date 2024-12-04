@@ -133,7 +133,7 @@
       <!--Del-->
       - [AbilityFirstFrameStateData (System API)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver (System API)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
-      - [AbilityForegroundStateObserver (System API)](js-apis-inner-application-abilityForegroundStateObserver-sys)
+      - [AbilityForegroundStateObserver (System API)](js-apis-inner-application-abilityForegroundStateObserver-sys.md)
       - [AbilityRunningInfo (System API)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AbilityStateData (System API)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver (System API)](js-apis-inner-application-appForegroundStateObserver-sys.md)
