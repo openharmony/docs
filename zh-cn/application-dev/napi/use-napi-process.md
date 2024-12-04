@@ -28,7 +28,7 @@
   napi_module有两个关键属性：一个是.nm_register_func，定义模块初始化函数；另一个是.nm_modname，定义模块的名称，也就是ArkTS侧引入的so库的名称，模块系统会根据此名称来区分不同的so。
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   
   // 准备模块加载相关信息，将上述Init函数与本模块名等信息记录下来。
   static napi_module demoModule = {
@@ -52,7 +52,7 @@
   实现ArkTS接口与C++接口的绑定和映射。
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   EXTERN_C_START
   // 模块初始化
   static napi_value Init(napi_env env, napi_value exports) {
@@ -90,6 +90,7 @@
 - 在oh-package.json5文件中将index.d.ts与cpp文件关联起来。
 
   ```
+  // entry/src/main/cpp/types/libentry/oh-package.json5
   {
     "name": "libentry.so",
     "types": "./index.d.ts",
@@ -111,7 +112,7 @@
                       ${NATIVERENDER_ROOT_PATH}/include)
   
   # 添加名为entry的库
-  add_library(entry SHARED hello.cpp)
+  add_library(entry SHARED napi_init.cpp)
   # 构建此可执行文件需要链接的库
   target_link_libraries(entry PUBLIC libace_napi.z.so)
   ```
@@ -119,7 +120,7 @@
 - 实现Native侧的CallNative以及NativeCallArkTS接口。具体代码如下：
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   static napi_value CallNative(napi_env env, napi_callback_info info)
   {
       size_t argc = 2;
