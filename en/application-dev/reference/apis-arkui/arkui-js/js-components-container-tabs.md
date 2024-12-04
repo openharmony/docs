@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<tabs>** component provides a tab container.
+The **Tabs** component provides a tab container.
 
 ## Required Permissions
 

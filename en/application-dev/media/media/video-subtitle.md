@@ -1,4 +1,4 @@
-# Adding External Subtitles to Videos
+# Using AVPlayer to Add External Subtitles to Videos (ArkTS)
 
 Currently, you can add external subtitles to a video only before it starts playing.
 

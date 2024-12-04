@@ -4,6 +4,10 @@
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
 
+> **说明：**
+>
+> 使用C/C++接口订阅崩溃事件，包含JsError和NativeCrash两种崩溃类型。
+
 **订阅接口功能介绍：**
 
 | 接口名                                                       | 描述                                         |

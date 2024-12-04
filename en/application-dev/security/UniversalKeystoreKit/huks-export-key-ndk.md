@@ -2,6 +2,8 @@
 
 
 This topic walks you through on how to export the public key of a persistently stored asymmetric key. Currently, HUKS supports export of the ECC, RSA, Ed25519, X25519, and SM2 public keys.
+>**NOTE**<br>
+> The mini-system devices support export of only the RSA public keys.
 
 ## Add the dynamic library in the CMake script.
 ```txt
@@ -11,7 +13,7 @@ This topic walks you through on how to export the public key of a persistently s
 ## How to Develop
 
 1. Set parameters.
-   - **keyAlias**: key alias encapsulated in an [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) struct. The maximum length of the key alias is 64 bytes.
+   - **keyAlias**: key alias encapsulated in an [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) struct. The maximum length of the key alias is 128 bytes.
    - **paramSetIn**: This parameter is reserved. Leave it empty.
    - **key**: [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) object used to hold the key exported. Ensure that there is enough memory for storing the key exported.
 

@@ -1,21 +1,20 @@
 # arkOptions Configuration
 
 
-## Configuring File Attributes
+## Configuration File Tag
 
-  **Table 1** File attribute of the types field in arkOptions
+  **Table 1** types field in the arkOptions tag
 
-| Property Name| Description| Data Type| Initial Value Allowed|
+| Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| types | The **types** field is used to globally introduce the specified type declaration file, avoiding independent introduction in each source file.| Array| Yes (initial value: left empty)|
+| types | Type declaration files to import globally. Using this field can avoid individual imports in each source file.| Array| Yes (initial value: left empty)|
 
-## Types Field Configuration in arkOptions
+## types Field Configuration in arkOptions
 
-Example of the Types Field in arkOptions
+ Add the **types** field to the **arkOptions** attribute of the **buildOption** tag in the **build-profile.json5** configuration file of a module.
 
-Add the **types** field to the **arkOptions** attribute of the **buildOption** tag in the **build-profile.json5** configuration file of the module.
 ```json
-// in/entry/build-profile.json5
+// In /entry/build-profile.json5
 {
   "arkOptions": {
     "types": ["chai", "./oh_modules/@types/mocha", "./src/main/ets/pages/global"]
@@ -23,12 +22,12 @@ Add the **types** field to the **arkOptions** attribute of the **buildOption** t
 }
 ```
 
-The **types** field can be set to the package name, relative path of the package location, or relative path of the declaration file. Only the search in this module is supported. If a file with the same name (with different file name extensions) exists in the directory, the default loading sequence is **.d.ets** > **.d.ts**.<br>
- (1) Inputing package name: Search the declaration file defined by the package name at **oh_modules/@types/directory**, for example, a file name with "chai".<br>
- (2) Inputing relative path of the package: Search the defined declaration file at the relative path of **build-profile.json5**, for example, **./oh_modules/@types/mocha**.<br>
- (3) Inputing relative path of the declaration file: Search the declaration file in the relative path, for example, **./src/main/ets/pages/global**.
+The **types** field can be set to a bundle name, relative path to the bundle location, or relative path to the declaration file. Only the search in the current module is supported. If files with the same name (with different file name extensions) exists in the specified directory, the files are loaded in the following order, from high to low: **.d.ets** > **.d.ts**.<br>
+ (1) Inputting package name: If a bundle name is specified, it is used to search for the declaration files in **oh_modules/@types/**, xxx.<br>
+ (2) Inputting relative path of the package: Search the defined declaration file at the relative path of **build-profile.json5**, for example, **./oh_modules/@types/mocha**.<br>
+ (3) Inputting relative path of the declaration file: Search the declaration file in the relative path, for example, **./src/main/ets/pages/global**.
 
-*Note:*
+*NOTE*
 
 If you input the package name or the relative path of the package location in the **types** field, **dependencies** at **project file/entry/oh-package.json5** should be set as follows:
 ```json
@@ -38,16 +37,16 @@ If you input the package name or the relative path of the package location in th
 }
 ```
 
-If you input the relative path of the declaration file in the **types** field with the prerequisite that the corresponding declaration file, such as the src/main/ets/pages/global.d.ts file, exists in the module, the content is as follows:
+If you input the relative path of the declaration file in the **types** field, make sure the corresponding declaration file, such as the **src/main/ets/pages/global.d.ts** file, exists in the module. The content of the declaration file is as follows:
 ```typescript
 declare namespace Global {
   type ObjectType = string | number;
 }
 ```
 
-After globally introducing **types**, the usage example of the global type is as follows:
+After **types** is set to globally import type declarations, the types declared can be used as follows:
 ```typescript
-// in entry/src/main/ets/pages/Index.ets
+// In entry/src/main/ets/pages/Index.ets
 let a: Chai.Message;
 let b: Mocha.HookFunction;
 let c: Global.ObjectType;

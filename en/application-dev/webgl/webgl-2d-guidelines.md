@@ -2,7 +2,7 @@
 
 ## When to Use
 
-Web Graphic Library (WebGL) is used for rendering interactive 2D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the HTML5 **\<canvas>** element without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
+Web Graphic Library (WebGL) is used for rendering interactive 2D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the HTML5 **Canvas** element without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
 
 > **NOTE**
 >
@@ -79,7 +79,7 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 
  The following uses a color square as an example to describe how to draw a 2D graphic using WebGL.
  
-1. Before using WebGL for 3D rendering, create a **\<canvas>** element. The following code snippet creates a **\<canvas>** element and sets an onclick event handler to initialize the WebGL context.
+1. Before using WebGL for 3D rendering, create a **Canvas** element. The following code snippet creates a **Canvas** element and sets an onclick event handler to initialize the WebGL context.
  
    ```hml
     <div class="container">

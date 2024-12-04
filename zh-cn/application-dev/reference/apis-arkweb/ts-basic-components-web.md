@@ -31,7 +31,7 @@ Web(value: WebOptions)
 
 | 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value        | [WebOptions](#weboptions11)   | 是    | 定义Web选项。 |
+| value        | [WebOptions](#weboptions)   | 是    | 定义Web选项。 |
 
 **示例：**
 
@@ -73,7 +73,7 @@ Web(value: WebOptions)
   }
   ```
 
-Web组件统一渲染模式。
+Web组件同步渲染模式。
 
   ```ts
   // xxx.ets
@@ -232,7 +232,7 @@ Web组件指定共享渲染进程。
    </html>
    ```
 
-## WebOptions<sup>11+</sup>
+## WebOptions
 
 通过[接口](#接口)定义Web选项。
 
@@ -240,14 +240,15 @@ Web组件指定共享渲染进程。
 
 | 名称        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
+| src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
+| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
 
 ## 属性
 
-通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexGrow](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[stateStyles](../apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md#statestyles)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)。
+通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)。
 
 ### domStorageAccess
 
@@ -450,7 +451,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -788,7 +789,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
     build() {
       Column() {
-        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        // 通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
         Button('refresh')
           .onClick(() => {
             this.isShow = true;
@@ -862,7 +863,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
     build() {
       Column() {
-        //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        // 通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
         Button('refresh')
         .onClick(() => {
           this.isShow = true;
@@ -986,7 +987,7 @@ struct WebComponent {
 
 textZoomAtio(textZoomAtio: number)
 
-设置页面的文本缩放百分比，默认为100%。
+设置页面的文本缩放百分比，默认为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1006,11 +1007,11 @@ textZoomAtio(textZoomAtio: number)
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-    @State atio: number = 150
+    @State ratio: number = 150
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomAtio(this.atio)
+          .textZoomAtio(this.ratio)
       }
     }
   }
@@ -1020,7 +1021,7 @@ textZoomAtio(textZoomAtio: number)
 
 textZoomRatio(textZoomRatio: number)
 
-设置页面的文本缩放百分比，默认为100%。
+设置页面的文本缩放百分比，默认为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1672,7 +1673,7 @@ allowWindowOpenMethod(flag: boolean)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -1703,7 +1704,7 @@ allowWindowOpenMethod(flag: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
-          //需要使能multiWindowAccess
+          // 需要使能multiWindowAccess
           .multiWindowAccess(true)
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
@@ -1715,9 +1716,9 @@ allowWindowOpenMethod(flag: boolean)
               builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
-            //将新窗口对应WebviewController返回给Web内核。
-            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
-            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 将新窗口对应WebviewController返回给Web内核。
+            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
             event.handler.setWebController(popController);
           })
       }
@@ -1914,9 +1915,9 @@ layoutMode(mode: WebLayoutMode)
 > 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件高度基于前端页面高度的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
 >
 > Web组件高度基于前端页面自适应布局有如下限制：
-> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
+> - 如果Web组件宽或长度超过7680px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
 > - Web组件创建后不支持动态切换layoutMode模式
-> - Web组件宽高规格：分别不超过50万px。
+> - Web组件宽高规格：指定RenderMode.SYNC_RENDER模式时，分别不超过50万px；指定RenderMode.ASYNC_RENDER模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
 > - 仅支持高度自适应，不支持宽度自适应。
@@ -2114,7 +2115,7 @@ enableNativeEmbedMode(mode: boolean)
 
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用英文非空字串，不区分大小写。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用ASCII可显示字符。
 
 若指定类型与w3c定义的object或embed标准类型重合，ArkWeb内核将其识别为非同层标签。
 
@@ -2211,6 +2212,7 @@ metaViewport(enabled: boolean)
 > - 设置true支持meta标签viewport属性，将解析viewport属性，并根据viewport属性布局。
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
+> - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2378,6 +2380,48 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
   </html>
   ```
 
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | onAdsBlocked的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+          }
+        })
+      }
+    }
+  }
+  ```
+
 ### keyboardAvoidMode<sup>12+</sup>
 
 keyboardAvoidMode(mode: WebKeyboardAvoidMode)
@@ -2464,7 +2508,7 @@ struct WebComponent {
 
   onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
     let items = menuItems.filter((menuItem) => {
-        //过滤用户需要的系统按键
+      // 过滤用户需要的系统按键
       return (
         menuItem.id.equals(TextMenuItemId.CUT) ||
         menuItem.id.equals(TextMenuItemId.COPY) ||
@@ -2481,31 +2525,31 @@ struct WebComponent {
       id: TextMenuItemId.of('customItem2'),
       icon: $r('app.media.icon')
     };
-    items.push(customItem1);//在选项列表后添加新选项
-    items.unshift(customItem2);//在选项列表前添加选项
+    items.push(customItem1);// 在选项列表后添加新选项
+    items.unshift(customItem2);// 在选项列表前添加选项
 
     return items;
   }
 
   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
     if (menuItem.id.equals(TextMenuItemId.CUT)) {
-      //用户自定义行为
+      // 用户自定义行为
       console.log("拦截 id：CUT")
-      return true; //返回true不执行系统回调
+      return true; // 返回true不执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      //用户自定义行为
+      // 用户自定义行为
       console.log("不拦截 id：COPY")
-      return false; //返回false执行系统回调
+      return false; // 返回false执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
-      //用户自定义行为
+      // 用户自定义行为
       console.log("拦截 id：customItem1")
-      return true;//用户自定义菜单选项返回true、false无影响，推荐返回true
+      return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
-      //用户自定义行为
+      // 用户自定义行为
       console.log("拦截 id：app.string.customItem2")
       return true;
     }
-    return false;//返回默认值false
+    return false;// 返回默认值false
   }
 
   @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
@@ -2579,6 +2623,121 @@ struct WebComponent {
   <body>
     <h1>enableHapticFeedback Demo</h1>
     <span>enable haptic feedback</span>
+  </body>
+</html>
+```
+
+### bindSelectionMenu<sup>13+</sup>
+
+bindSelectionMenu(elementType: WebElementType, content: CustomBuilder, responseType: WebResponseType, options?: SelectionMenuOptionsExt)
+
+设置自定义选择菜单。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型                             | 必填 | 说明                                |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| elementType     | [WebElementType](#webelementtype13枚举说明)             | 是   | 菜单的类型。   |
+| content      | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)     | 是   | 菜单的内容。   |
+| responseType | [WebResponseType](#webresponsetype13枚举说明)           | 是   | 菜单的响应类型。 |
+| options      | [SelectionMenuOptionsExt](#selectionmenuoptionsext13)   | 否   | 菜单的选项。|
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+interface PreviewBuilderParam {
+  previewImage: Resource | string | undefined;
+  width: number;
+  height: number;
+}
+
+@Builder function PreviewBuilderGlobal($$: PreviewBuilderParam) {
+  Column() {
+    Image($$.previewImage)
+      .objectFit(ImageFit.Fill)
+      .autoResize(true)
+  }.width($$.width).height($$.height)
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  private result: WebContextMenuResult | undefined = undefined;
+  @State previewImage: Resource | string | undefined = undefined;
+  @State previewWidth: number = 0;
+  @State previewHeight: number = 0;
+
+  @Builder
+  MenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制', })
+        .onClick(() => {
+          this.result?.copy();
+          this.result?.closeContextMenu();
+        })
+      MenuItem({ content: '全选', })
+        .onClick(() => {
+          this.result?.selectAll();
+          this.result?.closeContextMenu();
+        })
+    }
+  }
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .bindSelectionMenu(WebElementType.IMAGE, this.MenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {
+              this.result?.closeContextMenu();
+            },
+            preview: PreviewBuilderGlobal({
+              previewImage: this.previewImage,
+              width: this.previewWidth,
+              height: this.previewHeight
+            }),
+            menuType: MenuType.PREVIEW_MENU
+          })
+        .onContextMenuShow((event) => {
+            if (event) {
+              this.result = event.result;
+              if (event.param.getLinkUrl()) {
+                return false;
+              }
+              this.previewWidth = px2vp(event.param.getPreviewWidth());
+              this.previewHeight = px2vp(event.param.getPreviewHeight());
+              if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
+                this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
+              } else {
+                this.previewImage = event.param.getSourceUrl();
+              }
+              return true;
+            }
+            return false;
+          })
+    }
+  }
+}
+```
+
+ 加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>bindSelectionMenu Demo</h1>
+    <img src="./img.png" >
   </body>
 </html>
 ```
@@ -3025,7 +3184,7 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
-网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
+网页加载遇到错误时触发该回调。主资源与子资源出错都会回调该接口，可以通过request.isMainFrame来判断是否是主资源报错。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3344,6 +3503,8 @@ onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object
 onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
+
+多个Web组件可能共享单个渲染进程，每个受影响的Web组件都会触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3694,7 +3855,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
     controller: webview.WebviewController = new webview.WebviewController();
     responseWeb: WebResourceResponse = new WebResourceResponse();
     heads: Header[] = new Array();
-    @State webData: string = "<!DOCTYPE html>\n" +
+    webData: string = "<!DOCTYPE html>\n" +
       "<html>\n" +
       "<head>\n" +
       "<title>intercept test</title>\n" +
@@ -3719,8 +3880,10 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
               headerKey: "Cache-Control",
               headerValue: "no-cache"
             }
+            // 将新元素追加到数组的末尾，并返回数组的新长度。
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
+            console.log('The response header result length is :' + length);
             const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
               this.responseWeb.setResponseHeader(this.heads);
               this.responseWeb.setResponseData(this.webData);
@@ -3935,7 +4098,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationrequestevent12)\> | 是 | 当需要用户提供的SSL客户端证书时触发的回调。  |
+| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationevent12)\> | 是 | 当需要用户提供的SSL客户端证书时触发的回调。  |
 
   **示例：**
 
@@ -4034,7 +4197,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
        async grantAppPm(callback: (message: string) => void) {
          let message = '';
          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-         //注：com.example.myapplication需要写实际应用名称
+         // 注：com.example.myapplication需要写实际应用名称
          try {
            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
@@ -4047,7 +4210,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
            console.error('getBundleInfoForSelf failed: %{public}s', message);
          }
 
-         //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+         // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
          await abilityContext.startAbilityForResult(
            {
@@ -4055,13 +4218,13 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
              abilityName: "MainAbility",
              uri: "requestAuthorize",
              parameters: {
-               appUid: this.appUid, //传入申请应用的appUid
+               appUid: this.appUid, // 传入申请应用的appUid
              }
            } as Want)
            .then((data: common.AbilityResult) => {
              if (!data.resultCode && data.want) {
                if (data.want.parameters) {
-                 this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
+                 this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
                }
              }
            })
@@ -4075,24 +4238,24 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
      @Component
      struct WebComponent {
        controller: webview.WebviewController = new webview.WebviewController();
-       @State message: string = 'Hello World' //message主要是调试观察使用
+       @State message: string = 'Hello World' // message主要是调试观察使用
        certManager = CertManagerService.getInstance();
 
        build() {
          Row() {
            Column() {
              Row() {
-               //第一步：需要先进行授权，获取到uri
+               // 第一步：需要先进行授权，获取到uri
                Button('GrantApp')
                  .onClick(() => {
                    this.certManager.grantAppPm((data) => {
                      this.message = data;
                    });
                  })
-               //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+               // 第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
                Button("ClientCertAuth")
                  .onClick(() => {
-                   this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+                   this.controller.loadUrl('https://www.example2.com'); // 支持双向认证的服务器网站
                  })
              }
 
@@ -4217,11 +4380,11 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
         video: {width: 500, height: 500},
         audio: true
       };
-      //获取video摄像头区域
+      // 获取video摄像头区域
       let video = document.getElementById("video");
-      //返回的Promise对象
+      // 返回的Promise对象
       let promise = navigator.mediaDevices.getUserMedia(constraints);
-      //then()异步，调用MediaStream对象作为参数
+      // then()异步，调用MediaStream对象作为参数
       promise.then(function (MediaStream) {
         video.srcObject = MediaStream;
         video.play();
@@ -4266,11 +4429,11 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     @State showMenu: boolean = false;
 
     @Builder
-    //构建自定义菜单及触发功能接口
+    // 构建自定义菜单及触发功能接口
     MenuBuilder() {
-      //以垂直列表形式显示的菜单。
+      // 以垂直列表形式显示的菜单。
       Menu() {
-        //展示菜单Menu中具体的item菜单项。
+        // 展示菜单Menu中具体的item菜单项。
         MenuItem({
           content: '复制图片',
         })
@@ -4338,7 +4501,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
-          //触发自定义弹窗
+          // 触发自定义弹窗
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
@@ -4379,7 +4542,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
   <body>
     <h1>onContextMenuShow</h1>
     <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
-    //rawfile下放任意一张图片命名为example.png
+    // rawfile下放任意一张图片命名为example.png
     <div><img src="example.png"></div>
     <p>选中文字鼠标右键弹出菜单</p>
   </body>
@@ -4675,7 +4838,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -4706,7 +4869,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
-          //需要使能multiWindowAccess
+          // 需要使能multiWindowAccess
           .multiWindowAccess(true)
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
@@ -4718,9 +4881,9 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
               builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
-            //将新窗口对应WebviewController返回给Web内核。
-            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
-            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 将新窗口对应WebviewController返回给Web内核。
+            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
             event.handler.setWebController(popController);
           })
       }
@@ -4831,7 +4994,7 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
     build() {
       Column() {
-        //在网页中点击提交之后，点击refresh按钮可以重新提交时的触发函数。
+        // 在网页中点击提交之后，点击refresh按钮可以重新提交时的触发函数。
         Button('refresh')
           .onClick(() => {
             try {
@@ -5340,7 +5503,7 @@ onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
 onControllerAttached(callback: () => void)
 
-当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，且禁止在该事件回调前调用Web组件相关的接口，否则会抛出js-error异常。
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](js-apis-webview.md#zoomin)、[zoomOut](js-apis-webview.md#zoomout)等，可以使用[loadUrl](js-apis-webview.md#loadurl)、[getWebId](js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -5700,7 +5863,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -5714,7 +5877,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
@@ -6202,7 +6365,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -6216,7 +6379,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
@@ -6358,7 +6521,7 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 | -------------- | ------- | ---- | ---------------------------------------- |
 | useSystemKeyboard | boolean  | 是    | 是否使用系统默认软键盘。 |
 | enterKeyType | number | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
-| customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后web组件会拉起该自定义键盘。
+| customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后Web组件会拉起该自定义键盘。
 
 ## WebKeyboardController<sup>12+</sup>
 
@@ -6427,48 +6590,6 @@ close(): void
 关闭自定义键盘。
 
 **系统能力：** SystemCapability.Web.Webview.Core
-
-### onAdsBlocked<sup>12+</sup>
-
-onAdsBlocked(callback: OnAdsBlockedCallback)
-
-一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | onAdsBlocked的回调。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    @State totalAdsBlockCounts: number = 0;
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'https://www.example.com', controller: this.controller })
-        .onAdsBlocked((details: AdsBlockedDetails) => {
-          if (details) {
-            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
-            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
-            this.totalAdsBlockCounts += adList.length;
-            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
-          }
-        })
-      }
-    }
-  }
-  ```
 
 ## ConsoleMessage
 
@@ -6935,7 +7056,7 @@ setResponseCode(code: number): void
 
 | 参数名  | 类型   | 必填   | 说明          |
 | ---- | ------ | ---- | ------------- |
-| code | number | 是   | 要设置的资源响应的状态码。 |
+| code | number | 是   | 要设置的资源响应的状态码。如果该资源以错误结束，请参考[@ohos.web.netErrorList](js-apis-netErrorList.md)设置相应错误码，避免设置错误码为 ERR_IO_PENDING，设置为该错误码可能会导致XMLHttpRequest同步请求阻塞。 |
 
 ### setResponseIsReady<sup>9+</sup>
 
@@ -7485,6 +7606,34 @@ getEditStateFlags(): number
 | ------ | ---------------------------------------- |
 | number | 网页元素可编辑标识，参照[ContextMenuEditStateFlags](#contextmenueditstateflags9枚举说明)。 |
 
+### getPreviewWidth<sup>13+</sup>
+
+getPreviewWidth(): number
+
+获取预览图的宽。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | ----------- |
+| number | 预览图的宽。 |
+
+### getPreviewHeight<sup>13+</sup>
+
+getPreviewHeight(): number
+
+获取预览图的高。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | ----------  |
+| number | 预览图的高。 |
+
 ## WebContextMenuResult<sup>9+</sup>
 
 实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
@@ -7795,6 +7944,7 @@ cancel(): void
 
 ### 创建对象
 
+<!--code_no_check-->
 ```ts
 let webController: WebController = new WebController()
 ```
@@ -8687,7 +8837,7 @@ Web组件进入全屏时触发的回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 参数名     | 类型                                 | 必填   | 说明           |
+| 名称     | 类型                                 | 必填   | 说明           |
 | ------- | ------------------------------------ | ---- | -------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是    | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)        | 是    | 错误码。           |
@@ -8714,7 +8864,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-定义同层标签生命周期，当加载页面中有同层标签会触发CREATE，同层标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
+定义同层标签生命周期，当加载页面中有同层标签会触发CREATE，同层标签移动或者放大会触发UPDATE，退出页面会触发DESTROY。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8742,7 +8892,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | url               | string                              | 否    | 同层标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
 | params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象。  |
-| position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
+| position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
@@ -8784,7 +8934,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
 
-网页绘制页面最大内容度量信息的回调。
+网页绘制页面度量信息的回调，当网页加载完页面主要内容时会触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8871,14 +9021,16 @@ onOverrideUrlLoading的回调。
 
 ## RenderMode<sup>12+</sup>枚举说明
 
-定义Web组件的渲染方式。
+定义Web组件的渲染方式，默认为异步渲染模式。
+
+建议使用异步渲染模式，异步渲染模式有更好的性能和更低的功耗。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
-| ASYNC_RENDER                        | 0 | Web组件自渲染模式。   |
-| SYNC_RENDER                        | 1 | Web组件统一渲染模式。   |
+| ASYNC_RENDER                        | 0 | Web组件异步渲染模式，ArkWeb组件作为图形surface节点，独立送显，Web组件的宽度最大规格不超过7,680 px（物理像素）。   |
+| SYNC_RENDER                        | 1 |Web组件同步渲染模式，ArkWeb组件作为图形canvas节点，跟随系统组件一起送显，可以渲染更长的Web组件内容，Web组件的宽度最大规格不超过500,000 px（物理像素）。   |
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
@@ -8886,10 +9038,10 @@ onOverrideUrlLoading的回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-|  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
-|  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+|  enable  | boolean | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
+|  shouldOverlay | boolean | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
@@ -9272,7 +9424,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
 
-## OnClientAuthenticationRequestEvent<sup>12+</sup>
+## OnClientAuthenticationEvent<sup>12+</sup>
 
 定义当需要用户提供SSL客户端证书时触发回调。
 
@@ -9446,3 +9598,40 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
 | nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | 是 | 提供同层标签的可见性信息。 |
+
+## WebElementType<sup>13+</sup>枚举说明
+
+网页元素信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称       | 值 | 说明              |
+| --------- | -- | ----------------- |
+| IMAGE     | 1 | 网页元素为图像类型。 |
+
+## WebResponseType<sup>13+</sup>枚举说明
+
+菜单的响应类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称            | 值 | 说明                |
+| -------------- | -- | ------------------  |
+| LONG_PRESS     | 1 | 通过长按触发菜单弹出。 |
+
+## SelectionMenuOptionsExt<sup>13+</sup>
+
+自定义菜单扩展项。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型                                             | 必填    | 说明             |
+| ---------- | -----------------------------------------------------| ------ | ---------------- |
+| onAppear   | Callback\<void\>   | 否     | 自定义选择菜单弹出时回调。     |
+| onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
+| preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式, 未配置时无预览内容。|
+| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：MenuType.SELECTION_MENU     |

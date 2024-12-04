@@ -102,7 +102,7 @@ trackColor(value: ResourceColor | LinearGradient)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：`$r('sys.color.ohos_id_color_component_normmal')`<br/>该接口中的LinearGradient类型不支持在原子化服务中使用。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：`$r('sys.color.ohos_id_color_component_normal')`<br/>该接口中的LinearGradient类型不支持在原子化服务中使用。 |
 
 ### selectedColor
 
@@ -580,7 +580,9 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 
 ## 示例
 
-### 示例1
+### 示例1（滑动条基础样式）
+
+该示例通过配置style、showTips、showSteps控制气泡、刻度值、滑块和滑轨的显示。
 
 ```ts
 // xxx.ets
@@ -759,7 +761,9 @@ struct SliderExample {
 
 ![slider](figures/slider.gif)
 
-### 示例2
+### 示例2（设置滑动条样式）
+
+该示例通过blockBorderColor、blockSize、blockBorderWidth、blockStyle设置滑块的样式，通过stepSize、stepColor设置刻度值的样式，通过trackBorderRadius设置底板的圆角，通过selectedBorderRadius设置已滑动部分的圆角。
 
 ```ts
 @Entry
@@ -814,11 +818,13 @@ struct SliderExample {
 
 
 
-### 示例3
+### 示例3（自定义滑动条）
+
+该示例实现了Slider组件通过样式Builder定制内容区。点击增加按钮，进度条会按照原Slider设置的步长增加，反之点减少按钮进度条会减少，并触发原组件的onChange事件。
 
 ```ts
 // xxx.ets
-//该示例实现了Slider组件通过样式Builder定制内容区。点击增加按钮，进度条会按照原Slider设置的步长增加，反之点减少按钮进度条会减少，并触发原组件的onChange事件。
+
 @Builder function buildSlider(config: SliderConfiguration) {
   Row() {
     Column({space: 30}) {

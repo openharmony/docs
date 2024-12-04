@@ -13,7 +13,6 @@ Importing a key in plaintext may expose the plaintext to a non-secure environmen
 
 - It is not recommended to import symmetric keys or asymmetric key pairs.
 
-
 ## Encrypted Import
 
 In this mode, the key to be imported is encrypted (wrapped) and then imported to HUKS through an end-to-end encrypted transmission channel established between the service and HUKS. This mode applies to security-sensitive services due to higher security than plaintext import. However, it involves more complex key material and operations.
@@ -28,33 +27,35 @@ To import an encrypted key, you need to use the HUKS APIs to generate a key pair
 
 The [public key material](huks-concepts.md#public-key-material-format) exported is encapsulated in X.509 format. The encrypted key material to be imported must be encapsulated in **Length<sub>Data< /sub>-Data** format.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The encrypted import supports key agreement algorithms ECDH and X25519. The generated **Shared_Key** uses the AES-GCM algorithm to encrypt **Caller_Kek**. For details about the cipher suites, see [HuksUnwrapSuite](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksunwrapsuite9).
+
 
 ### Key Material Format for Encrypted Import
 
-| Content| Length| 
+| Content| Length|
 | -------- | -------- |
-| Service public key **Caller_Pk** length (L<sub>Caller_Pk</sub>)| 4 bytes| 
-| Service public key **Caller_Pk**| L<sub>Caller_Pk</sub> bytes| 
-| Shared_Key **AAD2** length (L<sub>AAD2</sub>)| 4 bytes| 
-| Shared_Key **AAD2**| L<sub>AAD2</sub> bytes| 
-| Shared_Key **Nonce2** length (L<sub>Nonce2</sub>)| 4 bytes| 
-| Shared_Key **Nonce2**| L<sub>Nonce2</sub> bytes| 
-| Shared_Key **AEAD2** length (L<sub>AEAD2</sub>)| 4 bytes| 
-| Shared_Key **AEAD2**| L<sub>AEAD2</sub> bytes| 
-| **Caller_Kek_enc** length (L<sub>Caller_Kek_enc</sub>)| 4 bytes| 
-| Caller_Kek ciphertext **Caller_Kek_enc**| L<sub>Caller_Kek_enc</sub> bytes| 
-| Caller_Kek **AAD3** length (L<sub>AAD3</sub>)| 4 bytes| 
-| Caller_Kek **AAD3**| L<sub>AAD3</sub> bytes| 
-| Caller_Kek **Nonce3** length (L<sub>Nonce3</sub>)| 4 bytes| 
-| Caller_Kek **Nonce3**| L<sub>Nonce3</sub> bytes| 
-| Caller_Kek **AEAD3** length (L<sub>AEAD3</sub>)| 4 bytes| 
-| Caller_Kek **AEAD3**| L<sub>AEAD3</sub> bytes| 
-| **To_Import_Key_size** length (L<sub>To_Import_Key_size</sub>)| 4 bytes| 
-| Key plaintext material length **To_Import_Key_size**| L<sub>To_Import_Key_size</sub> bytes| 
-| **To_Import_Key_enc** length (L<sub>To_Import_Key_enc</sub>)| 4 bytes| 
-| To_Import_Key ciphertext **To_Import_Key_enc**| L<sub>To_Import_Key_enc</sub> bytes| 
+| Service public key **Caller_Pk** length (L<sub>Caller_Pk</sub>)| 4 bytes|
+| Service public key **Caller_Pk**| L<sub>Caller_Pk</sub> bytes|
+| Shared_Key **AAD2** length (L<sub>AAD2</sub>)| 4 bytes|
+| Shared_Key **AAD2**| L<sub>AAD2</sub> bytes|
+| Shared_Key **Nonce2** length (L<sub>Nonce2</sub>)| 4 bytes|
+| Shared_Key **Nonce2**| L<sub>Nonce2</sub> bytes|
+| Shared_Key **AEAD2** length (L<sub>AEAD2</sub>)| 4 bytes|
+| Shared_Key **AEAD2**| L<sub>AEAD2</sub> bytes|
+| **Caller_Kek_enc** length (L<sub>Caller_Kek_enc</sub>)| 4 bytes|
+| Caller_Kek ciphertext **Caller_Kek_enc**| L<sub>Caller_Kek_enc</sub> bytes|
+| Caller_Kek **AAD3** length (L<sub>AAD3</sub>)| 4 bytes|
+| Caller_Kek **AAD3**| L<sub>AAD3</sub> bytes|
+| Caller_Kek **Nonce3** length (L<sub>Nonce3</sub>)| 4 bytes|
+| Caller_Kek **Nonce3**| L<sub>Nonce3</sub> bytes|
+| Caller_Kek **AEAD3** length (L<sub>AEAD3</sub>)| 4 bytes|
+| Caller_Kek **AEAD3**| L<sub>AEAD3</sub> bytes|
+| **To_Import_Key_size** length (L<sub>To_Import_Key_size</sub>)| 4 bytes|
+| Key plaintext material length **To_Import_Key_size**| L<sub>To_Import_Key_size</sub> bytes|
+| **To_Import_Key_enc** length (L<sub>To_Import_Key_enc</sub>)| 4 bytes|
+| To_Import_Key ciphertext **To_Import_Key_enc**| L<sub>To_Import_Key_enc</sub> bytes|
 
 
 ## Supported Algorithms
@@ -66,7 +67,7 @@ The key management service specifications include mandatory specifications and o
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
 <!--DelEnd-->
 
-| Algorithm| Supported Key Length (Bit)| API Level| <!--DelCol4-->Mandatory|
+| Algorithm| Supported Key Length (Bit)| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | AES | 128, 192, 256| 8+ | Yes|
 | <!--DelRow-->RSA | 512, 768, 1024| 8+ | No|

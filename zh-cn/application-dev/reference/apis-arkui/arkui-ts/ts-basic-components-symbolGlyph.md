@@ -184,18 +184,6 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### constructor<sup>12+</sup>
-
-constructor()
-
-SymbolEffect的构造函数，无动效。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ## ScaleSymbolEffect<sup>12+</sup>对象说明
 
 ScaleSymbolEffect继承自父类SymbolEffect。
@@ -406,10 +394,6 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
 
-### constructor<sup>12+</sup>
-
-constructor()
-
 PulseSymbolEffect的构造函数，脉冲动效。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -495,7 +479,9 @@ PulseSymbolEffect的构造函数，脉冲动效。
 
 ## 示例
 
-###  示例1
+###  示例1（设置渲染和动效策略）
+
+该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
 
 ```ts
 // xxx.ets
@@ -581,9 +567,9 @@ struct Index {
 ```
 ![symbol](figures/symbolGlyph.gif)
 
-###  示例2
+###  示例2（设置动效）
 
-SymbolGlyph使用symbolEffect属性实现可变颜色动效和替换动效。
+该示例通过symbolEffect属性展示了可变颜色动效和替换动效的效果。
 
 ```ts
 // xxx.ets

@@ -691,8 +691,8 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 参数名      | 类型   | 必填    | 说明      |
-| --------- | ------ | ---- | ------- |
+| 类型   | 说明      |
+| ---- | ------- |
 | 'touchmajor'  | 表示touchmajor轴。|
 | 'touchminor'  | 表示touchminor轴。|
 | 'toolminor'   | 表示toolminor轴。 |
@@ -727,8 +727,8 @@ type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 参数名        | 类型   | 必填 |  说明      |
-| --------- | ------ |  ---- |  ------- |
+| 类型   | 说明      |
+| --------- |  ------- |
 | 'keyboard'    | 表示输入设备是键盘。  |
 | 'touchscreen' | 表示输入设备是触摸屏。 |
 | 'mouse'       | 表示输入设备是鼠标。  |
@@ -744,8 +744,8 @@ type ChangedType = 'add' | 'remove'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 参数名        | 类型  | 必填  | 说明      |
-| --------- | ------ | ---- | ------- |
+| 类型  | 说明      |
+| --------- | ------- |
 | 'add'    | 表示输入设备插入。 |
 | 'remove' | 表示输入设备移除。 |
 

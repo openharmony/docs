@@ -344,8 +344,39 @@ Enumerates the modes of an asynchronous lock.
 
 | Name     | Value | Description                                                    |
 | --------- | --- | -------------------------------------------------------- |
-| SHARED    | 1   | Shared lock. An operation can be reentrant in the same thread.|
-| EXCLUSIVE | 2   | Exclusive lock. An operation is performed only when the lock is exclusively acquired.|
+| SHARED    | 1   | Shared lock mode, in which multiple threads can run at the same time.  |
+| EXCLUSIVE | 2   | Exclusive lock mode, in which a thread can run only when it exclusively acquires the lock.|
+
+**Example**
+
+```ts
+let lock = new ArkTSUtils.locks.AsyncLock();
+// shared0 can acquire the lock and start execution.
+lock.lockAsync(async () => {
+    console.log('shared0');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+// shared1 can acquire the lock and start execution without waiting for shared0.
+lock.lockAsync(async () => {
+    console.log('shared1');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+// exclusive0 can acquire the lock and start execution after shared0 and shared1 are executed.
+lock.lockAsync(async () => {
+    console.log('exclusive0');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE);
+// shared2 can acquire the lock and start execution after exclusive0 is executed.
+lock.lockAsync(async () => {
+    console.log('shared2');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+// shared3 can acquire the lock and start execution after exclusive0 is executed, but not after shared2 is executed.
+lock.lockAsync(async () => {
+    console.log('shared3');
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+}, ArkTSUtils.locks.AsyncLockMode.SHARED);
+```
 
 ### AsyncLockOptions
 
@@ -438,7 +469,7 @@ A class that implements a signal used to abort an asynchronous operation. An ins
 
 ## ArkTSUtils.ASON
 
-A utility class used to parse JSON strings into sendable data. ASON allows you to parse JSON strings and generate data that can be passed across concurrency domains. It also supports conversion from sendable data into JSON strings.
+A utility class used to parse JSON strings into [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data-types). ASON allows you to parse JSON strings and generate data that can be passed across concurrency domains. It also supports conversion from sendable data into JSON strings.
 
 ### ISendable
 
@@ -496,13 +527,12 @@ Enumerates the modes for processing BigInt.
 
 Enumerates the return types of the parsing result.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Value| Description           |
 | ------ | ------ | --------------- |
-| OBJECT   | 0 |Returns a sendable object.|
+| OBJECT   | 0 |Returns a **SendableObject** object.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAP<sup>13+</sup>   | 1 |Returns a **SendableMap** object.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ### ParseOptions
 
@@ -545,6 +575,7 @@ Parses a JSON string to generate ISendable data or null.
 
 ```ts
 import { lang } from '@kit.ArkTS';
+import { collections } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
@@ -565,6 +596,17 @@ let numberObj = ArkTSUtils.ASON.parse(numberText,undefined,options) as ISendable
 
 console.info((numberObj as object)?.["largeNumber"]);
 // Expected output: 112233445566778899
+
+let options2: ArkTSUtils.ASON.ParseOptions = {
+    bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+    parseReturnType: ArkTSUtils.ASON.ParseReturnType.MAP,
+  }
+let mapText = '{"largeNumber":112233445566778899}';
+let map  = ArkTSUtils.ASON.parse(mapText,undefined,options2);
+console.info("map is " + map);
+// Expected output: map is [object SendableMap]
+console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("largeNumber"));
+// Expected output: largeNumber is 112233445566778899
 ```
 
 ### stringify

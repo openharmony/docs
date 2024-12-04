@@ -48,15 +48,16 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   # include "json/json.h"
-   # include "hilog/log.h"
-   # include "hiappevent/hiappevent.h"
-   # include "hiappevent/hiappevent_event.h"
-   # undef LOG_TAG
-   # define LOG_TAG "testTag"
+   #include "napi/native_api.h"
+   #include "json/json.h"
+   #include "hilog/log.h"
+   #include "hiappevent/hiappevent.h"
+   #include "hiappevent/hiappevent_event.h"
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to application events.
+4. Subscribe to system events.
 
     - Watcher of the onReceive type.
 
@@ -88,7 +89,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                           auto bundleVersion = params["bundle_version"].asString();
                           auto beginTime = params["begin_time"].asInt64();
                           auto endTime = params["end_time"].asInt64();
-                          auto externalLogSize = params["external_log"].size();
+                          auto externalLog = writer.write(params["external_log"]);
                           auto logOverLimit = params["logOverLimit"].asBool();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
@@ -99,8 +100,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                                       bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.begin_time=%{public}lld", beginTime);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d",
-                                      externalLogSize);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d",
                                       logOverLimit);
                       }
@@ -113,7 +113,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent RegisterWatcher");
           // Set the watcher name. The system identifies different watchers based on their names.
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // Set the event type to EVENT_MAIN_THREAD_JANK.
+          // Set the event to subscribe to EVENT_MAIN_THREAD_JANK.
           const char *names[] = {EVENT_MAIN_THREAD_JANK};
           // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
@@ -122,9 +122,9 @@ For details about how to use the APIs (such as parameter usage restrictions and 
           // Add a watcher to listen for the specified event.
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
           return {};
-      }	  
+      }
       ```
-    
+
 5. Register **RegisterWatcher** as an ArkTS API.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
@@ -158,15 +158,14 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    ```
 
 7. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
+
    ```typescript
       Button("timeOut350")
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .onClick(() => {
           let t = Date.now();
-          while (Date.now() - t <= 350){
-          
-          }
+          while (Date.now() - t <= 350) {}
       })
    ```
 
@@ -187,14 +186,14 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       HiAppEvent eventInfo.params.bundle_version=1.0.0
       HiAppEvent eventInfo.params.begin_time=1717597063225
       HiAppEvent eventInfo.params.end_time=1717597063727
-      HiAppEvent eventInfo.params.external_log=1
+      HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613221239_45572.txt"]
       HiAppEvent eventInfo.params.log_over_limit=0
     ```
 
     > **NOTE**
     > For details, see [Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-time-specifications) and [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-specifications).
 
-11. Remove the application event watcher.
+11. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -204,7 +203,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     }
     ```
 
-12. Destroy the application event watcher.
+12. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
@@ -214,5 +213,3 @@ For details about how to use the APIs (such as parameter usage restrictions and 
         return {};
     }
     ```
-
-<!--no_check-->

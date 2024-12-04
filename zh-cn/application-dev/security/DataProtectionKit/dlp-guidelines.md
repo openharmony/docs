@@ -56,7 +56,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。以下代码应在应用页Ability中使用。
 
     ```ts
-    async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
+    import { common, Want } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    function OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
       let want:Want = {
         "action": "ohos.want.action.viewData",
         "bundleName": "com.example.example_bundle_name",
@@ -73,10 +76,12 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
         }
       }
 
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+
       try {
         console.log('openDLPFile:' + JSON.stringify(want));
-        console.log('openDLPFile: delegator:' + JSON.stringify(this.context));
-        this.context.startAbility(want);
+        console.log('openDLPFile: delegator:' + JSON.stringify(context));
+        context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
         return;
@@ -109,8 +114,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     3.3 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。调用以下代码，拉起DLP管理应用的设置权限页面，输入相关的授权账号信息，点击保存，在拉起的filepicker中选择DLP文件的保存路径，保存DLP文件。[该功能云端对接模块当前需要开发者自行搭建](../DataProtectionKit/dlp-overview.md)
 
     ```ts
+      import { dlpPermission } from '@kit.DataProtectionKit';
       import { common, Want } from '@kit.AbilityKit';
       import { BusinessError } from '@kit.BasicServicesKit';
+
       try {
           let fileUri: string = "file://docs/storage/Users/currentUser/test.txt";
           let fileName: string = "test.txt";
@@ -133,95 +140,110 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 4. 查询当前应用是否在沙箱中。
 
    ```ts
-   dlpPermission.isInSandbox().then((data)=> {
-     console.log('isInSandbox, result: ' + JSON.stringify(data));
-   }).catch((err:BusinessError) => {
-     console.log('isInSandbox: ' + JSON.stringify(err));
-   });
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    dlpPermission.isInSandbox().then((data)=> {
+      console.log('isInSandbox, result: ' + JSON.stringify(data));
+    }).catch((err:BusinessError) => {
+      console.log('isInSandbox: ' + JSON.stringify(err));
+    });
    ```
 
 5. 查询当前编辑的文件权限，根据文件授权的不同，DLP沙箱被限制的权限有所不同，参考[沙箱限制](#沙箱限制)。
 
    ```ts
-   dlpPermission.getDLPPermissionInfo().then((data)=> {
-     console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
-   }).catch((err:BusinessError) => {
-     console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
-   });
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    dlpPermission.getDLPPermissionInfo().then((data)=> {
+      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
+    }).catch((err:BusinessError) => {
+      console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
+    });
    ```
 
 6. 获取当前可支持DLP方案的文件扩展名类型列表，用于应用判断能否生成DLP文件，可用在实现类似文件管理器设置DLP权限的场景。
 
    ```ts
-   dlpPermission.getDLPSupportedFileTypes((err, result) => {
-     console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
-     console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
-   });
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    dlpPermission.getDLPSupportedFileTypes((err, result) => {
+      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
+      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
+    });
    ```
 
 7. 判断当前打开文件是否是DLP文件。
 
    ```ts
-   import { dlpPermission } from '@kit.DataProtectionKit';
-   import { fileIo } from '@kit.CoreFileKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { fileIo } from '@kit.CoreFileKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-   let file = fileIo.openSync(uri);
-   try {
-     let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
-     console.info('res', res);
-   } catch (err) {
-     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-   }
-   fileIo.closeSync(file);
+    let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
+    let file = fileIo.openSync(uri);
+    try {
+      let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+      console.info('res', res);
+    } catch (err) {
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    }
+    fileIo.closeSync(file);
    ```
 
 8. 订阅、取消订阅DLP打开事件。
 
    ```ts
-   event(info: dlpPermission.AccessedDLPFileInfo) {
-     console.info('openDlpFile event', info.uri, info.lastOpenTime)
-   }
-   unSubscribe() {
-     try {
-       dlpPermission.off('openDLPFile', this.event); // 取消订阅
-     } catch (err) {
-       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-     }
-   }
-   subscribe() {
-     try {
-       dlpPermission.on('openDLPFile', this.event); // 订阅
-     } catch (err) {
-       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-     }
-   }
-   onCreate() {
-    this.subscribe();
-   }
-   onDestroy() {
-    this.unSubscribe();
-   }
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    class SubscribeExample {
+      event(info: dlpPermission.AccessedDLPFileInfo) {
+        console.info('openDlpFile event', info.uri, info.lastOpenTime)
+      }
+      unSubscribe() {
+        try {
+          dlpPermission.off('openDLPFile', this.event); // 取消订阅
+        } catch (err) {
+          console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+        }
+      }
+      subscribe() {
+        try {
+          dlpPermission.on('openDLPFile', this.event); // 订阅
+        } catch (err) {
+          console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+        }
+      }
+      onCreate() {
+        this.subscribe();
+      }
+      onDestroy() {
+        this.unSubscribe();
+      }
+    }
    ```
 
 9. 获取DLP文件打开记录。
 
    ```ts
-   async getDLPFileAccessRecords() {
-     try {
-       let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
-       console.info('res', JSON.stringify(res))
-     } catch (err) {
-       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-     }
-   }
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    async function getDLPFileAccessRecords() {
+      try {
+        let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
+        console.info('res', JSON.stringify(res))
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
    ```
 
 10. 获取DLP文件保留沙箱记录。
 
     ```ts
-    async getRetentionSandboxList() {
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    async function getRetentionSandboxList() {
       try {
         let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
         console.info('res', JSON.stringify(res))
@@ -234,7 +256,9 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 11. 设置沙箱应用配置信息。
 
     ```ts
-    async setSandboxAppConfig() {
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    async function setSandboxAppConfig() {
       try {
         await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
       } catch (err) {
@@ -246,7 +270,9 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 12. 清理沙箱应用配置信息。
 
     ```ts
-    async cleanSandboxAppConfig() {
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    async function cleanSandboxAppConfig() {
       try {
         await dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
       } catch (err) {
@@ -258,7 +284,9 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 13. 查询沙箱应用配置信息。
 
     ```ts
-    async getSandboxAppConfig() {
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    async function getSandboxAppConfig() {
       try {
         let res:string = await dlpPermission.getSandboxAppConfig(); // 查询沙箱应用配置信息
         console.info('res', JSON.stringify(res))

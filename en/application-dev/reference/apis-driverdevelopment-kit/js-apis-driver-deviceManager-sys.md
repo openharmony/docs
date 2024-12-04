@@ -17,7 +17,7 @@ import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
-Obtains the list of detailed information about peripherals.
+Obtains the list of detailed information about peripherals. If the device has no peripheral device connected, an empty list is returned.
 
 **System API**: This is a system API.
 
@@ -67,7 +67,7 @@ try {
 
 queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
 
-Obtains the list of detailed information about peripheral drivers.
+Obtains the list of detailed information about peripheral drivers. If the device has no peripheral device connected, an empty list is returned.
 
 **System API**: This is a system API.
 
@@ -118,6 +118,8 @@ try {
 
 Defines the detailed information about a device.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Driver.ExternalDevice
 
 | Name             | Type     | Mandatory | Description         |
@@ -129,6 +131,8 @@ Defines the detailed information about a device.
 ## USBDeviceInfo
 
 Defines detailed information about the USB device. It is inherited from [DeviceInfo](#deviceinfo).
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
@@ -142,6 +146,8 @@ Defines detailed information about the USB device. It is inherited from [DeviceI
 
 Defines the interface descriptor of a USB device.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Driver.ExternalDevice
 
 | Name              | Type    | Mandatory | Description    |
@@ -154,6 +160,8 @@ Defines the interface descriptor of a USB device.
 ## DriverInfo
 
 Defines detailed information about a driver.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
@@ -169,6 +177,8 @@ Defines detailed information about a driver.
 ## USBDriverInfo
 
 Defines detailed information about the USB device driver. It is inherited from [DriverInfo](#driverinfo).
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 

@@ -1,6 +1,6 @@
 # canvas
 
-The **\<canvas>** component is used for customizing drawings.
+The **Canvas** component is used for customizing drawings.
 
 > **NOTE**
 >

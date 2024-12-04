@@ -1,7 +1,7 @@
 # stack
 
 
-The **\<stack>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
+The **Stack** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
 > **NOTE**
 >

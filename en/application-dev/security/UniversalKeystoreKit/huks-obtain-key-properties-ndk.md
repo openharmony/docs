@@ -11,7 +11,7 @@ This topic describes how to obtain properties of a key. Before the operation, en
 ## How to Develop
 
 1. Set parameters.
-   - **keyAlias**: key alias encapsulated in an [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) struct. The maximum length of the key alias is 64 bytes.
+   - **keyAlias**: key alias encapsulated in an [OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md) struct. The maximum length of the key alias is 128 bytes.
    - **paramSetIn**: This parameter is reserved. Leave it empty.
    - **paramSetOut**: result set used to hold the key properties obtained. It is an object of the [OH_Huks_ParamSet](../../reference/apis-universal-keystore-kit/_o_h___huks___param_set.md) type. Ensure that there is enough memory for storing the key properties obtained.
 

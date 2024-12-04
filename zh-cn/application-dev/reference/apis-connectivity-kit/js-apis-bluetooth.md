@@ -332,7 +332,7 @@ let devices : Array<string> = bluetooth.getPairedDevices();
 ```
 
 
-## bluetooth.setBluetoothScanMode<sup></sup><sup>(deprecated)</sup>
+## bluetooth.setBluetoothScanMode<sup>(deprecated)</sup>
 
 setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
@@ -626,7 +626,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 ```
 
 
-## bluetooth.on('bondStateChange')<sup></sup><sup>(deprecated)</sup>
+## bluetooth.on('bondStateChange')<sup>(deprecated)</sup>
 
 on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
@@ -846,7 +846,7 @@ bluetooth.sppAccept(serverNumber, acceptClientSocket);
 ```
 
 
-## bluetooth.sppConnect<sup></sup><sup>(deprecated)</sup>
+## bluetooth.sppConnect<sup>(deprecated)</sup>
 
 sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -3243,7 +3243,7 @@ gattClient.getRssiValue().then((data : number) => {
 })
 ```
 
-## ScanMode<sup></sup><sup>(deprecated)</sup>
+## ScanMode<sup>(deprecated)</sup>
 
 枚举，扫描模式。
 
@@ -3261,7 +3261,7 @@ gattClient.getRssiValue().then((data : number) => {
 | SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | 可连接general发现模式。 |
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | 可连接limited发现模式。 |
 
-## BondState<sup></sup><sup>(deprecated)</sup>
+## BondState<sup>(deprecated)</sup>
 
 枚举，配对状态。
 
@@ -3277,7 +3277,7 @@ gattClient.getRssiValue().then((data : number) => {
 | BOND_STATE_BONDED  | 2    | 已配对。   |
 
 
-## SppOption<sup></sup><sup>(deprecated)</sup>
+## SppOption<sup>(deprecated)</sup>
 
 描述spp的配置参数。
 
@@ -3293,7 +3293,7 @@ gattClient.getRssiValue().then((data : number) => {
 | type   | [SppType](#spptypedeprecated) | 是    | 是    | Spp链路类型。    |
 
 
-## SppType<sup></sup><sup>(deprecated)</sup>
+## SppType<sup>(deprecated)</sup>
 
 枚举，Spp链路类型。
 
@@ -3663,7 +3663,7 @@ gattClient.getRssiValue().then((data : number) => {
 | serviceValue | ArrayBuffer | 是    | 是    | 表示服务数据。    |
 
 
-## PinRequiredParam<sup></sup><sup>(deprecated)</sup>
+## PinRequiredParam<sup>(deprecated)</sup>
 
 描述配对请求参数。
 
@@ -3678,7 +3678,7 @@ gattClient.getRssiValue().then((data : number) => {
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
 
 
-## BondStateParam<sup></sup><sup>(deprecated)</sup>
+## BondStateParam<sup>(deprecated)</sup>
 
 描述配对状态参数。
 
@@ -3693,7 +3693,7 @@ gattClient.getRssiValue().then((data : number) => {
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
 
 
-## StateChangeParam<sup></sup><sup>(deprecated)</sup>
+## StateChangeParam<sup>(deprecated)</sup>
 
 描述profile状态改变参数。
 
@@ -3708,7 +3708,7 @@ gattClient.getRssiValue().then((data : number) => {
 | state    | [ProfileConnectionState](#profileconnectionstatedeprecated) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
-## DeviceClass<sup></sup><sup>(deprecated)</sup>
+## DeviceClass<sup>(deprecated)</sup>
 
 描述蓝牙设备的类别。
 
@@ -3725,7 +3725,7 @@ gattClient.getRssiValue().then((data : number) => {
 
 
 
-## MajorClass<sup></sup><sup>(deprecated)</sup>
+## MajorClass<sup>(deprecated)</sup>
 
 枚举，蓝牙设备主要类别。
 
@@ -3749,7 +3749,7 @@ gattClient.getRssiValue().then((data : number) => {
 | MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。   |
 
 
-## MajorMinorClass<sup></sup><sup>(deprecated)</sup>
+## MajorMinorClass<sup>(deprecated)</sup>
 
 枚举，主要次要蓝牙设备类别。
 
@@ -3848,7 +3848,7 @@ gattClient.getRssiValue().then((data : number) => {
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
 
 
-## PlayingState<sup></sup><sup>(deprecated)</sup>
+## PlayingState<sup>(deprecated)</sup>
 
 枚举，蓝牙A2DP 播放状态。
 
@@ -3863,7 +3863,7 @@ gattClient.getRssiValue().then((data : number) => {
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
 
 
-## ProfileId<sup></sup><sup>(deprecated)</sup>
+## ProfileId<sup>(deprecated)</sup>
 
 蓝牙profile枚举，API9新增PROFILE_HID_HOST，PROFILE_PAN_NETWORK。
 

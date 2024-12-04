@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the certificate information.
+Defines the certificate information structure.
 
 **Since**: 12
 
@@ -15,7 +15,7 @@ Defines the certificate information.
 
 ### Member Variables
 
-| Name                           | Description                     |
+| Attribute| Description|
 | -------- | -------- |
-| [content](netstack.md#content) | PEM content of the certificates |
-| [length](netstack.md#length) | Number of certificates |
+| [content](netstack.md#content) | PEM content of the certificate.|
+| [length](netstack.md#length) | Number of certificates.|

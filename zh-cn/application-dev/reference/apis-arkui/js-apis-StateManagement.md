@@ -107,6 +107,7 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // 假设AppStorageV2中存在key为key_as2的键，从AppStorageV2中删除该键值对数据
 AppStorageV2.remove('key_as2');
@@ -263,6 +264,7 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // 假设PersistenceV2中存在key为key_as2的键，从PersistenceV2中删除该键值对数据
 PersistenceV2.remove('key_as2');
@@ -330,6 +332,7 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // 假设PersistenceV2中存在key为key_as2的键，持久化该键值对数据
 PersistenceV2.save('key_as2');

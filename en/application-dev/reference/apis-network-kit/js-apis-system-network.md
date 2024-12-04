@@ -28,7 +28,7 @@ getType(options?: {<br>
 &nbsp;&nbsp;complete?: () => void;<br>
 }): void
 
-Obtains the network type.
+Obtains the network type of this device.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -37,10 +37,10 @@ Obtains the network type.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | success | Function | No| Called when the API call is successful. The return value is defined by [NetworkResponse](#networkresponse3).|
-| fail | Function | No| Called when API call has failed.|
-| complete | Function | No| Called when the API call is complete.|
+| fail | Function | No| Called when an API call fails.|
+| complete | Function | No| Called when an API call is complete.|
 
-One of the following error codes will be returned if the API call has failed.
+Error codes:
 
 | Error Code| Description|
 | -------- | -------- |
@@ -68,7 +68,7 @@ subscribe(options?:{<br>
 &nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
   }): void
 
-Listens to the network connection state. If this method is called multiple times, the last call takes effect.
+Listens to the network connection state of this device. If this API is called multiple times, the last call takes effect.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -77,9 +77,9 @@ Listens to the network connection state. If this method is called multiple times
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse3).|
-| fail | Function | No| Called when API call has failed.|
+| fail | Function | No| Called when an API call fails.|
 
-One of the following error codes will be returned if the API call has failed.
+Error codes:
 
 | Error Code| Description|
 | -------- | -------- |
@@ -105,7 +105,7 @@ export default class Network {
 
 unsubscribe(): void
 
-Cancels listening to the network connection state.
+Cancels listening to the network connection state of this device.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

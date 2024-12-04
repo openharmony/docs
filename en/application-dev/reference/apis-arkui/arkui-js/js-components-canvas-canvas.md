@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<canvas>** component is used for customizing drawings.
+The **Canvas** component is used for customizing drawings.
 
 ## Required Permissions
 

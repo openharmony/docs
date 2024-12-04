@@ -1,5 +1,3 @@
-
-
 # WaterFlow高性能开发指导
 
 ## 背景
@@ -97,7 +95,7 @@
 
 此处需要通过在尾部增加元素的方式新增数据，不能使用直接修改dataArray后通过LazyForEach的onDataReloaded()通知瀑布流重新加载数据。
 
-由于瀑布流布局子组件高度不相等的特点，下面节点的位置依赖上面的节点，重新加载所有数据会触发整个瀑布流重新计算布局导致卡顿。而在数据末尾增加数据后使用notifyDatasetChange([{ type: [DataOperationType.ADD](../quick-start/arkts-rendering-control-lazyforeach.md#dataaddoperation), index: len, count: count }])通知，瀑布流就知道有新增数据可以继续加载，同时又不会重复处理已有数据。
+由于瀑布流布局子组件高度不相等的特点，下面节点的位置依赖上面的节点，重新加载所有数据会触发整个瀑布流重新计算布局导致卡顿。而在数据末尾增加数据后使用notifyDatasetChange([{ type: DataOperationType.ADD, index: len, count: count }])通知，瀑布流就知道有新增数据可以继续加载，同时又不会重复处理已有数据。
 
 ![](figures/waterflow-perf-demo1.gif)
 

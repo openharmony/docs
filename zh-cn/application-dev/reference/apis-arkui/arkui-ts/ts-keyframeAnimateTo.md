@@ -31,7 +31,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 | ---------- | ---------- | ------- | ------------------------------------- |
 | delay      | number     | 否      | 动画的整体延时时间，单位为ms(毫秒)，默认不延时播放。<br/>默认值：0<br/>**说明：** <br/>&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。 |
 | iterations | number     | 否      | 动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。<br/>默认值：1 <br/>取值范围：[-1, +∞) |
-| onFinish   | () => void | 否      | 动画播放完成回调。当keyframe动画所有次数播放完成后调用。 |
+| onFinish   | () => void | 否      | 动画播放完成回调。当keyframe动画所有次数播放完成后调用。UIAbility从前台切换至后台时会立即结束仍在步进中的有限循环keyframe动画，触发播放完成回调。 |
 
 ## KeyframeState对象说明
 

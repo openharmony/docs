@@ -178,6 +178,8 @@ sendMouseEvent(event: MouseEvent): boolean
 
 ## 示例
 
+该示例主要展示如何通过组件标识接口，获取特定id组件的属性，以及如何向该id的组件触发事件。
+
 ```ts
 // xxx.ets
 import { IntentionCode } from '@kit.InputKit'
@@ -196,10 +198,10 @@ class Utils {
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]     // 相对于组件左上角的水平方向坐标
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]      // 相对于组件左上角的垂直方向坐标
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]    // 相对于组件右下角的水平方向坐标
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]   // 相对于组件右下角的垂直方向坐标
     return Utils.rect_value = {
       "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
     }

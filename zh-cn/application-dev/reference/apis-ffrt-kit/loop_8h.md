@@ -27,7 +27,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | FFRT_C_API ffrt_loop_t [ffrt_loop_create](_f_f_r_t.md#ffrt_loop_create) ([ffrt_queue_t](_f_f_r_t.md) queue) | 创建loop队列。  | 
-| FFRT_C_API int [ffrt_loop_destory](_f_f_r_t.md#ffrt_loop_destory) (ffrt_loop_t loop) | 销毁loop队对象。  | 
+| FFRT_C_API int [ffrt_loop_destroy](_f_f_r_t.md#ffrt_loop_destroy) (ffrt_loop_t loop) | 销毁loop队对象。  | 
 | FFRT_C_API int [ffrt_loop_run](_f_f_r_t.md#ffrt_loop_run) (ffrt_loop_t loop) | 开启loop循环。  | 
 | FFRT_C_API void [ffrt_loop_stop](_f_f_r_t.md#ffrt_loop_stop) (ffrt_loop_t loop) | 停止loop循环。  | 
 | FFRT_C_API int [ffrt_loop_epoll_ctl](_f_f_r_t.md#ffrt_loop_epoll_ctl) (ffrt_loop_t loop, int op, int fd, uint32_t events, void\* data, [ffrt_poller_cb](_f_f_r_t.md#ffrt_poller_cb) cb) | 管理loop上的监听事件。  | 

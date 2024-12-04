@@ -19,7 +19,7 @@ For the FA model, you need to import the required bundle and then call the [getR
 For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
-import { UIAbility } from '@kit.abilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
@@ -3475,7 +3475,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type    | Description        |
 | ------ | ---------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3538,7 +3538,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type     | Description               |
 | ------- | ----------------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3605,7 +3605,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type    | Description       |
 | ------ | --------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 

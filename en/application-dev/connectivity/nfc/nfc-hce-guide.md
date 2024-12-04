@@ -5,12 +5,21 @@ Near Field Communication (NFC) is a high-frequency radio technology that enables
 
 ## When to Use
 An application emulates a card and communicates with an NFC card reader through the NFC service. The device can communicate with an NFC card reader by using a started application (foreground mode) or without starting an application (background mode).
-- HCE foreground mode<br>
-The application started by the user communicates with the NFC card reader. Specifically, the user starts the application, opens the application page, and taps the device on the NFC card reader. In this case, the transaction data is distributed only to the foreground application.
-- HCE background mode<br>
-The user taps the device on an NFC card reader without starting any HCE application. Then, the device selects an HCE application based on the application ID (AID) provided by the NFC card reader, and completes the card swiping transaction. If multiple HCE applications are matched, an application selector will be displayed, listing all the available applications for the user to choose.
-- Constraints<br>
-No matter whether the foreground mode or background mode is used, the NFC service can be implemented only when the device screen is unlocked and illuminated.
+- HCE foreground mode
+
+  The application started by the user communicates with the NFC card reader. Specifically, the user starts the application, opens the application page, and taps the device on the NFC card reader. In this case, the transaction data is distributed only to the foreground application.
+
+- HCE background mode
+
+  The user taps the device on an NFC card reader without starting any HCE application. Then, the device selects an HCE application based on the application ID (AID) provided by the NFC card reader, and completes the card swiping transaction. If multiple HCE applications are matched, an application selector will be displayed, listing all the available applications for the user to choose.
+
+- Constraints
+
+  No matter whether the foreground mode or background mode is used, the NFC service can be implemented only when the device screen is unlocked and illuminated.
+
+  The permission for NFC card emulation must be declared in the **module.json5** file. For details, see the example below.
+
+  The foreground application needs to call **start()** to register AIDs and call **stop()** to release the registered AIDs. For details, see the example below.
 
 ## Available APIs
 
@@ -21,15 +30,15 @@ The following table describes the APIs for implementing HCE.
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | start(elementName: ElementName, aidList: string[]): void                   | Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.                                                              |
-| stop(elementName: ElementName): void  | Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list.| 
+| stop(elementName: ElementName): void  | Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list.|
 | on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void                | Registers a callback to receive APDUs from the peer card reader.|
-| transmit(response: number[]): Promise\<void>                  | Transmits APDU data to the peer card reader.|
+| transmit(response: number[]): Promise\<void>                  | Transmits APDU data to the peer card reader.|                                                     |
 
 ## How to Develop
 
 ### HCE Foreground Mode
 1. Declare the permission required for NFC card emulation and HCE action in the **module.json5** file.
-2. Import the **cardEmunication** module and other related modules.
+2. Import modules.
 3. Check whether the device supports the NFC and HCE capabilities.
 4. Enable the foreground HCE application to preferentially process NFC card swiping.
 5. Subscribe to the reception of HCE APDU data.
@@ -156,7 +165,7 @@ export default class EntryAbility extends UIAbility {
 
 ### HCE Background Mode
 1. Declare the permission required for NFC card emulation, HCE action, and AIDs for application matching in the **module.json5** file.
-2. Import the **cardEmunication** module and other related modules.
+2. Import modules.
 3. Check whether the device supports the NFC and HCE capabilities.
 4. Subscribe to the reception of HCE APDU data.
 5. Receive and send APDU data for HCE card swiping.

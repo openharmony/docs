@@ -1,6 +1,6 @@
-# Audio and Video Muxing
+# Media Data Muxing
 
-You can call the native APIs provided by the **AVMuxer** module to mux audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
+You can call the native APIs provided by the AVMuxer module to mux audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
 
 Currently, the following muxer capabilities are supported:
 
@@ -9,9 +9,15 @@ Currently, the following muxer capabilities are supported:
 | mp4      | AVC (H.264) <!--RP1--><!--RP1End-->    | AAC, MPEG (MP3)| jpeg, png, bmp|
 | m4a      | -                     | AAC              | jpeg, png, bmp|
 | mp3      | -                     | MPEG (MP3)     | -              |
-<!--RP2--><!--RP2End-->
+| amr      | -                     | AMR (AMR-NB and AMR-WB)| -             |
+| wav      | -                     | G.711Mu (pcm-mulaw)| -             |
 
-<!--RP3--><!--RP3End-->
+> **NOTE**
+>
+> - When the container format is MP4 and the audio codec type is MPEG (MP3), the sampling rate must be greater than or equal to 16000 Hz. 
+> - When the container format is MP4 or M4A and the audio codec type is AAC, the number of audio channels ranges from 1 to 7.
+
+<!--RP2--><!--RP2End-->
 
 **Usage Scenario**
 
@@ -33,7 +39,7 @@ Read [AVMuxer](../../reference/apis-avcodec-kit/_a_v_muxer.md) for the API refer
 
 > **NOTE**
 >
-> To call the muxer APIs to write a local file, request the **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** permissions by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+> To call the AVMuxer module to write a local file, request the **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** permissions by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ### Linking the Dynamic Library in the CMake Script
 
@@ -81,7 +87,7 @@ The following walks you through how to implement the entire process of audio and
    int audioTrackId = -1;
    uint8_t *buffer = ...; // Encoding configuration data. If there is no configuration data, leave the parameter unspecified.
    size_t size =...; // Length of the encoding configuration data. Set this parameter based on project requirements.
-   OH_AVFormat *formatAudio = OH_AVFormat_Create();
+   OH_AVFormat *formatAudio = OH_AVFormat_Create (); // Call OH_AVFormat_Create to create a format. The following showcases how to mux an AAC-LC audio with the sampling rate of 44100 Hz and two audio channels.
    OH_AVFormat_SetStringValue(formatAudio, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_AUDIO_AAC); // Mandatory.
    OH_AVFormat_SetIntValue(formatAudio, OH_MD_KEY_AUD_SAMPLE_RATE, 44100); // Mandatory.
    OH_AVFormat_SetIntValue(formatAudio, OH_MD_KEY_AUD_CHANNEL_COUNT, 2); // Mandatory.
@@ -189,26 +195,24 @@ The following walks you through how to implement the entire process of audio and
    }
    ```
 
-8. Call **OH_AVMuxer_WriteSampleBuffer()** to write data.
-
-   including video, audio, and cover data.
+8. Call **OH_AVMuxer_WriteSampleBuffer()** to write data. The encapsulated data includes video, audio, and cover data.
 
    ```c++
    // Data can be written only after Start() is called.
    int size = ...;
-   OH_AVBuffer *sample = OH_AVBuffer_Create (size); // Create an AVBuffer instance.
+   OH_AVBuffer *sample = OH_AVBuffer_Create(size); // Create an AVBuffer instance.
    // Write data to the sample buffer by using OH_AVBuffer_GetAddr(sample). For details, see the usage of OH_AVBuffer.
    // Mux the cover. One image must be written at a time.
    
    // Set buffer information.
-   OH_AVCodecBufferAttr info;
+   OH_AVCodecBufferAttr info = {0};
    info.pts =...; // Playback start time of the current data, in microseconds. The relative time is used.
    info.size = size; // Length of the current data.
    info.offset = 0; // Offset. Generally, the value is 0.
    info.flags |= AVCODEC_BUFFER_FLAGS_SYNC_FRAME; // Flag of the current data. For details, see OH_AVCodecBufferFlags.
    info.flags |= AVCODEC_BUFFER_FLAGS_CODEC_DATA; // The AVC in annex-b format contains the codec configuration flag.
    OH_AVBuffer_SetBufferAttr(sample, &info); // Set the buffer attribute.
-   int trackId = audioTrackId; // Select the track to be written.
+   int trackId = audioTrackId; // Select the audio or video track to be written.
    
    int ret = OH_AVMuxer_WriteSampleBuffer(muxer, trackId, sample);
    if (ret != AV_ERR_OK) {
@@ -225,7 +229,7 @@ The following walks you through how to implement the entire process of audio and
    }
    ```
 
-10. Call **OH_AVMuxer_Destroy()** to release the instance.
+10. Call **OH_AVMuxer_Destroy()** to release the instance. Do not repeatedly destroy the instance. Otherwise, the program may crash.
 
     ```c++
     if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {

@@ -1,13 +1,13 @@
 # list-item
 
 
-**\<list-item>** is a child component of the **[\<list>](js-service-widget-container-list.md)** component and is used to display items in a list.
+**\<list-item>** is a child component of the **[List](js-service-widget-container-list.md)** component and is used to display items in a list.
 
 
 >  **NOTE**
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-> - You can customize the width of each **\<list-item>**. However, if you retain the default value **stretch** of **align-items** for the parent component **\<list>**, the width of **\<list-item>** is equal to that of **\<list>**. To make the customized **\<list-item>** width take effect, set **align-items** to other values rather than **stretch**.
+> - You can customize the width of each **\<list-item>**. However, if you retain the default value **stretch** of **align-items** for the parent component **List**, the width of **\<list-item>** is equal to that of **List**. To make the customized **\<list-item>** width take effect, set **align-items** to other values rather than **stretch**.
 > 
 > - When possible, do not develop the long press and drag gestures on the **\<list-item>** component.
 
@@ -46,4 +46,4 @@ The [universal events](js-service-widget-common-events.md) are supported.
 
 ## Example
 
-For details, see [Example of the \<list> component](js-service-widget-container-list.md#example).
+For details, see [Example of the List component](js-service-widget-container-list.md#example).

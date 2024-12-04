@@ -56,7 +56,7 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 | font-size                | &lt;length&gt;             | 16px       | No   | Font size of the single-line text box or button.                         |
 | allow-scale              | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | placeholder-color        | &lt;color&gt;              | \#99000000 | No   | Color of the hint text in the single-line text box. This attribute is available only when the component type is set to **text**, **email**, **date**, **time**, **number**, or **password**. |
-| font-weight              | number \| string | normal     | No   | Font weight of the single-line text box or button. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md) component. |
+| font-weight              | number \| string | normal     | No   | Font weight of the single-line text box or button. For details, see **font-weight** of the [**Text**](js-components-basic-text.md) component. |
 | caret-color<sup>6+</sup> | &lt;color&gt;              | -          | No   | Color of the caret.                              |
 
 

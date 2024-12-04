@@ -1,6 +1,6 @@
 # image
 
-The **\<image>** component is used to render and display images.
+The **Image** component is used to render and display images.
 
 > **NOTE**
 >

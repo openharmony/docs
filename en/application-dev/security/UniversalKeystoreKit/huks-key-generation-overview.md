@@ -18,7 +18,7 @@ The key management service specifications include mandatory specifications and o
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
 <!--DelEnd-->
 
-| Algorithm| Supported Key Length (Bit)| API Level| <!--DelCol4-->Mandatory|
+| Algorithm| Supported Key Length (Bit)| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | AES | 128, 192, 256| 8+ | Yes|
 | <!--DelRow-->RSA | 512, 768, 1024| 8+ | No|

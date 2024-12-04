@@ -17,7 +17,7 @@
 
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [native_interface_accessibility.h](native__interface__accessibility_8h.md) | 声明用于访问Native&nbsp;Accessibility的API。<br/>**引用文件：** &lt;ace/accessibility/native_interface_accessibility.h&gt;<br>**库：** libace_ndk.z.so |
+| [native_interface_accessibility.h](native__interface__accessibility_8h.md) | 声明用于访问Native&nbsp;Accessibility的API。 |
 
 ### 类型定义
 
@@ -467,7 +467,7 @@ void OH_ArkUI_SendAccessibilityAsyncEvent(
 | eventInfo | 上报事件。                 |
 | callback  | 结果返回回调。             |
 
-**返回：**无
+**返回：** 无
 
 
 
@@ -778,7 +778,6 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetScreenRect(ArkUI_AccessibilityElemen
 | ---------------- | ------------------ |
 | elementInfo      | Element结构。      |
 | screenRect       | 元素显示区域。     |
-| operationActions | 组件支持的action。 |
 
 **返回：** 
 
@@ -1214,12 +1213,12 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetGridItemInfo(ArkUI_AccessibilityElem
 ### OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart
 
 ```
-int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart(ArkUI_AccessibilityElementInfo* elementInfo, int32_t textBeginSelected);
+int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart(ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextStart);
 ```
 
 **描述：**
 
-设置Element的textBeginSelected。
+设置Element的selectedTextStart。
 
 **起始版本：** 13
 
@@ -1228,7 +1227,7 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart(ArkUI_Accessibilit
 | 名称              | 描述                               |
 | ----------------- | ---------------------------------- |
 | elementInfo       | Element结构。                      |
-| textBeginSelected | 文本组件使用，设置选择的起点位置。 |
+| selectedTextStart | 文本组件使用，设置选择的起点位置。 |
 
 **返回：** 
 
@@ -1239,12 +1238,12 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextStart(ArkUI_Accessibilit
 ### OH_ArkUI_AccessibilityElementInfoSetSelectedTextEnd
 
 ```C
-int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextEnd(ArkUI_AccessibilityElementInfo* elementInfo, int32_t textEndSelected);
+int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextEnd(ArkUI_AccessibilityElementInfo* elementInfo, int32_t selectedTextEnd);
 ```
 
 **描述：**
 
-设置Element的textEndSelected。
+设置Element的selectedTextEnd。
 
 **起始版本：** 13
 
@@ -1253,7 +1252,7 @@ int32_t OH_ArkUI_AccessibilityElementInfoSetSelectedTextEnd(ArkUI_AccessibilityE
 | 名称            | 描述                               |
 | --------------- | ---------------------------------- |
 | elementInfo     | Element结构。                      |
-| textEndSelected | 文本组件使用，设置选择的结束位置。 |
+| selectedTextEnd | 文本组件使用，设置选择的结束位置。 |
 
 **返回：** 
 
@@ -1827,19 +1826,19 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 
 | 枚举值                                                      | 描述                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_INVALID                   | 无效值。                                                     |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_CLICK                     | 点击事件。                                                   |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_LONG_CLICK                | 长按事件。                                                   |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_ACCESSIBILITY_FOCUS       | 执行无障碍节点获焦。                                         |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_CLEAR_ACCESSIBILITY_FOCUS | 清除无障碍节点获焦状态。                                     |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_SCROLL_FORWARD            | 支持滚动的组件向前滚动。                                     |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_SCROLL_BACKWARD           | 支持滚动的组件向后滚动。                                     |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_COPY                      | 针对文本组件支持选中内容的拷贝。                             |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_PASTE                     | 针对文本组件在光标所在位置粘贴。                             |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_CUT                       | 针对文本组件支持选中内容的剪切。                             |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_SET_SELECTION             | 针对文本组件进行选择操作。结合[ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments)使用，配置selectTextBegin，selectTextEnd，selectTextInForWard。进入编辑区选择一段文本内容。 |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_SET_TEXT                  | 针对文本组件设置文本内容。                                   |
-| ARKUI_ACCESSIBILITY_NATIVE_ACTION_SET_CURSOR_POSITION       | 针对文本组件设置光标位置。结合[ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments)使用，配置offset设置位置。 |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_INVALID                   | 无效值。                                                     |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CLICK                     | 点击事件。                                                   |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_LONG_CLICK                | 长按事件。                                                   |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_GAIN_ACCESSIBILITY_FOCUS  | 执行无障碍节点获焦。                                         |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CLEAR_ACCESSIBILITY_FOCUS | 清除无障碍节点获焦状态。                                     |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SCROLL_FORWARD            | 支持滚动的组件向前滚动。                                     |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SCROLL_BACKWARD           | 支持滚动的组件向后滚动。                                     |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_COPY                      | 针对文本组件支持选中内容的拷贝。                             |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PASTE                     | 针对文本组件在光标所在位置粘贴。                             |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_CUT                       | 针对文本组件支持选中内容的剪切。                             |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SELECT_TEXT               | 针对文本组件进行选择操作。结合[ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments)使用，配置selectTextStart，selectTextEnd，selectTextInForWard。进入编辑区选择一段文本内容。 |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_TEXT                  | 针对文本组件设置文本内容。                                   |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_CURSOR_POSITION       | 针对文本组件设置光标位置。结合[ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments)使用，配置offset设置位置。 |
 
 **起始版本：**
 
@@ -1863,7 +1862,7 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_SCROLLED               | 可以滚动的组件发生滚动事件时需要发送该事件。     |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUSED  | 被无障碍聚焦事件。                               |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ACCESSIBILITY_FOCUS_CLEARED | 清除无障碍聚焦事件。                             |
-| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_REQUEST_FOCUS_FOR_ACCESSIBILITY | 主动请求指定节点聚焦。                           |
+| ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_REQUEST_ACCESSIBILITY_FOCUS | 主动请求指定节点聚焦。                           |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_OPEN              | 页面关闭时需要发送该事件。                       |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_PAGE_CLOSE             | 页面打开时需要发送该事件。                       |
 | ARKUI_ACCESSIBILITY_NATIVE_EVENT_TYPE_ANNOUNCE_FOR_ACCESSIBILITY | 请求主动播报指定内容的事件。                     |

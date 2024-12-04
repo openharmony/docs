@@ -27,12 +27,12 @@ Provides APIs to manage a relational database (RDB) store.
 | [Rdb_KeyInfo](_rdb___key_info.md) | Defines the primary key or row number of the row that changes.|
 | [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | Defines the changed data.|
 | [Rdb_ChangeInfo](_rdb___change_info.md) | Defines the details about the device-cloud sync process.|
-| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | Defines the callback used to return the result.|
-| [Rdb_DataObserver](_rdb___data_observer.md) | Defines the data observer.|
+| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | Defines the callback used to return the result.| 
+| [Rdb_DataObserver](_rdb___data_observer.md) | Defines the data observer.| 
 | [Rdb_Statistic](_rdb___statistic.md) | Defines the device-cloud sync statistics of a database table.|
 | [Rdb_TableDetails](_rdb___table_details.md) | Defines the statistics of device-cloud upload and download tasks of a database table.|
 | [Rdb_ProgressDetails](_rdb___progress_details.md) | Defines the statistics of the overall device-cloud upload and download tasks of an RDB store.|
-| [Rdb_ProgressObserver](_rdb___progress_observer.md) | Defines the observer of the device-cloud sync progress.|
+| [Rdb_ProgressObserver](_rdb___progress_observer.md) | Defines the observer of the device-cloud sync progress.| 
 
 
 ### Macros
@@ -56,19 +56,19 @@ Provides APIs to manage a relational database (RDB) store.
 | [Rdb_KeyInfo](_r_d_b.md#rdb_keyinfo) | Defines a struct for the primary key or row number of the row that changes.|
 | [Rdb_ChangeInfo](_r_d_b.md#rdb_changeinfo) | Defines a struct for details about the device-cloud sync process.|
 | [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) | Defines an enum for subscription types.|
-| [Rdb_BriefObserver](_r_d_b.md#rdb_briefobserver) | Defines a callback used to return the device-cloud data change event.|
-| [Rdb_DetailsObserver](_r_d_b.md#rdb_detailsobserver) | Defines a callback used to return the details about the device-cloud data change.|
+| [Rdb_BriefObserver](_r_d_b.md#rdb_briefobserver) | Defines a callback used to return the device-cloud data change event.| 
+| [Rdb_DetailsObserver](_r_d_b.md#rdb_detailsobserver) | Defines a callback used to return the details about the device-cloud data change.| 
 | [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | Defines a callback used to return the subscribed event.|
-| [Rdb_DataObserver](_rdb___data_observer.md) | Defines a struct for the data observer.|
+| [Rdb_DataObserver](_rdb___data_observer.md) | Defines a struct for the data observer.| 
 | [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) | Defines an enum for RDB sync modes.|
 | [Rdb_Statistic](_r_d_b.md#rdb_statistic) | Defines a struct for device-cloud sync statistics of a database table.|
 | [Rdb_TableDetails](_r_d_b.md#rdb_tabledetails) | Defines a struct for statistics of device-cloud upload and download tasks of a database table.|
 | [Rdb_Progress](_r_d_b.md#rdb_progress) | Defines an enum for device-cloud sync progresses.|
 | [Rdb_ProgressCode](_r_d_b.md#rdb_progresscode) | Defines an enum for states in the device-cloud sync process.|
 | [Rdb_ProgressDetails](_r_d_b.md#rdb_progressdetails) | Defines a struct for statistics of the overall device-cloud upload and download tasks of an RDB store.|
-| [Rdb_ProgressCallback](_r_d_b.md#rdb_progresscallback) | Defines a callback used to return the device-cloud sync progress.|
+| [Rdb_ProgressCallback](_r_d_b.md#rdb_progresscallback) | Defines a callback used to return the device-cloud sync progress.| 
 | [Rdb_SyncCallback](_r_d_b.md#rdb_synccallback) | Defines a callback to be invoked in device-cloud sync.|
-| [Rdb_ProgressObserver](_r_d_b.md#rdb_progressobserver) | Defines a struct for the observer of the device-cloud sync progress.|
+| [Rdb_ProgressObserver](_r_d_b.md#rdb_progressobserver) | Defines a struct for the observer of the device-cloud sync progress.| 
 
 
 ### Enums
@@ -110,12 +110,12 @@ Provides APIs to manage a relational database (RDB) store.
 | [OH_Rdb_SetVersion](_r_d_b.md#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | Sets the RDB store version.|
 | [OH_Rdb_SetDistributedTables](_r_d_b.md#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | Sets distributed database tables.|
 | [OH_Rdb_FindModifyTime](_r_d_b.md#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | Obtains the last modification time of a table in an RDB store.|
-| [OH_Rdb_Subscribe](_r_d_b.md#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Registers an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes. |
-| [OH_Rdb_Unsubscribe](_r_d_b.md#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Unregisters the observer of the specified type.|
+| [OH_Rdb_Subscribe](_r_d_b.md#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Registers an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes.| 
+| [OH_Rdb_Unsubscribe](_r_d_b.md#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Unregisters the observer of the specified type.| 
 | [OH_Rdb_GetTableDetails](_r_d_b.md#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | Obtains the device-cloud sync statistics of a table.|
-| [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Performs device-cloud sync.|
-| [OH_Rdb_SubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Subscribes to the automatic sync progress of an RDB store. The registered callback will be invoked to return the automatic sync progress.|
-| [OH_Rdb_UnsubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Unsubscribes from the automatic sync process of an RDB store.|
-| int [OH_Rdb_LockRow](_r_d_b.md#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Locks data in an RDB store based on specified conditions. The locked data will be blocked from the device-cloud sync.|
-| int [OH_Rdb_UnlockRow](_r_d_b.md#oh_rdb_unlockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Unlocks data in an RDB store based on the specified conditions.|
-| [OH_Cursor](_o_h___cursor.md) \* [OH_Rdb_QueryLockedRow](_r_d_b.md#oh_rdb_querylockedrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | Queries the locked data in an RDB store.|
+| [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Performs device-cloud sync.| 
+| [OH_Rdb_SubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Subscribes to the automatic sync progress of an RDB store. The registered callback will be invoked to return the automatic sync progress.| 
+| [OH_Rdb_UnsubscribeAutoSyncProgress](_r_d_b.md#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Unsubscribes from the automatic sync process of an RDB store.| 
+| int [OH_Rdb_LockRow](_r_d_b.md#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Locks data in an RDB store based on specified conditions. The locked data will be blocked from the device-cloud sync.| 
+| int [OH_Rdb_UnlockRow](_r_d_b.md#oh_rdb_unlockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Unlocks data in an RDB store based on the specified conditions.| 
+| [OH_Cursor](_o_h___cursor.md) \* [OH_Rdb_QueryLockedRow](_r_d_b.md#oh_rdb_querylockedrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | Queries the locked data in an RDB store.| 

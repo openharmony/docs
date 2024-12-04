@@ -259,8 +259,11 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 | value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
-
 ## 示例
+
+### 示例1（设置选择器列数）
+
+该示例通过配置range实现单列或多列文本选择器。
 
 ```ts
 // xxx.ets
@@ -318,6 +321,10 @@ struct TextPickerExample {
 
 ![textpicker](figures/textpicker.gif)
 
+### 示例2（设置文本样式）
+
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle实现文本选择器中的文本样式。
+
 ```ts
 // xxx.ets
 @Entry
@@ -342,6 +349,10 @@ struct TextPickerExample {
 
 ![textpicker](figures/textpicker1.gif)
 
+### 示例3（设置无分割线样式）
+
+该示例通过配置divider为null实现无分割线样式的文本选择器。
+
 ```ts
 // xxx.ets
 @Entry
@@ -365,6 +376,10 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker2.gif)
+
+### 示例4（设置分割线样式）
+
+该示例通过配置divider的DividerOptions类型实现分割线样式的文本选择器。
 
 ```ts
 // xxx.ets
@@ -394,8 +409,12 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker3.gif)
+### 示例5（设置渐隐效果）
+
+该示例通过gradientHeight自定义TextPicker的渐隐效果高度。
+
 ```ts
-// xxx.ets 该示例实现了通过gradientHeight()自定义TextPicker的渐隐效果高度
+// xxx.ets 
 @Entry
 @Component
 struct TextPickerExample {

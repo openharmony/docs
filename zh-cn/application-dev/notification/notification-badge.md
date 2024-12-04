@@ -9,6 +9,8 @@
 
 ## 接口说明
 
+当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。
+
 - 增加角标数，支持如下两种方法：
 
    - 发布通知时，在[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)的badgeNumber字段里携带，桌面收到通知后，在原角标数上累加、呈现。

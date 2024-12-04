@@ -7,7 +7,7 @@
   - [@ohos.data.distributedDataObject (Distributed Data Object)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
-  - [@ohos.data.sendablePreferences (Sendable Preferences)](js-apis-data-sendablePreferences.md)
+  - [@ohos.data.sendablePreferences (Shared User Preferences)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.sendableRelationalStore (Shared RDB Store)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (Unified Data Channel)](js-apis-data-unifiedDataChannel.md)

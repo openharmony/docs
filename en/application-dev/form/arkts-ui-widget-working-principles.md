@@ -37,7 +37,7 @@ As a quick entry to applications, ArkTS widgets outperform JS widgets in the fol
   
 - More widget features
   - Animation: ArkTS widgets support the [property animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md) and [explicit animation](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) capabilities, which can be leveraged to deliver a more engaging experience.
-  - Custom drawing: ArkTS widgets allow you to draw graphics with the [\<Canvas>](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) component to present information more vividly.
+  - Custom drawing: ArkTS widgets allow you to draw graphics with the [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) component to present information more vividly.
   - Logic code execution: The capability to run logic code in widgets means that service logic can be self-closed in widgets, expanding the use cases of widgets.
 
 ## Constraints on ArkTS Widgets

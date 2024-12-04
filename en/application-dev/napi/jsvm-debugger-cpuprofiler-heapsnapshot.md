@@ -1,9 +1,7 @@
 # JSVM-API Debugging
 
 JavaScript virtual machine (JSVM) is a standard JavaScript (JS) code execution engine that strictly complies with the ECMAScript specification. For details, see [JSVM](../reference/common/_j_s_v_m.md).
-
 The JSVM-based code debugging and tuning capabilities include Debugger, CPU Profiler, Heap Snapshot and Heap Statistics. The following APIs are involved:
-
 | API |  Description|
 |---|---|
 | OH_JSVM_GetVM  |  Obtains a VM instance.|
@@ -12,7 +10,7 @@ The JSVM-based code debugging and tuning capabilities include Debugger, CPU Prof
 | OH_JSVM_StopCpuProfiler  |  Stops the CPU profiler and outputs the result to a stream.|
 | OH_JSVM_TakeHeapSnapshot  |  Obtains a snapshot of the current heap and outputs it to a stream.|
 | OH_JSVM_OpenInspector  |  Opens an inspector instance on the specified host and port for debugging JS code.|
-| OH_JSVM_OpenInspectorWithName | Opens an inspector instance based on the PID and name. |
+| OH_JSVM_OpenInspectorWithName | Opens an inspector instance based on the PID and name.|
 | OH_JSVM_CloseInspector  |  Closes all remaining inspector connections.|
 | OH_JSVM_WaitForDebugger  |  Waits for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.|
 
@@ -25,30 +23,41 @@ This topic describes how to use Debugger, CPU Profiler, and Heap Snapshot.
 
 1. Configure the permission for accessing the Internet in the **module.json** file of the application project.
 
-   ```
-   "requestPermissions": [{
-     "name": "ohos.permission.INTERNET",
-     "reason": "$string:app_name",
-     "usedScene": {
-       "abilities": [
-         "FromAbility"
-       ],
-       "when": "inuse"
-     }
-   }]
-   ```
+```
+"requestPermissions": [{
+  "name": "ohos.permission.INTERNET",
+  "reason": "$string:app_name",
+  "usedScene": {
+    "abilities": [
+      "FromAbility"
+    ],
+    "when": "inuse"
+  }
+}]
+```
 
-2. To prevent the pause during the debugging process from being falsely reported as no response, [enable the DevEco Studio debug mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-debug-arkts-debug-0000001767796366-V5) without setting breakpoints or run JSVM-API in threads except the main thread.
+2. To prevent the pause during the debugging process from being falsely reported as no response, [enable the DevEco Studio debug mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5) without setting breakpoints or run JSVM-API in threads except the main thread.
+
 3. Call **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port. For example, call **OH_JSVM_OpenInspector(env, "localhost", 9225)** to create a socket on local port 9225 of the device.
+
 4. Call **OH_JSVM_WaitForDebugger** to wait for the setup of a socket connection.
-5. Check whether the port on the device is enabled successfully. For example, run **hdc shell "netstat -anp | grep 9225"**. If the status of port 9225 is **LISTEN**, the port is enabled.
-6. Forward port. For example, run **hdc fport tcp:9229 tcp:9225** to forward PC port 9229 to device port 9225. If the command output is **Forwardport result:OK**, the port is forwarded successfully.
+
+5. Check whether the port on the device is enabled successfully. 
+
+   For example, run **hdc shell "netstat -anp | grep 9225"**. If the status of port 9225 is **LISTEN**, the port is enabled.
+
+6. Forward port. 
+
+   For example, run **hdc fport tcp:9229 tcp:9225** to forward PC port 9229 to device port 9225. If the command output is **Forwardport result:OK**, the port is forwarded successfully.
+
 7. Enter **localhost:9229/json** in the address box of the Chrome browser and press **Enter**. Obtain port connection information. Copy the URL in the **devtoolsFrontendUrl** field to the address box and press **Enter**. <br>On the DevTools source code page displayed, the JS source code executed by **OH_JSVM_RunScript** in the application is displayed. The Debugger pauses at the first line of the JS source code.
+
 8. You can set breakpoints on the source code page, send debugging commands using the buttons to control JS code execution, and view variables.
+
 9. Call **OH_JSVM_CloseInspector** to close the inspector instance and release the socket connection.
 
 #### Example
-
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved.
 ```cpp
 #include "ark_runtime/jsvm.h"
 
@@ -93,7 +102,7 @@ static void RunScript(JSVM_Env env) {
     OH_JSVM_CloseHandleScope(env, handleScope);
 }
 
-void RunDemo() {
+void TestJSVM() {
     JSVM_InitOptions initOptions{};
     OH_JSVM_Init(&initOptions);
 
@@ -119,40 +128,39 @@ void RunDemo() {
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
 }
+
 ```
 
 ### Using OH_JSVM_OpenInspectorWithName
 
 1. Configure the permission for accessing the Internet in the **module.json** file of the application project.
 
-   ```
-   "requestPermissions": [{
-     "name": "ohos.permission.INTERNET",
-     "reason": "$string:app_name",
-     "usedScene": {
-       "abilities": [
-         "FromAbility"
-       ],
-       "when": "inuse"
-     }
-   }]
-   ```
+```
+"requestPermissions": [{
+  "name": "ohos.permission.INTERNET",
+  "reason": "$string:app_name",
+  "usedScene": {
+    "abilities": [
+      "FromAbility"
+    ],
+    "when": "inuse"
+  }
+}]
+```
 
-2. To prevent the pause during the debugging process from being falsely reported as no response, [enable the DevEco Studio debug mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-debug-arkts-debug-0000001767796366-V5) without setting breakpoints or run JSVM-API in threads except the main thread.
+2. To prevent the pause during the debugging process from being falsely reported as no response, [enable the DevEco Studio debug mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5) without setting breakpoints or run JSVM-API in threads except the main thread.
 
 3. Enable the inspector port and connect to devtools for debugging.<br>Before executing the JS code, call **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port and create a socket. For example, call **OH_JSVM_OpenInspectorWithName (env, 123, "test")** to create a TCP socket and the corresponding unixdomain port.
 
 4. Call **OH_JSVM_WaitForDebugger** to wait for the setup of a socket connection.
 
-5. Check whether the port on the device is enabled successfully. <br>Run **hdc shell "cat /proc/net/unix | grep jsvm"**. 
+5. Check whether the port on the device is enabled successfully. <br>Run **hdc shell "cat /proc/net/unix | grep jsvm"**.
 
    The Unix port is displayed, for example, **jsvm_devtools_remote_9229_123**, where **9229** is the TCP port number and **123** is the PID.
 
-6. Forward port. <br>Run **hdc fport tcp:9229 tcp:9229**. In this example, PC port 9229 is forwarded to device port 9229.<br>
+6. Forward port. <br>Run **hdc fport tcp:9229 tcp:9229**. In this example, PC port 9229 is forwarded to device port 9229. <br>If the command output is **Forwardport result:OK**, the port is forwarded successfully.
 
-   If the command output is **Forwardport result:OK**, the port is forwarded successfully.
-
-7. Enter **localhost:9229/json** in the address box of the Google Chrome browser and press **Enter**. Obtain port connection information. Open the Chrome developer tool, copy the URL in the **devtoolsFrontendUrl** field to the address box, and press **Enter**. <br>On the DevTools source code page displayed, the JS source code executed by **OH_JSVM_RunScript** is displayed. The Debugger pauses at the first line of the JS source code.
+7. Enter **localhost:9229/json** in the address box of the Google Chrome browser and press **Enter**. Obtain port connection information. Open the Chrome developer tool, copy the URL in the **devtoolsFrontendUrl** field to the address box, and press **Enter**. <br>On the DevTools source code page displayed, the JS source code executed by **OH_JSVM_RunScript** is displayed. The Debugger pauses at the first line of the JS source code. 
 
 8. You can set breakpoints on the source code page, send debugging commands using the buttons to control JS code execution, and view variables.
 
@@ -185,6 +193,7 @@ static void EnableInspector(JSVM_Env env) {
 2. Save the output data to the **.heapsnapshot** file, which can be parsed into memory analysis views with the Chrome DevTools-Memory.
 
 ### Example
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved.
 
 ```cpp
 #include "ark_runtime/jsvm.h"
@@ -258,7 +267,7 @@ static void ProfilingEnd(JSVM_VM vm, JSVM_CpuProfiler cpuProfiler) {
     OH_JSVM_TakeHeapSnapshot(vm, OutputStream, &heapSnapshot);
 }
 
-static void RunScriptWithStatistics(JSVM_Env env) {
+static JSVM_Value RunScriptWithStatistics(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
     OH_JSVM_GetVM(env, &vm);
 
@@ -282,28 +291,20 @@ static void RunScriptWithStatistics(JSVM_Env env) {
 
     // End profiling.
     ProfilingEnd(vm, cpuProfiler);
+    return nullptr;
 }
-
-void RunDemo() {
-    JSVM_InitOptions initOptions{};
-    OH_JSVM_Init(&initOptions);
-
-    JSVM_VM vm;
-    OH_JSVM_CreateVM(nullptr, &vm);
-    JSVM_VMScope vmScope;
-    OH_JSVM_OpenVMScope(vm, &vmScope);
-
-    JSVM_Env env;
-    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
-    JSVM_EnvScope envScope;
-    OH_JSVM_OpenEnvScope(env, &envScope);
-
-    RunScriptWithStatistics(env);
-
-    OH_JSVM_CloseEnvScope(env, envScope);
-    OH_JSVM_DestroyEnv(env);
-    OH_JSVM_CloseVMScope(vm, vmScope);
-    OH_JSVM_DestroyVM(vm);
-}
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunScriptWithStatistics},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named runScriptWithStatistics and associate it with a callback. This allows the runScriptWithStatistics callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"runScriptWithStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
-<!--no_check-->
+
+
+// Call C++ code from JS.
+```cpp
+const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
+```

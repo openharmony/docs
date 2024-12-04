@@ -38,7 +38,7 @@ You can set accessibility attributes and events for components.
 
 - accessibilityimportance
   
-  In the following **accessibilityImportance** example, **\<div>** and **\<text>** are not selected by the accessibility service. To select a component that is unselected by default, add **accessibilityimportance="yes"** to the component.
+  In the following **accessibilityImportance** example, **\<div>** and **Text** are not selected by the accessibility service. To select a component that is unselected by default, add **accessibilityimportance="yes"** to the component.
   
   
   ```html

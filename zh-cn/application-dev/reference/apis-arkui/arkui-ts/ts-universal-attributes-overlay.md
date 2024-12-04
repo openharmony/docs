@@ -10,7 +10,7 @@
 
 overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptions )
 
-在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。
+在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。浮层不通过组件树进行渲染，部分接口（例如[getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyid)）不支持获取浮层中的组件。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

@@ -7,6 +7,8 @@ Declares the APIs of **NativeDrag**.
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <arkui/drag_and_drop.h>
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Since**: 12
@@ -24,7 +26,7 @@ Declares the APIs of **NativeDrag**.
 | typedef struct [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) | Defines a struct for a component event. | 
 | typedef struct [ArkUI_Context](_ark_u_i___native_module.md#arkui_context) [ArkUI_Context](_ark_u_i___native_module.md#arkui_context) | Defines a struct for a UI context object. | 
 | typedef struct [ArkUI_Context](_ark_u_i___native_module.md#arkui_context) \* [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) | Defines the handle to the native UI context. | 
-| typedef struct [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) | Drag Event | 
+| typedef struct [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) | Defines a struct for a drag event.| 
 | typedef struct [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) | Defines a struct for custom drag preview options. | 
 | typedef struct [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) | Defines a struct for a drag action. | 
 | typedef struct [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) | Defines a struct for drag and drop information returned through a drag status listener. | 

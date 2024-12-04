@@ -10,7 +10,7 @@
 ## 创建和销毁弹窗控制器
 
 - 创建弹窗控制器
-  ArkUI_NativeDialogHandle表示指向弹窗控制器的指针，可以通过调用ArkUI_NativeDialogAPI_x 的create接口创建一个弹窗控制器。
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nativedialoghandle)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)的[create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create)接口创建一个弹窗控制器。
 
   该方法返回ArkUI_NativeDialogHandle类型的数据。
   ```

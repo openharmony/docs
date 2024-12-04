@@ -6,7 +6,7 @@ The **NotificationManager** module provides notification management capabilities
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [[NotificationManager](./js-apis-notificationManager.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [NotificationManager](./js-apis-notificationManager.md).
 
 ## Modules to Import
 
@@ -28,9 +28,9 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory | Description                                       |
+| Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
@@ -38,17 +38,17 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                             |
+| ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification does not exist.                      |
+| 1600003  | Failed to connect to the service.                    |
+| 1600004  | Notification disabled.                               |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
@@ -70,7 +70,7 @@ let publishCallback = (err: BusinessError): void => {
         console.info("publish success");
     }
 }
-// User ID
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 // NotificationRequest object
 let notificationRequest: notificationManager.NotificationRequest = {
@@ -101,32 +101,32 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 **Parameters**
 
-| Name    |  Type                                       | Mandatory | Description                                       |
+| Name    |  Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                             |
+| ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification does not exist.                      |
+| 1600003  | Failed to connect to the service.                           |
+| 1600004  | Notification disabled.                         |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
@@ -152,6 +152,7 @@ let notificationRequest: notificationManager.NotificationRequest = {
     }
 };
 
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 
 notificationManager.publish(notificationRequest, userId).then(() => {
@@ -175,23 +176,23 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                |
+| Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | Yes  | Notification slot to add. |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)       | Yes  | Notification slot to add.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -228,28 +229,28 @@ Adds a notification slot. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                |
+| Name| Type            | Mandatory| Description                |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot to add. |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md) | Yes  | Notification slot to add.|
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -282,23 +283,23 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name    | Type                     | Mandatory | Description                    |
+| Name    | Type                     | Mandatory| Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add. |
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | Yes  | Notification slots to add.|
 | callback | AsyncCallback\<void\>     | Yes  | Callback used to return the result.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -339,28 +340,28 @@ Adds an array of notification slots. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description                    |
+| Name | Type                     | Mandatory| Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add. |
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | Yes  | Notification slots to add.|
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -398,24 +399,24 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                |
+| Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)   | Yes  | Bundle information of the application.       |
-| enable   | boolean               | Yes  | Whether to enable notification.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| enable   | boolean               | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.            |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -450,29 +451,29 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
-| enable | boolean      | Yes  | Whether to enable notification.  |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| enable | boolean      | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.  |
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -492,7 +493,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 ## notificationManager.getAllNotificationEnabledBundles<sup>12+</sup>
 
-getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>;
+getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 Obtains a list of applications that allow notifications. This API uses a promise to return the result.
 
@@ -504,21 +505,21 @@ Obtains a list of applications that allow notifications. This API uses a promise
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise<Array<BundleOption\>> | Returns a list of applications that allow notifications. | 
+| Promise<Array<[BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)\>> | Returns a list of applications that allow notifications.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -532,7 +533,7 @@ notificationManager.getAllNotificationEnabledBundles().then((data: Array<notific
         console.info("Enable bundle is " + JSON.stringify(element.bundle));
     });
 }).catch((err: BusinessError) => {
-    console.info("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+    console.error("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
 })
 ```
 
@@ -550,23 +551,23 @@ Checks whether notification is enabled for the specified application. This API u
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                    |
+| Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle information of the application.           |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -603,28 +604,28 @@ Checks whether notification is enabled for the specified application. This API u
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
 | Type              | Description                                               |
 | ------------------ | --------------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result. |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -656,23 +657,23 @@ Checks whether notification is enabled for a specified user. This API uses an as
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                    |
+| Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| userId   | number                | Yes  | User ID. |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. |
+| userId   | number                | Yes  | User ID.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **Example**
@@ -688,6 +689,7 @@ let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void =>
     }
 }
 
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
@@ -707,35 +709,36 @@ Checks whether notification is enabled for a specified user. This API uses a pro
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| userId | number       | Yes  | User ID. |
+| userId | number       | Yes  | User ID.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
-| 1600008  | The user does not exist.                 |
+| 1600003  | Failed to connect to the service.               |
+| 1600008  | The user does not exist.                  |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
@@ -759,24 +762,24 @@ Sets whether to enable the notification badge for a specified application. This 
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                |
+| Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle information of the application.          |
-| enable   | boolean               | Yes  | Whether to enable notification.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| enable   | boolean               | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.            |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -811,29 +814,29 @@ Sets whether to enable the notification badge for a specified application. This 
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
-| enable | boolean      | Yes  | Whether to enable notification.  |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| enable | boolean      | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.  |
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -865,23 +868,23 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                    |
+| Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle information of the application.              |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the badge is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -916,28 +919,28 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the badge is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -970,29 +973,29 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
-| slotFlags   | number | Yes  | Notification slot flags. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| slotFlags   | number | Yes  | Notification slot flags.<br>- Bit 0: sound alert. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 1: locking the screen. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 2: banner. The value **0** means to disable the feature, and **1** means the opposite.<br>- BIt 3: turning on the screen. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 4: vibration. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 5: notification icon in the status bar. The value **0** means to disable the feature, and **1** means the opposite.|
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1029,24 +1032,24 @@ Before setting a notification slot, create a slot through [addSlot](#notificatio
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                |
+| Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle information of the application.          |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | Yes  | Notification slot.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)      | Yes  | Notification slot.            |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1086,29 +1089,29 @@ Before setting a notification slot, create a slot through [addSlot](#notificatio
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
-| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md) | Yes  | Notification slot.|
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1145,28 +1148,28 @@ Obtains the notification slot flag of a specified application. This API uses a p
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-|  Promise\<number\>| Promise used to return the notification slot flag. |
+|  Promise\<number\>| Promise used to return the notification slot flag.<br>- Bit 0: sound alert. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 1: locking the screen. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 2: banner. The value **0** means to disable the feature, and **1** means the opposite.<br>- BIt 3: turning on the screen. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 4: vibration. The value **0** means to disable the feature, and **1** means the opposite.<br>- Bit 5: notification icon in the status bar. The value **0** means to disable the feature, and **1** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1198,23 +1201,23 @@ Obtains the notification slots of a specified application. This API uses an asyn
 
 **Parameters**
 
-| Name    | Type                                    | Mandatory | Description                |
+| Name    | Type                                    | Mandatory| Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | Yes  | Bundle information of the application.          |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1249,28 +1252,28 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | Promise used to return the result. |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)>> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1303,23 +1306,23 @@ Obtains the number of notification slots of a specified application. This API us
 
 **Parameters**
 
-| Name    | Type                     | Mandatory | Description                  |
+| Name    | Type                     | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)              | Yes  | Bundle information of the application.            |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1356,28 +1359,28 @@ Obtains the number of notification slots of a specified application. This API us
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number\> | Promise used to return the result. |
+| Promise\<number\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1411,22 +1414,22 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory | Description                |
+| Name    | Type                                                        | Mandatory| Description                |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -1446,7 +1449,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 Obtains all active notifications. This API uses a promise to return the result.
 
@@ -1460,20 +1463,20 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | Promise used to return the result. |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -1502,17 +1505,17 @@ Obtains information about the common live view that matches the specified filter
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory | Description                          |
+| Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view. |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result. |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                 |
-| -------- | ---------------------------------------- | 
+| ID| Error Message                                 |
+| -------- | ---------------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
@@ -1560,22 +1563,22 @@ Obtains information about the common live view that matches the specified filter
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory | Description                          |
+| Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view. |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
 
 **Return value**
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | Promise used to return the result. |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                 |
-| -------- | ---------------------------------------- | 
+| ID| Error Message                                 |
+| -------- | ---------------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600007  | The notification does not exist.         |
 | 17700001 | The specified bundle name was not found. |
@@ -1619,24 +1622,24 @@ Removes notifications under a notification group of the specified application. T
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                        |
+| Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle information of the application.                  |
 | groupName | string                | Yes  | Name of the notification group.              |
-| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1672,29 +1675,29 @@ Removes notifications under a notification group of the specified application. T
 
 **Parameters**
 
-| Name     | Type        | Mandatory | Description          |
+| Name     | Type        | Mandatory| Description          |
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.    |
-| groupName | string       | Yes  | Name of the notification group. |
+| groupName | string       | Yes  | Name of the notification group.|
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -1726,23 +1729,23 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                  |
+| Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | date     | [DoNotDisturbDate](#donotdisturbdate)      | Yes  | DND time to set.        |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -1781,29 +1784,29 @@ Sets the DND time. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description          |
+| Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
-| date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set. |
+| date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
 
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -1838,24 +1841,24 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                  |
+| Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | date     | [DoNotDisturbDate](#donotdisturbdate)      | Yes  | DND time to set.        |
-| userId   | number                | Yes  | ID of the user for whom you want to set the DND time. |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| userId   | number                | Yes  | ID of the user for whom you want to set the DND time.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -1878,6 +1881,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 };
 
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
@@ -1897,29 +1901,29 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 **Parameters**
 
-| Name  | Type            | Mandatory | Description          |
+| Name  | Type            | Mandatory| Description          |
 | ------ | ---------------- | ---- | -------------- |
-| date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set. |
-| userId | number           | Yes  | ID of the user for whom you want to set the DND time. |
+| date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
+| userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -1934,6 +1938,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     end: new Date(2021, 11, 15, 18, 0)
 };
 
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
@@ -1958,22 +1963,22 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                  |
+| Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -2008,20 +2013,20 @@ Obtains the DND time. This API uses a promise to return the result.
 
 | Type                                            | Description                                     |
 | ------------------------------------------------ | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result. |
+| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -2051,23 +2056,23 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                  |
+| Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result. |
-| userId   | number                            | Yes  | User ID. |
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate)\> | Yes  | Callback used to return the result.|
+| userId   | number                            | Yes  | User ID.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -2084,6 +2089,7 @@ let getDoNotDisturbDateCallback = (err: BusinessError, data: notificationManager
     }
 }
 
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
@@ -2103,28 +2109,28 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                  |
+| Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| userId   | number                            | Yes  | User ID. |
+| userId   | number                            | Yes  | User ID.|
 
 **Return value**
 
 | Type                                            | Description                                     |
 | ------------------------------------------------ | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result. |
+| Promise\<[DoNotDisturbDate](#donotdisturbdate)\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -2133,6 +2139,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// Use the actual user ID when calling the API.
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
@@ -2157,22 +2164,22 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name    | Type                    | Mandatory | Description                            |
+| Name    | Type                    | Mandatory| Description                            |
 | -------- | ------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite. |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -2206,20 +2213,20 @@ Checks whether DND mode is supported. This API uses a promise to return the resu
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite. |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -2247,23 +2254,23 @@ Sets whether to enable distributed notification on this device. This API uses an
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite. |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **Example**
@@ -2296,28 +2303,28 @@ Sets whether to enable distributed notification on this device. This API uses a 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite. |
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
 
 **Return value**
 
-| Type             | Description       | 
+| Type             | Description       |
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **Example**
@@ -2347,24 +2354,24 @@ Sets whether to enable distributed notification for a specified application. Thi
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
 | enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2403,29 +2410,29 @@ Sets whether to enable distributed notification for a specified application. Thi
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle of the application.               |
 | enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.                 |
 
 **Return value**
 
-| Type             | Description       | 
+| Type             | Description       |
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2459,23 +2466,23 @@ Checks whether distributed notification is enabled for a specified application. 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle of the application.                    |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite. |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2511,7 +2518,7 @@ Checks whether distributed notification is enabled for a specified application. 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle of the application.               |
 
@@ -2519,20 +2526,20 @@ Checks whether distributed notification is enabled for a specified application. 
 
 | Type              | Description                                             |
 | ------------------ | ------------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite. |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2566,22 +2573,22 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                              | Mandatory | Description                      |
+| Name  | Type                              | Mandatory| Description                      |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype)\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -2614,20 +2621,20 @@ Obtains the notification reminder type. This API uses a promise to return the re
 
 | Type              | Description           |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtype)\> | Promise used to return the result. |
+| Promise\<[DeviceRemindType](#deviceremindtype)\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **Example**
 
@@ -2656,9 +2663,9 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 **Parameters**
 
-| Name              | Type                                       | Mandatory | Description                                    |
+| Name              | Type                                       | Mandatory| Description                                    |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                      |
 | userId               | number                                      | Yes  | User ID.                                |
 | callback             | AsyncCallback\<void\>                        | Yes  | Callback used to return the result.                |
@@ -2667,19 +2674,23 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **Example**
 
@@ -2696,7 +2707,7 @@ let callback = (err: BusinessError): void => {
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle: string = "com.example.demo";
-// User ID
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 // NotificationRequest object
 let request: notificationManager.NotificationRequest = {
@@ -2728,35 +2739,39 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 **Parameters**
 
 
-| Name              | Type                                       | Mandatory | Description                                         |
+| Name              | Type                                       | Mandatory| Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
 
 **Return value**
 
-| Type             | Description       | 
+| Type             | Description       |
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.                    |
+| 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **Example**
 
@@ -2765,7 +2780,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle: string = "com.example.demo";
-// User ID
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 // NotificationRequest object
 let request: notificationManager.NotificationRequest = {
@@ -2801,34 +2816,38 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 **Parameters**
 
 
-| Name              | Type                                       | Mandatory | Description                                         |
+| Name              | Type                                       | Mandatory| Description                                         |
 |----------------------|--------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  | Bundle information of the application whose notification function is taken over by the reminder agent.                           |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 
 **Return value**
 
-| Type             | Description       | 
+| Type             | Description       |
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
+| 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
+| 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **Example**
 
@@ -2872,27 +2891,28 @@ Cancels a notification published through the reminder agent. This API uses an as
 
 **Parameters**
 
-| Name              | Type         | Mandatory | Description                    |
+| Name              | Type         | Mandatory| Description                    |
 | -------------------- | ------------- | ---- | ------------------------ |
 | id                   | number        | Yes  | Notification ID.                |
 | representativeBundle | string        | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.      |
 | userId               | number        | Yes  | User ID.      |
-| callback             | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| callback             | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification does not exist.     |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -2909,7 +2929,7 @@ let cancelAsBundleCallback = (err: BusinessError): void => {
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle: string = "com.example.demo";
-// User ID
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
@@ -2928,32 +2948,33 @@ Cancels a notification published through the reminder agent. This API uses a pro
 
 **Parameters**
 
-| Name              | Type  | Mandatory | Description              |
+| Name              | Type  | Mandatory| Description              |
 | -------------------- | ------ | ---- | ------------------ |
 | id                   | number | Yes  | Notification ID.          |
-| representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent. |
-| userId               | number | Yes  | User ID. |
+| representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
+| userId               | number | Yes  | User ID.|
 
 **Return value**
 
-| Type             | Description       | 
+| Type             | Description       |
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification does not exist.     |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -2962,7 +2983,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Bundle name of the application whose notification function is taken over by the reminder agent
 let representativeBundle: string = "com.example.demo";
-// User ID
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
@@ -2987,33 +3008,33 @@ Cancels a notification published through the reminder agent. This API uses a pro
 **Parameters**
 
 
-| Name              | Type                                       | Mandatory | Description                                         |
+| Name              | Type                                       | Mandatory| Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  |Yes  | Bundle information of the application whose notification function is taken over by the reminder agent. |
+| representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  |Yes  | Bundle information of the application whose notification function is taken over by the reminder agent.|
 | id                   | number                                     | Yes  | Notification ID.          |
 
 **Return value**
 
-| Type             | Description       | 
+| Type             | Description       |
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600007  | The notification does not exist.           |
+| 1600003  | Failed to connect to the service.                |
+| 1600007  | The notification does not exist.            |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 17700001 | The specified bundle name was not found. |
 
 **Example**
 
@@ -3034,7 +3055,9 @@ notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 
 cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
-Cancels the notification of other applications of the current user. This API uses a promise to return the result.
+Cancels the notification of other applications of the user. This API uses a promise to return the result.
+
+The current application must have a proxy relationship with another application, or the **ohos.permission.NOTIFICATION_AGENT_CONTROLLER** permission is granted to the current application.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3042,29 +3065,29 @@ Cancels the notification of other applications of the current user. This API use
 
 **Parameters**
 
-| Name              | Type  | Mandatory | Description              |
+| Name              | Type  | Mandatory| Description              |
 | -------------------- | ------ | ---- | ------------------ |
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
-|       id             | number | Yes  | Notification ID. |
+|       id             | number | Yes  | Notification ID.|
 
 **Return value**
 
-| Type             | Description       | 
+| Type             | Description       |
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
-| -------- | ----------------------------------- |  
-| 202      | not system app.                                      |  
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification does not exist.     |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 1600012  | No memory space.                    |
 | 1600017  | There is no corresponding agent relationship configuration.    |
 
@@ -3098,25 +3121,25 @@ Sets the enabled status of a slot type for the specified application. This API u
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                  |
+| Name  | Type                         | Mandatory| Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.        |
 | enable   | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.            |
-| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
@@ -3154,26 +3177,26 @@ Sets the enabled status of a slot type for the specified application. This API u
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                    |
+| Name  | Type                         | Mandatory| Description                    |
 | -------- | ----------------------------- | ---- | ----------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.          |
-| enable   | boolean                       | Yes  | Whether to enable the notification slot type.              |
-| isForceControl<sup>11+</sup> | boolean                 | Yes  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite. |
+| enable   | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.              |
+| isForceControl<sup>11+</sup> | boolean                 | Yes  | Whether the slot is affected by the notification authorization. The value **true** means the slot is affected, and **false** means the opposite.|
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
@@ -3212,10 +3235,10 @@ Sets the enabled status of a slot type for the specified application. This API u
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
-| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type. |
+| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.|
 | enable | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.    |
 | isForceControl<sup>11+</sup> | boolean               | No  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite. Default value: **false**    |
 
@@ -3223,14 +3246,14 @@ Sets the enabled status of a slot type for the specified application. This API u
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
@@ -3264,24 +3287,24 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                  |
+| Name  | Type                         | Mandatory| Description                  |
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.        |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite. |
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -3318,29 +3341,29 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
-| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type. |
+| type   | [SlotType](./js-apis-notificationManager.md#slottype)         | Yes  | Notification slot type.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite. |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -3370,26 +3393,26 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 **System API**: This is a system API.
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
 | enable | boolean | Yes  | Whether to enable the notification sync feature. The value **true** means to enable the feature, and **false** means the opposite.  |
-| callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **Example**
@@ -3397,6 +3420,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 let enable: boolean = true;
 let setSyncNotificationEnabledWithoutAppCallback = (err: BusinessError): void => {
@@ -3424,7 +3448,7 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
 | enable | boolean | Yes  | Whether to enable the notification sync feature. The value **true** means to enable the feature, and **false** means the opposite.  |
@@ -3433,20 +3457,20 @@ Sets whether to enable the notification sync feature for devices where the appli
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<void\> | Promise used to return the result. |
+| Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **Example**
@@ -3454,6 +3478,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 let enable: boolean = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
@@ -3478,23 +3503,23 @@ Obtains whether the notification sync feature is enabled for devices where the a
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite. |
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **Example**
@@ -3502,10 +3527,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 let getSyncNotificationEnabledWithoutAppCallback = (err: BusinessError, data: boolean): void => {
     if (err) {
-        console.info(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
     }
@@ -3528,7 +3554,7 @@ Obtains whether the notification sync feature is enabled for devices where the a
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
 
@@ -3536,20 +3562,20 @@ Obtains whether the notification sync feature is enabled for devices where the a
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite. |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **Example**
@@ -3557,6 +3583,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// Use the actual user ID when calling the API.
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
@@ -3567,7 +3594,7 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boo
 
 ## notificationManager.on<sup>10+</sup>
 
-on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 Subscribes to notification events. The notification service sends the notification information in the callback to the verification program. The verification program returns the verification result to determine whether to publish the notification, for example, controlling the publish frequency of marketing notifications.
 
@@ -3581,18 +3608,18 @@ Each [SlotType](./js-apis-notificationManager.md#slottype) in the system can hav
 
 **Parameters**
 
-| Name | Type                                                                                                                     | Mandatory | Description          |
+| Name| Type                                                                                                                     | Mandatory| Description          |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
-| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**. |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | Yes  | Pointer to the notification verification function. |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | Yes  | Pointer to the notification verification function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
-| -------- | ----------------------------------- | 
-| 202      | not system app.                                      |  
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Not system application.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
@@ -3634,24 +3661,24 @@ Each [SlotType](./js-apis-notificationManager.md#slottype) in the system can hav
 
 **Parameters**
 
-| Name | Type                                                                                                            | Mandatory | Description          |
+| Name| Type                                                                                                            | Mandatory| Description          |
 | ------ |-----------------------------------------------------------------------------------------------------------------| ---- | -------------- |
-| type | string                                                                                                            | Yes  | Event type. The value is fixed to **'checkNotification'**. |
-| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationcheckrequest11)    | Yes  | Notification verification content. |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | Yes  | Pointer to the notification verification function. |
+| type | string                                                                                                            | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationcheckrequest11)    | Yes  | Notification verification content.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | Yes  | Pointer to the notification verification function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 
 **Example**
 
@@ -3674,7 +3701,7 @@ try{
 
 ## notificationManager.off<sup>10+</sup>
 
-off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 Unsubscribes from notification events.
 
@@ -3686,18 +3713,19 @@ Unsubscribes from notification events.
 
 **Parameters**
 
-| Name | Type                                                                                                                     | Mandatory | Description          |
+| Name| Type                                                                                                                     | Mandatory| Description          |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
-| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**. |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Pointer to the notification verification function. |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Pointer to the notification verification function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 202      | not system app.                                      |  
+| 201      | The application does not have permission to call the interface.    |
+| 202      | Not system application.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
@@ -3715,43 +3743,43 @@ try{
 
 ## notificationManager.triggerSystemLiveView<sup>11+</sup>
 
-triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>;
+triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>
 
 Triggers a system live view notification. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type                  | Mandatory | Description          |
+| Name| Type                  | Mandatory| Description          |
 | -------------- | ------------- | ---- | -------------- |
-| bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  |Bundle information of the application. |
-| notificationId | number        | Yes  | Notification ID. |
-| buttonOptions  | [ButtonOptions](#buttonoptions11) | Yes  | Button information. |
+| bundle         | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | Yes  |Bundle information of the application.|
+| notificationId | number        | Yes  | Notification ID.|
+| buttonOptions  | [ButtonOptions](#buttonoptions11) | Yes  | Button information.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ---- | ----|
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification does not exist.     |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -3779,7 +3807,7 @@ notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions)
 
 ## notificationManager.subscribeSystemLiveView<sup>11+</sup>
 
-subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
+subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 Subscribes to the system live view notification. This API uses a promise to return the result.
 
@@ -3789,27 +3817,27 @@ Subscribes to the system live view notification. This API uses a promise to retu
 
 **Parameters**
 
-| Name | Type                  | Mandatory | Description          |
+| Name| Type                  | Mandatory| Description          |
 | -------------- | ------------- | ---- | -------------- |
 | subscriber | [SystemLiveViewSubscriber](#systemliveviewsubscriber11)  | Yes  | Subscriber of the system live view notification.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ---- | ----|
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
-| -------- | ----------------------------------- |  
-| 202      | not system app.                                      |  
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **Example**
@@ -3844,7 +3872,7 @@ Sets whether a specified application supports cross-device collaboration. This A
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
 | deviceType | string | Yes  | Device type.|
@@ -3852,23 +3880,24 @@ Sets whether a specified application supports cross-device collaboration. This A
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ---- | ----|
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -3903,30 +3932,31 @@ Obtains whether a specified application supports cross-device collaboration. Thi
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
-| deviceType | string | Yes  | Device type. |
+| deviceType | string | Yes  | Device type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ---- | ----|
-| Promise\<boolean\> | Promise used to return the result (true: enabled; false: disabled). |
+| Promise\<boolean\> | Promise used to return the result (true: enabled; false: disabled).|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -3960,30 +3990,31 @@ Sets a smart reminder for cross-device collaboration. This API uses a promise to
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | Yes  | Device type. |
+| deviceType | string | Yes  | Device type.|
 | enable   | boolean                  | Yes  | Indicates whether the specified application supports a smart reminder for cross-device collaboration (**true**: enabled; **false**: disabled).|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ---- | ----|
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -4014,29 +4045,30 @@ Obtains a smart reminder for cross-device collaboration. This API uses a promise
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                      |
+| Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | Yes  | Device type. |
+| deviceType | string | Yes  | Device type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ---- | ----|
-| Promise\<boolean\> | Promise used to return the result (**true**: enabled; **false**: disabled). |
+| Promise\<boolean\> | Promise used to return the result (**true**: enabled; **false**: disabled).|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -4064,28 +4096,28 @@ Sets the badge count for other applications. This API uses a promise to return t
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
-| badgeNumber | number | Yes  | Notification badge number to set. |
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| badgeNumber | number | Yes  | Notification badge number to set.|
 
 **Return value**
 
 | Type           | Description                     |
 | --------------- | ------------------------- |
-| Promise\<void\> | Promise that returns no value. |
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                           |
-| -------- | ----------------------------------- |  
-| 202      | not system app.                                      |  
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 | 1600017  | There is no corresponding agent relationship configuration.     |
 | 17700001 | The specified bundle name was not found.   |
@@ -4123,29 +4155,29 @@ Before obtaining the notification slot, create a slot through [addSlot](#notific
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description      |
+| Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application. |
-| slotType | [SlotType](././js-apis-notificationManager.md#slottype) | Yes  | Notification slot type. |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.|
+| slotType | [SlotType](././js-apis-notificationManager.md#slottype) | Yes  | Notification slot type.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)> | Promise used to return the result. |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
@@ -4167,17 +4199,241 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 });
 ```
 
+## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
+
+addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
+
+Adds the Do Not Disturb profile configuration information. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description          |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | Yes| Configuration information about the Do Not Disturb profile.|
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let trustlist: Array<notificationManager.BundleOption> = [
+  {
+    bundle: 'com.example.bundleName',
+    uid: 0
+  },
+  {
+    bundle: 'com.example.bundleName1',
+    uid: 1
+  }
+]
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: 'working mode',
+    trustlist: trustlist
+  }
+]
+
+notificationManager.addDoNotDisturbProfile(templates).then(() => {
+  console.info("addDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
+
+removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
+
+Deletes the Do Not Disturb profile configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description          |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | Yes | Configuration information about the Do Not Disturb profile.|
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600012  | No memory space.                    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: 'working mode'
+  }
+]
+notificationManager.removeDoNotDisturbProfile(templates).then(() => {
+  console.info("removeDoNotDisturbProfile success.");
+}).catch((error: BusinessError) => {
+  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.setAdditionalConfig<sup>12+</sup>
+
+setAdditionalConfig(key: string, value: string): Promise\<number\>
+
+Sets the additional system configuration information of the notification. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description          |
+| ------ | ---------------- | ---- | -------------- |
+| key   | string | Yes | Additional configuration key. Currently, only **RING_TRUSTLIST_PKG** is supported, indicating that the application supports [customized ring tone](./js-apis-inner-notification-notificationRequest.md#notificationrequest-1).|
+| value   | string | Yes | Additional configuration value. Example: [bundleName1,bundleName2].|
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<number\> | Promise used to return the result. **0** indicates successful; other values indicate failed.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
+  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.getDoNotDisturbProfile<sup>13+</sup>
+
+getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
+
+Queries the configuration information about the Do Not Disturb profile. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type            | Mandatory| Description          |
+| ------ | ---------------- | ---- | -------------- |
+| id   | number | Yes | ID of the Do Not Disturb profile.|
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<[DoNotDisturbProfile](#donotdisturbprofile12)\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600019  | The do-not-disturb profile does not exist.                    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.DoNotDisturbProfile) => {
+  console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+});
+```
+
 ## DoNotDisturbDate
 
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API.
 
-| Name | Type                                 | Mandatory | Description                  |
+| Name | Type                                 | Mandatory| Description                  |
 | ----- | ------------------------------------- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | Yes  | DND time type. |
-| begin | Date                                  | Yes  | DND start time. |
-| end   | Date                                  | Yes  | DND end time. |
+| type  | [DoNotDisturbType](#donotdisturbtype) | Yes  | DND time type.|
+| begin | Date                                  | Yes  | DND start time.|
+| end   | Date                                  | Yes  | DND end time.|
 
 ## DoNotDisturbType
 
@@ -4188,8 +4444,8 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 | Name        | Value              | Description                                      |
 | ------------ | ---------------- | ------------------------------------------ |
 | TYPE_NONE    | 0 | Non-DND.                          |
-| TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute). |
-| TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute). |
+| TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute).|
+| TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute).|
 | TYPE_CLEARLY | 3 | DND at the specified time segment (with the hour, day, and month specified).    |
 
 
@@ -4227,15 +4483,15 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 
 **System API**: This is a system API.
 
-| Name                        | Type                        | Mandatory | Description           |
+| Name                        | Type                        | Mandatory| Description           |
 | ---------------------------- | ---------------------------- | --- | --------------- |
 | bundleName                   | string                       | Yes  | Bundle name.   |
 | notificationId               | number                       | Yes  | Notification ID.       |
 | label<sup>11+</sup>          | string                       | No  | Notification label.     |
 | contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | Yes  | Notification type.     |
-| creatorUserId<sup>11+</sup>  | number                       | Yes  | User ID of the notification. |
+| creatorUserId<sup>11+</sup>  | number                       | Yes  | User ID of the notification.|
 | slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        | Yes  | Notification slot type.     |
-| extraInfos<sup>11+</sup>     | [key: string]: object        | No  | Extra information of the notification. |
+| extraInfos<sup>11+</sup>     | [key: string]: object        | No  | Extra information about the live view.|
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -4245,9 +4501,9 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 
 **System API**: This is a system API.
 
-| Name   | Type                                 | Mandatory | Description                  |
+| Name   | Type                                 | Mandatory| Description                  |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display. |
+| code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
 | message | string                               | Yes  | Result.   |
 
 
@@ -4261,9 +4517,9 @@ Provides the button information of the notification.
 
 **System API**: This is a system API.
 
-| Name   | Type                                 | Mandatory | Description                  |
+| Name   | Type                                 | Mandatory| Description                  |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| buttonName    | string                         | Yes  | Button name. |
+| buttonName    | string                         | Yes  | Button name.|
 
 
 ## SystemLiveViewSubscriber<sup>11+</sup>
@@ -4275,9 +4531,9 @@ Subscriber of the system live view notification.
 **System API**: This is a system API.
 
 
-| Name   | Type                                 | Mandatory | Description                  |
+| Name   | Type                                 | Mandatory| Description                  |
 | ------- | ------------------------------------ | ---- | ---------------------- |
-| onResponse    | (notificationId: number, buttonOptions: ButtonOptions) => void;                         | No  | Callback when the button is touched. |
+| onResponse    | (notificationId: number, buttonOptions: [ButtonOptions](#buttonoptions11)) => void                         | No  | Callback when the button is touched.|
 
 
 ## SlotType
@@ -4298,137 +4554,12 @@ Each bit can control the notification mode. When the bitwise OR operation is per
 
 | Name                                | Value  | Description    |
 | ------------------------------------ | ---- | -------- |
-| NOTIFICATION_STATUS_CLOSE_SOUND      | 1<<0 | Disables the sound notification function. |
+| NOTIFICATION_STATUS_CLOSE_SOUND      | 1<<0 | Disables the sound notification function.|
 | NOTIFICATION_STATUS_CLOSE_LOCKSCREEN |  1<<1    |     Disables the screen lock notification function.    |
 | NOTIFICATION_STATUS_CLOSE_BANNER     |    1<<2   |     Disables the banner notification function.    |
 | NOTIFICATION_STATUS_CLOSE_LIGHT_SCREEN     |   1<<3   |     Disables the screen-on notification function.    |
 | NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     Disables the vibration notification function.    |
 | NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     Disables the icon notification function in the status bar.    |
-
-
-## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
-
-addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
-
-Adds the Do Not Disturb mode configuration information. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type            | Mandatory | Description          |
-| ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | Yes | Configuration information about the Do Not Disturb mode. |
-
-**Return value**
-
-| Type     | Description       |
-|---------|-----------|
-| Promise\<void\> | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
-
-| ID | Error Message                           |
-| -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600012  | No memory space.                    |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let trustlist: Array<notificationManager.BundleOption> = [
-  {
-    bundle: 'com.example.bundleName',
-    uid: 0
-  },
-  {
-    bundle: 'com.example.bundleName1',
-    uid: 1
-  }
-]
-let templates: Array<notificationManager.DoNotDisturbProfile> = [
-  {
-    id: 3,
-    name: 'working mode',
-    trustlist: trustlist
-  }
-]
-
-notificationManager.addDoNotDisturbProfile(templates).then(() => {
-  console.info("addDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
-});
-```
-
-## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
-
-removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
-
-Deletes the Do Not Disturb mode configuration. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type            | Mandatory | Description          |
-| ------ | ---------------- | ---- | -------------- |
-| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | Yes | Configuration information about the Do Not Disturb mode. |
-
-**Return value**
-
-| Type     | Description       |
-|---------|-----------|
-| Promise\<void\> | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
-
-| ID | Error Message                           |
-| -------- | ----------------------------------- |
-| 201      | The application does not have permission to call the interface.    |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600012  | No memory space.                    |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let templates: Array<notificationManager.DoNotDisturbProfile> = [
-  {
-    id: 3,
-    name: 'working mode'
-  }
-]
-notificationManager.removeDoNotDisturbProfile(templates).then(() => {
-  console.info("removeDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
-});
-```
 
 ## DoNotDisturbProfile<sup>12+</sup>
 
@@ -4436,55 +4567,8 @@ notificationManager.removeDoNotDisturbProfile(templates).then(() => {
 
 **System API**: This is a system API.
 
-| Name | Type                                 | Mandatory | Description                  |
+| Name | Type                                 | Mandatory| Description                  |
 | ----- | ------------------------------------- | ---- | ---------------------- |
-| id | Number | Yes | ID of the Do Not Disturb mode. |
-| name | string  | Yes | Name of the Do Not Disturb mode. |
-| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | No | Trustlist in Do Not Disturb mode. |
-
-## notificationManager.setAdditionalConfig<sup>12+</sup>
-
-setAdditionalConfig(key: string, value: string): Promise\<number\>
-
-Sets the additional system configuration information of the notification. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type            | Mandatory | Description          |
-| ------ | ---------------- | ---- | -------------- |
-| key   | string | Yes | Additional configuration key. Currently, only **RING_TRUSTLIST_PKG** is supported, indicating that the application supports [customized ring tone](./js-apis-inner-notification-notificationRequest-sys.md#notificationrequest-1). |
-| value   | string | Yes | Additional configuration value. Example: [bundleName1,bundleName2]. |
-
-**Return value**
-
-| Type     | Description       |
-|---------|-----------|
-| Promise\<number\> | Promise used to return the result. **0** indicates successful; other values indicate failed. |
-
-**Error codes**
-
-For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
-
-| ID | Error Message                           |
-| -------- | ----------------------------------- |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
-  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
-});
-```
+| id | number | Yes| ID of the Do Not Disturb profile.|
+| name | string  | Yes| Name of the Do Not Disturb profile.|
+| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | No| Trustlist in Do Not Disturb profile.|

@@ -81,10 +81,10 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the deferred task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite.|
+| isRepeat        | boolean                           | No   | Whether the deferred task is repeated.<br>The value **true** means that the task is repeated, and **false** means the opposite.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the deferred task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
+| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>The value **true** means that the task can be saved. That is, the task can be restored after the system restarts. The value **false** means the opposite.|
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
 | parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters.|

@@ -12,4 +12,4 @@ UDMF标准化数据定义包括[标准化数据类型](uniform-data-type-descrip
 
 针对标准化数据定义的开发，有以下相关实例可供参考：
 
-- [标准化数据定义与描述（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)
+- [标准化数据定义与描述（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)

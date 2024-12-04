@@ -52,7 +52,7 @@ napi_threadsafe_function 提供了接口来创建一个可以在多线程间共�
 需要注意的是，尽管uv_queue_work方法本身不直接涉及NAPI（Node-API）接口，但当涉及到与JavaScript线程交互时，特别是从native层向JavaScript层传递数据并触发回调时，需要正确地管理napi_value对象的生命周期。这需要合理使用napi_handle_scope和相关接口，来确保在JavaScript回调方法创建的napi_value对象，在整个执行过程中保持有效，并在适当的时候释放资源，以避免内存泄漏问题。  
 
 ## 示例代码
-下面的示例分别用线程安全函数和libuv实现了native的跨线程调用。该示例在ArkTS端传入的JavaScript回调函数中对变量value进行加10运算，在native侧开启了3个子线程执行业务逻辑，子线程业务逻辑完成之后回到主线程执行ArkTS端传入的JavaScript回调函数，从而完成了对ArkTS端变量value的加30操作。[完整的示例代码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/nativeThreadsCallJS)如下：
+下面的示例分别用线程安全函数和libuv实现了native的跨线程调用。该示例在ArkTS端传入的JavaScript回调函数中对变量value进行加10运算，在native侧开启了3个子线程执行业务逻辑，子线程业务逻辑完成之后回到主线程执行ArkTS端传入的JavaScript回调函数，从而完成了对ArkTS端变量value的加30操作。[完整的示例代码](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Performance/PerformanceLibrary/feature/nativeThreadsCallJS)如下：
 ### 1.使用线程安全函数
 **ArkTS实现一个JavaScript回调函数。**  
 参数为param，函数体中对参数param加10后绑定变量value，并返回最新的param值。将回调函数作为参数调用native侧的ThreadSafeTest接口。  
@@ -333,7 +333,7 @@ work_cb位于子线程中，执行实际的业务逻辑；after_work_cb位于主
     
         napi_close_handle_scope(context->env, scope);
         if (context != nullptr) {
-            napi_delete_reference(context->env, co[readme-CN.md](readme-CN.md)ntext->callbackRef);
+            napi_delete_reference(context->env, context->callbackRef);
             delete context;
             OH_LOG_INFO(LOG_APP, "UvWorkTest delete context");
             context = nullptr;

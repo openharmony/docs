@@ -1780,7 +1780,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
-Starts an ability in the foreground or background and obtains the caller object for communicating with the ability.
+Starts an ability in the foreground or background and obtains the caller object for communicating with the ability. It can be called only by the main thread.
+
+This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -2137,7 +2139,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
 
-Starts an ability with the account ID specified and obtains the caller object for communicating with the ability.
+Starts an ability with the account ID specified and obtains the caller object for communicating with the ability. It can be called only by the main thread.
+
+This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
 Observe the following when using this API:
  - If an application needs to call this API to start an ability that belongs to another user, it must have the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** and **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permissions.

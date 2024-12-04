@@ -248,7 +248,7 @@ ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createTapGestureWithDistanc
 | -------- | -------- |
 | countNum | 识别的连续点击次数。当设置的值小于1或不设置时，会被转化为默认值 1。  | 
 | fingersNum | 触发点击的手指数，最小为1指， 最大为10指。当设置小于1的值或不设置时，会被转化为默认值 1。  | 
-| distance | 手指允许的移动距离范围。当设置的值小于0或者不设置时，会被转化为默认值无穷大。  | 
+| distance | 手指允许的移动距离范围。当设置的值小于等于0或者不设置时，会被转化为默认值无穷大。  | 
 
 **返回：**
 

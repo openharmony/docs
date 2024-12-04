@@ -6,7 +6,7 @@ Check whether a key exists.
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
 2. Initialize the key property set to specify the properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.
 

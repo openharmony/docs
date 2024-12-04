@@ -31,6 +31,10 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 Use **napi_new_instance** to create an ArkTS instance with the given constructor. This API returns an instance that can be called from ArkTS.
 
+> **NOTE**
+>
+> If **constructor** is not of the function type, **napi_function_expected** will be returned.
+
 CPP code:
 
 ```cpp
@@ -67,7 +71,7 @@ class Fruit {
 }
 // Call the function and use the variable obj to hold the instance created.
 let obj = testNapi.newInstance(Fruit, 'test');
-// Print the obj object.
+// Print the information about the object obj.
 hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(obj));
 ```
 
@@ -87,13 +91,25 @@ For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi
 
 Use **napi_wrap** to wrap a native instance in an ArkTS object.
 
+> **NOTE**
+>
+> If **js_object** is not of the object or function type, **napi_object_expected** will be returned.
+
 ### napi_unwrap
 
 Use **napi_unwrap** to unwrap a native instance from an ArkTS object and obtain the pointer to the data.
 
+> **NOTE**
+>
+> If **js_object** is not of the object or function type, **napi_object_expected** will be returned.
+
 ### napi_remove_wrap
 
 Use **napi_remove_wrap** to remove the wrapping after a native instance is unwrapped from an ArkTS object.
+
+> **NOTE**
+>
+> If **js_object** is not of the object or function type, **napi_object_expected** will be returned.
 
 CPP code:
 

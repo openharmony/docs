@@ -42,7 +42,7 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 | font-size                | &lt;length&gt;             | 16px            | No   | Font size of the search box.                               |
 | allow-scale              | boolean                    | true            | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | placeholder-color        | &lt;color&gt;              | \#99000000<br>| No   | Color of the hint text.                             |
-| font-weight              | number \| string | normal          | No   | Font weight. For details, see [font-weight](js-components-basic-text.md#styles) of the **\<text>** component.|
+| font-weight              | number \| string | normal          | No   | Font weight. For details, see [font-weight](js-components-basic-text.md#styles) of the **Text** component.|
 | font-family              | string                     | sans-serif      | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 | caret-color<sup>6+</sup> | &lt;color&gt;              | -               | No   | Color of the caret.                              |
 

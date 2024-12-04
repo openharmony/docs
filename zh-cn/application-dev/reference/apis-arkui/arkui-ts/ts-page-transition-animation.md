@@ -84,7 +84,7 @@ slide(value: SlideEffect): T
 
 ### translate
 
-translate(value: TranslateOptions): T
+translate(value: {x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string; y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string; z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string}): T
 
 设置页面转场时的平移效果。
 
@@ -96,11 +96,11 @@ translate(value: TranslateOptions): T
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 是   | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。<br/>-&nbsp;x：横向的平移距离。<br/>-&nbsp;y：纵向的平移距离。<br/>-&nbsp;z：竖向的平移距离。 |
+| value   | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 是   | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。<br/>-&nbsp;x：横向的平移距离。<br/>-&nbsp;y：纵向的平移距离。<br/>-&nbsp;z：竖向的平移距离。 |
 
 ### scale
 
-scale(value: ScaleOptions): T
+scale(value: { x?&nbsp;:&nbsp;number; y?&nbsp;:&nbsp;number; z?&nbsp;:&nbsp;number; centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string; centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string}): T
 
 设置页面转场时的缩放效果。
 
@@ -112,7 +112,7 @@ scale(value: ScaleOptions): T
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明) | 是   | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。<br/>-&nbsp;x：横向放大倍数（或缩小比例）。<br/>-&nbsp;y：纵向放大倍数（或缩小比例）。<br/>-&nbsp;z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。centerX和centerY默认值是"50%"，即默认以页面的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表页面的左上角。 |
+| value   | {<br/>x?&nbsp;:&nbsp;number;<br/>y?&nbsp;:&nbsp;number;<br/>z?&nbsp;:&nbsp;number;<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 是   | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。<br/>-&nbsp;x：横向放大倍数（或缩小比例）。<br/>-&nbsp;y：纵向放大倍数（或缩小比例）。<br/>-&nbsp;z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。centerX和centerY默认值是"50%"，即默认以页面的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表页面的左上角。 |
 
 ### opacity
 

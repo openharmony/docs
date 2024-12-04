@@ -93,7 +93,7 @@ typedef enum {
     JSVM_UINT8_ARRAY,
     JSVM_UINT8_CLAMPED_ARRAY,
     JSVM_INT16_ARRAY,
-    JAVM_UINT16_ARRAY,
+    JSVM_UINT16_ARRAY,
     JSVM_INT32_ARRAY,
     JSVM_UINT32_ARRAY,
     JSVM_FLOAT32_ARRAY,
@@ -104,6 +104,7 @@ typedef enum {
 ```
 
 ### JSVM_RegExpFlags
+
 Defines an enum for regular expression flags.
 
 ```c++
@@ -124,13 +125,14 @@ typedef enum {
 ### Compilation Option Types
 #### JSVM_CompileOptions
 
-Defines a struct that represents the type of the elements in **option** of **OH_JSVM_CompileScriptWithOptions**.
+Defines a struct that represents the type of the elements in **options** of **OH_JSVM_CompileScriptWithOptions**.
 
 The struct consists of:
 - **id** identifies a compilation option.
 - **content** specifies a compilation option.
 
 **id** and **content** together define a compilation option.
+
 ```c
 typedef struct {
     /** Compilation option type. */
@@ -150,6 +152,7 @@ typedef struct {
 #### JSVM_CompileOptionId
 
 Defines an enum for **id** in **JSVM_CompileOptions**. Each **id** corresponds to a **content** value. The value **JSVM_COMPILE_ENABLE_SOURCE_MAP** corresponds to bool and is valid only when **sourceMapUrl** in **JSVM_ScriptOrigin** is not empty.
+
 ```c
 typedef enum {
     /** Compilation mode. */
@@ -208,10 +211,11 @@ typedef struct {
 
 #### JSVM_ScriptOrigin
 
-Defines a struct that represents the source code to compile when **id** is **JSVM_COMPILE_SCRIPT_ORIGIN**. The struct consists of the following:
+Defines a struct that represents the source code of the script to compile when **id** is **JSVM_COMPILE_SCRIPT_ORIGIN**. The struct consists of the following:
 
 - **sourceMapUrl**: path of the source map. Currently, only the local paths of the device are supported. This parameter can be left empty.
 - **resourceName**: name of the JS script to be compiled.
+
 ```c
 typedef struct {
     /** Source map URL. */
@@ -267,13 +271,9 @@ typedef struct {
 
 JSVM-API provides the following callback types:
 
-**JSVM_CallbackInfo**
-
-User-defined native function, which is exposed to JS via JSVM-API. Generally, no handle or callback scope is created inside this callback.
-
 **JSVM_CallbackStruct**
 
-Function pointer type and data for user-provided native functions, which are to be exposed to JS via JSVM-API.
+Callback function pointer and data for user-provided native callbacks, which are to be exposed to JS via JSVM-API. For example, you can use **OH_JSVM_CreateFunction** to create a JS function bound to a native callback defined by **JSVM_CallbackStruct**. Unless otherwise required in object lifecycle management, do not create a handle or callback scope in this callback.
 
 ```c++
 typedef struct {
@@ -284,13 +284,17 @@ typedef struct {
 
 **JSVM_Callback**
 
-User-defined native function exposed to JS. Unless otherwise required in object lifecycle management, no handle or callback scope is created in this callback.
+Alias of the **JSVM_CallbackStruct** pointer type.
 
-The usage is as follows:
+It is defined as follows:
 
 ```c++
 typedef JSVM_CallbackStruct* JSVM_Callback;
 ```
+
+**JSVM_CallbackInfo**
+
+User-defined native callback. The type of the first parameter is **JSVM_Env**, and that of the second parameter is **JSVM_CallbackInfo**. **JSVM_CallbackInfo** can be used to obtain additional information about the context in which the callback was invoked, for example, the parameter list. When a native callback is implemented, **OH_JSVM_GetCbInfo** is used to extract the invoking information from **JSVM_CallbackInfo**.
 
 **JSVM_Finalize**
 
@@ -299,7 +303,7 @@ Function pointer, which is passed in APIs such as **OH_JSVM_SetInstanceData**, *
 The format is as follows:
 
 ```c++
-typedef void (JSVM_Finalize)(JSVM_Env env, void finalizeData, void* finalizeHint);
+typedef void (*JSVM_Finalize)(JSVM_Env env, void* finalizeData, void* finalizeHint);
 ```
 
 **JSVM_PropertyHandlerConfigurationStruct**
@@ -544,7 +548,7 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
 	    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
 	    // Name of the source file.
 	    .resourceName = "index.js",
-	    // Start row and column number of scirpt in the source file
+	    // Start row and column number of script in the source file
 	    .resourceLineOffset = 0,
 	    .resourceColumnOffset = 0,
 	};
@@ -606,7 +610,7 @@ static void RunScript(JSVM_Env env, string& src,
 		    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
 		    // Name of the source file.
 		    .resourceName = "index.js",
-		    // Start row and column number of scirpt in the source file
+		    // Start row and column number of script in the source file
 		    .resourceLineOffset = 0,
 		    .resourceColumnOffset = 0,
 	    };
@@ -780,6 +784,26 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
+
+### Compiling the Wasm Module
+
+#### When to Use
+
+JSVM-API provides APIs for compiling the WebAssembly (Wasm) bytecode, optimizing Wasm functions, and serializing and deserializing Wasm caches.
+
+#### Available APIs
+
+| API                         | Description                                                                                |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| OH_JSVM_CompileWasmModule   | Compiles the Wasm bytecode into a Wasm module. If the **cache** parameter is passed in, the cache will be deserialized into a Wasm module first. The compilation is performed when the deserialization fails.|
+| OH_JSVM_CompileWasmFunction | Compiles the function with the specified ID in a Wasm module into the optimized machine code. Currently, only the highest optimization level is enabled. The validity of the function ID is ensured by the caller.                    |
+| OH_JSVM_IsWasmModuleObject  | Checks whether the input value is a Wasm module.                                                            |
+| OH_JSVM_CreateWasmCache     | Serializes the machine code in a Wasm module into a Wasm cache. If the Wasm module does not contain machine code, the serialization will fail.                   |
+| OH_JSVM_ReleaseCache        | Releases a Wasm cache instance created by JSVM-API. The **cacheType** and **cacheData** passed in must match. Otherwise, undefined behavior may occur.                     |
+
+#### Example
+
+For details, see [Working with Wasm Using JSVM-API](use-jsvm-about-wasm.md).
 
 ### Exception Handling
 
@@ -1984,10 +2008,15 @@ OH_JSVM_GetVersion(env, &versionId);
 Perform memory management.
 
 #### Available APIs
-| API| Description|
-| -------- | -------- |
-|OH_JSVM_AdjustExternalMemory| Adjusts the amount of registered external memory used to give the JSVM an indication of the amount of externally allocated memory that is kept alive by JS objects. The JSVM then determines whether to perform global GC. Increasing the externally allocated memory will increase the probability of triggering global.|
-|OH_JSVM_MemoryPressureNotification| Notifies the VM of the memory pressure level and selectively triggers GC.|
+| API                                         | Description                                                                                                  |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| OH_JSVM_AdjustExternalMemory                | Adjusts the amount of registered external memory used to give the JSVM an indication of the amount of externally allocated memory that is kept alive by JS objects. The JSVM then determines whether to perform global GC. Increasing the externally allocated memory will increase the probability of triggering global.|
+| OH_JSVM_MemoryPressureNotification          | Notifies the VM of the memory pressure level and selectively triggers GC.                                                                            |
+| OH_JSVM_AllocateArrayBufferBackingStoreData | Allocates memory for a backing store.|
+| OH_JSVM_FreeArrayBufferBackingStoreData | Releases the backing store memory.|
+| OH_JSVM_CreateArrayBufferFromBackingStoreData | Creates an array buffer based on the backing store memory allocated.|
+
+> Using a backing store is a critical operation. You must ensure correct use of memory and exercise caution when using it. For details, see the following example.
 
 Example:
 Perform memory management. 
@@ -2026,6 +2055,57 @@ OH_JSVM_GetHeapStatistics(vm, &mem);
 OH_LOG_INFO(LOG_APP, " %{public}zu\n", mem.usedHeapSize); // After GC is triggered.
 ```
 
+Example
+``` c++
+void *backingStore;
+JSVM_Value arrayBuffer;
+
+// Allocate memory of 100 bytes for a backing store.
+OH_JSVM_AllocateArrayBufferBackingStoreData(100, JSVM_ZERO_INITIALIZED, &backingStore);
+
+// In the allocated memory, create an ArrayBuffer of 20 bytes at 30 bytes away from the start address of the backing store.
+OH_JSVM_CreateArrayBufferFromBackingStoreData(env, backingStore, 100, 30, 20, &arrayBuffer);
+
+// Use the created ArrayBuffer in JS.
+JSVM_Value js_global;
+JSVM_Value name;
+OH_JSVM_GetGlobal(jsvm_env, &js_global);
+OH_JSVM_CreateStringUtf8(jsvm_env, "buffer", JSVM_AUTO_LENGTH, &name);
+OH_JSVM_SetProperty(env, js_global, name, arrayBuffer);
+
+JSVM_Script script;
+JSVM_Value scriptString;
+JSVM_Value result;
+const char *src = R"JS(
+function writeBuffer(data) {
+  let view = new Uint8Array(data);
+  // Write some values to the ArrayBuffer
+  for (let i = 0; i < view.length; i++) {
+    view[i] = i % 256;
+  }
+}
+writeBuffer(buffer)
+)JS";
+OH_JSVM_CreateStringUtf8(env, src, JSVM_AUTO_LENGTH, &scriptString);
+OH_JSVM_CompileScriptWithOptions(env, scriptString, 0, nullptr, &script);
+OH_JSVM_RunScript(env, script, &result);
+
+// Check the ArrayBuffer content.
+uint8_t *array = static_cast<uint8_t*>(backingStore);
+for (auto i = 0; i < 100; ++i) {
+  if (array[i] != i % 25 % 256) {
+    return false;
+  }
+}
+
+// Release the ArrayBuffer. Before releasing the backing store, you must
+// call OH_JSVM_DetachArraybuffer to release all ArrayBuffers created in the backing store.
+// Otherwise, unpredictable memory problems may occur.
+OH_JSVM_DetachArraybuffer(env, arrayBuffer);
+
+// Release the memory allocated for the backing store.
+OH_JSVM_FreeArrayBufferBackingStoreData(backingStore);
+```
 ### Promises
 
 #### When to Use

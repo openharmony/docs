@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The OpenHarmony JSVM-API provides a set of stable application binary interfaces (ABIs) based on the standard JavaScript (JS) engine. It provides complete JS engine capabilities, including creating and destroying a JS engine, executing JS code, and implementing interaction between JS and C/C++ modules.
+The OpenHarmony JSVM-API provides a set of stable APIs based on the standard JavaScript (JS) engine. It provides complete JS engine capabilities, including creating and destroying a JS engine, executing JS code, and implementing interaction between JS and C/C++ modules.
 
 OpenHarmony JSVM-API provides a set of APIs written in C programming language that complies with C99.
 
@@ -14,7 +14,7 @@ Unless otherwise specified, JSVM-API in this document refers to OpenHarmony JSVM
 ## JSVM-API Architecture
 
 **Figure 1** JSVM-API architecture
-
+  
 ![jsvm-api_mechanism](figures/jsvm-api_mechanism.png)
 
 - Native Module: module developed using JSVM-API in C/C++.

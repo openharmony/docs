@@ -1,6 +1,6 @@
 # Rating
 
-The **\<Rating>** component provides a rating bar.
+The **Rating** component provides a rating bar.
 
 >  **NOTE**
 >
@@ -20,6 +20,8 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name   | Type| Mandatory| Description                                                    |
@@ -33,7 +35,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 stars(value: number)
 
-Total number of ratings. A value less than or equal to 0 evaluates to the default value.
+Sets the total number of ratings (stars). If the value set is less than or equal to 0, the default value is used.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -85,11 +87,11 @@ By default, the image is loaded in asynchronous mode. Synchronous loading is not
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Yes  | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
+| value  | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Yes  | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **Rating** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
 
 >  **NOTE**
 >
->  The drawing area of each rating image is [width/stars, height], wherein **width** and **height** indicate the width and height of the **\<Rating>** component, respectively.
+>  The drawing area of each rating image is [width/stars, height], wherein **width** and **height** indicate the width and height of the **Rating** component, respectively.
 >
 >  To specify the drawing area as a square, you are advised to customize the width and height in this format: [height * stars, height], width = height * stars.
 
@@ -98,6 +100,8 @@ By default, the image is loaded in asynchronous mode. Synchronous loading is not
 contentModifier(modifier: ContentModifier\<RatingConfiguration>)
 
 Creates a content modifier.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -141,13 +145,17 @@ Triggered when the rating value changes.
 
 You need a custom class to implement the **ContentModifier** API.
 
-| Name | Type   |    Default Value     |  Description             |
-| ------ | ------ | ------ |-------------------------------- |
-| rating | number | 0 |Value to rate.|
-| indicator | boolean | false | Whether the component is used only as an indicator.|
-| stars | number | 5 |Total number of ratings.|
-| stepSize | number | 0.5 |Step of an operation.|
-| triggerChange | Callback\<number> | - |Triggered when the rating value changes.|
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   |    Read Only   |    Optional     |  Description             |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| rating | number | No| No|Value to rate.<br>Default value: **0**|
+| indicator | boolean | No| No| Whether the component is used only as an indicator.<br>Default value: **false**|
+| stars | number | No| No|Total number of ratings.<br>Default value: **5**|
+| stepSize | number | No| No|Step of an operation.<br>Default value: **0.5**|
+| triggerChange | Callback\<number> | No| No|Callback triggered when the rating value changes.|
 
 
 ## Example

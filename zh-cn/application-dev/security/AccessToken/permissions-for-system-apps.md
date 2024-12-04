@@ -1495,7 +1495,7 @@
 
 ### ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-允许应用发送代理通知
+允许应用发送代理通知。
 
 **权限级别**：system_core
 
@@ -3642,6 +3642,18 @@
 允许系统应用在后台使用相机。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+允许系统应用订阅备份框架开始恢复的事件。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

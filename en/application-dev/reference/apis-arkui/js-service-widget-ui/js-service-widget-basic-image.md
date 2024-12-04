@@ -1,7 +1,7 @@
 # image
 
 
-The **\<image>** component is used to render and display images.
+The **Image** component is used to render and display images.
 
 > **NOTE**
 >
@@ -30,7 +30,7 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 | -------- | -------- | -------- | -------- | -------- |
 | object-fit | string | cover | No| Image scale type. For details about available values, see **object-fit**. This style is not supported for SVG images.|
 | match-text-direction | boolean | false | No| Whether image orientation changes with the text direction. This style is not supported for SVG images.|
-| fit-original-size | boolean | false | No| Whether the **\<image>** component adapts to the image source size when its width and height are not set. If this style is set to **true**, **object-fit** will not take effect. This style is not supported for SVG images.|
+| fit-original-size | boolean | false | No| Whether the **Image** component adapts to the image source size when its width and height are not set. If this style is set to **true**, **object-fit** will not take effect. This style is not supported for SVG images.|
 
 **Table 1** object-fit
 
@@ -46,15 +46,15 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 >
 >  When using an SVG image, note that:
 >
->  - The SVG image will not be drawn if the length or width of the parent component is infinity. Therefore, you are advised to set the length and width for the **\<image>** component.
+>  - The SVG image will not be drawn if the length or width of the parent component is infinity. Therefore, you are advised to set the length and width for the **Image** component.
 >
->  - If the image length and width are not specified in the SVG description, the SVG image fills the **\<image>** component area.
+>  - If the image length and width are not specified in the SVG description, the SVG image fills the **Image** component area.
 >
 >  - If the image length and width are specified in the SVG description, the following rules are adopted to decide the final display effect:
 >
->    - If the **\<image>** component is too small to afford the SVG image, the SVG image is cropped and only its upper left part is displayed in the component.
+>    - If the **Image** component is too small to afford the SVG image, the SVG image is cropped and only its upper left part is displayed in the component.
 >
->    - If the **\<image>** component is big enough to afford the SVG image, the SVG image is displayed in the upper left corner of the component.
+>    - If the **Image** component is big enough to afford the SVG image, the SVG image is displayed in the upper left corner of the component.
 
 
 ## Events

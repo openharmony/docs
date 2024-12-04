@@ -59,13 +59,13 @@ async function getLocalCapabilities(): Promise<void> {
 | Name      | Type| Mandatory| Description                  |
 | -------------- | -------- | ---- | ---------------------- |
 | bundleInfos    | Array    | Yes  | Application information.          |
-| &nbsp;&nbsp;&nbsp;&nbsp; allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration.      |
-| &nbsp;&nbsp;&nbsp;&nbsp; extensionName  | String  | Yes  | Extension name of the application.          |
-| &nbsp;&nbsp;&nbsp;&nbsp; name           | String  | Yes  | Bundle name of the application.            |
-| &nbsp;&nbsp;&nbsp;&nbsp; needToInstall  | Boolean  | Yes  | Whether to install the application during data restoration.|
-| &nbsp;&nbsp;&nbsp;&nbsp; spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
-| &nbsp;&nbsp;&nbsp;&nbsp; versionCode    | Number    | Yes  | Application version number.          |
-| &nbsp;&nbsp;&nbsp;&nbsp; versionName    | String  | Yes  | Application version name.        |
+| allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration.      |
+| extensionName  | String  | Yes  | Extension name of the application.          |
+| name           | String  | Yes  | Bundle name of the application.            |
+| needToInstall  | Boolean  | Yes  | Whether to install the application during data restoration.|
+| spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
+| versionCode    | Number    | Yes  | Application version number.          |
+| versionName    | String  | Yes  | Application version name.        |
 | deviceType     | String  | Yes  | Type of the device.              |
 | systemFullName | String  | Yes  | Device version.              |
 

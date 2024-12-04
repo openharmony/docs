@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<swiper>** component provides a container that allows users to switch among child components using swipe gestures.
+The **Swiper** component provides a container that allows users to switch among child components using swipe gestures.
 
 ## Required Permissions
 
@@ -31,7 +31,7 @@ In addition to the [universal attributes](js-components-common-attributes.md), t
 | loop                           | boolean | true   | No   | Whether to enable looping.                               |
 | duration                       | number  | -      | No   | Duration of the autoplay for child component switching.                             |
 | vertical                       | boolean | false  | No   | Whether the swipe gesture is performed vertically. A vertical swipe uses the vertical indicator.                  |
-| cachedsize<sup>7+</sup>        | number  | -1     | No   | Minimum number of cached items during delayed loading of the **\<swiper>** component. The value **-1** indicates that all content is cached.         |
+| cachedsize<sup>7+</sup>        | number  | -1     | No   | Minimum number of cached items during delayed loading of the **Swiper** component. The value **-1** indicates that all content is cached.         |
 | scrolleffect<sup>7+</sup>      | string  | spring | No   | Scroll effect. The options are as follows:<br>- **spring**: Similar to the physical dynamic effect of a spring. When the scrollbar reaches the edge, it can continue to scroll for a distance based on the initial speed or a touch event. It rebounds after being released.<br>- **fade**: Similar to the physical dynamic effect of fade. When the scrollbar reaches the edge, a wave shape fades. The fade changes according to the speed and scrolling distance.<br>- **none**: No effect when the scrollbar reaches the edge.<br>This attribute is valid only when **loop** is set to **false**.|
 
 

@@ -50,6 +50,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon resource.|
+| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Icon label.|
 | isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> **true**: The item is enabled.<br> **false**: The item is disabled.|
 | action | () =&gt; void | No| Action to perform. This parameter is not available for the item attribute.|
 
@@ -59,18 +60,12 @@ The [universal events](ts-universal-events-click.md) are not supported.
 ## Example
 
 ```ts
-import { ComposeTitleBar, promptAction } from '@kit.ArkUI'
-
-interface menuItem {
-  value: Resource;
-  isEnabled?: boolean;
-  action?: () => void
-}
+import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  private menuItems: Array<menuItem> = [
+  private menuItems: Array<ComposeTitleBarMenuItem> = [
     {
       value: $r('app.media.ic_public_save'),
       isEnabled: true,

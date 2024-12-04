@@ -1,6 +1,6 @@
 # stack
 
-The **\<stack>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
+The **Stack** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
 > **NOTE**
 >
@@ -51,7 +51,7 @@ Supported.
 
 >  **NOTE**
 >
-> The absolute positioning does not support a percentage. Therefore, **margin** cannot be set for the child components of the **\<stack>** component.
+> The absolute positioning does not support a percentage. Therefore, **margin** cannot be set for the child components of the **Stack** component.
 
 
 ## Example

@@ -104,7 +104,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
   
-- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'city'** and displayed in the **\<Text>** component.
+- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'city'** and displayed in the **Text** component.
   ```ts
   let storageProcess = new LocalStorage();
   
@@ -159,7 +159,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
 
-- Add a subscription template <!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd--> to the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format. When the subscribed persistent data is updated, the system automatically updates the widget data.
+- Add a subscription template <!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd--> to the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to `"list" : "select type from TBL00 limit 0,1"`, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in `{"list":[{"type":"value0"}]}` format. When the subscribed persistent data is updated, the system automatically updates the widget data.
 
   > **NOTE**
   >
@@ -202,7 +202,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
 
-- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **\<Text>** component.
+- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **Text** component.
   ```ts
   let storagePersis = new LocalStorage();
   
@@ -229,4 +229,4 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
     }
   }
   ```
-
+<!--Del-->

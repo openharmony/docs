@@ -16,8 +16,9 @@
 | gridSpan    | number                                                       | 默认占用列数，指useSizeType属性没有设置对应尺寸的列数(span)时，占用的栅格列数。<br/>**说明：**<br/>设置了栅格span属性，组件的宽度由栅格布局决定。<br>默认值：1<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | gridOffset  | number                                                       | 默认偏移列数，指useSizeType属性没有设置对应尺寸的偏移(offset)时，&nbsp;当前组件沿着父组件Start方向，偏移的列数，也就是当前组件位于第n列。<br/>**说明：**<br/>- 配置该属性后，当前组件在父组件水平方向的布局不再跟随父组件原有的布局方式，而是沿着父组件的Start方向偏移一定位移。<br/>- 偏移位移&nbsp;=&nbsp;（列宽&nbsp;+&nbsp;间距）\*&nbsp;列数。<br/>- 设置了偏移(gridOffset)的组件之后的兄弟组件会根据该组件进行相对布局，类似相对布局。<br>默认值：0<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
-
 ## 示例
+
+<!--code_no_check-->
 
 ```ts
 // xxx.ets

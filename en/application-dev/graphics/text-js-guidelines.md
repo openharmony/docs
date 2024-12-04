@@ -180,7 +180,7 @@ The following steps describe how to create a paragraph object and display the pa
 
 8. **Draw the graphics and text blob.**
 
-    Create a **MyNodeController** instance and save it to the NodeContainer, add a **<\Button>** component, and call the defined interfaces.
+    Create a **MyNodeController** instance and save it to the NodeContainer, add a **Button** component, and call the defined interfaces.
 
     ```js
     @Entry

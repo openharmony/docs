@@ -111,7 +111,7 @@
 | 8 | 应用信息 | Row和Column组件，并指定其子组件居中对齐。 | 
 | 9 | 侧边导航栏 | 综合运用自适应布局中的拉伸能力、占比能力和延伸能力 。| 
 
-天气主页涉及的内容较多，因篇幅限制，本小节仅介绍区域3（每小时天气）的实现，读者可以自行查看开源代码，了解其它基础区域的实现。
+天气主页涉及的内容较多，因篇幅限制，本小节仅介绍区域3（每小时天气）的实现<!--Del-->，读者可以自行查看开源代码，了解其它基础区域的实现<!--DelEnd-->。
 
 延伸能力是指容器组件内的子组件，按照其在列表中的先后顺序，随容器组件尺寸变化显示或隐藏。随着可用显示区域的增加，用户可以看到的“每小时天气”信息也不断增加，故“每小时天气”可以通过延伸能力实现，其核心代码如下所示。
 
@@ -305,7 +305,7 @@ struct Home {
 
 针对天气应用，有以下相关实例可供参考：
 
-天气应用：[天气应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather)
+天气应用：[天气应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SuperFeature/MultiDeviceAppDev/Weather)
 
 
 

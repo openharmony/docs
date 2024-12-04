@@ -23,14 +23,14 @@ The ability running information is obtained by calling [getAbilityRunningInfos](
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | Yes | No | Information that matches an ability. |
-| pid | number | Yes | No | Process ID. |
-| uid | number | Yes | No | User ID. |
-| processName | string | Yes | No | Process name. |
-| startTime | number | Yes | No | Ability start time. |
-| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager-sys.md#abilitystate) | Yes | No | Ability state. |
+| ability | ElementName | Yes| No| Information that matches an ability. |
+| pid | number | Yes| No| Process ID.|
+| uid | number | Yes| No| User ID. |
+| processName | string | Yes| No| Process name. |
+| startTime | number | Yes| No| Ability start time. |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager-sys.md#abilitystate) | Yes| No| Ability state. |
 
 **Example**
 

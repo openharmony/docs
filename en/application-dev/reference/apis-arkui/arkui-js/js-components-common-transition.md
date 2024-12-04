@@ -11,7 +11,7 @@
 
 | Name     | Type    | Default Value | Description                                      |
 | ------- | ------ | ---- | ---------------------------------------- |
-| shareid | string | -   | Used for the transition of shared elements, which takes effect only when this attribute is set. **\<list-item>**, **\<image>**, **\<text>**, **\<button>**, and **\<label>** components are supported for the transition of shared elements.|
+| shareid | string | -   | Used for the transition of shared elements, which takes effect only when this attribute is set. **\<list-item>**, **Image**, **Text**, **Button**, and **\<label>** components are supported for the transition of shared elements.|
 
 
 ### Styles

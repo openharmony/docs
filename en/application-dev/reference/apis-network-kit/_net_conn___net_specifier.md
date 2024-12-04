@@ -2,9 +2,9 @@
 
 ## Overview
 
-Network specifier, including network capability sets and network identifier.
+Defines the network feature set, including a network capability set and a network ID.
 
-**Since** 12
+**Since**: 12
 
 **Related module**: [NetConnection](_net_connection.md)
 
@@ -14,10 +14,10 @@ Network specifier, including network capability sets and network identifier.
 
 ### Member Variables
 
-| Name| Description.| 
+| Name| Description|
 | -------- | -------- |
-| [caps](#caps) | network capability sets. |
-| [bearerPrivateIdentifier](#bearerprivateidentifier) | network identifier. |
+| [caps](#caps) | Network capability set.|
+| [bearerPrivateIdentifier](#bearerprivateidentifier) | Network ID.|
 
 
 ## Member Variable Description
@@ -31,7 +31,7 @@ NetConn_NetCapabilities NetConn_NetSpecifier::caps
 
 **Description**
 
-network capability sets.
+Defines the network capability set.
 
 
 ### bearerPrivateIdentifier
@@ -42,4 +42,4 @@ char* NetConn_NetSpecifier::bearerPrivateIdentifier
 
 **Description**
 
-network identifier.
+Defines the network ID.

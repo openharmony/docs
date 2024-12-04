@@ -1,6 +1,6 @@
 # Permissions for System Applications
 
-Before requesting permissions for your application, read and understand the [Workflow for Using Permissions](determine-application-mode.md) and this topic to determine the permissions required.
+Before requesting permissions for your application, read and understand the [Workflow for Requesting Permissions](determine-application-mode.md) and this topic to determine the permissions required.
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ Before requesting permissions for your application, read and understand the [Wor
 
 The following lists the system_grant permissions that can be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.PRE_START_ATOMIC_SERVICE
 
@@ -3591,7 +3591,7 @@ Allows an application to access the mappings between applications and domain nam
 
 ### ohos.permission.ALLOW_CONNECT_CAR
 
-Allows an application to connect to an automobile head unit.
+Allows an application to connect to a telematics device.
 
 **Permission level**: system_basic
 
@@ -3649,11 +3649,23 @@ Allows a system application to use the camera in the background.
 
 **Valid since**: 13
 
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+Allows a system application to subscribe to the restore start event of the backup and restore framework.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -3911,7 +3923,7 @@ Allows a system ability to send the projection cable plug-in and plug-out events
 
 The following lists the user_grant permissions that can be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.READ_AUDIO
 

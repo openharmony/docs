@@ -1471,6 +1471,8 @@ Defines the name of the navigation home page.
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12)        | No   | Layout of the title bar.<br>Default value: **BarStyle.STANDARD**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | No   | Padding at the start of the title bar.<br>Only supported in one of the following scenarios:<br>1. Displaying the back icon, that is, [hideBackButton](#hidebackbutton) is **false**<br>2. Using a non-custom title, that is, the [title value](#title) type is **ResourceStr** or **NavigationCommonTitle**<br>Default value:<br>LengthMetrics.resource(**$r('sys.float.margin_left')**)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | No   | Padding at the end of the title bar.<br>Only supported in one of the following scenarios:<br>1. Using a non-custom menu, that is, the [menu value](#menus) is Array&lt;NavigationMenuItem&gt;<br>2. Using a non-custom menu without a menu in the upper right corner, that is, the [title value](#title) type is **ResourceStr** or **NavigationCommonTitle**<br>Default value:<br>LengthMetrics.resource(**$r('sys.float.margin_right')**)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| mainTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | No| Main title attribute modifier.<br>Notes for using this modifier:<br>1. Attribute settings configured by this modifier will override the system's default attribute settings. For example, if the modifier is used to set font size attributes, such as **fontSize**, **maxFontSize**, and **minFontSize**, the settings will take precedence over the system's default settings for size-related attributes.<br>2. If no modifier is used or an invalid value is set, the system reverts to its default settings.<br>3. In [Free](#navigationtitlemode) mode, setting the font size will disable the effect where the main title's size changes in response to content scrolling.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| subTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | No| Subtitle attribute modifier.<br>Notes for using this modifier:<br>1. Attribute settings configured by this modifier will override the system's default attribute settings. For example, if the modifier is used to set font size attributes, such as **fontSize**, **maxFontSize**, and **minFontSize**, the settings will take precedence over the system's default settings for size-related attributes.<br>2. If no modifier is used or an invalid value is set, the system reverts to its default settings.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
@@ -1508,6 +1510,8 @@ Defines the name of the navigation home page.
 | animated   | boolean  | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ## Example
+
+The sample effect is subject to the actual device.
 
 ### Example 1
 
@@ -3358,27 +3362,69 @@ export struct NavigationMenu{
 
 ### Example 12
 
-This example demonstrates how to set custom title bar padding in **Navigation** and **NavDestination**.
+This example demonstrates how to set custom title bar padding in **Navigation** and **NavDestination**, and how to modify the main title and subtitle text styles through **TextModifier**.
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';
+import { TextModifier } from '@ohos.arkui.modifier';
+
+class MainTitleTextModfier extends TextModifier {
+  useStyle1: boolean = true;
+  applyNormalAttribute(instance: TextModifier): void {
+    if (this.useStyle1) {
+      console.log(`testTag mainTitle use style1`);
+      instance.fontColor('#FFFFC000')
+      instance.fontSize(35)
+      instance.fontWeight(FontWeight.Bolder)
+      instance.fontStyle(FontStyle.Normal)
+      instance.textShadow({radius: 5, offsetX: 9})
+    } else {
+      console.log(`testTag mainTitle use style2`);
+      instance.fontColor('#FF23A98D')
+      instance.fontSize(20)
+      instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+      instance.fontWeight(FontWeight.Lighter)
+      instance.fontStyle(FontStyle.Italic)
+      instance.textShadow({radius: 3, offsetX: 3})
+    }
+  }
+}
+
+class SubTitleTextModfier extends TextModifier {
+  useStyle1: boolean = true;
+  applyNormalAttribute(instance: TextModifier): void {
+    if (this.useStyle1) {
+      console.log(`testTag subTitle use style1`);
+      instance.fontColor('#FFFFC000')
+      instance.fontSize(15)
+      instance.fontWeight(FontWeight.Bolder)
+      instance.fontStyle(FontStyle.Normal)
+      instance.textShadow({radius: 5, offsetX: 9})
+    } else {
+      console.log(`testTag subTitle use style2`);
+      instance.fontColor('#FF23A98D')
+      instance.fontSize(10)
+      instance.fontWeight(FontWeight.Lighter)
+      instance.fontStyle(FontStyle.Italic)
+      instance.textShadow({radius: 3, offsetX: 3})
+    }
+  }
+}
 
 @Entry
 @Component
 struct NavigationExample {
-  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  private navPathStack: NavPathStack = new NavPathStack();
   // Assign an initial padding at the start of the title bar.
   @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
   // Assign an initial padding at the end of the title bar.
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
-  @State menuItems: Array<NavigationMenuItem> = [
-    {
-      value: 'menuItem1',
-      icon: 'resources/base/media/ic_public_ok.svg', // Icon resource path.
-      action: () => {
-      }
-    }
-  ]
+  // Main title attribute modifier.
+  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  // Subtitle attribute modifier.
+  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State applyModifier: boolean = false;
+  @State useStyle1: boolean = true;
 
   @Builder
   myRouter(name: string, param?: Object) {
@@ -3391,40 +3437,69 @@ struct NavigationExample {
     Navigation(this.navPathStack) {
       Column() {
         // Switch between padding values for the title bar.
-        Button('Apply 16 vp Padding')
+        Button('apply padding 32vp')
           .onClick(() => {
-            this.paddingStart = LengthMetrics.vp(16);
-            this.paddingEnd = LengthMetrics.vp(16);
+            this.paddingStart = LengthMetrics.vp(32);
+            this.paddingEnd = LengthMetrics.vp(32);
           })
-          .margin({ top: 5 })
-
-        Button('Apply 24 vp Padding')
+          .margin({top: 70})
+          .width(180)
+        Button('apply padding 20vp')
           .onClick(() => {
-            this.paddingStart = LengthMetrics.vp(24);
-            this.paddingEnd = LengthMetrics.vp(24);
+            this.paddingStart = LengthMetrics.vp(20);
+            this.paddingEnd = LengthMetrics.vp(20);
           })
-          .margin({ top: 5 })
-
-        Button('Go')
+          .margin({top: 40})
+          .width(180)
+        Button('pushPage')
           .onClick(() => {
-            this.navPathStack.pushPathByName('NavDestinationExample', null);
+            this.navPathStack.pushPath({name: 'NavDestinationExample'})
           })
-          .margin({ top: 5 })
+          .margin({top: 40})
+          .width(180)
+        Row() {
+          Text(`apply Modifier`)
+          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.applyModifier = isOn;
+          })
+        }
+        .padding({ top: 95, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
+        Row() {
+          Text(`use Style1`)
+          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.mainTitleModifier.useStyle1 = isOn;
+            this.subTitleModifier.useStyle1 = isOn;
+            this.useStyle1 = isOn;
+          })
+        }
+        .padding({ top: 40, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
       }
+      .width('100%')
+      .height('100%')
     }
-    .titleMode(NavigationTitleMode.Mini)
-    .title('Level-1 page', {
-      paddingStart: this.paddingStart,
-      paddingEnd: this.paddingEnd,
-    })
-    .menus(this.menuItems)
+    .titleMode(NavigationTitleMode.Full)
+    .title(
+      {main: "Title", sub: "subTitle"},
+      this.applyModifier ?
+        {
+          paddingStart: this.paddingStart,
+          paddingEnd: this.paddingEnd,
+          mainTitleModifier: this.mainTitleModifier,
+          subTitleModifier: this.subTitleModifier,
+        } : {
+          paddingStart: this.paddingStart,
+          paddingEnd: this.paddingEnd
+        })
     .navDestination(this.myRouter)
   }
 }
 
 @Component
 export struct NavDestinationExample {
-  @Consume('navPathStack') navPathStack: NavPathStack;
   @State menuItems: Array<NavigationMenuItem> = [
     {
       value: 'menuItem1',
@@ -3435,37 +3510,70 @@ export struct NavDestinationExample {
   ]
   @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+  // Main title attribute modifier.
+  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  // Subtitle attribute modifier.
+  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State applyModifier: boolean = false;
+  @State useStyle1: boolean = true;
 
   build() {
     NavDestination() {
-      Row() {
-        Column() {
-          // Switch between padding values for the title bar.
-          Button('Apply 32 vp Padding')
-            .onClick(() => {
-              this.paddingStart = LengthMetrics.vp(32);
-              this.paddingEnd = LengthMetrics.vp(32);
-            })
-            .margin({ top: 5 })
-
-          Button('Apply 20 vp Padding')
-            .onClick(() => {
-              this.paddingStart = LengthMetrics.vp(20);
-              this.paddingEnd = LengthMetrics.vp(20);
-            })
-            .margin({ top: 5 })
+      Column() {
+        // Switch between padding values for the title bar.
+        Button('apply padding 32vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(32);
+            this.paddingEnd = LengthMetrics.vp(32);
+          })
+          .margin({top: 150})
+          .width(180)
+        Button('apply padding 20vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(20);
+            this.paddingEnd = LengthMetrics.vp(20);
+          })
+          .margin({top: 40})
+          .width(180)
+        Row() {
+          Text(`apply Modifier`)
+          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.applyModifier = isOn;
+          })
         }
-        .width('100%')
+        .padding({ top: 95, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
+        Row() {
+          Text(`use Style1`)
+          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+            this.mainTitleModifier.useStyle1 = isOn;
+            this.subTitleModifier.useStyle1 = isOn;
+            this.useStyle1 = isOn;
+          })
+        }
+        .padding({ top: 40, left: 5, right: 5 })
+        .width(180)
+        .justifyContent(FlexAlign.SpaceBetween)
       }
-      .height('100%')
+      .width('100%')
+      .height('90%')
     }
     .hideTitleBar(false)
-    .title('NavDestination title', {
-      paddingStart: this.paddingStart,
-      paddingEnd: this.paddingEnd,
-    })
+    .title(
+      {main: "Title", sub: "subTitle"},
+      this.applyModifier ?
+        {
+          paddingStart: this.paddingStart,
+          paddingEnd: this.paddingEnd,
+          mainTitleModifier: this.mainTitleModifier,
+          subTitleModifier: this.subTitleModifier,
+        } : {
+        paddingStart: this.paddingStart,
+        paddingEnd: this.paddingEnd
+      })
     .menus(this.menuItems)
   }
 }
 ```
-![titlebarPaddingDemo.gif](figures/titlebarPaddingDemo.gif)
+![titlebarPaddingAndModifier.gif](figures/titlebarPaddingAndModifier.gif)

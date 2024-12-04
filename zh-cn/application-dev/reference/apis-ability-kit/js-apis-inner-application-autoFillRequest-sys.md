@@ -388,7 +388,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 
   onUpdateRequest(request: autoFillManager.UpdateRequest): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onUpdateRequest');
-    console.log("get fill request viewData: ", JSON.stringify(request.viewData));
+    console.log(`get fill request viewData: ${JSON.stringify(request.viewData)}.`);
     let storage = LocalStorage.getShared();
     let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
@@ -411,8 +411,8 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
   onFillRequest(session: UIExtensionContentSession, request: autoFillManager.FillRequest, callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     hilog.info(0x0000, 'testTag', 'Fill RequestCallback: %{public}s ', JSON.stringify(callback));
-    console.log('testTag', "Get fill request viewData: ", JSON.stringify(request.viewData));
-    console.log('testTag', "Get fill request type: ", JSON.stringify(request.type));
+    console.log(`testTag. Get fill request viewData: ${JSON.stringify(request.viewData)}.`);
+    console.log(`testTag. Get fill request type: ${JSON.stringify(request.type)}.`);
 
     try {
       let localStorageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData | autoFillManager.AutoFillType> = {
@@ -422,7 +422,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
         'autoFillType': request.type
       }
       let storage_fill = new LocalStorage(localStorageData);
-      console.info('testTag', 'session: ', session);
+      console.info(`testTag. Session: ${JSON.stringify(session)}.`);
       let size: autoFillManager.PopupSize = {
         width: 400,
         height: 200

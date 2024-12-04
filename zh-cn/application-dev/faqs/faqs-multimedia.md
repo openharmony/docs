@@ -229,7 +229,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 **参考资料**
 
 1. [ohaudio](../reference/apis-audio-kit/_o_h_audio.md)
-2. [Audio](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+2. [Audio](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Native/Audio)
 
 ## 如何实现实时视频流传输？如何实现直播场景？(API 10)
 
@@ -250,7 +250,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **参考资料**
 
-1. [长时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+1. [长时任务](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/TaskManagement/ContinuousTask)
 2. [应用接入AVSession场景介绍](../media/avsession/avsession-access-scene.md)
 
 ## 三方应用为什么无法创建相册？(API 10)

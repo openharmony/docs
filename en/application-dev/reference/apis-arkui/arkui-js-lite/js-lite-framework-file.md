@@ -66,7 +66,7 @@ Application resources can be accessed via an absolute or relative path. In this 
 
 ## Storage Directory
 
-Since API version 5, the [\<image>](js-lite-components-basic-image.md) component supports access to images in the private directory of an application.
+Since API version 5, the [Image](js-lite-components-basic-image.md) component supports access to images in the private directory of an application.
 
 | Directory Type  | Prefix           | Access Visibility | Description                         |
 | ------ | --------------- | ------ | --------------------------- |

@@ -24,7 +24,7 @@ static setSystemLanguage(language: string): void
 
 Sets the system language. Currently, this API does not support real-time updating of the system language.
 
-To listen for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEvent-locale.md#common_event_locale_changed11) events after the system language is set, you need to add an [event subscriber](..//apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1).
+To listen for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed) events after the system language is set, you need to add an [event subscriber](../apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1).
 
 **System API**: This is a system API.
 

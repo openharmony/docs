@@ -7,11 +7,11 @@
 >
 >  - The text content must be written in the content area. The **tspan** sub-element label can be nested to segment the text content. The **textPath** sub-element label can be nested to draw the text content based on the specified path.
 >
->  - **\<text>** can be nested only by the parent element label **svg**.
+>  - **Text** can be nested only by the parent element label **svg**.
 >
 >  - Only the default font **sans-serif** is supported.
 
-The **\<text>** component is used to display a piece of textual information.
+The **Text** component is used to display a piece of textual information.
 
 ## Required Permissions
 

@@ -10,7 +10,7 @@ The system provides a variety of APIs for you to develop audio recording applica
 
 - [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md): provides a set of native APIs for audio input. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
-In addition to the preceding classes, you can also use Media Kit to implement audio playback.
+In addition to the preceding classes, you can also use **AVRecorder** in Media Kit to implement audio recording.
 
 - [AVRecorder](../media/using-avrecorder-for-recording.md): provides ArkTS and JS APIs to implement audio recording. It also supports audio input, audio encoding, and media encapsulation. You can directly call device hardware, such as microphone, for recording and generate M4A audio files.
 

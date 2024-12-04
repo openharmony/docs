@@ -26,7 +26,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **Example**
 
@@ -84,7 +84,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **Example**
 
@@ -117,7 +117,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **Example**
 

@@ -1,4 +1,4 @@
-# Localization Kit API Reference
+# Localization Kit
 
 - ArkTS API
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)

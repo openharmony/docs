@@ -1,16 +1,22 @@
 # Using HiCollie (C/C++)
 
-HiCollie provides APIs for detecting service thread stuck and jank events and reporting service thread stuck events.
+HiCollie provides APIs for detecting service thread stuck and jank events and reporting stuck events.
 
 ## Available APIs
 | API                         | Description                             |
 | ------------------------------- | --------------------------------- |
 | OH_HiCollie_Init_StuckDetection | Registers a callback to periodically detect service thread stuck events.           |
-| OH_HiCollie_Init_JankDetection | Registers a callback to detect service thread jank events. To monitor service thread jank events, you can implement two callbacks as instrumentation functions, placing them before and after the service thread processes the event.                  |
-| OH_HiCollie_Report | Reports service thread stuck events and generates timeout logs to help locate application timeout events. This API is used together with **OH_HiCollie_Init_StuckDetection()**, which initializes the stuck event detection at first, and then **OH_HiCollie_Report()** reports the stuck event when it occurs.   |
+| OH_HiCollie_Init_JankDetection | Registers a callback to detect service thread jank events. To monitor thread jank events, you should implement two callbacks as instrumentation functions, placing them before and after the service thread processing event.                  |
+| OH_HiCollie_Report | Reports service thread stuck events and generates timeout logs to help locate application timeout events. This API is used together with **OH_HiCollie_Init_StuckDetection()**, which initializes the stuck event detection at first, and then **OH_HiCollie_Report()** reports the stuck event when it occurs.|
+
+> **NOTE**
+>
+> The service thread stuck faultlog starts with **appfreeze-** and is generated in **Device/data/log/faultlog/faultlogger/**. The log files are named in the format of **appfreeze-application bundle name-application UID-time (seconds)**. For details, see [appfreeze Log Analysis](./appfreeze-guidelines.md#appfreeze-log-analysis).
+>
+> For details about the specifications of service thread jank logs, see [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-specifications).
 
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md).
+For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md).
 
 ## How to Develop
 The following describes how to add a button in the application and click the button to call the HiCollie APIs.
@@ -44,20 +50,20 @@ The following describes how to add a button in the application and click the but
 3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG** and the test method.
 
    ```c++
-    # include "napi/native_api.h"
-    # include "hilog/log.h"
-    # include "hicollie/hicollie.h"
-    # include <thread>
-    # include <string>
-    # include <unistd.h>
-    # include <atomic>
+    #include "napi/native_api.h"
+    #include "hilog/log.h"
+    #include "hicollie/hicollie.h"
+    #include <thread>
+    #include <string>
+    #include <unistd.h>
+    #include <atomic>
     
-    # undef LOG_TAG
-    # define LOG_TAG "testTag"
+    #undef LOG_TAG
+    #define LOG_TAG "testTag"
 
     static OH_HiCollie_BeginFunc beginFunc_; // Define the callback object used before the processing event.
     static OH_HiCollie_EndFunc endFunc_; // Define the callback object used after the processing event.
-    HiCollie_DetectionParam param {.sampleStackTriggerTime = 150, .reserved = 0}; // Define the struct.
+    HiCollie_DetectionParam param {.sampleStackTriggerTime = 150, .reserved = 0}; // Define a struct.
     int64_t lastWatchTime = 0; // Record the last detection time.
     const int64_t CHECK_INTERNAL_TIME = 3000; // Set the detection interval.
     std::shared_ptr<std::atomic<bool>> isReport = std::make_shared<std::atomic<bool>>(false); // Set the flag for reporting stuck events.
@@ -85,7 +91,7 @@ The following describes how to add a button in the application and click the but
         int count = 0;
         while (count < 2) {
             beginFunc_("TestBegin"); // Set the callback used to record the start time of the processing event.
-            usleep(350 * 1000); // Simulate a thread stuck event by putting the thread to sleep for 350 ms.
+            usleep(350 * 1000); // Simulate a thread jank event by putting the thread to sleep for 350 ms.
             endFunc_("TestEnd"); // Set the callback used to record the end time of the processing event.
             count++;
         }
@@ -117,7 +123,7 @@ The following describes how to add a button in the application and click the but
         if (needReport && ReportEvent()) {
           bool temp = isReport->load();
           int reportResult = OH_HiCollie_Report(&temp);
-          OH_LOG_INFO(LogType::LOG_APP, "OH_HiCollie_Report: %{public}d", reportResult); // Return 0 if the function is initialized successfully.
+          OH_LOG_INFO(LogType::LOG_APP, "OH_HiCollie_Report: %{public}d", reportResult); // Display the success result 0.
           OH_LOG_INFO(LogType::LOG_APP, "OH_HiCollie_Report isReport: %{public}d", temp);
           needReport = false;
         }
@@ -201,11 +207,8 @@ The following describes how to add a button in the application and click the but
 
 7. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
 
-    (1) Click the **testHiCollieJankNdk** button after the thread processed the event for 10s.
-    The thread timeout information of the sampling stack obtained through **OH_HiCollie_Init_JankDetection()** is displayed.
-    The path of the sampling stack: **/data/app/el2/100/log/application bundle name/watchdog/BUSSINESS_THREAD_JANK_XXX.txt.**
-
-    (2) Click the **testHiCollieStuckNdk** button.
-    The callback used for detecting stuck event is initialized through **OH_HiCollie_Init_StuckDetection()**. You can define the detection function for stuck events as required.
-
-<!--no_check-->
+    (1) Wait for 10s and click the **testHiCollieJankNdk** button. (The jank event detection is not performed within 10s after the thread starts.)
+      The thread timeout information of the sampling stack obtained through **OH_HiCollie_Init_JankDetection()** is displayed in **/data/app/el2/100/log/application bundle name/watchdog/BUSSINESS_THREAD_JANK_XXX.txt.**
+    
+(2) Click the **testHiCollieStuckNdk** button.
+      The callback used for detecting stuck events is initialized through **OH_HiCollie_Init_StuckDetection()**. You can define the detection function for stuck events as required.

@@ -44,6 +44,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                              |
 
 **Example**
@@ -83,6 +84,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                              |
 | 22700107 | System error.                            |
 
@@ -124,6 +126,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -177,6 +180,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -223,6 +227,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -276,6 +281,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -325,6 +331,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -358,6 +365,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -391,6 +399,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -434,6 +443,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
@@ -481,6 +491,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
@@ -529,6 +540,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
 | 22700102 | Invalid parameter.                            |
@@ -573,6 +585,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                        |
 | 22700107 | System error.                            |
 
@@ -622,6 +635,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
 | 22700102 | Invalid parameter.                        |
@@ -671,6 +685,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700107 | System error.                            |
 
 **Example**
@@ -941,6 +956,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -983,6 +999,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1024,6 +1041,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
@@ -1077,6 +1095,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
@@ -1124,6 +1143,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **Example**
@@ -1173,6 +1193,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **Example**
@@ -1212,6 +1233,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1252,6 +1274,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1290,6 +1313,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700104 | Failed to commit the enrollment.                           |
 
 **Example**
@@ -1331,6 +1355,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700104 | Failed to commit the enrollment.                           |
 
 **Example**
@@ -1371,6 +1396,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1417,6 +1443,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1462,6 +1489,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1510,6 +1538,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1552,6 +1581,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1601,6 +1631,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1642,6 +1673,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1691,6 +1723,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1738,6 +1771,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700107 | System error.                            |
 
@@ -1780,6 +1814,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1820,6 +1855,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1860,6 +1896,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1901,6 +1938,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1941,6 +1979,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1994,6 +2033,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2039,6 +2079,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2087,6 +2128,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2129,6 +2171,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2178,6 +2221,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2219,6 +2263,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2268,6 +2313,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2309,6 +2355,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                          |
 | 22700107 | System error.                          |
 
@@ -2356,6 +2403,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                         |
 | 22700105 | Start capturer failed.                          |
@@ -2398,6 +2446,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                          |
 | 22700106 | Read failed.                        |
 | 22700107 | System error.                          |
@@ -2440,6 +2489,7 @@ For details about the following error codes, see [Universal Error Codes](../erro
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700107 | System error.                          |
 
 **Example**
@@ -2479,6 +2529,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -2519,6 +2570,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -2558,6 +2610,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -2595,6 +2648,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 

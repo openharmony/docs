@@ -14,30 +14,33 @@
       - [Creating a List (List)](arkts-layout-development-create-list.md)
       - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)
-      - [Tabs](arkts-navigation-tabs.md)
+      - [Using Tabs (Tabs)](arkts-navigation-tabs.md)
   - Adding a Component
     - Adding a Common Component
       - [Button](arkts-common-components-button.md)
       - [Radio Button (Radio)](arkts-common-components-radio-button.md)
       - [Toggle](arkts-common-components-switch.md)
       - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
-      - [Text Display (Text/Span)](arkts-common-components-text-display.md)
-      - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
-      - [Rich Text (RichEditor)](arkts-common-components-richeditor.md)
       - [Image Display](arkts-graphics-display.md)
-      - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [Video Playback (Video)](arkts-common-components-video-player.md)
-      - [Symbol Glyph (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
       - [Custom Rendering (XComponent)](napi-xcomponent-guidelines.md)
     - Adding a Popup and Menu
       - [Popup](arkts-popup-and-menu-components-popup.md)
       - [Menu](arkts-popup-and-menu-components-menu.md)
-    - Using Text
-      - [Styled String (StyledString/MutableStyledString)](arkts-styled-string.md)
   - Setting Component Navigation and Page Routing
     - [Component Navigation (Navigation) (Recommended)](arkts-navigation-navigation.md)
     - [Page Routing (@ohos.router) (Not Recommended)](arkts-routing.md)
     - [Transition from Router to Navigation](arkts-router-to-navigation.md)
+  - Using Text
+    - [Text Display (Text/Span)](arkts-common-components-text-display.md)
+    - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
+    - [Rich Text (RichEditor)](arkts-common-components-richeditor.md)
+    - [Symbol Glyph (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
+    - [Styled String (StyledString/MutableStyledString)](arkts-styled-string.md)
+  - Using Dialog Boxes
+    - [Modal Dialog Box (ModelDialog)](arkts-modal-dialog.md)
+    - [Global Custom Dialog Box Independent of UI Components (Recommended)](arkts-uicontext-custom-dialog.md)
+    - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
   - Using Graphics
     - [Drawing Geometric Shapes (Shape)](arkts-geometric-shape-drawing.md)
     - [Drawing Custom Graphics on the Canvas (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -53,7 +56,7 @@
       - [Navigation Transition](arkts-navigation-transition.md)
       - [Modal Transition](arkts-modal-transition.md)
       - [Shared Element Transition](arkts-shared-element-transition.md)
-      - [Screen Rotation Animation Enhancement](arkts-rotation-transition-animation.md)
+      - [Screen Rotation Animation Enhancement](arkts-rotation-transition-animation.md)   
       - [Page Transition Animation (Not Recommended)](arkts-page-transition-animation.md)
     - [Particle Animation](arkts-particle-animation.md)
     - [Component Animation](arkts-component-animation.md)
@@ -96,6 +99,10 @@
   - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)
   - Setting the Theme
     - [Setting Theme Skinning](theme_skinning.md)
+  - [Using the UI Context API for UI Operations (UIContext)](arkts-global-interface.md)
+  <!--Del-->
+    - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](arkts-ui-extension-components.md)
+  <!--DelEnd-->
   - Using NDK APIs to Build UIs
     - [NDK API Overview](ndk-build-ui-overview.md)
     - [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md)
@@ -107,10 +114,7 @@
     - [Building Dialog Boxes](ndk-build-pop-up-window.md)
     - [Building Custom Components](ndk-build-custom-components.md)
     - [Embedding ArkTS Components](ndk-embed-arkts-components.md)
-  - Launching Pages Across Processes
-    <!--Del-->
-    - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](arkts-ui-extension-components.md)
-    <!--DelEnd-->
+    - [Integrating Accessibility Through XComponent](ndk-accessibility-xcomponent.md)
 - UI Development with JavaScript-compatible Web-like Development Paradigm
   - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui-js-overview.md)
   - Framework Overview
@@ -136,7 +140,7 @@
     - [Developing Animations](ui-js-building-ui-animation.md)
     - [Defining Gesture Events](ui-js-building-ui-event.md)
     - [Defining Page Routes](ui-js-building-ui-routes.md)
-  - Common Component Development Guidelines
+  - Common Component Development
     - Container Component Development
       - [List Development](ui-js-components-list.md)
       - [Dialog Development](ui-js-components-dialog.md)
@@ -171,12 +175,12 @@
       - [Graph Drawing](ui-js-components-svg-graphics.md)
       - [Path Drawing](ui-js-components-svg-path.md)
       - [Text Drawing](ui-js-components-svg-text.md)
-  - Animation Development Guidelines
+  - Animation Development
     - CSS Animation
-      - [Defining Attribute Style Animations](ui-js-animate-attribute-style.md)
-      - [Defining Animations with the transform Attribute](ui-js-animate-transform.md)
-      - [Defining Animations with the background-position Attribute](ui-js-animate-background-position-style.md)
-      - [Defining Animations for SVG Components](ui-js-animate-svg.md)
+      - [Attribute Style Animation](ui-js-animate-attribute-style.md)
+      - [Animation with the transform Attribute](ui-js-animate-transform.md)
+      - [Animation with the background-position Attribute](ui-js-animate-background-position-style.md)
+      - [Animation for SVG Components](ui-js-animate-svg.md)
     - JavaScript Animation
       - [Component Animation](ui-js-animate-component.md)
       - Interpolator Animation
@@ -185,3 +189,4 @@
   - [Custom Components](ui-js-custom-components.md)
   - [WebGL](../webgl/Readme-EN.md)
 - [Window Manager](../windowmanager/Readme-EN.md)
+- [Display Management](../displaymanager/Readme-EN.md)

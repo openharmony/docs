@@ -429,7 +429,7 @@ export let contactsGroups: object[] = [
     title: 'A',
     contacts: [
       new Contact('Alice', $r('app.media.iconA')),
-      new Contact ('Ann', $r ('app.media.iconB')),
+      new Contact('Ann', $r('app.media.iconB')),
       new Contact('Angela', $r('app.media.iconC')),
     ],
     key: util.generateRandomUUID(true)
@@ -437,8 +437,8 @@ export let contactsGroups: object[] = [
   {
     title: 'B',
     contacts: [
-      new Contact ('Ben', $r ('app.media.iconD')),
-      new Contact ('Bryan', $r ('app.media.iconE')),
+      new Contact('Ben', $r('app.media.iconD')),
+      new Contact('Bryan', $r('app.media.iconE')),
     ],
     key: util.generateRandomUUID(true)
   } as ContactsGroup,
@@ -458,10 +458,10 @@ struct ContactsList {
   }
   build() {
     List() {
-      // Render the <ListItemGroup> components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
+      // Render the ListItemGroup components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
       ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
-          // Render <ListItem> components cyclically.
+          // Render ListItem components cyclically.
           if (itemGroup.contacts) {
             ForEach(itemGroup.contacts, (item: Contact) => {
               ListItem() {
@@ -499,7 +499,7 @@ Then, use **listScroller** to initialize the **scroller** parameter to bind it w
 
 ```ts
 Stack({ alignContent: Alignment.Bottom }) {
-  // use listScroller to initialize the scroller parameter to bind it with the <List> component.
+  // Use listScroller to initialize the scroller parameter to bind it with the List component.
   List({ space: 20, scroller: this.listScroller }) {
     // ...
   }
@@ -567,7 +567,7 @@ Swipe menus are common in many applications. For example, a messaging applicatio
 
 ![en-us_image_0000001563060773](figures/en-us_image_0000001563060773.gif)
 
-Swiping left or right on a list item can be implemented through the [swipeAction](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#attributes) attribute. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
+Swiping left or right on a list item can be implemented through the [swipeAction](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeaction9) attribute. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
 
 In the example of the message list, the **end** parameter is set to a custom delete button. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
 
@@ -643,6 +643,10 @@ The following describes the implementation of the pull-and-refresh feature:
 2. Listen for the finger movement event, and record and calculate the difference between the value of the current position and the initial value. If the difference is greater than 0, the finger moves downward. Set the maximum value for the movement.
 
 3. Listen for the finger lift event. If the movement reaches the maximum value, trigger data loading and display the refresh view. After the loading is complete, hide the view.
+
+> **NOTE**
+>
+> To implement the pull-down-to-refresh feature, you are advised to use the [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) component.
 
 <!--RP1--><!--RP1End-->
 

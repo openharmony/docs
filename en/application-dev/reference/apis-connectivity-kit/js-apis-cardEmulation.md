@@ -151,11 +151,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 ```js
 import { cardEmulation } from '@kit.ConnectivityKit';
 
-let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
-if (!isHceSupported) {
-    console.log('this device is not supported for HCE, ignore it.');
-}
-
 let hasHceCap: boolean = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');

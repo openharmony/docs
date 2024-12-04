@@ -2158,7 +2158,7 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event type. The value is 'dataChange', which indicates data changes. |
 | type | [SubscribeType](#subscribetype8) | Yes | Subscription type to register. |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes | Observer that listens for the data changes in the RDB store. **Array<string>** indicates the ID of the peer device whose data in the database is changed. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes | Observer that listens for the data changes in the RDB store. **Array\<string>** indicates the ID of the peer device whose data in the database is changed. |
 
 **Example**
 
@@ -2190,7 +2190,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event type. The value is 'dataChange', which indicates data changes. |
 | type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to unregister.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer to unregister. **Array<string>** indicates the ID of the peer device whose data in the database is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer to unregister. **Array\<string>** indicates the ID of the peer device whose data in the database is changed.|
 
 **Example**
 

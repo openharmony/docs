@@ -12,7 +12,7 @@ The **batteryInfo** module provides APIs for querying the charger type, battery 
 ## Modules to Import
 
 ```js
-import batteryInfo from '@ohos.batteryInfo';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## batteryInfo.setBatteryConfig<sup>11+</sup>
@@ -29,8 +29,8 @@ Sets the battery configuration based on the specified scenario.
 
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | ------------ |
-| sceneName  | string | Yes  | Scenario name.|
-| sceneValue | string | Yes  | Scenario value.|
+| sceneName  | string | Yes  | Scenario name. The value must be a string.|
+| sceneValue | string | Yes  | Scenario value. The value must be a string.|
 
 **Return value**
 
@@ -44,12 +44,14 @@ For details about the error codes, see [Battery Information Error Codes](errorco
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let sceneValue = '0';
@@ -72,7 +74,7 @@ Obtains the battery configuration based on the specified scenario.
 
 | Name   | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
-| sceneName | string | Yes  | Scenario name.|
+| sceneName | string | Yes  | Scenario name. The value must be a string.|
 
 **Return value**
 
@@ -86,12 +88,14 @@ For details about the error codes, see [Battery Information Error Codes](errorco
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.getBatteryConfig(sceneName);
@@ -113,7 +117,7 @@ Checks whether the battery configuration is enabled based on the specified scena
 
 | Name   | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
-| sceneName | string | Yes  | Scenario name.|
+| sceneName | string | Yes  | Scenario name. The value must be a string.|
 
 **Return value**
 
@@ -127,12 +131,14 @@ For details about the error codes, see [Battery Information Error Codes](errorco
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.isBatteryConfigSupported(sceneName);
@@ -140,7 +146,7 @@ For details about the error codes, see [Battery Information Error Codes](errorco
   console.info("The result is: " + result);
   ```
 
-## BatteryConfig
+## Attributes
 
 Describes battery information.
 
@@ -150,5 +156,18 @@ Describes battery information.
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | estimatedRemainingChargeTime<sup>9+</sup> | number                                         | Yes  | No  | Estimated time for fully charging the current device, in unit of milliseconds. This is a system API.         |
 | totalEnergy<sup>9+</sup>                  | number                                         | Yes  | No  | Total battery capacity of the device, in unit of mAh. This is a system API.  |
-| nowCurrent<sup>9+</sup>                   | number                                         | Yes  | No  | Battery current of the device, in unit of mA. This is a system API.      |
 | remainingEnergy<sup>9+</sup>              | number                                         | Yes  | No  | Remaining battery capacity of the device, in unit of mAh. This is a system API.|
+
+**Example**
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let estimatedRemainingChargeTimeInfo: number = batteryInfo.estimatedRemainingChargeTime;
+  console.info("The estimatedRemainingChargeTimeInfo is: " + estimatedRemainingChargeTimeInfo);
+
+  let totalEnergyInfo: number = batteryInfo.totalEnergy;
+  console.info("The totalEnergyInfo is: " + totalEnergyInfo);
+
+  let remainingEnergyInfo: number = batteryInfo.remainingEnergy;
+  console.info("The remainingEnergyInfo is: " + remainingEnergyInfo);
+  ```

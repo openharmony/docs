@@ -4,13 +4,13 @@
 >
 >This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<web>** component displays web page content.
+The **Web** component displays web page content.
 
 ## Required Permissions
 ohos.permission.INTERNET, required only for accessing online web pages.
 
 ## Constraints
-The **\<web>** component does not follow the transition animation. A page allows only one **\<web>** component.
+The **Web** component does not follow the transition animation. A page allows only one **Web** component.
 
 ## Child Components
 Not supported

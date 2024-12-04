@@ -37,7 +37,7 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 | color       | &lt;color&gt;              | \#e5000000 | No   | Font color of the scrolling text.                          |
 | font-size   | &lt;length&gt;             | 37.5       | No   | Font size of the scrolling text.                          |
 | allow-scale | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| font-weight | number \| string | normal     | No   | Font weight of the scrolling text. For details, see **font-weight** of the **[\<text> component](js-components-basic-text.md#styles)**.|
+| font-weight | number \| string | normal     | No   | Font weight of the scrolling text. For details, see **font-weight** of the **[Text component](js-components-basic-text.md#styles)**.|
 | font-family | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 

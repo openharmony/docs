@@ -32,7 +32,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 4. Create a video output stream.
 
-   Based on the surface ID passed in, obtain the video output streams supported by the current device from **videoProfiles** in the **CameraOutputCapability** class. Then, define video recording parameters and use **OH_CameraManager_CreateVideoOutput()** to create a video output stream.
+   Based on the surface ID passed in, obtain the video output streams supported by the current device from **videoProfiles** in the **CameraOutputCapability** class. Then, define video recording parameters and use [OH_CameraManager_CreateVideoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createvideooutput) to create a video output stream.
 
    > **NOTE**
    >
@@ -76,7 +76,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 5. Start video recording.
 
-   Call **OH_VideoOutput_Start()** of the **VideoOutput** instance to start the video output stream.
+   Call [OH_VideoOutput_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_start) of the VideoOutput instance to start the video output stream.
 
      ```c++
       // Start the video output stream.
@@ -88,7 +88,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 6. Stop video recording.
 
-   Call **OH_VideoOutput_Stop()** of the **VideoOutput** instance to stop the video output stream.
+   Call [OH_VideoOutput_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_stop) of the VideoOutput instance to stop the video output stream.
 
    ```c++
     // Stop the video output stream.

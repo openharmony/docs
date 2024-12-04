@@ -23,12 +23,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [arkweb_error_code.h](arkweb__error__code_8h.md) | 声明ArkWeb NDK接口异常错误码。  <br> **库：** libohweb.so| 
-| [arkweb_interface.h](arkweb__interface_8h.md) | 提供ArkWeb在Native侧获取API的接口，及基础Native API类型。  <br> **库：** libohweb.so| 
-| [arkweb_net_error_list.h](arkweb__net__error__list_8h.md) | 声明ArkWeb网络协议栈错误码。  <br> **库：** libohweb.so| 
-| [arkweb_scheme_handler.h](arkweb__scheme__handler_8h.md) | 声明用于拦截来自ArkWeb的请求的API。  <br> **库：** libohweb.so| 
-| [arkweb_type.h](arkweb__type_8h.md) | 提供ArkWeb在Native侧的公共类型定义。  <br> **库：** libohweb.so| 
-| [native_interface_arkweb.h](native__interface__arkweb_8h.md) | 声明API接口供开发者使用注入对象和执行JavaScript代码等功能。  <br> **库：** libohweb.so| 
+| [arkweb_error_code.h](arkweb__error__code_8h.md) | 声明ArkWeb NDK接口异常错误码。  | 
+| [arkweb_interface.h](arkweb__interface_8h.md) | 提供ArkWeb在Native侧获取API的接口，及基础Native API类型。  | 
+| [arkweb_net_error_list.h](arkweb__net__error__list_8h.md) | 声明ArkWeb网络协议栈错误码。  | 
+| [arkweb_scheme_handler.h](arkweb__scheme__handler_8h.md) | 声明用于拦截来自ArkWeb的请求的API。  | 
+| [arkweb_type.h](arkweb__type_8h.md) | 提供ArkWeb在Native侧的公共类型定义。  | 
+| [native_interface_arkweb.h](native__interface__arkweb_8h.md) | 声明API接口供开发者使用注入对象和执行JavaScript代码等功能。  | 
 
 
 ### 结构体

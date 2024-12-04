@@ -4,7 +4,7 @@ This topic walks you through on how to create a **TrustAnchor** object array fro
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
 
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';

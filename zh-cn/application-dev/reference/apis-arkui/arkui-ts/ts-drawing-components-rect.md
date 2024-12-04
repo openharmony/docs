@@ -26,7 +26,7 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | {width?: string \| number,height?: string \| number,radius?: string \| number \| Array&lt;string \| number&gt;} \| {width?: string \| number,height?: string \| number,radiusWidth?: string \| number,radiusHeight?: string \| number} | 否 | width：宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>height: 高度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>radius：圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>默认值：0<br/>异常值按照默认值处理。<br/>radiusWidth：圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>radiusHeight：圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。|
+| value | {width?: string \| number,height?: string \| number,radius?: string \| number \| Array&lt;string \| number&gt;} \| {width?: string \| number,height?: string \| number,radiusWidth?: string \| number,radiusHeight?: string \| number} | 否 | width：宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>height: 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>radius：圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>radiusWidth：圆角宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。<br/>radiusHeight：圆角高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。|
 
 ## 属性
 
@@ -48,7 +48,7 @@ radiusWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的宽度。<br/>默认值：0<br/>默认单位：vp |
 
 ### radiusHeight
 
@@ -66,7 +66,7 @@ radiusHeight(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                       |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 圆角的高度。<br/>默认值：0<br/>默认单位：vp |
 
 ### radius
 
@@ -84,7 +84,7 @@ radius(value: number | string | Array&lt;string&nbsp;|&nbsp;number&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                         |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 是   | 圆角半径大小。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 是   | 圆角半径大小。<br/>默认值：0<br/>默认单位：vp |
 
 ### fill
 
@@ -156,7 +156,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -174,7 +174,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -266,7 +266,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -287,7 +287,9 @@ antiAlias(value: boolean)
 | value  | boolean | 是   | 是否开启抗锯齿效果。<br/>默认值：true |
 
 ## 示例
-### 示例1
+### 示例1（组件属性绘制）
+
+使用fill、fillOpacity、stroke、radius属性分别绘制矩形的填充颜色、透明度、边框颜色、圆角。
 
 ```ts
 // xxx.ets
@@ -334,7 +336,9 @@ struct RectExample {
 
 ![zh-cn_image_0000001174264386](figures/zh-cn_image_0000001174264386.png)
 
-### 示例2
+### 示例2（绘制渐变色矩形）
+
+使用通用属性linearGradient、clipShape绘制渐变色的矩形。
 
 ```ts
 // xxx.ets
@@ -350,16 +354,16 @@ struct RectExample {
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
-        .clip(new Rect({ width: 100, height: 100, radius: 40 }))
+        .clipShape(new Rect({ width: 100, height: 100, radius: 40 }))
       Rect()
         .width(100)
         .height(100)
-        // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
+          // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
         .fill(Color.Pink)
-        // 设置倒角为40
+          // 设置倒角为40
         .radius(40)
         .stroke(Color.Black)
-        // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
+          // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
         .linearGradient({
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]

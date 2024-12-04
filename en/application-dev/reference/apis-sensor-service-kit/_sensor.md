@@ -148,7 +148,7 @@ typedef struct Sensor_Subscriber Sensor_Subscriber
 ```
 **Description**
 
-Defines a struct the sensor subscriber information.
+Defines a struct for the sensor subscriber information.
 
 **Since**: 11
 
@@ -466,7 +466,7 @@ Subscribe to sensor data. The system will report sensor data to the subscriber a
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
-**Required Permissions**
+**Permission**:
 
 ohos.permission.ACCELEROMETER, ohos.permission.GYROSCOPE, ohos.permission.ACTIVITY_MOTION, or ohos.permission.READ_HEALTH_DATA
 
@@ -493,7 +493,7 @@ Unsubscribes from sensor data. To unsubscribe from data of acceleration sensors,
 
 Returns **SENSOR_SUCCESS** if the operation is successful; returns an error code defined in [Sensor_Result](#sensor_result) otherwise.
 
-**Required Permissions**
+**Permission**:
 
 ohos.permission.ACCELEROMETER, ohos.permission.GYROSCOPE, ohos.permission.ACTIVITY_MOTION, or ohos.permission.READ_HEALTH_DATA
 

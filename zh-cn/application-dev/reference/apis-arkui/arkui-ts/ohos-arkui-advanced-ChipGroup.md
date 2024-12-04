@@ -6,6 +6,12 @@ ChipGroup高级组件，提供操作块群组，用于对文件或者资源内�
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 导入模块
+
+```typescript
+import { ChipSize, ChipGroup } from '@kit.ArkUI'
+```
+
 ## 子组件
 
 无
@@ -31,16 +37,16 @@ ChipGroup({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                            | 必填 | 说明                                                                                     |
-| --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             |
-| items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | 是   | 每个chip特定的属性，参考[ChipGroupItemOptions[]](#chipgroupitemoptions)类型。<br/>为undefined时，ChipGroup默认为空。               |
-| itemStyle       | [ChipItemStyle](#chipitemstyle)                 | 否   | chip的style属性，比如颜色，大小等，参考[ChipItemStyle](#chipitemstyle)类型。<br/>为undefined时，ChipGroup中的Chip式样为默认值。                 |
-| selectedIndexes | Array&lt;number&gt;                             | 否   | 被选中chip的索引。<br/>为undefined时，默认第一个Chip被选中。                                            |
-| multiple        | boolean                                         | 否   | true：支持多个chip被选中；false：只能是单个chip被选中。<br/>默认值：false<br/>为undefined时，multiple走默认值。                     |
-| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | 左右内边距，和chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>为undefined时，chipGroupSpace走默认值。 |
-| chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | chipGroup的上下内边距，以便控制整体高度。参考[ChipGroupPaddingOptions](#chipgrouppaddingoptions)类型。<br/>为undefined时，chipGroupPadding走默认值。 |
-| onChange        | (selectedIndexes: Array&lt;number&gt;) => void  | 否   | chip状态改变时候的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
-| suffix          | ()=>void                                        | 否   | 最右侧的builder，由使用者自定义，使用时候需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
+| 名称            | 类型                                            | 必填 | 装饰器类型 | 说明                                                                                     |
+| --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             | ------------------------------------------------------------                             |
+| items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | 是   | @Require &nbsp;@Prop | 每个chip特定的属性，参考[ChipGroupItemOptions[]](#chipgroupitemoptions)类型。<br/>为undefined时，ChipGroup默认为空。               |
+| itemStyle       | [ChipItemStyle](#chipitemstyle)                 | 否   | @Prop | chip的style属性，比如颜色，大小等，参考[ChipItemStyle](#chipitemstyle)类型。<br/>为undefined时，ChipGroup中的Chip式样为默认值。                 |
+| selectedIndexes | Array&lt;number&gt;                             | 否   | @Prop | 被选中chip的索引。<br/>为undefined时，默认第一个Chip被选中。                                            |
+| multiple        | boolean                                         | 否   | @Prop | true：支持多个chip被选中；false：只能是单个chip被选中。<br/>默认值：false<br/>为undefined时，multiple走默认值。                     |
+| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | @Prop | 左右内边距，和chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>为undefined时，chipGroupSpace走默认值。 |
+| chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | @Prop | chipGroup的上下内边距，以便控制整体高度。参考[ChipGroupPaddingOptions](#chipgrouppaddingoptions)类型。<br/>为undefined时，chipGroupPadding走默认值。 |
+| onChange        | Callback\<Array\<number>>  | 否   | -  | chip状态改变时候的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
+| suffix          | ()=>void                                        | 否   | @BuilderParam | 最右侧的builder，由使用者自定义，使用时候需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
 
 > **说明：**
 >
@@ -128,9 +134,9 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                    | 必填 | 说明                                                              |
-| -------- | ---------------------- | ---- | ----------------------------------------------|
-| items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 自定义builder items。|
+| 名称     | 类型                    | 必填|装饰器类型 | 说明  |
+| -------- | ---------------------- | ---- |-----|----------------------------------------------|
+| items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是  |@Require &nbsp;@Prop | 自定义builder items。|
 
 > **说明：**
 >
@@ -177,7 +183,9 @@ Label定义图标的共通属性。
 
 ## 示例
 
-### 示例1-无suffix
+### 示例1（无最右侧的builder）
+
+该示例实现了无最右侧的builder时效果。
 
 ```typescript
 import { ChipSize, ChipGroup } from '@kit.ArkUI'
@@ -245,7 +253,9 @@ struct Index {
 
 ![](figures/chipGroupDemo1.jpeg)
 
-### 示例2-有suffix
+### 示例2（有最右侧的builder）
+
+该示例通过配置suffix实现最右侧的自定义组件效果。
 
 ```typescript
 import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI'
@@ -335,7 +345,7 @@ struct Index {
 
 ![](figures/chipGroupDemo2.jpeg)
 
-### 示例3
+### 示例3（设置Symbol类型图标）
 该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
 ```typescript
 import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
