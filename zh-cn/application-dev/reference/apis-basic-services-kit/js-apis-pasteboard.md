@@ -2680,6 +2680,81 @@ try {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
 ```
+
+### setAppShareOptions<sup>14+</sup>
+
+setShareOptions(shareOptions: ShareOption): void
+
+应用设置本应用剪贴板数据的可粘贴范围。
+
+**需要权限**：ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| shareOptions | [ShareOption](js-apis-pasteboard.md#shareoption9) | 是 | 可粘贴的范围，参数只允许pasteboard.ShareOption.INAPP。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12900006 | Settings already exist. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+  systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
+  console.info('Set app share options success.');
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error(`Set app share options failed, errorCode: ${error.code}, errorMessage: ${error.message}.`);
+}
+```
+
+### removeAppShareOptions<sup>14+</sup>
+
+removeShareOptions(): void
+
+删除应用全局的可粘贴的范围。
+
+**需要权限**：ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+  systemPasteboard.removeAppShareOptions();
+  console.info('Remove app share options success.');
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error(`Remove app share options failed, errorCode: ${error.code}, errorMessage: ${error.message}.`);
+}
+```
+
 ### Pattern<sup>13+</sup>
 剪贴板支持检测的模式类型。
 
