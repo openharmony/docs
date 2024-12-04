@@ -241,7 +241,7 @@ systemTonePlayer.release().then(() => {
 });
 ```
 
-### setAudioVolumeScale<sup>12+</sup>
+### setAudioVolumeScale<sup>13+</sup>
 
 setAudioVolumeScale(scale: number): void
 
@@ -279,7 +279,7 @@ try {
 }
 ```
 
-### getAudioVolumeScale<sup>12+</sup>
+### getAudioVolumeScale<sup>13+</sup>
 
 getAudioVolumeScale(): number;
 
@@ -316,7 +316,7 @@ try {
 }
 ```
 
-### getSupportedHapticsFeatures<sup>12+</sup>
+### getSupportedHapticsFeatures<sup>13+</sup>
 
 getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHapticsFeature&gt;&gt;
 
@@ -329,9 +329,9 @@ getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHaptic
 **返回值：**
 
 
-| 类型    | 说明                                                                                                                  |
-| ------- | --------------------------------------------------------------------------------------------------------------------- |
-| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12)&gt;&gt; | Promise回调返回当前支持的振动风格。 |
+| 类型                                                                                                                          | 说明                                                                                                                  |
+|-----------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- |
+| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise回调返回当前支持的振动风格。 |
 
 **错误码：**
 
@@ -354,13 +354,13 @@ try {
 }
 ```
 
-### setHapticsFeature<sup>12+</sup>
+### setHapticsFeature<sup>13+</sup>
 
 setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 
 设置播放铃音时的振动风格。
 
-调用本接口前，应该先调用[getSupportedHapticsFeatures](#getsupportedhapticsfeatures12)查询支持的振动风格，如果设置不支持的振动风格，则设置失败。
+调用本接口前，应该先调用[getSupportedHapticsFeatures](#getsupportedhapticsfeatures13)查询支持的振动风格，如果设置不支持的振动风格，则设置失败。
 
 **系统接口：** 该接口为系统接口
 
@@ -368,9 +368,9 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 **参数：**
 
 
-| 参数名         | 类型                                                                                          | 必填 | 说明             |
-| -------------- | --------------------------------------------------------------------------------------------- | ---- | ---------------- |
-| hapticsFeature | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12) | 是   | 振动风格。 |
+| 参数名         | 类型                                                                                              | 必填 | 说明             |
+| -------------- |-------------------------------------------------------------------------------------------------| ---- | ---------------- |
+| hapticsFeature | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 是   | 振动风格。 |
 
 **错误码：**
 
@@ -400,7 +400,7 @@ try {
 }
 ```
 
-### getHapticsFeature<sup>12+</sup>
+### getHapticsFeature<sup>13+</sup>
 
 getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 
@@ -413,9 +413,9 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 **返回值：**
 
 
-| 类型                                                                                          | 说明     |
-| --------------------------------------------------------------------------------------------- | -------- |
-| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12) | 振动风格 |
+| 类型                                                                                              | 说明     |
+|-------------------------------------------------------------------------------------------------| -------- |
+| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格 |
 
 **错误码：**
 

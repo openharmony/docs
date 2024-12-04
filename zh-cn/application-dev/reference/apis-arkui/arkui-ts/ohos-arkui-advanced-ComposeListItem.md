@@ -50,9 +50,9 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | -------- | -------- | -------- | -------- |
 | iconStyle | [IconType](#icontype) | 否 | 左侧元素的图标样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素的图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容。<br/>**文字处理规则：** 只显示一行文字，超出内容以“...”显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容。<br/>**文字处理规则：** 只显示一行文字，超出内容以“...”显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。<br/>**文字处理规则：** 只显示一行文字，超出内容以“...”显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容。<br/>**文字处理规则：** 文本超长后无限换行显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容。<br/>**文字处理规则：** 文本超长后无限换行显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。<br/>**文字处理规则：** 文本超长后无限换行显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 
 ## IconType
 
@@ -125,7 +125,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-
+该示例实现了带有主标题、副标题、描述、右侧按钮及文本的简单列表项。
 ```ts
 // 该示例主要演示该组件的基础功能使用，包含左侧右侧元素的情况
 import { IconType, ComposeListItem, promptAction } from '@kit.ArkUI';

@@ -1,12 +1,12 @@
 # Video Playback (Video)
 
 
-The **\<Video>** component is used to play a video and control its playback. It is usually used in video players and video list pages within applications. A video automatically plays once fully loaded. When the user clicks the video area, the video is paused and the playback progress bar is displayed. The user can drag the progress bar to the desired position. For details, see [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md).
+The **Video** component is used to play a video and control its playback. It is usually used in video players and video list pages within applications. A video automatically plays once fully loaded. When the user clicks the video area, the video is paused and the playback progress bar is displayed. The user can drag the progress bar to the desired position. For details, see [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md).
 
 
-## Creating a \<Video> Component
+## Creating a Video Component
 
-You can create a **\<Video>** component by calling the following API:
+You can create a **Video** component by calling the following API:
 
 Video(value: VideoOptions)
 
@@ -15,7 +15,7 @@ A **VideoOptions** object contains the **src**, **currentProgressRate**, **previ
 
 ## Loading Video
 
-The **\<Video>** component supports both local and online videos.
+The **Video** component supports both local and online videos.
 
 
 ### Loading a Local Video
@@ -115,7 +115,7 @@ export struct VideoPlayer{
 
 ## Adding Attributes
 
-Use the [attributes](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#attributes) of the **\<Video>** component to control video playback. For example, you can set whether to mute the video and whether to display the video playback control bar.
+Use the [attributes](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#attributes) of the **Video** component to control video playback. For example, you can set whether to mute the video and whether to display the video playback control bar.
 
 
 ```ts
@@ -141,7 +141,7 @@ export struct VideoPlayer {
 
 ## Adding Events
 
-  The **\<Video>** component supports various callback events in addition to the universal events. For details, see [Events](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#events).
+  The **Video** component supports various callback events in addition to the universal events. For details, see [Events](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#events).
 
 ```ts
 @Entry
@@ -208,7 +208,7 @@ The video controller is used to control video playback. For details, see [VideoC
 
 - Custom controller
 
-  To use a custom controller, disable the default controller, and then use components such as \<Button> and \<Slider> to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
+  To use a custom controller, disable the default controller, and then use components such as **Button** and **Slider** to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
 
   ```ts
   @Entry
@@ -269,4 +269,4 @@ The video controller is used to control video playback. For details, see [VideoC
 
 ## Remarks
 
-The **\<Video>** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Video Playback](../media/media/video-playback.md).
+The **Video** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Using AVPlayer to Play Videos](../media/media/video-playback.md).

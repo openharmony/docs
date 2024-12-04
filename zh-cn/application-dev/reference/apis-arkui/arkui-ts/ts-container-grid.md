@@ -144,7 +144,7 @@ auto-stretch模式只支持track-size为一个有效行高值，并且track-size
 >  - 如果设置了rowsTemplate，Grid滚动方向为水平方向，主轴方向为水平方向，交叉轴方向为垂直方向。
 >  - 此模式下以下属性不生效：layoutDirection、maxCount、minCount、cellLength。
 >  - 网格交叉轴方向尺寸根据Grid自身内容区域交叉轴尺寸减去交叉轴方向所有Gap后按所占比重分配。
->  - 网格主轴方向尺寸取当前网格交叉轴方向所有GridItem高度最大值。
+>  - 网格主轴方向尺寸取当前网格交叉轴方向所有GridItem主轴方向尺寸最大值。
 >
 >  3、rowsTemplate、columnsTemplate都不设置：
 >
@@ -1182,8 +1182,8 @@ struct GridExample {
 ### 示例5
 
 1.  设置属性editMode\(true\)设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。
-2.  在[onItemDragStart](#事件)回调中设置拖拽过程中显示的图片。
-3.  在[onItemDrop](#事件)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#事件)中完成交换数组位置逻辑。
+2.  在[onItemDragStart](#onitemdragstart8)回调中设置拖拽过程中显示的图片。
+3.  在[onItemDrop](#onitemdrop8)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#onitemdrop8)中完成交换数组位置逻辑。
 
 > **说明：** 
 >

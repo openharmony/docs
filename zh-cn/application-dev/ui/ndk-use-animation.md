@@ -7,17 +7,17 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 > **说明：**
 >
-> - 需要从ArkTS侧获取this.getUIContext()，传入到Native侧。
+> - 需要从ArkTS侧获取[this.getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)，传入到Native侧。
 > 
 > - 在Native侧通过[OH_ArkUI_GetContextFromNapiValue](../reference/apis-arkui/native__node__napi_8h.md)方法获取context。
 > 
-> - 需要执行的动画属性变化必须写在ArkUI_ContextCallback中callback中。
+> - 需要执行的动画属性变化必须写在[ArkUI_ContextCallback](../reference/apis-arkui/_ark_u_i___context_callback.md)中callback中。
 > 
 > - 需要执行的动画属性,必须在执行动画之前设置过。
 
 提供全局animateTo显式动画接口，来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
 
-1. 在.ets文件中获取UIContext，把this.getUIContext()当做参数输出到Native方法中。
+1. 在.ets文件中获取[UIContext](../reference//apis-arkui/js-apis-arkui-UIContext.md#uicontext)，把this.getUIContext()当做参数输出到Native方法中。
    ```ts
    // createNativeNode是Native侧暴露的方法
    nativeNode.createNativeNode("xcomponentId", this.getUIContext());

@@ -32,18 +32,20 @@ The major APIs for notification subscription are described as follows. For detai
 
 **Table 2** Callbacks for notification subscription
 
+For details about the API, see [NotificationSubscriber](../reference/apis-notification-kit/js-apis-inner-notification-notificationSubscriber-sys.md).
+
 | API| Description|
 | -------- | -------- |
-| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | Callback for receiving notifications.              |
-| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void   | Callback for canceling notifications.          |
-| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void  | Callback for notification sorting updates.      |
-| onConnect?:()&nbsp;=&gt;&nbsp;void;                                 | Callback for subscription.          |
-| onDisconnect?:()&nbsp;=&gt;&nbsp;void;                              | Callback for unsubscription.          |
-| onDestroy?:()&nbsp;=&gt;&nbsp;void                                  | Callback for disconnecting from the notification subsystem.  |
-| onDoNotDisturbDateChange<sup>deprecated</sup>?:(mode:&nbsp;notification.DoNotDisturbDate<sup>deprecated</sup>)&nbsp;=&gt;&nbsp;void | Callback for the Do Not Disturb (DNT) time changes. This API is deprecated since API version 11.|
-| onDoNotDisturbChanged?:(mode:&nbsp;notificationManager.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void           | Callback for the Do Not Disturb (DNT) time changes.|
-| onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | Callback for notification switch changes.      |
-| onBadgeChanged?:(data:&nbsp;BadgeNumberCallbackData)&nbsp;=&gt;&nbsp;void                               | Callback for notification badge number changes.  |
+| onConsume?: (data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | Callback for receiving notifications.              |
+| onCancel?: (data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void   | Callback for canceling notifications.          |
+| onUpdate?: (data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void  | Callback for notification sorting updates.      |
+| onConnect?: ()&nbsp;=&gt;&nbsp;void;                                 | Callback for subscription.          |
+| onDisconnect?: ()&nbsp;=&gt;&nbsp;void;                              | Callback for unsubscription.          |
+| onDestroy?: ()&nbsp;=&gt;&nbsp;void                                  | Callback for disconnecting from the notification subsystem.  |
+| onDoNotDisturbDateChange<sup>deprecated</sup>?: (mode:&nbsp;notification.DoNotDisturbDate<sup>deprecated</sup>)&nbsp;=&gt;&nbsp;void | Callback for the Do Not Disturb (DNT) time changes. This API is deprecated since API version 11.|
+| onDoNotDisturbChanged?: (mode:&nbsp;notificationManager.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void           | Callback for the Do Not Disturb (DNT) time changes.|
+| onEnabledNotificationChanged?: (callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | Callback for notification switch changes.      |
+| onBadgeChanged?: (data:&nbsp;BadgeNumberCallbackData)&nbsp;=&gt;&nbsp;void                               | Callback for notification badge number changes.  |
 
 
 ## How to Develop
@@ -66,11 +68,11 @@ The major APIs for notification subscription are described as follows. For detai
    ```ts
    let subscriber:notificationSubscribe.NotificationSubscriber = {
      onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
+       let req: notificationManager.NotificationRequest = data.request;
        hilog.info(DOMAIN_NUMBER, TAG, `onConsume callback. req.id: ${req.id}`);
      },
      onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
+       let req: notificationManager.NotificationRequest = data.request;
        hilog.info(DOMAIN_NUMBER, TAG, `onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {

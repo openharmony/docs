@@ -41,7 +41,11 @@ export default class EntryAbility extends UIAbility {
 **图2** WindowStageCreate和WindowStageDestroy状态  
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-在onWindowStageCreate()回调中通过[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)方法设置应用要加载的页面，并根据需要调用[on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅[WindowStage的事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
+在onWindowStageCreate()回调中通过[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)方法设置应用要加载的页面，并根据需要调用[on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅[WindowStage的事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）。
+
+> **说明：**
+> 
+> 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -54,31 +58,38 @@ const DOMAIN_NUMBER: number = 0xFF00;
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
+    // 设置WindowStage的事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
     try {
       windowStage.on('windowStageEvent', (data) => {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // 切到前台
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage foreground.`);
             break;
           case window.WindowStageEventType.ACTIVE: // 获焦状态
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage active.`);
             break;
           case window.WindowStageEventType.INACTIVE: // 失焦状态
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage inactive.`);
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage background.`);
+            break;
+          case window.WindowStageEventType.RESUMED: // 前台可交互状态
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage resumed.`);
+            break;
+          case window.WindowStageEventType.PAUSED: // 前台不可交互状态
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage paused.`);
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG,
+        `Failed to enable the listener for window stage event changes. Cause: ${JSON.stringify(exception)}`);
     }
-    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, `%{public}s`, `Ability onWindowStageCreate`);
     // 设置UI加载
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -96,11 +107,6 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const TAG: string = '[EntryAbility]';
-const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -113,16 +119,6 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // 释放UI资源
-    // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
-    try {
-      if (this.windowStage) {
-        this.windowStage.off('windowStageEvent');
-      }
-    } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
-    }
   }
 }
 ```
@@ -133,6 +129,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -141,9 +142,21 @@ export default class EntryAbility extends UIAbility {
     this.windowStage = windowStage;
     // ...
   }
+
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
     // 释放通过windowStage对象获取的资源
+    // 在onWindowStageDestroy()中注销WindowStage事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
+    try {
+      if (this.windowStage) {
+        this.windowStage.off('windowStageEvent');
+      }
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+    }
   }
+
   onWindowStageDestroy() {
     // 释放UI资源
   }

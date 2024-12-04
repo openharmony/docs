@@ -3,11 +3,11 @@
 
 ## 简介
 
-JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、wasm cache 序列化和反序列化的能力。
+JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly 函数优化、WebAssembly cache 序列化和反序列化的能力。
 
 ## 基本概念
 
-- **wasm module**：表示一个 WebAssembly 模块，通过 `OH_JSVM_CompileWasmModule` 接口可以从 wasm 字节码或 wasm cache 创建 wasm module。通过 `OH_JSVM_IsWasmModuleObject` 接口可以判断一个 JSVM_Value 是否是一个 wasm module。
+- **wasm module**：表示一个 WebAssembly 模块，(WebAssembly 简称为wasm)，通过 `OH_JSVM_CompileWasmModule` 接口可以从 wasm 字节码或 wasm cache 创建 wasm module。通过 `OH_JSVM_IsWasmModuleObject` 接口可以判断一个 JSVM_Value 是否是一个 wasm module。
 - **wasm function**：表示 wasm module 中定义的函数，wasm function 在导出后被外部代码使用。`OH_JSVM_CompileWasmFunction` 接口提供了将 wasm function 编译为优化后的机器码的能力，方便开发者对指定 wasm function 提前编译和函数粒度的并行编译。
 - **wasm cache**：对 wasm module 中的机器码进行序列化，生成的数据被称为 wasm cache。wasm cache 的创建和释放接口分别为 `OH_JSVM_CreateWasmCache` 和 `OH_JSVM_ReleaseCache` (对应的 cacheType 为 `JSVM_CACHE_TYPE_WASM`)。
 
@@ -23,7 +23,7 @@ JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、
 
 ## 使用示例
 
-JSVM-API 接口开发流程参考 [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应 C++ 及 ArkTS 相关代码进行展示。
+JSVM-API 接口开发流程参考 [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应 C++ 相关代码进行展示。
 
 cpp 部分代码：
 
@@ -74,12 +74,12 @@ static JSVM_Value InstantiateWasmModule(JSVM_Env env, JSVM_Value wasmModule) {
     status = OH_JSVM_GetGlobal(env, &globalThis);
     CHECK(status == JSVM_OK);
 
-    JSVM_Value WebAssembly;
-    status = OH_JSVM_GetProperty(env, globalThis, CreateString(env, "WebAssembly"), &WebAssembly);
+    JSVM_Value webAssembly;
+    status = OH_JSVM_GetProperty(env, globalThis, CreateString(env, "WebAssembly"), &webAssembly);
     CHECK(status == JSVM_OK);
 
-    JSVM_Value WebAssemblyInstance;
-    status = OH_JSVM_GetProperty(env, WebAssembly, CreateString(env, "Instance"), &WebAssemblyInstance);
+    JSVM_Value webAssemblyInstance;
+    status = OH_JSVM_GetProperty(env, webAssembly, CreateString(env, "Instance"), &webAssemblyInstance);
     CHECK(status == JSVM_OK);
 
     JSVM_Value instance;
@@ -202,19 +202,7 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"wasmDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-```
 
-ArkTS 侧示例代码：
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过 import 的方式，引入 Native 能力。
-import napitest from "libentry.so"
-
-try {
-    let result = napitest.runJsVm('wasmDemo()');
-    hilog.info(0x0000, 'JSVM', 'WasmDemo result: %{public}s', result);
-} catch (error) {
-    hilog.error(0x0000, 'JSVM', 'WasmDemo result: %{public}s', error.message);
-}
+// 样例测试js
+const char *srcCallNative = R"JS(wasmDemo())JS";
 ```

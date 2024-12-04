@@ -106,7 +106,6 @@ type(value: NavigationType)
 | ------ | ------ | ---- | ---------------------------------------------- |
 | value  | [NavigationType](#navigationtype枚举说明) | 是   | 路由跳转方式。<br/>默认值：NavigationType.Push |
 
-
 ## 示例
 
 ```ts

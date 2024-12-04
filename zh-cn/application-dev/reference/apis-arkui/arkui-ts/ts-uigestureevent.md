@@ -81,6 +81,22 @@ tag(tag: string): T
 | ----  | ------  | ------|---------------------------------- |
 | tag   | string  | 是 |设置手势处理器标志。|
 
+### allowedTypes<sup>14+</sup>
+
+allowedTypes(types: Array\<SourceTool>): T
+
+设置手势处理器所支持的事件输入源。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称 | 类型 | 必填 |描述                                        |
+| ----  | ------  | ------|---------------------------------- |
+| types   | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 是 |设置手势处理器所支持的事件输入源。|
+
 ## TapGestureHandler
 
 点击手势处理器对象类型。

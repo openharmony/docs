@@ -96,3 +96,41 @@ The [getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext) API e
     }
   }
   ```
+
+- To stop the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance after the service is not needed, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
+
+  ```ts
+  import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct Page_UIAbilityComponentsBasicUsage {
+    // Page display.
+    build() {
+      Column() {
+        //...
+        Button('FuncAbilityB')
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            try {
+              context.terminateSelf((err: BusinessError) => {
+                if (err.code) {
+                  // Process service logic errors.
+                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+                  return;
+                }
+                // Carry out normal service processing.
+                console.info('terminateSelf succeed');
+              });
+            } catch (err) {
+              // Capture the synchronization parameter error.
+              let code = (err as BusinessError).code;
+              let message = (err as BusinessError).message;
+              console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+            }
+          })
+      }
+    }
+  }
+  ```

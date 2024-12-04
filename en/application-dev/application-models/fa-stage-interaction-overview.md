@@ -15,11 +15,11 @@ The following table lists the possible interaction scenarios and the concerns of
 
 **Table 1** Application component interaction scenarios
 
-| Interaction Scenario| Concerns|
+| Interaction Scenario| Concerns| 
 | -------- | -------- |
-| [Starting a UIAbility from the FA Model](start-uiability-from-fa.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the UIAbility in the stage model.|
-| [Connecting to a ServiceExtensionAbility from the FA Model](bind-serviceextensionability-from-fa.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the ServiceExtensionAbility in the stage model.|
-| [Accessing a DataShareExtensionAbility from the FA Model](access-datashareextensionability-from-fa.md)| No code modification is required. However, you need to understand the API compatibility of **DataShareHelper** and **DataAbilityHelper**.|
-| [Starting a PageAbility from the Stage Model](start-pageability-from-stage.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the PageAbility in the FA model.|
-| [Connecting to a ServiceAbility from the Stage Model](bind-serviceability-from-stage.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the ServiceAbility in the FA model.|
-| Accessing a DataAbility from the Stage Model| This type of access is not supported.|
+| [Starting a UIAbility from the FA Model](start-uiability-from-fa.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the UIAbility in the stage model.| 
+| [Connecting to a ServiceExtensionAbility from the FA Model](bind-serviceextensionability-from-fa.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the ServiceExtensionAbility in the stage model.| 
+| [Accessing a DataShareExtensionAbility from the FA Model](access-datashareextensionability-from-fa.md)| No code modification is required. However, you need to understand the API compatibility of **DataShareHelper** and **DataAbilityHelper**.| 
+| [Starting a PageAbility from the Stage Model](start-pageability-from-stage.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the PageAbility in the FA model.| 
+| [Connecting to a ServiceAbility from the Stage Model](bind-serviceability-from-stage.md)| Set **bundleName** and **abilityName** in the **want** parameter to the bundle name and ability name of the ServiceAbility in the FA model.| 
+| Accessing a DataAbility from the Stage Model| This type of access is not supported.| 

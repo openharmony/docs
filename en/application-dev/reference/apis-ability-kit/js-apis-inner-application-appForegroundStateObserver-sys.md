@@ -21,7 +21,7 @@ import { appManager } from '@kit.AbilityKit';
 
 | Name                            | Type                   | Readable| Writable| Description  |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAppStateChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the startup or exit state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md).|
+| onAppStateChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the startup or exit state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData.md).|
 
 **Example**
 ```ts

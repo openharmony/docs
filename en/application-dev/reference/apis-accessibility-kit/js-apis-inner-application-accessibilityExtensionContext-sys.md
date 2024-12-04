@@ -43,6 +43,7 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 

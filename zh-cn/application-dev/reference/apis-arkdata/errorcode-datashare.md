@@ -32,7 +32,7 @@ The DataShareHelper is not initialized successfully.
 
 **错误信息**
 
-The URI is not exist.
+The URI does not exist.
 
 **错误描述**
 
@@ -51,7 +51,7 @@ The URI is not exist.
 
 **错误信息**
 
-The data area is not exist.
+The data area does not exist.
 
 **错误描述**
 

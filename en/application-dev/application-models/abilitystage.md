@@ -21,7 +21,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
     
     export default class MyAbilityStage extends AbilityStage {
       onCreate(): void {
-        // When the HAP of the application is loaded for the first time, initialize the module.
+        // This callback is triggered when the HAP is loaded for the first time. In this callback, you can initialize the module (for example, pre-load resources and create threads).
       }
 
       onAcceptWant(want: Want): string {

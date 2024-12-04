@@ -1,10 +1,10 @@
 # 保存用户文件
 
-在从网络下载文件到本地、或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。picker获取的uri只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
+在从网络下载文件到本地、或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。Picker获取的URI只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
 
-对音频、图片、视频、文档类文件的保存操作类似，均通过调用对应picker的save()接口并传入对应的saveOptions来实现。通过Picker访问相关文件，无需申请权限。
+对音频、图片、视频、文档类文件的保存操作类似，均通过调用对应Picker的save()接口并传入对应的saveOptions来实现。通过Picker访问相关文件，无需申请权限。
 
-当前所有picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
+当前所有Picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
 
 如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
 
@@ -45,7 +45,7 @@
    let context = getContext(this) as common.Context;
    // 创建文件选择器实例。
    const documentViewPicker = new picker.DocumentViewPicker(context);
-   //用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
+   //用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的URI。
    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uris = documentSaveResult;
      console.info('documentViewPicker.save to file succeed and uris are:' + uris);
@@ -55,12 +55,12 @@
    ```
 
 > **注意**：
-> <br>**1**、不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存URI。
-> <br>**2**、使用picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
+> <br>**1**、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
+> <br>**2**、使用Picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
 > <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
 > <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
-4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
 
    ```ts 
    const uri = '';
@@ -69,7 +69,7 @@
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过(fd)使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭(fd)。
 
    ```ts
    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
@@ -112,12 +112,12 @@
    })
    ```
 > **注意**：
-> <br>**1**、不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri。
-> <br>**2**、使用picker获取的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)uri权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
+> <br>**1**、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
+> <br>**2**、使用Picker获取的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)URI权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
 > <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
 > <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
-4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
 
    ```ts
    //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
@@ -125,7 +125,7 @@
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过(fd)使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭(fd)。
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
@@ -154,7 +154,7 @@
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD; 
    ```
 
-3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-1)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的uri。
+3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-1)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的URI。
    
    ```ts
    let uri: string = '';

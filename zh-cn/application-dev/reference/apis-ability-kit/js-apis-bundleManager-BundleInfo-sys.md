@@ -8,13 +8,11 @@
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见（[BundleInfo](js-apis-bundleManager-bundleInfo.md)）。
 
-## AppCloneIdentity<sup>12+<sup>
+## AppCloneIdentity<sup>14+<sup>
 
 描述应用包的身份信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
-
-**系统接口：**  此接口为系统接口。
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |

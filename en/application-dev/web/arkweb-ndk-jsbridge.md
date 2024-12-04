@@ -1,24 +1,26 @@
-# Mutual Invoking Between the Application Side and Frontend Pages (C/C++)
+# Mutual Invoking Between the Application and the Frontend Page (C/C++)
 
-This guide applies to the communication between the ArkWeb application side and frontend pages. You can use the ArkWeb native APIs to complete the service communication mechanism (JSBridge for short) based on the application architecture.
+This guide applies to the communication between ArkWeb applications and frontend pages. You can use the ArkWeb native APIs to conduct the service communication mechanism (native JSBridge for short) based on the application architecture.
 
 ## Applicable Application Architecture
 
-If an application is developed using ArkTS and C++ language, or if its architecture is close to that of a mini-program, with a built-in C++ environment, you are advised to use the [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) provided by ArkWeb on the native side to implement the JSBridge functionality.
+If an application is developed using ArkTS and C++ language, or if its architecture is close to that of an applet and has a built-in C++ environment, you are advised to use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) provided by ArkWeb on the native side to implement the JSBridge capabilities.
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
-  The preceding figure shows a general architecture of mini-programs with universal applicability. When the logic layer is run using the built-in JavaScript of the application, the native API can be used to communicate with the view layer (ArkWeb as the renderer) in the C++ environment. You do not need to call JSBridge-related APIs in the ArkTS environment.
+  The preceding figure shows a general architecture of applets with universal applicability. In this architecture, the logical layer depends on a JavaScript runtime built in an application, and the runtime runs in an existing C++ environment. The logic layer can communicate with the view layer (in which ArkWeb as the renderer) in the C++ environment through the native API, instead of using the ArkTS **JSBridge** API in the ArkTS environment.
+
+  The figure on the left shows that the application needs to invoke the ArkTS environment and then the C++ environment to build an applet using the ArkTS **JSBridge** API. Using the native **JSBridge** API is more efficient because the switching between the ArkTS and C++ environments is not required, as shown in the figure on the right.
 
   ![arkweb_jsbridge_diff](figures/arkweb_jsbridge_diff.png)
 
-  The native JSBridge APIs are provided to avoid unnecessary switching to the ArkTS environment and allow callback to be reported in non-UI threads to avoid UI blocking.
+  The native JSBridge APIs are provided to avoid unnecessary switching to the ArkTS environment and allow callback to run in non-UI threads to avoid UI blocking.
 
-## Using Native APIs for JSBridge Communication
+## Using the Native API to Implement JSBridge
 
-### ArkWeb Binding on the Native Side
+### Binding the Native API to ArkWeb
 
-* The **ArkWeb** component is declared on the ArkTS side. You need to define a **webTag** and transfer the **webTag** to the application C++ side using the NAPI. The **webTag** is used as the unique identifier of the corresponding component when an ArkWeb native API is used.
+* The **ArkWeb** component is declared on the ArkTS side. You need to define a **webTag** and transfer it to the native application side using Node-API. The **webTag** is used as a unique identifier of the corresponding component when an ArkWeb native API is used.
 
 * ArkTS side:
 
@@ -27,7 +29,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
   webTag: string = 'ArkWeb1';
   controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
   ...
-  // Use aboutToAppear() to transfer the webTag to the C++ side through the NAPI API. The webTag uniquely identifies the ArkWeb component on the C++ side.
+  // Use aboutToAppear() to pass webTag to C++ through Node-API. The webTag uniquely identifies the C++ ArkWeb component.
   aboutToAppear() {
     console.info("aboutToAppear")
     // Initialize the web NDK.
@@ -36,7 +38,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
   ...
   ```
 
-* C++ side:
+* C++ Side:
 
   ```c++
   // Parse and store the webTag.
@@ -55,12 +57,12 @@ If an application is developed using ArkTS and C++ language, or if its architect
 
       // Save the webTag in the instance object.
       jsbridge_object_ptr = std::make_shared<JSBridgeObject>(webTagValue);
-  ...
+      // ...
   ```
 
-### Obtaining the API Struct on the Native Side
+### Obtaining API Struct Using the Native API
 
-You can obtain the native API of ArkWeb using the API [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_ark_web___any_native_a_p_i.md#arkweb_anynativeapi), and the function pointer structs [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) can be obtained based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
+To invoke the native APIs, obtain the API structs on the ArkWeb native side first. You can use [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) to obtain the native ArkWeb API, and use [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) and [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to obtain function pointer structs based on the input parameter type. The [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi) corresponds to the [web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md) on ArkTS, and the [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) corresponds to the [ArkWeb component API](../reference/apis-arkweb/ts-basic-components-web.md) on ArkTS.
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -72,7 +74,7 @@ You can obtain the native API of ArkWeb using the API [OH_ArkWeb_GetNativeAPI](.
 
 ### Registering Component Lifecycle Callback on the Native Side
 
-Use [ArkWeb Component API](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to register the component lifecycle callback. To avoid crash caused by mismatch between the SDK and device ROM, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether there is a pointer to the function struct before calling an API.
+Use [ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi) to register the component lifecycle callback. To avoid crash caused by mismatch between SDK and device ROM, you are advised to use [ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing) to check whether there is a pointer to the function struct before calling an API.
 
   ```c++
   if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
@@ -106,7 +108,7 @@ Use [ArkWeb Component API](../reference/apis-arkweb/_ark_web___component_a_p_i.m
 
 ### Invoking Application Functions on the Frontend Page
 
-Use [registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxy) to register the application function with the frontend page. You are advised to register the function in callback [onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached). In other cases, you need to call [refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh) for the registration.
+Use [registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxy) to register the application function in the frontend page. You are advised to register the function in [onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached). In other cases, you need to call [refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh) for the registration.
 
   ```c++
   // Register an object.
@@ -114,8 +116,8 @@ Use [registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p
   ArkWeb_ProxyMethod method1 = {"method1", ProxyMethod1, static_cast<void *>(jsbridge_object_ptr->GetWeakPt  ())};
   ArkWeb_ProxyMethod method2 = {"method2", ProxyMethod2, static_cast<void *>(jsbridge_object_ptr->GetWeakPt  ())};
   ArkWeb_ProxyMethod methodList[2] = {method1, method2};
-  // Invoke the native API to register the object.
-  // In this case, you can use proxy.method1 and proxy.method2 to call ProxyMethod1 and ProxyMethod2 in this file on the HTML5 side.
+  // Call the NDK API to register an object.
+  // In this case, you can use proxy.method1 and proxy.method2 to call ProxyMethod1 and ProxyMethod2 in this file on HTML5 pages.
   ArkWeb_ProxyObject proxyObject = {"ndkProxy", methodList, 2};
   controller->registerJavaScriptProxy(webTag, &proxyObject);
   ```
@@ -129,15 +131,17 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
   char* jsCode = "runJSRetStr()";
   ArkWeb_JavaScriptObject object = {(uint8_t *)jsCode, bufferSize, &JSBridgeObject::StaticRunJavaScriptCallback,
                                        static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
-  // Invoke the **runJSRetStr()** function of the frontend page.
+  // Call runJSRetStr() of the frontend page.
   controller->runJavaScript(webTagValue, &object);
   ```
 
 ### Sample Code
 
-* Frontend page code in **entry/src/main/resources/rawfile/runJS.html**:
+* Frontend page code:
 
   ```html
+  <!-- entry/src/main/resources/rawfile/runJS.html -->
+  <!-- runJS.html -->
   <!DOCTYPE html>
   <html lang="en-gb">
   <head>
@@ -172,8 +176,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
               document.getElementById("webDemo").innerHTML = "ndkProxy method2 undefined"
               return "objName  test undefined"
         }
-        var retStr = window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
-        document.getElementById("webDemo").innerHTML  = "ndkProxy and method1 is ok, " + retStr;
+        window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
   }
 
   function testNdkProxyObjMethod2() {
@@ -200,8 +203,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
       var cars = [student, 456, false, 4.567];
       let params = "[\"{\\\"scope\\\"]";
 
-      var retStr = window.ndkProxy.method2("hello", "world", false, cars, params);
-      document.getElementById("webDemo").innerHTML  = "ndkProxy and method2 is ok, " + retStr;
+      window.ndkProxy.method2("hello", "world", false, cars, params);
   }
 
   function runJSRetStr(data) {
@@ -213,9 +215,10 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
   </html>
   ```
 
-* ArkTS code in **entry/src/main/ets/pages/Index.ets**:
+* Code in ArkTS:
 
   ```javascript
+  // entry/src/main/ets/pages/Index.ets
   import testNapi from 'libentry.so';
   import { webview } from '@kit.ArkWeb';
 
@@ -269,14 +272,15 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
   }
   ```
 
-* The ArkTS APIs exposed on the NAPI side in **entry/src/main/cpp/types/libentry/index.d.ts**:
+* ArkTS APIs exposed on the Node-API side:
 
   ```javascript
+  // entry/src/main/cpp/types/libentry/index.d.ts
   export const nativeWebInit: (webName: string) => void;
   export const runJavaScript: (webName: string, jsCode: string) => void;
   ```
 
-* Compilation configuration on the NAPI Side in **entry/src/main/cpp/CMakeLists.txt**:
+* Compilation configuration on the Node-API side in **entry/src/main/cpp/CMakeLists.txt**.
 
   ```c++
   # the minimum version of CMake.
@@ -305,9 +309,10 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
   target_link_libraries(entry PUBLIC libace_napi.z.so ${hilog-lib} libohweb.so)
   ```
 
-* NAPI layer code in **entry/src/main/cpp/hello.cpp**:
+* Node-API layer code:
 
   ```c++
+  // entry/src/main/cpp/hello.cpp
   #include "napi/native_api.h"
   #include <bits/alltypes.h>
   #include <memory>
@@ -324,7 +329,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
   static ArkWeb_ControllerAPI *controller = nullptr;
   static ArkWeb_ComponentAPI *component = nullptr;
 
-  // Send the JS code to the HTML5 side for execution and obtain the execution result through a callback.
+  // Send the JS script to the HTML5 side for execution. This method is a callback of the execution result.
   static void RunJavaScriptCallback(const char *webTag, const char *result, void *userData) {
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk RunJavaScriptCallback webTag:%{public}s", webTag);
       if (!userData) {
@@ -394,8 +399,8 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
       ArkWeb_ProxyMethod method1 = {"method1", ProxyMethod1, static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
       ArkWeb_ProxyMethod method2 = {"method2", ProxyMethod2, static_cast<void *>(jsbridge_object_ptr->GetWeakPtr())};
       ArkWeb_ProxyMethod methodList[2] = {method1, method2};
-      // Invoke the native API to register the object.
-      // In this case, you can use proxy.method1 and proxy.method2 to call ProxyMethod1 and ProxyMethod2 in this file on the HTML5 side.
+      // Call the NDK API to register an object.
+      // In this case, you can use proxy.method1 and proxy.method2 to call ProxyMethod1 and ProxyMethod2 in this file on HTML5 pages.
       ArkWeb_ProxyObject proxyObject = {"ndkProxy", methodList, 2};
       controller->registerJavaScriptProxy(webTag, &proxyObject);
 
@@ -501,7 +506,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
       return nullptr;
   }
 
-  // Send the JS code to the HTML5 side for execution.
+  // Send the JS script to the HTML5 side for execution.
   static napi_value RunJavaScript(napi_env env, napi_callback_info info) {
       size_t argc = 2;
       napi_value args[2] = {nullptr};
@@ -557,9 +562,10 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
 
-* Native service codes in **entry/src/main/cpp/jsbridge_object.h** and **entry/src/main/cpp/jsbridge_object.cpp**:
+* Native service code:
 
   ```c++
+  // entry/src/main/cpp/jsbridge_object.h
   #include "web/arkweb_type.h"
   #include <string>
 
@@ -582,6 +588,7 @@ Use [runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runj
   ```
 
   ```c++
+  // entry/src/main/cpp/jsbridge_object.cpp
   #include "jsbridge_object.h"
 
   #include "hilog/log.h"

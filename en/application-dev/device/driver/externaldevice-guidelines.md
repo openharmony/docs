@@ -12,7 +12,7 @@ Peripheral management applies to all devices that can be ported to the OpenHarmo
 
 DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers.
 
-Download and install DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-tools-overview-0000001558763037-V5).
+Download and install DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-tools-overview-V13).
 
 ### SDK Version Configuration
 
@@ -63,7 +63,7 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
 The following sample code is a demo that illustrates how to develop both the client and server and implement IPC.
 
-1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-create-new-project-0000001053342414-V5).
+1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-create-new-project-V13).
 
     **NOTE**
 
@@ -244,6 +244,6 @@ System applications can query detailed information about peripherals and drivers
 
 You need to configure a signature file for your application to run on a device. Besides, to develop a peripheral driver client, you need to declare the **ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER** permission for the peripheral.
 
-Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)
+Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)
 
-Permission configuration: [Requesting ACL Permissions and Signing Your App/Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section157591551175916).
+Permission configuration: [Requesting ACL Permissions and Signing Your App/Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section157591551175916).

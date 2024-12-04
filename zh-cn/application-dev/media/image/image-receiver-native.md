@@ -66,13 +66,13 @@ EXTERN_C_END
             return;
             }
             // 获取对应相机设备的profiles
-            let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevices[0])
+            let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevices[0], camera.SceneMode.NORMAL_PHOTO);
             let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
             if (previewProfiles.length <= 0) {
             return;
             }
             let profileObj = previewProfiles[0];
-            this.receiver = image.createImageReceiver(profileObj.size.width, profileObj.size.height, image.ImageFormat.JPEG, 8);
+            this.receiver = image.createImageReceiver({width:profileObj.size.width, height:profileObj.size.height}, image.ImageFormat.JPEG, 8);
             let receiverSurfaceId: string = await this.receiver.getReceivingSurfaceId();
             // 创建预览流输出对象
             let previewOutput: camera.PreviewOutput = cameraManager.createPreviewOutput(profileObj,receiverSurfaceId);
@@ -80,17 +80,17 @@ EXTERN_C_END
             // 打开相机
             await cameraInput.open();
             // 会话流程
-            let captureSession : camera.CaptureSession = cameraManager.createCaptureSession();
+            let session : camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
             // 配置会话
-            captureSession.beginConfig();
+            session.beginConfig();
             // 把cameraInput加入到会话
-            captureSession.addInput(cameraInput);
+            session.addInput(cameraInput);
             // 把预览流加入到会话
-            captureSession.addOutput(previewOutput);
+            session.addOutput(previewOutput);
             // 提交配置信息
-            await captureSession.commitConfig();
+            await session.commitConfig();
             // 会话开始
-            await captureSession.start();
+            await session.start();
 
             this.receiver.on('imageArrival', () => {
                let img : image.Image = testNapi.createFromReceiver(this.receiver);

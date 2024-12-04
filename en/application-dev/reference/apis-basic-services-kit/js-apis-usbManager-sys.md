@@ -3,9 +3,8 @@
 The **usbManager** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 > This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.usbManager (USB Manager)](js-apis-usbManager.md).
 
 ## Modules to Import
@@ -20,10 +19,10 @@ addRight(bundleName: string, deviceName: string): boolean
 
 Adds the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
-**usbManager.requestRight** triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box. 
+**usbManager.requestRight** triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [addDeviceAccessRight](#adddeviceaccessright12).
 
 **System API**: This is a system API.
@@ -68,8 +67,8 @@ usbFunctionsFromString(funcs: string): number
 
 Converts the USB function list in the string format to a numeric mask in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getFunctionsFromString](#getfunctionsfromstring12).
 
 **System API**: This is a system API.
@@ -110,8 +109,8 @@ usbFunctionsToString(funcs: FunctionType): string
 
 Converts the USB function list in the numeric mask format to a string in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getStringFromFunctions](#getstringfromfunctions12).
 
 **System API**: This is a system API.
@@ -152,8 +151,8 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 Sets the current USB function list in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setDeviceFunctions](#setdevicefunctions12).
 
 **System API**: This is a system API.
@@ -199,8 +198,8 @@ getCurrentFunctions(): FunctionType
 
 Obtains the numeric mask combination for the USB function list in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getDeviceFunctions](#getdevicefunctions12).
 
 **System API**: This is a system API.
@@ -234,8 +233,8 @@ getPorts(): Array\<USBPort\>
 
 Obtains the list of all physical USB ports.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortList](#getportlist12).
 
 **System API**: This is a system API.
@@ -269,8 +268,8 @@ getSupportedModes(portId: number): PortModeType
 
 Obtains the mask combination for the supported mode list of a given USB port.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortSupportModes](#getportlist12).
 
 **System API**: This is a system API.
@@ -310,8 +309,8 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setPortRoleTypes](#setportroletypes12).
 
 **System API**: This is a system API.
@@ -360,8 +359,8 @@ Adds the device access permission for the application. System applications are g
 
 **usbManager.requestRight** triggers a dialog box to request for user authorization, whereas **addDeviceAccessRight** adds the access permission directly without displaying a dialog box.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -423,8 +422,8 @@ getFunctionsFromString(funcs: string): number
 
 Converts the USB function list in the string format to a numeric mask in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -467,8 +466,8 @@ getStringFromFunctions(funcs: FunctionType): string
 
 Converts the USB function list in the numeric mask format to a string in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -511,8 +510,8 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 Sets the current USB function list in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -560,8 +559,8 @@ getDeviceFunctions(): FunctionType
 
 Obtains the numeric mask combination for the USB function list in Device mode.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -597,8 +596,8 @@ getPortList(): Array\<USBPort\>
 
 Obtains the list of all physical USB ports.
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -672,8 +671,8 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
-> **NOTE**
->
+**NOTE**
+
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -760,12 +759,12 @@ Enumerates USB device function types.
 | ACM          | 1   | ACM function. |
 | ECM          | 2   | ECM function. |
 | HDC          | 4   | HDC function. |
-| MTP          | 8   | Media transmission.|
-| PTP          | 16  | Image transmission.|
-| RNDIS        | 32  | Network sharing.|
-| MIDI         | 64  | MIDI function.|
-| AUDIO_SOURCE | 128 | Audio function.|
-| NCM          | 256 | NCM transmission. |
+| MTP          | 8   | Media transmission (not supported).|
+| PTP          | 16  | Image transmission (not supported).|
+| RNDIS        | 32  | Network sharing (not supported).|
+| MIDI         | 64  | MIDI function (not supported).|
+| AUDIO_SOURCE | 128 | Audio function (not supported).|
+| NCM          | 256 | NCM transmission (not supported). |
 
 ## PortModeType
 

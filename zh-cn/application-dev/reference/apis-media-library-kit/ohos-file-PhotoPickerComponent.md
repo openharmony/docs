@@ -67,7 +67,7 @@ PhotoPickerComponent({
 | onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | 否   | - | 大图左右滑动时产生的回调事件，将大图相关信息报给应用。                                                                                                                                                                                                                                                                                                                                     |
 | onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | 否   | - | 已勾选的图片被删除时产生的回调，并将被删除图片的相关信息回调给应用。                                                                                                                                                                                                                                                                                                                              |
 | onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSeletedCallback](#exceedmaxseletedcallback13)                          | 否   | - | 选择达到最大选择数量（最大图片选择数量或者是最大视频选择数量亦或是总的最大选择数量）之后再次点击勾选时产生的回调。<br>- 若选择的数量达到了最大图片选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).PHOTO_MAX_COUNT。<br>- 若选择的数量达到了最大视频选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).VIDEO_MAX_COUNT。<br>- 只要选择的数量达到了总的最大选择数量则回调的的参数exceedMaxCountType为[MaxCountType](#maxcounttype).TOTAL_MAX_COUNT。 |
-| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | 否   | - | 当前相册被删除时产生的回调。<br>当前相册是指通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri)接口设置给宫格组件的相册，即“currentAlbumUri”。<br>当前相册被删除后若使用方向刷新自己的相册标题栏，使用方可以设置自己的标题栏名称为默认的相册名例如“图片和视频”、“图片”或“视频”，然后通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '')接口传空串去刷新宫格页为默认相册。                                  |
+| onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | 否   | - | 当前相册被删除时产生的回调。<br>当前相册是指通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri)接口设置给宫格组件的相册，即“currentAlbumUri”。<br>当前相册被删除后若使用方刷新自己的相册标题栏，使用方可以设置自己的标题栏名称为默认的相册名例如“图片和视频”、“图片”或“视频”，然后通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '')接口传空串去刷新宫格页为默认相册。                                  |
 | pickerController        | [PickerController](#pickercontroller)                                            | 否   | @ObjectLink | 应用可通过PickerController向Picker组件发送数据。                                                                                                                                                                                                                                                                                                                             |
 
 ## PickerOptions
@@ -430,11 +430,27 @@ Picker的颜色模式。
 ```ts
 // xxx.ets
 import {
-  PhotoPickerComponent, PickerController, PickerOptions,
-  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
-  MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
-  ItemsDeletedCallback, ExceedMaxSeletedCallback, CurrentAlbumDeletedCallback
+  PhotoPickerComponent,
+  PickerController,
+  PickerOptions,
+  DataType,
+  BaseItemInfo,
+  ItemInfo,
+  PhotoBrowserInfo,
+  AnimatorParams,
+  MaxSelected,
+  ItemType,
+  ClickType,
+  PickerOrientation,
+  SelectMode,
+  PickerColorMode,
+  ReminderMode,
+  MaxCountType,
+  PhotoBrowserRange,
+  PhotoBrowserUIElement,
+  ItemsDeletedCallback,
+  ExceedMaxSelectedCallback,
+  CurrentAlbumDeletedCallback
 } from '@ohos.file.PhotoPickerComponent';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
@@ -446,8 +462,10 @@ struct PickerDemo {
   @State selectUris: Array<string> = new Array<string>();
   @State currentUri: string = '';
   @State isBrowserShow: boolean = false;
-  private selectedItemsDeletedCallback: ItemsDeletedCallback = (baseItemInfos: Array<BaseItemInfo>) => this.onSelectedItemsDeleted(recentPhotoExists);
-  private exceedMaxSeletedCallback: ExceedMaxSeletedCallback = (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(recentPhotoInfo);
+  private selectedItemsDeletedCallback: ItemsDeletedCallback =
+    (baseItemInfos: Array<BaseItemInfo>) => this.onSelectedItemsDeleted(baseItemInfos);
+  private exceedMaxSeletedCallback: ExceedMaxSelectedCallback =
+    (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(exceedMaxCountType);
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
 
   aboutToAppear() {
@@ -458,7 +476,7 @@ struct PickerDemo {
     this.pickerOptions.photoBrowserCheckboxPosition = [0.5, 0.5];
     // 其他属性.....
   }
-  
+
   private onSelect(uri: string): void {
     // 添加
     if (uri) {
@@ -474,10 +492,10 @@ struct PickerDemo {
       })
     }
   }
-  
+
   private onItemClicked(itemInfo: ItemInfo, clickType: ClickType): boolean {
     if (!itemInfo) {
-       return false;
+      return false;
     }
     let type: ItemType | undefined = itemInfo.itemType;
     let uri: string | undefined = itemInfo.uri;
@@ -495,7 +513,7 @@ struct PickerDemo {
       } else {
         if (uri) {
           this.selectUris = this.selectUris.filter((item: string) => {
-          return item != uri;
+            return item != uri;
           });
           this.pickerOptions.preselectedUris = [...this.selectUris];
         }
@@ -503,19 +521,19 @@ struct PickerDemo {
       return true;
     }
   }
-  
+
   private onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
     // 进入大图的回调
     this.isBrowserShow = true;
     return true;
   }
-  
+
   private onExitPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
     // 退出大图的回调
     this.isBrowserShow = false;
     return true;
   }
-  
+
   private onPickerControllerReady(): void {
     // 接收到该回调后，便可通过pickerController相关接口向picker发送数据，在此之前不生效。
     let elements: number[] = [PhotoBrowserUIElement.BACK_BUTTON];
@@ -560,14 +578,15 @@ struct PickerDemo {
           pickerOptions: this.pickerOptions,
           // onSelect: (uri: string): void => this.onSelect(uri),
           // onDeselect: (uri: string): void => this.onDeselect(uri),
-          onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo, clickType), // 该接口可替代上面两个接口
+          onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo,
+            clickType), // 该接口可替代上面两个接口
           onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
           onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
           onPickerControllerReady: (): void => this.onPickerControllerReady(),
           onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
-          onSelectedItemsDeleted?: this.selectedItemsDeletedCallback,
-          onExceedMaxSelected?: this.exceedMaxSeletedCallback,
-          onCurrentAlbumDeleted?: this.currentAlbumDeletedCallback,
+          onSelectedItemsDeleted: this.selectedItemsDeletedCallback,
+          onExceedMaxSelected: this.exceedMaxSeletedCallback,
+          onCurrentAlbumDeleted: this.currentAlbumDeletedCallback,
           pickerController: this.pickerController,
         }).height('60%').width('100%')
 
@@ -576,8 +595,13 @@ struct PickerDemo {
           Row() {
             ForEach(this.selectUris, (uri: string) => {
               if (uri === this.currentUri) {
-                Image(uri).height('10%').width('10%').onClick(() => {
-                }).borderWidth(1).borderColor('red')
+                Image(uri)
+                  .height('10%')
+                  .width('10%')
+                  .onClick(() => {
+                  })
+                  .borderWidth(1)
+                  .borderColor('red')
               } else {
                 Image(uri).height('10%').width('10%').onClick(() => {
                   this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);

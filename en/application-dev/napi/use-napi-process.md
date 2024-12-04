@@ -16,7 +16,7 @@ The following demonstrates how to implement cross-language interaction by implem
 
 - In DevEco Studio, choose **New** > **Create Project**, select the **Native C++** template, click **Next**, select the API version, set the project name, and click **Finish**.
 
-- The main code of the project created consists of two parts: **cpp** and **ets**. For details about the project structure, see <!--RP1-->[C++ Project Directory Structure](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-0000001546098578-V5#section181711599584)<!--RP1End-->.
+- The main code of the project created consists of two parts: **cpp** and **ets**. For details about the project structure, see <!--RP1-->[C++ Project Directory Structure](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-V5)<!--RP1End-->.
 
 
 ## Implementing Native APIs
@@ -25,7 +25,7 @@ The following demonstrates how to implement cross-language interaction by implem
 
   When a native module is imported in ArkTS, the .so file will be loaded. During the loading process, the **napi_module_register** method is called to register the module with the system and call the module initialization function.
 
-  napi_module has two key attributes: **.nm_register_func** and **.nm_modname**. **.nm_register_func** defines the module initialization function, and **.nm_modname** defines the module name, that is, the name of the .so file imported by ArkTS.
+  napi_module has two key properties: **.nm_register_func** and **.nm_modname**. **.nm_register_func** defines the module initialization function, and **.nm_modname** defines the module name, that is, the name of the .so file imported by ArkTS.
 
   ```
   // entry/src/main/cpp/hello.cpp

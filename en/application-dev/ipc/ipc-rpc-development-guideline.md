@@ -9,10 +9,10 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 **Table 1** Native IPC APIs
 
-| API                              | Description                                                            |
-| ------------------------------------ | ---------------------------------------------------------------- |
-| sptr&lt;IRemoteObject&gt; AsObject() | Obtains the holder of a remote proxy object. If you call this API on the stub, the **RemoteObject** is returned; if you call this API on the proxy, the proxy object is returned.|
-| virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | Called to process a request from the proxy and return the result. Derived classes need to override this API.|
+| Class/Interface| API                              | Description                                                            |
+|----------|  ------------------------------------ | ---------------------------------------------------------------- |
+| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | Obtains the holder of a remote proxy object. If you call this API on the stub, the **RemoteObject** is returned; if you call this API on the proxy, the proxy object is returned.|
+| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | Called to process a request from the proxy and return the result. Derived classes need to override this API.|
 | IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | Sends a request to the peer end. Service proxy classes are derived from the **IRemoteProxy** class.|
 <!--DelEnd-->
 
@@ -37,7 +37,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
    ]
    ```
 
-   In addition, the refbase implementation on which IPC/RPC depends is stored in **//utils**. Add the dependency on the Utils source code.
+   The refbase implementation on which IPC/RPC depends is in **//utils**. Add the dependency on Utils.
 
    ```
    external_deps = [
@@ -47,7 +47,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 2. Define the IPC interface **ITestAbility**.
 
-   **ITestAbility** inherits the IPC base class **IRemoteBroker** and defines descriptors, functions, and message code. The functions need to be implemented on both the proxy and stub.
+   **ITestAbility** inherits from the IPC base class **IRemoteBroker** and defines descriptors, functions, and message code. The functions need to be implemented on both the proxy and stub.
 
    ```c++
    #include "iremote_broker.h"
@@ -65,9 +65,9 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
    };
    ```
 
-3. Define and implement service provider **TestAbilityStub**.
+3. Define and implement the service provider **TestAbilityStub**.
 
-   This class is related to the IPC framework and needs to inherit **IRemoteStub&lt;ITestAbility&gt;**. You need to override **OnRemoteRequest** on the stub to receive requests from the proxy.
+   This class is related to the IPC framework and inherits from **IRemoteStub&lt;ITestAbility&gt;**. You need to override **OnRemoteRequest** on the stub to receive requests from the proxy.
 
    ```c++
    #include "iability_test.h"
@@ -112,7 +112,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 5. Define and implement **TestAbilityProxy**.
 
-   This class is implemented on the proxy and inherits **IRemoteProxy&lt;ITestAbility&gt;**. You can call **SendRequest** to send a request to the stub and expose the capabilities provided by the stub.
+   This class is implemented on the proxy and inherits from **IRemoteProxy&lt;ITestAbility&gt;**. You can call **SendRequest** to send a request to the stub and expose the capabilities provided by the stub.
 
    ```c++
    #include "iability_test.h"
@@ -144,7 +144,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 6. Register and start an SA.
 
-   Call **AddSystemAbility** to register the **TestAbilityStub** instance of the SA with **SystemAbilityManager**. The registration parameters vary depending on whether the **SystemAbilityManager** resides on the same device as the SA.
+   Call **AddSystemAbility** to register the **TestAbilityStub** instance of an SA with **SystemAbilityManager**. The registration parameters vary depending on whether the **SystemAbilityManager** resides on the same device as the SA.
 
    ```c++
    // Register the TestAbilityStub instance with the SystemAbilityManager on the same device as the SA.
@@ -196,7 +196,9 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 2. Connect to the desired ability.
 
-   Construct the **want** variable, and specify the bundle name and component name of the application where the ability is located. If cross-device communication is involved, also specify the network ID of the target device, which can be obtained through **distributedDeviceManager**. Then, construct the **connect** variable, and specify the callbacks to be invoked when the ability is connected, disconnect, and the connection fails. If you use the FA model, call the API provided by **featureAbility** to connect to an ability. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to connect to an ability.
+   Construct the **want** variable, and specify the bundle name and component name of the application where the ability is located. If cross-device communication is involved, also specify the network ID of the target device, which can be obtained through **distributedDeviceManager**. 
+
+   Then, construct the **connect** variable, and specify the callback to be invoked when the binding is successful, the binding fails, or the ability is disconnected. If you use the FA model, call the API provided by **featureAbility** to bind an ability. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to bind an ability.
 
    ```ts
     // If the FA model is used, import featureAbility from @kit.AbilityKit.
@@ -206,12 +208,12 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { distributedDeviceManager } from '@kit.DistributedServiceKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-
+   
     let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
-
-    // Connect to an ability on a single device.
+   
+    // Bind an ability on a single device.
     let want: Want = {
       // Enter the bundle name and ability name.
       bundleName: "ohos.rpc.test.server",
@@ -231,19 +233,19 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
     };
     // Use this method to connect to the ability in the FA model.
     // connectId = featureAbility.connectAbility(want, connect);
-
+   
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
     // Save the connection ID, which will be used when the ability is disconnected.
     connectId = context.connectServiceExtensionAbility(want,connect);
-
-    // Connect to an ability across devices.
+   
+    // Bind an ability across devices.
     try{
       dmInstance = distributedDeviceManager.createDeviceManager("ohos.rpc.test");
     } catch(error) {
       let err: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
     }
-
+   
     // Use distributedDeviceManager to obtain the network ID of the target device.
     if (dmInstance != undefined) {
       let deviceList = dmInstance.getAvailableDeviceListSync();
@@ -257,13 +259,13 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
       // Save the connection ID, which will be used when the ability is disconnected.
       // Use this method to connect to the ability in the FA model.
       // connectId = featureAbility.connectAbility(want, connect);
-
+   
       // The first parameter specifies the bundle name of the application, and the second parameter specifies the callback used to return the network ID obtained by using distributedDeviceManager.
       connectId = context.connectServiceExtensionAbility(want,connect);
     }
    ```
 
-3. Process requests sent from the client.
+3. Process service requests sent from the client.
 
    Call **onConnect()** to return a proxy object inherited from [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject) after the ability is successfully connected. Implement [onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9) for the proxy object to process requests sent from the client.
 

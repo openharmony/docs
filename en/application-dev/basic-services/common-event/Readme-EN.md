@@ -1,4 +1,4 @@
-# Application Events
+# Common Events
 
 - IPC
     - [Common Event Overview](common-event-overview.md)

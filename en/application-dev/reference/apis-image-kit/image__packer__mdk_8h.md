@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **image_packer_mdk.h** file declares the APIs used to pack an image or a pixel map into a buffer or file.
+The **image_packer_mdk.h** file declares the APIs used to pack an image or a PixelMap into a buffer or file.
 
 The packing process is as follows:
 

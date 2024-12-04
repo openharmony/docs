@@ -489,7 +489,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getLinkedInfo((err, data) => {
+wifi.getLinkedInfo((err, data:wifi.WifiLinkedInfo) => {
     if (err) {
         console.error("get linked info error");
         return;
@@ -737,7 +737,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pLinkedInfo((err, data) => {
+wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
    if (err) {
        console.error("get p2p linked info error");
        return;
@@ -787,7 +787,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getCurrentGroup((err, data) => {
+wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
    if (err) {
        console.error("get current P2P group error");
        return;
@@ -837,7 +837,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pPeerDevices((err, data) => {
+wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
    if (err) {
        console.error("get P2P peer devices error");
        return;
@@ -1006,7 +1006,7 @@ import wifi from '@ohos.wifi';
 
 let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
-    wifi.getP2pLinkedInfo((err, data) => {
+    wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
         if (err) {
             console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
             return;
@@ -1023,7 +1023,7 @@ wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
 let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
-    wifi.getP2pPeerDevices((err, data) => {
+    wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
         if (err) {
             console.error('failed to get peer devices: ' + JSON.stringify(err));
             return;
@@ -1050,7 +1050,7 @@ wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 let recvP2pPersistentGroupChangeFunc = () => {
     console.info("p2p persistent group change receive event");
 
-    wifi.getCurrentGroup((err, data) => {
+    wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
         if (err) {
             console.error('failed to get current group: ' + JSON.stringify(err));
             return;

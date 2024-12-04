@@ -35,15 +35,20 @@ This callback can also be invoked through the **rebuild()** method of **NodeCont
 
 **Parameters**
 
-| Name   | Type                                     | Mandatory | Description                                                                                                         |
+| Name   | Type                                     | Mandatory| Description                                                                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context of the bound **NodeContainer** component. |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context of the bound **NodeContainer** component.|
 
 **Return value**
 
 | Type            | Description                                                                                                                                                                                                                                                       |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | **FrameNode** object, which will be mounted to the placeholder node of the **NodeContainer** component. If a **null** object is returned, the child nodes of the corresponding **NodeContainer** component are removed. |
+| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | **FrameNode** object, which will be mounted to the placeholder node of the **NodeContainer** component. If a **null** object is returned, the child nodes of the corresponding **NodeContainer** component are removed.|
+
+> **NOTE**
+> Since the **rebuild** API is actively called by the application and is tied to the UI, you need to ensure that the UI context is valid at the time of the call, that is, it must be consistent with the UI context of the bound NodeContainer.
+>
+> In cases where the UI context is unclear, for example, during event callbacks, you can use the [runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask) method of [UIContext](./js-apis-arkui-UIContext.md) to explicitly define the UI context at the time of the call.
 
 ### aboutToAppear
 
@@ -85,9 +90,9 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 **Parameters**
 
-| Name | Type                                    | Mandatory | Description                                    |
+| Name| Type                                    | Mandatory| Description                                    |
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Size](./js-apis-arkui-graphics.md#size) | Yes  | Width and height of the component, in vp. |
+| size   | [Size](./js-apis-arkui-graphics.md#size) | Yes  | Width and height of the component, in vp.|
 
 ### onTouchEvent
 
@@ -101,9 +106,9 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 **Parameters**
 
-| Name | Type                                                                     | Mandatory | Description      |
+| Name| Type                                                                     | Mandatory| Description      |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent)  | Yes  | Touch event. |
+| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
 
 ### rebuild
 

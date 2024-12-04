@@ -266,7 +266,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 Called to save data during the UIAbility migration preparation process.
 
-**NOTE**
+> **NOTE**
 > 
 > Since API version 12, **UIAbility.onContinue** supports the return value in the form of Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>.
 

@@ -82,21 +82,25 @@ The user authentication widget supports the following types of authentication:
 ```ts
 // API version 10
 import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-// Set authentication parameters.
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-// Set the authentication page.
-const widgetParam: userAuth.WidgetParam = {
-  title: 'Verify identity',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16; // Generate a 16-byte random number.
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  // Set authentication parameters.
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // Set the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {
@@ -121,6 +125,7 @@ Initiate facial authentication with the authentication trust level greater than 
 ```ts
 // API version 10
 import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 // Set authentication parameters.
@@ -128,19 +133,22 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
   reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
 }
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-  reuseUnlockResult: reuseUnlockResult,
-};
-// Set the authentication page.
-const widgetParam: userAuth.WidgetParam = {
-  title: 'Verify identity',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  // Set the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {

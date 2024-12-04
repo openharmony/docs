@@ -1,6 +1,6 @@
 # Using Image_NativeModule to Decode Images
 
-You can use the **ImageSource** class to create an image source, obtain the width and height of the pixel map, and release **ImageSource** instances.
+You can use the **ImageSource** class to create an image source, obtain the width and height of the PixelMap, and release **ImageSource** instances.
 
 ## How to Develop
 
@@ -102,7 +102,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           // Create a PixelMap object based on image decoding parameters.
           OH_DecodingOptions *ops = nullptr;
           OH_DecodingOptions_Create(&ops);
-          // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR pixel map is obtained after decoding.
+          // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR PixelMap is obtained after decoding.
           OH_DecodingOptions_SetDesiredDynamicRange(ops, IMAGE_DYNAMIC_RANGE_AUTO);
           OH_PixelmapNative *resPixMap = nullptr;
 
@@ -114,7 +114,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
               return errCode;
           }
 
-          // Check whether the pixel map is the HDR content.
+          // Check whether the PixelMap is the HDR content.
           OH_Pixelmap_ImageInfo *pixelmapImageInfo = nullptr;
           OH_PixelmapImageInfo_Create(&pixelmapImageInfo);
           OH_PixelmapNative_GetImageInfo(resPixMap, pixelmapImageInfo);
@@ -130,7 +130,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
               return errCode;
           }
 
-          // Create a Pixelmap list based on image decoding parameters.
+          // Create a PixelMap list based on image decoding parameters.
           OH_DecodingOptions *opts = nullptr;
           OH_DecodingOptions_Create(&opts);
           OH_PixelmapNative **resVecPixMap = new OH_PixelmapNative*[frameCnt];

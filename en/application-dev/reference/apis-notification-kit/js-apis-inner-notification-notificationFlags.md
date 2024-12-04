@@ -10,13 +10,13 @@ The **NotificationFlags** module implements a **NotificationFlags** instance.
 
 ## Attributes
 
-| Name            | Type                   | Read Only | Optional | Description                                        |
+| Name            | Type                   | Read Only| Optional| Description                                        |
 | ---------------- | ---------------------- | ---- | -----|-------------------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | Yes | Yes | Settings of the sound alert for the notification.   |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | Yes | Yes | Settings of the vibration for the notification. |
+| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus11) | Yes | Yes| Settings of the sound alert for the notification.   |
+| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus11) | Yes | Yes| Settings of the vibration for the notification.|
 
 
-## NotificationFlagStatus
+## NotificationFlagStatus<sup>11+</sup>
 
 Enumerates the notification flag statuses.
 

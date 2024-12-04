@@ -4,16 +4,20 @@ OpenHarmony NDK provides industry standard libraries [libc](../reference/native-
 
 ## C++ Compatibility
 
-In OpenHarmony, both the system library and application native library use C++ standard library (see [libc++](../reference/native-lib/cpp.md)). However, the C++ standard library used by the system library is updated with the image version, and the C++ standard library used by the app native library is updated with the SDK used for compilation. Since both the C++ standard libraries have multiple major versions, the different update approach may cause ABI compatibility issues. To solve this problem, OpenHarmony differentiates the two C++ standard libraries as follows:
+In OpenHarmony, both the system library and application native library use C++ standard library (see [libc++](../reference/native-lib/cpp.md#libc-version)). However, the C++ standard library used by the system library is updated with the image version, and the C++ standard library used by the app native library is updated with the SDK used for compilation. Since both the C++ standard libraries have multiple major versions, the different update approach may cause ABI compatibility issues. To solve this problem, OpenHarmony differentiates the two C++ standard libraries as follows:
 
 - System library: uses **libc++.so**, which is released with the system image.
 - Application native library: uses **libc++_shared.so**, which is released with the application.
 
 The two libraries use different C++ namespaces. **libc++.so** uses **__h** as the namespace of C++ symbols, and **libc++_shared.so** uses **__n1** as the namespace of C++ symbols.
 
->**NOTE**<br>The system and applications must use their own C++ standard library. Currently, native APIs are C interfaces only, which can isolate the C++ running environments of them. When a Harmony Archive (HAR) is used to build an application, if the **libc++_shared.so** version in the HAR is different from the **libc++_shared.so** version of the application, only one version will be installed in the application, which may cause compatibility issues. To solve the problem, you can use the same SDK version to update the HAR.
+> **NOTE**
+>
+> The system and applications must use their own C++ standard library. Currently, native APIs are C interfaces only, which can isolate the C++ running environments of them. When a Harmony Archive (HAR) is used to build an application, if the **libc++_shared.so** version in the HAR is different from the **libc++_shared.so** version of the application, only one version will be installed in the application, which may cause compatibility issues. To solve the problem, you can use the same SDK version to update the HAR.
 
->**Known C++ compatibility issue**: If "symbol not found, s=\_\_emutls_get_address" is reported when an application is started or **dlopen** is called, update the SDK version of the application or HAR to 4.0 or later. This symbol is not provided by **libc++\_shared.so** in the SDK of API version 9 or earlier, and is available in **libc++\_shared.so** from the SDK of API version 11.  
+**Known C++ Compatibility Issues**
+
+If "symbol not found, s=\_\_emutls_get_address" is reported when an application starts or when **dlopen()** is called, update the SDK of the application or HAR. This symbol is not provided by **libc++\_shared.so** in the SDK of API version 9 or earlier, and is available since API version 11.
 
 ## musl libc Dynamic Linker
 

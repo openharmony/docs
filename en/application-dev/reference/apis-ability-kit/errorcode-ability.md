@@ -42,7 +42,7 @@ This error code is reported when the ability type invoked by the API is incorrec
 
 **Possible Causes**
 
-The ability with the specified type does not support the API invocation.
+The ability with the specified type does not support the API call.
 
 **Solution**
 
@@ -84,7 +84,7 @@ Visibility verification fails.
 **Solution**
 
 1. Check whether [exported](../../quick-start/module-configuration-file.md#abilities) under the **Ability** field in the **module.json5** file of the ability is set to **true**. If this parameter is set to **true**, the ability can be started by other applications. If this parameter is set to **false**, the ability cannot be started by other applications.
-2. To start the ability for which **exported** is set to **false**, the caller must request the **ohos.permission.START_INVISIBLE_ABILITY** permission, which is available only for system applications.
+2. To start the ability for which **exported** is set to **false**, the caller must request the ohos.permission.START_INVISIBLE_ABILITY permission, which is available only for system applications.
 
 ## 16000005 Process Permission Verification Failure
 
@@ -174,7 +174,7 @@ An ability cannot be started or stopped in Wukong mode.
 
 **Solution**
 
-Exit Wukong mode, and then start or stop the ability. An ability cannot be started or stopped in Wukong mode.
+Exit Wukong mode, and then start or stop the ability.  
 
 ## 16000010 Continuation Flag Forbidden
 
@@ -194,7 +194,7 @@ The continuation flag is not allowed for the API call.
 
 Remove the continuation flag.
 
-## 16000011 Context Not Exist
+## 16000011 Context Does Not Exist
 
 **Error Message**
 
@@ -308,9 +308,15 @@ No matching ability is found.
 
 A matching ability is not found during implicit startup.
 
+**Possible Causes**
+
+1. The parameter settings for implicit startup are incorrect.
+2. The specified HAP is not installed.
+
 **Solution**
 
-Modify the items used for matching in implicit startup.
+1. Correct the parameter settings for implicit startup.
+2. Install the specified HAP.
 
 ## 16000050 Internal Error
 
@@ -512,7 +518,7 @@ Sandbox applications cannot authorize URIs.
 
 Use a non-sandbox application.
 
-## 16000061 Unsupport Operation
+## 16000061 Unsupported Operation
 
 **Error Message**
 
@@ -887,6 +893,24 @@ The parameter use scenario is incorrect.
 
 Delete the [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) parameter.
 
+## 16000082 UIAbility Startup Failure in Singleton Mode
+
+**Error Message**
+
+The UIAbility is being started.
+
+**Description**
+
+If the UIAbility's launch type is set to **singleton**, the API used to start the UIAbility cannot be called again before the previous call is complete. Otherwise, this error code is returned.
+
+**Possible Causes**
+
+The UIAbility is in singleton mode and is being started.
+
+**Solution**
+
+Ensure that the UIAbility finishes starting before executing a new startup task.
+
 ## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
 
 **Error Message**
@@ -1033,7 +1057,7 @@ This error code is reported when the ability type invoked by the API is incorrec
 
 **Possible Causes**
 
-The ability with the specified type does not support the API invocation.
+The ability with the specified type does not support the API call.
 
 **Solution**
 
@@ -1408,6 +1432,60 @@ The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading t
 **Solution**
 
 Pass in correct values for **bundleName**, **userId**, and **appIndex**.
+
+## 16300008 Specified Package Does Not Have a Main UIAbility
+
+**Error Message**
+
+The target bundle has no main uiability.
+
+**Description**
+
+This error code is reported when the application does not have a main UIAbility.
+
+**Possible Causes**
+
+The ability configured for **mainElement** is not a UIAbility.
+
+**Solution**
+
+Check whether the ability configured for **mainElement** in the **module.json** file is a UIAbility.
+
+## 16300009 Specified Package Does Not Have a Status Bar
+
+**Error Message**
+
+The target bundle has no status-bar ability.
+
+**Description**
+
+This error code is reported when the application does not have a status bar.
+
+**Possible Causes**
+
+The application does not have a status bar.
+
+**Solution**
+
+Check whether the application has a status bar.
+
+## 16300010 Running Application Is Not Attached to a Status Bar
+
+**Error Message**
+
+The target application is not attached to status bar.
+
+**Description**
+
+This error code is reported when the application is not attached to a status bar after running.
+
+**Possible Causes**
+
+The application has a status bar, but it is not attached to the status bar during running.
+
+**Solution**
+
+Check whether the application is attached to a status bar.
 
 ## 29600001 Internal Error During Image Editing
 

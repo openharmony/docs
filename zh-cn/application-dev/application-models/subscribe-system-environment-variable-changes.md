@@ -43,7 +43,7 @@
         let environmentCallback: EnvironmentCallback = {
           onConfigurationUpdated(newConfig: Configuration) {
             hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-            if (this.systemLanguage !== newConfig.language) {
+            if (systemLanguage !== newConfig.language) {
               hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
               systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
             }

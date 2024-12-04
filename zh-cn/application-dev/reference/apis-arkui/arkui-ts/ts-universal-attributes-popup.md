@@ -18,7 +18,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -53,6 +53,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onWillDismiss<sup>12+</sup>           | boolean\|(dismissPopupAction: [DismissPopupAction](#dismisspopupaction12类型说明)) => void                                                                               | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
@@ -106,10 +107,13 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | focusable<sup>11+</sup> | boolean | 否 | 设置气泡弹出后是否获焦。<br />默认值：false <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onWillDismiss<sup>12+</sup>           | boolean\|(dismissPopupAction: [DismissPopupAction](#dismisspopupaction12类型说明)) => void                                                                               | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| followTransformOfTarget<sup>13+</sup>          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
-### 示例1
+### 示例1（弹出不同类型的气泡）
+
+该示例为bindPopup通过配置popup弹出PopupOptions、CustomPopupOptions类型的气泡。
 
 ```ts
 // xxx.ets
@@ -189,7 +193,9 @@ struct PopupExample {
 
 ![](figures/popup.gif)
 
-### 示例2
+### 示例2（设置气泡的文本样式）
+
+该示例为bindPopup通过配置messageOptions弹出自定义文本样式的气泡。
 
 ```ts
 // xxx.ets
@@ -200,22 +206,17 @@ struct PopupExample {
   @State handlePopup: boolean = false
   @State customPopup: boolean = false
 
-  // popup构造器定义气泡内容
-  @Builder popupBuilder() {
-    Row() {
-      Text('Custom Popup Message').fontSize(10)
-    }.height(50).padding(5)
-  }
-
   build() {
-    Column({space: 100}) {
-      Button('PopupOptions')
+    Column({ space: 100 }) {
+      Button('PopupOptions').margin(100)
         .onClick(() => {
           this.handlePopup = !this.handlePopup
         })
-        .bindPopup(this.handlePopup, {  // PopupOptions类型气泡的内容
+        .bindPopup(this.handlePopup, {
+          // PopupOptions类型气泡的内容
           message: 'This is a popup with PopupOptions',
-          messageOptions: { // 气泡的文本样式
+          messageOptions: {
+            // 气泡的文本样式
             textColor: Color.Red,
             font: {
               size: '14vp',
@@ -224,7 +225,7 @@ struct PopupExample {
             }
           },
           placement: Placement.Bottom,
-          enableArrow: false,
+          enableArrow: false, // 气泡弹出时不显示箭头
           targetSpace: '15vp',
           onStateChange: (e) => {
             console.info(JSON.stringify(e.isVisible))
@@ -233,28 +234,16 @@ struct PopupExample {
             }
           }
         })
-      Button('CustomPopupOptions')
-        .onClick(() => {
-          this.customPopup = !this.customPopup
-        })
-        .bindPopup(this.customPopup, {  // CustomPopupOptions类型气泡的内容
-          builder: this.popupBuilder,
-          targetSpace: '15vp',
-          enableArrow: false, // 气泡弹出时不显示箭头
-          onStateChange: (e) => {
-            if (!e.isVisible) {
-              this.customPopup = false
-            }
-          }
-        })
     }.margin(20)
   }
 }
 ```
 
-![](figures/popup_02.gif)
+![popup_02](figures/popup_02.gif)
 
-### 示例3
+### 示例3（设置气泡的样式）
+
+该示例为bindPopup通过配置arrowHeight、arrowWidth、radius、shadow、popupColor，实现气泡箭头以及气泡本身的样式。
 
 ```ts
 // xxx.ets
@@ -300,9 +289,9 @@ struct PopupExample {
 
 ![](figures/popup_04.gif)
 
-### 示例4
+### 示例4（设置气泡的动效）
 
-本示例通过transition实现了自定义气泡显示/退出动效。
+该示例为bindPopup通过配置transition，实现气泡的显示和退出动效。
 
 ```ts
 // xxx.ets
@@ -369,11 +358,13 @@ struct PopupExample {
 
 ![](figures/popup_05.gif)
 
-### 示例5
+### 示例5（为气泡添加事件）
+
+该示例为bindPopup通过配置onWillDismiss，实现当气泡退出时，拦截退出事件并执行回调函数。
 
 ```ts
 // xxx.ets
-//该示例实现了设置bindPopup的onWillDismiss属性为回调函数时，拦截退出事件并执行回调函数
+
 @Entry
 @Component
 struct PopupExample {
@@ -418,11 +409,13 @@ struct PopupExample {
 
 ![](figures/popup_004.gif)
 
-### 示例6
+### 示例6（为气泡拦截退出事件）
+
+该示例通过配置onWillDismiss的boolean类型为false时，拦截气泡的退出事件。
 
 ```ts
 // xxx.ets
-//该示例实现了设置bindPopup的onWillDismiss属性为false时，拦截退出事件
+
 @Entry
 @Component
 struct PopupExample {
@@ -446,6 +439,7 @@ struct PopupExample {
           placement: Placement.Bottom,
           enableArrow: false,
           targetSpace: '15vp',
+          followTransformOfTarget: true,
           onStateChange: (e) => {
             let timer = setTimeout(()=>{this.handlePopup = false},6000)
             if (!e.isVisible) {

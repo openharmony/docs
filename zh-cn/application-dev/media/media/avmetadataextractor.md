@@ -1,4 +1,4 @@
-# 获取音视频元数据
+# 使用AVMetadataExtractor提取音视频元数据信息(ArkTS)
 
 使用AVMetadataExtractor可以实现从原始媒体资源中获取元数据，本开发指导将以获取一个音频资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
 
@@ -13,11 +13,13 @@
 2. 设置资源：用户可以根据需要选择设置属性fdSrc（表示文件描述符）, 或者设置属性dataSrc（表示dataSource描述符）。
    > **说明：**
    >
-   > 开发者需根据实际情况，确认资源有效性并设置：
+   > 开发者需根据实际情况，确认资源有效性并设置（只能设置其中一种）：
    >
-   > - 如果设置fdSrc，可以使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
+   > - 如果设置fdSrc，可以使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。也可以通过应用沙箱路径访问对应资源（必须确保资源可用），参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
    >
    > - 如果设置dataSrc，必须正确设置dataSrc中的callback属性，确保callback被调用时能正确读取到对应资源，使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
+   >
+   > - 不同AVMetadataExtractor或者[AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avmetadataextractor11)实例，如果需要操作同一资源，需要多次打开文件描述符，不要共用同一文件描述符。
 
 3. 获取元数据：调用fetchMetadata()，可以获取到一个AVMetadata对象，通过访问该对象的各个属性，可以获取到元数据。
 

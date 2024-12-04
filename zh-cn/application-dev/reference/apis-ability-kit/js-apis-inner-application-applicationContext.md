@@ -606,7 +606,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>13+</sup>
+## ApplicationContext.killAllProcesses<sup>14+</sup>
 
 killAllProcesses(clearPageStack: boolean): Promise\<void\>
 

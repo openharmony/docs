@@ -54,8 +54,6 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 Defines the layout options. In this API, **irregularIndexes** and **onGetIrregularSizeByIndex** can be used for grids where either **rowsTemplate** or **columnsTemplate** is set. You can specify an index array and set the number of rows and columns to be occupied by a grid item with the specified index. For details, see Example 3. **onGetRectByIndex** can be used for grids where both **rowsTemplate** and **columnsTemplate** are set. It specifies the position and size for the grid item with the specified index. For details, see Example 1.
 
-**Parameters**
-
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | Yes   | Number of rows and columns occupied by a grid item with regular size. The only supported value is **[1, 1]**, meaning that the grid item occupies one row and one column.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
@@ -257,6 +255,25 @@ In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) an
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | value  | number | Yes  | Number of grid items to be preloaded (cached).<br>Default value: **1**|
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(count: number, show: boolean)
+
+Sets the number of grid items to be cached (preloaded) and specifies whether to display the cached nodes.
+
+The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. When this attribute is used in conjunction with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes, the cached nodes can be displayed.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| count  | number | Yes  | Number of grid items to be cached.<br>Default value: **1**|
+| show  | boolean | Yes  | Whether to display the cached nodes.<br> Default value: **false**|
 
 ### editMode<sup>8+</sup>
 
@@ -471,7 +488,7 @@ Sets the alignment mode of grid items in the grid. For details, see [Example 9](
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Value| Description                                  |
+| Name  | Value| Description                                |
 | ------ |------| -------------------------------------- |
 | DEFAULT  |  0  | Use the default alignment mode of the grid.|
 | STRETCH |  1  | Use the height of the tallest grid item in a row as the height for all other grid items in that row.|
@@ -490,7 +507,7 @@ Sets the alignment mode of grid items in the grid. For details, see [Example 9](
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  |Value| Description                                  |
+| Name  |Value| Description                                |
 | ------ |------| -------------------------------------- |
 | Row  |  0  | Horizontal layout, where the child components are arranged from left to right as the main axis runs along the rows.|
 | Column |  1  | Vertical layout, where the child components are arranged from top to bottom as the main axis runs down the columns.|
@@ -644,7 +661,7 @@ onReachStart(event: () => void)
 
 Triggered when the grid reaches the start position.
 
-This event is triggered once when the grid is initialized and once when the grid scrolls to the start position. If the edge effect is set to a spring effect, this event is triggered once when the swipe passes the start position, and triggered again when the swipe rebounds back to the start position.
+This event is triggered once when the grid is initialized and once when the grid scrolls to the start position. If the edge effect is set to a spring effect, this event is triggered once when the swipe passes the initial position, and triggered again when the swipe rebounds back to the initial position.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1163,8 +1180,8 @@ struct GridExample {
 ### Example 5
 
 1.  Set **editMode\(true\)** to enable edit mode, where the user can drag the grid items.
-2.  Through [onItemDragStart](#events), set the image to be displayed during dragging.
-3.  Through [onItemDrop](#events), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onItemDrop](#events), complete the array position exchange logic.
+2.  In the [onItemDragStart](#onitemdragstart8) callback, set the image to be displayed during dragging.
+3.  Through [onItemDrop](#onitemdrop8), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onItemDrop](#onitemdrop8), complete the array position exchange logic.
 
 > **NOTE**
 >
@@ -1482,7 +1499,7 @@ struct Index {
             Column() {
               Column().height(100).backgroundColor('#D5D5D5').width('100%')
               // The Text component in the center is set with flexGrow(1) to automatically fill the available space within the parent component.
-              Text('A piece of text.'.repeat(this.items[item]))
+              Text('This is a piece of text.'.repeat(this.items[item]))
                 .flexGrow(1).width('100%').align(Alignment.TopStart)
                 .backgroundColor('#F7F7F7')
               Column().height(50).backgroundColor('#707070').width('100%')
@@ -1507,3 +1524,47 @@ struct Index {
 
 ```
 ![gridAlignItems](figures/gridAlignItems.png)
+
+### Example 10
+
+```ts
+// xxx.ets
+// This example demonstrates how to implement a Grid component with an edge fading effect and set the length of the fade.
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = ['0', '1', '2', '3', '4']
+  @State rowNumbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column({ space: 5 }) {
+      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
+      Grid(this.scroller) {
+        ForEach(this.rowNumbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .height('90%')
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![fadingEdge_grid](figures/fadingEdge_grid.gif)
+<!--no_check-->

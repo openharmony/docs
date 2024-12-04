@@ -6,7 +6,7 @@ By default, ArkTS containers are passed by reference between concurrent instance
 
 ArkTS containers are not thread-safe. They adopt the fail-fast approach. An exception is thrown if multiple concurrent instances make structural changes to a container instance at the same time. Therefore, in update scenarios, you must use the ArkTS asynchronous lock to ensure secure access to the ArkTS containers.
 
-Currently, the ArkTS collection provides the following containers: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), and [TypedArray](#collectionstypedarray).
+Currently, the following ArkTS containers are provided: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), [TypedArray](#collectionstypedarray), [ArrayBuffer](#collectionsarraybuffer), [BitVector](#collectionsbitvector), and [ConcatArray] (#collectionsconcatarray).
 
 > **NOTE**
 >
@@ -37,7 +37,7 @@ An array-like object that can be concatenated. This API extends **ISendable**.
 
 This section uses the following to identify the use of generics:
 
-- T: type, which can be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+- T: type, which can be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 ### Properties
 
@@ -165,7 +165,7 @@ Pass-by-reference is recommended for better transfer performance.
 
 This section uses the following to identify the use of generics:
 
-- T: type, which can be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+- T: type, which can be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1414,7 +1414,7 @@ This section uses the following to identify the use of generics:
 - K: key.
 - V: value.
 
-The K and V types must be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+The K and V types must be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 ### Properties
 
@@ -1917,7 +1917,7 @@ A non-linear data structure.
 
 This section uses the following to identify the use of generics:
 
-- T: type, which can be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+- T: type, which can be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 ### Properties
 
@@ -3945,7 +3945,7 @@ Checks whether a bit value is included in a given range of this bit vector.
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | Yes  | Bit value. The value **0** indicates bit value 0, and other values indicate bit value 1.|
 | fromIndex | number | Yes  | Start index of the range (inclusive).        |
-| toIndex   | number | Yes  | End index of the range (exclusive).      |
+| toIndex   | number | Yes  | End index of the range (inclusive).      |
 
 **Return value**
 

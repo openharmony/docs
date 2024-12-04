@@ -66,7 +66,8 @@ The application file access framework is implemented through [ohos.file.fs](../r
 
 You can use the user file access framework to access and manage user files. This framework leverages the ExtensionAbility of OpenHarmony to provide a set of methods and interfaces for accessing user files.
 
-**Figure 1** User file access framework 
+**Figure 2** User file access framework
+
 ![User file access framework](figures/user-file-access-framework.png)
 
 - The file access client (a system application or third-party application) can access user files, for example, select a photo or save multiple documents, by starting the **FilePicker** application.
@@ -84,3 +85,4 @@ You can use the user file access framework to access and manage user files. This
 ## Related Kits
 
 Ability Kit: The user file access framework of Core File Kit depends on the Extension capability provided by Ability Kit and is scheduled and managed by Ability Kit.
+

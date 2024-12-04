@@ -43,8 +43,8 @@ Returns "enable-admin success." if the component is enabled; returns "error: xxx
 | error: -n, --bundle-name option requires an argument.        | The input value of **bundleName** is empty.                                      |
 | error: -a, --ability-name option requires an argument.       | The input value of **abilityName** is empty.                                     |
 | error: unknown option.                                       | An unknown parameter is passed in.                                          |
-| error: -n <bundle-name> is expected.                         | **bundleName** is not passed in.                                          |
-| error: -a <ability-name> is expected.                        | **abilityName** is not passed in.                                         |
+| error: -n \<bundle-name> is expected.                        | **bundleName** is not passed in.                                          |
+| error: -a \<ability-name> is expected.                       | **abilityName** is not passed in.                                         |
 | error: the administrator ability component is invalid.       | The input value of **bundleName** or **abilityName** is incorrect, or the component is not an EnterpriseAdminExtensionAbility. |
 | error: failed to enable the administrator application of the device. | The component fails to be enabled.                                                  |
 
@@ -81,7 +81,7 @@ Returns "disable-admin success." if the component is disabled; returns "error: x
 | error: command requires option.                              | **bundleName** is not passed in.    |
 | error: -n, --bundle-name option requires an argument.        | The input value of **bundleName** is empty.|
 | error: unknown option.                                       | An unknown parameter is passed in.    |
-| error: -n <bundle-name> is expected.                         | **bundleName** is not passed in.    |
+| error: -n \<bundle-name> is expected.                        | **bundleName** is not passed in.    |
 | error: failed to disable the administrator application of the device. | The component fails to be disabled.        |
 
   **Method**

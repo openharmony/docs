@@ -122,7 +122,7 @@ static napi_value AnonAttestKey(napi_env env, napi_callback_info info)
         
         (void)ConstructDataToCertChain(&certChain);
         /* 3. Attest the key. */
-        ohResult = OH_Huks_AttestKeyItem(&genAlias, attestParamSet, &certChain);
+        ohResult = OH_Huks_AnonAttestKeyItem(&genAlias, anonAttestParamSet, &certChain);
     } while (0);
     FreeCertChain(&certChain, CERT_COUNT);
     OH_Huks_FreeParamSet(&genParamSet);

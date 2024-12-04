@@ -36,6 +36,7 @@
            callbackData, CallJs, &callbackData->tsfn);
    
        // Create an asynchronous work object.
+       // ExecuteWork is executed on a non-JS thread created by libuv. The napi_create_async_work is used to simulate the scenario, in which napi_call_threadsafe_function is used to submit tasks to a JS thread from a non-JS thread.
        napi_create_async_work(env, nullptr, resourceName, ExecuteWork, WorkComplete, callbackData,
            &callbackData->work);
    
@@ -127,7 +128,7 @@
    ```
 
 5. Initialize the module and call the API from ArkTS.
-   ```
+   ```c++
    // Initialize the module.
    static napi_value Init(napi_env env, napi_value exports) {
        CallbackData *callbackData = new CallbackData(); // Release when the thread exits.
@@ -139,7 +140,7 @@
    }
    
    // Call the API of ArkTS.
-   import nativeModule from'libentry.so'; // Import native capabilities.
+   import nativeModule from 'libentry.so'; // Import native capabilities.
 
    let callback = (): Promise<string> => {
      return new Promise((resolve) => {

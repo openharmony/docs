@@ -1,4 +1,4 @@
-# Sensor Overview
+# Introduction to Sensor Service Kit
 
 ## Sensor Types
 

@@ -1,4 +1,4 @@
-# Using AVScreenCapture to Save Recordings in Files (C/C++)
+# Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)
 
 Screen capture is mainly used to record the main screen.
 
@@ -6,19 +6,19 @@ You can call the C APIs of the AVScreenCapture module to record the screen and c
 
 The AVScreenCapture, Window, and Graphics modules together implement the entire video capture process.
 
-The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance.
+The full screen capture process involves creating an AVScreenCapture instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance.
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
 Screen capture automatically stops upon system user switching, and **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES** is reported.
 
-This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
+This topic describes how to use the AVScreenCapture APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
 
 If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
 ## How to Develop
 
-After an **AVScreenCapture** instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
+After an AVScreenCapture instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
 **Linking the Dynamic Link Library in the CMake Script**
@@ -39,7 +39,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include "unistd.h"
     ```
 
-2. Create an **AVScreenCapture** instance, named **capture** in this example.
+2. Create an AVScreenCapture instance, named **capture** in this example.
 
     ```c++
     OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
@@ -124,7 +124,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
 ## Sample Code
 
-Refer to the sample code below to implement captured file storage using **AVScreenCapture**.
+Refer to the sample code below to implement captured file storage using AVScreenCapture.
 
 ```c++
 

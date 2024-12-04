@@ -9,7 +9,7 @@
 
 ## 约束与限制
 
-拆包工具需要运行在Java8及其以上环境
+拆包工具需要运行在Java8及其以上环境。
 
 
 ## 拆包指令说明
@@ -67,10 +67,10 @@ java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <path> --out
 
 | 指令       | 是否必选项 | 选项          | 描述                                                         |
 | ---------- | ---------- | ------------- | ------------------------------------------------------------ |
-| --mode     | 是         | hap           | 拆包类型                                                     |
+| --mode     | 是         | hap           | 拆包类型。                                                     |
 | --rpcid    | 否         | true或者false | 是否单独将rpcid文件从HAP包中提取到指定目录，如果为true，将仅提取rpcid文件，不对HAP包进行拆包。 |
-| --hap-path | 是         | NA            | HAP包路径                                                    |
-| --out-path | 是         | NA            | 拆包rpcid目标文件路径                                        |
+| --hap-path | 是         | NA            | HAP包路径。                                                    |
+| --out-path | 是         | NA            | 拆包rpcid目标文件路径。                                        |
 | --force    | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
 
 ### HSP包模式拆包指令

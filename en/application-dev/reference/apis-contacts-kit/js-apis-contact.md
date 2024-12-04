@@ -3816,18 +3816,6 @@ let myContact: contact.Contact = {
 ```
 
 
-  Or, create data by configuring a new Contact object.
-
-```js
-let myContact = new contact.Contact();
-let name = new contact.Name();
-name.fullName = "fullName";
-let phoneNumber = new contact.PhoneNumber();
-phoneNumber.phoneNumber = "138xxxxxxxx";
-myContact.name = name;
-myContact.phoneNumbers = [phoneNumber];
-```
-
 
 ## ContactAttributes
 
@@ -3856,14 +3844,6 @@ let contactAttributes: contact.ContactAttributes = {
         contact.Attribute.ATTR_PHONE
     ]
 };
-```
-
-Or, create data by configuring a **ContactAttributes** object.
-
-
-```js
-let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
 
 
@@ -3976,13 +3956,6 @@ let holder: contact.Holder = {
 };
 ```
 
-  Or, create data by configuring a **Holder** object.
-
-```js
-let holder = new contact.Holder();
-holder.holderId = 1;
-```
-
 
 ## Event
 
@@ -4053,13 +4026,6 @@ let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
-```
-
-  Or, create data by configuring a **Group** object.
-
-```js
-let group = new contact.Group();
-group.title = "title";
 ```
 
 
@@ -4147,14 +4113,6 @@ let name: contact.Name = {
 };
 ```
 
-  Or, create data by configuring a **Name** object.
-
-```js
-let name = new contact.Name();
-name.familyName = "familyName";
-name.fullName = "fullName";
-```
-
 
 ## NickName
 
@@ -4179,14 +4137,6 @@ let nickName: contact.NickName = {
 };
 ```
 
-  Or, create data by configuring a **NickName** object.
-
-```js
-let nickName = new contact.NickName();
-nickName.nickName = "nickName";
-```
-
-
 ## Note
 
 Defines a contact's note.
@@ -4208,13 +4158,6 @@ Defines a contact's note.
 let note: contact.Note = {
     noteContent: "noteContent"
 };
-```
-
-  Or, create data by configuring a **Note** object.
-
-```js
-let note = new contact.Note();
-note.noteContent = "noteContent";
 ```
 
 
@@ -4241,14 +4184,6 @@ let organization: contact.Organization = {
     name: "name",
     title: "title"
 };
-```
-
-  Or, create data by configuring an **Organization** object.
-
-```js
-let organization = new contact.Organization();
-organization.name = "name";
-organization.title = "title";
 ```
 
 
@@ -4337,13 +4272,6 @@ Defines a contact's portrait.
 let portrait: contact.Portrait = {
     uri: "uri"
 };
-```
-
-  Or, create data by configuring a new **Portrait** object.
-
-```js
-let portrait = new contact.Portrait();
-portrait.uri = "uri";
 ```
 
 
@@ -4527,11 +4455,4 @@ Defines a contact's website.
 let website: contact.Website = {
     website: "website"
 };
-```
-
-  Or, create data by configuring a new **Website** object.
-
-```js
-let website = new contact.Website();
-website.website = "website";
 ```

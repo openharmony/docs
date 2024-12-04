@@ -25,7 +25,7 @@ including passwords, app tokens, and other critical data (such as bank card numb
 
 | Name| Description|
 | -------- | -------- |
-| int32_t [OH_Asset_Add](#oh_asset_add) (const [Asset_Attr](_asset___attr.md) \*attributes, uint32_t attrCnt) | Adds an asset. |
+| int32_t [OH_Asset_Add](#oh_asset_add) (const [Asset_Attr](_asset___attr.md) \*attributes, uint32_t attrCnt) | Adds an asset.|
 | int32_t [OH_Asset_Remove](#oh_asset_remove) (const [Asset_Attr](_asset___attr.md) \*query, uint32_t queryCnt) | Removes one or more assets. |
 | int32_t [OH_Asset_Update](#oh_asset_update) (const [Asset_Attr](_asset___attr.md) \*query, uint32_t queryCnt, const [Asset_Attr](_asset___attr.md) \*attributesToUpdate, uint32_t updateCnt) | Updates an asset. |
 | int32_t [OH_Asset_PreQuery](#oh_asset_prequery) (const [Asset_Attr](_asset___attr.md) \*query, uint32_t queryCnt, [Asset_Blob](_asset___blob.md) \*challenge) | Performs preprocessing for the asset query. This function is used when user authentication is required for the access to the asset. |
@@ -46,6 +46,8 @@ int32_t OH_Asset_Add (const Asset_Attr * attributes, uint32_t attrCnt )
 ```
 **Description**
 Adds an asset.
+
+To set [ASSET_TAG_IS_PERSISTENT](_asset_type.md#asset_tag), the application must have the ohos.permission.STORE_PERSISTENT_DATA permission.
 
 **Since**: 11
 
@@ -109,7 +111,7 @@ Parses the query result and obtains the specified attribute.
 
 | Name| Description|
 | -------- | -------- |
-| result | Query result returned by OH_Asset_Query. |
+| result | Query result returned by **OH_Asset_Query**. |
 | tag | Key of the attribute to obtain. |
 
 **Returns**
