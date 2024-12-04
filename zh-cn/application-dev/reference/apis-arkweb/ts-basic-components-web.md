@@ -152,7 +152,7 @@ Web组件指定共享渲染进程。
   }
   ```
 
-加载沙箱路径下的本地资源文件。
+加载沙箱路径下的本地资源文件，需要开启应用中文件系统的访问[fileAccess](#fileaccess)权限。
 
 1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
@@ -196,6 +196,7 @@ Web组件指定共享渲染进程。
        Column() {
          // 加载沙箱路径文件。
          Web({ src: url, controller: this.controller })
+         .fileAccess(true)
        }
      }
    }
@@ -1057,12 +1058,12 @@ textZoomRatio(textZoomRatio: number)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State atio: number = 150;
+    @State ratio: number = 150;
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomRatio(this.atio)
+          .textZoomRatio(this.ratio)
       }
     }
   }
@@ -1733,8 +1734,8 @@ allowWindowOpenMethod(flag: boolean)
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
       }
@@ -4960,7 +4961,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 使能multiWindowAccess情况下，通知用户新建窗口请求。
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
+如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
 
 应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
 
@@ -5024,8 +5025,8 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
       }
