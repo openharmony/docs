@@ -2003,6 +2003,8 @@ struct ListExample {
 
 需要注意的是，数组arr的长度需要与WaterFlowSections的中所有SectionOptions的itemsCount的总和保持一致，否则WaterFlow无法处理，导致UI不刷新。
 
+以下两个示例请按照'push option' -> 'splice option' -> 'update option'的顺序进行点击。
+
 V1：
 
 在状态管理V1中，可以通过[\@State](./arkts-state.md)装饰观察其api调用。
@@ -2065,7 +2067,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {
@@ -2149,7 +2151,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {
