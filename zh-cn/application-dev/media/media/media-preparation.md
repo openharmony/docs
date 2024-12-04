@@ -16,7 +16,7 @@
 | 开发流程     | ArkTS开发指导                                     | C++开发指导                             |
 | ------------ | ------------------------------------------------- | --------------------------------------- |
 | 音频播放     | [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md) | [使用AVPlayer接口播放音频(C/C++)](using-ndk-avplayer-for-playerback.md) |
-| 视频播放     | [使用AVPlayer接口播放视频(ArkTS)](video-playback.md)              | - |
+| 视频播放     | [使用AVPlayer接口播放视频(ArkTS)](video-playback.md)              | [使用AVPlayer接口播放视频(C/C++)](using-ndk-avplayer-for-video-playerback.md) |
 | 流媒体     |  [使用AVPlayer播放流媒体(ArkTS)](streaming-media-playback-development-guide.md)              | - |
 | 添加字幕     | [使用AVPlayer接口添加视频外挂字幕(ArkTS)](video-subtitle.md) | -                                    |
 | 音频池       | [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)           | -                                     |
