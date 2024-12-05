@@ -113,7 +113,7 @@ options = {
 };
 collator = new intl.Collator("tr", options);
 let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
-var s = 'türkiye';
-var matches = sourceArray.filter(item => collator.compare(item, s) === 0);
+let s = 'türkiye';
+let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
 console.log(matches.toString());  // Türkiye,TüRkiye
 ```
