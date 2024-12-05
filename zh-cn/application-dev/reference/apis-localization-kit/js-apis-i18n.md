@@ -484,7 +484,7 @@ static getTemperatureName(type: TemperatureType): string;
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| string | 返回对应温度单位类型枚举的名称，包括celsius，fahrenhe，kelvin。 |
+| string | 返回对应温度单位类型枚举的名称，包括celsius，fahrenheit，kelvin。 |
 
 **错误码：**
 
