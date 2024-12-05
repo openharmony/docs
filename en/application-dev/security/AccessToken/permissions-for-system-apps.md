@@ -4037,6 +4037,20 @@ Allows a system application or system service to grant third-party applications 
 
 **Valid since**: 12
 
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+Allows a system service or system application to check the patch installation result.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+**Changelog**: From API version 12 to 13, this permission is available to system services. Starting from API version 14, this permission is available to system applications.
+
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
 Allows a system application or service to initiate user identity authentication from the background.

@@ -4037,6 +4037,20 @@
 
 **起始版本**：12
 
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+允许系统服务或应用检查补丁安装结果。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-13，开放范围为系统服务；从API 14开始，开放范围变更为系统应用。
+
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
 允许应用/服务在后台发起用户身份认证请求。
