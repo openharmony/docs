@@ -212,7 +212,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MediaType](#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1，<br/>MEDIA_TYPE_SUBTITILE = 2<br/>} | 媒体类型。 |
 | [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | AAC档次。 | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
-| [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,（API14废弃）<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4（API14废弃）<br/>} | HEVC档次。 | 
+| [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃。| 
 | [OH_VVCProfile](#oh_vvcprofile-1) {<br/>VVC_PROFILE_MAIN_10 = 1, <br/>VVC_PROFILE_MAIN_12 = 2, <br/>VVC_PROFILE_MAIN_12_INTRA = 10, <br/>VVC_PROFILE_MULTI_MAIN_10 = 17, <br/>VVC_PROFILE_MAIN_10_444 = 33, <br/>VVC_PROFILE_MAIN_12_444 = 34, <br/>VVC_PROFILE_MAIN_16_444 = 36, <br/>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br/>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br/>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br/>VVC_PROFILE_MAIN_10_STILL = 65, <br/>VVC_PROFILE_MAIN_12_STILL = 66, <br/>VVC_PROFILE_MAIN_10_444_STILL = 97, <br/>VVC_PROFILE_MAIN_12_444_STILL = 98, <br/>VVC_PROFILE_MAIN_16_444_STILL = 100 <br/>} | VVC档次。 | 
 | [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10<br/>} | 封装器支持的输出文件格式。 |
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
@@ -1222,19 +1222,16 @@ enum OH_ScalingMode
 
 **起始版本：** 10
 
+**废弃版本：** 14 
+
+**替代接口：** [OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2-1).OH_SCALING_MODE_SCALE_TO_WINDOW_V2、
+[OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2-1).OH_SCALING_MODE_SCALE_CROP_V2
+
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | SCALING_MODE_SCALE_TO_WINDOW  | 根据窗口尺寸自适应调整图像大小。 | 
 | SCALING_MODE_SCALE_CROP  | 根据窗口尺寸裁剪图像大小。 | 
 
-**废弃版本：** 14 
-
-**替代枚举值：** 
-
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| OH_SCALING_MODE_SCALE_TO_WINDOW_V2  | 根据窗口尺寸自适应调整图像大小。 | 
-| OH_SCALING_MODE_SCALE_CROP_V2  | 根据窗口尺寸裁剪图像大小。 | 
 
 
 ### OH_TemporalGopReferenceMode
@@ -1614,11 +1611,13 @@ MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
 const char* OH_ED_KEY_EOS
 ```
 **描述**
-表示surfacebuffer流结束符的键，值类型为int32_t。（API14废弃）
+表示surfacebuffer流结束符的键，值类型为int32_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 9
+
+**废弃版本：** 14 
 
 
 ### OH_ED_KEY_TIME_STAMP
@@ -1627,11 +1626,13 @@ const char* OH_ED_KEY_EOS
 const char* OH_ED_KEY_TIME_STAMP
 ```
 **描述**
-表示surfacebuffer时间戳的键，值类型为int64_t。（API14废弃）
+表示surfacebuffer时间戳的键，值类型为int64_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 9
+
+**废弃版本：** 14 
 
 
 ### OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
