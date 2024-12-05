@@ -202,3 +202,44 @@ RenderNode.d.ts文件rotation接口。
 renderNode.rotation = { x: 0, y: 0, z: 90 }; // 变更前
 renderNode.rotation = { x: 0, y: 0, z: vp2px(90) }; // 变更后
 ```
+
+## cl.arkui.3 List组件首次创建布局时，Scroller控制器的跳转方法优先级变更为高于initialIndex的优先级
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+initialIndex仅支持设定起始index，并默认将列表头部对齐，这使得开发者无法自定义对齐策略。scrollToIndex允许指定index与对齐方式，然而其效果会被 initialIndex覆盖。因此，需要提升scrollToIndex的优先级，使其高于initialIndex。这样一来，在组件初次布局时，如果开发者希望设定起始index并同时指定对齐方式，即可通过使用scrollToIndex来达成目标。
+
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前行为：
+- List首次布局时如果同时设置了initialIndex和调用滚动控制器的scrollToIndex，会生效initialIndex，不生效scrollToIndex。例如设置initialIndex为0（默认也是0），并在首次布局前调用了scrollToIndex，指定index为1，那么首次布局将从index为0的ListItem开始布局。
+
+- List首次布局时如果同时设置了initialIndex和调用滚动控制器的scrollEdge(Edge.Bottom)，会生效initialIndex，不生效scrollEdge(Edge.Bottom)。例如设置initialIndex为0（默认也是0），并在首次布局前调用了scrollEdge(Edge.Bottom)，那么首次布局将从index为0的ListItem开始布局。
+
+变更后行为：
+- 当List在首次布局时，如果同时指定了initialIndex和调用了滚动控制器的scrollToIndex方法，将仅生效initialIndex，而scrollToIndex不会生效。例如，若initialIndex设置为0（这也是默认值），并在首次布局前调用了scrollToIndex方法，指定index为1，那么首次布局依然会从index为0的ListItem开始，而非从index为1开始。
+
+- List首次布局时如果同时设置了initialIndex和调用滚动控制器的scrollEdge(Edge.Bottom)，会生效initialIndex，不生效scrollEdge(Edge.Bottom)。例如设置initialIndex为0（默认也是0），并在首次布局前调用了scrollEdge(Edge.Bottom)，那么首次布局将从List末尾的ListItem从List底部开始向上布局。
+
+**起始API Level**
+
+API 7
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.57开始。
+
+**变更的接口/组件**
+
+List组件的initialIndex接口和Scroller控制器的跳转接口（scrollToIndex、scrollToItemInGroup和scrollEdge）。
+
+**适配指导**
+
+需要对使用List组件的页面进行排查，检查是否在onAppear或其他List组件首次布局之前的阶段，同时设置了initialIndex并调用了scrollToIndex,、scrollToItemInGroup或scrollEdge接口。在变更后，initialIndex的生效优先级将低于scrollToIndex、scrollToItemInGroup或scrollEdge的优先级。
