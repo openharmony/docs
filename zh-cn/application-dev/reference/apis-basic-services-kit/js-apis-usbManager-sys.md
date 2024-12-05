@@ -534,6 +534,8 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
+| 14400006 | Unsupported operation. The function is not supported.                                                   |
 
 **返回值：**
 
