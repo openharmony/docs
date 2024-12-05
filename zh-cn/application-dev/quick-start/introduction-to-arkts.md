@@ -1637,8 +1637,6 @@ p.spouse?.nick; // undefined
 
 未导出的声明名称被视为私有名称，只能在声明该名称的模块中使用。
 
-**注意**：通过export方式导出，在导入时要加{}。
-
 ```typescript
 export class Point {
   x: number = 0;
@@ -1698,10 +1696,19 @@ import()语法通常称为动态导入dynamic import，是一种类似函数的�
 如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
 
 ```typescript
-let modulePath = prompt("Which module to load?");
-import(modulePath)
-.then(obj => <module object>)
-.catch(err => <loading error, e.g. if no such module>)
+// Calc.ts
+export function add(a:number, b:number):number {
+  let c = a + b;
+  console.info('Dynamic import, %d + %d = %d', a, b, c);
+  return c;
+}
+
+// Index.ts
+import("./Calc").then((obj: ESObject) => {
+  console.info(obj.add(3, 5));  
+}).catch((err: Error) => {
+  console.error("Module dynamic import error: ", err);
+});
 ```
 
 如果在异步函数中，可以使用let module = await import(modulePath)。
