@@ -116,8 +116,9 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。<br/>默认值：false <br/> |
 
 ## 示例
-### 示例1
-allowDrop与draggable属性用法示例
+### 示例1（允许拖拽和落入）
+
+该示例通过配置allowDrop和draggable分别设置组件是否可落入和拖拽。
 
 ```ts
 // xxx.ets
@@ -235,8 +236,10 @@ struct ImageExample {
 
 ![dragImage.gif](figures/dragImage.gif)
 
-### 示例2
-dragPreview属性用法示例
+### 示例2（设置预览图）
+
+该示例通过配置dragPreview设置拖拽过程的预览图。
+
 ```ts
 // xxx.ets
 @Entry
@@ -298,8 +301,10 @@ struct DragPreviewDemo{
 
 ![dragPreview.gif](figures/dragPreview.gif)
 
-### 示例3
-dragPreviewOptions属性用法示例
+### 示例3（设置背板图样式）
+
+该示例通过配置dragPreviewOptions为ENABLE_DEFAULT_SHADOW和ENABLE_DEFAULT_RADIUS设置默认阴影和统一圆角效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -330,8 +335,10 @@ struct dragPreviewOptionsDemo{
 ![dragPreviewOptions.gif](figures/dragPreviewOptions.gif)
 
 
-### 示例4
-DragInteractionOptions属性中isMultiSelectionEnabled参数使用方法用例。
+### 示例4（设置多选拖拽）
+
+该示例通过配置isMultiSelectionEnabled实现Grid组件的多选拖拽效果。
+
 ```ts
 @Entry
 @Component
@@ -368,8 +375,10 @@ struct Example {
 
 ![isMultiSelectionEnabled.gif](figures/isMultiSelectionEnabled.gif)
 
-### 示例5
-DragInteractionOptions属性中defaultAnimationBeforeLifting参数使用方法用例。
+### 示例5（设置默认点按效果）
+
+该示例通过配置defaultAnimationBeforeLifting实现Grid组件的默认点按效果。
+
 ```ts
 @Entry
 @Component
@@ -406,8 +415,10 @@ struct Example {
 
 ![defaultAnimationBeforeLifting.gif](figures/defaultAnimationBeforeLifting.gif)
 
-### 示例6
-dragPreviewOptions属性中ImageModifier参数使用方法用例。
+### 示例6（自定义背板图样式）
+
+该示例通过配置ImageModifier实现Image组件的自定义背板图样式。
+
 ```ts
 // xxx.ets
 import { ImageModifier } from '@kit.ArkUI'

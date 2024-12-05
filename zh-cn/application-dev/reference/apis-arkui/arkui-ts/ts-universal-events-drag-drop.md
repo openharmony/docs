@@ -262,6 +262,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## 示例
 
+该示例展示了部分组件（如Image和Text等）拖拽和可落入区域的设置。
+
 ```ts
 // xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
