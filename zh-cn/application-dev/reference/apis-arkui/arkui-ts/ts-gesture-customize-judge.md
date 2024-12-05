@@ -154,7 +154,10 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | speed         | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/s。  |
 ## 示例
 
-### 示例1
+### 示例1（自定义手势判定）
+
+该示例通过配置onGestureJudgeBegin实现了对长按、滑动和拖动手势的自定义判定。
+
 ```ts
 // xxx.ets
 @Entry
@@ -234,7 +237,11 @@ struct Index {
 }
 ```
 ![gestures1](figures/gestures1.gif)
-### 示例2
+
+### 示例2（自定义区域手势判定）
+
+该示例通过配置onGestureJudgeBegin判定区域决定长按手势和拖拽是否响应。
+
 ```ts
 // xxx.ets
 import { promptAction } from '@kit.ArkUI';

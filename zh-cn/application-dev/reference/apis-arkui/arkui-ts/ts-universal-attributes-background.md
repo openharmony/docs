@@ -266,7 +266,9 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 ## 示例
 
-### 示例1
+### 示例1（设置背景基础样式）
+
+该示例通过配置backgroundColor、backgroundImage、backgroundImageSize和backgroundImagePosition设置背景的基础样式。
 
 ```ts
 // xxx.ets
@@ -336,7 +338,9 @@ struct BackgroundExample {
 
 ![zh-cn_image_0000001219982703](figures/zh-cn_image_0000001219982703.png)
 
-### 示例2
+### 示例2（设置背景模糊样式）
+
+该示例通过backgroundBlurStyle设置背景模糊样式。
 
 ```ts
 // xxx.ets
@@ -363,7 +367,9 @@ struct BackgroundBlurStyleDemo {
 
 ![zh-cn_image_background_blur_style](figures/zh-cn_image_background_blur_style.png)
 
-### 示例3
+### 示例3（设置组件背景）
+
+该示例通过background设置组件背景。
 
 ```ts
 // xxx.ets
@@ -395,9 +401,9 @@ struct BackgroundExample {
 
 ![zh-cn_image_background](figures/zh-cn_image_background.png)
 
-### 示例4
+### 示例4（设置组件背景提亮效果）
 
-设置组件背景提亮效果
+该示例通过backgroundBrightness设置组件背景提亮效果。
 
 ```ts
 // xxx.ets
@@ -437,8 +443,10 @@ rate和lightUpDegree参数值为0.5,0.5：
 
 ![zh-cn_image_background_brightness3](figures/zh-cn_image_background_brightness3.png)
 
-### 示例5
-模糊属性的用法，blur内容模糊，backdropBlur背景模糊。
+### 示例5（设置模糊属性）
+
+该示例提供了模糊属性的实现方法。通过blur设置内容模糊，通过backdropBlur设置背景模糊。
+
 ```ts
 // xxx.ets
 @Entry
@@ -476,9 +484,9 @@ struct BlurEffectsExample {
 
 ![textblur](figures/textblur.png)
 
-### 示例6
+### 示例6（设置文字异形模糊效果）
 
-blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
+该示例通过blendMode和backgroundEffect实现文字异形模糊效果。<br/>
 如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
@@ -571,8 +579,9 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
 
-### 示例6
-backgroundEffect,backDropBlur,backgroundBlurStyle 模糊效果对比。
+### 示例7（模糊效果对比）
+
+该示例对比了backgroundEffect、backDropBlur和backgroundBlurStyle三种不同的模糊效果。
 
 ```ts
 // xxx.ets

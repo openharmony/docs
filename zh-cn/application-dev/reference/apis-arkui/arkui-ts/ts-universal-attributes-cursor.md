@@ -35,6 +35,8 @@ restoreDefault(): void
 
 ## 示例
 
+该示例通过setCursor实现了鼠标更改当前光标样式。
+
 > **说明：**
 > 
 > 直接使用cursorControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12)获取绑定实例的cursorControl。
