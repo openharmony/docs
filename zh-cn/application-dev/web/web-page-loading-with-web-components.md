@@ -129,7 +129,7 @@ struct WebComponent {
 
 加载沙箱路径下的本地页面文件。
 
-1. 通过构造的单例对象GlobalContext获取沙箱路径。
+1. 通过构造的单例对象GlobalContext获取沙箱路径，需要开启应用中文件系统的访问[fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess)权限。
 
    ```ts
    // GlobalContext.ets
@@ -171,6 +171,7 @@ struct WebComponent {
        Column() {
          // 加载沙箱路径文件。
          Web({ src: url, controller: this.controller })
+         .fileAccess(true)
        }
      }
    }

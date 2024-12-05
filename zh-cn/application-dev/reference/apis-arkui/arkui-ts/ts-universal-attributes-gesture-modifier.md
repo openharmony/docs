@@ -43,6 +43,8 @@ applyGesture(event: UIGestureEvent): void
 
 ## 示例
 
+该示例通过gestureModifier动态设置组件绑定的手势。
+
 ```ts
 // xxx.ets
 class MyButtonModifier implements GestureModifier {

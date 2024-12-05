@@ -90,6 +90,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
 ## 示例
 
+该示例通过按钮设置了触摸事件，手指点击按钮时可获取触摸事件的相关参数。
+
 ```ts
 // xxx.ets
 @Entry
