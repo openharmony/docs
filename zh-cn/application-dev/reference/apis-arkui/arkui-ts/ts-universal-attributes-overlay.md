@@ -51,7 +51,9 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 ## 示例
 
-### 示例1
+### 示例1（通过string设置浮层）
+
+该示例通过传入string设置浮层。
 
 ```ts
 // xxx.ets
@@ -79,7 +81,9 @@ struct OverlayExample {
 
 ![zh-cn_image_0000001205769446](figures/zh-cn_image_0000001205769446.png)
 
-### 示例2
+### 示例2（通过builder设置浮层）
+
+该示例通过传入builder设置浮层。
 
 ```ts
 // xxx.ets
@@ -105,8 +109,10 @@ struct OverlayExample {
 ```
 ![zh-cn_image_0000001210111632](figures/zh-cn_image_0000001210111632.png)
 
-### 示例3
-通过overlay传入了ComponentContent使backgroundColor不断发生变化
+### 示例3（通过ComponentContext设置浮层）
+
+该示例通过overlay传入了ComponentContent使backgroundColor不断发生变化。
+
 ```ts
 // xxx.ets
 import { ComponentContent } from '@kit.ArkUI';
