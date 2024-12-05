@@ -130,8 +130,8 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
 //        }
             break;
         case AV_INITIALIZED:
-            auto context = NativeXComponentSample::PluginManager::GetInstance(); // 设置视频播放 surface
-            ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_);
+            auto context = NativeXComponentSample::PluginManager::GetInstance();
+            ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_); // 设置视频播放 surface
             LOG("OH_AVPlayer_SetVideoSurface ret:%d", ret);
             ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
             if (ret != AV_ERR_OK) {
