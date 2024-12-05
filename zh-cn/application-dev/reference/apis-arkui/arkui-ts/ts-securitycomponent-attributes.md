@@ -221,7 +221,7 @@ fontColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上文字的颜色。<br/>默认值：\#ffffffff|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上文字的颜色。<br/>默认值：$r('sys.color.font_on_primary')|
 
 **返回值：**
 
@@ -243,7 +243,7 @@ iconColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上图标的颜色。<br/>默认值：\#ffffffff|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件上图标的颜色。<br/>默认值：$r('sys.color.icon_on_primary')|
 
 **返回值：**
 
@@ -265,7 +265,7 @@ backgroundColor(value: ResourceColor): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的背景颜色。<br/>默认值：\#007dff|
+| value | [ResourceColor](ts-types.md#resourcecolor) |是 |安全控件的背景颜色。<br/>默认值：$r('sys.color.icon_emphasize')<br/>安全控件按钮背景色高八位的α值低于0x1a（例如0x1800ff00）时，安全控件按钮背景色高八位的α值会被系统强制调整为0xff。|
 
 **返回值：**
 
