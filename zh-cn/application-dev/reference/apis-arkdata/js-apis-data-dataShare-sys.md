@@ -290,7 +290,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isProxy | boolean | 否 | 默认为false，如果为true，则要创建的[DataShareHelper](#datasharehelper)处于代理模式，所有操作都不会打开数据提供者APP，除非数据库不存在，当数据库不存在时，[createDataShareHelper](#datasharecreatedatasharehelper10)会拉起数据提供者创建数据库。 |
-| waitTime | number | 否 | 非静默访问时的拉起等待时间。 |
+| waitTime<sup>14+</sup> | number | 否 | 非静默访问时的拉起等待时间。 |
 
 ## TemplateId<sup>10+</sup>
 
