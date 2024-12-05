@@ -48,8 +48,15 @@ LocationButton(options:LocationButtonOptions)
 
 > **说明：**
 > 
-> icon或text需至少传入一个。<br>
-> 如果icon、text都不传入，[LocationButton](#locationbutton-1)中的options参数不起效，创建的LocationButton为默认样式。
+> - icon或text需至少传入一个。<br>
+> - 如果icon、text都不传入，[LocationButton](#locationbutton-1)中的options参数不起效，创建的LocationButton为默认样式，默认样式：
+>
+>   LocationIconStyle默认样式为LINES；
+>
+>   LocationDescription默认样式为CURRENT_LOCATION；
+>
+>   ButtonType默认样式为Capsule。
+> - icon、text、buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
