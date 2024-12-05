@@ -611,6 +611,7 @@
       - 管理网页交互<!--web-manage-page-interaction-->
         - [Web组件嵌套滚动](web/web-nested-scrolling.md)
         - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
+        - [Web组件焦点管理](web/web-focus.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
