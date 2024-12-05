@@ -4039,7 +4039,7 @@
 
 ### ohos.permission.CHECK_QUICKFIX_RESULT
 
-允许执行补丁结果检查。
+允许系统服务或应用检查补丁安装结果。
 
 **权限级别**：system_core
 
@@ -4048,6 +4048,8 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+**变更信息**：API 12-13，开放范围为系统服务；从API 14开始，开放范围变更为系统应用。
 
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
