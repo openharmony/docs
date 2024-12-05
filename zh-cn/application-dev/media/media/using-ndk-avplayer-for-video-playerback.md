@@ -121,6 +121,7 @@ typedef struct DemoNdkPlayer {
 } DemoNdkPlayer;
 
 void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
+    int32_t ret = -1;
     switch (state) {
         case AV_IDLE: // 成功调用reset接口后触发该状态机上报
 //            ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
