@@ -481,7 +481,6 @@ windowStage.loadContent('pages/Index', this.storage);
 在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 ```ts
 // index.ets
-import { router } from '@kit.ArkUI';
 
 // 通过getShared接口获取stage共享的LocalStorage实例
 @Entry({ storage: LocalStorage.getShared() })
@@ -489,56 +488,82 @@ import { router } from '@kit.ArkUI';
 struct Index {
   // 可以使用@LocalStorageLink/Prop与LocalStorage实例中的变量建立联系
   @LocalStorageLink('PropA') propA: number = 1;
+  pageStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(`${this.propA}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button("To Page")
-          .onClick(() => {
-            this.getUIContext().getRouter().pushUrl({
-              url: 'pages/Page'
+    Navigation(this.pageStack) {
+      Row(){
+        Column() {
+          Text(`${this.propA}`)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+          Button("To Page")
+            .onClick(() => {
+              this.pageStack.pushPathByName('Page', null);
             })
-          })
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
 }
 ```
 
 ```ts
 // Page.ets
-import { router } from '@kit.ArkUI';
 
-@Entry({ storage: LocalStorage.getShared() })
+@Builder
+export function PageBuilder() {
+  Page()
+}
+
+// Page组件获得了父亲Index组件的LocalStorage实例
 @Component
 struct Page {
   @LocalStorageLink('PropA') propA: number = 2;
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(`${this.propA}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+    NavDestination() {
+      Row(){
+        Column() {
+          Text(`${this.propA}`)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
 
-        Button("Change propA")
-          .onClick(() => {
-            this.propA = 100;
-          })
+          Button("Change propA")
+            .onClick(() => {
+              this.propA = 100;
+            })
 
-        Button("Back Index")
-          .onClick(() => {
-            this.getUIContext().getRouter().back()
-          })
+          Button("Back Index")
+            .onClick(() => {
+              this.pathStack.pop();
+            })
+        }
+        .width('100%')
       }
-      .width('100%')
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page页面的路径。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page",
+      "pageSourceFile": "src/main/ets/pages/Page.ets",
+      "buildFunction": "PageBuilder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
 }
 ```
 
