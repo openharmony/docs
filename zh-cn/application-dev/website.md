@@ -428,7 +428,7 @@
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
         - 使用弹窗<!--arkts-use-dialog-->
-          - [模态弹窗 (ModelDialog)](ui/arkts-modal-dialog.md)
+          - [模态弹窗 (ModalDialog)](ui/arkts-modal-dialog.md)
           - [不依赖UI组件的全局自定义弹窗 (推荐)](ui/arkts-uicontext-custom-dialog.md)
           - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
         - 显示图形<!--arkts-draw-graphics-->
@@ -2692,8 +2692,11 @@
             - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/_ark_web___cookie_manager_a_p_i.md)
             - [ArkWeb_JavaScriptBridgeData](reference/apis-arkweb/_ark_web___java_script_bridge_data.md)
             - [ArkWeb_JavaScriptObject](reference/apis-arkweb/_ark_web___java_script_object.md)
+            - [ArkWeb_JavaScriptValueAPI](reference/apis-arkweb/_ark_web___java_script_value_a_p_i.md)
             - [ArkWeb_ProxyMethod](reference/apis-arkweb/_ark_web___proxy_method.md)
+            - [ArkWeb_ProxyMethodWithResult](reference/apis-arkweb/_ark_web___proxy_method_with_result.md)
             - [ArkWeb_ProxyObject](reference/apis-arkweb/_ark_web___proxy_object.md)
+            - [ArkWeb_ProxyObjectWithResult](reference/apis-arkweb/_ark_web___proxy_object_with_result.md)
             - [ArkWeb_WebMessageAPI](reference/apis-arkweb/_ark_web___web_message_a_p_i.md)
             - [ArkWeb_WebMessagePortAPI](reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md)
       - 错误码<!--arkweb-arkts-errcode-->
