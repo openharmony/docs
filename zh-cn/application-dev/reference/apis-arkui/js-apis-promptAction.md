@@ -79,13 +79,13 @@ API version 12及之后Toast样式。
 
 ![zh-cn_image_0001](figures/toast-api12.gif)
 
-## promptAction.openToast<sup>13+</sup>
+## promptAction.openToast<sup>16+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
 显示文本提示框并返回文本提示框id。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -156,13 +156,13 @@ struct toastExample {
 
 ![toast-openclose](figures/toast-openclose.gif)
 
-## promptAction.closeToast<sup>13+</sup>
+## promptAction.closeToast<sup>16+</sup>
 
 closeToast(toastId: number): void
 
 关闭文本提示框。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -183,7 +183,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[promptAction.openToaset13](#promptactionopentoast13)的示例。
+示例请看[promptAction.openToaset16](#promptactionopentoast16)的示例。
 
 ## promptAction.showDialog
 
