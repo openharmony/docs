@@ -76,8 +76,6 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 
 ## 完整示例
 
-### napi_avplayer.cpp
-
 ```c++
 #include "napi/native_api.h"
 
@@ -108,6 +106,8 @@ typedef struct DemoNdkPlayer {
     int32_t width = -1;
     int32_t height = -1;
 
+    OHNativeWindow *nativeWindow = nullptr;
+
     AVPlayerBufferingType bufferType = AVPLAYER_BUFFERING_START;
     int32_t bufferValue = -1;
 
@@ -130,8 +130,7 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
 //        }
             break;
         case AV_INITIALIZED:
-            auto context = NativeXComponentSample::PluginManager::GetInstance();
-            ret = OH_AVPlayer_SetVideoSurface(player, context->nativeWindow_); // 设置视频播放 surface
+            ret = OH_AVPlayer_SetVideoSurface(player, nativeWindow); // 设置视频播放 surface
             LOG("OH_AVPlayer_SetVideoSurface ret:%d", ret);
             ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
             if (ret != AV_ERR_OK) {
@@ -352,7 +351,6 @@ static napi_value Play(napi_env env, napi_callback_info info)
         return nullptr;
     }
 
-    NativeXComponentSample::PluginManager::GetInstance()->SetAVPlayer(player);
     // 通过新接口设置信息监听回调函数和错误监听回调函数，不用再调用OH_AVPlayer_SetPlayerCallback。
     // 业务播放实例不再使用后，再释放对象。
     DemoNdkPlayer *demoNdkPlayer = new DemoNdkPlayer({
@@ -390,6 +388,20 @@ static napi_value Play(napi_env env, napi_callback_info info)
     return value;
 }
 
+// 定义 Surface 回调函数
+void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
+    LOG("OnSurfaceCreatedCB...");
+    // 可获取 OHNativeWindow 实例
+    nativeWindow = static_cast<OHNativeWindow *>(window);
+}
+
+void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
+    LOG("OnSurfaceDestroyedCB...");
+    // 可获取 OHNativeWindow 实例
+    nativeWindow = static_cast<OHNativeWindow *>(window);
+    // ...
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -397,6 +409,19 @@ static napi_value Init(napi_env env, napi_value exports)
         { "play", nullptr, Play, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+
+    // 获取 NativeXComponent
+    napi_value exportInstance = nullptr;
+    napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance)
+    OH_NativeXComponent *nativeXComponent = nullptr;
+    napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent));
+
+    // 将 OH_NativeXComponent_Callback 注册给 NativeXComponent
+    OH_NativeXComponent_Callback callback_;
+    callback_.OnSurfaceCreated = OnSurfaceCreatedCB;
+    callback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
+    OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
+
     return exports;
 }
 EXTERN_C_END
@@ -415,207 +440,4 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
-```
-
-### plugin_manager.h
-
-```c++
-#ifndef NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
-#define NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
-
-#include <ace/xcomponent/native_interface_xcomponent.h>
-#include <cstddef>
-#include <js_native_api.h>
-#include <js_native_api_types.h>
-#include <multimedia/player_framework/avplayer_base.h>
-#include <napi/native_api.h>
-#include <native_window/external_window.h>
-#include <string>
-#include <unordered_map>
-
-namespace NativeXComponentSample {
-class PluginManager {
-public:
-    PluginManager() {}
-    PluginManager(PluginManager *p1) {}
-    ~PluginManager();
-
-    static PluginManager *GetInstance() { return &PluginManager::pluginManager_; }
-
-    static napi_value GetContext(napi_env env, napi_callback_info info);
-    void SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent);
-    void SetNativeWindow(OHNativeWindow *nativeWindow, uint64_t width, uint64_t height);
-    void SetAVPlayer(OH_AVPlayer *player);
-    void Export(napi_env env, napi_value exports);
-
-public:
-    static PluginManager pluginManager_;
-    std::unordered_map<std::string, OH_NativeXComponent *> nativeXComponentMap_;
-    std::string *surfaceId_;
-    OHNativeWindow *nativeWindow_ = NULL;
-    uint64_t height_;
-    uint64_t width_;
-    OH_AVPlayer *player_ = NULL;
-};
-} // namespace NativeXComponentSample
-#endif // NATIVE_XCOMPONENT_PLUGIN_MANAGER_H
-
-```
-
-### plugin_manager.cpp
-
-```c++ 
-#include "plugin_manager.h"
-
-#include <ace/xcomponent/native_interface_xcomponent.h>
-#include <cstdint>
-#include <cstdio>
-#include <native_window/external_window.h>
-#include <string>
-#include "log.h"
-
-
-namespace NativeXComponentSample {
-PluginManager PluginManager::pluginManager_;
-
-
-// 定义回调函数
-void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
-    LOG("OnSurfaceCreatedCB...");
-    // 可获取 OHNativeWindow 实例
-    OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
-    uint64_t width = 0;
-    uint64_t height = 0;
-    int32_t ret = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-    auto context = PluginManager::GetInstance();
-    if ((context != nullptr) && (nativeWindow != nullptr)) {
-        LOG("OnSurfaceCreatedCB...nativeWindow width:%lu height:%lu", width, height);
-        context->SetNativeWindow(nativeWindow, width, height);
-    }
-}
-void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
-    LOG("OnSurfaceChangedCB...");
-    // 可获取 OHNativeWindow 实例
-    OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
-    // ...
-}
-void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
-    LOG("OnSurfaceDestroyedCB...");
-    // 可获取 OHNativeWindow 实例
-    OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
-    // ...
-}
-void DispatchTouchEventCB(OH_NativeXComponent *component, void *window) {
-    LOG("DispatchTouchEventCB...");
-    // 可获取 OHNativeWindow 实例
-    OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
-    // ...
-}
-
-PluginManager::~PluginManager() {
-    LOG("Callback %s", "~PluginManager");
-    for (auto iter = nativeXComponentMap_.begin(); iter != nativeXComponentMap_.end(); ++iter) {
-        if (iter->second != nullptr) {
-            delete iter->second;
-            iter->second = nullptr;
-        }
-    }
-    nativeXComponentMap_.clear();
-}
-
-napi_value PluginManager::GetContext(napi_env env, napi_callback_info info) {
-    if ((env == nullptr) || (info == nullptr)) {
-        LOG("PluginManager %s", "GetContext env or info is null");
-        return nullptr;
-    }
-
-    size_t argCnt = 1;
-    napi_value args[1] = {nullptr};
-    if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
-        LOG("PluginManager %s", "GetContext napi_get_cb_info failed");
-    }
-
-    if (argCnt != 1) {
-        napi_throw_type_error(env, NULL, "Wrong number of arguments");
-        return nullptr;
-    }
-
-    napi_valuetype valuetype;
-    if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_typeof failed");
-        return nullptr;
-    }
-
-    if (valuetype != napi_number) {
-        napi_throw_type_error(env, NULL, "Wrong type of arguments");
-        return nullptr;
-    }
-
-    int64_t value;
-    if (napi_get_value_int64(env, args[0], &value) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_get_value_int64 failed");
-        return nullptr;
-    }
-
-    napi_value exports;
-    if (napi_create_object(env, &exports) != napi_ok) {
-        napi_throw_type_error(env, NULL, "napi_create_object failed");
-        return nullptr;
-    }
-
-    return exports;
-}
-
-void PluginManager::Export(napi_env env, napi_value exports) {
-    LOG("call  PluginManager::Export");
-    if ((env == nullptr) || (exports == nullptr)) {
-        LOG("PluginManager %s", "Export: env or exports is null");
-        return;
-    }
-    napi_value exportInstance = nullptr;
-    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
-        LOG("PluginManager %s", "Export: napi_get_named_property fail");
-        return;
-    }
-    OH_NativeXComponent *nativeXComponent = nullptr;
-    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok) {
-        LOG("PluginManager %s", "Export: napi_unwrap fail");
-        return;
-    }
-    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
-    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-    if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-        LOG("PluginManager Export: OH_NativeXComponent_GetXComponentId fail");
-        return;
-    }
-    LOG("call  PluginManager::Export surfaceID %s", idStr);
-    std::string id(idStr);
-    // 将 OH_NativeXComponent_Callback 注册给 NativeXComponent
-    OH_NativeXComponent_Callback callback_;
-    callback_.OnSurfaceCreated = OnSurfaceCreatedCB;
-    //     callback_.OnSurfaceChanged = OnSurfaceChangedCB;
-    callback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
-    //     callback_.DispatchTouchEvent = DispatchTouchEventCB;
-    OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
-    auto context = PluginManager::GetInstance();
-    if ((context != nullptr) && (nativeXComponent != nullptr)) {
-        context->SetNativeXComponent(id, nativeXComponent);
-    }
-}
-
-void PluginManager::SetNativeXComponent(std::string &id, OH_NativeXComponent *nativeXComponent) {
-    if (nativeXComponent == nullptr) {
-        return;
-    }
-    surfaceId_ = &id;
-    nativeXComponentMap_[id] = nativeXComponent;
-}
-void PluginManager::SetNativeWindow(OHNativeWindow *nativeWindow, uint64_t width, uint64_t height) {
-    nativeWindow_ = nativeWindow;
-    height_ = height;
-    width_ = width;
-}
-void PluginManager::SetAVPlayer(OH_AVPlayer *player) { player_ = player; }
-} // namespace NativeXComponentSample
-
 ```
