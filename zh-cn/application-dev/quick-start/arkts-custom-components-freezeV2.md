@@ -15,70 +15,69 @@
 
 ### 页面路由
 
-- 当页面A调用router.pushUrl接口跳转到页面B时，页面A为隐藏不可见状态，此时如果更新页面A中的状态变量，不会触发页面A刷新。
+- 当页面1调用router.pushUrl接口跳转到页面2时，页面1为隐藏不可见状态，此时如果更新页面1中的状态变量，不会触发页面1刷新。
+图示如下：
 
+![freezeInPage](./figures/freezeInPage.png)
 
-页面A：
+页面1：
 
 ```ts
 import { router } from '@kit.ArkUI';
 
 @ObservedV2
 export class Book {
-  @Trace page: number = 100;
+  @Trace name: string = "100";
 
-  constructor(page: number) {
-    this.page = page;
-  }
-
-  @Monitor("page")
-  onPageChange(monitor: IMonitor) {
-    console.log(`Page change : ${this.page}`);
+  constructor(page: string) {
+    this.name = page;
   }
 }
 
-export let book: Book = new Book(100);
-
 @Entry
 @ComponentV2({ freezeWhenInactive: true })
-export struct FirstTest {
+export struct Page1 {
+  @Local bookTest: Book = new Book("A Midsummer Night’s Dream");
+
+  @Monitor("bookTest.name")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
   build() {
     Column() {
-      Text(`From fist Page ${book.page}`).fontSize(50)
-      Button('first page + 1').fontSize(30)
+      Text(`Book name is  ${this.bookTest.name}`).fontSize(25)
+      Button('changeBookName').fontSize(25)
         .onClick(() => {
-          book.page += 1;
+          this.bookTest.name = "The Old Man and the Sea";
         })
-      Button('go to next page').fontSize(30)
+      Button('go to next page').fontSize(25)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page' });
+          router.pushUrl({ url: 'pages/Page2' });
+          setTimeout(() => {
+            this.bookTest = new Book("Jane Austen oPride and Prejudice");
+          }, 1000)
         })
     }
   }
 }
 ```
 
-页面B：
+页面2：
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { book } from './Index';
 
 @Entry
-@ComponentV2({ freezeWhenInactive: true })
-struct SecondTest {
+@ComponentV2
+struct Page2 {
   build() {
     Column() {
-      Text(`second Page ${book.page}`).fontSize(50)
+      Text(`This is the page2`).fontSize(25)
       Button('Back')
         .onClick(() => {
           router.back();
         })
-      Button('second page + 2').fontSize(30)
-        .onClick(() => {
-          book.page += 2;
-        })
-
     }
   }
 }
@@ -86,13 +85,17 @@ struct SecondTest {
 
 在上面的示例中：
 
-1.点击页面A中的Button “first page + 1”，book变量的page属性改变，@Monitor中注册的方法onPageChange会被调用。
+1.点击页面1中的Button “changeBookName”，bookTest变量的name属性改变，@Monitor中注册的方法onMessageChange会被调用。
 
-2.通过router.pushUrl({url: 'pages/Page'})，跳转到页面B，页面A隐藏，状态由active变为inactive。
+2.点击页面1中的Button “go to next page”，跳转到页面2，然后延迟1s更新状态变量“bookTest”。在更新“bookTest”的时候，已经跳转到页面2，页面1处于inactive状态，状态变量`@Local bookTest`将不响应更新，其@Monitor不会调用，状态变量关联的节点不会刷新。
+trace如下：
 
-3.点击页面B中的Button “second page + 2”，Monitor中注册的方法onPageChange会被调用。
+![Example Image](./figures/freeze1.png)
 
-4.点击“back”，页面B被销毁，页面A的状态由inactive变为active，对应的Text显示内容改变。
+
+3.点击“back”，页面2被销毁，页面1的状态由inactive变为active。状态变量“bookTest”的更新被观察到，@Monitor中注册的方法onMessageChange被调用，对应的Text显示内容改变。
+
+![freezeV2Page](./figures/freezeV2page.gif)
 
 
 ### TabContent
@@ -100,6 +103,10 @@ struct SecondTest {
 - 对Tabs中当前不可见的TabContent进行冻结，不会触发组件的更新。
 
 - 需要注意的是：在首次渲染的时候，Tab只会创建当前正在显示的TabContent，当切换全部的TabContent后，TabContent才会被全部创建。
+
+图示如下：
+![freezeWithTab](./figures/freezewithTabs.png)
+
 
 ```ts
 @Entry
@@ -152,7 +159,9 @@ struct FreezeChild {
 
 2.点击TabBar“tab1”切换到另外的TabContent，TabContent状态由inactive变为active，对应的@Monitor中注册的方法onMessageUpdated被触发。 
 
-3.再次点击“change message”更改message的值，仅当前显示的TabContent子组件中的@Monitor中注册的方法onMessageUpdated被触发。
+3.再次点击“change message”更改message的值，仅当前显示的TabContent子组件中的@Monitor中注册的方法onMessageUpdated被触发。其他inactive的TabContent组件不会触发@Monitor。
+
+![TabContent.gif](figures/TabContent.gif)
 
 
 ### Navigation
@@ -317,19 +326,21 @@ struct NavigationContentMsgStack {
 
 3.再次点击“change message”更改message的值，仅pageOneStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
-4.再次点击“Next Page”切换到PageTwo，创建pageTwoStack节点。
+4.再次点击“Next Page”切换到PageTwo，创建pageTwoStack节点。pageOneStack节点状态由active变为inactive
 
-5.再次点击“change message”更改message的值，仅pageTwoStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
+5.再次点击“change message”更改message的值，仅pageTwoStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
 
-6.再次点击“Next Page”切换到PageThree，创建pageThreeStack节点。
+6.再次点击“Next Page”切换到PageThree，创建pageThreeStack节点。pageTwoStack节点状态由active变为inactive
 
-7.再次点击“change message”更改message的值，仅pageThreeStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
+7.再次点击“change message”更改message的值，仅pageThreeStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
 
-8.点击“Back Page”回到PageTwo，此时，仅pageTwoStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
+8.点击“Back Page”回到PageTwo，此时，pageTwoStack节点状态由inactive变为active，其NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
-9.再次点击“Back Page”回到PageOne，此时，仅pageOneStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
+9.再次点击“Back Page”回到PageOne，此时，pageOneStack节点状态由inactive变为active，其NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
 10.再次点击“Back Page”回到初始页。
+
+![navigation-freeze.gif](figures/navigation-freeze.gif)
 
 
 ## 限制条件
