@@ -606,17 +606,6 @@ compare(first: string, second: string): number
   let collator = new intl.Collator("en-GB");
   // 比较 "first" 和 "second" 的先后顺序
   let compareResult = collator.compare("first", "second"); // compareResult = -1
-
-  // 搜索匹配的字符串
-  let options = {
-      usage: "search",
-      sensitivity: "base"
-  };
-  let collator2 = new intl.Collator("tr", options);
-  let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
-  var s = 'türkiye';
-  var matches = sourceArray.filter(item => collator2.compare(item, s) === 0);
-  console.log(matches.toString());  // Türkiye,TüRkiye
   ```
 
 
