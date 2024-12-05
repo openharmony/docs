@@ -7650,6 +7650,8 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 监听音频数据写入回调事件（当需要写入音频数据时触发），使用 callback 方式返回结果。
 
+回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
@@ -8915,7 +8917,9 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
-监听音频数据读入回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
+监听音频数据读取回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
+
+回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer相关接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8975,7 +8979,7 @@ audioCapturer.start((err: BusinessError) => {
 
 off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
-取消监听音频数据读入回调事件，使用callback方式返回结果。
+取消监听音频数据读取回调事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
