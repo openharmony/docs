@@ -41,6 +41,8 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: VisibleAreaChangeCallbac
 
 ## 示例
 
+该示例对组件设置onVisibleAreaChange事件，当组件完全显示或者完全消失时触发回调。
+
 ```ts
 // xxx.ets
 @Entry

@@ -40,6 +40,8 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 
 ## 示例
 
+该示例通过配置RotationGesture实现了双指旋转手势的识别。
+
 ```ts
 // xxx.ets
 @Entry
