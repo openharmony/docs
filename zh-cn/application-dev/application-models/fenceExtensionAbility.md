@@ -1,7 +1,7 @@
 # FenceExtensionAbility
 
 ## 概述
-[FenceExtensionAbility](../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)是一个Fence类型的ExtensionAbility，开发者可以使用该Ability来快速便捷的实现地理围栏拓展能力，协助用户完成快捷交互，提升用户体验。
+[FenceExtensionAbility](../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)是一个地理围栏类型的ExtensionAbility，开发者可以使用该Ability来快速便捷的实现地理围栏拓展能力，协助用户完成快捷交互，提升用户体验。
 
 ## 使用场景
 
@@ -13,7 +13,7 @@
 | 接口 | 描述 |
 | ---- | ---- |
 | onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record&lt;string, string&gt;): void  | 接收系统通知的地理围栏事件，根据围栏事件类型和数据进行相应处理。 |
-| onDestroy(): void | 接收extension的销毁事件并处理，会在extension销毁前回调。 |
+| onDestroy(): void | 接收FenceExtensionAbility的销毁事件并处理，会在FenceExtensionAbility销毁前回调。 |
 
 ## 开发步骤
 
@@ -73,7 +73,7 @@ export default class MyFenceExtensionAbility extends FenceExtensionAbility {
   }
 
   onDestroy(): void {
-    // 处理ability死亡事件
+    // 处理ability销毁事件
     console.log(`on ability destroy`);
   }
 }

@@ -23,7 +23,7 @@ import FenceExtensionAbility from '@kit.LocationKit';
 
 ## FenceExtensionAbility.onFenceStatusChange
 
-onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record<string, string>): void;
+onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record&lt;string, string&gt;): void;
 
 接收系统通知的地理围栏事件，根据围栏事件类型和数据进行相应处理。
 
@@ -33,7 +33,7 @@ onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions
 | 参数名 |  类型 | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
 |  transition |  [geoLocationManager.GeofenceTransition](js-apis-geoLocationManager.md#geofencetransition12) |  是 | 地理围栏事件信息；包含地理围栏ID和具体的地理围栏事件。  |
-| additions  | Record<string, string>  | 是  | 附加信息  |
+| additions  | Record&lt;string, string&gt;  | 是  | 附加信息  |
 
 **示例：**
 
@@ -87,7 +87,7 @@ export default class MyFenceExtensionAbility extends FenceExtensionAbility {
 
 onDestroy(): void;
 
-接收extension的销毁事件并处理，会在extension销毁前回调。
+接收FenceExtensionAbility的销毁事件并处理，会在FenceExtensionAbility销毁前回调。
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
