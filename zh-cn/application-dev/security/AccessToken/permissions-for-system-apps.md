@@ -4766,3 +4766,17 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.GET_ANIM_POLICY
+
+允许应用获取动效参数。
+
+应用获取此权限后，可按照动效参数来实现动效等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
