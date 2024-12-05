@@ -1,5 +1,3 @@
-
-
 # PanGesture
 
 拖动手势事件，当滑动的最小距离达到设定的最小值时触发拖动手势事件。
@@ -85,6 +83,8 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 | tag<sup>11+</sup>   | string  | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。|
 
 ## 示例
+
+该示例通过PanGesture实现了单指/双指拖动手势的识别。
 
 ```ts
 // xxx.ets

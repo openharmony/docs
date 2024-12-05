@@ -82,6 +82,8 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 
 ## 示例
 
+该示例通过按钮设置了按键事件，按钮获焦时可触发onKeyEvent回调。
+
 ```ts
 // xxx.ets
 @Entry

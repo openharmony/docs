@@ -40,6 +40,8 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 ## 示例
 
+该示例通过配置PinchGesture实现了三指捏合手势的识别。
+
 ```ts
 // xxx.ets
 @Entry

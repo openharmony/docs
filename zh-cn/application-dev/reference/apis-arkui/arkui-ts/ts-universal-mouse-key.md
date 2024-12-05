@@ -47,6 +47,8 @@ onMouse(event: (event: MouseEvent) => void)
 
 ## 示例
 
+该示例通过按钮设置了鼠标事件，通过鼠标点击按钮可以触发onMouse事件，获取鼠标事件相关参数。
+
 ```ts
 // xxx.ets
 @Entry

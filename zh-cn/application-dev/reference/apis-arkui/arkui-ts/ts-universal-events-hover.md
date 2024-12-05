@@ -44,6 +44,8 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
 ## 示例
 
+该示例通过按钮设置了悬浮事件，鼠标悬浮可触发onHover事件修改按钮颜色。
+
 ```ts
 // xxx.ets
 @Entry
