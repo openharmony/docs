@@ -16,3 +16,4 @@
 | name     | string | 否   | 否   | 元数据名称。 |
 | value    | string | 否   | 否   | 元数据值。   |
 | resource | string | 否   | 否   | 元数据资源。 |
+| valueId<sup>16+</sup>  | number | 是   | 是   | 元数据值id。当valueId不为0时，表示当前元数据值为自定义配置，需要使用valueId去资源管理获取对应的值。 当valueId为0时，表示当前元数据值为固定字符串。 |
