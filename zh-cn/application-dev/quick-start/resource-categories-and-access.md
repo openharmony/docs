@@ -388,7 +388,7 @@ string资源配置attr属性示例如下：
 >
 > - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
 >
-> - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
+> - 当前，界面加载的系统资源字体进行显示时（可以在配置中system/etc/fontconfig.json文件中查看），默认使用的字体是鸿蒙黑体（HarmonyOS Sans），支持的范围是[中文编码字符集GB18030-2022（级别一/级别二）](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3)。
 
 ```ts
 Text('Hello')
