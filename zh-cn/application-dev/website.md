@@ -1584,7 +1584,6 @@
             - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
             - [使用Node-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
             - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
-            - [使用JSVM-API接口进行Trace相关开发](napi/use-jsvm-about-trace.md)
             - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
             - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
             - [使用JSVM-API接口进行JavaScript代码调试调优](napi/use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
