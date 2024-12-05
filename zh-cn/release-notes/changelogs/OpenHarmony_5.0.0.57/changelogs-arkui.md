@@ -218,15 +218,18 @@ initialIndex仅支持设定起始index，并默认将列表头部对齐，这使
 
 该变更为不兼容变更。
 
-变更前行为：
-- List首次布局时如果同时设置了initialIndex和调用滚动控制器的scrollToIndex，会生效initialIndex，不生效scrollToIndex。例如设置initialIndex为0（默认也是0），并在首次布局前调用了scrollToIndex，指定index为1，那么首次布局将从index为0的ListItem开始布局。
+场景1：List设置initialIndex为0 (默认也是0)，并在首次布局前调用scrollToIndex(1)。
 
-- List首次布局时如果同时设置了initialIndex和调用滚动控制器的scrollEdge(Edge.Bottom)，会生效initialIndex，不生效scrollEdge(Edge.Bottom)。例如设置initialIndex为0（默认也是0），并在首次布局前调用了scrollEdge(Edge.Bottom)，那么首次布局将从index为0的ListItem开始布局。
+| 变更前 | 变更后 |
+|------ |--------|
+|List首次布局将从index为0的ListItem开始布局。</br>![listdemo1](figures/listdemo1.png)|List首次布局将从index为1的ListItem开始布局。</br>![listdemo2](figures/listdemo2.png)|
 
-变更后行为：
-- 当List在首次布局时，如果同时指定了initialIndex和调用了滚动控制器的scrollToIndex方法，将仅生效initialIndex，而scrollToIndex不会生效。例如，若initialIndex设置为0（这也是默认值），并在首次布局前调用了scrollToIndex方法，指定index为1，那么首次布局依然会从index为0的ListItem开始，而非从index为1开始。
+场景2：List设置initialIndex为0 (默认也是0)，并在首次布局前调用scrollEdge(Edge.Bottom)。
 
-- List首次布局时如果同时设置了initialIndex和调用滚动控制器的scrollEdge(Edge.Bottom)，会生效initialIndex，不生效scrollEdge(Edge.Bottom)。例如设置initialIndex为0（默认也是0），并在首次布局前调用了scrollEdge(Edge.Bottom)，那么首次布局将从List末尾的ListItem从List底部开始向上布局。
+| 变更前 | 变更后 |
+|------ |--------|
+|List首次布局将展示在顶部，即index为0的ListItem处于顶部。</br>![listdemo1](figures/listdemo1.png)|List首次布局将展示在底部，即index为最大值的ListItem处于底部。</br>![listdemo3](figures/listdemo3.png)|
+
 
 **起始API Level**
 
