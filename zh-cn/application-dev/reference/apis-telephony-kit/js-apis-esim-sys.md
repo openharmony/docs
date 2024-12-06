@@ -77,7 +77,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#OsuStatus)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osuStatus14)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
 
 **错误码：**
 
@@ -125,7 +125,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#OsuStatus)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osuStatus14)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
 
 **错误码：**
 | 错误码ID                 | 错误信息                               |
@@ -170,14 +170,14 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex | number | 是 | 插槽的端口索引 |
-| profile | [DownloadableProfile](#DownloadableProfile) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
+| profile | [DownloadableProfile](#downloadableProfile14) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
 | forceDisableProfile | boolean | 是 | 如果为真，则必须停用活动SIM才能执行操作。否则，返回结果提示用户首先同意此操作 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfileMetadataResult](#GetDownloadableProfileMetadataResult)\> | 以Promise形式填充可下载配置文件的元数据。 |
+| Promise\<[GetDownloadableProfileMetadataResult](#getDownloadableProfileMetadataResult14)\> | 以Promise形式填充可下载配置文件的元数据。 |
 
 **错误码：**
 
@@ -239,7 +239,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfilesResult](#GetDownloadableProfilesResult)\> | 以Promise形式获取可用的可下载配置文件列表。 |
+| Promise\<[GetDownloadableProfilesResult](#getDownloadableProfilesResult14)\> | 以Promise形式获取可用的可下载配置文件列表。 |
 
 **错误码：**
 
@@ -284,14 +284,14 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex | number | 是 | 插槽的端口索引 |
-| profile | [DownloadableProfile](#DownloadableProfile) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
-| configuration | [DownloadConfiguration](#DownloadConfiguration) | 是 | 下载的配置信息 |
+| profile | [DownloadableProfile](#downloadableProfile14) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
+| configuration | [DownloadConfiguration](#downloadConfiguration14) | 是 | 下载的配置信息 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[DownloadProfileResult](#DownloadProfileResult)\> | 以Promise形式获取下载配置文件的结果。 |
+| Promise\<[DownloadProfileResult](#downloadProfileResult14)\> | 以Promise形式获取下载配置文件的结果。 |
 
 **错误码：**
 
@@ -324,7 +324,7 @@ let profile: eSIM.DownloadableProfile={
 let configuration: eSIM.DownloadConfiguration = {
   switchAfterDownload: true,
   forceDisableProfile: true,
-  isAlowPpr: true
+  isAlowPpr: true,
 };
 
 eSIM.downloadProfile(0, 0, profile, configuration).then((data: eSIM.DownloadProfileResult) => {
@@ -356,7 +356,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetEuiccProfileInfoListResult](#GetEuiccProfileInfoListResult)\> | 以Promise形式获取配置文件信息列表。 |
+| Promise\<[GetEuiccProfileInfoListResult](#getEuiccProfileInfoListResult14)\> | 以Promise形式获取配置文件信息列表。 |
 
 **错误码：**
 
@@ -404,7 +404,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[EuiccInfo](#EuiccInfo)\> | 以Promise形式获取eUicc信息。 |
+| Promise\<[EuiccInfo](#euiccInfo14)\> | 以Promise形式获取eUicc信息。 |
 
 **错误码：**
 
@@ -453,7 +453,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取删除配置文件的结果状态或者返回错误异常。 |
+| Promise\<[ResultCode](#resultCode14)\> | 以Promise形式获取删除配置文件的结果状态或者返回错误异常。 |
 
 **错误码：**
 
@@ -505,7 +505,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取切换后的状态码。 |
+| Promise\<[ResultCode](#resultCode14)\> | 以Promise形式获取切换后的状态码。 |
 
 **错误码：**
 
@@ -555,7 +555,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取切换后的状态码。 |
+| Promise\<[ResultCode](#resultCode14)\> | 以Promise形式获取切换后的状态码。 |
 
 **错误码：**
 
@@ -598,13 +598,13 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| options | [ResetOption](#ResetOption) | 否 | 重置状态 |
+| options | [ResetOption](#resetOption14) | 否 | 重置状态 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取重置后的状态码。 |
+| Promise\<[ResultCode](#resultCode14)\> | 以Promise形式获取重置后的状态码。 |
 
 **错误码：**
 
@@ -652,7 +652,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取操作后的状态码。 |
+| Promise\<[ResultCode](#resultCode14)\> | 以Promise形式获取操作后的状态码。 |
 
 **错误码：**
 
@@ -701,7 +701,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取操作后的状态码。 |
+| Promise\<[ResultCode](#resultCode14)\> | 以Promise形式获取操作后的状态码。 |
 
 **错误码：**
 
@@ -749,7 +749,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[string](#string)\> | 以Promise形式获取SM-DP+地址。 |
+| Promise\<string\> | 以Promise形式获取SM-DP+地址。 |
 
 **错误码：**
 
@@ -793,13 +793,13 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | transactionId | string | 是 | SM-DP+服务器返回的业务ID |
-| cancelReason | [CancelReason](#CancelReason) | 是 | 取消会话的原因 |
+| cancelReason | [CancelReason](#cancelReason14) | 是 | 取消会话的原因 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式取消会话。 |
+| Promise\<[ResultCode](#resultCode14)\> | 以Promise形式取消会话。 |
 
 **错误码：**
 
