@@ -377,6 +377,22 @@ barBackgroundEffect(options: BackgroundEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 是   | 设置TabBar背景属性包括：模糊半径，亮度，饱和度，颜色等。 |
 
+### pageFlipMode<sup>14+</sup>
+
+pageFlipMode(value: PageFlipMode)
+
+设置鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PageFlipMode](ts-appendix-enums.md#PageFlipMode) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+
 ## DividerStyle<sup>10+</sup>对象说明
 
 分割线样式对象。
