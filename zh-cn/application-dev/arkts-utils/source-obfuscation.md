@@ -2,9 +2,9 @@
 
 ## 代码混淆简介
 
-针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。 
+针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。
 
->**说明：** 
+>**说明：**
 >
 > 1. 在 DevEco Studio5.0.3.600之前，新建工程的默认设置是开启代码混淆功能，它会自动对 API10及更高版本的 Stage 模型进行代码混淆。此操作仅适用于以[release模式](#说明)编译的代码，并且混淆仅限于参数名和局部变量名。
 > 2. 在 DevEco Studio5.0.3.600及之后，新建工程的默认设置已更改为关闭代码混淆功能。如果开发者希望开启代码混淆，需要将模块的`build-profile.json5`文件中的`ruleOptions.enable`字段的值设置为 true。此外，混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。需要注意的是，开启这四项规则可能会导致应用在运行时崩溃，因此建议开发者参考[排查指南](#如何排查功能异常)来修正应用功能。
@@ -29,8 +29,8 @@
 
 代码混淆目前只提供名称混淆的能力(因为其它混淆能力会劣化性能)。 开启代码混淆可以混淆以下名称:
 
-* 参数名和局部变量名  
-* 顶层作用域的名称  
+* 参数名和局部变量名
+* 顶层作用域的名称
 * 属性名称
 * 导出名称
 * 文件名称
@@ -142,7 +142,7 @@
     -enable-string-property-obfuscation
     ```
 
-    **注意**：  
+    **注意**：
 
     **1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z, A-Z, 0-9, _`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#保留选项)来指定保留这些名字。  
     **2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中
@@ -184,14 +184,14 @@ const module = import('../directory/filename');
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
 * 被[-keep-file-name](#保留选项)指定的文件/文件夹名称不会被混淆。
 * 非ECMAScript模块引用方式（ECMAScript模块示例：`import {foo} from './filename'`）
-* 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`  
+* 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`
 
-**注意**：  
+**注意**：
 
 由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[-keep-file-name](#保留选项)选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
-上述需要手动配置白名单的情况，包括但不限于以下场景：  
+上述需要手动配置白名单的情况，包括但不限于以下场景：
 
-* 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
+* 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。
 * 当模块中包含Worker多线程服务时，用户需要将`build-profiles.json5`中，'buildOption'-'sourceOption'-'workers'字段下所有的路径配置到白名单中。
 
 **提醒**：
@@ -208,16 +208,16 @@ const module = import('../directory/filename');
 
 **注意**：
 
-1. 混淆导入或导出的类中属性名称需要同时开启`-enable-property-obfuscation`与`-enable-export-obfuscation`选项。  
+1. 混淆导入或导出的类中属性名称需要同时开启`-enable-property-obfuscation`与`-enable-export-obfuscation`选项。
 2. 编译HSP时，如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留对外暴露的接口。
-3. HAP/HSP/HAR依赖HSP场景下，编译时如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留HSP导入的接口。  
+3. HAP/HSP/HAR依赖HSP场景下，编译时如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留HSP导入的接口。
 
     ```
     // 代码示例(HSP中入口文件Index.ets)：
     export { add, customApiName } from './src/main/ets/utils/Calc'
 
     // 保留接口名称配置示例：
-    // HSP以及依赖此HSP的模块中obfuscation-rules.txt文件配置： 
+    // HSP以及依赖此HSP的模块中obfuscation-rules.txt文件配置：
     -keep-global-name
     add
     customApiName
@@ -242,7 +242,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### -print-namecache *filepath*
 
-将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。  
+将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。
 
 **注意**：
 
@@ -258,9 +258,9 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### -remove-comments
 
-删除编译生成的声明文件中的JsDoc注释。  
+删除编译生成的声明文件中的JsDoc注释。
 
-**注意**：  
+**注意**：
 
 编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
 可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
@@ -319,6 +319,52 @@ enum Test {
 ```
 
 其中，编译hap/hsp模块的情况下，enum白名单内容为['outdoor', 'member1']；编译字节码har模块的情况下，enum白名单内容为['outdoor', 'member1', 'member2']。
+
+#### -extra-options strip-language-default
+
+混淆的预置语言白名单中**默认包含了typescript的系统接口中关于dom、webworker、scriphost等API的名称以及Web API的名称**。如果开发者源码中的属性与这部分名称重名，混淆工具会对这些属性进行保留。
+
+如果开发者需要混淆这部分代码，需要配置`-extra-options strip-language-default`选项。
+
+开发者可通过以下方式确定混淆工具默认保留的API的具体减少范围：
+
+开启`-print-kept-names`选项，对比开启和关闭`-extra-options strip-language-default`选项时全量白名单（whitelist.json）中`lang`字段的内容差异，该差异即为预置语言白名单的具体减少范围。
+
+#### -extra-options strip-system-api-args
+
+当前混淆的系统API白名单中**默认包含了系统API中的局部变量名称**，且系统API白名单默认对开发者源码中的局部变量生效。如果开发者源码中的属性与系统API中的局部变量重名或源码中的局部变量与系统API白名单重名，混淆工具会对这部分属性和局部变量名称进行保留。
+
+如果开发者需要混淆这部分代码，需要配置`-extra-options strip-system-api-args`选项。
+
+系统API白名单文件（systemApiCache.json）的ReservedLocalNames、ReservedPropertyNames和ReservedGlobalNames字段可以查看系统API白名单的具体内容。系统API白名单文件位于模块目录下build/default/cache/{...}/release/obfuscation路径中，记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
+
+开发者可通过以下方式确定系统白名单减少的具体范围：
+
+通过对比开启和关闭`-extra-options strip-system-api-args`选项时系统API白名单文件（systemApiCache.json）中ReservedLocalNames和ReservedPropertyNames字段的内容差异，该差异即为系统白名单的具体减少范围，ReservedGlobalNames字段的内容不会产生变化。
+
+**如何使用-extra-options选项**：
+
+需要在混淆配置文件中添加`-extra-options`前缀，且前缀与选项之间没有其他内容时，白名单优化选项才生效。支持开启单个选项和同时开启两个选项，例如下面的写法：
+
+单个选项：
+
+```
+-extra-options
+strip-language-default
+
+-extra-options strip-language-default
+```
+
+同时开启两个选项：
+
+```
+-extra-options strip-language-default, strip-system-api-args
+
+-extra-options strip-language-default strip-system-api-args
+
+-extra-options strip-language-default
+-extra-options strip-system-api-args
+```
 
 ### 保留选项
 
@@ -394,7 +440,7 @@ let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要被保留
 使用到的数据库相关的字段，需要手动保留。
 
 ```
-const dataToInsert = {  
+const dataToInsert = {
   value1: 'example1',   // value1 需要被保留
 };
 ```

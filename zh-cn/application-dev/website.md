@@ -1305,12 +1305,10 @@
         - [预览流二次处理(C/C++)](media/camera/native-camera-preview-imageReceiver.md)
         - [拍照(C/C++)](media/camera/native-camera-shooting.md)
         - [录像(C/C++)](media/camera/native-camera-recording.md)
-        - [录像流二次处理(C/C++)](media/camera/native-camera-recording-imageReceiver.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
       - 相机最佳实践(C/C++)<!--camera-best-practices-native-->
         - [拍照实现方案(C/C++)](media/camera/native-camera-shooting-case.md)
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
-        - [录像流二次处理的实现方案(C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
       - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
@@ -1528,6 +1526,9 @@
             - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
             - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
             - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
+            - [使用JSVM-API接口进行well-known symbols相关开发](napi/use-jsvm-about-well-known-symbols.md)
+            - [使用JSVM-API接口进行装箱类型判断相关开发](napi/use-jsvm-about-wrapper-object.md)
+            - [使用JSVM-API接口进行Proxy相关开发](napi/use-jsvm-about-proxy.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例
