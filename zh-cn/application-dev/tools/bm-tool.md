@@ -105,7 +105,7 @@ bm uninstall -n com.ohos.app -k
 ## 查询应用信息命令
 
 ```bash
-bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
+bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 ```
 
   **查询命令参数列表**
@@ -114,6 +114,7 @@ bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -a | 可选参数，查询系统已经安装的所有应用。 |
+| -g | 可选参数，查询系统中签名为调试类型的应用包名。 |
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
@@ -124,6 +125,8 @@ bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 ```bash
 # 显示所有已安装的Bundle名称
 bm dump -a
+# 查询系统中签名为调试类型的应用包名
+bm dump -g
 # 查询该应用的详细信息
 bm dump -n com.ohos.app
 # 查询该应用的快捷方式信息
