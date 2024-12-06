@@ -158,7 +158,9 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | TRANSLATE_AND_SCROLL    | 3    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过滚动内容完成避让。|
 
 ## 示例
-### 示例1
+### 示例1（不同高度的半模态弹窗）
+
+该示例通过height设置不同高度的半模态弹窗。
 
 ```ts
 // xxx.ets
@@ -231,9 +233,12 @@ struct SheetTransitionExample {
 
 ![zh-cn_sheet](figures/zh-cn_sheet1.gif)
 
-### 示例2
+### 示例2（设置三个不同高度的档位）
 
 使用bindSheet的detents属性设置三个不同高度的档位。
+1、dragBar拖拽条只在多个档位高度时生效；
+2、区别于height属性在不同时刻设置不同档位的能力，多档位能力有手势切换档位高度的效果，且更适合固定高度区间的场景；
+3、若高度范围不确定，且可能存在大于3个不同高度的场景，不建议使用detents属性。
 
 ```ts
 // xxx.ets
@@ -281,7 +286,7 @@ struct SheetTransitionExample {
 
 ![zh-cn_sheet](figures/zh-cn_sheet2.gif)
 
-### 示例3
+### 示例3（使用边框宽度和颜色）
 
 bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型。
 
@@ -341,7 +346,7 @@ struct SheetTransitionExample {
 
 ![zh-cn_sheet](figures/zh-cn_sheet3_rtl.png)
 
-### 示例4
+### 示例4（使用关闭回调函数）
 
 bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss。
 
@@ -394,9 +399,10 @@ struct bindSheetExample {
 ```
 ![zh-cn_sheet](figures/zh-cn_sheet4.gif)
 
-### 示例5
+### 示例5（设置内容区刷新时机）
 
-bindSheet设置scrollSizeMode。
+ScrollSizeMode.CONTINUOUS 持续更新内容适合detents多档位切换场景。
+建议在builder内减少UI加载耗时的操作，滑动时内容实时刷新对性能要求较高。
 
 ```ts
 // xxx.ets
@@ -448,7 +454,7 @@ struct Index {
 
 ![zh-cn_sheet](figures/zh-cn_sheet5_rtl.gif)
 
-### 示例6
+### 示例6（监测键盘高度变化）
 
 在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动。
 
