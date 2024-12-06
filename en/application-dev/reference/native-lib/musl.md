@@ -17,12 +17,12 @@ C11 is implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/he
 
 - libdl: provides dynamic linker interfaces such as dlopen. Currently, OpenHarmony provides a link to libdl, and the interfaces are defined in libc.
 
-
 ## musl Version
 
 - 1.2.0
-- 1.2.3 from OpenHarmony 4.0
-- 1.2.5 from OpenHarmony 5.0
+- 1.2.3 since OpenHarmony 4.0
+
+- 1.2.5 since OpenHarmony 5.0
 
 ## Supported Capabilities
 OpenHarmony provides header files and library interfaces that are compatible (not fully compatible) with C99, C11, and POSIX, and supports Armv7-A, Arm64, and x86_64 architectures.
@@ -60,6 +60,11 @@ param set musl.log.ld.app.{app_name} true
 param set musl.log.ld.all true
 param set musl.log.ld.app.{app_name} false
 ```
+## musl API Difference
+
+| API         | Description                                                                                        |
+|:--               |    :--                                                                                       |
+| epoll_create     | In OpenHarmony 5.0, this API uses the same logic as in musl 1.2.3. Specifically, the API does not verify input parameters or process them if the input parameter value is less than or equal to **0**. In the next version, this API will adopt the logic from musl 1.2.5, which includes input parameter verification. If the input parameter value is less than or equal to **0**, the error code EINVAL will be returned.|
 
 ## Character Encoding Formats Supported by iconv
 
@@ -69,7 +74,7 @@ The following lists the character encoding formats and aliases supported by musl
 > The character conversion can be successful only when the source character encoding format is correct and the target character encoding format is supported.
 > musl does not support the following target encoding formats: gb18030, gbk, gb2312, big5, and euckr.
 
-| Encoding Format | Alias                  | Supported by musl|
+| Encoding Format| Alias                  | Supported by musl|
 |:--      |    :--                   |  :--:  |
 |utf8     |                          |  Yes  |
 |wchart   |                          |  Yes  |
