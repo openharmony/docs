@@ -570,7 +570,7 @@ static getFirstDayOfWeek(): WeekDay
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| [WeekDay](#weekday16) | 周一至周日中的某天。 |
+| [WeekDay](#weekday16) | 周起始日。 |
 
 **示例：**
   ```ts
@@ -593,7 +593,7 @@ static getFirstDayOfWeek(): WeekDay
 
 ## WeekDay<sup>16+</sup>
 
-周一至周日的枚举。
+周起始日的枚举，取值是周一至周日的某天。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
