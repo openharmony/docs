@@ -351,7 +351,7 @@ static setTemperatureType(type: TemperatureType): void
 
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | 是    | 温度单位。 |
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | 是 | 温度单位。 |
 
 **错误码：**
 
@@ -396,7 +396,7 @@ static setFirstDayOfWeek(type: WeekDay): void
 
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [WeekDay](./js-apis-i18n.md#weekday16) | 是    | 周一至周日中的某天。 |
+| type | [WeekDay](./js-apis-i18n.md#weekday16) | 是 | 周期起始日。 |
 
 **错误码：**
 
