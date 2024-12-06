@@ -296,10 +296,12 @@ struct attributeDemo {
 }
 ```
 
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 浅色模式拉起。使用资源文件作为入参，切换深浅色时，无法使用资源文件触发UI的更新。<br>![light_mode](figures/light_mode1.jpg) | 浅色模式拉起。使用资源文件作为入参，切换深浅色时，可以使用资源文件触发UI的更新。<br>![dark_mode](figures/dark_mode1.jpg) |
-|                                                                                                                            |
+| 变更前                                                                               | 变更后                                                                             |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                             | 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                           |
+|                                                                                      |
+| 切换深色时，无法使用资源文件触发UI的更新。<br>![light_mode](figures/light_mode1.jpg) | 切换深色时，可以使用资源文件触发UI的更新。<br>![dark_mode](figures/dark_mode1.jpg) |
+|                                                                                      |
 
 **起始API Level**
 
@@ -361,19 +363,10 @@ struct attributeDemo {
 }
 ```
 
-浅色模式拉起：
-
-切换深浅色时，UI不更新。
-
-![light_mode](figures/light_mode1.jpg)
-
-深色模式拉起：
-
-切换深浅色时，UI不更新。
-
-![dark_mode](figures/dark_mode1.jpg)
-
-
+| 变更前                                                   | 变更后                                                 |
+| -------------------------------------------------------- | ------------------------------------------------------ |
+| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg) | 深色模式拉起。<br>![dark_mode](figures/dark_mode1.jpg) |
+| 切换深色。<br>![light_mode](figures/light_mode1.jpg)     | 切换浅色。<br>![dark_mode](figures/dark_mode1.jpg)     |
 
 ## cl.arkui.3 废弃gridSpan和gridOffset属性
 **访问级别**
@@ -394,10 +387,10 @@ gridSpan和gridOffset属性仅设置在gridContaier的子组件上有效，gridC
 
 **废弃的接口/组件**
 
-|            废弃接口            |               替代接口               |
-| :----------------------------: | :----------------------------------: |
-| gridSpan(value: number): T; |  GridCol(option?: GridColOptions)中的span |
-| gridOffset(value: number): T; |  GridCol(option?: GridColOptions)中的offset |
+|           废弃接口            |                  替代接口                  |
+| :---------------------------: | :----------------------------------------: |
+|  gridSpan(value: number): T;  |  GridCol(option?: GridColOptions)中的span  |
+| gridOffset(value: number): T; | GridCol(option?: GridColOptions)中的offset |
 
 **适配指导**
 
@@ -493,9 +486,9 @@ struct GridRowExample {
 
 该变更为不兼容变更。
 
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 组件布局过程中不会进行像素取整 <br>![chip_before](figures/chip_before.PNG) | 组件布局过程中会进行像素取整<br>![chip_before](figures/chip_after.PNG)  |
+| 变更前                                                                     | 变更后                                                                 |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 组件布局过程中不会进行像素取整 <br>![chip_before](figures/chip_before.PNG) | 组件布局过程中会进行像素取整<br>![chip_before](figures/chip_after.PNG) |
 
 变更后可能影响自动化UI测试结果，产生像素级偏差。
 
@@ -514,3 +507,4 @@ Chip与ChipGroup组件。
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
