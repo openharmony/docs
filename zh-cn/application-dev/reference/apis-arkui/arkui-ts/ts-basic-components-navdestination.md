@@ -231,8 +231,6 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 | 名称   | 说明                                     |
 | ---- | ---------------------------------------- |
 | STANDARD | 标准模式的NavDestination。                       |
