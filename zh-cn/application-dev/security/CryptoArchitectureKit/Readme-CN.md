@@ -77,8 +77,10 @@
 - 消息摘要计算<!--crypto-generate-message-->
   - [消息摘要计算介绍及算法规格](crypto-generate-message-digest-overview.md)
   - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
-    - [消息摘要计算(ArkTS)](crypto-generate-message-digest.md)
-    - [消息摘要计算(C/C++)](crypto-generate-message-digest-ndk.md)
+    - [消息摘要计算SHA256(ArkTS)](crypto-generate-message-digest.md)
+    - [消息摘要计算SHA256(C/C++)](crypto-generate-message-digest-ndk.md)
+    - [消息摘要计算MD5(ArkTS)](crypto-generate-message-digest-md5.md)
+    - [消息摘要计算MD5(C/C++)](crypto-generate-message-digest-md5-ndk.md)
 - [消息认证码计算](crypto-compute-mac.md)
 - [安全随机数生成](crypto-generate-random-number.md)
 - 密钥派生<!--crypto-key-derivation-->
