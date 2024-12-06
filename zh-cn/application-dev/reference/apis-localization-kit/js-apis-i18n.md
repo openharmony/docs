@@ -489,9 +489,9 @@ static getSimplifiedLanguage(language?: string): string
 
 ### getTemperatureType<sup>16+</sup>
 
-static getTemperatureType(): TemperatureType;
+static getTemperatureType(): TemperatureType
 
-获取当前用户的偏好温度单位。
+获取当前用户偏好的温度单位。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -501,7 +501,7 @@ static getTemperatureType(): TemperatureType;
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| [TemperatureType](#temperaturetype16) | 温度单位类型。 |
+| [TemperatureType](#temperaturetype16) | 温度单位。 |
 
 **示例：**
   ```ts
@@ -510,7 +510,7 @@ static getTemperatureType(): TemperatureType;
 
 ### getTemperatureName<sup>16+</sup>
 
-static getTemperatureName(type: TemperatureType): string;
+static getTemperatureName(type: TemperatureType): string
 
 获取温度单位的名称。
 
@@ -558,9 +558,9 @@ static getTemperatureName(type: TemperatureType): string;
 
 ### getFirstDayOfWeek<sup>16+</sup>
 
-static getFirstDayOfWeek(): WeekDay;
+static getFirstDayOfWeek(): WeekDay
 
-获取当前用户的周起始日。
+获取当前用户偏好的周起始日。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
