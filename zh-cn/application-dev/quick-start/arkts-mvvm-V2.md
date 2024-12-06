@@ -594,7 +594,7 @@ class TaskList {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: Task)=>{
       let newTask = new Task();
       newTask.taskName = task.taskName;
@@ -749,7 +749,7 @@ class TaskList {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: Task)=>{
       let newTask = new Task();
       newTask.taskName = task.taskName;
@@ -926,7 +926,7 @@ export default class TaskListModel {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: TaskModel)=>{
       let newTask = new TaskModel();
       newTask.taskName = task.taskName;
