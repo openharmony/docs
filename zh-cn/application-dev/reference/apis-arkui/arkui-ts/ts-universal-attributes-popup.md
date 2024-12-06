@@ -58,10 +58,10 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 类型                                       | 必填 | 描述                   |
-| --------- | ------------------------------------------ | ---- | ---------------------- |
-| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置弹窗信息文本颜色。 |
-| font      | [Font](ts-types.md#font)                   | 否   | 设置弹窗信息字体属性。 |
+| 名称      | 类型                                       | 必填 | 描述                                                         |
+| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| textColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置弹窗信息文本颜色。                                       |
+| font      | [Font](ts-types.md#font)                   | 否   | 设置弹窗信息字体属性。<br/>**说明：** <br/>不支持设置family。 |
 
 ## DismissPopupAction<sup>12+</sup>类型说明
 
