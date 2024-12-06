@@ -1,7 +1,9 @@
 # 文本显示 (Text/Span)
 
 
-Text是文本组件，通常用于展示用户视图，如显示文章的文字。具体用法请参考[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)。
+Text是文本组件，通常用于展示用户视图，如显示文章的文字内容。Span则用于呈现显示行内文本。  
+
+具体用法请参考[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)和[Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md)组件的使用说明。
 
 
 ## 创建文本
@@ -42,7 +44,7 @@ Text可通过以下两种方式来创建：
 
 - 创建Span。
 
-  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容时，Span内容覆盖Text内容。
+  Span组件必须嵌入在Text组件中才能显示，单独的Span组件不会呈现任何内容。Text与Span同时配置文本内容时，Span内容覆盖Text内容。
 
 
   ```ts
@@ -57,7 +59,7 @@ Text可通过以下两种方式来创建：
 
 - 设置文本装饰线及颜色。
 
-  通过decoration设置文本装饰线及颜色。
+  通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration)设置文本装饰线及颜色。
 
 
   ```ts
@@ -76,7 +78,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562700437](figures/zh-cn_image_0000001562700437.png)
 
-- 通过textCase设置文字一直保持大写或者小写状态。
+- 通过[textCase](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#textcase)设置文字一直保持大写或者小写状态。
 
   ```ts
   Text() {
@@ -91,7 +93,7 @@ Text可通过以下两种方式来创建：
 
 - 添加事件。
 
-  由于Span组件无尺寸信息，事件仅支持添加点击事件onClick。
+  由于Span组件无尺寸信息，事件仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)。
 
 
   ```ts
@@ -107,7 +109,7 @@ Text可通过以下两种方式来创建：
 
 ## 自定义文本样式
 
-- 通过textAlign属性设置文本对齐样式。
+- 通过[textAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textalign)属性设置文本对齐样式。
 
   ```ts
   Text('左对齐')
@@ -129,7 +131,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511421260](figures/zh-cn_image_0000001511421260.png)
 
-- 通过textOverflow属性控制文本超长处理，textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。
+- 通过[textOverflow](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textoverflow)属性控制文本超长处理，textOverflow需配合[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxlines)一起使用（默认情况下文本自动折行）。
 
   ```ts
   Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
@@ -157,7 +159,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001563060701](figures/zh-cn_image_0000001563060701.gif)
 
-- 通过lineHeight属性设置文本行高。
+- 通过[lineHeight](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#lineheight)属性设置文本行高。
 
   ```ts
   Text('This is the text with the line height set. This is the text with the line height set.')
@@ -169,7 +171,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511740480](figures/zh-cn_image_0000001511740480.png)
 
-- 通过decoration属性设置文本装饰线样式及其颜色。
+- 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#decoration)属性设置文本装饰线样式及其颜色。
 
   ```ts
   Text('This is the text')
@@ -194,7 +196,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511580888](figures/zh-cn_image_0000001511580888.png)
 
-- 通过baselineOffset属性设置文本基线的偏移量。
+- 通过[baselineOffset](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#baselineoffset)属性设置文本基线的偏移量。
 
   ```ts
   Text('This is the text content with baselineOffset 0.')
@@ -223,7 +225,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562820789](figures/zh-cn_image_0000001562820789.png)
 
-- 通过letterSpacing属性设置文本字符间距。
+- 通过[letterSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#letterspacing)属性设置文本字符间距。
 
   ```ts
   Text('This is the text content with letterSpacing 0.')
@@ -251,7 +253,9 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562940513](figures/zh-cn_image_0000001562940513.png)
 
-- 通过minFontSize与maxFontSize自适应字体大小，minFontSize设置文本最小显示字号，maxFontSize设置文本最大显示字号，minFontSize与maxFontSize必须搭配同时使用，以及需配合maxline或布局大小限制一起使用，单独设置不生效。
+- 通过[minFontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#minfontsize)与[maxFontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxfontsize)自适应字体大小。
+
+  minFontSize用于设置文本的最小显示字号，maxFontSize用于设置文本的最大显示字号。这两个属性必须同时设置才能生效，并且需要与[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxlines)属性或布局大小限制配合使用，单独设置任一属性将不会产生效果。
 
   ```ts
   Text('我的最大字号为30，最小字号为5，宽度为250，maxLines为1')
@@ -290,7 +294,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511740472](figures/zh-cn_image_0000001511740472.png)
 
-- 通过textCase属性设置文本大小写。
+- 通过[textCase](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textcase)属性设置文本大小写。
 
   ```ts
   Text('This is the text content with textCase set to Normal.')
@@ -317,7 +321,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562940529](figures/zh-cn_image_0000001562940529.png)
 
-- 通过copyOption属性设置文本是否可复制粘贴。
+- 通过[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性设置文本是否可复制粘贴。
 
   ```ts
   Text("这是一段可复制文本")
@@ -330,8 +334,7 @@ Text可通过以下两种方式来创建：
 
 ## 添加事件
 
-Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。
-
+Text组件可以添加通用事件，可以绑定[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)、[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)等事件来响应操作。
 
 ```ts
 Text('点我')
@@ -340,9 +343,9 @@ Text('点我')
    })
 ```
 
-
 ## 场景示例
 
+该示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果。
 
 ```ts
 // xxx.ets
