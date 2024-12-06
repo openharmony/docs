@@ -337,9 +337,9 @@ static setUsingLocalDigit(flag: boolean): void
 
 ### setTemperatureType<sup>16+</sup>
 
-static setTemperatureType(type: TemperatureType): void;
+static setTemperatureType(type: TemperatureType): void
 
-设置用户偏好的温度单位类型
+设置用户偏好的温度单位
 
 **系统接口**：此接口为系统接口。
 
@@ -351,7 +351,7 @@ static setTemperatureType(type: TemperatureType): void;
 
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
-| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | 是    | 温度单位类型。 |
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype16) | 是    | 温度单位。 |
 
 **错误码：**
 
@@ -373,7 +373,7 @@ static setTemperatureType(type: TemperatureType): void;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    i18n.System.setTemperatureType(i18n.TemperatureType.CELSIUS); // 设置温度单位类型为摄氏度
+    i18n.System.setTemperatureType(i18n.TemperatureType.CELSIUS); // 设置温度单位为摄氏度
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setTemperatureType failed, error code: ${err.code}, message: ${err.message}.`);
@@ -382,7 +382,7 @@ static setTemperatureType(type: TemperatureType): void;
 
 ### setFirstDayOfWeek<sup>16+</sup>
 
-static setFirstDayOfWeek(type: WeekDay): void;
+static setFirstDayOfWeek(type: WeekDay): void
 
 设置用户偏好的周起始日
 
