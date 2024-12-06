@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 ```
 
 ## eSIM.getEid<sup>14+</sup>
@@ -19,38 +19,41 @@ getEid\(slotId: number\): string
 
 获取指定卡槽标识eUICC硬件的EID。
 
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
+| 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
 
 **返回值：**
 
-| 类型                  | 说明                               |
+| 类型                  | 说明                                |
 | --------------------- | ---------------------------------- |
 | string | 返回指定卡槽标识eUICC硬件的EID。 |
 **错误码：**
 
-| 错误码ID                 | 错误信息                               |
+| 错误码ID                 | 错误信息                         |
 | --------------------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 **示例：**
 
 ```ts
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 let eid: string = eSIM.getEid(0);
 console.log(`the EID is:` + eid);
 ```
-
 
 ## eSIM.getOsuStatus<sup>14+</sup>
 
@@ -58,6 +61,10 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 获取指定卡槽操作系统升级的状态。
 
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
@@ -70,7 +77,8 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<OsuStatus> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#OsuStatus)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
+
 **错误码：**
 
 | 错误码ID                 | 错误信息                               |
@@ -78,7 +86,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -86,7 +94,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.getOsuStatus(0).then(() => {
     console.log(`getOsuStatus invoking succeeded.`);
@@ -101,6 +109,10 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 如果指定卡槽的操作系统不是最新的，则执行操作系统升级。
 
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
@@ -113,7 +125,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<OsuStatus> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#OsuStatus)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
 
 **错误码：**
 | 错误码ID                 | 错误信息                               |
@@ -121,7 +133,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -130,7 +142,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.startOsu(0).then(() => {
     console.log(`startOsu invoking succeeded.`);
@@ -146,6 +158,10 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 
 填充可下载配置文件的元数据。
 
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
@@ -154,7 +170,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex | number | 是 | 插槽的端口索引 |
-| profile | DownloadableProfile | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
+| profile | [DownloadableProfile](#DownloadableProfile) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
 | forceDisableProfile | boolean | 是 | 如果为真，则必须停用活动SIM才能执行操作。否则，返回结果提示用户首先同意此操作 |
 
 **返回值：**
@@ -170,7 +186,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -178,7 +194,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 let profile: eSIM.DownloadableProfile={
   activationCode:'1',
@@ -191,7 +207,7 @@ let profile: eSIM.DownloadableProfile={
   }]
 };
 
-eSIM.getDownloadableProfileMetadata(0, 0, profile, true).then((data: GetDownloadableProfileMetadataResult) => {
+eSIM.getDownloadableProfileMetadata(0, 0, profile, true).then((data: eSIM.GetDownloadableProfileMetadataResult) => {
     console.log(`getDownloadableProfileMetadata, GetDownloadableProfileMetadataResult: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDownloadableProfileMetadata, GetDownloadableProfileMetadataResult: err->${JSON.stringify(err)}`);
@@ -204,6 +220,10 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
     forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
 
 获取可用的可下载配置文件列表。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -228,7 +248,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -236,9 +256,9 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
-eSIM.getDownloadableProfiles(0, 0, true).then((data: GetDownloadableProfilesResult) => {
+eSIM.getDownloadableProfiles(0, 0, true).then((data: eSIM.GetDownloadableProfilesResult) => {
     console.log(`getDownloadableProfiles, GetDownloadableProfilesResult: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDownloadableProfiles, GetDownloadableProfilesResult: err->${JSON.stringify(err)}`);
@@ -248,9 +268,13 @@ eSIM.getDownloadableProfiles(0, 0, true).then((data: GetDownloadableProfilesResu
 ## eSIM.downloadProfile<sup>14+</sup>
 
 downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile,
-      switchAfterDownload: boolean, forceDisableProfile: boolean\): Promise\<DownloadProfileResult\>;
+      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>;
 
 下载配置文件。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -260,9 +284,8 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex | number | 是 | 插槽的端口索引 |
-| profile | DownloadableProfile | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
-| switchAfterDownload | boolean | 是 | 如果为真，则应在成功下载时启用配置文件 |
-| forceDisableProfile | boolean | 是 | 如果为真，则必须停用活动SIM才能执行操作。否则，返回结果提示用户首先同意此操作 |
+| profile | [DownloadableProfile](#DownloadableProfile) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
+| configuration | [DownloadConfiguration](#DownloadConfiguration) | 是 | 下载的配置信息 |
 
 **返回值：**
 
@@ -277,7 +300,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -285,7 +308,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 let profile: eSIM.DownloadableProfile={
   activationCode:'1',
@@ -297,7 +320,14 @@ let profile: eSIM.DownloadableProfile={
     accessType:0
   }]
 };
-eSIM.downloadProfile(0, 0, profile, true, true).then((data: DownloadProfileResult) => {
+
+let configuration: eSIM.DownloadConfiguration = {
+  switchAfterDownload: true,
+  forceDisableProfile: true,
+  isAlowPpr: true
+};
+
+eSIM.downloadProfile(0, 0, profile, configuration).then((data: eSIM.DownloadProfileResult) => {
     console.log(`downloadProfile, DownloadProfileResult: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`downloadProfile, DownloadProfileResult: err->${JSON.stringify(err)}`);
@@ -309,6 +339,10 @@ eSIM.downloadProfile(0, 0, profile, true, true).then((data: DownloadProfileResul
 getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResult\>
 
 获取配置文件信息列表。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -331,7 +365,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -339,9 +373,9 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
-eSIM.getEuiccProfileInfoList(0).then((data: GetEuiccProfileInfoListResult) => {
+eSIM.getEuiccProfileInfoList(0).then((data: eSIM.GetEuiccProfileInfoListResult) => {
     console.log(`getEuiccProfileInfoList, GetEuiccProfileInfoListResult: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getEuiccProfileInfoList, GetEuiccProfileInfoListResult: err->${JSON.stringify(err)}`);
@@ -353,6 +387,10 @@ eSIM.getEuiccProfileInfoList(0).then((data: GetEuiccProfileInfoListResult) => {
 getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
 获取eUicc信息。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -375,7 +413,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -383,9 +421,9 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
-eSIM.getEuiccInfo(0).then((data: EuiccInfo) => {
+eSIM.getEuiccInfo(0).then((data: eSIM.EuiccInfo) => {
     console.log(`getEuiccInfo, EuiccInfo: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getEuiccInfo, EuiccInfo: err->${JSON.stringify(err)}`);
@@ -398,6 +436,10 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 
 删除配置文件。
 
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
@@ -405,7 +447,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| iccid | number | 是 | 配置文件的Id |
+| iccid | string | 是 | 配置文件的Id |
 
 **返回值：**
 
@@ -420,7 +462,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -428,7 +470,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.deleteProfile(0, testId).then(() => {
     console.log(`deleteProfile invoking succeeded.`);
@@ -444,6 +486,10 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 切换到（启用）给定的配置文件。
 
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
@@ -452,7 +498,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex | number | 是 | 插槽的端口索引 |
-| iccid | number | 是 | 配置文件的Id |
+| iccid | string | 是 | 配置文件的Id |
 | forceDisableProfile | boolean | 是 | 如果为真，则必须停用活动SIM才能执行操作。否则，返回结果提示用户首先同意此操作 |
 
 **返回值：**
@@ -468,7 +514,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -476,7 +522,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.switchToProfile(0, 0, testId, true).then(() => {
     console.log(`switchToProfile invoking succeeded.`);
@@ -490,6 +536,10 @@ eSIM.switchToProfile(0, 0, testId, true).then(() => {
 setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<ResultCode\>;
 
 设置给定配置文件的昵称。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -514,7 +564,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -522,7 +572,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.setProfileNickname(0, testId, testName).then(() => {
     console.log(`setProfileNickname invoking succeeded.`);
@@ -533,9 +583,13 @@ eSIM.setProfileNickname(0, testId, testName).then(() => {
 
 ## eSIM.resetMemory<sup>14+</sup>
 
-resetMemory\(slotId: number, option?:ResetOption\): Promise\<ResultCode\>;
+resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
 
 清除所有特定配置文件并重置eUICC。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -544,7 +598,7 @@ resetMemory\(slotId: number, option?:ResetOption\): Promise\<ResultCode\>;
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| option | ResetOption | 否 | 重置状态 |
+| options | [ResetOption](#ResetOption) | 否 | 重置状态 |
 
 **返回值：**
 
@@ -559,7 +613,7 @@ resetMemory\(slotId: number, option?:ResetOption\): Promise\<ResultCode\>;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -567,7 +621,7 @@ resetMemory\(slotId: number, option?:ResetOption\): Promise\<ResultCode\>;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.resetMemory(0).then(() => {
     console.log(`resetMemory invoking succeeded.`);
@@ -581,6 +635,10 @@ eSIM.resetMemory(0).then(() => {
 reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 
 恢复出厂设置，并保留profiles。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -603,7 +661,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -611,7 +669,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.reserveProfilesForFactoryRestore(0).then(() => {
     console.log(`reserveProfilesForFactoryRestore invoking succeeded.`);
@@ -625,6 +683,10 @@ eSIM.reserveProfilesForFactoryRestore(0).then(() => {
 setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 
 设置或更新eUICC中存储的默认SM-DP+地址。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -648,7 +710,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -656,7 +718,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.setDefaultSmdpAddress(0, testAddress).then(() => {
     console.log(`setDefaultSmdpAddress invoking succeeded.`);
@@ -670,6 +732,10 @@ eSIM.setDefaultSmdpAddress(0, testAddress).then(() => {
 getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 
 获取存储在eUICC中的默认SM-DP+地址。
+
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -692,7 +758,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -700,7 +766,7 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.getDefaultSmdpAddress(0).then((data: string) => {
     console.log(`getDefaultSmdpAddress, result: data->${JSON.stringify(data)}`);
@@ -715,6 +781,10 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 
 取消会话。
 
+**系统接口：**：此接口为系统接口。
+
+**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 **参数：**
@@ -723,7 +793,7 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | transactionId | string | 是 | SM-DP+服务器返回的业务ID |
-| cancelReason | CancelReason | 是 | 取消会话的原因 |
+| cancelReason | [CancelReason](#CancelReason) | 是 | 取消会话的原因 |
 
 **返回值：**
 
@@ -738,7 +808,7 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 | 201 | Permission denied. |
 | 202 | Non-system applications use system APIs. |
 | 401 | Parameter error. Possible causes: <br/>1. Mandatory parameters are left unspecified. <br/>    2. Incorrect parameter types. <br/>3. Invalid parameter value.|
-| 801 | Service connection failed. |
+| 801 | Capability not supported. |
 |3120001| Service connection failed. |
 |3120002| System internal error. |
 
@@ -746,7 +816,7 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@kit.TelephonyKit';
+import eSIM from '@ohos.telephony.esim';
 
 eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).then((data: string) => {
     console.log(`cancelSession, result: data->${JSON.stringify(data)}`);
@@ -758,6 +828,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 ## AccessRule<sup>14+</sup>
 
 访问规则。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -771,6 +843,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 可下载的配置文件。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -778,12 +852,13 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | activationCode | string  |  是  | 激活码，对于不基于激活码的配置文件，可能为空 |
 | confirmationCode | string  |  否  | 确认码 |
 | carrierName | string |  否  | 订阅名称 |
-| accessRules | Array<AccessRule> |  否  | 访问规则数组 |
-
+| accessRules | Array\<AccessRule> |  否  | 访问规则数组 |
 
 ## GetDownloadableProfileMetadataResult<sup>14+</sup>
 
 获取可下载配置文件的元数据。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -803,6 +878,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 获取默认可下载配置文件的列表。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -813,6 +890,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 ## DownloadProfileResult<sup>14+</sup>
 
 下载配置文件的结果。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -826,6 +905,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 获取配置文件信息列表。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -837,6 +918,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 ## OperatorId<sup>14+</sup>
 
 获取eUICC芯片/设备的相关信息。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -850,6 +933,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 ## EuiccProfile<sup>14+</sup>
 
 配置文件信息。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -869,6 +954,8 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 euicc信息。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -878,6 +965,8 @@ euicc信息。
 ## ResetOption
 
 重置状态。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -890,6 +979,8 @@ euicc信息。
 ## OsuStatus
 
 操作系统升级状态。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -904,6 +995,8 @@ euicc信息。
 ## ResultCode
 
 结果码。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -949,6 +1042,8 @@ euicc信息。
 
 取消会话的原因。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 值 | 说明 |
@@ -962,6 +1057,8 @@ euicc信息。
 
 配置文件状态。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 值 | 说明 |
@@ -973,6 +1070,8 @@ euicc信息。
 ## ProfileClass
 
 配置文件类。
+
+**系统接口：**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -987,6 +1086,8 @@ euicc信息。
 
 配置文件的策略规则。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 值 | 说明 |
@@ -999,9 +1100,25 @@ euicc信息。
 
 可解决错误码。
 
+**系统接口：**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
 | 名称 | 值 | 说明 |
 | ----- | ----- | ----- |
 |SOLVABLE_ERROR_NEED_CONFIRMATION_CODE | 1 << 0 | 下载过程需要用户输入确认码 |
 |SOLVABLE_ERROR_NEED_POLICY_RULE | 1 << 1 | 下载过程需要用户同意才能允许配置文件策略规则 |
+
+## DownloadConfiguration
+
+下载配置。
+
+**系统接口：**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService.Esim
+
+| 名称 | 类型 | 必填 | 说明 |
+| ----- | ----- | ----- | -----|
+|switchAfterDownload | boolean | 是 |下载成功后是否启用配置文件 |
+|forceDisableProfile | boolean | 是 |是否强制禁用模板 |
+|isPprAllowed | boolean | 是 | 指定用户是否允许服务提供商在被告知其限制后实施此配置文件策略规则 |
