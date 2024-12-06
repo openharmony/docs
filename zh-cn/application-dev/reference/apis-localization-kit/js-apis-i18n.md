@@ -487,6 +487,129 @@ static getSimplifiedLanguage(language?: string): string
   }
   ```
 
+### getTemperatureType<sup>16+</sup>
+
+static getTemperatureType(): TemperatureType
+
+获取当前用户偏好的温度单位。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [TemperatureType](#temperaturetype16) | 温度单位。 |
+
+**示例：**
+  ```ts
+  let type: i18n.TemperatureType = i18n.System.getTemperatureType();
+  ```
+
+### getTemperatureName<sup>16+</sup>
+
+static getTemperatureName(type: TemperatureType): string
+
+获取温度单位的名称。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位。 |
+
+**返回值：**
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| string | 返回温度单位的名称，包括celsius，fahrenheit，kelvin。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **说明**
+>
+> 890001的报错信息请以接口的实际报错为准。
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let res: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);  // res = celsius
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getTemperatureName failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+### getFirstDayOfWeek<sup>16+</sup>
+
+static getFirstDayOfWeek(): WeekDay
+
+获取当前用户偏好的周起始日。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WeekDay](#weekday16) | 周起始日。 |
+
+**示例：**
+  ```ts
+  let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
+  ```
+
+## TemperatureType<sup>16+</sup>
+
+温度单位的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| CELSIUS | 1 | 摄氏度。 |
+| FAHRENHEIT | 2 | 华氏度。 |
+| KELVIN | 3 | 开尔文。 |
+
+## WeekDay<sup>16+</sup>
+
+周起始日的枚举，取值是周一至周日的某天。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| MON | 1 | 周一。 |
+| TUE | 2 | 周二。 |
+| WED | 3 | 周三。 |
+| THU | 4 | 周四。 |
+| FRI | 5 | 周五。 |
+| SAT | 6 | 周六。 |
+| SUN | 7 | 周日。 |
+
+
 ## i18n.isRTL
 
 isRTL(locale: string): boolean
