@@ -26,6 +26,12 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 | --- | --- |
 | [RepeatAttribute](#repeatattribute)\<T\> | Repeat组件属性 |
 
+**示例：**
+```ts
+// arr是Array<string>类型的数组，以arr为数据源创建Repeat组件
+Repeat<string>(this.arr)
+```
+
 ## RepeatAttribute
 
 ### each
@@ -51,6 +57,13 @@ each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void): RepeatAttribute\<T\>
 | ------ | ---------- | -------- | -------- |
 | repeatItem  | [RepeatItem](#repeatitem)\<T\> | 是 | repeat数据项 |
 
+**示例：**
+```ts
+// arr是Array<string>类型的数组，为每个数据创建一个Text组件
+Repeat<string>(this.arr)
+  .each((obj: RepeatItem<string>) => { Text(obj.item) })
+```
+
 ### key
 
 key(keyGenerator: (item: T, index: number) => string): RepeatAttribute\<T\>
@@ -70,6 +83,15 @@ key(keyGenerator: (item: T, index: number) => string): RepeatAttribute\<T\>
 | item  | T | 是 | `arr`数组中的数据项 |
 | index  | number | 是 | `arr`数组中的数据项索引 |
 
+**示例：**
+```ts
+// arr是Array<string>类型的数组，为每个数据创建一个Text组件
+// 并将字符串的值作为其键值
+Repeat<string>(this.arr)
+  .each((obj: RepeatItem<string>) => { Text(obj.item) })
+  .key((obj: string) => obj)
+```
+
 ### virtualScroll
 
 virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute\<T\>
@@ -87,6 +109,17 @@ virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute\<T\>
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
 | virtualScrollOptions  | [VirtualScrollOptions](#virtualscrolloptions)  | 否 | 虚拟滚动配置项 |
+
+**示例：**
+```ts
+// arr是Array<string>类型的数组，为每个数据创建一个Text组件
+// 在List容器组件中使用Repeat，并打开virtualScroll
+List() {
+  Repeat<string>(this.arr)
+    .each((obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }})
+    .virtualScroll()
+}
+```
 
 ### template
 
@@ -108,6 +141,19 @@ template(type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: Te
 | itemBuilder  | [RepeatItemBuilder](#repeatitembuilder)\<T\> | 是 | 组件生成函数 |
 | templateOptions | [TemplateOptions](#templateoptions) | 否 | 当前模板配置项 |
 
+**示例：**
+```ts
+// arr是Array<string>类型的数组
+// 在List容器组件中使用Repeat，并打开virtualScroll
+// 创建模板temp，该模板为数据创建Text组件
+List() {
+  Repeat<string>(this.arr)
+    .each((obj: RepeatItem<string>) => {})
+    .virtualScroll()
+    .template('temp', (obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }})
+}
+```
+
 ### templateId
 
 templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
@@ -125,6 +171,21 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
 | typedFunc | [TemplateTypedFunc](#templatetypedfunc)\<T\> | 是 | 生成当前数据项对应的templateId |
+
+**示例：**
+```ts
+// arr是Array<string>类型的数组
+// 在List容器组件中使用Repeat，并打开virtualScroll
+// 创建模板temp，该模板为数据创建Text组件
+// 所有数据项都使用temp模板
+List() {
+  Repeat<string>(this.arr)
+    .each((obj: RepeatItem<string>) => {})
+    .virtualScroll()
+    .template('temp', (obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }})
+    .templateId((item: string, index: number) => { return 'temp' })
+}
+```
 
 ## RepeatItem
 
@@ -153,7 +214,18 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 数据源的总长度，可以大于已加载数据项的数量 |
+| totalCount | number | 否   | 加载的数据项总数，可以大于/小于数据源长度 |
+
+**示例：**
+```ts
+// arr是Array<string>类型的数组，在List容器组件中使用Repeat，并打开virtualScroll
+// 将加载的数据项总数设为数据源的长度
+List() {
+  Repeat<string>(this.arr)
+    .each((obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }})
+    .virtualScroll( { totalCount: this.arr.length } )
+}
+```
 
 ## RepeatItemBuilder
 
@@ -184,6 +256,20 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 | 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | cachedCount | number | 否   | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，仅在开启virtualScroll后生效。 |
+
+**示例：**
+```ts
+// arr是Array<string>类型的数组，在List容器组件中使用Repeat，并打开virtualScroll
+// 创建模板temp，该模板为数据创建Text组件，所有数据项都使用temp模板
+// 将temp模板的最大缓存节点数量设为2
+List() {
+  Repeat<string>(this.arr)
+    .each((obj: RepeatItem<string>) => {})
+    .virtualScroll()
+    .template('temp', (obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }}, { cachedCount: 2 })
+    .templateId((item: string, index: number) => { return 'temp' })
+}
+```
 
 ## TemplateTypedFunc
 
