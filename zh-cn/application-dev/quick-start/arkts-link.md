@@ -613,7 +613,7 @@ struct Child {
           this.name = "Bob"
         })
 
-      Button('Child change animal to undefined')
+      Button('Child change name to undefined')
         .onClick(() => {
           this.name = undefined
         })
