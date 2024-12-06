@@ -160,7 +160,7 @@ import { display } from '@kit.ArkUI';
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | RECTANGLE | 0 | 表示设备屏幕形状为矩形。|
-| CIRCLE | 1 | 表示设备屏幕形状为圆形。|
+| ROUND | 1 | 表示设备屏幕形状为圆形。|
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
