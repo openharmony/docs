@@ -339,7 +339,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 static setTemperatureType(type: TemperatureType): void
 
-设置用户偏好的温度单位
+设置用户偏好的温度单位。
 
 **系统接口**：此接口为系统接口。
 
@@ -384,7 +384,7 @@ static setTemperatureType(type: TemperatureType): void
 
 static setFirstDayOfWeek(type: WeekDay): void
 
-设置用户偏好的周起始日
+设置用户偏好的周起始日。
 
 **系统接口**：此接口为系统接口。
 
