@@ -3126,6 +3126,7 @@ try {
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 开启当前应用窗口系统规避区变化的监听。
+触发避让区回调有如下场景：应用窗口在全屏模式、悬浮模式、分屏模式之间的切换；应用窗口旋转；屏幕可折叠设备在屏幕折叠态和展开态之间的切换；应用窗口在多设备之间的流转。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
