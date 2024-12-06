@@ -3,7 +3,7 @@
 使用[AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer)可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一个视频作为示例，向开发者讲解AVPlayer视频播放相关功能。
 
 
-播放的全流程包含：创建AVPlayer，设置回调监听函数，设置播放资源，设置播放参数（音量/倍速/焦点模式），播放控制（播放/暂停/跳转/停止），重置，销毁播放器实例。
+播放的全流程包含：创建AVPlayer，设置回调监听函数，设置播放资源，设置播放参数（音量/倍速/焦点模式），设置播放窗口，播放控制（播放/暂停/跳转/停止），重置，销毁播放器实例。
 
 
 在进行应用开发的过程中，开发者可以通过AVPlayer的信息监听回调函数[OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)和错误监听回调函数[OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback)主动获取播放过程信息。如果应用在视频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
@@ -64,15 +64,17 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 
 5. （可选）设置音频打断模式：调用[OH_AVPlayer_SetAudioInterruptMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiointerruptmode)，设置AVPlayer音频流打断模式。
 
-6. 准备播放：调用[OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare)，AVPlayer进入[AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，此时可以获取时长，设置音量。
+6. 设置播放画面窗口：调用[OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setvideosurface)设置播放画面窗口。此函数必须在SetSource之后，Prepare之前调用。
 
-7. （可选）设置音频音效模式：调用[OH_AVPlayer_SetAudioEffectMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudioeffectmode)，设置AVPlayer音频音效模式。
+7. 准备播放：调用[OH_AVPlayer_SetVideoSurface()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare)，AVPlayer进入[AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，此时可以获取时长，设置音量。
 
-8. 视频播控：播放[OH_AVPlayer_Play()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_play)，暂停[OH_AVPlayer_Pause()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_pause)，跳转[OH_AVPlayer_Seek()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_seek)，停止[OH_AVPlayer_Stop()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_stop)等操作。
+8. （可选）设置音频音效模式：调用[OH_AVPlayer_SetAudioEffectMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudioeffectmode)，设置AVPlayer音频音效模式。
 
-9. （可选）更换资源：调用[OH_AVPlayer_Reset()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_reset)重置资源，AVPlayer重新进入[AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，允许更换资源url。
+9. 视频播控：播放[OH_AVPlayer_Play()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_play)，暂停[OH_AVPlayer_Pause()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_pause)，跳转[OH_AVPlayer_Seek()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_seek)，停止[OH_AVPlayer_Stop()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_stop)等操作。
 
-10. 退出播放：调用[OH_AVPlayer_Release()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_release)销毁实例，AVPlayer进入[AV_RELEASED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，退出播放。之后再操作AVPlayer实例则行为未知，可能导致应用进程崩溃，应用闪退。
+10. （可选）更换资源：调用[OH_AVPlayer_Reset()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_reset)重置资源，AVPlayer重新进入[AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，允许更换资源url。
+
+11. 退出播放：调用[OH_AVPlayer_Release()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_release)销毁实例，AVPlayer进入[AV_RELEASED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，退出播放。之后再操作AVPlayer实例则行为未知，可能导致应用进程崩溃，应用闪退。
 
 ## 完整示例
 
