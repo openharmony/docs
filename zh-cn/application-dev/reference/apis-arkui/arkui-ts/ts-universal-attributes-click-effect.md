@@ -33,6 +33,8 @@ clickEffect(value: ClickEffect | null)
 
 ## 示例
 
+该示例主要演示不同组件的点击回弹效果。
+
 ```ts
 // xxx.ets
 @Entry

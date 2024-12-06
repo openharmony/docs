@@ -52,6 +52,8 @@ renderFit(fitMode: RenderFit)
 
 ## 示例
 
+该示例主要演示通过renderFit设置宽高动画过程中的组件内容不同填充方式。
+
 ```ts
 // xxx.ets
 @Entry

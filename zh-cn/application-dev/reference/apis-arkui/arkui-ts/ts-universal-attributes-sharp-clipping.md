@@ -193,7 +193,7 @@ enableBreathingAnimation(value: boolean): void
 
 ## 示例
 
-### 示例1
+### 示例1（使用不同裁剪属性）
 
 ```ts
 // xxx.ets
@@ -232,7 +232,7 @@ struct ClipAndMaskExample {
 
 ![clipAndMask](figures/clipAndMask.PNG)
 
-### 示例2
+### 示例2（裁剪属性动画）
 
 ```ts
 @Entry
