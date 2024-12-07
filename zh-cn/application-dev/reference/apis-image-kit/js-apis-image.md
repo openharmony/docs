@@ -4735,6 +4735,9 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 图片压缩或重新打包，使用callback形式返回结果。
 
+> **注意：**
+> 接口如果返回"PixelMap mismatch"，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
@@ -4773,6 +4776,9 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
+
+> **注意：**
+> 接口如果返回"PixelMap mismatch"，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4958,6 +4964,9 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
 
+> **注意：**
+> 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
@@ -4998,6 +5007,9 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
 packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
 
 指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+> **注意：**
+> 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
