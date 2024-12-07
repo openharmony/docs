@@ -1399,7 +1399,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information. 
+Allows an application to read telephony information.
 
 **Permission level**: system_basic
 
@@ -3216,6 +3216,18 @@ Allows a system application to use infrared interfaces.
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.ENABLE_EXPERIENCE_HBM
+
+Allows an application to enable High Brightness Mode(HBM) for the screen.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
