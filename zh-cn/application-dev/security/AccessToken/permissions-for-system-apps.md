@@ -3257,6 +3257,18 @@
 
 **起始版本**：13
 
+### ohos.permission.ENABLE_EXPERIENCE_HBM
+
+允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
 允许应用设置是否支持应用缓存及缓存后快速启动。
