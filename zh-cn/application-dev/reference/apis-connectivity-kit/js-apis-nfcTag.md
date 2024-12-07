@@ -101,9 +101,9 @@ export default class EntryAbility extends UIAbility {
         if (isNfcATag) {
             let nfcA : tag.NfcATag | null = null;
             try {
-                nfcA = tag.getNfcATag(tagInfo);
+                nfcA = tag.getNfcA(tagInfo);
             } catch (error) {
-                console.error("tag.getNfcATag catch error: " + error);
+                console.error("tag.getNfcA catch error: " + error);
             }
             // other code to read or write this found tag.
         }
@@ -540,7 +540,7 @@ getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): 
 
 registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-注册对NFC Tag读卡事件的监听，实现前台应用优先分发的目的。通过discTech设置支持的读卡技术类型，通过Callback方式获取读取到Tag的[TagInfo](#taginfo)信息。需要与取消监听接口[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)成对使用。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
+注册对NFC Tag读卡事件的监听，实现前台应用优先分发的目的。通过discTech设置支持的读卡技术类型，通过Callback方式获取读取到Tag的[TagInfo](#taginfo)信息。应用必须在前台才能调用。需要与取消监听接口[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)成对使用。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
 
 **需要权限：** ohos.permission.NFC_TAG
 
@@ -610,13 +610,11 @@ import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
 function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
-    if (err as BusinessError) {
-        if (!err) {
-            console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
-        } else {
-            console.log("foreground callback err: " + (err as BusinessError).message);
-            return;
-        }
+    if (!err) {
+        console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.log("foreground callback err: " + err.message);
+        return;
     }
   // other Operations of taginfo
 }
@@ -740,13 +738,11 @@ let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) th
 let elementName : bundleManager.ElementName;
 
 function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
-    if (err as BusinessError) {
-        if (!err) {
-            console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
-        } else {
-            console.error("offCallback err: " + (err as BusinessError).message);
-            return;
-        }
+    if (!err) {
+        console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
+    } else {
+        console.error("offCallback err: " + err.message);
+        return;
     }
   // other Operations of taginfo
 }

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This topic walks you through on how to use JSVM-API to check whether two JavaScript (JS) values are strictly equal (equal in both value and type). The API provided is equivalent to the JS strict equality operator (===).
+This topic walks you through on how to use JSVM-API to check whether two JavaScript (JS) values are strictly equal (equal in both value and type). The API provided is equivalent to the JS strict equality operator (===).  
 
 ## Basic Concepts
 
@@ -12,11 +12,11 @@ Strictly equal: If two values are strictly equal, they are equal in both value a
 
 | API                      | Description                           |
 |----------------------------|-------------------------------------|
-| OH_JSVM_StrictEquals         | Checks whether two **JSVM_Value** objects are strictly equal. |
+| OH_JSVM_StrictEquals         | Checks whether two **JSVM_Value** objects are strictly equal.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to the comparison.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in comparing JS values.
 
 ### OH_JSVM_StrictEquals
 
@@ -29,15 +29,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the IsStrictEquals callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsStrictEquals},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named isStrictEquals and associate it with a callback. This allows the isStrictEquals callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isStrictEquals", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_StrictEquals.
 static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -57,20 +48,21 @@ static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &isStrictEqual);
     return isStrictEqual;
 }
+// Register the IsStrictEquals callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsStrictEquals},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named isStrictEquals and associate it with a callback. This allows the isStrictEquals callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isStrictEquals", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(data = '123';value = '123';isStrictEquals(data,value);)JS";
 ```
 
-ArkTS code:
+**Expected output**
 
 ```ts
-let script: string = `
-    let data = '123';
-    let value = 123;
-    isStrictEquals(data,value);
-`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'isStrictEquals: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'isStrictEquals: %{public}s', error.message);
-}
+JSVM OH_JSVM_StrictEquals: success: 1
 ```

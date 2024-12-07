@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块API使用时建议放在worker线程或者taskpool中做网络操作，否则可能会导致UI线程卡顿。
 
 ## 导入模块
 
@@ -134,7 +135,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 通过UDPSocket连接发送数据。使用callback方式作为异步方法。
 
-发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -184,7 +185,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 通过UDPSocket连接发送数据。使用Promise方式作为异步方法。
 
-发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -543,8 +544,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -810,17 +809,13 @@ UDPSocket发送参数。
 
 ## UDPExtraOptions
 
-UDPSocket连接的其他属性。
+UDPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
 | broadcast         | boolean | 否   | 是否可以发送广播。默认为false。  |
-| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），默认为0。   |
-| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），默认为0。   |
-| reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
-| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。 |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -1432,222 +1427,6 @@ multicast.getLoopbackMode().then((value: Boolean) => {
 });
 ```
 
-### getLocalAddress<sup>12+</sup>
-
-getLocalAddress(): Promise\<NetAddress\>
-
-获取多播通信中的本地Socket地址。使用Promise方式作为异步方法。
-
-> **说明：**
-> bind方法调用成功后，才可调用此方法。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**返回值：**
-
-| 类型            | 说明                                                 |
-|  -------------- |  --------------------------------------------------- |
-| Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                                    |
-| -------- | ------------------------------------------- |
-| 2300002  | System internal error.                      |
-| 2301009  | Bad file descriptor.                            |
-| 2303188  | Socket operation on non-socket. |
-
-**示例：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-let addr: socket.NetAddress = {
-  address: '239.255.0.0',
-  port: 8080
-}
-multicast.bind(addr).then(() => {
-  console.info('bind success');
-  multicast.getLocalAddress().then((localAddress: socket.NetAddress) => {
-    console.info("Multicast_Socket get SUCCESS! Address:" + JSON.stringify(localAddress));
-  }).catch((err: BusinessError) => {
-    console.error("Multicast_Socket get FAILED! Error:" + JSON.stringify(err));
-  })
-}).catch((err: BusinessError) => {
-  console.error('bind fail');
-});
-```
-
-### send<sup>7+</sup>
-
-send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
-
-发送数据。使用callback方式作为异步方法。
-
-发送数据前，需要先调用 [addMembership](#addmembership11) 加入多播组。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                                | 必填 | 说明                                                         |
-| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
-| callback | AsyncCallback\<void\>             | 是   | 回调函数。失败返回错误码、错误信息。|
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
-
-**示例：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-let netAddress: socket.NetAddress = {
-  address: '239.255.0.1',
-  port: 8080
-}
-let sendOptions: socket.UDPSendOptions = {
-  data: 'Hello, server!',
-  address: netAddress
-}
-multicast.send(sendOptions, (err: Object) => {
-  if (err) {
-    console.log('send fail: ' + JSON.stringify(err));
-    return;
-  }
-  console.log('send success');
-});
-```
-
-### send<sup>7+</sup>
-
-send(options: UDPSendOptions): Promise\<void\>
-
-发送数据。使用Promise方式作为异步方法。
-
-发送数据前，需要先调用 [addMembership](#addmembership11) 加入多播组。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名  | 类型                                     | 必填 | 说明                                                         |
-| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [UDPSendOptions](#udpsendoptions) | 是   | UDPSocket发送参数，参考[UDPSendOptions](#udpsendoptions)。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                 |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
-
-**返回值：**
-
-| 类型            | 说明                              |
-| :-------------- | :------------------------------- |
-| Promise\<void\> | 以Promise形式返回发送数据的执行结果。 |
-
-**示例：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-let netAddress: socket.NetAddress = {
-  address: '239.255.0.1',
-  port: 8080
-}
-let sendOptions: socket.UDPSendOptions = {
-  data: 'Hello, server!',
-  address: netAddress
-}
-multicast.send(sendOptions).then(() => {
-  console.log('send success');
-}).catch((err: Object) => {
-  console.log('send fail, ' + JSON.stringify(err));
-});
-```
-
-### on('message')<sup>7+</sup>
-
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
-
-订阅MulticastSocket接收消息事件。使用callback方式作为异步方法。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                                                                                    | 必填 | 说明                                 |
-| -------- | ------------------------------------------------------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                                                                | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。返回MulticastSocket订阅后状态信息。                          |
-
-**示例：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
-
-multicast.on('message', (data: socket.SocketMessageInfo) => {
-  console.info('接收的数据: ' + JSON.stringify(data))
-  const uintArray = new Uint8Array(data.message)
-  let str = ''
-  for (let i = 0; i < uintArray.length; ++i) {
-    str += String.fromCharCode(uintArray[i])
-  }
-  console.info(str)
-})
-```
-
-### off('message')<sup>7+</sup>
-
-off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
-
-取消订阅消息事件。使用callback方式作为异步方法。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-| 参数名   | 类型                                                                                  | 必填 | 说明                                 |
-| -------- | ----------------------------------------------------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                                                              | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。返回MulticastSocket取消订阅后状态信息。|
-**示例：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-
-let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
-multicast.on('message', (data: socket.SocketMessageInfo) => {
-  console.info('接收的数据: ' + JSON.stringify(data))
-  const uintArray = new Uint8Array(data.message)
-  let str = ''
-  for (let i = 0; i < uintArray.length; ++i) {
-    str += String.fromCharCode(uintArray[i])
-  }
-  console.info(str)
-})
-multicast.off('message')
-```
-
-
 ## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
@@ -1886,7 +1665,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 通过TCPSocket连接发送数据。使用callback方式作为异步方法。
 
 > **说明：**
-> connect方法调用成功后，才可调用此方法。
+> connect方法调用成功后，才可调用此方法。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1943,7 +1722,7 @@ send(options: TCPSendOptions): Promise\<void\>
 通过TCPSocket连接发送数据。使用Promise方式作为异步方法。
 
 > **说明：**
-> connect方法调用成功后，才可调用此方法。
+> connect方法调用成功后，才可调用此方法。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -2515,8 +2294,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -2780,7 +2557,7 @@ TCPSocket发送请求的参数。
 
 ## TCPExtraOptions
 
-TCPSocket连接的其他属性。
+TCPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -2790,10 +2567,6 @@ TCPSocket连接的其他属性。
 | OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
 | TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
 | socketLinger      | \{on:boolean, linger:number\}  | 否   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
-| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），默认为0。                               |
-| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），默认为0。                               |
-| reuseAddress      | boolean | 否   | 是否重用地址。默认为false。                                  |
-| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。                             |
 
 ## socket.constructTCPSocketServerInstance<sup>10+</sup>
 
@@ -2847,7 +2620,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -2905,7 +2678,7 @@ listen(address: NetAddress): Promise\<void\>
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -3197,8 +2970,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -3268,9 +3039,22 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 import { socket } from '@kit.NetworkKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
-  console.log(JSON.stringify(data))
-});
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
+    console.log(JSON.stringify(data))
+  });
+})
 ```
 
 ### off('connect')<sup>10+</sup>
@@ -3300,13 +3084,26 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 import { socket } from '@kit.NetworkKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let callback = (data: socket.TCPSocketConnection) => {
-  console.log('on connect message: ' + JSON.stringify(data));
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-tcpServer.on('connect', callback);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-tcpServer.off('connect', callback);
-tcpServer.off('connect');
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  let callback = (data: socket.TCPSocketConnection) => {
+    console.log('on connect message: ' + JSON.stringify(data));
+  }
+  tcpServer.on('connect', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  tcpServer.off('connect', callback);
+  tcpServer.off('connect');
+})
 ```
 
 ### on('error')<sup>10+</sup>
@@ -3340,9 +3137,22 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
-});
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  tcpServer.on('error', (err: BusinessError) => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
+})
 ```
 
 ### off('error')<sup>10+</sup>
@@ -3373,13 +3183,26 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
 }
-tcpServer.on('error', callback);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-tcpServer.off('error', callback);
-tcpServer.off('error');
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+  let callback = (err: BusinessError) => {
+    console.log("on error, err:" + JSON.stringify(err));
+  }
+  tcpServer.on('error', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  tcpServer.off('error', callback);
+  tcpServer.off('error');
+})
 ```
 
 ## TCPSocketConnection<sup>10+</sup>
@@ -3670,8 +3493,6 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 getLocalAddress(): Promise\<NetAddress\>
 
 获取TCPSocketConnection连接的本地Socket地址。使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -3983,7 +3804,7 @@ constructLocalSocketInstance(): LocalSocket
 **返回值：**
 
 | 类型                               | 说明                    |
-  | :--------------------------------- | :---------------------- |
+| :--------------------------------- | :---------------------- |
 | [LocalSocket](#localsocket11) | 返回一个LocalSocket对象。 |
 
 **示例：**
@@ -4393,8 +4214,6 @@ getLocalAddress(): Promise\<string\>
 
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4826,7 +4645,7 @@ listen(address: LocalAddress): Promise\<void\>
 | 错误码ID | 错误信息                      |
 | -------- | --------------------------- |
 | 401      | Parameter error.            |
-| 2301009  | Bad file number.            |
+| 2303109  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
 | 2301098  | Address already in use.     |
@@ -4998,8 +4817,6 @@ getLocalAddress(): Promise\<string\>
 
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -5289,8 +5106,6 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 getLocalAddress(): Promise\<string\>
 
 获取LocalSocketConnection连接中的本地Socket地址。使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -5635,8 +5450,8 @@ constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
 **示例：**
 
 ```ts
-import { socket } from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -6245,7 +6060,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2301009 | Bad file number.                             |
+| 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
@@ -6351,7 +6166,7 @@ connect(options: TLSConnectOptions): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2301009 | Bad file number.                             |
+| 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
@@ -6893,8 +6708,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -7101,7 +6914,7 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
-| skipRemoteValidation  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -7119,6 +6932,7 @@ TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双�
 | useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
 | cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。              |
 
 ## Protocol<sup>9+</sup>
 
@@ -7170,6 +6984,8 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，在TLSSocketServer上bind成功之后，监听客户端的连接，创建和初始化TLS会话，实现建立连接过程，加载证书秘钥并验证，使用callback方式作为异步方法。
 
+**注意：**IP地址设置为0.0.0.0时，可以监听本机所有地址。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -7188,7 +7004,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -7259,7 +7075,7 @@ listen(options: TLSConnectOptions): Promise\<void\>
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -7869,8 +7685,6 @@ getLocalAddress(): Promise\<NetAddress\>
 
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -8959,8 +8773,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -9010,7 +8822,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
+  client.getLocalAddress().then((localAddress: socket.NetAddress) => {
     console.info("Family IP Port: " + JSON.stringify(localAddress));
   }).catch((err: BusinessError) => {
     console.error("TLS Client Get Family IP Port failed, error: " + JSON.stringify(err));

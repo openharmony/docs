@@ -107,7 +107,7 @@ has(key: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。 |
+| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -147,7 +147,7 @@ get(key: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 查找的指定key。 |
+| key | number | 是 | 查找的指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -188,7 +188,7 @@ getIndexOfKey(key: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。 |
+| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -269,7 +269,7 @@ getKeyAt(index: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -309,7 +309,7 @@ getValueAt(index: number): T
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定下标。 |
+  | index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -384,7 +384,7 @@ add(key: number, value: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 添加成员数据的键名。 |
+| key | number | 是 | 添加成员数据的键名。需要小于等于int32_max即2147483647。 |
 | value | T | 是 | 添加成员数据的值。 |
 
 **错误码：**
@@ -418,7 +418,7 @@ remove(key: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。 |
+| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -459,7 +459,7 @@ removeAt(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素下标。 |
+| index | number | 是 | 指定元素下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -500,8 +500,8 @@ removeRangeFrom(index: number, size: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 删除元素的起始下标。 |
-| size | number | 是 | 期望删除元素个数。 |
+| index | number | 是 | 删除元素的起始下标。需要小于等于int32_max即2147483647。 |
+| size | number | 是 | 期望删除元素个数。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -543,7 +543,7 @@ setValueAt(index: number, value: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定替换数据下标。 |
+| index | number | 是 | 指定替换数据下标。需要小于等于int32_max即2147483647。 |
 | value | T | 是 | 替换键值对中的值。 |
 
 **错误码：**
@@ -688,10 +688,6 @@ for(let i = 0;i < 10;i++) {
 [Symbol.iterator]\(): IterableIterator&lt;[number, T]&gt;
 
 返回一个包含key-value键值对的迭代器对象，其中key是number类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -1,5 +1,6 @@
 # 高性能拍照实现方案(仅对系统应用开放)(ArkTS)
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
 当前示例提供完整的高性能拍照流程介绍，方便开发者了解完整的接口调用顺序。
 
 在参考以下示例前，建议开发者查看[高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[拍照](camera-shooting.md)等单个流程。
@@ -348,20 +349,22 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+
+  // 需要在拍照结束之后调用以下关闭摄像头和释放会话流程，避免拍照未结束就将会话释放。
   // 停止当前会话
-  photoSession.stop();
+  await photoSession.stop();
 
   // 释放相机输入流
-  cameraInput.close();
+  await cameraInput.close();
 
   // 释放预览输出流
-  previewOutput.release();
+  await previewOutput.release();
 
   // 释放拍照输出流
-  photoOutput.release();
+  await photoOutput.release();
 
   // 释放会话
-  photoSession.release();
+  await photoSession.release();
 
   // 会话置空
   photoSession = undefined;

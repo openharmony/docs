@@ -28,9 +28,9 @@ AudioCodec模块提供用于音频编解码功能的函数。
 | [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_AudioCodec_CreateByName](#oh_audiocodec_createbyname) (const char \*name) | 通过音频编解码器名称创建音频编解码器实例。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Destroy](#oh_audiocodec_destroy) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清理编解码器内部资源，销毁编解码器实例。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_RegisterCallback](#oh_audiocodec_registercallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback, void \*userData) | 设置异步回调函数，使应用可以响应音频编解码器生成的事件。在调用Prepare之前，必须调用此接口。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Configure](#oh_audiocodec_configure) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, const OH_AVFormat \*format) | 要配置音频编解码器，通常需要配置音频描述信息。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Configure](#oh_audiocodec_configure) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, const OH_AVFormat \*format) | 配置音频描述信息。音频编解码器通常会根据音频描述信息进行配置。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Prepare](#oh_audiocodec_prepare) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 准备编解码器的内部资源。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Start](#oh_audiocodec_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | Prepare成功后调用此接口启动编解码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Start](#oh_audiocodec_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 调用此接口启动编解码器，在Prepare成功后执行。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Stop](#oh_audiocodec_stop) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 停止编解码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Flush](#oh_audiocodec_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除编解码器中缓存的输入和输出数据。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_Reset](#oh_audiocodec_reset) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 重置编解码器。如果要继续编解码，需要再次调用Configure接口配置编解码器实例。  | 
@@ -38,7 +38,7 @@ AudioCodec模块提供用于音频编解码功能的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetParameter](#oh_audiocodec_setparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, const OH_AVFormat \*format) | 配置编解码器的动态参数。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将填充有数据的输入缓冲区提交给音频编解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_FreeOutputBuffer](#oh_audiocodec_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编解码器。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编解码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_IsValid](#oh_audiocodec_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编解码器实例是否有效。<br>可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioCodec_SetDecryptionConfig](#oh_audiocodec_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureAudio) | 设置解密信息。  | 
 
 
@@ -51,7 +51,7 @@ AudioCodec模块提供用于音频编解码功能的函数。
 OH_AVErrCode OH_AudioCodec_Configure (OH_AVCodec *codec, const OH_AVFormat *format)
 ```
 **描述**
-要配置音频编解码器，通常需要配置音频描述信息。在调用Prepare之前，必须调用此接口。
+配置音频描述信息。音频编解码器通常会根据音频描述信息进行配置。在调用Prepare之前，必须调用此接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioCodec
 
@@ -218,7 +218,7 @@ OH_AVFormat* OH_AudioCodec_GetOutputDescription (OH_AVCodec *codec)
 OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec *codec, bool *isValid)
 ```
 **描述**
-检查当前编解码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。
+检查当前编解码器实例是否有效。<br>可用于后台故障恢复或应用程序从后台恢复时检测编解码器有效状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioCodec
 
@@ -229,7 +229,7 @@ OH_AVErrCode OH_AudioCodec_IsValid (OH_AVCodec *codec, bool *isValid)
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| isValid | 输出参数。指向布尔实例的指针，true：编解码器实例有效，false：编解码器实例无效。 | 
+| isValid | 输出参数。指向布尔类型的指针，true：编解码器实例有效，false：编解码器实例无效。 | 
 
 **返回：**
 
@@ -396,7 +396,7 @@ OH_AVErrCode OH_AudioCodec_SetParameter (OH_AVCodec *codec, const OH_AVFormat *f
 OH_AVErrCode OH_AudioCodec_Start (OH_AVCodec *codec)
 ```
 **描述**
-Prepare成功后调用此接口启动编解码器。启动后，编解码器将开始上报OH_AVCodecOnNeedInputBuffer事件。
+调用此接口启动编解码器，在Prepare成功后执行。启动后，编解码器将开始上报OH_AVCodecOnNeedInputBuffer事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioCodec
 

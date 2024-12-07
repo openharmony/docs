@@ -246,7 +246,7 @@ start(): Promise&lt;void&gt;
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
@@ -294,7 +294,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
@@ -925,7 +925,7 @@ start(): Promise&lt;void&gt;
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
 | 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
@@ -976,7 +976,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
 | 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
@@ -1207,7 +1207,7 @@ cleanCache(uri: string): void;
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
@@ -1262,7 +1262,7 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
@@ -1310,7 +1310,7 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
@@ -1365,7 +1365,7 @@ getFileSyncState(uri: string): FileSyncState
 | 13900012  | Permission denied by the file system. |
 | 13900031  | Function not implemented. |
 | 13900042  | Unknown error. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
@@ -1411,7 +1411,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
@@ -1458,7 +1458,7 @@ unregisterChange(uri: string): void
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
 | 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 

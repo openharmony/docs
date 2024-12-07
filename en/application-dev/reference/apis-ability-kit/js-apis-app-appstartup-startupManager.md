@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-The startupManager module provides APIs for the AppStartup framework to manage startup tasks. It can be called only in the main thread.
+The startupManager module provides APIs for AppStartup to manage startup tasks. It can be called only in the main thread.
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import { startupManager }  from '@kit.AbilityKit';
 ## startupManager.run
 run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
-Runs the AppStartup framework.
+Runs AppStartup.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -26,7 +26,7 @@ Runs the AppStartup framework.
   | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
   | startupTasks | Array\<string\> | Yes | Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the startup tasks to be executed. |
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No | Timeout for starting the framework and startup task listener. |
+  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No | Timeout for starting AppStartup and startup task listener. |
 
 **Return value**
 

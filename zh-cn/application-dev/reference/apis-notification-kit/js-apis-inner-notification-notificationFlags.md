@@ -12,11 +12,11 @@
 
 | 名称             | 类型                    | 只读 | 可选 | 说明                                         |
 | ---------------- | ---------------------- | ---- | -----|-------------------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | 是  | 是 | 是否启用声音提示。    |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | 是  | 是 | 是否启用振动提醒功能。 |
+| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus11) | 是  | 是 | 是否启用声音提示。    |
+| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus11) | 是  | 是 | 是否启用振动提醒功能。 |
 
 
-## NotificationFlagStatus
+## NotificationFlagStatus<sup>11+</sup>
 
 描述通知标志状态。
 

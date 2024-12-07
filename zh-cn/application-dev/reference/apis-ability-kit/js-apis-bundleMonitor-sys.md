@@ -28,7 +28,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 **系统接口：**  此接口为系统接口。
 
-| 名称       | 类型   | 可读 | 可写 | 说明                       |
+| 名称       | 类型   | 只读 | 可选 | 说明                       |
 | ---------- | ------ | ---- | ---- | -------------------------- |
 | bundleName | string | 是   | 否   | 应用状态发生变化的应用Bundle名称。 |
 | userId     | number | 是   | 否   | 应用状态发生变化的用户id。   |

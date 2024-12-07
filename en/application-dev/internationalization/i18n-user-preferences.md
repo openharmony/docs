@@ -1,4 +1,4 @@
-# Setting User Preferences (For System Applications Only)
+# User Preference Setting (for System Applications Only)
 
 ## Use Cases
 

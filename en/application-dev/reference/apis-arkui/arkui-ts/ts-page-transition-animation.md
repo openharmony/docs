@@ -6,13 +6,15 @@ You can customize the page entrance and exit animations in the **pageTransition*
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> To achieve a better transition effect, you are advised to use the [\<Navigation>](../../../ui/arkts-navigation-navigation.md) component and [modal transition](../../../ui/arkts-modal-transition.md).
+> To achieve a better transition effect, you are advised to use the [Navigation](../../../ui/arkts-navigation-navigation.md) component and [modal transition](../../../ui/arkts-modal-transition.md).
 
 ## pageTransition
 
 pageTransition?(): void
 
 Defines the transition animation to play when the user accesses this page or is redirected from this page to another page.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -21,6 +23,8 @@ Defines the transition animation to play when the user accesses this page or is 
 PageTransitionEnter(value: PageTransitionOptions)
 
 Page entrance animation.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,6 +40,8 @@ PageTransitionExit(value: PageTransitionOptions)
 
 Page exit animation.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -46,16 +52,19 @@ Page exit animation.
 
 ## PageTransitionOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [RouteType](#routetype)                              | No  | Route type for the page transition effect to take effect.<br>Default value: **RouteType.None**   |
 | duration | number                                                       | No  | Animation duration.<br>Unit: ms<br>Default value: **1000**                |
-| curve    | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | No  | Animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**|
+| curve    | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup> | No  | Animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**|
 | delay    | number                                                       | No  | Animation delay.<br>Unit: ms<br>Default value: **0**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.|
 
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name | Type                                                    | Mandatory| Description                                                    |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -66,13 +75,68 @@ Page exit animation.
 
 
 ## Events
+### onEnter
 
-| Name                                                        | Description                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onEnter(event: (type: [RouteType](#routetype), progress: number) =&gt; void) | Invoked once every animation frame until the entrance animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
-| onExit(event: (type: [RouteType](#routetype), progress: number) =&gt; void) | Invoked once every animation frame until the exit animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
+onEnter(event: (type: RouteType, progress: number) => void): PageTransitionEnterInterface
 
-## RouteType
+Invoked on a per-frame basis until the entrance animation is complete, with the **progress** parameter changing from 0 to 1.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                              | Mandatory| Description                                               |
+| ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
+| event  | (type: [RouteType](#routetype), progress: number) => void | Yes  | Callback invoked on a per-frame basis until the entrance animation is complete, with the **progress** parameter changing from 0 to 1.|
+
+**Example**
+
+```js
+  pageTransition() {
+    PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
+      // During the transition animation, the entrance animation has a type that represents the route type, and a progress that increases from 0 to 1.
+      .onEnter((type: RouteType, progress: number) => {
+        // Service logic
+      })
+  }
+```
+
+### onExit
+
+onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitInterface
+
+Invoked on a per-frame basis until the exit animation is complete, with the **progress** parameter changing from 0 to 1.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Parameters**
+
+| Name| Type                                                              | Mandatory| Description                                               |
+| ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
+| event  | (type: [RouteType](#routetype), progress: number) => void | Yes  | Callback invoked on a per-frame basis until the exit animation is complete, with the **progress** parameter changing from 0 to 1.|
+
+**Example**
+
+```js
+  pageTransition() {
+    PageTransitionExit({ duration: 1200, curve: Curve.Linear })
+      // During the transition animation, the exit animation has a type that represents the route type, and a progress that increases from 0 to 1.
+      .onExit((type: RouteType, progress: number) => {
+        // Service logic
+      })
+  }
+```
+
+ ## RouteType
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 
 | Name| Description                                                        |
 | ---- | ------------------------------------------------------------ |
@@ -82,20 +146,24 @@ Page exit animation.
 
 ## SlideEffect
 
-| Name  | Description                                              |
-| ------ | -------------------------------------------------- |
-| Left   | When set to Enter, slides in from the left. When set to Exit, slides out to the left.|
-| Right  | When set to Enter, slides in from the right. When set to Exit, slides out to the right.|
-| Top    | When set to Enter, slides in from the top. When set to Exit, slides out to the top.|
-| Bottom | When set to Enter, slides in from the bottom. When set to Exit, slides out to the bottom.|
+| Name               | Description                                                        |
+| ------------------- | ------------------------------------------------------------ |
+| Left                | When set to Enter, slides in from the left. When set to Exit, slides out to the left.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Right               | When set to Enter, slides in from the right. When set to Exit, slides out to the right.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Top                 | When set to Enter, slides in from the top. When set to Exit, slides out to the top.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Bottom              | When set to Enter, slides in from the bottom. When set to Exit, slides out to the bottom.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| START<sup>12+</sup> | Left-to-right scripts: When set to Enter, slides in from the left; when set to Exit, slides out to the left. Right-to-left scripts: When set to Enter, slides in from the right; when set to Exit, slides out to the right.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| END<sup>12+</sup>   | Left-to-right scripts: When set to Enter, slides in from the right; when set to Exit, slides out to the right. Right-to-left scripts: When set to Enter, slides in from the left; when set to Exit, slides out to the left.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Example
+
+### Example 1
 
 Example 1: Apply different exit and entry animations based on different exit and entry types.
 
 ```ts
 // index.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -137,7 +205,7 @@ struct Index {
 
 ```ts
 // page1.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -234,3 +302,138 @@ struct PageTransitionExample1 {
 ```
 
 ![pageTransition2](figures/pageTransition2.gif)
+
+### Example 2
+
+Customization method 1: Configure the various entrance and exit translation effects provided, with the system language layout mode set to right-to-left (RTL).
+
+```ts
+// index.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("Page 1").onClick(()=>{
+        router.pushUrl({
+          url:"pages/page1"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+      Text("START")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)  
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+
+  // Use the default effects provided by the system, such as translation, scaling, and opacity.
+  pageTransition() {
+    // Set the entrance animation.
+    PageTransitionEnter({ duration: 200 })
+      .slide(SlideEffect.START)
+    // Set the exit animation.
+    PageTransitionExit({ delay: 100 })
+      .slide(SlideEffect.START) //Left
+  }
+}
+```
+
+```ts
+// page1.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("Page 2").onClick(()=>{
+        router.pushUrl({
+          url:"pages/Index"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+      Text("END")
+        .fontSize(36)
+        .textAlign(TextAlign.Center)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+
+  // Use the default effects provided by the system, such as translation, scaling, and opacity.
+  pageTransition() {
+    PageTransitionEnter({ duration: 200 })
+      .slide(SlideEffect.END) //Right
+    PageTransitionExit({ delay:100 })
+      .slide(SlideEffect.END) //Right
+  }
+}
+
+```
+
+![pageTransition1](figures/pageRTL.gif)
+
+Customization method 2: Use the system's default entrance and exit effects, with the system language layout mode set to right-to-left (RTL).
+
+```ts
+// index.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("Page 1").onClick(()=>{
+        router.pushUrl({
+          url:"pages/page1"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+```ts
+// page1.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("Page 2").onClick(()=>{
+        router.pushUrl({
+          url:"pages/Index"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![pageTransition1](figures/pageRTL2.gif)

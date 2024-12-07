@@ -28,7 +28,7 @@
 | float [OH_Drawing_RectGetTop](_drawing.md#oh_drawing_rectgettop) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于获取给矩形设置的左上角的纵坐标。  | 
 | float [OH_Drawing_RectGetRight](_drawing.md#oh_drawing_rectgetright) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于获取给矩形设置的右下角的横坐标。  | 
 | float [OH_Drawing_RectGetBottom](_drawing.md#oh_drawing_rectgetbottom) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于获取给矩形设置的右下角的纵坐标。  | 
-| bool [OH_Drawing_RectIntersect](_drawing.md#oh_drawing_rectintersect) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*other) | 用于判断两个矩形是否相交。  | 
+| bool [OH_Drawing_RectIntersect](_drawing.md#oh_drawing_rectintersect) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*other) | 用于判断两个矩形是否相交，若相交，将rect设置为两个矩形的交集。  | 
 | bool [OH_Drawing_RectJoin](_drawing.md#oh_drawing_rectjoin) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*other) | 将两个矩形取并集。 | 
 | void [OH_Drawing_RectSetLeft](_drawing.md#oh_drawing_rectsetleft) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, float left) | 用于设置矩形左上角的横坐标。  | 
 | void [OH_Drawing_RectSetTop](_drawing.md#oh_drawing_rectsettop) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, float top) | 用于设置矩形左上角的纵坐标。  | 
@@ -36,3 +36,7 @@
 | void [OH_Drawing_RectSetBottom](_drawing.md#oh_drawing_rectsetbottom) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, float bottom) | 用于设置矩形右下角的纵坐标。  | 
 | void [OH_Drawing_RectCopy](_drawing.md#oh_drawing_rectcopy) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*sRect, [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*dRect) | 用于将源矩形对象复制到目标矩形对象。  | 
 | void [OH_Drawing_RectDestroy](_drawing.md#oh_drawing_rectdestroy) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于销毁矩形对象并回收该对象占有的内存。  | 
+| [OH_Drawing_Array](_drawing.md#oh_drawing_array) \* [OH_Drawing_RectCreateArray](_drawing.md#oh_drawing_rectcreatearray) (size_t size) | 用于创建一个矩形数组对象, 用来存储多个矩形对象。  | 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_RectGetArraySize](_drawing.md#oh_drawing_rectgetarraysize) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*rectArray, size_t \*pSize) | 用于获取矩形数组对象[OH_Drawing_Array](_drawing.md#oh_drawing_array)的大小。  | 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_RectGetArrayElement](_drawing.md#oh_drawing_rectgetarrayelement) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*rectArray, size_t index, [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*\*rect) | 用于获取矩形数组对象中指定索引的矩形对象。  | 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode) [OH_Drawing_RectDestroyArray](_drawing.md#oh_drawing_rectdestroyarray) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*rectArray) | 用于销毁矩形数组对象并回收该对象占有的内存。  | 

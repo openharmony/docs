@@ -88,9 +88,9 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-1](figures/properly-use-state-management-to-develope-1.gif)
 
-In this example, a total of 20 records are displayed on the page through **ForEach**. When you click the **\<Text>** component of **age** in one of the records, the **\<Text>** components of **age** in other 19 records are also re-rendered - reflected by the logs generated for the components of **age**. However, because the **age** values of the other 19 records do not change, the re-rendering of these records is actually redundant.
+In this example, a total of 20 records are displayed on the page through **ForEach**. When you click the **Text** component of **age** in one of the records, the **Text** components of **age** in other 19 records are also re-rendered - reflected by the logs generated for the components of **age**. However, because the **age** values of the other 19 records do not change, the re-rendering of these records is actually redundant.
 
-This redundant re-rendering is due to a characteristic of state management. Assume that there is an @State decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **\<Text>** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
+This redundant re-rendering is due to a characteristic of state management. Assume that there is an @State decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **Text** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
 
 This seemly bug, commonly known as "redundant re-render", is widely observed in simple array, and can adversely affect the UI re-rendering performance when the arrays are large. To make your rendering process run smoothly, it is crucial to reduce redundant re-renders and update components only when necessary.
 
@@ -175,8 +175,6 @@ struct Page {
               ForEach(this.infoList, (info: Info, index) => {
                 ListItem() {
                   Information({
-                    // in low version, DevEco may throw a warning, but it does not matter.
-                    // you can still compile and run.
                     info: info,
                     index: index
                   })
@@ -205,7 +203,7 @@ After optimization, an object array is used in place of the original attribute a
 
 > **NOTE**
 >
-> You are advised to use the [@Track decorator](arkts-track.md) in this scenario since API version 11.
+> You are advised to use the [@Track](arkts-track.md) decorator in this scenario since API version 11.
 
 During development, we sometimes define a large object that contains many style-related properties, and pass the object between parent and child components to bind the properties to the components.
 
@@ -231,7 +229,7 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  private isRenderSpecialImage() : number { // A function indicating whether the component is rendered.
     console.log("SpecialImage is rendered");
     return 1;
   }
@@ -244,13 +242,13 @@ struct SpecialImage {
         x: this.uiStyle.translateImageX,
         y: this.uiStyle.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // If the image is re-rendered, this function will be called.
   }
 }
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle
-  // the following functions are used to show whether the component is called to be rendered
+  // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -270,8 +268,6 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
       Stack() {
@@ -356,8 +352,6 @@ struct Page {
   build() {
     Stack() {
       CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
     }
@@ -370,6 +364,10 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-3](figures/properly-use-state-management-to-develope-3.gif)
 
+Click the **Move** button before optimization. The duration for updating dirty nodes is as follows.
+
+![img](figures/properly-use-state-management-to-develope-11.PNG)
+
 In the above example, **uiStyle** defines multiple properties, which are each associated with multiple components. When some of these properties are changed at the click of a button, all the components associated with **uiStyle** are re-rendered, even though they do not need to (because the properties of these components are not changed). The re-renders of these components can be observed through a series of defined **isRender** functions. When **Move** is clicked to perform the translation animation, the value of **translateY** changes multiple times. As a result, redundant re-renders occur at each frame, which greatly worsen the application performance.
 
 Such redundant re-renders result from an update mechanism of the state management: If multiple properties of a class are bound to different components through an object of the class, then, if any of the properties is changed, the component associated with the property is re-rendered, together with components associated with the other properties, even though the other properties do not change.
@@ -378,47 +376,47 @@ Naturally, this update mechanism brings down the re-rendering performance, espec
 
 ```typescript
 @Observed
-class NeedRenderImage { // properties only used in the same component can be divided into the same new divided class
+class NeedRenderImage { // Properties used in the same component can be classified into the same class.
   public translateImageX: number = 0;
   public translateImageY: number = 0;
   public imageWidth:number = 78;
   public imageHeight:number = 78;
 }
 @Observed
-class NeedRenderScale { // properties usually used together can be divided into the same new divided class
+class NeedRenderScale { // Properties used together can be classified into the same class.
   public scaleX: number = 0.3;
   public scaleY: number = 0.3;
 }
 @Observed
-class NeedRenderAlpha { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderAlpha { // Properties used separately can be classified into the same class.
   public alpha: number = 0.5;
 }
 @Observed
-class NeedRenderSize { // properties usually used together can be divided into the same new divided class
+class NeedRenderSize { // Properties used together can be classified into the same class.
   public width: number = 336;
   public height: number = 178;
 }
 @Observed
-class NeedRenderPos { // properties usually used together can be divided into the same new divided class
+class NeedRenderPos { // Properties used together can be classified into the same class.
   public posX: number = 10;
   public posY: number = 50;
 }
 @Observed
-class NeedRenderBorderRadius { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderBorderRadius { // Properties used separately can be classified into the same class.
   public borderRadius: number = 24;
 }
 @Observed
-class NeedRenderFontSize { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderFontSize { // Properties used separately can be classified into the same class.
   public fontSize: number = 20;
 }
 @Observed
-class NeedRenderTranslate { // properties usually used together can be divided into the same new divided class
+class NeedRenderTranslate { // Properties used together can be classified into the same class.
   public translateX: number = 0;
   public translateY: number = 0;
 }
 @Observed
 class UIStyle {
-  // define new variable instead of using old one
+  // Use the NeedRenderxxx class.
   needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
   needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
   needRenderBorderRadius: NeedRenderBorderRadius = new NeedRenderBorderRadius();
@@ -431,34 +429,34 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle : UIStyle;
-  @ObjectLink needRenderImage: NeedRenderImage // receive the new class from its parent component
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  @ObjectLink needRenderImage: NeedRenderImage // Receive a new class from its parent component.
+  private isRenderSpecialImage() : number { // A function indicating whether the component is rendered.
     console.log("SpecialImage is rendered");
     return 1;
   }
   build() {
     Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
-      .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
+      .width(this.needRenderImage.imageWidth) // Use this.needRenderImage.xxx.
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
       .translate({
         x: this.needRenderImage.translateImageX,
         y: this.needRenderImage.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // If the image is re-rendered, this function will be called.
   }
 }
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle;
-  @ObjectLink needRenderTranslate: NeedRenderTranslate; // receive the new class from its parent component
+  @ObjectLink needRenderTranslate: NeedRenderTranslate; // Receive the newly defined instance of the NeedRenderxxx class from its parent component.
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
   @ObjectLink needRenderBorderRadius: NeedRenderBorderRadius;
   @ObjectLink needRenderPos: NeedRenderPos;
   @ObjectLink needRenderSize: NeedRenderSize;
   @ObjectLink needRenderAlpha: NeedRenderAlpha;
   @ObjectLink needRenderScale: NeedRenderScale;
-  // the following functions are used to show whether the component is called to be rendered
+  // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -478,17 +476,15 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle,
-        needRenderImage: this.uiStyle.needRenderImage //send it to its child
+        needRenderImage: this.uiStyle.needRenderImage // Pass the needRenderxxx class to the child component.
       })
       Stack() {
         Column() {
           Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
             .opacity(this.needRenderAlpha.alpha)
             .scale({
-              x: this.needRenderScale.scaleX, // use this.needRenderXxx.xxx rather than this.uiStyle.needRenderXxx.xxx
+              x: this.needRenderScale.scaleX, // Use this.needRenderXxx.xxx.
               y: this.needRenderScale.scaleY
             })
             .padding(this.isRenderImage())
@@ -552,7 +548,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .fontSize(20)
           .width(312)
-          .onClick(() => { // in the parent component, still use this.uiStyle.needRenderXxx.xxx to change the properties
+          .onClick(() => { // Use this.uiStyle.endRenderXxx.xxx to change the property in the parent component.
             this.uiStyle.needRenderImage.imageWidth = (this.uiStyle.needRenderImage.imageWidth + 30) % 160;
             this.uiStyle.needRenderImage.imageHeight = (this.uiStyle.needRenderImage.imageHeight + 30) % 160;
           })
@@ -575,10 +571,8 @@ struct Page {
   build() {
     Stack() {
       CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle,
-        needRenderTranslate: this.uiStyle.needRenderTranslate, //send all the new class child need
+        needRenderTranslate: this.uiStyle.needRenderTranslate, // Pass the needRenderxxx class to the child component.
         needRenderFontSize: this.uiStyle.needRenderFontSize,
         needRenderBorderRadius: this.uiStyle.needRenderBorderRadius,
         needRenderPos: this.uiStyle.needRenderPos,
@@ -594,15 +588,19 @@ struct Page {
 
 Below you can see how the preceding code snippet works.![properly-use-state-management-to-develope-4](figures/properly-use-state-management-to-develope-4.gif)
 
+Click the **Move** button after optimization. The duration for updating dirty nodes is as follows.
+
+![img](figures/properly-use-state-management-to-develope-12.PNG)
+
 After the optimization, the 15 attributes previously in one class are divided into eight classes, and the bound components are adapted accordingly. The division of properties complies with the following principles:
 
 - Properties that are only used in the same component can be divided into the same new child class, that is, **NeedRenderImage** in the example. This mode of division is applicable to the scenario where components are frequently re-rendered due to changes of unassociated properties.
 - Properties that are frequently used together can be divided into the same new child class, that is, **NeedRenderScale**, **NeedRenderTranslate**, **NeedRenderPos**, and **NeedRenderSize** in the example. This mode of division is applicable to the scenario where properties often appear in pairs or are applied to the same style, for example, **.translate**, **.position**, and **.scale** (which usually receive an object as a parameter).
 - Properties that may be used in different places should be divided into a new child class, that is, **NeedRenderAlpha**, **NeedRenderBorderRadius**, and **NeedRenderFontSize** in the example. This mode of division is applicable to the scenario where a property works on multiple components or works on their own, for example, **.opacity** and **.borderRadius** (which usually work on their own).
 
-As in combination of properties, the principle behind division of properties is that changes to properties of objects nested more than two levels deep cannot be observed. Yet, you can use @Observed and @ObjectLink to transfer level-2 objects between parent and child nodes to observe property changes at level 2 and precisely control the render scope. <!--Del-->For details about division of properties, see [Precisely Controlling Render Scope](../performance/precisely-control-render-scope.md).<!--DelEnd-->
+As in combination of properties, the principle behind division of properties is that changes to properties of objects nested more than two levels deep cannot be observed. Yet, you can use @Observed and @ObjectLink to transfer level-2 objects between parent and child nodes to observe property changes at level 2 and precisely control the render scope. <!--Del-->For details about the division of properties, see [Precisely Controlling Render Scope](https://gitee.com/openharmony/docs/blob/master/en/application-dev/performance/precisely-control-render-scope.md).<!--DelEnd-->
 
-You can also use the @Track decorator to precisely control the render scope, which does not involve division of properties.
+@Track decorator can also precisely control the render scope, which does not involve division of properties.
 
 ```ts
 @Observed
@@ -626,7 +624,7 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  private isRenderSpecialImage() : number { // A function indicating whether the component is rendered.
     console.log("SpecialImage is rendered");
     return 1;
   }
@@ -639,13 +637,13 @@ struct SpecialImage {
         x: this.uiStyle.translateImageX,
         y: this.uiStyle.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // If the image is re-rendered, this function will be called.
   }
 }
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle
-  // the following functions are used to show whether the component is called to be rendered
+  // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -665,8 +663,6 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
       Stack() {
@@ -751,8 +747,6 @@ struct Page {
   build() {
     Stack() {
       CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
     }
@@ -851,8 +845,6 @@ struct CompList {
       List() {
         ForEach(this.childList, (item: Child, index) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             CompChild({
               childList: this.childList,
               child: item
@@ -872,8 +864,6 @@ struct CompAncestor {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompList({ childList: this.ancestor.childList })
       Row() {
         Button("Clear")
@@ -899,8 +889,6 @@ struct Page {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompAncestor({ ancestor: this.ancestor})
     }
   }
@@ -1022,8 +1010,6 @@ struct CompList {
       List() {
         ForEach(this.childList, (item: Child, index) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             CompChild({
               childList: this.childList,
               child: item
@@ -1043,8 +1029,6 @@ struct CompAncestor {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompList({ childList: this.ancestor.childList })
       Row() {
         Button("Clear")
@@ -1070,8 +1054,6 @@ struct Page {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompAncestor({ ancestor: this.ancestor})
     }
   }
@@ -1238,7 +1220,7 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-7](figures/properly-use-state-management-to-develope-7.gif)
 
-In this example, after you click to change **message**, the image flickers, and the onAppear log is generated for the image, indicating that the component is rebuilt. After **message** is changed, the key of the corresponding list item in **LazyForEach** changes. As a result, **LazyForEach** rebuilds the list item when executing **reloadData**. Though the **\<Text>** component only has its content changed, it is rebuilt, not updated. The **\<Image>** component under the list item is also rebuilt along with the list item, even though its content remains unchanged.
+In this example, after you click to change **message**, the image flickers, and the onAppear log is generated for the image, indicating that the component is rebuilt. After **message** is changed, the key of the corresponding list item in **LazyForEach** changes. As a result, **LazyForEach** rebuilds the list item when executing **reloadData**. Though the **Text** component only has its content changed, it is rebuilt, not updated. The **Image** component under the list item is also rebuilt along with the list item, even though its content remains unchanged.
 
 While both **LazyForEach** and state variables can trigger UI re-renders, their performance overheads are different. **LazyForEach** leads to component rebuilds and higher performance overheads, especially when there is a considerable number of components. By contrast, the use of state variables allows you to keep the update scope within the closely related components. In light of this, it is recommended that you use state variables to trigger component updates in **LazyForEach**, which requires custom components.
 
@@ -1348,8 +1330,6 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          // in low version, Dev Eco may throw a warning
-          // But you can still build and run the code
           ChildComponent({data: item})
         }
         .onClick(() => {
@@ -1381,9 +1361,9 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-8](figures/properly-use-state-management-to-develope-8.gif)
 
-In this example, the UI is re-rendered properly: The image does not flicker, and no log is generated, which indicates that the **\<Text>** and **\<Image>** components are not rebuilt.
+In this example, the UI is re-rendered properly: The image does not flicker, and no log is generated, which indicates that the **Text** and **Image** components are not rebuilt.
 
-This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. You can also decorate the **message** and **imgSrc** properties in the **StringData** type with [@Track](arkts-track.md) to further narrow down the update scope to the specified **\<Text>** component.
+This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. Decorate the **message** and **imgSrc** properties of the **StringData** type with [@Track](arkts-track.md) to further narrow down the render scope to the specified **Text** component.
 
 ### Using Custom Components to Match Object Arrays in ForEach
 
@@ -1479,8 +1459,6 @@ struct Page {
       List() {
         ForEach(this.styleList, (item: TextStyle) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             TextComponent({ textStyle: item})
           }
         })

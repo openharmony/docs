@@ -4,11 +4,11 @@
 ## 场景介绍
 
 IPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，而IPC CAPI是提供的C接口。
-IPC CAPI接口不直接提供跨进程通信能力，两个进程之间的IPC通道建立，依赖于**元能力**。
+IPC CAPI接口不直接提供跨进程通信能力，两个进程之间的IPC通道建立，依赖于[Ability Kit](../application-models/abilitykit-overview.md)。
 
 ![图](./figures/_i_p_c_architecture_diagram.png)
 
-进程间IPC通道建立，详情参考[元能力CAPI接口开发指导](../application-models/capi_nativechildprocess_development_guideline.md)，本文重点阐述IPC CAPI部分使用说明。
+进程间IPC通道建立，详情参考[Native子进程开发指导（C/C++)](../application-models/capi_nativechildprocess_development_guideline.md)，本文重点阐述IPC CAPI部分使用说明。
 
 ## 接口说明
 
@@ -16,19 +16,19 @@ IPC CAPI接口不直接提供跨进程通信能力，两个进程之间的IPC通
 
 | 接口名                               | 描述                                                             |
 | ------------------------------------ | ---------------------------------------------------------------- |
-|typedef int (\*OH_OnRemoteRequestCallback)<br>(uint32_t code, const OHIPCParcel \*data, OHIPCParcel \*reply,<br> void \*userData);|Stub端用于处理远端数据请求的回调函数|
-| OHIPCRemoteStub\* OH_IPCRemoteStub_Create<br>(const char \*descriptor, OH_OnRemoteRequestCallback requestCallback,<br>OH_OnRemoteDestroyCallback destroyCallback, void \*userData); | 创建OHIPCRemoteStub对象 |
-|int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy \*proxy,<br> uint32_t code, const OHIPCParcel \*data, OHIPCParcel \*reply,<br> const OH_IPC_MessageOption \*option);|IPC消息发送函数|
+|typedef int (\*OH_OnRemoteRequestCallback)<br>(uint32_t code, const OHIPCParcel \*data, OHIPCParcel \*reply,<br> void \*userData);|Stub端用于处理远端数据请求的回调函数。|
+| OHIPCRemoteStub\* OH_IPCRemoteStub_Create<br>(const char \*descriptor, OH_OnRemoteRequestCallback requestCallback,<br>OH_OnRemoteDestroyCallback destroyCallback, void \*userData); | 创建OHIPCRemoteStub对象。 |
+|int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy \*proxy,<br> uint32_t code, const OHIPCParcel \*data, OHIPCParcel \*reply,<br> const OH_IPC_MessageOption \*option);|IPC消息发送函数。|
 |struct OHIPCRemoteProxy;|OHIPCRemoteProxy对象，用于向远端发送请求。<br>需要依赖**元能力**接口返回。|
-|OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|创建远端OHIPCRemoteStub对象死亡<br>通知对象OHIPCDeathRecipient|
-|int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy \*proxy,<br>OHIPCDeathRecipient \*recipient);|向OHIPCRemoteProxy对象添加死亡监听，<br>用于接收远端OHIPCRemoteStub对象死亡的回调通知|
+|OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|创建远端OHIPCRemoteStub对象死亡通知对象OHIPCDeathRecipient。|
+|int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy \*proxy,<br>OHIPCDeathRecipient \*recipient);|向OHIPCRemoteProxy对象添加死亡监听，<br>用于接收远端OHIPCRemoteStub对象死亡的回调通知。|
 
 详细的接口说明请参考[IPCKit](../reference/apis-ipc-kit/_i_p_c_kit.md)。
 
 
 ## 开发步骤
 
-以下步骤描述了如何使用`IPCKit`提供的CAPI接口，创建远端`Stub`和使用客户端代理`Proxy`进行通信，同时兼备远端死亡通知接收能力。
+以下步骤描述了如何使用[IPCKit](../reference/apis-ipc-kit/_i_p_c_kit.md)提供的CAPI接口，创建远端Stub和使用客户端代理Proxy进行通信，同时兼备远端死亡通知接收能力。
 
 ### 1. 添加动态链接库
 

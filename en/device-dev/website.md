@@ -351,8 +351,9 @@
        - [FAQs](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler Development](subsystems/subsys-arkcompiler-guide.md)
   -  ArkUI
-     - [Custom Window Title Bar Development](subsystems/subsys-arkui-customize_titlebar.md) 
-  -  Graphics
+     - [Window Title Bar Customization Development (ArkTS)](subsystems/subsys-arkui-customize-titlebar-arkts.md) 
+     - [Window Title Bar Customization Development (C++)](subsystems/subsys-arkui-customize-titlebar-c++.md)
+  -  -  Graphics
      - [Graphics Overview](subsystems/subsys-graphics-overview.md)
      - [Common Component Development](subsystems/subsys-graphics-common-guide.md)
      - [Container Component Development](subsystems/subsys-graphics-container-guide.md)

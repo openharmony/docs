@@ -111,6 +111,10 @@ MSG:ablity:EntryAbility background timeout
 | cpuusage | 跟当前时间段整机CPU使用情况 |
 | memory | 跟当前时间当前进程的内存使用情况 |
 
+> **说明：**
+>
+> 在整机高负载的情况下，采用低开销方式获取调用栈或抓栈超时的情况，可能损失函数符号和build-id信息。
+
 MSG字段信息主要包括卡死上报的原因，以及当前应用主线程的队列中任务堆积信息。
 
 主线程队列中任务堆积信息包括：
@@ -400,7 +404,7 @@ MSG:ability:EntryAbility background timeout
 
 - 方式一：通过DevEco Studio获取日志
 
-    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->。
+    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->。
 
 - 方式二：通过hiAppEvent接口订阅
 
@@ -468,91 +472,98 @@ PROCESS NAME:com.xxx.xxx
 
 ### 查看 eventHandler 信息
 
-获取故障上报时间点，故障上报的原因，正在运行的线程号以及线程正在运行的任务开始时间点：
+开发者可以通过 “mainHandler dump is” 关键字搜索日志中的 eventHandler dump 信息
+
+1、dump begin curTime & Current Running
 
 ```
-MSG =
-Fault time:2024/02/01-10:04:57  --> 故障上报时间点
-ability:MainAbility foreground timeout  --> 故障上报原因
-server:
-312522; AbilityRecord::ForegroundAbility; the ForegroundAbility lifecycle starts.
-client:
-312522; AbilityThread::ScheduleAbilityTransaction; the foreground lifecycle.
 mainHandler dump is:
-EventHandler dump begin curTime: 2024-02-01 10:04:57.306
-Event runner (Thread name = , Thread ID = 18083) is running   --> 正在运行的线程信息
-Current Running: start at 2024-02-01 10:04:54.798, Event { send thread = 18132, send time = 2024-02-01 10:04:54.778, handle time = 2024-02-01 10:04:54.778, task name = UIAbilityThread:SendResult }  --> 线程正在执行的任务信息
-History event queue information:
-No. 0 : Event { send thread = 18083, send time = 2024-02-01 10:04:46.481, handle time = 2024-02-01 10:04:46.981, trigger time = 2024-02-01 10:04:46.982, completeTime time = 2024-02-01 10:04:46.982, task name = }
-No. 1 : Event { send thread = 18132, send time = 2024-02-01 10:04:47.149, handle time = 2024-02-01 10:04:47.149, trigger time = 2024-02-01 10:04:47.149, completeTime time = 2024-02-01 10:04:47.197, task name = MainThread:BackgroundApplication }
-No. 2 : Event { send thread = 18083, send time = 2024-02-01 10:04:44.329, handle time = 2024-02-01 10:04:47.329, trigger time = 2024-02-01 10:04:47.329, completeTime time = 2024-02-01 10:04:47.329, task name = }
-No. 3 : Event { send thread = 18087, send time = 2024-02-01 10:04:48.091, handle time = 2024-02-01 10.04.48.091, trigger time = 2024-02-01 10:04:48.091, completeTime time = 2024-02-01 10:04:48.091, task name = }
+ EventHandler dump begin curTime: 2024-08-08 12:17:43.544      --> 开始 dump 时间
+ Event runner (Thread name = , Thread ID = 35854) is running   --> 正在运行的线程信息
+ Current Running: start at 2024-08-08 12:17:16.629, Event { send thread = 35882, send time = 2024-08-08 12:17:16.628,  handle time = 2024-08-08 12:17:16.629, trigger time = 2024-08-08 12:17:16.630, task name = , caller = xx }  
+ --> trigger time--> 任务开始运行的时间
 ```
 
-对于 LIFECYCLE_TIMEOUT 可以在此处获取是哪种生命周期超时。
-watchdog 任务属于 High priority event queue 高优先级队列，线程中的一般任务默认为低优先级，而输入事件需要及时响应用户，属于更高优先级任务；
+当前任务运行时长 = dump begin curTime - trigger time, 如示例中当前任务运行达到27s。
+若任务运行时长 > 故障检测时长，表示当前正在运行的任务是导致应用卡死的任务，需对该任务进行排查。
+若任务运行时长较小，表示当前任务仅是检测时间区间内主线程运行的任务之一，主要耗时不一定是该任务，建议优先查看近期耗时最长任务（History event queue information中）。该情形多为线程繁忙导致的watchdog无法调度执行。
+
+2、 History event queue information
 
 ```
-High priority event queue information:
-No.1 : Event { send thread = 15444, send time = 2024-04-10 04:40:31.379, handle time = 2024-04-10 04:40:31.379, id = 1, caller = [watchdog.cpp(Timer:139)] }
+ Current Running: start at 2024-08-08 12:17:16.629, Event { send thread = 35882, send time = 2024-08-08 12:17:16.628, handle time = 2024-08-08 12:17:16.629, trigger time = 2024-08-08 12:17:16.630, task name = , caller = [extension_ability_thread.cpp(ScheduleAbilityTransaction:393)]}
+ History event queue information:
+ No. 0 : Event { send thread = 35854, send time = 2024-08-08 12:17:15.525, handle time = 2024-08-08 12:17:15.525, trigger time = 2024-08-08 12:17:15.527, completeTime time = 2024-08-08 12:17:15.528, priority = High, id = 1 }
+ No. 1 : Event { send thread = 35854, send time = 2024-08-08 12:17:15.525, handle time = 2024-08-08 12:17:15.525, trigger time = 2024-08-08 12:17:15.527, completeTime time = 2024-08-08 12:17:15.527, priority = Low, task name = MainThread:SetRunnerStarted }
+ No. 2 : Event { send thread = 35856, send time = 2024-08-08 12:17:15.765, handle time = 2024-08-08 12:17:15.765, trigger time = 2024-08-08 12:17:15.766, completeTime time = 2024-08-08 12:17:15.800, priority = Low, task name = MainThread:LaunchApplication }
+ No. 3 : Event { send thread = 35856, send time = 2024-08-08 12:17:15.767, handle time = 2024-08-08 12:17:15.767, trigger time = 2024-08-08 12:17:15.800, completeTime time = 2024-08-08 12:17:16.629, priority = Low, task name = MainThread:LaunchAbility }
+ No. 4 : Event { send thread = 35854, send time = 2024-08-08 12:17:15.794, handle time = 2024-08-08 12:17:15.794, trigger time = 2024-08-08 12:17:16.629, completeTime time = 2024-08-08 12:17:16.629, priority = IDEL, task name = IdleTime:PostTask }
+ No. 5 : Event { send thread = 35852, send time = 2024-08-08 12:17:16.629, handle time = 2024-08-08 12:17:16.629, trigger time = 2024-08-08 12:17:16.629, completeTime time = , priority = Low, task name =  }
 ```
 
-watchdog 无法在一定的时间内被调度执行可能有两种情况：
+可以从历史任务队列中寻找故障发生时间区间内较为耗时的任务。其中CompleteTime time 为空的任务是当前任务。
+任务运行耗时 = CompleteTime time - trigger time。
+筛选出耗时较高的任务，排查其运行情况。
 
-1、当前高优先级任务只有 watchdog
-
-```
-Immediate priority event queue information:
-Total size of Immediate events : 0
-High priority event queue information:
-No.1 : Event { send thread = 18087, send time = 2024-02-0110:04:57.041, handle time =2024-02-01 10:04:57.041, id = 1, caller = [watchdog.cpp(Timer:140)] }
-Total size of High events : 1
-Low priority event queueinformation:
-No.1 : Event { send thread = 18132, send time = 2024-02-01 10:04:54.794, handle time = 2024-02-01 10:04:54.794, task name = , caller = [task_runner_adapter_impl.cpp(PostTask:33)] }
-No.2 : Event { send thread = 18083, send time = 2024-02-01 10:04:54.795, handle time = 2024-02-01 10:04:54.795, task name = , caller = [task_runner_adapter_impl. cpp(PostTask:33)] }
-No.3 : Event { send thread = 18132, send time = 2024-02-01 10:04:54.801, handle time = 2024-02-01 10:04:54.801, task name = UIAbilityThread:AbilityTransaction,caller = [ui_ability_thread.cppScheduleAbilityTransaction: 366)] }
-No.4 : Event { send thread = 18084, send time = 2024-02-01 10:04:54.801, handle time = 2024-02-01 10:04:54.801, task name = , caller = [task_runner_adapter_impl.cpp(PostTask:33)] }
-No.5 : Event { send thread = 18083, send time = 2024-02-01 10:04:54.742, handle time = 2024-02-01 10:04:55.242, task name = , caller = [task_runner_adapter_impl. cpp(PostDelayedTask:43)] }
-No.6 : Event { send thread = 18084, send time = 2024-02-01 10:04:57.015, handle time = 2024-02-01 10:04:57.015, task name = , caller = [task_runner_adapter imp1.cpp(PostTask:33)] }
-No.7 : Event { send thread = 18132, Send time = 2024-02-01 10:04:57.016, handle time = 2024 02-01 10:04:57.016, task name = , caller = [task_runner adapter_impl.cpp(PostTask:33)] }
-No.8 : Event { send thread = 18088, send time = 2024-02-01 10:04:57.018, handle time = 2024-02-01 10:04:57.018, task name = , caller = [taskrunner_adapter_impl.cpp(PostTask:33)] }
-No.9 : Event { send thread = 18088, send time = 2024-02-01 10:04:57.018, handle time = 2024-02-01 10:04:57.018, task name = , caller = [task_runner_adapter_impl.cpp(PostTask: 33)] }
-No.10: Event { send thread = 18083, send time = 2024-02-01 10:04:45.037, handle time = 2024-02-01 10:06:44.464, task name = uv timer task, caller= [ohos loop handler.cpp(OnTriggered:68)] }
-Total size of Low events : 10
-```
-
-说明当前正在运行的的任务耗时长，无法调度到下一个 watchdog 任务
-
-2、当前高优先级任务过多，且 watchdog 任务排序靠后
+3、VIP priority event queue information
 
 ```
-High priority event queue information:
-No.1 : Event { send thread = 3370, send time = 2024-03-14 02:40:53.690, handle time = 2024-03-14 02:40:53.690, task name = , caller = [input_manager_imp1.cpp(OnPointerEvent:465)] }
-No.2 : Event { send thread = 3370, send time = 2024-03-14 02:40:53.699, handle time = 2024-03-14 02:40:53.699, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.3 : Event { send thread = 3370, send time = 2024-03-14 02:40:53.708, handle time = 2024-03-14 02:40:53.708, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.4 : Event { send thread = 3370, send time = 2024-03-14 02:40:53.717, handle time = 2024-03-14 02:40:53.717, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.5 : Event { send thread = 3370, send time = 2024-03-14 02:40:53.726, handle time = 2024-03-14 02:40:53.726, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.6 : Event { send thread = 3370, send time = 2024-03-14 02:40:53.736, handle time = 2024-03-14 02:40:53.736, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.7 : Event { send threac = 3370, send time = 2024-03-14 02:40:53.745, handle time = 2024-03-14 02:40:53.745, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No,8 : Event { send thread = 3370, send time = 2024-03-14 02:40:53.754, handle time = 2024-03-14 02:40:53.754, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-...
-No.190 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.166, handle time = 2024-03-14 02:40:56.166, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.191 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.176, handle time = 2024-03-14 02:40:56.176, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.192 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.186, handle time = 2024-03-14 02:40:56.186, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.193 : Event { send thread = 2923, send time = 2024-03-14 02:40:56.196, handle time = 2024-03-14 02:40:56.196, id= 1, caller = [watchdog.cpp(Timer:140)] }
-No.194 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.196, handle time = 2024-03-14 02:40:56.196, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.195 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.206, handle time = 2024-03-14 02:40:56.206, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.196 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.216, handle time = 2024-03-14 02:40:56.216, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.197 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.226, handle time = 2024-03-14 02:40:56.226, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.198 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.236, handle time = 2024-03-14 02:40:56.236, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.199 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.245, handle time = 2024-03-14 02:40:56.245, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.200 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.254, handle time = 2024-03-14 02:40:56.254, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.201 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.265, handle time = 2024-03-14 02:40:56.265, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.202 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.275, handle time = 2024-03-14 02:40:56.274, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
-No.203 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.284, handle time = 2024-03-14 02:40:56.284, task name = , caller = [input_manager_imp1.cpp(OnPointerEvent:465)] }
-No.204 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.294, handle time = 2024-03-14 02:40:56.294, task name = , caller = [input manager_impl.cpp(OnPointerEvent:465)] }
-No.205 : Event { send thread = 3370, send time = 2024-03-14 02:40:56.305, handle time = 2024-03-14 02:40:56.305, task name = , caller = [input_manager_impl.cpp(OnPointerEvent:465)] }
+ VIP priority event queue information:
+ No. 1 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.407, handle time = 2024-08-07 04:11:15.407, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No. 2 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.407, handle time = 2024-08-07 04:11:15.407, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No. 3 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.407, handle time = 2024-08-07 04:11:15.407, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No. 4 : Event { send thread = 3961, send time = 2024-08-07 04:11:15.408, handle time = 2024-08-07 04:11:15.408, task name = MMI::OnPointerEvent, caller = [input_manager_impl.cpp (OnPointerEvent:493)]}
+ No. 5 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.408, handle time = 2024-08-07 04:11:15.408, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No. 6 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.409, handle time = 2024-08-07 04:11:15.409, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No. 7 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.409, handle time = 2024-08-07 04:11:15.409, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No. 8 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.409, handle time = 2024-08-07 04:11:15.409, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ No. 9 : Event { send thread = 3205, send time = 2024-08-07 04:11:15.410, handle time = 2024-08-07 04:11:15.410, task name = ArkUIWindowInjectPointerEvent, caller = [task_runner_adapter_impl.cpp(PostTask:33)]}
+ ...
 ```
+
+为保障第一时间响应用户，用户输入事件传递链中的任务都属于高优先级任务。此任务事件队列均由系统创建，通常记录用户输入->屏幕->窗口->ArkUI->应用的传输过程，与三方应用事件无关，开发者无需额外关注。
+
+4、High priority event queue information
+
+```
+ High priority event queue information:
+ No. 1 : Event { send thread = 35862, send time = 2024-08-08 12:17:25.526, handle time = 2024-08-08 12:17:25.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 2 : Event { send thread = 35862, send time = 2024-08-08 12:17:28.526, handle time = 2024-08-08 12:17:28.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 3 : Event { send thread = 35862, send time = 2024-08-08 12:17:31.526, handle time = 2024-08-08 12:17:31.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 4 : Event { send thread = 35862, send time = 2024-08-08 12:17:34.530, handle time = 2024-08-08 12:17:34.530, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 5 : Event { send thread = 35862, send time = 2024-08-08 12:17:37.526, handle time = 2024-08-08 12:17:37.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 6 : Event { send thread = 35862, send time = 2024-08-08 12:17:40.526, handle time = 2024-08-08 12:17:40.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 7 : Event { send thread = 35862, send time = 2024-08-08 12:17:43.544, handle time = 2024-08-08 12:17:43.544 ,id = 1, caller = [watchdog.cpp(Timer:156)]}
+ Total size of High events : 7
+```
+
+watchdog 任务位于此优先级队列中，观察 watchdog 任务队列发现其是每隔 3s 发送一次。
+
+对比 warning/block 事件，观察 watchdog 任务在队列中的移动情况。
+warning:
+```
+ High priority event queue information:
+ No. 1 : Event { send thread = 35862, send time = 2024-08-08 12:17:25.526, handle time = 2024-08-08 12:17:25.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 2 : Event { send thread = 35862, send time = 2024-08-08 12:17:28.526, handle time = 2024-08-08 12:17:28.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 3 : Event { send thread = 35862, send time = 2024-08-08 12:17:31.526, handle time = 2024-08-08 12:17:31.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 4 : Event { send thread = 35862, send time = 2024-08-08 12:17:34.530, handle time = 2024-08-08 12:17:34.530, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ Total size of High events : 4
+```
+
+block:
+```
+ High priority event queue information:
+ No. 1 : Event { send thread = 35862, send time = 2024-08-08 12:17:25.526, handle time = 2024-08-08 12:17:25.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 2 : Event { send thread = 35862, send time = 2024-08-08 12:17:28.526, handle time = 2024-08-08 12:17:28.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 3 : Event { send thread = 35862, send time = 2024-08-08 12:17:31.526, handle time = 2024-08-08 12:17:31.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 4 : Event { send thread = 35862, send time = 2024-08-08 12:17:34.530, handle time = 2024-08-08 12:17:34.530, id = 1, caller = [watchdog.cpp(Timer:156)]}
+ No. 5 : Event { send thread = 35862, send time = 2024-08-08 12:17:37.526, handle time = 2024-08-08 12:17:37.526, id = 1, caller = [watchdog.cpp(Timer:156)]}
+  Total size of High events : 5
+```
+
+以上示例中可发现 block 队列相比于 warning 队列更长了，而对应的第一个任务没有发生变化，可能存在两种情况：
+- 当前正在运行的任务卡死阻塞，导致其他任务一直未被调度执行。
+- 更高优先级队列中任务堆积，导致位于较低优先级队列中的 watchdog 任务未被调度执行。
 
 ### 查看 stack 信息
 
@@ -658,64 +669,60 @@ Tid:3108, xxx
 
 ### 查看 binder 信息
 
-获取对应 Pid:Tid 的对端信息以及对应等待时长:
+binder信息抓取时机：存在半周期检测的故障类型实在warning事件产生后获取；其他则在block事件后获取。
+
+1、获取binder调用链
 
 ```
-PeerBinderCatcher -- pid==15440 layer_ == 1
-BinderCatcher --
-        19692:19714 to 628:4117 code 2 wait:0.847104688 s frz_state:3
-        15440:15440 to 979:0 code 5f475249 wait:18.638522393 s frz_state:1
-async   20818:20840 to 15440:0 code c wait:16.85511978 s frz_state:3
-async   20896:20940 to 15440:0 code c wait:14.370431770 s frz_state:3
-async   20969:20989 to 15440:0 code c wait:12.796154686 s frz_state:3
-async   21006:21033 to 15440:0 code c wait:11.238690103 s frz_state:3
-async   21052:21075 to 15440:0 code c wait:9.497665624 s frz_state:3
-async   21097:21126 to 15440:0 code c wait:7.901210416 s frz_state:3
-async   21175:21247 to 15440:0 code c wait:6.138197396 s frz_state:3
-async   21310:21336 to 15440:0 code c wait:4.716456770 s frz_state:3
-async   21358:21378 to 15440:0 code c wait:2.985317708 s frz_state:3
-async   21400:21421 to 15440:0 code c wait:1.456175521 s frz_state:3
-        2653:1228 to 63115:63174 code 0 wait:73233.19094270 s frz_state:3
-        628:8136 to 979:0 code2 wait:215715.687057426 s frz_state:1
+PeerBinderCatcher -- pid==35854 layer_ == 1
+BinderCatcher --
+    35854:35854 to 52462:52462 code 3 wait:27.185154163 s frz_state:3          -> 35854:35854 to 52462:53462 code 3 wait:27.185154163 s
+    ...
+    52462:52462 to 1386:0 code 13 wait:24.733640622 s frz_state:3              -> 52462:52462 to 1386:0 code 13 wait:24.733640622 s
 ```
+以上示例为参考：从故障进程的主线程出发，存在 35854:35854 -> 52462:52462 -> 1386:0 的调用链关系，结合对端进程堆栈信息排查对端阻塞原因。
 
-1、可能存在多级等待，需要梳理链式调用逻辑
+2、线程号为0
 
-2、通过调用链得到最终调用到的进程，可参照其 stack 分析:
+表示该应用为IPC_FULL，即应用的ipc线程都在使用中，没有空闲线程分配来完成本次请求，导致阻塞，如上面示例中的1386进程，可参照其stack分析:
 
 ```
 pid     context     request   started    max     ready   free_async_space
 
-16841   binder        0         1        16        3         520192
+35862    binder      0          2        16       2         519984
 
-16805   binder        0         2        16        3         520192
+35854    binder      0          2        16       3         520192
 
-16775   binder        0         2        16        3         520192
+35850    binder      0          2        16       3         520192
 
-16348   binder        0         1        16        3         520192
+13669    binder      0          1        16       3         520192
 
-16026   binder        0         1        16        3         520192
+...
 
-16028   binder        1        14        16        15        520192
+1386     binder      1          15       16       0         517264                 -> binderInfo
 
-14727   binder        1        14        16        16        520192
+1474     binder      0          2        16       4         520192
 ```
 
-request：当前请求数
+可以看到此时 1386 进程处于 ready 态的线程为 0，验证了上述说法。此情况说明该进程的其他ipc线程可能全部被阻塞了，需要分析排查为什么其他ipc线程不释放。常见场景为：某一ipc线程持锁阻塞，导致其他线程等锁卡死。
 
-started：已启动线程数
+另一种情况为 free_async_space 消耗殆尽，导致新的ipc线程没有足够的 buffer 空间完成请求。值得说明的是，同步和异步请求都会消耗该值，常见场景为：某短时间段内大批量异步请求。
 
-max：最大线程数
+3、waitTime过小
 
-ready：当前可用的ipc线程个数
+waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测时长，我们有理由确认本次ipc请求并不是卡死的根本原因。
+一种典型的场景是：应用侧主线程在短时间内多次ipc请求，总请求时长过长导致故障。
 
-free_async_space：buffer 剩余空间
+排查方向：
+    - 单次请求是否在预期时长内（例如：规格在20ms的请求接口异常情形下达到1s），排查接口性能不达预期的原因。
+    - 应用测频繁调用场景是否合理。
 
-- 当请求太多，即 ready = started 时，没有空余线程时，会导致新请求无响应，此时表现为 Tid 为 0，表示还未分配 binder 线程；
-    --> 分析为什么 其他 binder 线程不释放
+4、无调用关系，栈为ipc栈
 
-- 当 free_async_space 值很小时，表示 buffer 不足，可能会导致线程卡死；
-    --> 分析为什么 buffer 被用完，其他线程在做什么业务
+确定是否为瞬时栈，即waring/block栈是否一致，可能场景是：warning为ipc栈，block栈为其他瞬时栈，表面抓取binder时ipc请求已经结束，本次ipc请求耗时并不长。
+需要提到的是：binder信息并不是在发生故障时刻实时获取的，有一定的延迟性；对于存在半周期检测的故障类型来说，binder抓取比较准确，绝大多数都可以在故障时间段内完成采集；而其他故障类型在上报存在延迟的情况下可能抓取到非现场binder。
+
+当然，结合 trace 分析更能直观查看binder的耗时情况。
 
 ### 结合 hilog
 

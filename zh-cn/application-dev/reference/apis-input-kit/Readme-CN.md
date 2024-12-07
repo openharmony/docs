@@ -14,7 +14,8 @@
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](js-apis-shortKey-sys.md)
   - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](js-apis-infraredemitter-sys.md)
-  - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
+  - [@ohos.multimodalInput.inputConsumer-sys (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
+  - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](js-apis-inputdevice-sys.md)
   - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](js-apis-inputeventclient-sys.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](js-apis-inputmonitor-sys.md)
@@ -26,7 +27,12 @@
     - [Input](input.md)
   - 头文件和结构体
     - 头文件
+      - [oh_axis_type.h](oh__axis__type_8h.md)
       - [oh_input_manager.h](oh__input__manager_8h.md)
       - [oh_key_code.h](oh__key__code_8h.md)
+  - 结构体
+      - [Input_DeviceListener](_input___device_listener.md)
+      - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
 - 错误码
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
+  - [全局快捷键管理错误码](errorcode-inputconsumer.md)

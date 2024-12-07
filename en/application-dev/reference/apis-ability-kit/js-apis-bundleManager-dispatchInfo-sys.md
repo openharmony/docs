@@ -14,7 +14,7 @@ The **DispatchInfo** module provides version information about the **dispatchInf
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name       | Type  | Readable| Writable| Description                    |
+| Name       | Type  | Read-Only| Optional| Description                    |
 | ----------- | ------ | ---- | ---- | ------------------------ |
 | version     | string | Yes  | No  | Version of the **dispatchInfo** struct.|
 | dispatchAPIVersion | string | Yes  | No  | Version of the dispatch API.    |

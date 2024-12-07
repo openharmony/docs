@@ -10,10 +10,10 @@ The following table lists the APIs for event interception. For details, see [Inp
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
-| Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option) |Creates a key event interceptor.|
-| Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback, Input_InterceptorOptions *option) |Creates an input event interceptor. Input events include mouse, touch, and axis events.|
-| Input_Result OH_Input_RemoveKeyEventInterceptor() |Removes a key event interceptor.|
-| Input_Result OH_Input_RemoveInputEventInterceptor() |Removes an input event interceptor.|
+| Input_Result OH_Input_AddKeyEventInterceptor(Input_KeyEventCallback callback, Input_InterceptorOptions *option) |Creates a key event interceptor. |
+| Input_Result OH_Input_AddInputEventInterceptor(Input_InterceptorEventCallback *callback, Input_InterceptorOptions *option) |Creates an input event interceptor. Input events include mouse, touch, and axis events. |
+| Input_Result OH_Input_RemoveKeyEventInterceptor() |Removes a key event interceptor. |
+| Input_Result OH_Input_RemoveInputEventInterceptor() |Removes an input event interceptor. |
 
 ## How to Develop
 

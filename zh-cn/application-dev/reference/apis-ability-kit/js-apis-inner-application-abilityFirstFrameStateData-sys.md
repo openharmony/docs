@@ -1,6 +1,6 @@
 # AbilityFirstFrameStateData(系统接口)
 
-定义首帧绘制完成回调上报数据结构，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageron12)注册监听Ability首帧绘制完成事件后，通过[AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)的onAbilityFirstFrameDrawn首帧绘制完成回调获取。
+定义首帧绘制完成回调上报数据结构，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageronabilityfirstframestate12)注册监听Ability首帧绘制完成事件后，通过[AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)的onAbilityFirstFrameDrawn首帧绘制完成回调获取。
 
 > **说明：**
 >

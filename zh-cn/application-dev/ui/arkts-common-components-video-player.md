@@ -269,12 +269,13 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
 
 ## 其他说明
 
-Video组件已经封装好了视频播放的基础能力，开发者无需进行视频实例的创建，视频信息的设置获取，只需要设置数据源以及基础信息即可播放视频，相对扩展能力较弱。如果开发者想自定义视频播放，请参考[媒体系统播放音视频](../media/media/video-playback.md)。
+Video组件已经封装好了视频播放的基础能力，开发者无需进行视频实例的创建，视频信息的设置获取，只需要设置数据源以及基础信息即可播放视频，相对扩展能力较弱。如果开发者想自定义视频播放，请参考[视频播放](../media/media/video-playback.md)。
 
 ## 相关实例
 
 针对Video组件开发，有以下相关实例可供参考：
 
-- [视频播放（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow)
+- [ 媒体库视频（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow)
 
 - [简易视频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/SimpleVideo)
+<!--RP1--><!--RP1End-->

@@ -734,7 +734,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-### Attributes
+### Properties
 
 | Name        | Type   | Read-Only  | Writable  | Description                |
 | ----------- | ------- | ------- | ----- | -------------------- |

@@ -4,12 +4,12 @@ The **GesturePoint** module provides APIs for creating gesture touch point infor
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePoint } from '@kit.AccessibilityKit';
 ```
 
 ## GesturePoint
@@ -25,11 +25,15 @@ Defines a gesture touch point.
 | positionX | number | Yes   | Yes   | X coordinate of the touch point.|
 | positionY | number | Yes   | Yes   | Y coordinate of the touch point.|
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(positionX: number, positionY: number);
 
-Constructor used to create a **GesturePoint** object.
+A constructor used to create a **Highlights** album instance.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -43,7 +47,7 @@ Constructor used to create a **GesturePoint** object.
 **Example**
 
 ```ts
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePoint } from '@kit.AccessibilityKit';
 
-let gesturePoint = new GesturePoint.GesturePoint(1, 2);
+let gesturePoint = new GesturePoint(1, 2);
 ```

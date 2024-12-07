@@ -1,10 +1,10 @@
-# 代理提醒
+# 代理提醒(ArkTS)
 
 ## 概述
 
 ### 功能介绍
 
-应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。
+应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。<!--RP1--><!--RP1End-->
 
 - 倒计时类：基于倒计时的提醒功能。
 
@@ -17,6 +17,8 @@
 - **个数限制**：一个三方应用支持最多30个有效提醒（有效即发布成功），一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒。
 
 - **跳转限制**：点击提醒通知后跳转的应用必须是申请代理提醒的本应用。
+
+<!--RP2--><!--RP2End-->
 
 
 ## 接口说明
@@ -113,7 +115,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -151,7 +153,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -191,5 +193,3 @@
 - [后台代理提醒（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
 
 - [翻页时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
-
-- [闹钟（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)

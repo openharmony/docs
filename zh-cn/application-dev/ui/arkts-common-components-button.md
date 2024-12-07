@@ -34,7 +34,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  只支持包含一个子组件，子组件可以是[基础组件](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/apis-arkui/arkui-ts/ts-container-badge.md)。
+  只支持包含一个子组件，子组件可以是基础组件或者容器组件。
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -169,37 +169,117 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ```ts
   // xxx.ets
-  import { router } from '@kit.ArkUI';
-  
   @Entry
   @Component
   struct ButtonCase1 {
-    @State FurL:router.RouterOptions = {'url':'pages/first_page'}
-    @State SurL:router.RouterOptions = {'url':'pages/second_page'}
-    @State TurL:router.RouterOptions = {'url':'pages/third_page'}
-    build() {
-      List({ space: 4 }) {
-        ListItem() {
-          Button("First").onClick(() => {
-            router.pushUrl(this.FurL)
-          })
-            .width('100%')
-        }
-        ListItem() {
-          Button("Second").onClick(() => {
-            router.pushUrl(this.SurL)
-          })
-            .width('100%')
-        }
-        ListItem() {
-          Button("Third").onClick(() => {
-            router.pushUrl(this.TurL)
-          })
-            .width('100%')
-        }
+    pathStack: NavPathStack = new NavPathStack();
+
+    @Builder
+    PageMap(name: string) {
+      if (name === "first_page") {
+        pageOneTmp()
+      } else if (name === "second_page") {
+        pageTwoTmp()
+      } else if (name === "third_page") {
+        pageThreeTmp()
       }
-      .listDirection(Axis.Vertical)
-      .backgroundColor(0xDCDCDC).padding(20)
+    }
+
+    build() {
+      Navigation(this.pathStack) {
+        List({ space: 4 }) {
+          ListItem() {
+            Button("First").onClick(() => {
+              this.pathStack.pushPath({ name: "first_page"})
+            })
+              .width('100%')
+          }
+
+          ListItem() {
+            Button("Second").onClick(() => {
+              this.pathStack.pushPath({ name: "second_page"})
+            })
+              .width('100%')
+          }
+
+          ListItem() {
+            Button("Third").onClick(() => {
+              this.pathStack.pushPath({ name: "third_page"})
+            })
+              .width('100%')
+          }
+        }
+        .listDirection(Axis.Vertical)
+        .backgroundColor(0xDCDCDC).padding(20)
+      }
+      .mode(NavigationMode.Stack)
+      .navDestination(this.PageMap)
+    }
+  }
+
+  // pageOne
+  @Component
+  export struct pageOneTmp {
+    pathStack: NavPathStack = new NavPathStack();
+  
+    build() {
+      NavDestination() {
+        Column() {
+          Text("first_page")
+        }.width('100%').height('100%')
+      }.title("pageOne")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
+    }
+  }
+
+  // pageTwo
+  @Component
+  export struct pageTwoTmp {
+    pathStack: NavPathStack = new NavPathStack();
+
+    build() {
+      NavDestination() {
+        Column() {
+          Text("second_page")
+        }.width('100%').height('100%')
+      }.title("pageTwo")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
+    }
+  }
+
+  // pageThree
+  @Component
+  export struct pageThreeTmp {
+    pathStack: NavPathStack = new NavPathStack();
+
+    build() {
+      NavDestination() {
+        Column() {
+          Text("third_page")
+        }.width('100%').height('100%')
+      }.title("pageThree")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
     }
   }
   ```

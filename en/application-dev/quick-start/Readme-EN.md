@@ -14,8 +14,6 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
-      - [Dynamic Import](arkts-dynamic-import.md)
-      - [Lazy Import](arkts-lazy-import.md)
     - [Application Package Installation, Uninstall, and Update](application-package-install-uninstall.md)
   - Application Configuration Files in Stage Model
     - [Overview of Application Configuration Files in Stage Model](application-configuration-file-overview-stage.md)
@@ -26,15 +24,20 @@
     - [Structure of the app Tag](app-structure.md)
     - [Structure of the deviceConfig Tag](deviceconfig-structure.md)
     - [Structure of the module Tag](module-structure.md)
-
+  - Typical Scenarios Development
+    - [Integrated HSP](integrated-hsp.md)
+    - [Converting HAR to HSP](har-to-hsp.md)
+    - [Converting HSP to HAR](hsp-to-har.md)
+    - [Creating a Static Shortcut of the Application](typical-scenario-configuration.md)
+    - [Creating an Application Clone](app-clone.md)
+    - [Configuring Layered Icons](layered-image.md)
+  
 - [Resource Categories and Access](resource-categories-and-access.md)
 
 - Learning ArkTS
   - [Getting Started with ArkTS](arkts-get-started.md)
   - [Introduction to ArkTS](introduction-to-arkts.md)
-  - [Ark Bytecode Fundamentals](arkts-bytecode-fundamentals.md)
-  - [Ark Bytecode File Format](arkts-bytecode-file-format.md)
-  - [Naming Rules of Ark Bytecode Functions](arkts-bytecode-function-name.md)
+  - [ArkTS Coding Style Guide](arkts-coding-style-guide.md)
   - TypeScript to ArkTS Migration Guide
     - [ArkTS Migration Background](arkts-migration-background.md)
     - [TypeScript to ArkTS Cookbook](typescript-to-arkts-migration-guide.md)
@@ -43,7 +46,7 @@
   - Basic Syntax of UI Paradigms
     - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
     - [Declarative UI Description](arkts-declarative-ui-description.md)
-    - CustomComponent
+    - Custom Components
       - [Creating a Custom Component](arkts-create-custom-components.md)
       - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
       - [Custom Component Layout](arkts-page-custom-components-layout.md)
@@ -59,13 +62,13 @@
     - [\@Require Decorator: Validating Constructor Input Parameters](arkts-require.md)
   - State Management
     - [State Management Overview](arkts-state-management-overview.md)
-    - State Management (V1 Stable Version)
+    - State Management (V1)
       - Component State Management
         - [\@State Decorator: State Owned by Component](arkts-state.md)
         - [\@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components](arkts-prop.md)
         - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](arkts-link.md)
         - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](arkts-provide-and-consume.md)
-        - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](arkts-observed-and-objectlink.md)
+        - [\@Observed and \@ObjectLink Decorators: Observing Property Changes in Nested Class Objects](arkts-observed-and-objectlink.md)
       - Application State Management
         - [Application State Management Overview](arkts-application-state-management-overview.md)
         - [LocalStorage: Storing UI State](arkts-localstorage.md)
@@ -81,7 +84,7 @@
       - [MVVM](arkts-mvvm.md)
       - [Best Practices for State Management](arkts-state-management-best-practices.md)
       - [Proper Use of State Management](properly-use-state-management-to-develope.md)
-    - State Management (V2 Trial Version)
+    - State Management (V2)
       - V2 Exclusive Decorators
         - [\@ObservedV2 and \@Trace Decorators: Observing Class Property Changes](arkts-new-observedV2-and-trace.md)
         - [\@ComponentV2 Decorator: Custom Component](arkts-new-componentV2.md)
@@ -91,19 +94,23 @@
         - [\@Event Decorator: Component Output](arkts-new-event.md)
         - [\@Provider and \@Consumer Decorators: Synchronizing Across Component Levels in a Two-Way Manner](arkts-new-Provider-and-Consumer.md)
         - [\@Monitor Decorator: Listening for Value Changes of the State Variables](arkts-new-monitor.md)
-        - [\\@Computed Decorator: Computed Property](arkts-new-Computed.md)
+        - [\@Computed Decorator: Computed Property](arkts-new-Computed.md)
         - [\@Type Decorator: Marking the Types of the Class Property](arkts-new-type.md)
       - Other State Management Features
         - [AppStorageV2: Storing Application-wide UI State](arkts-new-appstoragev2.md)
-        - [PersistenceV2: Application State Persistence](arkts-new-persistencev2.md)
+        - [PersistenceV2: Persisting Application State](arkts-new-persistencev2.md)
         - [!! Syntax: Two-Way Binding](arkts-new-binding.md)
         - [Freezing a Custom Component](arkts-custom-components-freezeV2.md)
         - [Repeat: Reusing Child Components](arkts-new-rendering-control-repeat.md)
-        - [getTarget API: Obtaining the Original Object before the State Management Framework Adding Proxy](arkts-new-getTarget.md)
+        - [getTarget API: Obtaining Original Objects](arkts-new-getTarget.md)
+        - [makeObserved API: Changing Unobservable Data to Observable Data](arkts-new-makeObserved.md)
+      - [MVVM (V2)](arkts-mvvm-V2.md)
+    - Mixed Use and Migration Guide for V1 and V2
+      - [Mixing Use of Custom Components](arkts-custom-component-mixed-scenarios.md)
+      - [Migrating Applications from V1 to V2](arkts-v1-v2-migration.md)
   - Rendering Control
       - [Rendering Control Overview](arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
       - [ContentSlot: Representing a Placeholder in Hybrid Development](arkts-rendering-control-contentslot.md)
-<!--no_check-->

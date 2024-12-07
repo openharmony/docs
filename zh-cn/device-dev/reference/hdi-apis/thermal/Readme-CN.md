@@ -1,0 +1,27 @@
+# Thermal HDI 参考
+
+- 模块
+    - [Thermal (V1_1)](thermal_v11.md)
+    - [Thermal (V1_0)](thermal_v10.md)
+- 头文件
+    - Thermal (V1_1)
+        - [IFanCallback.idl](_i_fan_callback_8idl_v11.md)
+        - [IThermalCallback.idl](_i_thermal_callback_8idl_v11.md)
+        - [IThermalInterface.idl](_i_thermal_interface_8idl_v11.md)
+        - [ThermalTypes.idl](_thermal_types_8idl_v11.md)
+    - Thermal (V1_0)
+        - [IThermalCallback.idl](_i_thermal_callback_8idl_v10.md)
+        - [IThermalInterface.idl](_i_thermal_interface_8idl_v10.md)
+        - [ThermalTypes.idl](_thermal_types_8idl_v10.md)
+- 结构体
+    - Thermal (V1_1)
+        - [HdfThermalCallbackInfo](_hdf_thermal_callback_info_v11.md)
+        - [IFanCallback](interface_i_fan_callback_v11.md)
+        - [IThermalCallback](interface_i_thermal_callback_v11.md)
+        - [IThermalInterface](interface_i_thermal_interface_v11.md)
+        - [ThermalZoneInfo](_thermal_zone_info_v11.md)
+	- Thermal (V1_0)
+        - [HdfThermalCallbackInfo](_hdf_thermal_callback_info_v10.md)
+        - [IThermalCallback](interface_i_thermal_callback_v10.md)
+        - [IThermalInterface](interface_i_thermal_interface_v10.md)
+        - [ThermalZoneInfo](_thermal_zone_info_v10.md)

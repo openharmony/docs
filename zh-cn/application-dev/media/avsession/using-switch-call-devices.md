@@ -55,7 +55,7 @@
    }
    private audioRendererInfo: audio.AudioRendererInfo = {
      // 需使用通话场景相应的参数
-     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：VOIP通话
+     usage: audio.StreamUsage.STREAM_USAGE_VIDEO_COMMUNICATION, // 音频流使用类型：VOIP视频通话，默认为扬声器
      rendererFlags: 0 // 音频渲染器标志：默认为0即可
    }
    private audioRendererOptions: audio.AudioRendererOptions = {
@@ -172,3 +172,6 @@
      }
    }
    ```
+
+<!--RP1-->
+<!--RP1End-->

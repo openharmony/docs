@@ -352,6 +352,32 @@ onResultReport (bundleName: string, result: string)
   }
   ```
 
+### onProcess
+
+onProcess (bundleName: string, process: string)
+
+回调函数。应用备份/恢复过程中进度信息的回调，返回应用执行业务的进度信息和异常信息等。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**返回值：**
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| bundleName | string | 是   | 应用包名                        |
+| process     | string | 是   | json格式返回应用备份/恢复的进度信息 |
+
+**示例：**
+
+  ```ts
+  import backup from '@ohos.file.backup';
+
+  onProcess: (bundleName: string, process: string) => {
+    console.info('onProcess bundleName : ' + bundleName);
+    console.info('onProcess processInfo : ' + process);
+  }
+  ```
+
 ## backup.getLocalCapabilities
 
 getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
@@ -615,7 +641,7 @@ updateTimer(bundleName: string, timeout: number): void;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要设置备份或恢复时长的应用名称 |
-| timeout | number | 是   | 备份或恢复的限制时长，入参范围(0,3600000]，单位:ms |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位:ms |
 
 **返回值：**
 
@@ -767,13 +793,12 @@ constructor(callbacks: GeneralCallbacks);
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
-  }
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
   ```
@@ -848,12 +873,11 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -952,12 +976,11 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -972,44 +995,44 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
       // 携带扩展参数, 其中infos,details和外层的type节点为固定节点
       let infos: Array<string> = [
         `
-         {
-          "infos":[
+        {
+        "infos": [
             {
-              "details": [ // 对应com.example.hiworld的info
-                {
-                  "detail": [
+                "details": [
                     {
-                      "encryption_symkey": "",
-                      "encryption_algname": ""
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
                     }
-                  ],
-                  "type": "encryption_info"
-                }
-              ],
-              "type":"unicast"
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.hiworld"
             }
-          ]
-         },
-         {
-          "details": [ // 对应com.example.myApp的info
-              {
-                "detail": [
-                    {
-                      "isSameDevice": "",
-                      "deviceType": ""
-                    }
-                  ],
-                  "type": "encryption_info"
-                }
-              ],
-              "type":"unicast"
-            }
-          ]
-         }
         ]
-      }
+    },
+    {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.myApp"
+            }
+        ]
+    }
       `
-     ]
+    ]
       await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
@@ -1088,12 +1111,11 @@ release(): Promise&lt;void&gt;
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -1167,12 +1189,11 @@ constructor(callbacks: GeneralCallbacks);
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1254,18 +1275,20 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
   async function appendBundles() {
+    let fileData : backup.FileData = {
+      fd : -1
+    }
     try {
-      let fileData = await backup.getLocalCapabilities();
+      fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
       let restoreApps: Array<string> = [
         "com.example.hiworld",
@@ -1370,18 +1393,20 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
   async function appendBundles() {
+    let fileData : backup.FileData = {
+      fd : -1
+    }
     try {
-      let fileData = await backup.getLocalCapabilities();
+      fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
       let restoreApps: Array<string> = [
         "com.example.hiworld",
@@ -1434,6 +1459,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
+> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1496,12 +1522,11 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1529,6 +1554,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
+> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1596,12 +1622,11 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1716,12 +1741,11 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      },
+      onProcess: (bundleName: string, process: string) => {
+       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1829,12 +1853,11 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      },
+      onProcess: (bundleName: string, process: string) => {
+        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -1935,12 +1958,11 @@ release(): Promise&lt;void&gt;
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      },
+      onProcess: (bundleName: string, process: string) => {
+        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
@@ -2020,12 +2042,11 @@ constructor(callbacks: GeneralCallbacks);
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -2109,12 +2130,11 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -2131,6 +2151,146 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
   }); // 添加需要增量备份的应用
   ```
 
+### appendBundles<sup>12+</sup>
+
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[]): Promise&lt;void&gt;
+
+添加需要增量备份的应用。当前整个流程中，触发Release接口之前都可以进行appendBundles的调用。使用Promise异步回调。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型                                                           | 必填 | 说明                       |
+| --------------- | -------------------------------------------------------------- | ---- | -------------------------- |
+| bundlesToBackup | Array&lt;[IncrementalBackupData](#incrementalbackupdata12)&gt; | 是   | 需要增量备份的应用的数组。 |
+| infos  | string[] | 是   | 备份时各应用所需要扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 13600001 | IPC error                                                                                      |
+| 13900001 | Operation not permitted                                                                        |
+| 13900005 | I/O error                                                                                      |
+| 13900011 | Out of memory                                                                                  |
+| 13900020 | Invalid argument                                                                               |
+| 13900025 | No space left on device                                                                        |
+| 13900042 | Unknown error                                                                                  |
+
+**示例：**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
+  let incrementalBackupData: backup.IncrementalBackupData = {
+    bundleName: "com.example.hiworld",
+    lastIncrementalTime: 1700107870, // 调用者传递上一次备份的时间戳
+    manifestFd:1 // 调用者传递上一次备份的manifest文件句柄
+  }
+      let infos: Array<string> = [
+        `
+        {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.hiworld"
+            }
+        ]
+    },
+    {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.myApp"
+            }
+        ]
+    }
+      `
+    ]
+  let incrementalBackupDataArray: backup.IncrementalBackupData[] = [incrementalBackupData];
+  // 添加需要增量备份的应用
+  incrementalBackupSession.appendBundles(incrementalBackupDataArray, infos).then(() => {
+    console.info('appendBundles success');
+  }).catch((err: BusinessError) => {
+    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+  }); 
+  ```
 ### release<sup>12+</sup>
 
 release(): Promise&lt;void&gt;
@@ -2201,12 +2361,11 @@ release(): Promise&lt;void&gt;
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程

@@ -28,6 +28,8 @@ import { AttributeUpdater } from '@kit.ArkUI'
 >  使用updateConstructorParams时功能异常。
 >  
 >  5. updateConstructorParams当前只支持Button，Image，Text和Span组件。
+>  
+>  6. AttributeUpdater不支持深浅色切换等状态管理相关的操作。
 
 ## Initializer
 type Initializer\<T> = () => T
@@ -215,7 +217,7 @@ struct attributeDemo3 {
 
 ### onComponentChanged
 
-onComponentChanged(instance: T): void
+onComponentChanged(component: T): void
 
 绑定相同的自定义的Modifier对象，组件发生切换时，通过该接口通知到应用。
 
@@ -227,7 +229,7 @@ onComponentChanged(instance: T): void
 
 | 参数名 | 类型   | 必填 | 说明                                                                     |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| instance | T | 是 | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
+| component | T | 是 | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
 
 **示例：** 
 

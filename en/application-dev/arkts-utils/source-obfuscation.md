@@ -1,10 +1,13 @@
-# Code Obfuscation
+# ArkGuard
 
 ## Overview
 
 Source code obfuscation helps reduce the risk of application hacking as well as the application package size by shortening class names and member names.
 
-DevEco Studio provides the code obfuscation function, which is enabled by default. For a project developed on the stage model of API version 10 or later, code obfuscation is automatically performed when the [build mode is release](#usage-description). 
+>**NOTE**
+>
+> 1. In versions earlier than DevEco Studio 5.0.3.600, code obfuscation is enabled by default for a new project. It automatically obfuscates the code of the stage model of API10 or later. This operation applies only to code compiled in [release mode](#usage-description), and obfuscation is limited to parameter names and local variable names.
+> 2. In DevEco Studio 5.0.3.600 and later versions, code obfuscation is disabled by default when you create a project. To enable code obfuscation, set the ruleOptions.enable field in the build-profile.json5 file of the module to true. In addition, the obfuscation-rules.txt configuration file enables four recommended obfuscation options by default: -enable-property-obfuscation, -enable-toplevel-obfuscation, -enable-filename-obfuscation, and -enable-export-obfuscation. You can modify the obfuscation configuration as required. Note that enabling the four rules may cause the app to crash during running. Therefore, you are advised to rectify the app functions by referring to [Troubleshooting](#troubleshooting).
 
 ### Constraints
 
@@ -22,17 +25,19 @@ In a project, the following files can be obfuscated, and the cache files after o
 
 ## Enabling Code Obfuscation
 
-Code obfuscation has been integrated into the SDK and can be easily used in DevEco Studio.
+Code obfuscation has been integrated into the system and can be enabled for use in DevEco Studio.
 
 Currently, only name obfuscation is provided. Other obfuscation capabilities deteriorate performance. You can use code obfuscation to obfuscate the following names:
 
 * Parameter names and local variable names 
 * Top-level scope names 
-* Property names 
+* Property names
+* Exported names
+* File names
 
-Obfuscation of parameter names and local variable names is enabled by default. Obfuscation of top-level scope names and property names is disabled by default. Enabling these obfuscation capabilities by default may cause runtime errors. They can be enabled by configuring obfuscate options.
+After code obfuscation is enabled, parameter names and local variable names will be obfuscated by default. No option needs to be configured. Obfuscation of top-level scope name, property names, exported names, and file names may cause runtime errors. You can enable or disable these obfuscation capabilities by configuring obfuscate options.
 
-When a project is created, the following content is automatically generated in the **build-profile.json5** file:
+When a module is created, the following content is automatically generated in the module-level build-profile.json5 file:
 
 ```
 "arkOptions": {
@@ -59,21 +64,17 @@ When a library is created, the **consumerFiles** field is automatically generate
 }
 ```
 
-Code obfuscation is enabled by default. If you disable it and then want to enable it again, the value of **ruleOptions.enable** must be **true**.
+If you disable code obfuscation and then want to enable it again, the value of **ruleOptions.enable** must be **true**.
 
-The obfuscation configuration files specified in the **ruleOptions.files** field take effect when the HAP, HSP, or HAR is built.
-
+The obfuscation configuration files specified in the **ruleOptions.files** field take effect when the HAP, HSP, or HAR is built. 
 The obfuscation configuration files specified in the **consumerFiles** field take effect when the module that depends on the library is built. The contents of these obfuscation configuration files are also merged into the **obfuscation.txt** file in the HAR.
 
-During the build of the HAP, HSP, or HAR, the final obfuscation rules are the combination of the **ruleOptions.files** field of the current module, the **consumerFiles** field of the dependent library, and the **obfuscation.txt** file in the dependent HAR.
-
+During the build of the HAP, HSP, or HAR, the final obfuscation rules are the combination of the **ruleOptions.files** field of the current module, the **consumerFiles** field of the dependent library, and the **obfuscation.txt** file in the dependent HAR. 
 During HAR build, the **obfuscation.txt** file in the HAR contains the combination of the **consumerFiles** field of the current HAR, the **consumerFiles** field of the dependent library, and the **obfuscation.txt** file in the dependent HAR. No **obfuscation.txt** file is generated during HAP or HSP build. For details about the merge policy, see [Obfuscation Rule Merge Policy](#obfuscation-rule-merge-policy).
 
 ### Obfuscation Rule Configuration File
 
-During the creation of a project or library, DevEco Studio automatically generates the **obfuscation-rules.txt** and **consumer-rules.txt** files.
-
-However, they do not contain any obfuscation rules by default. You can write obfuscation rules into these files or other user-defined files, and then add the file paths in **ruleOptions.files** and **consumerFiles**, as shown in the following example.
+During the creation of a project or library, DevEco Studio automatically generates the **obfuscation-rules.txt** and **consumer-rules.txt** files. You can write obfuscation rules into these files or other user-defined files, and then add the file paths in **ruleOptions.files** and **consumerFiles**, as shown in the following example.
 
 ```
 "buildOption": {
@@ -126,7 +127,7 @@ Enables property obfuscation. If this option is used, all property names except 
     ```
 
 * Property names specified by [keep options](#keep-options).
-* Property names in the SDK API list. The SDK API list is a name set automatically extracted from the SDK during build. The cache file is **systemApiCache.json**, which is stored in **build/cache/{...}/release/obfuscation** in the project directory.
+* Property names in the SDK API list. The SDK API list is a name set automatically extracted from the SDK during build. The cache file is **systemApiCache.json**, which is stored in **build/default/cache/{...}/release/obfuscation** in the project directory.
 * String literal property names. For example, **"name"** and **"age"** in the following example are not obfuscated.
 
     ```
@@ -142,21 +143,20 @@ Enables property obfuscation. If this option is used, all property names except 
     ```
 
     **NOTE** 
-    
-    * If a string literal property name in the code contains special characters, for example, **let obj = {"\n": 123, "": 4, " ": 5}**, you are advised not to use the **-enable-string-property-obfuscation** option because these names may fail to be kept using [keep options](#keep-options). Special characters refer to characters other than lowercase letters a-z, uppercase letters A-Z, digits 0-9, and underscores (_).
-    
-    * The property trustlist of the SDK API list does not contain the string constants used in the declaration file. For example, the string **'ohos.want.action.home'** in the example is not included in the property trustlist.
 
-      ```
-      // Part of the SDK API file @ohos.app.ability.wantConstant:
-      export enum Params {
-        ACTION_HOME = 'ohos.want.action.home'
-      }
-      // Source code example:
-      let params = obj['ohos.want.action.home'];
-      ```
+    **1.** If a string literal property name in the code contains special characters, for example, **let obj = {"\n": 123, "": 4, " ": 5}**, you are advised not to use the **-enable-string-property-obfuscation** option because these names may fail to be kept using [keep options](#keep-options). Special characters refer to characters other than lowercase letters a-z, uppercase letters A-Z, digits 0-9, and underscores (_). 
+    **2.** The property trustlist of the SDK API list does not contain the string constants used in the declaration file. For example, the string **'ohos.want.action.home'** in the example is not included in the property trustlist.
 
-      When the **-enable-string-property-obfuscation** option is used, use the keep option if you want to keep the property names of the SDK API string constants used in the source code, for example, **obj['ohos.want.action.home']**.
+    ```
+    // Part of the SDK API file @ohos.app.ability.wantConstant:
+    export enum Params {
+      ACTION_HOME = 'ohos.want.action.home'
+    }
+    // Source code example:
+    let params = obj['ohos.want.action.home'];
+    ```
+
+    When the **-enable-string-property-obfuscation** option is used, use the keep option if you want to keep the property names of the SDK API string constants used in the source code, for example, **obj['ohos.want.action.home']**.
 
 #### -enable-toplevel-obfuscation
 
@@ -169,7 +169,16 @@ Enables top-level scope name obfuscation. If this option is used, all names of a
 
 #### -enable-filename-obfuscation
 
-Enables file or folder name obfuscation. If this option is used, all file or folder names except the following are obfuscated:
+Enables file or folder name obfuscation. If this option is used, all file/folder names will be confused. For example:
+
+```
+// Both directory and filename are confused.
+import func from '../directory/filename';
+import { foo } from '../directory/filename';
+const module = import('../directory/filename');
+```
+
+In addition to the following scenarios:
 
 * File or folder names specified by the **main** and **types** fields in the **oh-package.json5** file.
 * File or folder names specified by the **srcEntry** field in the **module.json5** file of the module.
@@ -180,11 +189,14 @@ Enables file or folder name obfuscation. If this option is used, all file or fol
 **NOTE** 
 
 The system loads certain files during application running. For these files, manually configure a trustlist in the [`-keep-file-name`] option to prevent them from being obfuscated. Otherwise, the application may fail to run.
-
 In the following scenarios, you need to manually configure a trustlist: 
 
 * The module contains an ability component. In this case, add all paths configured for **srcEntry** under the **abilities** field in **src/main/module.json5** to the trustlist. 
 * The module contains the multithreading service: Worker. In this case, add all paths under the **buildOption'-'sourceOption'-'workers'** field in **build-profiles.json5** to the trustlist.
+
+**Reminder**
+
+The names of the compilation entry file, ability component file, and worker multithreaded file cannot be obfuscated and have been automatically added to the trustlist in DevEco Studio 5.0.3.500. No manual configuration is required. For other files that cannot be obfuscated, you need to manually configure their names in the trustlist.
 
 #### -enable-export-obfuscation
 
@@ -196,9 +208,9 @@ Enables obfuscation for names of classes or objects that are directly imported o
 
 **NOTE**
 
-- To obfuscate property names in imported or exported classes, use both the **-enable-property-obfuscation** and **-enable-export-obfuscation** options. 
-- If the **-enable-export-obfuscation** option is used during HSP build, the externally exposed interfaces must be kept in the **obfuscation-rules.txt** file of the module.
-- During the build of an HAP, an HSP, and an HSP-dependent HAR, if the **-enable-export-obfuscation** option is used, the interfaces imported from the HSP must be kept in the **obfuscation-rules.txt** file in the module. 
+1. To obfuscate property names in imported or exported classes, use both the **-enable-property-obfuscation** and **-enable-export-obfuscation** options. 
+2. If the **-enable-export-obfuscation** option is used during HSP build, the externally exposed interfaces must be kept in the **obfuscation-rules.txt** file of the module.
+3. During the build of an HAP, an HSP, and an HSP-dependent HAR, if the **-enable-export-obfuscation** option is used, the interfaces imported from the HSP must be kept in the **obfuscation-rules.txt** file in the module. 
 
     ```
     // Code example (entry file Index.ets in the HSP):
@@ -206,7 +218,7 @@ Enables obfuscation for names of classes or objects that are directly imported o
 
     // Example of keeping an interface name:
     // Configuration of the obfuscation-rules.txt file in the HSP and modules that depend on the HSP:
-    keep-global-name
+    -keep-global-name
     add
     customApiName
     ```
@@ -223,12 +235,12 @@ The stack information built in release mode contains the line number of code, bu
 
 Removes the expressions involving direct calls to the **console.** statement in the following scenarios:
 
-- Calls at the top layer of a file.
-- Calls within a code block.
-- Calls within a module.
-- Calls within a switch statement.
+1. Calls at the top layer of a file.
+2. Calls within a code block.
+3. Calls within a module.
+4. Calls within a switch statement.
 
-#### `-print-namecache` filepath
+#### -print-namecache *filepath*
 
 Saves the name cache to the specified file path. The name cache contains mappings before and after name obfuscation. 
 
@@ -236,29 +248,81 @@ Saves the name cache to the specified file path. The name cache contains mapping
 
 A new **namecache.json** file is generated each time the module if fully built. Save a copy of the file each time you publish a new version.
 
-#### `-apply-namecache` filepath
+#### -apply-namecache *filepath*
 
 Reuses the specified name cache file. The names will be obfuscated according to the cache mappings. If there is no corresponding name, a new random segment name is used.
-
 This option should be used in incremental build scenarios.
 
 By default, DevEco Studio saves cache files in a temporary cache directory and automatically applies the cache files during incremental build. 
-
-Cache Directory: **build/cache/{...}/release/obfuscation**
+Cache Directory: **build/default/cache/{...}/release/obfuscation**
 
 #### -remove-comments
 
-Removes all comments in the file, including single-line comments, multi-line comments, and JsDoc comments, except in the following scenarios:
-
-JSDoc comments above the class names, method names, struct names, enum names, and the like configured in **-keep-comments** in the declaration file. 
+Removes JsDoc comments from the declaration file generated after compilation. 
 
 **NOTE** 
 
-By default, all comments in the source code file generated after the build are removed and cannot be kept.
+By default, all comments in the source code file generated after the build are removed and cannot be kept. 
+You can configure **keep-comments** to keep the JsDoc comments in the declaration file from being obfuscated.
+
+#### -print-kept-names *filepath*
+
+Prints the keep-name list and full trustlist. The **filepath** parameter is optional.
+
+If the **filepath** parameter is not specified, the keep-name list (**keptNames.json**) and full trustlist (**whitelist.json**) are output to the cache directory **build/default/cache/{...}/release/obfuscation** by default.
+
+If the **filepath** parameter is specified, the keep-name list is also exported to the path specified by this parameter. The file path specified must be a relative path, which starts from the directory where the obfuscation configuration file is currently located. The file name extension in the file path must be .json.
+
+The full trustlist (**whitelist.json**) contains all trustlists collected during module compilation. It is classified into the following types:
+
+(1) 'sdk': system APIs.
+
+(2) 'lang': keywords in the language.
+
+(3) 'conf': trustlist in the user-defined keep options.
+
+(4) 'struct': properties in ArkUI structs.
+
+(5) 'export': names and properties exported.
+
+(6) 'strProp': string properties.
+
+(7) 'enum': indicates a member in the enum.
+
+The **keptNames.json** file contains the names that are not obfuscated and the reasons why they are not obfuscated. There are seven reasons: The name is the same as that in the SDK trustlist, language trustlist, user-defined trustlist, struct trustlist, exported name trustlist, or string property trustlist (when string property obfuscation is disabled), or enum trustlist (during HAR module compilation).
+
+**NOTE**
+
+1. When the har module is compiled and attribute obfuscation is enabled, the'enum' whitelist collects the member names in the enum.
+
+Example:
+
+```
+enum Test {
+  member1,
+  member2
+}
+```
+
+The enum whitelist content is ['member1', 'member2']. This is because the compilation intermediate product of the HAR module in earlier versions is a JS file. In the JS file, the enum type is converted into an immediate execution function, and the enum member is converted into a string attribute and a string constant. Therefore, to ensure that the function is normal when attribute obfuscation is enabled, you need to collect the enum member names as a whitelist. This feature is retained when the new bytecode har module is compiled.
+
+2. When the hap/hsp/bytecode har module is compiled and attribute obfuscation is enabled, the'enum' whitelist collects the variable names contained in the initialization expression when the members of enum are initialized.
+
+Example:
+
+```
+let outdoor = 1;
+enum Test {
+  member1,
+  member2 = outdoor + member1 + 2
+}
+```
+
+When the hap/hsp module is compiled, content of the enum whitelist is ['outdoor', 'member1']. When the bytecode har module is compiled, content of the enum whitelist is ['outdoor', 'member1', 'member2'].
 
 ### Keep Options
 
-#### `-keep-property-name` [,identifiers,...]
+#### -keep-property-name *[,identifiers,...]*
 
 Keeps the specified property names from being obfuscated. Name wildcards are supported. An example is as follows.
 
@@ -269,9 +333,11 @@ firstName
 lastName
 ```
 
-**NOTE**
-
-This option takes effect when **-enable-property-obfuscation** is used.
+> **NOTE**
+>
+> - This option takes effect when **-enable-property-obfuscation** is used.
+>
+> - The attribute whitelist takes effect globally. That is, if multiple attributes with the same name exist in the code, they will not be confused as long as they are the same as those in the whitelist configured in -keep-property-name.
 
 What property names should be kept?
 
@@ -286,7 +352,7 @@ for (var i = 0; i <= 2; i++) {
 }
 
 Object.defineProperty(obj, 'y', {}); // y should be kept.
-console.log(obj.y);
+console.info(obj.y);
 
 obj.s = 0;
 let key = 's';
@@ -314,7 +380,7 @@ If an API (for example, **foo** in the example) of the .so library needs to be u
 
 ```
 import testNapi from 'library.so'
-testNapi.foo()
+testNapi.foo() // foo should be kept. Example: -keep-property-name foo
 ```
 
 Manually keep the fields used in JSON files.
@@ -332,7 +398,26 @@ const dataToInsert = {
   value1: 'example1',   // value1 should be kept.
 };
 ```
-#### `-keep-global-name` [,identifiers,...]
+
+The custom decorator in the source code modifies member variables, member methods, and parameters, and the intermediate product of the source code compilation is a JS file (for example, the HAR of the release source code is compiled or the source code contains @ts-ignore and @ts-nocheck). The names of the member variables or member methods where these decorators are located need to be retained. This is because when the advanced TS syntax feature is converted to the standard JS syntax, the member variable or member method name of the preceding decorator is hard-coded into a string constant.
+
+Example:
+
+```
+class A {
+  // 1. Member variable decorator
+  @CustomDecoarter
+  The propetyName: string = "" // propetyName needs to be reserved.
+  // 2. Member method decorator
+  @MethodDecoarter
+  methodName1 () {} // methodName1 needs to be reserved.
+  // 3. Method parameter decorator.
+  The methodName2(@ParamDecorator param: string): void { // methodName2 needs to be reserved.
+  }
+}
+```
+
+#### -keep-global-name *[,identifiers,...]*
 
 Keep the top-level scope names from being obfuscated. Name wildcards are supported. Example:
 
@@ -341,6 +426,19 @@ Keep the top-level scope names from being obfuscated. Name wildcards are support
 Person
 printPersonName
 ```
+
+The names exported from the namespace can also be retained using -keep-global-name.
+
+```
+export namespace Ns {
+  export const age = 18; // -keep-global-name age: reserved variable age
+  export function myFunc () {}; // -keep-global-name myFunc: reserved function myFunc
+}
+```
+
+> **NOTE**
+>
+> The whitelist specified by -keep-global-name takes effect globally. That is, if multiple top-level scope names or export names exist in the code, they will not be confused as long as they are the same as the whitelist names configured in -keep-global-name.
 
 What top-level scope names should be kept?
 
@@ -365,7 +463,13 @@ class MyClass {}
 let d = new MyClass();      // MyClass can be correctly obfuscated.
 ```
 
-#### `-keep-file-name` [,identifiers,...]
+When an API of the SO library is imported by name, if both -enable-toplevel-obfuscation and -enable-export-obfuscation are enabled, you need to manually retain the API name.
+
+```
+import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi and testNapi1 should be reserved.
+```
+
+#### -keep-file-name *[,identifiers,...]*
 
 Keeps the file or folder names from being obfuscated. You do not need to specify the file name extension. Name wildcards are supported. Example:
 
@@ -377,15 +481,39 @@ entry
 
 What file names should be kept?
 
+1. When the require command is used to introduce a file path, the path should be retained because ArkTS does not support the [CommonJS](../arkts-utils/module-principle.md#commonjs module) syntax.
+
 ```
-const module1 = require('./file1')   // ArkTS does not support CommonJS. Therefore, the path reference should be kept.
-const moduleName = './file2'
-const module2 = import(moduleName)    // In dynamic reference mode, it cannot tell whether moduleName is a path. Therefore, the module name should be kept.
+The const module1 = require('./file1') // file1 should be reserved.
 ```
 
-#### `-keep-comments` [,identifiers,...]
+2. In dynamic reference mode, whether the parameter in the import function is a path cannot be identified. Therefore, the path should be reserved in this case.
 
-Keeps JSDoc comments above elements in the declaration file from being obfuscated. Name wildcards are supported. For example, to keep the JSDoc comments above the **Human** class in the declaration file, use the following configuration:
+```
+The const moduleName = './file2' // file2 should be reserved.
+const module2 = import(moduleName)
+```
+
+3. When using [dynamic routing](../ui/arkts-navigation-navigation.md#cross-package-dynamic-routing) for route jump, the path passed to the route should be preserved. Dynamic routing provides system routing tables and custom routing tables. If a custom route table is used for redirection, the method of configuring a whitelist is the same as that in the second dynamic reference scenario. If the system routing table is used for redirection, you need to add the path corresponding to the pageSourceFile field in the resources/base/profile/route_map.json file of the module to the whitelist.
+
+```
+  {
+    "routerMap": [
+      {
+        "name": "PageOne",
+        The "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets", // path must be reserved.
+        "buildFunction": "PageOneBuilder",
+        "data": {
+          "description" : "this is PageOne"
+        }
+      }
+    ]
+  }
+```
+
+#### -keep-comments *[,identifiers,...]*
+
+Keeps the classes, functions, namespaces, enums, structs, interfaces, modules, types, and JsDoc comments above properties in the declaration file generated after compilation from being obfuscated. Name wildcards are supported. For example, to keep the JSDoc comments above the **Human** class in the declaration file, use the following configuration:
 
 ```
 -keep-comments
@@ -394,26 +522,23 @@ Human
 
 **NOTE**
 
-- This option takes effect when **-remove-comments** is used.
-- When the name of an element in the declaration file is obfuscated, the JSDoc comment above the element cannot be kept through **-keep-comments**. For example, when **exportClass** is configured in **-keep-comments**, if the following class names are obfuscated, their JSDoc comments cannot be kept:
+1. This option takes effect when **-remove-comments** is used.
+2. If the classes, functions, namespaces, enums, structs, interfaces, modules, types, and property names in the declaration file generated after compilation are confused, the JsDoc comments above the element cannot be kept using **-keep-comments**. For example, when **exportClass** is configured in **-keep-comments**, if the class name is **exportClass** obfuscated, its JSDoc comments cannot be kept:
 
-  ```
-  /*
-   * @class exportClass
-   */
-  export class exportClass {}
-  ```
+```
+/*
+ * @class exportClass
+ */
+export class exportClass {}
+```
 
-#### `-keep-dts` filepath
+#### -keep-dts *filepath*
 
-Keeps the names in the .d.ts file in the specified path from being obfuscated. The file path can be a directory. In this case, the names in all .d.ts files in the specified directory are kept.
+Names (such as variable names, class names, and attribute names) in the .d.ts file of the specified path are added to the -keep-global-name and -keep-property-name whitelists. Note that filepath supports only absolute paths and can be specified as a directory. In this case, the names in all .d.ts files in the directory are retained.
 
-If this option is used during HAR build, the names in the file are merged into the final **obfuscation.txt** file.
+#### -keep *filepath*
 
-#### `-keep` path
-
-Keeps all names (such as variable names, class names, and property names) in the specified path from being obfuscated. The path can be a file or directory. If the path is a directory, the files in the directory and subdirectories are not obfuscated.
-
+Keeps all names (such as variable names, class names, and property names) in the specified relative path from being obfuscated. The path can be a file or directory. If the path is a directory, the files in the directory and subdirectories are not obfuscated. 
 The path must be a relative path. **./** and **../** are relative to the directory where the obfuscation configuration file is located. Path wildcards are supported.
 
 ```
@@ -425,7 +550,8 @@ The path must be a relative path. **./** and **../** are relative to the directo
 
 **NOTE**
 
-This option does not affect the capability provided by the **-enable-filename-obfuscation** option.
+1. For files retained by -keep filepath, the exported names and attributes in the files on the dependent links are retained.
+2. NOTE: This option does not affect the capability provided by the **-enable-filename-obfuscation** option.
 
 #### Wildcards Supported by Keep Options
 
@@ -433,10 +559,10 @@ This option does not affect the capability provided by the **-enable-filename-ob
 
 The table below lists the name wildcards supported.
 
-| Wildcard | Description                  | Example                                      |
+| Wildcard| Description                  | Example                                      |
 | ------ | ---------------------- | ------------------------------------------ |
 | ?      | Matches any single character.      | "AB?" matches "ABC", but not "AB".        |
-| \*     | Matches any number of characters. | "\*AB\*" matches "AB", "aABb", "cAB", and "ABc". |
+| \*     | Matches any number of characters.| "\*AB\*" matches "AB", "aABb", "cAB", and "ABc".|
 
 **Use Example**
 
@@ -465,12 +591,12 @@ Keep all property names.
 
 The table below lists the path wildcards supported.
 
-| Wildcard | Description                                                                    | Example                                             |
+| Wildcard| Description                                                                    | Example                                             |
 | ------ | ------------------------------------------------------------------------ | ------------------------------------------------- |
 | ?     | Matches any single character except the path separator (/).                                     | "../a?" matches "../ab", but not "../a/".        |
-| \*      | Matches any number of characters except the path separator (/).                               | "../a*/c" matches "../ab/c", but not "../ab/d/s/c". |
+| \*      | Matches any number of characters except the path separator (/).                               | "../a*/c" matches "../ab/c", but not "../ab/d/s/c".|
 | \*\*   | Matches any number of characters.                                                  | "../a**/c" matches "../ab/c" and "../ab/d/s/c". |
-| !      | Negation. It can only be placed at the beginning of a path to exclude a certain case configured in the trustlist. | "!../a/b/c.ets" indicates all paths other than "../a/b/c.ets".          |
+| !      | Negation. It can only be placed at the beginning of a path to exclude a certain case configured in the trustlist.| "!../a/b/c.ets" indicates all paths other than "../a/b/c.ets".          |
 
 **Use Example**
 
@@ -497,18 +623,21 @@ Keep all files except the **c.ets** file in the **../a/b/** directory. The excla
 ```
 
 Keep all the files in the **../a/** directory (excluding subdirectories).
+
 ```
 -keep
 ../a/*
 ```
 
 Keep all the files in the **../a/** directory and its subdirectories.
+
 ```
 -keep
 ../a/**
 ```
 
 Keep all the files in the module.
+
 ```
 -keep
 ./**
@@ -516,27 +645,25 @@ Keep all the files in the module.
 
 **NOTE**
 
-- In these options, the wildcards *, ?, and ! cannot be used for other meanings.
-  Example:
-  
-  ```
-  class A {
-    '*'= 1
-  }
-  
-  -keep-property-name
-  *
-  ```
+(1) In these options, the wildcards *, ?, and ! cannot be used for other meanings.
+Example:
+
+```
+class A {
+  '*'= 1
+}
+
+-keep-property-name
+*
+```
 
 In this example, * indicates any number of characters, and all property names are kept (not obfuscated). It does not mean that only the * property is kept.
 
-- In the **-keep** option, only the path format / is allowed. The path format \ or \\ is not.
+(2) In the **-keep** option, only the path format / is allowed. The path format \ or \\ is not.
 
 ### Comments
 
-You can use **#** to comment out an obfuscation rule file. The line that starts with **#** is treated as a comment.
-
-Example:
+You can use **#** to comment out an obfuscation rule file. The line that starts with **#** is treated as a comment. Example:
 
 ```
 # white list for MainAbility.ets
@@ -558,7 +685,7 @@ A project often has many obfuscation rule files, which are:
 
 * **ruleOptions.files** of the main project (the project being built)
 * File specified by the **consumerFiles** field in the local dependent libraries
-* **obfuscate.txt** file in remote dependent HARs
+* **obfuscation.txt** file in remote dependent HARs
 
 When the main project is built, the obfuscation rules in these files are merged according to the following policy (in pseudo code):
 
@@ -616,69 +743,103 @@ end-for
 
 The final obfuscation rule comes from the object **finalRule**.
 
-During HAR build, the final **obfuscate.txt** file comes from the combination of the **consumerFiles** field of the main project and the local dependent libraries, and the **obfuscate.txt** file of the dependent HARs. The merge policy is the same as the preceding one except for the following differences:
+If the HAR is built, the final obfuscation.txt file content comes from the consumerFiles option of the HAR and the local dependent library, and the combination of the obfuscation.txt file of the dependent HAR.
 
-* The options **-keep-global-name** and **-keep-property-name** are used instead of **-keep-dts**.
-* The **-print-namecache** and **apply-namecache** options are ignored and will not appear in the final **obfuscate.txt** file.
+If the obfuscation configuration file specified by consumerFiles contains the following obfuscation rules, these rules will be merged into the obfuscation.txt file in the HAR package.
+
+```
+Obfuscate Options
+-enable-property-obfuscation
+-enable-string-property-obfuscation
+-enable-toplevel-obfuscation
+-compact
+-remove-log
+
+Keep Options
+-keep-property-name
+-keep-global-name
+```
+
+Precautions for Obfuscation in the Library
+
+1. If the obfuscation configuration file specified by consumerFiles contains the preceding obfuscation options, these obfuscation options will be combined with the obfuscation rules of the main module when other modules depend on the HAR package. As a result, the main module is affected. Therefore, you are not advised to configure obfuscation options in the consumer-rules.txt file. You are advised to configure only reserved options.
+
+2. If the -keep-dts option is added to the obfuscation configuration file specified by consumerFiles, it will be converted into -keep-global-name and -keep-property-name.
 
 ## Retracing Stack Traces
 
-The function names of an application project after obfuscation are changed. As a result, the stack trace printed during crash is more difficult to understand because it is not completely consistent with the source code. You can use the hstack plugin in DevEco Studio Command Line Tools to restore the source stack trace.
+The function names of an application project after obfuscation are changed. As a result, the stack trace printed during crash is more difficult to understand because it is not completely consistent with the source code. You can use the hstack plugin in DevEco Studio Command Line Tools to restore the source stack trace and analyze problems. The **sourceMap.json** file generated during compilation and the obfuscation name mapping file **nameCache.json** are essential for de-obfuscation. Ensure to back them up locally.
+
+![obfuscation-product](figures/obfuscation-product.png)
 
 ## Usage Description
 
 * Currently, custom obfuscation plugins cannot be inserted into the hvigor build process.
 * If a module that depends on an obfuscated HAR enables obfuscation, the HAR will be obfuscated again.
 * To enable the release build mode, select **Product** in the upper right corner of DevEco Studio and set **Build Mode** to **release**.
+![product-release](figures/product-release.png)
 
-  ![product-release](figures/product-release.png)
 ## Appendix
 
 ### Mappings Between Obfuscate Options and Minimum SDK Versions
 
-| Obfuscate Option | Description | Minimum SDK Version |
+| Obfuscate Option| Description | Minimum SDK Version|
 | ------- | --------- | ------ |
-| -disable-obfuscation         | Disables obfuscation. | 4.0.9.2 |
-| -enable-property-obfuscation | Enables property obfuscation. | 4.0.9.2 |
-| -enable-string-property-obfuscation | Enables obfuscation for string literal property names. | 4.0.9.2 |
-| -enable-toplevel-obfuscation | Enables top-level scope name obfuscation. | 4.0.9.2 |
-| -enable-filename-obfuscation | Enables file or folder name obfuscation for the HAR.<br> Enables file or folder name obfuscation for the HAP/HSP. | 4.1.5.3 <br> 5.0.0.19 |
-| -enable-export-obfuscation   | Enables obfuscation for imported or exported names. | 4.1.5.3 |
-| -compact                     | Removes unnecessary spaces and all line feeds. | 4.0.9.2 |
-| -remove-log                  | Removes the expressions involving direct calls to the **console.** statement in specific scenarios. | 4.0.9.2 |
-| -print-namecache             | Saves the name cache to the specified file path. | 4.0.9.2 |
-| -apply-namecache             | Reuses the specified name cache file. | 4.0.9.2 |
-| -remove-comments             | Removes all comments in the file. | 4.1.5.3 |
-| -keep-property-name          | Keeps property names from being obfuscated. | 4.0.9.2 |
-| -keep-global-name            | Keeps top-level scope names from being obfuscated. | 4.0.9.2 |
-| -keep-file-name              | Keeps file or folder names in the HAR from being obfuscated.<br> Keeps file or folder names in the HAP/HSP from being obfuscated. | 4.1.5.3 <br> 5.0.0.19 |
-| -keep-dts                    | Keeps the names in the .d.ts file in the specified path from being obfuscated. | 4.0.9.2 |
-| -keep-comments               | Keeps JSDoc comments above elements in the declaration file from being obfuscated. | 4.1.5.3 |
-| -keep                        | Keeps all names in the specified path from being obfuscated. | 5.0.0.18 |
-| Wildcard                      | The keep options of the name classes and path classes support wildcards. | 5.0.0.24 |
+| -disable-obfuscation         | Disables obfuscation.| 4.0.9.2 |
+| -enable-property-obfuscation | Enables property obfuscation.| 4.0.9.2 |
+| -enable-string-property-obfuscation | Enables obfuscation for string literal property names.| 4.0.9.2 |
+| -enable-toplevel-obfuscation | Enables top-level scope name obfuscation.| 4.0.9.2 |
+| -enable-filename-obfuscation | Enables file or folder name obfuscation for the HAR.<br> Enables file or folder name obfuscation for the HAP/HSP.| 4.1.5.3 <br> 5.0.0.19 |
+| -enable-export-obfuscation   | Enables obfuscation for imported or exported names.| 4.1.5.3 |
+| -compact                     | Removes unnecessary spaces and all line feeds.| 4.0.9.2 |
+| -remove-log                  | Removes the expressions involving direct calls to the **console.** statement in specific scenarios.| 4.0.9.2 |
+| -print-namecache             | Saves the name cache to the specified file path.| 4.0.9.2 |
+| -apply-namecache             | Reuses the specified name cache file.| 4.0.9.2 |
+| -remove-comments             | Removes all comments in the file.| 4.1.5.3 |
+| -keep-property-name          | Keeps property names from being obfuscated.| 4.0.9.2 |
+| -keep-global-name            | Keeps top-level scope names from being obfuscated.| 4.0.9.2 |
+| -keep-file-name              | Keeps file or folder names in the HAR from being obfuscated.<br> Keeps file or folder names in the HAP/HSP from being obfuscated.| 4.1.5.3 <br> 5.0.0.19 |
+| -keep-dts                    | Keeps the names in the .d.ts file in the specified path from being obfuscated.| 4.0.9.2 |
+| -keep-comments               | Keeps the classes, functions, namespaces, enums, structs, interfaces, modules, types, and JsDoc comments above properties in the declaration file generated after compilation from being obfuscated.| 4.1.5.3 |
+| -keep                        | Keeps all names in the specified path from being obfuscated.| 5.0.0.18 |
+| Wildcard                      | The keep options of the name classes and path classes support wildcards.| 5.0.0.24 |
 
 ### Viewing the Obfuscation Effect
 
 You can find the obfuscated files, name mapping file, and system API trustlist file in the **build** directory of the build product.
 
-- Obfuscated file directory: build/[...]/release/moduleName
-- Directory of the name mapping file and system API trustlist file: build/[...]/release/obfuscation
-  - The name mapping file, named **nameCache.json**, records the mappings between source code names and names after obfuscation.
-  - The system API trustlist file, named **systemApiCache.json**, records the APIs and property names that will be kept.
+* Obfuscated file directory: build/default/[...]/release/moduleName
+* Directory of the name mapping file and system API trustlist file: build/default/[...]/release/obfuscation
+  * The name mapping file, named **nameCache.json**, records the mappings between source code names and names after obfuscation.
+  * The system API trustlist file, named **systemApiCache.json**, records the APIs and property names that will be kept.
 
   ![build-product](figures/build-product.png)
 
 ### Troubleshooting
 
 1. Configure the **-disable-obfuscation** option in **obfuscation-rules.txt** to disable obfuscation, and check whether the exception is caused by obfuscation.
-2. If the function is abnormal when obfuscation is enabled, view the build product after obfuscation, analyze the code logic, and locate the cause of the exception.
-3. If the exception is caused due to the missing of the trustlist, use [keep options](#keep-options) to configure the trustlist.
+2. If the function is abnormal after obfuscation is enabled, read the document to understand the capabilities of obfuscation rules, such as [-enable-property-obfuscation](#keep-options), [-enable-toplevel-obfuscation](#keep-options), [-enable-filename-obfuscation](#keep-options), and [-enable-export-obfuscation](#keep-options), and the syntax scenarios that require the configuration of a [trustlist](#keep-options) to ensure that the application functions properly. The following briefly describes the four keep options that are enabled by default. For details, see the complete description of the corresponding options.
+    [-enable-toplevel-obfuscation](#keep-options): keeps top-level scope name from being obfuscated.
+    [-enable-property-obfuscation](#keep-options): keeps properties from being obfuscated. You need to use [-keep-property-name](#keep-options) to configure a trustlist for specified property names in scenarios where obfuscation is not allowed, such as network data access, JSON field access, dynamic property access, and .so library API calls.
+    [-enable-export-obfuscation](#keep-options): keeps exported names from being obfuscated. Generally, this option is used together with the preceding two options. You need to use [-keep-global-name](#keep-options) to configure a trustlist for exported or imported names in scenarios where external APIs of the module cannot be obfuscated.
+    [-enable-filename-obfuscation]: keeps file names from being obfuscated. You need to use [-keep-file-name](#keep-options) to configure a trustlist for file paths and names in scenarios where file paths are dynamically imported or directly loaded at runtime.
+3. If you find a [troubleshooting](#troubleshooting) case similar to your scenario, you can quickly resolve the issue by following the recommended solution.
+4. If no similar case is found, you should identify the issue by examining the configuration functions. If the relevant functions are unnecessary, you can remove the corresponding configuration items.
+5. Analyze application crashes during running as follows:
+    Open the application run log or click the Crash dialog box in DevEco Studio to find the crash stack.
+    The line number in the crash stack is the line number of the [build product](#viewing-the-obfuscation-effect), and the method name may also be the obfuscated name. Therefore, you are advised to check the build product based on the crash stack, analyze the names that cannot be obfuscated, and add them to the trustlist.
+6. If the app does not crash during running but functions are abnormal (for example, a white screen is displayed):
+    1. Open the app run log: Select HiLog, search for logs directly related to the function exception, and locate the context where the problem occurs.
+    2. Locate the abnormal code segment: Analyze logs to find the specific code block that causes the function exception.
+    3. Enhanced log output: Logs are added to the processed data fields in the function code that may be abnormal.
+    4. Analyze and determine key fields: Analyze the output of new logs to check whether the data of this field is abnormal due to confusion.
+    5. Configure the whitelist to protect key fields: Add the key fields that directly affect application functions after obfuscation to the whitelist.
 
 ### **FAQs**
 
 #### Errors That May Occur When -enable-property-obfuscation Is Configured
 
-**Case 1**: The error message "Cannot read property 'xxx' of undefined" is reported.
+Case 1: The error message "Cannot read property 'xxx' of undefined" is reported.
 
 ```
 // Before obfuscation
@@ -696,9 +857,9 @@ After property obfuscation is enabled, **jsonProperty** is obfuscated as a rando
 
 **Solution**: Use the **-keep-property-name** option to add the fields used in JSON files to the trustlist.
 
-**Case 2**: An error message is reported when database-related fields are used and property obfuscation is enabled.
+Case 2: An error message is reported when database-related fields are used and property obfuscation is enabled.
 
-The error message is "table Account has no column named a23 in'INSET INTO Account(a23)'."
+The error message is "table Account has no column named a23 in 'INSET INTO Account(a23)'."
 
 Database fields are used in the code. During obfuscation, the field names in the SQL statements are obfuscated, but the original field names are used in the database, causing the error.
 
@@ -708,18 +869,17 @@ Database fields are used in the code. During obfuscation, the field names in the
 
 When the two options are configured, method name confusion in the following scenarios is involved when the main module calls the methods of other modules:
 
-| Main Module | Dependent Module | Confusion of Imported and Exported Names |
+| Main Module| Dependent Module| Confusion of Imported and Exported Names|
 | ------- | ------- | ----------------------------|
-| HAP/HSP | HSP     | The HSP and main module are built independently, and different names are generated after obfuscation. Therefore, a trustlist must be configured for both the HSP and main module. |
-| HAP/HSP | Local HAR | The local HAR is built together with the main module. After obfuscation, the names are the same. |
-| HAP/HSP | Third-party library | The names and properties exported from a third-party library are collected to the trustlist. They are not confused during import and export. |
+| HAP/HSP | HSP     | The HSP and main module are built independently, and different names are generated after obfuscation. Therefore, a trustlist must be configured for both the HSP and main module.|
+| HAP/HSP | Local HAR| The local HAR is built together with the main module. After obfuscation, the names are the same.|
+| HAP/HSP | Third-party library | The names and properties exported from a third-party library are collected to the trustlist. They are not confused during import and export.|
 
 For the HSP, you must add the methods used by other modules to the trustlist. You must add the same trustlist for the main module. Therefore, you are advised to add the obfuscation file configured with the trustlist (for example, **hsp-white-list.txt**) to the obfuscation configuration item of the module that depends on the obfuscation file, that is, the **files** field shown in the following figure.
 
-
 ![obfuscation-config](figures/obfuscation-config.png)
 
-**Case 1**: When a class is dynamically imported, the class definition is confused, but the class name is not, causing an error.
+Case 1: When a class is dynamically imported, the class definition is confused, but the class name is not, causing an error.
 
 ```
 // Before obfuscation
@@ -737,7 +897,7 @@ The exported class **Test1** is a top-level domain name. When **Test1** is dynam
 
 **Solution**: Use the **-keep-global-name** option to add **Test1** to the trustlist.
 
-**Case 2**: For a method in a namespace, the method definition is confused, but the statement that uses the method is not, causing an error.
+Case 2: For a method in a namespace, the method definition is confused, but the statement that uses the method is not, causing an error.
 
 ```
 // Before obfuscation
@@ -764,7 +924,7 @@ let person1 = new a3.person1()
 1. Configure the **-enable-property-obfuscation** option.
 2. Use the **-keep-global-name** option to add the methods exported from the namespace to the trustlist.
 
-**Case 3**: When declare global is used, a syntax error is reported after obfuscation.
+Case 3: When declare global is used, a syntax error is reported after obfuscation.
 
 ```
 // Before obfuscation
@@ -798,7 +958,7 @@ person["b"] = 22; // After obfuscation
 
 #### Errors That May Occur When -enable-filename-obfuscation Is Configured
 
-**Case 1**: The error message "Error Failed to get a resolved OhmUrl for 'D:code/MyApplication/f12/library1/pages/d.ets' imported by 'undefined'" is reported.
+Case 1: The error message "Error Failed to get a resolved OhmUrl for 'D:code/MyApplication/f12/library1/pages/d.ets' imported by 'undefined'" is reported.
 
 As shown below, the outer layer of the **library1** module contains a directory named **directory**. When file name obfuscation is enabled, **directory** is obfuscated as **f12**, causing the error indicating that the path is not found.
 
@@ -809,7 +969,7 @@ As shown below, the outer layer of the **library1** module contains a directory 
 1. If the project directory structure and error message are similar, update the SDK to 5.0.0.26 or later.
 2. Use the **-keep-file-name** option to add the directory name **directory** of the module to the trustlist.
 
-**Case 2**: The error message "Cannot find module 'ets/appability/AppAbility' which is application Entry Point" is reported.
+Case 2: The error message "Cannot find module 'ets/appability/AppAbility' which is application Entry Point" is reported.
 
 The system loads the ability file when the application is running. Therefore, you must manually configure the trustlist to prevent the specified file from being obfuscated.
 
@@ -826,3 +986,15 @@ AppAbility
 The error message "Cannot read properties of undefined (reading 'has')" is reported.
 
 **Solution**: Upgrade the SDK to 4.1.6.3 or later.
+
+#### The HAP and HSP depend on the same local source code HAR module.
+
+* If file name obfuscation is enabled, the following problems may occur:
+  * Problem 1: The singleton function is abnormal. The reason is that the build and obfuscation processes of HAP and HSP are executed independently. In the local source code HAR module, the same file name may be obfuscated into different file names in the HAP and HSP packages.
+  * Problem 2: The interface fails to be called. The reason is that the build and obfuscation processes of HAP and HSP are executed independently. In the local source code HAR module, different file names may be obfuscated into the same file name in the HAP and HSP packages.
+* If the -enable-export-obfuscation and -enable-toplevel-obfuscation options are enabled, the interface fails to be loaded during application running.
+The reason is that HAP and HSP independently execute the build and obfuscation processes. The interfaces exposed in the HAR module of the local source code are obfuscated into different names in HAP and HSP.
+
+**Solution:**
+1. Change the local source code HAR on which HAP and HSP depend to [bytecode HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613). In this way, the HAR will not be confused when it is depended on.
+2. The local source code HAR on which HAP and HSP depend is [built and packaged in release mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410). In this way, when the HAR is depended on, its file name is not confused with the external interface.

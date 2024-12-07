@@ -120,13 +120,13 @@ For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/op
 | [I7RBGF](https://gitee.com/open_harmony/dashboard?issue_id=I7RBGF) | [OpenHarmony 4.0.9.6] App freezing occurs on the com.ohos.camera process because THREAD_BLOCK_6S is stuck in libsamgr_proxy.z.so. This issue occurs 202 times.|
 | [I7RSJJ](https://gitee.com/open_harmony/dashboard?issue_id=I7RSJJ) | [OpenHarmony 4.0.10.1] A C++ crash occurs on libgstreamer.z.so due to an error of the PlayerEngine thread of the media_service process. This issue occurs 12 times.|
 | [I7S75S](https://gitee.com/open_harmony/dashboard?issue_id=I7S75S) | [OpenHarmony 4.0.10.1] A C++ crash occurs on libipc_core.z.so due to an error of the IPC_1_28750 thread of the wifi_manager_se process. This issue occurs 8 times.|
-| [I7SAIU](https://gitee.com/open_harmony/dashboard?issue_id=I7SAIU) | [OpenHarmony 4.0.10.1] A C++ crash occurs on librender_service_base.z.so due to an error of the com.ohos.photos thread of the com.ohos.photos process. This issue occurs on 12 times.|
+| [I7SAIU](https://gitee.com/open_harmony/dashboard?issue_id=I7SAIU) | [OpenHarmony 4.0.10.1] A C++ crash occurs on librender_service_base.z.so due to an error of the com.ohos.photos thread of the com.ohos.photos process. This issue occurs 12 times.|
 | [I7SCU4](https://gitee.com/open_harmony/dashboard?issue_id=I7SCU4) | [OpenHarmony 4.0.10.1] App freezing occurs on the com.ohos.photos process because THREAD_BLOCK_6S is stuck in libark_jsruntime.so. This issue occurs 20 times.|
-| [I7TGTW](https://gitee.com/open_harmony/dashboard?issue_id=I7TGTW) | [OpenHarmony 4.0.10.2] A C++ crash occurs on libace.z.so due to an error of the com.ohos.photos thread of the com.ohos.photos process. This issue occurs on 443 times.|
+| [I7TGTW](https://gitee.com/open_harmony/dashboard?issue_id=I7TGTW) | [OpenHarmony 4.0.10.2] A C++ crash occurs on libace.z.so due to an error of the com.ohos.photos thread of the com.ohos.photos process. This issue occurs 443 times.|
 | [I7UUBH](https://gitee.com/open_harmony/dashboard?issue_id=I7UUBH) | [OpenHarmony 4.0.10.3] [Application subsystem] [ToC] [RK3568] [High probability 5/10] When Airplane mode is quickly enabled and disabled for multiple times in Settings, the WLAN icon on Control Panel is on while WLAN is disabled in Settings.|
 | [I7VBL8](https://gitee.com/open_harmony/dashboard?issue_id=I7VBL8) | [OpenHarmony 4.0.10.3] A C++ crash occurs on libcontactsdataability.z.so due to an error of the IPC_0_20828 thread of the com.ohos.contactsdataability process. This issue occurs 8 times.|
 | [I7X7N7](https://gitee.com/open_harmony/dashboard?issue_id=I7X7N7) | [OpenHarmony 4.0.10.3] A C++ crash occurs on libsurface.z.so due to an error of the IPC_0_645 thread of the render_service process. This issue occurs 11 times.|
-| [I7XKYN](https://gitee.com/open_harmony/dashboard?issue_id=I7XKYN) | [OpenHarmony 4.0.10.5] A C++ crash occurs on libweb_engine.so due to an error of the com.ohos.note thread of the com.ohos.note process. This issue occurs on 6 times.|
+| [I7XKYN](https://gitee.com/open_harmony/dashboard?issue_id=I7XKYN) | [OpenHarmony 4.0.10.5] A C++ crash occurs on libweb_engine.so due to an error of the com.ohos.note thread of the com.ohos.note process. This issue occurs 6 times.|
 | [I7YRQG](https://gitee.com/open_harmony/dashboard?issue_id=I7YRQG) | [OpenHarmony_4.0.10.6] [USB service subsystem] [ToC] [RK3568] [Inevitable] The test_request test suite of the HDI interface is interrupted after eight test cases are executed.|
 | [I814ML](https://gitee.com/open_harmony/dashboard?issue_id=I814ML) | [OpenHarmony 4.0.10.6] A C++ crash occurs on libmedia_service.z.so due to an error of the IPC_0_648 thread of the media_service process. This issue occurs 22 times.|
 | [I815FD](https://gitee.com/open_harmony/dashboard?issue_id=I815FD) | [OpenHarmony 4.0.10.6] A C++ crash occurs on the ffrtwk/CPU-2-0 thread of the /system/bin/hdcd process. This issue occurs 14 times.|
@@ -155,7 +155,7 @@ For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/op
 | [I8DD5M](https://gitee.com/open_harmony/dashboard?issue_id=I8DD5M) | [OpenHarmony 4.0.10.15] [Application subsystem] [RK3568] [Inevitable 5/5] Gallery widget covers cannot be automatically refreshed.|
 | [I8DM2R](https://gitee.com/open_harmony/dashboard?issue_id=I8DM2R) | [OpenHarmony 4.0.10.13] App freezing occurs on the com.ohos.camera process because THREAD_BLOCK_6S is stuck in libcamera_framework.z.so. This issue occurs 924 times.|
 | [I92HFJ](https://gitee.com/open_harmony/dashboard?issue_id=I92HFJ) | [OpenHarmony 4.0.10.16sp2] A C++ crash occurs on libipc_core.z.so in the wifi_manager_se process. This issue occurs 77 times.|
-| [I957IR](https://gitee.com/open_harmony/dashboard?issue_id=I957IR) | [OpenHarmony 4.0.10.16sp2] App freezing occurs on THREAD_BLOCK_6S in the ohos.samples.etsclock process. This issue occurs 43 times.|
+| [I957IR](https://gitee.com/open_harmony/dashboard?issue_id=I957IR) | [OpenHarmony 4.0.10.16sp2] App freezing occurs due to THREAD_BLOCK_6S in the ohos.samples.etsclock process. This issue occurs 43 times.|
 | [I9H8J6](https://gitee.com/open_harmony/dashboard?issue_id=I9H8J6) | It takes a longer time for the file management subsystem to call the OpenSSL interface during startup than that in 4.0.10.11.|
 | [I90FM1](https://gitee.com/open_harmony/dashboard?issue_id=I90FM1) | [Pressure test] A C++ crash occurs on libipc_core.z.so due to an error of the IPC_2_2577 thread of the wifi_manager_se process. This issue occurs 42 times.|
 
@@ -165,34 +165,34 @@ For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/op
 
 | Issue No.                                                       | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [I6U81V](https://gitee.com/open_harmony/dashboard?issue_id=I6U81V) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-30456          |
-| [I6V7QA](https://gitee.com/open_harmony/dashboard?issue_id=I6V7QA) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-1829            |
-| [I6V7V2](https://gitee.com/open_harmony/dashboard?issue_id=I6V7V2) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-1872            |
-| [I6X3GE](https://gitee.com/open_harmony/dashboard?issue_id=I6X3GE) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-2002           |
-| [I6Y8IE](https://gitee.com/open_harmony/dashboard?issue_id=I6Y8IE) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-2194            |
-| [I6ZJDC](https://gitee.com/open_harmony/dashboard?issue_id=I6ZJDC) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-31436          |
-| [I6ZUSY](https://gitee.com/open_harmony/dashboard?issue_id=I6ZUSY) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-2248           |
-| [I708T3](https://gitee.com/open_harmony/dashboard?issue_id=I708T3) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-2124            |
-| [I70B17](https://gitee.com/open_harmony/dashboard?issue_id=I70B17) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-2483           |
-| [I71KHX](https://gitee.com/open_harmony/dashboard?issue_id=I71KHX) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-32233          |
-| [I7FM6A](https://gitee.com/open_harmony/dashboard?issue_id=I7FM6A) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-35788            |
-| [I7SZTB](https://gitee.com/open_harmony/dashboard?issue_id=I7SZTB) | [Vulnerability][OpenHarmony_4.0.10.2] CVE-2015-8955               |
-| [I7SZWH](https://gitee.com/open_harmony/dashboard?issue_id=I7SZWH) | [Vulnerability][OpenHarmony_4.0.10.2] CVE-2023-4128               |
-| [I7XCCQ](https://gitee.com/open_harmony/dashboard?issue_id=I7XCCQ) | [Vulnerability][OpenHarmony_4.0.10.5] CVE-2022-40982              |
-| [I934PZ](https://gitee.com/open_harmony/dashboard?issue_id=I934PZ) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2024-23775          |
-| [I93ART](https://gitee.com/open_harmony/dashboard?issue_id=I93ART) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-43615          |
-| [I944MQ](https://gitee.com/open_harmony/dashboard?issue_id=I944MQ) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2024-25062          |
-| [I94IJY](https://gitee.com/open_harmony/dashboard?issue_id=I94IJY) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2024-24806          |
-| [I952U8](https://gitee.com/open_harmony/dashboard?issue_id=I952U8) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2024-762126596168486912|
-| [I966TM](https://gitee.com/open_harmony/dashboard?issue_id=I966TM) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2024-762126168387227648|
-| [I966UT](https://gitee.com/open_harmony/dashboard?issue_id=I966UT) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2024-762133623825502208|
-| [I9BS9L](https://gitee.com/open_harmony/dashboard?issue_id=I9BS9L) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-52444           |
-| [I9BUAF](https://gitee.com/open_harmony/dashboard?issue_id=I9BUAF) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2019-19768          |
-| [I9C46A](https://gitee.com/open_harmony/dashboard?issue_id=I9C46A) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2023-52438          |
-| [I9F1XE](https://gitee.com/open_harmony/dashboard?issue_id=I9F1XE) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2021-45485          |
-| [I9FE7O](https://gitee.com/open_harmony/dashboard?issue_id=I9FE7O) | [Vulnerability][OpenHarmony 4.0 Release] CVE-2022-3566            |
-| [I818FO](https://gitee.com/open_harmony/dashboard?issue_id=I818FO) | [Vulnerability][OpenHarmony 4.0.10.7] CVE-2023-21636              |
-| [I818G7](https://gitee.com/open_harmony/dashboard?issue_id=I818G7) | [Vulnerability][OpenHarmony_4.0.10.7] CVE-2023-4881               |
+| [I6U81V](https://gitee.com/open_harmony/dashboard?issue_id=I6U81V) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-30456          |
+| [I6V7QA](https://gitee.com/open_harmony/dashboard?issue_id=I6V7QA) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-1829            |
+| [I6V7V2](https://gitee.com/open_harmony/dashboard?issue_id=I6V7V2) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-1872            |
+| [I6X3GE](https://gitee.com/open_harmony/dashboard?issue_id=I6X3GE) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-2002           |
+| [I6Y8IE](https://gitee.com/open_harmony/dashboard?issue_id=I6Y8IE) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-2194            |
+| [I6ZJDC](https://gitee.com/open_harmony/dashboard?issue_id=I6ZJDC) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-31436          |
+| [I6ZUSY](https://gitee.com/open_harmony/dashboard?issue_id=I6ZUSY) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-2248           |
+| [I708T3](https://gitee.com/open_harmony/dashboard?issue_id=I708T3) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-2124            |
+| [I70B17](https://gitee.com/open_harmony/dashboard?issue_id=I70B17) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-2483           |
+| [I71KHX](https://gitee.com/open_harmony/dashboard?issue_id=I71KHX) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-32233          |
+| [I7FM6A](https://gitee.com/open_harmony/dashboard?issue_id=I7FM6A) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-35788            |
+| [I7SZTB](https://gitee.com/open_harmony/dashboard?issue_id=I7SZTB) | [Vulnerability] [OpenHarmony_4.0.10.2] CVE-2015-8955               |
+| [I7SZWH](https://gitee.com/open_harmony/dashboard?issue_id=I7SZWH) | [Vulnerability] [OpenHarmony_4.0.10.2] CVE-2023-4128               |
+| [I7XCCQ](https://gitee.com/open_harmony/dashboard?issue_id=I7XCCQ) | [Vulnerability] [OpenHarmony_4.0.10.5] CVE-2022-40982              |
+| [I934PZ](https://gitee.com/open_harmony/dashboard?issue_id=I934PZ) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2024-23775          |
+| [I93ART](https://gitee.com/open_harmony/dashboard?issue_id=I93ART) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-43615          |
+| [I944MQ](https://gitee.com/open_harmony/dashboard?issue_id=I944MQ) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2024-25062          |
+| [I94IJY](https://gitee.com/open_harmony/dashboard?issue_id=I94IJY) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2024-24806          |
+| [I952U8](https://gitee.com/open_harmony/dashboard?issue_id=I952U8) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2024-762126596168486912|
+| [I966TM](https://gitee.com/open_harmony/dashboard?issue_id=I966TM) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2024-762126168387227648|
+| [I966UT](https://gitee.com/open_harmony/dashboard?issue_id=I966UT) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2024-762133623825502208|
+| [I9BS9L](https://gitee.com/open_harmony/dashboard?issue_id=I9BS9L) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-52444           |
+| [I9BUAF](https://gitee.com/open_harmony/dashboard?issue_id=I9BUAF) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2019-19768          |
+| [I9C46A](https://gitee.com/open_harmony/dashboard?issue_id=I9C46A) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2023-52438          |
+| [I9F1XE](https://gitee.com/open_harmony/dashboard?issue_id=I9F1XE) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2021-45485          |
+| [I9FE7O](https://gitee.com/open_harmony/dashboard?issue_id=I9FE7O) | [Vulnerability] [OpenHarmony 4.0 Release] CVE-2022-3566            |
+| [I818FO](https://gitee.com/open_harmony/dashboard?issue_id=I818FO) | [Vulnerability] [OpenHarmony 4.0.10.7] CVE-2023-21636              |
+| [I818G7](https://gitee.com/open_harmony/dashboard?issue_id=I818G7) | [Vulnerability] [OpenHarmony_4.0.10.7] CVE-2023-4881               |
 
 ## Known Issues
 
@@ -201,3 +201,5 @@ For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/op
 | Issue No.| Description| Impact| To Be Resolved By|
 | -------- | -------- | -------- | -------- |
 | I827LU | Memory leakage occurs when Bluetooth is repeatedly enabled and disabled in Settings. A memory leak of 15 MB occurs within one hour.| A memory leak of 8.3 KB occurs for one Bluetooth enable/disable operation. This issue can be resolved by restarting the device. The impact is controllable.<br>You are advised to use the protocol stack of the Bluetooth module built in the chip or hardware to avoid this issue.| May 30|
+
+ <!--no_check--> 

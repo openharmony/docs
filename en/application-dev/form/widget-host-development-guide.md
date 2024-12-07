@@ -116,6 +116,7 @@ struct formHostSample {
     updateDuration: 0,
     defaultDimension: 6,
     supportDimensions: [],
+    supportedShapes: [],
     customizeData: {},
     isDynamic: false,
     transparencyEnabled: false

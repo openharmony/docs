@@ -37,7 +37,7 @@ ExceptionPrompt({ options: PromptOptions, onTipClick?: ()=>void, onActionTextCli
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | options | [PromptOptions](#promptoptions) | 是 | \@Prop | 指定当前异常提示的配置信息。 |
 | onTipClick | ()=>void | 否 | - | 点击左侧提示文本的回调函数。 |
@@ -77,7 +77,9 @@ MarginType定义marginType的类型。
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-### 示例1
+### 示例1（设置异常提示）
+
+该示例展示了如何设置异常提示的异常图标、异常提示的文字、边距样式和右侧图标按钮的文字内容。
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
@@ -112,7 +114,9 @@ struct Index {
 
 ![ExceptionPrompt1](figures/ExceptionPrompt1.png)
 
-### 示例2
+### 示例2（设置弹窗类型的异常提示）
+
+该示例使用自定义弹窗设置弹窗类型的异常提示。
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'

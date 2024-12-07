@@ -1,4 +1,4 @@
-# Video Recording
+# Using AVRecorder to Record Videos (ArkTS)
 
 The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
@@ -20,7 +20,7 @@ For details about the state, see [AVRecorderState](../../reference/apis-media-ki
 
 Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
-1. Create an **AVRecorder** instance. The AVRecorder is in the **idle** state.
+1. Create an AVRecorder instance. The AVRecorder is in the **idle** state.
      
    ```ts
    import { media } from '@kit.MediaKit';
@@ -109,7 +109,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 
 5. Initialize the video data input source.
 
-   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](../camera/camera-recording.md).
+   This step is performed in the video data collection module. For the camera module, you need to create a Camera instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](../camera/camera-recording.md).
 
 6. Start recording.
 
@@ -190,21 +190,22 @@ export class VideoRecorderDemo {
 
   // Process of starting recording.
   async startRecordingProcess() {
-    if (this.avRecorder != undefined) {
+    if (this.avRecorder === undefined) {
       // 1. Create an AVRecorder instance.
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
-      // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
-      // 3. Set recording parameters to complete the preparations.
-      await this.avRecorder.prepare(this.avConfig);
-      this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
-      // 4. Complete camera-related preparations.
-      await this.prepareCamera();
-      // 5. Start the camera stream output.
-      await this.startCameraOutput();
-      // 6. Start recording.
-      await this.avRecorder.start();
     }
+    // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
+    // 3. Set recording parameters to complete the preparations.
+    await this.avRecorder.prepare(this.avConfig);
+    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
+    // 4. Complete camera-related preparations.
+    await this.prepareCamera();
+    // 5. Start the camera stream output.
+    await this.startCameraOutput();
+    // 6. Start recording.
+    await this.avRecorder.start();
+    
   }
 
   // Process of pausing recording.

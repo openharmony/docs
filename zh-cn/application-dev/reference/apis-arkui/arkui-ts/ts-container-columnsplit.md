@@ -16,6 +16,10 @@ ColumnSplit通过分割线限制子组件的高度。初始化时，分割线位
 
 ColumnSplit()
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 ### resizeable
@@ -54,7 +58,9 @@ divider(value: ColumnSplitDividerStyle | null)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称        | 参数类型      | 必填 | 描述                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型      | 必填 | 说明                       |
 | ----------- | ------------- | ---- |--------------------------|
 | startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其上方子组件的距离。<br/>默认值：0 |
 | endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其下方子组件的距离。<br/>默认值：0 |

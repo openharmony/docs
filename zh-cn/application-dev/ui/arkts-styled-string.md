@@ -1,12 +1,15 @@
 # 属性字符串（StyledString/MutableStyledString）
 
-属性字符串StyledString/MutableStyledString（MutableStyledString继承于StyledString，以下统一简称StyledString）是功能强大的标记对象，可用于字符或段落级别设置文本样式。通过将StyledString附加到文本组件， 可以通过多种方式更改文本，包括修改字号、添加字体颜色、使文本可点击以及自定义方式绘制文本等。具体用法可参考[属性字符串](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)。
+属性字符串StyledString/MutableStyledString（其中MutableStyledString继承自StyledString，下文统称为StyledString），可用于在字符或段落级别上设置文本样式。将StyledString应用到文本组件上，可以采用多种方式修改文本，包括调整字号、添加字体颜色、使文本具备可点击性，以及通过自定义方式绘制文本等。具体使用方法请参考[属性字符串](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)的文档。
 
-属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式。也可以自行创建CustomSpan, 以应用自定义样式。 
+属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式，例如文本装饰线样式、文本行高样式、文本阴影样式等。也可以自行创建CustomSpan，以应用自定义样式。 
 
 ## 创建并应用StyledString和MutableStyledString
 
-  可以通过TextController提供的setStyledString(StyledString)方法将属性字符串附加到文本组件，并推荐在onPageShow中触发绑定，在aboutToAppear中调用setStyledString无法实现页面初始即可见属性字符串文本内容，因为aboutToAppear运行时组件还没有完成创建并成功挂载节点树。
+  可以通过TextController提供的[setStyledString](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#setstyledstring12)方法，将属性字符串附加到文本组件，并推荐在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)中触发绑定。
+  > **说明：**
+  >
+  > 在aboutToAppear中调用setStyledString方法时，由于该方法运行阶段组件尚未完成创建并成功挂载节点树，因此无法在页面初始化时显示属性字符串。
 
   ```ts
   @Entry
@@ -254,7 +257,7 @@
 
 ![paragraphs](figures/styledstringParagraphs.png)
 
-以下代码示例展示了如何创建 ParagraphStyle 并应用。如果将 ParagraphStyle 附加到段落开头末尾或之间的任何位置均会应用样式，非段落区间内则不会应用样式。
+以下代码示例展示了如何创建ParagraphStyle并应用。如果将ParagraphStyle附加到段落开头末尾或之间的任何位置，均会应用样式，非段落区间内则不会应用样式。
 
   ```ts
   import { LengthMetrics } from '@kit.ArkUI'
@@ -348,12 +351,12 @@
     }
 
     private async getPixmapFromMedia(resource: Resource) {
-      let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
         bundleName: resource.bundleName,
         moduleName: resource.moduleName,
         id: resource.id
       })
-      let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength))
       let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
         desiredPixelFormat: image.PixelMapFormat.RGBA_8888
       })
@@ -500,7 +503,7 @@ class MyCustomSpan extends CustomSpan {
     brush.setColor({ alpha: 255, red: 0, green: 0, blue: 0 })
     const font = new drawing.Font()
     font.setSize(vp2px(this.fontSize))
-    const textBlob = drawing.TextBlob.makeFromString(this.word.substr(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
+    const textBlob = drawing.TextBlob.makeFromString(this.word.substring(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
     canvas.attachBrush(brush)
 
     this.onDrawRectByRadius(context, options.x, options.x + vp2px(this.width), options.lineTop, options.lineBottom, 20)
@@ -509,7 +512,7 @@ class MyCustomSpan extends CustomSpan {
     canvas.drawTextBlob(textBlob, options.x, options.lineBottom - 30)
     brush.setColor({ alpha: 255, red: 255, green: 228 , blue: 196 })
     canvas.attachBrush(brush)
-    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substr(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
+    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
     canvas.drawTextBlob(textBlob1, options.x + vp2px(100), options.lineBottom - 30)
 
     canvas.detachBrush()
@@ -574,6 +577,8 @@ struct styled_string_demo6 {
 ![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
 
 ## 场景示例
+
+该示例通过ParagraphStyle、LineHeightStyle、TextStyle对象展示了会员过期提示的效果。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';

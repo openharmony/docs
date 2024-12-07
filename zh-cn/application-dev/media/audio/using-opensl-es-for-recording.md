@@ -64,7 +64,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 参考下列示例代码，完成音频录制。
 
-1. 添加头文件
+1. 添加头文件。
 
    ```c++
    #include "SLES/OpenSLES.h"
@@ -133,7 +133,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
    ```
 
-6. 获取接口 SL_IID_OH_BUFFERQUEUE 的 bufferQueueItf 实例
+6. 获取接口SL_IID_OH_BUFFERQUEUE的bufferQueueItf实例。
      
    ```c++
    SLOHBufferQueueItf bufferQueueItf;

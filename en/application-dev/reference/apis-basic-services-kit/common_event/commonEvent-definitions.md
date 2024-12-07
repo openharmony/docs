@@ -1,7 +1,7 @@
 # System Common Events (To Be Deprecated Soon)
 
 This document provides indexes for predefined system common events.
-Common event types are defined in [Support enumeration of the ohos.commonEvent module](../js-apis-commonEvent.md#support).
+Common event types are defined in [Support enumeration of the ohos.commonEvent module](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEvent.md#support).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 

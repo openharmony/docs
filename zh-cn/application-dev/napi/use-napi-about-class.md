@@ -31,6 +31,10 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 
 通过给定的构造函数实例化一个对象，将这个对象返回ArkTS侧使用。
 
+> **说明：**
+>
+> 参数constructor不是function类型则返回napi_function_expected。
+
 cpp部分代码
 
 ```cpp
@@ -67,13 +71,17 @@ class Fruit {
 }
 // 调用函数，用变量obj接收函数返回的实例化对象
 let obj = testNapi.newInstance(Fruit, 'test');
-// 打印实例化对象的obj
+// 打印实例化对象obj的信息
 hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(obj));
 ```
 
 ### napi_get_new_target
 
 用于获取构造函数的new.target值。在ArkTS中，new.target是一个特殊的元属性，用于在构造函数中判断是否通过new关键字调用了该构造函数。
+
+示例代码可以参考链接：
+
+[Native与ArkTS对象绑定](use-napi-object-wrap.md)
 
 ### napi_define_class
 
@@ -87,13 +95,25 @@ hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(ob
 
 在ArkTS object上绑定一个native对象实例。
 
+> **说明：**
+>
+> 参数js_object不为object类型或function类型时返回napi_object_expected。
+
 ### napi_unwrap
 
 从一个被包装的对象中解除包装并获取与之关联的数据指针。
 
+> **说明：**
+>
+> 参数js_object不为object类型或function类型时返回napi_object_expected。
+
 ### napi_remove_wrap
 
 从ArkTS object上获取先前绑定的native对象实例，并解除绑定。
+
+> **说明：**
+>
+> 参数js_object不为object类型或function类型时返回napi_object_expected。
 
 cpp部分代码
 

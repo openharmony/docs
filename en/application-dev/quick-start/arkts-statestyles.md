@@ -1,8 +1,11 @@
 # stateStyles: Polymorphic Style
 
 
-Unlike \@Styles, which is used to reuse styles only on static pages, stateStyles enables you to set state-specific styles.  
+Unlike \@Styles, which are used to reuse styles only on static pages, stateStyles enables you to set state-specific styles.  
 
+> **NOTE**
+>
+> Polymorphic style supports only universal attributes.
 
 ## Overview
 
@@ -19,7 +22,7 @@ stateStyles is an attribute method that sets the style based on the internal sta
 - selected<sup>10+</sup>
 
 
-## Use Scenarios
+## Application Scenarios
 
 
 ### Common Scenarios
@@ -39,10 +42,10 @@ struct StateStylesSample {
             .backgroundColor('#ffffeef0')
           },
           pressed: {
-            .backgroundColor('ff707070')
+            .backgroundColor('#ff707070')
           },
           normal: {
-            .backgroundColor('ff2787d9')
+            .backgroundColor('#ff2787d9')
           }
         })
         .margin(20)
@@ -52,10 +55,10 @@ struct StateStylesSample {
             .backgroundColor('#ffffeef0')
           },
           pressed: {
-            .backgroundColor('ff707070')
+            .backgroundColor('#ff707070')
           },
           normal: {
-            .backgroundColor('ff2787d9')
+            .backgroundColor('#ff2787d9')
           }
         })
     }.margin('30%')
@@ -72,8 +75,6 @@ struct StateStylesSample {
 ### Combined Use of \@Styles and stateStyles
 
 The following example uses \@Styles to specify different states of stateStyles.
-
-
 
 ```ts
 @Entry
@@ -143,3 +144,4 @@ By default, the button is displayed in green in the normal state. When you press
   **Figure 3** Change of the styles in focused state by a click 
 
 ![Video_2023-03-17_144605](figures/Video_2023-03-17_144605.gif)
+

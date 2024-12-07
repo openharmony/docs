@@ -1,6 +1,6 @@
 # SaveButton
- 
-The **\<SaveButton>** security component allows you to obtain temporary storage permission from the user by their touching the button, eliminating the need for a permission request dialog box.
+
+The **SaveButton** security component represents a Paste button that allows you to obtain temporary storage permissions from users with a simple button touch, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ### SaveButton
 
-SaveButton(option:SaveButtonOptions)
+SaveButton(options:SaveButtonOptions)
 
 Creates a Save button that contains the specified elements.
 
@@ -40,9 +40,16 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | [SaveButtonOptions](#savebuttonoptions) | No| Creates a Save button that contains the specified elements.|
+| options | [SaveButtonOptions](#savebuttonoptions) | Yes| Options for creating the Save button.|
 
 ## SaveButtonOptions
+
+Describes the icon, text, and other specific elements for the Save button.
+
+> **NOTE**
+> 
+> At least one of **icon** or **text** must be provided.<br>
+> If neither **icon** nor **text** is provided, the **options** parameter in [SaveButton](#savebutton-1) will not take effect, and the created Save button will be in the default style.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -50,8 +57,8 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the Save button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
-| text | [SaveDescription](#savedescription) | No| Text on the Save button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
+| icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the Save button.<br>If this parameter is not specified, there is no icon.|
+| text | [SaveDescription](#savedescription) | No| Text on the Save button.<br>If this parameter is not specified, there is no text description.|
 | buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Save button.<br>If this parameter is not specified, the system uses a capsule-type button as the Save button.|
 
 ## SaveIconStyle
@@ -80,6 +87,9 @@ You may want to learn the [restrictions on security component styles](../../../s
 | RECEIVE | 6 | The text on the Save button is **Receive**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | CONTINUE_TO_RECEIVE | 7 | The text on the Save button is **Continue**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | SAVE_TO_GALLERY<sup>12+</sup> | 8 | The text on the Save button is **Save to Gallery**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | The text on the Save button is **Export**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | The text on the Save button is **Quick Save**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | The text on the Save button is **Resave**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## SaveButtonOnClickResult
 
@@ -94,7 +104,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ## Attributes
 
-This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md#attributes)
+This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md).
 
 ## Events
 
@@ -130,7 +140,7 @@ struct Index {
   build() {
     Row() {
       Column({space:10}) {
-        // Create a default button with an icon, text, and background.
+        // Create a default Save button with an icon, text, and background.
         SaveButton().onClick(async (event:ClickEvent, result:SaveButtonOnClickResult) => {
           if (result == SaveButtonOnClickResult.SUCCESS) {
             try {
@@ -149,13 +159,25 @@ struct Index {
             }
           }
         })
-        // Whether an element is contained depends on whether the parameter corresponding to the element is specified. If buttonType is not passed in, the button uses the ButtonType.Capsule settings.
+        // Whether the button has an icon, text, and background depends on whether the corresponding parameter is passed in. If buttonType is not passed in, the button uses the ButtonType.Capsule settings.
         SaveButton({icon:SaveIconStyle.FULL_FILLED})
-        // Create a button with only an icon and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
+        // This button only has the icon and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
         SaveButton({icon:SaveIconStyle.FULL_FILLED, buttonType:ButtonType.Capsule})
           .backgroundColor(0x10007dff)
-        // Create a button with an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
+        // The button has an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
         SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .width(30)
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .size({width: 30, height: 30})
+        // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
       }.width('100%')
     }.height('100%')
   }

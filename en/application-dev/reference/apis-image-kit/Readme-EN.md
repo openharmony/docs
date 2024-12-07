@@ -3,12 +3,15 @@
 - ArkTS APIs
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.sendableImage (Image Processing Based on Sendable Objects)](js-apis-sendableImage.md)
+  <!--Del-->
   - [@ohos.multimedia.image (Image Processing) (System API)](js-apis-image-sys.md)
+  <!--DelEnd-->
 - C APIs
   - Modules
     - [Image](image.md)
     - [Image_NativeModule](_image___native_module.md)
     - [ImageEffect](_image_effect.md)
+    - [ImageProcessing](_image_processing.md)
   - Header Files
     - [image_mdk.h](image__mdk_8h.md)
     - [image_mdk_common.h](image__mdk__common_8h.md)
@@ -22,12 +25,19 @@
     - [image_packer_native.h](image__packer__native_8h.md)
     - [image_receiver_native.h](image__receiver__native_8h.md)
     - [image_source_native.h](image__source__native_8h.md)
+    - [picture_native.h](picture__native_8h.md)
     - [pixelmap_native.h](pixelmap__native_8h.md)
     - [image_effect.h](image__effect_8h.md)
     - [image_effect_errors.h](image__effect__errors_8h.md)
     - [image_effect_filter.h](image__effect__filter_8h.md)
+    - [image_processing.h](image__processing_8h.md)
+    - [image_processing_types.h](image__processing__types_8h.md)
   - Structs
     - [ImagePacker_Opts](_image_packer___opts__.md)
+    - [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md)
+    - [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md)
+    - [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md)
+    - [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md)
     - [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
     - [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
     - [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
@@ -54,5 +64,6 @@
     - [ImageEffect_FilterNames](_image_effect___filter_names.md)
     - [ImageEffect_Region](_image_effect___region.md)
     - [ImageEffect_Size](_image_effect___size.md)
+    - [ImageProcessing_ColorSpaceInfo](_image_processing___color_space_info.md)
 - Error Codes
   - [Image Error Code](errorcode-image.md)

@@ -1,7 +1,7 @@
 # 指定二进制数据转换对称密钥(C/C++)
 
 
-以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（OH_CryptoSymKey）。即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
+以3DES和HMAC为例，根据指定的对称密钥二进制数据，生成密钥（OH_CryptoSymKey），即将外部或存储的二进制数据转换为算法库的密钥对象，该对象可用于后续的加解密等操作。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -20,7 +20,7 @@
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 
-- 以下以生成3DES密钥为例：
+以下以生成3DES密钥为例：
 
   ```c++
   #include "CryptoArchitectureKit/crypto_common.h"
@@ -67,11 +67,12 @@
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 
-- 以下以生成HMAC密钥为例：
+以下以生成HMAC密钥为例：
 
   ```c++
   #include "CryptoArchitectureKit/crypto_common.h"
   #include "CryptoArchitectureKit/crypto_sym_key.h"
+  #include <string.h>
 
   static OH_Crypto_ErrCode testConvertHmacKey() {
       const char *algName = "HMAC";
@@ -79,8 +80,9 @@
       OH_CryptoSymKey *convertKeyCtx = nullptr;
       Crypto_DataBlob out = {.data = nullptr, .len = 0};
       OH_Crypto_ErrCode ret;
-      uint8_t arr[] = "12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh";
-      Crypto_DataBlob convertBlob = {.data = arr, .len = sizeof(arr)};
+
+      char *arr = const_cast<char *>("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh");
+      Crypto_DataBlob convertBlob = {.data = (uint8_t *)(arr), .len = strlen(arr)};
       ret = OH_CryptoSymKeyGenerator_Create(algName, &ctx);
       if (ret != CRYPTO_SUCCESS) {
           return ret;

@@ -227,7 +227,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
+getBundleStats(packageName: string, index?: number): Promise&lt;BundleStats&gt;
 
 异步获取应用存储数据的空间大小（单位为Byte），以Promise方式返回。
 
@@ -242,6 +242,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
   | 参数名      | 类型   | 必填 | 说明     |
   | ----------- | ------ | ---- | -------- |
   | packageName | string | 是   | 应用包名 |
+  | index<sup>12+</sup> | number | 否   | 分身应用的索引号，默认值为0（表示未分身的主应用）。分身应用索引号在分身创建时默认占用从1开始且当前未被占用的最小索引号，并赋值给该应用的[BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo)的appIndex属性，后续可以通过调用[getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12)接口获得。|
 
 **返回值：**
 
@@ -265,18 +266,34 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 **示例：**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
-    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-  }).catch((err: BusinessError) => {
-    console.error("getBundleStats failed with error:" + JSON.stringify(err));
-  });
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, index).then((BundleStats: storageStatistics.BundleStats) => {
+      hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+    });
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed with error: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
+getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;, index?: number): void
 
 异步获取应用存储数据的空间大小（单位为Byte），以callback方式返回。
 
@@ -292,6 +309,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | 是   | 应用包名 |
   | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | 是   | 获取指定卷上的应用存储数据的空间大小之后的回调 |
+  | index<sup>12+</sup> | number | 否   | 分身应用的索引号，默认值为0（表示未分身的主应用）。分身应用索引号在分身创建时默认占用从1开始且当前未被占用的最小索引号，并赋值给该应用的[BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo)的appIndex属性，后续可以通过调用[getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12)接口获得。|
 
 **错误码：**
 
@@ -309,16 +327,31 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 **示例：**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
-    if (error) {
-      console.error("getBundleStats failed with error:" + JSON.stringify(error));
-    }  else {
-      // do something
-      console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-    }
-  });
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, (err: BusinessError, BundleStats: storageStatistics.BundleStats) => {
+      if (err) {
+        hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+      } else {
+        hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+      }
+    }, index);
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getTotalSize<sup>9+</sup>

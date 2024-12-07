@@ -1,6 +1,8 @@
 # @ohos.multimedia.cameraPicker (Camera Picker)
 
-The cameraPicker module provides APIs for an application to select a camera to take photos or record videos, depending on the media type specified by the application. The APIs of this module must be called in a UIAbility of the page type. Otherwise, the camera picker cannot be started.
+The cameraPicker module provides APIs for an application to select the system camera to take photos or record videos, depending on the media type specified by the application. The APIs of this module must be called in a UIAbility of the page type. Otherwise, the camera picker cannot be started.
+
+The camera picker must be called in release mode. If it is called in debug mode, an exception occurs.
 
 > **NOTE**
 >
@@ -16,7 +18,7 @@ import { cameraPicker as picker } from '@kit.CameraKit';
 
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
-Starts a camera picker and enters the corresponding mode based on the media type. This API uses a promise to return the result.
+Starts the camera picker and enters the corresponding mode based on the media type. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

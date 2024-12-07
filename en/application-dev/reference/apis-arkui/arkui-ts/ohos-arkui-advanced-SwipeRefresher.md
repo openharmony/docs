@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SwipeRefresher (Swipe Refresher)
+# SwipeRefresher
 
 
 The swipe refresher is a component used to obtain and load content, typically with a pull-down gesture.
@@ -37,10 +37,10 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 **Parameters**
 
-| Name | Type | Mandatory | Decorator | Description |
+| Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| content | string | No | \@Prop | Text displayed when the content is loaded. |
-| isLoading | boolean | If yes,  | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded, and **false** means the opposite. |
+| content | string | No| \@Prop | Text displayed when the content is loaded.|
+| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded, and **false** means the opposite.|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.

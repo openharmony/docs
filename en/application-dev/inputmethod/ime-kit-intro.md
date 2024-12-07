@@ -16,7 +16,7 @@ IME Kit provides two types of APIs: input method framework APIs and input method
 
 - Input method:
 
-  Comes with three types of panels: fixed, floating, and status bar. One input method can be deployed across different device types, such as mobile phones, tablets, and PCs.
+  Comes with three types of panels: fixed, floating, and status bar. One input method can be deployed across different device types, such as mobile phones and tablets.
 
 - Custom text input box:
 
@@ -42,7 +42,7 @@ ArkUI: With respect to soft keyboards and custom text input boxes, IME Kit can u
 For the system API for switching between input method s, the system permission is required. Some APIs can be called only by the current input method application.
 
 
-# IME Kit API References
+## IME Kit API References
 
 - [inputMethodEngine](../reference/apis-ime-kit/js-apis-inputmethodengine.md)
 

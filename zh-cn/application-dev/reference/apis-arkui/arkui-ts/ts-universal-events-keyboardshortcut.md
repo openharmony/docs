@@ -89,19 +89,17 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | 快捷键的响应                                   | `keys`键处于按下状态且`value`键触发down事件（长按会连续响应）              | 无                                        |
 | 隐藏组件<br />                               | 响应快捷键                              | 无                                        |
 | disable状态组件                              | 不响应快捷键                             | 无                                        |
-| 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效          | Button('button1').keyboardShortcut('c',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
+| 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效          | Button('button1').keyboardShortcut(FunctionKey.F4,[ModifierKey.ALT])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
 
 ### 禁止绑定的系统快捷键
 
 以下组合键绑定为快捷键不生效。
 
-- `Ctrl` + `C`
-- `Ctrl` + `A`
-- `Ctrl` + `V`
-- `Ctrl` + `X`
-- `Ctrl` + `Shift` + `Z`
-- `Ctrl` + `Z`
-- `Ctrl` + `Y`
+- `Alt` + `F4`
+- `Alt` + `Shift` + `F4`
+- `Alt` + `TAB`
+- `Alt` + `Shift` + `TAB`
+- `Ctrl` + `Shift` + `ESC`
 
 ### 系统已存在的按键事件
 
@@ -117,9 +115,9 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## 示例
 
-### 示例1
+### 示例1（设置组件快捷键）
 
-设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
+该示例通过设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
 
 ```ts
 @Entry
@@ -163,9 +161,9 @@ struct Index {
 
  ![keyEvent](figures/keyboard-shortcut.gif)
 
-### 示例2
+### 示例2（注册和解注册快捷键绑定）
 
-通过按键注册和解注册快捷键绑定
+该示例演示了如何实现按键注册和解注册快捷键绑定。
 
 ```ts
 @Entry

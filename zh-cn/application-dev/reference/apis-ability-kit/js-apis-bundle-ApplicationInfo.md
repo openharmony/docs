@@ -1,9 +1,9 @@
 # ApplicationInfo
 
+应用程序信息，未做特殊说明的属性，均通过[bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated)获取。
+
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-应用程序信息，未做特殊说明的属性，均通过[bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated)获取。
 
 ## ApplicationInfo<sup>(deprecated)<sup>
 
@@ -13,7 +13,7 @@
 
 
 
-| 名称                       | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称                       | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                       | string                                                       | 是   | 否   | 应用程序的名称。                                             |
 | description                | string                                                       | 是   | 否   | 应用程序的描述信息。                                         |

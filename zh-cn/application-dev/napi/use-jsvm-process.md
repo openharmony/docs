@@ -30,20 +30,20 @@
   {
       // ArkTS接口与C++接口的绑定和映射
       napi_property_descriptor desc[] = {
-          {"runJsVm", nullptr, RunJsVm, nullptr, nullptr, nullptr, napi_default, nullptr},
+          {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
       };
       // 在exports对象上挂载RunJsVm的Native方法
       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
       return exports;
   }
   EXTERN_C_END
-  ```
+  ```     
 
 - 在index.d.ts文件中，提供JS侧的接口方法。
 
   ```ts
   // entry/src/main/cpp/types/libentry/index.d.ts
-  export const runJsVm: (jsCode: string) => void;
+  export const runTest: () => void;
   ```
 
 - 在oh-package.json5文件中将index.d.ts与cpp文件关联起来。
@@ -77,154 +77,151 @@
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-- 实现Native侧的RunJsVm接口。具体代码如下：
+- 实现Native侧的runTest接口。具体代码如下：
 
   ```cpp
-  // entry/src/main/cpp/hello.cpp
   #include "napi/native_api.h"
+  #include "hilog/log.h"
   #include "ark_runtime/jsvm.h"
-  #include <sys/stat.h>
-  #include <thread>
-  #include <unistd.h>
-  #include <bits/alltypes.h>
-  #include <hilog/log.h>
+
+  #define LOG_DOMAIN 0x3200
+  #define LOG_TAG "APP"
+
   static int g_aa = 0;
-  static JSVM_Value Assert(JSVM_Env env, JSVM_CallbackInfo info)
-  {
-    size_t argc = 2;
-    JSVM_Value args[2] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    bool isStrictEquals;
-    if (argc > 1) {
-        OH_JSVM_StrictEquals(env, args[0], args[1], &isStrictEquals);
-    } else {
-        JSVM_Value valTrue;
-        OH_JSVM_GetBoolean(env, true, &valTrue);
-        OH_JSVM_StrictEquals(env, args[0], valTrue, &isStrictEquals);
-    }
-    if (isStrictEquals) {
-        OH_LOG_INFO(LOG_APP, "JSVM API TEST RESULT: PASS");
-    } else {
-        OH_LOG_ERROR(LOG_APP, "JSVM API TEST RESULT: FAILED");
-    }
-    JSVM_Value result;
-    OH_JSVM_GetBoolean(env, isStrictEquals, &result);
-    return result;
+
+  #define CHECK_RET(theCall)                                                                                             \
+      do {                                                                                                               \
+          JSVM_Status cond = theCall;                                                                                    \
+          if ((cond) != JSVM_OK) {                                                                                       \
+              const JSVM_ExtendedErrorInfo *info;                                                                        \
+              OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
+              OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                           __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
+              return -1;                                                                                                 \
+          }                                                                                                              \
+      } while (0)
+
+  #define CHECK(theCall)                                                                                                 \
+      do {                                                                                                               \
+          JSVM_Status cond = theCall;                                                                                    \
+          if ((cond) != JSVM_OK) {                                                                                       \
+              OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__,  \
+                           cond);                                                                                        \
+              return -1;                                                                                                 \
+          }                                                                                                              \
+      } while (0)
+
+  // 用于调用theCall并检查其返回值是否为JSVM_OK。
+  // 如果不是，则调用OH_JSVM_GetLastErrorInfo处理错误并返回retVal。
+  #define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
+      do {                                                                                                               \
+          JSVM_Status cond = theCall;                                                                                    \
+          if (cond != JSVM_OK) {                                                                                         \
+              const JSVM_ExtendedErrorInfo *info;                                                                        \
+              OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
+              OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                           __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
+              return retVal;                                                                                             \
+          }                                                                                                              \
+      } while (0)
+
+  // JSVM_CALL_BASE的简化版本，返回nullptr
+  #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
+
+  // OH_JSVM_StrictEquals的样例方法
+  static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info) {
+      // 接受两个入参
+      size_t argc = 2;
+      JSVM_Value args[2] = {nullptr};
+      JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
+      // 调用OH_JSVM_StrictEquals接口判断给定的两个JavaScript value是否严格相等
+      bool result = false;
+      JSVM_Status status = OH_JSVM_StrictEquals(env, args[0], args[1], &result);
+      if (status != JSVM_OK) {
+          OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_StrictEquals: failed");
+      } else {
+          OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_StrictEquals: success: %{public}d", result);
+      }
+      JSVM_Value isStrictEqual;
+      JSVM_CALL(OH_JSVM_GetBoolean(env, result, &isStrictEqual));
+      return isStrictEqual;
   }
-  
-  // Assert方法注册回调
+  // IsStrictEquals注册回调
   static JSVM_CallbackStruct param[] = {
-      {.data = nullptr, .callback = Assert},
+      {.data = nullptr, .callback = IsStrictEquals},
   };
   static JSVM_CallbackStruct *method = param;
-  // Assert方法别名，TS侧调用
+  // IsStrictEquals方法别名，供JS调用
   static JSVM_PropertyDescriptor descriptor[] = {
-      {"assert", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+      {"isStrictEquals", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
   };
+  // 样例测试js
+  const char *srcCallNative = R"JS(    let data = '123';
+      let value = 123;
+      isStrictEquals(data,value);)JS";
 
-  // 获取JavaScript代码字符串
-  static std::string getCodeString(napi_env nEnv, napi_callback_info nInfo) {
-      size_t argc = 1;
-      napi_value argv[1] = {nullptr};
-      napi_get_cb_info(nEnv, nInfo, &argc, argv, nullptr, nullptr);
-      std::string jsCodeStr;
-      size_t result = 0;
-      napi_get_value_string_utf8(nEnv, argv[0], nullptr, NAPI_AUTO_LENGTH, &result);
-      const size_t bufSize = result + 1;
-      char *buf = new char[bufSize];
-      napi_status status = napi_get_value_string_utf8(nEnv, argv[0], buf, bufSize, &result);
-      if (status == napi_ok) {
-          jsCodeStr = buf;
-      }
-      free(buf);
-      return jsCodeStr;
-  }
-  
-  // javascript代码执行失败的处理
-  void RunScriptFail(napi_env &nEnv, JSVM_Env &env, JSVM_Status &res) {
-      JSVM_Value exceptionValue;
-      JSVM_Status status = OH_JSVM_GetAndClearLastException(env, &exceptionValue);
-      if (status == JSVM_OK) {
-          JSVM_Value message;
-          OH_JSVM_GetNamedProperty(env, exceptionValue, "message", &message);
-          size_t length;
-          OH_JSVM_GetValueStringUtf8(env, message, nullptr, 0, &length);
-          char *buffer = new char[length + 1];
-          OH_JSVM_GetValueStringUtf8(env, message, buffer, length + 1, nullptr);
-          napi_throw_error(nEnv, std::to_string(static_cast<int>(status)).c_str(), buffer);
-          delete[] buffer;
-      } else {
-          napi_throw_error(nEnv, std::to_string(static_cast<int>(status)).c_str(), nullptr);
-          OH_LOG_INFO(LOG_APP, "JSVM RunJsVm failed Error code:  %{public}d", static_cast<int>(res));
-      }
-  }
-  // RunJsVm函数创建JavaScript VM，创建JS执行的上下文环境来执行JS代码获取JSVM_Value。
-  static napi_value RunJsVm(napi_env nEnv, napi_callback_info nInfo) {
-      std::string jsCodeStr = getCodeString(nEnv, nInfo);
-      JSVM_InitOptions initOptions;
-      memset(&initOptions, 0, sizeof(initOptions));
-      // InitOptions外部引用赋值
-      initOptions.externalReferences = nullptr;
+  static int32_t TestJSVM() {
+      JSVM_InitOptions initOptions = {0};
+      JSVM_VM vm;
+      JSVM_Env env = nullptr;
+      JSVM_VMScope vmScope;
+      JSVM_EnvScope envScope;
+      JSVM_HandleScope handleScope;
+      JSVM_Value result;
+      // 初始化JavaScript引擎实例
       if (g_aa == 0) {
           g_aa++;
-          // 初始化JavaScript引擎实例
-          OH_JSVM_Init(&initOptions);
+         CHECK(OH_JSVM_Init(&initOptions));
       }
-      JSVM_VM vm;
-      JSVM_CreateVMOptions options;
-      memset(&options, 0, sizeof(options));
-      // 创建JavaScript引擎实例
-      OH_JSVM_CreateVM(&options, &vm);
-      JSVM_VMScope vmScope;
-      // 打开一个新的VM scope，引擎实例只能在scope范围内使用，可以保证引擎实例不被销毁
-      OH_JSVM_OpenVMScope(vm, &vmScope);
-      JSVM_Env env;
-      // 创建一个新的JS执行上下文环境，并注册指定的Native函数
-      JSVM_Status res = OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
-      if (res != JSVM_OK) {
-          OH_LOG_INFO(LOG_APP, "JSVM API OH_JSVM_CreateEnv failed res is %{public}d", static_cast<int>(res));
-      }
-      JSVM_EnvScope envScope;
-      // 打开一个新的Env scope，Env只能在scope范围内使用
-      OH_JSVM_OpenEnvScope(env, &envScope);
-      JSVM_HandleScope handleScope;
-      // 打开一个Handle scope
-      OH_JSVM_OpenHandleScope(env, &handleScope);
-      std::string sourceCodeStr = jsCodeStr;
-      napi_value nResult = nullptr;
-      JSVM_Value jsVmResult;
-      OH_LOG_INFO(LOG_APP, "JSVM API RunJsVm %{public}s", sourceCodeStr.c_str());
-      // 根据传入的JavaScript代码字符串判断是否调用获取自定义结构数据的方法
-      if (strcmp(sourceCodeStr.c_str(), "defineClass") == 0) {
-          // DefineClass预留
-           OH_LOG_INFO(LOG_APP, "JSVM API DefineClass called");
-      } else {
-          JSVM_Value sourceCodeValue = nullptr;
-          OH_JSVM_CreateStringUtf8(env, sourceCodeStr.c_str(), sourceCodeStr.size(), &sourceCodeValue);
-          JSVM_Script script;
-          // 编译JavaScript代码字符串并返回编译后的脚本
-          OH_JSVM_CompileScript(env, sourceCodeValue, nullptr, 0, true, nullptr, &script);
-          // 执行JavaScript代码字符串
-          res = OH_JSVM_RunScript(env, script, &jsVmResult);
-          if (res != JSVM_OK) {
-              RunScriptFail(nEnv, env, res);
-              napi_get_boolean(nEnv, false, &nResult);
-          } else {
-              napi_get_boolean(nEnv, true, &nResult);
-          }
-      }
-      // 关闭Handle scope
-      OH_JSVM_CloseHandleScope(env, handleScope);
-      // 关闭Env scope
-      OH_JSVM_CloseEnvScope(env, envScope);
-      // 关闭VM scope
-      OH_JSVM_CloseVMScope(vm, vmScope);
-      // 销毁一个JS执行上下文环境
-      OH_JSVM_DestroyEnv(env);
-      // 销毁JavaScript引擎实例
-      OH_JSVM_DestroyVM(vm);
-      return nResult;
+      // 创建JSVM环境
+      CHECK(OH_JSVM_CreateVM(nullptr, &vm));
+      CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
+      CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
+      CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
+      CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
+
+      // 通过script调用测试函数
+      JSVM_Script script;
+      JSVM_Value jsSrc;
+      CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
+      CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+      CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+      // 销毁JSVM环境
+      CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+      CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
+      CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
+      CHECK(OH_JSVM_DestroyEnv(env));
+      CHECK(OH_JSVM_DestroyVM(vm));
+      return 0;
   }
+
+  static napi_value RunTest(napi_env env, napi_callback_info info)
+  {
+      TestJSVM();
+      return nullptr;
+  }
+
+  // 模块注册信息，供arkts侧调用
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports) {
+  napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}};
+  napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+  return exports;
+  }
+  EXTERN_C_END
+  
+  static napi_module demoModule = {
+  .nm_version = 1,
+  .nm_flags = 0,
+  .nm_filename = nullptr,
+  .nm_register_func = Init,
+  .nm_modname = "entry",
+  .nm_priv = ((void *)0),
+  .reserved = {0},
+  };
+  
+  extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
   
 ## ArkTS侧调用C/C++方法实现
@@ -233,13 +230,31 @@
 import hilog from '@ohos.hilog'
 // 通过import的方式，引入Native能力。
 import napitest from 'libentry.so'
-// test assert
-try {
-  let data = false;
-  let script: string = `assert(${data});`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM Assert:%{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM Assert error: %{public}s', error);
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            // runtest
+            napitest.runTest();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
+```
+
+预期输出结果
+```ts
+JSVM OH_JSVM_StrictEquals: success: 1
 ```

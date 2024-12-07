@@ -58,9 +58,9 @@ For details about the interfaces, see [RDB](../reference/apis-arkdata/_r_d_b.md)
 | int OH_Data_Asset_GetModifyTime(Data_Asset *asset, int64_t *modifyTime) | Obtains the last modification time of a data asset.|
 | int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size) | Obtains the size of a data asset.|
 | int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status) | Obtains the status of a data asset.|
-| Data_Asset *OH_Data_Asset_CreateOne() | Creates a data asset instance. When this data asset is no longer needed, use **OH_Data_Asset_DestroyOne** to destroy it. |
+| Data_Asset *OH_Data_Asset_CreateOne() | Creates a data asset instance. When this data asset is no longer needed, call **OH_Data_Asset_DestroyOne** to destroy it.|
 | int OH_Data_Asset_DestroyOne(Data_Asset *asset) | Destroys a data asset instance to reclaim memory.|
-| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates an instance for multiple data assets. When the instance is no longer required, use **OH_Data_Asset_DestroyMultiple** to destroy it. |
+| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates an instance for multiple data assets. When the instance is no longer required, call **OH_Data_Asset_DestroyMultiple** to destroy it.|
 | int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count) | Destroys multiple data assets to reclaim memory.|
 | int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | Registers an observer for an RDB store. When the data in the distributed database changes, a callback will be invoked to return the data change.|
 | int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | Unregisters the observer of the specified type.|
@@ -90,13 +90,11 @@ libnative_rdb_ndk.z.so
 #include <database/rdb/relational_store_error_code.h>
 ```
 
-1. Obtain an **OH_Rdb_Store** instance and create a database file.
+1. Obtain an **OH_Rdb_Store** instance and create a database file. 
 
    The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md). The FA model does not provide any API for obtaining the database sandbox path. Use the application directory instead. For details, see **getFilesDir** of [Context](../reference/apis-ability-kit/js-apis-inner-app-context.md). 
 
-   **area** indicates the security level of the directory for database files. For details, see [contextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md). 
-
-   During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**. <br>Example:
+   **area** indicates the security level of the directory for database files. For details, see [contextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md). During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**. <br>Example:
 
    ```c
    // Create an OH_Rdb_Config object.
@@ -110,7 +108,7 @@ libnative_rdb_ndk.z.so
    // Module name. 
    config.moduleName = "xxx";
    // Security level of the database file.
-   config.securityLevel = OH_Rdb_SecurityLevel::S1;
+   config.securityLevel = OH_Rdb_SecurityLevel::S3;
    // Whether the database is encrypted.
    config.isEncrypt = false;
    // Memory size occupied by config.
@@ -333,15 +331,13 @@ libnative_rdb_ndk.z.so
    // Define a callback.
    void CloudSyncObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
    {
-    // Do something..
+    // Do something.
    }
    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = CloudSyncObserverCallback };
    OH_Rdb_CloudSync(store_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &observer);
    ```
 
-10. Register a data observer for the specified event type for an RDB store. When the data changes, the registered callback will be invoked to process the observation. 
-
-    Call **OH_Rdb_Subscribe** to subscribe to data changes. Before using this API, ensure that the cloud service is available. <br>Example:
+10. Register a data observer for the specified event type for an RDB store. When the data changes, the registered callback will be invoked to process the observation. Call **OH_Rdb_Subscribe** to subscribe to data changes. Before using this API, ensure that the cloud service is available. <br>Example:
 
     ```c
     // Define a callback.
@@ -392,7 +388,7 @@ libnative_rdb_ndk.z.so
     valueBucket->destroy(valueBucket);
     ```
 
-11. Unsubscribe from the events of the specified type for an RDB store. After that, the callback will not be invoked to process the observation. Use **OH_Rdb_Unsubscribe** to unsubscribe from data changes. Before using this API, ensure that the cloud service is available. <br>Example:
+11. Unsubscribe from the events of the specified type for an RDB store. After that, the callback will not be invoked to process the observation. Call **OH_Rdb_Unsubscribe** to unsubscribe from data changes. Before using this API, ensure that the cloud service is available. <br>Example:
 
      ```c
      // Define a callback.
@@ -419,9 +415,7 @@ libnative_rdb_ndk.z.so
      ```
 
 
-12. Register an observer for auto sync progress of an RDB store. When auto sync is performed on the RDB store, the registered callback will be invoked to process the observation. 
-    
-    Call **OH_Rdb_SubscribeAutoSyncProgress** to subscribe to the auto sync progress. Before using this API, ensure that the cloud service is available. <br>Example:
+12. Register an observer for auto sync progress of an RDB store. When auto sync is performed on the RDB store, the registered callback will be invoked to process the observation. Call **OH_Rdb_SubscribeAutoSyncProgress** to subscribe to the auto sync progress. Before using this API, ensure that the cloud service is available. <br>Example:
     
     ```c
     // Define a callback.
@@ -432,11 +426,9 @@ libnative_rdb_ndk.z.so
     const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
     OH_Rdb_SubscribeAutoSyncProgress(store_, &observer);
     ```
+
+13. Unsubscribe from the auto sync progress from an RDB store. After that, the callback will not be invoked to process the observation. Call **OH_Rdb_UnsubscribeAutoSyncProgress** to unsubscribe from the auto sync progress. Before using this API, ensure that the cloud service is available. <br>Example:
     
-13. Unsubscribe from the auto sync progress from an RDB store. After that, the callback will not be invoked to process the observation. 
-
-    Call **OH_Rdb_UnsubscribeAutoSyncProgress** to unsubscribe from the auto sync progress. Before using this API, ensure that the cloud service is available. <br>Example:
-
     ```c
     // Define a callback.
     void RdbProgressObserverCallback(void *context, Rdb_ProgressDetails *progressDetails)
@@ -448,12 +440,18 @@ libnative_rdb_ndk.z.so
     ```
 
 14. Delete an RDB store. 
-
+    
     Call **OH_Rdb_DeleteStore** to delete the RDB store and related database file. <br>Example:
-
+    
     ```c
     // Close the database instance.
     OH_Rdb_CloseStore(store_);
     // Delete the database file.
-    OH_Rdb_DeleteStore(&config);
+OH_Rdb_DeleteStore(&config);
     ```
+    
+    
+
+
+
+  

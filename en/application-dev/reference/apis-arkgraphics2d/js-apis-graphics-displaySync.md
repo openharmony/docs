@@ -36,10 +36,10 @@ You can obtain the timestamp information from the event callback, including the 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name            | Type                                     | Read-only | Optional | Description                                      |
+| Name            | Type                                     | Read-only| Optional| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | Yes  | No  | Time when the current frame arrives, in nanoseconds. |
-| targetTimestamp | number| Yes  | No  | Expected arrival time of the next frame, in nanoseconds. |
+| timestamp      | number | Yes  | No  | Time when the current frame arrives, in nanoseconds.|
+| targetTimestamp | number| Yes  | No  | Expected arrival time of the next frame, in nanoseconds.|
 
 ## DisplaySync
 
@@ -57,7 +57,7 @@ Sets the expected frame rate range.
 
 **Parameters**
 
-| Name          | Type                                      | Mandatory | Description                         |
+| Name          | Type                                      | Mandatory| Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| Yes  | Expected frame rate range.|
 
@@ -65,9 +65,9 @@ Sets the expected frame rate range.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameters types. 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
 
 **Example**
 
@@ -92,7 +92,7 @@ Subscribes to change events of each frame.
 
 **Parameters**
 
-| Name          | Type                                      | Mandatory | Description                         |
+| Name          | Type                                      | Mandatory| Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| Yes  | Event type. The value is fixed at **'frame'**.|
 | callback    | Callback<[IntervalInfo](#intervalinfo)>| Yes  | Callback used for subscription.|
@@ -119,7 +119,7 @@ Unsubscribes from change events of each frame.
 
 **Parameters**
 
-| Name          | Type                                      | Mandatory | Description                         |
+| Name          | Type                                      | Mandatory| Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| Yes  | Event type. The value is fixed at **'frame'**.|
 | callback    | Callback<[IntervalInfo](#intervalinfo)>| No  | Callback used for unsubscription. If no value is passed in, all subscriptions to the specified event are canceled.|

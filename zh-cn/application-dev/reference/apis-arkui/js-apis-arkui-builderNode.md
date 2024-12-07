@@ -65,7 +65,7 @@ BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-bu
 
 constructor(uiContext: UIContext, options?: RenderOptions)
 
-当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内的节点默认父组件布局约束为[0,0],即不设置selfIdealSize则认为BuilderNode中子树的根节点大小为[0,0]。
+当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内的节点默认父组件布局约束为[0,0]，即不设置selfIdealSize则认为BuilderNode中子树的根节点大小为[0,0]。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -74,7 +74,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 | 参数名    | 类型                                    | 必填 | 说明                                                              |
 | --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
 | uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
-| options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。                                       |
+| options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。默认值:undefined。   |
 
 > **说明**
 > uiContext的入参需要为一个有效的值，即UI上下文正确，如果传入非法值或者未设置，会导致创建失败。
@@ -84,13 +84,15 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+支持自定义组件。不支持自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
 
 > **说明**
 > 
 > @Builder嵌套使用的时候需要保证内外的@Builder方法的入参对象一致。
 >
 > 最外层的@Builder只支持一个入参。
+> 
+> 需要操作BuilderNode中的对象时，需要保证其引用不被回收。当BuilderNode对象被虚拟机回收之后，它的FrameNode、RenderNode对象也会与后端节点解引用。即从BuilderNode中获取的FrameNode对象不对应任何一个节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -143,7 +145,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 
 **示例：**
 ```ts
-import { BuilderNode, NodeContent } from "@kit.ArkUI"
+import { BuilderNode, NodeContent } from "@kit.ArkUI";
 
 interface ParamsInterface {
   text: string;
@@ -223,7 +225,7 @@ getFrameNode(): FrameNode | null
 BuilderNode作为NodeContainer的根节点返回。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -285,7 +287,7 @@ struct Index {
 BuilderNode的FrameNode挂到其它FrameNode下。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -353,7 +355,7 @@ struct Index {
 BuilderNode的RenderNode挂到其它RenderNode下。由于RenderNode不传递布局约束，不推荐通过该方式挂载节点。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -440,7 +442,7 @@ update(arg: Object): void
 
 **示例：**
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -536,6 +538,23 @@ postTouchEvent(event: TouchEvent): boolean
 
 将原始事件派发到某个BuilderNode创建出的FrameNode上。
 
+postTouchEvent是从组件树的中间节点往下分发，需要变换到父组件坐标系才能分发成功，参考下图。
+
+OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[getPositionToParent](js-apis-arkui-frameNode.md#getpositiontoparent12)获取。OffsetB为point点相对于buildNode的偏移量，可以通过[TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明) 获取。OffsetC为OffsetA与OffsetB的和，是传给postTouchEvent的最终结果。
+
+![postTouchEvent](figures/postTouchEvent.PNG)
+
+> **说明：** 
+>
+> 传入的坐标值需要转换为px，如果builderNode有仿射变换，则需要再叠加仿射变换。
+>
+> 在[webview](../apis-arkweb/js-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
+>
+> 同一时间戳，postTouchEvent只能调用一次。<!--Del-->
+>
+> 不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。
+<!--DelEnd-->
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -550,7 +569,7 @@ postTouchEvent(event: TouchEvent): boolean
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 派发事件是否成功。 |
+| boolean | 派发事件是否成功。true为已命中响应事件的组件，false为未命中任何可响应事件的组件。<br/>**说明：** <br/>如果未按照预期命中组件，需要确认以下几点：<br/>1.坐标系是否转换正确。<br/>2.组件是否可交互状态。<br/>3.是否绑定事件。 |
 
 **示例：**
 
@@ -591,12 +610,25 @@ class MyNodeController extends NodeController {
     return this.rootNode.getFrameNode();
   }
 
-  postTouchEvent(touchEvent: TouchEvent): void {
-    if(this.rootNode == null){
-      return;
+  // 坐标转换示例
+  postTouchEvent(event: TouchEvent): boolean {
+    if (this.rootNode == null) {
+      return false;
     }
-    let result = this.rootNode.postTouchEvent(touchEvent);
+    let node: FrameNode | null = this.rootNode.getFrameNode();
+    let offsetX: number | null | undefined = node?.getPositionToParent().x;
+    let offsetY: number | null | undefined = node?.getPositionToParent().y;
+    ;
+    let changedTouchLen = event.changedTouches.length;
+    for (let i = 0; i < changedTouchLen; i++) {
+      if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+        event.changedTouches[i].x = vp2px(offsetX + event.changedTouches[i].x);
+        event.changedTouches[i].y = vp2px(offsetY + event.changedTouches[i].y);
+      }
+    }
+    let result = this.rootNode.postTouchEvent(event);
     console.log("result " + result);
+    return result;
   }
 }
 
@@ -616,7 +648,7 @@ struct MyComponent {
         .height(300)
         .backgroundColor(Color.Pink)
         .onTouch((event) => {
-          if(event != undefined){
+          if (event != undefined) {
             this.nodeController.postTouchEvent(event);
           }
         })
@@ -636,7 +668,7 @@ dispose(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI";
 
 @Component
 struct TestComponent {
@@ -736,14 +768,14 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到BuiderNode中的自定义组件。
+传递recycle事件到BuilderNode中的自定义组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI"
+import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
 
 class MyDataSource {
   private dataArray: string[] = [];
@@ -891,7 +923,7 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {

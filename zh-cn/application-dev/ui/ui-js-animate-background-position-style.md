@@ -1,7 +1,5 @@
 # background-position样式动画
 
-
-
 通过改变background-position属性（第一个值为X轴的位置，第二个值为Y轴的位置）移动背景图片位置，若背景图位置超出组件则超出部分的背景图不显示。
 
 
@@ -81,14 +79,8 @@
 ```
 
 
-> **说明：**
+> **说明：** 
+>
 > background-position仅支持背景图片的移动，不支持背景颜色（background-color）。
 
 ![zh-cn_image_background_img.gif](figures/zh-cn_image_background_img.gif)
-
-
-## 相关实例
-
-针对background-position样式动画开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

@@ -8,29 +8,33 @@ You can use [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) t
 
 **Table 1** APIs for basic application file operations
 
-| API| Description| Category| Synchronous Programming| Asynchronous Programming|
+| API| Description| Category| Synchronous Programming| Asynchronous Programming| 
 | -------- | -------- | -------- | -------- | -------- |
-| access | Checks whether a file exists.| Method| Supported| Supported|
-| close | Closes a file.| Method| Supported| Supported|
-| copyFile | Copies a file.| Method| Supported| Supported|
-| createStream | Creates a stream based on a file path.| Method| Supported| Supported|
-| listFile | Lists all files in a directory.| Method| Supported| Supported|
-| mkdir | Creates a directory.| Method| Supported| Supported|
-| moveFile | Moves a file.| Method| Supported| Supported|
-| open | Opens a file.| Method| Supported| Supported|
-| read | Reads data from a file.| Method| Supported| Supported|
-| rename | Renames a file or folder.| Method| Supported| Supported|
-| rmdir | Deletes a directory.| Method| Supported| Supported|
-| stat | Obtains detailed file information.| Method| Supported| Supported|
-| unlink | Deletes a single file.| Method| Supported| Supported|
-| write | Writes data to a file.| Method| Supported| Supported|
-| Stream.close | Closes a stream.| Method| Supported| Supported|
-| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported|
-| Stream.write | Writes data to a stream.| Method| Supported| Supported|
-| Stream.read | Reads data from a stream.| Method| Supported| Supported|
-| File.fd | Defines a file descriptor.| Attribute| N/A| N/A|
-| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A|
-| Filter | Defines the options for filtering files.| Type| N/A| N/A|
+| access | Checks whether a file exists.| Method| Supported| Supported| 
+| close | Closes a file.| Method| Supported| Supported| 
+| copyFile | Copies a file.| Method| Supported| Supported| 
+| createStream | Creates a stream based on a file path.| Method| Supported| Supported| 
+| listFile | Lists all files in a directory.| Method| Supported| Supported| 
+| mkdir | Creates a directory.| Method| Supported| Supported| 
+| moveFile | Moves a file.| Method| Supported| Supported| 
+| open | Opens a file.| Method| Supported| Supported| 
+| read | Reads data from a file.| Method| Supported| Supported| 
+| rename | Renames a file or folder.| Method| Supported| Supported| 
+| rmdir | Deletes a directory.| Method| Supported| Supported| 
+| stat | Obtains detailed file information.| Method| Supported| Supported| 
+| unlink | Deletes a single file.| Method| Supported| Supported| 
+| write | Writes data to a file.| Method| Supported| Supported| 
+| Stream.close | Closes a stream.| Method| Supported| Supported| 
+| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported| 
+| Stream.write | Writes data to a stream.| Method| Supported| Supported| 
+| Stream.read | Reads data from a stream.| Method| Supported| Supported| 
+| File.fd | Defines a file descriptor.| Attribute| N/A| N/A| 
+| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A| 
+| Filter | Defines the options for filtering files.| Type| N/A| N/A| 
+
+> **NOTE**
+>
+> When using ohos.file.fs APIs, you are advised to use asynchronous APIs for time-consuming operations, such as read and write operations, to prevent application crashes.
 
 ## Development Example
 
@@ -44,9 +48,9 @@ The following example demonstrates how to create a file, read data from it, and 
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import buffer from '@ohos.buffer';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { buffer } from '@kit.ArkTS';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -78,8 +82,8 @@ The following example demonstrates how to read data from a file and copy it to a
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions, WriteOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -123,8 +127,8 @@ The following example demonstrates how to read and write file data using a strea
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -159,17 +163,17 @@ async function readWriteFileWithStream(): Promise<void> {
 
 > **NOTE**
 >
-> - Close the stream once it is not required. 
+> - Close the stream once it is not required.
 > - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode. 
 > - The **Stream** APIs do not support concurrent read and write operations.
 
 ### Listing Files
 
-The following example demonstrates how to list files that meet the specified conditions.
+The following example demonstrates how to obtain files that meet the specified conditions.
 
 ```ts
-import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -196,12 +200,12 @@ function getListFile(): void {
 
 ### Using File Streams
 
-The following sample code demonstrates how to use readable and writable streams.
+The following example demonstrates how to use readable and writable streams.
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -239,13 +243,13 @@ function copyFileWithData(): void {
 
 ```
 
-The following code demonstrates how to use a file hash stream.
+The following example demonstrates how to use a file hash stream.
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
-import hash from '@ohos.file.hash';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { hash } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;

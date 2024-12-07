@@ -16,7 +16,7 @@ This change is a non-compatible change.
 
 All APIs provided by the @ohos.multimedia.medialibrary module will be deleted from the SDK and cannot be used by new applications. An error will be reported during compilation of historical code projects.
 
-For released applications, the original features provided by these APIs cannot be used, and error code 8000001 is reported when any of them is called.
+Later, for released applications, the original features provided by these APIs cannot be used, and error code 8000001 will be reported when any of them is called.
 
 **Start API Level**
 
@@ -33,7 +33,5 @@ All APIs of the @ohos.multimedia.medialibrary module.
 **Adaptation Guide**
 
 Do not use the @ohos.multimedia.medialibrary module. Instead, use the @ohos.file.photoAccessHelper module to implement related features.
-
-For details about the API mappings, see [mediaLibrary API reference](../../../application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md).
 
 For details about how to use the new APIs, see [Media Library Kit User Guide](../../../application-dev/media/medialibrary/photoAccessHelper-overview.md).

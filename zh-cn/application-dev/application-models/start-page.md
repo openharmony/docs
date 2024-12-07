@@ -98,7 +98,7 @@ struct First {
   build() {
     Column() {
       Row() {
-        Text($r('app.string.singleton_first_title'))
+        Text('singleton_first_title')
           .fontSize(24)
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Start)
@@ -108,20 +108,20 @@ struct First {
       .height(56)
       .justifyContent(FlexAlign.Start)
 
-      Image($r('app.media.pic_empty'))
+      Image('pic_empty')
         .width(120)
         .height(120)
         .margin({ top: 224 })
 
-      Text($r('app.string.no_content'))
+      Text('no_content')
         .fontSize(14)
         .margin({ top: 8, bottom: 317, right: 152, left: 152 })
-        .fontColor($r('app.color.text_color'))
+        .fontColor('text_color')
         .opacity(0.4)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor($r('app.color.backGrounding'))
+    .backgroundColor('backGrounding')
   }
 }
 ```

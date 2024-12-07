@@ -31,7 +31,6 @@ AVCapability模块提供用于编解码能力查询的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | 编码器的比特率模式。  | 
 | typedef struct [OH_AVRange](_o_h___a_v_range.md) [OH_AVRange](#oh_avrange) | 范围包含最小值和最大值。  | 
 | typedef enum [OH_AVCodecCategory](#oh_avcodeccategory-1) [OH_AVCodecCategory](#oh_avcodeccategory) | 编解码器类别。  | 
 | typedef enum [OH_AVCapabilityFeature](#oh_avcapabilityfeature-1) [OH_AVCapabilityFeature](#oh_avcapabilityfeature) | 可以在特定编解码器场景中使用的可选特性。  | 
@@ -41,7 +40,6 @@ AVCapability模块提供用于编解码能力查询的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_BitrateMode](#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2 } | 编码器的比特率模式。  | 
 | [OH_AVCodecCategory](#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | 编解码器类别。  | 
 | [OH_AVCapabilityFeature](#oh_avcapabilityfeature-1) {<br/> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br/>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br/>VIDEO_LOW_LATENCY = 2 <br/>} | 可以在特定编解码器场景中使用的可选特性。  | 
 
@@ -56,7 +54,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 | const char \* [OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapability \*capability) | 获取编解码器名称。  | 
 | int32_t [OH_AVCapability_GetMaxSupportedInstances](#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | 获取编解码器支持的最大实例数。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | 获取编码器支持的比特率范围。  | 
-| bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](#oh_bitratemode) bitrateMode) | 检查编码器是否支持特定的比特率模式。  | 
+| bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_codec_base.md#oh_bitratemode) bitrateMode) | 检查编码器是否支持特定的比特率模式。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | 获取编码器支持的质量范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | 获取编码器支持的编码器复杂性范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | 获取音频编解码器支持的采样率。  | 
@@ -120,20 +118,6 @@ typedef struct OH_AVRange OH_AVRange
 
 **起始版本：** 10
 
-
-### OH_BitrateMode
-
-```
-typedef enum OH_BitrateMode OH_BitrateMode
-```
-**描述**
-编码器的比特率模式。
-
-**系统能力：** SystemCapability.Multimedia.Media.CodecBase
-
-**起始版本：** 10
-
-
 ## 枚举类型说明
 
 
@@ -172,25 +156,6 @@ enum OH_AVCodecCategory
 | -------- | -------- |
 | HARDWARE  | 硬件编解码。   | 
 | SOFTWARE  | 软件编解码。   | 
-
-
-### OH_BitrateMode
-
-```
-enum OH_BitrateMode
-```
-**描述**
-编码器的比特率模式。
-
-**系统能力：** SystemCapability.Multimedia.Media.CodecBase
-
-**起始版本：** 10
-
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| BITRATE_MODE_CBR  | 恒定比特率模式。   | 
-| BITRATE_MODE_VBR  | 可变比特率模式。   | 
-| BITRATE_MODE_CQ  | 恒定质量模式。   | 
 
 
 ## 函数说明

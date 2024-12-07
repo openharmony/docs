@@ -112,7 +112,7 @@ The notification attribute **isUnremovable** is set to true.
 
 **Solution**
 
-See [NotificationRequest](./js-apis-notificationManager.md#notificationrequest) to check the notification attribute **isUnremovable**.
+Enable notification deletion. For details, see [NotificationRequest](./js-apis-inner-notification-notificationRequest.md).
 
 ## 1600007 Notification Not Found
 
@@ -313,6 +313,41 @@ No corresponding proxy relationship is configured.
 
 Check the proxy relationship configuration.
 
+## 1600018 Notification Settings Page Already Displayed
+
+**Error Message**
+
+The notification settings window is already displayed.
+
+**Description**
+
+This error code is reported when the notification settings page has been displayed.
+
+**Cause**
+
+The notification settings page has been displayed.
+
+**Solution**
+
+Check whether the notification settings page is displayed.
+
+## 1600019 No Configuration Information for a Do Not Disturb Profile
+
+**Error Message**
+
+The do-not-disturb profile does not exist.
+
+**Description**
+
+This error code is reported when the configuration information corresponding to the Do Not Disturb profile ID does not exist.
+
+**Cause**
+
+No configuration information corresponding to the Do Not Disturb profile ID exists.
+
+**Solution**
+
+Check whether the queried Do Not Disturb profile ID is correct.
 
 ## 2300007 Network Access Failure
 
@@ -349,4 +384,4 @@ This error code is reported when the bundle name is incorrect or the application
 
 **Solution**
 
-Verify the bundle name and make sure the application is installed.
+1. Verify the bundle name and make sure the application is installed.

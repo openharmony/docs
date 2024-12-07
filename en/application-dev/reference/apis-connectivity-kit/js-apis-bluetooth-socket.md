@@ -355,7 +355,7 @@ Unsubscribes from SPP read request events.
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.                       |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -388,7 +388,7 @@ Defines the SPP configuration.
 | Name    | Type               | Readable  | Writable  | Description         |
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | Yes   | Yes   | UUID of the SPP.|
-| secure | boolean             | Yes   | Yes   | Whether it is a secure channel.   |
+| secure | boolean             | Yes   | Yes   | Whether it is a secure channel. The value **true** indicates a secure channel, and the value **false** indicates a non-secure channel.   |
 | type   | [SppType](#spptype)            | Yes   | Yes   | Type of the SPP link.   |
 
 

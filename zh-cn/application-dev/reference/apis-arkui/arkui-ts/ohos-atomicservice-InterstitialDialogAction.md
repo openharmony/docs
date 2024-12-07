@@ -1,4 +1,4 @@
-# @ohos.atomicservice.InterstitialDialogAction (弹框)
+# InterstitialDialogAction
 
 InterstitialDialogAction弹框在原子化服务中用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户点击弹框的不同区域可以触发相应的动作。
 
@@ -22,15 +22,17 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 ## InterstitialDialogAction
 
+```
 InterstitialDialogAction {
     uiContext: UIContext,
-    contentNode: ComponentContent\<object\>,
+    contentNode: ComponentContent<object>,
     dialogParam: DialogParams,
     bottomOffsetType?: BottomOffset,
     constructor: (dialogOptions: DialogOptions),
-    openDialog(): Callback\<void\>,
-    closeDialog(): Callback\<void\>
+    openDialog(): void,
+    closeDialog(): void
 }
+```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -45,8 +47,8 @@ InterstitialDialogAction {
 | dialogParam | [DialogParams](#dialogparams) | 是 | 设置弹框的一些属性。 |
 | bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 设定弹框距离窗口底部的距离类型。<br>默认值：[BottomOffset](#bottomoffset).OFFSET_FOR_BAR。 |
 | constructor | (dialogOptions: [DialogOptions](#dialogoptions)) | 是 | InterstitialDialogAction类的构造方法。 |
-| openDialog | Callback\<void\> | 否 | 设置弹框打开的接口。 |
-| closeDialog | Callback\<void\> | 是 | 设置弹框关闭的接口。 |
+| openDialog | void| 是 | 设置弹框打开的接口。 |
+| closeDialog | void | 是 | 设置弹框关闭的接口。 |
 
 ## DialogParams
 
@@ -72,10 +74,10 @@ InterstitialDialogAction {
 | 名称| 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
-| title | [ResourceColor](ts-types.md#resourcecolor) | 否 | 弹框标题文本。 |
-| subtitle | [ResourceColor](ts-types.md#resourcecolor) | 否 | 弹框副标题文本。 |
-| titleColor | [ResourceColor](ts-types.md#resourcecolor) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框标题文本颜色。 |
-| subtitleColor | [ResourceColor](ts-types.md#resourcecolor) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框副标题文本颜色。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框标题文本。 |
+| subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框副标题文本。 |
+| titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框标题文本颜色。 |
+| subtitleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框副标题文本颜色。 |
 | backgroundImage | [Resource](ts-types.md#resource) | 否 | 弹框背景图片。 |
 | foregroundImage | [Resource](ts-types.md#resource) | 否 | 弹框前景图片。 |
 | iconStyle | [IconStyle](#iconstyle) | 否 | 关闭按钮图标的样式（亮调或者暗调）。<br>默认值：[IconStyle](#iconstyle).Light |

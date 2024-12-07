@@ -12,6 +12,8 @@ renderFit(fitMode: RenderFit)
 
 Sets how the final state of the component's content is rendered during its width and height animation process.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -21,6 +23,8 @@ Sets how the final state of the component's content is rendered during its width
 | fitMode | [RenderFit](#renderfit) | Yes  | How the final state of the component's content is rendered during its width and height animation process.<br>If **renderFit** is not set, the default value **RenderFit.TOP_LEFT** is used.|
 
 ## RenderFit
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                         | Description                                      | Diagram                                     |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |

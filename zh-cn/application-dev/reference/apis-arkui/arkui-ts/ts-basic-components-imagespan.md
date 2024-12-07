@@ -61,7 +61,7 @@ verticalAlign(value: ImageSpanAlignment)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10枚举说明) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
+| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 
 ### objectFit
 
@@ -79,13 +79,13 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的缩放类型。<br/>默认值：ImageFit.Cover |
 
-### colorFilter<sup>13+</sup>
+### colorFilter<sup>14+</sup>
 
 colorFilter(value: ColorFilter | DrawingColorFilter)
 
 为图像设置颜色滤镜效果。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -169,9 +169,9 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 ## 示例
 
-### 示例1
+### 示例1（设置对齐方式）
 
-该示例实现了设置ImageSpan的基本属性和图片基于文本的对齐方式。
+该示例通过verticalAlign、objectFit属性展示了ImageSpan的对齐方式以及缩放效果。
 
 ```ts
 // xxx.ets
@@ -220,9 +220,9 @@ struct SpanExample {
 
 ![imagespan](figures/imagespan.png)
 
-### 示例2
+### 示例2（设置背景样式）
 
-该示例实现了如何设置ImageSpan图片的背景样式。
+该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
 
 ```ts
 // xxx.ets
@@ -244,8 +244,10 @@ struct Index {
 ```
 ![imagespan](figures/image_span_textbackgroundstyle.png)
 
-### 示例3
-ImageSpan设置图片成功加载解码和图片加载异常事件回调。
+### 示例3（为图片添加事件）
+
+该示例通过onComplete、onError为图片添加加载成功和加载异常的事件。
+
 ```ts
 // xxx.ets
 @Entry
@@ -268,9 +270,9 @@ struct Index {
   }
 }
 ```
-### 示例4
+### 示例4（设置颜色滤镜）
 
-该示例实现了给ImageSpan图像设置颜色滤镜效果。
+该示例通过colorFilter属性展示了给ImageSpan图像设置颜色滤镜的效果。
 
 ```ts
 // xxx.ets
@@ -306,9 +308,9 @@ struct SpanExample {
 ```
 ![imagespan](figures/image_span_colorfilter.gif)
 
-### 示例5
+### 示例5（设置加载占位图）
 
-该示例实现了ImageSpan设置加载网络图片时占位图的效果。
+该示例alt属性展示了ImageSpan设置加载网络图片时占位图的效果。
 
 ```ts
 // xxx.ets

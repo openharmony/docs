@@ -158,3 +158,4 @@
 | [UDMF_META_OPENHARMONY_HINOTE](_u_d_m_f.md#udmf_meta_openharmony_hinote)   "openharmony.hinote" | 系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。 | 
 | [UDMF_META_OPENHARMONY_STYLED_STRING](_u_d_m_f.md#udmf_meta_openharmony_styled_string)   "openharmony.styled-string" | 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。 | 
 | [UDMF_META_OPENHARMONY_WANT](_u_d_m_f.md#udmf_meta_openharmony_want)   "openharmony.want" | 系统定义的Want类型，归属类型为OBJECT。 | 
+| [UDMF_META_GENERAL_FILE_URI](_u_d_m_f.md#udmf_meta_general_file_uri)&nbsp;&nbsp;&nbsp;"general.file-uri" | 文件地址类型，归属类型为TEXT。<br/>从API version 13开始支持。 | 

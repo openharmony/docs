@@ -19,7 +19,7 @@
    let collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
    ```
 
-3. 比较字串。
+3. 比较字符串。
    ```ts
    let compareResult = collator.compare(first: string, second: string);
    // compareResult 为负数，表示第一个参数排在第二个参数之前
@@ -105,4 +105,15 @@ array.sort((a, b) => {
     return collator.compare(a, b);
 })
 console.log("result: ", array);  // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
+
+// 搜索匹配的字符串
+options = {
+    usage: "search",
+    sensitivity: "base"
+};
+collator = new intl.Collator("tr", options);
+let sourceArray = ['Türkiye', 'TüRkiye', 'salt', 'bright'];
+let s = 'türkiye';
+let matches = sourceArray.filter(item => collator.compare(item, s) === 0);
+console.log(matches.toString());  // Türkiye,TüRkiye
 ```

@@ -12,11 +12,11 @@ The **ElementName** module provides element name information, which can be obtai
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                    | Type    | Readable| Writable| Description                      |
+| Name                    | Type    | Read Only| Optional| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| deviceId                | string   | Yes  | Yes  | Device ID.                  |
-| bundleName              | string   | Yes  | Yes  | Bundle name.         |
-| abilityName             | string   | Yes  | Yes  | Name of the ability.              |
-| uri                     | string   | Yes  | Yes  | Resource ID.                |
-| shortName               | string   | Yes  | Yes  | Short name of the ability.              |
-| moduleName              | string   | Yes  | Yes  | Module name of the HAP file to which the ability belongs.  |
+| deviceId                | string   | No  |  Yes | Device ID.                  |
+| bundleName              | string   | No  |  No | Bundle name.         |
+| abilityName             | string   | No  |  No | Name of the ability.              |
+| uri                     | string   | No  |  Yes | Resource ID.                |
+| shortName               | string   | No  |  Yes | Short name of the ability.              |
+| moduleName              | string   | No  |  Yes | Module name of the HAP file to which the ability belongs.  |

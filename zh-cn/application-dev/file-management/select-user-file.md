@@ -39,7 +39,8 @@
    documentSelectOptions.authMode = true;
    ```
 
-3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
+   
    ```ts
    let uris: Array<string> = [];
    let context = getContext(this) as common.Context; // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -53,11 +54,14 @@
      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-> **注意**：
-> <br>**1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
-> <br>**3**、开发者可以根据结果集中uri做进一步的处理。建议定义一个全局变量保存uri。
-> <br>**4**、如有获取元数据需求，可以通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
+
+  > **注意：**
+  >
+  > **1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。
+  > **2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
+  > **3**、开发者可以根据结果集中uri做进一步的处理。建议定义一个全局变量保存uri。
+  > **4**、如有获取元数据需求，可以通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
+
 4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到文件描述符(fd)。
 
    ```ts
@@ -98,24 +102,27 @@
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-4)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5)接口拉起FilePicker应用界面进行文件选择。
+   
    ```ts
-   let uri: string = '';
+   let uris: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
    let context = getContext(this) as common.Context; 
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      //文件选择成功后，返回被选中音频的uri结果集。
-     uri = audioSelectResult[0];
-     console.info('audioViewPicker.select to file succeed and uri is:' + uri);
+     uris = audioSelectResult[0];
+     console.info('audioViewPicker.select to file succeed and uri is:' + uris);
    }).catch((err: BusinessError) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-> **注意**：
-> <br>**1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
-> <br>**3**、开发者可以根据结果集中的uri做读取文件数据操作。建议定义一个全局变量保存uri。例如通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件描述符(fd)，再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
+
+  > **注意：**
+  >
+  > **1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。
+  > **2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
+  > **3**、开发者可以根据结果集中的uri做读取文件数据操作。建议定义一个全局变量保存uri。例如通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件描述符(fd)，再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到文件描述符(fd)。
 
@@ -141,3 +148,5 @@
 针对用户文件的选择，有以下相关实例可供参考：
 
 - [选择并查看文档与媒体文件（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/FileManagement/FileShare/Picker) 
+
+<!--RP1--><!--RP1End-->

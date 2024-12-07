@@ -1,6 +1,6 @@
-# Media Key Session Management (C/C++)
+# DRM Media Key Session Management (C/C++)
 
-Using the **MediaKeySession** class of the DRM module, you can manage **MediaKeySession** instances, generate media key requests, and process responses to these requests.
+The **MediaKeySystem** class of the DRM module supports media key management and media decryption. **MediaKeySession** instances are created and destroyed by **MediaKeySystem** instances.
 
 ## How to Develop
 
@@ -9,10 +9,10 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
 1. Import the NDK, which provides DRM-related attributes and methods.
 
    ```c++
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_common.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_err.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysession.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysystem.h"
+    #include "multimedia/drm_framework/native_drm_common.h"
+    #include "multimedia/drm_framework/native_drm_err.h"
+    #include "multimedia/drm_framework/native_mediakeysession.h"
+    #include "multimedia/drm_framework/native_mediakeysystem.h"
    ```
 
 2. Link the DRM NDK dynamic library in the CMake script.
@@ -21,389 +21,152 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     target_link_libraries(PUBLIC libnative_drm.so)
    ```
 
-3. Call **OH_MediaKeySession_GenerateMediaKeyRequest** in the **MediaKeySession** class to generate a media key request, and call **OH_MediaKeySession_ProcessMediaKeyResponse** to process a response to the request.
+3. Declare the MediaKeySystem event listener callback.
 
-   ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
+    ```c++
+    // This callback applies to the scenario where there is only one MediaKeySystem instance.
+    static Drm_ErrCode SessoinEventCallBack(DRM_EventType  eventType, uint8_t *info, int32_t infoLen, char *extra)
+    {
+        return DRM_ERR_OK;
     }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
+
+    static Drm_ErrCode SessoinKeyChangeCallBack(DRM_KeysInfo *keysInfo, bool newKeysAvailable)
+    {
+        return DRM_ERR_OK;
     }
+
+    // This callback applies to the scenario where there are multiple MediaKeySystem instances.
+    static Drm_ErrCode SessoinEventCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+    {
+        return DRM_ERR_OK;
+    }
+
+    static Drm_ErrCode SessoinKeyChangeCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo, bool hasNewGoodKeys)
+    {
+        return DRM_ERR_OK;
+    }
+    ```
+
+4. Set the MediaKeySystem event listener callback.
+
+    ```c++
+    // This callback applies to the scenario where there is only one MediaKeySystem instance.
+    MediaKeySession_Callback sessionCallback = { SessoinEventCallBack, SessoinKeyChangeCallBack };
+    Drm_ErrCode ret = OH_MediaKeySession_SetMediaKeySessionCallback(mediaKeySession, &sessionCallback);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_SetMediaKeySessionCallback failed.");
+    }
+
+    // This callback applies to the scenario where there are multiple MediaKeySystem instances.
+    OH_MediaKeySession_Callback sessionCallback = { SessoinEventCallBackWithObj, SessoinKeyChangeCallBackWithObj };
+    ret = OH_MediaKeySession_SetCallback(mediaKeySession, &sessionCallback);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_SetCallback failed.");
+    }
+    ```
+
+5. Generate a media key request and process its response.
+
+    ```c++
     DRM_MediaKeyRequest mediaKeyRequest;
     DRM_MediaKeyRequestInfo info;
-    uint8_t testData[MAX_INIT_DATA_LEN] = {0};
-    memset(&info, 0, sizeof(DRM_MediaKeyRequestInfo));
-    info.initDataLen = MAX_INIT_DATA_LEN;
+    // initData corresponds to the PSSH data in the stream. Pass in the actual data.
+    unsigned char initData[128] = {0x00};
+    memset_s(&info, sizeof(DRM_MediaKeyRequestInfo), 0, sizeof(DRM_MediaKeyRequestInfo));
+    info.initDataLen = sizeof(initData);
     info.type = MEDIA_KEY_TYPE_ONLINE;
-    memcpy(info.mimeType, (char *)"video/mp4", sizeof("video/mp4"));
-    memcpy(info.initData, testData, sizeof(testData));
-    memcpy(info.optionName[0], (char *)"optionalDataName", sizeof("optionalDataName"));
-    memcpy(info.optionData[0], (char *)"optionalDataValue", sizeof("optionalDataValue"));
+    memcpy_s(info.mimeType, sizeof("video/avc"), (char *)"video/avc", sizeof("video/avc"));
+    memcpy_s(info.initData, sizeof(initData), initData, sizeof(initData));
+    memcpy_s(info.optionName[0], sizeof("optionalDataName"), (char *)"optionalDataName", sizeof("optionalDataName"));
+    memcpy_s(info.optionData[0], sizeof("optionalDataValue"), (char *)"optionalDataValue", sizeof("optionalDataValue"));
     info.optionsCount = 1;
-    ret = OH_MediaKeySession_GenerateMediaKeyRequest(keySession,
-        &info, &mediaKeyRequest);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_GenerateMediaKeyRequest failed.");
-        return ret;
+    ret = OH_MediaKeySession_GenerateMediaKeyRequest(mediaKeySession, &info, &mediaKeyRequest);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_GenerateMediaKeyRequest failed.");
     }
-    uint8_t mediaKeyId[MAX_OFFLINE_MEDIA_KEY_ID_LEN];
-    int32_t mediaKeyIdLen = MAX_OFFLINE_MEDIA_KEY_ID_LEN;
-    uint8_t response[5] = {1, 2, 3, 4, 5};
-    ret = OH_MediaKeySession_ProcessMediaKeyResponse(keySession,
-        response, sizeof(response)/sizeof(uint8_t), mediaKeyId, &mediaKeyIdLen);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_ProcessMediaKeyResponse failed.");
-        return ret;
+    /* The composition of an offline media key ID varies according to the DRM scheme. You can obtain an ID in either of the following ways:
+      1. The application calls OH_MediaKeySystem_GetOfflineMediaKeyIds to obtain the ID.
+      2. The application requests the DRM service through the network, obtains a keySessionResponse, and sends the response to OH_MediaKeySession_ProcessMediaKeyResponse for parsing.
+         An offline media key ID is obtained. The maximum length of a media key ID is 128. The following code is an example. Set the media key ID based on the actual media key data and length.
+    */
+    unsigned char mediaKeyId[26] = {0x00};
+    int32_t mediaKeyIdLen = 26;
+    // The maximum length of a media key response is 12288. Enter the actual length.
+    unsigned char mediaKeyResponse[12288] = {0x00};
+    int32_t mediaKeyResponseLen = 12288;
+    ret = OH_MediaKeySession_ProcessMediaKeyResponse(mediaKeySession, mediaKeyResponse,
+        mediaKeyResponseLen, mediaKeyId, &mediaKeyIdLen);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_ProcessMediaKeyResponse failed.");
     }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-        return ret;
-    }
-   ```
+    ```
 
-4. Call **OH_MediaKeySession_CheckMediaKeyStatus** in the **MediaKeySession** class to check the media key status.
+6. (Optional) Check the media key status of the media key session.
 
-   ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
-    }
+    ```c++
     DRM_MediaKeyStatus mediaKeyStatus;
-    ret = OH_MediaKeySession_CheckMediaKeyStatus(keySession, &mediaKeyStatus);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_CheckMediaKeyStatus failed.");
-        return ret;
+    ret = OH_MediaKeySession_CheckMediaKeyStatus(mediaKeySession, &mediaKeyStatus);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_CheckMediaKeyStatus failed.");
     }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-        return ret;
+    ```
+
+7. (Optional) Clear all media keys in the media key session.
+
+    ```c++
+    ret = OH_MediaKeySession_ClearMediaKeys(mediaKeySession);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_ClearMediaKeys failed.");
     }
    ```
 
-5. Call **OH_MediaKeySession_ClearMediaKeys** in the **MediaKeySession** class to clear all media keys of the current session.
+8. (Optional) Generate an offline media key release request and process its response.
 
-   ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySession_ClearMediaKeys(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_ClearMediaKeys failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-        return ret;
-    }
-   ```
-
-6. Call **OH_MediaKeySession_GenerateOfflineReleaseRequest** in the **MediaKeySession** class to generate a request to release offline media keys, and call **OH_MediaKeySession_ProcessOfflineReleaseResponse** to process a response to the request.
-
-   ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
-    }
+    ```c++
     uint8_t releaseRequest[MAX_MEDIA_KEY_REQUEST_DATA_LEN];
     int32_t releaseRequestLen = MAX_MEDIA_KEY_REQUEST_DATA_LEN;
-    uint8_t mediaKeyId[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-    int32_t mediaKeyIdLen = sizeof(mediaKeyId)/sizeof(uint8_t);
-    ret = OH_MediaKeySession_GenerateOfflineReleaseRequest(keySession,
+    ret = OH_MediaKeySession_GenerateOfflineReleaseRequest(mediaKeySession,
         mediaKeyId, mediaKeyIdLen, releaseRequest, &releaseRequestLen);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_GenerateOfflineReleaseRequest failed.");
-        return ret;
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_GenerateOfflineReleaseRequest failed.");
     }
-    uint8_t keyReleaseResponse[128] = {0};
-    int32_t keyReleaseResponseLen = sizeof(keyReleaseResponse)/sizeof(uint8_t);
-    uint8_t offlineMediaKeyId[5] = {0};
-    int32_t offlineMediaKeyIdLen = sizeof(offlineMediaKeyId)/sizeof(uint8_t);
-    ret = OH_MediaKeySession_ProcessOfflineReleaseResponse(keySession, offlineMediaKeyId, offlineMediaKeyIdLen
-        keyReleaseResponse, keyReleaseResponseLen);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_ProcessOfflineReleaseResponse failed.");
-        return ret;
+    // keyReleaseResponse is obtained from the DRM service through the network request using the request body releaseRequest. Pass in the actual data obtained.
+    unsigned char keyReleaseResponse[12288] = {0x00};
+    int32_t keyReleaseResponseLen = 12288;
+    ret = OH_MediaKeySession_ProcessOfflineReleaseResponse(mediaKeySession, mediaKeyId, mediaKeyIdLen,
+       keyReleaseResponse, keyReleaseResponseLen);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_ProcessOfflineReleaseResponse failed.");
     }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-        return ret;
+    ```
+
+9. (Optional) Restore offline media keys.
+
+    ```c++
+    // Load the media key with the specified media key ID to the current session. The loaded media key can belong to the current session or another session.
+    ret = OH_MediaKeySession_RestoreOfflineMediaKeys(mediaKeySession, mediaKeyId, mediaKeyIdLen);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_RestoreOfflineMediaKeys failed.");
     }
    ```
 
-7. Call **OH_MediaKeySession_RestoreOfflineMediaKeys** in the **MediaKeySession** class to restore the offline media keys.
+10. (Optional) Call **OH_MediaKeySession_GetContentProtectionLevel** in the **MediaKeySession** class to obtain the content protection level of the current session.
 
-   ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
-    }
-    uint8_t mediaKeyId[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-    int32_t keyIdLen = sizeof(testRestoreId)/sizeof(uint8_t);
-    ret = OH_MediaKeySession_RestoreOfflineMediaKeys(keySession, mediaKeyId, keyIdLen);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_RestoreOfflineMediaKeys failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-        return ret;
-    }
-   ```
-
-8. Call **OH_MediaKeySession_GetContentProtectionLevel** in the **MediaKeySession** class to obtain the content protection level of the current session.
-
-   ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
-    }
+    ```c++
     DRM_ContentProtectionLevel sessionContentProtectionLevel;
-    ret = OH_MediaKeySession_GetContentProtectionLevel(keySession,
+    ret = OH_MediaKeySession_GetContentProtectionLevel(mediaKeySession,
         &sessionContentProtectionLevel);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_GetContentProtectionLevel failed.");
-        return ret;
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_GetContentProtectionLevel failed.");
     }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-        return ret;
-    }
-   ```
+    ```
 
-9. Call **OH_MediaKeySession_RequireSecureDecoderModule** in the **MediaKeySession** class to obtain the secure decoder status.
+11. (Optional) Check whether secure decoding is required.
 
-   ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
-    }
+    ```c++
     bool requireSecureDecoder;
-    ret = OH_MediaKeySession_RequireSecureDecoderModule(keySession,
-        "video/mp4", &requireSecureDecoder);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_RequireSecureDecoderModule failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-        return ret;
-    }
-   ```
-
-10. Call **OH_MediaKeySession_SetMediaKeySessionCallback** in the **MediaKeySession** class to set a callback to listen for the media key system status.
-
-    ```c++
-    DRM_ErrCode TestSessoinEventCallBack(DRM_EventType  eventType, uint8_t *info,
-    int32_t infoLen, char *extra)
-    {
-     return DRM_ERR_OK;
-    }
-    DRM_ErrCode TestSessoinKeyChangeCallBack(DRM_KeysInfo *keysInfo, bool newKeysAvailable)
-    {
-     return DRM_ERR_OK;
-    }
-    DRM_ErrCode MediaKeySession_SetMediaKeySessionCallback()
-    {
-     MediaKeySystem *keySystem = NULL;
-     const char *name = "com.clearplay.drm";
-     ret = OH_MediaKeySystem_Create(name, &keySystem);
-     if (ret != DRM_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-         return ret;
-     }
-     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-     MediaKeySession *keySession = NULL;
-     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-     if (ret != DRM_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-         return ret;
-     }
-     MediaKeySession_Callback sessionCallback = { TestSessoinEventCallBack, TestSessoinKeyChangeCallBack };
-     ret = OH_MediaKeySession_SetMediaKeySessionCallback(keySession,
-        &sessionCallback);
-     if (ret != DRM_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_SetMediaKeySessionCallback failed.");
-         return ret;
-     }
-    }
-    ```
-
-11. Call **OH_MediaKeySession_SetCallback** in the **MediaKeySession** class to set a callback to listen for the media key system status.
-
-    ```c++
-    DRM_ErrCode TestSessoinEventCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_EventType eventType,
-    uint8_t *info, int32_t infoLen, char *extra)
-    {
-     return DRM_ERR_OK;
-    }
-    DRM_ErrCode TestSessoinKeyChangeCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo,
-    bool hasNewGoodKeys)
-    {
-     return DRM_ERR_OK;
-    }
-    DRM_ErrCode MediaKeySession_SetMediaKeySessionCallbackWithObj()
-    {
-     MediaKeySystem *keySystem = NULL;
-     const char *name = "com.clearplay.drm";
-     ret = OH_MediaKeySystem_Create(name, &keySystem);
-     if (ret != DRM_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-         return ret;
-     }
-     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-     MediaKeySession *keySession = NULL;
-     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-     if (ret != DRM_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-         return ret;
-     }
-     OH_MediaKeySession_Callback sessionCallback = { TestSessoinEventCallBackWithObj, TestSessoinKeyChangeCallBackWithObj };
-     ret = OH_MediaKeySession_SetCallback(keySession,
-        &sessionCallback);
-     if (ret != DRM_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_SetCallback failed.");
-         return ret;
-     }
-    }
-    ```
-
-12. Call **OH_MediaKeySession_Destroy** in the **MediaKeySession** class to destroy this **MediaKeySession** instance.
-
-    ```c++
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.clearplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-        return ret;
-    }
-    DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
-    MediaKeySession *keySession = NULL;
-    ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
-        return ret;
-    }
-    ret = OH_MediaKeySession_Destroy(keySession);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
-      return ret;
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-      return ret;
+    ret = OH_MediaKeySession_RequireSecureDecoderModule(mediaKeySession, "video/avc", &requireSecureDecoder);
+    if (ret != DRM_ERR_OK) {
+        printf("OH_MediaKeySession_RequireSecureDecoderModule failed.");
     }
     ```

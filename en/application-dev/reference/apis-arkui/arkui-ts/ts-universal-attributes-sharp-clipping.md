@@ -6,13 +6,35 @@ Shape clipping changes the visible portion of a component through clipping or ma
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## clip
+## clip<sup>12+</sup>
+
+clip(value: boolean)
+
+Sets whether to clip the areas of child components that extend beyond this component's boundaries, that is, whether to perform clipping based on the edge contour of the parent container
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to perform clipping based on the edge contour of the parent container.<br>Default value: **false**|
+
+## clip<sup>(deprecated)</sup>
 
 clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute)
 
-Clips the component based on the given shape.
+Sets whether to clip this component based on the given shape.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+> **NOTE** 
+>
+> This API is supported since API version 7 and deprecated since API version 12. You are advised to use [clip](#clip12) and [clipShape](#clipshape12) instead.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -20,15 +42,53 @@ Clips the component based on the given shape.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge outline of the parent container.<br>Default value: **false**|
+| value  | boolean \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Clip mode. If the value is a shape, the component is clipped based on the specified shape. If the value is of the Boolean type, it specifies whether to clip the component based on the edge contour of the parent container.<br>Default value: **false**|
 
-## mask
+## clipShape<sup>12+</sup>
+
+clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
+
+Clips this component based on the given shape.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape) \| [EllipseShape](../js-apis-arkui-shape.md#ellipseshape) \| [PathShape](../js-apis-arkui-shape.md#pathshape) \| [RectShape](../js-apis-arkui-shape.md#rectshape) | Yes  | Shape that the component to be clipped into.|
+
+## mask<sup>12+</sup>
+
+mask(value: ProgressMask)
+
+Adds a mask of the specified shape to the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                            |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
+| value  | [ProgressMask](#progressmask10) | Yes  | Mask to add to the component, which allows for dynamic adjustment of progress, maximum value, and color settings.|
+
+## mask<sup>(deprecated)</sup>
 
 mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute | ProgressMask)
 
 Adds a mask of the specified shape to the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+> **NOTE** 
+>
+> This API is supported since API version 7 and deprecated since API version 12. You are advised to use [mask](#mask12) and [maskShape](#maskshape12) instead.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -38,15 +98,41 @@ Adds a mask of the specified shape to the component.
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | value  | [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) \| [ProgressMask](#progressmask10)<sup>10+</sup> | Yes  | Mask of the specified shape to add to the component.|
 
+## maskShape<sup>12+</sup>
+
+maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
+
+Adds a mask of the specified shape to the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                            |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
+| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape) \| [EllipseShape](../js-apis-arkui-shape.md#ellipseshape) \| [PathShape](../js-apis-arkui-shape.md#pathshape) \| [RectShape](../js-apis-arkui-shape.md#rectshape) | Yes  | Mask of the specified shape to add to the component.|
+
 ## ProgressMask<sup>10+</sup>
 
 Implements a **ProgressMask** object to set the progress, maximum value, and color of the mask.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>10+</sup>
 
 constructor(value: number, total: number, color: ResourceColor)
 
 Constructs a **ProgressMask** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -62,6 +148,10 @@ updateProgress(value: number): void
 
 Updates the progress value of the progress mask.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory| Description          |
@@ -74,6 +164,10 @@ updateColor(value: ResourceColor): void
 
 Updates the color of the progress mask.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type                                  | Mandatory| Description        |
@@ -85,6 +179,10 @@ Updates the color of the progress mask.
 enableBreathingAnimation(value: boolean): void
 
 Sets whether to enable the breathing animation when the progress indicator is full. By default, the breathing animation is disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -112,18 +210,18 @@ struct ClipAndMaskExample {
       .borderRadius(20)
       // Clip the image based on a circle with a diameter of 280 px.
       Image($r('app.media.testImg'))
-        .clip(new Circle({ width: '280px', height: '280px' }))
+        .clipShape(new Circle({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
 
       Text('mask').fontSize(12).width('75%').fontColor('#DCDCDC')
       // Add a 500 px x 280 px square mask to the image.
       Image($r('app.media.testImg'))
-        .mask(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
 
       // Add a 280 px x 280 px circular mask to the image.
       Image($r('app.media.testImg'))
-        .mask(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
     }
     .width('100%')

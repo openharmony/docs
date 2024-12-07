@@ -1,0 +1,33 @@
+# Vibrator HDI 参考
+
+- 模块
+    - [Vibrator (V1_2)](_vibrator_v12.md)
+    - [Vibrator (V1_1)](_vibrator_v11.md)
+    - [Vibrator (V1_0)](_vibrator_v10.md)
+- 头文件
+    - Vibrator (V1_2)
+        - [IVibratorInterface.idl](_i_vibrator_interface_8idl_v12.md)
+        - [VibratorTypes.idl](_vibrator_types_8idl_v12.md)
+    - Vibrator (V1_1)
+        - [IVibratorInterface.idl](_i_vibrator_interface_8idl_v11.md)
+        - [VibratorTypes.idl](_vibrator_types_8idl_v11.md)
+    - Vibrator (V1_0)
+        - [IVibratorInterface.idl](_i_vibrator_interface_8idl_v10.md)
+        - [VibratorTypes.idl](_vibrator_types_8idl_v10.md)
+- 结构体
+    - Vibrator (V1_2)
+        - [CurvePoint](_curve_point_v12.md)
+        - [HapticCapacity](_haptic_capacity_v12.md)
+        - [HapticEvent](_haptic_event_v12.md)
+        - [HapticPaket](_haptic_paket_v12.md)
+        - [IVibratorInterface](interface_i_vibrator_interface_v12.md)
+    - Vibrator (V1_1)
+        - [CompositeEffect](union_composite_effect_v11.md)
+        - [HdfCompositeEffect](_hdf_composite_effect_v11.md)
+        - [HdfEffectInfo](_hdf_effect_info_v11.md)
+        - [HdfVibratorInfo](_hdf_vibrator_info_v11.md)
+        - [IVibratorInterface](interface_i_vibrator_interface_v11.md)
+        - [PrimitiveEffect](_primitive_effect_v11.md)
+        - [TimeEffect](_time_effect_v11.md)
+	- Vibrator (V1_0)
+        - [IVibratorInterface](interface_i_vibrator_interface_v10.md)

@@ -1,12 +1,12 @@
 # 使用Image_NativeModule完成图片解码
 
-创建图片源，获取位图的宽，高信息，以及释放图片源实例。
+创建图片源，获取位图的宽、高信息，以及释放图片源实例。
 
 ## 开发步骤
 
 ### 添加链接库
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libimage_source.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_source.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
@@ -20,7 +20,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
 
 **解码接口使用示例**
 
-在创建ImageSource实例后，进行指定属性值的获取和修改，通过解码参数创建PixelMap对象，获取图像帧数等操作。
+在创建ImageSource实例后，进行指定属性值的获取和修改、通过解码参数创建PixelMap对象、获取图像帧数等操作。
 
    ```c++
 

@@ -19,6 +19,7 @@ Menu()
 Creates a fixed container for a menu. This API does not have any parameters.
 
 > **NOTE**
+>
 > Rules for calculating the width of menus and menu items:
 >
 > During the layout, the width of each menu item is expected to be the same. If a child component has its width set, the [size calculation rule](ts-universal-attributes-size.md#constraintsize) prevails.
@@ -26,20 +27,12 @@ Creates a fixed container for a menu. This API does not have any parameters.
 > If the width is not set, the **Menu** component sets the default width of two columns for the **MenuItem** and **MenuItemGroup** child components. If a menu item's content area is wider than two columns, the **Menu** component automatically expands the menu item content area.
 >
 > When the width is set, the **Menu** component sets the **MenuItem** and **MenuItemGroup** child components to the fixed width (set width minus the padding).
+>
+> For the menu border [width](ts-universal-attributes-size.md#width), the minimum value is 64 vp.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-## subMenuExpandingMode<sup>12+</sup>
-
-Enumerates the submenu expanding modes.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name          | Description                               |
-|--------------|-----------------------------------|
-| SIDE_EXPAND  | Default mode. Submenus are expanded on the side on the same plane.           |
-| EMBEDDED_EXPAND | Embedded mode. Submenus are expanded while embedded within the main menu.             |
-| STACK_EXPAND | Stack mode. Submenus are expanded above the main menu. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## Attributes
 
@@ -57,9 +50,9 @@ This API is deprecated since API version 10. You are advised to use [font](#font
 
 **Parameters**
 
-| Name | Type                        | Mandatory | Description                                                    |
+| Name| Type                        | Mandatory| Description                                                    |
 | ------ | ---------------------------- | ---- | -------------------------------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Size of all text within the menu. If the value of the Length type is a number, the unit is fp. |
+| value  | [Length](ts-types.md#length) | Yes  | Size of all text within the menu. If the value of the Length type is a number, the unit is fp.|
 
 ### font<sup>10+</sup>
 
@@ -73,10 +66,9 @@ Sets the size of all text within the menu.
 
 **Parameters**
 
-| Name | Type                    | Mandatory | Description                  |
-| ------ | ------------------------ | ---- | ---------------------- |
-| value  | [Font](ts-types.md#font) | Yes  | Size of all text within the menu. |
-
+| Name| Type                    | Mandatory| Description                                                        |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | Yes  | Size of all text within the menu.<br>Default value:<br>{<br>      size: 16,<br>      family: 'HarmonyOS Sans',<br>      weight: FontWeight.Medium,<br>      style: FontStyle.Normal<br>} |
 ### fontColor<sup>10+</sup>
 
 fontColor(value: ResourceColor)
@@ -89,9 +81,9 @@ Sets the font color of all text within the menu.
 
 **Parameters**
 
-| Name | Type                                      | Mandatory | Description                  |
+| Name| Type                                      | Mandatory| Description                  |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of all text within the menu. |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color of all text within the menu.<br>Default value: **'#E5000000'**|
 
 ### radius<sup>10+</sup>
 
@@ -105,25 +97,9 @@ Sets the radius of the menu border corners.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                        |
+| Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | Yes  | Radius of the menu border corners.<br> The default value follows the theme.<br> Since API version 12, if the sum of the two maximum corner radii in the horizontal direction exceeds the menu's width, or if the sum of the two maximum corner radii in the vertical direction exceeds the menu's height, the default corner radius will be used for all four corners of the menu. |
-
-### width<sup>10+</sup>
-
-width(value: Length)
-
-Sets the border width of the menu. The minimum width is 64 vp.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 10.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type                        | Mandatory | Description          |
-| ------ | ---------------------------- | ---- | -------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Border width of the menu. |
+| value  | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) | Yes  | Radius of the menu border corners.<br>Default value: **8vp** for 2-in-1 devices and **20vp** for other devices<br><br> Since API version 12, if the sum of the two maximum corner radii in the horizontal direction exceeds the menu width, or if the sum of the two maximum corner radii in the vertical direction exceeds the menu height, the default corner radius will be used for all four corners of the menu.|
 
 ### menuItemDivider<sup>12+</sup>
 
@@ -141,7 +117,7 @@ If the sum of **startMargin** and **endMargin** exceeds the component width, bot
 
 | Name    | Type                                                    | Mandatory        | Description          |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the menu item divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the menu item.<br>- **endMargin**: distance between the divider and the end edge of the menu item. |
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the menu item divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the menu item.<br>- **endMargin**: distance between the divider and the end edge of the menu item.|
 
 ### menuItemGroupDivider<sup>12+</sup>
 
@@ -157,7 +133,7 @@ Sets the style of the top and bottom dividers for the menu item group. If this a
 
 | Name    | Type                                                    | Mandatory        | Description          |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the top and bottom dividers for the menu item group.<br>- **strokeWidth**: stroke width of the divider. The default value is 1 px.<br>- **color**: color of the divider. The default value is **#33000000**.<br>- **startMargin**: distance between the divider and the start edge of the menu item group. The default value is **16**.<br>- **endMargin**: distance between the divider and the end edge of the menu item group. The default value is **16**. |
+| options | [DividerStyleOptions](ts-types.md#dividerstyleoptions12) \|  undefined | Yes  | Style of the top and bottom dividers for the menu item group.<br>- **strokeWidth**: stroke width of the divider. The default value is 1 px.<br>- **color**: color of the divider. The default value is **#33000000**.<br>- **startMargin**: distance between the divider and the start edge of the menu item group. The default value is **16**.<br>- **endMargin**: distance between the divider and the end edge of the menu item group. The default value is **16**.|
 
 ### subMenuExpandingMode<sup>12+</sup>
 
@@ -171,9 +147,23 @@ Sets the submenu expanding mode of the menu.
 
 **Parameters**
 
-| Name | Type                        | Mandatory | Description          |
+| Name| Type                        | Mandatory| Description          |
 | ------ | ---------------------------- | ---- |--------------|
-| mode  | SubMenuExpandingMode | Yes  | Submenu expanding mode of the menu. |
+| mode  | [SubMenuExpandingMode](#submenuexpandingmode12) | Yes  | Submenu expanding mode of the menu.<br>Default value: **SubMenuExpandingMode.SIDE_EXPAND** |
+
+## SubMenuExpandingMode<sup>12+</sup>
+
+Enumerates the submenu expanding modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Description                                      |
+| --------------- | ------------------------------------------ |
+| SIDE_EXPAND     | Default mode. Submenus are expanded on the side on the same plane.|
+| EMBEDDED_EXPAND | Embedded mode. Submenus are expanded while embedded within the main menu.    |
+| STACK_EXPAND    | Stack mode. Submenus are expanded above the main menu.      |
 
 ## Example
 
@@ -243,7 +233,7 @@ struct Index {
 }
 ```
 
-![menu1](figures/menu1.png)
+![menu](figures/menu.png)
 
 ### Example 2
 

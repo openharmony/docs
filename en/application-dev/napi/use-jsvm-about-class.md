@@ -19,12 +19,12 @@ To begin with, it is important to understand the following basic concepts:
 | OH_JSVM_GetNewTarget  | Obtains **new.target** of the constructor call.|
 | OH_JSVM_DefineClass   | Defines a JS class and associated functions within a C/C++ addon. It allows you to define a constructor, methods, and properties that can be accessed from JS.|
 | OH_JSVM_Wrap           | Wraps a native instance in a JS object. You can use **OH_JSVM_Unwrap()** to retrieve the native instance later.|
-| OH_JSVM_Unwrap         | Retrieves a native instance from a JS object.|
-| OH_JSVM_RemoveWrap     | Retrieves a native instance previously wrapped in a JS object and removes the wrapping.|
+| OH_JSVM_Unwrap         | Unwraps a native instance from a JS object.|
+| OH_JSVM_RemoveWrap     | Removes the wrapping after the native instance is unwrapped from a JS object.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for class management.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code involved in the class-related APIs.
 
 ### OH_JSVM_NewInstance
 
@@ -214,7 +214,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = RemoveWrap},
 };
 static JSVM_CallbackStruct *method = param;
-// Set property descriptor named wrapObject and removeWrap and associate them with a callback each. This allows the WrapObject and RemoveWrap callbacks to be called from JS.
+// Set property descriptors named wrapObject and removeWrap and associate them with a callback each. This allows the WrapObject and RemoveWrap callbacks to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"wrapObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT}
@@ -238,7 +238,7 @@ static void DerekItem(JSVM_Env env, void *data, void *hint) {
 
 static JSVM_Value WrapObject(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_LOG_INFO(LOG_APP, "JSVM wrap");
-    // Set Object properties.
+    // Set a property for the object.
     obj->name = "lilei";
     obj->age = 18;
     // Obtain the number of parameters in the callback and the values to be wrapped.
@@ -252,7 +252,7 @@ static JSVM_Value WrapObject(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_Unwrap(env, toWrap, reinterpret_cast<void **>(&data));
     OH_LOG_INFO(LOG_APP, "JSVM name: %{public}s", data->name.c_str());
     OH_LOG_INFO(LOG_APP, "JSVM age: %{public}d", data->age);
-    // Retrieve the previously wrapped Object and remove the wrapping.
+    // Retrieve the previously wrapped object and remove the wrapping.
     OH_JSVM_RemoveWrap(env, toWrap, reinterpret_cast<void **>(&obj));
     JSVM_Status status = OH_JSVM_Unwrap(env, toWrap, reinterpret_cast<void **>(&data1));
     if (status != JSVM_OK) {

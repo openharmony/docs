@@ -10,8 +10,10 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 | HAP应用| {appId:"xxx", bundleName:"xxx"} | bundleName为应用包名 | 
 | 系统服务| {processName:"xxx", APL:"system_basic \| system_core"} | APL为系统服务等级 |
 
->**说明：**
-当调用方为系统服务且APL等级为normal时，暂不支持密钥证明，此种情况下，processName与APL字段将置空。
+> **说明：**
+> 1. 当调用方为系统服务且APL等级为normal时，暂不支持密钥证明，此种情况下，processName与APL字段将置空。
+> 2. 密钥证明功能在模拟器场景不支持。
+> 3. 轻量级设备不支持密钥证明功能。
 
 
 密钥证明过程如下：
@@ -26,7 +28,7 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 <!--RP1-->
 当前提供了两种密钥证明方式。
 - 匿名密钥证明：不会泄露设备信息，没有权限管理。面向所有应用开放。为了保护用户设备信息，三方应用开发者只能使用匿名密钥证明。
-- 非匿名密钥证明：可以看到调用方设备信息，有权限管控，需申请"ohos.permission.ATTEST_KEY"权限。
+- 非匿名密钥证明：可以看到调用方设备信息，有权限管控，需申请[ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key)权限。
 <!--RP1End-->
 
 ## 支持的算法

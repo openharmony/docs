@@ -156,6 +156,8 @@ attributeModifier(modifier: AttributeModifier\<SymbolSpanAttribute>)
 
 ## 示例
 
+该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
+
 ```ts
 // xxx.ets
 @Entry

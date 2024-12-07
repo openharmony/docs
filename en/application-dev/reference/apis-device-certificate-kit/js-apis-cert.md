@@ -41,7 +41,7 @@ Defines a binary data array.
  **Atomic service API**: This API can be used in atomic services since API version 12.
 
  **System capability**: SystemCapability.Security.Cert
-| Name          | Type          | Readable | Writable | Description             |
+| Name          | Type          | Readable| Writable| Description             |
 | -------------- | -------------- | ---- | ---- | ----------------|
 | data           | Uint8Array     | Yes  | Yes  | Data.   |
 
@@ -52,7 +52,7 @@ Defines a list of data arrays.
  **Atomic service API**: This API can be used in atomic services since API version 12.
 
  **System capability**: SystemCapability.Security.Cert
-| Name          | Type          | Readable | Writable | Description              |
+| Name          | Type          | Readable| Writable| Description              |
 | -------------- | -------------- | ---- | ---- | ----------------|
 | data           | Uint8Array     | Yes  | Yes  | Data list.   |
 
@@ -64,10 +64,10 @@ Defines a list of data arrays.
 
  **System capability**: SystemCapability.Security.Cert
 
-| Name      | Value |  Description     |
+| Name      | Value|  Description     |
 | ---------- | ------ | --------- |
-| FORMAT_DER | 0      | Distinguished Encoding Rules (DER) format. |
-| FORMAT_PEM | 1      | Privacy-Enhanced Mail (PEM) format. |
+| FORMAT_DER | 0      | Distinguished Encoding Rules (DER) format.|
+| FORMAT_PEM | 1      | Privacy-Enhanced Mail (PEM) format.|
 | FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS #7 format.|
 
 ## CertItemType<sup>10+</sup>
@@ -82,7 +82,7 @@ Defines a list of data arrays.
 | -------------------------------- | ---- | ------------------------------ |
 | CERT_ITEM_TYPE_TBS               | 0    | Information to be signed.    |
 | CERT_ITEM_TYPE_PUBLIC_KEY        | 1    | Public key of the certificate.      |
-| CERT_ITEM_TYPE_ISSUER_UNIQUE_ID  | 2    | Unique ID of the certificate issuer. |
+| CERT_ITEM_TYPE_ISSUER_UNIQUE_ID  | 2    | Unique ID of the certificate issuer.|
 | CERT_ITEM_TYPE_SUBJECT_UNIQUE_ID | 3    | Unique ID of the certificate subject.  |
 | CERT_ITEM_TYPE_EXTENSIONS        | 4    | Certificate extensions, each of which is identified by a unique object identifier (OID).    |
 
@@ -98,7 +98,7 @@ Defines a list of data arrays.
 | ----------------------------- | ---- | --------------------------------------------- |
 | EXTENSION_OID_TYPE_ALL        | 0    | All object identifiers.           |
 | EXTENSION_OID_TYPE_CRITICAL   | 1    | Object identifier whose **critical** is **true**. |
-| EXTENSION_OID_TYPE_UNCRITICAL | 2    | Object identifier whose **critical** is **false**. |
+| EXTENSION_OID_TYPE_UNCRITICAL | 2    | Object identifier whose **critical** is **false**.|
 
 ## ExtensionEntryType<sup>10+</sup>
 
@@ -111,7 +111,7 @@ Defines a list of data arrays.
 | Name                               | Value  | Description                        |
 | ----------------------------------- | ---- | ---------------------------- |
 | EXTENSION_ENTRY_TYPE_ENTRY          | 0    | Entire object.          |
-| EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | Critical attribute of the object. |
+| EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | Critical attribute of the object.|
 | EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | Data of the object.        |
 
 ## EncodingType<sup>12+</sup>
@@ -122,23 +122,23 @@ Defines a list of data arrays.
 
  **System capability**: SystemCapability.Security.Cert
 
-| Name      | Value |  Description     |
+| Name      | Value|  Description     |
 | ---------- | ------ | --------- |
-| ENCODING_UTF8 | 0      | UTF-8. |
+| ENCODING_UTF8 | 0      | UTF-8.|
 
 ## EncodingBlob
 
 Defines a certificate binary array in encoding format.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Readable | Writable | Description                          |
+| Name          | Type                             | Readable| Writable| Description                          |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------ |
-| data           | Uint8Array                        | Yes  | Yes  | Certificate data. |
+| data           | Uint8Array                        | Yes  | Yes  | Certificate data.|
 | encodingFormat | [EncodingFormat](#encodingformat) | Yes  | Yes  | Certificate encoding format.            |
 
 
@@ -146,15 +146,15 @@ Defines a certificate binary array in encoding format.
 
 Defines the certificate chain data, which is passed in as input parameters during certificate chain verification.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Readable | Writable | Description                                                        |
+| Name          | Type                             | Readable| Writable| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| data           | Uint8Array                        | Yes  | Yes  | Certificate data, in the *length* (2 bytes) + *data* format. For example, **08ABCDEFGH07ABCDEFG**. The first two bytes indicate the length of the first certificate is eight bytes, and the following eight bytes indicate the certificate data. Then, the next two bytes indicate the length of another certificate is seven bytes, and the seven bytes followed indicate the certificate data. |
+| data           | Uint8Array                        | Yes  | Yes  | Certificate data, in the *length* (2 bytes) + *data* format. For example, **08ABCDEFGH07ABCDEFG**. The first two bytes indicate the length of the first certificate is eight bytes, and the following eight bytes indicate the certificate data. Then, the next two bytes indicate the length of another certificate is seven bytes, and the seven bytes followed indicate the certificate data.|
 | count          | number                            | Yes  | Yes  | Number of certificates contained in the input data.                              |
 | encodingFormat | [EncodingFormat](#encodingformat) | Yes  | Yes  | Certificate encoding format.                                          |
 
@@ -186,9 +186,9 @@ Represents the CN information of a certificate.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Mandatory | Description              |
+| Name          | Type                             | Mandatory| Description              |
 | -------------- | --------------------------------- | ---- | ------------------ |
-| type | [GeneralNameType](#generalname12)    | Yes |  Type of the certificate subject. |
+| type | [GeneralNameType](#generalname12)    | Yes|  Type of the certificate subject. |
 | name | Uint8Array    | No |  DER format of the certificate subject. |
 
 ## X509CertMatchParameters<sup>11+</sup>
@@ -199,25 +199,25 @@ Defines the parameters used to match a certificate. If no parameter is specified
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Mandatory | Description              |
+| Name          | Type                             | Mandatory| Description              |
 | -------------- | --------------------------------- | ---- | ------------------ |
-| x509Cert | [X509Cert](#x509cert)    | No |  Certificate object. |
+| x509Cert | [X509Cert](#x509cert)    | No|  Certificate object. |
 | validDate | string    | No |  Certificate validity period. |
-| issuer | Uint8Array | No | Certificate issuer, in DER format. |
-| keyUsage | Array\<boolean> | No | Whether to match the key usage. |
+| issuer | Uint8Array | No | Certificate issuer, in DER format.|
+| keyUsage | Array\<boolean> | No | Whether to match the key usage.|
 | serialNumber | bigint    | No |  Serial number of the certificate. |
-| subject | Uint8Array | No | Certificate subject, in DER format. |
-| publicKey | [DataBlob](#datablob) | No | Public key of the certificate, in DER format. |
-| publicKeyAlgID | string | No | Algorithm of the certificate public key. |
-| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | No | Subject Alternative Names (SANs) of the certificate. |
-| matchAllSubjectAltNames<sup>12+</sup> | boolean | No | Whether to match all SANs of the certificate. |
-| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | No | Key of the certificate authority (CA). |
-| minPathLenConstraint<sup>12+</sup> | number | No | Minimum length of the certification path (chain of trust) that can be built from the certificate to a trusted root CA. |
-| extendedKeyUsage<sup>12+</sup> | Array\<string> | No | Usage of the certificate. |
-| nameConstraints<sup>12+</sup> | Uint8Array | No | Constraints on the subject names that can be included in certificates. |
-| certPolicy<sup>12+</sup> | Array\<string> | No | Certificate policy. |
-| privateKeyValid<sup>12+</sup> | string | No | Validity period of the certificate private key. |
-| subjectKeyIdentifier<sup>12+</sup> | Uint8Array | No | Identifier of the public key of the certificate's subject. |
+| subject | Uint8Array | No | Certificate subject, in DER format.|
+| publicKey | [DataBlob](#datablob) | No | Public key of the certificate, in DER format.|
+| publicKeyAlgID | string | No | Algorithm of the certificate public key.|
+| subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | No | Subject Alternative Names (SANs) of the certificate.|
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | No | Whether to match all SANs of the certificate.|
+| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | No | Key of the certificate authority (CA).|
+| minPathLenConstraint<sup>12+</sup> | number | No | Minimum length of the certification path (chain of trust) that can be built from the certificate to a trusted root CA.|
+| extendedKeyUsage<sup>12+</sup> | Array\<string> | No | Usage of the certificate.|
+| nameConstraints<sup>12+</sup> | Uint8Array | No | Constraints on the subject names that can be included in certificates.|
+| certPolicy<sup>12+</sup> | Array\<string> | No | Certificate policy.|
+| privateKeyValid<sup>12+</sup> | string | No | Validity period of the certificate private key.|
+| subjectKeyIdentifier<sup>12+</sup> | Uint8Array | No | Identifier of the public key of the certificate's subject.|
 
 ## X509CRLMatchParameters<sup>11+</sup>
 
@@ -227,13 +227,13 @@ Represents the parameters used to match a certificate revocation list (CRL). If 
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Mandatory | Description              |
+| Name          | Type                             | Mandatory| Description              |
 | -------------- | --------------------------------- | ---- | ------------------ |
-| issuer | Array\<Uint8Array> | No | Issuers of the certificates. At least one issuer must be matched. |
-| x509Cert | [X509Cert](#x509cert) | No | Certificate object used to determine whether the certificate is in the CRL. |
-| updateDateTime<sup>12+</sup> | string | No | Certificate update time. |
-| maxCRL<sup>12+</sup> | bigint | No | Maximum number of CRLs. |
-| minCRL<sup>12+</sup> | bigint | No | Minimum number of CRLs. |
+| issuer | Array\<Uint8Array> | No | Issuers of the certificates. At least one issuer must be matched.|
+| x509Cert | [X509Cert](#x509cert) | No | Certificate object used to determine whether the certificate is in the CRL.|
+| updateDateTime<sup>12+</sup> | string | No | Certificate update time.|
+| maxCRL<sup>12+</sup> | bigint | No | Maximum number of CRLs.|
+| minCRL<sup>12+</sup> | bigint | No | Minimum number of CRLs.|
 
 ## CertChainBuildParameters<sup>12+</sup>
 
@@ -243,11 +243,11 @@ Represents the parameters for building a certificate chain.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Mandatory | Description              |
+| Name          | Type                             | Mandatory| Description              |
 | -------------- | --------------------------------- | ---- | ------------------ |
-| certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | Yes | Filter criteria. |
-| maxLength | number | No | Maximum length of the CA certificate in the certificate chain. |
-| validationParameters | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes | Parameters for certificate chain validation. |
+| certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | Yes | Filter criteria.|
+| maxLength | number | No | Maximum length of the CA certificate in the certificate chain.|
+| validationParameters | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes | Parameters for certificate chain validation.|
 
 ## CertChainBuildResult<sup>12+</sup>
 
@@ -257,10 +257,10 @@ Represents the certificate chain build result.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name          | Type                             | Mandatory | Description              |
+| Name          | Type                             | Mandatory| Description              |
 | -------------- | --------------------------------- | ---- | ------------------ |
-| certChain | [X509CertChain](#x509certchain11) | Yes | Certificate chain object created. |
-| validationResult | [CertChainValidationResult](#certchainvalidationresult11) | Yes | Result of the certificate chain validation. |
+| certChain | [X509CertChain](#x509certchain11) | Yes | Certificate chain object created.|
+| validationResult | [CertChainValidationResult](#certchainvalidationresult11) | Yes | Result of the certificate chain validation.|
 
 ## X509TrustAnchor<sup>11+</sup>
 
@@ -270,12 +270,12 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name     | Type                 | Readable | Writable | Description                       |
+| Name     | Type                 | Readable| Writable| Description                       |
 | --------- | --------------------- | ---- | ---- | --------------------------- |
 | CACert    | [X509Cert](#x509cert) | Yes  | Yes  | Trusted CA certificate.             |
-| CAPubKey  | Uint8Array            | Yes  | Yes  | Public key of the trusted CA certificate, in DER format. |
-| CASubject | Uint8Array            | Yes  | Yes  | Subject of the trusted CA certificate, in DER format. |
-| nameConstraints<sup>12+</sup> | Uint8Array      | Yes  | Yes  | Name constraints, in DER format. |
+| CAPubKey  | Uint8Array            | Yes  | Yes  | Public key of the trusted CA certificate, in DER format.|
+| CASubject | Uint8Array            | Yes  | Yes  | Subject of the trusted CA certificate, in DER format.|
+| nameConstraints<sup>12+</sup> | Uint8Array      | Yes  | Yes  | Name constraints, in DER format.|
 
 ## RevocationCheckOptions<sup>12+</sup>
 
@@ -287,10 +287,10 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 
 | Name                                 | Value  | Description                         |
 | --------------------------------------| -------- | -----------------------------|
-| REVOCATION_CHECK_OPTION_PREFER_OCSP | 0 | Use OCSP over CRL (default). |
-| REVOCATION_CHECK_OPTION_ACCESS_NETWORK | 1 | Obtain the CRL/OCSP response over the network. By default, it is disabled. |
-| REVOCATION_CHECK_OPTION_FALLBACK_NO_PREFER | 2 | This parameter is valid when the **ACCESS_NETWORK** option is enabled. It allows the alternative solution to be used to obtain the certificate revocation status if the preferred solution cannot be used due to network problems. |
-| REVOCATION_CHECK_OPTION_FALLBACK_LOCAL | 3 | This parameter is valid when the **ACCESS_NETWORK** option is enabled. It allows the locally configured CRL/OCSP response to be used to check the certificate revocation status if the online CRL/OCSP response cannot be used due to network problems. |
+| REVOCATION_CHECK_OPTION_PREFER_OCSP | 0 | Use OCSP over CRL (default).|
+| REVOCATION_CHECK_OPTION_ACCESS_NETWORK | 1 | Obtain the CRL/OCSP response over the network. By default, it is disabled.|
+| REVOCATION_CHECK_OPTION_FALLBACK_NO_PREFER | 2 | This parameter is valid when the **ACCESS_NETWORK** option is enabled. It allows the alternative solution to be used to obtain the certificate revocation status if the preferred solution cannot be used due to network problems.|
+| REVOCATION_CHECK_OPTION_FALLBACK_LOCAL | 3 | This parameter is valid when the **ACCESS_NETWORK** option is enabled. It allows the locally configured CRL/OCSP response to be used to check the certificate revocation status if the online CRL/OCSP response cannot be used due to network problems.|
 
 ## ValidationPolicyType<sup>12+</sup>
 
@@ -302,8 +302,8 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 
 | Name                                 | Value  | Description                         |
 | --------------------------------------| -------- | -----------------------------|
-| VALIDATION_POLICY_TYPE_X509 | 0 | Do not verify **sslHostname** or **dNSName** in the certificate. It is the default value. |
-| VALIDATION_POLICY_TYPE_SSL | 1 | Verify **sslHostname** or **dNSName** in the certificate. |
+| VALIDATION_POLICY_TYPE_X509 | 0 | Do not verify **sslHostname** or **dNSName** in the certificate. It is the default value.|
+| VALIDATION_POLICY_TYPE_SSL | 1 | Verify **sslHostname** or **dNSName** in the certificate.|
 
 ## KeyUsageType<sup>12+</sup>
 
@@ -314,15 +314,15 @@ Represents an X.509 trust anchor, which is used to verify the certificate chain.
 
 | Name                                 | Value  | Description                         |
 | --------------------------------------| -------- | -----------------------------|
-| KEYUSAGE_DIGITAL_SIGNATURE | 0 | The certificate holder can use the private key contained in the certificate to generate a digital signature. |
-| KEYUSAGE_NON_REPUDIATION | 1 | The certificate holder can use the key to verify a digital signature as part of a nonrepudiation service. |
-| KEYUSAGE_KEY_ENCIPHERMENT | 2 | The certificate holder can use the public key contained in the certificate for key encryption. |
-| KEYUSAGE_DATA_ENCIPHERMENT | 3 | The certificate holder can use the public key contained in the certificate for data encryption. |
-| KEYUSAGE_KEY_AGREEMENT | 4 | The certificate holder can use the private key contained in the certificate to perform key agreement operations. |
-| KEYUSAGE_KEY_CERT_SIGN | 5 | The certificate holder can use the private key contained in the certificate to sign other certificates. |
-| KEYUSAGE_CRL_SIGN | 6 | The certificate holder can use the private key contained in the certificate to sign CRLs. |
-| KEYUSAGE_ENCIPHER_ONLY | 7 | The certificate holder can use the key to perform encryption operations only. |
-| KEYUSAGE_DECIPHER_ONLY | 8 | The certificate holder can use the key to perform decryption operations only. |
+| KEYUSAGE_DIGITAL_SIGNATURE | 0 | The certificate holder can use the private key contained in the certificate to generate a digital signature.|
+| KEYUSAGE_NON_REPUDIATION | 1 | The certificate holder can use the key to verify a digital signature as part of a nonrepudiation service.|
+| KEYUSAGE_KEY_ENCIPHERMENT | 2 | The certificate holder can use the public key contained in the certificate for key encryption.|
+| KEYUSAGE_DATA_ENCIPHERMENT | 3 | The certificate holder can use the public key contained in the certificate for data encryption.|
+| KEYUSAGE_KEY_AGREEMENT | 4 | The certificate holder can use the private key contained in the certificate to perform key agreement operations.|
+| KEYUSAGE_KEY_CERT_SIGN | 5 | The certificate holder can use the private key contained in the certificate to sign other certificates.|
+| KEYUSAGE_CRL_SIGN | 6 | The certificate holder can use the private key contained in the certificate to sign CRLs.|
+| KEYUSAGE_ENCIPHER_ONLY | 7 | The certificate holder can use the key to perform encryption operations only.|
+| KEYUSAGE_DECIPHER_ONLY | 8 | The certificate holder can use the key to perform decryption operations only.|
 
 ## RevocationCheckParameter<sup>12+</sup>
 
@@ -332,14 +332,14 @@ Represents the parameters for checking the certificate revocation status for a c
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name        | Type                                             | Mandatory | Description                                  |
+| Name        | Type                                             | Mandatory| Description                                  |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | ocspRequestExtension | Array\<Uint8Array> | No  | OCSP request extensions.|
-| ocspResponderURI | string | No  | URL of the alternative server used to send OCSP requests. HTTP and HTTPS are supported. The specific configuration is determined via the negotiation with the server. |
-| ocspResponderCert | [X509Cert](#x509cert)  | No  | Signing certificate used for verifying the signature of the OCSP response. |
-| ocspResponses | Uint8Array | No  | Alternative OCSP responses. |
-| crlDownloadURI | string | No  | Address used to download the CRLs. |
-| options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | No  | A set of rules for obtaining the certificate revocation status. |
+| ocspResponderURI | string | No  | URL of the alternative server used to send OCSP requests. HTTP and HTTPS are supported. The specific configuration is determined via the negotiation with the server.|
+| ocspResponderCert | [X509Cert](#x509cert)  | No  | Signing certificate used for verifying the signature of the OCSP response.|
+| ocspResponses | Uint8Array | No  | Alternative OCSP responses.|
+| crlDownloadURI | string | No  | Address used to download the CRLs.|
+| options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | No  | A set of rules for obtaining the certificate revocation status.|
 | ocspDigest | string | No  | Hash algorithm used to create a certificate ID during OCSP communication. The options **MD5**, **SHA1**, **SHA224**, **SHA256**, **SHA384**, and **SHA512** are supported. The default value is **SHA256**.|
 
 ## CertChainValidationParameters<sup>11+</sup>
@@ -350,15 +350,15 @@ Represents the parameters for certificate chain validation.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name        | Type                                             | Mandatory | Description                                  |
+| Name        | Type                                             | Mandatory| Description                                  |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | date         | string                                            | No  | Validity period of the certificate to validate.            |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | Yes  | List of trusted anchors.                      |
-| certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | No  | Check whether the certificate is in a CRL. |
-| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | No  | Parameters for checking the certificate revocation status online. |
-| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | No  | Type of the policy for certificate validation. |
-| sslHostname<sup>12+</sup> | string | No  | Host name in the certificate to be verified. This parameter must be used with **policy** together. |
-| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | No  | Usage of the key in the certificate to be validated. |
+| certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | No  | Check whether the certificate is in a CRL.|
+| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | No  | Parameters for checking the certificate revocation status online.|
+| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | No  | Type of the policy for certificate validation.|
+| sslHostname<sup>12+</sup> | string | No  | Host name in the certificate to be verified. This parameter must be used with **policy** together.|
+| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | No  | Usage of the key in the certificate to be validated.|
 
 ## CertChainValidationResult<sup>11+</sup>
 
@@ -368,10 +368,10 @@ Represents the return value of certificate chain validation.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name       | Type                                 | Readable | Writable | Description          |
+| Name       | Type                                 | Readable| Writable| Description          |
 | ----------- | ------------------------------------- | ---- | ---- | -------------- |
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | Yes  | No  | Trust anchor.  |
-| entityCert  | [X509Cert](#x509cert)                 | Yes  | No  | Entity certificate. |
+| entityCert  | [X509Cert](#x509cert)                 | Yes  | No  | Entity certificate.|
 
 ## cert.createX509Cert
 
@@ -385,16 +385,16 @@ Creates an X.509 certificate instance. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                      |
+| Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | Yes  | X.509 certificate serialization data.        |
-| callback | AsyncCallback\<[X509Cert](#x509cert)> | Yes  | Callback used to return the **X509Cert** instance created. |
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | Yes  | Callback used to return the **X509Cert** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -452,21 +452,21 @@ Creates an X.509 certificate instance. This API uses a promise to return the res
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description              |
+| Name  | Type                         | Mandatory| Description              |
 | -------- | ----------------------------- | ---- | ------------------ |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | X.509 certificate serialization data. |
+| inStream | [EncodingBlob](#encodingblob) | Yes  | X.509 certificate serialization data.|
 
 **Return value**
 
 | Type    | Description            |
 | ------- | ---------------- |
-| Promise\<[X509Cert](#x509cert)> | Promise used to return the **X509Cert** instance created. |
+| Promise\<[X509Cert](#x509cert)> | Promise used to return the **X509Cert** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -527,16 +527,16 @@ Verifies the signature of an X.509 certificate. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                 | Mandatory | Description                                                        |
+| Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.                                          |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error.      |
@@ -611,21 +611,21 @@ Verifies the signature of an X.509 certificate. This API uses a promise to retur
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description              |
+| Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification. |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error.      |
@@ -693,15 +693,15 @@ Obtains the serialized X.509 certificate data. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                            |
+| Name  | Type                                         | Mandatory| Description                            |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 certificate data obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 certificate data obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.                                     |
@@ -769,13 +769,13 @@ Obtains the serialized X.509 certificate data. This API uses a promise to return
 
 | Type                                   | Description                  |
 | --------------------------------------- | ---------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized X.509 certificate data obtained. |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized X.509 certificate data obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
@@ -840,13 +840,13 @@ Obtains the public key of this X.509 certificate.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**. |
+| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Public key of the X509 certificate obtained. This object is used only for **verify()** of **X509Cert**.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19030001 | crypto operation error.|
@@ -910,15 +910,15 @@ Checks the validity period of this X.509 certificate.
 
 **Parameters**
 
-| Name  | Type           | Mandatory | Description       |
+| Name  | Type           | Mandatory| Description       |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | Yes  | Date in the ASN.1 format. |
+| date     | string         | Yes  | Date in the ASN.1 format.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
@@ -990,7 +990,7 @@ Obtains the X.509 certificate version.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| number | X.509 certificate version obtained. |
+| number | X.509 certificate version obtained.|
 
 **Example**
 
@@ -1048,7 +1048,7 @@ Obtains the X.509 certificate serial number.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | X.509 certificate serial number obtained. |
+| number | X.509 certificate serial number obtained.|
 
 **Example**
 
@@ -1105,13 +1105,13 @@ Obtains the X.509 certificate serial number.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| bigint | X.509 certificate serial number obtained. |
+| bigint | X.509 certificate serial number obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020002 | runtime error.                                    |
 
@@ -1176,13 +1176,13 @@ Obtains the X.509 certificate issuer.
 
 | Type                 | Description                  |
 | --------------------- | ---------------------- |
-| [DataBlob](#datablob) | X.509 certificate issuer obtained. |
+| [DataBlob](#datablob) | X.509 certificate issuer obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -1247,7 +1247,7 @@ Obtains the subject of this X.509 certificate.
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                          |
+| Name  | Type                                 | Mandatory| Description                          |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
 | encodingType | [EncodingType](#encodingtype12)     | No  |  Encoding type. If this parameter is set, the subject name in UTF-8 format is to be obtained. If this parameter is not set, the subject name in ASCII encoding format is obtained by default.<br>This parameter is available since API version 12. |
 
@@ -1255,13 +1255,13 @@ Obtains the subject of this X.509 certificate.
 
 | Type                 | Description                |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | Subject name obtained. |
+| [DataBlob](#datablob) | Subject name obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
@@ -1335,13 +1335,13 @@ Obtains the start time of this X.509 certificate.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| string | Certificate start time obtained, in ASN.1 format. |
+| string | Certificate start time obtained, in ASN.1 format.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -1408,13 +1408,13 @@ Obtains the expiration time of this X.509 certificate.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| string | Certificate expiration time obtained, in ASN.1 format. |
+| string | Certificate expiration time obtained, in ASN.1 format.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -1482,13 +1482,13 @@ Obtains the signature data of this X.509 certificate.
 
 | Type                 | Description                |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | Signature data obtained. |
+| [DataBlob](#datablob) | Signature data obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -1556,13 +1556,13 @@ Obtains the signing algorithm of this X.509 certificate.
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| string | X.509 certificate signing algorithm obtained. |
+| string | X.509 certificate signing algorithm obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -1630,13 +1630,13 @@ Obtains the object identifier (OID) of the X.509 certificate signing algorithm. 
 
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| string | OID obtained. |
+| string | OID obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -1703,13 +1703,13 @@ Obtains the signing algorithm parameters of this X.509 certificate.
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | X.509 certificate signing algorithm parameters obtained. |
+| [DataBlob](#datablob) | X.509 certificate signing algorithm parameters obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 801 | this operation is not supported. |
 | 19020001 | memory error.                                     |
@@ -1777,13 +1777,13 @@ Obtains the key usage of this X.509 certificate.
 
 | Type                 | Description                |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | Key usage of the X.509 certificate obtained. |
+| [DataBlob](#datablob) | Key usage of the X.509 certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                    |
 | 19030001 | crypto operation error.|
@@ -1849,13 +1849,13 @@ Obtains the usage of the extended key of this X.509 certificate.
 
 | Type                   | Description                    |
 | ----------------------- | ------------------------ |
-| [DataArray](#dataarray) | Usage of the extended key obtained. |
+| [DataArray](#dataarray) | Usage of the extended key obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -1922,7 +1922,7 @@ Obtains the basic constraints for obtaining this X.509 certificate.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Basic constraints obtained. |
+| number | Basic constraints obtained.|
 
 **Example**
 
@@ -1979,13 +1979,13 @@ Obtains the Subject Alternative Names (SANs) of this X.509 certificate.
 
 | Type                   | Description                    |
 | ----------------------- | ------------------------ |
-| [DataArray](#dataarray) | SANs obtained. |
+| [DataArray](#dataarray) | SANs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -2052,13 +2052,13 @@ Obtains the Issuer Alternative Names (IANs) of this X.509 certificate.
 
 | Type                   | Description                      |
 | ----------------------- | -------------------------- |
-| [DataArray](#dataarray) | IANs obtained. |
+| [DataArray](#dataarray) | IANs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
@@ -2125,13 +2125,13 @@ Obtains the fields in the X.509 certificate.
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| [DataBlob](#datablob) | Fields in DER format. |
+| [DataBlob](#datablob) | Fields in DER format.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -2197,21 +2197,21 @@ Checks whether this certificate matches the specified parameters.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                                      |
+| Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
-| param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters specified for matching the certificate. |
+| param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters specified for matching the certificate.|
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| boolean | Returns **true** if the certificate matches the parameters specified; returns **false** otherwise. |
+| boolean | Returns **true** if the certificate matches the parameters specified; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
@@ -2273,7 +2273,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
-    // The data vary with the service.
+    // The data varies with the service.
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20241121074700Z',
@@ -2302,13 +2302,13 @@ Obtains the CRL distribution points of this X.509 certificate.
 
 | Type                   | Description                      |
 | ----------------------- | -------------------------- |
-| [DataArray](#dataarray) | URIs of the CRL distribution points obtained. |
+| [DataArray](#dataarray) | URIs of the CRL distribution points obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -2383,7 +2383,7 @@ Obtains the distinguished name (DN) of the X.509 certificate issuer.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -2468,7 +2468,7 @@ Obtains the DN of the X.509 certificate subject (holder).
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -2553,7 +2553,7 @@ Converts the object data into a string.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -2638,7 +2638,7 @@ Obtains the hash value of the data in DER format.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -2723,7 +2723,7 @@ Obtains the certification extensions in DER format.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -2800,16 +2800,16 @@ Creates a **CertExtension** instance. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory | Description                      |
+| Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)                     | Yes  | Serialized data of the certificate extension. |
-| callback | AsyncCallback\<[CertExtension](#certextension10)> | Yes  | Callback used to return the **CertExtension** instance created. |
+| inStream | [EncodingBlob](#encodingblob)                     | Yes  | Serialized data of the certificate extension.|
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | Yes  | Callback used to return the **CertExtension** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -2860,21 +2860,21 @@ Creates a **CertExtension** instance. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                      |
+| Name  | Type                         | Mandatory| Description                      |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized data of the certificate extension. |
+| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized data of the certificate extension.|
 
 **Return value**
 
 | Type                                       | Description                |
 | ------------------------------------------- | -------------------- |
-| Promise\<[CertExtension](#certextension10)> | Promise used to return the **CertExtension** instance created. |
+| Promise\<[CertExtension](#certextension10)> | Promise used to return the **CertExtension** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -2930,13 +2930,13 @@ Obtains the serialized data of the certificate extensions.
 
 | Type                         | Description                        |
 | ----------------------------- | ---------------------------- |
-| [EncodingBlob](#encodingblob) | Serialized data obtained. |
+| [EncodingBlob](#encodingblob) | Serialized data obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -2994,21 +2994,21 @@ Obtains the OIDs of the certificate extensions.
 
 **Parameters**
 
-| Name   | Type                                 | Mandatory | Description                          |
+| Name   | Type                                 | Mandatory| Description                          |
 | --------- | ------------------------------------- | ---- | ------------------------------ |
-| valueType | [ExtensionOidType](#extensionoidtype10) | Yes  | Type of the OIDs to obtain. |
+| valueType | [ExtensionOidType](#extensionoidtype10) | Yes  | Type of the OIDs to obtain.|
 
 **Return value**
 
 | Type                   | Description                            |
 | ----------------------- | -------------------------------- |
-| [DataArray](#dataarray) | OIDs obtained. |
+| [DataArray](#dataarray) | OIDs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -3067,22 +3067,22 @@ Obtains the certificate extension object information.
 
 **Parameters**
 
-| Name   | Type                                     | Mandatory | Description                            |
+| Name   | Type                                     | Mandatory| Description                            |
 | --------- | ----------------------------------------- | ---- | -------------------------------- |
 | valueType | [ExtensionEntryType](#extensionentrytype10) | Yes  | Type of the information to obtain.      |
-| oid       | [DataBlob](#datablob)                     | Yes  | OID of the certificate extension to obtain. |
+| oid       | [DataBlob](#datablob)                     | Yes  | OID of the certificate extension to obtain.|
 
 **Return value**
 
 | Type                 | Description                        |
 | --------------------- | ---------------------------- |
-| [DataBlob](#datablob) | Certificate extension object information obtained. |
+| [DataBlob](#datablob) | Certificate extension object information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -3148,13 +3148,13 @@ Checks whether the certificate is a CA certificate.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | If the key purpose in the certificate extension contains signing and the CA field in the basic constraints is **true**, the certificate is a CA certificate. Returns **-1** if the certificate is not a CA certificate; returns the path length in the basic constraints otherwise. Returns **-2** if the certificate is a CA certificate but the path length is not specified in the basic constraints, which means the path length is not limited. |
+| number | If the key purpose in the certificate extension contains signing and the CA field in the basic constraints is **true**, the certificate is a CA certificate. Returns **-1** if the certificate is not a CA certificate; returns the path length in the basic constraints otherwise. Returns **-2** if the certificate is a CA certificate but the path length is not specified in the basic constraints, which means the path length is not limited.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -3213,13 +3213,13 @@ Checks whether there is critical extension that is not supported.
 
 | Type   | Description                                                   |
 | ------- | ------------------------------------------------------- |
-| boolean | Returns **true** if unsupported critical extension is found; returns **false** otherwise. |
+| boolean | Returns **true** if unsupported critical extension is found; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -3270,16 +3270,16 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                               | Mandatory | Description                          |
+| Name  | Type                               | Mandatory| Description                          |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob)       | Yes  | Serialized CRL data.    |
-| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | Yes  | Callback used to return the **X509Crl** instance created. |
+| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | Yes  | Callback used to return the **X509Crl** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -3338,21 +3338,21 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                      |
+| Name  | Type                         | Mandatory| Description                      |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized CRL data. |
+| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized CRL data.|
 
 **Return value**
 
 | Type                         | Description                |
 | ----------------------------- | -------------------- |
-| Promise\<[X509Crl](#x509crldeprecated)> | Promise used to return the **X509Crl** instance created. |
+| Promise\<[X509Crl](#x509crldeprecated)> | Promise used to return the **X509Crl** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -3408,16 +3408,16 @@ Creates an **X509Crl** instance. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                          |
+| Name  | Type                                 | Mandatory| Description                          |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
 | inStream | [EncodingBlob](#encodingblob)         | Yes  | Serialized CRL data.    |
-| callback | AsyncCallback\<[X509CRL](#x509crl11)> | Yes  | Callback used to return the **X509Crl** instance created. |
+| callback | AsyncCallback\<[X509CRL](#x509crl11)> | Yes  | Callback used to return the **X509Crl** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -3474,21 +3474,21 @@ Creates an **X509Crl** instance. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                      |
+| Name  | Type                         | Mandatory| Description                      |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized CRL data. |
+| inStream | [EncodingBlob](#encodingblob) | Yes  | Serialized CRL data.|
 
 **Return value**
 
 | Type                           | Description                |
 | ------------------------------- | -------------------- |
-| Promise\<[X509CRL](#x509crl11)> | Promise used to return the **X509Crl** instance created. |
+| Promise\<[X509CRL](#x509crl11)> | Promise used to return the **X509Crl** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -3554,21 +3554,21 @@ Checks whether an X.509 certificate is revoked.
 
 **Parameters**
 
-| Name | Type    | Mandatory | Description                |
+| Name| Type    | Mandatory| Description                |
 | ------ | -------- | ---- | -------------------- |
-| cert   | X509Cert | Yes  | X.509 certificate to check. |
+| cert   | X509Cert | Yes  | X.509 certificate to check.|
 
 **Return value**
 
 | Type     | Description                                          |
 | --------- | --------------------------------------------- |
-| boolean   | Returns **true** if the certificate is revoked; returns **false** otherwise. |
+| boolean   | Returns **true** if the certificate is revoked; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
@@ -3657,7 +3657,7 @@ Obtains the CRL type.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | CRL type obtained. |
+| string | CRL type obtained.|
 
 **Example**
 
@@ -3713,15 +3713,15 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name  | Type                        | Mandatory | Description                                      |
+| Name  | Type                        | Mandatory| Description                                      |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | Yes  | Callback used to return the serialized X.509 CRL data obtained. |
+| callback | AsyncCallback\<EncodingBlob> | Yes  | Callback used to return the serialized X.509 CRL data obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -3790,13 +3790,13 @@ Obtains the serialized X.509 CRL data. This API uses a promise to return the res
 
 | Type                  | Description                            |
 | ---------------------- | -------------------------------- |
-| Promise\<EncodingBlob> | Promise used to return the serialized X.509 CRL data obtained. |
+| Promise\<EncodingBlob> | Promise used to return the serialized X.509 CRL data obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -3860,16 +3860,16 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.                                      |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
@@ -4014,21 +4014,21 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                  |
+| Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification. |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.|
 
 **Return value**
 
-| Type | Description                                                        |
+| Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
@@ -4170,7 +4170,7 @@ Obtains the version of the X.509 CRL.
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| number | Version of the X.509 CRL obtained. |
+| number | Version of the X.509 CRL obtained.|
 
 **Example**
 
@@ -4228,13 +4228,13 @@ Obtains the issuer of the X.509 CRL.
 
 | Type                 | Description                          |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | Issuer of the X.509 CRL obtained. |
+| [DataBlob](#datablob) | Issuer of the X.509 CRL obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -4308,7 +4308,7 @@ Obtains the last update date of this X.509 CRL.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -4382,7 +4382,7 @@ Obtains the next update date of this CRL.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -4448,21 +4448,21 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description          |
+| Name      | Type  | Mandatory| Description          |
 | ------------ | ------ | ---- | -------------- |
-| serialNumber | number | Yes  | Serial number of the certificate. |
+| serialNumber | number | Yes  | Serial number of the certificate.|
 
 **Return value**
 
 | Type                  | Description                  |
 | ---------------------- | --------------------- |
-| [X509CrlEntry](#x509crlentrydeprecated) | Revoked X.509 certificate obtained. |
+| [X509CrlEntry](#x509crlentrydeprecated) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -4529,21 +4529,21 @@ Obtains the revoked X.509 certificate based on the specified certificate.
 
 **Parameters**
 
-| Name | Type                 | Mandatory | Description        |
+| Name| Type                 | Mandatory| Description        |
 | ------ | --------------------- | ---- | ------------ |
-| cert   | [X509Cert](#x509cert) | Yes  | Certificate based on which the revoked certificate is obtained. |
+| cert   | [X509Cert](#x509cert) | Yes  | Certificate based on which the revoked certificate is obtained.|
 
 **Return value**
 
 | Type        | Description                 |
 | ------------ | -------------------- |
-| [X509CrlEntry](#x509crlentrydeprecated) | Revoked X.509 certificate obtained. |
+| [X509CrlEntry](#x509crlentrydeprecated) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -4646,15 +4646,15 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory | Description                            |
+| Name  | Type                                                | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Yes  | Callback used to return a list of revoked X.509 certificates. |
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Yes  | Callback used to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -4723,13 +4723,13 @@ Obtains the revoked X.509 certificates. This API uses a promise to return the re
 
 | Type                                          | Description                  |
 | ---------------------------------------------- | ---------------------- |
-| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Promise used to return a list of revoked X.509 certificates. |
+| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | Promise used to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -4794,13 +4794,13 @@ Obtains the DER-encoded CRL information, that is, **tbsCertList** from this CRL.
 
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
-| [DataBlob](#datablob) | **tbsCertList** information obtained. |
+| [DataBlob](#datablob) | **tbsCertList** information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -4868,13 +4868,13 @@ Obtains the signature data of the X.509 CRL.
 
 | Type                 | Description                          |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | Signature data of the X.509 CRL obtained. |
+| [DataBlob](#datablob) | Signature data of the X.509 CRL obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -4942,13 +4942,13 @@ Obtains the signing algorithm of the X.509 CRL.
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| string | Signing algorithm obtained. |
+| string | Signing algorithm obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -5016,13 +5016,13 @@ Obtains the OID of the X.509 CRL signing algorithm. OIDs are allocated by the In
 
 | Type  | Description                                         |
 | ------ | --------------------------------------------- |
-| string | OID of the X.509 CRL signing algorithm obtained. |
+| string | OID of the X.509 CRL signing algorithm obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -5090,13 +5090,13 @@ Obtains the parameters of the X.509 CRL signing algorithm.
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| [DataBlob](#datablob) | Algorithm parameters obtained. |
+| [DataBlob](#datablob) | Algorithm parameters obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
 | 19020001 | memory error.           |
@@ -5164,21 +5164,21 @@ Checks whether an X.509 certificate is revoked.
 
 **Parameters**
 
-| Name | Type    | Mandatory | Description                |
+| Name| Type    | Mandatory| Description                |
 | ------ | -------- | ---- | -------------------- |
-| cert   | [X509Cert](#x509cert) | Yes  | X.509 certificate to check. |
+| cert   | [X509Cert](#x509cert) | Yes  | X.509 certificate to check.|
 
 **Return value**
 
 | Type   | Description                                             |
 | ------- | ------------------------------------------------- |
-| boolean | Returns **true** if the certificate is revoked; returns **false** otherwise. |
+| boolean | Returns **true** if the certificate is revoked; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 
@@ -5265,7 +5265,7 @@ Obtains the CRL type.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | CRL type obtained. |
+| string | CRL type obtained.|
 
 **Example**
 
@@ -5319,15 +5319,15 @@ Obtains the serialized X.509 CRL data. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                      |
+| Name  | Type                                         | Mandatory| Description                                      |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 CRL data obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized X.509 CRL data obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -5394,12 +5394,12 @@ Obtains the serialized X.509 CRL data. This API uses a promise to return the res
 
 | Type                                   | Description                            |
 | --------------------------------------- | -------------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized X.509 CRL data obtained. |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized X.509 CRL data obtained.|
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -5461,16 +5461,16 @@ Verifies the signature of the X.509 CRL. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                                                       | Mandatory | Description                                                        |
+| Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.                                      |
-| callback | AsyncCallback\<void>                                        | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails. |
+| callback | AsyncCallback\<void>                                        | Yes  | Callback used to return the result. If **error** is **null**, the signature verification is successful. If **error** is not **null**, the signature verification fails.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
@@ -5613,21 +5613,21 @@ Verifies the signature of the X.509 CRL. This API uses a promise to return the r
 
 **Parameters**
 
-| Name | Type                                                       | Mandatory | Description                    |
+| Name| Type                                                       | Mandatory| Description                    |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------ |
-| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification. |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | Yes  | Public key used for signature verification.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
@@ -5767,7 +5767,7 @@ Obtains the version of the X.509 CRL.
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| number | Version of the X.509 CRL obtained. |
+| number | Version of the X.509 CRL obtained.|
 
 **Example**
 
@@ -5823,13 +5823,13 @@ Obtains the issuer of the X.509 CRL.
 
 | Type                 | Description                          |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | Issuer of the X.509 CRL obtained. |
+| [DataBlob](#datablob) | Issuer of the X.509 CRL obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -5901,7 +5901,7 @@ Obtains the last update date of this X.509 CRL.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -5973,7 +5973,7 @@ Obtains the next update date of this CRL.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -6037,21 +6037,21 @@ Obtains the revoked X.509 certificate based on the specified serial number of th
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description          |
+| Name      | Type  | Mandatory| Description          |
 | ------------ | ------ | ---- | -------------- |
-| serialNumber | bigint | Yes  | Serial number of the certificate. |
+| serialNumber | bigint | Yes  | Serial number of the certificate.|
 
 **Return value**
 
 | Type                           | Description                  |
 | ------------------------------- | ---------------------- |
-| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained. |
+| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -6116,21 +6116,21 @@ Obtains the revoked X.509 certificate based on the specified certificate.
 
 **Parameters**
 
-| Name | Type                 | Mandatory | Description        |
+| Name| Type                 | Mandatory| Description        |
 | ------ | --------------------- | ---- | ------------ |
-| cert   | [X509Cert](#x509cert) | Yes  | Certificate based on which the revoked certificate is obtained. |
+| cert   | [X509Cert](#x509cert) | Yes  | Certificate based on which the revoked certificate is obtained.|
 
 **Return value**
 
 | Type                           | Description                  |
 | ------------------------------- | ---------------------- |
-| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained. |
+| [X509CRLEntry](#x509crlentry11) | Revoked X.509 certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -6231,15 +6231,15 @@ Obtains the revoked X.509 certificates. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                                                  | Mandatory | Description                            |
+| Name  | Type                                                  | Mandatory| Description                            |
 | -------- | ------------------------------------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback used to return a list of revoked X.509 certificates. |
+| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | Yes  | Callback used to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -6306,13 +6306,13 @@ Obtains the revoked X.509 certificates. This API uses a promise to return the re
 
 | Type                                            | Description                  |
 | ------------------------------------------------ | ---------------------- |
-| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | Promise used to return a list of revoked X.509 certificates. |
+| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | Promise used to return a list of revoked X.509 certificates.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -6375,13 +6375,13 @@ Obtains the signature data of the X.509 CRL.
 
 | Type                 | Description                          |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | Signature data of the X.509 CRL obtained. |
+| [DataBlob](#datablob) | Signature data of the X.509 CRL obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -6447,13 +6447,13 @@ Obtains the signing algorithm of the X.509 CRL.
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| string | Signing algorithm obtained. |
+| string | Signing algorithm obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -6519,13 +6519,13 @@ Obtains the OID of the X.509 CRL signing algorithm. OIDs are allocated by the In
 
 | Type  | Description                                         |
 | ------ | --------------------------------------------- |
-| string | OID of the X.509 CRL signing algorithm obtained. |
+| string | OID of the X.509 CRL signing algorithm obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -6591,13 +6591,13 @@ Obtains the parameters of the X.509 CRL signing algorithm.
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| [DataBlob](#datablob) | Algorithm parameters obtained. |
+| [DataBlob](#datablob) | Algorithm parameters obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
 | 19020001 | memory error.           |
@@ -6664,13 +6664,13 @@ Obtains the DER-encoded CRL information, that is, **tbsCertList** from this CRL.
 
 | Type                 | Description                             |
 | --------------------- | --------------------------------- |
-| [DataBlob](#datablob) | **tbsCertList** information obtained. |
+| [DataBlob](#datablob) | **tbsCertList** information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -6736,13 +6736,13 @@ Obtains the CRL extensions.
 
 | Type                 | Description               |
 | --------------------- | ------------------- |
-| [DataBlob](#datablob) | X.509 CRL extensions obtained. |
+| [DataBlob](#datablob) | X.509 CRL extensions obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -6809,7 +6809,7 @@ Checks whether this CRL matches the specified parameters.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                                      |
+| Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11)| Yes  | Parameters specified for matching the CRL. |
 
@@ -6823,7 +6823,7 @@ Checks whether this CRL matches the specified parameters.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.  |
@@ -6926,13 +6926,13 @@ Obtains the DN of the X.509 certificate issuer.
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| [X500DistinguishedName](#x500distinguishedname12) | DN object obtained. |
+| [X500DistinguishedName](#x500distinguishedname12) | DN object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 19020001 | memory error.  |
 | 19020002 | runtime error. |
@@ -6996,13 +6996,13 @@ Converts the object data into a string.
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| string | String obtained. |
+| string | String obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 19020001 | memory error.  |
 | 19020002 | runtime error. |
@@ -7066,13 +7066,13 @@ Obtains the hash value of the data in DER format.
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Uint8Array | Hash value obtained. |
+| Uint8Array | Hash value obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 19020001 | memory error.  |
 | 19020002 | runtime error. |
@@ -7142,7 +7142,7 @@ Obtains the certification extensions in DER format.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 19020001 | memory error.  |
 | 19020002 | runtime error. |
@@ -7209,21 +7209,21 @@ Creates a **CertChainValidator** object.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                                      |
+| Name   | Type  | Mandatory| Description                                      |
 | --------- | ------ | ---- | ------------------------------------------ |
-| algorithm | string | Yes  | Certificate chain validator algorithm. Currently, only **PKIX** is supported. |
+| algorithm | string | Yes  | Certificate chain validator algorithm. Currently, only **PKIX** is supported.|
 
 **Return value**
 
 | Type              | Description                |
 | ------------------ | -------------------- |
-| [CertChainValidator](#certchainvalidator) | **CertChainValidator** object created. |
+| [CertChainValidator](#certchainvalidator) | **CertChainValidator** object created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
@@ -7250,15 +7250,15 @@ try {
 Provides APIs for certificate chain validator operations.
 
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Security.Cert
 
-| Name   | Type  | Readable | Writable | Description                        |
+| Name   | Type  | Readable| Writable| Description                        |
 | ------- | ------ | ---- | ---- | -------------------------- |
-| algorithm  | string | Yes  | No  | Algorithm used by the X509 certificate chain validator. |
+| algorithm  | string | Yes  | No  | Algorithm used by the X509 certificate chain validator.|
 
 
 ### validate
@@ -7274,16 +7274,16 @@ The certificate chain validator does not verify the certificate validity period 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                                                        |
+| Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | certChain | [CertChainData](#certchaindata) | Yes  | Serialized X.509 certificate chain data.                                    |
-| callback  | AsyncCallback\<void>            | Yes  | Callback used to return the result. If **error** is **null**, the X.509 certificate chain is valid. If **error** is not **null**, the X.509 certificate chain is not valid. |
+| callback  | AsyncCallback\<void>            | Yes  | Callback used to return the result. If **error** is **null**, the X.509 certificate chain is valid. If **error** is not **null**, the X.509 certificate chain is not valid.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
@@ -7401,21 +7401,21 @@ The certificate chain validator does not verify the certificate validity period 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                      |
+| Name   | Type                           | Mandatory| Description                      |
 | --------- | ------------------------------- | ---- | -------------------------- |
-| certChain | [CertChainData](#certchaindata) | Yes  | Serialized X.509 certificate chain data. |
+| certChain | [CertChainData](#certchaindata) | Yes  | Serialized X.509 certificate chain data.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
@@ -7518,7 +7518,6 @@ try {
 }
 ```
 
-
 ## X509CrlEntry<sup>(deprecated)</sup>
 
 Provides APIs for operating the revoked certificates.
@@ -7541,15 +7540,15 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                |
+| Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -7626,13 +7625,13 @@ Obtains the serialized data of the revoked certificate. This API uses a promise 
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized data of the revoked certificate obtained. |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -7707,7 +7706,7 @@ Obtains the serial number of this revoked certificate.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Serial number of the revoked certificate obtained. |
+| number | Serial number of the revoked certificate obtained.|
 
 **Example**
 
@@ -7773,13 +7772,13 @@ Obtains the issuer of this revoked certificate. This API uses an asynchronous ca
 
 | Type                 | Description                    |
 | --------------------- | ----------------------- |
-| [DataBlob](#datablob) | Issuer of the revoked certificate obtained. |
+| [DataBlob](#datablob) | Issuer of the revoked certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 801 | this operation is not supported. |
 | 19020001 | memory error.  |
@@ -7855,7 +7854,7 @@ Obtains the date when the certificate is revoked.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -7925,15 +7924,15 @@ Obtains the serialized data of the revoked certificate. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                |
+| Name  | Type                                         | Mandatory| Description                                |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained. |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | Yes  | Callback used to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -8008,13 +8007,13 @@ Obtains the serialized data of the revoked certificate. This API uses a promise 
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized data of the revoked certificate obtained. |
+| Promise\<[EncodingBlob](#encodingblob)> | Promise used to return the serialized data of the revoked certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
 | 19020001 | memory error.           |
@@ -8087,13 +8086,13 @@ Obtains the serial number of this revoked certificate.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| bigint | Serial number of the revoked certificate obtained. |
+| bigint | Serial number of the revoked certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8161,13 +8160,13 @@ Obtains the issuer of this revoked certificate.
 
 | Type                 | Description                      |
 | --------------------- | -------------------------- |
-| [DataBlob](#datablob) | Issuer of the revoked certificate obtained. |
+| [DataBlob](#datablob) | Issuer of the revoked certificate obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
 | 19020001 | memory error.           |
@@ -8242,7 +8241,7 @@ Obtains the date when the certificate is revoked.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8310,13 +8309,13 @@ Obtains the CRL extensions.
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | CRL extensions obtained. |
+| [DataBlob](#datablob) | CRL extensions obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8387,13 +8386,13 @@ Checks whether this CRL entry has extensions.
 
 | Type   | Description                                                |
 | ------- | ---------------------------------------------------- |
-| boolean | Returns **true** if the CRL entry has extension; returns **false** otherwise. |
+| boolean | Returns **true** if the CRL entry has extension; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8467,7 +8466,7 @@ Obtains the DN of the certificate issuer.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8536,7 +8535,7 @@ Converts the object data into a string.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8605,7 +8604,7 @@ Obtains the hash value of the data in DER format.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8674,7 +8673,7 @@ Obtains the certification extensions in DER format.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
@@ -8802,7 +8801,7 @@ Creates an object for a collection of X.509 certificates and CRLs.
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                          |
+| Name  | Type                                 | Mandatory| Description                          |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
 | certs | Array\<[X509Cert](#x509cert)>    | Yes  |  X.509 certificates. |
 | crls | Array\<[X509CRL](#x509crl11)>     | No  |  X.509 CRLs. |
@@ -8811,13 +8810,13 @@ Creates an object for a collection of X.509 certificates and CRLs.
 
 | Type              | Description                |
 | ------------------ | -------------------- |
-| [CertCRLCollection](#certcrlcollection11) | **CertCRLCollection** object created. |
+| [CertCRLCollection](#certcrlcollection11) | **CertCRLCollection** object created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -8918,7 +8917,7 @@ Selects certificates that match the specified parameters. This API uses a promis
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description     |
+| Name   | Type                           | Mandatory| Description     |
 | --------- | ------------------------------- | ---- | ------------ |
 | param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters used to match the certificates. |
 
@@ -8926,13 +8925,13 @@ Selects certificates that match the specified parameters. This API uses a promis
 
 | Type                                   | Description                                   |
 | --------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[X509Cert](#x509cert)>> | Promise used to return the matched certificates. |
+| Promise\<Array\<[X509Cert](#x509cert)>> | Promise used to return the matched certificates.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -9012,16 +9011,16 @@ Selects certificates that match the specified parameters. This API uses an async
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description           |
+| Name   | Type                           | Mandatory| Description           |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CertMatchParameters](#x509certmatchparameters11) | Yes  | Parameters used to match the certificates.  |
-| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | Yes  | Callback used to return the matched certificates. |
+| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | Yes  | Callback used to return the matched certificates.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -9102,7 +9101,7 @@ Selects CRLs that match the specified parameters. This API uses a promise to ret
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description     |
+| Name   | Type                           | Mandatory| Description     |
 | --------- | ------------------------------- | ---- | ------------ |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | Yes  | Parameters used to match the CRLs.  |
 
@@ -9110,13 +9109,13 @@ Selects CRLs that match the specified parameters. This API uses a promise to ret
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise used to return the matched CRLs. |
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise used to return the matched CRLs.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -9227,16 +9226,16 @@ Selects CRLs that match the specified parameters. This API uses an asynchronous 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description           |
+| Name   | Type                           | Mandatory| Description           |
 | --------- | ------------------------------- | ---- | ----------------- |
-| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | Yes  | Parameters used to match the CRLs. |
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | Yes  | Callback used to return the matched CRLs. |
+| param | [X509CRLMatchParameters](#x509crlmatchparameters11) | Yes  | Parameters used to match the CRLs.|
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | Yes  | Callback used to return the matched CRLs.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -9348,21 +9347,21 @@ Creates an X.509 certificate chain instance. This API uses a promise to return t
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                |
+| Name  | Type                         | Mandatory| Description                |
 | -------- | ----------------------------- | ---- | -------------------- |
-| inStream | [EncodingBlob](#encodingblob) | Yes  | X.509 certificate serialization data. |
+| inStream | [EncodingBlob](#encodingblob) | Yes  | X.509 certificate serialization data.|
 
 **Return value**
 
 | Type                           | Description            |
 | ------------------------------- | ---------------- |
-| Promise\<[X509CertChain](#x509certchain11)> | Promise used to return the **X509CertChain** object created. |
+| Promise\<[X509CertChain](#x509certchain11)> | Promise used to return the **X509CertChain** object created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
@@ -9470,16 +9469,16 @@ Creates an X.509 certificate chain instance. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                      |
+| Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | Yes  | X.509 certificate serialization data.       |
-| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | Yes  | Callback used to return the **X509CertChain** object created. |
+| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | Yes  | Callback used to return the **X509CertChain** object created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
@@ -9582,21 +9581,21 @@ Creates an X.509 certificate chain object based on the specified certificates. T
 
 **Parameters**
 
-| Name  | Type                 | Mandatory | Description                      |
+| Name  | Type                 | Mandatory| Description                      |
 | -------- | -------------------- | ---- | -------------------------- |
-| certs    | Array\<[X509Cert](#x509cert)> | Yes  | Array of X.509 certificates. |
+| certs    | Array\<[X509Cert](#x509cert)> | Yes  | Array of X.509 certificates.|
 
 **Return value**
 
 | Type                             | Description                |
 | --------------------------------- | -------------------- |
-| [X509CertChain](#x509certchain11) | **X509CertChain** object created. |
+| [X509CertChain](#x509certchain11) | **X509CertChain** object created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
@@ -9672,21 +9671,21 @@ Builds an X.509 certificate chain with a **CertChainBuildParameters** object. Th
 
 **Parameters**
 
-| Name  | Type                 | Mandatory | Description                      |
+| Name  | Type                 | Mandatory| Description                      |
 | -------- | -------------------- | ---- | -------------------------- |
-| param | [CertChainBuildParameters](#certchainbuildparameters12) | Yes  | Object used to build the certificate chain. |
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | Yes  | Object used to build the certificate chain.|
 
 **Return value**
 
 | Type                             | Description                |
 | --------------------------------- | -------------------- |
-| [CertChainBuildResult](#certchainbuildresult12) | **X509CertChain** object created. |
+| [CertChainBuildResult](#certchainbuildresult12) | **X509CertChain** object created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
@@ -9812,22 +9811,22 @@ Creates a [TrustAnchor](#x509trustanchor11) object array from a .p12 keystore fi
 
 **Parameters**
 
-| Name  | Type                 | Mandatory | Description                      |
+| Name  | Type                 | Mandatory| Description                      |
 | -------- | -------------------- | ---- | -------------------------- |
-| keystore | Uint8Array | Yes | .p12 file in DER format. |
-| pwd | string | Yes | Password of the .p12 file. |
+| keystore | Uint8Array | Yes| .p12 file in DER format.|
+| pwd | string | Yes| Password of the .p12 file.|
 
 **Return value**
 
 | Type                             | Description                |
 | --------------------------------- | -------------------- |
-| Array\<[X509TrustAnchor](#x509trustanchor11)> | **X509TrustAnchor** object array created. |
+| Array\<[X509TrustAnchor](#x509trustanchor11)> | **X509TrustAnchor** object array created.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message                                         |
+| ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
@@ -9848,7 +9847,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   cert.createTrustAnchorsWithKeyStore(
-    new Uint8Array([0x04,0x14,0xAF,0x32,0x84,0xC3,0x94,0x50,0x74,0x69,0x58]),
+    new Uint8Array([0x30, 0x82, 0x07, 0x5C, 0x02, 0x01, 0x03, 0x30, 0x82, 0x07, 0x12, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0xA0, 0x82, 0x07, 0x03, 0x04, 0x82, 0x06, 0xFF, 0x30, 0x82, 0x06, 0xFB, 0x30, 0x82, 0x05, 0xB2, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x06, 0xA0, 0x82, 0x05, 0xA3, 0x30, 0x82, 0x05, 0x9F, 0x02, 0x01, 0x00, 0x30, 0x82, 0x05, 0x98, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0x30, 0x57, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D, 0x30, 0x4A, 0x30, 0x29, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0C, 0x30, 0x1C, 0x04, 0x08, 0xA9, 0x1C, 0x1B, 0x19, 0x36, 0xDE, 0xD4, 0x20, 0x02, 0x02, 0x08, 0x00, 0x30, 0x0C, 0x06, 0x08, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x02, 0x09, 0x05, 0x00, 0x30, 0x1D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x01, 0x2A, 0x04, 0x10, 0x7D, 0xE5, 0x23, 0x96, 0x18, 0x8B, 0xF4, 0xBC, 0x9F, 0x4E, 0xE8, 0xE9, 0xAA, 0x52, 0x18, 0x39, 0x80, 0x82, 0x05, 0x30, 0x02, 0x2D, 0x59, 0xA9, 0x96, 0x5A, 0xFE, 0x20, 0x18, 0xB2, 0x25, 0xEA, 0xFC, 0x86, 0x0F, 0xA8, 0x3C, 0x2B, 0x26, 0x2F, 0x44, 0x6E, 0xF3, 0x15, 0xB7, 0x94, 0xE4, 0x43, 0xEE, 0xE6, 0xC3, 0xBB, 0x3C, 0x9E, 0x60, 0x08, 0xF8, 0x15, 0x61, 0x44, 0xD0, 0xEA, 0xD5, 0x6D, 0x1A, 0x3B, 0x9F, 0x4E, 0x2A, 0x1E, 0xBB, 0xB9, 0x4E, 0x15, 0x43, 0xB8, 0x68, 0xDB, 0x1A, 0x4E, 0x41, 0xBA, 0x29, 0x8E, 0x75, 0xEB, 0x12, 0xC1, 0xF0, 0x4B, 0x0D, 0x13, 0xB2, 0xC2, 0x48, 0x6F, 0xC4, 0xC4, 0x82, 0xF2, 0x26, 0xD4, 0x3D, 0x1F, 0x42, 0x7D, 0x67, 0xB0, 0x37, 0x55, 0x9E, 0xD9, 0x46, 0x99, 0x98, 0xB4, 0xE7, 0x4B, 0x07, 0x08, 0x3F, 0xD3, 0x96, 0x9A, 0xC5, 0xDA, 0x37, 0x74, 0x08, 0x5D, 0x3B, 0x06, 0x8A, 0x16, 0x6D, 0x81, 0x63, 0x01, 0x83, 0x94, 0xDA, 0x1B, 0x0E, 0x04, 0xCE, 0x18, 0xF0, 0x51, 0x22, 0xD8, 0x2D, 0xF1, 0x69, 0x0C, 0xCB, 0xC9, 0x51, 0x17, 0x07, 0x1F, 0x2B, 0xCF, 0x74, 0x26, 0xD7, 0x73, 0xB3, 0x2D, 0xF2, 0x82, 0xF0, 0x38, 0x5B, 0x8A, 0x8F, 0xCD, 0x84, 0x69, 0x40, 0x59, 0xCE, 0xB3, 0x39, 0xFE, 0xF6, 0xB7, 0x24, 0x89, 0x34, 0xFF, 0xF4, 0x40, 0x50, 0x06, 0x4D, 0xC6, 0x13, 0x82, 0xAF, 0x7F, 0x84, 0xB1, 0x67, 0x3C, 0x89, 0xBB, 0x5D, 0x32, 0xC3, 0xA6, 0xF1, 0x7D, 0xF5, 0x72, 0x68, 0x75, 0xCE, 0x69, 0xAB, 0x6C, 0x32, 0xDA, 0x16, 0x3B, 0xC4, 0xCA, 0x47, 0x45, 0xE9, 0x59, 0x1E, 0xB1, 0x70, 0xDA, 0x8A, 0x00, 0x69, 0x80, 0x40, 0xCA, 0x60, 0xE6, 0x07, 0x16, 0xF0, 0xA2, 0xF9, 0x12, 0x7D, 0x09, 0x43, 0x66, 0x46, 0x78, 0x35, 0xA6, 0x94, 0x35, 0x60, 0x82, 0xFC, 0xB8, 0x5E, 0x39, 0xE7, 0xA1, 0x22, 0xAD, 0xCC, 0x6F, 0x5E, 0xCE, 0x01, 0x6B, 0xA1, 0xDD, 0xE5, 0xDD, 0x79, 0x9B, 0xA1, 0x28, 0xC4, 0x03, 0x84, 0x8D, 0x6C, 0x07, 0xD4, 0xFE, 0x57, 0xFB, 0x89, 0x3F, 0x43, 0x44, 0x69, 0xF1, 0x9E, 0x53, 0x6C, 0x11, 0x11, 0x96, 0x79, 0xE4, 0xB8, 0x3B, 0x49, 0x2E, 0xF6, 0x3B, 0xC5, 0x6C, 0x76, 0x21, 0x22, 0x15, 0x85, 0x77, 0x8A, 0xDD, 0xD2, 0x43, 0x85, 0x73, 0x39, 0x77, 0x9F, 0xFA, 0x8F, 0xCF, 0xCB, 0xEA, 0x62, 0xBD, 0x5C, 0x66, 0x45, 0xCD, 0xB0, 0xCA, 0x42, 0xCC, 0xB9, 0xCF, 0xE3, 0x84, 0x63, 0x9F, 0x63, 0xCE, 0x49, 0xE9, 0x74, 0x26, 0xCC, 0x26, 0x78, 0xCE, 0x9F, 0x4E, 0x38, 0xA2, 0x9C, 0xEB, 0x75, 0xC5, 0x33, 0x6B, 0x00, 0x83, 0x85, 0xA3, 0x0F, 0xE7, 0xE1, 0x11, 0xA6, 0x48, 0xDC, 0xEF, 0x0C, 0x05, 0xB3, 0xDE, 0x94, 0xB9, 0x69, 0xCB, 0x27, 0x09, 0xAB, 0x27, 0xD8, 0x06, 0xED, 0x25, 0xBC, 0xA6, 0x2E, 0xB7, 0xF9, 0x2E, 0xAD, 0x84, 0x1D, 0xDD, 0x73, 0xD8, 0xC0, 0x46, 0x8A, 0xFE, 0x9A, 0xDF, 0x07, 0xE1, 0x33, 0xE2, 0x1C, 0x37, 0x6A, 0x8E, 0xA2, 0x91, 0x0B, 0xD7, 0x76, 0xEF, 0x3C, 0x87, 0x4A, 0x53, 0x84, 0xFA, 0xFA, 0xC5, 0x71, 0x76, 0xC0, 0x75, 0x70, 0x67, 0x67, 0x71, 0x9D, 0x8B, 0x81, 0x6F, 0x68, 0xC5, 0xB1, 0xFC, 0xA3, 0x59, 0xB5, 0xD0, 0x03, 0x56, 0xE7, 0x89, 0x03, 0xD7, 0x99, 0xDE, 0x66, 0x33, 0xFA, 0x53, 0x50, 0x5F, 0xB4, 0x9D, 0xB3, 0x90, 0x8F, 0x57, 0x20, 0xF0, 0x8B, 0xDB, 0x73, 0xCA, 0xA4, 0x71, 0x61, 0x67, 0x6A, 0x6D, 0xA5, 0xCA, 0x88, 0xD4, 0xCC, 0x82, 0x34, 0xC9, 0x3E, 0x10, 0x10, 0x57, 0xD1, 0x08, 0x96, 0x80, 0x09, 0xA8, 0xBB, 0x6F, 0x53, 0x8F, 0xFD, 0x87, 0xCF, 0x73, 0xFC, 0xE1, 0x3A, 0x92, 0x2E, 0x78, 0x66, 0xFB, 0x86, 0x5D, 0x62, 0xE0, 0xC4, 0x58, 0x55, 0x3F, 0xA4, 0xEA, 0xA1, 0xBE, 0x5B, 0x5E, 0x8E, 0x46, 0x50, 0x5E, 0x7C, 0x01, 0xD6, 0x63, 0xAA, 0x6F, 0xD5, 0xFD, 0xAF, 0xC5, 0x1D, 0xB3, 0x90, 0x9C, 0xD8, 0x5F, 0x8D, 0xF2, 0x81, 0xEB, 0xBF, 0xA1, 0xDE, 0xB7, 0x9D, 0xCD, 0x24, 0x82, 0x06, 0x0B, 0x63, 0xE6, 0xBF, 0x57, 0x51, 0xF0, 0xB6, 0xE9, 0x7F, 0xAA, 0x7B, 0x10, 0xBD, 0xCD, 0x85, 0x41, 0xE0, 0xD7, 0xF1, 0x53, 0xB7, 0xF8, 0x46, 0x91, 0x9E, 0x8D, 0x4B, 0xCB, 0x28, 0x35, 0x40, 0x37, 0x1E, 0x83, 0x64, 0x6A, 0x70, 0x01, 0x9D, 0xBF, 0xF1, 0x0E, 0xB6, 0x2E, 0x7A, 0xB7, 0x8F, 0x0F, 0x8C, 0x69, 0xD6, 0xF2, 0xD1, 0xF6, 0x1E, 0xCD, 0x08, 0xA8, 0xD4, 0x1B, 0xCB, 0x38, 0xEA, 0x26, 0x37, 0x5C, 0x60, 0x3A, 0x38, 0x5B, 0x12, 0x1D, 0x00, 0x7B, 0xEC, 0xCE, 0xFB, 0x89, 0x23, 0x8A, 0x11, 0xE1, 0x1B, 0xDE, 0x54, 0x91, 0x6A, 0x26, 0x22, 0xD0, 0x1C, 0x2E, 0xBA, 0xD0, 0x92, 0x87, 0xDA, 0xF0, 0x93, 0xBB, 0x3A, 0x2C, 0x52, 0xFB, 0xB2, 0xA9, 0xA8, 0x92, 0x19, 0xE3, 0x19, 0xDC, 0xB0, 0x0E, 0xC5, 0xE7, 0x9D, 0xFB, 0xF9, 0xA3, 0x23, 0x32, 0xD0, 0x4E, 0x2C, 0x05, 0x2D, 0x76, 0xDB, 0x93, 0x53, 0x5B, 0x0E, 0x2A, 0xA3, 0xDD, 0x5F, 0xD3, 0x1A, 0x3B, 0x1E, 0x1F, 0x26, 0x88, 0x43, 0xAD, 0x10, 0x1F, 0xA9, 0xC4, 0xF9, 0x1F, 0xCD, 0xA5, 0xD2, 0xDC, 0x24, 0x95, 0x1D, 0xE7, 0x57, 0xE1, 0x02, 0x0A, 0x20, 0xEA, 0x6A, 0x78, 0x4E, 0x96, 0xE2, 0xE5, 0x6D, 0x6F, 0xFD, 0x81, 0x7B, 0x61, 0x85, 0xA3, 0x3D, 0xC5, 0x7B, 0xEF, 0xAE, 0x58, 0xA2, 0xDB, 0x91, 0x73, 0xDB, 0x47, 0x8E, 0xD1, 0x7D, 0xD7, 0x8F, 0x56, 0x06, 0x28, 0x8C, 0x78, 0x73, 0x02, 0x65, 0xB0, 0x16, 0x4B, 0xE6, 0xA3, 0xD7, 0x06, 0x7C, 0xEA, 0x7D, 0xE2, 0xAE, 0xBB, 0xE5, 0xD2, 0xEB, 0xF0, 0x91, 0x71, 0x7C, 0xBC, 0xA6, 0x1A, 0xE8, 0x9F, 0xD3, 0xA9, 0x3C, 0x5D, 0x60, 0xCF, 0x59, 0x26, 0x46, 0x45, 0xF2, 0x7F, 0x85, 0x6B, 0xE7, 0xC2, 0x58, 0x52, 0x90, 0x12, 0x07, 0xBA, 0xE6, 0xB8, 0xE5, 0xD7, 0x24, 0x93, 0xD5, 0x6E, 0xB1, 0x74, 0x6C, 0xAA, 0xA0, 0x60, 0xBF, 0xF3, 0x32, 0x41, 0x0B, 0xA2, 0x01, 0x84, 0x0D, 0x83, 0xE4, 0x43, 0xD1, 0xBA, 0xC1, 0x92, 0x84, 0x26, 0xF8, 0xF2, 0x77, 0x20, 0x1B, 0xF2, 0x8F, 0x00, 0x69, 0x18, 0x2F, 0x6C, 0xA8, 0x58, 0xB5, 0x5D, 0xFA, 0x27, 0xD2, 0x38, 0xD2, 0x49, 0x6E, 0xDF, 0x55, 0x79, 0xAF, 0x1C, 0x44, 0xDA, 0x5A, 0xD7, 0x44, 0x53, 0x50, 0x8B, 0x77, 0x70, 0x4D, 0x91, 0xEC, 0x07, 0xA5, 0x64, 0x21, 0x3C, 0x31, 0x09, 0x68, 0x65, 0xB4, 0xFA, 0xBE, 0x23, 0xF9, 0xDF, 0x77, 0x46, 0xA2, 0x9A, 0x5D, 0xE3, 0xBE, 0x1E, 0xE3, 0x84, 0xEF, 0xAE, 0x7D, 0xF8, 0x1C, 0x54, 0xE8, 0x4E, 0xAE, 0xB5, 0xBB, 0xD6, 0xC3, 0x8D, 0x56, 0x79, 0xE8, 0x7C, 0x43, 0xDC, 0xF3, 0xB3, 0x7A, 0x30, 0x22, 0x09, 0xBC, 0x10, 0xD6, 0x84, 0xC4, 0x0F, 0x4C, 0x0B, 0xA2, 0xD1, 0xCB, 0xCD, 0x1F, 0x50, 0x3D, 0xF7, 0x23, 0x45, 0x55, 0x18, 0x21, 0x3D, 0x64, 0x05, 0x2E, 0x52, 0x3A, 0x73, 0xFD, 0xF2, 0xA9, 0xCA, 0x3F, 0xF6, 0x7F, 0x87, 0xE8, 0x56, 0x9B, 0x68, 0x6B, 0x20, 0xB0, 0x1D, 0x83, 0x04, 0x2F, 0x59, 0xFD, 0x84, 0x57, 0x7D, 0x82, 0x97, 0x96, 0xE8, 0xFB, 0xDF, 0x71, 0x8C, 0x26, 0x47, 0x85, 0xA5, 0xBE, 0xFB, 0xF5, 0x05, 0x4C, 0xD3, 0x3D, 0x73, 0xF4, 0xA5, 0xF1, 0xA3, 0x99, 0x98, 0x1B, 0x84, 0x8B, 0xB3, 0x53, 0xCE, 0x4D, 0xEA, 0x5A, 0x48, 0xD2, 0xB9, 0x7E, 0xB6, 0xEB, 0x9B, 0x94, 0x6F, 0xDD, 0x44, 0x80, 0x89, 0xD2, 0x78, 0x6D, 0xB9, 0xDA, 0x8B, 0x83, 0x49, 0xE0, 0x4D, 0x49, 0xDF, 0x6B, 0xFF, 0xF7, 0x04, 0x00, 0x32, 0xAA, 0x1D, 0x4F, 0x8D, 0x4B, 0xDE, 0xB8, 0x0D, 0xC6, 0x54, 0x1C, 0xB2, 0xCD, 0x60, 0x29, 0x72, 0x0A, 0x7E, 0xE7, 0xEB, 0x7A, 0xF6, 0x5B, 0x04, 0x3F, 0x5B, 0x93, 0x12, 0x0D, 0xD5, 0xFF, 0x7A, 0x41, 0x44, 0x0B, 0x37, 0x12, 0x82, 0x3D, 0xDD, 0x1E, 0x59, 0xB9, 0xBE, 0x0F, 0x9E, 0xD6, 0xD0, 0x68, 0x69, 0x74, 0xF9, 0xB1, 0x21, 0xA3, 0x70, 0x4F, 0xDA, 0xF8, 0x9F, 0xB9, 0x49, 0x3F, 0xC6, 0xB2, 0x69, 0xC8, 0xD8, 0x60, 0xF1, 0x6A, 0x52, 0x07, 0xFA, 0x42, 0xFD, 0xA9, 0x06, 0xCF, 0x97, 0x4A, 0x0E, 0xC5, 0xFC, 0x63, 0x27, 0x54, 0xC8, 0xBE, 0x8B, 0x4F, 0xB6, 0x42, 0xBC, 0xA2, 0xCC, 0x70, 0x4A, 0x6B, 0x24, 0x5B, 0x68, 0x28, 0x47, 0xFA, 0x6B, 0x89, 0x28, 0x07, 0x5D, 0xE0, 0x2C, 0x4A, 0xD9, 0x22, 0xE3, 0xB3, 0x2F, 0xAA, 0xC2, 0xA0, 0x7C, 0x0F, 0x92, 0xC5, 0xDD, 0xB6, 0x23, 0x8F, 0x73, 0x73, 0x0F, 0xD7, 0x73, 0x71, 0x2F, 0x0A, 0x78, 0xE8, 0x5B, 0xDB, 0xC2, 0xE0, 0xDB, 0xC9, 0x3E, 0xC3, 0x72, 0x9C, 0x14, 0xD7, 0xD1, 0x28, 0xFD, 0xF4, 0xEE, 0xBC, 0x0E, 0x13, 0x37, 0xCA, 0x85, 0x9F, 0xB9, 0xA2, 0x0E, 0xF6, 0xE7, 0x49, 0xD1, 0xD0, 0x11, 0x76, 0x53, 0xA3, 0x73, 0x95, 0x2A, 0x23, 0xC8, 0x0E, 0x97, 0x83, 0x07, 0x64, 0xB2, 0x51, 0xB7, 0xC8, 0x51, 0x9F, 0xA4, 0x3E, 0x7B, 0xA4, 0x18, 0x6D, 0x99, 0xF0, 0x6E, 0xC3, 0x97, 0xAE, 0xF4, 0xB7, 0x66, 0x37, 0xFA, 0x65, 0xFC, 0x5E, 0xE2, 0x57, 0xFA, 0x8B, 0x4C, 0x86, 0x10, 0xB4, 0x5C, 0xA4, 0xD2, 0x60, 0x83, 0x69, 0x1E, 0xFF, 0x36, 0x9B, 0xF9, 0x84, 0xFB, 0xB8, 0x83, 0x64, 0xF1, 0x41, 0xA5, 0x25, 0x56, 0x21, 0xBA, 0x13, 0x98, 0x0C, 0x3B, 0x04, 0xAA, 0x6C, 0x9A, 0xD4, 0xE3, 0x13, 0x15, 0x54, 0x05, 0x4C, 0x5C, 0xE1, 0x7A, 0x31, 0x5E, 0x90, 0xCF, 0x48, 0x4E, 0x83, 0xD7, 0x7F, 0xED, 0x93, 0x22, 0xAB, 0x67, 0xE7, 0x76, 0x32, 0x64, 0xBA, 0x5A, 0x21, 0x3E, 0x30, 0x82, 0x01, 0x41, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0xA0, 0x82, 0x01, 0x32, 0x04, 0x82, 0x01, 0x2E, 0x30, 0x82, 0x01, 0x2A, 0x30, 0x82, 0x01, 0x26, 0x06, 0x0B, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x0C, 0x0A, 0x01, 0x02, 0xA0, 0x81, 0xEF, 0x30, 0x81, 0xEC, 0x30, 0x57, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D, 0x30, 0x4A, 0x30, 0x29, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0C, 0x30, 0x1C, 0x04, 0x08, 0xED, 0x3E, 0xED, 0x07, 0x5C, 0x1F, 0x71, 0xAD, 0x02, 0x02, 0x08, 0x00, 0x30, 0x0C, 0x06, 0x08, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x02, 0x09, 0x05, 0x00, 0x30, 0x1D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x01, 0x2A, 0x04, 0x10, 0xA7, 0x49, 0xA4, 0x6E, 0x00, 0x19, 0x75, 0x59, 0x75, 0x59, 0xBA, 0x4B, 0xC7, 0x24, 0x88, 0x34, 0x04, 0x81, 0x90, 0xCA, 0x23, 0x82, 0xAA, 0x16, 0x57, 0x99, 0xFA, 0x94, 0x9F, 0xAE, 0x32, 0x5C, 0x5B, 0xE7, 0x01, 0xD0, 0xED, 0xA7, 0x58, 0x57, 0x52, 0xBF, 0x57, 0x13, 0xD4, 0x15, 0xB0, 0x06, 0xF5, 0x38, 0xCC, 0x64, 0x23, 0x09, 0xD5, 0x8C, 0x0D, 0x64, 0x31, 0xFA, 0x74, 0xAA, 0x96, 0x7E, 0x9B, 0x16, 0xCA, 0x21, 0xFD, 0xC0, 0x54, 0x91, 0x40, 0x7F, 0xB3, 0xF2, 0xA3, 0xEC, 0xA1, 0x4A, 0x07, 0xF0, 0x87, 0x22, 0xDB, 0x8A, 0x49, 0x89, 0xF7, 0xF2, 0x6A, 0xFC, 0x8D, 0x03, 0x6E, 0x32, 0x4F, 0xD0, 0xD8, 0x93, 0x92, 0xA5, 0xF1, 0x41, 0xBD, 0xEA, 0xE1, 0x38, 0xA9, 0xD8, 0x9D, 0xAB, 0xB4, 0x8E, 0x4A, 0x40, 0x0E, 0xC7, 0xE3, 0xE9, 0xBF, 0x0E, 0xBA, 0x8D, 0xAA, 0x3E, 0x93, 0x53, 0x88, 0xEE, 0x0A, 0x2C, 0x71, 0xF1, 0x61, 0x44, 0xA5, 0xAD, 0xED, 0x3E, 0xAB, 0x32, 0x9A, 0x32, 0x85, 0x08, 0xF5, 0x8B, 0xCC, 0x15, 0x35, 0xEE, 0xFA, 0x17, 0x27, 0x97, 0x8D, 0xD9, 0x1C, 0x5E, 0x74, 0x9D, 0x7B, 0x31, 0x25, 0x30, 0x23, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x09, 0x15, 0x31, 0x16, 0x04, 0x14, 0x5F, 0x8E, 0xAB, 0x9C, 0x5F, 0xE2, 0x3B, 0xB1, 0x5C, 0x1A, 0x36, 0x1D, 0x7D, 0xCB, 0x90, 0x45, 0x20, 0x3C, 0x3B, 0xAC, 0x30, 0x41, 0x30, 0x31, 0x30, 0x0D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x02, 0x01, 0x05, 0x00, 0x04, 0x20, 0x93, 0x25, 0xC4, 0x3E, 0x2A, 0x6D, 0x4C, 0x30, 0x87, 0x0F, 0xE3, 0x5A, 0x95, 0xB0, 0xF2, 0x6C, 0xBA, 0x07, 0x89, 0x7D, 0xFB, 0xCF, 0xCF, 0x1D, 0x54, 0xA3, 0x36, 0x24, 0x7B, 0x30, 0x97, 0xB5, 0x04, 0x08, 0xE7, 0x96, 0x59, 0xCC, 0x42, 0x9F, 0xEF, 0xFC, 0x02, 0x02, 0x08, 0x00]),
     '123456').then((data) => {
       console.log('createTrustAnchorsWithKeyStore sucess, number of the result is: ' + JSON.stringify(data.length));
   }).catch((err : BusinessError) => {
@@ -9877,13 +9876,13 @@ Obtains the X.509 certificate list.
 
 | Type          | Description       |
 | -------------- | ----------- |
-| Array\<[X509Cert](#x509cert)> | X.509 certificate list obtained. |
+| Array\<[X509Cert](#x509cert)> | X.509 certificate list obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -9993,21 +9992,21 @@ Validates a certificate chain. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description           |
+| Name   | Type                           | Mandatory| Description           |
 | --------- | ------------------------------- | ---- | ----------------- |
-| param | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes  | Parameters for validating the X.509 certificate chain. |
+| param | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes  | Parameters for validating the X.509 certificate chain.|
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[CertChainValidationResult](#certchainvalidationresult11)> | Promise used to return the result. |
+| Promise\<[CertChainValidationResult](#certchainvalidationresult11)> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -10142,16 +10141,16 @@ Validates a certificate chain. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description     |
+| Name   | Type                           | Mandatory| Description     |
 | --------- | ------------------------------- | ---- | ------------ |
-| param | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes  | Parameters for validating the X.509 certificate chain. |
-| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | Yes  | Callback used to return the certificate chain validation result. |
+| param | [CertChainValidationParameters](#certchainvalidationparameters11) | Yes  | Parameters for validating the X.509 certificate chain.|
+| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | Yes  | Callback used to return the certificate chain validation result.|
 
 **Error codes**
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
@@ -10285,7 +10284,7 @@ Converts the object data into a string.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -10412,7 +10411,7 @@ Obtains the hash value of the data in DER format.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message               |
+| ID| Error Message               |
 | -------- | ----------------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -10531,9 +10530,9 @@ Creates an **X500DistinguishedName** object in the form of a string. This API us
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                |
+| Name  | Type                         | Mandatory| Description                |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameStr | string | Yes |DN of the string type defined by X.509.|
+| nameStr | string | Yes|DN of the string type defined by X.509.|
 
 **Return value**
 
@@ -10545,7 +10544,7 @@ Creates an **X500DistinguishedName** object in the form of a string. This API us
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
@@ -10602,9 +10601,9 @@ Creates an **X500DistinguishedName** object in DER format. This API uses a promi
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                |
+| Name  | Type                         | Mandatory| Description                |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameDer | Uint8Array | Yes |Name of the Uint8Array type in DER format defined by X.509.|
+| nameDer | Uint8Array | Yes|Name of the Uint8Array type in DER format defined by X.509.|
 
 **Return value**
 
@@ -10616,7 +10615,7 @@ Creates an **X500DistinguishedName** object in DER format. This API uses a promi
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
@@ -10675,7 +10674,7 @@ Obtains the DN in the form of a string.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
@@ -10717,9 +10716,9 @@ Obtains DNs of the specified type.
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description          |
+| Name      | Type  | Mandatory| Description          |
 | ------------ | ------ | ---- | -------------- |
-| type | string | Yes | Type of the DNs to obtain.|
+| type | string | Yes| Type of the DNs to obtain.|
 
 **Return value**
 
@@ -10731,7 +10730,7 @@ Obtains DNs of the specified type.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
@@ -10782,7 +10781,7 @@ Obtains the data of the X.509 certificate **extensions** field.
 
 For details about the error codes, see [Certificate Error Codes](errorcode-cert.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 19020001 | memory error. |
 | 19020002 | runtime error. |

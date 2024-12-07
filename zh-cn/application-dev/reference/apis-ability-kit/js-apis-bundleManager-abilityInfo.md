@@ -1,15 +1,15 @@
 # AbilityInfo
 
+Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取Ability信息,其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY。
+
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取Ability信息,其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ABILITY。
 
 ## AbilityInfo
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称                  | 类型                                                     | 可读 | 可写 | 说明                                      |
+| 名称                  | 类型                                                     | 只读 | 可选 | 说明                                      |
 | --------------------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------ |
 | bundleName            | string                                                   | 是   | 否   | 应用Bundle名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | moduleName            | string                                                   | 是   | 否   | Ability所属的HAP的名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -38,6 +38,7 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 | excludeFromDock<sup>12+</sup>             | boolean                                                  | 是   | 否   | 判断Ability是否可以在dock区域隐藏图标。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | 是   | 否   | Ability的Skills信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
+| orientationId<sup>14+</sup>    | number      | 是   | 否   | Ability的显示模式资源id。当orientationId不为0时表示当前显示模式为自定义配置，需要使用orientationId去资源管理获取对应的资源。 |
 
 ## WindowSize
 
@@ -47,7 +48,7 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称               | 类型    | 可读 | 可写 | 说明                               |
+| 名称               | 类型    | 只读 | 可选 | 说明                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
 | maxWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最大宽高比；取值范围0-1。 |
 | minWindowRatio     | number  | 是   | 否   | 表示自由窗口状态下窗口的最小宽高比；取值范围0-1。 |

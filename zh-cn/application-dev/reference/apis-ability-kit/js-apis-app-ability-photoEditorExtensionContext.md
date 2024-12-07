@@ -14,7 +14,9 @@ import { common } from '@kit.AbilityKit';
 ```
 
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
+
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
+
 传入编辑过的图片的uri并保存。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -99,7 +101,9 @@ struct Index {
 }
 ```
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
+
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
+
 传入编辑过的图片的PixMap对象并保存。
 
 **模型约束：** 此接口仅可在Stage模型下使用。

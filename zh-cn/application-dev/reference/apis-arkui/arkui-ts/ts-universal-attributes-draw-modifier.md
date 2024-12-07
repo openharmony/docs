@@ -95,7 +95,7 @@ invalidate(): void
 ```ts
 // xxx.ets
 import { drawing } from '@kit.ArkGraphics2D';
-import { Animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
 class MyFullDrawModifier extends DrawModifier {
   public scaleX: number = 1;
@@ -190,7 +190,7 @@ struct DrawModifierExample {
 
   create() {
     let self = this;
-    this.drawAnimator = Animator.create({
+    this.drawAnimator = this.getUIContext().createAnimator({
       duration: 1000,
       easing: 'ease',
       delay: 0,

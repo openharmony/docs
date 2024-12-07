@@ -59,7 +59,7 @@ struct Page_StartFAModel {
 
 Different from **startAbility()**, **startAbilityForResult()** obtains the execution result when the PageAbility is destroyed.
 
-A UIAbility starts a PageAbility through **startAbilityForResult()** in the same way as it starts another UIAbility through **startAbilityForResult()**.
+A UIAbility starts a PageAbility through **startAbilityForResult()** in the same way as it starts another UIAbility.
 
 
 ```ts

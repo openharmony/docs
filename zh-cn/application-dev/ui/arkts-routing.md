@@ -1,7 +1,7 @@
 # 页面路由 (@ohos.router)(不推荐)
 
 
-页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
+页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)这几个方面，介绍如何通过Router模块实现页面路由。
 
 >**说明：**
 >
@@ -43,9 +43,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 - 场景一：有一个主页（Home）和一个详情页（Detail），希望从主页点击一个商品，跳转到详情页。同时，需要保留主页在页面栈中，以便返回时恢复状态。这种场景下，可以使用pushUrl方法，并且使用Standard实例模式（或者省略）。
 
-
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Home页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -66,9 +66,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 - 场景二：有一个登录页（Login）和一个个人中心页（Profile），希望从登录页成功登录后，跳转到个人中心页。同时，销毁登录页，在返回时直接退出应用。这种场景下，可以使用replaceUrl方法，并且使用Standard实例模式（或者省略）。
 
-
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Login页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -89,9 +89,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 - 场景三：有一个设置页（Setting）和一个主题切换页（Theme），希望从设置页点击主题选项，跳转到主题切换页。同时，需要保证每次只有一个主题切换页存在于页面栈中，在返回时直接回到设置页。这种场景下，可以使用pushUrl方法，并且使用Single实例模式。
 
-
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Setting页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -107,7 +107,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
   ```
 
 - 场景四：有一个搜索结果列表页（SearchResult）和一个搜索结果详情页（SearchDetail），希望从搜索结果列表页点击某一项结果，跳转到搜索结果详情页。同时，如果该结果已经被查看过，则不需要再新建一个详情页，而是直接跳转到已经存在的详情页。这种场景下，可以使用replaceUrl方法，并且使用Single实例模式。
-
 
   ```ts
   import { router } from '@kit.ArkUI';
@@ -133,13 +132,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ```ts
 import { router } from '@kit.ArkUI';
+
 class DataModelInfo {
   age: number = 0;
 }
 
 class DataModel {
   id: number = 0;
-  info: DataModelInfo|null = null;
+  info: DataModelInfo | null = null;
 }
 
 function onJumpClick(): void {
@@ -208,6 +208,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back();
   ```
 
@@ -220,6 +221,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home'
   });
@@ -229,6 +231,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage' //myPage为返回的命名路由页面别名
   });
@@ -243,6 +246,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home',
     params: {
@@ -255,6 +259,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
@@ -267,21 +272,23 @@ import { router } from '@kit.ArkUI';
 
 在目标页面中，在需要获取参数的位置调用router.getParams方法即可，例如在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)生命周期回调中：
 
+> **说明：**
+> 
+> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct Home {
   @State message: string = 'Hello World';
 
   onPageShow() {
-    const params = router.getParams() as Record<string, string>; // 获取传递过来的参数对象
+    const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // 获取传递过来的参数对象
     if (params) {
       const info: string = params.info as string; // 获取info属性的值
     }
   }
+
   ...
 }
 ```
@@ -316,7 +323,6 @@ import { router } from '@kit.ArkUI';
 ```
 
 如果想要在目标界面开启页面返回询问框，需要在调用[router.back](../reference/apis-arkui/js-apis-router.md#routerback)方法之前，通过调用[router.showAlertBeforeBackPage](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
-
 
 ```ts
 import { router } from '@kit.ArkUI';
@@ -360,7 +366,6 @@ import { router } from '@kit.ArkUI';
 
 在事件回调中，调用弹窗的[promptAction.showDialog](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog)方法：
 
-
 ```ts
 import { promptAction, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -379,7 +384,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result:promptAction.ShowDialogSuccessResponse) => {
+  }).then((result: promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // 用户点击了“取消”按钮
       console.info('User canceled the operation.');
@@ -389,7 +394,7 @@ function onBackClick() {
       // 调用router.back()方法，返回上一个页面
       router.back();
     }
-  }).catch((err:Error) => {
+  }).catch((err: Error) => {
     let message = (err as BusinessError).message
     let code = (err as BusinessError).code
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
@@ -439,9 +444,9 @@ export struct MyComponent {
 配置成功后需要在跳转的页面中引入命名路由的页面：
 
 ```ts
-import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import '@ohos/library/src/main/ets/pages/Index';  // 引入共享包中的命名路由页面
+import '@ohos/library/src/main/ets/pages/Index'; // 引入共享包中的命名路由页面
+
 @Entry
 @Component
 struct Index {
@@ -454,7 +459,7 @@ struct Index {
         .backgroundColor('#ccc')
         .onClick(() => { // 点击跳转到其他共享包中的页面
           try {
-            router.pushNamedRoute({
+            this.getUIContext().getRouter().pushNamedRoute({
               name: 'myPage',
               params: {
                 data1: 'message',

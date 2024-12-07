@@ -10,11 +10,15 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 - 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
 
-- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)、[RichEditor](ts-basic-components-richeditor.md)
+- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Video](ts-media-components-video.md)
 
 开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
 其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
+
+> **说明：**
+>
+> Text组件需配合[copyOption](ts-basic-components-text.md#copyoption9)一起使用，设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice。
 
 ## allowDrop
 
@@ -88,7 +92,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11枚举说明) &nbsp;\|&nbsp; Array<[DragPreviewMode](#dragpreviewmode11枚举说明)><sup>12+</sup> | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/>当组件同时设置DragPreviewMode.AUTO和其它枚举值时，以DragPreviewMode.AUTO为准，其它枚举值设置无效。|
-| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。当设置数量角标时取值范围为[0，2<sup>31</sup>-1]，当设置为浮点数时，只显示整数部分。<br/>**说明：** <br>在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true |
+| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。当设置数量角标时取值范围为[0，2<sup>31</sup>-1]，超过取值范围时会按默认状态处理。当设置为浮点数时，只显示整数部分。<br/>**说明：** <br>在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true |
 | modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| 否 | 用于配置拖拽背板图的样式Modifier对象，可使用图片组件所支持的属性和样式来配置背板图样式(参考示例6)，当前支持透明度，阴影，背景模糊度，圆角。文本拖拽只支持默认效果，不支持通过modifier进行自定义。<br/>1.透明度<br/>通过[opacity](ts-universal-attributes-opacity.md#opacity)设置透明度，不透明度的取值范围为0-1。设置0或不设置时采用默认值0.95，设置1或异常值时不透明。<br/>2.阴影<br/>通过[shadow](ts-universal-attributes-image-effect.md#shadow)设置阴影。<br/>3.背景模糊度<br/>通过[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect11)或[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle)设置背景模糊度，如果两者同时设置，以backgroundEffect为准。<br/>4.圆角<br/>通过[border](ts-universal-attributes-border.md#border)或[borderRadius](ts-universal-attributes-border.md#borderRadius)设置圆角，当同时在mode和modifier中设置圆角，mode设置的圆角显示优先级低于modifier设置。<br/>默认值：空，无法修改属性|
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
@@ -112,8 +116,9 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。<br/>默认值：false <br/> |
 
 ## 示例
-### 示例1
-allowDrop与draggable属性用法示例
+### 示例1（允许拖拽和落入）
+
+该示例通过配置allowDrop和draggable分别设置组件是否可落入和拖拽。
 
 ```ts
 // xxx.ets
@@ -153,7 +158,7 @@ struct ImageExample {
       .margin({ bottom: 20 })
       Row() {
         Column(){
-          Text('不允许释放区域(显示不允许角标但可以释放)')
+          Text('不允许释放区域')
             .fontSize('15dp')
             .height('10%')
           List(){
@@ -231,8 +236,10 @@ struct ImageExample {
 
 ![dragImage.gif](figures/dragImage.gif)
 
-### 示例2
-dragPreview属性用法示例
+### 示例2（设置预览图）
+
+该示例通过配置dragPreview设置拖拽过程的预览图。
+
 ```ts
 // xxx.ets
 @Entry
@@ -294,8 +301,10 @@ struct DragPreviewDemo{
 
 ![dragPreview.gif](figures/dragPreview.gif)
 
-### 示例3
-dragPreviewOptions属性用法示例
+### 示例3（设置背板图样式）
+
+该示例通过配置dragPreviewOptions为ENABLE_DEFAULT_SHADOW和ENABLE_DEFAULT_RADIUS设置默认阴影和统一圆角效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -326,8 +335,10 @@ struct dragPreviewOptionsDemo{
 ![dragPreviewOptions.gif](figures/dragPreviewOptions.gif)
 
 
-### 示例4
-DragInteractionOptions属性中isMultiSelectionEnabled参数使用方法用例。
+### 示例4（设置多选拖拽）
+
+该示例通过配置isMultiSelectionEnabled实现Grid组件的多选拖拽效果。
+
 ```ts
 @Entry
 @Component
@@ -339,7 +350,7 @@ struct Example {
         ForEach(this.numbers, (item: number) => {
           GridItem() {
             Column()
-              .backgroundColor(Color.Red)
+              .backgroundColor(Color.Blue)
               .width('100%')
               .height('100%')
           }
@@ -364,8 +375,10 @@ struct Example {
 
 ![isMultiSelectionEnabled.gif](figures/isMultiSelectionEnabled.gif)
 
-### 示例5
-DragInteractionOptions属性中defaultAnimationBeforeLifting参数使用方法用例。
+### 示例5（设置默认点按效果）
+
+该示例通过配置defaultAnimationBeforeLifting实现Grid组件的默认点按效果。
+
 ```ts
 @Entry
 @Component
@@ -377,7 +390,7 @@ struct Example {
         ForEach(this.numbers, (item: number) => {
           GridItem() {
             Column()
-              .backgroundColor(Color.Red)
+              .backgroundColor(Color.Blue)
               .width('100%')
               .height('100%')
           }
@@ -402,8 +415,10 @@ struct Example {
 
 ![defaultAnimationBeforeLifting.gif](figures/defaultAnimationBeforeLifting.gif)
 
-### 示例6
-dragPreviewOptions属性中ImageModifier参数使用方法用例。
+### 示例6（自定义背板图样式）
+
+该示例通过配置ImageModifier实现Image组件的自定义背板图样式。
+
 ```ts
 // xxx.ets
 import { ImageModifier } from '@kit.ArkUI'

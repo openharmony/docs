@@ -11,18 +11,18 @@ The autoFillManager module provides APIs for saving accounts and passwords.
 ## Modules to Import
 
 ```ts
-import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { autoFillManager } from '@kit.AbilityKit';
 ```
 
 ## AutoSaveCallback
 
-Implements callbacks triggered when saving is complete.
+Implements callbacks triggered when auto-save is complete.
 
 ### AutoSaveCallback.onSuccess
 
 onSuccess(): void
 
-Called when saving is successful.
+Called when auto-save is successful.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -36,7 +36,7 @@ See [AutoSaveCallback.onFailure](#autosavecallbackonfailure).
 
 onFailure(): void
 
-Called when saving fails.
+Called when auto-save fails.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -67,7 +67,7 @@ struct Index {
     Button('requestAutoSave')
       .onClick(() => {
         try {
-          // Initiate a saving request.
+          // Initiate an auto-save request.
           autoFillManager.requestAutoSave(uiContext, callback);
         } catch (error) {
           console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
@@ -87,7 +87,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
 Requests to automatically save the widget data. This API uses an asynchronous callback to return the result.
 
-If the current widget does not support widget switching, you can call this API to save historical widget input data. The callback is triggered when the saving request is complete.
+If the current widget does not support widget switching, you can call this API to save historical widget input data. The callback is triggered when the auto-save request is complete.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -95,15 +95,16 @@ If the current widget does not support widget switching, you can call this API t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | [UIContext](../apis-arkui/js-apis-arkui-UIContext.md) | Yes | UI context in which the saving operation will be performed. |
-| callback | [AutoSaveCallback](#autosavecallback)  | No | Callback used for the saving request. |
+| context | [UIContext](../apis-arkui/js-apis-arkui-UIContext.md) | Yes| UI context in which the auto-save operation will be performed.|
+| callback | [AutoSaveCallback](#autosavecallback)  | No| Callback used for the auto-save request.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | The parameter check failed. Possible causes: 1. Get instance id failed; 2. Parse instance id failed; 3. The second parameter is not of type callback. |
 | 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
@@ -171,7 +172,7 @@ struct Index {
           let uiContext = AppStorage.get<UIContext>("uiContext");
           console.log("uiContext: ", JSON.stringify(uiContext));
           try {
-            // Initiate a saving request.
+            // Initiate an auto-save request.
             autoFillManager.requestAutoSave(uiContext, {
               onSuccess: () => {
                 console.log("save request on success");

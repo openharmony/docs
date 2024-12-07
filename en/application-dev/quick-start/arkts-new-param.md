@@ -7,9 +7,6 @@ You can use \@Param, a variable decorator in state management V2, to enhance the
 >
 > The \@Param decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
-
-
 
 ## Overview
 
@@ -77,7 +74,7 @@ struct Child {
   build() {
     Column() {
       Text(`ObjectLink region: ${this.region.x}-${this.region.y}`)
-      Text(`Prop region: ${this.region.x}-${this.region.y}`)
+      Text(`Prop regionProp: ${this.regionProp.x}-${this.regionProp.y}`)
     }
   }
 }
@@ -365,13 +362,13 @@ The \@Param decorator has the following constraints:
   }
   @Component
   struct CompB {
-    @Param message: string = "Hello World"; // Incorrect usage.
+    @Param message: string = "Hello World"; // Incorrect usage. An error is reported during compilation.
     build() {
     }
   }
   ```
 
-- \@Param decorated variable indicates the external input of the component. The local initial value can be used for initialization. But if the externally input value exists, it is preferentially used for initialization. You should use the local initial value and pass in the external initialization of the \@Param decorated variables.
+- The \@Param decorated variable indicates the external input of the component and needs to be initialized. The local initial value can be used for initialization. But if the external input value exists, it is preferentially used for initialization. It is not allowed to use neither the local initial value nor the external input value.
 
   ```ts
   @ComponentV2
@@ -379,11 +376,12 @@ The \@Param decorator has the following constraints:
     @Param param1: string = "Initialize local";
     @Param param2: string = "Initialize local and put in";
     @Require @Param param3: string;
+    @Param param4: string; // Incorrect usage. The external initialization is not performed and no initial value exists in the local host. As a result, an error is reported during compilation.
     build() {
       Column() {
-        Text(`${this.param1}`) // Initialize local
-        Text(`${this.param2}`) // Put in
-        Text(`${this.param3}`) // Put in
+        Text(`${this.param1}`) // Local initialization. "Initialize local" is displayed.
+        Text(`${this.param2}`) // External initialization. "Put in" is displayed.
+        Text(`${this.param3}`) // External initialization. "Put in" is displayed.
       }
     }
   }
@@ -402,7 +400,7 @@ The \@Param decorator has the following constraints:
   }
   ```
 
-- \@Param decorated variables cannot be changed in the child component. However, when the decorated variable is of object type, changing the object properties in the child component is allowed.
+- The \@Param decorated variables cannot be changed in the child component. However, when the decorated variable is of object type, changing the object properties in the child component is allowed.
 
   ```ts
   @ObservedV2
@@ -435,7 +433,7 @@ The \@Param decorator has the following constraints:
         Text(`info.name: ${this.info.name}`)
         Button("change info")
           .onClick(() => {
-            this.info = new Info("Jack"); // Incorrect usage. The @Param variables cannot be changed in the child component.
+            this.info = new Info("Jack"); // Incorrect usage. The @Param decorated variable cannot be changed in the child component. An error is reported during compilation.
           })
         Button("Child change info.name")
           .onClick(() => {

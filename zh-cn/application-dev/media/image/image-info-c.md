@@ -153,6 +153,17 @@ static void ImageNativeCTest()
         return;
     }
 
+    // 读取 OH_ImageNative 对象所对应的时间戳信息
+    int64_t timestamp = 0;
+    errCode = OH_ImageNative_GetTimestamp(image, &timestamp);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get timestamp failed, errCode: %{public}d.", errCode);
+        OH_ImageNative_Release(image);
+        OH_ImageReceiverOptions_Release(options);
+        OH_ImageReceiverNative_Release(receiver);
+        return;
+    }
+
     // 释放 OH_ImageNative 实例
     errCode = OH_ImageNative_Release(image);
     if (errCode != IMAGE_SUCCESS) {

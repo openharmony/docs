@@ -771,6 +771,22 @@ Failed to uninstall updates because the HAP is not pre-installed.
 **处理步骤**<br/>
 确认指定的应用是否为预置应用。
 
+## 17700058 指定的应用禁止在本设备或指定用户下安装
+
+**错误信息**<br/>
+Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
+
+**错误描述**<br/>
+指定的应用禁止在本设备或指定用户下安装。
+
+**可能原因**<br/>
+1. 当前使用的设备是洗白机。
+2. 指定的应用不支持在指定的用户下安装。
+
+**处理步骤**<br/>
+1. 确认使用的设备是否是洗白机。
+2. 将指定的应用安装在其他用户下。
+
 ## 17700059 指定的开发者ID不存在
 
 **错误信息**<br/>
@@ -833,6 +849,29 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 **处理步骤**<br/>
 检查ShortcutInfo结构体中的want有效性。
 
+## 17700066 安装失败，native软件包安装失败
+
+**错误信息**<br/>
+Failed to install the HAP because installing the native package failed.
+
+**错误描述**<br/>
+安装hap时，native软件包安装失败。
+
+**可能原因**<br/>native软件包配置信息有误。
+
+**处理步骤**<br/>检查native软件包的配置信息。
+
+## 17700067 卸载应用失败，native软件包卸载失败
+
+**错误信息**<br/>
+Failed to uninstall the HAP because uninstalling the native package failed.
+
+**错误描述**<br/>卸载应用时，native软件包卸载失败。
+
+**可能原因**<br/>需要卸载的native软件包被占用。
+
+**处理步骤**<br/>检查是否存在进程占用相应native软件包。
+
 ## 17700069 多开模式非分身的应用，不能创建分身实例
 
 **错误信息**<br/>
@@ -860,6 +899,46 @@ The specified shortcut id is illegal.
 
 **处理步骤**<br/>
 1. 检查包名或者快捷方式id是否正确。
+
+## 17700071 不允许企业应用安装
+**错误信息**<br/>
+It is not allowed to install the enterprise bundle.
+
+**错误描述**<br/>
+特定的安装接口，不允许通过其安装企业应用。
+
+**可能原因**<br/>
+因策略管制，不允许通过特定的接口，安装企业应用。
+
+**处理步骤**<br/>
+
+## 17700072 Launch Want不存在
+**错误信息**<br/>
+The launch want is not found.
+
+**错误描述**<br/>
+Launch Want不存在。
+
+**可能原因**<br/>
+应用没有Ability，或者没有entities配置为entity.system.home和actions配置为action.system.home的Ability。
+
+**处理步骤**<br/>
+应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
+
+## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
+**错误信息**<br/>
+Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
+
+**错误描述**<br/>
+由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
+
+**可能原因**<br/>
+1、由于设备上存在具有相同包名称但不同签名信息的已安装应用程序，导致安装失败。
+2、设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败。
+
+**处理步骤**<br/>
+1、卸载设备上相同包名的应用。
+2、若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

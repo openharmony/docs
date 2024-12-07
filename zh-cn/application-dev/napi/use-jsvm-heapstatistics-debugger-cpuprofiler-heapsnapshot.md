@@ -24,7 +24,7 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_GetVM
 
@@ -37,15 +37,7 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetVM注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetVM},
-};
-static JSVM_CallbackStruct *method = param;
-// GetVM方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getVM", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_GetVM的样例方法
 static JSVM_Value GetVM(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -62,19 +54,21 @@ static JSVM_Value GetVM(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// GetVM注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetVM},
+};
+static JSVM_CallbackStruct *method = param;
+// GetVM方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getVM", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS侧示例代码
+// 样例测试JS
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-    getVM()
-`
-let result = napitest.runJsVm(script);
-hilog.info(0x0000, 'testJSVM', 'Test JSVM getVM: %{public}s', result);
+```c++
+const char *srcCallNative = R"JS(getVM())JS";
 ```
 
 ### OH_JSVM_GetHeapStatistics
@@ -88,15 +82,7 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetHeapStatistics注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetHeapStatistics},
-};
-static JSVM_CallbackStruct *method = param;
-// GetHeapStatistics方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getHeapStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_GetHeapStatistics的样例方法
 void PrintHeapStatistics(JSVM_HeapStatistics result)
 {
@@ -130,19 +116,21 @@ static JSVM_Value GetHeapStatistics(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateInt64(env, result.numberOfNativeContexts, &nativeContextsCnt);
     return nativeContextsCnt;
 }
+// GetHeapStatistics注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetHeapStatistics},
+};
+static JSVM_CallbackStruct *method = param;
+// GetHeapStatistics方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getHeapStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS侧示例代码
+// 样例测试JS
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-    getHeapStatistics()
-`
-let numberOfNativeContexts = napitest.runJsVm(script);
-hilog.info(0x0000, 'testJSVM', 'Test JSVM getHeapStatistics: %{public}s', numberOfNativeContexts);
+```c++
+const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
 
 以下接口的示例代码可以参考链接：

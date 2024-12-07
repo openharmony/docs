@@ -5,6 +5,7 @@ The **request** module provides applications with basic upload, download, and ba
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.request](js-apis-request.md).
 
 

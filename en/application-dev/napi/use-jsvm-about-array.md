@@ -2,17 +2,18 @@
 
 ## Introduction
 
-JSVM-API provides APIs for directly managing JS arrays.
+JSVM-API provides APIs for directly managing JavaScript (JS) arrays.
 
 ## Basic Concepts
 
-JSVM-API can be used to create, access, modify, and traverse arrays. Before using JSVM-API, it's helpful if you understand the following concepts:
+JSVM-API can be used to create, access, modify, and traverse arrays. Before using JSVM-API to work with arrays, it's helpful if you understand the following concepts:
 
 - Array creation: You can use **OH_JSVM_CreateArray** to create an array and pass it to the JS layer.
 - Array-related operations: You can use the APIs provides by the JSVM module to obtain the length of a JS array, retrieve the element at the specified index, and set the element value at the specified index.
 - **TypedArray**: A **TypedArray** object in JS is an array-like view of an underlying binary data buffer. It can be simply understood as an array of elements of the specified type. There is no constructor for **TypedArray** objects, but its child class constructor can be used to construct **TypedArray** data. The child classes of **TypedArray** include **Int8Array**, **Uint8Array**, **Uint8ClampedArray**, **Int16Array**, and **Int32Array**.
-- **DataView**: **DataView** is a JS view that allows a variety of number types to be read and written in an **ArrayBuffer** object.
 - **ArrayBuffer**: **ArrayBuffer** is a data struct used to represent a binary data buffer of fixed length.
+- **DataView**: **DataView** is a JS view that allows a variety of number types to be read and written in an **ArrayBuffer** object.
+
 
 ## Available APIs
 
@@ -20,8 +21,8 @@ JSVM-API can be used to create, access, modify, and traverse arrays. Before usin
 | ---------------------------- | ------------------------------------------ |
 |OH_JSVM_CreateArray | Creates a JS array object.|
 |OH_JSVM_CreateArrayWithLength | Creates a JS array object of the specified length.|
-|OH_JSVM_CreateTypedarray | Creates a JS **TypedArray** object for an **ArrayBuffer**. The **TypedArray** object provides an array-like view over an underlying data buffer, where each element has the same underlying binary scalar data type.|
-|OH_JSVM_CreateDataview | Creates a JS **DataView** object for an **ArrayBuffer**. The **DataView** object provides an array-like view of over an underlying data buffer.|
+|OH_JSVM_CreateTypedarray | Creates a JS **TypedArray** object for an **ArrayBuffer**. The **TypedArray** object provides an array-like view over an underlying data buffer, where each element has the same underlying binary scalar data type. <br/>The parameters specified must meet the following:<br>(**length** x **size_of_element**) + **byte_offset** ≤ Array size (in bytes)<br>Otherwise, a **RangeError** exception will be thrown.<br>**size_of_element** specifies the size of the data type of the elements in the array. |
+|OH_JSVM_CreateDataview | Creates a JS **DataView** object based on an existing **ArrayBuffer**. The **DataView** object provides an array-like view on the underlying data buffer. The **ArrayBuffer** allows elements of different sizes and types. <br/>The sum of **byte_length** and **byte_offset** must be less than or equal to the array size (in bytes). Otherwise, a **RangeError** exception will be thrown. |
 |OH_JSVM_GetArrayLength | Obtains the length of an array.|
 |OH_JSVM_GetTypedarrayInfo | Obtains information about a **TypedArray** object.|
 |OH_JSVM_GetDataviewInfo | Obtains information of a **DataView** object.|
@@ -35,11 +36,11 @@ JSVM-API can be used to create, access, modify, and traverse arrays. Before usin
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for array management. The **OH_JSVM_CreateTypedarray** API is different. For details, see the example.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in array development.
 
 ### OH_JSVM_CreateArray
 
-Creates a JS array object.
+Use **OH_JSVM_CreateArray** to create a JS array object.
 
 CPP code:
 
@@ -49,14 +50,6 @@ CPP code:
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // Register the CreateArray callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateArray},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createArray and associate it with a callback. This allows the CreateArray callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 static int DIFF_VALUE_FIVE = 5;
 // Define OH_JSVM_CreateArray. 
 static JSVM_Value CreateArray(JSVM_Env env, JSVM_CallbackInfo info)
@@ -77,31 +70,25 @@ static JSVM_Value CreateArray(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return array;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateArray},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createArray and associate it with a callback. This allows the CreateArray callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
   function testCreateArray() {
     return createArray();
   }
-  testCreateArray()
-`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateArray error: %{public}s', error.message);
-}
+  testCreateArray();
+)JS";
 ```
-
 ### OH_JSVM_CreateArrayWithLength
 
-Creates a JS array object of the specified length.
+Use **OH_JSVM_CreateArrayWithLength** to create a JS array object of the specified length.
 
 CPP code:
 
@@ -110,15 +97,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the CreateArrayWithLength callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateArrayWithLength},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createArrayWithLength and associate it with a callback. This allows the CreateArrayWithLength callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createArrayWithLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_CreateArrayWithLength.
 static JSVM_Value CreateArrayWithLength(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -145,32 +123,28 @@ static JSVM_Value CreateArrayWithLength(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
+// Register the CreateArrayWithLength callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateArrayWithLength},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createArrayWithLength and associate it with a callback. This allows the CreateArrayWithLength callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createArrayWithLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
 let num = 7;
-let script: string = `
-  function testCreateArrayWithLength(num) {
+function testCreateArrayWithLength(num){
     return createArrayWithLength(num);
-  }
-  testCreateArrayWithLength(${num})
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateArrayWithLength: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateArrayWithLength error: %{public}s', error.message);
 }
+testCreateArrayWithLength(num);
+)JS";
 ```
 
 ### OH_JSVM_CreateTypedarray
 
-Creates a JS **TypedArray** object for an **ArrayBuffer**. The **TypedArray** object provides an array-like view over an underlying data buffer, where each element has the same underlying binary scalar data type.
+Use **OH_JSVM_CreateTypedarray** to create a JS **TypedArray** object based on an **ArrayBuffer**. The **TypedArray** object provides an array-like view over an underlying data buffer, where each element has the same underlying binary scalar data type.
 
 CPP code:
 
@@ -179,15 +153,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the CreateTypedArray callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateTypedArray},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createTypedArray and associate it with a callback. This allows the CreateTypedArray callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createTypedArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_CreateTypedarray.
 static int DIFF_VALUE_THREE = 3;
 static JSVM_Value CreateTypedArray(JSVM_Env env, JSVM_CallbackInfo info)
@@ -247,80 +212,42 @@ static JSVM_Value CreateTypedArray(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return typedArray;
 }
-```
-
-Modify the module initialization in **use-jsvm-process.md** as follows:
-
-```cpp
-// hello.cpp
-static napi_value Init(napi_env env, napi_value exports) {
-    // The defined TypedArray type is used by JS to store JSVM_TypedArrayType. For details, see createTypedArray sample code in ArkTS code. You can determine whether to use it based on service requirements.
-    napi_value typedArrayTypes;
-    napi_create_object(env, &typedArrayTypes);
-    napi_value typeIndex;
-    std::string typeKeys[] = {
-        "INT8_ARRAY",   "UINT8_ARRAY",   "UINT8_CLAMPED_ARRAY", "INT_ARRAY",      "UINT16_ARRAY",    "INT32_ARRAY",
-        "UINT32_ARRAY", "FLOAT32_ARRAY", "FLOAT64_ARRAY",       "BIGINT64_ARRAY", "BIGUINT64_ARRAY",
-    };
-    for (int32_t i = 0; i < sizeof(typeKeys) / sizeof(typeKeys[0]); i++) {
-        napi_create_int32(env, i, &typeIndex);
-        napi_set_named_property(env, typedArrayTypes, typeKeys[i].c_str(), typeIndex);
-    }
-    // Create the mappings between the ArkTS and C++ APIs.
-    napi_property_descriptor desc[] = {
-        {"runJsVm", nullptr, RunJsVm, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"TypedArrayTypes", nullptr, nullptr, nullptr, nullptr, typedArrayTypes, napi_default, nullptr},
-    };
-    // Register the native RunJsVm function with the JS exports object, making the native API available to JS.
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  // Pass in the TypedArray type to set, for example, INT8_ARRAY.
-  let type: number = napitest.TypedArrayTypes["INT8_ARRAY"];
-  let script: string = `
-    createTypedArray(${type})
-    `;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray error: %{public}s', error.message);
-}
-try {
-  // Pass in the TypedArray type to set, for example, INT32_ARRAY.
-  let type: number = napitest.TypedArrayTypes["INT32_ARRAY"];
-  let str: string = `createTypedArray(${type})`;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray error: %{public}s', error.message);
-}
+// Register the CreateTypedArray callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateTypedArray},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createTypedArray and associate it with a callback. This allows the CreateTypedArray callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createTypedArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+const type = {
+    INT8_ARRAY: 0,
+    UINT8_ARRAY: 1,
+    UINT8_CLAMPED_ARRAY: 2,
+    INT16_ARRAY: 3,
+    UINT16_ARRAY: 4,
+    INT32_ARRAY: 5,
+    UINT32_ARRAY: 6,
+    FLOAT32_ARRAY: 7,
+    FLOAT64_ARRAY: 8,
+    BIGINT64_ARRAY: 9,
+    BIGUINT64_ARRAY: 10
+};
+createTypedArray(type.INT8_ARRAY);
+createTypedArray(type.INT32_ARRAY);
+)JS";
 ```
 
 ### OH_JSVM_CreateDataview
 
-Creates a JS **DataView** object for an **ArrayBuffer**. The **DataView** object provides an array-like view of over an underlying data buffer.
+Use **OH_JSVM_CreateDataview** to create a JS **DataView** object based on an **ArrayBuffer**. The **DataView** object provides an array-like view over an underlying data buffer.
 
 CPP code:
 
 ```cpp
-// Register the CreateDataView callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateDataView},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named createDataView and associate it with a callback. This allows the CreateDataView callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 static int DIFF_VALUE_FOUR = 4;
 static int DIFF_VALUE_TWELVE = 12;
 // Define OH_JSVM_CreateDataview.
@@ -365,7 +292,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM CreateDataView fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success returnLength:%{public}d", returnLength);
+            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, returnLength: %{public}d", returnLength);
         }
         break;
     case ARRAY_BUFFERE:
@@ -377,7 +304,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM CreateDataView fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success isArraybuffer:%{public}d", isArraybuffer);
+            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, isArraybuffer: %{public}d", isArraybuffer);
         }
         break;
     case BYTE_OFFSET:
@@ -387,7 +314,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM CreateDataView fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success returnOffset:%{public}d", returnOffset);
+            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, returnOffset: %{public}d", returnOffset);
         }
         break;
     default:
@@ -395,49 +322,29 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return returnResult;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let BYTE_LENGTGH = 0;
-  let str: string = `
-  createDataView(new ArrayBuffer(16), ${BYTE_LENGTGH})
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createDataView len: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createDataView error: %{public}s', error.message);
-}
-try {
-  let IS_ARRAYBUFFER = 1;
-  let str: string = `
-  createDataView(new ArrayBuffer(16), ${IS_ARRAYBUFFER})
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createDataView is buffer: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createDataView error: %{public}s', error.message);
-}
-try {
-  let BYTE_OFFSET = 2;
-  let str: string = `
-  createDataView(new ArrayBuffer(16), ${BYTE_OFFSET})
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createDataView offset: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createDataView error: %{public}s', error.message);
-}
+// Register the CreateDataView callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateDataView},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createDataView and associate it with a callback. This allows the CreateDataView callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+ let BYTE_LENGTH = 0;
+ createDataView(new ArrayBuffer(16), BYTE_LENGTH);
+ let IS_ARRAYBUFFER = 1;
+ createDataView(new ArrayBuffer(16), IS_ARRAYBUFFER);
+ let BYTE_OFFSET = 2;
+ createDataView(new ArrayBuffer(16), BYTE_OFFSET);
+)JS";
 ```
 
 ### OH_JSVM_GetArrayLength
 
-Obtains the length of an array.
+Use **OH_JSVM_GetArrayLength** to obtain the length of an array.
 
 CPP code:
 
@@ -446,15 +353,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetArrayLength callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetArrayLength},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getArrayLength and associate it with a callback. This allows the GetArrayLength callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getArrayLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetArrayLength.
 static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -476,29 +374,25 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
     OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
     return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let data =  '[0, 1, 2, 3, 4, 5]';
-let str: string = `
-  getArrayLength(${data})
-  `;
-try {
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetArrayLength: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetArrayLength error: %{public}s', error.message);
-}
+// Register the GetArrayLength callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetArrayLength},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getArrayLength and associate it with a callback. This allows the GetArrayLength callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getArrayLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+let data = [0, 1, 2, 3, 4, 5];
+getArrayLength(data);
+)JS";
 ```
 
 ### OH_JSVM_GetTypedarrayInfo
 
-Obtains information about a **TypedArray** object.
+Use **OH_JSVM_GetTypedarrayInfo** to obtain information about a **TypedArray** object.
 
 CPP code:
 
@@ -507,15 +401,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetTypedArrayInfo callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetTypedArrayInfo},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getTypedArrayInfo and associate it with a callback. This allows the GetTypedArrayInfo callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getTypedArrayInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetTypedarrayInfo.
 static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -527,7 +412,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
     // Convert the second parameter to the int32 type for comparison.
     int32_t infoTypeParam;
     OH_JSVM_GetValueInt32(env, args[1], &infoTypeParam);
-    // Define the InfoType enums in the same sequence as those in ArkTS.
+    // Define the infoType enums in the same sequence as those in ArkTS.
     enum InfoType { INFO_TYPE, INFO_LENGTH, INFO_ARRAY_BUFFER, INFO_BYTE_OFFSET };
     void *data;
     JSVM_TypedarrayType type;
@@ -546,7 +431,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success is JSVM_INT8_ARRAY:%{public}d", type == JSVM_INT8_ARRAY);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, JSVM_INT8_ARRAY: %{public}d", type == JSVM_INT8_ARRAY);
         }
         break;
     case INFO_LENGTH:
@@ -557,7 +442,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success length:%{public}d", length);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, length: %{public}d", length);
         }
         break;
     case INFO_BYTE_OFFSET:
@@ -568,7 +453,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success byteOffset:%{public}d", byteOffset);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, byteOffset: %{public}d", byteOffset);
         }
         break;
     case INFO_ARRAY_BUFFER:
@@ -581,7 +466,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success isArrayBuffer:%{public}d", isArrayBuffer);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, isArrayBuffer: %{public}d", isArrayBuffer);
         }
         break;
     default:
@@ -589,59 +474,31 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  // is JSVM_INT8_ARRAY
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(3), 0)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
-try {
-  // Length
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(5), 1)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
-try {
-  // is_arraybuffer
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(5), 2)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
-try {
-  // Byte offset.
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(1), 3)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
+// Register the GetTypedArrayInfo callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetTypedArrayInfo},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getTypedArrayInfo and associate it with a callback. This allows the GetTypedArrayInfo callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getTypedArrayInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+// is JSVM_INT8_ARRAY
+getTypedArrayInfo(new Int8Array(3), 0);
+// Length
+getTypedArrayInfo(new Int8Array(5), 1);
+// is_arraybuffer
+getTypedArrayInfo(new Int8Array(5), 2);
+// Byte offset.
+getTypedArrayInfo(new Int8Array(1), 3);
+)JS";
 ```
 
 ### OH_JSVM_GetDataviewInfo
 
-Obtains information of a **DataView** object.
+Use **OH_JSVM_GetDataviewInfo** to obtain information about a **DataView** object.
 
 CPP code:
 
@@ -650,15 +507,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetDataViewInfo callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetDataViewInfo},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getDataViewInfo and associate it with a callback. This allows the GetDataViewInfo callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getDataViewInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetDataviewInfo.
 static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -687,7 +535,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetDataViewInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success byteLength:%{public}d", byteLength);
+            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success, byteLength: %{public}d", byteLength);
         }
         break;
     case ARRAY_BUFFERE:
@@ -700,7 +548,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetDataViewInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success isArrayBuffer:%{public}d", isArrayBuffer);
+            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success, isArrayBuffer: %{public}d", isArrayBuffer);
         }
         break;
     case BYTE_OFFSET:
@@ -711,7 +559,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetDataViewInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success byteOffset:%{public}d", byteOffset);
+            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success, byteOffset: %{public}d", byteOffset);
         }
         break;
     default:
@@ -719,57 +567,37 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  // Byte length.
-  let script: string = `getDataViewInfo(new DataView(new Int8Array([2,5]).buffer), 0)`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
-try {
-  // Check whether the data is an ArrayBuffer object.
-  let data = `'a'`;
-  let isarraybuffer = '1';
-  let script: string = `getDataViewInfo(${data}, ${isarraybuffer})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
-try {
-  // Check whether the data is an ArrayBuffer object.
-  let data = 'new DataView(new Int8Array([2,5,3]).buffer)';
-  let isarraybuffer = '1';
-  let script: string = `getDataViewInfo(${data}, ${isarraybuffer})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
-try {
-  // byte_offset
-  let data = 'new DataView(new Int8Array([2,5,3]).buffer)';
-  let isarraybuffer = '2';
-  let script: string = `getDataViewInfo(${data}, ${isarraybuffer})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
+// Register the GetDataViewInfo callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetDataViewInfo},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getDataViewInfo and associate it with a callback. This allows the GetDataViewInfo callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getDataViewInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+// Byte length.
+getDataViewInfo(new DataView(new Int8Array([2,5]).buffer), 0);
+// Check whether the data is an ArrayBuffer object.
+let data = 'a';
+let isarraybuffer = 1;
+getDataViewInfo(data, isarraybuffer);
+// Check whether the data is an ArrayBuffer object.
+data = new DataView(new Int8Array([2,5,3]).buffer);
+isarraybuffer = 1;
+getDataViewInfo(data, isarraybuffer);
+// byte_offset
+data = new DataView(new Int8Array([2,5,3]).buffer);
+isarraybuffer = 2;
+getDataViewInfo(data, isarraybuffer);
+)JS";
 ```
 
 ### OH_JSVM_IsArray
 
-Checks whether a JS object is an array.
+Use **OH_JSVM_IsArray** to check whether a JS object is an array.
 
 CPP code:
 
@@ -778,15 +606,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the IsArray callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsArray},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named isArray and associate it with a callback. This allows the IsArray callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_IsArray.
 static JSVM_Value IsArray(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -800,33 +619,29 @@ static JSVM_Value IsArray(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsArray fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM IsArray success:%{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM IsArray success, IsArray: %{public}d", result);
     }
     return returnValue;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let data = '[1, 2, 3, 4, 5]';
-let script: string = `
-   isArray(${data})
- `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'IsArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'IsArray: %{public}s', error.message);
-}
+// Register the IsArray callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsArray},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named isArray and associate it with a callback. This allows the IsArray callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+let data = [1, 2, 3, 4, 5];
+isArray(data);
+)JS";
 ```
 
 ### OH_JSVM_SetElement
 
-Sets an element at the specified index for a JS object.
+Use **OH_JSVM_SetElement** to set an element at the specified index for a JS object.
 
 CPP code:
 
@@ -835,15 +650,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the SetElement callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetElement},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named setElement and associate it with a callback. This allows the SetElement callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_SetElement.
 static int DIFF_VALUE_THREE = 3;
 static JSVM_Value SetElement(JSVM_Env env, JSVM_CallbackInfo info) {
@@ -860,28 +666,24 @@ static JSVM_Value SetElement(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return args[0];
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  setElement(3)
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM setElement: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM setElement error: %{public}s', error.message);
-}
+// Register the SetElement callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetElement},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named setElement and associate it with a callback. This allows the SetElement callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+setElement(3);
+)JS";
 ```
 
 ### OH_JSVM_GetElement
 
-Obtains the element at the specified index of a JS object.
+Use **OH_JSVM_GetElement** to obtain the element at the specified index of a JS object.
 
 CPP code:
 
@@ -890,15 +692,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetElement callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetElement},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getElement and associate it with a callback. This allows the GetElement callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetElement.
 static JSVM_Value GetElement(JSVM_Env env, JSVM_CallbackInfo info) {
     // Obtain the two parameters passed from JS.
@@ -918,29 +711,25 @@ static JSVM_Value GetElement(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let arr = [10, 'hello', null, true];
-  getElement(arr, 3)
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getElement: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getElement error: %{public}s', error.message);
-}
+// Register the GetElement callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetElement},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getElement and associate it with a callback. This allows the GetElement callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+let arr = [10, 'hello', null, true];
+getElement(arr, 3);
+)JS";
 ```
 
 ### OH_JSVM_HasElement
 
-Checks whether a JS object has an element at the specified index.
+Use **OH_JSVM_HasElement** to check whether a JS object has an element at the specified index.
 
 CPP code:
 
@@ -949,15 +738,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the HasElement callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasElement},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named hasElement and associate it with a callback. This allows the HasElement callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_HasElement.
 static JSVM_Value HasElement(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -977,40 +757,30 @@ static JSVM_Value HasElement(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM hasElement fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM hasElement: %{public}d", hasElement);
+        OH_LOG_INFO(LOG_APP, "JSVM hasElement: %{public}d", hasElement);
     }
     return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let arr = [10, 'hello', null, true];
-`
-let scriptTrue: string = script + `\n` + `
-  hasElement(arr, 0)
-`
-let scriptFalse: string = script + `\n` + `
-  hasElement(arr, 4)
-`
-try {
-  let resultTrue = napitest.runJsVm(scriptTrue);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM resultTrue: %{public}s', resultTrue);
-  let resultFalse = napitest.runJsVm(scriptFalse);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM resultFalse: %{public}s', resultFalse);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasElement error: %{public}s', error.message);
-}
+// Register the HasElement callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasElement},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named hasElement and associate it with a callback. This allows the HasElement callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+let arr = [10, 'hello', null, true];
+hasElement(arr, 0);
+hasElement(arr, 4);
+)JS";
 ```
 
 ### OH_JSVM_DeleteElement
 
-Deletes the element at the specified index from a JS object.
+Use **OH_JSVM_DeleteElement** to delete the element at the specified index from a JS object.
 
 CPP code:
 
@@ -1019,15 +789,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the DeleteElement callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = DeleteElement},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named deleteElement and associate it with a callback. This allows the DeleteElement callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"deleteElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_DeleteElement.
 static JSVM_Value DeleteElement(JSVM_Env env, JSVM_CallbackInfo info) {
     // Obtain the two parameters passed from JS.
@@ -1046,33 +807,29 @@ static JSVM_Value DeleteElement(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM DeleteElement fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM DeleteElement: %{public}d", deleted);
+        OH_LOG_INFO(LOG_APP, "JSVM DeleteElement: %{public}d", deleted);
     }
     return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let arr = [10, 'hello', null, true];
-  deleteElement(arr, 0)
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM deleteElement: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM deleteElement error: %{public}s', error.message);
-}
+// Register the DeleteElement callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = DeleteElement},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named deleteElement and associate it with a callback. This allows the DeleteElement callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"deleteElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+let arr = [10, 'hello', null, true];
+deleteElement(arr, 0);
+)JS";
 ```
 
 ### OH_JSVM_IsDataview
 
-Checks whether a JS object is a **DataView** object.
+Use **OH_JSVM_IsDataview** to check whether a JS object is a **DataView** object.
 
 CPP code:
 
@@ -1081,15 +838,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the IsDataView callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsDataView},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named isDataView and associate it with a callback. This allows the IsDataView callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_IsDataview.
 static JSVM_Value IsDataView(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
@@ -1103,34 +851,30 @@ static JSVM_Value IsDataView(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsDataView fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM IsDataView: %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM IsDataView: %{public}d", result);
     }
     return isDateView;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
+// Register the IsDataView callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsDataView},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named isDataView and associate it with a callback. This allows the IsDataView callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
 let buffer = new ArrayBuffer(16);
 let dataView = new DataView(buffer);
 isDataView(dataView);
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'IsDataView: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'IsDataView: %{public}s', error.message);
-}
+)JS";
 ```
 
 ### OH_JSVM_IsTypedarray
 
-Checks whether a JS object is a **TypedArray** object.
+Use **OH_JSVM_IsTypedarray** to check whether a JS object is a **TypedArray** object.
 
 CPP code:
 
@@ -1139,15 +883,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the IsTypedarray callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsTypedarray},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named isTypedarray and associate it with a callback. This allows the IsTypedarray callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isTypedarray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_IsTypedarray.
 static JSVM_Value IsTypedarray(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
@@ -1160,25 +895,21 @@ static JSVM_Value IsTypedarray(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsTypedarray fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM IsTypedarray: %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM IsTypedarray: %{public}d", result);
     }
     return isTypedArray;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-         isTypedarray(new Uint16Array([1, 2, 3, 4]))
-       `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'IsTypedArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'IsTypedArray: %{public}s', error.message);
-}
+// Register the IsTypedarray callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsTypedarray},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named isTypedarray and associate it with a callback. This allows the IsTypedarray callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isTypedarray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+isTypedarray(new Uint16Array([1, 2, 3, 4]));
+)JS";
 ```

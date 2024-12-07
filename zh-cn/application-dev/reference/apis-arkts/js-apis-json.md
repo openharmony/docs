@@ -17,7 +17,9 @@ import { JSON } from '@kit.ArkTS';
 
 type Transformer = (this: Object, key: string, value: Object) => Object | undefined | null
 
-用于转换结果函数的类型。
+用于转换结果函数的类型。<br>
+作为[JSON.parse](#jsonparse)函数的参数时，对象的每个成员将会调用此函数，解析过程中允许对数据进行自定义处理或转换。<br>
+作为[JSON.stringify](#jsonstringify-1)函数的参数时，在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -98,9 +100,27 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | nul
 **示例：**
 
 ```ts
+// /entry/src/main/ets/pages/test.ts
+export function reviverFunc(key, value) {
+  if (key === "age") {
+    return value + 1;
+  }
+  return value;
+}
+```
+
+<!--code_no_check-->
+```ts
+import { reviverFunc } from './test';
+
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
-
+console.info((obj as object)?.["name"]);
+// 打印结果：John
+const jsonTextStr = '{"name": "John", "age": 30}';
+let objRst = JSON.parse(jsonTextStr, reviverFunc);
+console.info((objRst as object)?.["age"]);
+// 打印结果：31
 let options: JSON.ParseOptions = {
   bigIntMode: JSON.BigIntMode.PARSE_AS_BIGINT,
 }
@@ -111,7 +131,7 @@ let numberObj = JSON.parse(numberText,(key: string, value: Object | undefined | 
 },options) as Object;
 
 console.info((numberObj as object)?.["largeNumber"]);
-// 期望输出: 112233445566778899
+// 打印结果: 112233445566778899
 ```
 
 
@@ -119,7 +139,7 @@ console.info((numberObj as object)?.["largeNumber"]);
 
 stringify(value: Object, replacer?: (number | string)[] | null, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串。
+该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -129,7 +149,7 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组。|
+| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
 | replacer | number[] \| string[] \| null | 否 | 当参数是数组时，只有包含在这个数组中的属性名才会被序列化到最终的JSON字符串中；当参数为null或者未提供时，则对象所有的属性都会被序列化。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
@@ -148,15 +168,44 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
-
 ```ts
+// /entry/src/main/ets/pages/test.ts
+export let exportObj = {1: "John", 2: 30, 3: "New York"};
+```
+
+<!--code_no_check-->
+```ts
+import { exportObj } from './test';
+
+let arr = [1, 2];
+let rstArrStr = JSON.stringify(exportObj, arr);
+console.info(rstArrStr);
+// 打印结果："{"1":"John","2":30}"
 interface Person {
   name: string;
   age: number;
   city: string;
 }
-let obj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
-let str1 = JSON.stringify(obj, ["name"]);
+let inputObj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
+let rstStr = JSON.stringify(inputObj, ["name"]);
+console.info(rstStr);
+// 打印结果："{"name":"John"}"
+let rstStrSpace = JSON.stringify(inputObj, ["name"], '  ');
+console.info(rstStrSpace);
+// 打印结果：
+/*
+"{
+  "name": "John"
+}"
+*/
+let rstStrStar = JSON.stringify(inputObj, ["name"], '&&');
+console.info(rstStrStar);
+// 打印结果：
+/*
+"{
+&&"name": "John"
+}"
+*/
 ```
 
 
@@ -164,7 +213,7 @@ let str1 = JSON.stringify(obj, ["name"]);
 
 stringify(value: Object, replacer?: Transformer, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串。
+该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -174,7 +223,7 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组。|
+| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
 | replacer | [Transformer](#transformer) | 否 | 在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
@@ -193,22 +242,49 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
-
 ```ts
-function replacer(key: string, value: Object): Object {
+// /entry/src/main/ets/pages/test.ts
+export function replacer(key: string, value: Object): Object {
   if (typeof value === "string") {
     return value.toUpperCase();
   }
   return value;
 }
+```
+
+<!--code_no_check-->
+```ts
+import { replacer } from './test';
+
 interface Person {
   name: string;
   age: number;
   city: string;
 }
-
-let obj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
-let str2 = JSON.stringify(obj, replacer);
+let inputObj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
+let rstStr= JSON.stringify(inputObj, replacer);
+console.info(rstStr);
+// 打印结果："{"name":"JOHN","age":30,"city":"CHONGQING"}"
+let rstStrSpace= JSON.stringify(inputObj, replacer, '  ');
+console.info(rstStrSpace);
+// 打印结果：
+/*
+"{
+  "name": "JOHN",
+  "age": 30,
+  "city": "CHONGQING"
+}"
+*/
+let rstStrSymbol= JSON.stringify(inputObj, replacer, '@@@');
+console.info(rstStrSymbol);
+// 打印结果：
+/*
+"{
+@@@"name": "JOHN",
+@@@"age": 30,
+@@@"city": "CHONGQING"
+}"
+*/
 ```
 
 
@@ -247,8 +323,10 @@ has(obj: object, property: string): boolean
 
 ```ts
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
-let obj = JSON.parse(jsonText);
-let rst = JSON.has(obj, "name");
+let inputObj = JSON.parse(jsonText);
+let rstflag = JSON.has(inputObj, "name");
+console.info("rstflag = " + rstflag);
+// 打印结果：rstflag = true
 ```
 
 
@@ -281,6 +359,9 @@ remove(obj: object, property: string): void
 
 ```ts
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
-let obj = JSON.parse(jsonText);
-let rst = JSON.remove(obj, "name");
+let inputObj = JSON.parse(jsonText);
+JSON.remove(inputObj, "name");
+let rstflag = JSON.has(inputObj, "name");
+console.info("rstflag = " + rstflag);
+// 打印结果：rstflag = false
 ```

@@ -7,6 +7,8 @@
 >  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 在attributeModifier中设置的属性尽量不要与其他方法设置的属性相同，避免在页面刷新时attributeModifier不生效。
+>
+> attributeModifier不支持自定义组件。
 
 ## attributeModifier
 
@@ -79,7 +81,7 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 
 **属性支持范围:**
 
-不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持手势，事件仅支持onClick、onTouch、onAppear、onDisAppear、onMouse、onHover、onKeyEvent、onBlur、onFocus、onAreaChange、onSizeChange、onGestureJudgeBegin。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
+不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持手势，事件仅支持onClick、onTouch、onAppear、onDisAppear、onMouse、onHover、onKeyEvent、onBlur、onFocus、onAreaChange、onSizeChange、onGestureJudgeBegin、onGestureRecognizerJudgeBegin、shouldBuiltInRecognizerParallelWith。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
 ## 自定义Modifier
 从API version 12开始，开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
 
@@ -97,7 +99,10 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 6. 多次通过attributeModifier设置属性时，生效的属性为所有属性的并集，相同属性按照设置顺序生效。   
 
 ## 示例
-### 示例1
+### 示例1（组件绑定Modifier）
+
+该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
+
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
@@ -166,8 +171,10 @@ struct attributePressedDemo {
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
 
-### 示例2
-自定义Modifier不支持@State标注的状态数据的变化感知。
+### 示例2（自定义Modifier不支持感知@State装饰的状态数据变化）
+
+该示例通过状态数据设置自定义Modifier的宽度，自定义Modifier不支持感知@State装饰的状态数据变化，点击按钮后宽度不发生改变。
+
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
@@ -214,9 +221,12 @@ struct Index {
   }
 }
 ```
-![attributeModifier2](figures/attributeModifier2.gif)  
-### 示例3
-自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
+![attributeModifier2](figures/attributeModifier2.gif)
+
+### 示例3（Modifier和自定义Modifier的属性同时生效）
+
+该示例通过自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
+
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 

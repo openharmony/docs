@@ -25,7 +25,8 @@ Enables Bluetooth.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [access.enableBluetooth](js-apis-bluetooth-access.md#accessenablebluetooth) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -35,6 +36,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -59,7 +62,7 @@ Disables Bluetooth.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [access.disableBluetooth](js-apis-bluetooth-access.md#accessdisablebluetooth) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -69,6 +72,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -93,7 +98,7 @@ Obtains the name of the local Bluetooth device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.getLocalName](js-apis-bluetooth-connection.md#connectiongetlocalname) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -109,6 +114,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -133,7 +140,7 @@ Obtains the Bluetooth state.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [access.getState](js-apis-bluetooth-access.md#accessgetstate) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -149,6 +156,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -173,7 +182,7 @@ Obtains the local profile connection status.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.getProfileConnectionState](js-apis-bluetooth-connection.md#connectiongetprofileconnectionstate) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -189,8 +198,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -214,7 +225,7 @@ Sets the name of the local Bluetooth device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.setLocalName](js-apis-bluetooth-connection.md#connectionsetlocalname) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -230,8 +241,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -255,7 +269,7 @@ Initiates Bluetooth pairing.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.pairDevice](js-apis-bluetooth-connection.md#connectionpairdevice) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -271,8 +285,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -297,7 +314,7 @@ Obtains the connection status of the specified profile.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.getProfileConnectionState](js-apis-bluetooth-connection.md#connectiongetprofileconnectionstate) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -305,7 +322,7 @@ Obtains the connection status of the specified profile.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
+| profileId | ProfileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -319,9 +336,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.           |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -346,7 +366,7 @@ Obtains the name of the remote Bluetooth device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.getRemoteDeviceName](js-apis-bluetooth-connection.md#connectiongetremotedevicename) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -368,8 +388,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -393,7 +416,7 @@ Obtains the class of the remote Bluetooth device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.getRemoteDeviceClass](js-apis-bluetooth-connection.md#connectiongetremotedeviceclass) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -415,8 +438,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -440,7 +466,7 @@ Obtains the paired devices.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.getPairedDevices](js-apis-bluetooth-connection.md#connectiongetpaireddevices) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -456,8 +482,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -481,7 +509,7 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.setBluetoothScanMode](js-apis-bluetooth-connection.md#connectionsetbluetoothscanmode) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -498,8 +526,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -524,7 +555,7 @@ Obtains the Bluetooth scan mode.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.getBluetoothScanMode](js-apis-bluetooth-connection.md#connectiongetbluetoothscanmode) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -540,8 +571,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -565,7 +598,7 @@ Starts Bluetooth scan to discover remote devices.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.startBluetoothDiscovery](js-apis-bluetooth-connection.md#connectionstartbluetoothdiscovery) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -575,8 +608,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -605,7 +640,7 @@ Stops Bluetooth scan.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.stopBluetoothDiscovery](js-apis-bluetooth-connection.md#connectionstopbluetoothdiscovery) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -615,8 +650,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -640,7 +677,7 @@ Sets the device pairing confirmation.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.setDevicePairingConfirmation](js-apis-bluetooth-connection.md#connectionsetdevicepairingconfirmation) instead.
 
-**Required permissions**: ohos.permission.MANAGE_BLUETOOTH (available only for system applications)
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH (available only for system applications)
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -657,8 +694,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -680,14 +720,14 @@ try {
 
 ## bluetoothManager.on('bluetoothDeviceFind')<sup>(deprecated)</sup>
 
-on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
+on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Subscribes to the Bluetooth device discovery events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.on('bluetoothDeviceFind')](js-apis-bluetooth-connection.md#connectiononbluetoothdevicefind) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -704,6 +744,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -723,14 +766,14 @@ try {
 
 ## bluetoothManager.off('bluetoothDeviceFind')<sup>(deprecated)</sup>
 
-off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;): void
+off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Unsubscribes from the Bluetooth device discovery events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.off('bluetoothDeviceFind')](js-apis-bluetooth-connection.md#connectionoffbluetoothdevicefind) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -747,6 +790,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -767,14 +812,14 @@ try {
 
 ## bluetoothManager.on('pinRequired')<sup>(deprecated)</sup>
 
-on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
+on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
 Subscribes to the pairing request events of the remote Bluetooth device.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.on('pinRequired')](js-apis-bluetooth-connection.md#connectiononpinrequired) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -791,6 +836,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -810,14 +858,14 @@ try {
 
 ## bluetoothManager.off('pinRequired')<sup>(deprecated)</sup>
 
-off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
+off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 Unsubscribes from the pairing request events of the remote Bluetooth device.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.off('pinRequired')](js-apis-bluetooth-connection.md#connectionoffpinrequired) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -834,6 +882,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -854,14 +905,14 @@ try {
 
 ## bluetoothManager.on('bondStateChange')<sup>(deprecated)</sup>
 
-on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
+on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 Subscribes to the Bluetooth pairing state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.on('bondStateChange')](js-apis-bluetooth-connection.md#connectiononbondstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -878,6 +929,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -897,14 +951,14 @@ try {
 
 ## bluetoothManager.off('bondStateChange')<sup>(deprecated)</sup>
 
-off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
+off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 
 Unsubscribes from the Bluetooth pairing state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [connection.off('bondStateChange')](js-apis-bluetooth-connection.md#connectionoffbondstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -921,6 +975,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -941,14 +998,14 @@ try {
 
 ## bluetoothManager.on('stateChange')<sup>(deprecated)</sup>
 
-on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
+on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
 Subscribes to Bluetooth state events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [access.on('stateChange')](js-apis-bluetooth-access.md#accessonstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -965,6 +1022,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -984,14 +1044,14 @@ try {
 
 ## bluetoothManager.off('stateChange')<sup>(deprecated)</sup>
 
-off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
+off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 Unsubscribes from Bluetooth state events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [access.off('stateChange')](js-apis-bluetooth-access.md#accessoffstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1008,6 +1068,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1035,7 +1098,7 @@ Creates a server listening socket.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [socket.sppListen](js-apis-bluetooth-socket.md#socketspplisten) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1053,9 +1116,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1104,9 +1170,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1147,7 +1215,7 @@ Initiates an SPP connection to a remote device from the client.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [socket.sppConnect](js-apis-bluetooth-socket.md#socketsppconnect) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1165,9 +1233,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1216,6 +1287,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -1262,6 +1335,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -1310,6 +1385,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
@@ -1339,7 +1416,7 @@ try {
 
 ## bluetoothManager.on('sppRead')<sup>(deprecated)</sup>
 
-on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
+on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
 Subscribes to the SPP read request events.
 
@@ -1362,6 +1439,8 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
@@ -1392,7 +1471,7 @@ try {
 
 ## bluetoothManager.off('sppRead')<sup>(deprecated)</sup>
 
-off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
+off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
 Unsubscribes from the SPP read request events.
 
@@ -1408,6 +1487,15 @@ Unsubscribes from the SPP read request events.
 | type         | string                      | Yes   | Event type. The value **sppRead** indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
 | callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -1449,6 +1537,15 @@ Obtains a profile instance. API version 9 is added with **HidHostProfile** and *
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [A2dpSourceProfile](#a2dpsourceprofile), [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated), [HidHostProfile](#hidhostprofiledeprecated), or [PanProfile](#panprofile)| Profile instance obtained, which can be **A2dpSourceProfile**, **HandsFreeAudioGatewayProfile**, **HidHostProfile**, or **PanProfile**.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.           |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
@@ -1461,7 +1558,7 @@ try {
 ```
 
 
-## bluetoothManager.BLE
+## BLE
 
 Provides APIs for operating and managing Bluetooth.
 
@@ -1512,6 +1609,15 @@ Creates a **GattClientDevice** instance.
 | ------------------------------------- | ------------------------------------ |
 | [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using an API of the client, you must create a **GattClientDevice** instance.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
@@ -1533,7 +1639,7 @@ Obtains the BLE devices connected to this device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.getConnectedBLEDevices](js-apis-bluetooth-ble.md#blegetconnectedbledevices) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1549,8 +1655,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1574,7 +1682,7 @@ Starts a BLE scan.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.startBLEScan](js-apis-bluetooth-ble.md#blestartblescan) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH, ohos.permission.MANAGE_BLUETOOTH (available only for system applications), ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1591,8 +1699,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1630,7 +1741,7 @@ Stops the BLE scan.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.startBLEScan](js-apis-bluetooth-ble.md#blestopblescan) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1640,8 +1751,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1658,14 +1771,14 @@ try {
 
 ### on('BLEDeviceFind')<sup>(deprecated)</sup>
 
-on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
+on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Subscribe to the BLE device discovery events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.on('BLEDeviceFind')](js-apis-bluetooth-ble.md#bleonbledevicefind) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1682,6 +1795,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1701,14 +1817,14 @@ try {
 
 ### off('BLEDeviceFind')<sup>(deprecated)</sup>
 
-off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
+off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Unsubscribes from the BLE device discovery events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.off('BLEDeviceFind')](js-apis-bluetooth-ble.md#bleoffbledevicefind) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1725,6 +1841,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1757,7 +1876,7 @@ Obtains the connected devices.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.getConnectedDevices](js-apis-bluetooth-baseProfile.md#baseprofilegetconnecteddevices) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1773,9 +1892,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1799,7 +1920,7 @@ Obtains the connection state of the profile.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.getConnectionState](js-apis-bluetooth-baseProfile.md#baseprofilegetconnectionstate) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1821,9 +1942,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1856,7 +1980,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1872,9 +1996,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1899,7 +2026,7 @@ Disconnects an A2DP connection.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1915,9 +2042,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -1935,12 +2065,14 @@ try {
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the A2DP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.on('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileonconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1954,6 +2086,15 @@ Subscribes to the A2DP connection state changes.
 **Return value**
 
 No value is returned.
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -1973,12 +2114,14 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the A2DP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.off('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileoffconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1992,6 +2135,15 @@ Unsubscribes from the A2DP connection state changes.
 **Return value**
 
 No value is returned.
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2019,6 +2171,8 @@ Obtains the playing state of a device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [a2dp.A2dpSourceProfile#getPlayingState](js-apis-bluetooth-a2dp.md#getPlayingState) instead.
 
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -2039,9 +2193,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2074,7 +2230,7 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2090,9 +2246,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2117,7 +2276,7 @@ Disconnects the HFP connection of a device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. The substitute API is available only for system applications.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2133,9 +2292,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2153,12 +2315,14 @@ try {
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the HFP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.on('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileonconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2168,6 +2332,15 @@ Subscribes to the HFP connection state changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HFP connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the HFP connection state change.                              |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2188,12 +2361,14 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the HFP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.off('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileoffconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2204,6 +2379,14 @@ Unsubscribes from the HFP connection state changes.
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HFP connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No   | Callback to unregister.                              |
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 **Example**
 
 ```js
@@ -2226,20 +2409,16 @@ hfpAg.off('connectionStateChange', onReceiveEvent);
 
 Before using an API of **HidHostProfile**, you need to create an instance of this class by using **getProfile()**.
 
-
-
-
-
-
-
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the HidHost connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.on('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileonconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2249,6 +2428,15 @@ Subscribes to the HidHost connection state changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates HidHost connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the HidHost connection state change.                              |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2268,12 +2456,14 @@ hidHost.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the HidHost connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.off('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileoffconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2283,6 +2473,15 @@ Unsubscribes from the HidHost connection state changes.
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates HidHost connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No  | Callback to unregister.                                     |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2313,12 +2512,14 @@ Before using an API of **PanProfile**, you need to create an instance of this cl
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the PAN connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.on('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileonconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2328,6 +2529,15 @@ Subscribes to the PAN connection state changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates PAN connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the PAN connection state change.                              |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2347,12 +2557,14 @@ panProfile.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the PAN connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [baseProfile.off('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileoffconnectionstatechange) instead.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2362,6 +2574,15 @@ Unsubscribes from the PAN connection state changes.
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates PAN connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No  | Callback to unregister.                                     |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2397,7 +2618,7 @@ Starts BLE advertising.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.startAdvertising](js-apis-bluetooth-ble.md#blestartadvertising) instead. 
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2415,8 +2636,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2477,7 +2701,7 @@ Stops BLE advertising.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.stopAdvertising](js-apis-bluetooth-ble.md#blestopadvertising) instead.
 
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2487,8 +2711,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2513,7 +2739,7 @@ Adds a service to this GATT server.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#addService](js-apis-bluetooth-ble.md#addservice) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2529,8 +2755,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2579,7 +2808,7 @@ Removes a service from this GATT server.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#removeService](js-apis-bluetooth-ble.md#removeservice) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2595,9 +2824,12 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
+|2900003 | Bluetooth disabled.                 |
+|2900004 | Profile not supported.                |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2622,7 +2854,7 @@ Closes this GATT server to unregister it from the protocol stack. After this met
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#close](js-apis-bluetooth-ble.md#close) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2632,8 +2864,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2658,7 +2892,7 @@ Notifies the connected client device when a characteristic value changes.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#notifyCharacteristicChanged](js-apis-bluetooth-ble.md#notifycharacteristicchanged) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2675,8 +2909,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2715,7 +2952,7 @@ Sends a response to a read or write request from the GATT client.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#sendResponse](js-apis-bluetooth-ble.md#sendresponse) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2731,8 +2968,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -2762,14 +3002,14 @@ try {
 
 ### on('characteristicRead')<sup>(deprecated)</sup>
 
-on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadRequest&gt;): void
+on(type: 'characteristicRead', callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
 Subscribes to the characteristic read request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#on('characteristicRead')](js-apis-bluetooth-ble.md#oncharacteristicread) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2779,6 +3019,16 @@ Subscribes to the characteristic read request events.
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.|
 | callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequestdeprecated)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.           |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2809,14 +3059,14 @@ gattServer.on("characteristicRead", ReadCharacteristicReq);
 
 ### off('characteristicRead')<sup>(deprecated)</sup>
 
-off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadRequest&gt;): void
+off(type: 'characteristicRead', callback?: Callback&lt;CharacteristicReadRequest&gt;): void
 
 Unsubscribes from the characteristic read request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#off('characteristicRead')](js-apis-bluetooth-ble.md#offcharacteristicread) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2826,6 +3076,16 @@ Unsubscribes from the characteristic read request events.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.   |
 | callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2842,14 +3102,14 @@ gattServer.off("characteristicRead");
 
 ### on('characteristicWrite')<sup>(deprecated)</sup>
 
-on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteRequest&gt;): void
+on(type: 'characteristicWrite', callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 Subscribes to the characteristic write request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#on('characteristicWrite')](js-apis-bluetooth-ble.md#oncharacteristicwrite) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2859,6 +3119,16 @@ Subscribes to the characteristic write request events.
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.|
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequestdeprecated)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.            |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2892,14 +3162,14 @@ gattServer.on("characteristicWrite", WriteCharacteristicReq);
 
 ### off('characteristicWrite')<sup>(deprecated)</sup>
 
-off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
+off(type: 'characteristicWrite', callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 Unsubscribes from the characteristic write request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#off('characteristicWrite')](js-apis-bluetooth-ble.md#offcharacteristicwrite) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2909,6 +3179,16 @@ Unsubscribes from the characteristic write request events.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.  |
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2925,14 +3205,14 @@ gattServer.off("characteristicWrite");
 
 ### on('descriptorRead')<sup>(deprecated)</sup>
 
-on(type: "descriptorRead", callback: Callback&lt;DescriptorReadRequest&gt;): void
+on(type: 'descriptorRead', callback: Callback&lt;DescriptorReadRequest&gt;): void
 
 Subscribes to the descriptor read request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#on('descriptorRead')](js-apis-bluetooth-ble.md#ondescriptorread) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2942,6 +3222,16 @@ Subscribes to the descriptor read request events.
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
 | callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | Yes   | Callback used to return a descriptor read request event from the GATT client.       |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -2972,14 +3262,14 @@ gattServer.on("descriptorRead", ReadDescriptorReq);
 
 ### off('descriptorRead')<sup>(deprecated)</sup>
 
-off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadRequest&gt;): void
+off(type: 'descriptorRead', callback?: Callback&lt;DescriptorReadRequest&gt;): void
 
 Unsubscribes from the descriptor read request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#off('descriptorRead')](js-apis-bluetooth-ble.md#offdescriptorread) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2989,6 +3279,16 @@ Unsubscribes from the descriptor read request events.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.       |
 | callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3005,14 +3305,14 @@ gattServer.off("descriptorRead");
 
 ### on('descriptorWrite')<sup>(deprecated)</sup>
 
-on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteRequest&gt;): void
+on(type: 'descriptorWrite', callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
 Subscribes to the descriptor write request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#on('descriptorWrite')](js-apis-bluetooth-ble.md#ondescriptorwrite) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3022,6 +3322,16 @@ Subscribes to the descriptor write request events.
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.|
 | callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | Yes   | Callback used to return a descriptor write request from the GATT client.        |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3055,14 +3365,14 @@ gattServer.on("descriptorWrite", WriteDescriptorReq);
 
 ### off('descriptorWrite')<sup>(deprecated)</sup>
 
-off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteRequest&gt;): void
+off(type: 'descriptorWrite', callback?: Callback&lt;DescriptorWriteRequest&gt;): void
 
 Unsubscribes from the descriptor write request events.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#off('descriptorWrite')](js-apis-bluetooth-ble.md#offdescriptorwrite) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3072,6 +3382,16 @@ Unsubscribes from the descriptor write request events.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.      |
 | callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequestdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3088,14 +3408,14 @@ gattServer.off("descriptorWrite");
 
 ### on('connectStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
+on(type: 'connectStateChange', callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#on('connectionStateChange')](js-apis-bluetooth-ble.md#onconnectionstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3105,6 +3425,16 @@ Subscribes to the BLE connection state changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | Yes   | Callback used to return the BLE connection state.                         |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3125,14 +3455,14 @@ gattServer.on("connectStateChange", Connected);
 
 ### off('connectStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
+off(type: 'connectStateChange', callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer#off('connectionStateChange')](js-apis-bluetooth-ble.md#offconnectionstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3142,6 +3472,16 @@ Unsubscribes from the BLE connection state changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3173,7 +3513,7 @@ Initiates a connection to the remote BLE device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#connect](js-apis-bluetooth-ble.md#connect) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3183,8 +3523,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3209,7 +3551,7 @@ Disconnects from the remote BLE device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#disconnect](js-apis-bluetooth-ble.md#disconnect) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3219,8 +3561,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3245,7 +3589,7 @@ Closes this GATT client to unregister it from the protocol stack. After this met
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#close](js-apis-bluetooth-ble.md#close) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3255,8 +3599,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
+|2900003 | Bluetooth disabled.                 |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3283,7 +3629,7 @@ Obtains all services of the remote BLE device. This API uses an asynchronous cal
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#getServices](js-apis-bluetooth-ble.md#getservices) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3299,6 +3645,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -3338,7 +3687,7 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#getServices](js-apis-bluetooth-ble.md#getservices-1) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3354,6 +3703,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -3383,7 +3735,7 @@ Reads the characteristic value of the specific service of the remote BLE device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#readCharacteristicValue](js-apis-bluetooth-ble.md#readcharacteristicvalue) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3400,6 +3752,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -3451,7 +3806,7 @@ Reads the characteristic value of the specific service of the remote BLE device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#readCharacteristicValue](js-apis-bluetooth-ble.md#readcharacteristicvalue-1) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3473,6 +3828,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -3515,7 +3873,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#readDescriptorValue](js-apis-bluetooth-ble.md#readdescriptorvalue) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3532,6 +3890,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -3576,7 +3937,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#readDescriptorValue](js-apis-bluetooth-ble.md#readdescriptorvalue-1) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3598,6 +3959,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -3633,7 +3997,7 @@ Writes a characteristic value to the remote BLE device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#writeCharacteristicValue](js-apis-bluetooth-ble.md#writecharacteristicvalue) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3649,6 +4013,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -3690,7 +4057,7 @@ Writes binary data to the specific descriptor of the remote BLE device.
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#writeCharacteristicValue](js-apis-bluetooth-ble.md#writecharacteristicvalue-1) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3706,6 +4073,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -3741,7 +4111,7 @@ Sets the maximum transmission unit (MTU) that can be transmitted between the GAT
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#setBLEMtuSize](js-apis-bluetooth-ble.md#setBLEMtuSize) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3757,6 +4127,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -3782,7 +4155,7 @@ Sets the function of notifying the GATT client when the characteristic value of 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#setCharacteristicChangeNotification](js-apis-bluetooth-ble.md#setcharacteristicchangenotification) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3799,6 +4172,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -3834,14 +4210,14 @@ try {
 
 ### on('BLECharacteristicChange')<sup>(deprecated)</sup>
 
-on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
+on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
 Subscribes to the BLE characteristic changes. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#on('BLECharacteristicChange')](js-apis-bluetooth-ble.md#onblecharacteristicchange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3851,6 +4227,15 @@ Subscribes to the BLE characteristic changes. The client can receive a notificat
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | Yes   | Callback used to return the characteristic value changes.                 |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3872,14 +4257,14 @@ try {
 
 ### off('BLECharacteristicChange')<sup>(deprecated)</sup>
 
-off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
+off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt;): void
 
 Unsubscribes from the BLE characteristic changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#off('BLECharacteristicChange')](js-apis-bluetooth-ble.md#offblecharacteristicchange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3889,6 +4274,15 @@ Unsubscribes from the BLE characteristic changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristicdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3905,14 +4299,14 @@ try {
 
 ### on('BLEConnectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
+on(type: 'BLEConnectionStateChange', callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#on('BLEConnectionStateChange')](js-apis-bluetooth-ble.md#onbleconnectionstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3922,6 +4316,15 @@ Subscribes to the BLE connection state changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | Yes   | Callback used to return the BLE connection state.                          |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3942,14 +4345,14 @@ try {
 
 ### off('BLEConnectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
+off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#off('BLEConnectionStateChange')](js-apis-bluetooth-ble.md#offbleconnectionstatechange) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3959,6 +4362,15 @@ Unsubscribes from the BLE connection state changes.
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstatedeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregistersall callbacks for the specified **type**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 
 **Example**
 
@@ -3982,7 +4394,7 @@ Obtains the name of the remote BLE device. This API uses an asynchronous callbac
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#getDeviceName](js-apis-bluetooth-ble.md#getdevicename) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3998,6 +4410,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -4028,7 +4443,7 @@ Obtains the name of the remote BLE device. This API uses a promise to return the
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#getDeviceName](js-apis-bluetooth-ble.md#getdevicename-1) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -4044,6 +4459,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.              |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -4073,7 +4491,7 @@ Obtains the RSSI of the remote BLE device. This API uses an asynchronous callbac
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#getRssiValue](js-apis-bluetooth-ble.md#getrssivalue) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -4089,6 +4507,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -4118,7 +4539,7 @@ Obtains the RSSI of the remote BLE device. This API uses a promise to return the
 > **NOTE**<br>
 > This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#getRssiValue](js-apis-bluetooth-ble.md#getrssivalue-1) instead.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -4134,6 +4555,9 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -4315,7 +4739,6 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 | deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
-| descriptorUuid     | string | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 

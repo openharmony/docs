@@ -5,12 +5,15 @@
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括number、string、boolean、bigint以及可序列化的object。
 
+共享用户首选项默认加密等级为EL2，持久化文件存储在对应的EL2路径下。设备开机后，若无锁屏密码，可直接访问；若有锁屏密码，此路径下的文件需要至少一次解锁对应用户的锁屏界面后（密码、指纹、人脸等方式解锁皆可）才能够访问。需避免在开机未解锁的情况下访问首选项。修改加密等级的方法请参见[获取和修改加密分区](../../../application-dev/application-models/application-context-stage.md#获取和修改加密分区)。
+
+共享用户首选项可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，性能优于普通的[用户首选项](js-apis-data-preferences.md)，可参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。
 
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 首选项无法保证进程并发安全，会有文件损坏和数据丢失的风险，不支持在多进程场景下使用。
+> 共享用户首选项无法保证进程并发安全，会有文件损坏和数据丢失的风险，不支持在多进程场景下使用。
 
 ## 导入模块
 
@@ -50,7 +53,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 | 类型                                    | 说明                               |
 | --------------------------------------- | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。 |
+| Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 
@@ -61,8 +64,8 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
@@ -108,7 +111,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 | 类型                        | 说明                  |
 | --------------------------- | --------------------- |
-| [Preferences](#preferences) | 返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。 |
+| [Preferences](#preferences) | 返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 
@@ -119,8 +122,8 @@ getPreferencesSync(context: Context, options: Options): Preferences
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -172,9 +175,9 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid. |
+| 15500010 | Failed to delete the user preferences persistence file. |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -230,8 +233,8 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
@@ -281,8 +284,8 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -339,7 +342,7 @@ get(key: string, defValue: lang.ISendable): Promise&lt;lang.ISendable&gt;
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。|
+| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。|
 
 **错误码：**
 
@@ -386,7 +389,7 @@ getSync(key: string, defValue: lang.ISendable): lang.ISendable
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。|
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。|
 
 **错误码：**
 
@@ -418,7 +421,7 @@ getAll(): Promise&lt;lang.ISendable&gt;
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回含有所有键值数据。 <br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。  |
+| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回含有所有键值数据。 <br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。  |
 
 **错误码：**
 
@@ -458,7 +461,7 @@ getAllSync(): lang.ISendable
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回含有所有键值数据。<br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。 |
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回含有所有键值数据。<br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 
@@ -766,6 +769,30 @@ promise.then(() => {
 })
 ```
 
+### flushSync<sup>14+</sup>
+
+flushSync(): void
+
+将缓存的Preferences实例中的数据存储到共享用户首选项的持久化文件中。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**示例：**
+
+```ts
+preferences.flushSync();
+```
+
 ### clear
 
 clear(): Promise&lt;void&gt;
@@ -895,7 +922,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
-| 15500019 | Failed to obtain subscription service. |
+| 15500019 | Failed to obtain the subscription service. |
 
 **示例：**
 

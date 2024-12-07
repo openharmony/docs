@@ -21,13 +21,22 @@ GridRow(option?: GridRowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
 | option | [GridRowOptions](#gridrowoptions对象说明) | 否  | 栅格布局子组件参数。 |
 
 ## GridRowOptions对象说明
-| 参数名 |类型|必填|说明|
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 |类型|必填|说明|
 |-----|-----|----|----|
 |columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />默认值：12 |
 |gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0 |
@@ -42,7 +51,9 @@ GridRow(option?: GridRowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否   | 栅格子组件水平方向间距。    |
 | y  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否   | 栅格子组件竖直方向间距。    |
@@ -55,7 +66,9 @@ GridRow(option?: GridRowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | number | 否    | 在栅格大小为xs的设备上，栅格容器组件的栅格列数。    |
 | sm  | number | 否    | 在栅格大小为sm的设备上，栅格容器组件的栅格列数。      |
@@ -84,7 +97,9 @@ GridRow(option?: GridRowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | [Length](ts-types.md#length) | 否    | 在最小宽度类型设备上，栅格子组件的间距。    |
 | sm  | [Length](ts-types.md#length) | 否    | 在小宽度类型设备上，栅格子组件的间距。      |
@@ -101,7 +116,9 @@ GridRow(option?: GridRowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
 | reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
@@ -120,7 +137,9 @@ GridRow(option?: GridRowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 说明 |
 | -------- | -------- |
 | WindowSize | 以窗口为参照。 |
 | ComponentSize | 以容器为参照。 |
@@ -131,7 +150,9 @@ GridRow(option?: GridRowOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 说明 |
 | -------- | -------- |
 | Row | 栅格元素按照行方向排列。 |
 | RowReverse | 栅格元素按照逆序行方向排列。 |
@@ -180,7 +201,7 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 断点发生变化时触发回调。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -188,7 +209,7 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 说明   |
+| 参数名   | 类型   | 必填   | 说明   |
 | ----- | ------ | ---- | ---------------------------------------- |
 |breakpoints| string |否|取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
 

@@ -225,7 +225,7 @@ Allows a device administrator application to obtain the **Settings** application
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-Allows an enterprise MDM bundle to be installed on enterprise devices.
+Allows installation of enterprise MDM applications on enterprise devices.
 
 **Permission level**: system_core
 
@@ -238,7 +238,7 @@ Allows an enterprise MDM bundle to be installed on enterprise devices.
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-Allows automatic updates of the enterprise MDM applications on enterprise devices.
+Allows automatic updates of enterprise MDM applications on enterprise devices.
 
 **Permission level**: system_core
 
@@ -279,7 +279,7 @@ Allows a device administrator application to set enterprise information.
 
 Allows an application to update the file guard policy.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -287,12 +287,14 @@ Allows an application to update the file guard policy.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
+
+**Changelog**: For API versions 10 to 14, this permission is of the system_core level and available only to MDM applications. Starting from API version 14, the permission level is changed to system_basic and this permission is accessible to normal enterprise applications.
 
 ## ohos.permission.FILE_GUARD_MANAGER
 
-Allows an application to scan user directories and set file extended properties.
+Allows an application to scan media and sandbox and set file extended properties.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -300,6 +302,8 @@ Allows an application to scan user directories and set file extended properties.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
+
+**Changelog**: For API versions 10 to 14, this permission is of the system_core level and available only to MDM applications. Starting from API version 14, the permission level is changed to system_basic and this permission is accessible to normal enterprise applications.
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -457,7 +461,7 @@ Allows a device administrator application to manage the device administrator.
 
 **Valid since**: 12
 
-### ohos.permission.QUERY_AUDIT_EVENT
+## ohos.permission.QUERY_AUDIT_EVENT
 
 Allows an MDM application to query security audit events.
 
@@ -469,3 +473,29 @@ Allows an MDM application to query security audit events.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 12
+
+## ohos.permission.ENTERPRISE_RECOVERY_KEY
+
+Allows an application to manage the enterprise recovery keys.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 13
+
+## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+Allows a device administrator application to delegated other applications to set device management policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 14

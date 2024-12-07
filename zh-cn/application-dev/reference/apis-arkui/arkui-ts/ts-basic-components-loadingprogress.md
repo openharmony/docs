@@ -2,6 +2,8 @@
 
 用于显示加载动效的组件。
 
+加载动效在组件不可见时停止，组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
+
 >  **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -21,6 +23,8 @@ LoadingProgress()
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 
@@ -50,7 +54,6 @@ enableLoading(value: boolean)
 
 设置LoadingProgress动画显示或者不显示。LoadingProgress动画不显示时，该组件依旧占位。通用属性[Visibility.Hidden](ts-universal-attributes-visibility.md#visibility)隐藏的是包括[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等整个组件范围，而enableLoading=false只隐藏LoadingProgress本身动画内容，不包括border等。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -88,13 +91,17 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| enableloading | boolean | true |LoadingProgress动画是否显示。<br/>默认值：true。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    |    只读    |    可选    |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true |
 
 ## 示例
 
-### 示例1
+### 示例1（设置颜色）
+
+该示例通过color接口，实现了设置加载动效颜色的功能。
 
 ```ts
 // xxx.ets
@@ -114,7 +121,9 @@ struct LoadingProgressExample {
 
 ![LoadingProgress](figures/LoadingProgress.gif)
 
-### 示例2
+### 示例2（设置定制内容区）
+
+该示例通过contentModifier接口，实现了定制内容区的功能，并通过enableLoading接口实现了通过按钮切换是否显示LoadingProgress的效果。
 
 ```ts
 //该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。

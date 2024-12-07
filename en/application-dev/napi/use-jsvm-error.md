@@ -20,16 +20,16 @@ These concepts are important in exception and error handling. Properly using met
 
 | API                      | Description                      |
 |----------------------------|--------------------------------|
-| OH_JSVM_CreateError, OH_JSVM_CreateTypeError, OH_JSVM_CreateRangeError, OH_JSVM_CreateSyntaxError | Creates a JS error. The created error object can be thrown to ArkTS using **napi_throw**. |
-| OH_JSVM_Throw | Throws a JS error object, which is created by **OH_JSVM_CreateError** or obtained by **OH_JSVM_GetLastErrorInfo**. |
-| OH_JSVM_ThrowError, OH_JSVM_ThrowTypeError, OH_JSVM_ThrowRangeError, OH_JSVM_ThrowSyntaxError | Throws a JS error object. |
+| OH_JSVM_CreateError, OH_JSVM_CreateTypeError, OH_JSVM_CreateRangeError, OH_JSVM_CreateSyntaxError| Creates a JS error.|
+| OH_JSVM_Throw | Throws a JS error object, which is created by **OH_JSVM_CreateError** or obtained by **OH_JSVM_GetLastErrorInfo**.|
+| OH_JSVM_ThrowError, OH_JSVM_ThrowTypeError, OH_JSVM_ThrowRangeError, OH_JSVM_ThrowSyntaxError| Throws a JS error object.|
 | OH_JSVM_IsError              | Checks whether the given **JSVM_Value** indicates an error.|
 | OH_JSVM_GetAndClearLastException    | Obtains and clears the last JS exception.|
 | OH_JSVM_IsExceptionPending   | Checks whether there is any pending exception.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to error handling.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in error handling.
 
 ### OH_JSVM_Throw
 
@@ -37,28 +37,31 @@ Use **OH_JSVM_Throw** to throw a JS error object so that the error can be captur
 
 ### OH_JSVM_CreateError
 
-Creates a JS error object with text information.
+Use **OH_JSVM_CreateError** to create a JS error object with text information.
 
 CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// Register the JsVmCreateThrowError callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateThrowError},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmCreateThrowError and associate it with a callback. This allows the JsVmCreateThrowError callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Capture and clear the last exception in the JSVM environment and log the error message. This function is used as a public function and will not be declared or defined in subsequent examples in this document.
+static void GetLastErrorAndClean(JSVM_Env env) {
+    // Call OH_JSVM_GetAndClearLastException to obtain and clear the last exception. This API can also be used to handle a suspended JS exception.
+    JSVM_Value result = nullptr;
+    JSVM_Status status = OH_JSVM_GetAndClearLastException(env, &result);
+    // Log error information.
+    JSVM_Value message;
+    JSVM_Value errorCode;
+    OH_JSVM_GetNamedProperty((env), result, "message", &message);
+    OH_JSVM_GetNamedProperty((env), result, "code", &errorCode);
+    char messagestr[256];
+    char codeStr[256];
+    OH_JSVM_GetValueStringUtf8(env, message, messagestr, 256, nullptr);
+    OH_JSVM_GetValueStringUtf8(env, errorCode, codeStr, 256, nullptr);
+    OH_LOG_INFO(LOG_APP, "JSVM error message: %{public}s, error code: %{public}s", messagestr, codeStr);
+}
+
+// Define OH_JSVM_CreateError.
 static JSVM_Value JsVmCreateThrowError(JSVM_Env env, JSVM_CallbackInfo info) {
-{
-    size_t argc = 1;
-    JSVM_Value argv[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // Create a string in the JSVM and store it in the errorCode variable.
     JSVM_Value errorCode = nullptr;
     OH_JSVM_CreateStringUtf8(env, "-1", JSVM_AUTO_LENGTH, &errorCode);
@@ -70,26 +73,25 @@ static JSVM_Value JsVmCreateThrowError(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_CreateError(env, errorCode, errorMessage, &error);
     // Call OH_JSVM_Throw to throw the error.
     OH_JSVM_Throw(env, error);
+    GetLastErrorAndClean(env);
     return nullptr;
 }
+
+// Register the JsVmCreateThrowError callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateThrowError},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmCreateThrowError and associate it with a callback. This allows the JsVmCreateThrowError callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmCreateThrowError();)JS";
 ```
-
- 
-
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-   jsVmCreateThrowError();
-`
-try {
-  testNapi.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_Throw errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
-}
+JSVM error message: HasError, error code: -1
 ```
 
 ### OH_JSVM_ThrowError
@@ -100,24 +102,14 @@ CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// Register the JsVmThrowError callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmThrowError},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named JsVmThrowError and associate it with a callback. This allows the JsVmThrowError callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_ThrowError.
 static JSVM_Value JsVmThrowError(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     if (argc == 0) {
-        // Throw an exception if no parameter is passed in.
+        // Throw an error if no parameter is passed in.
         OH_JSVM_ThrowError(env, "-1", "has Error");
     } else if (argc == 1) {
         size_t length;
@@ -127,48 +119,61 @@ static JSVM_Value JsVmThrowError(JSVM_Env env, JSVM_CallbackInfo info)
         // Obtain the string of the input parameter.
         OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
         // Populate the error information to OH_JSVM_ThrowError.
-        OH_JSVM_ThrowError(env, nullptr, buffer);
+        OH_JSVM_ThrowError(env, "self defined error code", buffer);
         delete[] buffer;
     }
+    GetLastErrorAndClean(env);
     return nullptr;
 }
+// Register the JsVmThrowError callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmThrowError},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmThrowError and associate it with a callback. This allows the JsVmThrowError callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmThrowError();jsVmThrowError("self defined error message");)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let firstScript: string = `jsVmThrowError()`
-try {
-    napitest.runJsVm(firstScript);
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'Test OH_JSVM_ThrowError errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
-}
-
-try {
-    let errMessage = `\"has Error\"`
-    let sencodeScript: string =
-        `
-            jsVmThrowError(${errMessage})
-        `
-    napitest.runJsVm(sencodeScript);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_ThrowError errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
-}
+JSVM error message: has Error, error code: -1
+JSVM error message: self defined error message, error code: self defined error code
 ```
 
 ### OH_JSVM_ThrowTypeError
 
-Use **OH_JSVM_ThrowTypeError** to create a JS **TypeError** object with text information.
+Use **OH_JSVM_CreateTypeError** to create a JS **TypeError** object with text information.
 
 CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
+// Define OH_JSVM_ThrowTypeError.
+static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value argv[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
+    if (argc == 0) {
+        // Throw an error if no parameter is passed in.
+        OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
+    } else if (argc == 1) {
+        size_t length;
+        // Obtain the length of the string in the input parameter passed from JS.
+        OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
+        char *buffer = new char[length + 1];
+        // Obtain the string of the input parameter.
+        OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
+        // Populate the error information to OH_JSVM_ThrowError.
+        OH_JSVM_ThrowTypeError(env, "self defined error code", buffer);
+        delete[] buffer;
+    }
+    GetLastErrorAndClean(env);
+    return nullptr;
+}
 // Register the **JsVmThrowTypeError** callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmThrowTypeError},
@@ -178,76 +183,25 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmThrowTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Throw a type error with error message.
-static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 1;
-    JSVM_Value argv[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
-    if (argc == 0) {
-        // Throw an exception if no parameter is passed in.
-        OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
-    } else if (argc == 1) {
-        size_t length;
-        // Obtain the length of the string passed from JS from the input parameter.
-        OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
-        char *buffer = new char[length + 1];
-        // Obtain the string of the input parameter.
-        OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
-        // Populate the error information to OH_JSVM_ThrowError.
-        OH_JSVM_ThrowTypeError(env, nullptr, buffer);
-        delete[] buffer;
-    }
-    return nullptr;
-}
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmThrowTypeError();jsVmThrowTypeError("self defined error message");)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string =
-  `
-      jsVmThrowTypeError()
-  `
-  napitest.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_TypeError');
-}
-
-try {
-  let script: string =
-  `
-      jsVmThrowTypeError("has type Error")
-  `
-  napitest.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_TypeError');
-}
+JSVM error message: throwing type error, error code: -1
+JSVM error message: self defined error message, error code: self defined error code
 ```
 
 ### OH_JSVM_ThrowRangeError
 
-Use **OH_JSVM_ThrowRangeError** to create a JS **RangeError** object with text information.
+Use **OH_JSVM_CreateRangeError** to create a JS **RangeError** with text information.
 
 CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// Register the JsVmThrowRangeError callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmThrowRangeError},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmThrowRangeError and associate it with a callback. This allows the JsVmThrowRangeError callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmThrowRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_ThrowRangeError.
 static JSVM_Value JsVmThrowRangeError(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // Pass two parameters from JS.
@@ -258,50 +212,41 @@ static JSVM_Value JsVmThrowRangeError(JSVM_Env env, JSVM_CallbackInfo info)
     if (argc != 2) {
         // Throw a RangeError.
         OH_JSVM_ThrowRangeError(env, "OH_JSVM_ThrowRangeError", "Expected two numbers as arguments");
+        GetLastErrorAndClean(env);
         return nullptr;
     }
     JSVM_Value result = nullptr;
     OH_JSVM_GetBoolean(env, true, &result);
     return result;
 }
+// Register the JsVmThrowRangeError callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmThrowRangeError},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmThrowRangeError and associate it with a callback. This allows the JsVmThrowRangeError callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmThrowRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmThrowRangeError(1);)JS";
 ```
 
-ArkTS code:
 
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string =
-  `
-      jsVmThrowRangeError(1)
-  `
-  napitest.runJsVm(script);
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test OH_JSVM_ThrowRangeError');
-}
+JSVM error message: Expected two numbers as arguments, error code: OH_JSVM_ThrowRangeError
 ```
 
 ### OH_JSVM_ThrowSyntaxError
 
-Use **OH_JSVM_ThrowSyntaxError** to create a JS **SyntaxError** object with text information.
+Use **OH_JSVM_ThrowSyntaxError** to create and throw a JS **SyntaxError** object with text information.
 
 CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-// Register the JsVmThrowSyntaxError callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmThrowSyntaxError},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmThrowSyntaxError and associate it with a callback. This allows the JsVmThrowSyntaxError callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmThrowSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_ThrowSyntaxError.
 static JSVM_Value JsVmThrowSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     // Pass the JS code from JS.
     size_t argc = 1;
@@ -316,26 +261,29 @@ static JSVM_Value JsVmThrowSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         // If the value returned by JSVM_RunScript is not JSVM_OK, throw a SyntaxError.
         OH_JSVM_ThrowSyntaxError(env, "JsVmThrowSyntaxError", "throw syntax error");
+        GetLastErrorAndClean(env);
         return nullptr;
     }
     JSVM_Value result = nullptr;
     OH_JSVM_GetBoolean(env, true, &result);
     return result;
 }
+// Register the JsVmThrowSyntaxError callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmThrowSyntaxError},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmThrowSyntaxError and associate it with a callback. This allows the JsVmThrowSyntaxError callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmThrowSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmThrowSyntaxError();)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-    let script: string =` jsVmThrowSyntaxError()`
-    napitest.runJsVm(script);
-} catch(error) {
-    hilog.error(0x0000, 'testTag', 'Test jsVmThrowSyntaxError error message: %{public}s,', error.message);
-}
+JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 ```
 
 ### OH_JSVM_IsError
@@ -346,8 +294,25 @@ CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
+// Define OH_JSVM_IsError.
+static JSVM_Value JsVmIsError(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
+    // Call OH_JSVM_IsError to check whether the input parameter is an error object.
+    bool result = false;
+    // If JSVM_Value is an error object, set result to true. Otherwise, set result to false.
+    JSVM_Status status = OH_JSVM_IsError(env, args[0], &result);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "JSVM API call OH_JSVM_IsError success, result is %{public}d", result);
+    }else {
+        OH_LOG_INFO(LOG_APP, "JSVM API call OH_JSVM_IsError failed");
+    }
+    // Obtain result, call OH_JSVM_GetBoolean to convert result to JSVM_Value, and return JSVM_Value.
+    JSVM_Value returnValue = nullptr;
+    OH_JSVM_GetBoolean(env, result, &returnValue);
+    return returnValue;
+}
 // Register the JsVmIsError callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmIsError},
@@ -357,34 +322,13 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmIsError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-static JSVM_Value JsVmIsError(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // Call OH_JSVM_IsError to check whether the input parameter is an error object.
-    bool result = false;
-    // If JSVM_Value is an error object, set result to true. Otherwise, set result to false.
-    OH_JSVM_IsError(env, args[0], &result);
-    // Obtain result, call OH_JSVM_GetBoolean to convert result to JSVM_Value, and return JSVM_Value.
-    JSVM_Value returnValue = nullptr;
-    OH_JSVM_GetBoolean(env, result, &returnValue);
-    return returnValue;
-}
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmIsError(Error()))JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string =
-  `
-      jsVmIsError(Error())
-  `
-const isError = napitest.runJsVm(script);
-hilog.info(0x0000, 'testTag', 'Test OH_JSVM_IsError error: %{public}s', isError);
+JSVM API call OH_JSVM_IsError success, result is 1
 ```
 
 ### OH_JSVM_CreateTypeError
@@ -395,19 +339,7 @@ CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// Register the JsVmCreateTypeError callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateTypeError},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmCreateTypeError and associate it with a callback. This allows the JsVmCreateTypeError callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_CreateTypeError.
 static JSVM_Value JsVmCreateTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
     // Create a string in the JSVM and store it in the errorCode variable.
     JSVM_Value errorCode = nullptr;
@@ -424,18 +356,22 @@ static JSVM_Value JsVmCreateTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
+// Register the JsVmCreateTypeError callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateTypeError},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmCreateTypeError and associate it with a callback. This allows the JsVmCreateTypeError callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmCreateTypeError();)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string =`
-     jsVmCreateTypeError()
-  `
-napitest.runJsVm(script);
+JSVM API Create TypeError SUCCESS
 ```
 
 ### OH_JSVM_CreateRangeError
@@ -446,19 +382,7 @@ CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// Register the JsVmCreateRangeError callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateRangeError},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmCreateRangeError and associate it with a callback. This allows the JsVmCreateRangeError callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_CreateRangeError.
 static JSVM_Value JsVmCreateRangeError(JSVM_Env env, JSVM_CallbackInfo info) {
     // Create a string in the JSVM and store it in the errorCode variable.
     JSVM_Value errorCode = nullptr;
@@ -475,41 +399,32 @@ static JSVM_Value JsVmCreateRangeError(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
+// Register the JsVmCreateRangeError callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateRangeError},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmCreateRangeError and associate it with a callback. This allows the JsVmCreateRangeError callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateRangeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmCreateRangeError();)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string =
-   `
-    jsVmCreateRangeError()
-   `
-napitest.runJsVm(script);
+JSVM API CreateRangeError SUCCESS
 ```
-
 ### OH_JSVM_CreateSyntaxError
+
+Use **OH_JSVM_CreateSyntaxError** to create and throw a JS **SyntaxError** object with text information.
 
 CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-
-// Register the JsVmCreateSyntaxError callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmCreateSyntaxError},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmThrow and associate it with a callback. This allows the JsVmThrow callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_CreateSyntaxError.
 static JSVM_Value JsVmCreateSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     // Create a string in the JSVM and store it in the errorCode variable.
     JSVM_Value errorCode = nullptr;
@@ -526,19 +441,22 @@ static JSVM_Value JsVmCreateSyntaxError(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
+// Register the JsVmCreateSyntaxError callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmCreateSyntaxError},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmCreateThrowError and associate it with a callback. This allows the JsVmCreateThrowError callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmCreateSyntaxError();)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string =
-  `
-  let error = jsVmCreateSyntaxError()
-  `
-napitest.runJsVm(script);
+JSVM API CreateSyntaxError SUCCESS
 ```
 
 ### OH_JSVM_GetAndClearLastException
@@ -549,19 +467,7 @@ CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// Register the JsVmGetAndClearLastException callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmGetAndClearLastException},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmGetAndClearLastException and associate it with a callback. This allows the JsVmGetAndClearLastException callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmGetAndClearLastException", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_GetAndClearLastException.
 static JSVM_Value JsVmGetAndClearLastException(JSVM_Env env, JSVM_CallbackInfo info) {
     // Throw an error.
     OH_JSVM_ThrowError(env, "OH_JSVM_ThrowError errorCode", "OH_JSVM_ThrowError errorMessage");
@@ -575,19 +481,22 @@ static JSVM_Value JsVmGetAndClearLastException(JSVM_Env env, JSVM_CallbackInfo i
     }
     return result;
 }
+// Register the JsVmGetAndClearLastException callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmGetAndClearLastException},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmGetAndClearLastException and associate it with a callback. This allows the JsVmGetAndClearLastException callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmGetAndClearLastException", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmGetAndClearLastException();)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string =
- `
-   jsVmGetAndClearLastException()
-`
-napitest.runJsVm(script);
+JSVM API OH_JSVM_GetAndClearLastException SUCCESS
 ```
 
 ### OH_JSVM_IsExceptionPending
@@ -598,23 +507,11 @@ CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-
-// Register the JsVmIsExceptionPending callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = JsVmIsExceptionPending},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named jsVmIsExceptionPending and associate it with a callback. This allows the JsVmIsExceptionPending callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"jsVmIsExceptionPending", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// Define OH_JSVM_GetAndClearLastException.
 static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Status status;
     bool isExceptionPending = false;
-    // Throw an error.
+    // Perform operations that may cause an error.
     OH_JSVM_ThrowError(env, "OH_JSVM_ThrowError errorCode", "OH_JSVM_ThrowError errorMessage");
     // Check whether there is a pending exception.
     status = OH_JSVM_IsExceptionPending(env, &isExceptionPending);
@@ -636,33 +533,57 @@ static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return nullptr;
 }
+// Register the JsVmIsExceptionPending callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = JsVmIsExceptionPending},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named jsVmIsExceptionPending and associate it with a callback. This allows the JsVmIsExceptionPending callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"jsVmIsExceptionPending", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmIsExceptionPending();)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string =
-              `
-    let error = jsVmIsExceptionPending()
-    `
-napitest.runJsVm(script);
+JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 ```
 
 ### OH_JSVM_GetLastErrorInfo
 
-Use **OH_JSVM_GetLastErrorInfo** to obtain the last error information, including the error code, error message, and stack information. This API can also be used to handle pending JS exceptions.
+Use **OH_JSVM_GetLastErrorInfo** to obtain the last error information (the return value is not **JSVM_OK**), including the error code, error message, and stack information. This API can also be used for suspended JS errors.
+Note that the errors triggered by APIs such as **OH_JSVM_ThrowError** will not be captured by the APIs unless the return value is not **JSVM_OK**.
 
 CPP code:
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+// Define OH_JSVM_GetLastErrorInfo.
+static JSVM_Value JsVmGetLastErrorInfo(JSVM_Env env, JSVM_CallbackInfo info) {
+    // Obtain the input parameter, that is the message string in this example.
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
+    // Call OH_JSVM_GetValueInt32 to obtain the input string parameter to create an error.
+    int32_t value = 0;
+    OH_JSVM_GetValueInt32(env, args[0], &value);
+    // Call OH_JSVM_GetLastErrorInfo to obtain the last error message.
+    const JSVM_ExtendedErrorInfo *errorInfo;
+    OH_JSVM_GetLastErrorInfo(env, &errorInfo);
 
+    // Obtain the error message as the return value and print it.
+    JSVM_Value result = nullptr;
+    OH_LOG_INFO(LOG_APP,
+                "JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS, error message is %{public}s, error code is %{public}d",
+                errorInfo->errorMessage, errorInfo->errorCode);
+    // Handle the exception to prevent the application from exiting due to the error thrown.
+    JSVM_Value result1 = nullptr;
+    OH_JSVM_GetAndClearLastException(env, &result1);
+    OH_JSVM_CreateInt32(env, errorInfo->errorCode, &result);
+    return result;
+}
 // Register the JsVmGetLastErrorInfo callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmGetLastErrorInfo},
@@ -672,32 +593,11 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmGetLastErrorInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-static JSVM_Value JsVmGetLastErrorInfo(JSVM_Env env, JSVM_CallbackInfo info) {
-    // Obtain the input parameter, that is the message string in this example.
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // Call OH_JSVM_GetValueInt32 to obtain the input string parameter to create an error.
-    int32_t value = 0;
-     OH_JSVM_GetValueInt32(env, args[0], &value);
-    // Call OH_JSVM_GetLastErrorInfo to obtain the last error message.
-    const JSVM_ExtendedErrorInfo *errorInfo;
-    OH_JSVM_GetLastErrorInfo(env, &errorInfo);
-    // Obtain the error message as the return value and print it.
-    JSVM_Value result = nullptr;
-    OH_LOG_INFO(LOG_APP, "JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS");
-
-    OH_JSVM_CreateInt32(env, errorInfo->errorCode, &result);
-    return result;
-}
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";}
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `jsVmGetLastErrorInfo()`
-napitest.runJsVm(script);
+JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS, error message is A number was expected, error code is 6
 ```

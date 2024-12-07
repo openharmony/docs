@@ -28,6 +28,8 @@ HiDebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSystemMemInfo           | 获取系统内存信息。                                           |
 | hidebug.getVMRuntimeStats          | 获取系统gc全部统计信息。                                     |
 | hidebug.getVMRuntimeStat           | 根据参数获取指定的系统gc统计信息。                           |
+| hidebug.getGraphicsMemory          | 使用异步方式获取应用显存大小。                    |
+| hidebug.getGraphicsMemorySync      | 使用同步方式获取应用显存大小。                    |
 
 HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
@@ -57,7 +59,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    @Component
    struct Index {
      @State message: string = 'Hello World'
-   
+
      build() {
        Row() {
          Column() {
@@ -78,5 +80,8 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
    此时窗口将显示通过hidebug.getSystemCpuUsage()接口获取的CPU使用率的相关日志。
    ```Text
-	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381 
+	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381
    ```
+
+<!--RP1-->
+<!--RP1End-->

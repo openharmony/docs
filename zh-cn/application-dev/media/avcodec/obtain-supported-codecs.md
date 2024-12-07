@@ -310,9 +310,9 @@ OH_AVFormat_Destroy(format);
 
 ### 查询编解码档次和级别支持情况
 
-编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的开启与关闭情况。以H.264为例，存在基本档次、主档次和高档次，参考OH_AVCProfile。
+编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的开启与关闭情况。以H.264为例，存在基本档次、主档次和高档次，参考[OH_AVCProfile](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcprofile-1)。
 
-级别是对编解码器所需的处理能力和储存空间的划分。以H.264为例，存在1到6.2的20个级别，参考OH_AVCLevel。
+级别是对编解码器所需的处理能力和储存空间的划分。以H.264为例，存在1到6.2的20个级别，参考[OH_AVCLevel](../../reference/apis-avcodec-kit/_codec_base.md#oh_avclevel-1)。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -352,13 +352,13 @@ OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
 // 3.（可选）基于支持的最大级别做业务逻辑区分
 switch (maxLevel) {
    case AVC_LEVEL_31:
-      // ...
+      // level 3.1-3.2，宽、高最大可配1280x720
       break;
    case AVC_LEVEL_51:
-      // ...
+      // level 4.0以上，宽、高最大可配1920x1080
       break;
    default:
-      // ...
+      // 报错，不做编码
 }
 // 4. 配置档次参数
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
@@ -390,13 +390,9 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 
 视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中级别对帧级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每帧宏块数目为36864。
 
-给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerFrameLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, $MaxMBsPerFrameSubmit$是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerFrameLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, *MaxMBsPerFrameSubmit*是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
 
-$$
-MaxMBsPerFrame = \min(MaxMBsPerFrameLevelLimits, MaxMBsPerFrameSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxWidth = \lfloor MaxMBsPerFrame \div \lceil \frac{height}{MBHeight} \rceil \rfloor \times MBWidth
-$$
+![](figures/formula-maxmbsperframe.png)
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -491,13 +487,9 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 视频编解码的帧率不仅会受编解码器秒级编解码能力限制，同时也会受协议中级别对秒级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每秒宏块数目为983040。
 
-给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerSecondLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, $MaxMBsPerSecondSubmit$是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerSecondLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, *MaxMBsPerSecondSubmit*是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
 
-$$
-MaxMBsPerSecond = \min(MaxMBsPerSecondLevelLimits, MaxMBsPerSecondSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxFrameRate = MaxMBsPerSecond \div (\lceil{\frac{width}{MBWidth}} \rceil \times \lceil \frac{height}{MBHeight} \rceil)
-$$
+![](figures/formula-maxmbspersecond.png)
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -553,7 +545,7 @@ OH_AVFormat_Destroy(format);
 
 ### 设置正确的视频像素格式信息
 
-视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考OH_AVPixelFormat。
+视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考[OH_AVPixelFormat](../../reference/apis-avcodec-kit/_core.md#oh_avpixelformat-1)。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -586,8 +578,7 @@ if (!isMatched) {
 
 ### 查询编解码特性支持情况并获取特性属性信息
 
-编解码特性是指仅在特定编解码场景中使用的可选特性，参考OH_AVCapabilityFeature。
-
+编解码特性是指仅在特定编解码场景中使用的可选特性，参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1)。
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性 |
@@ -608,8 +599,8 @@ if (isSupported) {
    // 2. 查询支持的长期参考帧个数
    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(capability, VIDEO_ENCODER_LONG_TERM_REFERENCE);
    int32_t maxLTRCount = -1;
-   int32_t ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
-   if (ret == AV_ERR_OK && maxLTRCount >= NEEDED_MIN_LTR_NUM) {
+   bool ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
+   if (ret && maxLTRCount >= NEEDED_LTR_NUM) {
       if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_NUM)) {
          // 异常处理
       }

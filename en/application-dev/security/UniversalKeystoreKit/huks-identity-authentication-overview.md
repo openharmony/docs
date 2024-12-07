@@ -9,7 +9,8 @@ HUKS provides comprehensive access control capabilities to ensure authorized acc
 - For a service key with a higher security level or a service key used to protect sensitive data, user identity authentication is required before the key is accessed. The service key can be used only after the authentication (PIN or biometric authentication) is successful.
 
 - The usage of keys is strictly restricted. For example, the AES keys can be used only for encryption and decryption, and the RSA keys can be used only for signing and signature verification.
-
+> **NOTE**<br>
+> The mini-system devices do not support the access control of keys based on user identity authentication.
 
 ## Application Scenarios and Development Process
 
@@ -35,7 +36,7 @@ In addition to user identity authentication, HUKS provides the following modes t
   Application scenarios: user-related data protection or access based on the lock screen password.
 
 
-- **HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL**: invalidates the key when a new biometric feature is enrolled<br>
+- **HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL**: invalidates the key when a new biometric feature is enrolled.<br>
   The key, generated or imported, becomes invalid permanently once a new biometric feature is enrolled. The key will not be invalidated if the biometric feature is deleted.
 
   In this mode, the key cannot be accessed if a new biometric feature of the same type is enrolled. The key can be accessed via other identity authentication modes (other biometric features and lock screen password). In addition, the key will be invalid permanently if the lock screen password is cleared.
@@ -45,7 +46,7 @@ In addition to user identity authentication, HUKS provides the following modes t
   Application scenarios: password-free login or payment.
 
 
-- **HUKS_AUTH_ACCESS_ALWAYS_VALID**: keeps the key always valid<br>
+- **HUKS_AUTH_ACCESS_ALWAYS_VALID**: keeps the key always valid.<br>
   In this mode, the key is permanently valid until it is deleted by the user.
 
   The key is accessible as long as the user identification is successful, and will be not affected if the user clears or changes the lock screen password or biometrics.
@@ -91,31 +92,32 @@ HUKS provides refined access control, which includes the following modes:
 For simplicity, in the following table we refer to:
 
 - **HUKS_USER_AUTH_TYPE_PIN** (PIN authentication) as PIN
-- **HUKS_USER_AUTH_TYPE_FACE** (facical authentication) as FACE
+- **HUKS_USER_AUTH_TYPE_FACE** (facial authentication) as FACE
 - **HUKS_USER_AUTH_TYPE_FINGERPRINT** (fingerprint authentication) as FINGERPRINT
 
+ 
 - **HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD** (invalidates the key when the lock screen password is cleared) as INVALID_CLEAR_PASSWORD
 - **HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL** (invalidates the key when a new biometric feature is enrolled) as INVALID_NEW_BIO_ENROLL
 - **HUKS_AUTH_ACCESS_ALWAYS_VALID** (keeps the key always valid) as ALWAYS_VALID
 
 | User Identity Authentication                     | Authorized Access Type    | Description                                                 |
 | -------------------------------| -------------- | -------------------------------------   |
-| PIN                            | INVALID_CLEAR_PASSWORD | Only the PIN authentication is supported. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| FACE                           | INVALID_CLEAR_PASSWORD | Only the facial authentication is supported. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| FINGERPRINT                    | INVALID_CLEAR_PASSWORD | Only the fingerprint authentication is supported. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| PIN  \|  FACE                  | INVALID_CLEAR_PASSWORD | The PIN or facial authentication is supported. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| PIN  \|  FINGERPRINT           | INVALID_CLEAR_PASSWORD | The PIN or fingerprint authentication is supported. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| PIN  \|  FACE  \|  FINGERPRINT | INVALID_CLEAR_PASSWORD | The PIN, facial, or fingerprint authentication is supported. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| FACE                           | INVALID_NEW_BIO_ENROLL | Only the facial authentication is supported. <br/>After a new face is enrolled, the key becomes invalid permanently. |
-| FINGERPRINT                    | INVALID_NEW_BIO_ENROLL | Only the fingerprint authentication is supported. <br/>After a new fingerprint is enrolled, the key becomes invalid permanently. |
-| PIN  \|  FACE                  | INVALID_NEW_BIO_ENROLL | The PIN or facial authentication is supported. <br/>After a new face is enrolled, the key can be accessed via PIN authentication but not via facial authentication. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| PIN  \|  FINGERPRINT           | INVALID_NEW_BIO_ENROLL | The PIN or fingerprint authentication is supported. <br/>After a new fingerprint is enrolled, the key can be accessed via PIN authentication but not via fingerprint authentication. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| FACE  \|  FINGERPRINT          | INVALID_NEW_BIO_ENROLL | The facial or fingerprint authentication is supported. <br/>After a new biometric feature is enrolled, the user cannot use that biometric credential for user identity authentication. Other credentials can still be used for accessing the key. |
-| PIN  \|  FACE  \|  FINGERPRINT | INVALID_NEW_BIO_ENROLL | The PIN, facial, or fingerprint authentication is supported. <br/>After a new biometric feature is enrolled, the user cannot use that biometric credential for user identity authentication. Other credentials can still be used for accessing the key. <br/>After the lock screen password is cleared, the key becomes invalid permanently. |
-| PIN                            | ALWAYS_VALID           | Only the PIN authentication is supported. <br/>The key is permanently valid. |
-| FACE                           | ALWAYS_VALID           | Only the facial authentication is supported. <br/>The key is permanently valid. |
-| FINGERPRINT                    | ALWAYS_VALID           | Only the fingerprint authentication is supported. <br/>The key is permanently valid. |
-| PIN  \|  FACE                  | ALWAYS_VALID           | The PIN or facial authentication is supported. <br/>The key is permanently valid. |
-| PIN  \|  FINGERPRINT           | ALWAYS_VALID           | The PIN or fingerprint authentication is supported. <br/>The key is permanently valid. |
-| FACE  \|  FINGERPRINT          | ALWAYS_VALID           | The facial or fingerprint authentication is supported. <br/>The key is permanently valid. |
-| PIN  \|  FACE  \|  FINGERPRINT | ALWAYS_VALID           | The PIN, facial, or fingerprint authentication is supported. <br/>The key is permanently valid. |
+| PIN                            | INVALID_CLEAR_PASSWORD | Only the PIN authentication is supported. After the lock screen password is cleared, the key becomes invalid permanently. |
+| FACE                           | INVALID_CLEAR_PASSWORD | Only the facial authentication is supported. After the lock screen password is cleared, the key becomes invalid permanently. |
+| FINGERPRINT                    | INVALID_CLEAR_PASSWORD | Only the fingerprint authentication is supported. After the lock screen password is cleared, the key becomes invalid permanently. |
+| PIN  \|  FACE                  | INVALID_CLEAR_PASSWORD | The PIN or facial authentication is supported. After the lock screen password is cleared, the key becomes invalid permanently. |
+| PIN  \|  FINGERPRINT           | INVALID_CLEAR_PASSWORD | The PIN or fingerprint authentication is supported. After the lock screen password is cleared, the key becomes invalid permanently.   |
+| PIN  \|  FACE  \|  FINGERPRINT | INVALID_CLEAR_PASSWORD | The PIN, facial, or fingerprint authentication is supported. After the lock screen password is cleared, the key becomes invalid permanently.   |
+| FACE                           | INVALID_NEW_BIO_ENROLL | Only the facial authentication is supported. After a new face is enrolled, the key becomes invalid permanently. |
+| FINGERPRINT                    | INVALID_NEW_BIO_ENROLL | Only the fingerprint authentication is supported. After a new fingerprint is enrolled, the key becomes invalid permanently. |
+| PIN  \|  FACE                  | INVALID_NEW_BIO_ENROLL | The PIN or facial authentication is supported. After a new face is enrolled, the key can be accessed via PIN authentication but not via facial authentication. After the lock screen password is cleared, the key becomes invalid permanently.  |
+| PIN  \|  FINGERPRINT           | INVALID_NEW_BIO_ENROLL | The PIN or fingerprint authentication is supported. After a new fingerprint is enrolled, the key can be accessed via PIN authentication but not via fingerprint authentication. After the lock screen password is cleared, the key becomes invalid permanently.  |
+| FACE  \|  FINGERPRINT          | INVALID_NEW_BIO_ENROLL | The facial or fingerprint authentication is supported. After a new biometric feature is enrolled, the user cannot use that biometric credential for user identity authentication. Other credentials can still be used for accessing the key.   |
+| PIN  \|  FACE  \|  FINGERPRINT | INVALID_NEW_BIO_ENROLL | The PIN, facial, or fingerprint authentication is supported. After a new biometric feature is enrolled, the user cannot use that biometric credential for user identity authentication. Other credentials can still be used for accessing the key. After the lock screen password is cleared, the key becomes invalid permanently.   |
+| PIN                            | ALWAYS_VALID           | Only the PIN authentication is supported. The key is permanently valid.   |
+| FACE                           | ALWAYS_VALID           | Only the facial authentication is supported. The key is permanently valid.   |
+| FINGERPRINT                    | ALWAYS_VALID           | Only the fingerprint authentication is supported. The key is permanently valid.   |
+| PIN  \|  FACE                  | ALWAYS_VALID           | The PIN or facial authentication is supported. The key is permanently valid.   |
+| PIN  \|  FINGERPRINT           | ALWAYS_VALID           | The PIN or fingerprint authentication is supported. The key is permanently valid.   |
+| FACE  \|  FINGERPRINT          | ALWAYS_VALID           | The facial or fingerprint authentication is supported. The key is permanently valid.   |
+| PIN  \|  FACE  \|  FINGERPRINT | ALWAYS_VALID           | The PIN, facial, or fingerprint authentication is supported. The key is permanently valid.   |

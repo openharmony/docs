@@ -55,7 +55,7 @@ Called when the wallpaper changes. Multi-thread concurrent calls are not support
 
 | Name| Type       | Mandatory| Description                  |
 | ------ | --------- | --- |----------------------|
-| wallpaperType  | number | Yes | Wallpaper type. **0**: home screen wallpaper.<br>**1**: lock screen wallpaper.|
+| wallpaperType  | number | Yes | Wallpaper type.<br>**0**: home screen wallpaper.<br>**1**: lock screen wallpaper. |
 
 **Example**
 

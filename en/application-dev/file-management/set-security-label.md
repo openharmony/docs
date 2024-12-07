@@ -25,10 +25,10 @@ Obtain the sandbox path of a file and set the data security level. For details a
 
   
 ```ts
-import securityLabel from '@ohos.file.securityLabel';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
+import { securityLabel } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 // Obtain the sandbox path of the file.
 let context = getContext(this) as common.UIAbilityContext; // Obtain UIAbilityContext.

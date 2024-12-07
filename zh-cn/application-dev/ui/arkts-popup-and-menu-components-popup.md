@@ -144,7 +144,6 @@ struct PopupExample {
           placementOnTop: true,
           showInSubWindow: false,
           onStateChange: (e) => {
-            console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
               this.handlePopup = false
             }
@@ -185,7 +184,7 @@ struct PopupExample {
 
 ## 自定义气泡
 
-开发者可以使用构建器CustomPopupOptions创建自定义气泡，\@Builder中可以放自定义的内容。除此之外，还可以通过popupColor等参数控制气泡样式。
+开发者可以使用CustomPopupOptions的builder创建自定义气泡，\@Builder中可以放自定义的内容。除此之外，还可以通过popupColor等参数控制气泡样式。
 
 ```ts
 @Entry
@@ -211,7 +210,6 @@ struct Index {
           placement:Placement.Bottom, // 气泡的弹出位置
           popupColor:Color.Pink, // 气泡的背景色
           onStateChange: (e) => {
-            console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
               this.customPopup = false
             }

@@ -7,11 +7,11 @@
 
 ## 接口说明
 
-参考[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md)。
+参考[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | 移除粘性公共事件 |
+| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | 移除粘性公共事件。 |
 
 
 ## 开发步骤

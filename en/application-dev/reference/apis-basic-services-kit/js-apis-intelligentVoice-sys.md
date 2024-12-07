@@ -35,18 +35,19 @@ Obtains an instance of the intelligent voice manager.
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
-| [IntelligentVoiceManager](#intelligentvoicemanager) | Instance of the intelligent voice manager. |
+| [IntelligentVoiceManager](#intelligentvoicemanager)| Instance of the intelligent voice manager.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                              |
 
-**Example** 
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -74,15 +75,16 @@ Obtains an instance of the **WakeupManager** class.
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
-| [WakeupManager](#wakeupmanager12) | Instance of the intelligent voice manager. |
+| [WakeupManager](#wakeupmanager12) | Instance of the intelligent voice manager.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                              |
 | 22700107 | System error.                            |
 
@@ -112,7 +114,7 @@ Creates an instance of the intelligent voice enrollment engine. This API uses an
 
 **Parameters**
 
-| Name  | Type                               | Mandatory | Description                  |
+| Name  | Type                               | Mandatory| Description                  |
 | -------- | ----------------------------------- | ---- | ---------------------- |
 | descriptor    | [EnrollIntelligentVoiceEngineDescriptor](#enrollintelligentvoiceenginedescriptor)                              | Yes  | Descriptor of the intelligent voice enrollment engine.  |
 | callback    | AsyncCallback\<[EnrollIntelligentVoiceEngine](#enrollintelligentvoiceengine)\>         | Yes  | Callback used to return the result.  |
@@ -121,14 +123,15 @@ Creates an instance of the intelligent voice enrollment engine. This API uses an
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
 
-**Example** 
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -160,7 +163,7 @@ Creates an instance of the intelligent voice enrollment engine. This API uses a 
 
 **Parameters**
 
-| Name  | Type                               | Mandatory | Description                  |
+| Name  | Type                               | Mandatory| Description                  |
 | -------- | ----------------------------------- | ---- | ---------------------- |
 | descriptor    | [EnrollIntelligentVoiceEngineDescriptor](#enrollintelligentvoiceenginedescriptor)                              | Yes  | Descriptor of the intelligent voice enrollment engine.  |
 
@@ -168,20 +171,21 @@ Creates an instance of the intelligent voice enrollment engine. This API uses a 
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise\<[EnrollIntelligentVoiceEngine](#enrollintelligentvoiceengine)\>           | Promise used to return the result.                  |
+| Promise\<[EnrollIntelligentVoiceEngine](#enrollintelligentvoiceengine)\>           | Callback used to return the result.                  |
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
 
-**Example** 
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -211,7 +215,7 @@ Creates an instance of the intelligent voice wakeup engine. This API uses an asy
 
 **Parameters**
 
-| Name  | Type                               | Mandatory | Description                  |
+| Name  | Type                               | Mandatory| Description                  |
 | -------- | ----------------------------------- | ---- | ---------------------- |
 | descriptor    | [WakeupIntelligentVoiceEngineDescriptor](#wakeupintelligentvoiceenginedescriptor)                              | Yes  | Descriptor of the intelligent voice wakeup engine.  |
 | callback    | AsyncCallback\<[WakeupIntelligentVoiceEngine](#wakeupintelligentvoiceengine)\>         | Yes  | Callback used to return the result.  |
@@ -220,14 +224,15 @@ Creates an instance of the intelligent voice wakeup engine. This API uses an asy
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
 
-**Example** 
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -259,7 +264,7 @@ Creates an instance of the intelligent voice wakeup engine. This API uses a prom
 
 **Parameters**
 
-| Name  | Type                               | Mandatory | Description                  |
+| Name  | Type                               | Mandatory| Description                  |
 | -------- | ----------------------------------- | ---- | ---------------------- |
 | descriptor    | [WakeupIntelligentVoiceEngineDescriptor](#wakeupintelligentvoiceenginedescriptor)                              | Yes  | Descriptor of the intelligent voice wakeup engine.  |
 
@@ -267,20 +272,21 @@ Creates an instance of the intelligent voice wakeup engine. This API uses a prom
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise\<[WakeupIntelligentVoiceEngine](#wakeupintelligentvoiceengine)>           | Promise used to return the result.                  |
+| Promise\<[WakeupIntelligentVoiceEngine](#wakeupintelligentvoiceengine)>           | Callback used to return the result.                  |
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
 
-**Example** 
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -322,9 +328,10 @@ Obtains the list of supported intelligent voice engine types.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -346,18 +353,19 @@ Subscribes to service change events. A callback is invoked when the status of th
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | Yes  | Event type. This field has a fixed value of **serviceChange**. |
+| type     | string                           | Yes  | Event type. This field has a fixed value of **serviceChange**.|
 | callback | Callback\<[ServiceChangeType](#servicechangetype)\> | Yes  | Callback for the service status change.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -379,18 +387,19 @@ Unsubscribes from service change events.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string                           | Yes  | Event type. This field has a fixed value of **serviceChange**. |
+| type     | string                           | Yes  | Event type. This field has a fixed value of **serviceChange**.|
 | callback | Callback\<[ServiceChangeType](#servicechangetype)\> | No  | Callback for processing of the service status change event. If this parameter is specified, only the specified callback will be unsubscribed. Otherwise, all callbacks will be unsubscribed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -416,10 +425,10 @@ Sets the specified wakeup parameter. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key, which corresponds to the wakeup keyword. Currently, only **wakeup_phrase** is supported. |
-| value     | string                           | Yes  | Value. |
+| key     | string                           | Yes  | Key, which corresponds to the wakeup keyword. Currently, only **wakeup_phrase** is supported.|
+| value     | string                           | Yes  | Value.|
 
 **Return value**
 
@@ -431,9 +440,10 @@ Sets the specified wakeup parameter. This API uses a promise to return the resul
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
@@ -464,9 +474,9 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key, which corresponds to the registration information. Currently, only **isEnrolled** is supported. |
+| key     | string                           | Yes  | Key, which corresponds to the registration information. Currently, only **isEnrolled** is supported.|
 
 **Return value**
 
@@ -478,9 +488,10 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
@@ -512,9 +523,9 @@ Obtain the saved wakeup keyword files. This API uses a promise to return the res
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| maxCount     | number                           | Yes  | Number of obtained files. |
+| maxCount     | number                           | Yes  | Number of obtained files.|
 
 **Return value**
 
@@ -526,9 +537,10 @@ Obtain the saved wakeup keyword files. This API uses a promise to return the res
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
 | 22700102 | Invalid parameter.                            |
@@ -570,9 +582,10 @@ Obtains wakeup resource files, such as registration corpus and path. This API us
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                        |
 | 22700107 | System error.                            |
 
@@ -604,10 +617,10 @@ Registers with wakeup resource files to obtain wakeup word evaluation results. T
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| wakeupFiles     | Array\<[WakeupSourceFile](#wakeupsourcefile12)\>                           | Yes  | Wakeup resource files. |
-| wakeupInfo     | string                           | Yes  | Wakeup information, including the type and version of the source and target devices. |
+| wakeupFiles     | Array\<[WakeupSourceFile](#wakeupsourcefile12)\>                           | Yes  | Wakeup resource files.|
+| wakeupInfo     | string                           | Yes  | Wakeup information, including the type and version of the source and target devices.|
 
 **Return value**
 
@@ -619,9 +632,10 @@ Registers with wakeup resource files to obtain wakeup word evaluation results. T
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
 | 22700102 | Invalid parameter.                        |
@@ -668,9 +682,10 @@ Clears user data. This API uses a promise to return the result.
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700107 | System error.                            |
 
 **Example**
@@ -706,9 +721,9 @@ Defines an upload file, including the file type, file description, and content.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| type | [UploadFileType](#uploadfiletype12) |        Yes      | File type. |
-| filesDescription | string |        Yes      | File description. |
-| filesContent | Array\<ArrayBuffer\> |        Yes      | File content. |
+| type | [UploadFileType](#uploadfiletype12) |        Yes      | File type.|
+| filesDescription | string |        Yes      | File description.|
+| filesContent | Array\<ArrayBuffer\> |        Yes      | File content.|
 
 ## WakeupSourceFile<sup>12+</sup>
 
@@ -718,8 +733,8 @@ Defines a wakeup resource file.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| filePath | string |        Yes      | File path. |
-| fileContent | ArrayBuffer |        Yes      | File content. |
+| filePath | string |        Yes      | File path.|
+| fileContent | ArrayBuffer |        Yes      | File content.|
 
 ## EvaluationResultCode<sup>12+</sup>
 
@@ -752,8 +767,8 @@ Defines the wakeup word evaluation result.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| score | number |        Yes      | Evaluation score of a custom wakeup keyword. The value ranges from 0 to 5. |
-| resultCode | [EvaluationResultCode](#evaluationresultcode12) |        Yes      | Evaluation result code. |
+| score | number |        Yes      | Evaluation score of a custom wakeup keyword. The value ranges from 0 to 5.|
+| resultCode | [EvaluationResultCode](#evaluationresultcode12) |        Yes      | Evaluation result code.|
 
 ## ServiceChangeType
 
@@ -785,7 +800,7 @@ Defines the descriptor of an intelligent voice enrollment engine.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| wakeupPhrase | string |        Yes      | Wakeup phrase. |
+| wakeupPhrase | string |        Yes      | Wakeup phrase.|
 
 ## WakeupIntelligentVoiceEngineDescriptor
 
@@ -795,8 +810,8 @@ Defines the descriptor of an intelligent voice wakeup engine.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| needReconfirm | boolean |        Yes      | Whether re-confirmation of the wakeup result is needed. The value **true** indicates that re-confirmation is needed, and the value **false** indicates the opposite. |
-| wakeupPhrase | string |        Yes      | Wakeup phrase. |
+| needReconfirm | boolean |        Yes      | Whether re-confirmation of the wakeup result is needed. The value **true** indicates that re-confirmation is needed, and the value **false** indicates the opposite.|
+| wakeupPhrase | string |        Yes      | Wakeup phrase.|
 
 ## EnrollEngineConfig
 
@@ -806,8 +821,8 @@ Defines the enrollment engine configuration.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| language | string |        Yes      | Language supported by the enrollment engine. Only Chinese is supported currently, and the value is **zh**. |
-| region | string |        Yes      | Country/region supported by the enrollment engine. Only China is supported currently, and the value is **CN**. |
+| language | string |        Yes      | Language supported by the enrollment engine. Only Chinese is supported currently, and the value is **zh**.|
+| region | string |        Yes      | Country/region supported by the enrollment engine. Only China is supported currently, and the value is **CN**.|
 
 ## SensibilityType
 
@@ -830,8 +845,8 @@ Defines the HAP information for an wakeup application.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| bundleName | string |        Yes      | Bundle name of the wakeup application. |
-| abilityName | string |        Yes      | Ability name of the wakeup application. |
+| bundleName | string |        Yes      | Bundle name of the wakeup application.|
+| abilityName | string |        Yes      | Ability name of the wakeup application.|
 
 ## WakeupIntelligentVoiceEventType
 
@@ -899,8 +914,8 @@ Defines the enrollment callback information.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| result | [EnrollResult](#enrollresult) |        Yes      | Enrollment result. |
-| context | string |        Yes      | Context of the enrollment event. |
+| result | [EnrollResult](#enrollresult) |        Yes      | Enrollment result.|
+| context | string |        Yes      | Context of the enrollment event.|
 
 ## WakeupIntelligentVoiceEngineCallbackInfo
 
@@ -910,9 +925,9 @@ Defines the callback information for the intelligent voice wakeup engine.
 
 | Name  | Type                           |     Mandatory    | Description      |
 | ------ | ----------------------------- | -------------- | ---------- |
-| eventId | [WakeupIntelligentVoiceEventType](#wakeupintelligentvoiceeventtype) |        Yes      | Event type of the intelligent voice wakeup engine. |
-| isSuccess | boolean |        Yes      | Wakeup result. The value **true** indicates that the wakeup is successful, and the value **false** indicates the opposite. |
-| context | string |        Yes      | Context of the wakeup event. |
+| eventId | [WakeupIntelligentVoiceEventType](#wakeupintelligentvoiceeventtype) |        Yes      | Event type of the intelligent voice wakeup engine.|
+| isSuccess | boolean |        Yes      | Wakeup result. The value **true** indicates that the wakeup is successful, and the value **false** indicates the opposite.|
+| context | string |        Yes      | Context of the wakeup event.|
 
 ## EnrollIntelligentVoiceEngine
 
@@ -930,17 +945,18 @@ Obtains the list of supported countries/regions. This API uses an asynchronous c
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;         | Yes  | Callback used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**. |
+| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;         | Yes  | Callback used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -980,9 +996,10 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1012,18 +1029,19 @@ Initializes the intelligent voice enrollment engine. This API uses an asynchrono
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| config     | [EnrollEngineConfig](#enrollengineconfig)                           | Yes  | Configuration of the intelligent voice enrollment engine. |
-| callback     |AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. |
+| config     | [EnrollEngineConfig](#enrollengineconfig)                           | Yes  | Configuration of the intelligent voice enrollment engine.|
+| callback     |AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
@@ -1060,9 +1078,9 @@ Initializes the intelligent voice enrollment engine. This API uses a promise to 
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| config     | [EnrollEngineConfig](#enrollengineconfig)                           | Yes  | Configuration of the intelligent voice enrollment engine. |
+| config     | [EnrollEngineConfig](#enrollengineconfig)                           | Yes  | Configuration of the intelligent voice enrollment engine.|
 
 **Return value**
 
@@ -1074,9 +1092,10 @@ Initializes the intelligent voice enrollment engine. This API uses a promise to 
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
@@ -1112,18 +1131,19 @@ Obtains the enrollment result. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| isLast     | boolean                           | Yes  | Whether this is the last enrollment. The value **value** indicates the last enrollment, and the value **false** indicates the opposite. |
-| callback     | AsyncCallback&lt;[EnrollCallbackInfo](#enrollcallbackinfo)&gt;                           | Yes  | Callback used to return the result. |
+| isLast     | boolean                           | Yes  | Whether this is the last enrollment. The value **true** indicates the last enrollment, and the value **false** indicates the opposite.|
+| callback     | AsyncCallback&lt;[EnrollCallbackInfo](#enrollcallbackinfo)&gt;                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **Example**
@@ -1156,9 +1176,9 @@ Obtains the enrollment result. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| isLast     | boolean                           | Yes  | Whether this is the last enrollment. The value **value** indicates the last enrollment, and the value **false** indicates the opposite. |
+| isLast     | boolean                           | Yes  | Whether this is the last enrollment. The value **true** indicates the last enrollment, and the value **false** indicates the opposite.|
 
 **Return value**
 
@@ -1170,9 +1190,10 @@ Obtains the enrollment result. This API uses a promise to return the result.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **Example**
@@ -1201,17 +1222,18 @@ Stops the enrollment. This API uses an asynchronous callback to return the resul
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     |  AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. |
+| callback     |  AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1249,9 +1271,10 @@ Stops the enrollment. This API uses a promise to return the result.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1279,17 +1302,18 @@ Commits the enrollment. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. |
+| callback     | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700104 | Failed to commit the enrollment.                           |
 
 **Example**
@@ -1328,9 +1352,10 @@ Commits the enrollment. This API uses a promise to return the result.
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700104 | Failed to commit the enrollment.                           |
 
 **Example**
@@ -1359,18 +1384,19 @@ Sets the HAP information for the wakeup application. This API uses an asynchrono
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application. |
-| callback     | AsyncCallback\<void\>                          | Yes  | Callback used to return the result. |
+| info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application.|
+| callback     | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1414,9 +1440,10 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1450,18 +1477,19 @@ Sets the wakeup sensibility. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type. |
-| callback     | AsyncCallback\<void\>                         | Yes  | Callback used to return the result. |
+| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type.|
+| callback     | AsyncCallback\<void\>                         | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1493,9 +1521,9 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type. |
+| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type.|
 
 **Return value**
 
@@ -1507,9 +1535,10 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1539,19 +1568,20 @@ Sets specified intelligent voice parameters. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
-| value     | string                           | Yes  | Value. |
-| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result. |
+| key     | string                           | Yes  | Key.|
+| value     | string                           | Yes  | Value.|
+| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1583,10 +1613,10 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
-| value     | string                           | Yes  | Value. |
+| key     | string                           | Yes  | Key.|
+| value     | string                           | Yes  | Value.|
 
 **Return value**
 
@@ -1598,9 +1628,10 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1630,18 +1661,19 @@ Obtains specified intelligent voice parameters. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
-| callback     | AsyncCallback\<string\>                           | Yes  | Callback used to return the result. |
+| key     | string                           | Yes  | Key.|
+| callback     | AsyncCallback\<string\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1674,9 +1706,9 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
+| key     | string                           | Yes  | Key.|
 
 **Return value**
 
@@ -1688,9 +1720,10 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1721,23 +1754,24 @@ Evaluates whether a custom wakeup keyword is effective. This API uses a promise 
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| word     | string                           | Yes  | Custom wakeup keyword. |
+| word     | string                           | Yes  | Custom wakeup keyword.|
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;[EvaluationResult](#evaluationresult12)&gt;     | Promise used to return the evaluation result.     |
+|  Promise&lt;[EvaluationResult](#evaluationresult12)&gt;     | Promise used to return the result.     |
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700107 | System error.                            |
 
@@ -1769,17 +1803,18 @@ Releases the intelligent voice enrollment engine. This API uses an asynchronous 
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result. |
+| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1817,9 +1852,10 @@ Releases the intelligent voice enrollment engine. This API uses a promise to ret
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1849,17 +1885,18 @@ Obtains the list of supported countries/regions. This API uses an asynchronous c
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;                           | Yes  | Callback used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**. |
+| callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;                           | Yes  | Callback used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1898,9 +1935,10 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -1929,18 +1967,19 @@ Sets the HAP information for the wakeup application. This API uses an asynchrono
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application. |
-| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result. |
+| info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application.|
+| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1977,9 +2016,9 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application. |
+| info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application.|
 
 **Return value**
 
@@ -1991,9 +2030,10 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2027,18 +2067,19 @@ Sets the wakeup sensibility. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type. |
-| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result. |
+| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type.|
+| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2070,9 +2111,9 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type. |
+| sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type.|
 
 **Return value**
 
@@ -2084,9 +2125,10 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2116,19 +2158,20 @@ Sets specified intelligent voice parameters. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
-| value     | string                           | Yes  | Value. |
-| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result. |
+| key     | string                           | Yes  | Key.|
+| value     | string                           | Yes  | Value.|
+| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2160,10 +2203,10 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
-| value     | string                           | Yes  | Value. |
+| key     | string                           | Yes  | Key.|
+| value     | string                           | Yes  | Value.|
 
 **Return value**
 
@@ -2175,9 +2218,10 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2207,18 +2251,19 @@ Obtains specified intelligent voice parameters. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
-| callback     | AsyncCallback\<string\>                           | Yes  | Callback used to return the result. |
+| key     | string                           | Yes  | Key.|
+| callback     | AsyncCallback\<string\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2251,9 +2296,9 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | Yes  | Key. |
+| key     | string                           | Yes  | Key.|
 
 **Return value**
 
@@ -2265,9 +2310,10 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2306,9 +2352,10 @@ Obtains the Pulse Code Modulation (PCM) of audio signals. This API uses a promis
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                          |
 | 22700107 | System error.                          |
 
@@ -2339,9 +2386,9 @@ Starts the capturer. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| channels     | number                           | Yes  | Number of audio channels. |
+| channels     | number                           | Yes  | Number of audio channels.|
 
 **Return value**
 
@@ -2353,9 +2400,10 @@ Starts the capturer. This API uses a promise to return the result.
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                         |
 | 22700105 | Start capturer failed.                          |
@@ -2395,9 +2443,10 @@ Reads audio data. This API uses a promise to return the result.
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                          |
 | 22700106 | Read failed.                        |
 | 22700107 | System error.                          |
@@ -2437,9 +2486,10 @@ Stops the capturer. This API uses a promise to return the result.
 
 For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700107 | System error.                          |
 
 **Example**
@@ -2468,17 +2518,18 @@ Releases the intelligent voice wakeup engine. This API uses an asynchronous call
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result. |
+| callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -2516,9 +2567,10 @@ Releases the intelligent voice wakeup engine. This API uses a promise to return 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -2546,18 +2598,19 @@ Subscribes to wakeup events.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string          | Yes  | Event type. This field has a fixed value of **wakeupIntelligentVoiceEvent**. |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | Yes  | Processing of the wakeup event. |
+| type     | string          | Yes  | Event type. This field has a fixed value of **wakeupIntelligentVoiceEvent**.|
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | Yes  | Callback for processing of the wakeup event.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 
@@ -2583,18 +2636,19 @@ Unsubscribes from wakeup events.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory | Description                                         |
+| Name    | Type                             | Mandatory| Description                                         |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     |string           | Yes  | Event type. This field has a fixed value of **wakeupIntelligentVoiceEvent**. |
-| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | No  | Callback for processing of the wakeup event. If this parameter is specified, only the specified callback will be unsubscribed. Otherwise, all callbacks will be unsubscribed.  |
+| type     |string           | Yes  | Event type. This field has a fixed value of **wakeupIntelligentVoiceEvent**.|
+| callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | No  | Callback for processing of the wakeup event. If this parameter is specified, only the specified callback will be unsubscribed. Otherwise, all callbacks will be unsubscribed. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **Example**
 

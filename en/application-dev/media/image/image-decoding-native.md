@@ -1,6 +1,6 @@
 # Using Image to Decode Images
 
-Image decoding refers to the process of decoding an archived image in a supported format into a [pixel map](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, and DNG.
+Image decoding refers to the process of decoding an archived image in a supported format into a [PixelMap](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (depending on the hardware).
 
 ## How to Develop
 
@@ -16,7 +16,7 @@ target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelma
 
 ### Adding API Mappings
 
-Open the **src/main/cpp/hello.cpp** file, and add the mapping of the **getSyncPixelMap** function to the **Init** function. The **getSyncPixelMap** function is used to generate a pixel map in synchronous mode. The code is as follows:
+Open the **src/main/cpp/hello.cpp** file, and add the mapping of the **getSyncPixelMap** function to the **Init** function. The **getSyncPixelMap** function is used to generate a PixelMap in synchronous mode. The code is as follows:
 
 ```c++
 EXTERN_C_START
@@ -40,7 +40,7 @@ EXTERN_C_END
     import { image } from '@kit.ImageKit';
     import { resourceManager } from '@kit.LocalizationKit';
 
-    // Synchronous call. The input parameters are the resource manager and image resource name, and a pixel map is returned.
+    // Synchronous call. The input parameters are the resource manager and image resource name, and a PixelMap is returned.
     export const getSyncPixelMap: (resMgr: resourceManager.ResourceManager, src: string) => image.PixelMap;
     ```
 
@@ -57,7 +57,7 @@ EXTERN_C_END
     struct Index {
       @State pixelMap : PixelMap | undefined = undefined;
       aboutToAppear() {
-         // Call the custom getSyncPixelMap function to obtain a pixel map.
+         // Call the custom getSyncPixelMap function to obtain a PixelMap.
          this.pixelMap = testNapi.getSyncPixelMap(getContext(this).resourceManager, "example.jpg")
       }
 
@@ -73,11 +73,11 @@ EXTERN_C_END
          .height('100%')
       }
    }
-   ```
+    ```
 
 ### Calling the Native APIs
 
-For details about the APIs, see [Image API Reference](../../reference/apis-image-kit/image.md).
+For details about the APIs, see [Image](../../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 
@@ -85,6 +85,8 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
    ```c++
       // Include the image framework, raw file, raw file management, and log print header files.
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>
@@ -131,7 +133,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
             // Initialize the ImageSource object at the native layer.
             ImageSourceNative * imageSourceNative_c = OH_ImageSource_InitNative(env, imageSource);
             OhosImageDecodingOps decodingOps{};
-            // Create a pixel map.
+            // Create a PixelMap.
             OH_ImageSource_CreatePixelMap(imageSourceNative_c, &decodingOps, &pixelMap);
 
             // The following APIs are used for the GIF format.
@@ -173,6 +175,8 @@ The image framework supports incremental decoding. The method is as follows:
 
    ```c++
       // Include the image framework, raw file, raw file management, and log print header files.
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>
@@ -241,7 +245,7 @@ The image framework supports incremental decoding. The method is as follows:
                napi_value pixelMap;
                OhosImageDecodingOps decodingOps{};
                decodingOps.index = 0;
-               // Create a pixel map.
+               // Create a PixelMap.
                OH_ImageSource_CreatePixelMap(imageSourceNative_c, &decodingOps, &pixelMap);
 
                // After the processing is complete, release resources at the native layer.
@@ -268,7 +272,7 @@ The image framework supports incremental decoding. The method is as follows:
             ImageSourceNative * imageSourceNative_c = OH_ImageSource_InitNative(env, imageSource);
             OhosImageDecodingOps decodingOps{};
 
-            // Create a pixel map.
+            // Create a PixelMap.
             OH_ImageSource_CreatePixelMap(imageSourceNative_c, &decodingOps, &pixelMap);
 
             // After the processing is complete, release resources at the native layer.

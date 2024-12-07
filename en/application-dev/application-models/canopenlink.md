@@ -14,21 +14,22 @@ For details about the matching rules, see [Matching Rules of Explicit Want and I
 1. Configure the [querySchemes](../quick-start/module-configuration-file.md) field in the **module.json5** file of the entry module to declare the URL schemes.
 
     A configuration example is as follows:
-    ~~~json
+    ```json
     {
       "module": {
+        //...
         "querySchemes": [
           "app1Scheme"
         ]
       }
     }
-    ~~~
+    ```
 
 2. Import the **ohos.bundle.bundleManager** module.
 3. Call **canOpenLink**.
 
     The sample code is as follows:
-    ~~~typescript
+    ```ts
     import { bundleManager } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -40,17 +41,19 @@ For details about the matching rules, see [Matching Rules of Explicit Want and I
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
     }
-    ~~~
+    ```
 
 ### Procedure for the Target Application
 Configure the [uris](../quick-start/module-configuration-file.md#skills) field in the **module.json5** file.
 
 A configuration example is as follows:
-~~~json
+```json
 {
   "module": {
+    //...
     "abilities": [
       {
+        //...
         "skills": [
           {
             "uris": [
@@ -66,4 +69,4 @@ A configuration example is as follows:
     ]
   } 
 }
-~~~
+```

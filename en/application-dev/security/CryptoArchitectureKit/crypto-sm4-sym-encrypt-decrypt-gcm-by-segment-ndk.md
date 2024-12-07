@@ -18,15 +18,15 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 
 2. Use [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'SM4_128|GCM|PKCS7'** to create a **Cipher** instance. The key type is **SM4_128**, block cipher mode is **GCM**, and the padding mode is **PKCS7**.
 
-3. Use [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create) to create a symmetric cipher parameter instance, and use [OH_CryptoSymCipherParams_SetParams](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set cipher parameters.
+3. Use [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create) to create a symmetric cipher parameter instance, and use [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set cipher parameters.
 
 4. Use [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**) and the encryption parameter instance (**OH_CryptoSymCipherParams**) corresponding to the GCM mode.
 
 5. Set the size of the data to be passed in each time to 20 bytes, and call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) multiple times to pass in the data (plaintext) to be encrypted.
-
+   
    - Currently, the amount of data to be passed in by a single **OH_CryptoSymCipher_Update()** is not limited. You can determine how to pass in data based on the data volume.
    - You are advised to check the result of each **OH_CryptoSymCipher_Update()**. If the result is not **null**, obtain the data and combine the data segments into complete ciphertext. The **OH_CryptoSymCipher_Update()** result may vary with the key specifications.
-
+      
       If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. That is, if the data of an **OH_CryptoSymCipher_Update()** operation matches the block size, the ciphertext is output. Otherwise, **null** is output, and the plaintext will be combined with the input data of the next **OH_CryptoSymCipher_Update()** to form a block. When **OH_CryptoSymCipher_Final()** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **OH_CryptoSymCipher_Update()** API works in the same way in decryption.
 
       If a stream cipher mode (CTR or OFB) is used, the ciphertext length is usually the same as the plaintext length.
@@ -51,14 +51,17 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 
 3. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
 
+
 **Example**
 
 ```c++
 #include <string.h>
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
+#include <string.h>
 
 #define OH_CRYPTO_GCM_TAG_LEN 16
+#define OH_CRYPTO_MAX_TEST_DATA_LEN 128
 static OH_Crypto_ErrCode doTestSm4GcmSeg()
 {
     OH_CryptoSymKeyGenerator *genCtx = nullptr;
@@ -67,12 +70,11 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     OH_CryptoSymKey *keyCtx = nullptr;
     OH_CryptoSymCipherParams *params = nullptr;
 
-    uint8_t plainText[] = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
-    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
-
-    uint8_t aad[8] = {0};
+    char *plainText = const_cast<char *>("aaaaa.....bbbbb.....ccccc.....ddddd.....eee");
+    Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tagArr[16] = {0};
-    uint8_t iv[12] = {0};
+    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv is generated from an array of secure random numbers.
     Crypto_DataBlob tag = {.data = nullptr, .len = 0};
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadBlob = {.data = aad, .len = sizeof(aad)};
@@ -81,11 +83,11 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     Crypto_DataBlob tagInit = {.data = tagArr, .len = sizeof(tagArr)};
     int32_t cipherLen = 0;
     int blockSize = 20;
-    int32_t randomLen = sizeof(plainText);
+    int32_t randomLen = strlen(plainText);
     int cnt = randomLen / blockSize;
     int rem = randomLen % blockSize;
-    uint8_t cipherText[sizeof(plainText) + 16] = {0};
-    Crypto_DataBlob cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
+    Crypto_DataBlob cipherBlob;
 
     // Generate a key.
     OH_Crypto_ErrCode ret;
@@ -145,15 +147,15 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
         memcpy(&cipherText[cipherLen], outUpdate.data, outUpdate.len);
         cipherLen += outUpdate.len;
     }
-    cipherBlob.len = cipherLen;
     ret = OH_CryptoSymCipher_Final(encCtx, nullptr, &tag);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
     
     // Decrypt data.
-    msgBlob.data -= sizeof(plainText) - rem;
-    msgBlob.len = sizeof(plainText);
+    cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    msgBlob.data -= strlen(plainText) - rem;
+    msgBlob.len = strlen(plainText);
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -169,11 +171,6 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     ret = OH_CryptoSymCipher_Final(decCtx, &cipherBlob, &decUpdate);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
-    }
-    if (memcmp(msgBlob.data, decUpdate.data, msgBlob.len) == 0) {
-        ret = (OH_Crypto_ErrCode)1234567;
-    } else {
-        ret = (OH_Crypto_ErrCode)456;
     }
 end:
     OH_CryptoSymCipherParams_Destroy(params);

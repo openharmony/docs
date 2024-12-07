@@ -33,19 +33,19 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数**：
 
-
-| 名称     | 类型                             | 装饰器类型 | 必填 | 说明         |
-| -------- | -------------------------------- | ---------- | ---- | ------------ |
-| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop      | 是   | 组件配置信息。 |
-| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是   | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
-| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | - | 是 | 保存编辑排序的回调函数，返回编辑后的数据。 |
-| onCancel | () => void | - | 是 | 取消保存数据的回调。 |
+| 名称     | 类型                             | 必填 | 装饰器类型 | 说明         |
+| -------- | -------------------------------- | ---------- | ---- | ---- |
+| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | 是     | @Prop      | 组件配置信息。 |
+| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | 是    | -     | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
+| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | 是 | - | 保存编辑排序的回调函数，返回编辑后的数据。 |
+| onCancel | () => void | 是 | - | 取消保存数据的回调。 |
 
 ##  GridObjectSortComponentOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
@@ -56,9 +56,11 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认：点击添加。            |
 | editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认：编辑。             |
 
-## GridObjectSortComponentType 
+## GridObjectSortComponentType
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 值    | 说明           |
 | -------- | ----- | -------------- |
@@ -69,9 +71,11 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| id       | string \| number                       | 是   | 数据id序号，不可重复。                                       |
+| id       | number&nbsp;\|&nbsp;string             | 是   | 数据id序号，不可重复。                                       |
 | text     | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示文本信息。                                               |
 | selected | boolean                                | 是   | 是否已经被添加，添加：true，未添加：false。                  |
 | url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。 |
@@ -82,6 +86,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
+网格对象的编辑排序组件基础用法，涉及对组件配置信息初始化，数据初始化，保存、取消方法的使用。
 
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@kit.ArkUI'
@@ -89,6 +94,7 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 @Entry
 @Component
 struct Index {
+  // 组件数据初始化
   @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
@@ -155,6 +161,7 @@ struct Index {
     },
   ]
 
+  // 组件配置信息初始化
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.IMAGE_TEXT,
     imageSize: 45,
@@ -169,12 +176,14 @@ struct Index {
       GridObjectSortComponent({
         options: this.option,
         dataList: this.dataList,
+        // 保存编辑排序的回调函数，返回编辑后的数据。
         onSave: (
           select: Array<GridObjectSortComponentItem>,
           unselect: Array<GridObjectSortComponentItem>
         ) => {
           // save ToDo
         },
+        // 取消保存数据的回调。
         onCancel: () =>{
           // cancel ToDo
         }

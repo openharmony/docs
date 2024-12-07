@@ -1,4 +1,4 @@
-# 管理域账号插件
+# 管理域账号插件（仅对系统应用开放）
 
 OEM厂商可以采用插件方式定制化域账号管理能力，系统提供了域账号插件注册和注销能能力。
 
@@ -77,7 +77,7 @@ OEM厂商可以采用插件方式定制化域账号管理能力，系统提供�
          message: "mock_message"
        };
        let domainStr: string = '';
-       if (options.domain != undefine) {
+       if (options.domain != undefined) {
         domainStr = options.domain
        }
        let accountInfo: osAccount.DomainAccountInfo = {

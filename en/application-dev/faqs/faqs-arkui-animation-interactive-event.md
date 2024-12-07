@@ -74,7 +74,7 @@ No. Currently, only the default font, HarmonyOS Sans, is supported.
 
 ## How do I implement a text input box that shows a soft keyboard when touched and hides the soft keyboard when a button is touched? (API version 9)
 
-Use **focusControl** for the **\<TextInput>** component to control its focus. The **\<TextInput>** component shows a soft keyboard when it gains focus and hides the soft keyboard when it loses focus.
+Use **focusControl** for the **TextInput** component to control its focus. The **TextInput** component shows a soft keyboard when it gains focus and hides the soft keyboard when it loses focus.
 
 **Example**
 
@@ -127,9 +127,9 @@ build() {
 Currently, the menu is displayed when the bound component is clicked or long pressed.
 
 
-## How do I prevent the \<TextInput> component from bringing up the default keyboard? (API version 9)
+## How do I prevent the TextInput component from bringing up the default keyboard? (API version 9)
 
-Set the **focusable** attribute of the **\<TextInput>** component to **false**. In this way, the component is not focusable and therefore will not bring up the keyboard.
+Set the **focusable** attribute of the **TextInput** component to **false**. In this way, the component is not focusable and therefore will not bring up the keyboard.
 
 
 ## How do I implement the slide up and slide down effect for page transition? (API version 9)
@@ -278,7 +278,7 @@ Long press the Files application icon or a blank area.
 
 **Solution**
 
-1. When processing a touch event, the system conducts hit testing - from the parent component to its children - determine the component that needs to respond to the event. Subsequent gesture recognition and competition are performed based on the test result.
+1. When processing a touch event, the system conducts hit testing - from the parent component to its children - to determine the component that needs to respond to the event. Subsequent gesture recognition and competition are performed based on the test result.
 
 2. You can set the **hitTestBehavior** attribute to specify how a component behaves during hit testing.
 

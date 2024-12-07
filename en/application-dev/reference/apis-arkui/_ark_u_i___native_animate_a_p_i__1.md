@@ -15,12 +15,12 @@ Declares the native animation APIs provided by ArkUI.
 
 ### Member Variables
 
-| Name | Description |
+| Name| Description| 
 | -------- | -------- |
-| int32_t(\* [animateTo](#animateto) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option, [ArkUI_ContextCallback](_ark_u_i___context_callback.md) \*update, [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md) \*complete) | Defines an explicit animation. |
-| int32_t(\* [keyframeAnimateTo](#keyframeanimateto) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) \*option) | Sets the keyframe animation. |
-| [ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle)(\* [createAnimator](#createanimator) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | Creates animator object. |
-| void(\* [disposeAnimator](#disposeanimator) )([ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle) animator) | Disposes of an animator object. |
+| int32_t(\* [animateTo](#animateto) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option, [ArkUI_ContextCallback](_ark_u_i___context_callback.md) \*update, [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md) \*complete) | Defines an explicit animation. | 
+| int32_t(\* [keyframeAnimateTo](#keyframeanimateto) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) \*option) | Sets the keyframe animation. | 
+| [ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle)(\* [createAnimator](#createanimator) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | Creates animator object. | 
+| void(\* [disposeAnimator](#disposeanimator) )([ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle) animator) | Disposes of an animator object. | 
 
 
 ## Member Variable Description
@@ -37,12 +37,12 @@ Defines an explicit animation.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description| 
 | -------- | -------- |
-| context | **UIContext** instance. |
-| option | Defines the animation configuration. |
-| update | Closure function for the animation. The system automatically inserts the transition animation if the state changes in the closure function. |
-| complete | Callback invoked when the animation playback is complete. |
+| context | **UIContext** instance. | 
+| option | Defines the animation configuration. | 
+| update | Closure function for the animation. The system automatically inserts the transition animation if the state changes in the closure function. | 
+| complete | Callback invoked when the animation playback is complete. | 
 
 **NOTE**
 
@@ -64,10 +64,10 @@ Creates an animator object.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description| 
 | -------- | -------- |
-| context | **UIContext** instance. |
-| option | Animator parameter. |
+| context | **UIContext** instance. | 
+| option | Animator parameter. | 
 
 **Returns**
 
@@ -85,9 +85,9 @@ Disposes of an animator object.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description| 
 | -------- | -------- |
-| animator | Animator object. |
+| animator | Animator object. | 
 
 
 ### keyframeAnimateTo
@@ -101,10 +101,10 @@ Sets the keyframe animation.
 
 **Parameters**
 
-| Name | **Description** |
+| Name| Description| 
 | -------- | -------- |
-| context | **UIContext** instance. |
-| option | Keyframe animation parameter. |
+| context | **UIContext** instance. | 
+| option | Keyframe animation parameter. | 
 
 **Returns**
 

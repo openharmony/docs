@@ -12,15 +12,16 @@
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| id    | number               | 是   | 页面节点的ID。                               |
-| depth    | number              | 是   | 页面节点的深度。                               |
-| autoFillType    | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)        | 是   | 页面节点的自动填充类型。    |
-| tag    | string              | 是   | 页面节点的标签。                               |
-| value    | string              | 是   | 页面节点的值。                               |
-| placeholder    | string              | 否   | 页面节点的占位符。                               |
-| passwordRules    | string              | 否   | 生成密码的规则。                               |
-| enableAutoFill    | boolean              | 是   | 自动填充标志。                               |
-| rect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md) | 是   | 当前节点的坐标和宽高信息。  |
-| isFocus<sup>12+</sup>    | boolean              | 是   | 当前节点是否获焦。                               |
+| 名称        | 类型                 | 只读 | 可选 | 说明                                                         |
+| ----------- | -------------------- | ----| ---- | ------------------------------------------------------------ |
+| id    | number               | 否   | 否   | 页面节点的ID。                               |
+| depth    | number              | 否   | 否   | 页面节点的深度。                               |
+| autoFillType    | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)        | 否   | 否   | 页面节点的自动填充类型。    |
+| tag    | string              | 否   | 否   | 页面节点的标签。                               |
+| value    | string              | 否   | 否   | 页面节点的值。                               |
+| placeholder    | string              | 否   | 是   | 页面节点的占位符。                               |
+| passwordRules    | string              | 否   | 是   | 生成密码的规则。                               |
+| enableAutoFill    | boolean              | 否   | 否   | 自动填充标志。                               |
+| rect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md) | 否   | 否   | 当前节点的坐标和宽高信息。  |
+| isFocus<sup>12+</sup>    | boolean              | 否   | 否   | 当前节点是否获焦。                               |
+| metadata<sup>12+</sup>    | string              | 否   | 是   | 页面节点的元数据。                               |

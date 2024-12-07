@@ -401,7 +401,56 @@ if (surface == EGL_NO_SURFACE) {
     }
 }
 ```
+在使用XComponent获取nativeWindow的过程中，通常涉及以下步骤：
+1. 首先需要在ArkTS 中定义XComponent并设置 XComponentController。XComponent组件用于在UI中嵌入原生的渲染内容如OpenGL或Vulkan。
+```typescript
+Column() {
+    XComponent({
+        id: 'myXComponent',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+    })
+}
+```
+2. 创建 XComponentController子类，实现回调方法：
+```typescript
+class MyXComponentController extends XComponentController {
+    onSurfaceCreated(surfaceId: string): void {
+        console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+        nativeRender.SetSurfaceId(BigInt(surfaceId));
+        // 之后会使用 surfaceId 关联 native window
+    }
 
+    onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+        console.log(`onSurfaceChanged surfaceId: ${surfaceId}`);
+    }
+    
+    onSurfaceDestroyed(surfaceId: string): void {
+        console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    }
+}
+```
+3. 使用surfaceId获取NativeWindow：
+surfaceId是在XComponent创建过程中生成的。在onSurfaceCreated 回调中，可以使用OH_NativeWindow_CreateNativeWindowFromSurfaceId函数通过surfaceId获取nativeWindow。
+```cpp
+napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
+{
+    int64_t surfaceId = ParseId(env, info);
+    OHNativeWindow *nativeWindow;
+    PluginRender *pluginRender;
+    if (windowMap_.find(surfaceId) == windowMap_.end()) {
+        OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
+        windowMap_[surfaceId] = nativeWindow;
+    }
+    if (pluginRenderMap_.find(surfaceId) == pluginRenderMap_.end()) {
+        pluginRender = new PluginRender(surfaceId);
+        pluginRenderMap_[surfaceId] = pluginRender;
+    }
+    pluginRender->InitNativeWindow(nativeWindow);
+    return nullptr;
+}
+```
+有关ArkTS XComponent 组件的使用，请参考：[ArkTS XComponent组件使用示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Native/XComponent/README_zh.md#)。
 ### 使用eglCreateContext创建渲染上下文 
 
 eglCreateContext函数用于创建一个新的EGL上下文，并将其与特定的显示设备（display）和配置（config）关联起来。允许指定共享上下文（shareContext），以便与已经存在的OpenGL上下文共享状态信息。该函数的参数说明如下：

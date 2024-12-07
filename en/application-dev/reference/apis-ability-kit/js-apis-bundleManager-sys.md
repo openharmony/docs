@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager) (System API)
 
-The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, ExtensionAbilities, and more.
+The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-BundleInfo-sys.md), [ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -19,14 +19,38 @@ import { bundleManager } from '@kit.AbilityKit';
 | Permission                                      | APL    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
 | ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to obtain basic information about a bundle.  |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle. |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
 | ohos.permission.REMOVE_CACHE_FILES         | system_basic | Permission to clear cache files of a bundle.      |
 | ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | Permission to enable or disable an application or ability. |
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Permission to read installed application list. |
+| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Permission to read installed application list.|
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## Enums
+
+### BundleFlag
+
+Enumerates the bundle flags, which indicate the type of bundle information to obtain.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name                                         | Value        | Description                                                        |
+| --------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | Used to obtain the default bundle information. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | Used to obtain the bundle information with application information. The obtained information does not contain information about the signature, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | Used to obtain the bundle information with HAP module information. The obtained information does not contain information about the signature, application, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | Used to obtain the bundle information with ability information. The obtained information does not contain information about the signature, application, ExtensionAbility, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | Used to obtain the bundle information with ExtensionAbility information. The obtained information does not contain information about the signature, application, ability, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | Used to obtain the bundle information with permission information. The obtained information does not contain information about the signature, application, HAP module, ability, or ExtensionAbility.|
+| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
+| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
+| GET_BUNDLE_INFO_ONLY_WITH_LAUNCHER_ABILITY<sup>12+</sup> | 0x00001000 | Used to obtain the bundle information of the application that has only a home screen icon. It is valid only in the [getAllBundleInfo](#bundlemanagergetallbundleinfo) API.|
+| GET_BUNDLE_INFO_OF_ANY_USER<sup>12+</sup>      | 0x00002000 | Used to obtain the bundle information of an application installed by any user. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**. It is valid only in the [getBundleInfo](#bundlemanagergetbundleinfo14) and [getAllBundleInfo](#bundlemanagergetallbundleinfo) APIs.<br>**System API**: This enumerated value can be used in system APIs since API version 12.|
+| GET_BUNDLE_INFO_EXCLUDE_CLONE<sup>12+</sup> | 0x00004000 | Used to obtain the bundle information of a main application (excluding its clones). It is valid only in the [getAllBundleInfo](#bundlemanagergetallbundleinfo) API.|
 
 ### ApplicationFlag
 
@@ -38,7 +62,7 @@ Enumerates the application flags, which indicate the type of application informa
 
 | Name                                | Value        | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| GET_APPLICATION_INFO_DEFAULT         | 0x00000000 | Used to obtain the default application information. The obtained information does not contain the permission information or metadata. |
+| GET_APPLICATION_INFO_DEFAULT         | 0x00000000 | Used to obtain the default application information. The obtained information does not contain the permission information or metadata.|
 | GET_APPLICATION_INFO_WITH_PERMISSION | 0x00000001 | Used to obtain the application information with permission information.                   |
 | GET_APPLICATION_INFO_WITH_METADATA   | 0x00000002 | Used to obtain the application information with metadata.                     |
 | GET_APPLICATION_INFO_WITH_DISABLE    | 0x00000004 | Used to obtain the application information of disabled bundles.                 |
@@ -53,7 +77,7 @@ Enumerates the ability flags, which indicate the type of ability information to 
 
 | Name                             | Value        | Description                                                        |
 | --------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_ABILITY_INFO_DEFAULT          | 0x00000000 | Used to obtain the default ability information. The obtained information does not contain the permission, metadata, or disabled ability information. |
+| GET_ABILITY_INFO_DEFAULT          | 0x00000000 | Used to obtain the default ability information. The obtained information does not contain the permission, metadata, or disabled ability information.|
 | GET_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | Used to obtain the ability information with permission information.                         |
 | GET_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | Used to obtain the ability information with application information.                    |
 | GET_ABILITY_INFO_WITH_METADATA    | 0x00000004 | Used to obtain the ability information with metadata.                           |
@@ -72,7 +96,7 @@ Enumerates the ExtensionAbility flags, which indicate the type of ExtensionAbili
 
 | Name                                       | Value        | Description                                                        |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | Used to obtain the default ExtensionAbility information. The obtained information does not contain the permission, metadata, or disabled ability information. |
+| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | Used to obtain the default ExtensionAbility information. The obtained information does not contain the permission, metadata, or disabled ability information.|
 | GET_EXTENSION_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | Used to obtain the ExtensionAbility information with permission information.              |
 | GET_EXTENSION_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | Used to obtain the ExtensionAbility information with application information.        |
 | GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | Used to obtain the ExtensionAbility information with metadata.                |
@@ -108,9 +132,20 @@ Enumerates the application distribution types.
 | CROWDTESTING      | 6    | Crowdtesting application.   |
 | NONE              | 7    | Other.          |
 
+### ApplicationInfoFlag<sup>12+</sup>
+Enumerates the application information flag, which describes the status between an application and user.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+| Name| Value| Description|
+|----------------|---|---|
+| FLAG_INSTALLED|  0x00000001 | Status between the application and user. The value **1** means that the application is installed by the specified user, and **0** means the opposite.|
+
 ## APIs
 
-### bundleManager.getBundleInfo
+### bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -118,29 +153,26 @@ Obtains the bundle information based on the given bundle name, bundle flags, and
 
 No permission is required for obtaining the caller's own information.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name. |
+| bundleName  | string | Yes  | Bundle name.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 | userId      | number | Yes  | User ID. |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
@@ -194,7 +226,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo
+### bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -202,28 +234,25 @@ Obtains the bundle information based on the given bundle name and bundle flags. 
 
 No permission is required for obtaining the caller's own information.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name. |
+| bundleName  | string | Yes  | Bundle name.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
@@ -252,7 +281,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo
+### bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
@@ -260,17 +289,15 @@ Obtains the bundle information based on the given bundle name, bundle flags, and
 
 No permission is required for obtaining the caller's own information.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name. |
+| bundleName  | string | Yes  | Bundle name.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.      |
 | userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
@@ -278,16 +305,15 @@ No permission is required for obtaining the caller's own information.
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise used to return the bundle information obtained. |
+| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise used to return the bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
@@ -352,18 +378,18 @@ No permission is required for obtaining the caller's own information.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                      |
+| Name   | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 | appFlags   | [number](#applicationflag) | Yes  | Type of the application information to obtain.   |
 | userId     | number | Yes  | User ID. |
-| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the application information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the application information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -412,17 +438,17 @@ No permission is required for obtaining the caller's own information.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                      |
+| Name   | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 | appFlags   | [number](#applicationflag) | Yes  | Type of the application information to obtain.   |
-| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the application information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the application information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -469,23 +495,23 @@ No permission is required for obtaining the caller's own information.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                      |
+| Name   | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 | appFlags   | [number](#applicationflag) | Yes  | Type of the application information to obtain.   |
-| userId     | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| userId     | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
 
 **Return value**
 
 | Type                                                        | Description                            |
 | ------------------------------------------------------------ | -------------------------------- |
-| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise used to return the application information obtained. |
+| Promise\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | Promise used to return the application information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -530,17 +556,17 @@ Obtains the information about all bundles based on the given bundle flags and us
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                                            |
+| Name    | Type  | Mandatory| Description                                            |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.                   |
 | userId      | number | Yes  | User ID.                     |
-| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of bundle information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of bundle information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | --------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -584,16 +610,16 @@ Obtains the information about all bundles based on the given bundle flags. This 
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                                            |
+| Name    | Type  | Mandatory| Description                                            |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.  |
-| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of bundle information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of bundle information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -635,7 +661,7 @@ Obtains the information about all bundles based on the given bundle flags and us
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                                            |
+| Name    | Type  | Mandatory| Description                                            |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.                  |
 | userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                     |
@@ -644,13 +670,13 @@ Obtains the information about all bundles based on the given bundle flags and us
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise used to return the array of bundle information obtained. |
+| Promise<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Promise used to return the array of bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -691,17 +717,17 @@ Obtains the information about all applications based on the given application fl
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                     |
+| Name | Type  | Mandatory| Description                                                     |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.                      |
 | userId   | number | Yes  | User ID.        |
-| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of application information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of application information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -745,16 +771,16 @@ Obtains the information about all applications based on the given application fl
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                     |
+| Name | Type  | Mandatory| Description                                                     |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.                      |
-| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of application information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of application information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -796,7 +822,7 @@ Obtains the information about all applications based on the given application fl
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                     |
+| Name | Type  | Mandatory| Description                                                     |
 | -------- | ------ | ---- | ---------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.                      |
 | userId   | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                       |
@@ -805,13 +831,13 @@ Obtains the information about all applications based on the given application fl
 
 | Type                                                        | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------- |
-| Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise used to return the array of application information obtained. |
+| Promise<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise used to return the array of application information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | ---------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -853,18 +879,18 @@ Obtains an array of ability information based on the given want, ability flags, 
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                                                 |
+| Name     | Type  | Mandatory| Description                                                 |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | Yes  | Want containing the bundle name to query.                |
 | abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain.                      |
 | userId       | number | Yes  | User ID.                              |
-| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ability information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ability information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -917,17 +943,17 @@ Obtains an array of ability information based on the given want and ability flag
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                                                 |
+| Name     | Type  | Mandatory| Description                                                 |
 | ------------ | ------ | ---- | -------------------------------------------------------|
 | want         | Want   | Yes  | Want containing the bundle name to query.                |
 | abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain.      |
-| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ability information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ability information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -978,23 +1004,23 @@ Obtains the ability information based on the given want, ability flags, and user
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                                                 |
+| Name     | Type  | Mandatory| Description                                                 |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | Yes  | Want containing the bundle name to query.                |
-| abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain. |
+| abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain.|
 | userId       | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                      |
 
 **Return value**
 
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise used to return the array of ability information obtained. |
+| Promise<Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>> | Promise used to return the array of ability information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1068,23 +1094,23 @@ Obtains the ability information based on the given want, ability flags, and user
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                                                 |
+| Name     | Type  | Mandatory| Description                                                 |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | Yes  | Want containing the bundle name to query.                |
-| abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain. |
+| abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain.|
 | userId       | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                      |
 
 **Return value**
 
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | An array of ability information. |
+| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | An array of ability information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1153,23 +1179,23 @@ Obtains the ability information based on the given want list, ability flags, and
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                                                 |
+| Name     | Type  | Mandatory| Description                                                 |
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Array\<Want>   | Yes  | List of want containing the bundle name to query.                |
-| abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain. |
+| abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain.|
 | userId       | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                      |
 
 **Return value**
 
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | An array of ability information. |
+| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | An array of ability information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1224,19 +1250,19 @@ Obtains the ExtensionAbility information based on the given want, ExtensionAbili
 
 **Parameters**
 
-| Name               | Type                                                        | Mandatory | Description                                                        |
+| Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | Yes  | Want containing the bundle name to query.                      |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | Yes  | Type of the ExtensionAbility.                                |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | Yes  | Type of the ExtensionAbility information to obtain.   |
 | userId                | number                                                       | Yes  | User ID.                                                |
-| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ExtensionAbility information obtained. Otherwise, **err** is an error object. |
+| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ExtensionAbility information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                   |
+| ID| Error Message                                   |
 | -------- | ------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1289,18 +1315,18 @@ Obtains the ExtensionAbility information based on the given want, ExtensionAbili
 
 **Parameters**
 
-| Name               | Type                                                        | Mandatory | Description                                                        |
+| Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want                  | Want                                                         | Yes  | Want containing the bundle name to query.                      |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype)                | Yes  | Type of the ExtensionAbility.                                |
 | extensionAbilityFlags | [number](#extensionabilityflag)                              | Yes  | Type of the ExtensionAbility information to obtain.   |
-| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ExtensionAbility information obtained. Otherwise, **err** is an error object. |
+| callback              | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of ExtensionAbility information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1351,24 +1377,24 @@ Obtains the ExtensionAbility information based on the given want, ExtensionAbili
 
 **Parameters**
 
-| Name               | Type                                         | Mandatory | Description                                                     |
+| Name               | Type                                         | Mandatory| Description                                                     |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | Yes  | Want containing the bundle name to query.                   |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | Yes  | Type of the ExtensionAbility.                             |
-| extensionAbilityFlags | [number](#extensionabilityflag)               | Yes  | Type of the ExtensionAbility information to obtain. |
+| extensionAbilityFlags | [number](#extensionabilityflag)               | Yes  | Type of the ExtensionAbility information to obtain.|
 | userId                | number                                        | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                                             |
 
 **Return value**
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Promise used to return the array of ExtensionAbility information obtained. |
+| Promise<Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>> | Promise used to return the array of ExtensionAbility information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1444,24 +1470,24 @@ Obtains the ExtensionAbility information based on the given want, ExtensionAbili
 
 **Parameters**
 
-| Name               | Type                                         | Mandatory | Description                                                     |
+| Name               | Type                                         | Mandatory| Description                                                     |
 | --------------------- | --------------------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                                          | Yes  | Want containing the bundle name to query.                   |
 | extensionAbilityType  | [ExtensionAbilityType](js-apis-bundleManager-sys.md#extensionabilitytype) | Yes  | Type of the ExtensionAbility.                             |
-| extensionAbilityFlags | [number](#extensionabilityflag)               | Yes  | Type of the ExtensionAbility information to obtain. |
+| extensionAbilityFlags | [number](#extensionabilityflag)               | Yes  | Type of the ExtensionAbility information to obtain.|
 | userId                | number                                        | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                                             |
 
 **Return value**
 
 | Type                                                        | Description                                         |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of ExtensionAbility information. |
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of ExtensionAbility information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1517,13 +1543,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid
+### bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
 Obtains the bundle name based on the given UID. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -1531,19 +1555,18 @@ Obtains the bundle name based on the given UID. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                                        |
+| Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uid      | number                 | Yes  | UID of the application.                                           |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle name obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle name obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message           |
+| ID| Error Message           |
 | -------- | --------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -1568,13 +1591,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid
+### bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number): Promise\<string>
 
 Obtains the bundle name based on the given UID. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -1582,24 +1603,23 @@ Obtains the bundle name based on the given UID. This API uses a promise to retur
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description               |
+| Name| Type  | Mandatory| Description               |
 | ---- | ------ | ---- | ------------------ |
-| uid  | number | Yes  | UID of the application. |
+| uid  | number | Yes  | UID of the application.|
 
 **Return value**
 
 | Type            | Description                       |
 | ---------------- | --------------------------- |
-| Promise\<string> | Promise used to return the bundle name obtained. |
+| Promise\<string> | Promise used to return the bundle name obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message           |
+| ID| Error Message           |
 | -------- | ---------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -1622,13 +1642,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUidSync<sup>10+</sup>
+### bundleManager.getBundleNameByUidSync<sup>14+</sup>
 
 getBundleNameByUidSync(uid: number): string
 
 Obtains the bundle name based on the given UID. This API returns the result synchronously.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -1636,24 +1654,23 @@ Obtains the bundle name based on the given UID. This API returns the result sync
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description               |
+| Name| Type  | Mandatory| Description               |
 | ---- | ------ | ---- | ------------------ |
-| uid  | number | Yes  | UID of the application. |
+| uid  | number | Yes  | UID of the application.|
 
 **Return value**
 
 | Type            | Description                       |
 | ---------------- | --------------------------- |
-| string | Bundle name obtained. |
+| string | Bundle name obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message           |
+| ID| Error Message           |
 | -------- | ---------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -1687,17 +1704,17 @@ Obtains the bundle information based on the given HAP file path and bundle flags
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description                                                        |
+| Name      | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ----------------------------------------------------------- |
-| hapFilePath | string | Yes  | Path where the HAP file is stored. The path must be the relative path of the current bundle's data directory. |
+| hapFilePath | string | Yes  | Path where the HAP file is stored. The path must be the relative path of the current bundle's data directory.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.      |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | --------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1741,22 +1758,22 @@ Obtains the bundle information based on the given HAP file path and bundle flags
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description                                                        |
+| Name      | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| hapFilePath | string | Yes  | Path where the HAP file is stored. The path must be the relative path of the current bundle's data directory. |
+| hapFilePath | string | Yes  | Path where the HAP file is stored. The path must be the relative path of the current bundle's data directory.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.      |
 
 **Return value**
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise used to return the bundle information obtained. |
+| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise used to return the bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1798,22 +1815,22 @@ Obtains the bundle information based on the given HAP file path and bundle flags
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description                                                        |
+| Name      | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| hapFilePath | string | Yes  | Path where the HAP file is stored. The path must be the relative path of the current bundle's data directory. |
+| hapFilePath | string | Yes  | Path where the HAP file is stored. The path must be the relative path of the current bundle's data directory.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.      |
 
 **Return value**
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained. |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1852,16 +1869,16 @@ Clears the cache files based on the given bundle name. This API uses an asynchro
 
 **Parameters**
 
-| Name    | Type                | Mandatory | Description                                                        |
+| Name    | Type                | Mandatory| Description                                                        |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string               | Yes  | Bundle name.                  |
-| callback   | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback   | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1905,21 +1922,21 @@ Clears the cache files based on the given bundle name. This API uses a promise t
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                                      |
+| Name    | Type  | Mandatory| Description                                      |
 | ---------- | ------ | ---- | ------------------------------------------ |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise that returns no value. If clearing the cache files fails, an error object is thrown. |
+| Promise\<void> | Promise that returns no value. If clearing the cache files fails, an error object is thrown.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                  |
+| ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -1961,17 +1978,17 @@ Enables or disables an application. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                                 |
+| Name     | Type   | Mandatory| Description                                 |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.               |
-| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2014,22 +2031,22 @@ Enables or disables an application. This API uses a promise to return the result
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                                 |
+| Name     | Type   | Mandatory| Description                                 |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
-| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it. |
+| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it.|
 
 **Return value**
 
 | Type          | Description                                |
 | -------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2070,23 +2087,23 @@ Enables or disables an application or an application clone. This API uses a prom
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                                 |
+| Name     | Type   | Mandatory| Description                                 |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
-| appIndex   | number  | Yes  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to enable or disable an application, rather than an application clone.             |
-| isEnabled  | boolean | Yes  | Whether to enable the application or the application clone. The value **true** means to enable it, and **false** means to disable it. |
+| appIndex   | number  | Yes  | Index of the application clone.<br> If this parameter is set to **0**, the API is used to enable or disable an application, rather than an application clone.             |
+| isEnabled  | boolean | Yes  | Whether to enable the application or the application clone. The value **true** means to enable it, and **false** means to disable it.|
 
 **Return value**
 
 | Type          | Description                                |
 | -------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2128,16 +2145,16 @@ Enables or disables an application. This API returns the result synchronously.
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                                 |
+| Name     | Type   | Mandatory| Description                                 |
 | ---------- | ------- | ---- | ------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.               |
-| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it. |
+| isEnabled  | boolean | Yes  | Whether to enable the application. The value **true** means to enable it, and **false** means to disable it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2175,17 +2192,17 @@ Enables or disables an ability. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description                                 |
+| Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ---------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2242,22 +2259,22 @@ Enables or disables an ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description                                 |
+| Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it. |
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
 
 **Return value**
 
 | Type          | Description                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2312,23 +2329,23 @@ Enables or disables an ability of an application or an application clone. This A
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description                                 |
+| Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
-| appIndex   | number    | Yes  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to enable or disable the ability of an application, rather than an application clone.           |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it. |
+| appIndex   | number    | Yes  | Index of the application clone.<br> If this parameter is set to **0**, the API is used to enable or disable the ability of an application, rather than an application clone.           |
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
 
 **Return value**
 
 | Type          | Description                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2384,16 +2401,16 @@ Enables or disables an ability. This API returns the result synchronously.
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description                                 |
+| Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it. |
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable it, and **false** means to disable it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ---------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2448,16 +2465,16 @@ Checks whether an application is enabled. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                      |
+| Name     | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | -------------------------- |
-| bundleName | string | Yes  | Bundle name. |
-| callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. The value **true** means that the application is enabled, and **false** means the opposite. |
+| bundleName | string | Yes  | Bundle name.|
+| callback | AsyncCallback\<boolean> | Yes| Callback used to return the result. The value **true** means that the application is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2497,7 +2514,7 @@ Checks whether an application is enabled. This API uses a promise to return the 
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                      |
+| Name     | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | -------------------------- |
 | bundleName | string | Yes  | Bundle name. |
 
@@ -2505,13 +2522,13 @@ Checks whether an application is enabled. This API uses a promise to return the 
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is enabled, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2549,22 +2566,22 @@ Checks whether an application or an application clone is enabled. This API uses 
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                      |
+| Name     | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | -------------------------- |
 | bundleName | string | Yes  | Bundle name. |
-| appIndex   | number  | Yes  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to obtain the enabled status of an application, rather than an application clone.           |
+| appIndex   | number  | Yes  | Index of the application clone.<br> If this parameter is set to **0**, the API is used to obtain the enabled status of an application, rather than an application clone.           |
 
 **Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application or application clone is enabled, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the application or application clone is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2603,21 +2620,21 @@ Checks whether an application is enabled. This API returns the result synchronou
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                      |
+| Name     | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | -------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the application is enabled; returns **false** otherwise. |
+| boolean | Returns **true** if the application is enabled; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2652,16 +2669,16 @@ Checks whether an ability is enabled. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                       |
+| Name| Type       | Mandatory| Description                       |
 | ---- | ----------- | ---- | --------------------------- |
-| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability. |
-| callback | AsyncCallback\<boolean> | Yes | Callback used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite. |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.|
+| callback | AsyncCallback\<boolean> | Yes| Callback used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | --------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2715,21 +2732,21 @@ Checks whether an ability is enabled. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                       |
+| Name| Type       | Mandatory| Description                       |
 | ---- | ----------- | ---- | --------------------------- |
-| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability. |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.|
 
 **Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | --------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2781,22 +2798,22 @@ Checks whether an ability of an application or an application clone is enabled. 
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                       |
+| Name| Type       | Mandatory| Description                       |
 | ---- | ----------- | ---- | --------------------------- |
-| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability. |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.|
 | appIndex   | number  | Yes  | Index of the application clone.<br> If this parameter is set to **0**, the API is used to obtain the enabled status of the ability of an application, rather than an application clone.          |
 
 **Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the ability is enabled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | --------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2849,21 +2866,21 @@ Checks whether an ability is enabled. This API returns the result synchronously.
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                       |
+| Name| Type       | Mandatory| Description                       |
 | ---- | ----------- | ---- | --------------------------- |
-| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability. |
+| info | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.|
 
 **Return value**
 
 | Type   | Description                                                                |
 | ------- | ------------------------------------------------------------------- |
-| boolean | Returns **true** if the ability is enabled; returns **false** otherwise. |
+| boolean | Returns **true** if the ability is enabled; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | --------------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
@@ -2919,17 +2936,17 @@ Obtains the Want used to launch the bundle based on the given bundle name and us
 
 **Parameters**
 
-| Name    | Type                | Mandatory | Description                                                        |
+| Name    | Type                | Mandatory| Description                                                        |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string               | Yes  | Bundle name.                                    |
 | userId     | number               | Yes  | User ID.                                                  |
-| callback   | AsyncCallback\<Want> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **Want** object obtained. Otherwise, **err** is an error object. |
+| callback   | AsyncCallback\<Want> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **Want** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
@@ -2975,16 +2992,16 @@ Obtains the Want used to launch the bundle based on the given bundle name. This 
 
 **Parameters**
 
-| Name    | Type                | Mandatory | Description                                                        |
+| Name    | Type                | Mandatory| Description                                                        |
 | ---------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string               | Yes  | Bundle name.                                    |
-| callback   | AsyncCallback\<Want> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **Want** object obtained. Otherwise, **err** is an error object. |
+| callback   | AsyncCallback\<Want> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **Want** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3028,22 +3045,22 @@ Obtains the Want used to launch the bundle based on the given bundle name and us
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 | userId     | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<Want> | Promise used to return the **Want** object obtained. |
+| Promise\<Want> | Promise used to return the **Want** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3088,22 +3105,22 @@ Obtains the Want used to launch the bundle based on the given bundle name and us
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 | userId     | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Want | **Want** object. |
+| Want | **Want** object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | --------------------------------------|
 | 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3162,16 +3179,16 @@ Obtains the **PermissionDef** struct based on the given permission name. This AP
 
 **Parameters**
 
-| Name          | Type                                                        | Mandatory | Description                                                        |
+| Name          | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | permissionName | string                                                       | Yes  | Name of the permission.                                              |
-| callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **PermissionDef** object obtained. Otherwise, **err** is an error object. |
+| callback       | AsyncCallback\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **PermissionDef** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3213,21 +3230,21 @@ Obtains the **PermissionDef** struct based on the given permission name. This AP
 
 **Parameters**
 
-| Name          | Type  | Mandatory | Description          |
+| Name          | Type  | Mandatory| Description          |
 | -------------- | ------ | ---- | -------------- |
-| permissionName | string | Yes  | Name of the permission. |
+| permissionName | string | Yes  | Name of the permission.|
 
 **Return value**
 
 | Type                                                        | Description                                      |
 | ------------------------------------------------------------ | ------------------------------------------ |
-| Promise\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)> | Promise used to return the **PermissionDef** object obtained. |
+| Promise\<[PermissionDef](js-apis-bundleManager-permissionDef-sys.md)> | Promise used to return the **PermissionDef** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3267,21 +3284,21 @@ Obtains the **PermissionDef** struct based on the given permission name. This AP
 
 **Parameters**
 
-| Name          | Type  | Mandatory | Description          |
+| Name          | Type  | Mandatory| Description          |
 | -------------- | ------ | ---- | -------------- |
-| permissionName | string | Yes  | Name of the permission. |
+| permissionName | string | Yes  | Name of the permission.|
 
 **Return value**
 
 | Type                                                        | Description                                      |
 | ------------------------------------------------------------ | ------------------------------------------ |
-|[PermissionDef](js-apis-bundleManager-permissionDef-sys.md) | **PermissionDef** object. |
+|[PermissionDef](js-apis-bundleManager-permissionDef-sys.md) | **PermissionDef** object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3318,18 +3335,18 @@ Obtains the ability label based on the given bundle name, module name, and abili
 
 **Parameters**
 
-| Name     | Type                  | Mandatory | Description                                                        |
+| Name     | Type                  | Mandatory| Description                                                        |
 | ----------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | bundleName  | string                 | Yes  | Bundle name.                                    |
 | moduleName  | string                 | Yes  | Module name.                                    |
 | abilityName | string                 | Yes  | Name of the UIAbility component.                                   |
-| callback    | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the label obtained. Otherwise, **err** is an error object. |
+| callback    | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the label obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3379,23 +3396,23 @@ Obtains the ability label based on the given bundle name, module name, and abili
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                     |
+| Name     | Type  | Mandatory| Description                     |
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | Yes  | Bundle name. |
 | moduleName  | string | Yes  | Module name. |
-| abilityName | string | Yes  | Name of the UIAbility component. |
+| abilityName | string | Yes  | Name of the UIAbility component.|
 
 **Return value**
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the label. |
+| Promise\<string> | Promise used to return the label.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | --------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3443,23 +3460,23 @@ Obtains the ability label based on the given bundle name, module name, and abili
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                     |
+| Name     | Type  | Mandatory| Description                     |
 | ----------- | ------ | ---- | ------------------------- |
 | bundleName  | string | Yes  | Bundle name. |
 | moduleName  | string | Yes  | Module name. |
-| abilityName | string | Yes  | Name of the UIAbility component. |
+| abilityName | string | Yes  | Name of the UIAbility component.|
 
 **Return value**
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| string | Label of the ability. |
+| string | Label of the ability.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | --------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3504,7 +3521,7 @@ Obtains the application information based on the given bundle name, application 
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description                                                      |
+| Name      | Type  | Mandatory| Description                                                      |
 | ----------- | ------ | ---- | ----------------------------------------------------------|
 | bundleName  | string | Yes  | Bundle name.                                 |
 | applicationFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.      |
@@ -3514,13 +3531,13 @@ Obtains the application information based on the given bundle name, application 
 
 | Type           | Description                     |
 | --------------- | ------------------------- |
-| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Application information obtained. |
+| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Application information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3562,22 +3579,22 @@ Obtains the application information based on the given bundle name and applicati
 
 **Parameters**
 
-| Name          | Type                      | Mandatory | Description                                                 |
+| Name          | Type                      | Mandatory| Description                                                 |
 | ---------------- | -------------------------- | ---- | ----------------------------------------------------- |
 | bundleName       | string                     | Yes  | Bundle name.                           |
-| applicationFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain. |
+| applicationFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.|
 
 **Return value**
 
 | Type                                                       | Description                     |
 | ----------------------------------------------------------- | ------------------------- |
-| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Application information obtained. |
+| [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Application information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3603,13 +3620,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync
+### bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
 
 Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API returns the result synchronously.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -3617,26 +3632,25 @@ Obtains the bundle information based on the given bundle name, bundle flags, and
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description                                                    |
+| Name      | Type  | Mandatory| Description                                                    |
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | Yes  | Bundle name.                                |
-| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain. |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 | userId      | number | Yes  | User ID.                                            |
 
 **Return value**
 
 | Type      | Description                |
 | ---------- | -------------------- |
-| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained. |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
@@ -3661,13 +3675,11 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync
+### bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
@@ -3675,25 +3687,24 @@ Obtains the bundle information based on the given bundle name and bundle flags. 
 
 **Parameters**
 
-| Name     | Type                 | Mandatory | Description                                                  |
+| Name     | Type                 | Mandatory| Description                                                  |
 | ----------- | --------------------- | ---- | ------------------------------------------------------ |
 | bundleName  | string                | Yes  | Bundle name.                            |
-| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain. |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
 
 | Type                                             | Description                |
 | ------------------------------------------------- | -------------------- |
-| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained. |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700026 | The specified bundle is disabled.      |
@@ -3729,17 +3740,17 @@ Obtains the shared bundle information based on the given bundle name. This API u
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory | Description                                                        |
+| Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string                                                       | Yes  | Bundle name.                                  |
 | moduleName | string                                                       | Yes  | Module name.                                  |
-| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the shared bundle information obtained. |
+| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the shared bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3784,22 +3795,22 @@ Obtains the shared bundle information based on the given bundle name. This API u
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | -------------------------- |
-| bundleName | string | Yes  | Bundle name. |
-| moduleName | string | Yes  | Module name. |
+| bundleName | string | Yes  | Bundle name.|
+| moduleName | string | Yes  | Module name.|
 
 **Return value**
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Promise used to return the shared bundle information obtained. |
+| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Promise used to return the shared bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3842,15 +3853,15 @@ Obtains the information about all shared bundles. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of the shared bundle information obtained. |
+| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of the shared bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3892,13 +3903,13 @@ Obtains the information about all shared bundles. This API uses a promise to ret
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Promise used to return an array of the shared bundle information obtained. |
+| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md)\>\> | Promise used to return an array of the shared bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3936,16 +3947,16 @@ Obtains the provision profile based on the given bundle name. This API uses an a
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | Yes  | Bundle name. |
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained. |
+| bundleName | string | Yes  | Bundle name.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -3988,18 +3999,18 @@ Obtains the provision profile based on the given bundle name and user ID. This A
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | Yes  | Bundle name. |
-| userId | number | Yes | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). |
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained. |
+| bundleName | string | Yes  | Bundle name.|
+| userId | number | Yes| User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4044,23 +4055,23 @@ Obtains the provision profile based on the given bundle name and user ID. This A
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description         |
+| Name  | Type        | Mandatory| Description         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | Yes | Bundle name. |
-| userId | number | No | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID on the current device. |
+| bundleName | string | Yes| Bundle name.|
+| userId | number | No| User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID on the current device.|
 
 
 **Return value**
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\> | Promise used to return the provision profile obtained. |
+| Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md)\> | Promise used to return the provision profile obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4114,23 +4125,23 @@ Obtains the provision profile based on the given bundle name and user ID. This A
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description         |
+| Name  | Type        | Mandatory| Description         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | Yes | Bundle name. |
-| userId | number | No | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID on the current device. |
+| bundleName | string | Yes| Bundle name.|
+| userId | number | No| User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID on the current device.|
 
 
 **Return value**
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md) | Provision profile. |
+| [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md) | Provision profile.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4177,21 +4188,21 @@ Obtains the distribution type of a bundle in synchronous mode. The return value 
 
 **Parameters**
 
-| Name        | Type                               | Mandatory | Description                        |
+| Name        | Type                               | Mandatory| Description                        |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
 | Type         | Description                                  |
 | ------------- | -------------------------------------- |
-| string | Distribution type of the bundle. |
+| string | Distribution type of the bundle.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4228,21 +4239,21 @@ Obtains additional information about a bundle in synchronous mode. The return va
 
 **Parameters**
 
-| Name        | Type                               | Mandatory | Description                        |
+| Name        | Type                               | Mandatory| Description                        |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
 | Type         | Description                                  |
 | ------------- | -------------------------------------- |
-| string | Additional information about the bundle. |
+| string | Additional information about the bundle.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4279,24 +4290,24 @@ Obtains the ExtensionAbility information based on the given want, ExtensionAbili
 
 **Parameters**
 
-| Name               | Type                           | Mandatory | Description                                                     |
+| Name               | Type                           | Mandatory| Description                                                     |
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                            | Yes  | Want containing the bundle name to query.                   |
 | extensionAbilityType  | string                          | Yes  | Type of the custom ExtensionAbility.                       |
-| extensionAbilityFlags | [number](#extensionabilityflag) | Yes  | Information flags to be contained in the returned **ExtensionAbilityInfo** object. |
-| userId                | number                          | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| extensionAbilityFlags | [number](#extensionabilityflag) | Yes  | Information flags to be contained in the returned **ExtensionAbilityInfo** object.|
+| userId                | number                          | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
 
 **Return value**
 
 | Type                                                        | Description                                  |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of **ExtensionAbilityInfo** objects. |
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of **ExtensionAbilityInfo** objects.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4371,7 +4382,7 @@ No permission is required for obtaining the caller's own profile.
 
 **Parameters**
 
-| Name               | Type                           | Mandatory | Description                                                     |
+| Name               | Type                           | Mandatory| Description                                                     |
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | profileType           | [ProfileType](#profiletype11)     | Yes  | Type of the profile.                                  |
 | bundleName            | string                          | Yes  | Bundle name of the application.                                 |
@@ -4382,13 +4393,13 @@ No permission is required for obtaining the caller's own profile.
 
 | Type  | Description                     |
 | ------ | ------------------------ |
-| string | JSON string of the profile. |
+| string | JSON string of the profile.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4433,15 +4444,15 @@ Obtains information about all preinstalled applications that can be restored. Th
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of the recoverable application information obtained. |
+| callback | AsyncCallback\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is an array of the recoverable application information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4483,13 +4494,13 @@ Obtains information about all preinstalled applications that can be restored. Th
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | Promise used to return the information about all recoverable applications. |
+| Promise\<Array\<[RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md)\>\> | Promise used to return the information about all recoverable applications.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4527,7 +4538,7 @@ Sets additional information for an application. This API can be called only by A
 
 **Parameters**
 
-| Name               | Type                            | Mandatory | Description                                              |
+| Name               | Type                            | Mandatory| Description                                              |
 | --------------------- | ------------------------------- | ---- | -------------------------------------------------- |
 | bundleName            | string                          | Yes  | Bundle name.                                   |
 | additionalInfo        | string                          | Yes  | Additional information to set.                          |
@@ -4536,7 +4547,7 @@ Sets additional information for an application. This API can be called only by A
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                   |
+| ID| Error Message                                                   |
 | -------- | ---------------------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4579,13 +4590,13 @@ Obtains information about all preinstalled applications. This API uses a promise
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise used to return the array of preinstalled applications obtained. |
+| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)>> | Promise used to return the array of preinstalled applications obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                   |
+| ID| Error Message                                                   |
 | -------- | ---------------------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4618,23 +4629,23 @@ Obtains the ExtensionAbility information based on the given ExtensionAbility typ
 
 **Parameters**
 
-| Name               | Type                           | Mandatory | Description                                                     |
+| Name               | Type                           | Mandatory| Description                                                     |
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | extensionAbilityType  | string                          | Yes  | Type of the custom ExtensionAbility.                       |
-| extensionAbilityFlags | [number](#extensionabilityflag) | Yes  | Information flags to be contained in the returned **ExtensionAbilityInfo** object. |
-| userId                | number                          | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| extensionAbilityFlags | [number](#extensionabilityflag) | Yes  | Information flags to be contained in the returned **ExtensionAbilityInfo** object.|
+| userId                | number                          | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
 
 **Return value**
 
 | Type                                                        | Description                                  |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of **ExtensionAbilityInfo** objects. |
+| Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | An array of **ExtensionAbilityInfo** objects.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4695,7 +4706,7 @@ Obtains the information about all bundles of the current user based on the given
 
 **Parameters**
 
-| Name               | Type     | Mandatory | Description                    |
+| Name               | Type     | Mandatory| Description                    |
 | --------------------- | ---------| ---- | --------------------- |
 | developerId           | string   | Yes  | Developer ID.      |
 
@@ -4703,13 +4714,13 @@ Obtains the information about all bundles of the current user based on the given
 
 | Type                                                        | Description                                  |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>    | An array of bundle information. |
+| Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>    | An array of bundle information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4748,7 +4759,7 @@ Obtains all the developer IDs of the current user based on the given application
 
 **Parameters**
 
-| Name               | Type     | Mandatory | Description                    |
+| Name               | Type     | Mandatory| Description                    |
 | --------------------- | ---------| ---- | --------------------- |
 | appDistributionType  | [number](#appdistributiontype12)   | No  | Application distribution type. If this parameter is not specified, a list of developer IDs of all applications is returned.      |
 
@@ -4756,13 +4767,13 @@ Obtains all the developer IDs of the current user based on the given application
 
 | Type                                                        | Description                                  |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<String>    | An array of strings. |
+| Array\<String>    | An array of strings.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                    |
+| ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4800,16 +4811,16 @@ Switches the uninstall state of an application. This API is independent from EDM
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | Yes  | Bundle name of the application. |
-| state | boolean | Yes  | Whether the application can be uninstalled. The value **true** means that the application can be uninstalled, and **false** means the opposite. |
+| bundleName | string | Yes  | Bundle name of the application.|
+| state | boolean | Yes  | Whether the application can be uninstalled. The value **true** means that the application can be uninstalled, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4846,21 +4857,21 @@ Obtains the module names corresponding to the extended resources based on the gi
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the extended resources are to be queried. |
+| bundleName  | string | Yes  | Bundle name based on which the extended resources are to be queried.|
 
 **Return value**
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<string>> | Promise used to return the API call result and the module names corresponding to the extended resources. |
+| Promise\<Array\<string>> | Promise used to return the API call result and the module names corresponding to the extended resources.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4904,22 +4915,22 @@ Enables the dynamic icon based on the given bundle name and module name. This AP
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be enabled. |
-| moduleName  | string | Yes  | Module name based on which the dynamic icon is to be enabled. |
+| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be enabled.|
+| moduleName  | string | Yes  | Module name based on which the dynamic icon is to be enabled.|
 
 **Return value**
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4963,21 +4974,21 @@ Disables the dynamic icon based on the given bundle name. This API uses a promis
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be disabled. |
+| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be disabled.|
 
 **Return value**
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -5019,21 +5030,21 @@ Obtains the module name corresponding to the dynamic icon based on the specified
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the extended resources are to be queried. |
+| bundleName  | string | Yes  | Bundle name based on which the extended resources are to be queried.|
 
 **Return value**
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<string> | Promise used to return the API call result and module name corresponding to the dynamic icon. |
+| Promise\<string> | Promise used to return the API call result and module name corresponding to the dynamic icon.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -5061,21 +5072,19 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneIdentity<sup>12+</sup>
+### bundleManager.getAppCloneIdentity<sup>14+</sup>
 
 getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
 Obtains the bundle name and app index of an application clone based on the given UID. This API uses a promise to return the result.
 
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------|
 |    uid     | number |  Yes |     UID of the application.     |
 
@@ -5083,16 +5092,15 @@ Obtains the bundle name and app index of an application clone based on the given
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<AppCloneIdentity> | Promise used to return \<AppCloneIdentity>. |
+| Promise\<AppCloneIdentity> | Promise used to return \<AppCloneIdentity>.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
@@ -5130,7 +5138,7 @@ Obtains the bundle information of an application or an application clone based o
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------|
 |    bundleName     | number |  Yes |       Bundle name.     |
 |    appIndex     | number |  Yes |       Index of the application clone.<br>If this parameter is set to **0**, the API is used to obtain the bundle information of an application, rather than an application clone.     |
@@ -5141,13 +5149,13 @@ Obtains the bundle information of an application or an application clone based o
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<BundleInfo> | Promise used to return the bundle information. |
+| Promise\<BundleInfo> | Promise used to return the bundle information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -5193,7 +5201,7 @@ Obtains all the bundle information of applications and application clones based 
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                      |
+| Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ---------------------------|
 |    bundleName     | number |  Yes |       Bundle name.     |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  Yes |       Type of the bundle information to obtain.   |
@@ -5203,13 +5211,13 @@ Obtains all the bundle information of applications and application clones based 
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<BundleInfo>> | Promise used to return all the bundle information. |
+| Promise\<Array\<BundleInfo>> | Promise used to return all the bundle information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -5239,5 +5247,171 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAllAppCloneBundleInfo failed. Cause: %{public}s', message);
+}
+```
+### bundleManager.verifyAbc<sup>11+</sup>
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
+
+Verifies an .abc file. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUN_DYN_CODE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
+| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the verification is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700201 | Failed to verify the abc file. |
+
+**Example**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+  bundleManager.verifyAbc(abcPaths, true, (err, data) => {
+    if (err) {
+      hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+    }
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+}
+```
+
+### bundleManager.verifyAbc<sup>11+</sup>
+
+verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
+
+Verifies an .abc file. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUN_DYN_CODE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
+| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.      |
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700201 | Failed to verify the abc file. |
+
+**Example**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
+
+try {
+  bundleManager.verifyAbc(abcPaths, true).then((data) => {
+    hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.deleteAbc<sup>11+</sup>
+
+deleteAbc(abcPath: string): Promise\<void>
+
+Deletes an .abc file based on the specified file path. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUN_DYN_CODE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| abcPath  | string | Yes  | Path of the .abc file.|
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700202 | Failed to delete the abc file. |
+
+**Example**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let abcPath: string = '/data/storage/el2/base/a.abc';
+
+try {
+  bundleManager.deleteAbc(abcPath).then((data) => {
+    hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
+  });
+} catch (err) {
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
 }
 ```

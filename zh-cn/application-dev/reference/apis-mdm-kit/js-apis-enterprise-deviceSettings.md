@@ -31,8 +31,8 @@ setValue(admin: Want, item: string, value: string): void
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略。 |
-| value  | string                                                  | 是   | 策略类型值。<br/>当item为screenOff时，value为设备息屏时间(单位：毫秒)。<br/>当item为dateTime时，value为要设置的系统时间(单位：毫秒）。<br/>当item为powerPolicy时，value为JSON字符串，格式：{"delayTime":xx,"powerPolicyAction":xx}。delayTime为延迟时间(单位：毫秒)，powerPolicyAction为休眠策略。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
+| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略，对于2in1设备，仅支持设置电池供电下的息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略，对于2in1设备，仅支持设置电池供电下的电源策略。 |
+| value  | string                                                  | 是   | 策略类型值。<br/>当item为screenOff时，value为设备息屏时间（单位：毫秒）。<br/>当item为dateTime时，value为要设置的系统时间（单位：毫秒）。<br/>当item为powerPolicy时，value为JSON字符串，格式：{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒），不支持设置为30000毫秒；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
 
 **错误码**：
 
@@ -77,13 +77,13 @@ getValue(admin: Want, item: string): string
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略。 |
+| item   | string                                                  | 是   | 设备设置策略类型。<br/>- screenOff：设备息屏策略，对于2in1设备，仅支持查询电池供电下的息屏策略。<br/>- dateTime：设置系统时间。<br/>- powerPolicy：设备电源策略，对于2in1设备，仅支持查询电池供电下的电源策略。 |
 
 **返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间(单位：毫秒)；<br/>当item为dateTime时，返回设置的系统时间(单位：毫秒）；<br/>当item为powerPolicy时，返回JSON字符串，格式:{"delayTime":xx,"powerPolicyAction":xx}。delayTime为延迟时间(单位：毫秒)，powerPolicyAction为休眠策略。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
+| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间（单位：毫秒），对于2in1设备，返回设备电池供电下的息屏时间（单位：毫秒）；<br/>当item为dateTime时，返回设置的系统时间（单位：毫秒）；<br/>当item为powerPolicy时，返回电源策略，对于2in1设备，返回设备电池供电下的电源策略，格式为JSON字符串:{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒）；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
 
 **错误码**：
 

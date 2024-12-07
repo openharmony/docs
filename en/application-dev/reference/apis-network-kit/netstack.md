@@ -15,24 +15,26 @@ Provides C APIs for the network protocol stack module.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.| 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.| 
-| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module.| 
-| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module.| 
+| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.<br>**File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module. **File to include**:  \<network\/netstack\/net_ssl\/net_ssl_c_type.h\>| 
+| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module. **File to include**: \<network\/netstack\/net_websocket.h\>| 
+| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module. **File to include**: \<network\/net_websocket_type.h\>| 
 
 
 ### Structs
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [NetStack_CertBlob](_net_stack___cert_blob.md) | Certificate data structure.| 
-| [WebSocket_CloseResult](_web_socket___close_result.md) | Parameters for the connection closure received by the WebSocket client. | 
-| [WebSocket_CloseOption](_web_socket___close_option.md) | Parameters for the proactive connection closure initiated by the WebSocket client. | 
-| [WebSocket_ErrorResult](_web_socket___error_result.md) | Parameters for the connection error received by the WebSocket client. | 
-| [WebSocket_OpenResult](_web_socket___open_result.md) | Parameters for the connection success received by the WebSocket client. | 
-| [WebSocket_Header](_web_socket___header.md) | Header linked list added to the WebSocket client. | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md) | Parameters for the connection between the WebSocket client and server. | 
-| [WebSocket](_web_socket.md) | WebSocket client structure. | 
+| [NetStack_CertBlob](_net_stack___cert_blob.md) | Certificate data structure.|
+| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | Data structure of the certificate lock information.|
+| [NetStack_Certificates](_net_stack___certificates.md) | Data structure of the certificate information.|
+| [WebSocket_CloseResult](_web_socket___close_result.md) | Parameters for the connection closure received by the WebSocket client. |
+| [WebSocket_CloseOption](_web_socket___close_option.md) | Parameters for the proactive connection closure initiated by the WebSocket client. |
+| [WebSocket_ErrorResult](_web_socket___error_result.md) | Parameters for the connection error received by the WebSocket client. |
+| [WebSocket_OpenResult](_web_socket___open_result.md) | Parameters for the connection success received by the WebSocket client. |
+| [WebSocket_Header](_web_socket___header.md) | Header linked list added to the WebSocket client. |
+| [WebSocket_RequestOptions](_web_socket___request_options.md) | Parameters for the connection between the WebSocket client and server. |
+| [WebSocket](_web_socket.md) | WebSocket client structure. |
 
 
 ### Types
@@ -46,46 +48,56 @@ Provides C APIs for the network protocol stack module.
 
 ### Enums
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [NetStack_CertType](#netstack_certtype) { <br>NetStack_CERT_TYPE_PEM = 0, <br>NetStack_CERT_TYPE_DER = 1, <br>NetStack_CERT_TYPE_INVALID <br>} | Certificate type enums.| 
+| [NetStack_CertType](#netstack_certtype) { <br>NetStack_CERT_TYPE_PEM = 0, <br>NetStack_CERT_TYPE_DER = 1, <br>NetStack_CERT_TYPE_INVALID <br>} | Certificate type enums.|
 | [WebSocket_ErrCode](#websocket_errcode) {<br>WEBSOCKET_OK = 0, <br>E_BASE = 1000, <br>WEBSOCKET_CLIENT_NULL = (E_BASE + 1), <br>WEBSOCKET_CLIENT_NOT_CREATED = (E_BASE + 2),<br>WEBSOCKET_CONNECTION_ERROR = (E_BASE + 3), <br>WEBSOCKET_CONNECTION_PARSE_URL_ERROR = (E_BASE + 5),<br> WEBSOCKET_CONNECTION_NO_MEMORY = (E_BASE + 6), <br>WEBSOCKET_CONNECTION_CLOSED_BY_PEER = (E_BASE + 7),<br>WEBSOCKET_DESTROYED = (E_BASE + 8), <br>WEBSOCKET_PROTOCOL_ERROR = (E_BASE + 9), <br>WEBSOCKET_SEND_NO_MEMORY = (E_BASE + 10), <br>WEBSOCKET_SEND_DATA_NULL = (E_BASE + 11),<br>WEBSOCKET_DATA_LENGTH_EXCEEDED = (E_BASE + 12), <br>WEBSOCKET_QUEUE_LENGTH_EXCEEDED = (E_BASE + 13),<br> WEBSOCKET_NO_CLIENT_CONTEXT = (E_BASE + 14), <br>WEBSOCKET_NO_HEADER_CONTEXT = (E_BASE + 15),<br>WEBSOCKET_HEADER_EXCEEDED = (E_BASE + 16), <br>WEBSOCKET_NO_CONNECTION = (E_BASE + 17), <br>WEBSOCKET_NO_CONNECTION_CONTEXT = (E_BASE + 18)<br>} | WebSocket error codes. |
+| [NetStack_CertificatePinningKind](#netstack_certificatepinningkind) {<br>PUBLIC_KEY,<br>} | Certificate lock type.|
+| [NetStack_HashAlgorithm](#netstack_hashalgorithm) {<br>SHA_256,<br>} | Hash algorithm type.|
 
 ### Functions
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Constructor used to create a **WebSocketClient** instance. | 
-| [OH_WebSocketClient_AddHeader](#oh_websocketclient_addheader) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_Header](_web_socket___header.md) header) | Adds the header information to the client request. | 
-| [OH_WebSocketClient_Connect](#oh_websocketclient_connect) (struct [WebSocket](_web_socket.md) \*client, const char \*url, struct [WebSocket_RequestOptions](_web_socket___request_options.md) options) | Connects the client to the server. | 
-| [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | Sends data from the client to the server. | 
-| [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | Lets the WebSocket client proactively close the connection. | 
-| [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | Releases the context and resources of the WebSocket connection. | 
+| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Constructor used to create a **WebSocketClient** instance. |
+| [OH_WebSocketClient_AddHeader](#oh_websocketclient_addheader) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_Header](_web_socket___header.md) header) | Adds the header information to the client request. |
+| [OH_WebSocketClient_Connect](#oh_websocketclient_connect) (struct [WebSocket](_web_socket.md) \*client, const char \*url, struct [WebSocket_RequestOptions](_web_socket___request_options.md) options) | Connects the client to the server. |
+| [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | Sends data from the client to the server. |
+| [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | Lets the WebSocket client proactively close the connection. |
+| [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | Releases the context and resources of the WebSocket connection. |
+| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate lock information.|
+| [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Obtains certificate information.|
+| [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Releases the certificate content.|
 
 ### Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [NetStack_CertBlob::type](#type) | Certificate type.| 
-| [NetStack_CertBlob::size](#size) | Certificate content length.| 
-| [NetStack_CertBlob::data](#data) | Certificate content.| 
-| [WebSocket_CloseResult::code](#code-13) | Connection close code. | 
-| [WebSocket_CloseResult::reason](#reason-13) | Connection close reason for the WebSocket client. | 
-| [WebSocket_CloseOption::code](#code-23) | Connection close code. | 
-| [WebSocket_CloseOption::reason](#reason-23) | Connection close reason for the WebSocket client. | 
-| [WebSocket_ErrorResult::errorCode](#errorcode) | Error code. | 
-| [WebSocket_ErrorResult::errorMessage](#errormessage) | Error message. | 
-| [WebSocket_OpenResult::code](#code-33) | Connection success code for the WebSocket client. | 
-| [WebSocket_OpenResult::reason](#reason-33) | Connection reason for the WebSocket client. | 
-| [WebSocket_Header::fieldName](#fieldname) | Header field name. | 
-| [WebSocket_Header::fieldValue](#fieldvalue) | Header field content. | 
-| [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | Next pointer of the header linked list. | 
-| [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | Header information.| 
-| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | Pointer to the callback invoked when the WebSocket client receives a connection message. | 
-| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | Pointer to the callback invoked when the WebSocket client receives a message. | 
-| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | Pointer to the callback invoked when the WebSocket client receives an error message. | 
-| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | Pointer to the callback invoked when the WebSocket client receives a **close** message. | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | Content of the request for establishing a connection on the client.| 
+| [NetStack_CertBlob::type](#type) | Certificate type.|
+| [NetStack_CertBlob::size](#size) | Certificate content length.|
+| [NetStack_CertBlob::data](#data) | Certificate content.|
+| [NetStack_CertificatePinning::kind](#kind) | Certificate lock type.|
+| [NetStack_CertificatePinning::hashAlgorithm](#hashalgorithm) | Hash algorithm.|
+| [NetStack_CertificatePinning::publicKeyHash](#publickeyhash) | Hash value.|
+| [NetStack_Certificates::content](#content) | PEM content of the certificate.|
+| [NetStack_Certificates::length](#length) | Number of certificates.|
+| [WebSocket_CloseResult::code](#code-13) | Connection close code. |
+| [WebSocket_CloseResult::reason](#reason-13) | Connection close reason for the WebSocket client. |
+| [WebSocket_CloseOption::code](#code-23) | Connection close code. |
+| [WebSocket_CloseOption::reason](#reason-23) | Connection close reason for the WebSocket client. |
+| [WebSocket_ErrorResult::errorCode](#errorcode) | Error code. |
+| [WebSocket_ErrorResult::errorMessage](#errormessage) | Error message. |
+| [WebSocket_OpenResult::code](#code-33) | Connection success code for the WebSocket client. |
+| [WebSocket_OpenResult::reason](#reason-33) | Connection reason for the WebSocket client. |
+| [WebSocket_Header::fieldName](#fieldname) | Header field name. |
+| [WebSocket_Header::fieldValue](#fieldvalue) | Header field content. |
+| [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | Next pointer of the header linked list. |
+| [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | Header information.|
+| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | Pointer to the callback invoked when the WebSocket client receives a connection message. |
+| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | Pointer to the callback invoked when the WebSocket client receives a message. |
+| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | Pointer to the callback invoked when the WebSocket client receives an error message. |
+| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | Pointer to the callback invoked when the WebSocket client receives a **close** message. |
+| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | Content of the request for establishing a connection on the client.|
 
 
 ## Type Description
@@ -219,6 +231,37 @@ WebSocket error codes.
 | WEBSOCKET_NO_CONNECTION  | The WebSocket client is not connected.| 
 | WEBSOCKET_NO_CONNECTION_CONTEXT  | The WebSocket client does not have the connection context.| 
 
+### NetStack_CertificatePinningKind
+
+```
+enum NetStack_CertificatePinningKind
+```
+
+**Description**
+
+Enumerates certificate lock types.
+
+**Since**: 12
+
+| Value    | Description          |
+| ---------- | -------------- |
+| PUBLIC_KEY | Public key lock type.|
+
+### NetStack_HashAlgorithm
+
+```
+enum NetStack_HashAlgorithm
+```
+
+**Description**
+
+Hash algorithm.
+
+**Since**: 12
+
+| Value | Description         |
+| ------- | ------------- |
+| SHA_256 | SHA-256 algorithm.|
 
 ## Function Description
 
@@ -246,9 +289,9 @@ Verifies the certificate chain.
 
 **Returns**
 
-**0**: success.
+**0**: Success.
 
-**2305001**: unknown error.
+**2305001**: Unknown error.
 
 **2305002**: Failed to obtain the issuer certificate.
 
@@ -277,6 +320,86 @@ Verifies the certificate chain.
 **2305024**: The certificate authority (CA) is invalid.
 
 **2305027**: The certificate is untrusted.
+
+**2305069**: A call error occurred during certificate verification or the parameter is invalid.
+
+### OH_NetStack_GetPinSetForHostName()
+
+```
+int32_t OH_NetStack_GetPinSetForHostName (const char * hostname, NetStack_CertificatePinning * pin)
+```
+
+**Description**
+
+Obtains the certificate lock information.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Since**: 12
+
+**Parameters**
+
+| Name    | Description                          |
+| -------- | ------------------------------ |
+| hostname | Host name.                      |
+| pin      | Structure of the certificate lock information.|
+
+**Returns**
+
+**0**: Success.
+
+**401**: Parameter error.
+
+**2305999**: Memory error.
+
+### OH_NetStack_GetCertificatesForHostName()
+
+```
+int32_t OH_NetStack_GetCertificatesForHostName(const char * hostname, NetStack_Certificates * certs)
+```
+
+**Description**
+
+Obtains the certificate information.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Since**: 12
+
+**Parameters**
+
+| Name    | Description                      |
+| -------- | -------------------------- |
+| hostname | Host name.                  |
+| certs    | Structure of the certificate information.|
+
+**Returns**
+
+**0**: Success.
+
+**401**: Parameter error.
+
+**2305999**: Memory error.
+
+### OH_Netstack_DestroyCertificatesContent()
+
+```
+void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates * certs)
+```
+
+**Description**
+
+Releases the certificate content. If **NetStack_Certificates** is no longer used, you can call this API to release the certificate content in it to free up memory space.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Since**: 12
+
+**Parameters**
+
+| Name | Description            |
+| ----- | ---------------- |
+| certs | Defines the certificate information structure.|
 
 ### OH_WebSocketClient_AddHeader()
 
@@ -437,6 +560,8 @@ Sends data from the WebSocket client to the server.
 
 **Returns**
 
+ 
+
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 
 **Required Permissions**
@@ -478,6 +603,55 @@ enum NetStack_CertType NetStack_CertBlob::type
 
 Certificate type.
 
+### kind
+
+```
+enum NetStack_CertificatePinningKind NetStack_CertificatePinning::kind
+```
+
+**Description**
+
+Certificate lock type.
+
+### hashAlgorithm
+
+```
+enum NetStack_HashAlgorithm NetStack_CertificatePinning::hashAlgorithm
+```
+
+**Description**
+
+Hash algorithm.
+
+### publicKeyHash
+
+```
+char* NetStack_CertificatePinning::publicKeyHash
+```
+
+**Description**
+
+Hash value.
+
+### content
+
+```
+char** NetStack_Certificates::content
+```
+
+**Description**
+
+PEM content of the certificate.
+
+### length
+
+```
+size_t NetStack_Certificates::length
+```
+
+**Description**
+
+Number of certificates.
 
 ### code [1/3]
 

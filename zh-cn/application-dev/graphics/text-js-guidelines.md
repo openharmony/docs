@@ -39,7 +39,7 @@ import { common2D } from '@kit.ArkGraphics2D'
 
 以下步骤描述了如何使用@ohos.graphics.text模块的接口创建段落对象以及显示段落文本。
 
-1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。`RenderNode`中包含树结构的操作，以及对绘制属性的操作。
+1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数draw，下方第2步及第3步为draw函数的具体实现。`RenderNode`中包含树结构的操作，以及对绘制属性的操作。
 
     ```js
     // 创建一个MyRenderNode类，并绘制文本。
@@ -51,9 +51,11 @@ import { common2D } from '@kit.ArkGraphics2D'
     }
     ```
 
-2. **设置画笔和画刷样式**。使用`Pen`接口创建一个画笔实例pen，并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用`Brush`接口创建一个画刷实例brush，并设置填充颜色，画刷用于形状内部的填充。使用canvas中的`attachPen`和`attachBrush`接口将画笔画刷的实例设置到画布实例中。
+2. **创建canvas并设置画笔和画刷样式**。使用`Pen`接口创建一个画笔实例pen，并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用`Brush`接口创建一个画刷实例brush，并设置填充颜色，画刷用于形状内部的填充。使用canvas中的`attachPen`和`attachBrush`接口将画笔画刷的实例设置到画布实例中。
 
     ```js
+    // 创建画布canvas对象
+    const canvas = context.canvas
     // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
     let pen = new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }

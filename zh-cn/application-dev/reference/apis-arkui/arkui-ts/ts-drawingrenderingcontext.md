@@ -28,8 +28,19 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 
 | 名称       | 类型 | 只读 | 可选 | 说明 |
 | ---------- | ------------ | -------------------- | ---------------------------- | ---------------------------- |
-| size       | {width: number, height: number}    | 否 | 否 | Context大小的宽和高。<br>默认单位为vp。                                            |
+| size       | [Size](#size)    | 否 | 否 | Context大小的宽和高。<br>默认单位为vp。                                            |
 | canvas     | [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 否 | 否 | 绘制模块的Canvas对象，具体描述见绘制模块中的[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)对象。 |
+
+### Size
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---------- | -------------- | ------ | ---------------- | ------------------------ |
+| width | number | 否 | 否 | DrawingRenderingContext的宽度。 |
+| height | number | 否 | 否 | DrawingRenderingContext的高度。 |
 
 ## 方法
 

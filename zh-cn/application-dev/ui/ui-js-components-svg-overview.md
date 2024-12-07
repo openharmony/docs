@@ -80,10 +80,3 @@ svg{
 > - x和y设置的是当前Svg的x轴和y轴坐标，如果当前Svg为根节点，x轴和y轴属性无效。
 >
 > - viewBox的宽高和svg的宽高不一致，会以中心对齐进行缩放。
-
-
-## 相关实例
-
-针对Svg开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

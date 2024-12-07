@@ -32,7 +32,7 @@ UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| launchParam<sup>12+</sup> | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是| 创建UIExtensionAbility、上次异常退出的原因信息。|
+| launchParam<sup>12+</sup> | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是| 创建UIExtensionAbility、上次异常退出的原因信息。|
 
 **示例：**
 

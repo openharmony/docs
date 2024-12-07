@@ -1,6 +1,6 @@
 # AbilityFirstFrameStateData (System API)
 
-**AbilityFirstFrameStateData** defines the data reported by the callback when the first frame of an ability is rendered. Specifically, the data is returned in the **onAbilityFirstFrameDrawn** callback of [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) after the first frame rendering completion event is listened for by calling [on](js-apis-app-ability-appManager-sys.md#appmanageron12).
+**AbilityFirstFrameStateData** defines the data reported by the callback when the first frame of an ability is rendered. Specifically, the data is returned in the **onAbilityFirstFrameDrawn** callback of [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) after the first frame rendering completion event is listened for by calling [on](js-apis-app-ability-appManager-sys.md#appmanageronabilityfirstframestate12).
 
 > **NOTE**
 >
@@ -19,10 +19,10 @@ import { appManager } from '@kit.AbilityKit';
 
 **System API**: This is a system API.
 
-| Name       | Type   | Read Only | Mandatory | Description            |
+| Name       | Type   | Read Only| Mandatory| Description            |
 | ----------- | ------- | ---- | ---- | ---------------- |
-| bundleName  | string  | Yes  | No  | Bundle name. |
-| moduleName  | string  | Yes  | No  | Module name. |
+| bundleName  | string  | Yes  | No  | Bundle name.|
+| moduleName  | string  | Yes  | No  | Module name.|
 | abilityName | string  | Yes  | No  | Ability name.   |
 | appIndex    | number  | Yes  | No  | Index of the DLP sandbox. |
 | isColdStart | boolean | Yes  | No  | Enabled status of cold start.    |

@@ -32,6 +32,10 @@
 | OpenMode | 设置文件打开标签 | 属性 | - | - | 
 | Filter | 设置文件过滤配置项 | 类型 | - | - | 
 
+> **注意：**
+>
+> 使用基础文件操作接口时，耗时较长的操作，例如：read、write等，建议使用异步接口，避免应用崩溃。
+
 ## 开发示例
 
 在对应用文件开始访问前，开发者需要[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。以从UIAbilityContext获取HAP级别的文件路径为例进行说明，UIAbilityContext的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
@@ -119,7 +123,7 @@ function readWriteFile(): void {
 
 ### 以流的形式读写文件
 
-以下示例代码演示了如何使用流接口进行文件读写：
+以下示例代码演示了如何使用流接口进行文件读写。
 
 ```ts
 // pages/xxx.ets
@@ -163,7 +167,7 @@ async function readWriteFileWithStream(): Promise<void> {
 
 ### 查看文件列表
 
-以下示例代码演示了如何查看文件列表：
+以下示例代码演示了如何查看文件列表。
 
 ```ts
 import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
@@ -194,7 +198,7 @@ function getListFile(): void {
 
 ### 使用文件流
 
-以下实例代码演示了如何使用文件可读流，文件可写流
+以下示例代码演示了如何使用文件可读流，文件可写流。
 
 ```ts
 // pages/xxx.ets
@@ -237,7 +241,7 @@ function copyFileWithData(): void {
 
 ```
 
-以下代码演示了如何使用文件哈希流
+以下代码演示了如何使用文件哈希流。
 
 ```ts
 // pages/xxx.ets

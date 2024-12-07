@@ -44,12 +44,12 @@ The application is not enabled the data protection under lock screen.
 
 **可能原因**
 
-1. 应用未在[module.json5](../../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)配置权限ohos.permission.PROTECT_SCREEN_LOCK_DATA开启应用锁屏敏感数据保护功能。
+1. 应用未在[requestpermissions](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)配置权限ohos.permission.PROTECT_SCREEN_LOCK_DATA开启应用锁屏敏感数据保护功能。
 2. 当前硬件不支持锁屏敏感数据保护功能。
 
 **处理步骤**
 
-在[module.json5](../../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)中配置权限ohos.permission.PROTECT_SCREEN_LOCK_DATA开启应用锁屏敏感数据保护功能。
+在[requestpermissions](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)中配置权限ohos.permission.PROTECT_SCREEN_LOCK_DATA开启应用锁屏敏感数据保护功能。
 
 
 ## 29300004 锁屏敏感数据访问权限已释放

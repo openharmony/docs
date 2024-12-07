@@ -1,12 +1,12 @@
 # 使用Image_NativeModule完成位图操作
 
-创建位图，获取位图的宽，高，pixelFormat，alphaType，rowStride信息，对位图进行操作以及释放位图实例。
+创建位图，获取位图的宽、高、pixelFormat、alphaType、rowStride信息、对位图进行操作以及释放位图实例。
 
 ## 开发步骤
 
 ### 添加链接库
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libpixelmap.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libpixelmap.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)

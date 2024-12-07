@@ -1,33 +1,10 @@
 # 消息摘要计算(ArkTS)
 
+对应的算法规格请查看[消息摘要计算算法规格](crypto-generate-message-digest-overview.md#支持的算法与规格)。
 
-消息摘要算法是一种能将任意长度的输入消息，通过特定运算生成固定长度摘要的算法。消息摘要算法也被称为哈希算法或单向散列算法。
-
-
-在摘要算法相同时，生成的摘要值主要有下列特点：
-
-
-- 当输入消息相同时，生成摘要序列相同。
-
-- 当输入消息的长度不一致时，生成摘要序列长度固定（摘要长度由算法决定）。
-
-- 当输入消息不一致时，生成摘要序列几乎不会相同（依然存在相同概率，由摘要长度决定相同概率）。
-
-
-## 支持的算法与规格
-
-当创建MD消息摘要时，需要使用表中“支持种类”一列，指定MD消息摘要算法规格。
-
-| 摘要算法 | 支持种类 | API版本 | 
-| -------- | -------- | -------- |
-| HASH | SHA1 | 9+ | 
-| HASH | SHA224 | 9+ | 
-| HASH | SHA256 | 9+ | 
-| HASH | SHA384 | 9+ | 
-| HASH | SHA512 | 9+ | 
-| HASH | MD5 | 9+ | 
-| HASH | SM3 | 10+ | 
-
+> **说明：**
+> 
+> 从API version 12开始，轻量级智能穿戴设备支持消息摘要的计算与操作。
 
 ## 开发步骤
 
@@ -38,7 +15,7 @@
 
 ### 摘要算法（一次性传入）
 
-1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要操作实例（Md）。
+1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要实例（Md）。
 
 2. 调用[Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6)，传入自定义消息，进行摘要更新计算。单次update长度没有限制。
 
@@ -86,7 +63,7 @@
 
 ### 分段摘要算法
 
-1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要操作实例（Md）。
+1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要实例（Md）。
 
 2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-7)，进行摘要更新计算。
 

@@ -18,9 +18,9 @@ Sets a visual effect that is not a filter effect.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                |
+| Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| effect | [VisualEffect](../../apis-arkgraphics2d/js-apis-uiEffect.md#visualeffect) | Yes  | Visual effect. |
+| effect | [VisualEffect](../../apis-arkgraphics2d/js-apis-uiEffect.md#visualeffect) | Yes  | Visual effect.|
 
 ## backgroundFilter
 
@@ -34,9 +34,9 @@ Sets the visual effect of the background filter.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                |
+| Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the background filter. |
+| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the background filter.|
 
 ## foregroundFilter
 
@@ -50,9 +50,9 @@ Sets the visual effect of the foreground (content) filter.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                |
+| Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the foreground (content) filter. |
+| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the foreground (content) filter.|
 
 ## compositingFilter
 
@@ -66,9 +66,9 @@ Sets the visual effect of the compositing filter.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                |
+| Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the compositing filter. |
+| filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | Yes  | Visual effect of the compositing filter.|
 
 
 ## Example
@@ -86,27 +86,27 @@ struct FilterEffectExample {
     Column({ space: 15 }) {
 
       Text('foregroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('Foreground filter')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
-     .foregroundFilter(this.filterTest.blur(10)) // Set pixel stretch through foregroundFilter.
+        .backgroundImage($r("app.media.app_icon"))
+     .foregroundFilter(this.filterTest.blur(10)) // Set the blur effect through foregroundFilter.
 
       Text('backgroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('Background filter')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
+        .backgroundImage($r("app.media.app_icon"))
         .compositingFilter(this.filterTest.blur(10)) // Set the blur effect through backgroundFilter.
 
       Text('compositingFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('Compositing filter')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
+        .backgroundImage($r("app.media.app_icon"))
         .compositingFilter(this.filterTest.blur(10)) // Set the blur effect through compositingFilter.
     }
     .height('100%')
@@ -115,4 +115,4 @@ struct FilterEffectExample {
 }
 ```
 
-![compositingFilter](figures/filterEffect.jpg)
+

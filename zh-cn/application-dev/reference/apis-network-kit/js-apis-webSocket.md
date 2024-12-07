@@ -127,6 +127,8 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **系统能力**：SystemCapability.Communication.NetStack
 
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                         |
@@ -136,11 +138,15 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                     |
-|---------|------------------------------------------|
-| 401     | Parameter error.                         |
-| 201     | Permission denied.                       |
-| 2302998 | It is not allowed to access this domain. |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -177,6 +183,8 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **系统能力**：SystemCapability.Communication.NetStack
 
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                                                    |
@@ -187,11 +195,15 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                     |
-|---------|------------------------------------------|
-| 401     | Parameter error.                         |
-| 201     | Permission denied.                       |
-| 2302998 | It is not allowed to access this domain. |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -237,6 +249,8 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+
 **参数：**
 
 | 参数名  | 类型                    | 必填 | 说明                                                    |
@@ -252,11 +266,15 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                     |
-|---------|------------------------------------------|
-| 401     | Parameter error.                         |
-| 201     | Permission denied.                       |
-| 2302998 | It is not allowed to access this domain. |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -935,7 +953,7 @@ type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 | ------  |------------------------- |
 | 'system'   |  使用系统默认网络代理。 |
 | 'no-proxy' |  不使用网络代理。 |
-| HttpProxy  | 使用指定的网络代理。 |
+| [HttpProxy](js-apis-net-connection.md#httpproxy10)  | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 
@@ -972,9 +990,7 @@ type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [k:string]:string | header数据类型为键值对 |
-| string[]  | header数据类型为字符串 |
-| undefined | header数据类型为undefined |
+| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined |
 
 ## close错误码说明
 

@@ -45,23 +45,15 @@ HelloComponent可以在其他自定义组件中的build()函数中多次创建�
 
 
 ```ts
-class HelloComponentParam {
-  message: string = ""
-}
-
 @Entry
 @Component
 struct ParentComponent {
-  param: HelloComponentParam = {
-    message: 'Hello, World!'
-  }
-
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent(this.param);
+      HelloComponent({ message: 'Hello World!' });
       Divider()
-      HelloComponent(this.param);
+      HelloComponent({ message: '你好，世界!' });
     }
   }
 }
@@ -256,7 +248,6 @@ struct Son {
           }
         })
     }
-    .justifyContent(FlexAlign.SpaceBetween)
     .height(56)
   }
 }
@@ -348,7 +339,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，如果需要使用条件判断，请使用if。示例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用[if](./arkts-rendering-control-ifelse.md)。示例如下。
 
   ```ts
   build() {
@@ -377,18 +368,25 @@ struct Son {
   }
   ```
 
-- 不允许使用表达式，反例如下。
+- 不允许使用表达式，请使用if组件，示例如下。
 
   ```ts
   build() {
     Column() {
       // 反例：不允许使用表达式
       (this.aVar > 10) ? Text('...') : Image('...')
+
+      // 正例：使用if判断
+      if(this.aVar > 10) {
+        Text('...')
+      } else {
+        Image('...')
+      }
     }
   }
   ```
 
-- 不允许直接改变状态变量，反例如下。
+- 不允许直接改变状态变量，反例如下。详细分析见[\@State常见问题：不允许在build里改状态变量](./arkts-state.md#不允许在build里改状态变量)
 
   ```ts
   @Component

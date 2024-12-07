@@ -1,11 +1,12 @@
 # ListItem
 
-The **\<ListItem>** component displays specific items in the list. It must be used together with **\<List>**.
+The **ListItem** component displays specific items in the list. It must be used together with **List**.
 
 > **NOTE**
 >
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The parent of this component can only be [\<List>](ts-container-list.md) or [\<ListItemGroup>](ts-container-listitemgroup.md).
+> - The parent of this component can only be [List](ts-container-list.md) or [ListItemGroup](ts-container-listitemgroup.md).
+> - When this component is used with **LazyForEach**, its child components are created when it is created. When this component is used with **if/else** or **ForEach**, or when the parent component is **List**or **ListItemGroup**, its child components are created when it is laid out.
 
 ## Child Components
 
@@ -13,11 +14,15 @@ This component can contain a single child component.
 
 ## APIs
 
-This API can be used in ArkTS widgets since API version 9.
-
 ### ListItem<sup>10+</sup>
 
 ListItem(value?: ListItemOptions)
+
+**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -30,6 +35,10 @@ ListItem(value?: ListItemOptions)
 ListItem(value?: string)
 
 This API is deprecated since API version 10. You are advised to use [ListItem<sup>10+</sup>](#listitem10) instead.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -47,7 +56,7 @@ sticky(value: Sticky)
 
 Sets the sticky effect of the list item.
 
-This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the \<List> component](ts-container-list.md#attributes) instead.
+This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the List component](ts-container-list.md#attributes) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,9 +86,11 @@ This API is deprecated since API version 9. There is no substitute API.
 
 selectable(value: boolean)
 
-Sets whether the list item is selectable for multiselect. This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.
+Sets whether the list item is selectable for multiselect. This attribute takes effect only when mouse frame selection is enabled for the parent **List** container.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,7 +106,9 @@ selected(value: boolean)
 
 Sets whether the list item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -111,16 +124,21 @@ swipeAction(value: SwipeActionOptions)
 
 Sets the swipe action item displayed when the list item is swiped out from the screen edge.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                             | Mandatory| Description                |
 | ------ | ------------------------------------------------- | ---- | -------------------- |
-| value  | [SwipeActionOptions](#swipeactionoptions) | Yes  | Swipe action item displayed when the list item is swiped out from the screen edge.|
+| value  | [SwipeActionOptions](#swipeactionoptions9) | Yes  | Swipe action item displayed when the list item is swiped out from the screen edge.|
 
 ## Sticky<sup>(deprecated)</sup>
-This API is deprecated since API version 9. You are advised to use [the stickyStyle enum of the \<List> component](ts-container-list.md#stickystyle9) instead.
+This API is deprecated since API version 9. You are advised to use [the stickyStyle enum of the List component](ts-container-list.md#stickystyle9) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | None |  0  | The list item is not sticky.|
@@ -129,6 +147,9 @@ This API is deprecated since API version 9. You are advised to use [the stickySt
 
 ## EditMode<sup>(deprecated)</sup>
 This API is deprecated since API version 9. There is no substitute API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Value| Description       |
 | ------ | ------ | --------- |
 | None   |  0  | The editing operation is not restricted.   |
@@ -136,53 +157,61 @@ This API is deprecated since API version 9. There is no substitute API.
 | Movable |  2  | The list item can be moved.|
 
 ## SwipeEdgeEffect<sup>9+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Value| Description       |
 | ------ | ------ | --------- |
 |   Spring   |    0    | When the list item scrolls to the edge of the list, it can continue to scroll for a distance.<br>If the delete area is set, the list item can continue to scroll after the scroll distance exceeds the delete threshold and,<br>after being released, rebound following the spring curve.|
 |   None   |    1    | The list item cannot scroll beyond the edge of the list.<br>If the delete area is set, the list item cannot continue to scroll after the scroll distance exceeds the delete threshold.<br>If the delete callback is set, it is triggered when the delete threshold is reached and the list item is released.|
 
-## SwipeActionOptions
+## SwipeActionOptions<sup>9+</sup>
 
 The top level of the @builder function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.
 
 The swipe gesture works only in the list item area. If a swipe causes a child component to extend beyond the list item area, the portion outside the area does not respond to the swipe. In light of this, avoid setting **swipeAction** to a component too wide in a multi-column list.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name                        | Type                                                        | Mandatory| Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| start                        | [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10) | No  | Swipe action item displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).|
-| end                          | [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10) | No  | Swipe action item displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).|
-| edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9)                 | No  | Scroll effect.                                                  |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | No  | Triggered when the scroll offset changes.                                  |
+| start                        | [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10) | No  | Swipe action item displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| end                          | [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10) | No  | Swipe action item displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9)                 | No  | Scroll effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                               |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | No  | Callback invoked when the scroll offset changes.<br>**NOTE**<br>Specifically, this callback is invoked when the location of the list item changes, in vp, when it is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## SwipeActionItem<sup>10+</sup>
 
-Describes the swipe action item.
+Describes the swipe action item.<br>For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
+<br>For a list in horizontal layout, it refers to the delete option displayed below (or above) the list item when the list item is swiped up (or down).
 
-For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
-
-For a list in horizontal layout, it refers to the delete option displayed below (or above) the list item when the list item is swiped up (or down).
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                | Type                                                    | Mandatory| Description                                                        |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| actionAreaDistance | [Length](ts-types.md#length) | No| Swipe distance threshold for deleting the list item.<br>Default value: **56vp**<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is greater than the list item width minus the width of **swipeAction**, or is less than or equal to 0, the delete area will not be set.|
-| onAction | () => void | No| Callback invoked when the list item is released while in the delete area.<br>**NOTE**<br> This callback is invoked only when the list item is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
-| onEnterActionArea | () => void | No| Callback invoked each time the list item enters the delete area.|
-| onExitActionArea | () => void | No|Callback invoked each time the list item exits the delete area.|
-| builder |  [CustomBuilder](ts-types.md#custombuilder8) | No|Swipe action item displayed when the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
-| onStateChange<sup>11+</sup> | (swipeActionState) => void | No|Triggered when the swipe state of the list item changes.|
+| actionAreaDistance | [Length](ts-types.md#length) | No| Swipe distance threshold for deleting the list item.<br>Default value: **56vp**<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is greater than the list item width minus the width of **swipeAction**, or is less than or equal to 0, the delete area will not be set.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onAction | () => void | No| Callback invoked when the list item is released while in the delete area.<br>**NOTE**<br>This callback is invoked only when the list item is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| onEnterActionArea | () => void | No| Callback invoked each time the list item enters the delete area.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onExitActionArea | () => void | No|Callback invoked each time the list item exits the delete area.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| builder |  [CustomBuilder](ts-types.md#custombuilder8) | No|Swipe action item displayed when the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onStateChange<sup>11+</sup> | (swipeActionState) => void | No|Callback invoked when the swipe state of the list item changes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 ## ListItemOptions<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                                 | Mandatory| Description                                                        |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width.<br>It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and<br>**alignListItem** attribute at **ListItemAlign.Center**.<br>If **ListItemStyle.CARD** is set and **ListItemGroupStyle.CARD** is not, only some card styles and functions are available.|
-
-## SwipeActionOptions<sup>10+</sup>
-
-| Name                        | Type                | Mandatory| Description                                                        |
-| ---------------------------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void | No  | Triggered when the location of the list item changes, in vp, when it is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
+| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>When **ListItemStyle.CARD** is used, you are advised to pair it with **ListItemGroupStyle.CARD** from [ListItemGroup](ts-container-listitemgroup.md) to apply the default card style.<br>In the card style, the default specifications for a list item are as follows: a height of 48 vp, a width of 100%, and horizontal padding of 8 vp on both the left and right sides. If you want to implement an adaptive height for the list item, you can set the **height** attribute to **undefined**.<br>It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the card style, by default, the list runs along the vertical axis, that is, **listDirection** is at **Axis.Vertical**. If **listDirection** is set to **Axis.Horizontal**, a disordered display may result. The **alignListItem** attribute of the list is set to **ListItemAlign.Center** by default, which aligns the list items in the center.|
 
 ## ListItemStyle<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value | Description              |
 | ---- | ---- | ------------------ |
@@ -190,6 +219,10 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 | CARD | 1 | Default card style.|
 
 ## SwipeActionState<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Value    | Description                                                        |
 | --------- | --------- | ------------------------------------------------------------ |
@@ -205,7 +238,9 @@ onSelect(event: (isSelected: boolean) =&gt; void)
 
 Triggered when the selected state of the list item for multiselect changes.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 10.
+**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

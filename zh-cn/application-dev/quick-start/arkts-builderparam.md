@@ -1,14 +1,17 @@
 # \@BuilderParam装饰器：引用\@Builder函数
 
 
-当开发者创建了自定义组件，并想对该组件添加特定功能时，例如在自定义组件中添加一个点击跳转操作。若直接在组件内嵌入事件方法，将会导致所有引入该自定义组件的地方均增加了该功能。为解决此问题，ArkUI引入了\@BuilderParam装饰器，\@BuilderParam用来装饰指向[\@Builder](./arkts-builder.md)方法的变量（@BuilderParam是用来承接@Builder函数的），开发者可在初始化自定义组件时对此属性进行赋值，为自定义组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。
+当开发者创建了自定义组件，并想对该组件添加特定功能时，例如在自定义组件中添加一个点击跳转操作。若直接在组件内嵌入事件方法，将会导致所有引入该自定义组件的地方均增加了该功能。为解决此问题，ArkUI引入了\@BuilderParam装饰器，\@BuilderParam用来装饰指向[\@Builder](./arkts-builder.md)方法的变量（@BuilderParam是用来承接@Builder函数的）。开发者可以在初始化自定义组件时，使用不同的方式（如：参数修改、尾随闭包、借用箭头函数等）对\@BuilderParam装饰的自定义构建函数进行传参赋值，在自定义组件内部通过调用\@BuilderParam为组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。
 
+
+在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
 
 > **说明：**
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
+
 
 ## 装饰器使用说明
 
@@ -106,7 +109,7 @@
         Child({
           // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为"Child"。
           customBuilderParam: this.componentBuilder,
-          // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderPara，
+          // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderParam，
           // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent"。
           customChangeThisBuilderParam: (): void => { this.componentBuilder() }
         })
@@ -117,6 +120,48 @@
  **图2** 示例效果图
 
  ![builderparam-demo2](figures/builderparam-demo2.png)
+
+
+## 限制条件
+
+- \@BuilderParam装饰的变量接收来自父组件使用\@Builder装饰的函数，且\@Builder函数是参数传递类型，仅支持局部\@Builder函数作为参数传递。
+
+```ts
+@Component
+struct Child {
+  header: string = '';
+  @BuilderParam content: () => void;
+  footer: string = '';
+
+  build() {
+    Column() {
+      Text(this.header)
+      this.content();
+      Text(this.footer)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @Builder
+  test() {
+    Text('Hello')
+  }
+
+  build() {
+    Column() {
+      // 错误写法，@BuilderParam需要被初始化
+      Child()
+      // 正确写法
+      Child({ content: this.test })
+    }
+  }
+}
+```
+
+- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
 
 ## 使用场景
@@ -296,7 +341,7 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      ChildPage({ message: this.label}){  // 使用全部@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
+      ChildPage({ message: this.label}){  // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
         Column() {
           overBuilder();
         }
@@ -308,7 +353,7 @@ struct ParentPage {
 
 ### 使用全局和局部\@Builder初始化\@BuilderParam
 
-在自定义组件中，使用\@BuilderParam修饰的变量接收来着父组件通过\@Builder传递的内容进行初始化，因为父组件的\@Builder可以使用箭头函数的形式改变当前的this指向，所以当使用\@BuilderParam修饰的变量时，会展示出不同的内容。
+在自定义组件中，使用\@BuilderParam修饰的变量接收来自父组件通过\@Builder传递的内容进行初始化，因为父组件的\@Builder可以使用箭头函数的形式改变当前的this指向，所以当使用\@BuilderParam修饰的变量时，会展示出不同的内容。
 
 ```ts
 @Component
@@ -355,7 +400,7 @@ struct ParentPage {
       ChildPage({
         // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为"Child Page"。
         customBuilderParam: this.componentBuilder,
-        // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderPara，
+        // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，
         // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent Page"。
         customChangeThisBuilderParam: (): void => { this.componentBuilder() }
       })
@@ -491,7 +536,8 @@ struct ParentPage {
   build() {
     Column() {
       ChildPage({
-        customChangeThisBuilderParam: this.componentBuilder // 此处传递参数导致
+        // 当前写法this指向ChildPage组件内
+        customChangeThisBuilderParam: this.componentBuilder
       })
       Button('点击改变label内容')
         .onClick(() => {
@@ -503,6 +549,7 @@ struct ParentPage {
 ```
 
 使用箭头函数的形式把\@Builder传递进自定义组件ChildPage中，当前this指向会停留在父组件ParentPage里，所以在父组件里改变label的值，自定义组件ChildPage会感知到并重新渲染UI。
+把@Builder改为@LocalBuilder也能实现动态渲染UI功能。
 
 【正例】
 

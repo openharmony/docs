@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Package manager error.
+Bundle manager error.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Input method client error.
 
 **错误信息**
 
-Not an input method extension.
+Not an input method.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ Not an input method extension.
 
 **错误信息**
 
-Configuration persisting error.
+Configuration persistence error.
 
 **错误描述**
 
@@ -116,7 +116,7 @@ Input method controller error.
 
 **错误信息**
 
-Input method settings extension error.
+Input method setter error.
 
 **错误描述**
 
@@ -152,7 +152,7 @@ Input method manager service error.
 
 **错误信息**
 
-Input method client is detached.
+Input method client detached.
 
 **错误描述**
 
@@ -170,7 +170,7 @@ Input method client is detached.
 
 **错误信息**
 
-Not default input method configured by system.
+Not the preconfigured default input method.
 
 **错误描述**
 
@@ -188,7 +188,7 @@ Not default input method configured by system.
 
 **错误信息**
 
-Text preview is not supported.
+Text preview not supported.
 
 **错误描述**
 
@@ -206,7 +206,7 @@ Text preview is not supported.
 
 **错误信息**
 
-Input method panel doesn't exist.
+The input method panel does not exist.
 
 **错误描述**
 

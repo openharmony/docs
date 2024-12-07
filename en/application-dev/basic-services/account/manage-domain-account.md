@@ -14,7 +14,7 @@ The user can add a domain account to a device so that the domain account user ca
    import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. Obtain an **AccountManager** instance of the system account.
+3. Obtain an **AccountManager** instance for system accounts.
 
    ```ts
    let osAccountMgr = osAccount.getAccountManager();
@@ -43,7 +43,7 @@ Before adding a domain account, the user may need to check whether the domain ac
 
 ## Adding a Domain Account
 
-The user can add a domain account in **Settings** to allow the domain account user to log in to and use the device. You can use [createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain) to implement this operation.
+The user can add a domain account in **Settings** to allow the domain account user to log in to and use the device. You can use [createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain8) to implement this operation.
 
 **Procedure**
 
@@ -56,7 +56,7 @@ The user can add a domain account in **Settings** to allow the domain account us
    };
    ```
 
-2. Use [createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain) to create a domain account on the device.
+2. Use [createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain8) to create a domain account on the device.
 
    ```ts
    try {
@@ -70,9 +70,9 @@ The user can add a domain account in **Settings** to allow the domain account us
    }
    ```
 
-## Deleting a Domain Account
+## Removing a Domain Account
 
-The user can delete the domain account that is not required. Since a domain account is in one-to-one relationship with a system account, you can use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete the system account. The domain account is deleted as well.
+The user can remove the domain account that is not required. Since a domain account is in one-to-one relationship with a system account, you can use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete the system account. The domain account is deleted as well.
 
 **Procedure**
 
@@ -92,7 +92,7 @@ The user can delete the domain account that is not required. Since a domain acco
    }
    ```
 
-2. Use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete the system account.
+2. Use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to remove the system account.
 
    ```ts
    try {

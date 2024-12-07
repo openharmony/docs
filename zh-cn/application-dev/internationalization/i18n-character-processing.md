@@ -81,7 +81,20 @@ import { i18n } from '@kit.LocalizationKit';
 
 // 音译成Latn格式
 let transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let res = transliterator.transform('中国'); // res: zhōng guó
+let wordArray = ["中国", "德国", "美国", "法国"]
+for (let i = 0; i < wordArray.length; i++) {
+    let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+}
+
+// 汉语音译去声调
+let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+let result = transliter.transform('中国'); // result: zhong guo
+
+// 汉语姓氏读音
+let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
+let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
+let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
+
 
 // 获取音译支持的ID列表
 let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
@@ -172,3 +185,4 @@ let isBoundary = iterator.isBoundary(9); // isBoundary: true
 // 获取BreakIterator对象处理的文本
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 ```
+<!--RP1--><!--RP1End-->

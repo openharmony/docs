@@ -16,7 +16,7 @@ The touch event (**onTouch**) is the foundation of all gestures. It comes in fou
 
 3. The callback of the **onTouch** event follows consistency. If a component receives the Down event whose finger ID is 0 but does not receive the Down event whose finger ID is 1, it will receive other touch events whose finger ID is 0, but not touch events whose finger ID is 1.
 
-For common container components (such as **\<Column>**), **onTouch** events can be received by parent and child components at the same time, and how they are received by sibling components is subject to the layout.
+For common container components (such as **Column**), **onTouch** events can be received by parent and child components at the same time, and how they are received by sibling components is subject to the layout.
 
 ```ts
 ComponentA() {
@@ -27,7 +27,7 @@ ComponentA() {
 If components B and C are children of component A, then touching component B or component C also touches component A. The **onTouch** callback can be invoked by multiple components at the same time.
 Therefore, when component B is touched, the **onTouch** callback is invoked by both component A and component B, but not by component C; when component C is touched, the **onTouch** callback is invoked by both component A and component C, but not by component B.
 
-For special container components, such as **\<Stack>**, **onTouch** events can be received by parent and child components at the same time, but how they are received by child components depends on the stacking relationship.
+For special container components, such as **Stack**, **onTouch** events can be received by parent and child components at the same time, but how they are received by child components depends on the stacking relationship.
 
 
 ```ts
@@ -71,7 +71,7 @@ ComponentA()
 )
 ```
 If the tap gesture and the swipe gesture are bound to a component in exclusive recognition mode, the gesture that first meets triggering conditions is preferentially triggered.
-If the user performs a tap, the callback corresponding to the tap is invoked. If the user performs a swipe, the callback corresponding to the swipe is invoked.
+If the user performs a tap operation, the callback corresponding to the tap is invoked. If the user performs a swipe operation and the swipe distance reaches the threshold, the callback corresponding to the swipe is invoked.
 
 ## Handling Multi-level Gesture Events with Custom Logic
 

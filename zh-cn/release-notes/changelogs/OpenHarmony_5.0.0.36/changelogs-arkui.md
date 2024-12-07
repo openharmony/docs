@@ -432,3 +432,38 @@ promptAction.showToast
 **适配指导**
 
 UX默认行为变更，无需适配。可以通过[promptAction](../../../application-dev/reference/apis-arkui/js-apis-promptAction.md)中ShowToastOptions接口自定义Toast背景色、字色等。
+
+
+## cl.arkui.9 QRCode深浅色适配修改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+QRCode在深色模式下使用默认颜色生成的二维码无法被正常识别。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前:在深色模式下，QRCode生成的二维码背景颜色为黑色，图案颜色为白色。
+
+变更后:在深色模式下，QRCode生成的二维码背景颜色为白色，图案颜色为黑色，与浅色模式相同。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36开始。
+
+**变更的接口/组件**
+
+QRcode组件
+
+**适配指导**
+
+默认效果变更，无需适配。

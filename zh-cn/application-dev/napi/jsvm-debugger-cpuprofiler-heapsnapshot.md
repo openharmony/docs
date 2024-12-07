@@ -36,7 +36,7 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 }]
 ```
 
-2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-0000001767796366-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
 3. 在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
@@ -46,7 +46,7 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
 #### 示例代码
-
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 ```cpp
 #include "ark_runtime/jsvm.h"
 
@@ -91,7 +91,7 @@ static void RunScript(JSVM_Env env) {
     OH_JSVM_CloseHandleScope(env, handleScope);
 }
 
-void RunDemo() {
+void TestJSVM() {
     JSVM_InitOptions initOptions{};
     OH_JSVM_Init(&initOptions);
 
@@ -117,6 +117,7 @@ void RunDemo() {
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
 }
+
 ```
 
 ### 使用 OH_JSVM_OpenInspectorWithName
@@ -136,7 +137,7 @@ void RunDemo() {
 }]
 ```
 
-2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-0000001767796366-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
 3. 打开 inspector 端口, 链接 devtools 用于调试, 其流程如下:  在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspectorWithName(env, 123, “test”)，创建 tcp socket 及其对应的 unixdomain 端口
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "cat /proc/net/unix | grep jsvm"。结果出现可用的 unix 端口即可, 如: jsvm_devtools_remote_9229_123, 其中 9229 为 tcp 端口号, 123 为对应的 pid
@@ -172,6 +173,7 @@ static void EnableInspector(JSVM_Env env) {
 2.输出数据可存入.heapsnapshot文件中。该文件类型可导入Chrome浏览器-DevTools-Memory工具中解析成内存分析视图。
 
 ### 示例代码
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ```cpp
 #include "ark_runtime/jsvm.h"
@@ -245,7 +247,7 @@ static void ProfilingEnd(JSVM_VM vm, JSVM_CpuProfiler cpuProfiler) {
     OH_JSVM_TakeHeapSnapshot(vm, OutputStream, &heapSnapshot);
 }
 
-static void RunScriptWithStatistics(JSVM_Env env) {
+static JSVM_Value RunScriptWithStatistics(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
     OH_JSVM_GetVM(env, &vm);
 
@@ -269,27 +271,20 @@ static void RunScriptWithStatistics(JSVM_Env env) {
 
     // 结束调优。
     ProfilingEnd(vm, cpuProfiler);
+    return nullptr;
 }
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunScriptWithStatistics},
+};
+static JSVM_CallbackStruct *method = param;
+// runScriptWithStatistics方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"runScriptWithStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+```
 
-void RunDemo() {
-    JSVM_InitOptions initOptions{};
-    OH_JSVM_Init(&initOptions);
 
-    JSVM_VM vm;
-    OH_JSVM_CreateVM(nullptr, &vm);
-    JSVM_VMScope vmScope;
-    OH_JSVM_OpenVMScope(vm, &vmScope);
-
-    JSVM_Env env;
-    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
-    JSVM_EnvScope envScope;
-    OH_JSVM_OpenEnvScope(env, &envScope);
-
-    RunScriptWithStatistics(env);
-
-    OH_JSVM_CloseEnvScope(env, envScope);
-    OH_JSVM_DestroyEnv(env);
-    OH_JSVM_CloseVMScope(vm, vmScope);
-    OH_JSVM_DestroyVM(vm);
-}
+// 样例测试JS
+```cpp
+const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
 ```

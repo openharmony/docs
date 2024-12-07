@@ -1,4 +1,4 @@
-# Managing Domain Account Plugins
+# Managing Domain Account Plugins (for System Applications Only)
 
 The system provides APIs for registering and unregistering a domain account plugin, which is used to customize domain account management.
 
@@ -77,7 +77,7 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
          message: "mock_message"
        };
        let domainStr: string = '';
-       if (options.domain != undefine) {
+       if (options.domain != undefined) {
         domainStr = options.domain
        }
        let accountInfo: osAccount.DomainAccountInfo = {

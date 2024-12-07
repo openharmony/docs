@@ -21,12 +21,12 @@ Describes screenshot options.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                | Type         | Mandatory | Description                                                        |
+| Name                | Type         | Mandatory| Description                                                        |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect             | [Rect](js-apis-screenshot.md#rect) | No  | Region of the screen to capture. If this parameter is null, the full screen will be captured.                      |
 | imageSize              | [Size](#size) | No  | Size of the screen region to capture. If this parameter is null, the full screen will be captured.                      |
 | rotation               | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**. The value must be an integer.    |
-| displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured. The value must be an integer. |
+| displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured. The value must be an integer.|
 
 ## Size
 
@@ -36,10 +36,10 @@ Describes the size of the screen region to capture.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes  | Width of the screen region to capture, in px. The value must be an integer. |
-| height | number | Yes  | Height of the screen region to capture, in px. The value must be an integer. |
+| width  | number | Yes  | Width of the screen region to capture, in px. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in px. The value must be an integer.|
 
 ## screenshot.save
 
@@ -55,19 +55,19 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory | Description                                                        |
+| Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately. |
+| options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
-| 202     | Permission denied, non-system app called system api.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
@@ -117,7 +117,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory | Description                                                        |
+| Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
@@ -126,9 +126,10 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 
 **Example**
 
@@ -164,24 +165,25 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
 
 **Parameters**
 
-| Name | Type                                   | Mandatory | Description                                                        |
+| Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately. |
+| options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
 
 **Return value**
 
 | Type                         | Description                                           |
 | ----------------------------- | ----------------------------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return a **PixelMap** object. |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return a **PixelMap** object.|
 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **Example**

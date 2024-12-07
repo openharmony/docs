@@ -109,7 +109,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -158,7 +158,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -205,7 +205,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -254,7 +254,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 

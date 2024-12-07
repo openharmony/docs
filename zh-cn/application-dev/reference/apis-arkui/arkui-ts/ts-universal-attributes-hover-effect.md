@@ -25,6 +25,8 @@ hoverEffect(value: HoverEffect)
 
 ## 示例
 
+该示例通过hoverEffect设置组件的鼠标悬浮态显示效果。
+
 ```ts
 // xxx.ets
 @Entry

@@ -38,56 +38,68 @@
    以下参数取值仅为举例，具体每个属性的取值范围，可参考API文档：[@ohos.multimedia.movingphotoview](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)。
    
    ```ts
-    MovingPhotoView({
-        movingPhoto: this.src,
-        controller: this.controller
-        })
-        .width('100%')
-        .height('100%')
-        // 是否静音播放，此处由按钮控制，默认值为false非静音播放。
-        .muted(this.isMuted)
-        // 视频显示模式，设置为Contain，默认值为Cover。
-        .objectFit(ImageFit.Contain)
-        // 播放时触发
-        .onStart(() => {
-            console.log('onStart')
-        })
-        // 播放结束触发
-        .onFinish(() => {
-            console.log('onFinish')
-        })
-        // 播放停止触发
-        .onStop(() => {
-            console.log('onStop')
-        })
-        // 出现错误触发
-        .onError(() => {
-            console.log('onError')
-        })
+    import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
-      Row() {
-        // 按钮：开始播放
-        Button('start')
-          .onClick(() => {
-            this.controller.startPlayback()
+    @Entry
+    @Component
+    struct Index {
+      @State src: photoAccessHelper.MovingPhoto | undefined = undefined
+      @State isMuted: boolean = false
+      controller: MovingPhotoViewController = new MovingPhotoViewController();
+      build() {
+        Column() {
+          MovingPhotoView({
+            movingPhoto: this.src,
+            controller: this.controller
+            // imageAIOptions: this.options
           })
-          .margin(5)
-        // 按钮：停止播放
-        Button('stop')
-          .onClick(() => {
-            this.controller.stopPlayback()
-          })
-          .margin(5)
-        // 按钮：是否静音播放
-        Button('mute')
-          .onClick(() => {
-            this.isMuted = !this.isMuted
-          })
-          .margin(5)
+            // 是否静音播放，此处由按钮控制，默认值为false非静音播放。
+            .muted(this.isMuted)
+            // 视频显示模式，默认值为Cover。
+            .objectFit(ImageFit.Cover)
+            // 播放时触发
+            .onStart(() => {
+              console.log('onStart');
+            })
+            // 播放结束触发
+            .onFinish(() => {
+              console.log('onFinish');
+            })
+            // 播放停止触发
+            .onStop(() => {
+              console.log('onStop')
+            })
+            // 出现错误触发
+            .onError(() => {
+              console.log('onError');
+            })
+    
+          Row() {
+            // 按钮：开始播放
+            Button('start')
+              .onClick(() => {
+                this.controller.startPlayback()
+              })
+              .margin(5)
+            // 按钮：停止播放
+            Button('stop')
+              .onClick(() => {
+                this.controller.stopPlayback()
+              })
+              .margin(5)
+            // 按钮：是否静音播放
+            Button('mute')
+              .onClick(() => {
+                this.isMuted = !this.isMuted
+              })
+              .margin(5)
+          }
+          .alignItems(VerticalAlign.Center)
+          .justifyContent(FlexAlign.Center)
+          .height('15%')
+        }
       }
-      .alignItems(VerticalAlign.Center)
-      .justifyContent(FlexAlign.Center)
-      .height('15%')
+    }
    ```
 
 ## 效果展示

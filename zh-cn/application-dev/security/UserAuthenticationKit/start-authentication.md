@@ -82,21 +82,25 @@
 ```ts
 // API version 10
 import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-// 设置认证参数
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-// 配置认证界面
-const widgetParam: userAuth.WidgetParam = {
-  title: '请进行身份认证',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16; // Generate a 16-byte random number.
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  // 设置认证参数
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // 配置认证界面
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
   // 获取认证对象
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
@@ -121,6 +125,7 @@ try {
 ```ts
 // API version 10
 import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 // 设置认证参数
@@ -128,19 +133,70 @@ let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
   reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
 }
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-  reuseUnlockResult: reuseUnlockResult,
-};
-// 配置认证界面
-const widgetParam: userAuth.WidgetParam = {
-  title: '请进行身份认证',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  // 配置认证界面
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
   // 获取认证对象
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 订阅认证结果
+  userAuthInstance.on('result', {
+    onResult(result) {
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      // 可在认证结束或其他业务需要场景，取消订阅认证结果
+      userAuthInstance.off('result');
+    }
+  });
+  console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+**示例3：**
+
+发起用户认证，采用认证可信等级≥ATL3的人脸 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果：
+
+```ts
+// API version 14
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+// 设置认证参数
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
+}
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  // 配置认证界面
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
+  // 获取认证对象
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {

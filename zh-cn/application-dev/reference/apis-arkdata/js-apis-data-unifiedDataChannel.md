@@ -803,6 +803,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 
 ```ts
 import { image } from '@kit.ImageKit'; // PixelMap类定义所在模块
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const color = new ArrayBuffer(96); // 创建pixelmap对象
 let opts: image.InitializationOptions = {
@@ -821,6 +823,20 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
     let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
     sdpixel.rawData = u8Array;
     let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+
+    // 从unifiedData中读取pixelMap类型的record
+    let records = unifiedData.getRecords();
+    for (let i = 0; i < records.length; i++) {
+      if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
+        let pixelmapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
+        let newArraybuf = pixelmapRecord.rawData.buffer;
+        pixelmap.writeBufferToPixels(newArraybuf).then(() => {
+          console.info('Succeeded in writing data from buffer to a pixelMap');
+        }).catch((error: BusinessError) => {
+          console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
+        })
+      }
+    }
   }
 })
 ```

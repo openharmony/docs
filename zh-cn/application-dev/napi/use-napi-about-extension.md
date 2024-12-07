@@ -2,7 +2,7 @@
 
 ## 简介
 
-[扩展能力接口](../reference/native-lib/napi.md)进一步扩展了Node-API的功能，提供了一些额外的接口，用于在Node-API模块中与ArkTS进行更灵活的交互和定制，这些接口可以用于创建自定义ArkTS对象等场景。
+[扩展能力](napi-data-types-interfaces.md#扩展能力)接口进一步扩展了Node-API的功能，提供了一些额外的接口，用于在Node-API模块中与ArkTS进行更灵活的交互和定制，这些接口可以用于创建自定义ArkTS对象等场景。
 
 Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
 
@@ -13,7 +13,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_load_module | 用于在Node-API模块中将abc文件作为模块加载，返回模块的命名空间，适用于需要在运行时动态加载模块或资源的应用程序，从而实现灵活的扩展和定制。 |
-| napi_load_module_with_info | 用于在Node-API中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTs基础运行时环境](use-napi-ark-runtime.md)中使用 |
+| napi_load_module_with_info | 用于在Node-API中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTS基础运行时环境](use-napi-ark-runtime.md)中使用。 |
 | napi_module_register | 有些功能可能需要通过Node-API模块来实现以获得更好的性能，通过将这些功能实现为自定义模块并注册到ArkTS环境中，可以在一定程度上提高整体的性能。 |
 
 ### 使用示例
@@ -117,7 +117,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2
 
 #### napi_create_object_with_properties
 
-用于使用给定的napi_property_descriptor作为属性去创建一个ArkTS对象，并且descriptor的键名必须为string，且不可转为number。
+用给定的napi_property_descriptor作为属性去创建一个ArkTS对象，并且descriptor的键名必须为string，且不可转为number。
 
 cpp部分代码
 
@@ -241,8 +241,9 @@ static napi_value RunScriptPath(napi_env env, napi_callback_info info)
     napi_value returnValue = nullptr;
     if (value == nullptr || status != napi_ok) {
         napi_get_boolean(env, false, &returnValue);
+    } else {
+        napi_get_boolean(env, true, &returnValue);
     }
-    napi_get_boolean(env, true, &returnValue);
     return returnValue;
 }
 ```
@@ -270,7 +271,7 @@ try {
 
 test.js代码，将js代码编成.abc文件，步骤如下:
 
-1. 在sdK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
+1. 在SDK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
 2. 执行命令如es2abc.exe test.js  --output test.abc后便可生成test.abc文件
 
 放入指定路径中：/entry/resources/rawfile
@@ -603,7 +604,7 @@ await taskpool.execute(task6);
 
 **注意事项**
 
-对ArkTs对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A'。
+对ArkTS对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A。
 ![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
 
 ## 事件循环
@@ -634,7 +635,7 @@ await taskpool.execute(task6);
 
 #### napi_create_ark_runtime、napi_destroy_ark_runtime
 
-[使用Node-API接口创建ArkTs运行时环境](use-napi-ark-runtime.md)
+[使用Node-API接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
 
 ## 序列化和反序列化
 
@@ -718,7 +719,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_call_threadsafe_function_with_priority | 将指定优先级和入队方式的任务投递到ArkTS线程。 |
+| napi_call_threadsafe_function_with_priority | 将指定优先级和入队方式的任务投递到ArkTS主线程。 |
 
 ### 使用示例
 
@@ -1059,7 +1060,7 @@ static napi_value WrapSendable(napi_env env, napi_callback_info info) {
 
     const char* testStr = "test";
     napi_wrap_sendable(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr);
-    
+
     return nullptr;
 }
 ```
@@ -1100,7 +1101,7 @@ static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info) {
 
     const char* testStr = "test";
     napi_wrap_sendable_with_size(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr, 100);
-    
+
     return nullptr;
 }
 ```
@@ -1145,7 +1146,7 @@ static napi_value UnwrapSendable(napi_env env, napi_callback_info info) {
     char* tmpTestStr = nullptr;
     napi_unwrap_sendable(env, obj, (void**)&tmpTestStr);
     OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
-    
+
     return nullptr;
 }
 ```
@@ -1190,7 +1191,7 @@ static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info) {
     char* tmpTestStr = nullptr;
     napi_remove_wrap_sendable(env, obj, (void**)&tmpTestStr);
     OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
-    
+
     return nullptr;
 }
 ```

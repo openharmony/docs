@@ -1,7 +1,7 @@
 # Connecting to a ServiceAbility
 
 
-If a ServiceAbility wants to interact with a PageAbility or a ServiceAbility in another application, you must first create a connection by calling **connectAbility()**. The [connectAbility()](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7) method of the PageAbility is defined in [featureAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md), and the [connectAbility()](../reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilityconnectability) method of the ServiceAbility is defined in [particleAbility](../reference/apis-ability-kit/js-apis-ability-particleAbility.md). For details about the connection rules, see [Component Startup Rules](component-startup-rules-fa.md). When using **connectAbility()** to process the callback, pass in the instances of [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) and [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) of the target ServiceAbility. [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) provides the following callbacks that you should implement.
+If a ServiceAbility wants to interact with a PageAbility or a ServiceAbility in another application, you must first create a connection by calling [connectAbility()](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7). This method is defined in the [featureAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md) class for the PageAbility and in the [particleAbility](../reference/apis-ability-kit/js-apis-ability-particleAbility.md) class for the ServiceAbility. For details about the connection rules, see [Component Startup Rules](component-startup-rules-fa.md). When using **connectAbility()** to process the callback, pass in the instances of [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) and [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) of the target ServiceAbility. [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) provides the following callbacks that you should implement.
 
 
 **Table 1** IAbilityConnection APIs
@@ -45,7 +45,7 @@ struct PageServiceAbility {
                 hilog.info(domain, TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
                 if (proxy === null) {
                   promptAction.showToast({
-                    message: $r('app.string.connect_service_failed_toast')
+                    message: 'connect_service_failed_toast'
                   });
                   return;
                 }
@@ -55,19 +55,19 @@ struct PageServiceAbility {
                 data.writeInterfaceToken('connect.test.token');
                 proxy.sendRequest(0, data, reply, option);
                 promptAction.showToast({
-                  message: $r('app.string.connect_service_success_toast')
+                  message: 'connect_service_success_toast'
                 });
               },
               onDisconnect: (element) => {
                 hilog.info(domain, TAG, `onConnectLocalService onDisconnectDone element:${element}`);
                 promptAction.showToast({
-                  message: $r('app.string.disconnect_service_success_toast')
+                  message: 'disconnect_service_success_toast'
                 });
               },
               onFailed: (code) => {
                 hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${code}`);
                 promptAction.showToast({
-                  message: $r('app.string.connect_service_failed_toast')
+                  message: 'connect_service_failed_toast'
                 });
               }
             };
@@ -90,7 +90,7 @@ struct PageServiceAbility {
 ```
 
 
-When the ServiceAbility is connected, the **onConnect()** callback is invoked and returns an **IRemoteObject** defining the proxy used for communicating with the ServiceAbility. The system provides a default implementation of **IRemoteObject**. You can extend **rpc.RemoteObject** to implement your own class of **IRemoteObject**.
+When the ServiceAbility is connected, the [onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect) callback is invoked and returns an [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject) defining the proxy used for communicating with the ServiceAbility. The system provides a default implementation of **IRemoteObject**. You can extend [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject) to implement your own class of **IRemoteObject**.
 
 
 The following sample code shows how the ServiceAbility returns itself to the caller:

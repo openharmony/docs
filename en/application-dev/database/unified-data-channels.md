@@ -9,9 +9,9 @@ The Unified Data Management Framework (UDMF) provides unified data channels and 
 
 ## Definition and Implementation of Unified Data Channels
 
-The unified data channel provides cross-application data access for various service scenarios. It can temporarily store the unified data objects to be shared by an application, and manage the access permissions and lifecycle of the data according to certain policies.
+The unified data channel provides cross-application data access for various service scenarios. It can temporarily store the unified data objects to be shared by an application, and manage the data modification and deletion permissions and lifecycle of the data according to certain policies.
 
-The unified data channel is implemented by the system ability provided by the UDMF. When an application (data provider) needs to share data, it calls the **insert()** method provided by the UDMF to write the data to the UDMF data channel, and calls UDMF **update()** or **delete()** to update or delete the data. After passing the permission verification, the target application (data consumer) calls the UDMF **read()** to access the data. After the data is read, the UDMF performs lifecycle management of the data.
+The unified data channel is implemented by the system ability provided by the UDMF. When an application (data provider) needs to share data, it calls the **insertData()** method provided by the UDMF to write the data to the UDMF data channel, and calls UDMF **updateData()** or **deleteData()** to update or delete the data saved by the application. The target application (data consumer) can access the data by the APIs provided by the UDMF. The UDMF manages the data lifecycle in a unified manner and deletes the data that has been stored for more than one hour every hour.
 
 The unified data object (**UnifiedData**) is uniquely identified by a URI in the UDMF data channel. The URI is in the **udmf://*intention*/*bundleName*/*groupId*** format, where:
 
@@ -41,7 +41,7 @@ The following table lists the UDMF APIs. All of them are executed asynchronously
 
 ## How to Develop
 
-The following example describes how to implement many-to-many data sharing. The data provider writes data to the UMDF public data channel, and updates and deletes the data. The data consumer obtains the data shared by the data provider.
+The following example describes how to implement many-to-many data sharing. The data provider calls **insertData()** provided by the UMDF to write data to the public data channel. The return value (unique identifier of the data written) can be used to update or delete the data. The data consumer uses the query() APIs provided by the UDMF to obtain full data of the public data channel.
 
 ### Data Provider
 
@@ -78,18 +78,18 @@ The following example describes how to implement many-to-many data sharing. The 
 3. Update the **UnifiedData** object inserted.
 
    ```ts
-   let plainText = new unifiedDataChannel.PlainText();
-   plainText.textContent = 'How are you!';
-   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+   let plainTextUpdate = new unifiedDataChannel.PlainText();
+   plainTextUpdate.textContent = 'How are you!';
+   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(plainTextUpdate);
    
    // Specify the URI of the UnifiedData object to update.
-   let options: unifiedDataChannel.Options = {
-     // The key here is an example and cannot be directly used. Use the value in the callback of insertData().
+   let optionsUpdate: unifiedDataChannel.Options = {
+     //The key here is an example and cannot be directly used. Use the value in the callback of insertData().
      key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
    
    try {
-     unifiedDataChannel.updateData(options, unifiedData, (err) => {
+     unifiedDataChannel.updateData(optionsUpdate, unifiedDataUpdate, (err) => {
        if (err === undefined) {
          console.info('Succeeded in updating data.');
        } else {
@@ -105,12 +105,12 @@ The following example describes how to implement many-to-many data sharing. The 
 
    ```ts
    // Specify the type of the data channel whose data is to be deleted.
-   let options: unifiedDataChannel.Options = {
+   let optionsDelete: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
    };
 
    try {
-     unifiedDataChannel.deleteData(options, (err, data) => {
+     unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
        if (err === undefined) {
          console.info(`Succeeded in deleting data. size = ${data.length}`);
          for (let i = 0; i < data.length; i++) {

@@ -24,7 +24,7 @@ Crypto Architecture Kit provides the following functionalities, with algorithm s
 
 - [Key Agreement](crypto-key-agreement-overview.md)
 
-- [Message Digest](crypto-generate-message-digest.md)
+- [MD Generation](crypto-generate-message-digest-overview.md)
 
 - [MAC Operation](crypto-compute-mac.md)
 

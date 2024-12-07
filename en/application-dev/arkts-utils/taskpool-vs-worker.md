@@ -1,7 +1,11 @@
 # Comparison Between TaskPool and Worker
 
 
-**TaskPool** and **Worker** provide a multithreaded environment for applications to process time-consuming computing tasks or resource intensive tasks, preventing these tasks from blocking the main thread. This maximizes system utilization, reduces overall resource consumption, and improves overall system performance.
+**TaskPool** and **Worker** provide a multithreaded environment for applications to process time-consuming computing tasks or resource intensive tasks, preventing these tasks from blocking the host thread. This maximizes system utilization, reduces overall resource consumption, and improves overall system performance.
+
+
+ 
+
 
 ## Implementation Feature Comparison
 
@@ -34,12 +38,12 @@ Both **TaskPool** and **Worker** support multithreaded concurrency. **TaskPool**
 
 Common use cases are as follows:
 
-- Use **Worker** for a task that runs for more than 3 minutes (excluding the time used for Promise or async/await asynchronous call, for example, I/O tasks such as network download and file read/write). For example, use **Worker** for a 1-hour prediction algorithm training job in the background.
+- Use **Worker** for a task that runs for more than 3 minutes (excluding the time used for Promise or async/await asynchronous call, for example, I/O tasks such as network download and file read/write). For example, use **Worker** for a 1-hour prediction algorithm training job in the background. For details about the scenario example, see [Resident Task Development](./resident-task-guide.md).
 
-- Use **Worker** for a series of associated synchronous tasks. For example, in scenarios where handles are used, if different handles are created each time and they must be stored permanently for subsequent operation, use **Worker**.
+- Use **Worker** for a series of associated synchronous tasks. For example, in scenarios where handles are used, if different handles are created each time and they must be stored permanently for subsequent operation, use **Worker**. For details, see [Using Worker to Process Associated Synchronous Tasks](./sync-task-development.md#using-worker-to-process-associated-synchronous-tasks).
 
 - Use **TaskPool** for a task for which the priority needs to be set. For example, in the histogram rendering scenario in Gallery, histogram data calculated in the background is used for UI display on the foreground. Therefore, histogram data calculation must be treated with high priority. In this case, use **TaskPool**.
 
 - Use **TaskPool** for a task that is subject to cancellation at any time. For example, in the large image browsing scenario in Gallery, two images before and after the current image are cached. When the user swipes one side, the image cache task on the other side needs to be canceled. In this case, use **TaskPool**.
 
-- Use **TaskPool** for a large number of tasks or tasks with scattered scheduling points. For example, a large application with multiple modules may have multiple time-consuming tasks, and it is inconvenient to use worker threads to manage load. In this case, **TaskPool** is recommended.
+- Use **TaskPool** for a large number of tasks or tasks with scattered scheduling points. For example, a large application with multiple modules may have multiple time-consuming tasks, and it is inconvenient to use worker threads to manage load. In this case, **TaskPool** is recommended. For details about the scenario example, see [Batch Data Writing to the Database](./batch-database-operations-guide.md).

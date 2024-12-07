@@ -18,47 +18,32 @@ BigInt是ArkTS中用于表示任意精度整数的数据类型，它能够处理
 | -------- | -------- |
 | napi_create_bigint_int64 | 用于创建64位带符号整数（int64）的BigInt对象的函数。 |
 | napi_create_bigint_uint64 | 用于创建64位无符号整数（uint64）的BigInt对象的函数。 |
-| napi_create_bigint_words | 用于根据提供的字节数据创建BigInt对象的函数。 |
+| napi_create_bigint_words | 用于根据提供的64位无符号（uint64）字节数据创建BigInt对象的函数。 |
 | napi_get_value_bigint_int64 | 用于从BigInt对象中获取64位带符号整数（int64）值的函数。 |
 | napi_get_value_bigint_uint64 | 用于从BigInt对象中获取64位无符号整数（uint64）值的函数。 |
-| napi_get_value_bigint_words | 用于从BigInt对象中检索底层表示形式的字节数据。 |
+| napi_get_value_bigint_words | 用于从BigInt对象中获取底层的64位无符号（uint64）字节数据。 |
+
 
 ## 使用示例
 
 Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
 
-### napi_get_value_bigint_words
+### napi_create_bigint_int64
 
-用于获取ArkTS BigInt对象对应的信息。
+这个函数用于在给定的Node-API环境中依据一个带有符号的64位整数创建一个ArkTS的BigInt对象。
 
 cpp部分代码
 
 ```cpp
-#include "hilog/log.h"
 #include "napi/native_api.h"
 
-static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
+static napi_value CreateBigintInt64t(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int signBit = 0;
-    size_t wordCount = 0;
-    uint64_t words = 0;
-    // 调用napi_get_value_bigint_words接口获取wordCount
-    napi_status status = napi_get_value_bigint_words(env, args[0], nullptr, &wordCount, nullptr);
-    OH_LOG_INFO(LOG_APP, "Node-API , wordCount:%{public}d.", wordCount);
-    // 调用napi_get_value_bigint_words接口获取传入bigInt相关信息，如：signBit传入bigInt正负信息
-    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, &words);
-    OH_LOG_INFO(LOG_APP, "Node-API , signBit: %{public}d.", signBit);
-    if (status != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "Node-API , reason:%{public}d.", status);
-        napi_throw_error(env, nullptr, "napi_get_date_value fail");
-        return nullptr;
-    }
-    // 将符号位转化为int类型传出去
+    // 声明int64_t的变量value
+    int64_t value = -5555555555555555555;
+    // 将value转化为napi_value类型返回
     napi_value returnValue = nullptr;
-    napi_create_int32(env, signBit, &returnValue);
+    napi_create_bigint_int64(env, value, &returnValue);
     return returnValue;
 }
 ```
@@ -67,7 +52,7 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintWords: (bigIntWords: bigint) => bigint | void;
+export const createBigintInt64t: () => bigint;
 ```
 
 ArkTS侧示例代码
@@ -75,14 +60,44 @@ ArkTS侧示例代码
 ```ts
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
-let bigInt = BigInt(-5555555555555555);
-let bigUint = BigInt(5555555555555555);
-try {
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_words signBit is: %{public}d', testNapi.getValueBigintWords(bigInt));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_words signBit is: %{public}d', testNapi.getValueBigintWords(bigUint));
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API NapiGetValueBigint: %{public}s', error.message);
+
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_int64: %{public}d', testNapi.createBigintInt64t());
+```
+
+### napi_create_bigint_uint64
+
+这个函数用于在给定的Node-API环境中依据一个无符号的64位整数创建一个ArkTS的BigInt对象。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
+{
+    // 声明uint64_t的变量value
+    uint64_t value = 5555555555555555555;
+    // 将value转化为napi_value类型返回
+    napi_value returnValue = nullptr;
+    napi_create_bigint_uint64(env, value, &returnValue);
+    return returnValue;
 }
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const createBigintUint64t: () => bigint;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_uint64: %{public}d', testNapi.createBigintUint64t());
 ```
 
 ### napi_create_bigint_words
@@ -129,22 +144,32 @@ try {
 }
 ```
 
-### napi_create_bigint_uint64
+### napi_get_value_bigint_int64
 
-这个函数用于在给定的Node-API环境中依据一个无符号的64位整数创建一个ArkTS的BigInt对象。
+用于从传入的参数中提取64位整数的BigInt数据，以供后续处理。
 
 cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
+static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
 {
-    // 声明uint64_t的变量value
-    uint64_t value = 5555555555555555555;
-    // 将value转化为napi_value类型返回
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 从传入的参数中提取64位整数的BigInt数据
+    int64_t value = 0;
+    bool lossLess = false;
+    napi_status status = napi_get_value_bigint_int64(env, args[0], &value, &lossLess);
+    // 判断从ArkTS侧获取bigint是否为无损转换，如果不是抛出异常
+    if (!lossLess) {
+        napi_throw_error(env, nullptr, "BigInt values have not been lossless converted");
+        return nullptr;
+    }
+    // 如果接口调用成功正常调用则返回true给ArkTS侧
     napi_value returnValue = nullptr;
-    napi_create_bigint_uint64(env, value, &returnValue);
+    napi_get_boolean(env, status == napi_ok, &returnValue);
     return returnValue;
 }
 ```
@@ -153,7 +178,7 @@ static napi_value CreateBigintUint64t(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createBigintUint64t: () => bigint;
+export const getValueBigintInt64t: (bigInt64: bigint) => boolean | void;
 ```
 
 ArkTS侧示例代码
@@ -161,8 +186,13 @@ ArkTS侧示例代码
 ```ts
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
-
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_uint64: %{public}d', testNapi.createBigintUint64t());
+let bigInt = BigInt(-5555555555555555);
+try {
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_int64: %{public}s',
+             JSON.stringify(testNapi.getValueBigintInt64t(bigInt)));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API NapiGetValueBigint: %{public}s', error.message);
+}
 ```
 
 ### napi_get_value_bigint_uint64
@@ -216,68 +246,38 @@ try {
 }
 ```
 
-### napi_create_bigint_int64
+### napi_get_value_bigint_words
 
-这个函数用于在给定的Node-API环境中依据一个带有符号的64位整数创建一个ArkTS的BigInt对象。
-
-cpp部分代码
-
-```cpp
-#include "napi/native_api.h"
-
-static napi_value CreateBigintInt64t(napi_env env, napi_callback_info info)
-{
-    // 声明int64_t的变量value
-    int64_t value = -5555555555555555555;
-    // 将value转化为napi_value类型返回
-    napi_value returnValue = nullptr;
-    napi_create_bigint_int64(env, value, &returnValue);
-    return returnValue;
-}
-```
-
-接口声明
-
-```ts
-// index.d.ts
-export const createBigintInt64t: () => bigint;
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
-
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_int64: %{public}d', testNapi.createBigintInt64t());
-```
-
-### napi_get_value_bigint_int64
-
-用于从传入的参数中提取64位整数的BigInt数据，以供后续处理。
+用于获取ArkTS的BigInt对象底层的64位无符号（uint64）二进制字节数据。
 
 cpp部分代码
 
 ```cpp
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
-static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
+static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 从传入的参数中提取64位整数的BigInt数据
-    int64_t value = 0;
-    bool lossLess = false;
-    napi_status status = napi_get_value_bigint_int64(env, args[0], &value, &lossLess);
-    // 判断从ArkTS侧获取bigint是否为无损转换，如果不是抛出异常
-    if (!lossLess) {
-        napi_throw_error(env, nullptr, "BigInt values have not been lossless converted");
+    int signBit = 0;
+    size_t wordCount = 0;
+    uint64_t words = 0;
+    // 调用napi_get_value_bigint_words接口获取wordCount
+    napi_status status = napi_get_value_bigint_words(env, args[0], nullptr, &wordCount, nullptr);
+    OH_LOG_INFO(LOG_APP, "Node-API , wordCount:%{public}d.", wordCount);
+    // 调用napi_get_value_bigint_words接口获取传入bigInt相关信息，如：signBit传入bigInt正负信息
+    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, &words);
+    OH_LOG_INFO(LOG_APP, "Node-API , signBit: %{public}d.", signBit);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API , reason:%{public}d.", status);
+        napi_throw_error(env, nullptr, "napi_get_date_value fail");
         return nullptr;
     }
-    // 如果接口调用成功正常调用则返回true给ArkTS侧
+    // 将符号位转化为int类型传出去
     napi_value returnValue = nullptr;
-    napi_get_boolean(env, status == napi_ok, &returnValue);
+    napi_create_int32(env, signBit, &returnValue);
     return returnValue;
 }
 ```
@@ -286,7 +286,7 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBigintInt64t: (bigInt64: bigint) => boolean | void;
+export const getValueBigintWords: (bigIntWords: bigint) => bigint | void;
 ```
 
 ArkTS侧示例代码
@@ -295,9 +295,10 @@ ArkTS侧示例代码
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 let bigInt = BigInt(-5555555555555555);
+let bigUint = BigInt(5555555555555555);
 try {
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_int64: %{public}s',
-             JSON.stringify(testNapi.getValueBigintInt64t(bigInt)));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_words signBit is: %{public}d', testNapi.getValueBigintWords(bigInt));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_value_bigint_words signBit is: %{public}d', testNapi.getValueBigintWords(bigUint));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API NapiGetValueBigint: %{public}s', error.message);
 }

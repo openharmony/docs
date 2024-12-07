@@ -19,7 +19,7 @@ The sorting function is implemented by the [compare](../reference/apis-localizat
    let collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
    ```
 
-3. Compare strings.
+3. Compare two strings.
    ```ts
    let compareResult = collator.compare(first: string, second: string);
    // If compareResult is a negative number, the first parameter is placed before the second parameter.

@@ -50,7 +50,7 @@
 
 3. 三级目录el1/、el2/：代表不同文件加密类型。
    - el1，设备级加密区：设备开机后即可访问的数据区。
-   - el2，用户级加密区：设备开机后，需要至少一次解锁对应用户的锁屏界面（密码、指纹、人脸等方式或无密码状态）后，才能够访问的加密数据区。<br>
+   - el2，用户级加密区：设备开机后，若处于无密码状态，可直接访问；若处于有密码状态，则需要至少一次解锁对应用户的锁屏界面后（密码、指纹、人脸等方式解锁皆可），才能够访问的加密数据区。<br>
    应用如无特殊需要，应将数据存放在el2加密目录下，以尽可能保证数据安全。但是对于某些场景，一些应用文件需要在用户解锁前就可被访问，例如时钟、闹铃、壁纸等，此时应用需要将这些文件存放到设备级加密区（el1）。切换应用文件加密类型目录的方法请参见[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)。
 
 4. 四级、五级目录：
@@ -77,7 +77,7 @@
 
 在应用沙箱路径下读写文件，经过映射转换，实际读写的是真实物理路径中的应用文件，应用沙箱路径与真实物理路径对应关系如下表所示。
 
-其中&lt;USERID&gt;当前固定为100，&lt;EXTENSIONPATH&gt;为moduleName-extensionName。应用是否以Extension独立沙箱运行可参考[ExtensionAbility组件](../application-models/extensionability-overview.md)。
+其中&lt;USERID&gt;为当前用户ID，从100开始递增，&lt;EXTENSIONPATH&gt;为moduleName-extensionName。应用是否以Extension独立沙箱运行可参考[ExtensionAbility组件](../application-models/extensionability-overview.md)。
 
 | 应用沙箱路径 | 物理路径 |
 | -------- | -------- |

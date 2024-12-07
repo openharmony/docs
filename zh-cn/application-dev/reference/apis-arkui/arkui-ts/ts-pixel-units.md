@@ -1,6 +1,6 @@
 # 像素单位
 
-ArkUI为开发者提供4种像素单位，框架采用vp为基准数据单位。
+ArkUI为开发者提供4种像素单位，采用vp为基准数据单位。
 
 >**说明：**
 >
@@ -36,6 +36,10 @@ ArkUI为开发者提供4种像素单位，框架采用vp为基准数据单位。
 
 
 ## 示例
+
+> **说明：**
+>
+> 直接使用vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx可能存在UI上下文不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，再使用UIContext下的[vp2px/px2vp/fp2px/px2fp/lpx2px/px2lpx](../js-apis-arkui-UIContext.md#vp2px12)调用绑定实例的接口。
 
 ```ts
 // xxx.ets
@@ -86,6 +90,7 @@ struct Example {
 
         Column() {
           Text("width(vp2px(220) + 'px')")
+            // 建议使用this.getUIContext().vp2px()
             .width(vp2px(220) + 'px')
             .height(40)
             .backgroundColor(0xF9CF93)
@@ -106,6 +111,7 @@ struct Example {
 
         Column() {
           Text("width(px2vp(220))")
+            // 建议使用this.getUIContext().px2vp()
             .width(px2vp(220))
             .height(40)
             .backgroundColor(0xF9CF93)

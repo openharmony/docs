@@ -16,7 +16,7 @@ import { hid } from '@kit.ConnectivityKit';
 
 ## HidHostProfile
 
-Before using any API of **HidHostProfile**, you need to create an instance of this class by using **createHidHostProfile()**.
+Before using the **HidHostProfile** APIs, you need to create an instance of this class by using [createHidHostProfile()](js-apis-bluetooth-hid.md#hidcreatehidhostprofile).
 
 ### connect
 

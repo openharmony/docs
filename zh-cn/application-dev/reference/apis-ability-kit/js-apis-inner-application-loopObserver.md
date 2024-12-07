@@ -1,6 +1,6 @@
 # LoopObserver
 
-定义异常监听，可以作为[ErrorManager.on](./js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用主线程事件处理时间。
+定义异常监听，可以作为[ErrorManager.on](./js-apis-app-ability-errorManager.md#errormanageronerror)的入参监听当前应用主线程事件处理时间。
 
 > **说明：**
 > 

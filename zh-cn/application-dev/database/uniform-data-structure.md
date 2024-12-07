@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-针对[UTD标准化数据类型](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中的部分常见类型，为了方便业务使用，我们提供了标准化数据结构，例如系统定义的桌面图标类型（对应的标准化数据类型标识为为'openharmony.app-item'），我们明确定义了该数据结构对应的相关描述信息。
+针对[UTD标准化数据类型](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中的部分常见类型，为了方便业务使用，我们按照不同的数据类型提供了标准化数据结构，例如系统定义的桌面图标类型（对应的标准化数据类型标识为'openharmony.app-item'），我们明确定义了该数据结构对应的相关描述信息。
 
 某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入[拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
 
@@ -38,7 +38,7 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
     details : hyperlinkDetails,
   }
   
-  hyperlink.description = '...';  // 修该hyperlink属性description
+  hyperlink.description = '...';  // 修改hyperlink属性description
   
   console.info(`hyperlink url = ${hyperlink.url}`);  // 访问对象属性。
   

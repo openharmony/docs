@@ -13,10 +13,10 @@ The **AbilityConstant** module defines the enums of the window types in the UIAb
 ## Modules to Import
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
-## AbilityConstant.WindowMode
+## WindowMode
 
 Enumerates the window modes in which an ability can be displayed at startup. It can be used in **startAbility()** to specify the window mode when the ability is started.
 
@@ -27,17 +27,13 @@ Enumerates the window modes in which an ability can be displayed at startup. It 
 | Name                       | Value| Description                |
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | Undefined window mode.      |
-| WINDOW_MODE_FULLSCREEN      | 1   | The ability is displayed in full screen.           |
 | WINDOW_MODE_FLOATING        | 102 | The ability is displayed in a floating window.|
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, StartOptions, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.example.myapplication',
@@ -50,9 +46,9 @@ let option: StartOptions = {
 // Ensure that the context is obtained.
 class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    this.context.startAbility(want, option).then(()=>{
+    this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
-    }).catch((error: BusinessError)=>{
+    }).catch((error: BusinessError) => {
       console.error('Failed to start ability with error: ${JSON.stringify(error)}');
     });
   }

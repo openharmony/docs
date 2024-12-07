@@ -1,7 +1,7 @@
 # AttributeUpdater
 
 ## 概述
-大量属性频繁更新时，如果使用状态变量，会导致前端状态管理计算量太大，并需要对单个组件进行全量的属性更新。虽然可以通过`AttributeModifier`的机制按需更新，但是前端还是默认会有一些diff和reset的策略。
+大量属性频繁更新时，如果使用状态变量，会导致前端状态管理计算量太大，并需要对单个组件进行全量的属性更新。虽然可以通过[AttributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)的机制按需更新，但是前端还是默认会有一些diff和reset的策略。
 
 为此引入了`AttributeUpdater`的能力，它是一个特殊的`AttributeModifier`，除了继承`AttributeModifier`的能力，还提供了获取属性对象的能力。通过属性对象可以不经过状态变量，直接更新对应属性。使用`AttributeUpdater`，开发者可实现自定义的更新策略，进一步提高属性更新的性能。但是由于该能力比较灵活，无法限制“单一数据源”的规则，同时和状态变量更新相同属性时，存在相互覆盖的情况，需要开发者自己保障属性设置的合理性。
 

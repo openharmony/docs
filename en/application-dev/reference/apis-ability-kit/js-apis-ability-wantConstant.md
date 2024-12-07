@@ -12,7 +12,7 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
-## wantConstant.Action
+## Action
 
 Enumerates the action constants of the **Want** object. **action** specifies the operation to execute.
 
@@ -48,7 +48,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
 
 
-## wantConstant.Entity
+## Entity
 
 Enumerates the entity constants of the **Want** object. **entity** specifies additional information of the target ability.
 
@@ -63,7 +63,7 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | ENTITY_VIDEO                               | entity.system.video                      | Video type entity.                                     |
 
 
-## wantConstant.Flags
+## Flags
 
  Enumerates the flags that specify how the Want will be handled.
 

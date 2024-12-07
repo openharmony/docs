@@ -283,7 +283,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **示例：**
 
@@ -327,7 +327,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **示例：**
 

@@ -75,7 +75,7 @@ struct WorseUseIf {
   build() {
     Column() {
       Button("Switch visible and hidden").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         if (this.isVisible) {// 使用条件渲染切换，会频繁创建与销毁组件
@@ -113,7 +113,7 @@ struct BetterUseVisibility {
   build() {
     Column() {
       Button("Switch visible and hidden").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         Scroll() {
@@ -167,7 +167,7 @@ struct WorseUseVisibility {
   build() {
     Column() {
       Button("Show the Hidden on start").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         Image($r('app.media.icon')).objectFit(ImageFit.Contain).width('50%').height('50%')
@@ -204,7 +204,7 @@ struct BetterUseIf {
   build() {
     Column() {
       Button("Show the Hidden on start").onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       }).width('100%')
       Stack() {
         Image($r('app.media.icon')).objectFit(ImageFit.Contain).width('50%').height('50%')

@@ -106,7 +106,9 @@ async function setListener() {
     assetId: '0',
     title: 'TITLE',
     mediaImage: 'IMAGE',
-    lyric: 'http://www.test.lyric',
+    // The LRC contains two types of elements: time tag + lyrics, and ID tag.
+    // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
+    lyric: "Lyrics in LRC format",
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -268,31 +270,31 @@ The application can register different control commands through **on()** to impl
 
 The table below lists the control commands supported by media assets.
 
-| Control Command | Description  |
+| Control Command| Description  |
 | ------  | -------------------------|
-| play    | Plays the media. |
-| pause    | Pauses the playback. |
-| stop    | Stops the playback. |
-| playNext    | Plays the next media asset. |
-| playPrevious    | Plays the previous media asset. |
-| fastForward    | Fast-forwards. |
-| rewind    | Rewinds. |
-| playFromAssetId    | Plays a media asset with a given asset ID. |
-| seek    | Seeks to a playback position.  |
-| setSpeed    | Sets the playback speed. |
-| setLoopMode    | Sets the loop mode. |
-| toggleFavorite    | Favorites or unfavorites a media asset. |
-| skipToQueueItem    | Selects an item in the playlist. |
-| handleKeyEvent    | Sets a key event. |
-| commonCommand    | Customizes a control command. |
+| play    | Plays the media.|
+| pause    | Pauses the playback.|
+| stop    | Stops the playback.|
+| playNext    | Plays the next media asset.|
+| playPrevious    | Plays the previous media asset.|
+| fastForward    | Fast-forwards.|
+| rewind    | Rewinds.|
+| playFromAssetId    | Plays a media asset with a given asset ID.|
+| seek    | Seeks to a playback position. |
+| setSpeed    | Sets the playback speed.|
+| setLoopMode    | Sets the loop mode.|
+| toggleFavorite    | Favorites or unfavorites a media asset.|
+| skipToQueueItem    | Selects an item in the playlist.|
+| handleKeyEvent    | Sets a key event.|
+| commonCommand    | Customizes a control command.|
 
 The table below lists the control commands for calling applications.
 
-| Control Command | Description  |
+| Control Command| Description  |
 | ------  | -------------------------|
-| answer    | Answers a call. |
-| hangUp    | Ends a call. |
-| toggleCallMute    | Mutes or unmutes a call. |
+| answer    | Answers a call.|
+| hangUp    | Ends a call.|
+| toggleCallMute    | Mutes or unmutes a call.|
 
 ### Handling Unsupported Commands
 
@@ -487,3 +489,6 @@ Currently, the system does not provide APIs for proactively sending control noti
 > Currently, notifications are displayed for audio AVSession, but not video AVSession.
 >
 > The system sends playback control widgets in the notification center and on the lock screen and controls their lifecycle.
+
+<!--RP2-->
+<!--RP2End-->

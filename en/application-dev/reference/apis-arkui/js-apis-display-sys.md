@@ -26,22 +26,23 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description      |
+| Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0. |
+| id     | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0.|
 
 **Return value**
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br> |
+|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -85,17 +86,18 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory | Description                                                   |
+| Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes. |
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite. |
+| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **Example**
@@ -125,17 +127,18 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory | Description                                                   |
+| Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes. |
-| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite. |
+| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **Example**
@@ -159,17 +162,17 @@ Sets the display mode of the foldable device.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory | Description                                                   |
+| Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | Yes  | Display mode. |
+| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | Yes  | Display mode.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
-| 202     | Permission verification failed, non-system application uses system API.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -197,17 +200,17 @@ Sets whether to lock the current fold status of the foldable device.
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory | Description                                                   |
+| Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| locked     | boolean    | Yes  | Whether to lock the current fold status of the foldable device. The value **true** means to lock the current fold status, and **false** means the opposite. |
+| locked     | boolean    | Yes  | Whether to lock the current fold status of the foldable device. The value **true** means to lock the current fold status, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
-| 202     | Permission verification failed, non-system application uses system API.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -240,16 +243,17 @@ Checks whether this screen contains an immersive window. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                       | Mandatory | Description                                                        |
+| Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite. |
+| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
@@ -284,14 +288,15 @@ Checks whether this screen contains an immersive window. This API uses a promise
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |

@@ -106,7 +106,9 @@ async function setListener() {
     assetId: '0',
     title: 'TITLE',
     mediaImage: 'IMAGE',
-    lyric: 'http://www.test.lyric',
+    // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+    // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+    lyric: "lrc格式歌词内容",
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -480,9 +482,104 @@ async function setListener() {
 
 ## 适配媒体通知
 
-当前系统不直接向应用提供主动发送媒体控制通知的接口，那么当应用进入播放状态时，系统会自动发送通知，同时在通知和锁屏界面进行展示。
+当前系统不直接向应用提供主动发送媒体控制通知的接口，那么当应用正确接入媒体播控中心并进入播放状态时，系统会自动发送通知，同时在通知和锁屏界面进行展示。
 
 > **说明：**
 >
-> 1. 目前仅audio类型的媒体会话会在通知入口展示，video类型暂时不支持展示。
-> 2. 通知中心、锁屏下的播控卡片的展示，由系统进行发送，并控制相应的生命周期。
+> 通知中心、锁屏下的播控卡片的展示，由系统进行发送，并控制相应的生命周期。
+
+## 适配蓝牙按键与有线按键事件
+
+当前系统不直接向应用提供监听多模按键事件的接口，应用如需要监听蓝牙与有线耳机的媒体按键事件，可以通过注册AVSession的控制指令来实现。AVSession提供了如下两种实现方式：
+- 方式一（推荐使用）：
+  按照应用业务需求，正确接入媒体播控中心，[注册需要的控制指令](#注册控制命令)并实现对应的功能。AVSession会监听多模按键事件，将其转换为AVSession的控制指令发送回应用。应用无须区分不同的按键事件，按照AVSession的回调处理即可。按照此方式接入播放暂停，也等同于适配了蓝牙耳机的佩戴检测，在双耳佩戴与摘下时也会收到如下播放暂停控制指令。目前支持转换的AVSession控制指令如下：
+  | 控制命令 | 功能说明   |
+  | ------  | -------------------------|
+  | play    | 播放命令。 |
+  | pause    | 暂停命令。 |
+  | stop    | 停止命令。 |
+  | playNext    | 播放下一首命令。 |
+  | playPrevious    | 播放上一首命令。 |
+  | fastForward    | 快进命令。 |
+  | rewind    | 快退命令。 |
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+
+  let context: Context = getContext(this);
+  async function setListenerForMesFromController() {
+    let type: AVSessionManager.AVSessionType = 'audio';
+    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+    // 设置必要的媒体信息，务必设置，否则接收不到控制事件
+    let metadata: AVSessionManager.AVMetadata = {
+      assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
+      title: 'TITLE',
+      mediaImage: 'IMAGE',
+      artist: 'ARTIST'
+    };
+    session.setAVMetadata(metadata).then(() => {
+      console.info(`SetAVMetadata successfully`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+    });
+    // 一般在监听器中会对播放器做相应逻辑处理
+    // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例
+    session.on('play', () => {
+      console.info(`on play , do play task`);
+      // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('play')取消监听
+      // 处理完毕后，请使用SetAVPlayState上报播放状态
+    });
+    session.on('pause', () => {
+      console.info(`on pause , do pause task`);
+      // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('pause')取消监听
+      // 处理完毕后，请使用SetAVPlayState上报播放状态
+    });
+  }
+  ```
+
+- 方式二：
+  通过AVSession注册[HandleMediaKeyEvent](../../reference/apis-avsession-kit/js-apis-avsession.md#onhandlekeyevent10)指令。该回调接口会直接转发媒体按键事件[KeyEvent](../../reference/apis-input-kit/js-apis-keyevent.md)。应用需要自行识别按键事件的类型，并响应事件实现对应的功能。目前支持转发的按键事件类型如下：
+  | 按键类型([KeyCode](../../reference/apis-input-kit/js-apis-keycode.md#keycode)) | 功能说明   |
+  | ------  | -------------------------|
+  | KEYCODE_MEDIA_PLAY_PAUSE    | 多媒体键：播放/暂停 |
+  | KEYCODE_MEDIA_STOP    | 多媒体键：停止 |
+  | KEYCODE_MEDIA_NEXT    | 多媒体键：下一首 |
+  | KEYCODE_MEDIA_PREVIOUS    | 多媒体键：上一首 |
+  | KEYCODE_MEDIA_REWIND    | 多媒体键：快退 |
+  | KEYCODE_MEDIA_FAST_FORWARD    | 	多媒体键：快进 |
+  | KEYCODE_MEDIA_PLAY    | 多媒体键：播放 |
+  | KEYCODE_MEDIA_PAUSE   | 多媒体键：暂停|
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+
+  let context: Context = getContext(this);
+  async function setListenerForMesFromController() {
+    let type: AVSessionManager.AVSessionType = 'audio';
+    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+    // 设置必要的媒体信息，务必设置，否则接收不到按键事件
+    let metadata: AVSessionManager.AVMetadata = {
+      assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
+      title: 'TITLE',
+      mediaImage: 'IMAGE',
+      artist: 'ARTIST'
+    };
+    session.setAVMetadata(metadata).then(() => {
+      console.info(`SetAVMetadata successfully`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+    });
+    session.on('handleKeyEvent', (event) => {
+      // 解析keycode，应用需要根据keycode对播放器做相应逻辑处理
+      console.info(`on handleKeyEvent, keyCode=${event.key.code}`);
+    });
+  }
+  ```
+
+> **说明：**
+>
+> 1. 方式一与方式二均需正确设置媒体信息AVMetadata并注册相应控制接口，否则会无法接收到控制指令与按键事件。
+> 2. 方式一与方式二，选择其一接入即可，无须同时接入，系统推荐按照方式一接入。
+
+<!--RP2-->
+<!--RP2End-->

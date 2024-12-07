@@ -33,8 +33,8 @@ The **queue.h** file declares the queue interfaces in C.
 | -------- | -------- |
 | FFRT_C_API int [ffrt_queue_attr_init](_f_f_r_t.md#ffrt_queue_attr_init) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Initializes a queue attribute. | 
 | FFRT_C_API void [ffrt_queue_attr_destroy](_f_f_r_t.md#ffrt_queue_attr_destroy) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Destroys a queue attribute. | 
-| FFRT_C_API void [ffrt_queue_attr_set_qos](_f_f_r_t.md#ffrt_queue_attr_set_qos) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, [ffrt_qos_t] (_f_f_r_t.md#types) qos)| Sets the queue QoS. | 
-| FFRT_C_API [ffrt_qos_t] (_f_f_r_t.md#types) [ffrt_queue_attr_get_qos](_f_f_r_t.md#ffrt_queue_attr_get_qos) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr)| Obtains the queue QoS. | 
+| FFRT_C_API void [ffrt_queue_attr_set_qos](_f_f_r_t.md#ffrt_queue_attr_set_qos) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, [ffrt_qos_t](_f_f_r_t.md#types) qos)| Sets the queue QoS. | 
+| FFRT_C_API [ffrt_qos_t](_f_f_r_t.md#types) [ffrt_queue_attr_get_qos](_f_f_r_t.md#ffrt_queue_attr_get_qos) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr)| Obtains the queue QoS. | 
 | FFRT_C_API void [ffrt_queue_attr_set_timeout](_f_f_r_t.md#ffrt_queue_attr_set_timeout) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, uint64_t timeout_us) | Sets the queue timeout. | 
 | FFRT_C_API uint64_t [ffrt_queue_attr_get_timeout](_f_f_r_t.md#ffrt_queue_attr_get_timeout) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Obtains the queue timeout. | 
 | FFRT_C_API void [ffrt_queue_attr_set_callback](_f_f_r_t.md#ffrt_queue_attr_set_callback) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, [ffrt_function_header_t](ffrt__function__header__t.md)\* f) | Sets a callback that is invoked when a queue task times out. | 

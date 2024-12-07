@@ -34,7 +34,7 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource类型)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
 | selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
@@ -46,10 +46,10 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型                                                 | 必填 | 参数描述   |
-| ------ | -------------------------------------------------------- | ---- | ---------- |
-| icon   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 图片资源。 |
-| text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 文本信息。 |
+| 名称 | 类型                                                 | 必填 | 说明       |
+| ---- | ---------------------------------------------------- | ---- | ---------- |
+| icon | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 图片资源。 |
+| text | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 文本信息。 |
 
 ## TextCascadePickerRangeContent<sup>10+</sup>对象说明
 
@@ -57,7 +57,7 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型                                                 | 必填 | 参数描述   |
+| 名称 | 类型                                                 | 必填 | 说明   |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
 | text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本信息。 |
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[] | 否   | 联动数据。 |
@@ -67,11 +67,11 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名      | 参数类型      | 必填 | 参数描述                                                       |
-| ----------- | ------------- | ---- | -------------------------------------------------------------- |
-| strokeWidth | [Dimension](ts-types.md#dimension10)     | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。 |
-| startMargin | [Dimension](ts-types.md#dimension10)      | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。|
-| endMargin   | [Dimension](ts-types.md#dimension10)     | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。|
+| 名称        | 类型                                 | 必填 | 说明                                                         |
+| ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| strokeWidth | [Dimension](ts-types.md#dimension10) | 否   | 分割线的线宽（默认单位vp），也可指定单位为px，不支持"百分比"类型。 |
+| startMargin | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边起始端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。 |
+| endMargin   | [Dimension](ts-types.md#dimension10) | 否   | 分割线与TextPicker侧边结束端的距离（默认单位vp），也可指定单位为px，不支持“百分比”类型。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 分割线的颜色。
 
 ## 属性
@@ -259,8 +259,11 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 | value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
-
 ## 示例
+
+### 示例1（设置选择器列数）
+
+该示例通过配置range实现单列或多列文本选择器。
 
 ```ts
 // xxx.ets
@@ -318,6 +321,10 @@ struct TextPickerExample {
 
 ![textpicker](figures/textpicker.gif)
 
+### 示例2（设置文本样式）
+
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle实现文本选择器中的文本样式。
+
 ```ts
 // xxx.ets
 @Entry
@@ -342,6 +349,10 @@ struct TextPickerExample {
 
 ![textpicker](figures/textpicker1.gif)
 
+### 示例3（设置无分割线样式）
+
+该示例通过配置divider为null实现无分割线样式的文本选择器。
+
 ```ts
 // xxx.ets
 @Entry
@@ -365,6 +376,10 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker2.gif)
+
+### 示例4（设置分割线样式）
+
+该示例通过配置divider的DividerOptions类型实现分割线样式的文本选择器。
 
 ```ts
 // xxx.ets
@@ -394,8 +409,12 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker3.gif)
+### 示例5（设置渐隐效果）
+
+该示例通过gradientHeight自定义TextPicker的渐隐效果高度。
+
 ```ts
-// xxx.ets 该示例实现了通过gradientHeight()自定义TextPicker的渐隐效果高度
+// xxx.ets 
 @Entry
 @Component
 struct TextPickerExample {

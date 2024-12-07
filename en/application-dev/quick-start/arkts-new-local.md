@@ -6,7 +6,6 @@ You can use \@Local, a variable decorator in state management V2, to observe the
 >
 >The \@Local decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 
@@ -264,7 +263,7 @@ The \@Local decorator has the following constraints:
   }
   @Component
   struct CompB {
-    @Local message: string = "Hello World"; // Incorrect usage.
+    @Local message: string = "Hello World"; // Incorrect usage. An error is reported during compilation.
     build() {
     }
   }
@@ -282,7 +281,7 @@ The \@Local decorator has the following constraints:
   @ComponentV2
   struct CompB {
     build() {
-      CompA({ message: "Hello" }) // Incorrect usage.
+      CompA({ message: "Hello" }) // Incorrect usage. An error is reported during compilation.
     }
   }
   ```
@@ -307,8 +306,8 @@ When a class object and its properties are decorated by \@ObservedV2 and \@Trace
 ```ts
 @ObservedV2
 class Info {
-  name: string;
-  age: number;
+  @Trace name: string;
+  @Trace age: number;
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
@@ -335,7 +334,7 @@ struct Index {
 
 ### Decorating Variables of the Date Type
 
-When the decorated object is of the**Date** type, the overall value changes of **Date** can be observed. In addition, you can call the following APIs to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
+When the decorated object is of the **Date** type, the overall value changes of **Date** can be observed. In addition, you can call the following APIs to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
 
 ```ts
 @Entry
@@ -473,6 +472,66 @@ struct Index {
       Button("change to number")
         .onClick(() => {
           this.count = 10;
+      })
+    }
+  }
+}
+```
+
+## FAQs
+
+### Repeated Value Changes to State Variables by Complex Constants Trigger Re-rendering
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  list: string[][] = [['a'], ['b'], ['c']];
+  @Local dataObjFromList: string[] = this.list[0];
+
+  @Monitor("dataObjFromList")
+  onStrChange(monitor: IMonitor) {
+    console.log("dataObjFromList has changed");
+  }
+
+  build() {
+    Column() {
+      Button('change to self').onClick(() => {
+        // The new value is the same as the locally initialized value.
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+```
+
+In the preceding example, each time you click Button('change to self'), the same constant of the **Array** type is assigned to a state variable of the same type, triggering re-rendering. This is because in state management V2, a proxy is added to Date, Map, Set, and Array that use state variable decorators such as @Trace and @Local to observe changes invoked by APIs. 
+**dataObjFromList** is of a **Proxy** type but **list[0]** is of an **Array** type. As a result, when **list[0]** is assigned to **dataObjFromList**, the value changes trigger re-rendering. 
+To avoid unnecessary value changes and re-renders, use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original value and determine whether the original and new values are the same. If they are the same, do not perform value changes.
+
+Example of Using **UIUtils.getTarget()**
+
+```ts
+import { UIUtils } from '@ohos.arkui.StateManagement';
+
+@Entry
+@ComponentV2
+struct Index {
+  list: string[][] = [['a'], ['b'], ['c']];
+  @Local dataObjFromList: string[] = this.list[0];
+
+  @Monitor("dataObjFromList")
+  onStrChange(monitor: IMonitor) {
+    console.log("dataObjFromList has changed");
+  }
+
+  build() {
+    Column() {
+      Button('change to self').onClick(() => {
+        // Obtain the original value and compare it with the new value.
+        if (UIUtils.getTarget(this.dataObjFromList) !== this.list[0]) {
+          this.dataObjFromList = this.list[0];
+        }
       })
     }
   }

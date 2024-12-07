@@ -2,10 +2,10 @@
 
 For details about the corresponding algorithm specifications, see [HKDF](crypto-key-derivation-overview.md#hkdf).
 
-# How to Develop
+## How to Develop
 1. Create a [HKDFSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#hkdfspec12) object and use it as a parameter for key derivation.
    
-   **HKDFSpec** is a child class of **KdfSpec**. You need to specify the following:
+   **HKDFSpec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 
    - **algName**: algorithm to used, which is **'HKDF'**.
    - **key**: original key material.

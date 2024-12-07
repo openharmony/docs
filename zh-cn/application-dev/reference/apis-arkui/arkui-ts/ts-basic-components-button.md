@@ -57,9 +57,9 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                      | 类型                                          | 必填 | 描述                                                         |
+| 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 14开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 13及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -85,7 +85,7 @@ type(value: ButtonType)
 
 | 参数名 | 类型                              | 必填 | 说明                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.Capsule |
+| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE |
 
 ### fontSize
 
@@ -101,9 +101,9 @@ fontSize(value: Length)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                              |
-| ------ | ---------------------------- | ---- | --------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：若controlSize的值为：controlSize.NORMAL，取'16fp'，若controlSize的值为：controlSize.SMALL，取'12fp' |
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。 |
 
 ### fontColor
 
@@ -119,9 +119,9 @@ fontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                  |
-| ------ | ------------------------------------------ | ---- | ------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本显示颜色。<br/>默认值：'\#ffffff' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本显示颜色。<br/>默认值：$r('sys.color.font_on_primary')，显示为白色字体。 |
 
 ### fontWeight
 
@@ -139,7 +139,7 @@ fontWeight(value: number&nbsp;|&nbsp;FontWeight&nbsp;|&nbsp;string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：500 |
 
 ### fontStyle<sup>8+</sup>
 
@@ -289,18 +289,20 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
 | Circle  | 圆形按钮。              |
 | Normal  | 普通按钮（默认不带圆角）。      |
+| ROUNDED_RECTANGLE<sup>14+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。 |
 
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
 >  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为宽、高中较小值的一半。
 >  - 当按钮类型为Circle时，若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；若不设置宽高，则borderRadius为按钮半径；若borderRadius的值为负，则borderRadius的值按照0处理。
->  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md#属性)进行设置。
+>  - 按钮文本通过[fontSize](#fontsize)、[fontColor](#fontcolor)、[fontStyle](#fontstyle8)、[fontFamily](#fontfamily8)、[fontWeight](#fontweight)进行设置。
 >  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)为透明色。
+>  - 在不设置borderRadius时，圆角矩形按钮的圆角大小保持默认值不变。圆角大小不会随按钮高度变化而变化，和controlSize属性有关，controlSize为NORMAL时圆角大小20vp，controlSize为SMALL时圆角大小14vp。
 
 ## LabelStyle<sup>10+</sup>对象说明
 
@@ -325,7 +327,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | EMPHASIZED | 强调按钮（用于强调当前操作）。 |
 | NORMAL  | 普通按钮（一般界面操作）。              |
@@ -339,7 +341,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | SMALL | 小尺寸按钮。 |
 | NORMAL  | 正常尺寸按钮。              |
@@ -352,7 +354,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | NORMAL | 正常按钮。 |
 | ERROR  | 警示按钮。              |
@@ -373,11 +375,15 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 ## ButtonTriggerClickCallback<sup>12+</sup>对象说明
 
+type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
+
 定义ButtonConfiguration中使用的回调类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
@@ -389,7 +395,9 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 支持[通用事件](ts-universal-events-click.md)。
 ## 示例
 
-### 示例1
+### 示例1（设置按钮的显示样式）
+
+该示例实现了两种创建按钮的方式，包含子组件或使用文本内容创建相应的按钮。
 
 ```ts
 // xxx.ets
@@ -449,7 +457,9 @@ struct ButtonExample {
 
 ![button](figures/button.gif)
 
-### 示例2 
+### 示例2 （为按钮添加渲染控制）
+
+该示例通过if/else控制按钮的显示文本。
 
 ```ts
 // xxx.ets
@@ -479,7 +489,9 @@ struct SwipeGestureExample {
 
 ![ifButton](figures/ifButton.gif)
 
-### 示例3 
+### 示例3 （设置按钮文本样式）
+
+该示例通过配置labelStyle自定义按钮文本的显示样式。
 
 ```ts
 // xxx.ets
@@ -518,7 +530,10 @@ struct buttonTestDemo {
 
 ![image-20230711171138661](figures/imageButtonLabelStyle.png)
 
-### 示例4
+### 示例4（设置不同尺寸按钮的重要程度）
+
+该示例通过配置controlSize、buttonStyle实现不同尺寸按钮的重要程度。
+
 ```ts
 // xxx.ets
 @Entry
@@ -553,7 +568,10 @@ struct ButtonExample {
 ```
 ![image-20230711171138661](figures/buttonstyleandsize.jpeg)
 
-### 示例5
+### 示例5（设置按钮的角色）
+
+该示例通过配置role实现按钮的角色。
+
 ```ts
 // xxx.ets
 @Entry
@@ -579,7 +597,7 @@ struct ButtonExample {
 ```
 ![buttonrole](figures/buttonrole.jpeg)
 
-### 示例6
+### 示例6（设置自定义样式按钮）
 该示例实现了自定义样式的功能，自定义样式实现了一个圆圈替换原本的按钮样式。如果按压，圆圈将变成红色，标题会显示按压字样；如果没有按压，圆圈将变成黑色，标题会显示非按压字样。
 ```ts
 class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
@@ -644,3 +662,43 @@ struct ButtonExample {
 }
 ```
 ![buttonrole](figures/buttonbuilder.gif)
+
+### 示例7（设置圆角矩形按钮）
+该示例通过配置ButtonType.ROUNDED_RECTANGLE创建圆角矩形按钮。
+```ts
+@Entry
+@Component
+struct ButtonExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('Rounded rectangle button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .controlSize(ControlSize.NORMAL)
+          .width(180)
+      }
+      Text('Rounded rectangle button configured with a borderRadius of 5.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .controlSize(ControlSize.NORMAL)
+          .width(180)
+          .borderRadius(5)
+      }
+      Text('Rounded rectangle button configured extra long text.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle Rounded rectangle Rounded rectangle Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .width(180)
+            //.buttonStyle(ButtonStyleMode.NORMAL)
+          .labelStyle({overflow:TextOverflow.Ellipsis, maxLines:3, minFontSize: 0})
+      }
+    }.height(400).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+![roundedrectbutton](figures/roundedrectbutton.jpeg)

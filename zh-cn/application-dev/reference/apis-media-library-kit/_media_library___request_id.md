@@ -19,4 +19,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char [requestId](_media_asset_manager.md#requestid) [UUID_STR_MAX_LENGTH] | 定义UUID最大长度。 | 
+| char [requestId](#requestid) [UUID_STR_MAX_LENGTH] | 定义UUID最大长度。  | 
+
+
+## 结构体成员变量说明
+
+
+### requestId
+
+```
+char MediaLibrary_RequestId::requestId[UUID_STR_MAX_LENGTH]
+```
+**描述**
+定义UUID最大长度。

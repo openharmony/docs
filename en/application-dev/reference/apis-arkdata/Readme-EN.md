@@ -1,13 +1,13 @@
 # ArkData (ArkData Management)
 
-- ArkTS APIs  
+- ArkTS APIs
   - [@ohos.data.commonType (Common Data Types)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataSharePredicates (DataShare Predicates)](js-apis-data-dataSharePredicates.md)
   - [@ohos.data.distributedDataObject (Distributed Data Object)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
-  - [@ohos.data.sendablePreferences (Sendable Preferences)](js-apis-data-sendablePreferences.md)
+  - [@ohos.data.sendablePreferences (Shared User Preferences)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.sendableRelationalStore (Shared RDB Store)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (Unified Data Channel)](js-apis-data-unifiedDataChannel.md)
@@ -34,11 +34,13 @@
     - [@ohos.data.storage (Lightweight Data Storage)](js-apis-data-storage.md)
     - [@system.storage (Data Storage)](js-apis-system-storage.md)
     - data/rdb
-      - [resultSet](js-apis-data-resultset.md) 
+      - [resultSet (Result Set)](js-apis-data-resultset.md) 
 - C APIs
   - Modules
     - [Data](_data.md)
     - [RDB](_r_d_b.md)
+    - [UDMF](_u_d_m_f.md)
+    - [Preferences](_preferences.md)
   - Header Files
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
@@ -47,6 +49,14 @@
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)
     - [relational_store.h](relational__store_8h.md)
+    - [udmf.h](udmf_8h.md)
+    - [udmf_err_code.h](udmf__err__code_8h.md)
+    - [udmf_meta.h](udmf__meta_8h.md)
+    - [uds.h](uds_8h.md)
+    - [utd.h](utd_8h.md)
+    - [oh_preferences.h](oh__preferences_8h.md)
+    - [oh_preferences_option.h](oh__preferences__option_8h.md)
+    - [oh_preferences_value.h](oh__preferences__value_8h.md)
   - Structs
     - [OH_Cursor](_o_h___cursor.md)
     - [OH_Predicates](_o_h___predicates.md)
@@ -69,5 +79,5 @@
   - [DataShare Error Codes](errorcode-datashare.md)
   - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
-  - [User Preference Error Codes](errorcode-preferences.md)
-  - [UDMF Error Codes] (errorcode-udmf.md)
+  - [User Preferences Error Codes](errorcode-preferences.md)
+  - [UDMF Error Codes](errorcode-udmf.md)

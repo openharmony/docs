@@ -17,8 +17,8 @@ The key management service specifications include mandatory specifications and o
 
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
 <!--DelEnd-->
-
-| Algorithm| Supported Key Length (Bit)| API Level| <!--DelCol4-->Mandatory|
+**Specifications for Standard-System Devices**
+| Algorithm| Supported Key Length (Bit)| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | AES | 128, 192, 256| 8+ | Yes|
 | <!--DelRow-->RSA | 512, 768, 1024| 8+ | No|
@@ -33,3 +33,21 @@ The key management service specifications include mandatory specifications and o
 | <!--DelRow-->DH | 3072, 4096| 8+ | No|
 | SM2 | 256 | 9+ | Yes|
 | SM4 | 128 | 9+ | Yes|
+
+> **NOTE**<br>
+> The DH algorithm uses the FFDHE named safe prime groups.
+
+**Specifications for Mimi-System Devices**
+
+<!--Del-->
+Before implementing the specifications for mini-system devices, determine whether your device supports the related specifications.
+<!--DelEnd-->
+
+| Algorithm| Supported Key Length (Bit)| API Version|
+| -------- | -------- | -------- |
+| AES | 128, 192, 256| 8+ |
+| DES | 64 | 12+ |
+| 3DES | 128, 192| 12+ |
+| RSA | An integer multiple of 8, ranging from 1024 to 2048 (inclusive)| 12+ |
+| HMAC | An integer multiple of 8, ranging from 8 to 1024 (inclusive)| 12+ |
+| CMAC | 128 (supporting only 3DES)| 12+ |

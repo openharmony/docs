@@ -1,6 +1,6 @@
 # ImageSpan
 
-As a child of the [\<Text>](ts-basic-components-text.md) and [\<ContainerSpan>](ts-basic-components-containerspan.md) components, the **\<ImageSpan>** component is used to display inline images.
+As a child of the [Text](ts-basic-components-text.md) and [ContainerSpan](ts-basic-components-containerspan.md) components, the **ImageSpan** component is used to display inline images.
 
 >  **NOTE**
 >
@@ -22,9 +22,9 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)  | Yes | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **ImageSpan("common/test.jpg")**, the **\<ImageSpan>** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>\- The supported formats include PNG, JPG, BMP, SVG, GIF, and HEIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path. |
+| value | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)  | Yes| Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **ImageSpan("common/test.jpg")**, the **ImageSpan** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>\- The supported formats include PNG, JPG, BMP, SVG, GIF, and HEIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.|
 
 
 ## Attributes
@@ -37,29 +37,31 @@ alt(value: PixelMap)
 
 Sets the placeholder image displayed during loading.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                    | Mandatory | Description                                                        |
+| Name| Type                                                    | Mandatory| Description                                                        |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Placeholder image displayed during loading. The [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported.<br>Default value: **null** |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Placeholder image displayed during loading. The [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported.<br>Default value: **null**|
 
 ### verticalAlign
 
 verticalAlign(value: ImageSpanAlignment)
 
-Sets the alignment mode of the image with the text.
+Sets the alignment mode of the image relative to the line height.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description                                                        |
+| Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSpanAlignment](#imagespanalignment) | Yes  | Alignment mode of the image with the text.<br>Default value: **ImageSpanAlignment.BOTTOM** |
+| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | Yes  | Alignment mode of the image relative to the line height.<br>Default value: **ImageSpanAlignment.BOTTOM**|
 
 ### objectFit
 
@@ -71,39 +73,27 @@ Sets the image scale type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description                                       |
+| Name| Type                                     | Mandatory| Description                                       |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
-| value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>Default value: **ImageFit.Cover** |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>Default value: **ImageFit.Cover**|
 
-## ImageSpanAlignment
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name    | Description                          |
-| -------- | ------------------------------ |
-| TOP      | The image is aligned with the top edge of the line box.  |
-| CENTER   | The image is aligned with the center of the line box.      |
-| BOTTOM   | The image is aligned with the bottom edge of the line box.  |
-| BASELINE | The image is bottom aligned with the text baseline. |
-
-### colorFilter<sup>12+</sup>
+### colorFilter<sup>13+</sup>
 
 colorFilter(value: ColorFilter | DrawingColorFilter)
 
 Sets the color filter for the image.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 13.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                   | Mandatory | Description                                                        |
+| Name| Type                                   | Mandatory| Description                                                        |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | Yes  | 1. Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>2. The ColorFilter type of **@ohos.graphics.drawing** can be used as the input parameter.<br>**NOTE**<br>The DrawingColorfilter type can be used in atomic services. The SVG image to set as the source must have the **stroke** attribute.|
-
 
 ## Events
 
@@ -115,13 +105,15 @@ onComplete(callback: ImageCompleteCallback)
 
 Triggered when the image is successfully loaded or decoded. The size of the loaded image is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory | Description                      |
+| Name  | Type                                      | Mandatory| Description                      |
 | -------- | ------------------------------------------ | ---- | -------------------------- |
-| callback | [ImageCompleteCallback](#imagecompletecallback12) | Yes  | Callback triggered when the image is successfully loaded or decoded. |
+| callback | [ImageCompleteCallback](#imagecompletecallback12) | Yes  | Callback triggered when the image is successfully loaded or decoded.|
 
 ### onError<sup>12+</sup>
 
@@ -129,13 +121,15 @@ onError(callback: ImageErrorCallback)
 
 Triggered when an error occurs during image loading.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory | Description                      |
+| Name  | Type                                      | Mandatory| Description                      |
 | -------- | ------------------------------------------ | ---- | -------------------------- |
-| callback | [ImageErrorCallback](ts-basic-components-image.md#imageerrorcallback9) | Yes  | Callback triggered when an error occurs during image loading. |
+| callback | [ImageErrorCallback](ts-basic-components-image.md#imageerrorcallback9) | Yes  | Callback triggered when an error occurs during image loading.|
 
 ## ImageCompleteCallback<sup>12+</sup>
 
@@ -143,25 +137,33 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 Triggered when the image is successfully loaded.
 
-| Name | Type                      | Mandatory | Description                              |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type                      | Mandatory| Description                              |
 | ------ | -------------------------- | ---- | ---------------------------------- |
-| result  | [ImageLoadResult](#imageloadresult12) | Yes  | Object returned after the callback is triggered when an image is successfully loaded or decoded. |
+| result  | [ImageLoadResult](#imageloadresult12) | Yes  | Object returned after the callback is triggered when an image is successfully loaded or decoded.|
 
 ## ImageLoadResult<sup>12+</sup>
 
-Describes the object returned when the callback is triggered upon successful image data loading and decoding.
+Object returned after the callback is triggered when an image is successfully loaded or decoded.
 
-| Name                      | Type  | Mandatory | Description                                                        |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                      | Type  | Mandatory| Description                                                        |
 | ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
 | width                        | number | Yes  | Width of the image.<br>Unit: pixel                                   |
 | height                       | number | Yes  | Height of the image.<br>Unit: pixel                                   |
 | componentWidth               | number | Yes  | Width of the component.<br>Unit: pixel                                   |
 | componentHeight              | number | Yes  | Height of the component.<br>Unit: pixel                                   |
-| loadingStatus                | number | Yes  | Loading status of the image.<br>**NOTE**<br>If the return value is **0**, the image is successfully loaded. If the return value is **1**, the image is successfully decoded. |
-| contentWidth   | number | Yes  | Actual rendered width of the image.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**. |
-| contentHeight  | number | Yes  | Actual rendered height of the image.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**. |
-| contentOffsetX | number | Yes  | Offset of the rendered content relative to the component on the x-axis.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**. |
-| contentOffsetY | number | Yes  | Offset of the rendered content relative to the component on the y-axis<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**. |
+| loadingStatus                | number | Yes  | Loading status of the image.<br>**NOTE**<br>If the return value is **0**, the image is successfully loaded. If the return value is **1**, the image is successfully decoded.|
+| contentWidth   | number | Yes  | Actual rendered width of the image.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
+| contentHeight  | number | Yes  | Actual rendered height of the image.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
+| contentOffsetX | number | Yes  | Offset of the rendered content relative to the component on the x-axis.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
+| contentOffsetY | number | Yes  | Offset of the rendered content relative to the component on the y-axis<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
 
 
 
@@ -277,10 +279,8 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct SpanExample {
-  private ColorFilterMatrix: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0]
+  private ColorFilterMatrix: number[] = [0.239, 0, 0, 0, 0, 0, 0.616, 0, 0, 0, 0, 0, 0.706, 0, 0, 0, 0, 0, 1, 0];
   @State DrawingColorFilterFirst: ColorFilter | undefined = new ColorFilter(this.ColorFilterMatrix)
-  private color: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -289,9 +289,6 @@ struct SpanExample {
           .width('50px')
           .height('50px')
           .colorFilter(this.DrawingColorFilterFirst)
-          .onClick(()=>{
-            this.DrawingColorFilterFirst = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
-          })
       }
       .width('50%')
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -299,15 +296,79 @@ struct SpanExample {
           ImageSpan($r('app.media.icon'))
             .width('50px')
             .height('50px')
-            .colorFilter(this.DrawingColorFilterSecond)
-            .onClick(()=>{
-              this.DrawingColorFilterSecond = drawing.ColorFilter.createBlendModeColorFilter({ alpha: 255, red: 255, green: 255, blue: 0 }, drawing.BlendMode.SRC);
-            })
+            .colorFilter(drawing.ColorFilter.createBlendModeColorFilter({ alpha: 255, red: 112, green: 112, blue: 112 }, drawing.BlendMode.SRC))
         }
-      .width('50%')
+        .width('50%')
       }.width('100%').height('10%')
     }.width('200%').height('100%')
   }
 }
 ```
 ![imagespan](figures/image_span_colorfilter.gif)
+
+### Example 5
+
+This example shows how a placeholder image is used in **ImageSpan** during the process of loading an image from the Internet.
+
+```ts
+// xxx.ets
+import { http } from '@kit.NetworkKit'
+import { image } from '@kit.ImageKit'
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct SpanExample {
+  @State imageAlt: PixelMap | undefined = undefined
+
+  httpRequest() {
+    // Enter an image URL.
+    http.createHttp().request("https://www.example.com/xxx.png", (error: BusinessError, data: http.HttpResponse) => {
+      if (error) {
+        console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`)
+      } else {
+        console.log(`http request success.`)
+        let imageData: ArrayBuffer = data.result as ArrayBuffer
+        let imageSource: image.ImageSource = image.createImageSource(imageData)
+
+        class tmp {
+          height: number = 100
+          width: number = 100
+        }
+
+        let option: Record<string, number | boolean | tmp> = {
+          'alphaType': 0, // Alpha type.
+          'editable': false, // Whether the image is editable.
+          'pixelFormat': 3, // Pixel format.
+          'scaleMode': 1, // Scale mode.
+          'size': { height: 100, width: 100 }
+        }
+        // Image size.
+        imageSource.createPixelMap(option).then((pixelMap: PixelMap) => {
+          this.imageAlt = pixelMap
+        })
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Button("Get Online Image")
+        .onClick(() => {
+          this.httpRequest()
+        })
+
+      Text() {
+        // Enter an image URL.
+        ImageSpan('https://www.example.com/xxx.png')
+          .alt(this.imageAlt)
+          .width(300)
+          .height(300)
+      }
+
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![imagespan](figures/image_span_alt.gif)

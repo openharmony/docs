@@ -1,7 +1,7 @@
 # 使用隐私模式 
 
 
-开发者在创建Web组件时，可以将可选参数[incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#incognitomode)设置为'true'，来开启Web组件的隐私模式。 当使用隐私模式时，浏览网页时的cookies、 cache data 等数据不会保存在本地的持久化文件，当隐私模式的Web组件被销毁时，cookies、 cache data等数据将不被记录下来。
+开发者在创建Web组件时，可以将可选参数[incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#incognitomode)设置为true，来开启Web组件的隐私模式。 当使用隐私模式时，浏览网页时的Cookie、 Cache Data等数据不会保存在本地的持久化文件，当隐私模式的Web组件被销毁时，Cookie、 Cache Data等数据将不被记录下来。
 
 - 创建隐私模式的[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)。
  
@@ -177,6 +177,50 @@
       }
     }
   }
+  ```
+
+  加载的html文件。
+   ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+
+      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
+      var msg;
+
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
+        msg = '<p>数据表已创建,且插入了两条数据。</p>';
+
+        document.querySelector('#status').innerHTML = msg;
+      });
+
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+          var len = results.rows.length,i;
+          msg = "<p>查询记录条数：" + len + "</p>";
+
+          document.querySelector('#status').innerHTML += msg;
+
+              for(i = 0; i < len; i++){
+                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+
+          document.querySelector('#status').innerHTML += msg;
+          }
+        },null);
+      });
+
+      </script>
+  </head>
+  <body>
+  <div id="status" name="status">状态信息</div>
+  </body>
+  </html>
   ```
 
 - 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11)获取隐私模式下指定url对应cookie的值。

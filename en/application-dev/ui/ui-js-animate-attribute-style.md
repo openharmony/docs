@@ -1,4 +1,4 @@
-# Defining Attribute Style Animations
+# Attribute Style Animation
 
 
 **Keyframes** is used to scale a component by dynamically setting the width and height of its parent component. Set the scale attribute for child components to scale the child and parent components at the same time. Then, set the opacity attribute to display or hide the child and parent components.

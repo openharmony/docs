@@ -19,27 +19,28 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
+   import  { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Create a **DocumentSelectOptions** instance.
 
    ```ts
    const documentSelectOptions = new picker.DocumentSelectOptions();
-   // Set the maximum number of documents that can be selected. This parameter is optional.
+   // (Optional) Set the maximum number of documents that can be selected.
    documentSelectOptions.maxSelectNumber = 5;
-   // Specify the path of the files or folder to select. This parameter is optional.
+   // (Optional) Specify the path of the files or folder to select.
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
-   // Set the file name extensions that can be selected. Use a comma to separate multiple file name extensions, which cannot exceed 100. This parameter is optional.
-   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4'];
+   // (Optional) Set the file name extension types ['File name extension description|File name extension type'] that can be selected. Use a comma to separate multiple file name extensions, which cannot exceed 100. To select all files, use 'All files(*.*)|.*'.
+    documentSelectOptions.fileSuffixFilters = ['Image(.png, .jpg)|.png, .jpg', 'Document|.txt', 'Video|.mp4', '.pdf'];
    // Whether to grant the permission for the specified files or folder. The value true means to grant the permission, the value false means the opposite. If this parameter is true, defaultFilePathUri is mandatory and the file management authorization page is displayed. If this parameter is false, a common file management page is displayed. This parameter is optional.
    documentSelectOptions.authMode = true;
    ```
 
-3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2) instance, and use [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) to start the FilePicker application page for the user to select documents.
+3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) to start the FilePicker application page for the user to select documents.
+   
    ```ts
    let uris: Array<string> = [];
    let context = getContext (this) as common.Context; // Ensure that getContext (this) returns UIAbilityContext.
@@ -53,13 +54,18 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
      console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-> **NOTE**
->
-> - The permission for the URI returned by [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker is a temporary read-only permission. The temporary permission will be invalidated once the application exits.
-> - You can persist the temporary permission (available only for 2-in-1 devices) for a URI. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
-> - Further operations can be performed on the documents based on the file URIs returned in the result set. You are advised to define a global variable to save the URI.
-> - If metadata needs to be obtained, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) and [@ohos.file.fileuri](../reference/apis-core-file-kit/js-apis-file-fileuri.md) APIs to obtain document attribute information, such as the document name, size, access time, modification time, and path, based on the URI.
-4. After the application UI is returned from FilePicker, use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is obtained.
+
+  > **NOTE**
+  >
+  > - The permission for the URI returned by [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker is a temporary read-only permission. The temporary permission will be invalidated once the application exits.
+  >
+  > - You can persist the temporary permission for a URI. This operation is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
+  >
+  > - Further operations can be performed on the documents based on the file URIs returned in the result set. You are advised to define a global variable to save the URI.
+  >
+  > - If metadata needs to be obtained, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) and [@ohos.file.fileuri](../reference/apis-core-file-kit/js-apis-file-fileuri.md) APIs to obtain document attribute information, such as the document name, size, access time, modification time, and path, based on the URI.
+
+4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is obtained.
 
    ```ts
    let uri: string = '';
@@ -68,7 +74,7 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.readSync](../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read data from the document based on the FD.
+5. Call [fs.readSync](../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read data from the document based on the FD.
 
    ```ts
    let buffer = new ArrayBuffer(4096);
@@ -83,10 +89,10 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import  { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. Create an **AudioSelectOptions** instance.
@@ -99,27 +105,31 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-4) instance, and use [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6) to start the FilePicker application page for the user to select audio clips.
+3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6) to start the FilePicker application page for the user to select audio clips.
+   
    ```ts
-   let uri: string = '';
+   let uris: string = '';
    // Ensure that getContext(this) returns UIAbilityContext.
    let context = getContext(this) as common.Context; 
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      // After the user selects audio clips, a result set containing the URIs of the audio clips selected is returned.
-     uri = audioSelectResult[0];
-     console.info('audioViewPicker.select to file succeed and uri is:' + uri);
+     uris = audioSelectResult[0];
+     console.info('audioViewPicker.select to file succeed and uri is:' + uris);
    }).catch((err: BusinessError) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-> **NOTE**
->
-> - The permission for the URI returned by [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker is a temporary read-only permission. The temporary permission will be invalidated once the application exits.
-> - You can persist the temporary permission on a URI, which is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
-> - You can read file data based on the URI. You are advised to define a global variable to save the URI. For example, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) API to obtain the FD of the audio clip based on the URI, and then develop the audio playback application with the media service. For details, see [Audio Playback Development](../media/audio/audio-playback-overview.md).
 
-4. After the application UI is returned from FilePicker, use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is obtained.
+  > **NOTE**
+  >
+  > - The permission for the URI returned by [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker is a temporary read-only permission. The temporary permission will be invalidated once the application exits.
+  >
+  > - You can persist the temporary permission for a URI. This operation is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
+  >
+  > - You can read file data based on the URI. You are advised to define a global variable to save the URI. For example, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) API to obtain the FD of the audio clip based on the URI, and then develop the audio playback application with the media service. For details, see [Audio Playback Development](../media/audio/audio-playback-overview.md).
+
+4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is obtained.
 
    ```ts
    let uri: string = '';
@@ -128,7 +138,7 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.readSync](../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read data from the audio clip based on the FD.
+5. Call [fs.readSync](../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read data from the audio clip based on the FD.
 
    ```ts
    let buffer = new ArrayBuffer(4096);
@@ -137,3 +147,5 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    // Close the FD after the data is read.
    fs.closeSync(file);
    ```
+
+<!--RP1--><!--RP1End-->

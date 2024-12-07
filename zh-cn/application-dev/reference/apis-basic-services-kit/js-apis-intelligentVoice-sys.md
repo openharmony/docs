@@ -44,6 +44,7 @@ getIntelligentVoiceManager(): IntelligentVoiceManager
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                              |
 
 **示例：** 
@@ -83,6 +84,7 @@ getWakeupManager(): WakeupManager
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                              |
 | 22700107 | System error.                            |
 
@@ -124,6 +126,7 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -177,6 +180,7 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -223,6 +227,7 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -276,6 +281,7 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Invalid parameter.                            |
@@ -325,6 +331,7 @@ getCapabilityInfo(): Array&lt;IntelligentVoiceEngineType&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -358,6 +365,7 @@ on(type: 'serviceChange', callback: Callback&lt;ServiceChangeType&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -391,6 +399,7 @@ off(type: 'serviceChange', callback?: Callback\<ServiceChangeType\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -434,6 +443,7 @@ setParameter(key: string, value: string): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
@@ -481,6 +491,7 @@ getParameter(key: string): Promise\<string\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700107 | System error.                            |
@@ -529,6 +540,7 @@ getUploadFiles(maxCount: number): Promise&lt;Array&lt;UploadFile&gt;&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
 | 22700102 | Invalid parameter.                            |
@@ -573,6 +585,7 @@ getWakeupSourceFiles(): Promise&lt;Array&lt;WakeupSourceFile&gt;&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                        |
 | 22700107 | System error.                            |
 
@@ -622,6 +635,7 @@ enrollWithWakeupFilesForResult(wakeupFiles: Array\<WakeupSourceFile\>, wakeupInf
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                        |
 | 22700102 | Invalid parameter.                        |
@@ -671,6 +685,7 @@ clearUserData(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700107 | System error.                            |
 
 **示例：**
@@ -941,6 +956,7 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -983,6 +999,7 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -1024,6 +1041,7 @@ init(config: EnrollEngineConfig, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
@@ -1077,6 +1095,7 @@ init(config: EnrollEngineConfig): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 | 22700103 | Init failed.                           |
@@ -1124,6 +1143,7 @@ enrollForResult(isLast: boolean, callback: AsyncCallback&lt;EnrollCallbackInfo&g
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **示例：**
@@ -1173,6 +1193,7 @@ enrollForResult(isLast: boolean): Promise&lt;EnrollCallbackInfo&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **示例：**
@@ -1212,6 +1233,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -1252,6 +1274,7 @@ stop(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -1290,6 +1313,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700104 | Failed to commit the enrollment.                           |
 
 **示例：**
@@ -1331,6 +1355,7 @@ commit(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700104 | Failed to commit the enrollment.                           |
 
 **示例：**
@@ -1371,6 +1396,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1417,6 +1443,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1462,6 +1489,7 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1510,6 +1538,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1552,6 +1581,7 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1601,6 +1631,7 @@ setParameter(key: string, value: string): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1642,6 +1673,7 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1691,6 +1723,7 @@ getParameter(key: string): Promise\<string\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1738,6 +1771,7 @@ evaluateForResult(word: string): Promise\<EvaluationResult\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700107 | System error.                            |
 
@@ -1780,6 +1814,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -1820,6 +1855,7 @@ release(): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -1860,6 +1896,7 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -1901,6 +1938,7 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -1941,6 +1979,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -1994,6 +2033,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2039,6 +2079,7 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2087,6 +2128,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2129,6 +2171,7 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2178,6 +2221,7 @@ setParameter(key: string, value: string): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2219,6 +2263,7 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2268,6 +2313,7 @@ getParameter(key: string): Promise\<string\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                            |
 
@@ -2309,6 +2355,7 @@ getPcm(): Promise\<ArrayBuffer\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                          |
 | 22700107 | System error.                          |
 
@@ -2356,6 +2403,7 @@ startCapturer(channels: number): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Invalid parameter.                         |
 | 22700105 | Start capturer failed.                          |
@@ -2398,6 +2446,7 @@ read(): Promise\<ArrayBuffer\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700101 | No memory.                          |
 | 22700106 | Read failed.                        |
 | 22700107 | System error.                          |
@@ -2440,6 +2489,7 @@ stopCapturer(): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 | 22700107 | System error.                          |
 
 **示例：**
@@ -2479,6 +2529,7 @@ release(callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -2519,6 +2570,7 @@ release(): Promise\<void\>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -2558,6 +2610,7 @@ on(type: 'wakeupIntelligentVoiceEvent', callback: Callback\<WakeupIntelligentVoi
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 
@@ -2595,6 +2648,7 @@ off(type: 'wakeupIntelligentVoiceEvent', callback?: Callback\<WakeupIntelligentV
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied.                              |
+| 202 | Not system application.                             |
 
 **示例：**
 

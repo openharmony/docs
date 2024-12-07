@@ -63,8 +63,7 @@ Database corrupted.
 
 **处理步骤**
 
-1. 如果之前备份过数据库，可尝试使用已备份的数据库文件恢复数据库。
-2. 如果之前没有备份过数据库，可尝试删除数据库后重新创建。
+如果可以接受数据库数据丢失，则可尝试删除数据库后重新创建。否则，需要备份数据库以便恢复。具体操作可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 ## 14800012 结果集为空或指定位置不合法
 
@@ -148,7 +147,7 @@ The database does not respond.
 
 **错误信息**
 
-The database is already attached.
+The database alias already exists.
 
 **错误描述**
 
@@ -174,7 +173,7 @@ Config changed.
 
 **可能原因**
 
-数据库的area（区域）, isEncrypt（加密）, securityLevel（安全级别）等关键配置发生变化。
+数据库的area（区域）, securityLevel（安全级别）等关键配置发生变化。
 
 **处理步骤**
 
@@ -517,7 +516,7 @@ The WAL file size exceeds the default limit.
 
 **错误描述**
 
-WAL文件大小超过默认上限（200M）。
+WAL文件大小超过默认上限（512MB）。
 
 **可能原因**
 
@@ -533,7 +532,7 @@ WAL文件大小超过默认上限（200M）。
 
 **错误信息**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **错误描述**
 
@@ -551,7 +550,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
- Only supported in stage mode.
+The operation is supported in the stage model only.
 
 **错误描述**
 
@@ -569,7 +568,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
-The data group id is not valid.
+Invalid data ground ID.
 
 **错误描述**
 

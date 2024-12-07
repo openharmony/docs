@@ -5,7 +5,7 @@
   - [Using HiLog (ArkTS)](hilog-guidelines-arkts.md)
   - [Using HiLog (C/C++)](hilog-guidelines-ndk.md)
 - HiAppEvent
-  - [HiAppEvent Overview](hiappevent-intro.md)
+  - [Introduction to HiAppEvent](hiappevent-intro.md)
   - Event Subscription
     - Application Event
       - [Subscribing to Application Events (ArkTS)](hiappevent-watcher-app-events-arkts.md)
@@ -44,8 +44,10 @@
 - HiChecker
   - [Using HiChecker (ArkTS/JS)](hichecker-guidelines-arkts.md)
 - HiDebug
-  - [Using Hidebug (ArkTS)](hidebug-guidelines-arkts.md)
-  - [Using Hidebug (C/C++)](hidebug-guidelines-ndk.md)
+  - [Using HiDebug (ArkTS)](hidebug-guidelines-arkts.md)
+  - [Using HiDebug (C/C++)](hidebug-guidelines-ndk.md)
+- HiCollie
+  - [Using HiCollie (C/C++)](hicollie-guidelines-ndk.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
@@ -59,7 +61,7 @@
   - [hidumper](hidumper.md)
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
-  - [hisysevent](hisysevent.md)
   <!--Del-->
+  - [hisysevent](hisysevent.md)
   - [uinput](uinput.md)
   <!--DelEnd-->

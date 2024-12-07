@@ -95,7 +95,8 @@ export default {
 
 ![zh-cn_image_0000001174756860](figures/zh-cn_image_0000001174756860.gif)
 
-> **说明：**
+> **说明：** 
+>
 > requestAnimationFrame函数在调用回调函数时在第一个参数位置传入timestamp时间戳，表示requestAnimationFrame开始去执行回调函数的时刻。
 
 
@@ -184,5 +185,6 @@ export default {
 
 ![zh-cn_image_0000001220316655](figures/zh-cn_image_0000001220316655.gif)
 
-> **说明：**
+> **说明：** 
+>
 > 在调用该函数时需传入一个具有标识id的参数。

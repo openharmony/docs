@@ -22,7 +22,9 @@ import { webview } from '@kit.ArkWeb';
 
 once(type: string, callback: Callback\<void\>): void
 
-Registers a one-time callback for web events of the specified type.
+Registers a one-time callback for web events of the specified type. Currently, only **webInited** is supported. This callback is triggered when the Web engine initialization is complete.
+
+When the first **Web** component is loaded in an application, the web engine is initialized. When other **Web** components are loaded in the same application, **once()** is not triggered. When the first **Web** component is loaded after the last **Web** component is destroyed in the application, the web engine will be initialized again.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -67,13 +69,21 @@ struct WebComponent {
 
 ## WebMessagePort
 
-Implements a **WebMessagePort** object to send and receive messages.
+Implements a WebMessagePort object to send and receive messages. The message of the [WebMessageType](#webmessagetype10)/[WebMessage](#webmessage) type can be sent to the HTML5 side.
+
+### Properties
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Type  | Readable| Writable| Description                                             |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType<sup>10+</sup> | boolean | Yes  | Yes| Whether to use the extended APIs [postMessageEventExt](#postmessageeventext10) and [onMessageEventExt](#onmessageeventext10) when creating a **WebMessagePort**. The default value is **false**, indicating that the extended APIs are not used.  |
 
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
 
-Sends a message. For the complete sample code, see [postMessage](#postmessage).
+Sends a message of the [WebMessage](#webmessage) type to the HTML5 side. The [onMessageEvent](#onmessageevent) API must be invoked first. Otherwise, the message fails to be sent. For the complete sample code, see [postMessage](#postmessage).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -90,6 +100,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100010 | Failed to post messages through the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -126,7 +137,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-Registers a callback to receive messages from the HTML side. For the complete sample code, see [postMessage](#postmessage).
+Registers a callback to receive messages of the [WebMessage](#webmessage) type from the HTML5 side. For the complete sample code, see [postMessage](#postmessage).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -143,6 +154,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                       |
 | -------- | ----------------------------------------------- |
 | 17100006 | Failed to register a message event for the port.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.|
 
 **Example**
 
@@ -186,19 +198,11 @@ struct WebComponent {
 }
 ```
 
-### isExtentionType<sup>10+</sup>
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-| Name        | Type  | Readable| Writable| Description                                             |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | Yes  | Yes| Whether to use the extended interface when creating a **WebMessagePort** instance.  |
-
 ### postMessageEventExt<sup>10+</sup>
 
 postMessageEventExt(message: WebMessageExt): void
 
-Sends a message. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+Sends a message of the [WebMessageType](#webmessagetype10) type to the HTML5 side. The [onMessageEventExt](#onmessageeventext10) API must be invoked first. Otherwise, the message fails to be sent. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -215,12 +219,13 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100010 | Failed to post messages through the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### onMessageEventExt<sup>10+</sup>
 
 onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
-Registers a callback to receive messages from the HTML5 side.
+Registers a callback to receive messages of the [WebMessageType](#webmessagetype10) type from the HTML5 side.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -237,6 +242,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                       |
 | -------- | ----------------------------------------------- |
 | 17100006 | Failed to register a message event for the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -382,7 +388,7 @@ struct WebComponent {
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPageEnd(() => {
-          console.log("In ArkTS side message onPageEnd init mesaage channel");
+          console.log("In ArkTS side message onPageEnd init message channel");
           // 1. Create a message port.
           this.ports = this.controller.createWebMessagePorts(true);
           // 2. Send port 1 to HTML5.
@@ -531,7 +537,7 @@ function postStringToApp() {
 
 close(): void
 
-Closes this message port. To use this API, a message port must first be created using [createWebMessagePorts](#createwebmessageports).
+Closes this message port when messages do not need to be sent. To use this API, a message port must first be created using [createWebMessagePorts](#createwebmessageports).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -590,7 +596,11 @@ Constructor used to create a **WebviewController** object.
 
 > **NOTE**
 >
-> **webTag** represents a tag that you define and pass to the **Web** component as a parameter of string type.
+> When no parameter is passed in **new webview.WebviewController()**, it indicates that the constructor is empty. If the C API is not used, no parameter needs to be passed.
+> 
+> When a valid string is passed in, **new webview.WebviewController("xxx")** can be used to distinguish multiple instances and invoke the methods of the corresponding instance.
+> 
+> When an empty parameter is passed in, such as **new webview.WebviewController("")** or **new webview.WebviewController(undefined)**, the parameter is meaningless that multiple instances cannot be distinguished and **undefined** is returned. You need to check whether the returned value is normal.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -598,7 +608,7 @@ Constructor used to create a **WebviewController** object.
 
 | Name    | Type  | Mandatory| Description                              |
 | ---------- | ------ | ---- | -------------------------------- |
-| webTag   | string | No  | Name of the **Web** component. The default value is **Empty**.|
+| webTag   | string | No  | Name of the **Web** component.|
 
 **Example**
 
@@ -674,7 +684,12 @@ HTML file to be loaded:
 
 static initializeWebEngine(): void
 
-Loads the dynamic link library (DLL) file of the web engine. This API can be called before the **Web** component is initialized to improve the startup performance.
+Loads the dynamic link library (DLL) file of the web engine. This API can be called before the **Web** component is initialized to improve the startup performance. The frequently visited websites are automatically pre-connected.
+
+> **NOTE**
+>
+> - **initializeWebEngine** cannot be called in an asynchronous thread. Otherwise, the system breaks down.
+> - **initializeWebEngine** takes effect globally and needs to be called only once in an application lifecycle.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -746,7 +761,9 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-Sets whether to enable web debugging. For details, see [Debugging Frontend Pages by Using DevTools](../../web/web-debugging-with-devtools.md).
+Sets whether to enable web debugging. By default,  web debugging is disabled. For details, see [Debugging Frontend Pages by Using DevTools](../../web/web-debugging-with-devtools.md).
+
+NOTE: Enabling web debugging allows users to check and modify the internal status of the web page, which poses security risks. Therefore, you are advised not to enable this function in the officially released version of the app.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -816,6 +833,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
 | 17100003 | Invalid resource path or file type.                          |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -903,7 +921,7 @@ struct WebComponent {
 }
 ```
 
-2. Using the resources protocol
+2. Using the resources protocol, which can be used by WebView to load links with a hash (#).
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -950,15 +968,21 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 Loads specified data.
 
+When both **baseUrl** and **historyUrl** are empty,
+
+if **encoding** is not base64 (including null values), ASCII encoding is used for octets within the secure URL character range, and the standard %xx hexadecimal encoding of the URL is used for octets outside the secure URL character range.
+
+**data** must be encoded using Base64 or any hash (#) in the content must be encoded as %23. Otherwise, hash (#) is considered as the end of the content, and the remaining text is used as the document fragment identifier.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| data       | string | Yes  | Character string obtained after being Base64 or URL encoded.                   |
+| data       | string | Yes  | String obtained after being base64 or URL encoded.                   |
 | mimeType   | string | Yes  | Media type (MIME).                                          |
-| encoding   | string | Yes  | Encoding type, which can be Base64 or URL.                      |
+| encoding   | string | Yes  | Encoding type, which can be base64 or URL.                      |
 | baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**.|
 | historyUrl | string | No  | URL used for historical records. If this parameter is not empty, historical records are managed based on this URL. This parameter is invalid when **baseUrl** is left empty.|
 
@@ -966,7 +990,7 @@ Loads specified data.
 >
 > To load a local image, you can assign a space to either **baseUrl** or **historyUrl**. For details, see the sample code.
 > In the scenario of loading a local image, **baseUrl** and **historyUrl** cannot be both empty. Otherwise, the image cannot be loaded.
-> If the rich text in HTML contains special characters such as #, you are advised to assign a space to both **baseUrl** and **historyUrl**.
+> If the rich text in HTML contains special characters such as hash (#), you are advised to set the values of **baseUrl** and **historyUrl** to spaces.
 
 **Error codes**
 
@@ -975,9 +999,11 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
+When both **baseUrl** and **historyUrl** are empty:
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -996,7 +1022,39 @@ struct WebComponent {
             this.controller.loadData(
               "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
               "text/html",
+              // UTF-8 is charset.
               "UTF-8"
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              // Coding tests: string encoded using base64.
+              "Q29kaW5nIHRlc3Rz",
+              "text/html",
+              "base64"
             );
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -1025,6 +1083,7 @@ struct WebComponent {
       Button('loadData')
         .onClick(() => {
           try {
+            // UTF-8 is charset.
             this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -1143,7 +1202,7 @@ Checks whether going to the previous page can be performed on the current page.
 
 | Type   | Description                            |
 | ------- | -------------------------------- |
-| boolean | Returns **true** if moving to the previous page can be performed on the current page; returns **false** otherwise.|
+| boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise.|
 
 **Error codes**
 
@@ -1277,6 +1336,8 @@ onInactive(): void
 
 Called when the **Web** component enters the inactive state. You can implement the behavior to perform after the application loses focus.
 
+When this API is called, any content that can be safely paused, such as animations and geographical locations, is paused as much as possible. However, the JavaScript is not paused. To pause the JavaScript globally, use [pauseAllTimers](#pausealltimers12). To reactivate the **Web** component, use [onActive](#onactive).
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Error codes**
@@ -1385,6 +1446,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1420,7 +1482,7 @@ struct WebComponent {
 
 clearHistory(): void
 
-Clears the browsing history.
+Clears the browsing history. You are not advised to call **clearHistory()** in **onErrorReceive()** and **onPageBegin()**. Otherwise, abnormal exit occurs.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1522,7 +1584,8 @@ Registers a proxy for interaction between the application and web pages loaded b
 >
 > - It is recommended that **registerJavaScriptProxy** be used only with trusted URLs and over secure HTTPS connections. Injecting JavaScript objects into untrusted web components can expose your application to malicious attacks.
 > - After **registerJavaScriptProxy** is called, the application exposes the registered JavaScript object to all page frames.
-> - If a method is both registered in the synchronous and asynchronous method lists, it is called asynchronously by default.
+> - If a **registerJavaScriptProxy** is both registered in the synchronous and asynchronous lists, it is called asynchronously by default.
+> - You should register **registerJavaScriptProxy** either in synchronous list or in asynchronous list. Otherwise, this API fails to be registered.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1543,6 +1606,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1676,6 +1740,10 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 Executes a JavaScript script. This API uses an asynchronous callback to return the script execution result. **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
+> **NOTE**
+>
+> The offscreen component does not trigger **runJavaScript()**.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -1692,6 +1760,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1781,6 +1850,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1859,6 +1929,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2073,6 +2144,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2269,6 +2341,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Failed to delete JavaScriptProxy because it does not exist.                               |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2371,6 +2444,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enabled.                                         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2423,6 +2497,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2537,6 +2612,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2683,6 +2759,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2737,6 +2814,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -3118,6 +3196,8 @@ getUserAgent(): string
 
 Obtains the default user agent of this web page.
 
+For details about the default **UserAgent**, see [Default User Agent String](../../web/web-default-userAgent.md).
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
@@ -3258,7 +3338,7 @@ Obtains the height of this web page.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Height of the current web page. Unit: px|
+| number | Height of the current web page. Unit: vp|
 
 **Error codes**
 
@@ -3544,6 +3624,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -3576,9 +3657,9 @@ struct WebComponent {
 
 ### scrollTo
 
-scrollTo(x:number, y:number): void
+scrollTo(x:number, y:number, duration?:number): void
 
-Scrolls the page to the specified absolute position.
+Scrolls the page to the specified absolute position within a specified period.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3586,8 +3667,9 @@ Scrolls the page to the specified absolute position.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| x   | number   | Yes  | X coordinate of the absolute position. If the value is a negative number, the value 0 is used.|
-| y   | number   | Yes  | Y coordinate of the absolute position. If the value is a negative number, the value 0 is used.|
+| x   | number   | Yes  | X coordinate of the absolute position. If the value is a negative number, the value 0 is used. Unit: vp|
+| y   | number   | Yes  | Y coordinate of the absolute position. If the value is a negative number, the value 0 is used. Unit: vp|
+| duration<sup>14+</sup> | number | No| Scrolling animation duration,<br>in milliseconds.<br>If no value is input or the input value is a negative number or 0, the animation is disabled.|
 
 **Error codes**
 
@@ -3596,6 +3678,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -3614,7 +3697,15 @@ struct WebComponent {
       Button('scrollTo')
         .onClick(() => {
           try {
-            this.controller.scrollTo(50, 50);
+            this.controller.scrollTo(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); // If you want to stop the animation generated by the current scroll, you can generate another 1ms animation to interrupt the animation.
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3634,8 +3725,8 @@ HTML file to be loaded:
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3650,9 +3741,9 @@ Scroll Test
 
 ### scrollBy
 
-scrollBy(deltaX:number, deltaY:number): void
+scrollBy(deltaX:number, deltaY:number,duration?:number): void
 
-Scrolls the page by the specified amount.
+Scrolls the page by the specified amount within a specified period.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3660,8 +3751,9 @@ Scrolls the page by the specified amount.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward.|
-| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward.|
+| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward. Unit: vp|
+| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward. Unit: vp|
+| duration<sup>14+</sup> | number | No| Scrolling animation duration,<br>in milliseconds.<br>If no value is input or the input value is a negative number or 0, the animation is disabled.|
 
 **Error codes**
 
@@ -3670,6 +3762,11 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+> **NOTE**
+>
+> Calling **scrollBy** does not trigger the nested scrolling of the parent component.
 
 **Example**
 
@@ -3688,7 +3785,102 @@ struct WebComponent {
       Button('scrollBy')
         .onClick(() => {
           try {
-            this.controller.scrollBy(50, 50);
+            this.controller.scrollBy(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); // If you want to stop the animation generated by the current scroll, you can generate another 1ms animation to interrupt the animation.
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+}
+```
+
+HTML file to be loaded:
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:2000px;
+            height:2000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
+### scrollByWithResult<sup>12+</sup>
+
+scrollByWithResult(deltaX: number, deltaY: number): boolean
+
+Scrolls the page by the specified amount and returns value to indicate whether the scrolling is successful.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description              |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward.|
+| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward.|
+
+**Return value**
+
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| boolean | Whether the current web page can be scrolled. The default value is **false**.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+> **NOTE**
+>
+> - If the web page is being touched, **false** is returned. Otherwise, **true** is returned.
+> - If the rendering area at the same layer of the web page is being touched, **true** is returned.
+> - Calling **scrollByWithResult** does not trigger the nested scrolling of the parent component.
+> - This API does not support the high frame rate of scrolling performance.
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollByWithResult')
+        .onClick(() => {
+          try {
+          let result = this.controller.scrollByWithResult(50, 50);
+          console.log("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3708,8 +3900,8 @@ HTML file to be loaded:
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3721,7 +3913,6 @@ Scroll Test
 </body>
 </html>
 ```
-
 ### slideScroll
 
 slideScroll(vx:number, vy:number): void
@@ -3734,8 +3925,8 @@ Simulates a slide-to-scroll action on the page at the specified velocity.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| vx     | number   | Yes  | Horizontal velocity component of the slide-to-scroll action, where the positive direction is rightward.|
-| vy     | number   | Yes  | Vertical velocity component of the slide-to-scroll action, where the positive direction is downward.|
+| vx     | number   | Yes  | Horizontal velocity component of the slide-to-scroll action, where the positive direction is rightward. Unit: vp/ms.|
+| vy     | number   | Yes  | Vertical velocity component of the slide-to-scroll action, where the positive direction is downward. Unit: vp/ms.|
 
 **Error codes**
 
@@ -3744,6 +3935,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -3921,6 +4113,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -3993,6 +4186,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4049,6 +4243,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -4103,6 +4298,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4153,6 +4349,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4203,6 +4400,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4377,6 +4575,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -4682,6 +4881,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -4944,7 +5144,7 @@ Prefetches resource requests based on specified request information and addition
 | ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
 | request           | [RequestInfo](#requestinfo12)   | Yes  | Information about the prefetched request.                                                     |
 | additionalHeaders | Array\<[WebHeader](#webheader)> | No  | Additional HTTP request header of the prefetched request.                                            |
-| cacheKey          | string                          | No  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not transferred or is left empty, the default value url is used as the key.|
+| cacheKey          | string                          | No  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not passed or is left empty, **url** is used by default.|
 | cacheValidTime    | number                          | No  | Validity period for caching prefetched resources. Value range: (0, 2147483647] Unit: second. Default value: **300s**         |
 
 **Error codes**
@@ -4993,7 +5193,7 @@ Clears the cache of prefetched resources based on the specified cache key list. 
 
 | Name            | Type       | Mandatory | Description                                                                      |
 | ------------------| ----------- | ---- | ------------------------------------------------------------------------- |
-| cacheKeyList      | Array\<string>      | Yes  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not transferred or is left empty, the default value **url** is used as the key.|
+| cacheKeyList      | Array\<string>      | Yes  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not passed or is left empty, **url** is used by default.|
 
 **Example**
 
@@ -5081,6 +5281,8 @@ When a URL is set for the **Web** component **src**, you are advised to set User
 
 When **src** of the **Web** component is set to an empty string, you are advised to call the **setCustomUserAgent** method to set **UserAgent** and then use **loadUrl** to load a specific page.
 
+For details about the default **UserAgent**, see [Default User Agent String](../../web/web-default-userAgent.md).
+
 > **NOTE**
 >
 >If a URL is set for the **Web** component **src**, and **UserAgent** is not set in the **onControllerAttached** callback event, calling **setCustomUserAgent** again may result in the loaded page being inconsistent with the actual user agent.
@@ -5100,6 +5302,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID | Error Message                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -5112,7 +5315,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State customUserAgent: string = 'test';
+  @State customUserAgent: string = ' DemoApp';
 
   build() {
     Column() {
@@ -5247,6 +5450,8 @@ struct WebComponent {
 getCustomUserAgent(): string
 
 Obtains a custom user agent.
+
+For details about the default **UserAgent**, see [Default User Agent String](../../web/web-default-userAgent.md).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5385,6 +5590,7 @@ import { webview } from '@kit.ArkWeb';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("EntryAbility onCreate");
+        webview.WebviewController.initializeWebEngine();
         webview.WebviewController.warmupServiceWorker("https://www.example.com");
         AppStorage.setOrCreate("abilityWant", want);
     }
@@ -5395,7 +5601,9 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-<!--RP1-->Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.<!--RP1End-->
+<!--RP1-->Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.
+By default, this feature does not take effect. OpenHarmony provides only the malicious website blocking web UI. The website risk detection and web UI display features are implemented by the vendor. You are advised to listen for [DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation) and [DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation) in **WebContentsObserver** to detect risks.
+<!--RP1End-->
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5716,6 +5924,39 @@ struct WebComponent {
 }
 ```
 
+### getDefaultUserAgent<sup>14+</sup>
+
+static getDefaultUserAgent(): string
+
+Obtains the default user agent.
+
+This API can be called only in the UI thread.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getDefaultUserAgent')
+        .onClick(() => {
+          webview.WebviewController.getDefaultUserAgent();
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### enableAdsBlock<sup>12+</sup>
 
 enableAdsBlock(enable: boolean): void
@@ -5737,7 +5978,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                 |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **Example**
 
@@ -5867,7 +6108,7 @@ Sets the ArkWeb render subprocess mode.
 
 | Name      | Type          | Mandatory | Description                     |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| Yes  | Render subprocess mode.|
+| mode        | [RenderProcessMode](#renderprocessmode12)| Yes  | Render subprocess mode. You can call [getRenderProcessMode()](#getrenderprocessmode12) to view the ArkWeb rendering subprocess mode of the current device. The enumerated value **0** indicates the single render subprocess mode, and **1** indicates the multi-render subprocess mode. If an invalid number other than the enumerated value of **RenderProcessMode** is passed, the  multi-render subprocess mode is used by default.|
 
 **Error codes**
 
@@ -5914,9 +6155,9 @@ Obtains the ArkWeb render subprocess mode.
 
 **Return value**
 
-| Type                                                        | Description                  |
-| ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| Render subprocess mode.|
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [RenderProcessMode](#renderprocessmode12) | Render subprocess mode. You can call [getRenderProcessMode()](#getrenderprocessmode12) to obtain the ArkWeb render subprocess mode of the current device. The enumerated value **0** indicates the single render subprocess mode, and **1** indicates the multi-render subprocess mode. If the obtained value is not an enumerated value of **RenderProcessMode**, the multi-render subprocess mode is used by default.|
 
 
 **Example**
@@ -5957,7 +6198,7 @@ Calling this API will destroy the associated render process. If the render proce
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | Result of destroying the render process. If the render process can be destroyed, **true** is returned. Otherwise, **false** is returned.|
+| boolean | Result of destroying the render process. If the render process can be destroyed, **true** is returned. Otherwise, **false** is returned. If the rendering process is destroyed, **true** is returned.|
 
 **Error codes**
 
@@ -6014,6 +6255,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6217,7 +6459,7 @@ struct WebComponent {
 
 ### setScrollable<sup>12+</sup>
 
-setScrollable(enable: boolean): void
+setScrollable(enable: boolean, type?: ScrollType): void
 
 Sets whether this web page is scrollable.
 
@@ -6228,6 +6470,7 @@ Sets whether this web page is scrollable.
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
 | enable     | boolean   | Yes  | Whether the web page is scrollable. The value **true** means the web page is scrollable, and **false** means the opposite.|
+| type       | [ScrollType](#scrolltype12) |  No| Scrolling type supported by the web page. The default value is supported.<br> - If the value of **enable** is set to **false**, the specified **ScrollType** is disabled. If **ScrollType** is set to the default value, all scrolling types are disabled.<br> - If the value of **enable** is set to **true**, all scrolling types are enabled regardless of the value of **ScrollType**.|
 
 **Error codes**
 
@@ -6416,6 +6659,136 @@ struct WebComponent {
   }
 }
 ```
+
+### getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
+
+getLastJavascriptProxyCallingFrameUrl(): string
+
+Obtains the URL of the frame from which the last JavaScript proxy object was called. You can inject a JavaScript object into the window object using APIs like [registerJavaScriptProxy](#registerjavascriptproxy) or [javaScriptProxy](ts-basic-components-web.md#javascriptproxy). This API can be used to obtain the URL of the frame of the object that is injected last time.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class TestObj {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  test(testStr: string): string {
+    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testStr;
+  }
+
+  toString(): void {
+    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+
+  testNumber(testNum: number): number {
+    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testNum;
+  }
+
+  testBool(testBol: boolean): boolean {
+    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testBol;
+  }
+}
+
+class WebObj {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  webTest(): string {
+    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State testObjtest: TestObj = new TestObj(this.controller);
+  @State webTestObj: WebObj = new WebObj(this.controller);
+
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+    }
+  }
+}
+```
+
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
+
 ### pauseAllTimers<sup>12+</sup>
 
 pauseAllTimers(): void
@@ -6943,7 +7316,7 @@ struct WebComponent {
 
 clearServiceWorkerWebSchemeHandler(): void
 
-Clear all WebSchemeHandlers that are set in the application and used to intercept ServiceWorker.
+Clears all WebSchemeHandlers that are set in the application and used to intercept ServiceWorker.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6974,7 +7347,7 @@ struct WebComponent {
 
 startCamera(): void
 
-Enable the camera capture of the current web page.
+Enables the camera capture of the current web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7467,8 +7840,28 @@ class ActualNativeMediaPlayerListener {
     this.handler.handleFullscreenChanged(isFullscreen);
   }
   onUpdateVideoSize(width: number, height: number) {
-    //Notify the ArkWeb engine when the local player parses the video width and height.
+    // Notify the ArkWeb kernel when the native media player parses the video width and height.
     this.handler.handleVideoSizeChanged(width, height);
+  }
+  onDurationChanged(duration: number) {
+    // Notify the ArkWeb kernel when the native media player parses the video duration.
+    this.handler.handleDurationChanged(duration);
+  }
+  onError(error: webview.MediaError, errorMessage: string) {
+    // Notify the ArkWeb kernel that an error occurs in the native media player.
+    this.handler.handleError(error, errorMessage);
+  }
+  onNetworkStateChanged(state: webview.NetworkState) {
+    // Notify the ArkWeb kernel that the network state of the native media player changes.
+    this.handler.handleNetworkStateChanged(state);
+  }
+  onPlaybackRateChanged(playbackRate: number) {
+    // Notify the ArkWeb kernel that the playback rate of the native media player changes.
+    this.handler.handlePlaybackRateChanged(playbackRate);
+  }
+  onMutedChanged(muted: boolean) {
+    // Notify the ArkWeb kernel that the native media player is muted.
+    this.handler.handleMutedChanged(muted);
   }
 
   // Listen for other state of the native media player.
@@ -7505,7 +7898,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   setVolume(volume: number) {
-    // The ArkWeb kernel requires the volume of the local player to be adjusted.
+    // The ArkWeb kernel requires to adjust the volume of the native player.
     // Set the volume of the local player.
   }
 
@@ -7526,13 +7919,13 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   resumePlayer() {
-    // Create a local player again.
-    // Resume the status information of the local player.
+    // Create a player again.
+    // Resume the status information of the player.
   }
 
-  suspendPlayer(type: SuspendType) {
-    // Record the status information of the local player.
-    // Destroy the local player.
+  suspendPlayer(type: webview.SuspendType) {
+    // Record the status information of the player.
+    // Destroy the player.
   }
 }
 
@@ -7583,6 +7976,94 @@ function shouldHandle(mediaInfo: webview.MediaInfo) {
 }
 ```
 
+### enableWholeWebPageDrawing<sup>12+</sup>
+
+static enableWholeWebPageDrawing(): void
+
+Enables the full drawing capability for the web page. This API works only during **Web** component initialization.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.enableWholeWebPageDrawing();
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### webPageSnapshot<sup>12+</sup>
+
+webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
+
+Obtains the full drawing result of the web page. (Local resource web pages are not supported currently.)
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name      | Type          | Mandatory | Description                     |
+| ----------- | ------------- | ---- | ------------------------ |
+| info        | [SnapshotInfo](#snapshotinfo12)| Yes  | Information for obtaining the full drawing result.|
+| callback        | [SnapshotResult](#snapshotresult12)| Yes  | Callback used to return the result.|
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('webPageSnapshot')
+        .onClick(() => {
+          try {
+            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
+              if (error) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                return;
+              }
+              if (result) {
+                console.info(`return value is:${result}`);
+                // You can process the returned result as required.
+              }
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### injectOfflineResources<sup>12+</sup>
 
 injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourcemap12)\>): void
@@ -7592,7 +8073,7 @@ Resources in the memory cache are automatically managed by the ArkWeb engine. Wh
 Under normal circumstances, the validity period of the resources is controlled by the provided Cache-Control or Expires response header, with a default validity period of 86,400 seconds, which is one day.
 The MIME type of the resources is configured through the provided Content-Type response header. The Content-Type must comply with standards; otherwise, the resources cannot be used correctly. For resources of type MODULE_JS, a valid MIME type must be provided. For other types, the MIME type is optional.
 Resources injected in this mode can be loaded only through HTML tags. If the script tag on the business web page uses the **crossorigin** attribute, you must set the Cross-Origin response header to anonymous or use-credentials in the responseHeaders parameter of the interface.
-After **web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)** is called, the application starts the multi-rendering process mode. This API does not take effect in this scenario.
+After **webview.WebviewController.SetRenderProcessMode(webview.RenderProcessMode.MULTIPLE)** is called, the application starts the multi-rendering process mode. This API does not take effect in this scenario.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7869,7 +8350,7 @@ Sets the IP address of the host after domain name resolution.
 
 | Name   | Type| Mandatory| Description                            |
 | --------- | -------- | ---- | ------------------------------------ |
-| hostName  | string   | Yes  | Domain name of the host to which the DNS record is to be added.           |
+| hostName  | string   | Yes  | Domain name of the host whose DNS records are to be added.           |
 | address   | string   | Yes  | Host domain name resolution address (IPv4 and IPv6).|
 | aliveTime | number   | Yes  | Cache validity period, in seconds.                |
 
@@ -8008,7 +8489,7 @@ Sets the URL trustlist of the web page. Only URLs in the trustlist can be loaded
 
 | Name | Type   | Mandatory| Description                 |
 | ------- | ------ | ---- | :-------------------- |
-| urlTrustList | string | Yes  | URL trustlist, which is configured in JSON format. The maximum size is 10 MB.<br>**setUrlTrustList()** is used in overwrite mode. If it is called for multiple times, the latest setting overwrites the previous setting.<br>If this parameter is left blank, the trustlist is canceled and the access to all URLs is allowed.<br>Example in JSON format:<br>{<br>&nbsp;&nbsp;"UrlPermissionList":&nbsp;[<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"https",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example1.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;443,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"pathA/pathB"<br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"http",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example2.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;80,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"test1/test2/test3"<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;]<br>} |
+| urlTrustList | string | Yes  | URL trustlist, which is configured in JSON format. The maximum size is 10 MB.<br>**setUrlTrustList()** is used in overwrite mode. If it is called for multiple times, the latest setting overwrites the previous setting.<br>If this parameter is left blank, the trustlist is canceled and access to all URLs is allowed.<br>Example in JSON format:<br>{<br>&nbsp;&nbsp;"UrlPermissionList":&nbsp;[<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"https",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example1.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;443,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"pathA/pathB"<br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"http",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example2.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;80,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"test1/test2/test3"<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;]<br>} |
 
 **Parameters in JSON format**:
 | Name  | Type| Mandatory| Description                 |
@@ -8062,7 +8543,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
         Button('Access the trust web')
           .onClick(() => {
             try {
-              // The trustlist is enabled and untrust web pages can be accessed.
+              // The trustlist is enabled and trust web pages can be accessed.
               this.controller.loadUrl('http://trust.example.com/test');
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -8071,7 +8552,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
         Button('Access the untrust web')
           .onClick(() => {
             try {
-              // The trustlist is enabled that untrust web pages can not be accessed and an error page is displayed.
+              // The trustlist is enabled that untrust web pages cannot be accessed and an error page is displayed.
               this.controller.loadUrl('http://untrust.example.com/test');
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -8122,7 +8603,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 | ID| Error Message                |
 | -------- | ------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
@@ -8216,6 +8697,374 @@ element.textContent = 'success';
 body.appendChild(element);
 ```
 
+### enableBackForwardCache<sup>12+</sup>
+
+static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
+
+Enables the back-forward cache of a **Web** component. You can specify whether to add a specific page to the back-forward cache.
+
+This API must be called before [initializeWebEngine()](#initializewebengine) initializes the kernel.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | Yes  | Features of the pages, which allow them to be added to the back-forward cache.|
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let features = new webview.BackForwardCacheSupportedFeatures();
+        features.nativeEmbed = true;
+        features.mediaTakeOver = true;
+        // If a page uses the same-layer rendering and takes over media playback at the same time, you need to set the values of **nativeEmbed** and **mediaTakeOver** to **true** to add the page to the back-forward cache.
+         
+        webview.WebviewController.enableBackForwardCache(features);
+        webview.WebviewController.initializeWebEngine();
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
+### setBackForwardCacheOptions<sup>12+</sup>
+
+setBackForwardCacheOptions(options: BackForwardCacheOptions): void
+
+Sets the back-forward cache options of the **Web** component.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | Yes  | Options to control the back-forward cache of the **Web** component.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Row() {
+        Button("Add options").onClick((event: ClickEvent) => {
+          let options = new webview.BackForwardCacheOptions();
+          options.size = 3;
+          options.timeToLive = 10;
+          this.controller.setBackForwardCacheOptions(options);
+        })
+        Button("Backward").onClick((event: ClickEvent) => {
+          this.controller.backward();
+        })
+        Button("Forward").onClick((event: ClickEvent) => {
+          this.controller.forward();
+        })
+      }
+      Web({ src: "https://www.example.com", controller: this.controller })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### trimMemoryByPressureLevel<sup>14+</sup>
+
+trimMemoryByPressureLevel(level: number): void
+
+Clears the cache occupied by **Web** component based on the specified memory pressure level.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                 |
+| ------- | ------ | ---- | :-------------------- |
+| level | [PressureLevel](#pressurelevel14) | Yes| Pressure level of the memory to be cleared.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+
+**Example**
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Row() {
+        Button('trim_Memory')
+          .onClick(() => {
+            try {
+              // Set the current memory pressure level to moderate and release a small amount of memory.
+              webview.WebviewController.trimMemoryByPressureLevel(
+                webview.PressureLevel.MEMORY_PRESSURE_LEVEL_MODERATE);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+      }.height('10%')
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): void
+
+Obtains the data stream of a specified web page using an asynchronous callback.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name       | Type                                   | Mandatory| Description                   |
+| ------------- | --------------------------------------- | ---- | ----------------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | Yes  | Parameters required for creating a PDF file.      |
+| callback      | AsyncCallback<[PdfData](#pdfdata14)>    | Yes  | Callback used to return the data stream of an online PDF file.|
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(
+            this.pdfConfig,
+            (error, result: webview.PdfData) => {
+              try {
+                // Obtain the component context.
+                let context = getContext(this) as common.UIAbilityContext;
+                // Obtain the sandbox path and set the PDF file name.
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              }
+            });
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
+
+Obtains the data stream of a specified web page using a promise.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name       | Type                                   | Mandatory| Description             |
+| ------------- | --------------------------------------- | ---- | ----------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | Yes  | Parameters required for creating a PDF file.|
+
+**Return value**
+
+| Type                          | Description                         |
+| ------------------------------ | ----------------------------- |
+| Promise<[PdfData](#pdfdata14)> | Promise used to return the data stream of a web page.|
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(this.pdfConfig)
+            .then((result: webview.PdfData) => {
+              try {
+                // Obtain the component context.
+                let context = getContext(this) as common.UIAbilityContext;
+                // Obtain the sandbox path and set the PDF file name.
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
+              }
+            })
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
+### getScrollOffset<sup>13+</sup>
+
+getScrollOffset(): ScrollOffset
+
+Obtains the current scrolling offset of a web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type                           | Description                  |
+| :------------------------------ | ---------------------- |
+| [ScrollOffset](#scrolloffset13) | Current scrolling offset of the web page.|
+
+**Example**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { componentUtils } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct WebComponent {
+  @State testTitle: string = 'webScroll'
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State controllerX: number =-100;
+  @State controllerY: number =-100;
+  @State mode: OverScrollMode = OverScrollMode.ALWAYS;
+
+  build() {
+    Column() {
+      Row() {
+        Text(this.testTitle)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .margin(5)
+      }
+      Column() {
+        Text(`controllerX: ${this.controllerX}, controllerY: ${this.controllerY}`)
+      }
+      .margin({ top: 10, bottom: 10 })
+      Web({ src: $rawfile("scrollByTo.html"), controller: this.controller })
+        .key("web_01")
+        .overScrollMode(this.mode)
+        .onTouch((event) => {
+          this.controllerX = this.controller.getScrollOffset().x;
+          this.controllerY = this.controller.getScrollOffset().y;
+          let componentInfo = componentUtils.getRectangleById("web_01");
+          let webHeight = px2vp(componentInfo.size.height);
+          let pageHeight = this.controller.getPageHeight();
+          if (this.controllerY < 0) {
+            // Case 1: When a web page is scrolled down, use ScrollOffset.y directly.
+            console.log(`get downwards overscroll offsetY = ${this.controllerY}`);
+          } else if ((this.controllerY != 0) && (this.controllerY > (pageHeight - webHeight))) {
+            // Case 2: When a web page is scrolled up, calculate the offset between the lower boundary of the web page and that of the Web component.
+            console.log(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
+          } else {
+            // Case 3: If the web page is not scrolled, use ScrollOffset.y directly.
+            console.log(`get scroll offsetY = ${this.controllerY}`);
+          }
+        })
+        .height(600)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookieManager** instance.
@@ -8251,6 +9100,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -8285,7 +9135,15 @@ struct WebComponent {
 
 static fetchCookieSync(url: string, incognito?: boolean): string
 
-Obtains the cookie corresponding to the specified URL.
+Obtains the cookie value corresponding to the specified URL.
+
+> **NOTE**
+>
+> The system automatically deletes expired cookies. For data with the same key name, the new data overwrites the previous data.
+> 
+> To obtain the cookie value that can be used, pass a complete link to **fetchCookieSync()**.
+> 
+> **fetchCookieSync()** is used to obtain all cookie values. Cookie values are separated by semicolons (;). However, a specific cookie value cannot be obtained separately.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8309,6 +9167,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8417,7 +9276,7 @@ Obtains the cookie value of a specified URL. This API uses a promise to return t
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| Promise\<string> | Promise used to obtain the result.|
+| Promise\<string> | Promise used to return the result.|
 
 **Error codes**
 
@@ -8462,6 +9321,69 @@ struct WebComponent {
 }
 ```
 
+### fetchCookie<sup>14+</sup>
+
+static fetchCookie(url: string, incognito: boolean): Promise\<string>
+
+Obtains the cookie value of a specified URL. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| incognito    | boolean | Yes  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite.|
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Promise\<string> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 17100002 | Invalid url.                                           |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            webview.WebCookieManager.fetchCookie('https://www.example.com', false)
+              .then(cookie => {
+                console.log("fetchCookie cookie = " + cookie);
+              })
+              .catch((error: BusinessError) => {
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+              })
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -8490,6 +9412,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8527,9 +9450,11 @@ Sets a cookie for the specified URL.
 
 > **NOTE**
 >
->- You can set **url** in **configCookieSync** to a domain name so that cookies are attached to requests on the page.
-
->It is recommended that cookie syncing be completed before the **Web** component is loaded.
+> You can set **url** in **configCookieSync** to a domain name so that the cookie is attached to the requests on the page.
+>
+> It is recommended that cookie syncing be completed before the **Web** component is loaded.
+>
+> If **configCookieSync()** is used to set cookies for two or more times, the cookies set each time are separated by semicolons (;).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8549,6 +9474,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8567,8 +9493,64 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // Only one cookie value can be set.
+            // Only one cookie value can be set in configCookieSync at a time.
             webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookieSync<sup>14+</sup>
+
+static configCookieSync(url: string, value: string, incognito: boolean, includeHttpOnly: boolean): void
+
+Sets the cookie value for the specified URL.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
+| value  | string | Yes  | Cookie value to set.     |
+| incognito    | boolean | Yes  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.|
+| includeHttpOnly    | boolean | Yes  | Whether to overwrite cookies containing **HttpOnly**. The value **true** means to overwrite cookies containing **HttpOnly**, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookieSync')
+        .onClick(() => {
+          try {
+            // Only a single cookie value can be set.
+            webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', false, false);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -8591,7 +9573,7 @@ Sets the value of a single cookie for a specified URL. This API uses an asynchro
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
@@ -8649,7 +9631,7 @@ Sets the value of a single cookie for a specified URL. This API uses a promise t
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 
 **Return value**
@@ -8686,6 +9668,73 @@ struct WebComponent {
         .onClick(() => {
           try {
             webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
+              .then(() => {
+                console.log('configCookie success!');
+              })
+              .catch((error: BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>14+</sup>
+
+static configCookie(url: string, value: string, incognito: boolean, includeHttpOnly: boolean): Promise\<void>
+
+Sets the value of a single cookie for a specified URL. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| value  | string | Yes  | Cookie value to set.     |
+| incognito    | boolean | Yes  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.|
+| includeHttpOnly    | boolean | Yes  | Whether to overwrite cookies containing **HttpOnly**. The value **true** means to overwrite cookies containing **HttpOnly**, and **false** means the opposite.|
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            webview.WebCookieManager.configCookie('https://www.example.com', 'a=b', false, false)
               .then(() => {
                 console.log('configCookie success!');
               })
@@ -9116,7 +10165,7 @@ Clears all cookies. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                  | Mandatory| Description                                              |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to obtain the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -9170,7 +10219,7 @@ Clears all cookies. This API uses a promise to return the result.
 
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
-| Promise\<void> | Promise used to obtain the result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
@@ -9178,7 +10227,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -9333,6 +10382,7 @@ struct WebComponent {
   }
 }
 ```
+
 ### clearSessionCookie<sup>11+</sup>
 
 static clearSessionCookie(): Promise\<void>
@@ -9418,6 +10468,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9515,6 +10566,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100012 | Invalid web storage origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9579,6 +10631,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100012 | Invalid web storage origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9644,6 +10697,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9711,6 +10765,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9773,6 +10828,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9840,6 +10896,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                             |
 | -------- | ----------------------------------------------------- |
 | 17100011 | Invalid origin.                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10159,6 +11216,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10211,6 +11269,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10264,6 +11323,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10328,6 +11388,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10603,7 +11664,7 @@ Describes the data types supported for [WebMessagePort](#webmessageport).
 
 ## JsMessageType<sup>10+</sup>
 
-Describes the type of the returned result of script execution using [runJavaScirptExt](#runjavascriptext10).
+Describes the type of the returned result of script execution using [runJavaScriptExt](#runjavascriptext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -10659,7 +11720,7 @@ Enumerates the ArkWeb render subprocess modes.
 
 ## JsMessageExt<sup>10+</sup>
 
-Implements the **JsMessageExt** data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API.
+Implements the **JsMessageExt** data object that is returned after script execution using the [runJavaScriptExt](#runjavascriptext10) API.
 
 ### getType<sup>10+</sup>
 
@@ -10673,7 +11734,7 @@ Obtains the type of the data object. For the complete sample code, see [runJavaS
 
 | Type          | Description                                                     |
 | --------------| --------------------------------------------------------- |
-| [JsMessageType](#jsmessagetype10) | Type of the data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API.|
+| [JsMessageType](#jsmessagetype10) | Type of the data object that is returned after script execution using the [runJavaScriptExt](#runjavascriptext10) API.|
 
 ### getString<sup>10+</sup>
 
@@ -10954,6 +12015,7 @@ Sets the type for the data object. For the complete sample code, see [onMessageE
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setString<sup>10+</sup>
 
@@ -10974,6 +12036,7 @@ Sets the string-type data of the data object. For the complete sample code, see 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setNumber<sup>10+</sup>
 
@@ -10994,6 +12057,7 @@ Sets the number-type data of the data object. For the complete sample code, see 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setBoolean<sup>10+</sup>
 
@@ -11014,6 +12078,7 @@ Sets the Boolean-type data for the data object. For the complete sample code, se
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setArrayBuffer<sup>10+</sup>
 
@@ -11036,6 +12101,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setArray<sup>10+</sup>
 
@@ -11058,6 +12124,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setError<sup>10+</sup>
 
@@ -11080,6 +12147,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ## WebStorageOrigin
 
@@ -11189,7 +12257,7 @@ Defines a custom URL scheme.
 | schemeName     | string    | Yes  | Yes  | Name of the custom URL scheme. The value can contain a maximum of 32 characters, including lowercase letters, digits, periods (.), plus signs (+), and hyphens (-), and must start with a letter.       |
 | isSupportCORS  | boolean   | Yes  | Yes  | Whether to support cross-origin resource sharing (CORS).   |
 | isSupportFetch | boolean   | Yes  | Yes  | Whether to support fetch requests.          |
-| isStandard<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is processed as a standard scheme. The standard scheme must comply with the URL normalization and parsing rules defined in section 3.1 of [RFC 1738](http://www.ietf.org/rfc/rfc1738.txt).          |
+| isStandard<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is processed as a standard scheme. The standard scheme must comply with the URL normalization and parsing rules defined in section 3.1 of RFC 1738.          |
 | isLocal<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is treated with the same security rules as those applied to file URLs.          |
 | isDisplayIsolated<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the content of the scheme can be displayed or accessed from other content that uses the same scheme.          |
 | isSecure<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is treated with the same security rules as those applied to HTTPS URLs.          |
@@ -12576,7 +13644,7 @@ struct WebComponent {
 
 ## WebDownloadDelegate<sup>11+</sup>
 
- Implements a **WebDownloadDelegate** class. You can use the callbacks of this class to notify users of the download state.
+Implements a **WebDownloadDelegate** class. You can use the callbacks of this class to notify users of the download state.
 
 ### onBeforeDownload<sup>11+</sup>
 
@@ -13204,134 +14272,6 @@ struct WebComponent {
 }
 ```
 
-## getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
-
-getLastJavascriptProxyCallingFrameUrl(): string
-
-Obtains the URL of the frame from which the last JavaScript proxy object was called. You can inject a JavaScript object into the window object using APIs like [registerJavaScriptProxy](#registerjavascriptproxy) or [javaScriptProxy](ts-basic-components-web.md#javascriptproxy).  
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Error codes**
-
-For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**Example**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-class TestObj {
-  mycontroller: webview.WebviewController;
-
-  constructor(controller: webview.WebviewController) {
-    this.mycontroller = controller;
-  }
-
-  test(testStr: string): string {
-    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testStr;
-  }
-
-  toString(): void {
-    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-  }
-
-  testNumber(testNum: number): number {
-    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testNum;
-  }
-
-  testBool(testBol: boolean): boolean {
-    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testBol;
-  }
-}
-
-class WebObj {
-  mycontroller: webview.WebviewController;
-
-  constructor(controller: webview.WebviewController) {
-    this.mycontroller = controller;
-  }
-
-  webTest(): string {
-    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return "Web test";
-  }
-
-  webString(): void {
-    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  controller: webview.WebviewController = new webview.WebviewController();
-  @State testObjtest: TestObj = new TestObj(this.controller);
-  @State webTestObj: WebObj = new WebObj(this.controller);
-
-  build() {
-    Column() {
-      Button('refresh')
-        .onClick(() => {
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Button('Register JavaScript To Window')
-        .onClick(() => {
-          try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
-            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        .javaScriptAccess(true)
-    }
-  }
-}
-```
-
-HTML file to be loaded:
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html>
-    <meta charset="utf-8">
-    <body>
-      <button type="button" onclick="htmlTest()">Click Me!</button>
-      <p id="demo"></p>
-      <p id="webDemo"></p>
-    </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.testBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
-</html>
-```
 ## WebHttpBodyStream<sup>12+</sup>
 
 Represents the body of the data being sent in POST and PUT requests. It accepts data of the BYTES, FILE, BLOB, and CHUNKED types. Note that other APIs in this class can be called only after [initialize](#initialize12) is called successfully.
@@ -14084,7 +15024,7 @@ For the complete sample code, see [constructor](#constructor12).
 
 getHeaderByName(name: string): string
 
-Obtains the header of this response.
+Obtains the character set of this response.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14167,7 +15107,7 @@ See [OnRequestStart](#onrequeststart12).
 
 didFinish(): void
 
-Notifies the **Web** component that this request is completed and that no more data is available.
+Notifies the **Web** component that this request is completed and that no more data is available. Before calling this API, you need to call [didReceiveResponse](#didreceiveresponse12) to send a response header for this request.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14187,7 +15127,7 @@ See [OnRequestStart](#onrequeststart12).
 
 didFail(code: WebNetErrorList): void
 
-Notifies the ArkWeb engine that this request fails.
+Notifies the ArkWeb kernel that this request fails. Before calling this API, call [didReceiveResponse](#didreceiveresponse12) to send a response header to this request.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14300,10 +15240,13 @@ struct WebComponent {
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
+              // Before calling didFinish or didFail, call didReceiveResponse to send a response header to this request.
               let buf = buffer.from(this.htmlData)
               try {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
+                  resourceHandler.didReceiveResponse(response);
+                  // If the value of buf.length is 0 in normal cases, call resourceHandler.didFinish(). Otherwise, call resourceHandler.didFail().
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
@@ -14696,7 +15639,7 @@ Enumerates the suspension types of the player.
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
 Implements a **NativeMediaPlayerBridge** object, which is the return value of the [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) callback.
-It is an interface class that acts as a bridge between the web media player and the ArkWeb engine.
+It is an interface class that acts as a bridge between the web media player and the ArkWeb kernel.
 The ArkWeb engine uses an object of this interface class to control the player created by the application to take over web page media.
 
 ### updateRect<sup>12+<sup>
@@ -14983,7 +15926,7 @@ This object is used to create a player to take over media playback of the web pa
 
 | Type| Description|
 |------|------|
-| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb engine.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
 
 **Example**
 
@@ -15065,12 +16008,12 @@ Adds a page that uses any of the following features to the back-forward cache.
 
 | Name| Type| Mandatory| Description|
 |------|------|------|------|
-| nativeEmbed | bool | Yes| Whether to add a page that uses same-layer rendering to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for the same-layer rendering elements to avoid resource leak.|
-| mediaTakeOver | bool | Yes| Whether to add a page that takes over media playback to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for video elements to avoid resource leak.|
+| nativeEmbed | boolean | Yes| Whether to add a page that uses same-layer rendering to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for the same-layer rendering elements to avoid resource leak.|
+| mediaTakeOver | boolean | Yes| Whether to add a page that takes over media playback to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for video elements to avoid resource leak.|
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
-Represents a configuration object for the back-forward cache, which is used to set back-forward cache options of the **Web** component.
+Implements a **BackForwardCacheOptions** object to set back-forward cache options of the **Web** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -15078,99 +16021,6 @@ Represents a configuration object for the back-forward cache, which is used to s
 |------|------|------|------|
 | size | number | Yes| The maximum number of pages that can be cached in a **Web** component. The default value is **1**, and the maximum value is **50**. If this parameter is set to **0** or a negative value, the back-forward cache is disabled. The web reclaims the cache for memory pressure.|
 | timeToLive | number | Yes| The time that a **Web** component allows a page to stay in the back-forward cache. The default value is **600**, in seconds. If this parameter is set to **0** or a negative value, the back-forward cache is disabled.|
-
-### enableBackForwardCache<sup>12+</sup>
-
-static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
-
-Enables the back-forward cache of a **Web component**. You can specify whether to add a specific page to the back-forward cache.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name         | Type   |  Mandatory | Description                                           |
-| ---------------| ------- | ---- | ------------- |
-| features     |  BackForwardCacheSupportedFeatures | Yes  | Features used by pages, which allow them to be added to the back-forward cache.|
-
-**Example**
-
-```ts
-// EntryAbility.ets
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
-import { webview } from '@kit.ArkWeb';
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let features = new webview.BackForwardCacheSupportedFeatures();
-        features.nativeEmbed = true;
-        features.mediaTakeOver = true;
-        // If a page uses the same-layer rendering and takes over media playback at the same time, you need to set the values of nativeEmbed and mediaTakeOver to true to add the page to the back-forward cache.
-        webview.WebviewController.enableBackForwardCache(features);
-        webview.WebviewController.initializeWebEngine();
-        AppStorage.setOrCreate("abilityWant", want);
-    }
-}
-```
-
-### setBackForwardCacheOptions<sup>12+</sup>
-
-setBackForwardCacheOptions(options: BackForwardCacheOptions): void
-
-Sets the back-forward cache options of the **Web** component.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name         | Type   |  Mandatory | Description                                           |
-| ---------------| ------- | ---- | ------------- |
-| options     |  BackForwardCacheOptions | Yes  | Options to control the back-forward cache of the **Web** component.|
-
-**Error codes**
-
-For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**Example**
-
-```ts
-// xxx.ts
-import { webview } from '@kit.ArkWeb';
-
-@Entry
-@Component
-struct Index {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Row() {
-        Button("Add options").onClick((event: ClickEvent) => {
-          let options = new webview.BackForwardCacheOptions();
-          options.size = 3;
-          options.timeToLive = 10;
-          this.controller.setBackForwardCacheOptions(options);
-        })
-        Button("Backward").onClick((event: ClickEvent) => {
-          this.controller.backward();
-        })
-        Button("Forward").onClick((event: ClickEvent) => {
-          this.controller.forward();
-        })
-      }
-      Web({ src: "https://www.example.com", controller: this.controller })
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
 
 ## AdsBlockManager<sup>12+</sup>
 
@@ -15568,7 +16418,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
 
-// This example demonstrates how to click a button to remove an array of domain names from the allowed list.
+// This example demonstrates how to click a button to remove an array of domain names from the disallowed list.
 @Entry
 @Component
 struct WebComponent {
@@ -15668,93 +16518,7 @@ struct WebComponent {
   }
 }
 ```
-### enableWholeWebPageDrawing<sup>12+</sup>
 
-static enableWholeWebPageDrawing(): void
-
-Enables the full drawing capability for the web page. This API works only during **Web** component initialization.
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Example**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  aboutToAppear(): void {
-    try {
-      webview.WebviewController.enableWholeWebPageDrawing();
-    } catch (error) {
-      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-    }
-  }
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### webPageSnapshot<sup>12+</sup>
-
-webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
-
-Obtains the full drawing result of the web page. (Local resource web pages are not supported currently.)
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name      | Type          | Mandatory | Description                     |
-| ----------- | ------------- | ---- | ------------------------ |
-| info        | [SnapshotInfo](#snapshotinfo12)| Yes  | Information for obtaining the full drawing result.|
-| callback        | [SnapshotResult](#snapshotresult12)| Yes  | Callback used to return the result.|
-
-**Example**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('webPageSnapshot')
-        .onClick(() => {
-          try {
-            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
-              if (error) {
-                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-                return;
-              }
-              if (result) {
-                console.info(`return value is:${result}`);
-                // You can process the returned result as required.
-              }
-            });
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
 ## SnapshotInfo<sup>12+</sup>
 
 Provides information used to obtain a full drawing result.
@@ -15779,3 +16543,77 @@ Represents a full drawing result.
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | No| Actual size drawn on the web page. The value is of the number type, and the unit is vp.|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No| Full drawing result in image.pixelMap format.|
 
+## ScrollType<sup>12+</sup>
+
+Represents a scroll type, which is used in [setScrollable](#setscrollable12).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Value| Description                             |
+| ------------ | -- |--------------------------------- |
+| EVENT  | 0 | Scrolling event, indicating that a web page is scrolled by using a touchscreen, a touchpad, or a mouse.|
+
+## PressureLevel<sup>14+</sup>
+
+Represents a memory pressure level. When an application clears the cache occupied by the **Web** component, the **Web** kernel releases the cache based on the memory pressure level.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name| Value| Description|
+| ------------------------------- | - | ---------- |
+| MEMORY_PRESSURE_LEVEL_MODERATE | 1 | Moderate memory pressure level. At this level, the **Web** kernel attempts to release the cache that has low reallocation overhead and does not need to be used immediately.|
+| MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | Critical memory pressure level. At this level, the **Web** kernel attempts to release all possible memory caches.|
+
+##  PdfConfiguration<sup>14+</sup>
+
+Specifies the input parameters of **createPdf()**.
+
+> **NOTE**
+>
+> The number of pixels is calculated as follows: Number of pixels = 96 x Number of inches.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name                 | Type   | Mandatory| Description                                                        |
+| --------------------- | ------- | ---- | ------------------------------------------------------------ |
+| width                 | number  | Yes  | Page width, in inches.<br>Recommended value: 8.27 inches of A4 paper width.  |
+| height                | number  | Yes  | Page height, in inches.<br>Recommended value: 11.69 inches of A4 paper height. |
+| scale                 | number  | No  | Scale multiple. The value range is [0.0, 2.0]. If the value is less than 0.0, set it to **0.0**. If the value is greater than 2.0, set it to **2.0**. Default value: **1.0**|
+| marginTop             | number  | Yes  | Top margin. The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**. Unit: inch.|
+| marginBottom          | number  | Yes  | Bottom margin. The value range is [0.0, half of the page height). If the value is not within the value range, set it to **0.0**. Unit: inch.|
+| marginRight           | number  | Yes  | Right margin. The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**. Unit: inch.|
+| marginLeft            | number  | Yes  | Left margin. The value range is [0.0, half of the page width). If the value is not within the value range, set it to **0.0**. Unit: inch.|
+| shouldPrintBackground | boolean | No  | Whether to print the background color. The default value is **false**.                           |
+
+## PdfData<sup>14+</sup>
+
+Represents the output data stream class of **createPdf()**.
+
+> **NOTE**
+>
+> When a PDF file is generated on a web page, a data stream is returned, which is encapsulated by the **PdfData** class.
+
+### pdfArrayBuffer<sup>14+</sup>
+
+pdfArrayBuffer(): Uint8Array
+
+Obtains the data stream generated by a web page. For details, see [createPdf](#createpdf14).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type      | Description    |
+| ---------- | -------- |
+| Uint8Array | Data stream.|
+
+## ScrollOffset<sup>13+</sup>
+
+Represents the current scrolling offset of a web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name| Type  | Readable| Writable| Description                                                        |
+| ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| x    | number | Yes  | Yes  | Horizontal scrolling offset of a web page. The value is the difference between the x-coordinate of the left boundary of the web page and that of the left boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled rightwards, the value is negative.<br>When the web page is not scrolled or scrolled leftwards, the value is **0** or positive.|
+| y    | number | Yes  | Yes  | Vertical scrolling offset of a web page. The value is the difference between the y-coordinate of the upper boundary of the web page and that of the upper boundary of the **Web** component. The unit is vp.<br>When the web page is scrolled downwards, the value is negative.<br>When the web page is not scrolled or scrolled upwards, the value is **0** or positive.|

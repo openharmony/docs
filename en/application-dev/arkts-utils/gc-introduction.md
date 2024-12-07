@@ -1,6 +1,6 @@
-# GC Introduction
+# GC
 
-Garbage Collection (GC) is the process of finding garbage in memory and releasing and reclaiming memory space. Two GC algorithms are mainly used: reference counting and tracing GC. ArkTS runtime implements efficient memory reclamation in different scenarios based on generational models and hybrid algorithms.
+Garbage Collection (GC) is the process of finding garbage in memory and releasing and reclaiming memory space. Two GC algorithms are mainly used: reference counting and tracing GC. Based on the generational model (young generation and old generation), ArkTS uses both the reference counting and object tracking algorithms to concurrently execute GC tasks, achieving high-performance memory reclamation in different scenarios.
 
 In ArkTS, data types are classified into simple type and reference type. Data of the simple type is stored in stacks, and its space is automatically allocated and reclaimed by the operating system. Data of the reference type is stored in heaps, and its space must be manually reclaimed by the engine. GC is a management mechanism for automatically reclaiming heap space.
 
@@ -32,17 +32,17 @@ For some of the parameters, three values or value ranges are provided, correspon
 
 Two Semi Spaces are generated in the heap for the copying algorithm to use.
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB | Size of Semi Space. The value varies according to the total heap size. |
-| semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering the concurrent marking phase of Semi Space for the first time. |
-| semiSpaceStepOvershootSize| 2 MB  | Maximum overshoot size of Semi Space. |
+| semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space. The value varies according to the total heap size.|
+| semiSpaceTriggerConcurrentMark | 1 M/1.5 M/1.5 M| Threshold for independently triggering the concurrent marking phase of Semi Space for the first time.|
+| semiSpaceStepOvershootSize| 2 MB | Maximum overshoot size of Semi Space.|
 
 #### Parameters of Other Spaces
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space. |
+| defaultReadOnlySpaceSize | 256 KB | Default size of Read Only Space.|
 | defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | Default size of Non-Movable Space.|
 | defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | Default size of Snapshot Space.|
 | defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | Default size of Machine Code Space.|
@@ -51,60 +51,60 @@ Two Semi Spaces are generated in the heap for the copying algorithm to use.
 
 During initialization, the parameter is set to the size of the unallocated heap space left.
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| oldSpaceOvershootSize | 4 MB/8 MB/8 MB  | Maximum overshoot size of Old Space. |
+| oldSpaceOvershootSize | 4 MB/8 MB/8 MB | Maximum overshoot size of Old Space.|
 
 #### Heap Size Parameters
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | :--- |
-| HeapSize | 448–1024 MB  | Total heap size. The actual size allocated varies according to the heap type. The lower limit is reduced in the case of an insufficient memory pool. |
-| SemispaceSize | 2–4 MB/2–8 MB/2–16 MB | Size of Semi Space. |
-| NonmovableSpaceSize | 2 MB/6 MB/64 MB  | Size of Non-Movable Space. |
-| SnapshotSpaceSize | 512 KB | Size of Snapshot Space. |
-| MachineCodeSpaceSize | 2 MB | Size of Machine Code Space. |
+| HeapSize | 448–1024 MB | Total heap size. The actual size allocated varies according to the heap type. The lower limit is reduced in the case of an insufficient memory pool.|
+| SemispaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space.|
+| NonmovableSpaceSize | 2 MB/6 MB/64 MB | Size of Non-Movable Space.|
+| SnapshotSpaceSize | 512 KB| Size of Snapshot Space.|
+| MachineCodeSpaceSize | 2 MB| Size of Machine Code Space.|
 
 #### Maximum Number of Worker Thread Heaps
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | --- |
-| heapSize  | 768 MB | Size of the heap space of the work type. |
+| heapSize  | 768 MB | Size of the heap space of the work type.|
 
 #### Size of the Interpreter Stack
 
-| Parameter | Value or Value Range | Description |
+| Parameter| Value or Value Range| Description|
 | --- | --- | --- |
-| maxStackSize | 128 KB | Maximum frame size of the interpreter stack. |
+| maxStackSize | 128 KB| Maximum frame size of the interpreter stack.|
 
 #### Concurrency Parameters
 
-| Parameter | Value | Description |
+| Parameter| Value| Description|
 | --- | ---: | --- |
-| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**. |
-| MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool. |
-| MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool. |
+| gcThreadNum | 7 | Number of GC threads. The default value is 7. You can set this parameter using **gc-thread-num**.|
+| MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool.|
+| MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool.|
 
 Note: The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is a negative value, the number of threads in the initialized thread pool is the number of CPU cores divided by 2.
 
 #### Other Parameters
 
-| Parameter | Value | Description |
+| Parameter| Value| Description|
 | --- | --- | --- |
-| minAllocLimitGrowingStep | 2 M/4 M/8 M | Minimum increase step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated. |
-| minGrowingStep | 4 M/8 M/16 M  | Minimum increase step of **oldSpace**. |
-| longPauseTime | 40 ms | Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**. |
+| minAllocLimitGrowingStep | 2 M/4 M/8 M| Minimum increase step of **oldSpace**, **heapObject**, and **globalNative** when the heap space size is recalculated.|
+| minGrowingStep | 4 M/8 M/16 M | Minimum increase step of **oldSpace**.|
+| longPauseTime | 40 ms| Threshold for checking for a long GC pause. In the case of long GC pauses, complete GC log is printed, facilitating fault locating and analysis. You can set this parameter using **gc-long-paused-time**.|
 
-### Other
-
-### The maximum native memory of the ArrayBuffer in a single VM is 4 GB.
+### Other: The maximum native memory of the ArrayBuffer in a single VM is 4 GB.
 
 ## GC Process
 
 
 ![image](./figures/gc-process.png)
 
-### HPPGC
+### HPP GC
+
+High Performance Partial Garbage Collection (HPP GC) achieves efficient garbage collection by employing generational models, hybrid algorithms, and GC process optimization.
 
 #### Young GC
 
@@ -213,7 +213,7 @@ In performance-sensitive scenarios, the GC trigger threshold of the JS thread is
 - Page redirection upon click
 - Jumbo frame
 
-Application cold start is supported by default. In other scenarios, you can call the **dfxjsnapi** interface for configuration and there is no essential difference.
+Currently, this feature is controlled by the system. Third-party apps do not have APIs to directly call this feature.
 
 Log keyword: **SmartGC**
 
@@ -223,43 +223,12 @@ Log keyword: **SmartGC**
 
 Mark performance-sensitive scenarios. When entering or exiting a performance-sensitive scenario, mark the scenario on the heap to avoid unnecessary GC and maintain high performance.
 
-### Idle GC
-
-The thread idle time in the system frame drawing process is used to efficiently utilize computing resources to complete GC by phase, reducing janky frames caused by subsequent long GC pauses triggered by accumulated memory usage.
-
-#### **Incremental Marking**
-
-It usually takes a long period of time (longer than one idle time period) to complete old GC. Therefore, the marking process is distributed in multiple idle time periods.
-
-![image](./figures/gc-incremental-mark-feature.png)
-
-Incremental marking is triggered during linear space expansion when the following conditions are met:
-
-- **ENABLE_IDLE_GC** is enabled in **ArkProperties** and the idleTime switch callback function sent by the ability is received.
-- There is no idle task and concurrent marking is not triggered.
-- When incremental marking is complete, the difference between the heap size and the threshold is less than 256 KB.
-- The size of the allocated object is less than 100 KB during incremental marking.
-
-Incremental marking and full concurrent marking are mutually exclusive. Linear space mainly refers to Semi Space.
-
-#### **Idle Young GC**
-
-![image](./figures/gc-idle-feature.png)
-
-During linear space expansion, the system attempts to trigger idle GC and set an idle task when the following conditions are met:
-
-- **ENABLE_IDLE_GC** is enabled in **ArkProperties** and the idleTime switch callback function sent by the ability is received.
-- There is no idle task and concurrent marking is not triggered.
-- The heap size is less than 256 KB or less than the young GC concurrent mark threshold.
-
-Idle young GC can coexist with concurrent marking to prevent the GC threshold from being reached before the idle time is received. Concurrent marking can be triggered before idle young GC starts.
-
 ## Log Description
 
 ### Typical Logs
 
 ```
-// Actual size occupied by the object before GC (actual size occupied by the region) - > Actual size occupied by the object after GC (actual size occupied by the region), total duration (+concurrrentMark duration), and GC triggering cause
+// Actual size occupied by the object before GC (actual size occupied by the region) - > Actual size occupied by the object after GC (actual size occupied by the region), total duration (+concurrentMark duration), and GC triggering cause
 C03F00/ArkCompiler: [gc]  [ CompressGC ] 26.1164 (35) -> 7.10049 (10.5) MB, 160.626(+0)ms, Switch to background
 // GC statuses and application name
 C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.huawei.hmos.filemanager;
@@ -317,7 +286,6 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 ## GC Developer Debugging Interfaces
 
 > **NOTE**
->
 > The following interfaces are used only for debugging. They are informal external SDK interfaces and should not be used in official application versions.
 
 ### ArkTools.hintGC()

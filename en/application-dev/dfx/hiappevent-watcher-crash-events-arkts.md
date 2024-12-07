@@ -4,6 +4,10 @@
 
 For details about how to use the APIs (such as parameter usage constraints and value ranges), see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
+> **NOTE**
+>
+> The ArkTS APIs can be used to subscribe to JsError and NativeCrash events.
+
 **API for Setting Custom Event Parameters**
 
 | API                                             | Description                                        |
@@ -105,9 +109,9 @@ The following describes how to subscribe to a crash event triggered by a button 
     })
    ```
 
-5. In DevEco Studio, click the **Run** button to run the project. Then, click the **appCrash** button to trigger a crash event. 
+5. In DevEco Studio, click the **Run** button to run the project. Then, click the **appCrash** button to trigger a crash event. After a crash occurs, the system uses different stack backtracking methods to generate crash logs based on the crash type (JsError or NativeCrash) and then invokes callback. The NativeCrash stack backtracking takes about 2s. In practice, the duration depends on the number of service threads and the duration of inter-process communication. JsError triggers in-process stack backtracking, and NativeCrash triggers out-of-process stack backtracking. Therefore, NativeCrash stack backtracking is more time-consuming than JsError stack backtracking. You can subscribe to crash events so that the stack backtracking result is asynchronously reported without blocking the current service.
 
-6. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+6. When the application is restarted, HiAppEvent reports the crash event to the registered watcher. You can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS
@@ -122,10 +126,13 @@ The following describes how to subscribe to a crash event triggered by a button 
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
    HiAppEvent eventInfo.params.pid=2043
    HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=...
+   HiAppEvent eventInfo.params.uuid=b1e953ba0022c112e4502e28e8b3ad6d95cf3c87bae74068038f03b38ce7f66a
    HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:55:34)"}
    HiAppEvent eventInfo.params.hilog.size=90
    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1711440614112_2043.log"]
    HiAppEvent eventInfo.params.log_over_limit=false
    HiAppEvent eventInfo.params.test_data=100
    ```
+
+<!--RP1-->
+<!--RP1End-->

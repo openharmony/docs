@@ -30,6 +30,10 @@ getContext(component?: Object):Context
 
 在UIAbility中通过windowStage.loadContent加载具体页面。
 
+> **说明：**
+> 
+> 直接使用getContext可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)调用绑定实例的getContext。
+
 ```ts
 // EntryAbility.ets
 import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
@@ -86,6 +90,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
+            // 建议使用this.getUIContext().getHostContext()
             let context : Context = getContext(this) as Context
             console.info("CacheDir:" + context.cacheDir)
           })

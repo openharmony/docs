@@ -1,10 +1,10 @@
 # ErrorObserver
 
-The **ErrorObserver** module defines an observer to listen for application errors. It can be used as an input parameter in [ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron) to listen for errors that occur in the current application.
+The ErrorObserver module defines an observer to listen for application errors. It can be used as an input parameter in [ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageronerror) to listen for errors that occur in the current application.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -24,9 +24,9 @@ Called when an unhandled exception occurs in the JS runtime.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| errMsg | string | Yes | Message and error stack trace about the exception. |
+| errMsg | string | Yes| Message and error stack trace about the exception.|
 
 **Example**
 
@@ -59,9 +59,9 @@ Called when an exception occurs during the application running.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| errObject | Error | Yes | Event name, message, and error stack of the exception. |
+| errObject | Error | Yes| Event name, message, and error stack of the exception.|
 
 **Example**
 

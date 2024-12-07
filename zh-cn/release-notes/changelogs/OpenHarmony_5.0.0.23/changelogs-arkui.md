@@ -96,7 +96,7 @@ enableArrow、arrowOffset属性的起始支持版本为API version 10。
 
   如下图所示为变更前后效果对比：
 
- | 变更前 | 变更后 |
+| 变更前 | 变更后 |
 |---------|---------|
 | ![](figures/Dialog_Default_Radius_And_Margin_Before.png)  |  ![](figures/Dialog_Default_Radius_And_Margin_After.png)  |
 | ![](figures/Dialog_Width_Before.png) |  ![](figures/Dialog_Width_After.png) |
@@ -623,3 +623,74 @@ TabContent组件
 **适配指导**
 
 异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+
+## cl.arkui.18 border中对部分接口新增参数类型
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+扩展border成员属性类型，提供镜像能力。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：borderWidth 参数类型为Length | EdgeWidths；
+
+​                borderColor 参数类型为ResourceColor | EdgeColors；
+
+​                borderRadius 参数类型为 Length | BorderRadiuses；
+
+​                borderOptions同理
+
+变更后：borderWidth 参数类型为Length | EdgeWidths | LocalizedEdgeWidths；
+
+​                borderColor 参数类型为ResourceColor | EdgeColors | LocalizedEdgeColors；
+
+​                borderRadius 参数类型为Length | BorderRadiuses | LocalizedBorderRadiuses；
+
+​                borderOptions同理
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**变更的接口/组件**
+
+新增 borderWidth参数LocalizedEdgeWidths，borderColor参数LocalizedEdgeColors，borderRadius参数LocalizedBorderRadiuses以及borderOptions中width、color、radius参数的类型扩充。
+
+**适配指导**
+
+开发者需要根据错误提示信息，进行适配整改。
+
+针对以下场景，会存在类型不兼容报错。
+
+```ts
+const item: BorderOptions = { width: "10px",color: 0x000000,radius: 10 }
+
+const value1 : Length | EdgeWidths = item.width
+
+const value2 : ResourceColor | EdgeColors = item.color
+
+const value3 : Length | BorderRadiuses = item.radius
+```
+
+需要开发者手动修改代码。
+
+```ts
+const item: BorderOptions = { width: "10px",color: 0x000000,radius: 10 }
+
+const value1 : Length | EdgeWidths | LocalizedEdgeWidths | undefined = item.width
+
+const value2 : ResourceColor | EdgeColors | LocalizedEdgeColors | undefined = item.color
+
+const value3 : Length | BorderRadiuses | LocalizedBorderRadiuses | undefined = item.radius
+```
+

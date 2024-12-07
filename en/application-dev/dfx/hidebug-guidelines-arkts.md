@@ -1,6 +1,6 @@
-# Using Hidebug (ArkTS)
+# Using HiDebug (ArkTS)
 
-Hidebug provides APIs for system debugging, which allow you to obtain the information of static heap memory (native heap) and proportional set size (PSS) occupied by the application process, export VM memory slices, and collect VM CPU profiling data.
+HiDebug provides APIs for system debugging, which allow you to obtain the information of static heap memory (native heap) and proportional set size (PSS) occupied by the application process, export VM memory slices, and collect VM CPU profiling data.
 
 ## Available APIs
 
@@ -28,8 +28,10 @@ Hidebug provides APIs for system debugging, which allow you to obtain the inform
 | hidebug.getSystemMemInfo           | Obtains system memory information.                                          |
 | hidebug.getVMRuntimeStats          | Obtains all system GC statistics.                                    |
 | hidebug.getVMRuntimeStat           | Obtains the specified system GC statistics based on parameters.                          |
+| hidebug.getGraphicsMemory          | Obtains the size of the GPU memory asynchronously.                   |
+| hidebug.getGraphicsMemorySync      | Obtains the size of the GPU memory synchronously.                   |
 
-For details about how to use hidebug, see the API Reference (../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
+For details about how to use HiDebug, see the API Reference (../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
 
 ## How to Develop
 
@@ -50,14 +52,14 @@ The following describes how to add a button in the application and click the but
    }
    ```
 
-   Add a click event to the text. The sample code is as follows:
+   Add a click event to the **Text** component. The sample code is as follows:
 
    ```ts
    @Entry
    @Component
    struct Index {
      @State message: string = 'Hello World'
-   
+
      build() {
        Row() {
          Column() {
@@ -78,5 +80,8 @@ The following describes how to add a button in the application and click the but
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
    Then, the CPU usage logs obtained using **hidebug.getSystemCpuUsage()** are displayed in the window.
    ```Text
-	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381 
+	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381
    ```
+
+<!--RP1-->
+<!--RP1End-->

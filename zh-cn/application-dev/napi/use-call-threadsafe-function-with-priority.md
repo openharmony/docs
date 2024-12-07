@@ -18,7 +18,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 | isTail         | 指定任务的入队方式, true代表任务从队列的尾部入队，false代表任务从队列的头部入队。 |
 
 ## 场景介绍
-异步线程向ArkTS线程投递的任务需要根据任务指定的优先级和入队方式进行处理。
+异步线程向ArkTS主线程投递的任务需要根据任务指定的优先级和入队方式进行处理。
 
 ## 调用异步的ArkTS接口示例
 

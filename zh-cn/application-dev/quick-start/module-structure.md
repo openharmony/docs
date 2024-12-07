@@ -188,6 +188,7 @@ metadata对象示例：
 | 平板 | tablet | - |
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
+| 运动表 | litewearable | - |
 | 车机 | car | - |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
 <!--RP2End-->

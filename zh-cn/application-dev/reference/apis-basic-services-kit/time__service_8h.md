@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [TimeService_ErrCode](_time_service.md#timeservice_errcode)[TimeService_ErrCode](_time_service.md#timeservice_errcode) | 枚举错误码。 | 
+|[TimeService_ErrCode](_time_service.md#timeservice_errcode)| 枚举错误码。 | 
 
 
 ### 枚举

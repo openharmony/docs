@@ -41,19 +41,19 @@ The following steps describe how to create a paragraph object and display the pa
 
 1. **Create a child class of RenderNode.**
 
-    Create the child class **MyRenderNode** and define drawing functions in it. **RenderNode** contains operations on the tree structure and drawing attributes.
+    Create the child class **MyRenderNode** and define drawing functions in it. Steps 2 and 3 describe the implementation of the draw functions. **RenderNode** contains operations on the tree structure and drawing attributes.
 
     ```js
     // Create a MyRenderNode class and draw the text.
     class MyRenderNode extends RenderNode {
-    
+
         async draw(context: DrawContext) {
             // ...
         }
     }
     ```
 
-2. **Set the pen and brush styles.**
+2. **Create a canvas and set the pen and brush styles.** 
 
     Use **Pen** to create a pen object, and set the attributes such as anti-aliasing, color, and thickness. The pen is used to outline a shape.
 
@@ -62,6 +62,8 @@ The following steps describe how to create a paragraph object and display the pa
     Use **attachPen** and **attachBrush** in **canvas** to attach the pen and brush to the canvas.
 
     ```js
+    // Create a canvas object.
+    const canvas = context.canvas
     // Create a pen object and set the anti-aliasing, color, and thickness attributes.
     let pen = new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
