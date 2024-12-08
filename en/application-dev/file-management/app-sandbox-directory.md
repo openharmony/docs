@@ -20,7 +20,7 @@ With the application sandbox mechanism, an application is not aware of the exist
 
 - As shown in the following figure, the application sandbox mechanism minimizes the number of directories and files visible to a common application (third-party application). In addition, the directories and file paths visible to a common application are different from those visible to a system process. The path of a file or folder in the application sandbox directory visible to a common application is called the application sandbox path.
 
-- Generally, the hdc shell environment is equivalent to the system process view. Therefore, the application sandbox path is different from the physical path displayed on the hdc for debugging. For details about the mappings, see [Mapping Between Application Sandbox Paths and Physical Paths](#mapping-between-application-sandbox-paths-and-physical-paths).
+- Generally, the hdc shell environment is equivalent to the system process view. Therefore, the application sandbox path is different from the physical path displayed on the hdc for debugging. For details about the mappings, see [Mappings Between Application Sandbox Paths and Physical Paths](#mappings-between-application-sandbox-paths-and-physical-paths).
 
 - The application sandbox paths and physical paths are not in one-to-one mappings. The application sandbox paths are always shorter than physical paths. Some physical paths do not have the corresponding application sandbox paths.
 
@@ -50,7 +50,7 @@ The following figure shows the application file directory structure. The path of
 2. Level 2 directory **storage/**: directory for persistent files of the application.
 
 3. Level 3 directories **el1/** and **el2/**: directories for files of different encryption levels.
-   - **el1**: directory for the data that can be accessed once the device starts. This directory contains device-focused files.
+   - **el1**: device-level encrypted directory for the data that can be accessed once the device starts.
    - **el2**: directory for the data that can be accessed only after at least one successful unlock operation (by PIN, fingerprint, or facial authentication, or password-free sign-in) upon the start of the device. This directory contains user-focused files.<br>
    Unless otherwise required, application data is placed in the **el2** directory for security purposes. The data that needs to be accessed before the screen is unlocked (such as the clock, alarm, and wallpaper data) is placed in the **el1** directory. For details about the operations on **el1/** and **el2/**, see [Obtaining and Modifying el Directories](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
 
@@ -72,21 +72,20 @@ The following figure shows the application file directory structure. The path of
    | distributedfiles | distributedFilesDir | Distributed file directory| Directory in **el2** for saving the application files that can be directly accessed across devices.<br>This directory is cleared when the application is uninstalled.<br>You can place the application's data used for distributed scenarios, including file sharing, file backup, and file processing across devices, in this directory. The data stored in this directory enables an application to run smoothly on multiple devices that form a Super Device.|
    | files | filesDir | Application file directory| Directory for saving the application's persistent files on the device.<br>This directory is cleared when the application is uninstalled.<br>You can place the application's private data, including persistent files, images, media files, and log files, in this directory. The data is stored in this directory to ensure privacy, security, and permanent validity.|
    | cache | cacheDir | Application cache file directory| Directory for caching the downloaded files of the application or saving the cache files regenerated on the device.<br>This directory is automatically cleared when the size of the **cache** directory reaches the quota or the system storage space reaches a certain threshold. End users can also clear this directory by using a system space management application. <br>The application needs to check whether a file still exists and determine whether to cache a file again.<br>You can place the cached data of the application, including offline data, cached images, database backup, and temporary files, in this directory. Data stored in this directory may be automatically deleted by the system. Therefore, do not store important data in this directory.|
-   | preferences | preferencesDir | Preferences file directory| Directory for saving common application configuration and user preference data managed by using database APIs.<br>This directory is cleared when the application is uninstalled. For details about how to make preferences data persistent, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).<br>You can place application preferences data, including preference files and configuration files, in this directory. This directory applies to storing only a small amount of data.|
+   | preferences | preferencesDir | Preferences file directory| Directory for saving common application configuration and user preferences managed by ArkData APIs on the device.<br>This directory is cleared when the application is uninstalled. For details about how to make preferences data persistent, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).<br>You can place application preferences data, including preference files and configuration files, in this directory. This directory applies to storing only a small amount of data.|
    | temp | tempDir | Temporary file directory| Directory for saving the files generated and required during the application's runtime on the device. <br>This directory is cleared when the application exits.<br>You can place temporarily generated data of the application, including cached database data and images, temporary log files, downloaded application installation packages, in this directory. The data stored in this directory can be deleted immediately after being used.|
 
-## Mapping Between Application Sandbox Paths and Physical Paths
+## Mappings Between Application Sandbox Paths and Physical Paths
 
 The read and write operations performed on an application sandbox directory are eventually performed on the files in the physical directory after address conversion. The following table lists their mappings.
 
-In the physical paths, \<USERID> has a fixed value of **100**.
+In the physical paths, &lt;USERID&gt; indicates the ID of the current user, which starts from 100.
 
-| Application Sandbox Path | Physical Path | Description |
+| Application Sandbox Path| Physical Path| Description|
 | -------- | -------- | -------- |
-| /data/storage/el1/bundle | /data/app/el1/bundle/public/&lt;PACKAGENAME&gt; | Application installation package directory. |
-| /data/storage/el1/base | /data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of encryption level 1. |
-| /data/storage/el2/base | /data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of encryption level 2. |
-| /data/storage/el1/database | /data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | Database directory of the application under **el1/**. |
-| /data/storage/el2/database | /data/app/el2/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | Database directory of the application under **el2/**. |
-| /data/storage/el2/distributedfiles | /mnt/hmdfs/&lt;USERID&gt;/account/merge_view/data/&lt;PACKAGENAME&gt; | Distributed data directory of the application by user under el2/. |
-
+| /data/storage/el1/bundle | /data/app/el1/bundle/public/&lt;PACKAGENAME&gt;| Application installation package directory.|
+| /data/storage/el1/base | /data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of encryption level 1.|
+| /data/storage/el2/base | /data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of encryption level 2.|
+| /data/storage/el1/database | /data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | Database directory of the application under **el1/**.|
+| /data/storage/el2/database | /data/app/el2/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | Database directory of the application under **el2/**.|
+| /data/storage/el2/distributedfiles | /mnt/hmdfs/&lt;USERID&gt;/account/merge_view/data/&lt;PACKAGENAME&gt;| Distributed data directory of the user under **el2/**.|

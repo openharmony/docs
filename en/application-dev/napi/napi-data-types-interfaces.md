@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-Pointer used to represent a JavaScript (JS) value.
+A JavaScript (JS) value in C++.
 
 ### napi_env
 
@@ -64,7 +64,7 @@ Pointer used to represent a JavaScript (JS) value.
 
 ### napi_threadsafe_function
 
-Pointer that represents a JS function that can be called asynchronously from multiple threads. It can be used to pass the asynchronous operation result to the JS environment, such as reading data from another thread or performing compute-intensive operations. In addition, it can be used to call functions in C++ code from a JS environment for execution in another thread. By using **napi_threadsafe_function**, you can implement efficient interaction between JS and C++ code while maintaining thread safety.
+Pointer that represents a JS function that can be called asynchronously from multiple threads. It can be used to pass the asynchronous (async for short) operation result to the JS environment, such as reading data from another thread or performing compute-intensive operations. In addition, it can be used to call functions in C++ code from a JS environment for execution in another thread. By using **napi_threadsafe_function**, you can implement efficient interaction between JS and C++ code while maintaining thread safety.
 
 ### napi_threadsafe_function_release_mode
 
@@ -145,7 +145,7 @@ typedef struct {
 
 **napi_async_cleanup_hook_handle**
 
-Value used to register a callback for an asynchronous operation. It is mainly used to perform a cleanup operation when an asynchronous operation is complete or canceled, for example, releasing a resource or canceling an operation. Using **napi_async_cleanup_hook_handle** ensures that related resources are correctly released and cleaned up when an asynchronous operation is complete or canceled, thereby avoiding problems such as memory leakage.
+Value used to register a callback for an async operation. It is mainly used to perform a cleanup operation when an async operation is complete or canceled, for example, releasing a resource or canceling an operation. Using **napi_async_cleanup_hook_handle** ensures that related resources are correctly released and cleaned up when an async operation is complete or canceled, thereby avoiding problems such as memory leakage.
 
 ### Callback Types
 
@@ -173,7 +173,7 @@ Function pointer passed to **napi_create_threadsafe_function** and **napi_set_in
 
 Function pointer used in **napi_create_async_work**.
 
-- An asynchronous native function is called from a worker pool thread and can be executed in parallel with the main event loop thread.
+- An async native function is called from a worker pool thread and can be executed in parallel with the main event loop thread.
 
 - Avoid making Node-API calls that execute JS code or interact with JS objects when implementing this callback.
 
@@ -181,7 +181,7 @@ Function pointer used in **napi_create_async_work**.
 
 **napi_async_complete_callback**
 
-Function pointer used when an asynchronous operation is complete. When an asynchronous operation is required, you can use **napi_create_async_work** to create an asynchronous work and specify **napi_async_complete_callback**. When the asynchronous work is complete, the callback will be automatically invoked for subsequent processing. Parameters of the callback include the status of the asynchronous operation and a return value, based on which corresponding processing can be performed.
+Function pointer used when an async operation is complete. When an async operation is required, you can use **napi_create_async_work** to create an async work and specify **napi_async_complete_callback**. When the async work is complete, the callback will be automatically invoked for subsequent processing. Parameters of the callback include the status of the async operation and a return value, based on which corresponding processing can be performed.
 
 **napi_threadsafe_function_call_js**
 
@@ -219,7 +219,7 @@ typedef enum {
 
 Node-API is extended based on the native modules provided by Node.js. The following lists the APIs supported currently.
 
-### Asynchronous Thread-Safe APIs
+### Async Thread-Safe APIs
 
 | API| Description|
 | -------- | -------- |
@@ -235,12 +235,12 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 | API| Description|
 | -------- | -------- |
-| napi_create_buffer | Creates a JS buffer of the specified size.|
-| napi_create_buffer_copy | Creates a JS buffer of the specified size, and initializes it with data copied from the passed-in buffer.|
-| napi_create_external_buffer | Creates a JS buffer of the specified size, and initializes it with the given data.|
-| napi_get_buffer_info | Obtains the underlying data of a JS buffer and its length.|
+| napi_create_buffer | Creates a JS **Buffer** of the specified size.|
+| napi_create_buffer_copy | Creates a JS **Buffer** of the specified size and initializes it with the given data.|
+| napi_create_external_buffer | Creates a JS **Buffer** of the specified size and initializes it with the given data.|
+| napi_get_buffer_info | Obtains the underlying data of a JS **Buffer** and its length.|
 | napi_is_buffer | Checks whether the given JS value is a **Buffer** object.|
-| napi_create_external_arraybuffer | Allocates a JS **ArrayBuffer** with external data.|
+| napi_create_external_arraybuffer | Creates a JS **ArrayBuffer** with external data.|
 
 ### String
 
@@ -285,13 +285,13 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_close_handle_scope | Closes the scope passed in. After a scope is closed, all references declared in it are closed.|
 | napi_open_escapable_handle_scope | Opens a scope from which one object can be prompted to the outer scope. You can use **napi_close_escapable_handle_scope** to close it.|
 | napi_close_escapable_handle_scope | Closes the escapable handle scope passed in.|
-| napi_escape_handle | Promotes the handle to the JS object so that it is valid for the lifetime of the outer scope.|
+| napi_escape_handle | Promotes the handle to the JS object so that it is valid for the lifetime of the parent scope.|
 | napi_create_reference | Creates a reference for an object to extend its lifespan. The caller needs to manage the reference lifespan.|
 | napi_delete_reference | Deletes the reference passed in.|
-| napi_reference_ref | Increments the reference count passed in and returns the count.|
-| napi_reference_unref | Decrements the reference count passed in and returns the count.|
+| napi_reference_ref | Increments the reference count passed in and returns the new count.|
+| napi_reference_unref | Decrements the reference count passed in and returns the new count.|
 | napi_get_reference_value | Obtains the JS object associated with the reference.|
-| napi_add_finalizer | Adds a **napi_finalize** callback, which will be called when the JS object in **js_Object** is garbage-collected.|
+| napi_add_finalizer | Adds a **napi_finalize** callback, which will be called when the JS object is garbage-collected.|
 
 ### Promise
 
@@ -388,30 +388,30 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_set_property | Sets a property for an object.|
 | napi_get_property | Obtains the requested property of an object.|
 | napi_has_property | Checks whether an object has the specified property.|
-| napi_delete_property | Deletes the **key** property from an object.|
-| napi_has_own_property | Checks whether an object has the own property named **key**.|
+| napi_delete_property | Deletes a property from an object.|
+| napi_has_own_property | Checks whether an object has the own property specified by **key**.|
 | napi_set_named_property | Sets a property with the specified name for an object.|
 | napi_get_named_property | Obtains the property with the specified name in an object.|
 | napi_has_named_property | Checks whether an object has the property with the specified name.|
 | napi_define_properties | Defines multiple properties for an object.|
 | napi_get_all_property_names | Obtains an array containing the names of all the available properties of this object.|
 
-### Asynchronous Works
+### Async Works
 
 | API| Description|
 | -------- | -------- |
 | napi_create_async_work | Creates a work object that executes logic asynchronously.|
-| napi_delete_async_work | Releases an asynchronous work object.|
-| napi_queue_async_work | Adds an asynchronous work object to the queue so that it can be scheduled for execution.|
-| napi_cancel_async_work | Cancels a queued asynchronous work if it has not been started.|
+| napi_delete_async_work | Releases an async work object.|
+| napi_queue_async_work | Adds an async work object to the queue so that it can be scheduled for execution.|
+| napi_cancel_async_work | Cancels a queued async work if it has not been started.|
 
-### Custom Asynchronous Operations
+### Custom Async Operations
 
 | API| Description|
 | -------- | -------- |
-| napi_async_init | Creates an asynchronous context. The capabilities related to **async_hook** are not supported.|
-| napi_make_callback | Allows a JS function to be called in the asynchronous context. The capabilities related to **async_hook** are not supported.|
-| napi_async_destroy | Destroys the previously created asynchronous context. The capabilities related to **async_hook** are not supported.|
+| napi_async_init | Creates an async context. The capabilities related to **async_hook** are not supported.|
+| napi_make_callback | Allows a JS function to be called in the async context. The capabilities related to **async_hook** are not supported.|
+| napi_async_destroy | Destroys the previously created async context. The capabilities related to **async_hook** are not supported.|
 | napi_open_callback_scope | Opens a callback scope. The capabilities related to **async_hook** are not supported.|
 | napi_close_callback_scope | Closes the callback scope. The capabilities related to **async_hook** are not supported.|
 
@@ -438,7 +438,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 | API| Description|
 | -------- | -------- |
-| napi_queue_async_work_with_qos | Adds an asynchronous work object to the queue and schedules it based on the QoS passed in.|
+| napi_queue_async_work_with_qos | Adds an async work object to the queue and schedules it based on the QoS passed in.|
 | napi_run_script_path | Runs an .abc file.|
 | napi_load_module | Loads an .abc file as a module. This API returns the namespace of the module.|
 | napi_create_object_with_properties | Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|
@@ -512,14 +512,14 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
 
 | API| Description|
 | -------- | -------- |
-| napi_add_env_cleanup_hook | Registers a clean-up hook for releasing resources when the environment exits.|
-| napi_remove_env_cleanup_hook | Unregisters the clean-up hook.|
-| napi_add_async_cleanup_hook | Registers an asynchronous clean-up hook for releasing resources when the environment exits.|
-| napi_remove_async_cleanup_hook | Unregisters the asynchronous clean-up hook.|
+| napi_add_env_cleanup_hook | Adds a cleanup hook function for releasing resources when the environment exits.|
+| napi_remove_env_cleanup_hook | Removes a cleanup hook function.|
+| napi_add_async_cleanup_hook | Adds an async cleanup hook function for releasing resources when the environment exits.|
+| napi_remove_async_cleanup_hook | Removes an async cleanup hook function.|
 
 
 ### Other Utilities
 
 | API| Description|
 | -------- | -------- |
-| node_api_get_module_file_name | Obtains the absolute path of the location, from which the addon is loaded.|
+| node_api_get_module_file_name | Obtains the absolute path of the module to be loaded.|
