@@ -3792,10 +3792,10 @@ setAlbumName(name: string): void
 
 Sets the album name.
 
-The album name is not allowed to:
-- Exceed 255 characters.
-- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
-- The album name is case-insensitive.
+The album name must comply with the following:
+- It cannot exceed 255 characters.
+- It cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- It is case-insensitive.
 - Duplicate album names are not allowed.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
