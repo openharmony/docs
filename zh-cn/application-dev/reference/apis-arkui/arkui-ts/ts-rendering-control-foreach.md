@@ -25,6 +25,14 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 > - `ForEach`的`itemGenerator`函数可以包含`if/else`条件渲染逻辑。另外，也可以在`if/else`条件渲染语句中使用`ForEach`组件。
 > - 在初始化渲染时，`ForEach`会加载数据源的所有数据，并为每个数据项创建对应的组件，然后将其挂载到渲染树上。如果数据源非常大或有特定的性能需求，建议使用`LazyForEach`组件。
 
+**示例：**
+```ts
+// arr是被@State修饰的Array<string>类型的数组
+// (item: string, index: number) => {Text(item)} 是 itemGenerator
+// (item: string, index: number) => item + index 是 keyGenerator
+ForEach(this.arr, (item: string, index: number) => {Text(item)}, (item: string, index: number) => item + index)
+```
+
 ## onMove<sup>12+</sup>
 
 onMove(handler: Optional<(from: index, to: index) => void>): T
