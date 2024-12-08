@@ -2901,7 +2901,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap (OH_Pixelmap_Initializatio
 Image_ErrorCode OH_PixelmapNative_CreatePixelmap (uint8_t * data, size_t dataLength, OH_Pixelmap_InitializationOptions * options, OH_PixelmapNative ** pixelmap )
 ```
 **描述**
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，其他格式请参考[OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat)。
 
 **起始版本：** 12
 
