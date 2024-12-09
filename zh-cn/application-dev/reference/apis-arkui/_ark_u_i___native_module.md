@@ -743,6 +743,7 @@
 | int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
 | int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
+| int32_t [OH_ArkUI_PostFrameCallback](#oh_arkui_postframecallback)([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, void\* userData, void (\*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void\* userData))| 注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。 |
 
 
 ## 宏定义说明
@@ -14677,3 +14678,32 @@ void OH_ArkUI_WaterFlowSectionOption_SetSize (ArkUI_WaterFlowSectionOption * opt
 | -------- | -------- |
 | option | FlowItem分组配置信息。  | 
 | size | 数组长度。  | 
+
+
+### OH_ArkUI_PostFrameCallback()
+
+```
+int32_t OH_ArkUI_PostFrameCallback(ArkUI_ContextHandle uiContext, void* userData, void (*callback)(uint64_t nanoTimestamp, uint32_t frameCount, void* userData))
+```
+**描述：**
+
+注册一个回调函数，以便在下一帧渲染时执行。不允许在非UI线程调用，检查到非UI线程调用程序会主动abort。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| uiContext | uiContext对象，用以绑定实例。| 
+| userData | 自定义事件参数，当事件触发时在回调参数中携带回来。| 
+| callback | 自定义回调函数，会在下一帧事件结束后回调。| 
+| nanoTimestamp | 帧信号的时间戳。| 
+| frameCount | 帧号。| 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_CAPI_INIT_ERROR CAPI初始化错误。
+ARKUI_ERROR_CODE_UI_CONTEXT_INVALID uiContext对象无效。
+ARKUI_ERROR_CODE_CALLBACK_INVALID 回调函数无效。
