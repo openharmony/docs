@@ -28,8 +28,8 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 **示例：**
 ```ts
 // arr是string类型的数组
-// (item: string, index: number) => {Text(item)} 是 itemGenerator
-// (item: string, index: number) => item + index 是 keyGenerator
+// 第一个参数是组件创建函数
+// 第二个参数是键值生成函数
 ForEach(this.arr, (item: string, index: number) => {Text(item)}, (item: string, index: number) => item + index)
 ```
 
