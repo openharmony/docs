@@ -446,9 +446,9 @@ static getUsingLocalDigit(): boolean
 
 ### getTemperatureType<sup>16+</sup>
 
-static getTemperatureType(): TemperatureType;
+static getTemperatureType(): TemperatureType
 
-获取当前用户的偏好温度单位类型。
+获取当前用户偏好的温度单位。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -458,7 +458,7 @@ static getTemperatureType(): TemperatureType;
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| [TemperatureType](#temperaturetype16) | 温度单位类型。 |
+| [TemperatureType](#temperaturetype16) | 温度单位。 |
 
 **示例：**
   ```ts
@@ -467,9 +467,9 @@ static getTemperatureType(): TemperatureType;
 
 ### getTemperatureName<sup>16+</sup>
 
-static getTemperatureName(type: TemperatureType): string;
+static getTemperatureName(type: TemperatureType): string
 
-获取温度单位类型对应的显示名称。
+获取温度单位的名称。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -479,13 +479,13 @@ static getTemperatureName(type: TemperatureType): string;
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位类型。 |
+| type| [TemperatureType](#temperaturetype16) | 是    | 温度单位。 |
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| string | 返回对应温度单位类型枚举的名称，包括celsius，fahrenhe，kelvin。 |
+| string | 返回温度单位的名称，包括celsius，fahrenheit，kelvin。 |
 
 **错误码：**
 
@@ -515,9 +515,9 @@ static getTemperatureName(type: TemperatureType): string;
 
 ### getFirstDayOfWeek<sup>16+</sup>
 
-static getFirstDayOfWeek(): WeekDay;
+static getFirstDayOfWeek(): WeekDay
 
-获取当前用户的周起始日。
+获取当前用户偏好的周起始日。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -527,7 +527,7 @@ static getFirstDayOfWeek(): WeekDay;
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| [WeekDay](#weekday16) | 周一至周日中的某天。 |
+| [WeekDay](#weekday16) | 周起始日。 |
 
 **示例：**
   ```ts
@@ -536,11 +536,11 @@ static getFirstDayOfWeek(): WeekDay;
 
 ## TemperatureType<sup>16+</sup>
 
-温度单位类型的枚举。
+温度单位的枚举。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
-**系统能力：** ：SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -550,11 +550,11 @@ static getFirstDayOfWeek(): WeekDay;
 
 ## WeekDay<sup>16+</sup>
 
-周一至周日的枚举。
+周起始日的枚举，取值是周一至周日的某天。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
-**系统能力：** ：SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -565,6 +565,7 @@ static getFirstDayOfWeek(): WeekDay;
 | FRI | 5 | 周五。 |
 | SAT | 6 | 周六。 |
 | SUN | 7 | 周日。 |
+
 
 ## i18n.isRTL
 
