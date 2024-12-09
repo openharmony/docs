@@ -246,3 +246,68 @@ List组件的initialIndex接口和Scroller控制器的跳转接口（scrollToInd
 **适配指导**
 
 需要对使用List组件的页面进行排查，检查是否在onAppear或其他List组件首次布局之前的阶段，同时设置了initialIndex并调用了scrollToIndex,、scrollToItemInGroup或scrollEdge接口。在变更后，initialIndex的生效优先级将低于scrollToIndex、scrollToItemInGroup或scrollEdge的优先级。
+
+## cl.arkui.4  CanvasRenderingContext2D的drawImage接口联合阴影绘制由阴影无法正确绘制变更为阴影正确绘制
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+drawImage同名接口根据传入参数的不同，视为不同方法。当drawImage传入image、dx和dy三个参数，且与阴影颜色（shadowColor）、阴影偏置距离（shadowOffsetX和shadowOffsetY）联合绘制时，阴影无法正确绘制。变更后，阴影可以正确绘制。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+- 变更前：当drawImage接口传入image、dx和dy三个参数，且与阴影进行联合绘制时，阴影无法正确绘制。
+- 变更后：当drawImage接口传入image、dx和dy三个参数，且与阴影进行联合绘制时，阴影可以正确绘制。
+
+|               变更前                |              变更后               |
+| :---------------------------------: | :-------------------------------: |
+| ![](figures/drawImage_without_shadow.jpg) | ![](figures/drawImage_with_shadow.jpg) |
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.57 版本开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D的drawImage接口
+
+**适配指导**
+
+API version 15及以后，使用drawImage接口与阴影进行联合绘制时，阴影能够被正确绘制。
+
+**示例**
+
+```ts
+@Entry
+@Component
+struct Page1 {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private img: ImageBitmap = new ImageBitmap("common/images/example.png")
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.context.shadowColor = "rgb(213,213,213)"
+          this.context.shadowOffsetX = 40
+          this.context.shadowOffsetY = 40
+          this.context.drawImage(this.img, 20, 20)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
