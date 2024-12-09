@@ -59,9 +59,7 @@ ButtonConfiguration、CheckBoxConfiguration、DataPanelConfiguration、TextClock
 
 ## 示例
 
-通过ContentModifier实现自定义复选框样式的功能。
-
-该示例实现了一个五边形复选框用来替换原本Checkbox的样式。如果选中，内部会出现红色三角图案，标题会显示选中字样；如果取消选中，红色三角图案消失，标题会显示非选中字样。
+通过ContentModifier实现自定义复选框样式的功能，用一个五边形复选框替换原本Checkbox的样式。如果选中，内部会出现红色三角图案，标题会显示选中字样；如果取消选中，红色三角图案消失，标题会显示非选中字样。
 
 ```ts
 // xxx.ets
