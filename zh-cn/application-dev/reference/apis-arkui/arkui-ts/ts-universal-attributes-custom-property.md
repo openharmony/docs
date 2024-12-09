@@ -40,7 +40,7 @@ Optional\<T>
 
 ## 示例
 
-在Column组件上设置自定义属性，并在其对应的FrameNode上获取。
+在Column组件上设置自定义属性，并在其对应的FrameNode上获取所设置的自定义属性。
 
 ```ts
 // xxx.ets
