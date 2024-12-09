@@ -320,6 +320,38 @@
    >
    > 当应用完成查询数据操作，不再使用结果集（ResultSet）时，请及时调用close方法关闭结果集，释放系统为其分配的内存。
 
+   当前RDB还支持进行FTS全文检索，可以根据中文或者英文进行文本检索，针对中文分词器支持ICU分词器。
+
+   以中文关键字检索为例：
+
+   ```ts
+   let store: relationalStore.RdbStore | undefined = undefined;
+   if (store !== undefined) {
+     // 创建全文检索表
+     const  SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)";
+     (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to creating fts table.`);
+         return;
+       }
+       console.info(`Succeeded in creating fts table.`);
+     })
+   }
+   if(store != undefined) {
+      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH '测试'", (err, resultSet) => {
+        if (err) {
+          console.error(`Query failed.`);
+          return;
+        }
+        while (resultSet.goToNextRow()) {
+          const name = resultSet.getString(resultSet.getColumnIndex("name"));
+          console.info(`name=${name}`);
+        }
+        resultSet.close();
+      })
+   }
+   ```
+
 5. 在同路径下备份数据库。关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
 
    此处以手动备份为例：
