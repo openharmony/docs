@@ -27,7 +27,7 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 
 **示例：**
 ```ts
-// arr是被@State修饰的Array<string>类型的数组
+// arr是string类型的数组
 // (item: string, index: number) => {Text(item)} 是 itemGenerator
 // (item: string, index: number) => item + index 是 keyGenerator
 ForEach(this.arr, (item: string, index: number) => {Text(item)}, (item: string, index: number) => item + index)
