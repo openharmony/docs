@@ -1112,7 +1112,7 @@ USB设备消息传输通道，用于确定设备。
 
 **说明：**
 
-> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams) 替代。
+> 从 API version 9开始支持，从API version 12开始废弃。建议使用 [USBDeviceRequestParams](#usbdevicerequestparams12) 替代。
 
 **系统能力：** SystemCapability.USB.USBManager
 
