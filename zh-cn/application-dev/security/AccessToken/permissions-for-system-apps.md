@@ -1183,13 +1183,17 @@
 
 允许应用获取对端Wi-Fi设备的MAC地址。
 
-**权限级别**：system_core
+在获取Wi-Fi扫描结果时，如果需要获取对端设备的MAC地址，则需要申请该权限。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：8
+
+**变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic。
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
