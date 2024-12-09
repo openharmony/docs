@@ -517,3 +517,17 @@
 
 **变更信息**：API version 10-13该权限仅向系统应用开放；从API version 14开始，开放范围从系统应用变更为企业普通应用。
 
+## **ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT** 
+
+允许应用管理企业设备的用户CA证书。
+
+在企业设备上企业应用使用私有的CA证书认证企业服务器时，该权限用于允许企业应用把私有CA证书安装到企业设备上，并对安装的CA证书进行管理操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：16
