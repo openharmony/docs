@@ -73,7 +73,7 @@ import { media } from '@kit.MediaKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { audio } from '@kit.AudioKit'
+import { audio } from '@kit.AudioKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -85,12 +85,12 @@ export class AVPlayerDemo {
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
-    })
+    });
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用 reset接口触发重置流程
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       avPlayer.reset(); // 调用reset重置资源，触发idle状态
-    })
+    });
     // 状态机变化回调函数
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
@@ -103,7 +103,7 @@ export class AVPlayerDemo {
           avPlayer.audioRendererInfo = {
             usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
             rendererFlags: 0
-          }
+          };
           avPlayer.prepare();
           break;
         case 'prepared': // prepare调用成功后上报该状态机
@@ -124,7 +124,7 @@ export class AVPlayerDemo {
             setTimeout(() => {
               console.info('AVPlayer is playing wait to pause');
               avPlayer.pause(); // 播放3s后调用暂停接口暂停播放
-            }, 3000)
+            }, 3000);
           }
           this.count++;
           break;
@@ -133,7 +133,7 @@ export class AVPlayerDemo {
           setTimeout(() => {
               console.info('AVPlayer paused wait to play again');
               avPlayer.play(); // 暂停3s后再次调用播放接口开始播放
-            }, 3000)
+            }, 3000);
           break;
         case 'completed': // 播放结束后触发该状态机上报
           console.info('AVPlayer state completed called.');
@@ -150,7 +150,7 @@ export class AVPlayerDemo {
           console.info('AVPlayer state unknown called.');
           break;
       }
-    })
+    });
   }
 
   // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过url属性进行播放示例
@@ -208,14 +208,14 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     let context = getContext(this) as common.UIAbilityContext;
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     // 获取播放文件的大小
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
@@ -243,13 +243,13 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     this.isSeek = false; // 不支持seek操作
     avPlayer.dataSrc = src;
   }
