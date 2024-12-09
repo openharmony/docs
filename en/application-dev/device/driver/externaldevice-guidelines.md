@@ -143,7 +143,7 @@ The following sample code is a demo that illustrates how to develop both the cli
     }
     ```
 
-6. Defines the **sendMessageRequest** API, and use it to perform IPC with the remote driver object.
+6. Define the **sendMessageRequest** API, and use it to perform IPC with the remote driver object.
 
     ```ts
     private async communicateWithRemote(): Promise<void> {
