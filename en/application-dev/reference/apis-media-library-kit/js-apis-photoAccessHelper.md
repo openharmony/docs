@@ -67,7 +67,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching the image and video assets.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback used to return the image and video assets obtained.|
 
 **Error codes**
 
@@ -184,9 +184,9 @@ If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
-| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
+| extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
 | options  | [CreateOptions](#createoptions)        | Yes  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
-| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the URI of the created image or video.|
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video.|
 
 **Error codes**
 
@@ -237,8 +237,8 @@ If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
-| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
-| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the URI of the created image or video.|
+| extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback used to return the URI of the created image or video.|
 
 **Error codes**
 
@@ -286,7 +286,7 @@ If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
-| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
+| extension  | string        | Yes  | File name extension, for example, **'jpg'**.             |
 | options  | [CreateOptions](#createoptions)        | No  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
 
 **Return value**
@@ -342,10 +342,10 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
 | options  | [FetchOptions](#fetchoptions)         | Yes  |  Options for fetching the albums.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -404,9 +404,9 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -457,7 +457,7 @@ Before the operation, ensure that the albums to obtain exist.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the albums to obtain.             |
 | subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
 | options  | [FetchOptions](#fetchoptions)         | No  |  Options for fetching the albums. If this parameter is not specified, the albums are obtained based on the album type by default.             |
 
@@ -521,7 +521,7 @@ Registers listening for the specified URI. This API uses a callback to return th
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the photo asset, URI of the album, or [DefaultChangeUri](#defaultchangeuri).|
 | forChildUris | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only. <br>If **uri** is the URI of a **photoAsset**, there is no difference between **true** and **false** for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is **false**, the URI cannot be found and no message can be received.|
-| callback  | Callback&lt;[ChangeData](#changedata)&gt; | Yes  | Callback invoked to return the [ChangeData](#changedata). <br>**NOTE**<br>Multiple callback listeners can be registered for a URI. You can use [unRegisterChange](#unregisterchange) to unregister all listeners for the URI or a specified callback listener.|
+| callback  | Callback&lt;[ChangeData](#changedata)&gt; | Yes  | Callback used to return the [ChangeData](#changedata). <br>**NOTE**<br>Multiple callback listeners can be registered for a URI. You can use [unRegisterChange](#unregisterchange) to unregister all listeners for the URI or a specified callback listener.|
 
 **Error codes**
 
@@ -872,7 +872,7 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1106,6 +1106,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1116,7 +1117,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
@@ -1162,6 +1163,7 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1346,7 +1348,7 @@ Obtains the thumbnail of this file. This API uses an asynchronous callback to re
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
 
 **Error codes**
 
@@ -1399,7 +1401,7 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | [image.Size](../apis-image-kit/js-apis-image.md#size) | Yes   | Size of the thumbnail.           |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
 
 **Error codes**
 
@@ -1578,7 +1580,7 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [PhotoSelectOptions](#photoselectoptions) | Yes  | Options for selecting images or videos.|
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback used to return information about the images or videos selected.|
 
 **Error codes**
 
@@ -1627,7 +1629,7 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback used to return information about the images or videos selected.|
 
 **Error codes**
 
@@ -1804,7 +1806,7 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 | Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the first file asset obtained.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the first file asset obtained.|
 
 **Error codes**
 
@@ -1894,7 +1896,7 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the next file asset.|
 
 **Error codes**
 
@@ -1990,7 +1992,7 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 | Name  | Type                                         | Mandatory| Description                       |
 | -------- | --------------------------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the last file asset obtained.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the last file asset obtained.|
 
 **Error codes**
 
@@ -2080,7 +2082,7 @@ Obtains a file asset with the specified index in the result set. This API uses a
 | Name      | Type                                      | Mandatory  | Description                |
 | -------- | ---------------------------------------- | ---- | ------------------ |
 | index    | number                                   | Yes   | Index of the file asset to obtain. The value starts from **0**.    |
-| callback | AsyncCallback&lt;T&gt; | Yes   | Callback invoked to return the file asset obtained.|
+| callback | AsyncCallback&lt;T&gt; | Yes   | Callback used to return the file asset obtained.|
 
 **Error codes**
 
@@ -2175,7 +2177,7 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 | Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | Yes  | Callback invoked to return an array of all file assets in the result set.|
+| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | Yes  | Callback used to return an array of all file assets in the result set.|
 
 **Error codes**
 
@@ -2256,7 +2258,7 @@ async function example() {
 
 Provides APIs to manage albums.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2286,7 +2288,7 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
 | options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
-| callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
+| callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback used to return the image and video assets obtained.|
 
 **Error codes**
 
@@ -3118,7 +3120,7 @@ Sets the media asset title.
 | ---------- | ------- | ---- | ---------------------------------- |
 | title | string | Yes  | Title to set.|
 
-Note that the title cannot:
+The title is not allowed to:
 - Contain the filename extension.
 - Exceed 255 characters.
 - Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
@@ -3162,7 +3164,7 @@ async function example() {
 
 getWriteCacheHandler(): Promise&lt;number&gt;
 
-Obtains the write handle of a temporary file.
+Obtains the handler used for writing a file to cache.
 
 > **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after a temporary file write handle is successfully obtained.
 
@@ -3213,9 +3215,9 @@ async function example() {
 
 addResource(type: ResourceType, fileUri: string): void
 
-Adds resources to the application sandbox directory using **fileUri**.
+Adds a resource using **fileUri**.
 
-> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after the resource is successfully added.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3261,9 +3263,9 @@ async function example() {
 
 addResource(type: ResourceType, data: ArrayBuffer): void
 
-Adds resources using **ArrayBuffer** data.
+Adds a resource using **ArrayBuffer** data.
 
-> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after the resource is successfully added.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3400,9 +3402,9 @@ setAlbumName(name: string): void
 Sets the album name.
 
 The album name must comply with the following specifications:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
-- The album name is case-insensitive.
+- It cannot exceed 255 characters.
+- It cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- It is case-insensitive.
 - Duplicate album names are not allowed.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -3680,7 +3682,7 @@ Media asset handler, which can be used to customize the media asset processing l
 onDataPrepared(data: T): void
 
 Called when the requested image is ready.
-**T** supports two data types: ArrayBuffer and [ImageSource](../apis-image-kit/js-apis-image.md#imagesource).
+**T** supports data of the **ArrayBuffer** and [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) types.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3688,7 +3690,7 @@ Called when the requested image is ready.
 
 | Name | Type| Mandatory| Description                                                                           |
 |------|---| ---- |-------------------------------------------------------------------------------|
-| data | T | Yes  | Data of the ArrayBuffer or [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) type.|
+| data | T | Yes  | Data of the **ArrayBuffer** or [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) type.|
 
 **Example**
 ```ts
@@ -3703,7 +3705,7 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
-    // Customize the processing logic for ImageSource.
+    // Customize the processing logic for ArrayBuffer.
     console.info('on image data prepared');
   }
 }
@@ -3711,15 +3713,19 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 
 ## MemberType
 
-Enumerates the member types.
+type MemberType = number | string | boolean
+
+Defines the types of the **PhotoAsset** members.
+
+The member types are the union of the types listed in the following table.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name |  Type|  Readable |  Writable |  Description |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | Yes| Yes| The member is a number.|
-| string |  string | Yes| Yes| The member is a string.|
-| boolean |  boolean | Yes| Yes| The member is a Boolean value.|
+| Type| Description|
+| ---- | ---- |
+| number | The member value is a number.|
+| string | The member value is a string.|
+| boolean | The member value is true or false.|
 
 ## PhotoType
 
@@ -3793,7 +3799,7 @@ Enumerates the key album attributes.
 
 Options for creating an image or video asset.
 
-Note that the title cannot:
+The title is not allowed to:
 - Contain the filename extension.
 - Exceed 255 characters.
 - Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
@@ -3813,7 +3819,7 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Search criteria. You can specify the column names.<br>If this parameter is left blank for photos, media files are fetched by **'uri'**, **'media_type'**, and **'display_name'** by default. An error will be thrown if [get()](#get) is used to fetch files by other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, media files are fetched by **'uri'** and **'album_name'** by default. |
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, **'uri'**, **'media_type'**, and **'display_name'** are fetched by default. An error will be thrown if [get](#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.|
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## RequestOptions<sup>11+</sup>
@@ -3824,7 +3830,7 @@ Represents request options.
 
 | Name                  | Type                             | Readable| Writable| Description                                             |
 | ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
-| deliveryMode           | [DeliveryMode](#deliverymode11) | Yes  | Yes  | Delivery mode of the requested asset. The value can be **FAST_MODE**, **HIGH_QUALITY_MODE**, or **BALANCE_MODE** mode.|
+| deliveryMode           | [DeliveryMode](#deliverymode11) | Yes  | Yes  | Delivery mode of the requested asset. The value can be **FAST_MODE**, **HIGH_QUALITY_MODE**, or **BALANCE_MODE**.|
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -3931,7 +3937,7 @@ Defines the options for selecting images or videos.
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.|
 | isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image is editable.     |
 | isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.|
-| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Recommended image.     |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Options for image recommendation.     |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | URI of the preselected image.|
 
 ## PhotoSelectResult
@@ -3942,7 +3948,7 @@ Defines information about the images or videos selected.
 
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri). |
+| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
 | isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image.|
 
 
