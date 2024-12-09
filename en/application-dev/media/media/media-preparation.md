@@ -15,7 +15,7 @@ You can use either ArkTS or C++ APIs for media development.
 
 | Procedure    | ArkTS Development                                    | C++ Development                            |
 | ------------ | ------------------------------------------------- | --------------------------------------- |
-| Audio playback    | [Using AVPlayer to Play Audio (ArkTS)](using-avplayer-for-playback.md)| [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playback.md)|
+| Audio playback    | [Using AVPlayer to Play Audio (ArkTS)](using-avplayer-for-playback.md)| [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playerback.md)|
 | Video playback    | [Using AVPlayer to Play Videos (ArkTS)](video-playback.md)             | - |
 | Streaming media    |  [Using AVPlayer to Play Streaming Media (ArkTS)](streaming-media-playback-development-guide.md)             | - |
 | Adding subtitles    | [Using AVPlayer to Add External Subtitles to Videos (ArkTS)](video-subtitle.md)| -                                    |

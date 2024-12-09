@@ -110,7 +110,7 @@ Common methods for setting the audio playback stream type are as follows:
   >
 > If the application does not set this property, the AVPlayer performs default processing. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**.
 
-- **[Using AVPlayer for Audio Playback (C/C++)](../media/using-ndk-avplayer-for-playback.md)**
+- **[Using AVPlayer for Audio Playback (C/C++)](../media/using-ndk-avplayer-for-playerback.md)**
   
   Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
 

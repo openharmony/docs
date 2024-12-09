@@ -20,7 +20,7 @@
     - [Using AVTranscoder to Transcode Videos (ArkTS)](using-avtranscoder-for-transcodering.md)
 - Media Development (C/C++)<!--media-kit-dev--c-->
   - Playback<!--media-playback-c-->
-    - [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playback.md)
+    - [Using AVPlayer to Play Audio (C/C++)](using-ndk-avplayer-for-playerback.md)
   - Screen Capture<!--media-recording-c-->
     - [Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)](using-avscreencapture-for-buffer.md)
     - [Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)](using-avscreencapture-for-file.md)
