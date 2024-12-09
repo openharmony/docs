@@ -191,7 +191,9 @@ toString(): string
 
 ## 示例   
 
-### 示例1
+### 示例1（列表型Counter）
+
+该示例通过设置type为CounterType.LIST以及numberOptions，实现列表型Counter。
 
 ```ts
 import { CounterType, CounterComponent } from '@kit.ArkUI';
@@ -219,7 +221,10 @@ struct ListCounterExample {
 ```
 
 ![listcounter](figures/listcounter.gif)
-### 示例2
+### 示例2（紧凑型Counter）
+
+该示例通过设置type为CounterType.COMPACT以及numberOptions，实现紧凑型Counter。
+
 ```ts
 import { CounterType, CounterComponent } from '@kit.ArkUI';
 
@@ -246,7 +251,10 @@ struct CompactCounterExample {
 }
 ```
 ![compactcounter](figures/compactcounter.gif)
-### 示例3
+### 示例3（数值内联型Counter）
+
+该示例通过设置type为CounterType.INLINE以及inlineOptions，实现数值内联型Counter。
+
 ```ts
 import { CounterType, CounterComponent } from '@kit.ArkUI';
 
@@ -276,7 +284,10 @@ struct NumberStyleExample {
 }
 ```
 ![numberstyle](figures/numberstyle.gif)
-### 示例4
+### 示例4（日期内联型Counter）
+
+该示例通过设置type为CounterType.INLINE_DATE以及dateOptions，实现日期内联型Counter。
+
 ```ts
 import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 
@@ -303,8 +314,9 @@ struct DataStyleExample {
 ```
 ![datestyle](figures/datestyle.gif)
 
-### 示例5
-列表型、紧凑型、数字内联型、日期内联型Counter布局镜像展示
+### 示例5（镜像布局展示）
+
+该示例通过设置direction属性，实现列表型、紧凑型、数字内联型、日期内联型Counter进行镜像布局。
 
 ```ts
 // xxx.ets
