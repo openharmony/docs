@@ -108,7 +108,7 @@ typedef struct DemoNdkPlayer {
     int32_t width = -1;
     int32_t height = -1;
 
-    OHNativeWindow *nativeWindow = nullptr;
+    static OHNativeWindow *nativeWindow;
 
     AVPlayerBufferingType bufferType = AVPLAYER_BUFFERING_START;
     int32_t bufferValue = -1;
@@ -122,6 +122,8 @@ typedef struct DemoNdkPlayer {
     int32_t interruptHint = -1;
 } DemoNdkPlayer;
 
+OHNativeWindow *DemoNdkPlayer::nativeWindow = nullptr;
+
 void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
     int32_t ret = -1;
     switch (state) {
@@ -132,7 +134,7 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
 //        }
             break;
         case AV_INITIALIZED:
-            ret = OH_AVPlayer_SetVideoSurface(player, nativeWindow); // 设置视频播放 surface
+            ret = OH_AVPlayer_SetVideoSurface(player, DemoNdkPlayer::nativeWindow); // 设置视频播放 surface
             LOG("OH_AVPlayer_SetVideoSurface ret:%d", ret);
             ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
             if (ret != AV_ERR_OK) {
@@ -394,13 +396,15 @@ static napi_value Play(napi_env env, napi_callback_info info)
 void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
     LOG("OnSurfaceCreatedCB...");
     // 可获取 OHNativeWindow 实例
-    nativeWindow = static_cast<OHNativeWindow *>(window);
+    OHNativeWindow * nativeWindow = static_cast<OHNativeWindow *>(window);
+    DemoNdkPlayer::nativeWindow = nativeWindow;
+    // ...
 }
 
 void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
     LOG("OnSurfaceDestroyedCB...");
     // 可获取 OHNativeWindow 实例
-    nativeWindow = static_cast<OHNativeWindow *>(window);
+    OHNativeWindow * nativeWindow = static_cast<OHNativeWindow *>(window);
     // ...
 }
 
