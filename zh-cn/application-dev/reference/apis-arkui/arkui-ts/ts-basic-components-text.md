@@ -182,7 +182,7 @@ minFontSize(value: number | string | Resource)
 
 设置文本最小显示字号。
 
-需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
+需配合[maxFontSize](#maxfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
@@ -206,7 +206,7 @@ maxFontSize(value: number | string | Resource)
 
 设置文本最大显示字号。
 
-需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
+需配合[minFontSize](#minfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
@@ -414,7 +414,7 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
 设置文本自适应高度的方式。
 
-当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxlines](#maxlines)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize)和[maxFontSize](#maxfontsize)的范围内缩小字体以显示更多文本。
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize)和[maxFontSize](#maxfontsize)的范围内缩小字体以显示更多文本。
 
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
 
