@@ -77,7 +77,7 @@ Reads the specified file and loads its data to the **Storage** instance for data
 | Name  | Type                                    | Mandatory| Description                      |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
 | path     | string                                   | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback invoked to return the result.                |
+| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -186,7 +186,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -293,7 +293,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                |
 
 **Example**
 
@@ -406,7 +406,7 @@ Obtains the value corresponding to a key. If the value is null or not of the def
 | -------- | ------------------------------ | ---- | ----------------------------------------- |
 | key      | string                         | Yes  | Key of the data. It cannot be empty.          |
 | defValue | [ValueType](#valuetype)        | Yes  | Default value to be returned. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback invoked to return the result.                               |
+| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -490,7 +490,7 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.            |
 | value    | [ValueType](#valuetype)   | Yes  | New value to store. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                               |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -581,7 +581,7 @@ Checks whether the storage object contains data with a given key. This API uses 
 | Name  | Type                        | Mandatory| Description                           |
 | -------- | ---------------------------- | ---- | ------------------------------- |
 | key      | string                       | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.                     |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                     |
 
 **Return value**
 
@@ -672,7 +672,7 @@ Deletes data with the specified key from this storage object. This API uses an a
 | Name  | Type                     | Mandatory| Description                           |
 | -------- | ------------------------- | ---- | ------------------------------- |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                     |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                     |
 
 **Example**
 
@@ -746,7 +746,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -814,7 +814,7 @@ Clears this **Storage** object. This API uses an asynchronous callback to return
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -867,7 +867,7 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 | Name  | Type                                               |  Mandatory| Description                                    |
 | -------- | --------------------------------------------------- | ------ |---------------------------------------- |
 | type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback invoked to return the data change.                          |
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback used to return the data change.                          |
 
 **Example**
 
@@ -912,7 +912,7 @@ storage.off('change', observer);
 
 | Name| Type| Mandatory| Description            |
 | ---- | -------- | ---- | ---------------- |
-| key  | string   | No  | Data changed.|
+| key  | string   | Yes  | Data changed.|
 
 ## ValueType
 
