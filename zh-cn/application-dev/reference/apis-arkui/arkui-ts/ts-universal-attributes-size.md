@@ -120,7 +120,7 @@ margin(value: Margin | Length | LocalizedMargin)
 
 layoutWeight(value: number | string)
 
-对子组件进行重新布局。
+设置组件的布局权重，使用该属性的组件在父容器（[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)）的主轴方向按照权重分配尺寸。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
