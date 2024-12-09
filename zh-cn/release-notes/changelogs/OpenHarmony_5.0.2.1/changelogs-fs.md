@@ -24,7 +24,7 @@
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.2 Beta1开始。
+从OpenHarmony SDK 5.0.2 开始。
 
 **变更的接口/组件**
 
