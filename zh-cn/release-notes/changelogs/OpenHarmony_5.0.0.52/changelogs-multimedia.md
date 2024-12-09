@@ -13,9 +13,11 @@
 **变更影响**
 
 该变更为不兼容变更。
-变更前：应用使用到该接口时，API version 13及以下上报规则保持不变，涉及到IO返回错误的接口返回原有的值。
-变更后：播放框架返回IO类网络错误时，对应的错误码会细化，涉及到IO返回错误的接口返回值会有变化，用户升级到API version 14需要适配新的错误码上报规则。
-|                       接口声明                        |           API13及以下            |           API14及以上         |
+
+变更前：应用使用到该接口时，错误码上报规则保持不变，涉及到IO返回错误的接口返回原有的值。
+
+变更后：播放框架返回IO类网络错误时，对应的错误码会细化，涉及到IO返回错误的接口返回值会有变化，用户升级后需要适配新的错误码上报规则。
+|                       接口声明                        |           变更前            |           变更后         |
 | :--------------------------------------------------: | :------------------------------: | :---------------------------: |
 | AVPlayer.on(type: 'error', callback: ErrorCallback)  |        AVERR_IO = 5400103        |     新增返回5411001 ~ 5411011     |
 | void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg) |        AV_ERR_IO = 4        |     新增返回5411001 ~ 5411011     |
@@ -38,6 +40,6 @@ void (*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const
 
 **适配指导**
 
-从API version 14开始，应用监听IO相关错误时，需新增5411001 ~ 5411011内的错误码监听。
+变更后，应用监听IO相关错误时，需新增5411001 ~ 5411011内的错误码监听。
 
 参考[Media错误码说明文档](../../../application-dev/reference/apis-media-kit/errorcode-media.md)。
