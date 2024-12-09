@@ -17,7 +17,7 @@
 | STREAM_USAGE_MUSIC | 适用于播放音乐，同样适用于其他媒体场景，如[使用SoundPool](../media/using-soundpool-for-playback.md)播放简短音效等。 |
 | STREAM_USAGE_MOVIE |  适用于播放短视频、电影、电视剧等各类视频内容。 |
 | STREAM_USAGE_AUDIOBOOK | 适用于播放有声读物、新闻、播客等。|
-| STREAM_USAGE_GAME | 适用于游戏内配乐、配音，后台音乐不会被打断；游戏内语音，建议使用VOICE_COMMUNICATION。 |
+| STREAM_USAGE_GAME | 适用于游戏内配乐、配音，后台音乐不会被打断；游戏内语音，建议使用STREAM_USAGE_VOICE_COMMUNICATION。 |
 | STREAM_USAGE_NAVIGATION | 适用于导航场景的语音播报功能。 |
 | STREAM_USAGE_VOICE_MESSAGE | 适用于播放语音短消息。 |
 | STREAM_USAGE_VOICE_COMMUNICATION | 适用于VoIP语音通话。 |
