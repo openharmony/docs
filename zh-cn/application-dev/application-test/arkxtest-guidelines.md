@@ -94,77 +94,77 @@ export default function abilityTest() {
 1. 编写Index.ets页面代码， 作为被测示例demo。
 
   ```ts
-  @Entry
-  @Component
-  struct Index {
-    @State message: string = 'Hello World'
+    @Entry
+    @Component
+    struct Index {
+        @State message: string = 'Hello World'
 
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-          Text("Next")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
-          Text("after click")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
+        build() {
+            Row() {
+                Column() {
+                    Text(this.message)
+                        .fontSize(50)
+                        .fontWeight(FontWeight.Bold)
+                    Text("Next")
+                        .fontSize(50)
+                        .margin({top:20})
+                        .fontWeight(FontWeight.Bold)
+                    Text("after click")
+                        .fontSize(50)
+                        .margin({top:20})
+                        .fontWeight(FontWeight.Bold)
+                }
+                .width('100%')
+            }
+            .height('100%')
         }
-        .width('100%')
-      }
-      .height('100%')
     }
-  }
   ```
 
 2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
   ```ts
-  import { describe, it, expect } from '@ohos/hypium';
-  // 导入测试依赖kit
-  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-  import { UIAbility, Want } from '@kit.AbilityKit';
+    import { describe, it, expect } from '@ohos/hypium';
+    // 导入测试依赖kit
+    import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+    import { UIAbility, Want } from '@kit.AbilityKit';
 
-  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-  function sleep(time: number) {
-    return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
-  }
-  export default function abilityTest() {
-    describe('ActsAbilityTest', () => {
-       it('testUiExample',0, async (done: Function) => {
-          console.info("uitest: TestUiExample begin");
-          //start tested ability
-          const want: Want = {
-             bundleName: bundleName,
-             abilityName: 'EntryAbility'
-          }
-          await delegator.startAbility(want);
-          await sleep(1000);
-          //check top display ability
-          const ability: UIAbility = await delegator.getCurrentTopAbility();
-          console.info("get top ability");
-          expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-          //ui test code
-          //init driver
-          const driver = Driver.create();
-          await driver.delayMs(1000);
-          //find button on text 'Next'
-          const button = await driver.findComponent(ON.text('Next'));
-          //click button
-          await button.click();
-          await driver.delayMs(1000);
-          //check text
-          await driver.assertComponentExist(ON.text('after click'));
-          await driver.pressBack();
-          done();
-       })
-    })
-  }
+    const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+    const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+    function sleep(time: number) {
+        return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+    }
+    export default function abilityTest() {
+        describe('ActsAbilityTest', () => {
+             it('testUiExample',0, async (done: Function) => {
+                    console.info("uitest: TestUiExample begin");
+                    //start tested ability
+                    const want: Want = {
+                         bundleName: bundleName,
+                         abilityName: 'EntryAbility'
+                    }
+                    await delegator.startAbility(want);
+                    await sleep(1000);
+                    //check top display ability
+                    const ability: UIAbility = await delegator.getCurrentTopAbility();
+                    console.info("get top ability");
+                    expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+                    //ui test code
+                    //init driver
+                    const driver = Driver.create();
+                    await driver.delayMs(1000);
+                    //find button on text 'Next'
+                    const button = await driver.findComponent(ON.text('Next'));
+                    //click button
+                    await button.click();
+                    await driver.delayMs(1000);
+                    //check text
+                    await driver.assertComponentExist(ON.text('after click'));
+                    await driver.pressBack();
+                    done();
+             })
+        })
+    }
   ```
 
 ### 执行测试脚本
