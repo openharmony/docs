@@ -718,7 +718,7 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | continuousTaskCancel                            | 是    | 长时任务取消接口，固定值。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuousTaskCancelReason16)>       | 是    | 长时任务取消回调信息。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelReason16)>       | 是    | 长时任务取消回调信息。 |
 
 **错误码**：
 
@@ -771,7 +771,7 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | continuousTaskCancel                            | 是    | 长时任务取消接口，固定值。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuousTaskCancelReason16)>       | 否    | 长时任务取消回调信息，未传入则取消所有注册回调。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelReason16)>       | 否    | 长时任务取消回调信息，未传入则取消所有注册回调。 |
 
 **错误码**：
 
@@ -861,7 +861,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| reason | [ContinuousTaskCancelReason](#continuousTaskCancelReason16) | 是    | 长时任务取消原因。|
+| reason | [ContinuousTaskCancelReason](#continuoustaskcancelReason16) | 是    | 长时任务取消原因。|
 | id | number | 是    | 被取消的长时任务 Id。|
 
 ## ContinuousTaskCancelReason<sup>16+</sup>
