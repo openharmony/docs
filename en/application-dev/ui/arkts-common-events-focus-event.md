@@ -16,7 +16,7 @@
 Refers to the style indicating the currently focused component.
 
 - Display rules: The focus state is not displayed by default; it only appears when the application is active. A component with the focus state is definitely focused, but not all focused components show the state, depending on the activation status. Most components come with default focus state styles; you customize these styles when needed. Once customized, the component will no longer display the default focus state style. In a focus chain, if multiple components have the focus state, the system shows the focus state for only one, prioritizing the child component's focus state over others.
-- Entering the activated state: Pressing the Tab key on an external keyboard activates focus, allowing subsequent use of the **Tab** key or arrow keys for focus traversal. The initial **Tab** press that activates focus does not cause focus to move.
+- Entering the activated state: Pressing the **Tab** key on an external keyboard activates focus, allowing subsequent use of the **Tab** key or arrow keys for focus traversal. The initial **Tab** press that activates focus does not cause focus to move.
 - Exiting the activated state: Focus activation ends upon any click event, including touch screen presses or mouse clicks.
 
 
@@ -30,17 +30,11 @@ Hierarchical pages are specialized container components, such as **Page**, **Dia
 
 An application always has at least one hierarchical page in focus. When this hierarchical page is closed or no longer visible, the focus shifts to another, ensuring smooth user interaction.
 
-
-
 > **NOTE**
 >
 > The **Popup** component does not capture focus if it has **focusable** set to **false**.
 >
 > The **NavBar** and **NavDestination** components do not restrict focus movement and share the focus scope of their immediate parent hierarchical page.
-
-
-
-
 
 **Root Container**
 
@@ -55,8 +49,6 @@ Pressing **Tab** with focus on the root container activates focus and passes it 
 ### Focus Traversal Guidelines
 
 Focus traversal can be divided into active and passive based on how it is triggered.
-
-
 
 **Active Focus Traversal**
 
@@ -235,8 +227,6 @@ Components can be classified into the following types based on their focusabilit
 - Non-focusable components: Components that do not allow for interactions, such as **Blank** and **Circle**, cannot be made focusable, even with the **focusable** attribute applied.
 
 
-
-
 ```ts
 enabled(value: boolean)
 ```
@@ -256,8 +246,6 @@ focusOnTouch(value: boolean)
 ```
 
 Sets whether the component is focusable on touch.
-
-
 
 
 >**NOTE**
@@ -790,6 +778,44 @@ The preceding example includes two steps:
 
 - The input box is set with a focus group, which means that when the **Tab** key is pressed, the focus quickly moves out from the input, and when arrow keys are used, the focus stays within the input.
 - The **Column** component in the upper left corner does not have a focus group set. Therefore, focus can only be traversed one by one with the **Tab** key.
+
+## Focus and Key Events
+
+When a component is in focus and has either an **onClick** or **TapGesture** event defined, pressing the **Enter** key or spacebar triggers the associated event callback.
+
+>  **NOTE**
+>
+>  1. If the **onClick** or **TapGesture** event is triggered by pressing the **Enter** key or spacebar, the event does not bubble up by default. This means that the parent component's corresponding [key event](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md) is not triggered synchronously.
+>  2. The key event (**onKeyEvent**) bubbles up by default, which means that it will also trigger the parent component's key event callback.
+>  3. If the component has both an **onClick** event and an **onKeyEvent**, pressing the **Enter** key or spacebar trigger both events.
+>  4. The component's response to the **onClick** event is independent of whether the focus is activated or not.
+
+```
+@Entry
+@Component
+struct FocusOnclickExample {
+  @State count: number = 0
+  @State name: string = 'Button'
+
+  build() {
+    Column() {
+      Button(this.name)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+          if (this.count <= 0) {
+            this.name = "count is negative number"
+          } else if (this.count % 2 === 0) {
+            this.name = "count is even number"
+          } else {
+            this.name = "count is odd number"
+          }
+        }).height(60)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![focus-4](figures/focus-4.gif)
 
 ## Component Focusability
 
