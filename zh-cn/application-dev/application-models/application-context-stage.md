@@ -79,135 +79,88 @@
 
 ### 获取应用文件路径
 
-[基类Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)提供了获取应用文件路径的能力，[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)和[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)均继承该能力。应用文件路径属于应用沙箱路径，具体请参见[应用沙箱目录](../file-management/app-sandbox-directory.md)。
+[基类Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)提供了获取应用文件路径的能力，[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)和[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)均继承该能力。不同类型的Context获取的路径可能存在差异。
 
-上述各类Context获取的应用文件路径有所不同。
+- 通过[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)可以获取应用级的文件路径。该路径用于存放应用全局信息，路径下的文件会跟随应用的卸载而删除。
+- 通过[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)，可以获取[Module](../quick-start/application-package-overview.md)级的文件路径。该路径用于存放Module相关信息，路径下的文件会跟随[HAP](../quick-start/hap-package.md)/[HSP](../quick-start/in-app-hsp.md)的卸载而删除。HAP/HSP的卸载不会影响应用级路径下的文件，除非该应用的HAP/HSP已全部卸载。
 
-- 通过[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)获取应用级别的应用文件路径，此路径是应用全局信息推荐的存放路径，这些文件会跟随应用的卸载而删除。
+  - UIAbilityContext：可以获取UIAbility所在Module的文件路径。
+  - ExtensionContext：可以获取ExtensionAbility所在Module的文件路径。
+  - AbilityStageContext：由于AbilityStageContext创建时机早于UIAbilityContext和ExtensionContext，通常用于在AbilityStage中获取文件路径。
 
-  | 属性 | 路径 |
-  | -------- | -------- |
-  | bundleCodeDir | <路径前缀>/el1/bundle |
-  | cacheDir | <路径前缀>/<加密等级>/base/cache |
-  | filesDir | <路径前缀>/<加密等级>/base/files |
-  | preferencesDir | <路径前缀>/<加密等级>/base/preferences |
-  | tempDir | <路径前缀>/<加密等级>/base/temp |
-  | databaseDir | <路径前缀>/<加密等级>/database |
-  | distributedFilesDir | <路径前缀>/el2/distributedFiles |
-  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/cloud |
+>**说明：**
+>
+> 应用文件路径属于应用沙箱路径，具体请参见[应用沙箱目录](../file-management/app-sandbox-directory.md)。
 
-  示例代码如下所示。
+  **表1** 不同级别Context获取的应用文件路径说明
+  | 属性 | 说明 | ApplicationContext获取的路径 | AbilityStageContext、UIAbilityContext、ExtensionContext获取的路径 |
+  | -------- | -------- | -------- | -------- |
+  | bundleCodeDir | 安装包目录。 | <路径前缀>/el1/bundle | <路径前缀>/el1/bundle |
+  | cacheDir | 缓存目录。 | <路径前缀>/<加密等级>/base/cache | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/cache |
+  | filesDir | 文件目录。 | <路径前缀>/<加密等级>/base/files | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/files |
+  | preferencesDir | preferences目录。 | <路径前缀>/<加密等级>/base/preferences | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/preferences |
+  | tempDir | 临时目录。 | <路径前缀>/<加密等级>/base/temp | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
+  | databaseDir | 数据库目录。 | <路径前缀>/<加密等级>/database | <路径前缀>/<加密等级>/database/**\<module-name>** |
+  | distributedFilesDir | 分布式文件目录。 | <路径前缀>/el2/distributedFiles | <路径前缀>/el2/distributedFiles/ |
+  | resourceDir<sup>11+<sup> | 资源目录。<br/>**说明：**<br/> 需要开发者手动在`\<module-name>\resource`路径下创建`resfile`目录。 | 不涉及 | <路径前缀>/el1/bundle/**\<module-name>**/resources/resfile |
+  | cloudFileDir<sup>12+</sup> | 云文件目录。 | <路径前缀>/el2/cloud | <路径前缀>/el2/cloud/ |
+
+  本节以使用ApplicationContext获取filesDir为例，介绍如何获取应用文件路径，并在对应文件路径下新建文件和读写文件。示例代码如下：
 
   ```ts
   import { common } from '@kit.AbilityKit';
+  import { buffer } from '@kit.ArkTS';
+  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { promptAction } from '@kit.ArkUI';
 
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
 
   @Entry
   @Component
-  struct Page_Context {
+  struct Index {
+    @State message: string = 'Hello World';
     private context = getContext(this) as common.UIAbilityContext;
 
     build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let applicationContext = this.context.getApplicationContext();
-              let cacheDir = applicationContext.cacheDir;
-              let tempDir = applicationContext.tempDir;
-              let filesDir = applicationContext.filesDir;
-              let databaseDir = applicationContext.databaseDir;
-              let bundleCodeDir = applicationContext.bundleCodeDir;
-              let distributedFilesDir = applicationContext.distributedFilesDir;
-              let preferencesDir = applicationContext.preferencesDir;
-              let cloudFileDir = applicationContext.cloudFileDir;
-              // 获取应用文件路径
-              let filePath = tempDir + 'test.txt';
-              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-              if (filePath !== null) {
-                promptAction.showToast({
-                  message: filePath
-                });
-              }
-            })
+      Row() {
+        Column() {
+          Text(this.message)
+          // ...
+          Button() {
+            Text('create file')
+              // ...
+              .onClick(() => {
+                let applicationContext = this.context.getApplicationContext();
+                // 获取应用文件路径
+                let filesDir = applicationContext.filesDir;
+                hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filesDir}`);
+                // 文件不存在时创建并打开文件，文件存在时打开文件
+                let file = fileIo.openSync(filesDir + '/test.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+                // 写入一段内容至文件
+                let writeLen = fileIo.writeSync(file.fd, "Try to write str.");
+                hilog.info(DOMAIN_NUMBER, TAG, `The length of str is: ${writeLen}`);
+                // 创建一个大小为1024字节的ArrayBuffer对象，用于存储从文件中读取的数据
+                let arrayBuffer = new ArrayBuffer(1024);
+                // 设置读取的偏移量和长度
+                let readOptions: ReadOptions = {
+                  offset: 0,
+                  length: arrayBuffer.byteLength
+                };
+                // 读取文件内容到ArrayBuffer对象中，并返回实际读取的字节数
+                let readLen = fileIo.readSync(file.fd, arrayBuffer, readOptions);
+                // 将ArrayBuffer对象转换为Buffer对象，并转换为字符串输出
+                let buf = buffer.from(arrayBuffer, 0, readLen);
+                hilog.info(DOMAIN_NUMBER, TAG, `the content of file: ${buf.toString()}`);
+                // 关闭文件
+                fileIo.closeSync(file);
+              })
           }
-          //...
+          // ...
         }
-        //...
+        // ...
       }
-      //...
-    }
-  }
-  ```
-
-- 通过[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)获取[HAP](../quick-start/hap-package.md)级别的应用文件路径。此路径是HAP相关信息推荐的存放路径，这些文件会跟随HAP的卸载而删除，但不会影响应用级别路径的文件，除非该应用的HAP已全部卸载。
-
-  | 属性 | 路径 |
-  | -------- | -------- |
-  | bundleCodeDir | <路径前缀>/el1/bundle |
-  | cacheDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/cache |
-  | filesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/files |
-  | preferencesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/preferences |
-  | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
-  | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
-  | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
-  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/cloud/**\<module-name>** |
-
-  示例代码如下所示。
-
-  ```ts
-  import { common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { promptAction } from '@kit.ArkUI';
-
-  const TAG: string = '[Page_Context]';
-  const DOMAIN_NUMBER: number = 0xFF00;
-
-  @Entry
-  @Component
-  struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
-
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let cacheDir = this.context.cacheDir;
-              let tempDir = this.context.tempDir;
-              let filesDir = this.context.filesDir;
-              let databaseDir = this.context.databaseDir;
-              let bundleCodeDir = this.context.bundleCodeDir;
-              let distributedFilesDir = this.context.distributedFilesDir;
-              let preferencesDir = this.context.preferencesDir;
-              let cloudFileDir = this.context.cloudFileDir;
-              // 获取应用文件路径
-              let filePath = tempDir + 'test.txt';
-              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-              if (filePath !== null) {
-                promptAction.showToast({
-                  message: filePath
-                });
-              }
-            })
-          }
-          //...
-        }
-        //...
-      }
-      //...
+      // ...
     }
   }
   ```
