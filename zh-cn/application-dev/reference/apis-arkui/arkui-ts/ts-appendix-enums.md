@@ -764,18 +764,6 @@ Nullable\<T> {
 | FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
 | FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
 
-## ChainStyle<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-定义链的风格。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| SPREAD | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                 |
-| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                      |
-
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
 组件边界像素级取整计算策略。
