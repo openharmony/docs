@@ -766,7 +766,7 @@ getItemRect(index: number): RectResult
 | velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |
 
 ## 示例
-### 示例1
+### 示例1（设置scroller控制器）
 该示例展示了Scroll组件部分属性和scroller控制器的使用。
 
 ```ts
@@ -844,14 +844,26 @@ struct ScrollExample {
           this.scroller.scrollPage({ next: true })
         })
         .margin({ top: 210, left: 20 })
+      Button('fling -3000')
+        .height('5%')
+        .onClick(() => { // 点击后触发初始速度为-3000vp/s的惯性滚动
+          this.scroller.fling(-3000)
+        })
+        .margin({ top: 260, left: 20 })
+      Button('scroll to bottom 700')
+        .height('5%')
+        .onClick(() => { // 点击后滑到下边缘，速度值是700vp/s
+          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
+        })
+        .margin({ top: 310, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
   }
 }
 ```
 
-![zh-cn_image_0000001174104386](figures/zh-cn_image_0000001174104386.gif)
+![zh-cn_image_0000001174104386](figures/scroll_scroller.gif)
 
-### 示例2
+### 示例2（嵌套滚动实现方式一）
 该示例使用onScrollFrameBegin事件实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
@@ -926,7 +938,7 @@ struct NestedScroll {
 
 ![NestedScroll](figures/NestedScroll.gif)
 
-### 示例3
+### 示例3（嵌套滚动实现方式二）
 该示例使用nestedScroll属性实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
 @Entry
@@ -990,7 +1002,98 @@ struct StickyNestedScroll {
 }
 ```
 ![NestedScroll2](figures/NestedScroll2.gif)
-### 示例4
+### 示例4（嵌套滚动父组件向子组件传递滚动）
+该示例使用enableScrollInteraction属性和onScrollFrameBegin事件实现了父组件向子组件传递滚动。
+```ts
+@Entry
+@Component
+struct NestedScroll {
+  private headerHeight: number = 0;
+  private arr: number[] = []
+  private scrollerForParent: Scroller = new Scroller()
+  private scrollerForChild: Scroller = new Scroller()
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.arr.push(i)
+    }
+  }
+
+  build() {
+    Scroll(this.scrollerForParent) {
+      Column() {
+        Text("Scroll Area")
+          .width("100%")
+          .height("40%")
+          .backgroundColor(0X330000FF)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.scrollerForChild.scrollToIndex(5)
+          })
+          .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
+            this.headerHeight = newValue.height! as number
+          })
+        List({ space: 20, scroller: this.scrollerForChild }) {
+          ForEach(this.arr, (item: number) => {
+            ListItem() {
+              Text("ListItem" + item)
+                .width("100%")
+                .height("100%")
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .backgroundColor(Color.White)
+            }.width("100%").height(100)
+          }, (item: string) => item)
+        }
+        .width("100%")
+        .height("100%")
+        .edgeEffect(EdgeEffect.None)
+        .scrollBar(BarState.Off)
+        .enableScrollInteraction(false)
+
+        Text("Scroll Area")
+          .width("100%")
+          .height("40%")
+          .backgroundColor(0X330000FF)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+      }
+    }
+    .scrollBar(BarState.Off)
+    .edgeEffect(EdgeEffect.Spring)
+    .onScrollFrameBegin((offset: number, state: ScrollState) => {
+      let retOffset = offset;
+      let currOffset = this.scrollerForParent.currentOffset().yOffset;
+      let newOffset = currOffset + offset;
+      if (offset > 0) {
+        if (this.scrollerForChild.isAtEnd()) {
+          return { offsetRemain: offset }
+        }
+        if (newOffset > this.headerHeight) {
+          retOffset = this.headerHeight - currOffset
+        }
+        this.scrollerForChild.scrollBy(0, offset - retOffset)
+      } else {
+        if (this.scrollerForChild.currentOffset().yOffset <= 0) {
+          return { offsetRemain: offset }
+        }
+        if (newOffset < this.headerHeight) {
+          retOffset = this.headerHeight - currOffset
+        }
+        this.scrollerForChild.scrollBy(0, offset - retOffset)
+      }
+      return { offsetRemain: retOffset }
+    })
+    .width("100%")
+    .height("100%")
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
+![NestedScroll3](figures/NestedScroll3.gif)
+### 示例5（设置限位滚动）
 该示例实现了Scroll组件的限位滚动。
 ```ts
 @Entry
@@ -1022,106 +1125,3 @@ struct Index {
 }
 ```
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
-
-### 示例5
-该示例通过scroller控制器的Fling接口触发Scroll组件的惯性滚动。
-```ts
-@Entry
-@Component
-//滚动控制器新增按给定速度执行惯性滚动的函数fling
-struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  scrollerForList: Scroller = new Scroller()
-  build() {
-    Column() {
-      Button('Fling-1000')
-        .height('5%')
-        .onClick(() => {
-          this.scrollerForList.fling(-1000)
-        })
-      Button('Fling3000')
-        .height('5%')
-        .onClick(() => {
-          this.scrollerForList.fling(3000)
-        })
-      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
-          ListItem() {
-            Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }
-        }, (item: string) => item)
-      }
-      .listDirection(Axis.Vertical) // 排列方向
-      .scrollBar(BarState.Off)
-      .friction(0.9)
-      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // 每行之间的分界线
-      .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
-      .width('90%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor(0xDCDCDC)
-    .padding({ top: 5 })
-  }
-}
-```
-
-![scroller_fling](figures/scroller_fling.gif)
-
-### 示例6
-该示例实现了按速度700vp/s向Scroll下边缘滚动。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct ScrollExample {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-  build() {
-    Stack({ alignContent: Alignment.TopStart }) {
-      Scroll(this.scroller) {
-        Column() {
-          ForEach(this.arr, (item: number) => {
-            Text(item.toString())
-              .width('90%')
-              .height(150)
-              .backgroundColor(0xFFFFFF)
-              .borderRadius(15)
-              .fontSize(16)
-              .textAlign(TextAlign.Center)
-              .margin({ top: 10 })
-          }, (item: string) => item)
-        }.width('100%')
-      }
-      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
-      .scrollBar(BarState.On) // 滚动条常驻显示
-      .scrollBarColor(Color.Gray) // 滚动条颜色
-      .scrollBarWidth(10) // 滚动条宽度
-      .friction(0.6)
-      .edgeEffect(EdgeEffect.None)
-      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
-        console.info(xOffset + ' ' + yOffset)
-      })
-      .onScrollEdge((side: Edge) => {
-        console.info('To the edge')
-      })
-      .onScrollStop(() => {
-        console.info('Scroll Stop')
-      })
-
-      Button('scroll to bottom 700')
-        .height('5%')
-        .onClick(() => { // 点击后滑到下边缘，速度值是700vp/s
-          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
-        })
-        .margin({ top: 100, left: 20 })
-    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
-  }
-}
-```
-
-![ScrollEdgeAtVelocity](figures/ScrollEdgeAtVelocity.gif)
