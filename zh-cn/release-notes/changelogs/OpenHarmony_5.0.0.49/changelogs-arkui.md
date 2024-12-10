@@ -300,7 +300,7 @@ struct barHeightTest {
 }
 ```
 
-## cl.arkui.2 setSpecificSystemBarEnabled接口在横屏的行为变更
+## cl.arkui.5 setSpecificSystemBarEnabled接口在横屏的行为变更
 
 **访问级别**
 
@@ -328,7 +328,7 @@ struct barHeightTest {
 
 **起始API Level**
 
-API 14
+API 12
 
 **变更发生版本**
 
