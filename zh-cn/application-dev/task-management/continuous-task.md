@@ -127,7 +127,34 @@
       @State message: string = 'ContinuousTask';
      // 通过getContext方法，来获取page所在的UIAbility上下文。
       private context: Context = getContext(this);
-   
+
+      // 长时任务取消回调
+      callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+        // 长时任务id
+        console.info('OnContinuousTaskCancel callback id ' + info.id);
+        // 长时任务取消原因
+        console.info('OnContinuousTaskCancel callback reason ' + info.reason);
+      }
+
+      OnContinuousTaskCancel() {
+        try {
+           backgroundTaskManager.on("continuousTaskCancel", callback);
+           console.info(`Succeeded in operationing OnContinuousTaskCancel.`);
+        } catch (err: BusinessError) {
+           console.error(`Operation OnContinuousTaskCancel failed. code is ${err.code} message is ${err.message}`);
+        }
+      }
+
+      OffContinuousTaskCancel() {
+        try {
+           // callback参数不传，则取消所有已注册的回调
+           backgroundTaskManager.off("continuousTaskCancel", callback);
+           console.info(`Succeeded in operationing OffContinuousTaskCancel.`);
+        } catch (err: BusinessError) {
+           console.error(`Operation OffContinuousTaskCancel failed. code is ${err.code} message is ${err.message}`);
+        }
+      }
+
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // 点击通知后，将要执行的动作列表
@@ -199,6 +226,32 @@
    
               // 通过按钮取消长时任务
               this.stopContinuousTask();
+            })
+
+            Button() {
+              Text('注册长时任务取消回调').fontSize(25).fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .margin({ top: 10 })
+            .backgroundColor('#0D9FFB')
+            .width(250)
+            .height(40)
+            .onClick(() => {
+              // 通过按钮注册长时任务取消回调
+              this.OnContinuousTaskCancel();
+            })
+
+            Button() {
+              Text('取消注册长时任务取消回调').fontSize(25).fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .margin({ top: 10 })
+            .backgroundColor('#0D9FFB')
+            .width(250)
+            .height(40)
+            .onClick(() => {
+              // 通过按钮取消注册长时任务取消回调
+              this.OffContinuousTaskCancel();
             })
           }
           .width('100%')
