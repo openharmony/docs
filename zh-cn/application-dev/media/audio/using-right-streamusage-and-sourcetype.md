@@ -109,7 +109,7 @@
   >
   > 如果应用未主动设置该属性，AVPlayer将进行默认处理。当媒体源包含视频时，usage的默认值为STREAM_USAGE_MOVIE；否则，usage的默认值为STREAM_USAGE_MUSIC。
 
-- **[使用AVPlayer开发音频播放功能(C/C++)](../media/using-ndk-avplayer-for-playerback.md)**：
+- **[使用AVPlayer开发音频播放功能(C/C++)](../media/using-ndk-avplayer-for-playback.md)**：
   
   可以在调用[OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiorendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)指定音频流类型。
 
