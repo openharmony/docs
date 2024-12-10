@@ -4993,6 +4993,7 @@ Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)
 **描述**
 
 拍摄照片。
+
 OH_PhotoOutput_Capture()必须在OH_PreviewOutput_Release()之前调用，否则会导致无法拍照。
 
 **起始版本：** 11
