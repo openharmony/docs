@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 变更前：
 设置Heif格式图片mimeType传入参数为image/heif。
@@ -26,7 +26,7 @@ API 12
 
 **变更发生的版本**
 
-从OpenHarmony 5.0.2版本开始。
+从OpenHarmony 5.0.0.53版本开始。
 
 **变更的接口/组件**
 
@@ -53,7 +53,7 @@ Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options, Image_
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 变更前：
 获取Heif格式图片mimeType为image/heif。
@@ -67,7 +67,7 @@ API 12
 
 **变更发生的版本**
 
-从OpenHarmony 5.0.2版本开始。
+从OpenHarmony 5.0.0.53版本开始。
 
 **变更的接口/组件**
 
@@ -94,7 +94,7 @@ Image_ErrorCode OH_PackingOptions_GetMimeType (OH_PackingOptions * options, Imag
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 变更前：
 查询设备支持的解码类型Heif格式返回值为image/heif。
@@ -108,7 +108,7 @@ API 10
 
 **变更发生的版本**
 
-从OpenHarmony 5.0.2版本开始。
+从OpenHarmony 5.0.0.53版本开始。
 
 **变更的接口/组件**
 
@@ -133,7 +133,7 @@ image.Component.OH_ImageSource_GetSupportedFormats()接口
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 变更前：
 查询设备支持的解码类型Heif格式返回值为image/heif。
@@ -147,7 +147,7 @@ API 10
 
 **变更发生的版本**
 
-从OpenHarmony 5.0.2版本开始。
+从OpenHarmony 5.0.0.53版本开始。
 
 **变更的接口/组件**
 
@@ -172,7 +172,7 @@ image.Component.readonly supportedFormats: Array<string>
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 变更前：
 查询设备支持的编码类型Heif格式返回值为image/heif。
@@ -186,7 +186,7 @@ API 10
 
 **变更发生的版本**
 
-从OpenHarmony 5.0.2版本开始。
+从OpenHarmony 5.0.0.53版本开始。
 
 **变更的接口/组件**
 
@@ -225,7 +225,7 @@ API 12
 
 **变更发生的版本**
 
-从OpenHarmony 5.0.2版本开始。
+从OpenHarmony 5.0.0.53版本开始。
 
 **变更的接口/组件**
 
@@ -264,7 +264,7 @@ API 12
 
 **变更发生的版本**
 
-从OpenHarmony 5.0.2版本开始。
+从OpenHarmony 5.0.0.53版本开始。
 
 **变更的接口/组件**
 
