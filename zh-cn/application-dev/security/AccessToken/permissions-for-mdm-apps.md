@@ -1,4 +1,4 @@
-# 仅对MDM应用开放
+# 仅MDM应用可用权限
 
 以下权限仅对MDM（Mobile Device Management）设备管理应用开放。MDM应用的详细介绍，请参考[MDM Kit简介](../../mdm/mdm-kit-intro.md)。
 
@@ -274,36 +274,6 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
-
-## ohos.permission.SET_FILE_GUARD_POLICY
-
-允许应用下发文件管控策略。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：10
-
-**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
-
-## ohos.permission.FILE_GUARD_MANAGER
-
-允许应用进行公共目录扫描及设置文件扩展属性。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：10
-
-**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
