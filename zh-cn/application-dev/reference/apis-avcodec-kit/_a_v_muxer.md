@@ -5,6 +5,8 @@
 
 AVMuxer模块提供用于音视频封装功能的接口。
 
+对应的开发指南及样例可参考[媒体数据封装](../../media/avcodec/audio-video-muxer.md)。
+
 **系统能力：** SystemCapability.Multimedia.Media.Muxer
 
 **起始版本：** 10
