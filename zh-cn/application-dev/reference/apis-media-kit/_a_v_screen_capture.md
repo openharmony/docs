@@ -1654,6 +1654,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 
 该接口设置最大帧率时，实际设置的帧率受限设备的能力，由底层的系统能力决定。
 
+目前对于最大帧率设置的最大值不设入参限制。不管应用是否设置录屏的最大帧率，实际录屏帧率上限都是60FPS。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 14
@@ -1673,4 +1675,4 @@ AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针，或者输入参数frameRate不支持。
 
-AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：操作受限，建议重试。
