@@ -173,7 +173,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | root    | [FieldNode](#fieldnode) | 是   | 是   | 存放了Value中所有字段的定义。 |
 | indexes | Array\<string>          | 是   | 是   | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，如果不需要创建任何索引，则此indexes字段可以不定义。格式为：`'$.field1'`, `'$.field2'`。|
 | mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
-| skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。|
+| skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0, 4 * 1024 * 1024 - 2]字节。|
 
 STRICT：意味着严格模式，在此模式用户插入的Value格式与Schema定义必须严格匹配，字段不能多也不能少，如果不匹配则插入数据时数据库会返回错误。
 
