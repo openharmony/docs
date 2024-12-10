@@ -16,7 +16,7 @@ import  { storageStatistics } from '@kit.CoreFileKit';
 
 getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
-第三方应用异步获取当前应用存储空间大小（单位为Byte），以Promise方式返回。
+应用异步获取当前应用存储空间大小（单位为Byte），以Promise方式返回。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -51,7 +51,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
-第三方应用异步获取当前应用存储空间大小（单位为Byte），以callback方式返回。
+应用异步获取当前应用存储空间大小（单位为Byte），以callback方式返回。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -91,6 +91,6 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 | 名称      | 类型   | 必填 | 说明           |
 | --------- | ------ | --- | -------------- |
-| appSize   | number | 是 | app数据大小（不包含空目录）（单位为Byte）    |
-| cacheSize | number | 是 | 缓存数据大小（单位为Byte）   |
-| dataSize  | number | 是 | 应用总数据大小（单位为Byte） |
+| appSize   | number | 是 | 应用安装文件大小（单位为Byte）    |
+| cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）   |
+| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte） |
