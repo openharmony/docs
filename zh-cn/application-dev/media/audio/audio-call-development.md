@@ -169,8 +169,8 @@ class Options {
 let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // 采样率
-  channels: audio.AudioChannel.CHANNEL_1, // 通道
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
+  channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
 };

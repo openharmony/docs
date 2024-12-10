@@ -82,6 +82,8 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem (const struct OH_Huks_Blob * key
 **描述**
 获取密钥证书链。
 
+<!--RP1--><!--RP1End-->
+
 **起始版本：** 11
 
 **参数:**

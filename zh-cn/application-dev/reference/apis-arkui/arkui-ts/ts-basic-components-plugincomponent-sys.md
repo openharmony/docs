@@ -16,17 +16,26 @@
 
 ## 接口
 
-PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
+PluginComponent(options: PluginComponentOptions)
 
 创建插件组件，用于显示外部应用提供的UI。
 
 **参数：**
 
-| 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>template:&nbsp; [PluginComponentTemplate](#plugincomponenttemplate类型说明),<br/>data:&nbsp;[KVObject](../js-apis-plugincomponent.md#kvobject)<br/>} | 是   | template:&nbsp;&nbsp;组件模板，用于跟提供者定义的组件绑定。<br/>data:&nbsp;传给插件组件提供者使用的数据。 |
+| 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [PluginComponentOptions](#plugincomponentoptions14类型说明) | 是   | 定义用于构造插件组件的选项。 |
 
-## PluginComponentTemplate类型说明
+## PluginComponentOptions<sup>14+</sup>类型说明
+
+定义用于构造插件组件的选项。
+
+| 参数       | 类型   | 描述                        |
+| ---------- | ------ | --------------------------- |
+| template   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供者定义的组件绑定。                |
+| data       | any    | 传给插件组件提供者使用的数据。 |
+
+## PluginComponentTemplate<sup>9+</sup>类型说明
 
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
@@ -56,7 +65,7 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 
 ### onComplete
 
-onComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onComplete(callback:&nbsp;VoidCallback)
 
 组件加载完成回调。
 
@@ -66,7 +75,7 @@ onComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onError
 
-onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;})&nbsp;=&gt;&nbsp;void)
+onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 
 组件加载错误回调。
 
@@ -76,9 +85,26 @@ onError(callback:&nbsp;(info:&nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;s
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                            |
-| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| info   | &nbsp;{&nbsp;errcode:&nbsp;number,&nbsp;msg:&nbsp;string&nbsp;} | 是   | errcode:&nbsp;错误码。<br/>msg:&nbsp;错误信息。 |
+| 参数名    | 类型                                                         | 必填 | 说明                                            |
+| --------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| callback  | [PluginErrorCallback](#pluginerrorcallback14类型说明)          | 是   | 发生错误时调用回调。 |
+
+## PluginErrorCallback<sup>14+</sup>类型说明
+
+发生错误时调用回调。
+
+| 参数     | 类型               | 描述                        |
+| -------- | ------------------ | --------------------------- |
+| info     | [PluginErrorData](#pluginerrordata14类型说明)  | 发生错误时提供的数据。 |
+
+## PluginErrorData<sup>14+</sup>类型说明
+
+发生错误时提供的数据。
+
+| 参数       | 类型   | 描述                        |
+| ---------- | ------ | -------------------------- |
+| errcode    | number | 错误码。                    |
+| msg        | string | 错误信息。                  |
 
 ## 示例
 

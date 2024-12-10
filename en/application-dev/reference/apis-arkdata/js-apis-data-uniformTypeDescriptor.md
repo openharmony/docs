@@ -14,16 +14,17 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 ## UniformDataType
 
-Enumerates the uniform data types. Some data types are related. For example, the JPEG type belongs to the IMAGE type.
+Enumerates the uniform data types. Some data types are related. For example, the JPEG type belongs to the IMAGE type. For more preset data types, see [Preset UTD List](../../database/uniform-data-type-list.md).
+ 
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 | Name                        | Value                           | Description                                |
 |----------------------------|------------------------------|------------------------------------|
-| ENTITY<sup>11+</sup>                       | 'general.entity'                   | Base physical storage type.<br>This type is uncategorized.                         |
-| OBJECT<sup>11+</sup>                       | 'general.object'                   | Base logical content type.<br>This type is uncategorized.                         |
-| COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | Base composite content type. For example, a PDF file that contains text and image.<br>This type belongs to **OBJECT**.                         |
-| TEXT                       | 'general.text'                   | Base text type.<br>This type belongs to **OBJECT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                         |
+| ENTITY<sup>11+</sup>                       | 'general.entity'                   | Generic physical storage type.<br>This type is uncategorized.                         |
+| OBJECT<sup>11+</sup>                       | 'general.object'                   | Generic logical content type.<br>This type is uncategorized.                         |
+| COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | Generic composite content type. For example, a PDF file that contains text and image.<br>This type belongs to **OBJECT**.                         |
+| TEXT                       | 'general.text'                   | Generic text type.<br>This type belongs to **OBJECT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                         |
 | PLAIN_TEXT                | 'general.plain-text'             | Text without specific encoding or identifier.<br>This type belongs to **TEXT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
 | HTML                  | 'general.html'                   | HTML.<br>This type belongs to **TEXT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
 | HYPERLINK         | 'general.hyperlink'              | Hyperlink.<br>This type belongs to **TEXT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                 |
@@ -31,7 +32,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | XHTML<sup>12+</sup>    | 'general.xhtml'                   | XHTML.<br>This type belongs to **XML**.               |
 | RSS<sup>12+</sup>    | 'general.rss'                   | RSS.<br>This type belongs to **XML**.               |
 | SMIL<sup>12+</sup>                         | 'com.real.smil'                    |  Synchronized Multimedia Integration Language (SMIL).<br>This type belongs to **XML**.      |
-| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | Base source code type.<br>This type belongs to **PLAIN_TEXT**.       |
+| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | Generic source code type.<br>This type belongs to **TEXT**.       |
 | SCRIPT<sup>11+</sup>    | 'general.script'                  | Source code in any scripting language.<br>This type belongs to **SOURCE_CODE**.  |
 | SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | Shell script.<br>This type belongs to **SCRIPT**.           |
 | CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C shell script.<br>This type belongs to **SHELL_SCRIPT**.   |
@@ -39,8 +40,8 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP script.<br>This type belongs to **SHELL_SCRIPT**.       |
 | PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python script.<br>This type belongs to **SHELL_SCRIPT**.    |
 | RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby script.<br>This type belongs to **SHELL_SCRIPT**.      |
-| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript source code.<br>This type belongs to **SCRIPT**. |
-| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript source code.<br>This type belongs to **SCRIPT**. |
+| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript source code.<br>This type belongs to **SOURCE_CODE**.|
+| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript source code.<br>This type belongs to **SOURCE_CODE**.|
 | CSS<sup>12+</sup>    | 'general.css'                   | CSS.<br>This type belongs to **SCRIPT**.               |
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | Header file in C.<br>This type belongs to **SOURCE_CODE**.         |
 | C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | Source code in C.<br>This type belongs to **SOURCE_CODE**.         |
@@ -48,19 +49,19 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | Source code in C++.<br>This type belongs to **SOURCE_CODE**.       |
 | JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Source code in Java.<br>This type belongs to **SOURCE_CODE**.      |
 | TEX<sup>12+</sup>    | 'general.tex'                   | Source code in TEX format.<br>This type belongs to **SOURCE_CODE**.               |
-| MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | Markdown.<br>This type belongs to **PLAIN_TEXT**.      |
+| MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | Markdown.<br>This type belongs to **TEXT**.      |
 | ASC_TEXT<sup>12+</sup>    | 'general.asc-text'                   | ASCII.<br>This type belongs to **TEXT**.               |
 | RICH_TEXT<sup>12+</sup>    | 'general.rich-text'                   | Rich text.<br>This type belongs to **TEXT**.               |
-| DELIMITED_VALUES_TEXT<sup>12+</sup>    | 'general.delimited-values-text'                   | Base type of all delimited value texts.<br>This type belongs to **TEXT**.               |
+| DELIMITED_VALUES_TEXT<sup>12+</sup>    | 'general.delimited-values-text'                   | Generic type of all delimited value texts.<br>This type belongs to **TEXT**.               |
 | COMMA_SEPARATED_VALUES_TEXT<sup>12+</sup>    | 'general.comma-separated-values-text'                   | Comma-separated values (CSV).<br>This type belongs to **DELIMITED_VALUES_TEXT**.               |
 | TAB_SEPARATED_VALUES_TEXT<sup>12+</sup>    | 'general.tab-separated-values-text'                   | Tab-separated values (TSV).<br>This type belongs to **DELIMITED_VALUES_TEXT**.               |
-| EBOOK<sup>11+</sup>                         | 'general.ebook'                   | Base eBook file format type.<br>This type belongs to **COMPOSITE_OBJECT**.                    |
+| EBOOK<sup>11+</sup>                         | 'general.ebook'                   | Generic eBook file format type.<br>This type belongs to **COMPOSITE_OBJECT**.                    |
 | EPUB<sup>11+</sup>                        | 'general.epub'                  | Electronic publication (EPUB).<br>This type belongs to **EBOOK**.    |
 | AZW<sup>11+</sup>                        | 'com.amazon.azw'                  | AZW.<br>This type belongs to **EBOOK**.         |
 | AZW3<sup>11+</sup>                        | 'com.amazon.azw3'                  | AZW3.<br>This type belongs to **EBOOK**.        |
 | KFX<sup>11+</sup>                       | 'com.amazon.kfx'                 | KFX.<br>This type belongs to **EBOOK**.         |
 | MOBI<sup>11+</sup>             | 'com.amazon.mobi'               | MOBI.<br>This type belongs to **EBOOK**.        |
-| MEDIA<sup>11+</sup>         | 'general.media'           | Base media type.<br>This type belongs to **OBJECT**.                         |
+| MEDIA<sup>11+</sup>         | 'general.media'           | Generic media type.<br>This type belongs to **OBJECT**.                         |
 | IMAGE        | 'general.image'          | Image.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | JPEG<sup>11+</sup>                         | 'general.jpeg'                   | JPEG.<br>This type belongs to **IMAGE**.             |
 | PNG<sup>11+</sup>                        | 'general.png'                  | PNG.<br>This type belongs to **IMAGE**.              |
@@ -69,8 +70,8 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | BMP<sup>11+</sup>                       | 'com.microsoft.bmp'                 | BMP.<br>This type belongs to **IMAGE**.        |
 | ICO<sup>11+</sup>             | 'com.microsoft.ico'               | Windows icon.<br>This type belongs to **IMAGE**.        |
 | PHOTOSHOP_IMAGE<sup>11+</sup>         | 'com.adobe.photoshop-image'           | Adobe Photoshop image.<br>This type belongs to **IMAGE**.  |
-| AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator image (.ai).<br>This type belongs to **IMAGE**. |
-| FAX<sup>12+</sup>                         | 'general.fax'                    | Base type of the fax.<br>This type belongs to **IMAGE**.      |
+| AI_IMAGE<sup>11+</sup>        | 'com.adobe.illustrator.ai-image'          | Adobe Illustrator image (.ai).<br>This type belongs to **IMAGE**.|
+| FAX<sup>12+</sup>                         | 'general.fax'                    | Generic type of the fax.<br>This type belongs to **IMAGE**.      |
 | JFX_FAX<sup>12+</sup>                         | 'com.j2.jfx-fax'                    | J2 jConnect fax file format.<br>This type belongs to **FAX**.      |
 | EFX_FAX<sup>12+</sup>                         | 'com.js.efx-fax'                    | EFX file format.<br>This type belongs to **FAX**.      |
 | XBITMAP_IMAGE<sup>12+</sup>                         | 'general.xbitmap-image'                    | X BitMAP (XBM) used in the X Window system (X11).<br>This type belongs to **IMAGE**.      |
@@ -90,7 +91,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF.<br>This type belongs to **COMPOSITE_OBJECT**.                          |
 | POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript.<br>This type belongs to **COMPOSITE_OBJECT**.                   |
 | ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript.<br>This type belongs to **POSTSCRIPT**.        |
-| VIDEO       | 'general.video'           | Base video type.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| VIDEO       | 'general.video'           | Generic video type.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | AVI<sup>11+</sup>        | 'general.avi'          | AVI.<br>This type belongs to **VIDEO**.              |
 | MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPEG-1 or MPEG-2.<br>This type belongs to **VIDEO**.    |
 | MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPEG-4.<br>This type belongs to **VIDEO**.           |
@@ -106,7 +107,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | REALMEDIA<sup>12+</sup>                         | 'com.real.realmedia'                    | RealMedia format.<br>This type belongs to **VIDEO**.      |
 | MATROSKA_VIDEO<sup>12+</sup>                         | 'org.matroska.mkv'                    | MKV.<br>This type belongs to **VIDEO**.      |
 | FLASH<sup>12+</sup>                         | 'com.adobe.flash'                    | Flash.<br>This type belongs to **VIDEO**.      |
-| AUDIO       | 'general.audio'          | Base audio type.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| AUDIO       | 'general.audio'          | Generic audio type.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | AAC<sup>11+</sup>                         | 'general.aac'                   | AAC.<br>This type belongs to **AUDIO**.              |
 | AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF.<br>This type belongs to **AUDIO**.             |
 | ALAC<sup>11+</sup>                        | 'general.alac'                  | ALAC.<br>This type belongs to **AUDIO**.             |
@@ -122,21 +123,21 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | MPEGURL_AUDIO<sup>12+</sup>                         | 'general.mpegurl-audio'                    | MPEG audio playlist format.<br>This type belongs to **AUDIO**.      |
 | MPEG_4_AUDIO<sup>12+</sup>                         | 'general.mpeg-4-audio'                    | MPEG-4.<br>This type belongs to **AUDIO**.      |
 | MP2<sup>12+</sup>                         | 'general.mp2'                    | MP2.<br>This type belongs to **AUDIO**.      |
-| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPEG audio format.<br>This type belongs to **AUDIO**.      |
+| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPEG.<br>This type belongs to **AUDIO**.      |
 | ULAW_AUDIO<sup>12+</sup>                         | 'general.ulaw-audio'                    | ULAW.<br>This type belongs to **AUDIO**.      |
 | SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | Digidesign Sound Designer II (SDII).<br>This type belongs to **AUDIO**.      |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealAudio.<br>This type belongs to **AUDIO**.      |
 | MATROSKA_AUDIO<sup>12+</sup>                         | 'org.matroska.mka'                    | MKA.<br>This type belongs to **AUDIO**.      |
-| FILE                       | 'general.file'                 | Base file type.<br>This type belongs to **ENTITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                         |
-| DIRECTORY<sup>11+</sup>             | 'general.directory'               | Base directory type.<br>This type belongs to **ENTITY**.                         |
-| FOLDER        | 'general.folder'           | Base folder type.<br>This type belongs to **DIRECTORY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                        |
-| SYMLINK<sup>11+</sup>        | 'general.symlink'          | Base symbolic type.<br>This type belongs to **ENTITY**.                       |
-| ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | Base archive file type.<br>This type belongs to **OBJECT**.                  |
+| FILE                       | 'general.file'                 | Generic file type.<br>This type belongs to **ENTITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                         |
+| DIRECTORY<sup>11+</sup>             | 'general.directory'               | Generic directory type.<br>This type belongs to **ENTITY**.                         |
+| FOLDER        | 'general.folder'           | Generic folder type.<br>This type belongs to **DIRECTORY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| SYMLINK<sup>11+</sup>        | 'general.symlink'          | Generic symbolic type.<br>This type belongs to **ENTITY**.                       |
+| ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | Generic archive file type.<br>This type belongs to **OBJECT**.                  |
 | BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2.<br>This type belongs to **ARCHIVE**.          |
 | OPG<sup>12+</sup>                        | 'general.opg'                  | OPG.<br>This type belongs to **ARCHIVE**.          |
 | TAZ_ARCHIVE<sup>12+</sup>                        | 'general.taz-archive'                  | TAR.<br>This type belongs to **TAR_ARCHIVE**.          |
 | WEB_ARCHIVE<sup>12+</sup>                        | 'general.web-archive'                  | MHTML format for web page archiving.<br>This type belongs to **ARCHIVE**.          |
-| DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | Base type of any file that can be mounted as a volume.<br>This type belongs to **ARCHIVE**. |
+| DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | Generic type of any file that can be mounted as a volume.<br>This type belongs to **ARCHIVE**. |
 | ISO<sup>12+</sup>                        | 'general.iso'                  | ISO image (optical disk image) format.<br>This type belongs to **DISK_IMAGE**. |
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR.<br>This type belongs to ARCHIVE.          |
 | ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP.<br>This type belongs to **ARCHIVE**.          |
@@ -148,8 +149,8 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | WORDPROCESSINGML_DOCUMENT<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.document'                    | WordProcessingML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | SPREADSHEETML_SHEET<sup>12+</sup>                         | 'org.openxmlformats.spreadsheetml.sheet'                    | SpreadsheetML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | PRESENTATIONML_PRESENTATION<sup>12+</sup>                         | 'org.openxmlformats.presentationml.presentation'                    | PresentationML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
-| DRAWINGML_VISIO<sup>12+</sup>                         | 'org.openxmlformats.drawingml.visio'                    | DrawmingML file format of Office Open XML (OOXML).<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
-| DRAWINGML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.drawingml.template'                    | DrawmingML template format of OOXML.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
+| DRAWINGML_VISIO<sup>12+</sup>                         | 'org.openxmlformats.drawingml.visio'                    | DrawingML file format of Office Open XML (OOXML).<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
+| DRAWINGML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.drawingml.template'                    | DrawingML template format of OOXML.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | WORDPROCESSINGML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.template'                    | WordProcessingML template format of OOXML.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | PRESENTATIONML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.presentationml.template'                    | PresentationML template format of OOXML.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | PRESENTATIONML_SLIDESHOW<sup>12+</sup>                         | 'org.openxmlformats.presentationml.slideshow'                    | PresentationML slide show format of OOXML.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
@@ -163,17 +164,17 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | STUFFIT_ARCHIVE<sup>12+</sup>                         | 'com.allume.stuffit-archive'                    | Stuffit compression format (stuffit archive).<br>This type belongs to **ARCHIVE**.      |
 | RAR_ARCHIVE<sup>12+</sup>                         | 'com.rarlab.rar-archive'                    | WinRAR.<br>This type belongs to **ARCHIVE**.      |
 | SEVEN_ZIP_ARCHIVE<sup>12+</sup>                         | 'org.7-zip.7-zip-archive'                    | 7-Zip.<br>This type belongs to **ARCHIVE**.      |
-| CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | Base calendar type.<br>This type belongs to **OBJECT**.                      |
+| CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | Generic calendar type.<br>This type belongs to **OBJECT**.                      |
 | VCS<sup>12+</sup>                         | 'general.vcs'                    | VCalendar (VCS) format.<br>This type belongs to **CALENDAR** and **TEXT**.      |
 | ICS<sup>12+</sup>                         | 'general.ics'                    | Internet Calendaring and Scheduling (ICS) format.<br>This type belongs to **CALENDAR** and **TEXT**.      |
-| CONTACT<sup>11+</sup>                        | 'general.contact'                  | Base contact type.<br>This type belongs to **OBJECT**.                     |
-| DATABASE<sup>11+</sup>                        | 'general.database'                  | Base database file type.<br>This type belongs to **OBJECT**.                      |
-| MESSAGE<sup>11+</sup>                       | 'general.message'                 | Base message type.<br>This type belongs to **OBJECT**.                      |
-| EXECUTABLE<sup>12+</sup>                         | 'general.executable'                    |  Base type of all executable files.<br>This type belongs to **OBJECT**.      |
+| CONTACT<sup>11+</sup>                        | 'general.contact'                  | Generic contact type.<br>This type belongs to **OBJECT**.                     |
+| DATABASE<sup>11+</sup>                        | 'general.database'                  | Generic database file type.<br>This type belongs to **OBJECT**.                      |
+| MESSAGE<sup>11+</sup>                       | 'general.message'                 | Generic message type.<br>This type belongs to **OBJECT**.                      |
+| EXECUTABLE<sup>12+</sup>                         | 'general.executable'                    |  Generic type of all executable files.<br>This type belongs to **OBJECT**.      |
 | PORTABLE_EXECUTABLE<sup>12+</sup>                         | 'com.microsoft.portable-executable'                    | Microsoft Windows portable executable format.<br>This type belongs to **EXECUTABLE**.      |
 | SUN_JAVA_CLASS<sup>12+</sup>                         | 'com.sun.java-class'                    | Java class file format.<br>This type belongs to **EXECUTABLE**.      |
-| VCARD<sup>11+</sup>             | 'general.vcard'               | Base electronic business card type.<br>This type belongs to **OBJECT**.                    |
-| NAVIGATION<sup>11+</sup>         | 'general.navigation'           | Base navigation data type.<br>This type belongs to **OBJECT**.                      |
+| VCARD<sup>11+</sup>             | 'general.vcard'               | Generic electronic business card type.<br>This type belongs to **OBJECT**.                    |
+| NAVIGATION<sup>11+</sup>         | 'general.navigation'           | Generic navigation data type.<br>This type belongs to **OBJECT**.                      |
 | LOCATION<sup>11+</sup>        | 'general.location'          | Location data.<br>This type belongs to **NAVIGATION**.           |
 | FONT<sup>12+</sup>                         | 'general.font'                    | Basic type of fonts.<br>This type belongs to **OBJECT**.      |
 | TRUETYPE_FONT<sup>12+</sup>                         | 'general.truetype-font'                    | TrueType font format.<br>This type belongs to **FONT**.      |
@@ -193,27 +194,27 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | Style string type defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.      |
 | OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | Want defined for the system.<br>This type belongs to **OBJECT**.      |
 | OFD<sup>12+</sup>                         | 'general.ofd'                    | Open Fixed-layout Document (OFD).<br>This type belongs to **COMPOSITE_OBJECT**.      |
-| CAD<sup>12+</sup>                         | 'general.cad'                    | Base type of all computer-aided design types.<br>This type belongs to **OBJECT**.      |
+| CAD<sup>12+</sup>                         | 'general.cad'                    | Generic type of all computer-aided design types.<br>This type belongs to **OBJECT**.      |
 | OCTET_STREAM<sup>12+</sup>                         | 'general.octet-stream'                    | Any binary data type.<br>This type belongs to **OBJECT**.      |
 
 
 ## TypeDescriptor<sup>11+</sup> 
 
-Provides properties and APIs for describing a uniform data type and its relationship with other uniform data types.
+Represents a class for defining a uniform data type. It provides properties and methods for describing a uniform data type and its relationship with other uniform data types.
 
 ### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name   | Type                   | Readable | Writable | Description                                                      |
+| Name   | Type                   | Readable| Writable| Description                                                      |
 | ------- | ----------------------- | ---- | ---- |----------------------------------------------------------|
-| typeId<sup>11+</sup>     | string | Yes  | No  | ID of the uniform data type, which is a value of [UniformDataType](#uniformdatatype). |
+| typeId<sup>11+</sup>     | string | Yes  | No  | ID of the uniform data type, which is a value of [UniformDataType](#uniformdatatype).|
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | Yes  | No  | Data types to which the uniform data type belongs.                                  |
 | description<sup>11+</sup>     | string                  | Yes  | No  | Brief description of the uniform data type.                                           |
 | referenceURL<sup>11+</sup>     | string                  | Yes  | No  | URL of the link to the reference (detailed information) of the uniform data type.                           |
 | iconFile<sup>11+</sup>     | string                  | Yes  | No  | File path of the default icon for the uniform data type. An empty string means the uniform data type has no default icon. The application can determine whether to use the default icon.                                  |
-| filenameExtensions<sup>12+</sup>  | Array\<string>          | Yes  | No  | List of file name extensions associated with uniform data types.                                  |
-| mimeTypes<sup>12+</sup>  | Array\<string>          | Yes  | No  | List of MIME types associated with uniform data types.                                  |
+| filenameExtensions<sup>12+</sup>  | Array\<string>          | Yes  | No  | List of file name extensions associated with the uniform data type.                                  |
+| mimeTypes<sup>12+</sup>  | Array\<string>          | Yes  | No  | List of MIME types associated with the uniform data type.                                  |
 
 ### belongsTo<sup>11+</sup> 
 
@@ -225,21 +226,21 @@ Checks whether this data type belongs to the specified uniform data type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type specified, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if this data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related. |
+| boolean | Returns **true** if the data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -251,9 +252,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.belongsTo('general.plain-text');
+    let ret = typeObj.belongsTo('general.source-code');
     if(ret) {
-        console.info('type general.type-script belongs to type general.plain-text');
+        console.info('type general.type-script belongs to type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -265,27 +266,27 @@ try{
 
 isLowerLevelType(type: string): boolean
 
-Checks whether this data type is a lower-level type of the specified uniform data type. For example, **TYPE_SCRIPT** is a lower-level type of **SOURCE_CODE**, and **TYPE_SCRIPT** and **SOURCE_CODE** are lower-level types of **PLAIN_TEXT**.
+Checks whether this data type is a lower-level type of the specified uniform data type. For example, **TYPE_SCRIPT** is a lower-level type of **SOURCE_CODE**, and **TYPE_SCRIPT** and **SOURCE_CODE** are lower-level types of **TEXT**.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type specified, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if this data type is a lower-level type of the specified uniform data type; returns **false** otherwise.|
+| boolean | Returns **true** if the data type is a lower-level type of the specified uniform data type; returns **false** otherwise. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -297,9 +298,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.isLowerLevelType('general.plain-text');
+    let ret = typeObj.isLowerLevelType('general.source-code');
     if(ret) {
-        console.info('type general.type-script is lower level type of type general.plain-text');
+        console.info('type general.type-script is lower level type of type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -311,15 +312,15 @@ try{
 
 isHigherLevelType(type: string): boolean
 
-Checks whether this data type is a higher-level type of the specified uniform data type. For example, **SOURCE_CODE** is a higher-level type of **TYPE_SCRIPT**, and **PLAIN_TEXT** is a higher-level type of **SOURCE_CODE** and **TYPE_SCRIPT**.
+Checks whether this data type is a higher-level type of the specified uniform data type. For example, **SOURCE_CODE** is a higher-level type of **TYPE_SCRIPT**, and **TEXT** is a higher-level type of **SOURCE_CODE** and **TYPE_SCRIPT**.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type specified, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
@@ -331,7 +332,7 @@ Checks whether this data type is a higher-level type of the specified uniform da
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -342,10 +343,10 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
-    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
+    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.source-code');
     let ret = typeObj.isHigherLevelType('general.type-script');
     if(ret) {
-        console.info('type general.plain-text is higher level type of type general.type-script');
+        console.info('type general.source-code is higher level type of type general.type-script');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -363,7 +364,7 @@ Checks whether this data type is the same as the specified uniform data type. Th
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | typeDescriptor    | [TypeDescriptor](#typedescriptor11)  | Yes   |Uniform data type to compare.  |
 
@@ -371,13 +372,13 @@ Checks whether this data type is the same as the specified uniform data type. Th
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the type IDs are the same; returns **false** otherwise. |
+| boolean | Returns **true** if the type IDs are the same; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -409,7 +410,7 @@ Obtains the **TypeDescriptor** object based on the uniform data type ID.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | typeId    | string  | Yes   |ID of the uniform data type.  |
 
@@ -417,13 +418,13 @@ Obtains the **TypeDescriptor** object based on the uniform data type ID.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| [TypeDescriptor](#typedescriptor11) | Returns the **TypeDescriptor** object obtained. If the uniform data type does not exist, **null** is returned.|
+| [TypeDescriptor](#typedescriptor11) | **TypeDescriptor** object obtained. If the uniform data type does not exist, **null** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -457,16 +458,16 @@ try {
 
 getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string
 
-Obtains the uniform data type ID based on the given file name extension and data type.
+Obtains the uniform data type ID based on the given file name extension and data type. If there are multiple uniform data type IDs matching the conditions, the first one is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | Yes   |File name extension.  |
-| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the file name extension.  |
+| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is obtained based on the file name extension.  |
 
 **Return value**
 
@@ -478,7 +479,7 @@ Obtains the uniform data type ID based on the given file name extension and data
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -489,7 +490,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.source-code');
     if(typeId) {
         console.info('typeId is general.type-script');
     }
@@ -498,7 +499,7 @@ try {
     console.error(`getUniformDataTypeByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 
-// If no uniform data type is found based on ".myts" and "general.plain-text", the type generated based on the input parameters is returned.
+// If no uniform data type ID is found based on ".myts" and "general.plain-text", the type generated based on the input parameters is returned.
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.myts', 'general.plain-text');
     if(typeId) {
@@ -514,13 +515,13 @@ try {
 
 getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 
-Obtains the uniform data type ID based on the given MIME type and data type.
+Obtains the uniform data type ID based on the given MIME type and data type. If there are multiple uniform data type IDs matching the conditions, the first one is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | Yes   |MIME type.  |
 | belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the MIME type.  |
@@ -535,7 +536,7 @@ Obtains the uniform data type ID based on the given MIME type and data type.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -555,7 +556,7 @@ try {
     console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 
-// If no uniform data type cannot be found based on "image/myimage" and "general.image", the type generated based on the input parameters is returned.
+// If no uniform data type ID is found based on "image/myimage" and "general.image", the type generated based on the input parameters is returned.
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/myimage', 'general.image');
     if(typeId) {
@@ -564,5 +565,119 @@ try {
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```
+
+## uniformTypeDescriptor.getUniformDataTypesByFilenameExtension<sup>13+</sup>
+
+getUniformDataTypesByFilenameExtension(filenameExtension: string, belongsTo?: string): Array\<string>
+
+Obtains the uniform data type IDs based on the given file name extension and data type.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name | Type| Mandatory | Description                   |
+| -----  | ------  | ----  | ----------------------- |
+| filenameExtension    | string  | Yes   |File name extension.  |
+| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the file name extension.  |
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| Array\<string> | Uniform data type IDs that match the specified file name extension and **belongsTo** (if specified). If no match is found, the data types dynamically generated based on the rules specified by the input parameters are returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**Example**
+
+```ts
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension('.ts', 'general.source-code');
+    for (let typeId of typeIds) {
+        console.info(`typeId is ${typeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// If no uniform data type ID is found based on ".myts" and "general.plain-text", the types generated based on the input parameters are returned.
+try {
+    let flexTypeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension('.myts', 'general.plain-text');
+    for (let flexTypeId of flexTypeIds) {
+        console.info(`typeId is flex type, flex typeId is ${flexTypeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```
+
+## uniformTypeDescriptor.getUniformDataTypesByMIMEType<sup>13+</sup>
+
+getUniformDataTypesByMIMEType(mimeType: string, belongsTo?: string): Array\<string>
+
+Obtains the uniform data type IDs based on the given MIME type and data type.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name | Type| Mandatory | Description                   |
+| -----  | ------  | ----  | ----------------------- |
+| mimeType    | string  | Yes   |MIME type.  |
+| belongsTo    | string  | No   |ID of the uniform data type to which the target data type belongs. If this parameter is not specified, the uniform data type ID is queried based on the MIME type.  |
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| Array\<string> | Uniform data type IDs that match the specified MIME type and **belongsTo** (if specified). If no match is found, the data types dynamically generated based on the rules specified by the input parameters are returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**Example**
+
+```ts
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType('text/plain', 'general.text');
+    for (let typeId of typeIds) {
+        console.info(`typeId is ${typeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// If no uniform data type ID is found based on "image/myimage" and "general.image", the types generated based on the input parameters are returned.
+try {
+    let flexTypeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType('image/myimage', 'general.image');
+    for (let flexTypeId of flexTypeIds) {
+        console.info(`typeId is flex type, flex typeId is ${flexTypeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```

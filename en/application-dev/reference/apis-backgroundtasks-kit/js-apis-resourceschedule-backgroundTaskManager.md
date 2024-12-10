@@ -30,19 +30,19 @@ Requests a transient task.
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | Yes   | Reason for requesting the transient task.                    |
-| callback | Callback&lt;void&gt; | Yes   | Callback used to notify the application that the transient task is about to time out. Generally, the callback is invoked 6 seconds before the timeout. |
+| callback | Callback&lt;void&gt; | Yes   | Callback used to notify the application that the transient task is about to time out. Generally, the callback is invoked 6 seconds before the timeout.|
 
 **Return value**
 
 | Type                                   | Description       |
 | ------------------------------------- | --------- |
-| [DelaySuspendInfo](#delaysuspendinfo) | Information about the transient task. |
+| [DelaySuspendInfo](#delaysuspendinfo) | Information about the transient task.|
 
 **Error codes**
 
 For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
@@ -85,13 +85,13 @@ Obtains the remaining time of a transient task. This API uses an asynchronous ca
 | Name      | Type                         | Mandatory  | Description                                      |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | Yes   | Request ID of the transient task.                              |
-| callback  | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the remaining time, in milliseconds. |
+| callback  | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the remaining time, in milliseconds.|
 
 **Error codes**
 
 For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
@@ -130,19 +130,19 @@ Obtains the remaining time of a transient task. This API uses a promise to retur
 
 | Name      | Type    | Mandatory  | Description        |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | Yes   | Request ID of the transient task. |
+| requestId | number | Yes   | Request ID of the transient task.|
 
 **Return value**
 
 | Type                   | Description                                      |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the remaining time, in milliseconds. |
+| Promise&lt;number&gt; | Promise used to return the remaining time, in milliseconds.|
 
 **Error codes**
 
 For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
@@ -178,13 +178,13 @@ Cancels a transient task.
 
 | Name      | Type    | Mandatory  | Description        |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | Yes   | Request ID of the transient task. |
+| requestId | number | Yes   | Request ID of the transient task.|
 
 **Error codes**
 
 For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
@@ -223,7 +223,7 @@ Requests a continuous task. This API uses an asynchronous callback to return the
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md). |
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Continuous task mode.                             |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.          |
 | callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result. If the continuous task is requested, **err** is **undefined**. Otherwise, **err** is an error object.   |
@@ -312,7 +312,7 @@ Requests a continuous task. This API uses a promise to return the result.
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md). |
+| context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Continuous task mode.                             |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 
@@ -320,7 +320,7 @@ Requests a continuous task. This API uses a promise to return the result.
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -400,7 +400,7 @@ Cancels a continuous task. This API uses an asynchronous callback to return the 
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md). |
+| context  | Context                   | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the continuous task is canceled, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -459,13 +459,13 @@ Cancels a continuous task. This API uses a promise to return the result.
 
 | Name    | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md). |
+| context | Context | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 
 **Return value**
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -521,7 +521,7 @@ Requests a continuous task. This API uses a promise to return the result.
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context. |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context.|
 | bgModes    | string[] | Yes   | Continuous task mode. The options are as follows:<br>**dataTransfer**: data transfer.<br>**audioPlayback**: audio playback.<br>**audioRecording**: audio recording.<br>**location**: location and navigation.<br>**bluetoothInteraction**: Bluetooth-related task<br>**multiDeviceConnection**: multi-device connection.<br>One or more modes can be passed in.|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 
@@ -529,7 +529,7 @@ Requests a continuous task. This API uses a promise to return the result.
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | Promise that returns a [continuous-task notification](#continuoustasknotification12). |
+| Promise\<ContinuousTaskNotification> | Promise that returns a [continuous-task notification](#continuoustasknotification12).|
 
 **Error codes**
 
@@ -651,14 +651,14 @@ Updates a continuous task. This API uses a promise to return the result.
 
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context. |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context.|
 | bgModes    | string[] | Yes   | Continuous task mode. The options are as follows:<br>**dataTransfer**: data transfer.<br>**audioPlayback**: audio playback.<br>**audioRecording**: audio recording.<br>**location**: location and navigation.<br>**bluetoothInteraction**: Bluetooth-related task<br>**multiDeviceConnection**: multi-device connection.<br>One or more modes can be passed in.
 
 **Return value**
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | Promise that returns a [continuous-task notification](#continuoustasknotification12). |
+| Promise\<ContinuousTaskNotification> | Promise that returns a [continuous-task notification](#continuoustasknotification12).|
 
 **Error codes**
 
@@ -713,7 +713,7 @@ Defines the information about the transient task.
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | Yes   | Request ID of the transient task.                              |
-| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br>The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute. |
+| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br>The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
 
 ## BackgroundMode
 
@@ -729,6 +729,7 @@ Enumerates the continuous task modes.
 | LOCATION                | 4    | Positioning and navigation.                 |
 | BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
 | MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
+| VOIP<sup>13+</sup> | 8    | Audio and video calls.                |
 | TASK_KEEPING            | 9    | Computing task (for specific devices only).       |
 
 ## ContinuousTaskNotification<sup>12+</sup>

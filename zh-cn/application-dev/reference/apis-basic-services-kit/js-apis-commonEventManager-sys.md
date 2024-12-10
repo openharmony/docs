@@ -1,6 +1,6 @@
 # @ohos.commonEventManager (公共事件模块)(系统应用)
 
-本模块提供了公共事件相关的能力，包括发布公共事件、订阅公共事件、以及退订公共事件。
+本模块提供了公共事件相关的能力，包括发布公共事件、订阅公共事件以及退订公共事件。
 
 > **说明：**
 >
@@ -46,23 +46,23 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
-| 1500004  | not System services.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//发布公共事件回调
+// 发布公共事件回调
 function publishCB(err: BusinessError) {
-	if (err) {
-        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publishAsUser");
-    }
+  if (err) {
+    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publishAsUser");
+  }
 }
 
 //指定发送的用户
@@ -104,41 +104,37 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
-| 1500004  | not System services or System app.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **示例：**
-
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//公共事件相关信息
+// 公共事件相关信息
 let options:commonEventManager.CommonEventPublishData = {
-	code: 0,			 //公共事件的初始代码
-	data: "initial data",//公共事件的初始数据
+  code: 0,			 // 公共事件的初始代码
+  data: "initial data",// 公共事件的初始数据
 }
-
-//发布公共事件回调
+// 发布公共事件回调
 function publishCB(err: BusinessError) {
-	if (err) {
-        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publishAsUser");
-    }
-}
-
-//指定发送的用户
-let userId = 100;
-
-//发布公共事件
-try {
-    commonEventManager.publishAsUser("event", userId, options, publishCB);
-} catch (error) {
-    let err: BusinessError = error as BusinessError;
+  if (err) {
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publishAsUser");
+  }
+}
+// 指定发送的用户
+let userId = 100;
+// 发布公共事件
+try {
+  commonEventManager.publishAsUser("event", userId, options, publishCB);
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -170,22 +166,21 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |   
-| 1500004  | not system service.                 |
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
-
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
 commonEventManager.removeStickyCommonEvent("sticky_event", (err: BusinessError) => {
-    if (err) {
-        console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
-        return;
-    }
-    console.info(`removeStickyCommonEvent success`);
+  if (err) {
+    console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
+    return;
+  }
+  console.info(`removeStickyCommonEvent success`);
 });
 ```
 
@@ -222,20 +217,19 @@ removeStickyCommonEvent(event: string): Promise\<void>
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | not system service.                 |
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
-
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
 commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
-    console.info(`removeStickyCommonEvent success`);
+  console.info(`removeStickyCommonEvent success`);
 }).catch ((err: BusinessError) => {
-    console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
@@ -266,25 +260,20 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
-
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
 commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
-    if (!err) {
-        console.info(`setStaticSubscriberState failed, err is null.`);
-        return;
-    }
-    if (err.code !== undefined && err.code != null) {
-        console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
-        return;
-    }
-    console.info(`setStaticSubscriberState success`);
+  if (err.code != 0) {
+    console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+    return;
+  }
+  console.info(`setStaticSubscriberState success`);
 });
 ```
 
@@ -320,8 +309,8 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500007  | error sending message to Common Event Service.             |
-| 1500008  | Common Event Service does not complete initialization.     |
+| 1500007  | Failed to send the message to the common event service.             |
+| 1500008  | Failed to initialize the common event service.     |
 
 **示例：**
 
@@ -330,15 +319,15 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 commonEventManager.setStaticSubscriberState(false).then(() => {
-    console.info(`setStaticSubscriberState success`);
+  console.info(`setStaticSubscriberState success`);
 }).catch ((err: BusinessError) => {
-    console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
 ## commonEventManager.setStaticSubscriberState<sup>12+</sup>
 
-setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
+setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<void>
 
 为当前应用设置静态订阅事件的使能状态，并且记录事件名称。使用Promise异步回调。
 
@@ -353,7 +342,7 @@ setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
 | 参数名 | 类型          | 必填 | 说明                                                 |
 | ------ | ------------- | ---- | ---------------------------------------------------- |
 | enable | boolean       | 是   | 表示静态订阅事件使能状态。 true：使能 false：去使能。|
-| events | array<string> | 否   | 表示记录事件名称。                                   |
+| events | Array\<string> | 否   | 表示记录事件名称。                                   |
 
 **返回值：**
 
@@ -369,11 +358,10 @@ setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
 | -------- | ------------------------------------------------------ |
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500007  | error sending message to Common Event Service.         |
-| 1500008  | Common Event Service does not complete initialization. |
+| 1500007  | Failed to send the message to the common event service.        |
+| 1500008  | Failed to initialize the common event service. |
 
 **示例：**
-
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -391,6 +379,6 @@ commonEventManager.setStaticSubscriberState(true, evenName).then(() => {
   }
   console.info(`setStaticSubscriberState success, state is ${true}`);
 }).catch((err: BusinessError) => {
-  console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

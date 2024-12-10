@@ -48,8 +48,15 @@ LocationButton(options:LocationButtonOptions)
 
 > **说明：**
 > 
-> icon或text需至少传入一个。<br>
-> 如果icon、text都不传入，[LocationButton](#locationbutton-1)中的options参数不起效，创建的LocationButton为默认样式。
+> - icon或text需至少传入一个。<br>
+> - 如果icon、text都不传入，[LocationButton](#locationbutton-1)中的options参数不起效，创建的LocationButton为默认样式，默认样式：
+>
+>   LocationIconStyle默认样式为LINES；
+>
+>   LocationDescription默认样式为CURRENT_LOCATION；
+>
+>   ButtonType默认样式为Capsule。
+> - icon、text、buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -67,7 +74,7 @@ LocationButton(options:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
 | LINES | 1 | 位置按钮展示线条样式图标。 |
@@ -78,7 +85,7 @@ LocationButton(options:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | CURRENT_LOCATION | 0 | 位置按钮的文字描述为“当前位置”。 |
 | ADD_LOCATION | 1 | 位置按钮的文字描述为“添加位置”。 |
@@ -98,7 +105,7 @@ LocationButton(options:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 位置按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置按钮点击后位置权限授权失败。 |

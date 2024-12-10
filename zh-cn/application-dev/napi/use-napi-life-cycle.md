@@ -180,6 +180,14 @@ try {
 
 获取与reference相关联的ArkTS Object。
 
+> **说明**
+>
+> 由于弱引用（引用计数为0的napi_ref）的释放与gc回收js对象并非同时发生。
+>
+> 因此可能在弱引用被释放前，js对象已经被回收。
+>
+> 这意味着你可能在napi_ref有效的情况下，通过本接口获取到一个空指针。
+
 ### napi_add_finalizer
 
 当ArkTS Object中的对象被垃圾回收时调用注册的napi_add_finalizer回调。

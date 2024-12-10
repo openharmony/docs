@@ -66,7 +66,7 @@ Based on predictions as to what page is to be loaded or visited, you can use [pr
 Prefetching downloads all resources required by the page, including the main resources and subresources, but does not execute the JavaScript code of the page. Before calling **prefetchPage()**, you must create a **WebviewController** instance bound to the **\<Web>** component.
 
 In the following example, prefetching of a page is triggered in **onPageEnd**.
-
+  
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';

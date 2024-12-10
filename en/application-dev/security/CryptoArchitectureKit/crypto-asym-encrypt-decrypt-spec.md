@@ -35,7 +35,6 @@ The Crypto framework supports the following padding modes for RSA encryption and
 > **NOTE**
 >
 > It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
->
 
 ### NoPadding
 
@@ -82,6 +81,7 @@ In the following table, the options included in the square brackets ([]) are mut
 For example, if the asymmetric key type is **RSA2048**, the padding mode is **PKCS1_OAEP**, the MD algorithm is **SHA256**, and the mask digest algorithm is **MGF1_SHA256**, the string parameter is **RSA2048|PKCS1_OAEP|SHA256|MGF1\_SHA256**.
 
 > **NOTE**
+>
 > Input data length < RSA key modulus – **md** length – **mgf1_md** length – 2<br> For example, if the RSA key is of 512 bits, **SHA512** cannot be used.
 
 | Asymmetric Key Type| Padding Mode| MD Algorithm| Mask Digest Algorithm| API Version|

@@ -35,7 +35,7 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -159,7 +159,7 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -269,7 +269,7 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -385,7 +385,7 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -489,7 +489,7 @@ Stops vibration in all modes. This API uses an asynchronous callback to return t
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -536,7 +536,7 @@ Stops vibration in all modes. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -575,7 +575,7 @@ Stops any form of motor vibration.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -615,7 +615,7 @@ Checks whether an effect ID is supported. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -686,7 +686,7 @@ Checks whether an effect ID is supported. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -752,7 +752,7 @@ Checks whether the preset vibration effect is supported.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -821,7 +821,7 @@ Enumerates the preset vibration effect IDs.
 
 | Name              | Value                  | Description                            |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect when a user adjusts the timer.|
+| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | Vibration effect when a user adjusts the timer.|
 
 ## HapticFeedback<sup>12+</sup>
 
@@ -831,9 +831,9 @@ Defines the vibration effect.
 
 | Name        | Value                   | Description                        |
 | ------------ | --------------------- | ---------------------------- |
-| EFFECT_SOFT  | "haptic.effect.soft"  | Soft vibration, low frequency.|
-| EFFECT_HARD  | "haptic.effect.hard"  | Hard vibration, medium frequency.|
-| EFFECT_SHARP | "haptic.effect.sharp" | Sharp vibration, high frequency.|
+| EFFECT_SOFT  | 'haptic.effect.soft'  | Soft vibration, low frequency.|
+| EFFECT_HARD  | 'haptic.effect.hard'  | Hard vibration, medium frequency.|
+| EFFECT_SHARP | 'haptic.effect.sharp' | Sharp vibration, high frequency.|
 
 ## VibratorStopMode
 
@@ -843,8 +843,8 @@ Enumerates the modes available to stop the vibration.
 
 | Name                     | Value      | Description                          |
 | ------------------------- | -------- | ------------------------------ |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | The vibration to stop is in **duration** mode.|
-| VIBRATOR_STOP_MODE_PRESET | "preset" | The vibration to stop is in **EffectId** mode.|
+| VIBRATOR_STOP_MODE_TIME   | 'time'   | The vibration to stop is in **duration** mode.|
+| VIBRATOR_STOP_MODE_PRESET | 'preset' | The vibration to stop is in **EffectId** mode.|
 
 ## VibrateEffect<sup>9+</sup>
 
@@ -882,7 +882,7 @@ Describes the preset vibration.
 | type     | 'preset' |  Yes | The value **preset** means vibration with the specified effect.|
 | effectId | string   |  Yes | Preset vibration effect ID.            |
 | count    | number   |  No | Number of repeated vibrations. The default value is **1**. This parameter is optional.|
-| intensity<sup>12+</sup> | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional.|
+| intensity<sup>12+</sup> | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional. If vibration intensity adjustment is not supported, the default vibration intensity will be used.|
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -930,6 +930,7 @@ Enumerates the vibration scenarios.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 <!--RP1-->
+
 | Type    | Description                          |
 | ---------------- | ------------------------------ |
 | 'unknown'     | Unknown scenario, with the lowest priority. This parameter has a fixed value of **unknown**.|

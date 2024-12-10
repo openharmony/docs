@@ -30,7 +30,7 @@ Ability生命周期状态，该类型为枚举，可配合[AbilityDelegator](js-
 | BACKGROUND    | 3    | 表示Ability处于后台状态。   |
 | DESTROY       | 4    | 表示Ability处于已销毁状态。 |
 
-## AbilityDelegatorRegistry.getAbilityDelegator
+## abilityDelegatorRegistry.getAbilityDelegator
 
 getAbilityDelegator(): AbilityDelegator
 
@@ -67,7 +67,7 @@ abilityDelegator.startAbility(want, (err) => {
 });
 ```
 
-## AbilityDelegatorRegistry.getArguments
+## abilityDelegatorRegistry.getArguments
 
 getArguments(): AbilityDelegatorArgs
 

@@ -13,7 +13,7 @@ In JS, memory management and GC are performed automatically. The JSVM is respons
 | API                      | Description                           |
 |----------------------------|-------------------------------------|
 | OH_JSVM_AdjustExternalMemory         | Manages the external allocated memory held by a JS object.|
-| OH_JSVM_MemoryPressureNotification   | Notifies the VM of the memory pressure level and selectively triggers GC.|
+| OH_JSVM_MemoryPressureNotification   | Notifies the underlying JSVM that the VM system memory is insufficient and selectively trigger GC.|
 
 ## Example
 
@@ -30,15 +30,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the AdjustExternalMemory callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = AdjustExternalMemory},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named adjustExternalMemory and associate it with a callback. This allows the AdjustExternalMemory callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"adjustExternalMemory", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_AdjustExternalMemory.
 static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -56,24 +47,26 @@ static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, true, &checked);
     return checked;
 }
+// Register the AdjustExternalMemory callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = AdjustExternalMemory},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named adjustExternalMemory and associate it with a callback. This allows the AdjustExternalMemory callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"adjustExternalMemory", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS code:
+// Call the C++ code from JS.
 
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-   adjustExternalMemory()
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'adjustExternalMemory:%{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'adjustExternalMemory: %{public}s', error.message);
-}
+```c++
+const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 ```
+**Expected result**
+The following information is displayed in the log:
+JSVM OH_JSVM_AdjustExternalMemory: success
+JSVM Allocate memory size: 1048576
 
 ### OH_JSVM_MemoryPressureNotification
 
@@ -86,15 +79,6 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the MemoryPressureNotification callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = MemoryPressureNotification},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named memoryPressureNotification and associate it with a callback. This allows the MemoryPressureNotification callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"memoryPressureNotification", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_MemoryPressureNotification.
 static JSVM_Value MemoryPressureNotification(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -108,21 +92,23 @@ static JSVM_Value MemoryPressureNotification(JSVM_Env env, JSVM_CallbackInfo inf
     }
     return nullptr;
 }
+// Register the MemoryPressureNotification callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = MemoryPressureNotification},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named memoryPressureNotification and associate it with a callback. This allows the MemoryPressureNotification callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"memoryPressureNotification", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS code:
+// Call the C++ code from JS.
 
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-   memoryPressureNotification();
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'memoryPressureNotification:%{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'memoryPressureNotification:%{public}s', error.message);
-}
+```c++
+const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
+**Expected result**
+The following information is displayed in the log:
+JSVM OH_JSVM_MemoryPressureNotification: success
+JSVM Current JSVM memory pressure level: 2

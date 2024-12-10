@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-Environment提供了获取公共文件用户目录路径的能力，以支持三方应用在公共文件用户目录下进行文件访问操作。
+[Environment](../reference/apis-core-file-kit/_environment.md)提供了获取公共文件用户目录路径的能力，以支持三方应用在公共文件用户目录下进行文件访问操作。
 
 ## 约束限制
 
@@ -16,7 +16,7 @@ Environment提供了获取公共文件用户目录路径的能力，以支持三
 | 接口名称 | 描述 |
 | -------- | -------- |
 | FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char **result)| 获取用户Download目录沙箱路径。只支持2in1设备 |
-| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result)	 | 获取用户Desktop目录沙箱路径。只支持2in1设备 |
+| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result) | 获取用户Desktop目录沙箱路径。只支持2in1设备 |
 | FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char **result) | 获取用户Document目录沙箱路径。只支持2in1设备 |
 
 ## 开发步骤

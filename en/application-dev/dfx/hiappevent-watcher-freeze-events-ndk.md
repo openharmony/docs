@@ -50,15 +50,16 @@ The following describes how to subscribe to the freeze event triggered by a butt
 3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   # include "json/json.h"
-   # include "hilog/log.h"
-   # include "hiappevent/hiappevent.h"
+   #include "napi/native_api.h"
+   #include "json/json.h"
+   #include "hilog/log.h"
+   #include "hiappevent/hiappevent.h"
    
-   # undef LOG_TAG
-   # define LOG_TAG "testTag"
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to application events.
+4. Subscribe to system events.
 
    - Watcher of the onReceive type:
 
@@ -125,9 +126,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // Set the watcher name. The system identifies different watchers based on their names.
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-         // Set the event type to EVENT_APP_FREEZE.
+         // Set the event to watch to EVENT_APP_FREEZE.
          const char *names[] = {EVENT_APP_FREEZE};
-         // Add the system events to watch, for example, system events.
+         // Add the events to watch, for example, system events.
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
          OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -209,9 +210,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // Set the watcher name. The system identifies different watchers based on their names.
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-         // Set the event type to EVENT_APP_FREEZE.
+         // Set the event to watch to EVENT_APP_FREEZE.
          const char *names[] = {EVENT_APP_FREEZE};
-         // Add the system events to watch, for example, button onclick events.
+         // Add the events to watch, for example, system events.
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // Set the implemented callback function. The callback function will be triggered when the conditions set by OH_HiAppEvent_SetTriggerCondition are met.
          OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -293,7 +294,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
    HiAppEvent eventInfo.params.log_over_limit=0
    ```
 
-10. Remove the application event watcher.
+10. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -303,7 +304,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     }
     ```
 
-11. Destroy the application event watcher.
+11. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
@@ -313,5 +314,3 @@ The following describes how to subscribe to the freeze event triggered by a butt
         return {};
     }
     ```
-
-<!--no_check-->

@@ -1,8 +1,6 @@
-
-
 # PanGesture
 
-拖动手势事件，当滑动的最小距离达到设定的最小值时触发拖动手势事件。
+滑动手势事件，当滑动的最小距离达到设定的最小值时触发滑动手势事件。
 
 >  **说明：**
 >
@@ -78,13 +76,14 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 
 ## 属性
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。|
+| tag<sup>11+</sup>   | string  | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)>  | 设置Pan手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
+
+该示例通过PanGesture实现了单指/双指滑动手势的识别。
 
 ```ts
 // xxx.ets
@@ -108,7 +107,7 @@ struct PanGestureExample {
       .border({ width: 3 })
       .margin(50)
       .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
-      // 左右拖动触发该手势事件
+      // 左右滑动触发该手势事件
       .gesture(
       PanGesture(this.panOption)
         .onActionStart((event: GestureEvent) => {
@@ -129,7 +128,7 @@ struct PanGestureExample {
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
-          // 将PanGesture手势事件触发条件改为双指以任意方向拖动
+          // 将PanGesture手势事件触发条件改为双指以任意方向滑动
           this.panOption.setDirection(PanDirection.All)
           this.panOption.setFingers(2)
         })
@@ -140,10 +139,10 @@ struct PanGestureExample {
 
 示意图：
 
-向左拖动：
+向左滑动：
 
 ![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.png) 
 
-点击按钮修改PanGesture触发条件，双指向左下方拖动：
+点击按钮修改PanGesture触发条件，双指向左下方滑动：
 
  ![zh-cn_image1_0000001174264374](figures/zh-cn_image1_0000001174264374.png) 

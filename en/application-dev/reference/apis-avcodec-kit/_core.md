@@ -743,7 +743,7 @@ Returns any of the following result code:
 
 **AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_INVALID_VAL**:
+**AV_ERR_INVALID_VAL**: The operation fails.
 
     Possible causes are as follows:
     1. The passed-in value of **buffer** or **attr** is a null pointer.
@@ -778,7 +778,7 @@ Returns any of the following result code:
 
 **AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_INVALID_VAL**:
+**AV_ERR_INVALID_VAL**: The operation fails.
 
     Possible causes are as follows:
     1. The passed-in value of **buffer** or **format** is a null pointer.

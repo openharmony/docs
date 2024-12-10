@@ -688,7 +688,7 @@ tcp.on('connect', () => {
 });
 
 // Bind the local IP address and port number.
-let ipAddress : socket.NetAddress = {} as socket.NetAddress;
+let ipAddress: socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 1234;
 tcp.bind(ipAddress, (err: BusinessError) => {
@@ -702,71 +702,72 @@ tcp.bind(ipAddress, (err: BusinessError) => {
   ipAddress.address = "192.168.xxx.xxx";
   ipAddress.port = 443;
 
-  let tcpConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
+  let tcpConnect: socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
   tcpConnect.address = ipAddress;
   tcpConnect.timeout = 6000;
 
   tcp.connect(tcpConnect, (err: BusinessError) => {
-  if (err) {
-    console.log('connect fail');
-    return;
-  }
-  console.log('connect success');
-
-  // After TCP socket connection is established, upgrade it to a TLS socket connection.
-  let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
-  // Subscribe to events of the TLSSocket object.
-  tlsTwoWay.on('message', (value: SocketInfo) => {
-    console.log("tls on message");
-    let buffer = value.message;
-    let dataView = new DataView(buffer);
-    let str = "";
-    for (let i = 0; i < dataView.byteLength; ++i) {
-      str += String.fromCharCode(dataView.getUint8(i));
+    if (err) {
+      console.log('connect fail');
+      return;
     }
-    console.log("tls on connect received:" + str);
-  });
-  tlsTwoWay.on('connect', () => {
-    console.log("tls on connect");
-  });
-  tlsTwoWay.on('close', () => {
-    console.log("tls on close");
-  });
+    console.log('connect success');
 
-  // Configure the destination address and certificate of the TLSSocket object.
-  ipAddress.address = "192.168.xxx.xxx";
-  ipAddress.port = 1234;
-
-  let tlsSecureOption : socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
-  tlsSecureOption.key = "xxxx";
-  tlsSecureOption.cert = "xxxx";
-  tlsSecureOption.ca = ["xxxx"];
-  tlsSecureOption.password = "xxxx";
-  tlsSecureOption.protocols = [socket.Protocol.TLSv12];
-  tlsSecureOption.useRemoteCipherPrefer = true;
-  tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
-  tlsSecureOption.cipherSuite = "AES256-SHA256";
-
-  let tlsTwoWayConnectOption : socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
-  tlsSecureOption.key = "xxxx";
-  tlsTwoWayConnectOption.address = ipAddress;
-  tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
-  tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
-
-  // Establish a TLS socket connection.
-  tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
-    console.log("tls connect success");
-
-    // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
-    tlsTwoWay.close((err: BusinessError) => {
-      if (err) {
-        console.log("tls close callback error = " + err);
-      } else {
-        console.log("tls close success");
+    // After TCP socket connection is established, upgrade it to a TLS socket connection.
+    let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+    // Subscribe to events of the TLSSocket object.
+    tlsTwoWay.on('message', (value: SocketInfo) => {
+      console.log("tls on message");
+      let buffer = value.message;
+      let dataView = new DataView(buffer);
+      let str = "";
+      for (let i = 0; i < dataView.byteLength; ++i) {
+        str += String.fromCharCode(dataView.getUint8(i));
       }
-      tlsTwoWay.off('message');
-      tlsTwoWay.off('connect');
-      tlsTwoWay.off('close');
+      console.log("tls on connect received:" + str);
+    });
+    tlsTwoWay.on('connect', () => {
+      console.log("tls on connect");
+    });
+    tlsTwoWay.on('close', () => {
+      console.log("tls on close");
+    });
+
+    // Configure the destination address and certificate of the TLSSocket object.
+    ipAddress.address = "192.168.xxx.xxx";
+    ipAddress.port = 1234;
+
+    let tlsSecureOption: socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
+    tlsSecureOption.key = "xxxx";
+    tlsSecureOption.cert = "xxxx";
+    tlsSecureOption.ca = ["xxxx"];
+    tlsSecureOption.password = "xxxx";
+    tlsSecureOption.protocols = [socket.Protocol.TLSv12];
+    tlsSecureOption.useRemoteCipherPrefer = true;
+    tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
+    tlsSecureOption.cipherSuite = "AES256-SHA256";
+
+    let tlsTwoWayConnectOption: socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
+    tlsSecureOption.key = "xxxx";
+    tlsTwoWayConnectOption.address = ipAddress;
+    tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
+    tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
+
+    // Establish a TLS socket connection.
+    tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
+      console.log("tls connect success");
+
+      // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
+      tlsTwoWay.close((err: BusinessError) => {
+        if (err) {
+          console.log("tls close callback error = " + err);
+        } else {
+          console.log("tls close success");
+        }
+        tlsTwoWay.off('message');
+        tlsTwoWay.off('connect');
+        tlsTwoWay.off('close');
+      });
     });
   });
 });

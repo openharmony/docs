@@ -6,7 +6,7 @@ In Node-API, **napi_value** is an abstract data type that represents an ArkTS va
 
 The **napi_value** lifecycle is closely related to the lifecycle of the ArkTS value. When an ArkTS value is garbage-collected, the **napi_value** associated with it is no longer valid. Avoid using the **napi_value** when the ArkTS value no longer exists.
 
-Scope is used to manage the **napi_value** lifecycle in the framework layer. You can use **napi_open_handle_scope** to open a scope and use **napi_close_handle_scope** to close a scope. By creating a **napi_value** in a scope, you can ensure that the **napi_value** is automatically released when the scope ends. This helps prevent memory leaks.
+Scope is used to manage the **napi_value** lifecycle in the framework layer. You can use **napi_open_handle_scope** to open a scope and use **napi_close_handle_scope** to close it. By creating a **napi_value** in a scope, you can ensure that the **napi_value** is automatically released when the scope ends. This helps prevent memory leaks.
 
 **napi_ref** is a Node-API type used to manage the **napi_value** lifecycle. It allows reference to a **napi_value** during its lifecycle, even if the value is beyond its original context. The reference allows a **napi_value** to be shared in different contexts and released in a timely manner.
 
@@ -14,9 +14,9 @@ Scope is used to manage the **napi_value** lifecycle in the framework layer. You
 
 Node-API provides APIs for creating and manipulating ArkTS objects, managing references to and lifecycle of the ArkTS objects, and registering garbage collection (GC) callbacks in C/C++. Before you get started, you need to understand the following concepts:
 
-- Scope: used to ensure that the objects created within a certain scope remain active and are properly cleared when no longer required. Node-API provides APIs for creating and closing normal and escapeable scopes.
+- Scope: used to ensure that the objects created within a certain scope remain active and are properly cleared when no longer required. Node-API provides APIs for creating and closing normal and escapable scopes.
 - Reference management: Node-API provides APIs for creating, deleting, and managing object references to extend the lifecycle of objects and prevent the use-after-free issues. In addition, reference management also helps prevent memory leaks.
-- Escapeable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **napi_open_escapable_handle_scope** and closed by **napi_close_escapable_handle_scope**.
+- Escapable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **napi_open_escapable_handle_scope** and closed by **napi_close_escapable_handle_scope**.
 - GC callback: You can register GC callbacks to perform specific cleanup operations when ArkTS objects are garbage-collected.
 
 Understanding these concepts helps you securely and effectively manipulate ArkTS objects in C/C++ and perform object lifecycle management.
@@ -44,10 +44,11 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_open_handle_scope and napi_close_handle_scope
 
-Use **napi_open_handle_scope** to open a scope, and use **napi_close_handle_scope** to close it. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected. 
+Use **napi_open_handle_scope** to open a scope, and use **napi_close_handle_scope** to close it. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected.
+
 Properly using these two APIs can minimize lifecycle and prevent memory leaks.
 
-For details about the code, see [Lifecycle Management](napi-guidelines.md).
+For details about the code, see [Lifecycle Management](napi-guidelines.md#lifecycle-management).
 
 CPP code:
 
@@ -119,9 +120,10 @@ try {
 
 ### napi_open_escapable_handle_scope, napi_close_escapable_handle_scope, and napi_escape_handle
 
-Use **napi_open_escapable_handle_scope** to open an escapeable scope, which allows the declared values in the scope to be returned to the parent scope. You can use **napi_close_escapable_handle_scope** to close it. 
+Use **napi_open_escapable_handle_scope** to open an escapable scope, which allows the declared values in the scope to be returned to the parent scope. You can use **napi_close_escapable_handle_scope** to close it. 
 
 Use **napi_escape_handle** to promote the lifecycle of an ArkTS object so that it is valid for the lifetime of the parent scope.
+
 These APIs are helpful for managing ArkTS objects more flexibly in C/C++, especially when passing cross-scope values.
 
 CPP code:
@@ -131,10 +133,10 @@ CPP code:
 
 static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info)
 {
-    // Create an escapeable scope.
+    // Create an escapable scope.
     napi_escapable_handle_scope scope;
     napi_open_escapable_handle_scope(env, &scope);
-    // Create an object within the escapeable scope.
+    // Create an object within the escapable scope.
     napi_value obj = nullptr;
     napi_create_object(env, &obj);
     // Add a property to the object.
@@ -144,7 +146,7 @@ static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info
     // Call napi_escape_handle to promote the ArkTS object handle to make it valid with the lifetime of the outer scope.
     napi_value escapedObj = nullptr;
     napi_escape_handle(env, scope, obj, &escapedObj);
-    // Close the escapeable scope to clear resources.
+    // Close the escapable scope to clear resources.
     napi_close_escapable_handle_scope(env, scope);
     // Obtain and return the property of the object whose scope is promoted. You can also obtain napi_escapable_handle_scope here.
     napi_value result = nullptr;
@@ -184,6 +186,11 @@ Use **napi_reference_ref** to increment the reference count and use **napi_refer
 ### napi_get_reference_value
 
 Use **napi_get_reference_value** to obtain the ArkTS object associated with the reference.
+
+> **NOTE**
+>
+> The release of a weak reference (**napi_ref** whose reference count is 0) and GC of a JS object do not occur at the same time. Consequently, the JS object may be garbage-collected before the weak reference is released. As a result, calling this API may yield a null pointer even if **napi_ref** is valid.
+>
 
 ### napi_add_finalizer
 

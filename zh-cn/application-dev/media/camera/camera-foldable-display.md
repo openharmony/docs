@@ -1,4 +1,7 @@
 # 适配不同折叠状态的摄像头变更(ArkTS)
+
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 一台可折叠设备在不同折叠状态下，可使用不同的摄像头，应用可调用[CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)或[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备的折叠状态变化，并调用[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)获取当前状态下可用摄像头，完成相应适配，确保应用在折叠状态变更时的用户体验。
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
@@ -53,9 +56,10 @@
 
 此处提供两种方案供开发者选择。
 
-- **方案一：使用相机框架提供的[CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)监听折叠屏折叠态变化。**
+- **方案一：使用相机框架提供的[CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)监听设备折叠态变化。**
     ```ts
     import { camera } from '@kit.CameraKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let cameraManager = camera.getCameraManager(getContext())
 
@@ -67,7 +71,7 @@
     cameraManager.on('foldStatusChange', registerFoldStatusChanged);
     //cameraManager.off('foldStatusChange', registerFoldStatusChanged);
     ```
-- **方案二：使用图形图像的[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听折叠态变化。**
+- **方案二：使用图形图像的[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备折叠态变化。**
     ```ts
     import { display } from '@kit.ArkUI';
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();

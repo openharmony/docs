@@ -1,5 +1,5 @@
 # SaveButton
- 
+
 安全控件的保存控件，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
 
 > **说明：**
@@ -48,8 +48,15 @@ SaveButton(options:SaveButtonOptions)
 
 > **说明：**
 > 
-> icon或text需至少传入一个。<br>
-> 如果icon、text都不传入，[SaveButton](#savebutton-1)中的options参数不起效，创建的SaveButton为默认样式。
+> - icon或text需至少传入一个。<br>
+> - 如果icon、text都不传入，[SaveButton](#savebutton-1)中的options参数不起效，创建的SaveButton为默认样式，默认样式：
+>
+>   SaveIconStyle默认样式为FULL_FILLED；
+>
+>   SaveDescription默认样式为DOWNLOAD；
+>
+>   ButtonType默认样式为Capsule。
+> - icon、text、buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -67,7 +74,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
 | LINES | 1 | 保存按钮展示线条样式图标。 |
@@ -76,7 +83,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -97,7 +104,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 保存按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |

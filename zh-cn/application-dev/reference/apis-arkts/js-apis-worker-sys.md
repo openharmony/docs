@@ -2,9 +2,9 @@
 
 Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
 
-Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与主线程分离，在后台线程中运行一个脚本操作耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞主线程的运行。由于Worker一旦被创建则不会主动被销毁，若不处于任务状态一直运行，在一定程度上会造成资源的浪费，应及时关闭空闲的Worker。
+Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与宿主线程分离，在后台线程中运行一个脚本操作耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞宿主线程的运行。由于Worker一旦被创建则不会主动被销毁，若不处于任务状态一直运行，在一定程度上会造成资源的浪费，应及时关闭空闲的Worker。
 
-Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
+Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
 Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
 
@@ -82,6 +82,6 @@ const workerPort = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) : void => {
   console.info("worker:: This is worker thread.")
-  //console.info("worker:: worker tid: " + process.tid) // 执行process.tid，主线程会有对应的TypeError报出。
+  //console.info("worker:: worker tid: " + process.tid) // 执行process.tid，宿主线程会有对应的TypeError报出。
 }
 ```

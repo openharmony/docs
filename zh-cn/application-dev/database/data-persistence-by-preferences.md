@@ -23,9 +23,9 @@
 
 - Key键为string类型，要求非空且长度不超过1024个字节。
 
-- 如果Value值为string类型，请使用UTF-8编码格式，可以为空，不为空时长度不超过16 * 1024 * 1024个字节。
+- 如果Value值为string类型，请使用UTF-8编码格式，可以为空，不为空时长度不超过16MB。
 
-- 内存会随着存储数据量的增大而增大，所以存储的数据量应该是轻量级的，建议存储的数据不超过一万条，否则会在内存方面产生较大的开销。
+- 内存会随着存储数据量的增大而增大，所以存储的数据量应该是轻量级的，建议存储的数据不超过50MB，当存储的数据较大时，在使用同步接口创建Preferences对象和持久化数据时会变成耗时操作，不建议在主线程中使用，否则可能出现appfreeze问题。
 
 
 ## 接口说明
@@ -220,3 +220,5 @@
 - [应用的首次启动（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/FirstStartDemo)
 
 - [应用内字体大小调节（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/SetAppFontSize)
+
+<!--RP1--><!--RP1End-->

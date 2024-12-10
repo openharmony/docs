@@ -225,7 +225,7 @@
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-允许在企业设备上安装企业MDM应用包
+允许在企业设备上安装企业MDM应用包。
 
 **权限级别**：system_core
 
@@ -238,7 +238,7 @@
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-允许企业MDM应用在企业设备上自升级
+允许企业MDM应用在企业设备上自升级。
 
 **权限级别**：system_core
 
@@ -279,7 +279,7 @@
 
 允许应用下发文件管控策略。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -287,12 +287,14 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
+
+**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
 
 ## ohos.permission.FILE_GUARD_MANAGER
 
 允许应用进行公共目录扫描及设置文件扩展属性。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -300,6 +302,8 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
+
+**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -482,3 +486,46 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：13
+
+## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+允许设备管理应用委托其他应用设置设备管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：14
+
+## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+允许应用跨系统本地账号交互。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：7
+
+**变更信息**：API version 7-13该权限仅向系统应用开放；从API version 14开始，开放范围从系统应用变更为企业普通应用。
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+允许应用查询域账号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：10
+
+**变更信息**：API version 10-13该权限仅向系统应用开放；从API version 14开始，开放范围从系统应用变更为企业普通应用。

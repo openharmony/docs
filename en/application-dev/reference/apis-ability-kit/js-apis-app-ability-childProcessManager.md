@@ -1,6 +1,10 @@
 # @ohos.app.ability.childProcessManager (childProcessManager)
 
-The **childProcessManager** module provides the child process management capability. Currently, it provides APIs to start the child process and is available only for tablets.
+The **childProcessManager** module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for 2-in-1 devices and tables.
+
+The created child process does not support the UI or the calling of context-related APIs.
+
+A maximum of 512 child processes can be started through this module (non-SELF_FORK mode) and [ChildProcess](c-apis-ability-childprocess.md).
 
 > **NOTE**
 >
@@ -14,7 +18,7 @@ The **childProcessManager** module provides the child process management capabil
 import { childProcessManager } from '@kit.AbilityKit';
 ```
 
-## childProcessManager.StartMode
+## StartMode
 
 Enumerates the child process start modes.
 
@@ -37,16 +41,16 @@ A PID is returned once the child process is created. However, this does not mean
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
-  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
+| startMode | [StartMode](#startmode) | Yes| Start mode of the child process.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the PID of the child process.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the PID of the child process.|
 
 **Error codes**
 
@@ -57,7 +61,7 @@ A PID is returned once the child process is created. However, this does not mean
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child process exceeds upper bound. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **Example**
 
@@ -106,11 +110,11 @@ A PID is returned once the child process is created. However, this does not mean
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
-  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the subprocess is started, **err** is **undefined** and **data** is the PID of the child process. Otherwise, **data** is an error object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
+| startMode | [StartMode](#startmode) | Yes| Start mode of the child process.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the subprocess is started, **err** is **undefined** and **data** is the PID of the child process. Otherwise, **data** is an error object.|
 
 **Error codes**
 
@@ -121,7 +125,7 @@ A PID is returned once the child process is created. However, this does not mean
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child process exceeds upper bound. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **Example**
 
@@ -173,17 +177,17 @@ The child process supports parameter transfer and asynchronous ArkTS API calls (
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file cannot be stored in the module of the HAR type. The value consists of a module name, a slash (/), and a file path. For example, if the child process file is **src/main/ets/process/DemoProcess.ets** in module1, then **srcEntry** is **module1/./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
-  | args | [ChildProcessArgs](js-apis-app-ability-childProcessArgs.md) | Yes| Parameters transferred to the child process.|
-  | options | [ChildProcessOptions](js-apis-app-ability-childProcessOptions.md) | No| Startup configuration of the child process.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file cannot be stored in the module of the HAR type. The value consists of a module name, a slash (/), and a file path. For example, if the child process file is **src/main/ets/process/DemoProcess.ets** in module1, then **srcEntry** is **module1/./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
+| args | [ChildProcessArgs](js-apis-app-ability-childProcessArgs.md) | Yes| Parameters transferred to the child process.|
+| options | [ChildProcessOptions](js-apis-app-ability-childProcessOptions.md) | No| Startup configuration of the child process.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the PID of the child process.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the PID of the child process.|
 
 **Error codes**
 
@@ -195,10 +199,11 @@ The child process supports parameter transfer and asynchronous ArkTS API calls (
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **Example**
 
-For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+Sample code for the child process:
 
 ```ts
 // Create the child process class DemoProcess.ets in src/main/ets/process of module1.
@@ -214,6 +219,8 @@ export default class DemoProcess extends ChildProcess {
   }
 }
 ```
+
+Sample code for the main process is provided below. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 <!--code_no_check-->
 ```ts
@@ -249,3 +256,107 @@ try {
   console.error(`startChildProcess error, errorCode: ${err.code}, errorMsg:${err.message}`);
 }
 ```
+
+## childProcessManager.startNativeChildProcess<sup>13+</sup>
+
+startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: ChildProcessOptions): Promise&lt;number&gt;
+
+Starts a native child process, loads the specified dynamic library file, and calls the entry function. This API uses a promise to return the result.
+
+The child process does not inherit the resources of the main process. A PID is returned once the child process is created. However, this does not mean that the entry function is successfully called, which depends on the execution result of the entry function of the child process. This API cannot be called by a child process to create its child process. It cannot be called to create a child process in an ArkTS basic runtime environment.
+
+After the entry function is executed, the child process is automatically destroyed. After the main process is destroyed, the child processes are also destroyed.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| entryPoint | string | Yes| The symbol and entry function of the dynamic link library called in the child process are separated by a colon (:), for example, **libentry.so:Main**.|
+| args | [ChildProcessArgs](js-apis-app-ability-childProcessArgs.md) | Yes| Parameters transferred to the child process.|
+| options | [ChildProcessOptions](js-apis-app-ability-childProcessOptions.md) | No| Startup configuration of the child process.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the PID of the child process.|
+
+**Error codes**
+
+  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 801 | Capability not supported. Capability not supported. Failed to call the API due to limited device capabilities. |
+| 16000050 | Internal error. |
+| 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000062  | The number of child processes exceeds the upper limit. |
+
+**Example**
+
+Sample code for the child process is provided below. For details, see [Native Child Process Development (C/C++) - Creating a Child Process That Supports Pass-by-Parameter](../../application-models/capi_nativechildprocess_development_guideline.md#creating-a-child-process-that-supports-pass-by-parameter).
+
+```c++
+#include <AbilityKit/native_child_process.h>
+
+extern "C" {
+
+/**
+ * Entry function of a child process, which implements the service logic of the child process.
+ * The function name can be customized and is specified when the main process calls the OH_Ability_StartNativeChildProcess method. In this example, the function name is Main.
+ * After the function is returned, the child process exits.
+ */
+void Main(NativeChildProcess_Args args)
+{
+    // Obtain the input entryPrams.
+    char *entryParams = args.entryParams;
+    // Obtain the input FD list, corresponding to args.fds in ChildProcessArgs.
+    NativeChildProcess_Fd *current = args.fdList.head;
+    while (current != nullptr) {
+        char *fdName = current->fdName;
+        int32_t fd = current->fd;
+        current = current->next;
+        // Service logic
+    }
+}
+} // extern "C"
+```
+
+Sample code for the main process is provided below. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+```ts
+// Main process:
+// Call childProcessManager.startNativeChildProcess to start the child process.
+import { common, ChildProcessArgs, ChildProcessOptions, childProcessManager } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir + "/test.txt";
+  let file = fs.openSync(path, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
+  let args: ChildProcessArgs = {
+    entryParams: "testParam",
+    fds: {
+      "key1": file.fd
+    }
+  };
+  let options: ChildProcessOptions = {
+    isolationMode: false
+  };
+  childProcessManager.startNativeChildProcess("libentry.so:Main", args, options)
+    .then((pid) => {
+      console.info(`startChildProcess success, pid: ${pid}`);
+    })
+    .catch((err: BusinessError) => {
+      console.error(`startChildProcess business error, errorCode: ${err.code}, errorMsg:${err.message}`);
+    })
+} catch (err) {
+  console.error(`startChildProcess error, errorCode: ${err.code}, errorMsg:${err.message}`);
+}
+```
+
+ <!--no_check--> 

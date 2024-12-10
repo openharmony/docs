@@ -12,7 +12,7 @@ The **ApplicationInfo** module provides application information. Unless otherwis
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name                      | Type                                                        | Readable| Writable| Description                                                        |
+| Name                      | Type                                                        | Read-Only| Optional| Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                       | string                                                       | Yes  | No  | Application name.                                            |
 | description                | string                                                       | Yes  | No  | Application description.                                        |
@@ -35,5 +35,3 @@ The **ApplicationInfo** module provides application information. Unless otherwis
 | accessTokenId<sup>8+</sup> | number                                                       | Yes  | No  | Access token ID of the application.                                   |
 | uid<sup>8+</sup>           | number                                                       | Yes  | No  | UID of the application.                                             |
 | entityType                 | string                                                       | Yes  | No  | Type of the application, for example, gaming, social networking, movies, and news.|
-
- <!--no_check--> 

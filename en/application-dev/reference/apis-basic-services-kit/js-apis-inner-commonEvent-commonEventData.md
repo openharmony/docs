@@ -16,6 +16,6 @@ Common event data.
 | ---------- |-------------------- | ---- | ---- |  ------------------------------------------------------- |
 | event      | string               | No | No | Name of the common event that is being received.                             |
 | bundleName | string               | No | Yes | Bundle name. This parameter is left empty by default.                                             |
-| code       | number               | No | Yes | Result code of the common event, which is used to transfer data of the int type.          |
+| code       | number               | No | Yes | Result code of the common event, which is used to transfer data of the int type. The default value is **0**.          |
 | data       | string               | No | Yes | Custom result data of the common event, which is used to transfer data of the string type.|
 | parameters | {[key: string]: any} | No | Yes | Additional information about the common event.                                 |

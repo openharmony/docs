@@ -334,7 +334,7 @@ try {
 }
 ```
 
-## systemDateTime.updateNtpTime<sup>13+</sup>
+## systemDateTime.updateNtpTime<sup>14+</sup>
 
 updateNtpTime(): Promise&lt;void&gt;
 
@@ -376,7 +376,7 @@ try {
 }
 ```
 
-## systemDateTime.getNtpTime<sup>13+</sup>
+## systemDateTime.getNtpTime<sup>14+</sup>
 
 getNtpTime(): number
 

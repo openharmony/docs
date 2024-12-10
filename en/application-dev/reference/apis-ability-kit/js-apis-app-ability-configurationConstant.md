@@ -12,7 +12,7 @@ The **ConfigurationConstant** module provides the enumerated values of the envir
 import { ConfigurationConstant } from '@kit.AbilityKit';
 ```
 
-## ConfigurationConstant.ColorMode
+## ColorMode
 
 Enumerates the color modes.
 
@@ -27,7 +27,7 @@ Enumerates the color modes.
 | COLOR_MODE_LIGHT | 1 | Light mode.| 
 
 
-## ConfigurationConstant.Direction
+## Direction
 
 Enumerates the display orientations.
 
@@ -42,7 +42,7 @@ Enumerates the display orientations.
 | DIRECTION_HORIZONTAL | 1 | Horizontal direction.| 
 
 
-## ConfigurationConstant.ScreenDensity
+## ScreenDensity
 
 Enumerates the screen density modes.
 

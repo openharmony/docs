@@ -44,7 +44,7 @@ Enumerates the possible causes of a Bluetooth disconnection.
 | CONNECT_FAIL_INTERNAL      | 5    | Internal error.|
 
 
-## baseProfile.getConnectedDevices
+## BaseProfile.getConnectedDevices
 
 getConnectedDevices(): Array&lt;string&gt;
 
@@ -87,7 +87,7 @@ try {
 ```
 
 
-## baseProfile.getConnectionState
+## BaseProfile.getConnectionState
 
 getConnectionState(deviceId: string): ProfileConnectionState
 
@@ -137,7 +137,7 @@ try {
 ```
 
 
-## baseProfile.on('connectionStateChange')
+## BaseProfile.on('connectionStateChange')
 
 on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): void
 
@@ -181,7 +181,7 @@ try {
 ```
 
 
-## baseProfile.off('connectionStateChange')
+## BaseProfile.off('connectionStateChange')
 
 off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam)&gt;): void
 

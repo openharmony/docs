@@ -113,10 +113,9 @@ Represents the basic information about a distributed device.
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
-
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and **appid** encrypted using SHA-256.|
+| deviceId               | string                    | Yes   | Device ID. The value is the result of obfuscating the udid-hash (hash value of the UDID), **appid**, and salt using the SHA-256 algorithm.|
 | deviceName             | string                    | Yes   | Device name.   |
 | deviceType             | string                    | Yes   | [Device type](#getdevicetype).   |
 | networkId              | string                    | No   | Network ID of the device. |
@@ -126,7 +125,6 @@ Represents the basic information about a distributed device.
 Enumerates the device states.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
-
 **Parameters**
 
 | Name        | Value | Description             |
@@ -390,7 +388,7 @@ For details about how to initialize **dmInstance** in the example, see [distribu
 
 getLocalDeviceId(): string;
 
-Obtains the local device ID.
+Obtains the local device ID. The value is the result of obfuscating the udid-hash (hash value of the UDID), **appid**, and salt using the SHA-256 algorithm.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -633,8 +631,8 @@ Binds a device.
 
 | Name    | Type                                               | Mandatory | Description        |
 | ---------- | --------------------------------------------------- | ----- | ------------ |
-| deviceId   | string                                              | Yes   | ID of the device to bind.  |
-| bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory. The value **1** means PIN authentication. <br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation. |
+| deviceId   | string                                              | Yes   | Device ID.  |
+| bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>- **bindType**: binding type, which is mandatory. The value **1** means PIN authentication.<br>- **targetPkgName**: bundle name of the target to bind.<br>- **appName**: application that attempts to bind the target.<br>- **appOperation**: reason for the application to bind the target.<br>- **customDescription**: detailed description of the operation. |
 | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result.|
 
 **Error codes**

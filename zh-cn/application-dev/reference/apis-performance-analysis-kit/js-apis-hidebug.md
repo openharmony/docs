@@ -89,7 +89,7 @@ getPss(): bigint
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| bigint | 返回应用进程实际使用的物理内存大小，单位为kB。 |
+| bigint | 返回应用进程实际使用的物理内存大小，单位为KB。 |
 
 **示例：**
 ```ts
@@ -110,7 +110,7 @@ getVss(): bigint
 
 | 类型   | 说明                                     |
 | ------ | ---------------------------------------- |
-| bigint | 返回应用进程虚拟耗用内存大小，单位为kB。 |
+| bigint | 返回应用进程虚拟耗用内存大小，单位为KB。 |
 
 **示例：**
 
@@ -132,7 +132,7 @@ getSharedDirty(): bigint
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| bigint | 返回进程的共享脏内存大小，单位为kB。 |
+| bigint | 返回进程的共享脏内存大小，单位为KB。 |
 
 
 **示例：**
@@ -154,7 +154,7 @@ getPrivateDirty(): bigint
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| bigint | 返回进程的私有脏内存大小，单位为kB。 |
+| bigint | 返回进程的私有脏内存大小，单位为KB。 |
 
 **示例：**
 ```ts
@@ -478,6 +478,16 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 
 先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
 
+应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集，因此limitSize大小设置不当，将导致采集trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
+
+评估方法：limitSize = 预期trace采集时长 * trace单位流量。
+
+预期trace采集时长：开发者根据分析的故障场景自行决定，单位秒。
+
+trace单位流量：应用每秒产生的trace大小，系统推荐值为300Kb/s，建议开发者采用自身应用的实测值，单位Kb/秒。
+
+trace单位流量实测方法：limitSize设置为最大值500M，调用startAppTraceCapture接口，在应用上操作N秒后，调用stopAppTraceCapture停止采集，然后查看trace大小S Kb。那么trace单位流量 = S/N。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
@@ -527,6 +537,8 @@ stopAppTraceCapture() : void
 停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集。
 
 先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+
+调用startAppTraceCapture接口，如果没有合理传入limitSize参数，生成trace的大小大于传入的limitSize大小，系统内部会自动调用stopAppTraceCapture，再次手动调用stopAppTraceCapture就会抛出错误码11400105。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -937,7 +949,7 @@ import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
 hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
 ```
 
-## hidebug.getGraphicsMemory<sup>13+</sup>
+## hidebug.getGraphicsMemory<sup>14+</sup>
 
 getGraphicsMemory(): Promise&lt;number&gt;
 
@@ -949,7 +961,7 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 | 类型                    | 说明                           |
 |-----------------------|------------------------------|
-| Promise&lt;number&gt; | promise对象，调用结束后返回应用显存大小，单位kB |
+| Promise&lt;number&gt; | promise对象，调用结束后返回应用显存大小，单位KB |
 
 **错误码：**
 
@@ -970,7 +982,7 @@ hidebug.getGraphicsMemory().then((ret: number) => {
 })
 ```
 
-## hidebug.getGraphicsMemorySync<sup>13+</sup>
+## hidebug.getGraphicsMemorySync<sup>14+</sup>
 
 getGraphicsMemorySync(): number
 
@@ -984,7 +996,7 @@ getGraphicsMemorySync(): number
 
 | 类型  | 说明         |
 | ------ |------------|
-| number | 应用显存大小（kB） |
+| number | 应用显存大小（KB） |
 
 **错误码：**
 

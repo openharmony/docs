@@ -15,8 +15,8 @@ Provides C APIs for the radio module.
 
 | Name| Description|
 | -------- | -------- |
-| [telephony_radio.h](telephony__radio_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.|
-| [telephony_radio_type.h](telephony__radio__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.|
+| [telephony_radio.h](telephony__radio_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.<br>**File to include**: \<telephony\/core_service\/telephony_radio.h\>|
+| [telephony_radio_type.h](telephony__radio__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.<br>**File to include**: \<telephony\/core_service\/telephony_radio_type.h\>|
 
 
 ### Structs
@@ -209,7 +209,7 @@ Obtains the network status of the SIM card in the specified slot.
 
 **401**: invalid parameter.
 
-8300001: marshalling failure.
+**8300001**: marshalling failure.
 
 **8300002**: telephony service connection failure.
 

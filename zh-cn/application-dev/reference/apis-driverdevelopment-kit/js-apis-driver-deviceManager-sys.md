@@ -17,7 +17,7 @@ import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
-查询扩展外设详细信息列表。
+查询扩展外设详细信息列表。如果没有设备接入，那么将会返回一个空的列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -67,7 +67,7 @@ try {
 
 queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
 
-查询扩展外设驱动详细信息列表。
+查询扩展外设驱动详细信息列表。如果没有设备接入，那么将会返回一个空的列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -118,6 +118,8 @@ try {
 
 设备详细信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
 | 名称              | 类型      | 必填  | 说明          |
@@ -129,6 +131,8 @@ try {
 ## USBDeviceInfo
 
 USB设备详细信息，继承自[DeviceInfo](#deviceinfo)。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
@@ -142,6 +146,8 @@ USB设备详细信息，继承自[DeviceInfo](#deviceinfo)。
 
 USB设备接口描述符。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
 | 名称               | 类型     | 必填  | 说明     |
@@ -154,6 +160,8 @@ USB设备接口描述符。
 ## DriverInfo
 
 驱动详细信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
@@ -169,6 +177,8 @@ USB设备接口描述符。
 ## USBDriverInfo
 
 USB设备驱动详细信息，继承自[DriverInfo](#driverinfo)。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 

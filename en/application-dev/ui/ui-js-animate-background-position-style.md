@@ -1,4 +1,4 @@
-# Defining Animations with the background-position Attribute
+# Animation with the background-position Attribute
 
 
 By changing the **background-position** attribute (where the first value is the position on the x-axis and the second value is the position on the y-axis), you move a background image. If the background image goes beyond the respective component boundaries, the excess parts will not be displayed.

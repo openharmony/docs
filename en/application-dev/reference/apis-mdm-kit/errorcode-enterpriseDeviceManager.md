@@ -80,7 +80,7 @@ This error code is reported when an application fails to be enabled as a device 
 **Solution**
 
 1. Check that only one super device administrator application exists.
-2. Check whether the current application has been enabled as a device administrator with a different device administrator type. If yes, disable the device administrator application and try again.
+2. Check whether the current application has been enabled as a device administrator with a different device administrator type. If yes, deactivate the device administrator application and try again.
 3. Check whether a device administrator ability component has been enabled for the application. Only one device administrator ability component can be enabled for an application.
 
 ## 9200005 Failed to Disable the Device Administrator Application
@@ -100,9 +100,9 @@ This error code is reported when the operation for disabling a device administra
 
 **Solution**
 
-1. Check whether the target device administrator application has been enabled.
-2. Check whether the specified device administrator ability component of the target device administrator application has been enabled.
-3. Check whether the device administrator application to be disabled is the caller itself.
+1. Check that the target device administrator application has been enabled.
+2. Check that the specified device administrator ability component of the target device administrator application has been enabled.
+3. Check that the device administrator application to be disabled is the caller itself.
 
 ## 9200006 Invalid User ID
 
@@ -121,8 +121,8 @@ This error code is reported when the specified user ID does not exist or the spe
 
 **Solution**
 
-1. Check whether the specified user ID is valid and exists.
-2. Check that the caller's user ID is the same as the specified user ID. If the application is not a super device administrator application, policies cannot be set across users.
+1. Check that the specified user ID is valid.
+2. Check that caller's user ID is the same as the specified user ID. If the application is not a super device administrator application, policies cannot be set across users.
 
 ## 9200007 System Ability Error
 
@@ -145,7 +145,7 @@ This error code is reported when the enterprise device management ability is not
 
 Try again later or restart the device.
 
-## 9200008 Invalid System Event
+## 9200008 Invalid System Subscription Event
 
 **Error Message**
 

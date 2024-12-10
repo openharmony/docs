@@ -17,6 +17,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 4. If a small amount of data is to be encrypted, use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) after **Cipher.init** to generate the ciphertext.
 
+
 **Decryption**
 
 
@@ -95,18 +96,18 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     return decryptData;
   }
 
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-    let symKey = await aesGenerator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = aesGenerator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
 
-  async function main() {
+  function main() {
     try {
       let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-      let symKey = await genSymKeyByData(keyData);
+      let symKey = genSymKeyByData(keyData);
       let message = "This is a test";
       let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
       let encryptText = encryptMessage(symKey, plainText);

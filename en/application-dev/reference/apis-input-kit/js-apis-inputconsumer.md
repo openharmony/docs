@@ -4,7 +4,7 @@ The **inputConsumer** module implements listening for combination key events.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 13. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -14,7 +14,7 @@ The **inputConsumer** module implements listening for combination key events.
 import { inputConsumer } from '@kit.InputKit';
 ```
 
-## HotkeyOptions<sup>13+</sup>
+## HotkeyOptions<sup>14+</sup>
 
 Defines shortcut key options.
 
@@ -26,7 +26,7 @@ Defines shortcut key options.
 | finalKey  | number  | Yes     | No     | Modified key.<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
 | isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
-## inputConsumer.getAllSystemHotkeys<sup>13+</sup>
+## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
@@ -48,7 +48,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on<sup>13+</sup>
+## inputConsumer.on('hotkeyOptions')<sup>14+</sup>
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
@@ -61,8 +61,18 @@ Enables listening for global combination key events. This API uses an asynchrono
 | Name        | Type                        | Mandatory  | Description                                      |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | Yes   | Event type. This parameter has a fixed value of **hotkeyChange**.                  |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | Yes   | Shortcut key options.                |
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | Yes   | Shortcut key options.                |
 | callback   | Callback&lt;HotkeyOptions&gt; | Yes   | Callback used to return the combination key data when a global combination key event that meets the specified condition occurs.|
+
+**Error codes**:
+
+For details about the error codes, see [Input Consumer Error Codes](errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 4200002  | Parameter error. The hotkey has been used by the system. You can call the [inputConsumer.getAllSystemHotkeys](#inputconsumergetallsystemhotkeys14) interface to query all system hotkeys. |
+| 4200003  | Parameter error. The hotkey has been subscribed to by another. |
 
 **Example**
 
@@ -84,7 +94,7 @@ try {
 }
 ```
 
-## inputConsumer.off<sup>13+</sup>
+## inputConsumer.off('hotkeyOptions')<sup>14+</sup>
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
@@ -97,8 +107,16 @@ Disables listening for global combination key events.
 | Name        | Type                        | Mandatory  | Description                             |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | Yes   | Event type. This parameter has a fixed value of **hotkeyChange**.       |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | Yes   | Shortcut key options.            |
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | Yes   | Shortcut key options.            |
 | callback   | Callback&lt;HotkeyOptions&gt; | No   | Callback to unregister. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**:
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

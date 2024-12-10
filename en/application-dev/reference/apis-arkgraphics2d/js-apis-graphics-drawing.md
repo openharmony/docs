@@ -7,6 +7,8 @@ The Drawing module provides basic drawing capabilities, such as drawing rectangl
 > - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - This module uses the physical pixel unit, px.
+>
+> - The module operates under a single-threaded model. The caller needs to manage thread safety and context state transitions.
 
 ## Modules to Import
 
@@ -192,7 +194,7 @@ path.moveTo(10,10);
 
 lineTo(x: number, y: number) : void
 
-Draws a line segment from the last point of this path to the target point.
+Draws a line segment from the last point of this path to the target point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -260,7 +262,7 @@ path.arcTo(10, 15, 10, 10, 10, 10);
 
 quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
-Draws a quadratic Bezier curve from the last point of this path to the target point.
+Draws a quadratic Bezier curve from the last point of this path to the target point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -329,7 +331,7 @@ path.conicTo(200, 400, 100, 200, 0);
 
 cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-Draws a cubic Bezier curve from the last point of this path to the target point.
+Draws a cubic Bezier curve from the last point of this path to the target point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -365,7 +367,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 
 rMoveTo(dx : number, dy : number): void
 
-Sets the start point relative to the last point of this path.
+Sets the start position relative to the last point of this path. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -397,7 +399,7 @@ path.rMoveTo(10, 10);
 
 rLineTo(dx : number, dy : number): void
 
-Draws a line segment from the last point of this path to a point relative to the last point.
+Draws a line segment from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -429,7 +431,7 @@ path.rLineTo(400, 200);
 
 rQuadTo(dx1: number, dy1: number, dx2: number, dy2: number): void
 
-Draws a quadratic Bezier curve from the last point of this path to a point relative to the last point.
+Draws a quadratic Bezier curve from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -463,7 +465,7 @@ path.rQuadTo(100, 0, 0, 200);
 
 rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
-Draws a conic curve from the last point of this path to a point relative to the last point.
+Draws a conic curve from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -475,7 +477,7 @@ Draws a conic curve from the last point of this path to a point relative to the 
 | ctrlY  | number | Yes  | Y offset of the control point relative to the last point. A positive number indicates an upward shift from the last point, and a negative number indicates a downward shift from the last point. The value is a floating point number.|
 | endX   | number | Yes  | X offset of the target point relative to the last point. A positive number indicates a rightward shift from the last point, and a negative number indicates a leftward shift from the last point. The value is a floating point number.|
 | endY   | number | Yes  | Y offset of the target point relative to the last point. A positive number indicates an upward shift from the last point, and a negative number indicates a downward shift from the last point. The value is a floating point number.|
-| weight | number | Yes  | Weight of the curve, which determines its shape. The larger the value, the closer of the curve to the control point. If the value is less than or equal to 0, this API is equivalent to [lineTo](#lineto), that is, adding a line segment from the last point of the path to the target point. If the value is 1, this API is equivalent to [quadTo](#quadto). The value is a floating point number.|
+| weight | number | Yes  | Weight of the curve, which determines its shape. The larger the value, the closer of the curve to the control point. If the value is less than or equal to 0, this API is equivalent to [rLineTo](#rlineto12), that is, adding a line segment from the last point of the path to the target point. If the value is 1, this API is equivalent to [rQuadTo](#rquadto12). The value is a floating point number.|
 
 **Error codes**
 
@@ -498,7 +500,7 @@ path.rConicTo(200, 400, 100, 200, 0);
 
 rCubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-Draws a cubic Bezier curve from the last point of this path to a point relative to the last point.
+Draws a cubic Bezier curve from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -890,7 +892,7 @@ Adds a polygon to this path.
 
 | Name| Type  | Mandatory| Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| points | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point)   | Yes  | Array that holds the vertex coordinates of the polygon.|
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | Yes  | Array that holds the vertex coordinates of the polygon.|
 | close  | boolean                                                        | Yes  | Whether to close the path, that is, whether to add a line segment from the start point to the end point of the path. The value **true** means to close the path, and **false** means the opposite.|
 
 **Error codes**
@@ -1546,7 +1548,7 @@ Draws a spot shadow and uses a given path to outline the ambient shadow.
 
 | Name         | Type                                      | Mandatory  | Description        |
 | ------------ | ---------------------------------------- | ---- | ---------- |
-| path | [Path](#path)                | Yes   | **Path** object, which can generate the shadow.|
+| path | [Path](#path)                | Yes   | **Path** object, which is used to outline the shadow.|
 | planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | 3D vector, which is used to calculate the offset in the Z axis.|
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | Position of the light relative to the canvas.|
 | lightRadius   | number           | Yes   | Radius of the light. The value is a floating point number.     |
@@ -1989,7 +1991,7 @@ class DrawingRenderNode extends RenderNode {
 
 ### clear<sup>13+</sup>
 
-clear(number): void
+clear(color: number): void
 
 Clears the canvas with a given color.
 
@@ -3481,7 +3483,7 @@ Creates a **TextBlob** object from the text. The coordinates of each font in the
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string             | Yes  | Content to be used for drawing the text blob.                  |
 | len      | number             | Yes  | Number of fonts. The value is an integer and is obtained from [countText](#counttext12).|
-| points   |[common2D.Point[]](js-apis-graphics-common2D.md#point)      | Yes  |Array of points, which are used to specify the coordinates of each font. The array length must be the same as the value of **len**.|
+| points   |[common2D.Point](js-apis-graphics-common2D.md#point)[]     | Yes  |Array of points, which are used to specify the coordinates of each font. The array length must be the same as the value of **len**.|
 | font     | [Font](#font)      | Yes  | **Font** object.|
 
 **Return value**
@@ -3562,7 +3564,7 @@ Converts a value of the string type into a **TextBlob** object.
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | Yes  | Content to be used for drawing the text blob.                  |
 | font     | [Font](#font)                 | Yes  | **Font** object.          |
-| encoding | [TextEncoding](#textencoding) | No  | Encoding type. The default value is **TEXT_ENCODING_UTF8**.|
+| encoding | [TextEncoding](#textencoding) | No  | Encoding type. The default value is **TEXT_ENCODING_UTF8**. Currently, only **TEXT_ENCODING_UTF8** takes effect, and other encoding types are treated as **TEXT_ENCODING_UTF8**.|
 
 **Return value**
 
@@ -3718,7 +3720,7 @@ Constructs a typeface from a file.
 
 | Name        | Type                                      | Mandatory  | Description                 |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| filePath | string           | Yes  | Path of the file.|
+| filePath | string           | Yes  | Path of the file. For details, see [Mappings Between Application Sandbox Paths and Physical Paths](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths).|
 
 **Return value**
 
@@ -4656,6 +4658,168 @@ let font : drawing.Font = new drawing.Font();
 let text : string = 'hello world';
 let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
+```
+
+### getBounds<sup>14+</sup>
+
+getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
+
+Obtains the rectangular bounding box of each glyph in an array.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description  |
+| -------- | --------------------- | ---- | ------ |
+| glyphs | Array\<number> | Yes  | Glyph array, which can be generated by [textToGlyphs](#texttoglyphs12).|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | Array that holds the rectangular bounding boxes.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let font: drawing.Font = new drawing.Font();
+            let text: string = 'hello world';
+            let glyphs: number[] = font.textToGlyphs(text);
+            let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
+            for (let index = 0; index < fontBounds.length; index++) {
+              console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
+                " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### getTextPath<sup>14+</sup>
+
+getTextPath(text: string, byteLength: number, x: number, y: number): Path;
+
+Obtains the outline path of a text.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type                                              | Mandatory| Description                   |
+| ------   | ------------------------------------------------   | ---- | ---------------------- |
+|   text   |    string                                          | Yes  | UTF-8 text-encoded characters.|
+|byteLength|    number                                          | Yes  | Length of the outline path, which is obtained based on the minimum value between the passed value of **byteLength** and the actual text byte size.|
+|    x     |    number                                          | Yes  | X coordinate of the text in the drawing area, with the origin as the start point.|
+|    y     |    number                                          | Yes  | Y coordinate of the text in the drawing area, with the origin as the start point.|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| [Path](#path) | Outline path of the text.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**Example**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+import { buffer } from '@kit.ArkTS';
+import { RenderNode } from '@kit.ArkUI';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let myString: string = "Hello, HarmonyOS";
+    let length = buffer.from(myString).length;
+    let path = font.getTextPath(myString, length, 0, 100)
+    canvas.drawPath(path)
+  }
+}
+```
+
+### createPathForGlyph<sup>14+</sup>
+
+createPathForGlyph(index: number): Path
+
+Obtains the outline path of a glyph.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description  |
+| -------- | --------------------- | ---- | ------ |
+| index | number | Yes  | Index of the glyph.|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| [Path](#path) | Outline path of the glyph.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let text: string = 'Hello'
+    let glyphs: number[] = font.textToGlyphs(text);
+    for (let index = 0; index < glyphs.length; index++) {
+      let path: drawing.Path = font.createPathForGlyph(glyphs[index])
+      canvas.drawPath(path)
+    }
+  }
+}
 ```
 
 ## FontMetricsFlags<sup>12+</sup>
@@ -6719,33 +6883,14 @@ Enumerates the modes of scaling a source rectangle into a destination rectangle.
 
 Implements a matrix.
 
-$$
-Expressed as \begin{bmatrix}
-    scaleX & skewX & transX \\
-    skewY & scaleY & transY \\
-    pers0 & pers1 & pers2
-\end{bmatrix} 3*3 matrix.
-$$
+A 3 x 3 matrix is shown as below.
+
+![matrix_3x3](figures/matrix3X3.PNG)
+
 Elements in the matrix from left to right and from top to bottom respectively represent a horizontal scale coefficient, a horizontal skew coefficient, a horizontal translation coefficient, a vertical skew coefficient, a vertical scale coefficient, a vertical translation coefficient, an X-axis perspective coefficient, a Y-axis perspective coefficient, and a perspective scale coefficient.
 If (x<sub>1</sub>, y<sub>1</sub>) is the source coordinate point, (x<sub>2</sub>, y<sub>2</sub>) is the coordinate point obtained by transforming the source coordinate point using the matrix, then the relationship between the two coordinate points is as follows:
-$$\left[ \begin{matrix}
-   x_2 \\
-   y_2 \\
-   1
-  \end{matrix}
-  \right] = \left[
- \begin{matrix}
-  scaleX & skewX & transX \\
-  skewY & scaleY & transY \\
-  pers0 & pers1 & pers2
-  \end{matrix}
-  \right] \left[
- \begin{matrix}
-   x_1 \\
-   y_1 \\
-   1
-  \end{matrix}
-  \right]$$
+
+![matrix_xy](figures/matrix_xy.PNG)
 
 ### constructor<sup>12+</sup>
 
@@ -6800,7 +6945,7 @@ matrix.setRotation(90, 100, 100);
 
 setScale(sx: number, sy: number, px: number, py: number): void
 
-Sets this matrix as an identity matrix and scales it with the coefficients (sx, sy) at the rotation point (px, py).
+Sets this matrix as an identity matrix and scales it with the coefficients (sx, sy) at the scale point (px, py).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -6810,8 +6955,8 @@ Sets this matrix as an identity matrix and scales it with the coefficients (sx, 
 | ----------- | ---------------------------------------- | ---- | ------------------- |
 | sx          | number                  | Yes   | Scale coefficient along the X axis. If a negative number is passed in, the matrix is mirrored around y = px before being scaled. The value is a floating point number.    |
 | sy          | number                  | Yes   | Scale coefficient along the Y axis. If a negative number is passed in, the matrix is mirrored around x = py before being scaled. The value is a floating point number.    |
-| px          | number                  | Yes   |  X coordinate of the rotation point. The value is a floating point number.     |
-| py          | number                  | Yes   |  Y coordinate of the rotation point. The value is a floating point number.     |
+| px          | number                  | Yes   |  X coordinate of the scale point. The value is a floating point number.     |
+| py          | number                  | Yes   |  Y coordinate of the scale point. The value is a floating point number.     |
 
 **Error codes**
 
@@ -7327,13 +7472,13 @@ Maps a source point array to a destination point array by means of matrix transf
 
 | Name         | Type   | Mandatory| Description                                                       |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Yes  | Array of source points.|
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of source points.|
 
 **Return value**
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Array of points obtained.|
+| Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Array of points obtained.|
 
 **Error codes**
 
@@ -7477,8 +7622,8 @@ Sets this matrix to a transformation matrix that maps the source point array to 
 
 | Name         | Type   | Mandatory| Description                                                       |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Yes  | Array of source points. The array length must be the same as the value of **count**.|
-| dst | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Yes  | Array of destination points. The array length must be the same as the value of **count**.|
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of source points. The array length must be the same as the value of **count**.|
+| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of destination points. The array length must be the same as the value of **count**.|
 | count | number | Yes  | Number of points in each array. The value is an integer.|
 
 **Return value**

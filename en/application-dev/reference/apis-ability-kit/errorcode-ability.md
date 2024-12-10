@@ -34,7 +34,7 @@ The ability to query does not exist.
 
 **Error Message**
 
-Incorrect Ability type.
+Incorrect ability type.
 
 **Description**
 
@@ -42,7 +42,7 @@ This error code is reported when the ability type invoked by the API is incorrec
 
 **Possible Causes**
 
-The ability with the specified type does not support the API invocation.
+The ability with the specified type does not support the API call.
 
 **Solution**
 
@@ -53,7 +53,7 @@ The ability with the specified type does not support the API invocation.
 
 **Error Message**
 
-Id does not exist.
+The specified ID does not exist.
 
 **Description**
 
@@ -71,7 +71,7 @@ Use the correct ID.
 
 **Error Message**
 
-Can not start invisible component.
+Failed to start the invisible ability.
 
 **Description**
 
@@ -84,7 +84,7 @@ Visibility verification fails.
 **Solution**
 
 1. Check whether [exported](../../quick-start/module-configuration-file.md#abilities) under the **Ability** field in the **module.json5** file of the ability is set to **true**. If this parameter is set to **true**, the ability can be started by other applications. If this parameter is set to **false**, the ability cannot be started by other applications.
-2. To start the ability for which **exported** is set to **false**, the caller must request the **ohos.permission.START_INVISIBLE_ABILITY** permission, which is available only for system applications.
+2. To start the ability for which **exported** is set to **false**, the caller must request the ohos.permission.START_INVISIBLE_ABILITY permission, which is available only for system applications.
 
 ## 16000005 Process Permission Verification Failure
 
@@ -126,7 +126,7 @@ Do not perform a cross-user operation.
 
 **Error Message**
 
-Service busy, there are concurrent tasks, waiting for retry.
+Service busy. There are concurrent tasks. Try again later.
 
 **Description**
 
@@ -174,7 +174,7 @@ An ability cannot be started or stopped in Wukong mode.
 
 **Solution**
 
-Exit Wukong mode, and then start or stop the ability. An ability cannot be started or stopped in Wukong mode.
+Exit Wukong mode, and then start or stop the ability.  
 
 ## 16000010 Continuation Flag Forbidden
 
@@ -194,7 +194,7 @@ The continuation flag is not allowed for the API call.
 
 Remove the continuation flag.
 
-## 16000011 Context Not Exist
+## 16000011 Context Does Not Exist
 
 **Error Message**
 
@@ -270,7 +270,7 @@ Try again later.
 
 **Error Message**
 
-The previous ability is starting, wait start later.
+Another ability is being started. Wait until it finishes starting.
 
 **Description**
 
@@ -288,7 +288,7 @@ No action is required. Wait for the previous abilities to finish startup.
 
 **Error Message**
 
-The application is not allow jumping to other applications when api version is above 11.
+Redirection to a third-party application is not allowed in API version 11 or later.
 
 **Description**
 
@@ -302,15 +302,21 @@ Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md
 
 **Error Message**
 
-Can not match any component.
+No matching ability is found.
 
 **Description**
 
 A matching ability is not found during implicit startup.
 
+**Possible Causes**
+
+1. The parameter settings for implicit startup are incorrect.
+2. The specified HAP is not installed.
+
 **Solution**
 
-Modify the items used for matching in implicit startup.
+1. Correct the parameter settings for implicit startup.
+2. Install the specified HAP.
 
 ## 16000050 Internal Error
 
@@ -390,7 +396,7 @@ Ensure that the ability is displayed on the top of the UI.
 
 **Error Message**
 
-Installation-free service is busy, please wait and try again later.
+The installation-free service is busy. Try again later.
 
 **Description**
 
@@ -498,7 +504,7 @@ Ensure that the input parameter is of the supported URI type.
 
 **Error Message**
 
-Sandbox application can not grant URI permission.
+A sandbox application cannot grant URI permission.
 
 **Description**
 
@@ -512,7 +518,7 @@ Sandbox applications cannot authorize URIs.
 
 Use a non-sandbox application.
 
-## 16000061 Unsupport Operation
+## 16000061 Unsupported Operation
 
 **Error Message**
 
@@ -534,7 +540,7 @@ Perform a supported operation.
 
 **Error Message**
 
-The number of child process exceeds upper bound.
+The number of child processes exceeds the upper limit.
 
 **Description**
 
@@ -546,13 +552,13 @@ The number of created child processes has reached the upper limit.
 
 **Solution**
 
-Limit the number of created child processes. The maximum number is 128.
+Limit the number of created child processes. The maximum number is 512.
 
 ## 16000063 Invalid Ability During Application Restart
 
 **Error Message**
 
-The target to restart does not belong to the current app or is not a UIAbility.
+The target to restart does not belong to the current application or is not a UIAbility.
 
 **Description**
 
@@ -588,7 +594,7 @@ Call the API again after 10 seconds.
 
 **Error Message**
 
-The interface can be called only when ability is foreground.
+The API can be called only when the ability is running in the foreground.
 
 **Description**
 
@@ -606,7 +612,7 @@ Switch the ability to the foreground before calling the API.
 
 **Error Message**
 
-An ability cannot move to foreground or background in Wukong mode.
+An ability cannot switch to the foreground or background in Wukong mode.
 
 **Description**
 
@@ -624,7 +630,7 @@ Exit wukong mode, and then call the API to switch the ability to the foreground 
 
 **Error Message**
 
-Start options check failed.
+The StartOptions check failed.
 
 **Description**
 
@@ -643,7 +649,7 @@ Check whether the constraints for **StartOptions** are met.
 
 **Error Message**
 
-Ability already running.
+The ability is already running.
 
 **Description**
 
@@ -795,37 +801,147 @@ The link feature is not configured for the application or the configuration is n
 1. Ensure that the **linkFeature** field is configured in the **module.json5** file of the application.
 2. Ensure that the **linkFeature** field value of the application is correct, the functionality it describes matches the actual capability of the application link, and the configuration has been approved by the system.
 
+## 16000076 APP_INSTANCE_KEY Does Not Exist
+
+**Error Message**
+
+The APP_INSTANCE_KEY is invalid.
+
+**Description**
+
+This error code is reported when the specified [APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) does not exist.
+
+**Possible Causes**
+
+The instance specified by [APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) does not exist.
+
+**Solution**
+
+Ensure that the value of [APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) is valid.
+
+## 16000077 Number of Application Instances Reaches the Upper Limit
+
+**Error Message**
+
+The number of app instances reaches the limit.
+
+**Description**
+
+This error code is reported when the number of application instances reaches the upper limit and more application instances try to be created.
+
+**Possible Causes**
+
+Before creating an application instance, the application does not check whether the number of application instances reaches the upper limit.
+
+**Solution**
+
+You can create application instances only after adjusting the upper limit of application instances or deleting existing application instances.
+
+## 16000078 Application Multi-Instance Not Supported
+
+**Error Message**
+
+The multi-instance is not supported.
+
+**Description**
+
+This error code is reported when the application does not support the multi-instance mode.
+
+**Possible Causes**
+
+1. The multi-instance mode is not configured for the application.
+2. The current device type does not support the multi-instance mode.
+
+**Solution**
+
+1. Configure the multi-instance mode for the application.
+2. Call the API to create multiple instances on a 2-in-1 device.
+
+## 16000079 APP_INSTANCE_KEY Cannot Be Specified
+
+**Error Message**
+
+The APP_INSTANCE_KEY cannot be specified.
+
+**Description**
+
+[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) and [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) cannot be specified at the same time. This error code is reported when both of them are specified.
+
+**Possible Causes**
+
+Too many parameters are passed.
+
+**Solution**
+
+Specify either [APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) or [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params).
+
+## 16000080 New Instances Cannot Be Created
+
+**Error Message**
+
+Creating an instance is not supported.
+
+**Description**
+
+Applications can use [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) to create their own instances, but not for other applications. Otherwise, this error code is reported.
+
+**Possible Causes**
+
+The parameter use scenario is incorrect.
+
+**Solution**
+
+Delete the [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) parameter.
+
+## 16000082 UIAbility Startup Failure in Singleton Mode
+
+**Error Message**
+
+The UIAbility is being started.
+
+**Description**
+
+If the UIAbility's launch type is set to **singleton**, the API used to start the UIAbility cannot be called again before the previous call is complete. Otherwise, this error code is returned.
+
+**Possible Causes**
+
+The UIAbility is in singleton mode and is being started.
+
+**Solution**
+
+Ensure that the UIAbility finishes starting before executing a new startup task.
+
 ## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
 
 **Error Message**
 
- - AddAbilityMonitor failed.
+ - Calling AddAbilityMonitor failed.
 
- - AddAbilityMonitorSync failed.
+ - Calling AddAbilityMonitorSync failed.
 
- - RemoveAbilityMonitor failed.
+ - Calling RemoveAbilityMonitor failed.
 
- - RemoveAbilityMonitorSync failed.
+ - Calling RemoveAbilityMonitorSync failed.
 
- - WaitAbilityMonitor failed.
+ - Calling WaitAbilityMonitor failed.
 
- - GetCurrentTopAbility failed.
+ - Calling GetCurrentTopAbility failed.
 
- - DoAbilityForeground failed.
+ - Calling DoAbilityForeground failed.
 
- - DoAbilityBackground failed.
+ - Calling DoAbilityBackground failed.
 
- - FinishTest failed.
+ - Calling FinishTest failed.
 
- - AddAbilityStageMonitor failed.
+ - Calling AddAbilityStageMonitor failed.
 
- - AddAbilityStageMonitorSync failed.
+ - Calling AddAbilityStageMonitorSync failed.
 
- - RemoveAbilityStageMonitor failed.
+ - Calling RemoveAbilityStageMonitor failed.
 
- - RemoveAbilityStageMonitorSync failed.
+ - Calling RemoveAbilityStageMonitorSync failed.
 
- - WaitAbilityStageMonitor failed.
+ - Calling WaitAbilityStageMonitor failed.
 
 **Description**
 
@@ -879,7 +995,7 @@ Pass a valid **wantAgent** object in the API.
 
 **Error Message**
 
-the wantAgent object does not exist.
+The wantAgent object does not exist.
 
 **Description**
 
@@ -897,7 +1013,7 @@ Pass a valid **wantAgent** object in the API.
 
 **Error Message**
 
-wangAgent object has been canceled.
+The wantAgent object has been canceled.
 
 **Description**
 
@@ -941,7 +1057,7 @@ This error code is reported when the ability type invoked by the API is incorrec
 
 **Possible Causes**
 
-The ability with the specified type does not support the API invocation.
+The ability with the specified type does not support the API call.
 
 **Solution**
 
@@ -972,7 +1088,7 @@ The caller has been released.
 
 **Error Message**
 
-Callee invalid. The callee does not exist.
+The callee does not exist.
 
 **Description**
 
@@ -1008,7 +1124,7 @@ Check whether the caller has registered.
 
 **Error Message**
 
-Method registered. The method has registered.
+The method has been registered.
 
 **Description**
 
@@ -1026,7 +1142,7 @@ Check whether the method has been registered.
 
 **Error Message**
 
-Method not registered. The method has not registered.
+The method has not been registered.
 
 **Description**
 
@@ -1080,7 +1196,7 @@ Check the mission ID.
 
 **Error Message**
 
-Input error. The specified mission listener does not exist.
+The specified mission listener does not exist.
 
 **Description**
 
@@ -1098,7 +1214,7 @@ Check the mission listener ID.
 
 **Error Message**
 
-The target application is not self application.
+The target application is not the current application.
 
 **Description**
 
@@ -1116,7 +1232,7 @@ Ensure that the application to start is the invoker application.
 
 **Error Message**
 
-The bundle is not exist or no patch has applied.
+The bundle does not exist or no patch has been applied.
 
 **Description**
 
@@ -1195,7 +1311,7 @@ Check the state of the patch package.
 
 **Error Message**
 
-Failed to enable the patch package.
+Failed to remove the patch package.
 
 **Description**
 
@@ -1267,7 +1383,7 @@ Ensure sufficient system memory.
 
 **Error Message**
 
-The application has a apply quick fix task that is being processed.
+The application has an ongoing quick fix task.
 
 **Description**
 
@@ -1316,6 +1432,60 @@ The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading t
 **Solution**
 
 Pass in correct values for **bundleName**, **userId**, and **appIndex**.
+
+## 16300008 Specified Package Does Not Have a Main UIAbility
+
+**Error Message**
+
+The target bundle has no main uiability.
+
+**Description**
+
+This error code is reported when the application does not have a main UIAbility.
+
+**Possible Causes**
+
+The ability configured for **mainElement** is not a UIAbility.
+
+**Solution**
+
+Check whether the ability configured for **mainElement** in the **module.json** file is a UIAbility.
+
+## 16300009 Specified Package Does Not Have a Status Bar
+
+**Error Message**
+
+The target bundle has no status-bar ability.
+
+**Description**
+
+This error code is reported when the application does not have a status bar.
+
+**Possible Causes**
+
+The application does not have a status bar.
+
+**Solution**
+
+Check whether the application has a status bar.
+
+## 16300010 Running Application Is Not Attached to a Status Bar
+
+**Error Message**
+
+The target application is not attached to status bar.
+
+**Description**
+
+This error code is reported when the application is not attached to a status bar after running.
+
+**Possible Causes**
+
+The application has a status bar, but it is not attached to the status bar during running.
+
+**Solution**
+
+Check whether the application is attached to a status bar.
 
 ## 29600001 Internal Error During Image Editing
 

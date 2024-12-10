@@ -1,13 +1,13 @@
 # 应用侧调用前端页面函数
 
+应用侧可以通过[runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)方法调用前端页面的JavaScript相关函数。
 
-应用侧可以通过[runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript)方法调用前端页面的JavaScript相关函数。
-
+[runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)在参数类型上有些差异。[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10)入参类型不仅支持string还支持ArrayBuffer（从文件中获取JavaScript脚本数据），另外可以通过AsyncCallback的方式获取执行结果。
 
 在下面的示例中，点击应用侧的“runJavaScript”按钮时，来触发前端页面的htmlTest()方法。
 
 - 前端页面代码。
-  
+
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -37,7 +37,7 @@
 
 
 - 应用侧代码。
-  
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';

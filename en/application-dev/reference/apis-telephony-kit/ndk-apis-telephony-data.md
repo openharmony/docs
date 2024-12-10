@@ -15,7 +15,7 @@ Provides C APIs for the cellular data module.
 
 | Name| Description|
 | -------- | -------- |
-| [telephony_data.h](telephony__data_8h.md) | Defines C APIs for cellular data module.|
+| [telephony_data.h](telephony__data_8h.md) | Defines C APIs for cellular data module.<br>**File to include**: \<telephony\/cellular_data\/telephony_data.h\>|
 
 ### Functions
 

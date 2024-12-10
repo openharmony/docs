@@ -49,6 +49,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto/crypto_sym_cipher.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTestSm4Ecb() {
     OH_CryptoSymKeyGenerator *genCtx = nullptr;
@@ -56,8 +57,8 @@ static OH_Crypto_ErrCode doTestSm4Ecb() {
     OH_CryptoSymCipher *decCtx = nullptr;
     OH_CryptoSymKey *keyCtx = nullptr;
     OH_CryptoSymCipherParams *params = nullptr;
-    uint8_t plainText[] = "this is test";
-    Crypto_DataBlob input = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
+    char *plainText = const_cast<char *>("this is test!");
+    Crypto_DataBlob input = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
     Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
 

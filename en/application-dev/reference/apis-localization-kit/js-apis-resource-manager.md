@@ -19,7 +19,7 @@ For the FA model, you need to import the required bundle and then call the [getR
 For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
-import { UIAbility } from '@kit.abilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
@@ -269,8 +269,6 @@ Defines the device configuration.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
-
 | Name                       | Type                           | Readable| Writable| Description              |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
 | direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
@@ -291,8 +289,6 @@ Defines the device capability.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
-
 | Name           | Type                           | Readable  | Writable  | Description      |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
 | screenDensity | [ScreenDensity](#screendensity) | Yes   | No   | Screen density of the device.|
@@ -307,8 +303,6 @@ Defines the descriptor of the HAP where the raw file is located.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
-
 | Name    | Type   | Readable  | Writable | Description          |
 | ------ | ------  | ---- | ---- | ------------------ |
 | fd     | number  | Yes   | No| File descriptor.|
@@ -322,8 +316,6 @@ Defines the resource information of an application.
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
 
 | Name        | Type    | Readable  | Writable |Description         |
 | ---------- | ------ | ----- | ----  | ---------------|
@@ -3475,7 +3467,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type    | Description        |
 | ------ | ---------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3538,7 +3530,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type     | Description               |
 | ------- | ----------------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3605,7 +3597,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type    | Description       |
 | ------ | --------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 

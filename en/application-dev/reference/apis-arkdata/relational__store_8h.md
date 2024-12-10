@@ -50,6 +50,8 @@ Provides APIs to manage a relational database (RDB) store.
 | -------- | -------- |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) | Defines an enum for RDB store security levels.|
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea) | Defines an enum for security area levels of an RDB store.|
+| typedef struct [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) | Defines a struct for the RDB store configuration. Different from [OH_Rdb_Config](_o_h___rdb___config.md), this struct does not expose its member variables externally. Methods are used to configure the properties of this struct.|
+| typedef enum [Rdb_DBType](_r_d_b.md#rdb_dbtype) [Rdb_DBType](_r_d_b.md#rdb_dbtype) | Defines an enum for the database kernel types.|
 | [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) | Defines an enum for distributed types.|
 | [Rdb_DistributedConfig](_r_d_b.md#rdb_distributedconfig) | Defines a struct for the distributed configuration of a table.|
 | [Rdb_ChangeType](_r_d_b.md#rdb_changetype) | Defines an enum for data change types.|
@@ -58,7 +60,7 @@ Provides APIs to manage a relational database (RDB) store.
 | [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) | Defines an enum for subscription types.|
 | [Rdb_BriefObserver](_r_d_b.md#rdb_briefobserver) | Defines a callback used to return the device-cloud data change event.|
 | [Rdb_DetailsObserver](_r_d_b.md#rdb_detailsobserver) | Defines a callback used to return the details about the device-cloud data change.|
-| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | Defines a callback used to return the subscribed event.|
+| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) |  Defines a callback used to return the subscribed event.|
 | [Rdb_DataObserver](_rdb___data_observer.md) | Defines a struct for the data observer.|
 | [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) | Defines an enum for RDB sync modes.|
 | [Rdb_Statistic](_r_d_b.md#rdb_statistic) | Defines a struct for device-cloud sync statistics of a database table.|
@@ -77,6 +79,7 @@ Provides APIs to manage a relational database (RDB) store.
 | -------- | -------- |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4} | Enumerates the RDB store security levels.|
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Enumerates the security area levels of an RDB store.|
+| [Rdb_DBType](_r_d_b.md#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | Enumerates the database kernel types.|
 | [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types. |
 | [Rdb_ChangeType](_r_d_b.md#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | Enumerates the data change types.|
 | [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | Enumerates the subscription types.|
@@ -89,12 +92,29 @@ Provides APIs to manage a relational database (RDB) store.
 
 | Name| Description|
 | -------- | -------- |
+| [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \* [OH_Rdb_CreateConfig](_r_d_b.md#oh_rdb_createconfig) () | Creates an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_DestroyConfig](_r_d_b.md#oh_rdb_destroyconfig) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config) | Destroys an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetDatabaseDir](_r_d_b.md#oh_rdb_setdatabasedir) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, const char \*databaseDir) | Sets the database file path for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetStoreName](_r_d_b.md#oh_rdb_setstorename) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, const char \*storeName) | Sets the database name for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetBundleName](_r_d_b.md#oh_rdb_setbundlename) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, const char \*bundleName) | Sets the application bundle name for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetModuleName](_r_d_b.md#oh_rdb_setmodulename) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, const char \*moduleName) | Sets the module name for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetEncrypted](_r_d_b.md#oh_rdb_setencrypted) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, bool isEncrypted) | Sets whether to encrypt the database for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetSecurityLevel](_r_d_b.md#oh_rdb_setsecuritylevel) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int securityLevel) | Sets the database security level ([OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel))for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetArea](_r_d_b.md#oh_rdb_setarea) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int area) | Sets the security area level ([Rdb_SecurityArea](_r_d_b.md#rdb_securityarea)) for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| int [OH_Rdb_SetDbType](_r_d_b.md#oh_rdb_setdbtype) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int dbType) | Sets the database type ([Rdb_DBType](_r_d_b.md#rdb_dbtype)) for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
+| const int \* [OH_Rdb_GetSupportedDbType](_r_d_b.md#oh_rdb_getsupporteddbtype) (int \*typeCount) | Obtains the supported database type [Rdb_DBType](_r_d_b.md#rdb_dbtype).|
+| [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](_r_d_b.md#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int \*errCode) | Creates or opens an [OH_Rdb_Store](_o_h___rdb___store.md) instance based on the given [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2).|
+| int [OH_Rdb_ExecuteByTrxId](_r_d_b.md#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | Executes an SQL statement that returns no value based on the specified transaction ID.|
+| int [OH_Rdb_BeginTransWithTrxId](_r_d_b.md#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | Starts a transaction and obtains the transaction ID before executing an SQL statement.|
+| int [OH_Rdb_RollBackByTrxId](_r_d_b.md#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Rolls back the executed SQL statement based on the specified transaction ID.|
+| int [OH_Rdb_CommitByTrxId](_r_d_b.md#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Commits the executed SQL statement based on the specified transaction ID.|
 | [OH_Rdb_CreateValueObject](_r_d_b.md#oh_rdb_createvalueobject) (void) | Creates an [OH_VObject](_o_h___v_object.md) instance.|
 | [OH_Rdb_CreateValuesBucket](_r_d_b.md#oh_rdb_createvaluesbucket) (void) | Creates an [OH_VBucket](_o_h___v_bucket.md) instance.|
 | [OH_Rdb_CreatePredicates](_r_d_b.md#oh_rdb_createpredicates) (const char \*table) | Creates an [OH_Predicates](_o_h___predicates.md) instance.|
 | [OH_Rdb_GetOrOpen](_r_d_b.md#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | Obtains an [OH_Rdb_Store](_o_h___rdb___store.md) instance for RDB store operations.|
 | [OH_Rdb_CloseStore](_r_d_b.md#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object and reclaims the memory occupied by the object.|
 | [OH_Rdb_DeleteStore](_r_d_b.md#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | Deletes an RDB store with the specified database file configuration.|
+| int [OH_Rdb_DeleteStoreV2](_r_d_b.md#oh_rdb_deletestorev2) (const [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config) | Deletes an RDB store based on the given [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2).|
 | [OH_Rdb_Insert](_r_d_b.md#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | Inserts a row of data into a table.|
 | [OH_Rdb_Update](_r_d_b.md#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | Updates data in an RDB store based on specified conditions.|
 | [OH_Rdb_Delete](_r_d_b.md#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Deletes data from an RDB store based on specified conditions.|

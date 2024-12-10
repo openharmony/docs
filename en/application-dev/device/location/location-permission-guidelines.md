@@ -29,8 +29,10 @@ For details about the permissions required for each API of Location Kit, see [Lo
 
 3. If your application needs to access the device location when running in the background, declare the location permission as follows:
 
-If your application needs to access the device location when running in the background, also request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the LOCATION type in addition to the permission declared in step 2.
+If your application needs to access the device location when running in the background, also request for a continuous task of the LOCATION type in addition to the permission declared in step 2.
 
-- A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the **Settings** page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md)<!--Del--> and [Continuous Task Development Example](../../performance/reasonable-running-backgroundTask.md#continuous-task)<!--DelEnd-->.
 
-- For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md)<!--Del--> and [Continuous Task Development Example](../../performance/reasonable-running-backgroundTask.md#continuous-task)<!--DelEnd-->.
+
+<!--RP1-->
+<!--RP1End-->

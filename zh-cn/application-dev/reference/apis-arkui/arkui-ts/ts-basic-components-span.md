@@ -299,9 +299,9 @@ baselineOffset(value: LengthMetrics): T
 | radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 文本背景圆角。 |
 
 ## 示例
-### 示例1
+### 示例1（设置文本样式）
 
-decoration、letterSpacing、textCase属性接口使用示例
+该示例通过decoration、letterSpacing、textCase属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -379,14 +379,19 @@ struct SpanExample {
 
 ![Span](figures/span.png)
 
-### 示例2
+### 示例2（设置文本阴影）
+
+该示例通过textShadow属性展示了文本设置阴影的效果。
+
 ``` ts
+// xxx.ets
 @Entry
 @Component
-struct TextSpanExample {
+struct SpanExample {
   @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
       { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
       { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+
   build() {
     Column({ space: 8 }) {
       Text() {
@@ -401,12 +406,15 @@ struct TextSpanExample {
 ```
 ![TextshadowExample](figures/text_span_textshadow.png)
 
-### 示例3
+### 示例3（设置背景样式）
+
+该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
+
 ``` ts
 // xxx.ets
 @Component
 @Entry
-struct Index {
+struct SpanExample {
   build() {
     Column() {
       Text() {
@@ -421,17 +429,16 @@ struct Index {
 ```
 ![TextBackgroundStyleExample](figures/span_textbackgroundstyle.png)
 
-### 示例4
+### 示例4（设置文本基线偏移量）
 
-该示例实现了如何设置Span基线的偏移量。
+该示例通过baselineOffset属性展示了文本设置不同基线偏移量的效果。
 
 ```ts
 import { LengthUnit, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct Index {
-
+struct SpanExample {
   build() {
     Row() {
       Column() {

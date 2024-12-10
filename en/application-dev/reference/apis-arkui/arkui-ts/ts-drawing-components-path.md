@@ -1,6 +1,6 @@
 # Path
 
-The **<Path\>** component is used to define a closed shape.
+The **Path** component is used to define a closed shape.
 
 > **NOTE**
 >
@@ -17,13 +17,15 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name                                            | Type        | Mandatory| Description                                                    |
-| -------------------------------------------------- | ---------------- | ---- | ------------------------------------------------------------ |
-| width                                              | number \| string | No  | Width of the rectangle where the path is located.<br>**NOTE**<br>If the value is invalid or the default value is used, the width required for the content is used.|
-| height                                             | number \| string | No  | Height of the rectangle where the path is located.<br>**NOTE**<br>If the value is invalid or the default value is used, the height required for the content is used.|
-| [commands](ts-drawing-components-path.md#commands) | string           | No  | Command for drawing the path.<br>Default value: **''**<br>**NOTE**<br>An invalid value is handled as the default value.|
+| Name                                            | Type        | Mandatory| Description                  |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | No  | **width**: width of the rectangle where the path is located.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>**height**: height of the rectangle where the path is located.<br>If the value is invalid or the default value is used, the height required for the content is used.<br> **commands**: command string for drawing the path. Default value: **''**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -36,6 +38,8 @@ commands(value: string)
 Sets the command string for path drawing. The unit is px. For details about how to convert pixel units, see [Pixel Units](ts-pixel-units.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,6 +57,8 @@ Sets the color of the fill area. An invalid value is handled as the default valu
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -68,6 +74,8 @@ fillOpacity(value: number | string | Resource)
 Sets the opacity of the fill area. The value range is [0.0, 1.0]. If the value passed in is less than **0.0**, the opacity is set to **0.0**. If the value passed in is greater than **1.0**, the opacity is set to **1.0**. Any other value is regarded as **1.0**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,6 +93,8 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -100,6 +110,8 @@ strokeDashArray(value: Array&lt;any&gt;)
 Sets the stroke dashes. Line segments may overlap when they intersect. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,6 +129,8 @@ Sets the line dash offset. An invalid value is handled as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -133,6 +147,8 @@ Sets the style of end points of lines.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -148,6 +164,8 @@ strokeLineJoin(value: LineJoinStyle)
 Sets the join style of lines.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -167,6 +185,8 @@ The value must be greater than or equal to 1.0. If the value is in the [0, 1) ra
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -182,6 +202,8 @@ strokeOpacity(value: number | string | Resource)
 Sets the stroke opacity. The value range is [0.0, 1.0]. If the value passed in is less than **0.0**, the opacity is set to **0.0**. If the value passed in is greater than **1.0**, the opacity is set to **1.0**. Any other value is regarded as **1.0**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -199,6 +221,8 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -214,6 +238,8 @@ antiAlias(value: boolean)
 Specifies whether anti-aliasing is enabled.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

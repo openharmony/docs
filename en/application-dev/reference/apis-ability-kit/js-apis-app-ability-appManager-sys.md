@@ -3,7 +3,7 @@
 The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md).
@@ -27,6 +27,48 @@ Enumerates the modes used for preloading an application process.
 | Name       | Value | Description                        |
 | ----------- | --- | --------------------------- |
 | PRESS_DOWN  | 0 | The application process is preloaded when the application icon is pressed.|
+
+## KeepAliveAppType<sup>14+</sup>
+
+Enumerates the types of applications to be kept alive.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name       | Value | Description|
+| -------- | ---------- | -------- |
+| ALL  | 0 | Third-party and system applications. This value can be called only as an input parameter of [getKeepAliveBundles](#appmanagergetkeepalivebundles14). |
+| THIRD_PARTY | 1  | Third-party application. |
+| SYSTEM | 2 | System application.|
+
+## KeepAliveSetter<sup>14+</sup>
+
+Enumerates the types of parties that set to keep applications alive.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name       | Value | Description|
+| -------- | ---------- | -------- |
+| SYSTEM | 0 | System, which means that the system sets to keep applications alive.|
+| USER  | 1 | User, which means that a user sets to keep applications alive. |
+
+## KeepAliveBundleInfo<sup>14+</sup>
+
+Describes the keep-alive application information, which can be obtained by calling [getKeepAliveBundles](#appmanagergetkeepalivebundles14).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+| Name| Type| Read-Only| Optional | Description|
+| ------------------------- | ------ | ---- | ---- | --------- |
+| bundleName   | string | Yes| No | Bundle name.|
+| userId   | number | Yes| No | User ID.|
+| appType       | [KeepAliveAppType](#keepaliveapptype14) | Yes| No| Type of the application to be kept alive.  |
+| setter       | [KeepAliveSetter](#keepalivesetter14) | Yes| No| Type of the party that sets to keep the application alive.  |
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
@@ -126,161 +168,6 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
     console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
   }
 });
-```
-
-## appManager.on('applicationState')
-
-on(type: 'applicationState', observer: ApplicationStateObserver): number
-
-Registers an observer to listen for the state changes of all applications.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
-
-**Return value**
-
-| Type| Description|
-| --- | --- |
-| number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**Example**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-
-try {
-  const observerId = appManager.on('applicationState', applicationStateObserver);
-  console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
-## appManager.on('applicationState')
-
-on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
-
-Registers an observer to listen for the state changes of a specified application.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
-| bundleNameList | `Array<string>` | Yes| **bundleName** array of the application. A maximum of 128 bundle names can be passed.|
-
-**Return value**
-
-| Type| Description|
-| --- | --- |
-| number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**Example**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-
-let bundleNameList = ['bundleName1', 'bundleName2'];
-
-try {
-  const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-  console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
 ```
 
 ## appManager.on('appForegroundState')<sup>11+</sup>
@@ -477,98 +364,6 @@ try {
 }
 ```
 
-## appManager.off('applicationState')
-
-off(type: 'applicationState', observerId: number): Promise\<void>
-
-Deregisters the application state observer. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
-| observerId | number | Yes| Digital code of the observer.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**Example**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let observerId = 0;
-
-// 1. Register an application state observer.
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-
-try {
-  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-
-// 2. Deregister the application state observer.
-try {
-  appManager.off('applicationState', observerId).then((data) => {
-    console.log(`unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}`);
-  }).catch((err: BusinessError) => {
-    console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
-  });
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
 ## appManager.off('appForegroundState')<sup>11+</sup>
 
 off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
@@ -696,7 +491,7 @@ try {
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md).
+Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -708,7 +503,7 @@ Obtains applications that are running in the foreground. This API uses an asynch
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -748,7 +543,7 @@ try {
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-Obtains applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md).
+Obtains applications that are running in the foreground. This API uses a promise to return the result. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md).
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -760,7 +555,7 @@ Obtains applications that are running in the foreground. This API uses a promise
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Promise used to return an array holding the application state data.|
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise used to return an array holding the application state data.|
 
 **Error codes**
 
@@ -847,7 +642,7 @@ try {
 }
 ```
 
-## appManager.killProcessWithAccount<sup>13+</sup>
+## appManager.killProcessWithAccount<sup>14+</sup>
 
 killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: boolean, appIndex?: number): Promise\<void\>
 
@@ -931,11 +726,11 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name.| 
-  | accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).| 
-  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
+  | bundleName | string | Yes| Bundle name.|
+  | accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
@@ -1068,66 +863,6 @@ let bundleName = 'bundleName';
 
 try {
   appManager.killProcessesByBundleName(bundleName).then((data) => {
-    console.log('killProcessesByBundleName success.');
-  }).catch((err: BusinessError) => {
-    console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
-  });
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
-## appManager.killProcessesByBundleName<sup>13+</sup>
-
-killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?: number): Promise\<void>
-
-Kills a process by bundle name. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name.|
-| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
-| appIndex | number | No| Index of an application clone.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**Example**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let bundleName = 'bundleName';
-let isClearPageStack = false;
-let appIndex = 1;
-
-try {
-  appManager.killProcessesByBundleName(bundleName, isClearPageStack, appIndex).then((data) => {
     console.log('killProcessesByBundleName success.');
   }).catch((err: BusinessError) => {
     console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
@@ -1671,7 +1406,7 @@ try {
 
 ## ApplicationState
 
-Enumerates the application states. This enum can be used together with [AbilityStateData](js-apis-inner-application-appStateData-sys.md) to return the application state.
+Enumerates the application states. This enum can be used together with [AbilityStateData](js-apis-inner-application-abilityStateData.md) to return the application state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1842,6 +1577,7 @@ Obtains the information about running applications in multi-app mode. This API u
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000072 | App clone or multi-instance is not supported. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 
 **Example**
 
@@ -1859,62 +1595,6 @@ try {
     })
 } catch (err) {
   hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
-}
-```
-
-## appManager.isAppRunning<sup>12+</sup>
-
-isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
-
-Checks whether an application is running. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name.|
-| appCloneIndex | number | No| Index of the app clone.|
-
-**Return value**
-
-| Type          | Description             |
-| -------------- | ---------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
-
-**Error codes**
-
-  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 201 | The application does not have permission to call the interface. |
-| 202 | Not system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 16000050 | Internal error. |
-| 16000073 | The app clone index is invalid. |
-
-**Example**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let bundleName = "ohos.samples.etsclock";
-  appManager.isAppRunning(bundleName).then((data: boolean) => {
-      hilog.info(0x0000, 'testTag', `data: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
-    })
-} catch (err) {
-  hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
 }
 ```
 
@@ -2042,5 +1722,243 @@ try {
     })
 } catch (err) {
   hilog.error(0x0000, 'testTag', `get pids error, code: ${err.code}, msg:${err.message}`);
+}
+```
+
+## appManager.clearUpAppData<sup>13+</sup>
+
+clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
+
+Clears data of a specified application based on the bundle name and application clone index.
+
+**Required permissions**: ohos.permission.CLEAN_APPLICATION_DATA
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| appCloneIndex | number | No| Index of the application clone.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+| 16000073 | The app clone index does not exist. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName: string = 'com.ohos.demo';
+let appCloneIndex: number = 0;
+
+try {
+  appManager.clearUpAppData(bundleName, appCloneIndex).then(() => {
+    console.log(`clearUpAppData success.`);
+  }).catch((err: BusinessError) => {
+    console.error(`clearUpAppData fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
+
+## appManager.setKeepAliveForBundle<sup>14+</sup>
+
+setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Promise\<void>
+
+Keeps an application of a specified user alive, or cancels its keep-alive status. This API uses a promise to return the result. Currently, this API takes effect only on 2-in-1 devices.
+
+**Permission required**: ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName    | string   | Yes   | Bundle name.|
+| userId    | number   | Yes   | User ID.|
+| enable    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+| 16300005 | The target bundle does not exist. |
+| 16300008 | The target bundle has no main ability. |
+| 16300009 | The target bundle has no status-bar ability. |
+| 16300010 | The target application is not attached to status bar. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.keepaliveapp";
+  let userId = 100;
+  appManager.setKeepAliveForBundle(bundleName, userId, true).then(() => {
+    console.log(`setKeepAliveForBundle success`);
+  }).catch((err: BusinessError) => {
+    console.error(`setKeepAliveForBundle fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] setKeepAliveForBundle error: ${code}, ${message}`);
+}
+```
+
+## appManager.getKeepAliveBundles<sup>14+</sup>
+
+getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<KeepAliveBundleInfo>>
+
+Obtains information about a specified type of keep-alive application of a user. The application information is defined by [KeepAliveBundleInfo](#keepalivebundleinfo14).
+This API uses a promise to return the result. Currently, this API takes effect only on 2-in-1 devices.
+
+**Permission required**: ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type    | [KeepAliveAppType](#keepaliveapptype14)   | Yes   | Type of the application.|
+| userId    | number   | No   | User ID.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<[KeepAliveBundleInfo](#keepalivebundleinfo14)>> | Promise used to return the array of keep-alive application information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let userId = 100;
+let type: appManager.KeepAliveAppType = appManager.KeepAliveAppType.THIRD_PARTY;
+try {
+  appManager.getKeepAliveBundles(type, userId).then((data) => {
+    console.log(`getKeepAliveBundles success, data: ${JSON.stringify(data)}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getKeepAliveBundles fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] getKeepAliveBundles error: ${code}, ${message}`);
+}
+```
+
+
+## appManager.killProcessesInBatch<sup>14+</sup>
+
+killProcessesInBatch(pids: Array\<number>): Promise\<void>
+
+Kill processes in batches. Currently, this API takes effect only on 2-in-1 devices.
+
+**Required permissions**: ohos.permission.KILL_APP_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pids    | Array\<number>   | Yes   | IDs of the processes to kill.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let pids: Array<number> = [100, 101, 102];
+  appManager.killProcessesInBatch(pids).then(() => {
+    console.log(`killProcessesInBatch success`);
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessesInBatch fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] killProcessesInBatch error: ${code}, ${message}`);
 }
 ```

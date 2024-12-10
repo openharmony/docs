@@ -48,8 +48,15 @@ PasteButton(options:PasteButtonOptions)
 
 > **说明：**
 > 
-> icon或text需至少传入一个。<br>
-> 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式。
+> - icon或text需至少传入一个。<br>
+> - 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式，默认样式：
+>
+>   PasteIconStyle默认样式为LINES；
+>
+>   PasteDescription默认样式为PASTE；
+>
+>   ButtonType默认样式为Capsule。
+> - icon、text、buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -71,7 +78,7 @@ PasteButton(options:PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | LINES | 0 | 粘贴按钮展示线条样式图标。 |
 
@@ -81,7 +88,7 @@ PasteButton(options:PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | PASTE | 0 | 粘贴按钮的文字描述为“粘贴”。 |
 
@@ -91,7 +98,7 @@ PasteButton(options:PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 粘贴按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 粘贴按钮点击后权限授权失败。 |

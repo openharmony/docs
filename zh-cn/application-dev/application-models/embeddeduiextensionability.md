@@ -74,7 +74,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
     }
     ```
 
-4. EmbeddedUIExtensionAbility的[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy)中加载了入口页面文件pages/extension.ets内容如下：
+4. EmbeddedUIExtensionAbility的[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate)中加载了入口页面文件pages/extension.ets内容如下：
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';

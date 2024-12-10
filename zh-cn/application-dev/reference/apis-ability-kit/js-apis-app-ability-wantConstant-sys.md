@@ -14,7 +14,7 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 import { wantConstant } from '@kit.AbilityKit';
 ```
 
-## wantConstant.Params
+## Params
 
 want的Params操作的常量。
 

@@ -8,15 +8,15 @@ HiLog is a subsystem that provides logging for the system framework, services, a
 
 HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md)).
 
-| API/Macro | Description |
+| API/Macro| Description|
 | -------- | -------- |
-| bool OH_LOG_IsLoggable(unsigned int domain, const char \*tag, LogLevel level) | Checks whether logs of the specified service domain, tag, and level can be printed.<br>This API returns **true** if the specified logs can be printed and returns **false** otherwise. |
-| int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char \*tag, const char \*fmt, ...) | Outputs logs of the specified domain, tag, and log level, with the variable parameters in the **printf** format.<br>This API returns the total number of bytes if log printing is successful and returns **-1** otherwise. |
-| \#define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs DEBUG logs. This is a function-like macro. |
-| \#define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs INFO logs. This is a function-like macro. |
-| \#define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs WARN logs. This is a function-like macro. |
-| \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs ERROR logs. This is a function-like macro. |
-| \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs FATAL logs. This is a function-like macro. |
+| bool OH_LOG_IsLoggable(unsigned int domain, const char \*tag, LogLevel level) | Checks whether logs of the specified service domain, tag, and level can be printed.<br>This API returns **true** if the specified logs can be printed and returns **false** otherwise.| 
+| int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char \*tag, const char \*fmt, ...) | Outputs logs of the specified domain, tag, and log level, with the variable parameters in the **printf** format.<br>This API returns the total number of bytes if log printing is successful and returns **-1** otherwise.|
+| \#define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs DEBUG logs. This is a function-like macro.|
+| \#define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs INFO logs. This is a function-like macro.|
+| \#define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs WARN logs. This is a function-like macro.|
+| \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs ERROR logs. This is a function-like macro.|
+| \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs FATAL logs. This is a function-like macro.|
 | void OH_LOG_SetCallback(LogCallback callback) | Registers a callback function to return all logs for the process.|
 
 ### Parameters
@@ -27,21 +27,21 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 
 - **domain**: service domain of logs. The value range is 0x0000 to 0xFFFF. You can define the value as required.
 
-- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call.
+- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call. A tag can contain a maximum of 31 bytes. If a tag contains more than 31 bytes, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.
 
 - **level**: log level. For details about the value, see [LogLevel](../reference/apis-performance-analysis-kit/_hi_log.md#loglevel).
 
 - **fmt**: format of the log to output. The value is a string in the "%{private flag}specifier" format.
-  | Private Flag | Description |
+  | Private Flag| Description|
   | -------- | -------- |
-  | private | The output is **\<private>**, which indicates that the log information is invisible. |
-  | public | The log information is displayed. |
-  | Not specified | The default value **\<private>** is used. |
+  | private | The output is **\<private>**, which indicates that the log information is invisible.|
+  | public | The log information is displayed.|
+  | Not specified| The default value **\<private>** is used.|
 
-  | Specifier | Description | Example |
+  | Specifier| Description| Example|
   | -------- | -------- | -------- |
-  | d/i | Prints logs of the **number**, **bool**, and **bigint** types. | 123 |
-  | s | Prints logs of the **string**, **undefined**, and **null** types. | "123" |
+  | d/i | Prints logs of the **number**, **bool**, and **bigint** types.| 123 |
+  | s | Prints logs of the **string**, **undefined**, and **null** types.| "123" |
 
   You can set multiple parameters in the **format** string, for example, **%s World**, where **%s** is a variable of the string type and its value is defined by **args**. <!--Del-->
 
@@ -89,6 +89,10 @@ The maximum size of a log file is 4096 bytes. Excess content will be discarded.
 
 ### Registering a Log Callback
 
+> **Note**
+>
+> The hilog APIs cannot be called in the callback to print logs. Otherwise, an infinite loop occurs.
+
 ```c++
 #include "hilog/log.h"
 static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
@@ -96,7 +100,8 @@ static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_T
 // Customize a callback for processing logs.
 void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
 {
-    // Define how to handle your logs, such as  redirect/filter.
+    // Define how to handle your logs, such as redirect/filter.
+    // Note: Do not call the hilog APIs in the callback to print logs. Otherwise, an infinite loop occurs.
 }
 
 static void Test(void)

@@ -1,12 +1,12 @@
 # Audio Encoding
 
-You can call the native APIs provided by the audio codec module to encode audio, that is, to compress audio PCM data into a desired format.
+You can call the native APIs provided by the AudioCodec module to encode audio, that is, to compress audio PCM data into a desired format.
 
 PCM data can be from any source. For example, you can use a microphone to record audio data or import edited PCM data. After audio encoding, you can output streams in the desired format and encapsulate the streams into a target file.
 
 Currently, the following encoding capabilities are supported:
 
-| Container Specification| Audio Encoding Type      |
+| Container Format| Audio Encoding Type      |
 | -------- | :--------------- |
 | mp4      | AAC, FLAC       |
 | m4a      | AAC              |
@@ -24,10 +24,13 @@ Currently, the following encoding capabilities are supported:
 - Audio editing
 
   Export edited PCM data, and encode the data into streams in the desired format.
+> **NOTE**
+>
+> AAC encoders adopt the VBR mode by default, which may differ in the configured parameters.
 
 ## How to Develop
 
-Read [Audio Codec](../../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
+Read [AudioCodec](../../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
 
 Refer to the code snippet below to complete the entire audio encoding process, including creating an encoder, setting encoding parameters (such as the sampling rate, bit rate, and number of audio channels), and starting, refreshing, resetting, and destroying the encoder.
 
@@ -35,9 +38,13 @@ During application development, you must call the APIs in the defined sequence. 
 
 The figure below shows the call relationship of audio encoding.
 
+- The dotted line indicates an optional operation.
+
+- The solid line indicates a mandatory operation.
+
 ![Call relationship of audio encoding](figures/audio-codec.png)
 
-### Linking the Dynamic Library in the CMake Script
+### Linking the Dynamic Libraries in the CMake Script
 
 ```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -72,7 +79,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
     ```cpp
-    // Specify whether encoding is used. The value **true** means encoding.
+    // Specify whether encoding is used. The value true means encoding.
     bool isEncoder = true;
     // Create an encoder by MIME type.
     OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, isEncoder);
@@ -160,6 +167,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    The maximum input length is optional.
 
    For FLAC encoding, the compliance level and sampling precision are also mandatory.
+   
+   The sample below lists the value range of each audio encoding type.
+   | Audio Encoding Type| Sampling Rate (Hz)                                                                      |       Audio Channel Count      |
+   | ----------- | ------------------------------------------------------------------------------- | :----------------: |
+   | AAC         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000| 1, 2, 3, 4, 5, 6, and 8|
+   | FLAC       | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000|        1–8        |
+   | MP3         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000                    |        1–2        |
+   | G711mu      | 8000                                                                            |         1          |
+   <!--RP3--><!--RP3End-->
 
    The code snippet below shows the API call process, where AAC encoding at the bit rate of 32000 bit/s is carried out on the PCM audio with the 44100 Hz sampling rate, 2-channel stereo, and SAMPLE_S16LE sampling format.
 

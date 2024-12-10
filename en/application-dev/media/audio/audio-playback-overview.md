@@ -14,18 +14,22 @@ The system provides a variety of APIs for you to develop audio playback applicat
 
 - [TonePlayer](using-toneplayer-for-playback.md): provides ArkTS and JS APIs to implement the playback of dialing tones and ringback tones. It can be used to play the content selected from a fixed type range, without requiring the input of media assets or audio data. This class is applicable to specific scenarios where dialing tones and ringback tones are played. It is available only to system applications.<!--DelEnd-->
 
-In addition to the preceding classes, you can also use Media Kit to implement audio playback.
+In addition to the preceding classes, you can also use **AVPlayer** and **SoundPool** in Media Kit to implement audio playback.
 
 - [AVPlayer](../media/using-avplayer-for-playback.md): provides ArkTS and JS APIs to implement audio playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding audio, and outputting audio. It can play audio files in MP3 and M4A formats, but not in PCM format.
 
 - [SoundPool](../media/using-soundpool-for-playback.md): provides ArkTS and JS APIs to implement short sound playback in low latency mode. It can be used to play short sound effects, such as camera shutter sound effect, key press sound effect, and game shooting sound effect.
 
-## Precautions for Developing Audio Playback Applications
+## Development Precautions for Background Playback or Screen-Off Playback
 
 To enable your application to play a video in the background or when the screen is off, the application must meet the following conditions:
 
-1. The application is registered with the system for unified management through the **AVSession** APIs. Otherwise, the playback will be forcibly stopped when the application switches to the background. For details, see [AVSession Kit Development](../avsession/avsession-overview.md).
+1. The application is registered with the system for unified management through the AVSession APIs. For details, see [AVSession Kit Development](../avsession/avsession-overview.md).
 
-2. The application must request a continuous task to prevent from being suspended. For details, see [Continuous Task](../../task-management/continuous-task.md).
+    Note: If the application has not registered an AVSession, the system will forcibly control its audio playback behavior in the background, including:
+    - When the application is running in the background, its audio stream being played will be forcibly stopped or muted.
+    - When the application attempts to start an audio stream in the background, the audio stream will be prevented from launching or forcibly muted.
+
+2. The application requests a continuous task to prevent from being suspended. For details, see [Continuous Task](../../task-management/continuous-task.md).
 
 If the playback is interrupted when the application switches to the background, you can view the log to see whether the application has requested a continuous task. If the application has requested a continuous task, there is no log recording **pause id**; otherwise, there is a log recording **pause id**.

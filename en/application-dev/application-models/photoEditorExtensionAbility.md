@@ -1,4 +1,4 @@
-# Starting an Image Editing Application
+# Using startAbilityByType to Start an Image Editing Application
 ## When to Use
 If an application does not have the image editing capability but needs to edit an image, it can call **startAbilityByType** to start the vertical domain panel that displays available image editing applications, which can be used to edit the image. An image editing application can use the PhotoEditorExtensionAbility to implement an image editing page and register the page with the image editing panel. In this way, its image editing capability is opened to other applications.
 

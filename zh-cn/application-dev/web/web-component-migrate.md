@@ -1,12 +1,15 @@
 # Web组件在不同的窗口间迁移
 
-Web组件可以在不同在窗口的页面上进行挂载或移除操作。开发者可以基于这一能力，实现同一个Web组件在不同窗口间的迁移。使用该能力，可以实现诸如浏览器tab页拖出成独立窗口等功能。
+Web组件能够实现在不同窗口的组件树上进行挂载或移除操作，这一能力使得开发者可以将同一个Web组件在不同窗口间迁移。例如，将浏览器的Tab页拖出成独立窗口，或拖入浏览器的另一个窗口。
 
+Web组件在不同窗口间迁移，是基于[自定义节点](../ui/arkts-user-defined-node.md)能力实现的。实现的基本原理是：通过[BuilderNode](../ui/arkts-user-defined-arktsNode-builderNode.md)，开发者可创建Web组件的离线节点，并结合[自定义占位节点](../ui/arkts-user-defined-place-hoder.md)控制Web节点的挂载与移除。当从一个窗口上移除Web节点，并挂载到另一个窗口中，即完成Web组件在窗口间的迁移。
 
+在以下示例中，主窗Ability启动时，通过命令式的方式创建了一个Web组件。开发者可以利用common.ets中提供的方法和类，实现Web组件的挂载和移除。Index.ets则提供了一种挂载和移除Web组件的实现方法。通过这种方式，开发者能够实现Web组件在不同窗口中页面的挂载与移除，即实现了Web组件在不同窗口间的迁移。下图是展示了这一迁移过程的示意图。
 
-以下示例中，主窗Ability在启动时，通过命令式的方式创建了一个Web组件。开发者可以通过`common.ets`中提供的方法和类，实现Web组件的挂载和移除。`Index.ets`则展示了一种挂载和移除Web组件的方法。通过这一方式，开发者可以实现Web组件在不同窗口中页面的挂载与移除，即Web组件在不同窗口间的迁移。
+![Web组件迁移示例](./figures/web-component-migrate.png)
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 不要将一个Web组件同时挂载在两个父节点下，这会导致非预期行为。
 
 ```ts
@@ -17,7 +20,6 @@ import { createNWeb, defaultUrl } from '../pages/common'
 // ...
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -25,7 +27,7 @@ import { createNWeb, defaultUrl } from '../pages/common'
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建，应用仅创建一个web组件
+      // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建，应用仅创建一个Web组件
       createNWeb(defaultUrl, windowStage.getMainWindowSync().getUIContext());
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });
@@ -43,7 +45,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export const defaultUrl : string = 'https://www.example.com';
 
-// @Builder中为动态组件的具体组件内容
 // Data为入参封装类
 class Data{
   url: string = '';
@@ -55,6 +56,7 @@ class Data{
   }
 }
 
+// @Builder中为动态组件的具体组件内容
 @Builder
 function WebBuilder(data:Data) {
   Web({ src: data.url, controller: data.webController })
@@ -113,7 +115,7 @@ let builderNodeMap : Map<string, BuilderNode<[Data]> | undefined> = new Map();
 // 创建Map保存所需要的webview.WebviewController
 let webControllerMap : Map<string, webview.WebviewController | undefined> = new Map();
 
-// 初始化需要UIContext 需在Ability获取
+// 初始化需要UIContext对象，UIContext对象可通过窗口或自定义组件的getUIContext方法获取
 export const createNWeb = (url: string, uiContext: UIContext) => {
   // 创建WebviewController
   let webController = new webview.WebviewController() ;

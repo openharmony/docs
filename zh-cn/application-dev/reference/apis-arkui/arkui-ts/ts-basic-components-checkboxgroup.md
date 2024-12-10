@@ -116,7 +116,7 @@ mark(value: MarkStyle)
 | ------ | --------------------------------- | ---- | -------------------- |
 | value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
 
-### checkboxShape<sup>12</sup>
+### checkboxShape<sup>12+</sup>
 
 checkboxShape(value: CheckBoxShape)
 
@@ -140,7 +140,7 @@ checkboxShape(value: CheckBoxShape)
 
 ### onChange
 
-onChange(callback: (event: CheckboxGroupResult) => void )
+onChange(callback: OnCheckboxGroupChangeCallback)
 
 CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。
 
@@ -152,9 +152,27 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **参数：** 
 
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| callback | [OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback14) | 是   | 多选框群组的信息。 |
+
+## OnCheckboxGroupChangeCallback<sup>14+</sup>
+
+type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
+
+多选框群组的信息。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名 | 类型                                                | 必填 | 说明               |
 | ------ | --------------------------------------------------- | ---- | ------------------ |
-| event  | [CheckboxGroupResult](#checkboxgroupresult对象说明) | 是   | 多选框群组的信息。 |
+| value  | [CheckboxGroupResult](#checkboxgroupresult对象说明) | 是   | 多选框群组的信息。 |
 
 ## CheckboxGroupResult对象说明
 
@@ -177,7 +195,7 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 描述 |
+| 名称  | 说明 |
 | ----- | -------------------- |
 | All   | 群组多选择框全部选择。 |
 | Part  | 群组多选择框部分选择。 |
@@ -185,7 +203,9 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 ## 示例
 
-### 示例1
+### 示例1（设置多选框群组）
+
+该示例用于控制多选框全选或者不全选状态。
 
 ```ts
 // xxx.ets
@@ -245,7 +265,9 @@ struct CheckboxExample {
 ```
 ![checkboxGroup](figures/checkboxGroup.gif)
 
-### 示例2
+### 示例2（自定义勾选样式）
+
+该示例通过配置mark实现自定义多选框群组的勾选样式。
 
 ```ts
 // xxx.ets

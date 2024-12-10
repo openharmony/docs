@@ -19,6 +19,6 @@ The following uses the NDK project template of DevEco Studio to create an NDK pr
    
 3. On the project configuration page, configure basic project information and click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
 
-   The main code of your application is in the **cpp** directory under **entry/src/main** of the project.
+   The main code of your application is in the **cpp** folder under **entry/src/main** of the project directory. For details about the files in the **cpp** folder, see <!--RP1-->[C++ Project Directory Structure](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-project-structure-V5)<!--RP1End-->.
 
    ![oh-menu](figures/oh-menu.PNG)

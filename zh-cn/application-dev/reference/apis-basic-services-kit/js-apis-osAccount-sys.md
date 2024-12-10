@@ -355,6 +355,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：**
 
@@ -413,6 +414,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：**
 
@@ -901,45 +903,6 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
     });
   } catch (e) {
     console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
-  }
-  ```
-
-### getForegroundOsAccountLocalId<sup>12+</sup>
-
-getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
-
-获取前台系统账号的ID。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**返回值：**
-
-| 类型                   | 说明                                                               |
-| ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回前台系统账号的ID。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息       |
-| -------- | ------------- |
-| 202 | Not system application.|
-| 12300001 | The system service works abnormally. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
-  try {
-    accountManager.getForegroundOsAccountLocalId().then((localId: number) => {
-      console.log('getForegroundOsAccountLocalId, localId: ' + localId);
-    }).catch((err: BusinessError) => {
-      console.log('getForegroundOsAccountLocalId err: ' + JSON.stringify(err));
-    });
-  } catch (e) {
-    console.log('getForegroundOsAccountLocalId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -5407,7 +5370,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称           | 值 | 说明      |
 | ------------- | ------ | --------- |
 | AUTH_SUB_TYPE | 1      | 认证子类型。 |
-| REMAIN_TIMES  | 2      | 剩余时间。   |
+| REMAIN_TIMES  | 2      | 剩余次数。   |
 | FREEZING_TIME | 3      | 冻结时间。   |
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
 | SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |

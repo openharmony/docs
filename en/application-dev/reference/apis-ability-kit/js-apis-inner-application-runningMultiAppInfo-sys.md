@@ -1,9 +1,9 @@
- # RunningMultiAppInfo (System API)
+# RunningMultiAppInfo (System API)
 
 The RunningMultiAppInfo module defines the information of an application in multi-app mode in the running state.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.
@@ -19,6 +19,7 @@ The RunningMultiAppInfo module defines the information of an application in mult
 | bundleName | string | Yes | Bundle name of the application.|
 | mode | [MultiAppMode](js-apis-inner-application-multiAppMode-sys.md) | Yes  | Multi-app mode.|
 | runningAppClones | Array<[RunningAppClone](js-apis-inner-application-runningAppClone-sys.md)> | No | Information about application clones with the specific bundle name in the running state.|
+| runningMultiInstances<sup>14+</sup> | Array<[RunningMultiInstanceInfo](js-apis-inner-application-runningMultiInstanceInfo-sys.md)> | No | Information about a multi-instance application with the specific bundle name in the running state.|
 
 ## How to Use
 

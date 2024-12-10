@@ -480,10 +480,38 @@ struct SideBarSample {
 **参考代码**
 
 ```ts
+
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "Moon",
+      "pageSourceFile": "src/main/ets/pages/Moon.ets",
+      "buildFunction": "MoonBuilder",
+      "data": {
+        "description": "this is Moon"
+      }
+    },
+    {
+      "name": "Sun",
+      "pageSourceFile": "src/main/ets/pages/Sun.ets",
+      "buildFunction": "SunBuilder"
+    }
+  ]
+}
+// Moon.ets
+@Builder
+export function MoonBuilder(name: string, param: Object) {
+  Moon()
+}
 @Component
-struct Details {
+export struct Moon {
   private imageSrc: Resource=$r('app.media.my_image_moon')
+  private label: string='moon'
   build() {
+    Column(){
+    NavDestination(){
     Column() {
       Image(this.imageSrc)
         .objectFit(ImageFit.Contain)
@@ -493,17 +521,60 @@ struct Details {
     .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
+     }.title(this.label)
+     }
   }
 }
-
+// Sun.ets
+@Builder
+export function SunBuilder(name: string, param: Object) {
+  Sun()
+}
 @Component
-struct Item {
-  private imageSrc?: Resource
-  private label?: string
-
+export struct Sun {
+  private imageSrc: Resource=$r('app.media.my_image')
+  private label: string='Sun'
   build() {
-    NavRouter() {
-      Text(this.label)
+    Column(){
+    NavDestination(){
+    Column() {
+      Image(this.imageSrc)
+        .objectFit(ImageFit.Contain)
+        .height(300)
+        .width(300)
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+     }.title(this.label)
+     }
+  }
+}
+//NavigationSample.ets
+interface arrSample{
+  label:string,
+  pagePath:string
+}
+
+@Entry
+@Component
+struct NavigationSample {
+  pageInfos: NavPathStack = new NavPathStack();
+  private arr:arrSample[]=[
+    {
+      label:'moon',
+      pagePath:'Moon'
+    },
+    {
+      label:'sun',
+      pagePath:'Sun'
+    }
+  ]
+  build() {
+    Navigation(this.pageInfos) {
+      Column({space: 30}) { 
+      ForEach(this.arr, (item: arrSample) => {
+         Text(item.label)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
         .borderRadius(5)
@@ -511,22 +582,11 @@ struct Item {
         .textAlign(TextAlign.Center)
         .width(180)
         .height(36)
-      NavDestination() {
-        Details({imageSrc: this.imageSrc})
-      }.title(this.label)
-      .backgroundColor('#FFFFFF')
-    }
-  }
-}
-
-@Entry
-@Component
-struct NavigationSample {
-  build() {
-    Navigation() {
-      Column({space: 30}) {
-        Item({label: 'moon', imageSrc: $r('app.media.my_image_moon')})
-        Item({label: 'sun', imageSrc: $r('app.media.my_image')})
+        .onClick(()=>{
+          this.pageInfos.clear();
+          this.pageInfos.pushPath({name:item.pagePath})
+        })
+        })
       }
       .justifyContent(FlexAlign.Center)
       .height('100%')
@@ -557,7 +617,7 @@ struct NavigationSample {
 
 **场景说明**
 
-为充分利用设备的屏幕尺寸优势，应用在大屏设备上常常有二分栏或三分栏的设计，即“A+C”，“B+C”或“A+B+C”的组合，其中A是侧边导航区，B是列表导航区，C是内容区。在用户动态改变窗口宽度时，当窗口宽度大于或等于840vp时页面呈现A+B+C三列，放大缩小优先变化C列；当窗口宽度小于840vp大于等于600vp时呈现A+C列，放大缩小时优先变化C列；当窗口宽度小于600vp大于等于360vp时，仅呈现C列。
+为充分利用设备的屏幕尺寸优势，应用在大屏设备上常常有二分栏或三分栏的设计，即“A+C”，“B+C”或“A+B+C”的组合，其中A是侧边导航区，B是列表导航区，C是内容区。在用户动态改变窗口宽度时，当窗口宽度大于或等于840vp时页面呈现A+B+C三列，放大缩小优先变化C列；当窗口宽度小于840vp大于等于600vp时呈现B+C列，放大缩小时优先变化C列；当窗口宽度小于600vp大于等于360vp时，仅呈现C列。
 
 **实现方案**
 
@@ -566,11 +626,31 @@ struct NavigationSample {
 **参考代码**
 
 ```ts
-// MainAbility.ts
-import { window, display } from '@kit.ArkUI'
-import { Ability } from '@kit.AbilityKit'
 
-export default class MainAbility extends Ability {
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "B1Page",
+      "pageSourceFile": "src/main/ets/pages/B1Page.ets",
+      "buildFunction": "B1PageBuilder",
+      "data": {
+        "description": "this is B1Page"
+      }
+    },
+    {
+      "name": "B2Page",
+      "pageSourceFile": "src/main/ets/pages/B2Page.ets",
+      "buildFunction": "B2PageBuilder"
+    }
+  ]
+}
+// EntryAbility.ts
+import { window, display } from '@kit.ArkUI'
+import { Ability,UIAbility } from '@kit.AbilityKit'
+
+export default class EntryAbility extends UIAbility {
   private windowObj?: window.Window
   private curBp?: string
   private myWidth?: number
@@ -614,7 +694,12 @@ export default class MainAbility extends Ability {
         this.updateBreakpoint(windowSize.width)
       })
     });
-   // ...
+   // ...应用启动页面
+   windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {      
+        return;
+      }
+    });
   }
     
   // 窗口销毁时，取消窗口尺寸变化监听
@@ -627,52 +712,78 @@ export default class MainAbility extends Ability {
 }
 
 
-// tripleColumn.ets
+// B1Page.ets
+@Builder
+export function B1PageBuilder() {
+  B1Page()
+}
 @Component
-struct Details {
-  private imageSrc: Resource=$r('app.media.startIcon')
+export struct B1Page {
+  private imageSrc: Resource = $r('app.media.startIcon');
+  private label: string = "B1"
   build() {
     Column() {
-      Image(this.imageSrc)
-        .objectFit(ImageFit.Contain)
-        .height(300)
-        .width(300)
-    }
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
-    .height('100%')
-  }
-}
-
-@Component
-struct Item {
-  private imageSrc?: Resource
-  private label?: string
-
-  build() {
-    NavRouter() {
-      Text(this.label)
-        .fontSize(24)
-        .fontWeight(FontWeight.Bold)
-        .backgroundColor('#66000000')
-        .textAlign(TextAlign.Center)
-        .width('100%')
-        .height('30%')
       NavDestination() {
-        Details({imageSrc: this.imageSrc})
+        Column() {
+          Image(this.imageSrc)
+            .objectFit(ImageFit.Contain)
+            .height(300)
+            .width(300)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width('100%')
+        .height('100%')
       }.title(this.label)
-      .hideTitleBar(false)
-      .backgroundColor('#FFFFFF')
     }
-    .margin(10)
+  }
+}
+// B2Page.ets
+@Builder
+export function B2PageBuilder() {
+  B2Page()
+}
+@Component
+export struct B2Page {
+  private imageSrc: Resource = $r('app.media.startIcon');
+  private label: string = "B2"
+  build() {
+    Column() {
+      NavDestination() {
+        Column() {
+          Image(this.imageSrc)
+            .objectFit(ImageFit.Contain)
+            .height(300)
+            .width(300)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width('100%')
+        .height('100%')
+      }.title(this.label)
+    }
   }
 }
 
+//TripleColumnSample.ets
+interface arrSampleObj{
+  label:string,
+  pagePath:string
+}
 @Entry
 @Component
 struct TripleColumnSample {
-  @State arr: number[] = [1, 2, 3]
-  @StorageProp('myWidth') myWidth: number = 360
+  @State arr: number[] = [1, 2, 3];
+  @StorageProp('myWidth') myWidth: number = 360;
+  pageInfos:NavPathStack = new NavPathStack();
+  @State arrSample: arrSampleObj[] = [
+    {
+        label:'B1',
+        pagePath:'B1Page'
+    },
+    {
+        label:'B2',
+        pagePath:'B2Page'
+    }
+  ];
 
   @Builder NavigationTitle() {
     Column() {
@@ -690,12 +801,15 @@ struct TripleColumnSample {
     SideBarContainer() {
       Column() {
         List() {
-          ForEach(this.arr, (item:number, index) => {
+          ForEach(this.arr, (item: number, index) => {
             ListItem() {
-              Text('A'+item)
-                .width('100%').height("20%").fontSize(24)
+              Text('A' + item)
+                .width('100%')
+                .height("20%")
+                .fontSize(24)
                 .fontWeight(FontWeight.Bold)
-                .textAlign(TextAlign.Center).backgroundColor('#66000000')
+                .textAlign(TextAlign.Center)
+                .backgroundColor('#66000000')
             }
           })
         }.divider({ strokeWidth: 5, color: '#F1F3F5' })
@@ -705,12 +819,27 @@ struct TripleColumnSample {
       .backgroundColor('#F1F3F5')
 
       Column() {
-        Navigation() {
-          List(){
+        Navigation(this.pageInfos) {
+          List() {
             ListItem() {
               Column() {
-                Item({ label: 'B1', imageSrc: $r('app.media.startIcon') })
-                Item({ label: 'B2', imageSrc: $r('app.media.startIcon') })
+                ForEach(this.arrSample, (item: arrSampleObj, index) => {
+                  ListItem() {
+                    Text(item.label)
+                      .fontSize(24)
+                      .fontWeight(FontWeight.Bold)
+                      .backgroundColor('#66000000')
+                      .textAlign(TextAlign.Center)
+                      .width('100%')
+                      .height('30%')
+                      .margin({
+                        bottom:10
+                      })
+                  }.onClick(() => {
+                    this.pageInfos.clear();
+                    this.pageInfos.pushPath({ name: item.pagePath })
+                  })
+                })
               }
             }.width('100%')
           }

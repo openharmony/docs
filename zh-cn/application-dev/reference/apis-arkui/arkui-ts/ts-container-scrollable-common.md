@@ -154,6 +154,23 @@ fadingEdge(enabled: Optional&lt;boolean&gt;, options?: FadingEdgeOptions): T
 | enabled | Optional&lt;boolean&gt;                                 | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>默认值：false。 |
 | options | [FadingEdgeOptions](#fadingedgeoptions13对象说明) | 否   | 边缘渐隐参数对象。可以通过该对象定义边缘渐隐效果属性，比如设置渐隐长度。 |
 
+### clipContent<sup>14+</sup>
+
+clipContent(clip: ContentClipMode | RectShape): T
+
+设置滚动容器的内容层裁剪区域。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                              | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| clip | [ContentClipMode](#contentclipmode14枚举说明)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape)   | 是   | 裁剪只针对滚动容器的内容，即其子节点，背景不受影响。通过RectShape传入自定义矩形区域时仅支持设置宽高和相对于组件左上角的[offset](../js-apis-arkui-shape.md#offset)，不支持圆角。<br></div>默认值：Grid、Scroll的默认值为ContentClipMode.BOUNDARY，List、WaterFlow的默认值为ContentClipMode.CONTENT_ONLY。 |
+
+
 ## 事件
 
 ### onReachStart<sup>11+</sup>
@@ -315,6 +332,21 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | 参数名           | 类型                                                         | 必填 | 描述                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 设置边缘渐隐长度。如果设置小于0的值则取默认值。默认长度为32vp。<br/>如果设置的长度超过容器高度的一半时，渐隐长度取容器高度的一半。 |
+
+## ContentClipMode<sup>14+</sup>枚举说明
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+下图是组件配置了边距属性后的示意图，可理解每种枚举对应的裁剪区域。
+![ContentClipMode示意图](figures/ContentClipMode.png)
+
+| 名称     |  值  | 说明                                       |
+| ------ | ------ | ---------------------------------------- |
+| CONTENT_ONLY   |  0  | 按内容区裁剪，对应图中的绿色区域。 |
+| BOUNDARY |  1  | 按组件区域裁剪，对应图中的整个蓝色区域。 |
+| SAFE_AREA  |  2  | 按组件配置的SafeArea区域裁剪，对应图中的整个黄色区域。 |
 
 ## OnWillScrollCallback<sup>12+</sup>
 

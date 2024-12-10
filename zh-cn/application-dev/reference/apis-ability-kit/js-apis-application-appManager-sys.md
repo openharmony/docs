@@ -30,7 +30,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver (系统接口)](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 表示程序状态观测器，用于观测应用的生命周期变化。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 是 | 表示程序状态观测器，用于观测应用的生命周期变化。 |
 
 **返回值：**
 
@@ -143,7 +143,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。使用callback异步回调。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -155,7 +155,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | 是 | 回调函数，返回所有当前处于前台的应用信息。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 回调函数，返回所有当前处于前台的应用信息。 |
 
 **示例：**
     
@@ -175,7 +175,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。使用Promise异步回调。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -187,7 +187,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Promise对象，返回所有当前处于前台的应用信息。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise对象，返回所有当前处于前台的应用信息。 |
 
 **示例：**
     

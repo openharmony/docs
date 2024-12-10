@@ -22,7 +22,7 @@
    - 当待签名的数据较短时，可以在init完成后直接调用sign。
    - 当数据量较大时，可以多次调用update，即[分段签名验签](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)。
 
-5. 调用[Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2)，生成数据签名。
+5. 调用[Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1)，生成数据签名。
 
 
 **验签**
@@ -38,7 +38,7 @@
    - 当待签名的数据较短时，可以在init完成后直接调用verify。
    - 当数据量较大时，可以多次调用update，即[分段签名验签](crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)。
 
-4. 调用[Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2)，对数据进行验签。
+4. 调用[Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1)，对数据进行验签。
 
 
 - 异步方法示例：

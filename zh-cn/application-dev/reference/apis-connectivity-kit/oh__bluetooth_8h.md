@@ -5,7 +5,7 @@
 
 定义查询蓝牙开关状态的接口。
 
-**库：** libbluetooth.so
+**库：** libbluetooth_ndk.so
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Core
 

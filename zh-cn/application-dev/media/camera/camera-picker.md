@@ -7,6 +7,12 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
 
 由于照片的拍摄和确认都是由用户进行主动确认，因此应用开发者可以不用申请操作相机的相关权限。
 
+## 约束与限制
+
+在应用调试时，开发者需在release模式下调用系统相机（CameraPicker）。
+
+由于系统限制了debug模式下不允许调试release应用，在debug模式下调用系统相机，将导致异常。
+
 ## 开发步骤
 
 详细的API说明请参考[CameraPicker API参考](../../reference/apis-camera-kit/js-apis-cameraPicker.md)。
@@ -14,6 +20,7 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
 1. 导入相关接口，导入方法如下。
    ```ts
    import { camera, cameraPicker as picker } from '@kit.CameraKit'
+   import { fileIo, fileUri } from '@kit.CoreFileKit'
    ```
 
 2. 配置[PickerProfile](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pickerprofile)
@@ -29,9 +36,9 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
    let pathDir = getContext().filesDir;
    let fileName = `${new Date().getTime()}`
    let filePath = pathDir + `/${fileName}.tmp`
-   fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE);
+   fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
    
-   let uri = fileuri.getUriFromPath(filePath);
+   let uri = fileUri.getUriFromPath(filePath);
    let pickerProfile: picker.PickerProfile = {
      cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
      saveUri: uri
@@ -49,9 +56,8 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
 ## 完整示例
    ```ts 
    import { camera, cameraPicker as picker } from '@kit.CameraKit'
-   import fileuri from '@ohos.file.fileuri';
-   import fs from '@ohos.file.fs';
-   
+   import { fileIo, fileUri } from '@kit.CoreFileKit'
+
    @Entry
    @Component
    struct Index {
@@ -69,9 +75,9 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
                let pathDir = getContext().filesDir;
                let fileName = `${new Date().getTime()}`
                let filePath = pathDir + `/${fileName}.tmp`
-               fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE);
+               fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
    
-               let uri = fileuri.getUriFromPath(filePath);
+               let uri = fileUri.getUriFromPath(filePath);
                let pickerProfile: picker.PickerProfile = {
                  cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
                  saveUri: uri

@@ -263,7 +263,7 @@ struct Index {
       Column() {
         Image($r('app.media.icon'))
           .width('200px').height('200px')
-          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+          .clipShape(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
         Text(`获取系统内置的裁剪路径参数：`)
           .fontWeight(800)
         Text(JSON.stringify(LayeredDrawableDescriptor.getMaskClipPath()))

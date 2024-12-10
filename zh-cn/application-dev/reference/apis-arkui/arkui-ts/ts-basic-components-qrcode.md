@@ -28,7 +28,7 @@ QRCode(value: string)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string | 是 | 二维码内容字符串。最大支持512个字符，若超出，则截取前512个字符。<br/>**说明：** <br/>该字符串内容确保有效，不支持null、undefined以及空内容。 |
+| value | string | 是 | 二维码内容字符串。最大支持512个字符，若超出，则截取前512个字符。<br/>**说明：** <br/>该字符串内容确保有效，不支持null、undefined以及空内容，当传入上述内容时，将生成无效二维码。 |
 
 ## 属性
 
@@ -93,6 +93,8 @@ contentOpacity(value: number | Resource)
 
 
 ## 示例
+
+该示例展示了QRCode组件的基本使用方法，通过color属性设置二维码颜色、backgroundColor属性设置二维码背景颜色、contentOpacity属性设置二维码不透明度。
 
 ```ts
 // xxx.ets

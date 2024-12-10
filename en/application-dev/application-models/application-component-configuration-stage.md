@@ -7,88 +7,73 @@ During application development, you must configure tags to identify an applicati
 The bundle name is specified by the **bundleName** field in the [app.json5 file](../quick-start/app-configuration-file.md) in the **AppScope** directory of the project. This field identifies an application and must be globally unique. You are advised to use the reverse domain name notation, for example, *com.example.demo*, where the first part is the domain suffix **com**, the second part is the vendor/individual name, and the third part is the application name, which can be of multiple levels.
 
 ## Configuring Icons and Labels
-Icons and labels are usually configured together. They correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md).
+Icons and labels are usually configured together. They correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md). Since 5.0.3.800, DevEco Studio does not forcibly verify the **icons** and **labels** in the **module.json5** file. Therefore, you can configure them in either **module.json5** or **app.json5**.
 
-### Icon and Label Configuration in the app.json5 File
+### Generation Mechanism
+* If the HAP file contains UIAbility configuration, the following scenarios are possible:
 
-#### Use Scenarios
+  * If the **icon** and **label** fields under **abilities** of the **module.json5** file are configured, and under **skills** of the corresponding ability, **entities** contains **entity.system.home** and **actions** contains **ohos.want.action.home**, the system returns the icon and label configured in **module.json5**. If there are multiple abilities that meet the requirements, the system returns the icon and label specified for the ability corresponding to **mainElement** in **module.json5**.
 
-The icon and label configured in the **app.json5** file are displayed on an application screen, for example:
-* Application list in Settings
-* Applications with permissions granted in the privacy management screen
+  * If the **icon** and **label** fields under **abilities** of the **module.json5** file are not configured, the system returns the icon and label configured in **app.json5**.
 
-**Figure 1** Icon and label configuration in the app.json5 file
+* If the HAP file does not contain UIAbility configuration, the system returns the icon and label configured in **app.json5**.
 
-![application-component-configuration-stage-app](figures/application-component-configuration-stage-app.png)
 
-#### Configuration Example
+### Use Scenarios
 
-```json
-{
-  "app": {
-    "icon": "$media:app_icon",
-    "label": "$string:app_name"
-    ...
+- Used to display an application on an application screen, for example, application list in **Settings**, or permissions requested by the application in **Settings > Privacy manager**.
+- Used to display an application on the home screen. for example, applications displayed on the home screen or in **Recents**.
+
+The following figure shows the effect.
+
+![application-component-configuration-stage-app-module](figures/application-component-configuration-stage-app-module.png)
+
+### Configuration Example
+
+- **Method 1: configuring app.json5 (recommended)**
+
+  ```json
+  {
+    "app": {
+      "icon": "$media:app_icon",
+      "label": "$string:app_name"
+      // ...
+    }
   }
-}
-```
+  ```
 
-### Icon and Label Configuration in the module.json5 File
+- **Method 2: configuring module.json5**
 
-#### Use Scenarios
-The icon and label configured in the **module.json5** file are displayed on the home screen after the application is installed. The scenarios are as follows:
-* Applications displayed on the device's home screen
-* Applications displayed in Recents
+  To display a UIAbility icon on the home screen, you must configure the **icon** and **label** fields, and under the **skills** tag, add **entity.system.home** to **entities** and **ohos.want.action.home** to **actions**.
 
-**Figure 2** Icon and label configuration of the module.json5 file
-
-![application-component-configuration-stage-module](figures/application-component-configuration-stage-module.png)
-
-
-#### Configuration Example
-
-To display the UIAbility icon on the home screen, you must configure the **icon** and **label** fields, and under the **skills** tag, add **entity.system.home** to **entities** and **ohos.want.action.home** to **actions**.
-
-```json
-{
-  "module": {
-    ...
-    "abilities": [
-      {
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "skills": [
-          {
-            "entities": [
-              "entity.system.home"
-            ],
-            "actions": [
-              "ohos.want.action.home"
-            ]
-          }
-        ],
-      }
-    ]
+  ```json
+  {
+    "module": {
+      // ...
+      "abilities": [
+        {
+          "icon": "$media:icon",
+          "label": "$string:EntryAbility_label",
+          "skills": [
+            {
+              "entities": [
+                "entity.system.home"
+              ],
+              "actions": [
+                "ohos.want.action.home"
+              ]
+            }
+          ],
+        }
+      ]
+    }
   }
-}
-```
-#### Management Rules
+  ```
+### Management Rules
 The system strictly controls applications without icons to prevent malicious applications from deliberately displaying no icon on the home screen to block uninstall attempts.
 
-To hide an icon of a pre-installed application on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> After this privilege is granted, the application icon will not be displayed on the home screen.
+To hide an icon of a pre-installed application on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> After this privilege is granted, the application icon will not be displayed on the home screen. Home screen icons cannot be hidden for applications except pre-installed ones.
 
-Home screen icons can be hidden only for pre-installed applications. The icon display rules are as follows:
-* The HAP file contains UIAbility configuration.
-  * If both an icon and a label are configured in the **abilities** tag of the **module.json5** file, the system displays that icon and label on the home screen. Touching this icon will direct the user to the home page of the UIAbility. If only an icon is configured, the system displays the label configured in the **app.json5** file on the home screen.
-
-  * If no icon is configured in the **abilities** tag of the **module.json5** file, the system displays the icon and label configured in the **app.json5** file on the home screen. Touching this icon will direct the user to the application details page.
-
-* The HAP file does not contain UIAbility configuration. The system displays the icon and label configured in the **app.json5** file on the home screen. Touching this icon will direct the user to the application details page.
-
-
-  **Figure 3** Application details page
-
-  ![Application details page](figures/application_details.jpg)
 
 ## Configuring Application Version Declaration
 
@@ -100,4 +85,4 @@ To configure the device types supported by the module, set the [deviceTypes](../
 
 ## Configuring the Module Permission
 
-The [requestPermissions](../quick-start/module-configuration-file.md#requestpermissions) field in the [module.json5 file](../quick-start/module-configuration-file.md) is used to configure the permission information required by the module to access the protected part of the system or other applications. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used.
+The [requestPermissions](../security/AccessToken/declare-permissions.md) field in the [module.json5 file](../quick-start/module-configuration-file.md) is used to configure the permission information required by the module to access the protected part of the system or other applications. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used.

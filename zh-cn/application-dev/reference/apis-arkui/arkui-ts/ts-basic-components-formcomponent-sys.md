@@ -69,6 +69,8 @@ FormComponent (value: FormInfo)
 | Dimension_2_1<sup>9+</sup> | 2*1 卡片 |
 | Dimension_1_1<sup>11+</sup> | 1*1 卡片 |
 | Dimension_6_4<sup>12+</sup> | 6*4 卡片 |
+| Dimension_2_3<sup>14+</sup> | 2*3 卡片为穿戴设备使用 |
+| Dimension_3_3<sup>14+</sup> | 3*3 卡片为穿戴设备使用 |
 
 ## FormRenderingMode<sup>11+</sup>
 | 名称                       | 描述     |

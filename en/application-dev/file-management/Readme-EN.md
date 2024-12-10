@@ -30,7 +30,7 @@
     - [Persisting Temporary Permissions (C/C++)](native-fileshare-guidelines.md)
   - [Obtaining and Accessing a User Directory](request-dir-permission.md)
   <!--Del-->
-  - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
+  - [Developing a File Manager Application (for System Applications Only)](dev-user-file-manager.md)
   - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
   <!--DelEnd-->
 - Distributed File System

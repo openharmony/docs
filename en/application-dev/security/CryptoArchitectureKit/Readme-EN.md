@@ -1,4 +1,4 @@
-# Crypto Architecture Kit (Crypto Architecture Kit)
+# Crypto Architecture Kit
 
 - [Introduction to Crypto Architecture Kit](crypto-architecture-kit-intro.md)
 - Key Generation and Conversion
@@ -74,9 +74,12 @@
     - [Key Agreement Using ECDH](crypto-key-agreement-using-ecdh.md)
     - [Key Agreement Using X25519](crypto-key-agreement-using-x25519.md)
     - [Key Agreement Using DH](crypto-key-agreement-using-dh.md)
-- [MD Operation (ArkTS)](crypto-generate-message-digest.md)
-- [MD Operation (C/C++)](crypto-generate-message-digest-ndk.md)
-- [MAC Operation](crypto-compute-mac.md)
+- MD Operations
+  - [MD Overview and Algorithm Specifications](crypto-generate-message-digest-overview.md)
+  - MD Generation Development
+    - [MD Operations (ArkTS)](crypto-generate-message-digest.md)
+    - [MD Operations (C/C++)](crypto-generate-message-digest-ndk.md)
+- [MAC Operations](crypto-compute-mac.md)
 - [Random Number Generation](crypto-generate-random-number.md)
 - Key Derivation
   - [Key Derivation Overview and Algorithm Specifications](crypto-key-derivation-overview.md)

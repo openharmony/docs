@@ -7,6 +7,8 @@ The **native_avscreen_capture_base.h** file declares the common structs, charact
 
 **Library**: libnative_avscreen_capture.so
 
+**File to include**: <multimedia/player_framework/native_avscreen_capture_base.h>
+
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
 **Since**: 10

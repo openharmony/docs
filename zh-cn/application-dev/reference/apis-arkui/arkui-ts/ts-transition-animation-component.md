@@ -32,8 +32,8 @@
 | ------ | ------ |
 | TOP    | 窗口的上边缘 |
 | BOTTOM | 窗口的下边缘 |
-| START  | 窗口的左边缘 |
-| END    | 窗口的右边缘 |
+| START  | 窗口的起始边缘，LTR时为左边缘，RTL时为右边缘 |
+| END    | 窗口的终止边缘，LTR时为右边缘，RTL时为左边缘 |
 
 ## TransitionEffect<sup>10+</sup>对象说明
 TransitionEffect以函数的形式指定转场效果。提供了以下接口：

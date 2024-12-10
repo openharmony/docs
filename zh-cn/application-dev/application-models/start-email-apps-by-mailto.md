@@ -52,7 +52,7 @@ mailto:someone@example.com?key1=value1&key2=value2
 
 保证mailto字符串传入uri参数即可，在应用中page页面可通过 getContext(this) 获取context，在ability中可通过this.context获取context。
 
-```
+```ts
 @Entry
 @Component
 struct Index {
@@ -80,7 +80,7 @@ struct Index {
 
 1. 为了能够支持被其他应用通过mailto协议拉起，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中声明mailto。
 
-    ```
+    ```json
     {
       "module": {
         // ...
@@ -107,9 +107,9 @@ struct Index {
     }
     ```
 
-2. 目标应用在代码中取出uri参数进行解析
+2. 目标应用在代码中取出uri参数进行解析。
 
-    ```
+    ```ts
     export default class EntryAbility extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void { 
         // 应用冷启动生命周期回调，其他业务处理...

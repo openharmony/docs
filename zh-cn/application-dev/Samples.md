@@ -152,7 +152,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### 自定义分享
 ##### 介绍
-自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis-arkui/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis-arkui/js-apis-screenshot-sys.md) 实现屏幕的截取，使用[文件管理](reference/apis-core-file-kit/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[相册管理](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 获取截取的图片，使用[弹窗](reference/apis-arkui/js-apis-promptAction.md) 进行信息的提示。
+自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis-network-kit/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis-arkui/js-apis-screenshot-sys.md) 实现屏幕的截取，使用[文件管理](reference/apis-core-file-kit/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[相册管理](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 获取截取的图片，使用[弹窗](reference/apis-arkui/js-apis-promptAction.md) 进行信息的提示。
 ##### 使用
 使用说明：
 
@@ -230,7 +230,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### Http
 ##### 介绍
-本示例通过[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 等接口，实现了根据URL地址和相关配置项发起http请求的功能。
+本示例通过[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 等接口，实现了根据URL地址和相关配置项发起http请求的功能。
 ##### 使用
 1.启动应用可配置网络请求，设置网址、请求方式、请求参数；
 
@@ -775,7 +775,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用 [geolocation](reference/apis-location-kit/js-apis-geolocation.md) 实现获取当前位置的经纬度，然后通过 [http](reference/apis-arkui/js-apis-http.md) 将经纬度作为请求参数，获取到该经纬度所在的城市。通过 [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) 容器组件实现按逻辑结构快速定位容器显示区域。
+本示例使用 [geolocation](reference/apis-location-kit/js-apis-geolocation.md) 实现获取当前位置的经纬度，然后通过 [http](reference/apis-network-kit/js-apis-http.md) 将经纬度作为请求参数，获取到该经纬度所在的城市。通过 [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) 容器组件实现按逻辑结构快速定位容器显示区域。
 
 ##### 使用
 
@@ -1620,7 +1620,7 @@ Preferences.flush()保存并刷新文件内容。
   + 视频播放：start方法视频开始播放；
   + 全屏播放：再次点击视频进入全屏播放页面，使用setCurrentTime参数设定当前播放时间，pause方法停止播放;
   + 小窗口播放：记录当前播放时间，小窗口页面渲染之前设置视频当前播放时间，页面滚动到固定距离开始展示组件；
-  + 直播：使用[http](reference/apis-arkui/js-apis-http.md)接口的request方法获取直播数据;
+  + 直播：使用[http](reference/apis-network-kit/js-apis-http.md)接口的request方法获取直播数据;
 
 ##### 约束与限制
 
@@ -2082,7 +2082,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * 在主页面显示了一个XComponent控件，默认显示立方体。通过用户点击，触发ChangeShape事件，opengl_draw收到事件，完成绘制内容变更。首页启动时，会触发一个定时器，每40ms触发一次，当opengl_draw收到事件时，进行动画更新。
 
-* 在XComponent初始化完成时，OnSurfaceCreated回调里面，会自动开始图形绘制。源码参考[opengl_draw.cpp](.//entry/src/main/cpp/opengl_draw.cpp) 。在opengl_draw.cpp里面Init方法会创建EglWindow和EGLSurface，然后创建上下文EGLContext，完成baseShape的初始化，默认使用Cube进行初始化。
+* 在XComponent初始化完成时，OnSurfaceCreated回调里面，会自动开始图形绘制。源码参考[opengl_draw.cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Native/XComponent3D/entry/src/main/cpp/opengl_draw.cpp) 。在opengl_draw.cpp里面Init方法会创建EglWindow和EGLSurface，然后创建上下文EGLContext，完成baseShape的初始化，默认使用Cube进行初始化。
 
 * 绘制2D图形：rectangle.cpp的Init方法，完成Shader的初始化。Update方法主要是绘制两个图形，一个进行旋转，一个进行缩放。
 
@@ -2824,7 +2824,7 @@ Preferences.flush()保存并刷新文件内容。
 
 * 该示例使用cancelSuspendDelay方法取消延迟挂起，applyQuickFix方法快速修复补丁，createHttp方法创建一个HTTP请求，openSync方法同步打开文件，writeSync方法同步将数据写入文件，closeSync方法同步关闭文件流等接口实现应用热更新的方式去展现短时任务机制。
 
-* 接口参考：[@ohos.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)，[@ohos.net.http](reference/apis-arkui/js-apis-http.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)
+* 接口参考：[@ohos.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)，[@ohos.app.ability.quickFixManager](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)，[@ohos.net.http](reference/apis-network-kit/js-apis-http.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)
 
 ##### 约束与限制
 
@@ -2838,7 +2838,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 、[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle.md) 、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。
+本示例使用[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 、[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、[@ohos.bundle](reference/apis-ability-kit/js-apis-Bundle.md) 、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。
 
 ##### 使用
 
@@ -3602,11 +3602,11 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 基本原理
 
-1. 执行hdc命令`hdc list targets`获取当前连接开发板sn号，[源码参考](./ci/src/app.controller.ts)。
+1. 执行hdc命令`hdc list targets`获取当前连接开发板sn号，[源码参考](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/HapBuild/ci/src/app.controller.ts)。
 
-2. 使用gitee官方web hook读取PR修改文件列表并将修改写入本地sample仓中，再根据修改文件路径找出对应的项目，使用[编译工具](./compile-tool)中`compile-ohpm-ci.sh`脚本编译项目中的`entry`及`ohostest`包。
+2. 使用gitee官方web hook读取PR修改文件列表并将修改写入本地sample仓中，再根据修改文件路径找出对应的项目，使用[编译工具](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/HapBuild/compile-tool)中`compile-ohpm-ci.sh`脚本编译项目中的`entry`及`ohostest`包。
 
-3. [InstallAndTestSpecial_ci.py](./test-tool//InstallAndTestSpecial_ci.py)脚本来安装entry包、ohosTest测试包以及拉起自动化测试用例。
+3. [InstallAndTestSpecial_ci.py](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/HapBuild/test-tool/InstallAndTestSpecial_ci.py)脚本来安装entry包、ohosTest测试包以及拉起自动化测试用例。
 
 ##### 约束与限制
 
@@ -3889,7 +3889,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis-arkui/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis-arkui/js-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/apis-arkui/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
+本示例使用延迟任务回调能力接口[@ohos.WorkSchedulerExtensionAbility](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) 、通知管理的能力接口[@ohos.notification](reference/apis-notification-kit/js-apis-notification.md) 、HTTP数据请求能力接口[@ohos.net.http](reference/apis-network-kit/js-apis-http.md) 、媒体查询接口[@system.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md) 、管理窗口能力接口[@ohos.window](reference/apis-arkui/js-apis-window.md) 。实现在进场时加载进场动画，使用[Tabs容器](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 实现通过页签进行内容视图切换。使用[自定义弹窗](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md) 设置位置信息。使用[Swiper](reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件实现页面展示图轮播。使用[Grid](reference/apis-arkui/arkui-ts/ts-container-list.md) 容器组件设置展示的商品信息。
 
 ##### 使用
 

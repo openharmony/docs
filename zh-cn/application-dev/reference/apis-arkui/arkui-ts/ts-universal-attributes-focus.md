@@ -140,31 +140,6 @@ requestFocus(value: string): boolean
 >
 >  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
 
-
-## FocusController<sup>12+</sup>
-以下clearFocus，requestFocus 两个API需先使用UIContext中的[getFocusController()](../js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
-
-
-### clearFocus<sup>12+</sup>
-
-clearFocus(): void
-
-清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
-
->  **说明：**
->
->  详细介绍请参见[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)。
-
-### requestFocus<sup>12+</sup>
-
-requestFocus(key: string): void
-
-通过组件的id将焦点转移到组件树对应的实体节点。
-
->  **说明：**
->
->  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
-
 ## FocusBoxStyle<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -210,7 +185,7 @@ focusScopeId(id: string, isGroup?: boolean)
 
 设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：**  从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -221,13 +196,49 @@ focusScopeId(id: string, isGroup?: boolean)
 | id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。 |
 | isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。|
 
+## focusScopeId<sup>14+</sup>
+
+focusScopeId(id: string, isGroup?: boolean, arrowStepOut?: boolean)
+
+设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| arrowStepOut<sup>14+</sup>  | boolean | 否   | 设置能否使用方向键走焦出当前焦点组。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+
+## tabStop<sup>14+</sup>
+
+tabStop(isTabStop: boolean) :T
+
+设置当前容器组件的tabStop，可决定在走焦时焦点是否会停留在当前容器。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isTabStop  | boolean | 是   | 设置当前容器组件是否为走焦可停留容器。<br/>**说明：** <br/>1.配置tabStop需要保障是容器组件且有可获焦的孩子组件，默认容器组件不能直接获焦。<br/> 2.通过[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)请求焦点，如果是容器组件且配置tabStop，焦点能够停留在容器组件，如果未配置tabStop，即使整条焦点链上有配置了tabStop的组件，该组件依然能获取到焦点。<br/>3.配置tabStop的容器不允许嵌套超过2层。<br/>tabStop走焦规则：<br/>1.通过tab键和方向键走焦，焦点会停留在配置了tabStop的组件上，如果焦点停留在配置了tabStop的容器内部时，可以走焦到容器内部的下一个可获焦组件，如果焦点停留在配置了tabStop的容器外部时，可以走焦到容器外的下一个可获焦组件。<br/>2.当焦点停留在tabStop上时，按Enter键可以走焦到内部第一个可获焦组件，按ESC能够将焦点退回到焦点链中不超过当前层级页面根容器的上一个配置了tabStop的组件，按空格键可以响应该容器的onClick事件。<br/>3.不建议根容器配置tabStop。如果根容器配置了tabStop，通过[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)将焦点清理到根容器，再按Enter键会重新走回内部上一次获焦组件，通过ESC键将焦点清理到根容器，再按Enter键会走焦到内部第一个可获焦组件。|
+
+**描述走焦的时候的按键以及获焦组件**
+
+![tabStop](figures/tabStop.png)
+
+当前焦点如果停留在button2时，按下tab键将会走焦到Column3上，再按下tab键会循环走焦到button1上
+
 ## 示例
 
-### 示例1
+### 示例1（设置组件获焦和走焦的效果）
 
-defaultFocus/groupDefaultFocus/focusOnTouch示例代码：
-
-defaultFocus可以使绑定的组件成为页面创建后首次获焦的焦点。groupDefaultFocus可以使绑定的组件成为tabIndex容器创建后首次获焦的焦点。focusOnTouch可以使绑定的组件点击后立即获焦。
+该示例通过配置defaultFocus可以使绑定的组件成为页面创建后首次获焦的焦点，配置groupDefaultFocus可以使绑定的组件成为tabIndex容器创建后首次获焦的焦点，配置focusOnTouch可以使绑定的组件点击后立即获焦。
 
 ```ts
 // focusTest.ets
@@ -376,15 +387,14 @@ struct FocusableExample {
 
 ![focusOnTouch](figures/focusOnTouch.png)
 
-### 示例2
+### 示例2（设置指定组件获焦）
+
+该示例通过配置focusControl.requestFocus使指定组件获取焦点。
 
 > **说明：**
 > 
 > 直接使用focusControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12)获取绑定实例的focusControl。
 
-focusControl.requestFocus示例代码：
-
-使用focusControl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
 @Entry
@@ -464,11 +474,10 @@ struct RequestFocusExample {
 
 ![requestFocus3](figures/requestFocus3.png)
 
-### 示例3
+### 示例3（设置焦点框样式）
 
-focusBox示例代码：
+该示例通过配置focusBox修改组件的焦点框样式。
 
-使用focusBox修改组件的焦点框样式示例代码：使焦点框变为红色/加粗/内边框。
 ```ts
 import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
 
@@ -498,11 +507,9 @@ struct RequestFocusExample {
 ![focusBox](figures/focusBox.gif)
 
 
-### 示例4
+### 示例4（设置焦点组走焦）
 
-focusScopePriority/focusScopeId示例代码：
-
-focusScopePriority可以使绑定的组件成为所属容器首次获焦时的焦点。focusScopeId可以使绑定的容器组件组件成为焦点组。
+该示例通过配置focusScopePriority可以使绑定的组件成为所属容器首次获焦时的焦点，配置focusScopeId可以使绑定的容器组件组件成为焦点组。
 
 ```ts
 // focusTest.ets
@@ -626,3 +633,82 @@ struct FocusableExample {
   }
 }
 ```
+
+### 示例5（设置tab走焦停留）
+
+该示例通过配置tabstop实现使用tab走焦停留在组件上。
+
+```ts
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct TabStop {
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 20 }) {
+        Column({ space: 20 }) {
+          Row({ space: 5 }) {
+            Button("button 1")
+              .width(200).height(70).fontColor(Color.White)
+              .focusBox({
+                margin: LengthMetrics.px(20),
+                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeWidth: LengthMetrics.px(10)
+              })
+          }
+          Row({ space: 5 }) {
+            Button("button 2")
+              .width(200).height(70).fontColor(Color.White)
+              .focusBox({
+                margin: LengthMetrics.px(20),
+                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeWidth: LengthMetrics.px(10)
+              })
+          }
+        }.width('80%').margin({ top: 30 }).borderColor(Color.Black)
+      }.width('95%').margin({ top: 60 }).borderColor(Color.Black)
+      Column({ space: 20 }) {
+        Column({ space: 20 }) {
+          Row({ space: 5 }) {
+            Button("button 3")
+              .width(200)
+              .height('70%')
+              .fontColor(Color.White)
+              .focusBox({
+                margin: LengthMetrics.px(20),
+                strokeColor: ColorMetrics.rgba(255, 0, 0),
+                strokeWidth: LengthMetrics.px(10)
+              })
+              .margin({ top: 15 })
+          }
+        }
+        .width('80%')
+        .height('120')
+        .borderColor(Color.Black)
+        .margin({ top: 10 })
+        .tabStop(true)
+        .focusBox({
+          margin: LengthMetrics.px(20),
+          strokeColor: ColorMetrics.rgba(255, 0, 0),
+          strokeWidth: LengthMetrics.px(10)
+        })
+        .borderWidth(1)
+      }.width('95%').margin({ top: 50 }).borderColor(Color.Black)
+    }
+  }
+}
+```
+示意图：
+
+连续按下两次TAB键时，焦点聚焦在第二个孩子组件上。
+
+![tabStop1](figures/tabStop1.png)
+
+接着按下TAB键，焦点聚焦在配置了tabStop上的组件。
+
+![tabStop2](figures/tabStop2.png)
+
+再按下TAB键，焦点将循环聚焦到第一个孩子组件上。
+
+![tabStop3](figures/tabStop3.png)

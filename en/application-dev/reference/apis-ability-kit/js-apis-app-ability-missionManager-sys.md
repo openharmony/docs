@@ -149,7 +149,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **Example**
 
@@ -252,7 +252,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **Example**
 

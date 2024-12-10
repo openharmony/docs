@@ -3,7 +3,7 @@
 
 ## Viewing Logs on DevEco Studio
 
-In the CPU Insight of DevEco Studio Profiler, you can view the CPU usage and thread running status of applications and services, learn about the CPU consumption in the specified period and key loggings of the system. For details, see <!--RP1-->[CPU Analysis](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-insight-session-cpu-0000001532306157-V5)<!--RP1End-->.
+In the CPU Insight of DevEco Studio Profiler, you can view the CPU usage and thread running status of applications and services, and learn about the CPU consumption in the specified period and key logging of the system. For details, see <!--RP1-->[CPU Activity Analysis: CPU](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-insight-session-cpu-V5)<!--RP1End-->.
 
 ## Viewing Logs Using a Command Line Tool
 

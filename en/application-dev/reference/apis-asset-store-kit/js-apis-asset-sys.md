@@ -19,30 +19,32 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 Adds an asset to the specified user space. This API uses a promise to return the result.
 
+To set [IS_PERSISTENT](js-apis-asset.md#tag), the application must have the ohos.permission.STORE_PERSISTENT_DATA permission.
+
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Security.Asset
 
-| Name    | Type    | Mandatory | Description                                                        |
+| Name    | Type    | Mandatory| Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | userId     | number                                | Yes  | User ID.                                                          |
-| attributes | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data. |
+| attributes | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID | Error Message                                                  |
+| ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000003 | The asset already exists.                                  |
 | 24000005 | The screen lock status does not match.                         |
@@ -93,28 +95,30 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 Removes one or more assets from the specified user space. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Security.Asset
 
-| Name | Type    | Mandatory | Description                                                  |
+| Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                                 |
-| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data. |
+| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data.|
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID | Error Message                                                  |
+| ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
@@ -159,29 +163,31 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 Updates an asset in the specified user space. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Security.Asset
 
-| Name            | Type    | Mandatory | Description                                                        |
+| Name            | Type    | Mandatory| Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
 | userId             | number                                | Yes  | User ID.                                                        |
-| query              | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data. |
+| query              | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data.|
 | attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | Yes  | New attributes of the asset, such as the asset plaintext and custom data.             |
 
 **Return value**
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID | Error Message                                                  |
+| ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
 | 24000005 | The screen lock status does not match.                         |
@@ -230,28 +236,30 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
 Performs preprocessing for the asset query in the specified user space. This API is used when user authentication is required for the access to the asset. After the user authentication is successful, call [asset.queryAsUser](#assetqueryasuser) and [asset.postQueryAsUser](#assetpostqueryasuser). This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Security.Asset
 
-| Name | Type    | Mandatory | Description                                                  |
+| Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                           |
-| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data. |
+| query  | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data.|
 
 **Return value**
 
 | Type               | Description                                                 |
 | ------------------- | ----------------------------------------------------- |
-| Promise\<Uint8Array> | Promise used to return a challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication. |
+| Promise\<Uint8Array> | Promise used to return a challenge value.<br>**NOTE**: The challenge value is used for subsequent user authentication.|
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | The caller doesn't have the permission.                      |
 | 202      | Non-system applications use system APIs.                     |
-| 401      | The argument is invalid.                                     |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                            |
 | 24000002 | The asset is not found.                          |
 | 24000005 | The screen lock status does not match.                           |
@@ -299,9 +307,11 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 Queries one or more assets in the specified user space. If user authentication is required for the access to the asset, call [asset.preQueryAsUser](#assetprequeryasuser) before this API and call [asset.postQueryAsUser](#assetpostqueryasuser) after this API. For details about the development procedure, see [Querying an Asset with User Authentication](../../security/AssetStoreKit/asset-js-query-auth.md). This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Security.Asset
 
-| Name  | Type                           | Mandatory | Description                                                        |
+| Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | userId   | number                                          | Yes  | User ID.                                                 |
 | query    | [AssetMap](js-apis-asset.md#assetmap)           | Yes  | Attributes of the asset, such as the asset aliases, access control attributes, and custom data.      |
@@ -310,20 +320,20 @@ Queries one or more assets in the specified user space. If user authentication i
 
 | Type                    | Description                                 |
 | ------------------------ | ------------------------------------- |
-| Promise\<Array\<AssetMap>> | Promise used to return the result obtained. |
+| Promise\<Array\<AssetMap>> | Promise used to return the result obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID | Error Message                                                  |
+| ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000002 | The asset is not found.                        |
-| 24000004 | Access to the asset is denied.                             |
+| 24000004 | Access denied.                             |
 | 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
 | 24000007 | The asset is corrupted.                                    |
@@ -372,9 +382,11 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 Performs postprocessing for the asset query in the specified user space. This API is used when user authentication is required for the access to the asset. This API must be used with [asset.preQueryAsUser](#assetprequeryasuser) together. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Security.Asset
 
-| Name | Type    | Mandatory | Description                                                        |
+| Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | userId | number                                | Yes  | User ID.                                                                    |
 | handle | [AssetMap](js-apis-asset.md#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQueryAsUser](#assetprequeryasuser). |
@@ -383,17 +395,17 @@ Performs postprocessing for the asset query in the specified user space. This AP
 
 | Type         | Description                   |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Asset Store Service Error Codes](errorcode-asset.md).
 
-| ID | Error Message                                                  |
+| ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
 | 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
 | 24000010 | IPC failed.                                |

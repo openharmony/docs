@@ -52,16 +52,16 @@
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
 - Fault Analysis
-  - [Analyzing JS Crash](jscrash-guidelines.md)
-  - [Analyzing Cpp Crash](cppcrash-guidelines.md)
-  - [Analyzing App Freeze](appfreeze-guidelines.md)
+  - [Analyzing JSCrash](jscrash-guidelines.md)
+  - [Analyzing CppCrash](cppcrash-guidelines.md)
+  - [Analyzing AppFreeze](appfreeze-guidelines.md)
 - Command Line Tools
   - [hdc](hdc.md)
   - [hilog](hilog.md)
   - [hidumper](hidumper.md)
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
-  - [hisysevent](hisysevent.md)
   <!--Del-->
+  - [hisysevent](hisysevent.md)
   - [uinput](uinput.md)
   <!--DelEnd-->

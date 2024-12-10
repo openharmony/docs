@@ -95,6 +95,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getAssets');
@@ -154,7 +155,7 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 **示例：**
 
 ```ts
-import { photoAccessHelper } form '@kit.MediaLibraryKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
@@ -230,6 +231,8 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 **示例：**
 
 ```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
 async function example() {
   console.info('createAssetDemo');
   try {
@@ -289,6 +292,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   // 示例代码中为获取相册名为newAlbumName的相册。
@@ -353,6 +357,7 @@ getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   // 示例代码中为获取相册名为newAlbumName的相册。
@@ -518,6 +523,7 @@ get(member: string): MemberType
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('photoAssetGetDemo');
@@ -567,6 +573,7 @@ set(member: string, value: string): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('photoAssetSetDemo');
@@ -683,6 +690,7 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -735,6 +743,7 @@ getCount(): number
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getCountDemo');
@@ -777,6 +786,7 @@ isAfterLast(): boolean
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -818,6 +828,7 @@ close(): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('fetchResultCloseDemo');
@@ -864,6 +875,7 @@ getFirstObject(): Promise&lt;T&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -907,6 +919,7 @@ getNextObject(): Promise&lt;T&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -950,6 +963,7 @@ getLastObject(): Promise&lt;T&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -998,6 +1012,7 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getObjectByPositionDemo');
@@ -1040,6 +1055,7 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -1165,6 +1181,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('albumGetAssetsDemoPromise');
@@ -1219,6 +1236,7 @@ commitModify(): Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('albumCommitModifyDemo');
