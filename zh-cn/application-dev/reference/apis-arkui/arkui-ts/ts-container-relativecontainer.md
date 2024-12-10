@@ -24,7 +24,7 @@
    * 垂直方向的guideline和barrier只能作为组件水平方向的锚点，作为垂直方向的锚点时取0；水平方向的guideline和barrier只能作为组件垂直方向的锚点，作为水平方向的锚点时取0。
    * 链的形成依靠组件间的依赖关系。以一个组件A、组件B组成的最小水平链为例，需要有锚点1 <-- 组件A <---> 组件B --> 锚点2的依赖关系，即A具有left锚点，B具有right锚点，同时A的right锚点是B的HorizontalAlign.Start，B的left锚点是A的HorizontalAlign.End。
    * 链的方向和格式声明在链头组件的[chainMode](ts-universal-attributes-location.md#chainmode12)接口；链内元素的bias属性全部失效，链头元素的bias作为整个链的bias生效。
-   * 链内所有元素的size如果超出链的锚点约束，超出的部分将均分在链的两侧。在[Packed](ts-appendix-enums.md#chainstyle12)链中，超出部分的分布可以通过[bias](ts-universal-attributes-location.md#bias对象说明)来设置。
+   * 链内所有元素的size如果超出链的锚点约束，超出的部分将均分在链的两侧。在[Packed](ts-universal-attributes-location.md#chainstyle12)链中，超出部分的分布可以通过[bias](ts-universal-attributes-location.md#bias对象说明)来设置。
  * 特殊情况
    * 根据约束条件和子组件本身的size属性无法确定子组件大小，则子组件不绘制。
    * 互相依赖、环形依赖时容器内子组件全部不绘制。
@@ -184,9 +184,9 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 
 ## 示例
 
-### 示例1
+### 示例1（以容器和容器内组件作为锚点进行布局）
 
-本示例展示了以容器和容器内组件作为锚点进行布局的用法。
+本示例通过alignRules接口实现了以容器和容器内组件作为锚点进行布局的功能。
 
 ```ts
 @Entry
@@ -253,9 +253,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer.png)
 
-### 示例2
+### 示例2（子组件设置外边距）
 
-本示例展示了容器内子组件设置margin的用法。
+本示例展示了容器内子组件设置外边距的用法。
 
 ```ts
 @Entry
@@ -312,9 +312,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer1.png)
 
-### 示例3
+### 示例3（设置容器大小自适应内容）
 
-本示例展示了容器大小适应内容（声明size为"auto"）的用法。
+本示例展示了容器大小适应内容（声明width或height为"auto"）的用法。
 
 ```ts
 @Entry
@@ -365,9 +365,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer2.png)
 
-### 示例4
+### 示例4（设置偏移）
 
-本示例展示了bias的用法。
+本示例通过[bias](ts-universal-attributes-location.md#bias对象说明)实现了子组件的位置在竖直方向的两个锚点间偏移的效果
 
 ```ts
 @Entry
@@ -397,9 +397,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer3.png)
 
-### 示例5
+### 示例5（设置辅助线）
 
-本示例展示了guideline的声明和以guideline为锚点的用法。
+本示例展示了相对布局组件通过[guideLine](#guideline12)接口设置辅助线，子组件以辅助线为锚点的功能。
 
 ```ts
 @Entry
@@ -428,9 +428,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer4.png)
 
-### 示例6
+### 示例6（设置屏障）
 
-本示例展示了barrier的声明和以barrier为锚点的用法。
+本示例展示了相对布局组件通过[barrier](#barrier12)接口设置屏障，子组件以屏障为锚点的用法。
 
 ```ts
 @Entry
@@ -483,9 +483,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer5.png)
 
-### 示例7
+### 示例7（设置链）
 
-本示例通过chainMode接口从上至下分别实现了水平方向的SPREAD链，SPREAD_INSIDE链和PACKED链。
+本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)接口从上至下分别实现了水平方向的[SPREAD链，SPREAD_INSIDE链和PACKED链](ts-universal-attributes-location.md#chainstyle12)。
 
 ```ts
 @Entry
@@ -597,9 +597,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer6.png)
 
-### 示例8
+### 示例8（链中设置偏移）
 
-本示例通过chainMode和bias接口实现了水平方向的带bias的PACKED链。
+本示例通过[chainMode](ts-universal-attributes-location.md#chainmode12)和[bias](ts-universal-attributes-location.md#bias对象说明)接口实现了水平方向的带偏移的[PACKED链](ts-universal-attributes-location.md#chainstyle12)。
 
 ```ts
 @Entry
@@ -650,9 +650,9 @@ struct Index {
 ```
 ![relative container](figures/relativecontainer7.png)
 
-### 示例9
+### 示例9（设置镜像模式）
 
-本示例展示了在RTL模式下以barrier为锚点时使用LocalizedAlignRuleOptions和LocalizedBarrierDirection设置对齐方式的用法。
+本示例展示了在镜像模式（direction声明Direction.Rtl）下以屏障为锚点时使用[LocalizedAlignRuleOptions](ts-universal-attributes-location.md#localizedalignruleoptions12对象说明)和[LocalizedBarrierDirection](#localizedbarrierdirection12枚举说明)设置对齐方式的用法。
 
 ```ts
 @Entry
