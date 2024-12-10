@@ -1,6 +1,11 @@
 # AVCodec Kit简介
 AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原子能力）是媒体系统中的音视频的编解码、媒体文件的解析、封装、媒体数据输入等原子能力。
 
+> **注意：**
+>
+> 基于性能考虑，AVCodec kit仅提供C接口。
+>
+
 ## 能力范围
 - 媒体数据输入：媒体应用可以传入文件fd、或者流媒体url，进行后续的媒体信息解析等处理。
 - 媒体基础能力（Media Foundation）：提供媒体数据处理的公共基础类型，包括[AVBuffer](../../reference/apis-avcodec-kit/native__avbuffer_8h.md)、[AVFormat](../../reference/apis-avcodec-kit/native__avformat_8h.md)等。
