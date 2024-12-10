@@ -1,4 +1,4 @@
-# 仅对MDM应用开放
+# 仅MDM应用可用权限
 
 以下权限仅对MDM（Mobile Device Management）设备管理应用开放。MDM应用的详细介绍，请参考[MDM Kit简介](../../mdm/mdm-kit-intro.md)。
 
