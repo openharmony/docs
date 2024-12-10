@@ -136,14 +136,6 @@
      // 通过getContext方法，来获取page所在的UIAbility上下文。
       private context: Context = getContext(this);
 
-      // 长时任务取消回调
-      callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
-        // 长时任务id
-        console.info('OnContinuousTaskCancel callback id ' + info.id);
-        // 长时任务取消原因
-        console.info('OnContinuousTaskCancel callback reason ' + info.reason);
-      }
-
       OnContinuousTaskCancel() {
         try {
            backgroundTaskManager.on("continuousTaskCancel", callback);
