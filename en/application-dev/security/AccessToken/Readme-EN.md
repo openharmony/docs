@@ -4,7 +4,7 @@
 - Application Permission Management
   - [Application Permission Management Overview](app-permission-mgmt-overview.md)
   - Requesting Application Permissions
-    - [Workflow for Using Permissions](determine-application-mode.md)
+    - [Workflow for Requesting Permissions](determine-application-mode.md)
     - [Declaring Permissions](declare-permissions.md)
     - [Requesting User Authorization](request-user-authorization.md)
     - [Requesting User Authorization Again](request-user-authorization-second.md)

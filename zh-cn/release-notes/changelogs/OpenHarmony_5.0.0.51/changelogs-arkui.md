@@ -207,7 +207,7 @@ ImageAttributeModifier不支持new方式创建ColorFilter对象传入colorFilter
 
 **起始API Level**
 
-API 14
+API 9
 
 **变更发生版本**
 
@@ -297,7 +297,7 @@ API version 14及以后，使用drawImage接口时，若传入9个参数，且�
 **示例**
 
 ```ts
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component

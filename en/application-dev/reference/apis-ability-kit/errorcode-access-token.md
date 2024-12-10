@@ -60,7 +60,7 @@ Permission does not exist.
 Set **permissionName** correctly. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).
 
 
-## 12100004 APIs Not Used in Pairs
+## 12100004 Listener APIs Not Used in Pairs
 
 **Error Message**
 
@@ -177,11 +177,11 @@ All permissions in the permission list have been granted.
 
 **Possible Causes**
 
-All the requested permissions have been granted.
+All requested permissions have been granted.
 
 **Solution**
 
-None.
+No action is required. If this error code is returned, the permission has been granted and the permission settings dialog box will not be displayed.
 
 
 ## 12100012 Not All Permissions Are Rejected by the User
@@ -211,4 +211,4 @@ The global switch is already turned on.
 
 **Solution**
 
-None.
+No action is required. If this error code is returned, the global switch has been enabled and the dialog box for setting the global switch will not be displayed.

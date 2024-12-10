@@ -92,13 +92,13 @@ getLineMetrics(lineNumber: number): LineMetrics
 | ---------------------------------------- | -------- |
 | [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 行信息、文本样式信息、以及字体属性信息。 |
 
-### getRectsForRange<sup>13+</sup>
+### getRectsForRange<sup>14+</sup>
 
 getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
 获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中任意区间范围内的字符或占位符所占的绘制区域信息。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

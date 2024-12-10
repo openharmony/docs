@@ -16,7 +16,8 @@ There are two roles in **DataShare**:
 
 - Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper).
 
-**Figure 1** Data sharing mechanism 
+**Figure 1** Data sharing mechanism
+
 ![dataShare](figures/dataShare.jpg)
 
 - The **DataShareExtensionAbility** module, as the data provider, implements services related to data sharing between applications.
@@ -31,7 +32,7 @@ There are two roles in **DataShare**:
 ## How to Develop
 
 
-### Data Provider Application Development (Only for System Applications)
+### Data Provider Application Development (for System Applications Only)
 
 The [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) provides the following APIs. You can override these APIs as required.
 
@@ -210,8 +211,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
-   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { dataShare, dataSharePredicates, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
    import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Define the URI string for communicating with the data provider.
@@ -307,3 +309,6 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      (dsHelper as dataShare.DataShareHelper).close();
    }
    ```
+
+
+

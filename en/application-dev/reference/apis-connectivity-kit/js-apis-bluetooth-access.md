@@ -90,8 +90,6 @@ getState(): BluetoothState
 
 Obtains the Bluetooth state.
 
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -108,7 +106,6 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 |ID  | Error Message          |
 | -------- | ------------------ |
-|201 | Permission denied.                 |
 |801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |

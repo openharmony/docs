@@ -40,8 +40,8 @@ import { wallpaper } from '@kit.BasicServicesKit';
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
 | NORMAL | 0 |设备默认状态。 |
-| UNFOLD_1 | 1 |一次展开态。 |
-| UNFOLD_2 | 2 |二次展开态。 |
+| UNFOLD_ONCE_STATE | 1 |一次展开态。 |
+| UNFOLD_TWICE_STATE | 2 |二次展开态。 |
 
 ## RotateState<sup>14+</sup>
 
@@ -53,8 +53,8 @@ import { wallpaper } from '@kit.BasicServicesKit';
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
-| PORT | 0 |设备默认为竖屏状态。 |
-| LAND | 1 |横屏状态。 |
+| PORTRAIT | 0 |设备默认为竖屏状态。 |
+| LANDSCAPE | 1 |横屏状态。 |
 
 ## WallpaperInfo<sup>14+</sup>
 
@@ -782,9 +782,9 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.P
     console.error(`failed to getImage because: ${JSON.stringify(error)}`);
 });
 ```
-## wallpaper.getCorrespondWallpaper<sup>14+</sup>
+## wallpaper.getWallpaperByState<sup>14+</sup>
 
-getCorrespondWallpaper(wallpaperType:WallpaperType, foldState:FoldState, rotateState:RotateState): Promise&lt;image.PixelMap&gt;
+getWallpaperByState(wallpaperType:WallpaperType, foldState:FoldState, rotateState:RotateState): Promise&lt;image.PixelMap&gt;
 
 获取指定壁纸类型、折展态、横竖屏的壁纸图片的像素图，如果指定的壁纸不存在，会逐步降级匹配，unfolded-land -> unfolded-port ->normal-port。使用promise异步回调。
 
@@ -825,10 +825,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { wallpaper } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-wallpaper.getCorrespondWallpaper(wallpaper.WallpaperType.WALLPAPER_SYSTEM,wallpaper.FoldState.NORMAL,wallpaper.RotateState.PORT).then((data:image.PixelMap) => {
-  console.info(`success to getCorrespondWallpaper: ${JSON.stringify(data)}`);
+wallpaper.getWallpaperByState(wallpaper.WallpaperType.WALLPAPER_SYSTEM,wallpaper.FoldState.NORMAL,wallpaper.RotateState.PORTRAIT).then((data:image.PixelMap) => {
+  console.info(`success to getWallpaperByState: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-  console.error(`failed to getCorrespondWallpaper because: ${JSON.stringify(error)}`);
+  console.error(`failed to getWallpaperByState because: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -836,7 +836,7 @@ wallpaper.getCorrespondWallpaper(wallpaper.WallpaperType.WALLPAPER_SYSTEM,wallpa
 
 setAllWallpapers(wallpaperInfos: Array\<WallpaperInfo>\, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-将所有指定资源（包括折展状态、横竖屏转态、资源路径,其中NORMAL-PORT为必选）设置为指定类型的壁纸。使用promise异步回调。
+设置设备所有形态的壁纸。使用promise异步回调。（包括折展状态、横竖屏状态、资源路径，其中NORMAL-PORT为必选）
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -865,7 +865,7 @@ setAllWallpapers(wallpaperInfos: Array\<WallpaperInfo>\, wallpaperType: Wallpape
 | ------------ | ------------------------------------------- |
 | 201          | permission denied.                                                                              |
 | 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed: a.The path to the incoming image is incorrect. |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
 
 **示例：**
 
@@ -877,18 +877,18 @@ let wallpaperInfos: Array<wallpaper.WallpaperInfo>
 wallpaperInfos = [
   {
     foldState: wallpaper.FoldState.NORMAL,
-    rotateState: wallpaper.RotateState.PORT,
+    rotateState: wallpaper.RotateState.PORTRAIT,
     source: '/data/storage/el2/base/haps/entry/files/normal.jpeg'
   },
   {
-    foldState: wallpaper.FoldState.UNFOLD_1,
-    rotateState: wallpaper.RotateState.LAND,
-    source: '/data/storage/el2/base/haps/entry/files/unfold_1.jpeg'
+    foldState: wallpaper.FoldState.UNFOLD_ONCE_STATE,
+    rotateState: wallpaper.RotateState.LANDSCAPE,
+    source: '/data/storage/el2/base/haps/entry/files/unfold_once_state.jpeg'
   },
   {
-    foldState: wallpaper.FoldState.UNFOLD_2,
-    rotateState: wallpaper.RotateState.PORT,
-    source: '/data/storage/el2/base/haps/entry/files/unfold_2.jpeg'
+    foldState: wallpaper.FoldState.UNFOLD_TWICE_STATE,
+    rotateState: wallpaper.RotateState.PORTRAIT,
+    source: '/data/storage/el2/base/haps/entry/files/unfold_twice_state.jpeg'
   }
 ];
 wallpaper.setAllWallpapers(wallpaperInfos, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {

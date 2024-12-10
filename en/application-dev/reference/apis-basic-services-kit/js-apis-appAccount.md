@@ -1,6 +1,6 @@
-# @ohos.account.appAccount (App Account Management)
+# @ohos.account.appAccount (Application Account Management)
 
-The **appAccount** module provides APIs for adding, deleting, modifying, and querying app account information, and supports inter-app authentication and distributed data synchronization.
+The **appAccount** module provides APIs for adding, deleting, modifying, and querying application account information, and supports inter-application authentication and distributed data synchronization.
 
 > **NOTE**
 > 
@@ -26,7 +26,7 @@ Creates an **AppAccountManager** object.
 
 | Type               | Description          |
 | ----------------- | ------------ |
-| AppAccountManager | **AppAccountManager** object created. |
+| AppAccountManager | **AppAccountManager** object created.|
 
 **Example**
   ```ts
@@ -35,13 +35,13 @@ Creates an **AppAccountManager** object.
 
 ## AppAccountManager
 
-Implements app account management.
+Implements application account management.
 
 ### createAccount<sup>9+</sup>
 
 createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Creates an app account with the given name. This API uses an asynchronous callback to return the result.
+Creates an application account with the given name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -49,12 +49,12 @@ Creates an app account with the given name. This API uses an asynchronous callba
 
 | Name     | Type                   | Mandatory | Description              |
 | -------- | ------------------------- | ----- | -------------------- |
-| name     | string                    | Yes   | Name of the app account to create.         |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name     | string                    | Yes   | Name of the application account to create.         |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -80,7 +80,7 @@ Creates an app account with the given name. This API uses an asynchronous callba
 
 createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Creates an app account with custom data. This API uses an asynchronous callback to return the result.
+Creates an application account with custom data. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -88,13 +88,13 @@ Creates an app account with custom data. This API uses an asynchronous callback 
 
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| name      | string                    | Yes   | Name of the app account to create.                             |
-| options | [CreateAccountOptions](#createaccountoptions9) | Yes   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens). |
+| name      | string                    | Yes   | Name of the application account to create.                             |
+| options | [CreateAccountOptions](#createaccountoptions9) | Yes   | Options for creating the application account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens).|
 | callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -129,7 +129,7 @@ Creates an app account with custom data. This API uses an asynchronous callback 
 
 createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
-Creates an app account with custom data. This API uses a promise to return the result.
+Creates an application account with custom data. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -137,18 +137,18 @@ Creates an app account with custom data. This API uses a promise to return the r
 
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
-| name      | string | Yes   | Name of the app account to create.                             |
-| options | [CreateAccountOptions](#createaccountoptions9) | No   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens). <br>By default, no value is passed in, which means no additional information needs to be added for the account. |
+| name      | string | Yes   | Name of the application account to create.                             |
+| options | [CreateAccountOptions](#createaccountoptions9) | No   | Options for creating the application account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens). <br>By default, no value is passed in, which means no additional information needs to be added for the account.|
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -181,7 +181,7 @@ Creates an app account with custom data. This API uses a promise to return the r
 
 createAccountImplicitly(owner: string, callback: AuthCallback): void
 
-Creates an app account implicitly based on the specified account owner. This API uses an asynchronous callback to return the result.
+Creates an application account implicitly based on the specified account owner. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -189,12 +189,12 @@ Creates an app account implicitly based on the specified account owner. This API
 
 | Name     | Type               | Mandatory  | Description                     |
 | -------- | --------------------- | ---- | ----------------------- |
-| owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.         |
-| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
+| owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application.         |
+| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -245,7 +245,7 @@ Creates an app account implicitly based on the specified account owner. This API
 
 createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, callback: AuthCallback): void
 
-Creates an app account implicitly based on the specified account owner and options. This API uses an asynchronous callback to return the result.
+Creates an application account implicitly based on the specified account owner and options. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -253,13 +253,13 @@ Creates an app account implicitly based on the specified account owner and optio
 
 | Name     | Type                   | Mandatory  | Description                     |
 | -------- | --------------------- | ---- | ----------------------- |
-| owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.         |
+| owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application.         |
 | options    | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)   | Yes   | Options for implicitly creating the account.         |
 | callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.        |
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -314,7 +314,7 @@ Creates an app account implicitly based on the specified account owner and optio
 
 removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes an app account. This API uses an asynchronous callback to return the result.
+Removes an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -322,12 +322,12 @@ Removes an app account. This API uses an asynchronous callback to return the res
 
 | Name     | Type                       | Mandatory  | Description              |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes   | Name of the target app account.     |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name     | string                    | Yes   | Name of the target application account.     |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -356,7 +356,7 @@ Removes an app account. This API uses an asynchronous callback to return the res
 
 removeAccount(name: string): Promise&lt;void&gt;
 
-Removes an app account. This API uses a promise to return the result.
+Removes an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -364,17 +364,17 @@ Removes an app account. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| name | string | Yes   | Name of the target app account. |
+| name | string | Yes   | Name of the target application account.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -401,7 +401,7 @@ Removes an app account. This API uses a promise to return the result.
 
 setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the access to the data of an account for an app. This API uses an asynchronous callback to return the result.
+Sets the access to the data of an account for an application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -409,14 +409,14 @@ Sets the access to the data of an account for an app. This API uses an asynchron
 
 | Name       | Type                     | Mandatory  | Description                               |
 | ------------ | ------------------------- | ---- | --------------------------------- |
-| name         | string                    | Yes   | Name of the target app account.                          |
-| bundleName   | string                    | Yes   | Bundle name of the app.                        |
-| isAccessible | boolean                   | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite. |
-| callback     | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name         | string                    | Yes   | Name of the target application account.                          |
+| bundleName   | string                    | Yes   | Bundle name of the application.                        |
+| isAccessible | boolean                   | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite.|
+| callback     | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -446,7 +446,7 @@ Sets the access to the data of an account for an app. This API uses an asynchron
 
 setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&lt;void&gt;
 
-Sets the access to the data of an account for an app. This API uses a promise to return the result.
+Sets the access to the data of an account for an application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -454,19 +454,19 @@ Sets the access to the data of an account for an app. This API uses a promise to
 
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
-| name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of the app. |
-| isAccessible | boolean | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite. |
+| name       | string | Yes   | Name of the target application account.  |
+| bundleName | string | Yes   | Bundle name of the application.|
+| isAccessible | boolean | Yes   | Whether the access is allowed. The value **true** means to allow the access; the value **false** means the opposite.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -494,7 +494,7 @@ Sets the access to the data of an account for an app. This API uses a promise to
 
 checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether an app can access the data of an account. This API uses an asynchronous callback to return the result.
+Checks whether an application can access the data of an account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -502,13 +502,13 @@ Checks whether an app can access the data of an account. This API uses an asynch
 
 | Name       | Type                       | Mandatory  | Description                               |
 | ---------- | ------------------------- | ---- | --------------------------------- |
-| name       | string                    | Yes   | Name of the target app account.                          |
-| bundleName | string                    | Yes   | Bundle name of the app.                        |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means the app can access the account data; the value **false** means the opposite. |
+| name       | string                    | Yes   | Name of the target application account.                          |
+| bundleName | string                    | Yes   | Bundle name of the application.                        |
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means the application can access the account data; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -538,7 +538,7 @@ Checks whether an app can access the data of an account. This API uses an asynch
 
 checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
-Checks whether an app can access the data of an account. This API uses a promise to return the result.
+Checks whether an application can access the data of an account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -546,18 +546,18 @@ Checks whether an app can access the data of an account. This API uses a promise
 
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
-| name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of the app. |
+| name       | string | Yes   | Name of the target application account.  |
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the app can access the account data; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the application can access the account data; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -584,7 +584,7 @@ Checks whether an app can access the data of an account. This API uses a promise
 
 setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data synchronization for an app account. This API uses an asynchronous callback to return the result.
+Sets data synchronization for an application account. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -594,13 +594,13 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
 | Name     | Type                       | Mandatory  | Description                       |
 | -------- | ------------------------- | ---- | ------------------------- |
-| name     | string                    | Yes   | Name of the target app account.                  |
+| name     | string                    | Yes   | Name of the target application account.                  |
 | isEnabled | boolean                   | Yes   | Whether to enable data synchronization.              |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -626,7 +626,7 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
 setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
-Sets data synchronization for an app account. This API uses a promise to return the result.
+Sets data synchronization for an application account. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -636,18 +636,18 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
 | Name     | Type     | Mandatory  | Description         |
 | -------- | ------- | ---- | ----------- |
-| name     | string  | Yes   | Name of the target app account.    |
-| isEnabled | boolean | Yes   | Whether to enable data synchronization. |
+| name     | string  | Yes   | Name of the target application account.    |
+| isEnabled | boolean | Yes   | Whether to enable data synchronization.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -675,7 +675,7 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
 checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether data synchronization is enabled for an app account. This API uses an asynchronous callback to return the result.
+Checks whether data synchronization is enabled for an application account. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -685,12 +685,12 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name     | Type                          | Mandatory  | Description                   |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | Yes   | Name of the target app account.              |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
+| name     | string                       | Yes   | Name of the target application account.              |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the application account; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -720,7 +720,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
-Checks whether data synchronization is enabled for an app account. This API uses a promise to return the result.
+Checks whether data synchronization is enabled for an application account. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -730,17 +730,17 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| name | string | Yes   | Name of the target app account. |
+| name | string | Yes   | Name of the target application account.|
 
 **Return value**
 
 | Type                    | Description                   |
 | :--------------------- | :-------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the application account; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -768,7 +768,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 setCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
 
-Sets a credential for an app account. This API uses an asynchronous callback to return the result.
+Sets a credential for an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -776,14 +776,14 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 
 | Name           | Type                       | Mandatory  | Description           |
 | -------------- | ------------------------- | ---- | ------------- |
-| name           | string                    | Yes   | Name of the target app account.    |
+| name           | string                    | Yes   | Name of the target application account.    |
 | credentialType | string                    | Yes   | Type of the credential to set.    |
 | credential     | string                    | Yes   | Credential value.      |
-| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the credential is set successfully, **err** is **null**. Otherwise, **err** is an error object. |
+| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the credential is set successfully, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -812,7 +812,7 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 
 setCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;
 
-Sets a credential for an app account. This API uses a promise to return the result.
+Sets a credential for an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -820,19 +820,19 @@ Sets a credential for an app account. This API uses a promise to return the resu
 
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | Yes   | Name of the target app account.  |
-| credentialType | string | Yes   | Type of the credential to set. |
+| name           | string | Yes   | Name of the target application account.  |
+| credentialType | string | Yes   | Type of the credential to set.|
 | credential     | string | Yes   | Credential value.   |
 
 **Return value**
 
 | Type                | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -859,7 +859,7 @@ Sets a credential for an app account. This API uses a promise to return the resu
 
 getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the credential of an app account. This API uses an asynchronous callback to return the result.
+Obtains the credential of an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -867,13 +867,13 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
 | Name           | Type                         | Mandatory  | Description            |
 | -------------- | --------------------------- | ---- | -------------- |
-| name           | string                      | Yes   | Name of the target app account.       |
-| credentialType | string                      | Yes   | Type of the credential to obtain. |
-| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object. |
+| name           | string                      | Yes   | Name of the target application account.       |
+| credentialType | string                      | Yes   | Type of the credential to obtain.|
+| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -903,7 +903,7 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
 getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
-Obtains the credential of an app account. This API uses a promise to return the result.
+Obtains the credential of an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -911,18 +911,18 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 | Name         | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | Yes   | Name of the target app account. |
-| credentialType | string | Yes   | Type of the credential to obtain. |
+| name           | string | Yes   | Name of the target application account.|
+| credentialType | string | Yes   | Type of the credential to obtain.|
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the credential obtained. |
+| Promise&lt;string&gt; | Promise used to return the credential obtained.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -950,7 +950,7 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 setCustomData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets custom data for an app account. This API uses an asynchronous callback to return the result.
+Sets custom data for an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -958,14 +958,14 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 
 | Name     | Type                       | Mandatory  | Description               |
 | -------- | ------------------------- | ---- | ----------------- |
-| name     | string                    | Yes   | Name of the target app account. |
-| key      | string                    | Yes   | Key of the custom data to set. |
-| value    | string                    | Yes   | Value of the custom data to set. |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name     | string                    | Yes   | Name of the target application account.|
+| key      | string                    | Yes   | Key of the custom data to set.|
+| value    | string                    | Yes   | Value of the custom data to set.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -995,27 +995,27 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 
 setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
-Sets custom data for an app account. This API uses a promise to return the result.
+Sets custom data for an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description             |
+| Name  | Type| Mandatory | Description             |
 | ----- | ------ | ---- | ----------------- |
-| name  | string | Yes   | Name of the target app account.  |
-| key   | string | Yes   | Key of the custom data to set. |
-| value | string | Yes   | Value of the custom data to set. |
+| name  | string | Yes   | Name of the target application account.  |
+| key   | string | Yes   | Key of the custom data to set.|
+| value | string | Yes   | Value of the custom data to set.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1043,7 +1043,7 @@ Sets custom data for an app account. This API uses a promise to return the resul
 
 getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the custom data of an app account based on the specified key. This API uses an asynchronous callback to return the result.
+Obtains the custom data of an application account based on the specified key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1051,13 +1051,13 @@ Obtains the custom data of an app account based on the specified key. This API u
 
 | Name   | Type                       | Mandatory | Description                    |
 | -------- | --------------------------- | ----- | ------------------------ |
-| name     | string                      | Yes   | Name of the target app account.          |
+| name     | string                      | Yes   | Name of the target application account.          |
 | key      | string                      | Yes   | Key of the custom data to obtain.        |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the custom data value obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the custom data value obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1087,7 +1087,7 @@ Obtains the custom data of an app account based on the specified key. This API u
 
 getCustomData(name: string, key: string): Promise&lt;string&gt;
 
-Obtains the custom data of an app account based on the specified key. This API uses a promise to return the result.
+Obtains the custom data of an application account based on the specified key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1095,18 +1095,18 @@ Obtains the custom data of an app account based on the specified key. This API u
 
 | Name | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
-| name | string | Yes   | Name of the target app account.  |
-| key  | string | Yes   | Key of the custom data to obtain. |
+| name | string | Yes   | Name of the target application account.  |
+| key  | string | Yes   | Key of the custom data to obtain.|
 
 **Return value**
 
 | Type                  | Description                   |
 | --------------------- | --------------------- |
-| Promise&lt;string&gt; | Promise used to return the custom data value obtained. |
+| Promise&lt;string&gt; | Promise used to return the custom data value obtained.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1134,7 +1134,7 @@ Obtains the custom data of an app account based on the specified key. This API u
 
 getCustomDataSync(name: string, key: string): string;
 
-Obtains the custom data of an app account based on the specified key. The API returns the result synchronously.
+Obtains the custom data of an application account based on the specified key. The API returns the result synchronously.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1142,18 +1142,18 @@ Obtains the custom data of an app account based on the specified key. The API re
 
 | Name | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
-| name | string | Yes   | Name of the target app account.  |
-| key  | string | Yes   | Key of the custom data to obtain. |
+| name | string | Yes   | Name of the target application account.  |
+| key  | string | Yes   | Key of the custom data to obtain.|
 
 **Return value**
 
 | Type                   | Description                   |
 | --------------------- | --------------------- |
-| string | Value of the custom data obtained. |
+| string | Value of the custom data obtained.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1176,7 +1176,7 @@ Obtains the custom data of an app account based on the specified key. The API re
 
 getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-Obtains information about all accessible app accounts. This API uses an asynchronous callback to return the result.
+Obtains information about all accessible application accounts. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1184,11 +1184,11 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible app accounts. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible application accounts. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1215,7 +1215,7 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-Obtains information about all accessible app accounts. This API uses a promise to return the result.
+Obtains information about all accessible application accounts. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1223,11 +1223,11 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return information about all accessible accounts. |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return information about all accessible accounts.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
 
@@ -1251,7 +1251,7 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses an asynchronous callback to return the result.
+Obtains the application accounts that can be accessed by the invoker based on the application account owner. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1259,12 +1259,12 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app.   |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is null and **data** is the app account information obtained. Otherwise, **err** is an error object. |
+| owner    | string                                   | Yes   | Owner of the application account. The value is the bundle name of the application.   |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is null and **data** is the application account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1294,7 +1294,7 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses a promise to return the result.
+Obtains the application accounts that can be accessed by the invoker based on the application account owner. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1302,17 +1302,17 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 | Name  | Type    | Mandatory  | Description    |
 | ----- | ------ | ---- | ------ |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the app account information obtained. |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the application account information obtained.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1348,13 +1348,13 @@ Subscribes to account information changes of apps.
 
 | Name     | Type                                      | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | 'accountChange'                          | Yes   | Event type to subscribe to. The value is **'accountChange'**. An event will be reported when the account information of the target app changes. |
-| owners   | Array&lt;string&gt;                      | Yes   | App bundle names of the account.                     |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed app accounts.          |
+| type     | 'accountChange'                          | Yes   | Event type to subscribe to. The value is **'accountChange'**. An event will be reported when the account information of the target application changes.|
+| owners   | Array&lt;string&gt;                      | Yes   | application bundle names of the account.                     |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed application accounts.          |
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1387,11 +1387,11 @@ Unsubscribes from account information changes.
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | Yes   | Event type to unsubscribe from. The value is **'accountChange'**.   |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event. |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
@@ -1420,7 +1420,7 @@ Unsubscribes from account information changes.
 
 auth(name: string, owner: string, authType: string, callback: AuthCallback): void
 
-Authenticates an app account. This API uses an asynchronous callback to return the result.
+Authenticates an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1428,14 +1428,14 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 | Name     | Type                   | Mandatory  | Description             |
 | -------- | --------------------- | ---- | --------------- |
-| name     | string                | Yes   | Name of the target app account.    |
-| owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                | Yes   | Name of the target application account.    |
+| owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                | Yes   | Authentication type.          |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result. |
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1486,7 +1486,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 auth(name: string, owner: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
-Authenticates an app account. This API uses an asynchronous callback to return the result.
+Authenticates an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1494,15 +1494,15 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 | Name     | Type                   | Mandatory  | Description             |
 | -------- | --------------------- | ---- | --------------- |
-| name     | string                | Yes   | Name of the target app account.    |
-| owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                | Yes   | Name of the target application account.    |
+| owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | Record<string, Object>  | Yes   | Options for the authentication.      |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result. |
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the authentication result.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1556,7 +1556,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the authorization token of the specified authentication type for an app account. This API uses an asynchronous callback to return the result.
+Obtains the authorization token of the specified authentication type for an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1564,14 +1564,14 @@ Obtains the authorization token of the specified authentication type for an app 
 
 | Name     | Type                         | Mandatory  | Description         |
 | -------- | --------------------------- | ---- | ----------- |
-| name     | string                      | Yes   | Name of the target app account.   |
-| owner    | string                      | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                      | Yes   | Name of the target application account.   |
+| owner    | string                      | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | authType | string                      | Yes   | Authentication type.      |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authorization token value obtained. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1602,7 +1602,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&gt;
 
-Obtains the authorization token of the specified authentication type for an app account. This API uses a promise to return the result.
+Obtains the authorization token of the specified authentication type for an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1610,19 +1610,19 @@ Obtains the authorization token of the specified authentication type for an app 
 
 | Name     | Type    | Mandatory  | Description         |
 | -------- | ------ | ---- | ----------- |
-| name     | string | Yes   | Name of the target app account.   |
-| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string | Yes   | Name of the target application account.   |
+| owner    | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | authType | string | Yes   | Authentication type.      |
 
 **Return value**
 
 | Type                   | Description                |
 | --------------------- | --------------------- |
-| Promise&lt;string&gt; | Promise used to return the authorization token obtained. |
+| Promise&lt;string&gt; | Promise used to return the authorization token obtained.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1650,7 +1650,7 @@ Obtains the authorization token of the specified authentication type for an app 
 
 setAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets an authorization token of the specific authentication type for an app account. This API uses an asynchronous callback to return the result.
+Sets an authorization token of the specific authentication type for an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1658,14 +1658,14 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type                       | Mandatory  | Description      |
 | -------- | ------------------------- | ---- | -------- |
-| name     | string                    | Yes   | Name of the target app account. |
+| name     | string                    | Yes   | Name of the target application account.|
 | authType | string                    | Yes   | Authentication type.   |
-| token    | string                    | Yes   | Authorization token to set. |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| token    | string                    | Yes   | Authorization token to set.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1695,7 +1695,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
-Sets an authorization token of the specific authentication type for an app account. This API uses a promise to return the result.
+Sets an authorization token of the specific authentication type for an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1703,19 +1703,19 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type    | Mandatory  | Description      |
 | -------- | ------ | ---- | -------- |
-| name     | string | Yes   | Name of the target app account. |
+| name     | string | Yes   | Name of the target application account.|
 | authType | string | Yes   | Authentication type.   |
-| token    | string | Yes   | Authorization token to set. |
+| token    | string | Yes   | Authorization token to set.|
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1743,7 +1743,7 @@ Sets an authorization token of the specific authentication type for an app accou
 
 deleteAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the authorization token of the specified authentication type for an app account. This API uses an asynchronous callback to return the result.
+Deletes the authorization token of the specified authentication type for an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1751,15 +1751,15 @@ Deletes the authorization token of the specified authentication type for an app 
 
 | Name     | Type                       | Mandatory  | Description          |
 | -------- | ------------------------- | ---- | ------------ |
-| name     | string                    | Yes   | Name of the target app account.    |
-| owner    | string                    | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                    | Yes   | Name of the target application account.    |
+| owner    | string                    | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                    | Yes   | Authentication type.       |
-| token    | string                    | Yes   | Authorization token to delete.|
+| token    | string                    | Yes   | Authorization token to delete. If the token does not exist, no operation is performed.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1790,7 +1790,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 deleteAuthToken(name: string, owner: string, authType: string, token: string): Promise&lt;void&gt;
 
-Deletes the authorization token of the specified authentication type for an app account. This API uses a promise to return the result.
+Deletes the authorization token of the specified authentication type for an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1798,20 +1798,20 @@ Deletes the authorization token of the specified authentication type for an app 
 
 | Name     | Type    | Mandatory  | Description          |
 | -------- | ------ | ---- | ------------ |
-| name     | string | Yes   | Name of the target app account.    |
-| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string | Yes   | Name of the target application account.    |
+| owner    | string | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string | Yes   | Authentication type.       |
-| token    | string | Yes   | Authorization token to delete.|
+| token    | string | Yes   | Authorization token to delete. If the token does not exist, no operation is performed.|
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1839,7 +1839,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the visibility of an authorization token to an app. This API uses an asynchronous callback to return the result.
+Sets the visibility of an authorization token to an application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1847,15 +1847,15 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
 | Name       | Type                       | Mandatory  | Description                       |
 | ---------- | ------------------------- | ---- | ------------------------- |
-| name       | string                    | Yes   | Name of the target app account.                 |
+| name       | string                    | Yes   | Name of the target application account.                 |
 | authType   | string                    | Yes   | Authentication type.                    |
-| bundleName | string                    | Yes   | Bundle name of the app.             |
-| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
+| bundleName | string                    | Yes   | Bundle name of the application.             |
+| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the application. The value **true** means the authorization token is visible to the application; the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1888,7 +1888,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
 setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise&lt;void&gt;
 
-Sets the visibility of an authorization token to an app. This API uses a promise to return the result.
+Sets the visibility of an authorization token to an application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1896,20 +1896,20 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
 | Name     | Type                       | Mandatory  | Description                       |
 | ---------- | ------------------------- | ---- | ------------------------- |
-| name       | string                    | Yes   | Name of the target app account.                 |
+| name       | string                    | Yes   | Name of the target application account.                 |
 | authType   | string                    | Yes   | Authentication type.                    |
-| bundleName | string                    | Yes   | Bundle name of the app.             |
-| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
+| bundleName | string                    | Yes   | Bundle name of the application.             |
+| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the application. The value **true** means the authorization token is visible to the application; the value **false** means the opposite.|
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1939,7 +1939,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
 checkAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks the visibility of an authorization token of the specified authentication type to an app. This API uses an asynchronous callback to return the result.
+Checks the visibility of an authorization token of the specified authentication type to an application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1947,14 +1947,14 @@ Checks the visibility of an authorization token of the specified authentication 
 
 | Name       | Type                          | Mandatory  | Description         |
 | ---------- | ---------------------------- | ---- | ----------- |
-| name       | string                       | Yes   | Name of the target app account.   |
+| name       | string                       | Yes   | Name of the target application account.   |
 | authType   | string                       | Yes   | Authentication type.      |
-| bundleName | string                       | Yes   | Bundle name of the app. |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the app) or **false** (the authorization token is not visible to the app). If the operation fails, **err** is an error object.   |
+| bundleName | string                       | Yes   | Bundle name of the application.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the application) or **false** (the authorization token is not visible to the application). If the operation fails, **err** is an error object.   |
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -1985,7 +1985,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise&lt;boolean&gt;
 
-Checks the visibility of an authorization token of the specified authentication type to an app. This API uses a promise to return the result.
+Checks the visibility of an authorization token of the specified authentication type to an application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -1993,19 +1993,19 @@ Checks the visibility of an authorization token of the specified authentication 
 
 | Name       | Type    | Mandatory  | Description           |
 | ---------- | ------ | ---- | ------------- |
-| name       | string | Yes   | Name of the target app account.     |
+| name       | string | Yes   | Name of the target application account.     |
 | authType   | string | Yes   | Authentication type.        |
-| bundleName | string | Yes   | Bundle name of the app. |
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
 | Type                    | Description                   |
 | ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the application; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2034,7 +2034,7 @@ Checks the visibility of an authorization token of the specified authentication 
 
 getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&lt;AuthTokenInfo&gt;&gt;): void
 
-Obtains all tokens visible to the invoker for an app account. This API uses an asynchronous callback to return the result.
+Obtains all tokens visible to the invoker for an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2042,20 +2042,20 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
 | Name     | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| name     | string                                   | Yes   | Name of the target app account.   |
-| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                                   | Yes   | Name of the target application account.   |
+| owner    | string                                   | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | callback | AsyncCallback&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all tokens visible to the invoker. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or owner. |
 | 12300003 | Account not found. |
 
-**Example** 
+**Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -2078,7 +2078,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
 getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo&gt;&gt;
 
-Obtains all tokens visible to the invoker for an app account. This API uses a promise to return the result.
+Obtains all tokens visible to the invoker for an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2086,18 +2086,18 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| name  | string | Yes   | Name of the target app account.   |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name  | string | Yes   | Name of the target application account.   |
+| owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Promise used to return the tokens obtained. |
+| Promise&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | Promise used to return the tokens obtained.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2125,7 +2125,7 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
 getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains the authorization list of the specified authentication type for an app account. The authorization list contains all authorized bundles. The token authorization list is set by [setAuthTokenVisibility](#setauthtokenvisibility9). This API uses an asynchronous callback to return the result.
+Obtains the authorization list of the specified authentication type for an application account. The authorization list contains all authorized bundles. The token authorization list is set by [setAuthTokenVisibility](#setauthtokenvisibility9). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2133,13 +2133,13 @@ Obtains the authorization list of the specified authentication type for an app a
 
 | Name     | Type                                      | Mandatory  | Description                     |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| name     | string                                   | Yes   | Name of the target app account.               |
-| authType | string                                   | Yes   | Authentication type. |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object. |
+| name     | string                                   | Yes   | Name of the target application account.               |
+| authType | string                                   | Yes   | Authentication type.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2169,7 +2169,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the authorization list of the specified authentication type for an app account. The authorization list contains all authorized bundles. The token authorization list is set by [setAuthTokenVisibility](#setauthtokenvisibility9). This API uses a promise to return the result.
+Obtains the authorization list of the specified authentication type for an application account. The authorization list contains all authorized bundles. The token authorization list is set by [setAuthTokenVisibility](#setauthtokenvisibility9). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2177,18 +2177,18 @@ Obtains the authorization list of the specified authentication type for an app a
 
 | Name     | Type    | Mandatory  | Description                     |
 | -------- | ------ | ---- | ------------------------------ |
-| name     | string | Yes   | Name of the target app account.               |
-| authType | string | Yes   | Authentication type. |
+| name     | string | Yes   | Name of the target application account.               |
+| authType | string | Yes   | Authentication type.|
 
 **Return value**
 
 | Type                                | Description                   |
 | ---------------------------------- | --------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles. |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2224,12 +2224,12 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string                                   | Yes   | ID of the authentication session. |
-| callback  | AsyncCallback&lt;[AuthCallback](#authcallback9)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback object obtained. Otherwise, **err** is an error object. |
+| sessionId | string                                   | Yes   | ID of the authentication session.|
+| callback  | AsyncCallback&lt;[AuthCallback](#authcallback9)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2282,17 +2282,17 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type    | Mandatory  | Description      |
 | --------- | ------ | ---- | -------- |
-| sessionId | string | Yes   | ID of the authentication session. |
+| sessionId | string | Yes   | ID of the authentication session.|
 
 **Return value**
 
 | Type                                  | Description                   |
 | ------------------------------------ | --------------------- |
-| Promise&lt;[AuthCallback](#authcallback9)&gt; | Promise used to return the authenticator callback obtained. |
+| Promise&lt;[AuthCallback](#authcallback9)&gt; | Promise used to return the authenticator callback obtained.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2335,7 +2335,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo&gt;): void
 
-Obtains the authenticator information of an app. This API uses an asynchronous callback to return the result.
+Obtains the authenticator information of an application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2343,12 +2343,12 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 | Name     | Type                                    | Mandatory  | Description         |
 | -------- | -------------------------------------- | ---- | ----------- |
-| owner    | string                                 | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| owner    | string                                 | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator information obtained. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2378,7 +2378,7 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
-Obtains the authenticator information of an app. This API uses a promise to return the result.
+Obtains the authenticator information of an application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2386,17 +2386,17 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 
 **Return value**
 
 | Type                              | Description                   |
 | -------------------------------- | --------------------- |
-| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained. |
+| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2424,7 +2424,7 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether an app account has specific labels. This API uses an asynchronous callback to return the result. The labels are checked by the authenticator of the target app.
+Checks whether an application account has specific labels. This API uses an asynchronous callback to return the result. The labels are checked by the authenticator of the target application.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2432,14 +2432,14 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 
 | Name        | Type                      | Mandatory | Description            |
 | -------------- | ------------------------- | ----- | --------------- |
-| name           | string                    | Yes   | Name of the target app account. |
-| owner          | string                    | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| name           | string                    | Yes   | Name of the target application account. |
+| owner          | string                    | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | labels         | Array&lt;string&gt;       | Yes   | Labels to check.      |
-| callback       | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** or **false**. The value **true** means the app account has the labels; the value **false** means the opposite. If the operation fails, **err** is an error object. |
+| callback       | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** or **false**. The value **true** means the application account has the labels; the value **false** means the opposite. If the operation fails, **err** is an error object. |
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2473,7 +2473,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 
 checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Promise&lt;boolean&gt;
 
-Checks whether an app account has specific labels. This API uses a promise to return the result. The labels are checked by the authenticator of the target app.
+Checks whether an application account has specific labels. This API uses a promise to return the result. The labels are checked by the authenticator of the target application.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2481,19 +2481,19 @@ Checks whether an app account has specific labels. This API uses a promise to re
 
 | Name        | Type                      | Mandatory | Description            |
 | -------------- | ------------------------- | ----- | --------------- |
-| name           | string                    | Yes   | Name of the target app account. |
-| owner          | string                    | Yes   | Owner of the app account. The value is the bundle name of the app.|
+| name           | string                    | Yes   | Name of the target application account. |
+| owner          | string                    | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | labels         | Array&lt;string&gt;       | Yes   | Labels to check.      |
 
 **Return value**
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the app account has the labels; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the application account has the labels; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2525,7 +2525,7 @@ Checks whether an app account has specific labels. This API uses a promise to re
 
 deleteCredential(name: string, credentialType: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the credential of the specified type from an app account. This API uses an asynchronous callback to return the result.
+Deletes the credential of the specified type from an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2533,13 +2533,13 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 | Name        | Type                      | Mandatory | Description           |
 | -------------- | ------------------------- | ----- | -------------- |
-| name           | string                    | Yes   | Name of the target app account. |
+| name           | string                    | Yes   | Name of the target application account.|
 | credentialType | string                    | Yes   | Type of the credential to delete.     |
-| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2569,7 +2569,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
-Deletes the credential of the specified type from an app account. This API uses a promise to return the result.
+Deletes the credential of the specified type from an application account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2577,18 +2577,18 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 | Name        | Type  | Mandatory  | Description           |
 | -------------- | ------ | ----- | --------------- |
-| name           | string | Yes   | Name of the target app account. |
+| name           | string | Yes   | Name of the target application account.|
 | credentialType | string | Yes   | Type of the credential to delete.      |
 
 **Return value**
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2616,7 +2616,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 
 selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-Selects the accounts that can be accessed by the invoker based on the options. This API uses an asynchronous callback to return the result. If the options contain label constraints, the authenticator of the target app provides the capability of checking the labels.
+Selects the accounts that can be accessed by the invoker based on the options. This API uses an asynchronous callback to return the result. If the options contain label constraints, the authenticator of the target application provides the capability of checking the labels.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2629,7 +2629,7 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2664,7 +2664,7 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-Selects the accounts that can be accessed by the invoker based on the options. This API uses a promise to return the result. If the options contain label constraints, the authenticator of the target app provides the capability of checking the labels.
+Selects the accounts that can be accessed by the invoker based on the options. This API uses a promise to return the result. If the options contain label constraints, the authenticator of the target application provides the capability of checking the labels.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2678,11 +2678,11 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise used to return the accounts selected. |
+| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise used to return the accounts selected.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2713,7 +2713,7 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
 verifyCredential(name: string, owner: string, callback: AuthCallback): void
 
-Verifies the credential of an app account. This API uses an asynchronous callback to return the result.
+Verifies the credential of an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2721,13 +2721,13 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 
 | Name   | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ----- | ----------------------- |
-| name     | string                | Yes   | Name of the target app account.         |
-| owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.       |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result. |
+| name     | string                | Yes   | Name of the target application account.         |
+| owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application.       |
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2769,14 +2769,14 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 
 | Name   | Type                   | Mandatory | Description                    |
 | -------- | ----------------------- | ----- | ----------------------- |
-| name     | string                  | Yes   | Name of the target app account.         |
-| owner    | string                  | Yes   | Owner of the app account. The value is the bundle name of the app.       |
+| name     | string                  | Yes   | Name of the target application account.         |
+| owner    | string                  | Yes   | Owner of the application account. The value is the bundle name of the application.       |
 | options  | [VerifyCredentialOptions](#verifycredentialoptions9) | Yes   | Options for verifying the user credential.         |
-| callback | [AuthCallback](#authcallback9)   | Yes   | Callback used to return the result. |
+| callback | [AuthCallback](#authcallback9)   | Yes   | Callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2814,7 +2814,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 
 setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 
-Sets the authenticator attributes of an app. This API uses an asynchronous callback to return the result.
+Sets the authenticator attributes of an application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2822,12 +2822,12 @@ Sets the authenticator attributes of an app. This API uses an asynchronous callb
 
 | Name   | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | Yes   | Owner of the authenticator. The value is the bundle name of the app.         |
-| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result. |
+| owner    | string                | Yes   | Owner of the authenticator. The value is the bundle name of the application.         |
+| callback | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2868,13 +2868,13 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 
 | Name   | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ----- | ----------------------- |
-| owner    | string                | Yes   | Owner of the authenticator. The value is the bundle name of the app.         |
+| owner    | string                | Yes   | Owner of the authenticator. The value is the bundle name of the application.         |
 | options  | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.         |
-| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
+| callback | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------- |
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
@@ -2911,9 +2911,9 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 
 addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Adds an app account with the given name. This API uses an asynchronous callback to return the result.
+Adds an application account with the given name. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 > 
 >This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9) instead.
 
@@ -2924,8 +2924,8 @@ Adds an app account with the given name. This API uses an asynchronous callback 
 
 | Name     | Type                       | Mandatory  | Description                  |
 | -------- | ------------------------- | ---- | -------------------- |
-| name     | string                    | Yes   | Name of the target app account.         |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name     | string                    | Yes   | Name of the target application account.         |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2941,9 +2941,9 @@ Adds an app account with the given name. This API uses an asynchronous callback 
 
 addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
 
-Adds an app account name and additional information. This API uses an asynchronous callback to return the result.
+Adds an application account name and additional information. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 > This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9-1) instead.
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -2952,8 +2952,8 @@ Adds an app account name and additional information. This API uses an asynchrono
 
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| name      | string                    | Yes   | Name of the target app account.                             |
-| extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token. |
+| name      | string                    | Yes   | Name of the target application account.                             |
+| extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the application account password and token.|
 | callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.            |
 
 **Example**
@@ -2970,7 +2970,7 @@ Adds an app account name and additional information. This API uses an asynchrono
 
 addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
-Adds an app account name and additional information. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
+Adds an application account name and additional information. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
 > **NOTE** 
 > This API is supported since API version 7 and deprecated since API version 9. Use [createAccount](#createaccount9-2) instead.
@@ -2981,14 +2981,14 @@ Adds an app account name and additional information. This API uses an asynchrono
 
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
-| name      | string | Yes   | Name of the target app account.                           |
-| extraInfo | string | No   | Additional information (information that can be converted to the string type). <br>The additional information cannot be sensitive information (such as the password and token) of the app account.<br>By default, no value is passed, which means no additional information needs to be added for the account. |
+| name      | string | Yes   | Name of the target application account.                           |
+| extraInfo | string | No   | Additional information (information that can be converted to the string type). <br>The additional information cannot be sensitive information (such as the password and token) of the application account.<br>By default, no value is passed, which means no additional information needs to be added for the account.|
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3006,7 +3006,7 @@ Adds an app account name and additional information. This API uses an asynchrono
 
 addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-Adds an app account implicitly based on the specified owner. This API uses an asynchronous callback to return the result.
+Adds an application account implicitly based on the specified owner. This API uses an asynchronous callback to return the result.
 
 > **NOTE** 
 >
@@ -3018,9 +3018,9 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 
 | Name     | Type                   | Mandatory  | Description                     |
 | -------- | --------------------- | ---- | ----------------------- |
-| owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.         |
+| owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application.         |
 | authType | string                | Yes   | Authentication type. The authentication type is customized. |
-| options  | {[key: string]: any}  | Yes   | Authentication options, which can be set as required. |
+| options  | {[key: string]: any}  | Yes   | Authentication options, which can be set as required.|
 | callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the result.        |
 
 **Example**
@@ -3060,9 +3060,9 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 
 deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes an app account. This API uses an asynchronous callback to return the result.
+Deletes an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [removeAccount](#removeaccount9) instead.
 
@@ -3072,8 +3072,8 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 
 | Name     | Type                       | Mandatory  | Description              |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes   | Name of the target app account.     |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name     | string                    | Yes   | Name of the target application account.     |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3089,9 +3089,9 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 
 deleteAccount(name: string): Promise&lt;void&gt;
 
-Deletes an app account. This API uses a promise to return the result.
+Deletes an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [removeAccount](#removeaccount9) instead.
 
@@ -3101,13 +3101,13 @@ Deletes an app account. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description         |
 | ---- | ------ | ---- | ----------- |
-| name | string | Yes   | Name of the target app account. |
+| name | string | Yes   | Name of the target application account.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3124,9 +3124,9 @@ Deletes an app account. This API uses a promise to return the result.
 
 disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Disables an app account from accessing an app. This API uses an asynchronous callback to return the result.
+Disables an application account from accessing an application. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9) instead.
 
@@ -3136,9 +3136,9 @@ Disables an app account from accessing an app. This API uses an asynchronous cal
 
 | Name       | Type                       | Mandatory  | Description                               |
 | ---------- | ------------------------- | ---- | --------------------------------- |
-| name       | string                    | Yes   | Name of the target app account.                 |
-| bundleName | string                    | Yes   | Bundle name of the app.                        |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name       | string                    | Yes   | Name of the target application account.                 |
+| bundleName | string                    | Yes   | Bundle name of the application.                        |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3154,9 +3154,9 @@ Disables an app account from accessing an app. This API uses an asynchronous cal
 
 disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
-Disables an app account from accessing an app. This API uses a promise to return the result.
+Disables an application account from accessing an application. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9-1) instead.
 
@@ -3166,14 +3166,14 @@ Disables an app account from accessing an app. This API uses a promise to return
 
 | Name       | Type    | Mandatory  | Description              |
 | ---------- | ------ | ---- | ---------------- |
-| name       | string | Yes   | Name of the target app account. |
-| bundleName | string | Yes   | Bundle name of the app.       |
+| name       | string | Yes   | Name of the target application account.|
+| bundleName | string | Yes   | Bundle name of the application.       |
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3191,9 +3191,9 @@ Disables an app account from accessing an app. This API uses a promise to return
 
 enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Enables an app account to access an app. This API uses an asynchronous callback to return the result.
+Enables an application account to access an application. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9) instead.
 
@@ -3203,9 +3203,9 @@ Enables an app account to access an app. This API uses an asynchronous callback 
 
 | Name       | Type                       | Mandatory  | Description                               |
 | ---------- | ------------------------- | ---- | --------------------------------- |
-| name       | string                    | Yes   | Name of the target app account.                          |
-| bundleName | string                    | Yes   | Bundle name of the app.                        |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name       | string                    | Yes   | Name of the target application account.                          |
+| bundleName | string                    | Yes   | Bundle name of the application.                        |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3221,9 +3221,9 @@ Enables an app account to access an app. This API uses an asynchronous callback 
 
 enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
-Enables an app account to access an app. This API uses a promise to return the result.
+Enables an application account to access an application. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setAppAccess](#setappaccess9-1) instead.
 
@@ -3233,14 +3233,14 @@ Enables an app account to access an app. This API uses a promise to return the r
 
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
-| name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of the app. |
+| name       | string | Yes   | Name of the target application account.  |
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3258,9 +3258,9 @@ Enables an app account to access an app. This API uses a promise to return the r
 
 checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether data synchronization is enabled for an app account. This API uses an asynchronous callback to return the result.
+Checks whether data synchronization is enabled for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [checkDataSyncEnabled](#checkdatasyncenabled9) instead.
 
@@ -3272,8 +3272,8 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name     | Type                          | Mandatory  | Description                   |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | Yes   | Name of the target app account.              |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
+| name     | string                       | Yes   | Name of the target application account.              |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the application account; the value **false** means the opposite.|
 
 **Example**
 
@@ -3290,9 +3290,9 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
-Checks whether data synchronization is enabled for an app account. This API uses a promise to return the result.
+Checks whether data synchronization is enabled for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [checkDataSyncEnabled](#checkdatasyncenabled9-1) instead.
 
@@ -3304,13 +3304,13 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| name | string | Yes   | Name of the target app account. |
+| name | string | Yes   | Name of the target application account.|
 
 **Return value**
 
 | Type                    | Description                   |
 | ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means data synchronization is enabled for the application account; the value **false** means the opposite.|
 
 **Example**
 
@@ -3328,9 +3328,9 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
 
-Set credentials for an app account. This API uses an asynchronous callback to return the result.
+Sets a credential for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9) instead.
 
@@ -3340,10 +3340,10 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 
 | Name           | Type                       | Mandatory  | Description           |
 | -------------- | ------------------------- | ---- | ------------- |
-| name           | string                    | Yes   | Name of the target app account.    |
+| name           | string                    | Yes   | Name of the target application account.    |
 | credentialType | string                    | Yes   | Type of the credential to set.    |
 | credential     | string                    | Yes   | Credential value.     |
-| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3359,9 +3359,9 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 
 setAccountCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;
 
-Set credentials for an app account. This API uses a promise to return the result.
+Sets a credential for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCredential](#setcredential9-1) instead.
 
@@ -3371,15 +3371,15 @@ Set credentials for an app account. This API uses a promise to return the result
 
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | Yes   | Name of the target app account.  |
-| credentialType | string | Yes   | Type of the credential to set. |
-| credential     | string | Yes   | Credential value. |
+| name           | string | Yes   | Name of the target application account.  |
+| credentialType | string | Yes   | Type of the credential to set.|
+| credential     | string | Yes   | Credential value.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3397,9 +3397,9 @@ Set credentials for an app account. This API uses a promise to return the result
 
 setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets additional information for an app account. This API uses an asynchronous callback to return the result.
+Sets additional information for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9) instead.
 
@@ -3410,9 +3410,9 @@ Sets additional information for an app account. This API uses an asynchronous ca
 
 | Name      | Type                       | Mandatory  | Description             |
 | --------- | ------------------------- | ---- | --------------- |
-| name      | string                    | Yes   | Name of the target app account.        |
-| extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token.      |
-| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| name      | string                    | Yes   | Name of the target application account.        |
+| extraInfo | string                    | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the application account password and token.      |
+| callback  | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3428,9 +3428,9 @@ Sets additional information for an app account. This API uses an asynchronous ca
 
 setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
-Sets additional information for an app account. This API uses a promise to return the result.
+Sets additional information for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9-1) instead.
 
@@ -3441,14 +3441,14 @@ Sets additional information for an app account. This API uses a promise to retur
 
 | Name      | Type    | Mandatory  | Description       |
 | --------- | ------ | ---- | --------- |
-| name      | string | Yes   | Name of the target app account.  |
-| extraInfo | string | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token. |
+| name      | string | Yes   | Name of the target application account.  |
+| extraInfo | string | Yes   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the application account password and token.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3466,9 +3466,9 @@ Sets additional information for an app account. This API uses a promise to retur
 
 setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data synchronization for an app account. This API uses an asynchronous callback to return the result.
+Sets data synchronization for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setDataSyncEnabled](#setdatasyncenabled9) instead.
 
@@ -3480,9 +3480,9 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
 | Name     | Type                       | Mandatory  | Description                       |
 | -------- | ------------------------- | ---- | ------------------------- |
-| name     | string                    | Yes   | Name of the target app account.                 |
+| name     | string                    | Yes   | Name of the target application account.                 |
 | isEnable | boolean                   | Yes   | Whether to enable data synchronization.              |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3498,9 +3498,9 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
 setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
-Sets data synchronization for an app account. This API uses a promise to return the result.
+Sets data synchronization for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setDataSyncEnabled](#setdatasyncenabled9-1) instead.
 
@@ -3512,14 +3512,14 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
 | Name     | Type     | Mandatory  | Description         |
 | -------- | ------- | ---- | ----------- |
-| name     | string  | Yes   | Name of the target app account.    |
-| isEnable | boolean | Yes   | Whether to enable data synchronization. |
+| name     | string  | Yes   | Name of the target application account.    |
+| isEnable | boolean | Yes   | Whether to enable data synchronization.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3537,9 +3537,9 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
 setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data to be associated with an app account. This API uses an asynchronous callback to return the result.
+Sets data to be associated with an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9) instead.
 
@@ -3550,10 +3550,10 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 
 | Name     | Type                       | Mandatory  | Description               |
 | -------- | ------------------------- | ---- | ----------------- |
-| name     | string                    | Yes   | Name of the target app account.          |
-| key      | string                    | Yes   | Key of the data to set. |
+| name     | string                    | Yes   | Name of the target application account.          |
+| key      | string                    | Yes   | Key of the data to set.|
 | value    | string                    | Yes   | Value of the data to set.        |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3569,9 +3569,9 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 
 setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
-Sets data to be associated with an app account. This API uses a promise to return the result.
+Sets data to be associated with an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [setCustomData](#setcustomdata9-1) instead.
 
@@ -3582,15 +3582,15 @@ Sets data to be associated with an app account. This API uses a promise to retur
 
 | Name  | Type    | Mandatory  | Description               |
 | ----- | ------ | ---- | ----------------- |
-| name  | string | Yes   | Name of the target app account.          |
-| key      | string | Yes   | Key of the data to set. |
-| value    | string | Yes   | Value of the data to set. |
+| name  | string | Yes   | Name of the target application account.          |
+| key      | string | Yes   | Key of the data to set.|
+| value    | string | Yes   | Value of the data to set.|
 
 **Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3608,9 +3608,9 @@ Sets data to be associated with an app account. This API uses a promise to retur
 
 getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-Obtains information about all accessible app accounts. This API uses an asynchronous callback to return the result.
+Obtains information about all accessible application accounts. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAllAccounts](#getallaccounts9) instead.
 
@@ -3622,7 +3622,7 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible app accounts. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of accessible application accounts. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3639,9 +3639,9 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-Obtains information about all accessible app accounts. This API uses a promise to return the result.
+Obtains information about all accessible application accounts. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAllAccounts](#getallaccounts9-1) instead.
 
@@ -3653,7 +3653,7 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the accessible app accounts.|
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return information about all accessible accounts.|
 
 **Example**
 
@@ -3671,9 +3671,9 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses an asynchronous callback to return the result.
+Obtains the application accounts that can be accessed by the invoker based on the application account owner. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAccountsByOwner](#getaccountsbyowner9) instead.
 
@@ -3685,8 +3685,8 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app.   |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return information about all accessible app accounts. |
+| owner    | string                                   | Yes   | Owner of the application account. The value is the bundle name of the application.   |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback used to return information about all accessible application accounts.|
 
 **Example**
 
@@ -3704,9 +3704,9 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-Obtains the app accounts that can be accessed by the invoker based on the app account owner. This API uses a promise to return the result.
+Obtains the application accounts that can be accessed by the invoker based on the application account owner. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getAccountsByOwner](#getaccountsbyowner9-1) instead.
 
@@ -3718,13 +3718,13 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 | Name  | Type    | Mandatory  | Description    |
 | ----- | ------ | ---- | ------ |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the app accounts that can be accessed by the invoker. |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the application accounts that can be accessed by the invoker.|
 
 **Example**
 
@@ -3743,9 +3743,9 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
 getAccountCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the credential of an app account. This API uses an asynchronous callback to return the result.
+Obtains the credential of an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCredential](#getcredential9) instead.
 
@@ -3755,9 +3755,9 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
 | Name           | Type                         | Mandatory  | Description            |
 | -------------- | --------------------------- | ---- | -------------- |
-| name           | string                      | Yes   | Name of the target app account.       |
-| credentialType | string                      | Yes   | Type of the credential to obtain. |
-| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object. |
+| name           | string                      | Yes   | Name of the target application account.       |
+| credentialType | string                      | Yes   | Type of the credential to obtain.|
+| callback       | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the credential obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3774,9 +3774,9 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
 getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
-Obtains the credential of an app account. This API uses a promise to return the result.
+Obtains the credential of an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCredential](#getcredential9-1) instead.
 
@@ -3786,14 +3786,14 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 | Name           | Type    | Mandatory  | Description        |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | Yes   | Name of the target app account.   |
-| credentialType | string | Yes   | Type of the credential to obtain. |
+| name           | string | Yes   | Name of the target application account.   |
+| credentialType | string | Yes   | Type of the credential to obtain.|
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the credential obtained. |
+| Promise&lt;string&gt; | Promise used to return the credential obtained.|
 
 **Example**
 
@@ -3811,9 +3811,9 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
 getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains additional information of an app account. Additional information refers to other information that can be converted to the string type. It cannot contain sensitive information, such as the app account password and token. This API uses an asynchronous callback to return the result.
+Obtains additional information of an application account. Additional information refers to other information that can be converted to the string type. It cannot contain sensitive information, such as the application account password and token. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9) instead.
 
@@ -3823,8 +3823,8 @@ Obtains additional information of an app account. Additional information refers 
 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
-| name     | string                      | Yes   | Name of the target app account.        |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the additional information obtained. Otherwise, **err** is an error object. |
+| name     | string                      | Yes   | Name of the target application account.        |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the additional information obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3841,9 +3841,9 @@ Obtains additional information of an app account. Additional information refers 
 
 getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
-Obtains additional information of an app account. Additional information refers to other information that can be converted to the string type. It cannot contain sensitive information, such as the app account password and token. This API uses a promise to return the result.
+Obtains additional information of an application account. Additional information refers to other information that can be converted to the string type. It cannot contain sensitive information, such as the application account password and token. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9-1) instead.
 
@@ -3853,13 +3853,13 @@ Obtains additional information of an app account. Additional information refers 
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| name | string | Yes   | Name of the target app account. |
+| name | string | Yes   | Name of the target application account.|
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the additional information obtained. |
+| Promise&lt;string&gt; | Promise used to return the additional information obtained.|
 
 **Example**
 
@@ -3877,9 +3877,9 @@ Obtains additional information of an app account. Additional information refers 
 
 getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains data associated with an app account. This API uses an asynchronous callback to return the result.
+Obtains data associated with an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9) instead.
 
@@ -3889,9 +3889,9 @@ Obtains data associated with an app account. This API uses an asynchronous callb
 
 | Name     | Type                         | Mandatory  | Description               |
 | -------- | --------------------------- | ---- | ----------------- |
-| name     | string                      | Yes   | Name of the target app account.          |
+| name     | string                      | Yes   | Name of the target application account.          |
 | key      | string                      | Yes   | Key of the data to obtain.        |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the data obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the data obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3908,9 +3908,9 @@ Obtains data associated with an app account. This API uses an asynchronous callb
 
 getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
-Obtains data associated with an app account. This API uses a promise to return the result.
+Obtains data associated with an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [getCustomData](#getcustomdata9-1) instead.
 
@@ -3920,14 +3920,14 @@ Obtains data associated with an app account. This API uses a promise to return t
 
 | Name | Type    | Mandatory  | Description       |
 | ---- | ------ | ---- | --------- |
-| name | string | Yes   | Name of the target app account.  |
-| key  | string | Yes   | Key of the data to obtain. |
+| name | string | Yes   | Name of the target application account.  |
+| key  | string | Yes   | Key of the data to obtain.|
 
 **Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise used to return the data obtained. |
+| Promise&lt;string&gt; | Promise used to return the data obtained.|
 
 **Example**
 
@@ -3947,7 +3947,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 Subscribes to account information changes of apps.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [on('accountChange')](#onaccountchange9) instead.
 
@@ -3957,9 +3957,9 @@ Subscribes to account information changes of apps.
 
 | Name     | Type                                      | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | 'change'                                 | Yes   | Event type to subscribe to. The value is **'change'**. An event will be reported when the account information changes. |
-| owners   | Array&lt;string&gt;                      | Yes   | App bundle names of the account.                     |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed app accounts.          |
+| type     | 'change'                                 | Yes   | Event type to subscribe to. The value is **'change'**. An event will be reported when the account information changes.|
+| owners   | Array&lt;string&gt;                      | Yes   | application bundle names of the account.                     |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed application accounts.          |
 
 **Example**
 
@@ -3981,7 +3981,7 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
 Unsubscribes from account information changes.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. Use [off('accountChange')](#offaccountchange9) instead.
 
@@ -3991,8 +3991,8 @@ Unsubscribes from account information changes.
 
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
-| type     | 'change'                         | Yes   | Event type to unsubscribe from. The value is **'change'**, which indicates the account change event.    |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event. |
+| type     | 'change'                         | Yes   | Event type to subscribe to. The value is **'change'**. An event will be reported when the account information changes.   |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event.|
 
 **Example**
 
@@ -4015,9 +4015,9 @@ Unsubscribes from account information changes.
 
 authenticate(name: string, owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-Authenticates an app account with customized options. This API uses an asynchronous callback to return the result.
+Authenticates an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9) instead.
 
@@ -4027,11 +4027,11 @@ Authenticates an app account with customized options. This API uses an asynchron
 
 | Name     | Type                   | Mandatory  | Description             |
 | -------- | --------------------- | ---- | --------------- |
-| name     | string                | Yes   | Name of the target app account.    |
-| owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                | Yes   | Name of the target application account.    |
+| owner    | string                | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | {[key: string]: any}  | Yes   | Options for the authentication.      |
-| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Callback used to return the result. |
+| callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -4070,9 +4070,9 @@ Authenticates an app account with customized options. This API uses an asynchron
 
 getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the authorization token of the specified authentication type for an app account. This API uses an asynchronous callback to return the result.
+Obtains the authorization token of the specified authentication type for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9) instead.
 
@@ -4082,8 +4082,8 @@ Obtains the authorization token of the specified authentication type for an app 
 
 | Name     | Type                         | Mandatory  | Description         |
 | -------- | --------------------------- | ---- | ----------- |
-| name     | string                      | Yes   | Name of the target app account.   |
-| owner    | string                      | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                      | Yes   | Name of the target application account.   |
+| owner    | string                      | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | authType | string                      | Yes   | Authentication type.      |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authorization token value obtained. Otherwise, **err** is an error object.  |
 
@@ -4103,9 +4103,9 @@ Obtains the authorization token of the specified authentication type for an app 
 
 getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&gt;
 
-Obtains the authorization token of the specified authentication type for an app account. This API uses a promise to return the result.
+Obtains the authorization token of the specified authentication type for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthToken](#getauthtoken9-1) instead.
 
@@ -4115,15 +4115,15 @@ Obtains the authorization token of the specified authentication type for an app 
 
 | Name     | Type    | Mandatory  | Description         |
 | -------- | ------ | ---- | ----------- |
-| name     | string | Yes   | Name of the target app account.   |
-| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string | Yes   | Name of the target application account.   |
+| owner    | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | authType | string | Yes   | Authentication type.      |
 
 **Return value**
 
 | Type                   | Description                   |
 | --------------------- | --------------------- |
-| Promise&lt;string&gt; | Promise used to return the result. |
+| Promise&lt;string&gt; | Promise used to return the authorization token obtained.|
 
 **Example**
 
@@ -4141,9 +4141,9 @@ Obtains the authorization token of the specified authentication type for an app 
 
 setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets an authorization token of the specific authentication type for an app account. This API uses an asynchronous callback to return the result.
+Sets an authorization token of the specific authentication type for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9) instead.
 
@@ -4153,10 +4153,10 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type                       | Mandatory  | Description      |
 | -------- | ------------------------- | ---- | -------- |
-| name     | string                    | Yes   | Name of the target app account. |
+| name     | string                    | Yes   | Name of the target application account.|
 | authType | string                    | Yes   | Authentication type.   |
-| token    | string                    | Yes   | Authorization token to set. |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| token    | string                    | Yes   | Authorization token to set.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4172,9 +4172,9 @@ Sets an authorization token of the specific authentication type for an app accou
 
 setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
-Sets an authorization token of the specific authentication type for an app account. This API uses a promise to return the result.
+Sets an authorization token of the specific authentication type for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthToken](#setauthtoken9-1) instead.
 
@@ -4184,15 +4184,15 @@ Sets an authorization token of the specific authentication type for an app accou
 
 | Name     | Type    | Mandatory  | Description      |
 | -------- | ------ | ---- | -------- |
-| name     | string | Yes   | Name of the target app account. |
+| name     | string | Yes   | Name of the target application account.|
 | authType | string | Yes   | Authentication type.   |
-| token    | string | Yes   | Authorization token to set. |
+| token    | string | Yes   | Authorization token to set.|
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -4210,9 +4210,9 @@ Sets an authorization token of the specific authentication type for an app accou
 
 deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the authorization token of the specified authentication type for an app account. This API uses an asynchronous callback to return the result.
+Deletes the authorization token of the specified authentication type for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9) instead.
 
@@ -4222,8 +4222,8 @@ Deletes the authorization token of the specified authentication type for an app 
 
 | Name     | Type                       | Mandatory  | Description          |
 | -------- | ------------------------- | ---- | ------------ |
-| name     | string                    | Yes   | Name of the target app account.    |
-| owner    | string                    | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                    | Yes   | Name of the target application account.    |
+| owner    | string                    | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string                    | Yes   | Authentication type.       |
 | token    | string                    | Yes   | Authorization token to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
@@ -4243,9 +4243,9 @@ Deletes the authorization token of the specified authentication type for an app 
 
 deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise&lt;void&gt;
 
-Deletes the authorization token of the specified authentication type for an app account. This API uses a promise to return the result.
+Deletes the authorization token of the specified authentication type for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [deleteAuthToken](#deleteauthtoken9-1) instead.
 
@@ -4255,8 +4255,8 @@ Deletes the authorization token of the specified authentication type for an app 
 
 | Name     | Type    | Mandatory  | Description          |
 | -------- | ------ | ---- | ------------ |
-| name     | string | Yes   | Name of the target app account.    |
-| owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string | Yes   | Name of the target application account.    |
+| owner    | string | Yes   | Owner of the application account. The value is the bundle name of the application. |
 | authType | string | Yes   | Authentication type.       |
 | token    | string | Yes   | Authorization token to delete.|
 
@@ -4264,7 +4264,7 @@ Deletes the authorization token of the specified authentication type for an app 
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -4282,9 +4282,9 @@ Deletes the authorization token of the specified authentication type for an app 
 
 setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the visibility of an authorization token to an app. This API uses an asynchronous callback to return the result.
+Sets the visibility of an authorization token to an application. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9) instead.
 
@@ -4294,10 +4294,10 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
 | Name       | Type                       | Mandatory  | Description                       |
 | ---------- | ------------------------- | ---- | ------------------------- |
-| name       | string                    | Yes   | Name of the target app account.                 |
+| name       | string                    | Yes   | Name of the target application account.                 |
 | authType   | string                    | Yes   | Authentication type.                    |
-| bundleName | string                    | Yes   | Bundle name of the app.             |
-| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
+| bundleName | string                    | Yes   | Bundle name of the application.             |
+| isVisible  | boolean                   | Yes   | Whether the authorization token is visible to the application. The value **true** means the authorization token is visible to the application; the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.                 |
 
 **Example**
@@ -4315,9 +4315,9 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
 setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise&lt;void&gt;
 
-Sets the visibility of an authorization token to an app. This API uses a promise to return the result.
+Sets the visibility of an authorization token to an application. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [setAuthTokenVisibility](#setauthtokenvisibility9-1) instead.
 
@@ -4327,16 +4327,16 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
 | Name       | Type     | Mandatory  | Description          |
 | ---------- | ------- | ---- | ------------ |
-| name       | string  | Yes   | Name of the target app account.    |
+| name       | string  | Yes   | Name of the target application account.    |
 | authType   | string  | Yes   | Authentication type.       |
-| bundleName | string  | Yes   | Bundle name of the app. |
-| isVisible  | boolean | Yes   | Whether the authorization token is visible to the app. The value **true** means the authorization token is visible to the app; the value **false** means the opposite.       |
+| bundleName | string  | Yes   | Bundle name of the application.|
+| isVisible  | boolean | Yes   | Whether the authorization token is visible to the application. The value **true** means the authorization token is visible to the application; the value **false** means the opposite.       |
 
 **Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -4354,9 +4354,9 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
 checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks the visibility of an authorization token of the specified authentication type to an app. This API uses an asynchronous callback to return the result.
+Checks the visibility of an authorization token of the specified authentication type to an application. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9) instead.
 
@@ -4366,10 +4366,10 @@ Checks the visibility of an authorization token of the specified authentication 
 
 | Name       | Type                          | Mandatory  | Description         |
 | ---------- | ---------------------------- | ---- | ----------- |
-| name       | string                       | Yes   | Name of the target app account.   |
+| name       | string                       | Yes   | Name of the target application account.   |
 | authType   | string                       | Yes   | Authentication type.      |
-| bundleName | string                       | Yes   | Bundle name of the app. |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the app) or **false** (the authorization token is not visible to the app). If the operation fails, **err** is an error object.   |
+| bundleName | string                       | Yes   | Bundle name of the application.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** can be **true** (the authorization token is visible to the application) or **false** (the authorization token is not visible to the application). If the operation fails, **err** is an error object.   |
 
 **Example**
 
@@ -4387,9 +4387,9 @@ Checks the visibility of an authorization token of the specified authentication 
 
 checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise&lt;boolean&gt;
 
-Checks the visibility of an authorization token of the specified authentication type to an app. This API uses a promise to return the result.
+Checks the visibility of an authorization token of the specified authentication type to an application. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [checkAuthTokenVisibility](#checkauthtokenvisibility9-1) instead.
 
@@ -4399,15 +4399,15 @@ Checks the visibility of an authorization token of the specified authentication 
 
 | Name       | Type    | Mandatory  | Description           |
 | ---------- | ------ | ---- | ------------- |
-| name       | string | Yes   | Name of the target app account.     |
+| name       | string | Yes   | Name of the target application account.     |
 | authType   | string | Yes   | Authentication type.        |
-| bundleName | string | Yes   | Bundle name of the app. |
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
 | Type                    | Description                   |
 | ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the app; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the authorization token is visible to the application; the value **false** means the opposite.|
 
 **Example**
 
@@ -4426,9 +4426,9 @@ Checks the visibility of an authorization token of the specified authentication 
 
 getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt;): void
 
-Obtains all tokens visible to the invoker for an app account. This API uses an asynchronous callback to return the result.
+Obtains all tokens visible to the invoker for an application account. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9) instead.
 
@@ -4438,11 +4438,11 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
 | Name     | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| name     | string                                   | Yes   | Name of the target app account.   |
-| owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name     | string                                   | Yes   | Name of the target application account.   |
+| owner    | string                                   | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | callback | AsyncCallback&lt;Array&lt;[OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all tokens visible to the invoker. Otherwise, **err** is an error object.   |
 
-**Example** 
+**Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -4458,9 +4458,9 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
 getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt;
 
-Obtains all tokens visible to the invoker for an app account. This API uses a promise to return the result.
+Obtains all tokens visible to the invoker for an application account. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAllAuthTokens](#getallauthtokens9-1) instead.
 
@@ -4470,14 +4470,14 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| name  | string | Yes   | Name of the target app account.   |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| name  | string | Yes   | Name of the target application account.   |
+| owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 
 **Return value**
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | Promise used to return the tokens obtained. |
+| Promise&lt;Array&lt; [OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | Promise used to return the tokens obtained.|
 
 **Example**
 
@@ -4496,9 +4496,9 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
 getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains the authorization list of the specified authentication type for an app account. The authorization list contains all authorized bundles. The token authorization list is set by setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated). This API uses an asynchronous callback to return the result.
+Obtains the authorization list of the specified authentication type for an application account. The authorization list contains all authorized bundles. The token authorization list is set by setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated). This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9) instead.
 
@@ -4508,8 +4508,8 @@ Obtains the authorization list of the specified authentication type for an app a
 
 | Name     | Type                                      | Mandatory  | Description                     |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| name     | string                                   | Yes   | Name of the target app account.               |
-| authType | string                                   | Yes   | Authentication type. |
+| name     | string                                   | Yes   | Name of the target application account.               |
+| authType | string                                   | Yes   | Authentication type.|
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of authorized bundles obtained. Otherwise, **err** is an error object.              |
 
 **Example**
@@ -4527,9 +4527,9 @@ Obtains the authorization list of the specified authentication type for an app a
 
 getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the authorization list of the specified authentication type for an app account. The authorization list contains all authorized bundles. The token authorization list is set by setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated). This API uses a promise to return the result.
+Obtains the authorization list of the specified authentication type for an application account. The authorization list contains all authorized bundles. The token authorization list is set by setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated). This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthList](#getauthlist9-1) instead.
 
@@ -4539,14 +4539,14 @@ Obtains the authorization list of the specified authentication type for an app a
 
 | Name     | Type    | Mandatory  | Description                     |
 | -------- | ------ | ---- | ----------------------- |
-| name     | string | Yes   | Name of the target app account.               |
-| authType | string | Yes   | Authentication type. |
+| name     | string | Yes   | Name of the target application account.               |
+| authType | string | Yes   | Authentication type.|
 
 **Return value**
 
 | Type                                | Description                   |
 | ---------------------------------- | --------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles. |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a list of authorized bundles.|
 
 **Example**
 
@@ -4566,7 +4566,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 
 Obtains the authenticator callback for an authentication session. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9) instead.
 
@@ -4576,8 +4576,8 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string                                   | Yes   | ID of the authentication session. |
-| callback  | AsyncCallback&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback obtained. Otherwise, **err** is an error object. |
+| sessionId | string                                   | Yes   | ID of the authentication session.|
+| callback  | AsyncCallback&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator callback obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4611,7 +4611,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 Obtains the authenticator callback for an authentication session. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [getAuthCallback](#getauthcallback9-1) instead.
 
@@ -4621,13 +4621,13 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Name      | Type    | Mandatory  | Description      |
 | --------- | ------ | ---- | -------- |
-| sessionId | string | Yes   | ID of the authentication session. |
+| sessionId | string | Yes   | ID of the authentication session.|
 
 **Return value**
 
 | Type                                  | Description                   |
 | ------------------------------------ | --------------------- |
-| Promise&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Promise used to return the authenticator callback obtained. |
+| Promise&lt;[AuthenticatorCallback](#authenticatorcallbackdeprecated)&gt; | Promise used to return the authenticator callback obtained.|
 
 **Example**
 
@@ -4657,9 +4657,9 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo&gt;): void
 
-Obtains the authenticator information of an app. This API uses an asynchronous callback to return the result.
+Obtains the authenticator information of an application. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9) instead.
 
@@ -4669,7 +4669,7 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 | Name     | Type                                    | Mandatory  | Description         |
 | -------- | -------------------------------------- | ---- | ----------- |
-| owner    | string                                 | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| owner    | string                                 | Yes   | Owner of the application account. The value is the bundle name of the application.|
 | callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the authenticator information obtained. Otherwise, **err** is an error object.   |
 
 **Example**
@@ -4688,9 +4688,9 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
 getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
-Obtains the authenticator information of an app. This API uses a promise to return the result.
+Obtains the authenticator information of an application. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [queryAuthenticatorInfo](#queryauthenticatorinfo9-1) instead.
 
@@ -4700,13 +4700,13 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
+| owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
 
 **Return value**
 
 | Type                              | Description                   |
 | -------------------------------- | --------------------- |
-| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained. |
+| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the authenticator information obtained.|
 
 **Example**
 
@@ -4723,14 +4723,14 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
 ## AppAccountInfo
 
-Defines app account information.
+Defines application account information.
 
 **System capability**: SystemCapability.Account.AppAccount
 
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
-| owner | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
-| name  | string | Yes   | Name of the target app account.   |
+| owner | string | Yes   | Owner of the application account. The value is the bundle name of the application.|
+| name  | string | Yes   | Name of the target application account.   |
 
 ## AuthTokenInfo<sup>9+</sup>
 
@@ -4748,7 +4748,7 @@ Defines authorization token information.
 
 Defines authorization token information.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [AuthTokenInfo](#authtokeninfo9) instead.
 
@@ -4758,7 +4758,6 @@ Defines authorization token information.
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | Yes   | Authentication type.  |
 | token                | string         | Yes   | Value of the authorization token.      |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed in.|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4768,7 +4767,7 @@ Defines OAuth authenticator information.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| owner   | string | Yes   | Owner of the authenticator. The value is the bundle name of the app. |
+| owner   | string | Yes   | Owner of the authenticator. The value is the bundle name of the application.|
 | iconId  | number | Yes   | ID of the authenticator icon. |
 | labelId | number | Yes   | ID of the authenticator label. |
 
@@ -4780,30 +4779,30 @@ Defines the authentication result.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed in. |
+| account   | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed in.|
 | tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | No   | Token information. By default, no value is passed in. |
 
 ## CreateAccountOptions<sup>9+</sup>
 
-Defines the options for creating an app account.
+Defines the options for creating an application account.
 
 **System capability**: SystemCapability.Account.AppAccount
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| customData   | Record<string, string> | No   | Custom data. By default, no value is passed in. |
+| customData   | Record<string, string> | No   | Custom data. By default, no value is passed in.|
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
-Defines the options for implicitly creating an app account.
+Defines the options for implicitly creating an application account.
 
 **System capability**: SystemCapability.Account.AppAccount
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| requiredLabels   | Array&lt;string&gt; | No   | Required labels. By default, no value is passed in. |
-| authType   | string | No   | Authentication type. By default, no value is passed in. |
-| parameters   | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in. |
+| requiredLabels   | Array&lt;string&gt; | No   | Required labels. By default, no value is passed in.|
+| authType   | string | No   | Authentication type. By default, no value is passed in.|
+| parameters   | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in.|
 ## SelectAccountsOptions<sup>9+</sup>
 
 Defines the options for selecting accounts.
@@ -4813,7 +4812,7 @@ Defines the options for selecting accounts.
 | Name         | Type                        | Mandatory | Description               |
 | --------------- | --------------------------- | ----- | ------------------- |
 | allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | No   | Array of allowed accounts. By default, no value is passed in.    |
-| allowedOwners   | Array&lt;string&gt;         | No   | Array of the owners of the allowed accounts. By default, no value is passed in. |
+| allowedOwners   | Array&lt;string&gt;         | No   | Array of the owners of the allowed accounts. By default, no value is passed in.|
 | requiredLabels  | Array&lt;string&gt;         | No   | Labels of the authenticator. By default, no value is passed in. |
 
 ## VerifyCredentialOptions<sup>9+</sup>
@@ -4826,7 +4825,7 @@ Represents the options for verifying the user credential.
 | -------------- | ---------------------- | ----- | -------------- |
 | credentialType | string                 | No   | Credential type. By default, no value is passed in.     |
 | credential     | string                 | No   | Credential value. By default, no value is passed in.     |
-| parameters     | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in. |
+| parameters     | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in.|
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4838,7 +4837,7 @@ Represents the options for setting authenticator properties.
 | Name    | Type                   | Mandatory | Description          |
 | ---------- | ---------------------- | ----- | -------------- |
 | properties | Record<string, Object> | No   | Property object. By default, no value is passed in.     |
-| parameters | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in. |
+| parameters | Record<string, Object> | No   | Custom parameter object. By default, no value is passed in.|
 
 ## Constants<sup>8+</sup>
 
@@ -4854,8 +4853,8 @@ Enumerates the constants.
 | ACTION_AUTH<sup>9+</sup>              | 'auth'         | Authentication operation.        |
 | ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | Operation of verifying credentials. |
 | ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | Operation of setting authenticator properties.     |
-| KEY_NAME                         | 'name'                 | Name of the target app account. |
-| KEY_OWNER                        | 'owner'                | Bundle name of the app account owner.|
+| KEY_NAME                         | 'name'                 | Name of the application account. |
+| KEY_OWNER                        | 'owner'                | Bundle name of the application account owner.|
 | KEY_TOKEN                        | 'token'                | Token.        |
 | KEY_ACTION                       | 'action'               | Operation.        |
 | KEY_AUTH_TYPE                    | 'authType'             | Authentication type.    |
@@ -4878,7 +4877,7 @@ Enumerates the result codes.
 | Name                                 | Value  | Description          |
 | ----------------------------------- | ----- | ------------ |
 | SUCCESS                             | 0     | The operation is successful.     |
-| ERROR_ACCOUNT_NOT_EXIST             | 10001 | The app account does not exist.  |
+| ERROR_ACCOUNT_NOT_EXIST             | 10001 | The application account does not exist.  |
 | ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | The **AppAccountManager** service is abnormal. |
 | ERROR_INVALID_PASSWORD              | 10003 | The password is invalid.     |
 | ERROR_INVALID_REQUEST               | 10004 | The request is invalid.     |
@@ -4891,7 +4890,7 @@ Enumerates the result codes.
 | ERROR_OAUTH_SERVICE_EXCEPTION       | 10011 | The OAuth service is abnormal. |
 | ERROR_OAUTH_SESSION_NOT_EXIST       | 10012 | The session to be authenticated does not exist.  |
 | ERROR_OAUTH_TIMEOUT                 | 10013 | The authentication timed out.     |
-| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014 | The authorization token does not exist. |
+| ERROR_OAUTH_TOKEN_NOT_EXIST         | 10014 | The authorization token does not exist.|
 | ERROR_OAUTH_TOKEN_TOO_MANY          | 10015 | The number of OAuth tokens reaches the limit. |
 | ERROR_OAUTH_UNSUPPORT_ACTION        | 10016 | The authentication operation is not supported. |
 | ERROR_OAUTH_UNSUPPORT_AUTH_TYPE     | 10017 | The authentication type is not supported. |
@@ -4913,7 +4912,7 @@ Called to return the result of an authentication request.
 
 | Name   | Type                  | Mandatory  | Description    |
 | ------ | -------------------- | ---- | ------ |
-| code   | number               | Yes   | Authentication result code. |
+| code   | number               | Yes   | Authentication result code.|
 | result | [AuthResult](#authresult9) | No   | Authentication result. By default, no value is passed, which means the authentication result is not received. |
 
 **Example**
@@ -4952,7 +4951,7 @@ Called to redirect a request.
 
 | Name    | Type  | Mandatory  | Description        |
 | ------- | ---- | ---- | ---------- |
-| request | Want | Yes   | Request to be redirected. |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Request to be redirected.|
 
 **Example**
 
@@ -5014,7 +5013,7 @@ Called to continue to process the request.
 
 Provides OAuth authenticator callbacks.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [AuthCallback](#authcallback9) instead.
 
@@ -5030,7 +5029,7 @@ Called to return the result of an authentication request.
 
 | Name   | Type                  | Mandatory  | Description    |
 | ------ | -------------------- | ---- | ------ |
-| code   | number               | Yes   | Authentication result code. |
+| code   | number               | Yes   | Authentication result code.|
 | result | {[key: string]: any} | Yes   | Authentication result. |
 
 **Example**
@@ -5064,7 +5063,7 @@ Called to redirect a request.
 
 | Name    | Type  | Mandatory  | Description        |
 | ------- | ---- | ---- | ---------- |
-| request | Want | Yes   | Request to be redirected. |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Request to be redirected.|
 
 **Example**
 
@@ -5100,7 +5099,7 @@ Provides APIs to operate the authenticator.
 
 createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthCallback): void
 
-Creates an app account implicitly based on the specified account owner. This API uses an asynchronous callback to return the result.
+Creates an application account implicitly based on the specified account owner. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5109,15 +5108,15 @@ Creates an app account implicitly based on the specified account owner. This API
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | Yes   | Options for implicitly creating the account.     |
-| callback         | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
+| callback         | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
 
 addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-Adds an app account implicitly based on the specified authentication type and options. This API uses an asynchronous callback to return the result.
+Adds an application account implicitly based on the specified authentication type and options. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [createAccountImplicitly](#createaccountimplicitly9-2) instead.
 
@@ -5130,13 +5129,13 @@ Adds an app account implicitly based on the specified authentication type and op
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result. |
+| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result.|
 
 ### auth<sup>9+</sup>
 
 auth(name: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
-Authenticates an app account to obtain the authorization token. This API uses an asynchronous callback to return the result.
+Authenticates an application account to obtain the authorization token. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5144,18 +5143,18 @@ Authenticates an app account to obtain the authorization token. This API uses an
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| name             | string                | Yes   | Name of the target app account.       |
+| name             | string                | Yes   | Name of the target application account.       |
 | authType         | string                | Yes   | Authentication type.     |
 | options          | Record<string, Object>  | Yes   | Options for the authentication.     |
-| callback         | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result. |
+| callback         | [AuthCallback](#authcallback9) | Yes   | Callback used to return the result.|
 
 ### authenticate<sup>(deprecated)</sup>
 
 authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-Authenticates an app account to obtain the authorization token. This API uses an asynchronous callback to return the result.
+Authenticates an application account to obtain the authorization token. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. Use [auth](#auth9-2) instead.
 
@@ -5165,17 +5164,17 @@ Authenticates an app account to obtain the authorization token. This API uses an
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| name             | string                | Yes   | Name of the target app account.       |
+| name             | string                | Yes   | Name of the target application account.       |
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result. |
+| callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | Yes   | Authenticator callback used to return the authentication result.|
 
 ### verifyCredential<sup>9+</sup>
 
 verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
-Verifies the credential of an app account. This API uses an asynchronous callback to return the result.
+Verifies the credential of an application account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5183,9 +5182,9 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                   | Yes   | Name of the target app account.             |
+| name      | string                   | Yes   | Name of the target application account.             |
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | Yes   | Options for credential verification.           |
-| callback  | [AuthCallback](#authcallback9)    | Yes   | Authenticator callback used to return the verification result. |
+| callback  | [AuthCallback](#authcallback9)    | Yes   | Authenticator callback used to return the verification result.|
 
 ### setProperties<sup>9+</sup>
 
@@ -5200,7 +5199,7 @@ Sets the authenticator properties. This API uses an asynchronous callback to ret
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | options   | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.           |
-| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
+| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 ### checkAccountLabels<sup>9+</sup>
 
@@ -5214,15 +5213,15 @@ Checks the account labels. This API uses an asynchronous callback to return the 
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                | Yes   | Name of the target app account.             |
+| name      | string                | Yes   | Name of the target application account.             |
 | labels    | Array&lt;string&gt;          | Yes   | Labels to check.                  |
-| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the check result. |
+| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the check result.|
 
 ### checkAccountRemovable<sup>9+</sup>
 
 checkAccountRemovable(name: string, callback: AuthCallback): void
 
-Checks whether an app account can be deleted. This API uses an asynchronous callback to return the result.
+Checks whether an application account can be deleted. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -5230,8 +5229,8 @@ Checks whether an app account can be deleted. This API uses an asynchronous call
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                | Yes   | Name of the target app account.             |
-| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result. |
+| name      | string                | Yes   | Name of the target application account.             |
+| callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 ### getRemoteObject<sup>9+</sup>
 
@@ -5243,6 +5242,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
 
 **Example**
 
+  <!--code_no_check-->
   ```ts
   import { rpc } from '@kit.IPCKit';
   import { Want } from '@kit.AbilityKit';

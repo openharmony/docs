@@ -19,7 +19,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 ### constructor
 
-constructor(uiContext: UIContext, builder: WrappedBuilder<[]>)
+constructor(uiContext: UIContext, builder: WrappedBuilder\<[]>)
 
 A constructor used to create a **ComponentContent** object.
 
@@ -29,14 +29,14 @@ A constructor used to create a **ComponentContent** object.
 
 **Parameters**
 
-| Name   | Type                                     | Mandatory | Description                              |
+| Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node. |
-| builder  | [WrappedBuilder<[]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters. |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
+| builder  | [WrappedBuilder\<[]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has no parameters.|
 
 ### constructor
 
-constructor(uiContext: UIContext, builder: WrappedBuilder<[T]>, args: T)
+constructor(uiContext: UIContext, builder: WrappedBuilder\<[T]>, args: T)
 
 A constructor used to create a **ComponentContent** object.
 
@@ -46,11 +46,91 @@ A constructor used to create a **ComponentContent** object.
 
 **Parameters**
 
-| Name   | Type                                     | Mandatory | Description                              |
+| Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node. |
-| builder  | [WrappedBuilder<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters. |
-| args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object. |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
+| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
+
+### constructor
+
+  constructor(uiContext: UIContext, builder: WrappedBuilder\<[T]>, args: T, options: BuildOptions)
+
+A constructor used to create a **ComponentContent** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                     | Mandatory| Description                              |
+| --------- | ----------------------------------------- | ---- | ---------------------------------- |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating the node.|
+| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | Yes  |   **WrappedBuilder** object that encapsulates a builder function that has parameters.|
+| args     |     T     |   Yes  |   Parameters of the builder function encapsulated in the **WrappedBuilder** object.|
+| options | [BuildOptions](./js-apis-arkui-builderNode.md#buildoptions12)                                                    | Yes  |  Build options, which determine whether to support the behavior of nesting **@Builder** within **@Builder**.                                        |
+
+**Example**
+``` ts
+import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI"
+
+interface ParamsInterface {
+  text: string;
+  func: Function;
+}
+
+@Builder
+function buildTextWithFunc(fun: Function) {
+  Text(fun())
+    .fontSize(50)
+    .fontWeight(FontWeight.Bold)
+    .margin({ bottom: 36 })
+}
+
+@Builder
+function buildText(params: ParamsInterface) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+    buildTextWithFunc(params.func)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "HELLO"
+  private content: NodeContent = new NodeContent();
+
+  build() {
+    Row() {
+      Column() {
+        Button('addComponentContent')
+          .onClick(() => {
+            let column = typeNode.createNode(this.getUIContext(), "Column");
+            column.initialize();
+            column.addComponentContent(new ComponentContent<ParamsInterface>(this.getUIContext(),
+              wrapBuilder<[ParamsInterface]>(buildText), {
+                text: this.message, func: () => {
+                  return "FUNCTION"
+                }
+              }, { nestingBuilderSupported: true }))
+            this.content.addFrameNode(column);
+          })
+        ContentSlot(this.content)
+      }
+      .id("column")
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
 
 ### update
 
@@ -64,9 +144,9 @@ Updates the parameters of the builder function encapsulated in the **WrappedBuil
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                                                        |
+| Name| Type| Mandatory| Description                                                        |
 | ------ | ---- | ---- | ------------------------------------------------------------ |
-| args   | T    | Yes  | Parameters of the builder function encapsulated in the **WrappedBuilder** object. The parameter type must be the same as that passed in **constructor**. |
+| args   | T    | Yes  | Parameters of the builder function encapsulated in the **WrappedBuilder** object. The parameter type must be the same as that passed in **constructor**.|
 
 **Example**
 
@@ -130,9 +210,9 @@ Passes the reuse event to the custom component in this **ComponentContent** obje
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                                    |
+| Name| Type  | Mandatory| Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| param  | Object | No  | Parameters of the builder function encapsulated in the **WrappedBuilder** object. The parameter type must be the same as that passed in **constructor**. |
+| param  | Object | No  | Parameters of the builder function encapsulated in the **WrappedBuilder** object. The parameter type must be the same as that passed in **constructor**.|
 
 ### recycle
 
@@ -221,7 +301,7 @@ Disposes of this **ComponentContent** object, which means to cancel the referenc
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Example** 
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';

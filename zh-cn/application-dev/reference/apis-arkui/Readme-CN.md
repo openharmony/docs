@@ -44,7 +44,6 @@
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
-      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
@@ -69,6 +68,7 @@
     - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件
   - 组件通用信息
     - 通用事件
@@ -103,7 +103,6 @@
       - [图形变换](arkui-ts/ts-universal-attributes-transformation.md)
       - [图像效果](arkui-ts/ts-universal-attributes-image-effect.md)
       - [形状裁剪](arkui-ts/ts-universal-attributes-sharp-clipping.md)
-      - [栅格设置](arkui-ts/ts-universal-attributes-grid.md)
       - [颜色渐变](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup控制](arkui-ts/ts-universal-attributes-popup.md)
       - [菜单控制](arkui-ts/ts-universal-attributes-menu.md)
@@ -395,6 +394,7 @@
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
+    - [栅格设置](arkui-ts/ts-universal-attributes-grid.md)
 - JS组件 
   - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
   - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
@@ -416,6 +416,7 @@
     - [native_interface.h](native__interface_8h.md)
     - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+    - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
     - [native_node_napi.h](native__node__napi_8h.md)
     - [native_type.h](native__type_8h.md)
@@ -424,6 +425,7 @@
     - [ui_input_event.h](ui__input__event_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
+    - [oh_display_capture.h](oh__display__capture_8h.md)
     - [oh_display_info.h](oh__display__info_8h.md)
     - [oh_display_manager.h](oh__display__manager_8h.md)
   - 结构体
@@ -455,6 +457,10 @@
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
     - [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md)
+    - [NativeDisplayManager_DisplayColorSpace](_native_display_manager___display_color_space.md)
+    - [NativeDisplayManager_DisplayHdrFormat](_native_display_manager___display_hdr_format.md)
+    - [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md)
+    - [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md)
     - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
     - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
 - 错误码

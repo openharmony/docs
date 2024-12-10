@@ -7,7 +7,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 **Encryption**
 
 
-1. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
+1. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit SM4 symmetric key (**SymKey**).
    
    In addition to the example in this topic, [SM4](crypto-sym-key-generation-conversion-spec.md#sm4) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly.md) may help you better understand how to generate an SM4 symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
@@ -26,7 +26,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
    - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
    - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
-6. Obtain [GcmParamsSpec.authTag](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec) as the authentication information for decryption.
+6. Obtain [GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag as the authentication information for decryption.
    In GCM mode, extract the last 16 bytes from the encrypted data as the authentication information for initializing the **Cipher** instance in decryption. In the example, **authTag** is of 16 bytes.
 
 
@@ -140,7 +140,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
-    // Obtain the GCM authTag from the doFinal result in encryption and fill it in the params parameter of init() in decryption.
+    // Obtain the GCM authTag from the Cipher.doFinal result in encryption and fill it in the params parameter of Cipher.init in decryption.
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -157,7 +157,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
     let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
     let encryptUpdate = cipher.updateSync(plainText);
-    // In GCM mode, pass in null in doFinal() in encryption. Obtain the tag data and fill it in the gcmParams object.
+    // In GCM mode, pass in null in Cipher.doFinal in encryption. Obtain the tag data and fill it in the gcmParams object.
     gcmParams.authTag = cipher.doFinalSync(null);
     return encryptUpdate;
   }
@@ -166,23 +166,23 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
     let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
     let decryptUpdate = decoder.updateSync(cipherText);
-    // In GCM mode, pass in null in doFinal() in decryption. Verify the tag data passed in **init**. If the verification fails, an exception will be thrown.
+    // In GCM mode, pass in null in Cipher.doFinal in decryption. Verify the tag data passed in Cipher.init. If the verification fails, an exception will be thrown.
     let decryptData = decoder.doFinalSync(null);
     if (decryptData == null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     return decryptUpdate;
   }
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
-    let symKey = await sm4Generator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = sm4Generator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
-  async function main() {
+  function main() {
     let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-    let symKey = await genSymKeyByData(keyData);
+    let symKey = genSymKeyByData(keyData);
     let message = "This is a test";
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessage(symKey, plainText);

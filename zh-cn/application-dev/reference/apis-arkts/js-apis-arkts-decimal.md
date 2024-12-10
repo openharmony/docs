@@ -2406,7 +2406,7 @@ toSignificantDigits(significantDigits: number): Decimal
 ```ts
 let a: Decimal = new Decimal(987.654321);
 let b: Decimal = a.toSignificantDigits(6);
-console.info("test Decimal toSignificantDigits:" + b.toString()); // '9876.54'
+console.info("test Decimal toSignificantDigits:" + b.toString()); // '987.654'
 ```
 
 ### toSignificantDigits
@@ -2445,7 +2445,7 @@ toSignificantDigits(significantDigits: number, rounding: Rounding): Decimal
 ```ts
 let a: Decimal = new Decimal(987.654321);
 let b: Decimal = a.toSignificantDigits(6, Decimal.ROUND_UP);
-console.info("test Decimal toSignificantDigits:" + b.toString()); // '9876.55'
+console.info("test Decimal toSignificantDigits:" + b.toString()); // '987.655'
 ```
 
 ### toNumber
@@ -2499,7 +2499,7 @@ Decimal.set({ toExpPos: 5 })
 b = a.toString() // b:'7.5e+5'
 
 let c: Decimal = new Decimal(0.000000123)
-console.info("test Decimal toString:" + c.toString()); // '0.000000123'
+console.info("test Decimal toString:" + c.toString()); // '1.23e-7'
 
 Decimal.set({ toExpNeg: -7 })
 b = c.toString() // b:'1.23e-7'
@@ -4209,7 +4209,7 @@ let c0 : Decimal = new Decimal('9.999e500') // '9.999e+500'
 let c1 : Decimal = new Decimal('1e501') // 'Infinity'
 
 Decimal.set({ maxE: 4 })
-let d0 : Decimal = new Decimal(99999) // '99999'
+let d0 : Decimal = new Decimal(99999) // '9.9999e+4'
 let d1 : Decimal = new Decimal(100000) // 'Infinity'
 ```
 

@@ -94,7 +94,7 @@ static bool doTestEcdsaSignature()
       return false;
    }
    bool res = OH_CryptoVerify_Final(verify, &msgBlob, &signBlob);
-   if (ret != true) {
+   if (res != true) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;

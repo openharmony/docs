@@ -10,6 +10,11 @@ AppStorage是应用全局的UI状态存储，是和应用的进程绑定的，�
 本文仅介绍AppStorage使用场景和相关的装饰器：\@StorageProp和\@StorageLink。
 
 
+AppStorage是应用全局的UI状态存储，不同于\@State等装饰器仅能在组件树上传递，AppStorage的目的是为了给开发者提供更大范围的跨ability基本的数据共享。在阅读本文档前，建议开发者对状态管理框架中AppStorage的定位有一个宏观了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+
+AppStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发AppStorage对应key的增删改查，建议配合[AppStorage API文档](../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。
+
+
 ## 概述
 
 AppStorage是在应用启动的时候会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。AppStorage将在应用运行过程保留其属性。属性通过唯一的键字符串值访问。
@@ -197,9 +202,9 @@ let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // lin
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
 
-link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
-link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
+link1.set(48); // 双向同步: link1.get() == link2.get() == prop.get() == 48
+prop.set(1); // 单向同步: prop.get() == 1; 但 link1.get() == link2.get() == 48
+link1.set(49); // 双向同步: link1.get() == link2.get() == prop.get() == 49
 
 storage.get<number>('PropA') // == 17
 storage.set('PropA', 101);
@@ -291,6 +296,7 @@ class ViewData {
 @Entry
 @Component
 struct Gallery2 {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 
@@ -380,6 +386,7 @@ class ViewData {
 @Entry
 @Component
 struct Gallery2 {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
   private preIndex: number = -1
@@ -480,6 +487,7 @@ class ViewData {
 @Entry
 @Component
 struct Gallery2 {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 

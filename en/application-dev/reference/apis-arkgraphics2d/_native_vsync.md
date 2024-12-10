@@ -43,10 +43,12 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 | Name| Description|
 | -------- | -------- |
 | [OH_NativeVSync_Create](#oh_nativevsync_create) (const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is created each time this function is called.|
+| [OH_NativeVSync](#oh_nativevsync) \* [OH_NativeVSync_Create_ForAssociatedWindow](#oh_nativevsync_create_forassociatedwindow) (uint64_t windowID, const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance to bind with a window. A new **OH_NativeVSync** instance is created each time this API is called.| 
 | [OH_NativeVSync_Destroy](#oh_nativevsync_destroy) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync) | Destroys an **OH_NativeVSync** instance.|
 | int [OH_NativeVSync_RequestFrame](#oh_nativevsync_requestframe) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked. If this function is called for multiple times in the same frame, only the last callback function is invoked.| 
 | int [OH_NativeVSync_RequestFrameWithMultiCallback](#oh_nativevsync_requestframewithmulticallback) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked. If this function is called for multiple times in the same frame, every callback function is invoked.| 
 | [OH_NativeVSync_GetPeriod](#oh_nativevsync_getperiod) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, long long \*period) |Obtains the VSync period.|
+| int [OH_NativeVSync_DVSyncSwitch](#oh_nativevsync_dvsyncswitch) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, bool enable) | Enables DVSync to improve the smoothness of self-drawing animations. DVSync, short for Decoupled VSync, is a frame timing management policy that is decoupled from the hardware's VSync.<br>DVSync drives the early rendering of upcoming animation frames by sending VSync signals with future timestamps. These frames are stored in a frame buffer queue. This helps DVSync reduce potential frame drops and therefore enhances the smoothness of animations.<br>DVSync requires free self-drawing frame buffers to store these pre-rendered animation frames. Therefore, you must ensure that at least one free frame buffer is available. Otherwise, do not enable DVSync.<br>After DVSync is enabled, you must correctly respond to the early VSync signals and request the subsequent VSync after the animation frame associated with the previous VSync is complete. In addition, the self-drawing frames must carry timestamps that align with VSync.<br>After the animation ends, disable DVSync.<br>On a platform that does not support DVSync or if another application has enabled DVSync, the attempt to enable it will not take effect, and the application still receives normal VSync signals.| 
 
 ## Type Description
 
@@ -80,7 +82,7 @@ Defines the pointer to a VSync callback function.
 
 | Name| Description|
 | -------- | -------- |
-| timestamp | VSync timestamp.|
+| timestamp | System timestamp obtained by VSync using **CLOCK_MONOTONIC**, in nanoseconds.|
 | data | User-defined data.|
 
 
@@ -136,6 +138,44 @@ Enumerates the error codes.
 
 ## Function Description
 
+
+### OH_NativeVSync_DVSyncSwitch()
+
+```
+int OH_NativeVSync_DVSyncSwitch (OH_NativeVSync* nativeVsync, bool enable )
+```
+
+**Description**
+
+Enables DVSync to improve the smoothness of self-drawing animations. DVSync, short for Decoupled VSync, is a frame timing management policy that is decoupled from the hardware's VSync.
+
+DVSync drives the early rendering of upcoming animation frames by sending VSync signals with future timestamps. These frames are stored in a frame buffer queue. This helps DVSync reduce potential frame drops and therefore enhances the smoothness of animations.
+
+DVSync requires free self-drawing frame buffers to store these pre-rendered animation frames. Therefore, you must ensure that at least one free frame buffer is available. Otherwise, do not enable DVSync.
+
+After DVSync is enabled, you must correctly respond to the early VSync signals and request the subsequent VSync after the animation frame associated with the previous VSync is complete. In addition, the self-drawing frames must carry timestamps that align with VSync.
+
+After the animation ends, disable DVSync.
+
+On a platform that does not support DVSync or if another application has enabled DVSync, the attempt to enable it will not take effect, and the application still receives normal VSync signals.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeVsync
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| nativeVsync | Pointer to an **OH_NativeVSync** instance.| 
+| enable | Whether to enable DVSync. The value **true** means to enable DVSync, and **false** means the opposite.| 
+
+**Returns**
+
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
+
+
+
 ### OH_NativeVSync_GetPeriod()
 
 
@@ -182,12 +222,40 @@ Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is cre
 
 | Name| Description|
 | -------- | -------- |
-| name | Pointer to the name that associates with an **OH_NativeVSync** instance.|
+| name | Pointer to the name that associates with the **OH_NativeVSync** instance.|
 | length | Length of the name.|
 
 **Returns**
 
 Returns the pointer to an **OH_NativeVSync** instance.
+
+
+### OH_NativeVSync_Create_ForAssociatedWindow()
+
+```
+OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow (uint64_t windowID, const char* name, unsigned int length )
+```
+
+**Description**
+
+Creates an **OH_NativeVSync** instance to bind with a window. A new **OH_NativeVSync** instance is created each time this API is called.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeVsync
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| windowID | Window ID, which is the index identifier of the window child process and can be obtained through [OH_NativeWindow_GetSurfaceId](_native_window.md#oh_nativewindow_getsurfaceid).| 
+| name | Pointer to the name that associates with the **OH_NativeVSync** instance.| 
+| length | Length of the name.| 
+
+**Returns**
+
+Returns the pointer to an **OH_NativeVSync** instance.
+
 
 
 ### OH_NativeVSync_Destroy()

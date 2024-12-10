@@ -180,6 +180,13 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 ## Bias对象说明
 
+设置组件在锚点约束下的偏移参数。
+<br/>以水平方向Bias为例，其值为组件到左锚点的距离 D<sub>start</sub>与组件到水平方向锚点间总距离 D<sub>start</sub> +  D<sub>end</sub>的比值。镜像语言下，D<sub>start</sub>为组件到右锚点的距离。下图中D<sub>width</sub>表示组件宽度。
+<br/>![bias_horizontal_example.png](figures/bias_horizontal_example.png)
+<br/>竖直方向同理，其值为组件到上锚点的距离D<sub>top</sub>与组件到竖直方向锚点间总距离D<sub>top</sub> + D<sub>bottom</sub>的比值。下图中D<sub>height</sub>表示组件高度。
+<br/>![bias_vertical_example.png](figures/bias_vertical_example.png)
+
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
@@ -191,7 +198,8 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 chainMode(direction: Axis, style: ChainStyle)
 
-指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。链头指满足[规则说明](ts-container-relativecontainer.md#规则说明)中成链规则时链的第一个组件（水平方向从左边起始，镜像语言下从右边起始；竖直方向从上边起始）。
+详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -200,7 +208,7 @@ chainMode(direction: Axis, style: ChainStyle)
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | direction  | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
-| style  | [ChainStyle](chainstyle12) | 是   | 链的样式。 |
+| style  | [ChainStyle](#chainstyle12) | 是   | 链的样式。 |
 
 ## ChainStyle<sup>12+</sup>
 
@@ -212,9 +220,9 @@ chainMode(direction: Axis, style: ChainStyle)
 
 | 名称          | 说明                                                         |
 | ------------- | ------------------------------------------------------------ |
-| SPREAD        | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
+| SPREAD        | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
+| PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 
 ## 示例
 

@@ -169,7 +169,7 @@ Subscribes to NFC state changes. A callback will be invoked to return the NFC st
  
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to subscribe to. The value is **nfcStateChange**.|
+| type | string | Yes| Event type. The value is **nfcStateChange**.|
 | callback | Callback&lt;[NfcState](#nfcstate)&gt; | Yes| Callback used to return the NFC state.|
 
 ## nfcController.off('nfcStateChange')
@@ -201,30 +201,28 @@ nfcController.on("nfcStateChange", (nfcState : number)=> {
 
 // Open NFC. The caller must have the ohos.permission.MANAGE_SECURE_SETTINGS permission. This permission is available only for system applications.
 if (!nfcController.isNfcOpen()) {
-  let ret: boolean = nfcController.openNfc();
-  console.log("nfcController openNfc ret: " + ret);
-}
-
-// Use 'enableNfc' to enable NFC from API version 9.
-try {
-  nfcController.enableNfc();
-  console.log("nfcController enableNfc success");
-} catch (businessError) {
-  console.error("nfcController enableNfc businessError: " + businessError);
+// Use 'enableNfc' to enable NFC since API version 9.
+  try {
+    nfcController.enableNfc();
+    console.log("nfcController enableNfc success");
+  } catch (businessError) {
+    console.error("nfcController enableNfc businessError: " + businessError);
+  }
+} else {
+  console.log("nfcController NFC has been opened");
 }
 
 // Close NFC. The caller must have the ohos.permission.MANAGE_SECURE_SETTINGS permission. This permission is available only for applications.
 if (nfcController.isNfcOpen()) {
-  let ret: boolean = nfcController.closeNfc();
-  console.log("controller closeNfc ret: " + ret);
-}
-
-// Use 'disableNfc' to disable NFC from API version 9.
-try {
-  nfcController.disableNfc();
-  console.log("nfcController disableNfc success");
-} catch (businessError) {
-  console.error("nfcController disableNfc businessError: " + businessError);
+// Use 'disableNfc' to disable NFC since API version 9.
+  try {
+    nfcController.disableNfc();
+    console.log("nfcController disableNfc success");
+  } catch (businessError) {
+    console.error("nfcController disableNfc businessError: " + businessError);
+  }
+} else {
+  console.log("nfcController NFC has been closed");
 }
 
 // Unregister the callback.

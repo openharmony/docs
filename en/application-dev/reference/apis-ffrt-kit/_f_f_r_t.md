@@ -80,7 +80,7 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 | FFRT_C_API int [ffrt_cond_timedwait](#ffrt_cond_timedwait) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, [ffrt_mutex_t](ffrt__mutex__t.md)\* mutex, const struct timespec\* time_point) | Blocks the calling thread on a condition variable for a given duration.| 
 | FFRT_C_API int [ffrt_cond_destroy](#ffrt_cond_destroy) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | Destroys a condition variable.| 
 | FFRT_C_API ffrt_loop_t [ffrt_loop_create](#ffrt_loop_create) (ffrt_queue_t queue) | Creates a loop.| 
-| FFRT_C_API int [ffrt_loop_destory](#ffrt_loop_destory) (ffrt_loop_t loop) | Destroys a loop.| 
+| FFRT_C_API int [ffrt_loop_destroy](#ffrt_loop_destroy) (ffrt_loop_t loop) | Destroys a loop.| 
 | FFRT_C_API int [ffrt_loop_run](#ffrt_loop_run) (ffrt_loop_t loop) | Runs a loop.| 
 | FFRT_C_API void [ffrt_loop_stop](#ffrt_loop_stop) (ffrt_loop_t loop) | Stops a loop.| 
 | FFRT_C_API int [ffrt_loop_epoll_ctl](#ffrt_loop_epoll_ctl) (ffrt_loop_t loop, int op, int fd, uint32_t events, void\* data, [ffrt_poller_cb](#ffrt_poller_cb) cb) | Manages listening events on a loop.| 
@@ -542,10 +542,10 @@ Creates a loop.
 Returns the **ffrt_loop_t** object if the loop is created; returns a null pointer otherwise.
 
 
-### ffrt_loop_destory()
+### ffrt_loop_destroy()
 
 ```
-FFRT_C_API int ffrt_loop_destory (ffrt_loop_t loop)
+FFRT_C_API int ffrt_loop_destroy (ffrt_loop_t loop)
 ```
 
 **Description**

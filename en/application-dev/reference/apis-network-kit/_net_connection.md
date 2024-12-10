@@ -15,8 +15,8 @@ Provides the C APIs of the network connection module for network management.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_connection.h](net__connection_8h.md) | Provides the C APIs of the network connection module for network management.| 
-| [net_connection_type.h](net__connection__type_8h.md) | Declares the structs for the C APIs of the network connection module.| 
+| [net_connection.h](net__connection_8h.md) | Provides the C APIs of the network connection module for network management.<br>**File to include**: \<network\/netmanager\/net_connection.h\>| 
+| [net_connection_type.h](net__connection__type_8h.md) | Declares the structs for the C APIs of the network connection module.<br>**File to include**: \<network\/netmanager\/net_connection_type.h\>| 
 
 
 ### Structs

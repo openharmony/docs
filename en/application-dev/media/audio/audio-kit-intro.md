@@ -60,6 +60,8 @@ In addition to the basic information (which describes only audio data), an audio
 
   **SourceType** specifies the recording source type of an audio stream, including the mic source, voice recognition source, and voice communication source.
 
+For details, see [Selecting an Appropriate Audio Stream Type](using-right-streamusage-and-sourcetype.md).
+
 ## Supported Audio Formats
 
 The APIs of the audio module support PCM encoding, including AudioRenderer, AudioCapturer, TonePlayer, and OpenSL ES.

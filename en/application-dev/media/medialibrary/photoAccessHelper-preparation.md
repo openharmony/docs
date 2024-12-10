@@ -9,7 +9,7 @@ The application needs to call [getPhotoAccessHelper](../../reference/apis-media-
 **How to Develop**
 
 1. Import the **photoAccessHelper** module.
-2. Use **getContext** to obtain the application context.
+2. Call **getContext** to obtain the application context.
 3. Obtain a **PhotoAccessHelper** instance.
 
 ```ts

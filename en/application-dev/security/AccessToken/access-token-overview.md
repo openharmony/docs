@@ -6,7 +6,7 @@ To prevent improper or malicious use of data or functions, the system provides a
 
 ## Application Sandbox
 
-All applications running on the system are deployed in independent sandbox directories, which isolate the data of different applications and prevent improper application behavior, such as unauthorized data access between applications and device tampering. Each application has a unique ID ([TokenID](app-permission-mgmt-overview.md#tokenid)), which can be used to identify the application and restrict its access behavior.
+All applications running on the system are deployed in independent sandbox directories, which isolate the data of different applications and prevent improper application behavior, such as unauthorized data access between applications and device tampering. Each application has a unique ID ([TokenID](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism)), which can be used to identify the application and restrict its access behavior.
 
 The application sandbox directory specifies the data range visible to an application. For details, see [Application Sandbox](../../file-management/app-sandbox-directory.md).
 
@@ -30,6 +30,4 @@ Specifically, the secure access mechanism is implemented by system Pickers and s
 
 - [Security components](security-component-overview.md)
 
-  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the **LocationButton** component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. 
-  
-  The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.
+  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the **LocationButton** component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. <br>The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.

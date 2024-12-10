@@ -7,6 +7,10 @@ LocalStorage是页面级的UI状态存储，通过\@Entry装饰器接收的参�
 本文仅介绍LocalStorage使用场景和相关的装饰器：\@LocalStorageProp和\@LocalStorageLink。
 
 
+在阅读本文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+
+LocalStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发Storage对应key的增删改查，建议配合[LocalStorage API文档](../reference/apis-arkui/arkui-ts/ts-state-management.md#localstorage9)阅读。
+
 > **说明：**
 >
 > LocalStorage从API version 9开始支持。
@@ -209,9 +213,9 @@ let propA: number | undefined = storage.get('PropA') // propA == 47
 let link1: SubscribedAbstractProperty<number> = storage.link('PropA'); // link1.get() == 47
 let link2: SubscribedAbstractProperty<number> = storage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = storage.prop('PropA'); // prop.get() == 47
-link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
-link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
+link1.set(48); // 双向同步: link1.get() == link2.get() == prop.get() == 48
+prop.set(1); // 单向同步: prop.get() == 1; 但 link1.get() == link2.get() == 48
+link1.set(49); // 双向同步: link1.get() == link2.get() == prop.get() == 49
 ```
 
 
@@ -271,12 +275,12 @@ struct CompA {
 
   build() {
     Column({ space: 15 }) {
-      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
+      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // 由于LocalStorage中PropA已经被初始化，因此this.parentLinkNumber的值为47
         .onClick(() => {
           this.parentLinkNumber += 1;
         })
 
-      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // initial value from LocalStorage will be 50, because 'PropB' initialized already
+      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // 由于LocalStorage中PropB已经被初始化，因此this.parentLinkObject.code的值为50
         .onClick(() => {
           this.parentLinkObject.code += 1;
         })
@@ -477,69 +481,89 @@ windowStage.loadContent('pages/Index', this.storage);
 在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 ```ts
 // index.ets
-import { router } from '@kit.ArkUI';
 
 // 通过getShared接口获取stage共享的LocalStorage实例
-let storage = LocalStorage.getShared()
-
-@Entry(storage)
+@Entry({ storage: LocalStorage.getShared() })
 @Component
 struct Index {
-  // can access LocalStorage instance using 
-  // @LocalStorageLink/Prop decorated variables
+  // 可以使用@LocalStorageLink/Prop与LocalStorage实例中的变量建立联系
   @LocalStorageLink('PropA') propA: number = 1;
+  pageStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(`${this.propA}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button("To Page")
-          .onClick(() => {
-            this.getUIContext().getRouter().pushUrl({
-              url: 'pages/Page'
+    Navigation(this.pageStack) {
+      Row(){
+        Column() {
+          Text(`${this.propA}`)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+          Button("To Page")
+            .onClick(() => {
+              this.pageStack.pushPathByName('Page', null);
             })
-          })
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
 }
 ```
 
 ```ts
 // Page.ets
-import { router } from '@kit.ArkUI';
 
-let storage = LocalStorage.getShared()
+@Builder
+export function PageBuilder() {
+  Page()
+}
 
-@Entry(storage)
+// Page组件获得了父亲Index组件的LocalStorage实例
 @Component
 struct Page {
   @LocalStorageLink('PropA') propA: number = 2;
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(`${this.propA}`)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+    NavDestination() {
+      Row(){
+        Column() {
+          Text(`${this.propA}`)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
 
-        Button("Change propA")
-          .onClick(() => {
-            this.propA = 100;
-          })
+          Button("Change propA")
+            .onClick(() => {
+              this.propA = 100;
+            })
 
-        Button("Back Index")
-          .onClick(() => {
-            this.getUIContext().getRouter().back()
-          })
+          Button("Back Index")
+            .onClick(() => {
+              this.pathStack.pop();
+            })
+        }
+        .width('100%')
       }
-      .width('100%')
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page页面的路径。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page",
+      "pageSourceFile": "src/main/ets/pages/Page.ets",
+      "buildFunction": "PageBuilder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
 }
 ```
 

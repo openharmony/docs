@@ -6,6 +6,7 @@
 
 其中\@Provide装饰的变量是在祖先组件中，可以理解为被“提供”给后代的状态变量。\@Consume装饰的变量是在后代组件中，去“消费（绑定）”祖先组件提供的变量。
 
+\@Provide/\@Consume是跨组件层级的双向同步。在阅读\@Provide和\@Consume文档前，建议开发者对UI范式基本语法和自定义组件有基本的了解。建议提前阅读：[基本语法概述](./arkts-basic-syntax-overview.md)，[声明式UI描述](./arkts-declarative-ui-description.md)，[自定义组件-创建自定义组件](./arkts-create-custom-components.md)。
 
 > **说明：**
 >
@@ -192,7 +193,7 @@ let change: string = 'change';
 @Provide(change) message: string = 'Hello';
 ```
 
-2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，仅能通过key来匹配对应的\@Provide变量进行初始化。
+2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
 
 【反例】
 

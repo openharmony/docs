@@ -1,1368 +1,748 @@
 # MVVM
 
+After understanding the concept of state management, you may be eager to develop your own applications. However, if you do not pay attention to the project structure during application development, the relationship between components becomes blurred as the project becomes larger and more state variables are designed. When you develop a new function, the costs of development and maintenance will increase exponentially. Therefore, this document describes the MVVM mode and the relationship between the UI development mode of ArkUI and the MVVM, and provides guidance for you to design your own project structures. In this way, product development and maintenance are easier during product iteration and upgrade.
 
-Rendering or re-rendering the UI based on state is complex, but critical to application performance. State data covers a collection of arrays, objects, or nested objects. In ArkUI, the Model-View-View Model (MVVM) pattern is leveraged for state management, where the state management module functions as the view model to bind data (part of model) to views. When data is changed, the views are updated.
+## Introduction
 
+### Concepts
 
-- Model: stores data and related logic. It represents data transferred between components or other related business logic. It is responsible for processing raw data.
+During application development, UI updates need to be synchronized in real time with data state changes. This synchronization usually determines the performance and user experience of applications. To reduce the complexity of data and UI synchronization, ArkUI uses the Model-View-ViewModel (MVVM) architecture. The MVVM divides an application into three core parts: Model, View, and ViewModel to separate data, views, and logic. In this mode, the UI can be automatically updated with the state change without manual processing, thereby more efficiently managing the binding and update of data and views.
 
-- View: typically represents the UI rendered by components decorated by \@Component.
+- Model: stores and manages application data and service logic without directly interacting with the UI. Generally, Model obtains data from back-end APIs and serves as the data basis of applications, which ensures data consistency and integrity.
+- View: displays data on the UI and interacts with users. No service logic is contained. It dynamically updates the UI by binding the data provided by the ViewModel.
+- ViewModel: manages UI state and interaction logic. As a bridge between Model and View, ViewModel monitors data changes in Model, notifies views to update the UI, processes user interaction events, and converts the events into data operations.
 
-- View model: holds data stored in custom component state variables, LocalStorage, and AppStorage.
-  - A custom component renders the UI by executing its **build()** method or an \@Builder decorated method. In other words, the view model can render views.
-  - The view changes the view model through an event handler, that is, the change of the view model is driven by events. The view model provides the \@Watch callback method to listen for the change of state data.
-  - Any change of the view model must be synchronized back to the model to ensure the consistency between the view model and model, that is, the consistency of the application data.
-  - The view model structure should always be designed to adapt to the build and re-render of custom components. It is for this purpose that the model and view model are separated.
+The UI development mode of ArkUI belongs to the MVVM mode. By introducing the concept of MVVM, you may have basic understanding on how the state management work in MVVM. State management aims to drive data update and enable you to focus only on page design without paying attention to the UI re-render logic. In addition, ViewModel enables state variables to automatically maintain data. In this way, MVVM provides a more efficient way for you to develop applications.
 
+### ArkUI Development
 
-A number of issues with UI construction and update arise from a poor view model design, which does not well support the rendering of custom components, or does not have a view model as a mediator, resulting in the custom component being forcibly adapted to the model. For example, a data model where an application directly reads data from the SQL database into the memory cannot well adapt to the rendering of custom components. In this scenario, the view model adaptation must be considered during application development.
+The UI development mode of ArkUI is the MVVM mode, in which the state management plays the role of ViewModel to update the UI and data. The following figure shows the overall architecture.
 
+![MVVM image](./figures/MVVM_architecture.png)
 
-![en-us_image_0000001653986573](figures/en-us_image_0000001653986573.png)
+### Layer Description
 
+**View**
 
-In the preceding example involving the SQL database, the application should be designed as follows:
+* Page components: All applications are classified by page, such as the login page, list page, editing page, help page, and copyright page. The data required by each page may be completely different, or the same set of data can be shared with multiple pages.
+* Business components: a functional component that has some service capabilities of the application. Typically, the business component may be associated with the data in the ViewModel of the project and cannot be shared with other projects.
+* Common components: Similar to built-in components, these components are not associated with the ViewModel data in the application. These components can be shared across multiple projects to implement common functions.
 
+**ViewModel**
 
-- Model: responsible for efficient database operations.
+* Page data: organized by page. When a user opens a page, some pages may not be switched to. Therefore, it is recommended that the page data be designed in lazy loading mode.
 
-- View model: responsible for efficient UI updates based on the ArkUI state management feature.
+> The differences between the ViewModel data and the Model data are as follows:
+>
+> Model data, a set of service data of the application, is organized based on the entire project.
+>
+> ViewModel data provides data used on a page. It may be a part of the service data of the entire application. In addition, ViewModel also provides auxiliary data for page display, which may be irrelevant to the application services.
 
-- Converters/Adapters: responsible for conversion between the model and view model.
-  - Converters/Adapters can convert the model initially read from the database into a view model, and then initialize it.
-  - When the UI changes the view model through the event handler, the converters/adapters synchronize the updated data of the view model back to the model.
+**Model**
 
+Model provides the original data of applications. From the perspective of the UI, there are two ways to implement this layer:
 
-Compared with the Model-View (MV) pattern, which forcibly fits the UI to the SQL database in this example, the MVVM pattern is more complex. The payback is a better UI performance with simplified UI design and implementation, thanks to its isolation of the view model layer.
+* Local implementation: through native C++.
 
+* Remote implementation: through the I/O port (RESTful).
 
-## View Model Data Sources
+> **NOTE**
+>
+> When the local implementation is used, the non-UI thread model must exist when the system processes data. At this time, the processed data change needs to be notified to the ViewModel in real time, causing data changes and UI re-renders. In this case, automatic thread switching becomes very important. Generally, the ViewModel and View can work properly only when they are executed in the UI thread. Therefore, a mechanism is required to automatically complete thread switching when the UI needs to be notified of a re-render.
 
+### Core Principles of the Architecture
 
-The view model composes data from multiple top-level sources, such as variables decorated by \@State and \@Provide, LocalStorage, and AppStorage. Other decorators synchronize data with these data sources. The top-level data source to use depends on the extent to which the state needs to be shared between custom components as described below in ascending order by sharing scope:
+**Cross-layer access is not allowed.**
 
+* View cannot directly call data from Model. Instead, use the methods provided by ViewModel to call.
+* Model data cannot modify the UI directly but notifies the ViewModel to update the data.
 
-- \@State: component-level sharing, implemented through the named parameter mechanism. It is sharing between the parent component and child component by specifying parameters, for example, **CompA: ({ aProp: this.aProp })**.
+**The lower layer cannot access the upper layer data.**
 
-- \@Provide: component-level sharing, which is multi-level data sharing implemented by binding with \@Consume through a key. No parameter passing is involved during the sharing.
+The lower layer can only notify the upper layer to update the data. In the service logic, you cannot write code at the lower layer to obtain the upper-layer data. For example, the logic processing at ViewModel cannot depend on a value on the UI at View.
 
-- LocalStorage: page-level sharing, implemented by sharing LocalStorage instances in the current component tree through \@Entry.
+**Non-parent-child components cannot directly access each other.**
 
-- AppStorage: application-level sharing, which is sharing of application-wide UI state bound with the application process.
-
-
-### State Data Sharing Through \@State
-
-
-A one- or two-way data synchronization relationship can be set up from an \@State decorated variable to an \@Prop, \@Link, or \@ObjectLink decorated variable. For details, see [\@State Decorator](arkts-state.md).
-
-
-1. Use the \@State decorated variable **testNum** in the **Parent** root node as the view model data item. Pass **testNum** to the child components **LinkChild** and **Sibling**.
-
-   ```ts
-   // xxx.ets
-   @Entry
-   @Component
-   struct Parent {
-     @State @Watch("testNumChange1") testNum: number = 1;
-   
-     testNumChange1(propName: string): void {
-       console.log(`Parent: testNumChange value ${this.testNum}`)
-     }
-   
-     build() {
-       Column() {
-         LinkChild({ testNum: $testNum })
-         Sibling({ testNum: $testNum })
-       }
-     }
-   }
-   ```
+This is the core principle of View design. A component should comply with the following logic:
 
-2. In **LinkChild** and **Sibling**, use \@Link to set up a two-way data synchronization with the data source of the **Parent** component. In this example, **LinkLinkChild** and **PropLinkChild** are created in **LinkChild**.
+* Do not directly access the parent component (using the event or subscription capability).
+* Do not directly access sibling components. This is because components can access only the child nodes (through parameter passing) and parent nodes (through events or notifications) that they can see. In this way, components are decoupled.
 
-   ```ts
-   @Component
-   struct Sibling {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`Sibling: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Text(`Sibling: ${this.testNum}`)
-     }
-   }
-   
-   @Component
-   struct LinkChild {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkChild: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Column() {
-         Button('incr testNum')
-           .onClick(() => {
-             console.log(`LinkChild: before value change value ${this.testNum}`);
-             this.testNum = this.testNum + 1
-             console.log(`LinkChild: after value change value ${this.testNum}`);
-           })
-         Text(`LinkChild: ${this.testNum}`)
-         LinkLinkChild({ testNumGrand: $testNum })
-         PropLinkChild({ testNumGrand: this.testNum })
-       }
-       .height(200).width(200)
-     }
-   }
-   ```
-
-3. Declare **LinkLinkChild** and **PropLinkChild** as follows. Use \@Prop in **PropLinkChild** to set up a one-way data synchronization with the data source of the **LinkChild** component.
-
-   ```ts
-   @Component
-   struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`LinkLinkChild: ${this.testNumGrand}`)
-     }
-   }
-   
-   
-   @Component
-   struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number = 0;
-   
-     testNumChange(propName: string): void {
-       console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`PropLinkChild: ${this.testNumGrand}`)
-         .height(70)
-         .backgroundColor(Color.Red)
-         .onClick(() => {
-           this.testNumGrand += 1;
-         })
-     }
-   }
-   ```
-
-   ![en-us_image_0000001638250945](figures/en-us_image_0000001638250945.png)
-
-   When \@Link **testNum** in **LinkChild** changes:
-
-   1. The changes are first synchronized to its parent component **Parent**, and then from **Parent** to **Sibling**.
-
-   2. The changes are also synchronized to the child components **LinkLinkChild** and **PropLinkChild**.
-
-   Different from \@Provide, LocalStorage, and AppStorage, \@State is used with the following constraints:
-
-   - If you want to pass changes to a grandchild component, you must first pass the changes to the child component and then from the child component to the grandchild component.
-   - The changes can only be passed by specifying parameters of constructors, that is, through the named parameter mechanism CompA: ({ aProp: this.aProp }).
-
-   A complete code example is as follows:
-
-
-   ```ts
-   @Component
-   struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`LinkLinkChild: ${this.testNumGrand}`)
-     }
-   }
-   
-   
-   @Component
-   struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number = 0;
-   
-     testNumChange(propName: string): void {
-       console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`PropLinkChild: ${this.testNumGrand}`)
-         .height(70)
-         .backgroundColor(Color.Red)
-         .onClick(() => {
-           this.testNumGrand += 1;
-         })
-     }
-   }
-   
-   
-   @Component
-   struct Sibling {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`Sibling: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Text(`Sibling: ${this.testNum}`)
-     }
-   }
-   
-   @Component
-   struct LinkChild {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkChild: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Column() {
-         Button('incr testNum')
-           .onClick(() => {
-             console.log(`LinkChild: before value change value ${this.testNum}`);
-             this.testNum = this.testNum + 1
-             console.log(`LinkChild: after value change value ${this.testNum}`);
-           })
-         Text(`LinkChild: ${this.testNum}`)
-         LinkLinkChild({ testNumGrand: $testNum })
-         PropLinkChild({ testNumGrand: this.testNum })
-       }
-       .height(200).width(200)
-     }
-   }
-   
-   
-   @Entry
-   @Component
-   struct Parent {
-     @State @Watch("testNumChange1") testNum: number = 1;
-   
-     testNumChange1(propName: string): void {
-       console.log(`Parent: testNumChange value ${this.testNum}`)
-     }
-   
-     build() {
-       Column() {
-         LinkChild({ testNum: $testNum })
-         Sibling({ testNum: $testNum })
-       }
-     }
-   }
-   ```
-
-
-### State Data Sharing Through \@Provide
-
-\@Provide decorated variables can share state data with any descendant component that uses \@Consume to create a two-way synchronization. For details, see [\@Provide and \@Consume Decorators](arkts-provide-and-consume.md).
-
-This \@Provide-\@Consume pattern is more convenient than the \@State-\@Link-\@Link pattern in terms of passing changes from a parent component to a grandchild component. It is suitable for sharing state data in a single page UI component tree.
-
-In the \@Provide-\@Consume pattern, changes are passed by binding \@Consume to \@Provide in the ancestor component through a key, instead of by specifying parameters in the constructor.
-
-The following example uses the \@Provide-\@Consume pattern to pass changes from a parent component to a grandchild component:
-
-
-```ts
-@Component
-struct LinkLinkChild {
-  @Consume @Watch("testNumChange") testNum: number;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkLinkChild: testNum value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`LinkLinkChild: ${this.testNum}`)
-  }
-}
-
-@Component
-struct PropLinkChild {
-  @Prop @Watch("testNumChange") testNumGrand: number = 0;
-
-  testNumChange(propName: string): void {
-    console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-  }
-
-  build() {
-    Text(`PropLinkChild: ${this.testNumGrand}`)
-      .height(70)
-      .backgroundColor(Color.Red)
-      .onClick(() => {
-        this.testNumGrand += 1;
-      })
-  }
-}
-
-@Component
-struct Sibling {
-  @Consume @Watch("testNumChange") testNum: number;
-
-  testNumChange(propName: string): void {
-    console.log(`Sibling: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`Sibling: ${this.testNum}`)
-  }
-}
-
-@Component
-struct LinkChild {
-  @Consume @Watch("testNumChange") testNum: number;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkChild: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Column() {
-      Button('incr testNum')
-        .onClick(() => {
-          console.log(`LinkChild: before value change value ${this.testNum}`);
-          this.testNum = this.testNum + 1
-          console.log(`LinkChild: after value change value ${this.testNum}`);
-        })
-      Text(`LinkChild: ${this.testNum}`)
-      LinkLinkChild({ /* empty */ })
-      PropLinkChild({ testNumGrand: this.testNum })
-    }
-    .height(200).width(200)
-  }
-}
+Reasons:
 
+* The child components used by the component are clear, therefore, access is allowed.
+* The parent node where the component is placed is unknown. Therefore, the component can access the parent node only through notifications or events.
+* It is impossible for a component to know its sibling nodes, so the component cannot manipulate the sibling nodes.
+
+## Memo Development
+
+This section describes how to use ArkUI to design your own applications. The sample code in this section directly develops functions without designing the code architecture and considering subsequent maintenance, and the decorators required for function development are introduced as well.
+
+### @State
+
+* As the most commonly used decorator, @State is used to define state variables. Generally, the @State decorator is used as the data source of the parent component. When you click @State, the state variable is updated to re-render the UI. If the @State decorator is removed, the UI cannot be refreshed.
+
+```typescript
 @Entry
 @Component
-struct Parent {
-  @Provide @Watch("testNumChange1") testNum: number = 1;
-
-  testNumChange1(propName: string): void {
-    console.log(`Parent: testNumChange value ${this.testNum}`)
-  }
+struct Index {
+  @State isFinished: boolean = false;
 
   build() {
     Column() {
-      LinkChild({ /* empty */ })
-      Sibling({ /* empty */ })
-    }
-  }
-}
-```
-
-
-### One- or Two-Way Synchronization for Properties in LocalStorage Instances
-
-You can use \@LocalStorageLink to set up a one-way synchronization for a property in a LocalStorage instance, or use \@LocalStorageProp to set up a two-way synchronization. A LocalStorage instance can be regarded as a map of the \@State decorated variables. For details, see [LocalStorage](arkts-localstorage.md).
-
-A LocalStorage instance can be shared on several pages of an ArkUI application. In this way, state can be shared across pages of an application using \@LocalStorageLink, \@LocalStorageProp, and LocalStorage.
-
-Below is an example.
-
-1. Create a LocalStorage instance and inject it into the root node through \@Entry(storage).
-
-2. When the \@LocalStorageLink("testNum") variable is initialized in the **Parent** component, the **testNum** property, with the initial value set to **1**, is created in the LocalStorage instance, that is, \@LocalStorageLink("testNum") testNum: number = 1.
-
-3. In the child components, use \@LocalStorageLink or \@LocalStorageProp to bind the same property name key to pass data.
-
-The LocalStorage instance can be considered as a map of the \@State decorated variables, and the property name is the key in the map.
-
-The synchronization between \@LocalStorageLink and the corresponding property in LocalStorage is two-way, the same as that between \@State and \@Link.
-
-The following figure shows the flow of component state update.
-
-![en-us_image_0000001588450934](figures/en-us_image_0000001588450934.png)
-
-
-```ts
-@Component
-struct LinkLinkChild {
-  @LocalStorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkLinkChild: testNum value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`LinkLinkChild: ${this.testNum}`)
-  }
-}
-
-@Component
-struct PropLinkChild {
-  @LocalStorageProp("testNum") @Watch("testNumChange") testNumGrand: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-  }
-
-  build() {
-    Text(`PropLinkChild: ${this.testNumGrand}`)
-      .height(70)
-      .backgroundColor(Color.Red)
-      .onClick(() => {
-        this.testNumGrand += 1;
-      })
-  }
-}
-
-@Component
-struct Sibling {
-  @LocalStorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`Sibling: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`Sibling: ${this.testNum}`)
-  }
-}
-
-@Component
-struct LinkChild {
-  @LocalStorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkChild: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Column() {
-      Button('incr testNum')
-        .onClick(() => {
-          console.log(`LinkChild: before value change value ${this.testNum}`);
-          this.testNum = this.testNum + 1
-          console.log(`LinkChild: after value change value ${this.testNum}`);
-        })
-      Text(`LinkChild: ${this.testNum}`)
-      LinkLinkChild({ /* empty */ })
-      PropLinkChild({ /* empty */ })
-    }
-    .height(200).width(200)
-  }
-}
-
-// Create a LocalStorage instance to hold data.
-const storage = new LocalStorage();
-@Entry(storage)
-@Component
-struct Parent {
-  @LocalStorageLink("testNum") @Watch("testNumChange1") testNum: number = 1;
-
-  testNumChange1(propName: string): void {
-    console.log(`Parent: testNumChange value ${this.testNum}`)
-  }
-
-  build() {
-    Column() {
-      LinkChild({ /* empty */ })
-      Sibling({ /* empty */ })
-    }
-  }
-}
-```
-
-
-### One- or Two-Way Synchronization for Properties in AppStorage
-
-AppStorage is a singleton of LocalStorage. ArkUI creates this instance when an application is started and uses \@StorageLink and \@StorageProp to implement data sharing across pages. The usage of AppStorage is similar to that of LocalStorage.
-
-You can also use PersistentStorage to persist specific properties in AppStorage to files on the local disk. In this way, \@StorageLink and \@StorageProp decorated properties can restore upon application re-start to the values as they were when the application was closed. For details, see [PersistentStorage](arkts-persiststorage.md).
-
-An example is as follows:
-
-
-```ts
-@Component
-struct LinkLinkChild {
-  @StorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkLinkChild: testNum value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`LinkLinkChild: ${this.testNum}`)
-  }
-}
-
-@Component
-struct PropLinkChild {
-  @StorageProp("testNum") @Watch("testNumChange") testNumGrand: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-  }
-
-  build() {
-    Text(`PropLinkChild: ${this.testNumGrand}`)
-      .height(70)
-      .backgroundColor(Color.Red)
-      .onClick(() => {
-        this.testNumGrand += 1;
-      })
-  }
-}
-
-@Component
-struct Sibling {
-  @StorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`Sibling: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Text(`Sibling: ${this.testNum}`)
-  }
-}
-
-@Component
-struct LinkChild {
-  @StorageLink("testNum") @Watch("testNumChange") testNum: number = 1;
-
-  testNumChange(propName: string): void {
-    console.log(`LinkChild: testNumChange value ${this.testNum}`);
-  }
-
-  build() {
-    Column() {
-      Button('incr testNum')
-        .onClick(() => {
-          console.log(`LinkChild: before value change value ${this.testNum}`);
-          this.testNum = this.testNum + 1
-          console.log(`LinkChild: after value change value ${this.testNum}`);
-        })
-      Text(`LinkChild: ${this.testNum}`)
-      LinkLinkChild({ /* empty */
-      })
-      PropLinkChild({ /* empty */
-      })
-    }
-    .height(200).width(200)
-  }
-}
-
-
-@Entry
-@Component
-struct Parent {
-  @StorageLink("testNum") @Watch("testNumChange1") testNum: number = 1;
-
-  testNumChange1(propName: string): void {
-    console.log(`Parent: testNumChange value ${this.testNum}`)
-  }
-
-  build() {
-    Column() {
-      LinkChild({ /* empty */
-      })
-      Sibling({ /* empty */
-      })
-    }
-  }
-}
-```
-
-
-## Nested View Model
-
-
-In most cases, view model data items are of complex types, such as arrays of objects, nested objects, or their combinations. In nested scenarios, you can use \@Observed and \@Prop or \@ObjectLink to observe changes.
-
-
-### \@Prop and \@ObjectLink Nested Data Structures
-
-When possible, design a separate custom component to render each array or object. In this case, an object array or nested object (which is an object whose property is an object) requires two custom components: one for rendering an external array/object, and the other for rendering a class object nested within the array/object. For variables decorated by \@State, \@Prop, \@Link, and \@ObjectLink, only changes at the first layer can be observed.
-
-- For a class:
-  - Value assignment changes can be observed: this.obj=new ClassObj(...)
-  - Object property changes can be observed: this.obj.a=new ClassA(...)
-  - Property changes at a deeper layer cannot be observed: this.obj.a.b = 47
-
-- For an array:
-  - The overall value assignment of the array can be observed: this.arr=[...]
-  - The deletion, insertion, and replacement of data items can be observed: this.arr[1] = new ClassA(), this.arr.pop(), this.arr.push(new ClassA(...)), this.arr.sort(...)
-  - Array changes at a deeper layer cannot be observed: this.arr[1].b = 47
-
-To observe changes of nested objects inside a class, use \@ObjectLink or \@Prop. \@ObjectLink is preferred, which initializes itself through a reference to an internal property of a nested object. \@Prop initializes itself through a deep copy of the nested object to implement one-way synchronization. The reference copy of \@ObjectLink significantly outperforms the deep copy of \@Prop.
-
-\@ObjectLink or \@Prop can be used to store nested objects of a class. This class must be decorated with \@Observed. Otherwise, its property changes will not trigger UI re-rendering. \@Observed implements a custom constructor for its decorated class. This constructor creates an instance of a class and uses the ES6 proxy wrapper (implemented by the ArkUI framework) to intercept all get and set operations on the decorated class property. "Set" observes the property value. When value assignment occurs, the ArkUI framework is notified of the update. "Get" collects UI components that depend on this state variable to minimize UI re-rendering.
-
-In the nested scenario, use the \@Observed decorator as follows:
-
-- If the nested data is a class, directly decorate it with \@Observed.
-
-- If the nested data is an array, you can observe the array change in the following way:
-
-  ```ts
-  @Observed class ObservedArray<T> extends Array<T> {
-      constructor(args: T[]) {
-          if (args instanceof Array) {
-            super(...args);
-          } else {
-            super(args)
-          }
+      Row() {
+        Text('To-Dos')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
       }
-      /* otherwise empty */
+      .width('100%')
+      .margin({top: 10, bottom: 10})
+
+      // To-Do list
+      Row({space: 15}) {
+        if (this.isFinished) {
+          Image($r('app.media.finished'))
+            .width(28)
+            .height(28)
+        }
+        else {
+          Image($r('app.media.unfinished'))
+            .width(28)
+            .height(28)
+        }
+        Text('Learn maths')
+          .fontSize(24)
+          .fontWeight(450)
+          .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+      }
+      .height('40%')
+      .width('100%')
+      .border({width: 5})
+      .padding({left: 15})
+      .onClick(() => {
+        this.isFinished = !this.isFinished;
+      })
+    }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
   }
-  ```
+}
+```
 
-  The view model is the outer class.
+The following figure shows the final effect.
 
+![state](./figures/MVVM_state.gif)
 
-  ```ts
-  class Outer {
-    innerArrayProp : ObservedArray<string> = [];
-    ...
-  }
-  ```
+### @Prop and @Link
 
+In the preceding example, all code is written in the @Entry decorated component. As more and more components need to be rendered, you need to split the @Entry decorated component and use the @Prop and @Link decorators to decorate the split child components.
 
-### Differences Between \@Prop and \@ObjectLink in Nested Data Structures
+* @Prop creates a one-way synchronization between the parent and child components. The child component can perform deep copy of the data from the parent component or update the data from the parent component or itself. However, it cannot synchronize data from the parent component.
+* @Link creates a two-way synchronization between the parent and child components. When the parent component changes, all @Links are notified. In addition, when @Link is updated, the corresponding variables of the parent component are notified as well.
 
-In the following example:
-
-- The parent component **ViewB** renders \@State arrA: Array\<ClassA>. \@State can observe the allocation of new arrays, and insertion, deletion, and replacement of array items.
-
-- The child component **ViewA** renders each object of **ClassA**.
-
-- With \@ObjectLink a: ClassA:
-
-  - When \@Observed ClassA is used, the changes of **ClassA** objects nested in the array can be observed.
-
-  - When \@Observed ClassA is not used,
-    this.arrA[Math.floor(this.arrA.length/2)].c=10 in **ViewB** cannot be observed, and therefore the **ViewA** component will not be updated.
-
-    For the first and second array items in the array, both of them initialize two **ViewA** objects and render the same **ViewA** instance. When this.a.c += 1; is assigned to a property in **ViewA**, another **ViewA** initialized from the same **ClassA** is not re-rendered.
-
-![en-us_image_0000001588610894](figures/en-us_image_0000001588610894.png)
-
-
-```ts
-let NextID: number = 1;
-
-// Use the class decorator @Observed to decorate ClassA.
-@Observed
-class ClassA {
-  public id: number;
-  public c: number;
-
-  constructor(c: number) {
-    this.id = NextID++;
-    this.c = c;
+```typescript
+@Component
+struct TodoComponent {
+  build() {
+    Row() {
+      Text('To-Dos')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .margin({top: 10, bottom: 10})
   }
 }
 
 @Component
-struct ViewA {
-  @ObjectLink a: ClassA;
-  label: string = "ViewA1";
+struct AllChooseComponent {
+  @Link isFinished: boolean;
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
+      Button('Select All', {type: ButtonType.Normal})
         .onClick(() => {
-          // Change the object property.
-          this.a.c += 1;
+          this.isFinished = !this.isFinished;
         })
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#f7f6cc74')
     }
+    .padding({left: 15})
+    .width('100%')
+    .margin({top: 10, bottom: 10})
   }
 }
 
-@Entry
 @Component
-struct ViewB {
-  @State arrA: ClassA[] = [new ClassA(0), new ClassA(0)];
+struct ThingsComponent1 {
+  @Prop isFinished: boolean;
 
   build() {
-    Column() {
-      ForEach(this.arrA,
-        (item: ClassA) => {
-          ViewA({ label: `#${item.id}`, a: item })
-        },
-        (item: ClassA): string => { return item.id.toString(); }
-      )
-
-      Divider().height(10)
-
-      if (this.arrA.length) {
-        ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })
-        ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })
+    // Task 1
+    Row({space: 15}) {
+      if (this.isFinished) {
+        Image($r('app.media.finished'))
+          .width(28)
+          .height(28)
       }
-
-      Divider().height(10)
-
-      Button(`ViewB: reset array`)
-        .onClick(() => {
-          // Replace the entire array, which will be observed by @State this.arrA.
-          this.arrA = [new ClassA(0), new ClassA(0)];
-        })
-      Button(`array push`)
-        .onClick(() => {
-          // Insert data into the array, which will be observed by @State this.arrA.
-          this.arrA.push(new ClassA(0))
-        })
-      Button(`array shift`)
-        .onClick(() => {
-          // Remove data from the array, which will be observed by @State this.arrA.
-          this.arrA.shift()
-        })
-      Button(`ViewB: chg item property in middle`)
-        .onClick(() => {
-          // Replace an item in the array, which will be observed by @State this.arrA.
-          this.arrA[Math.floor(this.arrA.length / 2)] = new ClassA(11);
-        })
-      Button(`ViewB: chg item property in middle`)
-        .onClick(() => {
-          // Change property c of an item in the array, which will be observed by @ObjectLink in ViewA.
-          this.arrA[Math.floor(this.arrA.length / 2)].c = 10;
-        })
-    }
-  }
-}
-```
-
-In **ViewA**, replace \@ObjectLink with \@Prop.
-
-
-```ts
-@Component
-struct ViewA {
-
-  @Prop a: ClassA = new ClassA(0);
-  label : string = "ViewA1";
-
-  build() {
-     Row() {
-        Button(`ViewA [${this.label}] this.a.c= ${this.a.c} +1`)
-        .onClick(() => {
-            // Change the object property.
-            this.a.c += 1;
-        })
-     }
-  }
-}
-```
-
-When \@ObjectLink is used, if you click the first or second item of the array, the following two **ViewA** instances change synchronously.
-
-Unlike \@ObjectLink, \@Prop sets up a one-way data synchronization. Clicking the button in **ViewA** triggers only the re-rendering of the button itself and is not propagated to other **ViewA** instances. **ClassA** in **ViewA** is only a copy, not an object of its parent component \@State arrA : Array\<ClassA>, nor a **ClassA** instance of any other **ViewA**. As a result, though on the surface, the array and **ViewA** have the same object passed in, two irrelevant objects are used for rendering on the UI.
-
-Note the differences between \@Prop and \@ObjectLink: \@ObjectLink decorated variables are readable only and cannot be assigned values, whereas \@Prop decorated variables can be assigned values.
-
-- \@ObjectLink implements two-way data synchronization because it is initialized through a reference to the data source.
-
-- \@Prop implements one-way data synchronization and requires a deep copy of the data source.
-
-- To assign a new object to \@Prop is to overwrite the local value. However, for \@ObjectLink, to assign a new object is to update the array item or class property in the data source, which is not possible in TypeScript/JavaScript.
-
-
-## Example
-
-
-The following example discusses the design of nested view models, especially how a custom component renders a nested object. This scenario is common in real-world application development.
-
-
-Let's develop a phonebook application to implement the following features:
-
-
-- Display the phone numbers of contacts and the local device ("Me").
-
-- You can select a contact and edit its information, including the phone number and address.
-
-- When you update contact information, the changes are saved only after you click **Save Changes**.
-
-- You can click **Delete Contact** to delete a contact from the contacts list.
-
-
-In this example, the view model needs to include the following:
-
-
-- **AddressBook** (class)
-  - **me**: stores a **Person** class.
-  - **contacts**: stores a **Person** class array.
-
-
-The **AddressBook** class is declared as follows:
-
-```ts
-export class AddressBook {
-  me: Person;
-  contacts: ObservedArray<Person>;
-  
-  constructor(me: Person, contacts: Person[]) {
-    this.me = me;
-    this.contacts = new ObservedArray<Person>(contacts);
-  }
-}
-```
-
-
-- Person (class)
-  - name : string
-  - address : Address
-  - phones: ObservedArray\<string>;
-  - Address (class)
-    - street : string
-    - zip : number
-    - city : string
-
-
-The **Address** class is declared as follows:
-
-```ts
-@Observed
-export class Address {
-  street: string;
-  zip: number;
-  city: string;
-
-  constructor(street: string,
-              zip: number,
-              city: string) {
-    this.street = street;
-    this.zip = zip;
-    this.city = city;
-  }
-}
-```
-
-
-The **Person** class is declared as follows:
-
-```ts
-let nextId = 0;
-
-@Observed
-export class Person {
-  id_: string;
-  name: string;
-  address: Address;
-  phones: ObservedArray<string>;
-
-  constructor(name: string,
-              street: string,
-              zip: number,
-              city: string,
-              phones: string[]) {
-    this.id_ = `${nextId}`;
-    nextId++;
-    this.name = name;
-    this.address = new Address(street, zip, city);
-    this.phones = new ObservedArray<string>(phones);
-  }
-}
-```
-
-
-Note that **phones** is a nested property. To observe its change, you need to extend the array to an **ObservedArray** class and decorate it with \@Observed. The **ObservedArray** class is declared as follows:
-
-```ts
-@Observed
-export class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    console.log(`ObservedArray: ${JSON.stringify(args)} `)
-    if (args instanceof Array) {
-      super(...args);
-    } else {
-      super(args)
-    }
-  }
-}
-```
-
-
-- **selected**: reference to **Person**.
-
-
-The update process is as follows:
-
-
-1. Initialize all data in the root node **PageEntry**, and establish two-way data synchronization between **me** and **contacts** and its child component **AddressBookView**. The default value of **selectedPerson** is **me**. Note that **selectedPerson** is not data in the **PageEntry** data source, but a reference to a **Person** object in the data source.
-   **PageEntry** and **AddressBookView** are declared as follows:
-
-
-   ```ts
-   @Component
-   struct AddressBookView {
-   
-       @ObjectLink me : Person;
-       @ObjectLink contacts : ObservedArray<Person>;
-       @State selectedPerson: Person = new Person("", "", 0, "", []);
-   
-       aboutToAppear() {
-           this.selectedPerson = this.me;
-       }
-   
-       build() {
-           Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start}) {
-               Text("Me:")
-               PersonView({
-                person: this.me,
-                phones: this.me.phones,
-                selectedPerson: this.selectedPerson
-              })
-   
-               Divider().height(8)
-   
-              ForEach(this.contacts, (contact: Person) => {
-                PersonView({
-                  person: contact,
-                  phones: contact.phones as ObservedArray<string>,
-                  selectedPerson: this.selectedPerson
-                })
-              },
-                (contact: Person): string => { return contact.id_; }
-              )
-
-               Divider().height(8)
-   
-               Text("Edit:")
-               PersonEditView({ 
-                selectedPerson: this.selectedPerson, 
-                name: this.selectedPerson.name, 
-                address: this.selectedPerson.address, 
-                phones: this.selectedPerson.phones 
-              })
-           }
-               .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
-       }
-   }
-   
-   @Entry
-   @Component
-   struct PageEntry {
-     @Provide addrBook: AddressBook = new AddressBook(
-       new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
-       [
-         new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-         new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-         new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-       ]);
-   
-     build() {
-       Column() {
-         AddressBookView({ 
-          me: this.addrBook.me, 
-          contacts: this.addrBook.contacts, 
-          selectedPerson: this.addrBook.me 
-        })
-       }
-     }
-   }
-   ```
-
-2. **PersonView** is the view that shows a contact name and preferred phone number in the phonebook. When you select a contact (person), that contact is highlighted and needs to be synchronized back to the **selectedPerson** of the parent component **AddressBookView**. In this case, two-way data synchronization needs to be established through \@Link.
-   **PersonView** is declared as follows:
-
-
-   ```ts
-   // Display the contact name and preferred phone number.
-   // To update the phone number, @ObjectLink person and @ObjectLink phones are required.
-   // this.person.phones[0] cannot be used to display the preferred phone number because @ObjectLink person only proxies the Person property and cannot observe the changes inside the array.
-   // Trigger the onClick event to update selectedPerson.
-   @Component
-   struct PersonView {
-   
-       @ObjectLink person : Person;
-       @ObjectLink phones :  ObservedArray<string>;
-   
-       @Link selectedPerson : Person;
-   
-       build() {
-           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-             Text(this.person.name)
-             if (this.phones.length > 0) {
-               Text(this.phones[0])
-             }
-           }
-           .height(55)
-           .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
-           .onClick(() => {
-               this.selectedPerson = this.person;
-           })
-       }
-   }
-   ```
-
-3. The information about the selected contact (person) is displayed in the **PersonEditView** object. The data synchronization for the **PersonEditView** can be implemented as follows:
-
-   - When the user's keyboard input is received in the Edit state through the **Input.onChange** callback event, the change should be reflected in the current **PersonEditView**, but does not need to be synchronized back to the data source before **Save Changes** is clicked. In this case, \@Prop is used to make a deep copy of the information about the current contact (person).
-
-   - Through \@Link **seletedPerson: Person**, **PersonEditView** establishes two-way data synchronization with **selectedPerson** of **AddressBookView**. When you click **Save Changes**, the change to \@Prop is assigned to \@Link **seletedPerson: Person**. In this way, the data is synchronized back to the data source.
-
-   - In **PersonEditView**, \@Consume **addrBook: AddressBook** is used to set up two-way synchronization with the root node **PageEntry**. When you delete a contact on the **PersonEditView** page, the deletion is directly synchronized to **PageEntry**, which then instructs **AddressBookView** to update the contracts list page. **PersonEditView** is declared as follows:
-
-     ```ts
-     // Render the information about the contact (person).
-     // The @Prop decorated variable makes a deep copy from the parent component AddressBookView and retains the changes locally. The changes of TextInput apply only to the local copy.
-     // Click Save Changes to copy all data to @Link through @Prop and synchronize the data to other components.
-     @Component
-     struct PersonEditView {
-     
-         @Consume addrBook : AddressBook;
-     
-         /* Reference pointing to selectedPerson in the parent component. */
-         @Link selectedPerson: Person;
-     
-         /* Make changes on the local copy until you click Save Changes. */
-         @Prop name: string = "";
-         @Prop address : Address = new Address("", 0, "");
-         @Prop phones : ObservedArray<string> = [];
-     
-         selectedPersonIndex() : number {
-             return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
-         }
-     
-         build() {
-             Column() {
-                 TextInput({ text: this.name})
-                     .onChange((value) => {
-                         this.name = value;
-                       })
-                 TextInput({text: this.address.street})
-                     .onChange((value) => {
-                         this.address.street = value;
-                     })
-     
-                 TextInput({text: this.address.city})
-                     .onChange((value) => {
-                         this.address.city = value;
-                     })
-     
-                 TextInput({text: this.address.zip.toString()})
-                     .onChange((value) => {
-                         const result = Number.parseInt(value);
-                         this.address.zip= Number.isNaN(result) ? 0 : result;
-                     })
-     
-                 if (this.phones.length > 0) {
-                   ForEach(this.phones,
-                     (phone: ResourceStr, index?:number) => {
-                       TextInput({ text: phone })
-                         .width(150)
-                         .onChange((value) => {
-                           console.log(`${index}. ${value} value has changed`)
-                           this.phones[index!] = value;
-                         })
-                     },
-                     (phone: ResourceStr, index?:number) => `${index}`
-                   )
-                 }
-
-                 Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-                     Text("Save Changes")
-                         .onClick(() => {
-                             // Assign the updated value of the local copy to the reference pointing to selectedPerson in the parent component.
-                             // Do not create new objects. Modify the properties of the existing objects instead.
-                             this.selectedPerson.name = this.name;
-                             this.selectedPerson.address = new Address(this.address.street, this.address.zip, this.address.city)
-                             this.phones.forEach((phone : string, index : number) => { this.selectedPerson.phones[index] = phone } );
-                         })
-                     if (this.selectedPersonIndex()!=-1) {
-                         Text("Delete Contact")
-                             .onClick(() => {
-                                 let index = this.selectedPersonIndex();
-                                 console.log(`delete contact at index ${index}`);
-     
-                                 // Delete the current contact.
-                                 this.addrBook.contacts.splice(index, 1);
-     
-                                 // Delete the current selectedPerson. The selected contact is then changed to the contact immediately before the deleted contact.
-                                 index = (index < this.addrBook.contacts.length) ? index : index-1;
-     
-                                 // If all contracts are deleted, the me object is selected.
-                                 this.selectedPerson = (index>=0) ? this.addrBook.contacts[index] : this.addrBook.me;
-                             })
-                     }
-                 }
-     
-             }
-         }
-     }
-     ```
-
-     Pay attention to the following differences between \@ObjectLink and \@Link:
-
-     1. To implement two-way data synchronization with the parent component, you need to use \@ObjectLink, instead of \@Link, to decorate **me: Person** and **contacts: ObservedArray\<Person>** in **AddressBookView**. The reasons are as follows:
-        - The type of the \@Link decorated variable must be the same as that of the data source, and \@Link can only observe the changes at the first layer.
-        - \@ObjectLink allows for initialization from the property of the data source. It functions as a proxy for the properties of the \@Observed decorated class and can observe the changes of the properties of that class.
-     2. When the contact name (**Person.name**) or preferred phone number (**Person.phones[0]**) is updated, **PersonView** needs to be updated. As the update to **Person.phones[0]** occurs at the second layer, it cannot be observed if \@Link is used. In addition, \@Link requires its decorated variable be of the same type as the data source. Therefore, \@ObjectLink is required in **PersonView**, that is, \@ObjectLink **person: Person** and \@ObjectLink **phones: ObservedArray\<string>**.
-
-     ![en-us_image_0000001605293914](figures/en-us_image_0000001605293914.png)
-
-     Now you have a basic idea of how to build a view model. In the root node of an application, the view model may comprise a huge amount of nested data, which is more often the case. Yet, you can make reasonable separation of the data in the UI tree structure. You can adapt the view model data items to views so that the view at each layer contains relatively flat data, and you only need to observe changes at the current layer.
-
-     In this way, the UI re-render workload is minimized, leading to higher application performance.
-
-     The complete sample code is as follows:
-
-
-```ts
-// ViewModel classes
-let nextId = 0;
-
-@Observed
-export class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    console.log(`ObservedArray: ${JSON.stringify(args)} `)
-    if (args instanceof Array) {
-      super(...args);
-    } else {
-      super(args)
-    }
-  }
-}
-
-@Observed
-export class Address {
-  street: string;
-  zip: number;
-  city: string;
-
-  constructor(street: string,
-              zip: number,
-              city: string) {
-    this.street = street;
-    this.zip = zip;
-    this.city = city;
-  }
-}
-
-@Observed
-export class Person {
-  id_: string;
-  name: string;
-  address: Address;
-  phones: ObservedArray<string>;
-
-  constructor(name: string,
-              street: string,
-              zip: number,
-              city: string,
-              phones: string[]) {
-    this.id_ = `${nextId}`;
-    nextId++;
-    this.name = name;
-    this.address = new Address(street, zip, city);
-    this.phones = new ObservedArray<string>(phones);
-  }
-}
-
-export class AddressBook {
-  me: Person;
-  contacts: ObservedArray<Person>;
-
-  constructor(me: Person, contacts: Person[]) {
-    this.me = me;
-    this.contacts = new ObservedArray<Person>(contacts);
-  }
-}
-
-// Render the name of the Person object and the first phone number in the @Observed array <string>.
-// To update the phone number, @ObjectLink person and @ObjectLink phones are required.
-// this.person.phones cannot be used. Otherwise, changes to items inside the array will not be observed.
-// Update selectedPerson in onClick in AddressBookView and PersonEditView.
-@Component
-struct PersonView {
-  @ObjectLink person: Person;
-  @ObjectLink phones: ObservedArray<string>;
-  @Link selectedPerson: Person;
-
-  build() { 
-    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-      Text(this.person.name)
-      if (this.phones.length) {
-        Text(this.phones[0])
+      else {
+        Image($r('app.media.unfinished'))
+          .width(28)
+          .height(28)
       }
+      Text('Study language')
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
-    .height(55)
-    .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
+    .height('40%')
+    .width('100%')
+    .border({width: 5})
+    .padding({left: 15})
     .onClick(() => {
-      this.selectedPerson = this.person;
+      this.isFinished = !this.isFinished;
     })
   }
 }
 
 @Component
-struct phonesNumber {
-  @ObjectLink phoneNumber: ObservedArray<string>
+struct ThingsComponent2 {
+  @Prop isFinished: boolean;
 
   build() {
-    Column() {
-
-      ForEach(this.phoneNumber,
-        (phone: ResourceStr, index?: number) => {
-          TextInput({ text: phone })
-            .width(150)
-            .onChange((value) => {
-              console.log(`${index}. ${value} value has changed`)
-              this.phoneNumber[index!] = value;
-            })
-        },
-        (phone: ResourceStr, index: number) => `${this.phoneNumber[index] + index}`
-      )
-    }
-  }
-}
-
-
-// Render the information about the contact (person).
-// The @Prop decorated variable makes a deep copy from the parent component AddressBookView and retains the changes locally. The changes of TextInput apply only to the local copy.
-// Click Save Changes to copy all data to @Link through @Prop and synchronize the data to other components.
-@Component
-struct PersonEditView {
-  @Consume addrBook: AddressBook;
-  /* Reference pointing to selectedPerson in the parent component. */
-  @Link selectedPerson: Person;
-  /* Make changes on the local copy until you click Save Changes. */
-  @Prop name: string = "";
-  @Prop address: Address = new Address("", 0, "");
-  @Prop phones: ObservedArray<string> = [];
-
-  selectedPersonIndex(): number {
-    return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
-  }
-
-  build() {
-    Column() {
-      TextInput({ text: this.name })
-        .onChange((value) => {
-          this.name = value;
-        })
-      TextInput({ text: this.address.street })
-        .onChange((value) => {
-          this.address.street = value;
-        })
-
-      TextInput({ text: this.address.city })
-        .onChange((value) => {
-          this.address.city = value;
-        })
-
-      TextInput({ text: this.address.zip.toString() })
-        .onChange((value) => {
-          const result = Number.parseInt(value);
-          this.address.zip = Number.isNaN(result) ? 0 : result;
-        })
-
-      if (this.phones.length > 0) {
-        phonesNumber({ phoneNumber: this.phones })
+    // Task 2
+    Row({space: 15}) {
+      if (this.isFinished) {
+        Image($r('app.media.finished'))
+          .width(28)
+          .height(28)
       }
-
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-        Text("Save Changes")
-          .onClick(() => {
-            // Assign the updated value of the local copy to the reference pointing to selectedPerson in the parent component.
-            // Do not create new objects. Modify the properties of the existing objects instead.
-            this.selectedPerson.name = this.name;
-            this.selectedPerson.address = new Address(this.address.street, this.address.zip, this.address.city)
-            this.phones.forEach((phone: string, index: number) => {
-              this.selectedPerson.phones[index] = phone
-            });
-          })
-        if (this.selectedPersonIndex() != -1) {
-          Text("Delete Contact")
-            .onClick(() => {
-              let index = this.selectedPersonIndex();
-              console.log(`delete contact at index ${index}`);
-
-              // Delete the current contact.
-              this.addrBook.contacts.splice(index, 1);
-
-              // Delete the current selectedPerson. The selected contact is then changed to the contact immediately before the deleted contact.
-              index = (index < this.addrBook.contacts.length) ? index : index - 1;
-
-              // If all contracts are deleted, the me object is selected.
-              this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
-            })
-        }
+      else {
+        Image($r('app.media.unfinished'))
+          .width(28)
+          .height(28)
       }
-
+      Text('Learn maths')
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
-  }
-}
-
-@Component
-struct AddressBookView {
-  @ObjectLink me: Person;
-  @ObjectLink contacts: ObservedArray<Person>;
-  @State selectedPerson: Person = new Person("", "", 0, "", []);
-
-  aboutToAppear() {
-    this.selectedPerson = this.me;
-  }
-
-  build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-      Text("Me:")
-      PersonView({
-        person: this.me,
-        phones: this.me.phones,
-        selectedPerson: this.selectedPerson
-      })
-
-      Divider().height(8)
-
-      ForEach(this.contacts, (contact: Person) => {
-        PersonView({
-          person: contact,
-          phones: contact.phones as ObservedArray<string>,
-          selectedPerson: this.selectedPerson
-        })
-      },
-        (contact: Person): string => {
-          return contact.id_;
-        }
-      )
-
-      Divider().height(8)
-
-      Text("Edit:")
-      PersonEditView({
-        selectedPerson: this.selectedPerson,
-        name: this.selectedPerson.name,
-        address: this.selectedPerson.address,
-        phones: this.selectedPerson.phones
-      })
-    }
-    .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
+    .height('40%')
+    .width('100%')
+    .border({width: 5})
+    .padding({left: 15})
+    .onClick(() => {
+      this.isFinished = !this.isFinished;
+    })
   }
 }
 
 @Entry
 @Component
-struct PageEntry {
-  @Provide addrBook: AddressBook = new AddressBook(
-    new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
-    [
-      new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["11*********", "12*********"]),
-      new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["13*********", "14*********"]),
-      new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["15*********", "168*********"]),
-    ]);
+struct Index {
+  @State isFinished: boolean = false;
 
   build() {
     Column() {
-      AddressBookView({
-        me: this.addrBook.me,
-        contacts: this.addrBook.contacts,
-        selectedPerson: this.addrBook.me
-      })
+      // All To-Do items.
+      TodoComponent()
+
+      // Select all.
+      AllChooseComponent({isFinished: this.isFinished})
+
+      // Task 1
+      ThingsComponent1({isFinished: this.isFinished})
+
+      // Task 2
+      ThingsComponent2({isFinished: this.isFinished})
     }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
   }
 }
 ```
 
+The following figure shows the effect.
+
+![Prop&Link](./figures/MVVM_Prop&Link.gif)
+
+### Rendering Repeated Components
+
+* In the previous example, although the child component is split, the code of component 1 is similar to that of component 2. When the rendered components have the same configurations except data, **ForEach** is used to render the repeated components.
+* In this way, redundant code is decreased and the code structure is clearer.
+
+```typescript
+@Component
+struct TodoComponent {
+  build() {
+    Row() {
+      Text('To-Dos')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct AllChooseComponent {
+  @Link isFinished: boolean;
+
+  build() {
+    Row() {
+      Button('Select All', {type: ButtonType.Normal})
+        .onClick(() => {
+          this.isFinished = !this.isFinished;
+        })
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#f7f6cc74')
+    }
+    .padding({left: 15})
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct ThingsComponent {
+  @Prop isFinished: boolean;
+  @Prop things: string;
+  build() {
+    // Task 1
+    Row({space: 15}) {
+      if (this.isFinished) {
+        Image($r('app.media.finished'))
+          .width(28)
+          .height(28)
+      }
+      else {
+        Image($r('app.media.unfinished'))
+          .width(28)
+          .height(28)
+      }
+      Text(`${this.things}`)
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+    }
+    .height('8%')
+    .width('90%')
+    .padding({left: 15})
+    .opacity(this.isFinished ? 0.3: 1)
+    .border({width:1})
+    .borderColor(Color.White)
+    .borderRadius(25)
+    .backgroundColor(Color.White)
+    .onClick(() => {
+      this.isFinished = !this.isFinished;
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State isFinished: boolean = false;
+  @State planList: string[] = [
+    '7:30 Get up'
+    '8:30 Breakfast'
+    '11:30 Lunch'
+    '17:30 Dinner'
+    '21:30 Snack'
+    '22:30 Shower'
+    '1:30 Go to bed'
+  ];
+
+  build() {
+    Column() {
+      // All To-Do items.
+      TodoComponent()
+
+      // Select all.
+      AllChooseComponent({isFinished: this.isFinished})
+
+      List() {
+        ForEach(this.planList, (item: string) => {
+          // Task 1
+          ThingsComponent({isFinished: this.isFinished, things: item})
+            .margin(5)
+        })
+      }
+
+    }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
+  }
+}
+```
+
+The following figure shows the effect.
+
+![ForEach](./figures/MVVM_ForEach.gif)
+
+### @Builder
+
+* The **Builder** method is used to define methods in a component so that the same code can be reused in the component.
+* In this example, the @Builder method is used for deduplication and moving out data so that the code is clearer and easier to read. Compared with the initial code, the @Entry decorated component is used only to process page construction logic and does not process a large amount of content irrelevant to page design.
+
+```typescript
+@Observed
+class TodoListData {
+  planList: string[] = [
+    '7:30 Get up'
+    '8:30 Breakfast'
+    '11:30 Lunch'
+    '17:30 Dinner'
+    '21:30 Snack'
+    '22:30 Shower'
+    '1:30 Go to bed'
+  ];
+}
+
+@Component
+struct TodoComponent {
+  build() {
+    Row() {
+      Text('To-Dos')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct AllChooseComponent {
+  @Link isFinished: boolean;
+
+  build() {
+    Row() {
+      Button('Select All', {type: ButtonType.Capsule})
+        .onClick(() => {
+          this.isFinished = !this.isFinished;
+        })
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#f7f6cc74')
+    }
+    .padding({left: 15})
+    .width('100%')
+    .margin({top: 10, bottom: 10})
+  }
+}
+
+@Component
+struct ThingsComponent {
+  @Prop isFinished: boolean;
+  @Prop things: string;
+
+  @Builder displayIcon(icon: Resource) {
+    Image(icon)
+      .width(28)
+      .height(28)
+      .onClick(() => {
+        this.isFinished = !this.isFinished;
+      })
+  }
+
+  build() {
+    // Task 1
+    Row({space: 15}) {
+      if (this.isFinished) {
+        this.displayIcon($r('app.media.finished'));
+      }
+      else {
+        this.displayIcon($r('app.media.unfinished'));
+      }
+      Text(`${this.things}`)
+        .fontSize(24)
+        .fontWeight(450)
+        .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+        .onClick(() => {
+          this.things += '!'
+        })
+    }
+    .height('8%')
+    .width('90%')
+    .padding({left: 15})
+    .opacity(this.isFinished ? 0.3: 1)
+    .border({width:1})
+    .borderColor(Color.White)
+    .borderRadius(25)
+    .backgroundColor(Color.White)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State isFinished: boolean = false;
+  @State data: TodoListData = new TodoListData();
+
+  build() {
+    Column() {
+      // All To-Do items.
+      TodoComponent()
+
+      // Select all.
+      AllChooseComponent({isFinished: this.isFinished})
+
+      List() {
+        ForEach(this.data.planList, (item: string) => {
+          // Task 1
+          ThingsComponent({isFinished: this.isFinished, things: item})
+            .margin(5)
+        })
+      }
+
+    }
+    .height('100%')
+    .width('100%')
+    .margin({top: 5, bottom: 5})
+    .backgroundColor('#90f1f3f5')
+  }
+}
+```
+
+ The following figure shows the effect.
+
+![builder](./figures/MVVM_builder.gif)
+
+### Summary
+
+* After the code structure is optimized step by step, you can see that the @Entry decorated component serves as the entry of the page and the **build** function only needs to combine the required components, which is similar to building blocks. A child component called by a page is similar to a block and waits to be called by a required page. A state variable is similar to an adhesive. When a UI re-render event is triggered, the state variable can automatically re-render the bound component to implement on-demand page refresh.
+* Although the existing architecture does not use the MVVM design concept, the core concept of MVVM shows that the UI development of ArkUI should use the MVVM mode. Pages and components are at the View layer, and pages are responsible for combining components. A state variable is used to drive the component re-render to refresh the page. The ViewModel data needs to have a source, which is from the Model layer.
+* The code functions in the example are simple. However, as the number of functions increases, the code of the main page increases. When more functions are added to the Memo application and other pages need to use the components of the main page, how to organize the project structure? The MVVM mode is the answer.
+
+## Developing a To-Do List Through MVVM
+
+The previous section describes how to organize code in non-MVVM mode. As the code of the main page becomes larger, a proper layering method should be adopted to make the project structure clear and prevent components from referencing each other. Therefore, the entire system will not be affected during subsequent maintenance. This section uses MVVM to reorganize the code in the previous section to introduce the core file organization of MVVM.
+
+### MVVM File Structure
+
+* src
+  * ets
+    * pages ------ Stores page components.
+    * views ------ Stores business components.
+    * shares ------ Stores common components.
+    * service ------ Data services.
+      * app.ts ------ Service entry.
+      * LoginMode ----- Login page.
+      * xxxModel ------ Other pages.
+
+### Layered Design
+
+**Model**
+
+* The Model layer stores the core data structure of the application. This layer is not closely related to UI development. You can encapsulate the data structure based on your service logic.
+
+**ViewModel**
+
+> **NOTE**
+>
+> The ViewModel layer not only stores data, but also provides data services and processing. Therefore, many frameworks use "service" to represent this layer.
+
+* The ViewModel layer is the data layer that serves views. Generally, it has two features:
+  1. Data is organized based on pages.
+  2. Data on each page is lazy loaded.
+
+**View**
+
+The View layer is organized as required. You need to distinguish the following three types of components at this layer:
+
+* Page components: provides the overall page layout, implements redirection between multiple pages, and processes foreground and background events.
+* Business components: referenced by a page to construct a page.
+* Shared components: shared by multiple projects.
+
+> The differences between shared components and business components are as follows:
+>
+> A business component contains ViewModel data. Without ViewModel, the component cannot be executed.
+>
+> A shared component does not contain ViewModel data. The data required needs to be passed from external systems. A shared component contains a self-contained component that can work as long as external parameters (without service parameters) are met.
+
+### Example
+
+The file structure is reconstructed based on the MVVM mode as follows:
+
+* src
+  * ets
+    * pages
+      * index
+    * View
+      * TodoComponent
+      * AllchooseComponent
+      * ThingsComponent
+    * ViewModel
+      * ThingsViewModel
+
+The code is as follows:
+
+* Index.ets
+
+  ```typescript
+  // import view
+  import { TodoComponent } from './../View/TodoComponent'
+  import { MultiChooseComponent } from './../View/AllchooseComponent'
+  import { ThingsComponent } from './../View/ThingsComponent'
+  
+  // import viewModel
+  import { TodoListData } from '../ViewModel/ThingsViewModel'
+  
+  @Entry
+  @Component
+  struct Index {
+    @State isFinished: boolean = false;
+    @State data: TodoListData = new TodoListData();
+  
+    build() {
+      Column() {
+        Row({space: 40}) {
+          // All To-Do items.
+          TodoComponent()
+  
+          // Select all.
+          MultiChooseComponent({isFinished: this.isFinished})
+        }
+  
+        List() {
+          ForEach(this.data.planList, (item: string) => {
+            // Task 1
+            ThingsComponent({isFinished: this.isFinished, things: item})
+              .margin(5)
+          })
+        }
+  
+      }
+      .height('100%')
+      .width('100%')
+      .margin({top: 5, bottom: 5})
+      .backgroundColor('#90f1f3f5')
+    }
+  }
+  ```
+
+  * TodoComponent
+
+  ```typescript
+  @Component
+  export struct TodoComponent {
+    build() {
+      Row() {
+        Text('To-Dos')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+      }
+      .padding({left: 15})
+      .width('50%')
+      .margin({top: 10, bottom: 10})
+    }
+  }
+  ```
+
+  * AllchooseComponent.ets
+
+  ```typescript
+@Component
+  export struct MultiChooseComponent {
+    @Link isFinished: boolean;
+  
+    build() {
+      Row() {
+        Button ('Multiselect', {type: ButtonType.Capsule})
+          .onClick(() => {
+            this.isFinished = !this.isFinished;
+          })
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .backgroundColor('#f7f6cc74')
+      }
+      .padding({left: 15})
+      .width('100%')
+      .margin({top: 10, bottom: 10})
+    }
+  }
+  ```
+  
+  * ThingsComponent
+
+  ```typescript
+@Component
+  export struct ThingsComponent {
+    @Prop isFinished: boolean;
+    @Prop things: string;
+  
+    @Builder displayIcon(icon: Resource) {
+      Image(icon)
+        .width(28)
+        .height(28)
+        .onClick(() => {
+          this.isFinished = !this.isFinished;
+        })
+    }
+  
+    build() {
+      // Task 1
+      Row({space: 15}) {
+        if (this.isFinished) {
+          this.displayIcon($r('app.media.finished'));
+        }
+        else {
+          this.displayIcon($r('app.media.unfinished'));
+        }
+        Text(`${this.things}`)
+          .fontSize(24)
+          .fontWeight(450)
+          .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
+          .onClick(() => {
+            this.things += '!'
+          })
+      }
+      .height('8%')
+      .width('90%')
+      .padding({left: 15})
+      .opacity(this.isFinished ? 0.3: 1)
+      .border({width:1})
+      .borderColor(Color.White)
+      .borderRadius(25)
+      .backgroundColor(Color.White)
+    }
+  }
+  
+  ```
+  
+  ThingsViewModel.ets
+
+  ```typescript
+@Observed
+  export class TodoListData {
+    planList: string[] = [
+      '7:30 Get up'
+      '8:30 Breakfast'
+      '11:30 Lunch'
+      '17:30 Dinner'
+      '21:30 Snack'
+      '22:30 Shower'
+      '1:30 Go to bed'
+    ];
+  }
+  ```
+  
+  After the code is split in MVVM mode, the project structure and responsibilities of each module are clearer. If a new page needs to use the event component, you only need to import the corresponding component because the local data is fixed and the logic at the Model layer is not written. You can reconstruct your project structures based on the example.
+
+  The following figure shows the effect.
+
+  ![MVVM_index.gif](./figures/MVVM_index.gif)
+
+  
+
+  

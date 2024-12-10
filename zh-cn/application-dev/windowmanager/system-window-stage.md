@@ -267,7 +267,7 @@ struct transferCtrlSubWindow {
       .onClick(() => {
         let subWin = AppStorage.get<window.Window>("TransferSubWindow");
         subWin?.destroyWindow();
-        AppStorage.SetOrCreate<window.Window>("TransferSubWindow", undefined);
+        AppStorage.setOrCreate<window.Window>("TransferSubWindow", undefined);
       })
     }.height('100%').width('100%').backgroundColor('#ff556243').shadow({radius: 30,color: '#ff555555',offsetX: 15,offsetY: 15})
   }

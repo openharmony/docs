@@ -1,4 +1,4 @@
-# Starting a Financial Application
+# Using startAbilityByType to Start a Financial Application
 
 This topic describes how to open the vertical domain panel of financial applications.
 
@@ -6,10 +6,10 @@ This topic describes how to open the vertical domain panel of financial applicat
 
 If the **type** field in **startAbilityByType** is set to **finance**, **wantParam** contains the following properties.
 
-| Name            | Description                                                        | Data Type| Mandatory|
+| Name           | Type                                                        | Mandatory| Description|
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| sceneType            | The options are as follows: 1: transfer; 2: credit card repayment.                               | number   | No. When this parameter is left unspecified, the default value **1** is used.  |
-| bankCardNo      | Bank card number.                                                    | string   | No  |
+| sceneType            | number                          | No| The options are as follows: 1: transfer; 2: credit card repayment. The default value is **1**.|
+| bankCardNo      | string                                               | No | Bank card number.|
 
 ## Developing a Caller Application
 1. Import the **ohos.app.ability.common** module.
@@ -94,9 +94,9 @@ If the **type** field in **startAbilityByType** is set to **finance**, **wantPar
 
     The **want.parameters** parameter carries the parameters transferred by the caller application, as described in the table below.
 
-    | Name            | Description                                                        | Data Type| Mandatory|
+    | Name         | Type                                                        | Mandatory| Description|
     | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | bankCardNo  | Bank card number.                                                    | string   | No|
+    | bankCardNo  | string | No | Bank card number.|
 
     The application can develop different style pages based on the features defined in [linkFeature](../quick-start/module-configuration-file.md#skills), such as transfer and credit card repayment, as well as the received URI.
 

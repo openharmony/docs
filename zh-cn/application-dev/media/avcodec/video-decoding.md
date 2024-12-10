@@ -214,10 +214,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
     > **说明：**
     >
-    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    > 1. 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    > 2. 播放视频时，若视频码流的SPS中包含颜色信息，解码器会把这些信息（RangeFlag、ColorPrimary、MatrixCoefficient、TransferCharacteristic）通过
+    > OH_AVCodecOnStreamChanged接口中的OH_AVFormat返回。
     >
 
-5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
+5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
     添加头文件。
 
@@ -368,7 +370,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
     使用示例：
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
+    - buffer：回调函数OnNeedInputBuffer传入的参数。
     ```c++
     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
     uint8_t keyId[] = {
@@ -425,7 +427,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     送入输入队列进行解码，以下示例中：
 
-    - buffer：回调函数OnNeedInputBuffer传入的参数，Surface模式调用者无法通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取图像虚拟地址。
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识。
     - size, offset, pts：输入尺寸、偏移量、时间戳等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)。
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)。
@@ -454,7 +456,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
-    - buffer：回调函数OnNewOutputBuffer传入的参数，Surface模式调用者无法通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
+    - buffer：回调函数OnNewOutputBuffer传入的参数，Surface模式调用者无法通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取图像虚拟地址。
 
     添加头文件。
 
@@ -534,7 +536,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 15. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
     调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_SetSurface接口和OH_VideoDecoder_Prepare接口重新配置。
-    
+
     ```c++
     // 重置解码器videoDec
     int32_t ret = OH_VideoDecoder_Reset(videoDec);
@@ -718,7 +720,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Buffer模式下，DRM解密能力仅支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
+4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Buffer模式下，DRM解密能力仅支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
     添加头文件。
 
@@ -894,7 +896,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
-    - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
+    - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取图像虚拟地址。
 
     ```c++
     // 获取解码后信息
@@ -931,7 +933,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     使用示例：
 
     ```c++
-    struct Rect   // 源内存区域的宽、高，通过回调函数OnNewOutputBuffer获取
+    // 源内存区域的宽、高，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取
+    struct Rect
     {
         int32_t width;
         int32_t height;
@@ -942,37 +945,39 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         int32_t wStride;
         int32_t hStride;
     };
-
-    struct SrcRect // 源内存区域的宽、高跨距，通过回调函数OnNewOutputBuffer获取
+    // 源内存区域的宽、高跨距，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取
+    struct SrcRect
     {
         int32_t wStride;
         int32_t hStride;
     };
 
     Rect rect = {320, 240};
-    DstRect dstRect = {320, 250};
-    SrcRect srcRect = {320, 250};
-    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
+    DstRect dstRect = {320, 240};
+    SrcRect srcRect = {320, 256};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride * 3 / 2]; // 目标内存区域的指针
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
+    uint8_t* dstTemp = dst;
+    uint8_t* srcTemp = src;
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
-        memcpy_s(dst, src, rect.width);
+        memcpy_s(dstTemp, srcTemp, rect.width);
         // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
     // padding
     // 更新源数据和目标数据的指针，指针都向下移动一个padding
-    dst += (dstRect.hStride - rect.height) * dstRect.wStride;
-    src += (srcRect.hStride - rect.height) * srcRect.wStride;
+    dstTemp += (dstRect.hStride - rect.height) * dstRect.wStride;
+    srcTemp += (srcRect.hStride - rect.height) * srcRect.wStride;
     rect.height >>= 1;
     // UV 将UV区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
-        memcpy_s(dst, src, rect.width);
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        memcpy_s(dstTemp, srcTemp, rect.width);
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
 
     delete[] dst;

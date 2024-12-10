@@ -3,7 +3,9 @@
 The **connection** module provides basic network management capabilities. With the APIs provided by this module, you can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> Unless otherwise specified, the APIs of this module do no support concurrent calls.
 
 ## Modules to Import
 
@@ -259,7 +261,9 @@ The following is an example configuration of the certificate pin:
         }
       }
     ]
-  }
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
 }
 ```
 
@@ -301,6 +305,10 @@ The following is an example configuration of the application-level certificate:
 This field can contain zero or one **base-config**.
 
 This field must contain one **domain-config**.
+
+**trust-global-user-ca**: This field specifies whether to trust the CA certificate manually installed by the enterprise MDM system or device administrator. The default value is **true**.
+
+**trust-current-user-ca**: This field specifies whether to trust the certificate installed by the current user. The default value is **true**.
 
 **base-config (object: application-wide security configuration)**
 
@@ -1886,7 +1894,7 @@ For details about the error codes, see [Network Connection Management Error Code
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exists.      |
+| 2101007 | The callback does not exist.      |
 
 **Example**
 
@@ -2552,9 +2560,9 @@ Defines the network capability.
 | ------------------------ | ---- | ---------------------- |
 | NET_CAPABILITY_MMS | 0 | The network can connect to the carrier's Multimedia Messaging Service Center (MMSC) to send and receive multimedia messages.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | NET_CAPABILITY_NOT_METERED | 11 | The network traffic is not metered.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| NET_CAPABILITY_INTERNET  | 12   | The network has the Internet access capability, which is set by the network provider.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NET_CAPABILITY_INTERNET  | 12   | The network is capable of Internet access but the network connectivity is not successfully verified by the network management module. This capability is configured by the network provider.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | NET_CAPABILITY_NOT_VPN | 15 | The network does not use a virtual private network (VPN).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| NET_CAPABILITY_VALIDATED | 16   | The Internet connectivity of the network is successfully verified by the connection management module.<br>Note that for a newly connected network, this value may not reflect the actual result because network connectivity verification is in progress. You can use **NET_CAPABILITY_CHECKING_CONNECTIVITY**<sup>12+</sup> to check whether network connectivity verification is in progress.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NET_CAPABILITY_VALIDATED | 16   | The network management module successfully connects to the Huawei Cloud address through the network. This capability is configured by the network management module.<br>If the network management module fails to connect to the Huawei Cloud address, this flag is not available in the network capability, but this does not mean a complete loss in Internet access. Note that for a newly connected network, this value may not reflect the actual verification result as network connectivity verification is in progress. You can use **NET_CAPABILITY_CHECKING_CONNECTIVITY**<sup>12+</sup> to check whether network connectivity verification is in progress.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | The network is found to have a captive portal and user login authentication is required. This capability is set by the connection management module.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup> | 31   | The network management module is verifying the network connectivity. This value remains valid until the connectivity check is complete. If it is present, the value of **NET_CAPABILITY_VALIDATED** may be incorrect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 

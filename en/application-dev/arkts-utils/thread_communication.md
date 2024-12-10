@@ -113,7 +113,7 @@ In this way, the main thread can receive the data sent by the task through **not
 
 ## Instant Communication Between the Worker Thread and Main Thread
 
-In ArkTS, Worker provides a limited number of threads that exist for a longer time than TaskPool threads. Multiple tasks may be executed in one [Worker thread](https://docs.openharmony.cn/pages/v4.0/en/application-dev/arkts-utils/worker-introduction.md/), and the execution duration or returned result of each task may be different. The main thread needs to call different methods in the Worker thread according to the actual situation, and the Worker thread needs to return the result to the main thread in time. You can perform the following operations to implement this scenario.
+In ArkTS, Worker provides a limited number of threads that exist for a longer time than TaskPool threads. Multiple tasks may be executed in one [Worker thread](https://docs.openharmony.cn/pages/v4.0/en/application-dev/arkts-utils/worker-introduction.md/), and the execution duration or returned result of each task may be different. The host thread needs to call different methods in the Worker thread according to the actual situation, and the Worker thread needs to return the result to the host thread in time. You can perform the following operations to implement this scenario.
 
 First, create a Worker thread to execute different tasks based on parameters.
 ```typescript
@@ -230,3 +230,5 @@ try {
 }
 ......
 ```
+
+

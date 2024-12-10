@@ -114,6 +114,21 @@
   }
   ```
 
+- 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
+
+```ts
+// 错误写法
+@Styles function backgroundColorStyle() {
+  if (true) {
+    .backgroundColor(Color.Red)
+  }
+}
+
+// 正确写法
+@Styles function backgroundColorStyle() {
+  .backgroundColor(Color.Red)
+}
+```
 
 ## 使用场景
 

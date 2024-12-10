@@ -282,7 +282,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
       if (error) {
         console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -395,7 +395,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
+    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
     soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
       console.info('Succeeded in loading soundpool');
       soundID = soundId;

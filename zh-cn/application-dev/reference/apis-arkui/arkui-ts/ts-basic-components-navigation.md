@@ -446,6 +446,44 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 > 8. 当页面设置不同样式时，在页面转场开始时生效。
 > 9. 非全屏窗口下，Navigation/NavDestination设置的状态栏不生效。
 
+### recoverable<sup>14+</sup>
+
+recoverable(recoverable: Optional&lt;boolean&gt;)
+
+配置Navigation是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该Navigation，并恢复至异常退出时的页面栈。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| recoverable  | Optional&lt;boolean&gt; | 否   | Navigation是否可恢复，默认为不可恢复 |
+
+>  **使用说明：**
+>
+> 1. 使用该接口需要先设置Navigation的[id属性](ts-universal-attributes-component-id.md#id)，否则该接口无效。
+> 2. 该接口需要配合NavDestination的[recoverable](./ts-basic-components-navdestination.md#recoverable14)接口使用。
+> 3. 恢复的过程中不可序列化的信息，例如不可序列化的参数与用户设置的onPop等，会被丢弃，无法恢复。
+
+### enableDragBar<sup>14+</sup>
+
+enableDragBar(isEnabled: Optional&lt;boolean&gt;)
+
+控制分栏场景下是否显示拖拽条。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| enableDragBar  | Optional&lt;boolean&gt; | 否   | 是否开启拖拽条，默认为无拖拽条样式 |
+
 ## 事件
 
 ### onTitleModeChange
@@ -523,6 +561,11 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 ## NavPathStack<sup>10+</sup>
 
 Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10)。
+
+> **说明：**
+>
+> 连续调用多个页面栈操作方法时，中间过程会被忽略，显示最终的栈操作结果。<br/>
+> 例如：在Page1页面先pop再push一个Page1，系统会认为操作前和操作后的结果一致而不进行任何操作，如果需要强行push一个Page1实例，可以使用NEW_INSTANCE模式。
 
 ### pushPath<sup>10+</sup>
 
@@ -785,6 +828,40 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### replaceDestination<sup>14+</sup>
+
+replaceDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
+
+替换页面栈操作。使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                            | 必填   | 说明                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### removeByIndexes<sup>11+</sup>
 
@@ -1200,7 +1277,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
-| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
+| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)时返回的回调。仅[pop](#pop11)中设置result参数后触发。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
 
 ### 属性
@@ -1211,7 +1288,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | param | unknown | 否    | NavDestination页面详细参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)时返回的回调。仅[pop](#pop11)中设置result参数后触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PopInfo<sup>11+</sup>
@@ -1482,7 +1559,7 @@ Navigation首页名字。
 
 ## BarStyle<sup>12+</sup>枚举说明
 
-标题栏或工具栏的布局样式。
+标题栏或工具栏的布局样式。NavDestination的工具栏不支持设置该属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1547,7 +1624,7 @@ Navigation首页名字。
 
 ## 示例
 
-示例效果请以真机为准。
+示例效果请以真机为准，系统路由表不支持预览器，跨平台以及模拟器。
 
 ### 示例1
 
@@ -1566,7 +1643,8 @@ struct NavigationExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State currentIndex: number = 0
 
-  @Builder NavigationTitle() {
+  @Builder
+  NavigationTitle() {
     Column() {
       Text('Title')
         .fontColor('#182431')
@@ -1582,7 +1660,8 @@ struct NavigationExample {
     }.alignItems(HorizontalAlign.Start)
   }
 
-  @Builder NavigationMenus() {
+  @Builder
+  NavigationMenus() {
     Row() {
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
@@ -1673,7 +1752,7 @@ struct NavigationExample {
     this.pageInfos.setInterception({
       // 页面跳转前拦截，允许操作栈，在当前跳转中生效。
       willShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
-                 operation: NavigationOperation, animated: boolean) => {
+        operation: NavigationOperation, animated: boolean) => {
         if (!this.isUseInterception) {
           return;
         }
@@ -1690,7 +1769,7 @@ struct NavigationExample {
       },
       // 页面跳转后回调，在该回调中操作栈在下一次跳转中刷新。
       didShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
-                operation: NavigationOperation, isAnimated: boolean) => {
+        operation: NavigationOperation, isAnimated: boolean) => {
         if (!this.isUseInterception) {
           return;
         }
@@ -1744,8 +1823,8 @@ struct NavigationExample {
 ```
 ```ts
 // PageOne.ets
-class TmpClass{
-  count:number=10
+class TmpClass {
+  count: number = 10
 }
 
 @Builder
@@ -1755,7 +1834,6 @@ export function PageOneBuilder(name: string, param: Object) {
 
 @Component
 export struct PageOne {
-
   pageInfos: NavPathStack = new NavPathStack()
 
   build() {
@@ -1774,7 +1852,8 @@ export struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPath({ name: 'pageOne' }, { launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON }) //从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶
+            this.pageInfos.pushPath({ name: 'pageOne' },
+              { launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON }) //从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶
           })
         Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1782,7 +1861,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToName('pageTwo') //回退路由栈到第一个名为name的NavDestination页面
-            console.log('popToName' + JSON.stringify(this.pageInfos), '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
+            console.log('popToName' + JSON.stringify(this.pageInfos),
+              '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
           })
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1798,7 +1878,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveToTop('pageTwo') // 将第一个名为name的NavDestination页面移到栈顶
-            console.log('moveToTop' + JSON.stringify(this.pageInfos), '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
+            console.log('moveToTop' + JSON.stringify(this.pageInfos),
+              '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
           })
         Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1822,9 +1903,12 @@ export struct PageOne {
           .onClick(() => {
             console.log('-------------------')
             console.log('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()))
-            console.log('获取index指定的NavDestination页面的参数信息', JSON.stringify(this.pageInfos.getParamByIndex(1)))
-            console.log('获取全部名为name的NavDestination页面的参数信息', JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
-            console.log('获取全部名为name的NavDestination页面的位置索引', JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
+            console.log('获取index指定的NavDestination页面的参数信息',
+              JSON.stringify(this.pageInfos.getParamByIndex(1)))
+            console.log('获取全部名为name的NavDestination页面的参数信息',
+              JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
+            console.log('获取全部名为name的NavDestination页面的位置索引',
+              JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
             console.log('获取栈大小', JSON.stringify(this.pageInfos.size()))
           })
       }.width('100%').height('100%')
@@ -1849,7 +1933,6 @@ export function PageTwoBuilder(name: string, param: Object) {
 @Component
 export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack()
-
   private menuItems: Array<NavigationMenuItem> = [
     {
       value: "1",
@@ -1971,7 +2054,7 @@ struct NavigationExample {
         return customAnimation;
       }
       let customAnimation: NavigationAnimatedTransition = {
-        onTransitionEnd: (isSuccess: boolean)=>{
+        onTransitionEnd: (isSuccess: boolean) => {
           console.log(`current transition result is ${isSuccess}`)
         },
         timeout: 7000,
@@ -2020,7 +2103,7 @@ struct NavigationExample {
 
 ```ts
 // PageOne.ets
-import {CustomTransition} from './CustomNavigationUtils';
+import { CustomTransition } from './CustomNavigationUtils';
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
@@ -2130,11 +2213,11 @@ export struct PageOne {
 ```
 ```ts
 // PageTwo.ets
-import {CustomTransition} from './CustomNavigationUtils'
+import { CustomTransition } from './CustomNavigationUtils'
 
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
-  PageTwo({param: param as number})
+  PageTwo({ param: param as number })
 }
 
 @Component
@@ -2146,13 +2229,13 @@ export struct PageTwo {
   param: number = 0;
 
   registerCallback() {
-    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean)=>{
+    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean) => {
       if (isPush) {
-        this.translateX =  '100%'
+        this.translateX = '100%'
       } else {
         this.translateX = '0';
       }
-    }, (isPush: boolean, isExit: boolean)=>{
+    }, (isPush: boolean, isExit: boolean) => {
       if (isPush) {
         this.translateX = '0';
       } else {
@@ -2160,19 +2243,23 @@ export struct PageTwo {
       }
     }, (isPush: boolean, isExit: boolean) => {
       this.translateX = '0';
-    }, (operation: NavigationOperation)=>{
+    }, (operation: NavigationOperation) => {
       if (operation == NavigationOperation.PUSH) {
         this.translateX = '100%';
-        animateTo({duration: 500, onFinish: ()=>{
-          this.translateX = '0';
-        }}, ()=>{
+        animateTo({
+          duration: 500, onFinish: () => {
+            this.translateX = '0';
+          }
+        }, () => {
           this.translateX = '0'
         })
       } else {
         this.translateX = '0';
-        animateTo({duration: 500, onFinish: ()=>{
-          this.translateX = "0"
-        }}, ()=>{
+        animateTo({
+          duration: 500, onFinish: () => {
+            this.translateX = "0"
+          }
+        }, () => {
           this.translateX = '100%';
         })
       }
@@ -2188,14 +2275,14 @@ export struct PageTwo {
           .margin(20)
           .onClick(() => {
             //将name指定的NavDestination页面信息入栈，传递的数据为param
-            this.pageInfos.pushPath({name:'pageOne', param: CustomTransition.getInstance().getAnimationId()})
+            this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() })
           })
       }
       .size({ width: '100%', height: '100%' })
     }
     .title('pageTwo')
     .gesture(PanGesture()
-      .onActionStart((event: GestureEvent)=> {
+      .onActionStart((event: GestureEvent) => {
         this.rectWidth = event.target.area.width as number;
         if (event.offsetX < 0) {
           this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() });
@@ -2207,14 +2294,14 @@ export struct PageTwo {
         let rate = event.fingerList[0].localX / this.rectWidth;
         CustomTransition.getInstance().updateProgress(rate);
       })
-      .onActionEnd((event: GestureEvent)=> {
+      .onActionEnd((event: GestureEvent) => {
         let rate = event.fingerList[0].localX / this.rectWidth;
         CustomTransition.getInstance().finishInteractiveAnimation(rate);
       }))
     .onAppear(() => {
       this.registerCallback();
     })
-    .onDisAppear(()=>{
+    .onDisAppear(() => {
       CustomTransition.getInstance().unRegisterNavParam(this.pageId);
     })
     .onReady((context: NavDestinationContext) => {
@@ -2224,7 +2311,7 @@ export struct PageTwo {
         this.registerCallback();
       }
     })
-    .translate({x: this.translateX})
+    .translate({ x: this.translateX })
     .backgroundColor(Color.Yellow)
   }
 }
@@ -2239,12 +2326,13 @@ export interface AnimateCallback {
   interactive: ((operation: NavigationOperation) => void | undefined) | undefined;
   timeout: (number | undefined) | undefined;
 }
+
 const customTransitionMap: Map<string, AnimateCallback> = new Map();
 
 export class CustomTransition {
   static delegate = new CustomTransition();
   interactive: boolean = false;
-  proxy: NavigationTransitionProxy| undefined = undefined;
+  proxy: NavigationTransitionProxy | undefined = undefined;
   private animationId: number = 0;
   operation: NavigationOperation = NavigationOperation.PUSH
 
@@ -2261,9 +2349,9 @@ export class CustomTransition {
    * timeout：转场结束的超时时间
    */
   registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
-    endCallback:(operation: boolean, isExit: boolean) => void,
+    endCallback: (operation: boolean, isExit: boolean) => void,
     onFinish: (operation: boolean, isExit: boolean) => void,
-    interactiveCallback: (operation: NavigationOperation) =>void,
+    interactiveCallback: (operation: NavigationOperation) => void,
     timeout: number): void {
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
@@ -2276,8 +2364,13 @@ export class CustomTransition {
         return;
       }
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish,
-      interactive: interactiveCallback};
+    let params: AnimateCallback = {
+      timeout: timeout,
+      start: startCallback,
+      finish: endCallback,
+      onFinish: onFinish,
+      interactive: interactiveCallback
+    };
     customTransitionMap.set(name, params);
   }
 
@@ -2415,8 +2508,8 @@ struct NavigationExample {
 // PageOne.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class TmpClass{
-  count:number = 10
+class TmpClass {
+  count: number = 10
 }
 
 class ParamWithOp {
@@ -2446,10 +2539,13 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
-            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
-              this.message = '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
+          .onClick(() => {
+            this.pageInfo.pushPath({
+              name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
+                this.message =
+                  '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+              }
+            }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
 
         Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -2458,8 +2554,9 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             let tmp = new TmpClass()
-            this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo)=>{
-              this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+            this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo) => {
+              this.message =
+                '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }); // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
           })
 
@@ -2467,14 +2564,17 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
-            this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
-              this.message = '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError)=>{
+            this.pageInfo.pushDestination({
+              name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
+                this.message =
+                  '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+              }
+            }).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.error('[pushDestination]success.');
             });
           })
@@ -2483,14 +2583,15 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
-            this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo)=>{
-              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }).catch((error: BusinessError)=>{
+            this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo) => {
+              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' +
+              JSON.stringify(popInfo.result);
+            }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.error('[pushDestinationByName]success.');
             });
           })
@@ -2499,8 +2600,8 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
-            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp()}); // 将name指定的NavDestination页面信息入栈。
+          .onClick(() => {
+            this.pageInfo.pushPath({ name: 'pageTwo', param: new ParamWithOp() }); // 将name指定的NavDestination页面信息入栈。
           })
 
         Button('pushPathByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
@@ -2516,13 +2617,13 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
             // 将name指定的NavDestination页面信息入栈，传递的数据为param，添加接收处理结果的onPop回调。
-            this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp()})
-              .catch((error: BusinessError)=>{
-              console.error(`[pushDestinationWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            this.pageInfo.pushDestination({ name: 'pageTwo', param: new ParamWithOp() })
+              .catch((error: BusinessError) => {
+                console.error(`[pushDestinationWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
+              }).then(() => {
               console.error('[pushDestinationWithoutOnPop]success.');
             });
           })
@@ -2535,9 +2636,9 @@ export struct PageOne {
             let tmp = new TmpClass()
             // 将name指定的NavDestination页面信息入栈，传递的数据为param。
             this.pageInfo.pushDestinationByName('pageTwo', tmp)
-              .catch((error: BusinessError)=>{
+              .catch((error: BusinessError) => {
                 console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-              }).then(()=>{
+              }).then(() => {
               console.error('[pushDestinationByNameWithoutOnPop]success.');
             });
           })
@@ -2552,7 +2653,7 @@ export struct PageOne {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfo.pop({number: 1}) // 弹出路由栈栈顶元素。
+      this.pageInfo.pop({ number: 1 }) // 弹出路由栈栈顶元素。
       return true
     }).onReady((context: NavDestinationContext) => {
       this.pageInfo = context.pathStack;
@@ -2567,6 +2668,7 @@ class resultClass {
   constructor(count: number) {
     this.count = count;
   }
+
   count: number = 10
 }
 
@@ -2595,7 +2697,8 @@ export struct PageTwo {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.popToName('pageOne', new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
+            this.pathStack.popToName('pageOne',
+              new resultClass(11)); // 将第一个名为name的NavDestination页面移到栈顶，将处理结果传入push的onPop回调中。
           })
 
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
@@ -2677,15 +2780,20 @@ let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
 struct BackComponent {
   build() {
     Row() {
-      Column() {}
+      Column() {
+      }
       .height('100%')
       .backgroundColor("#3D9DB4")
       .layoutWeight(9)
-      Column() {}
+
+      Column() {
+      }
       .height('100%')
       .backgroundColor("#17A98D")
       .layoutWeight(9)
-      Column() {}
+
+      Column() {
+      }
       .height('100%')
       .backgroundColor("#FFC000")
       .layoutWeight(9)
@@ -2702,12 +2810,12 @@ struct ColorAndBlur {
 
   build() {
     NavDestination() {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         BackComponent()
           .width('100%')
           .height('100%')
         Column() {
-          Stack({alignContent: Alignment.Center}) {
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch color")
               .onClick(() => {
                 this.useColor1 = !this.useColor1;
@@ -2715,7 +2823,8 @@ struct ColorAndBlur {
           }
           .width('100%')
           .layoutWeight(1)
-          Stack({alignContent: Alignment.Center}) {
+
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch blur")
               .onClick(() => {
                 this.useBlur1 = !this.useBlur1;
@@ -2754,12 +2863,12 @@ struct Index {
 
   build() {
     Navigation(this.stack) {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         BackComponent()
           .width('100%')
           .height('100%')
         Column() {
-          Stack({alignContent: Alignment.Center}) {
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch color")
               .onClick(() => {
                 this.useColor1 = !this.useColor1;
@@ -2767,7 +2876,8 @@ struct Index {
           }
           .width('100%')
           .layoutWeight(1)
-          Stack({alignContent: Alignment.Center}) {
+
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch blur")
               .onClick(() => {
                 this.useBlur1 = !this.useBlur1;
@@ -2775,10 +2885,11 @@ struct Index {
           }
           .width('100%')
           .layoutWeight(1)
-          Stack({alignContent: Alignment.Center}) {
+
+          Stack({ alignContent: Alignment.Center }) {
             Button("push page")
               .onClick(() => {
-                this.stack.pushPath({name: "page"})
+                this.stack.pushPath({ name: "page" })
               })
           }
           .width('100%')
@@ -2800,9 +2911,9 @@ struct Index {
     })
     // 开发者可以设置工具栏的背景颜色和背景模糊效果
     .toolbarConfiguration([
-      {value: "a"},
-      {value: "b"},
-      {value: "c"}
+      { value: "a" },
+      { value: "b" },
+      { value: "c" }
     ], {
       backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
       backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2
@@ -2824,7 +2935,7 @@ struct NavigationExample1 {
 
   build() {
     Navigation() {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         Navigation(this.childNavStack) {
           Button('push Path to parent Navigation', { stateEffect: true, type: ButtonType.Capsule })
             .width('80%')
@@ -2833,7 +2944,7 @@ struct NavigationExample1 {
             .onClick(() => {
               // 可以获取父NavPathStack
               let parentStack = this.childNavStack.getParent();
-              parentStack?.pushPath({ name: "pageOne"})
+              parentStack?.pushPath({ name: "pageOne" })
             })
         }
         .clip(true)
@@ -2893,6 +3004,7 @@ class PageParam {
   constructor(num_: number) {
     this.num = num_;
   }
+
   num: number = 0;
 }
 
@@ -2918,7 +3030,7 @@ struct PageOne {
           .onClick(() => {
             if (this.stack) {
               let p = new PageParam(this.paramNum + 1);
-              this.stack.pushPath({name: "pageOne", param: p});
+              this.stack.pushPath({ name: "pageOne", param: p });
             }
           })
         Button('pop', { stateEffect: true, type: ButtonType.Capsule })
@@ -2949,11 +3061,11 @@ struct PageOne {
 @Entry
 @Component
 struct NavigationExample2 {
-  private stack : NavPathStack = new NavPathStack();
+  private stack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.stack) {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
@@ -3015,7 +3127,7 @@ struct PageOneComponent {
           .margin(20)
           .onClick(() => {
             if (this.stack) {
-              this.stack.pushPath({name: "pageOne"});
+              this.stack.pushPath({ name: "pageOne" });
             }
           })
         Button('pop', { stateEffect: true, type: ButtonType.Capsule })
@@ -3030,14 +3142,30 @@ struct PageOneComponent {
       .height('100%')
     }
     .title('pageOne')
-    .onAppear(() => { this.eventStr += "<onAppear>"; })
-    .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
-    .onShown(() => { this.eventStr += "<onShown>"; })
-    .onHidden(() => { this.eventStr += "<onHidden>"; })
-    .onWillAppear(() => { this.eventStr += "<onWillAppear>"; })
-    .onWillDisappear(() => { this.eventStr += "<onWillDisappear>"; })
-    .onWillShow(() => { this.eventStr += "<onWillShow>"; })
-    .onWillHide(() => { this.eventStr += "<onWillHide>"; })
+    .onAppear(() => {
+      this.eventStr += "<onAppear>";
+    })
+    .onDisAppear(() => {
+      this.eventStr += "<onDisAppear>";
+    })
+    .onShown(() => {
+      this.eventStr += "<onShown>";
+    })
+    .onHidden(() => {
+      this.eventStr += "<onHidden>";
+    })
+    .onWillAppear(() => {
+      this.eventStr += "<onWillAppear>";
+    })
+    .onWillDisappear(() => {
+      this.eventStr += "<onWillDisappear>";
+    })
+    .onWillShow(() => {
+      this.eventStr += "<onWillShow>";
+    })
+    .onWillHide(() => {
+      this.eventStr += "<onWillHide>";
+    })
     // onReady会在onAppear之前调用
     .onReady((ctx: NavDestinationContext) => {
       try {
@@ -3053,11 +3181,11 @@ struct PageOneComponent {
 @Entry
 @Component
 struct NavigationExample3 {
-  private stack : NavPathStack = new NavPathStack();
+  private stack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.stack) {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
@@ -3112,8 +3240,7 @@ struct NavigationExample {
         Column() {
           Scroll(this.scrollerForScroll) {
             Column() {
-              Image($r('app.media.image_1'))
-                // 设置与标题栏高度一致，以便观察STACK效果
+              Image($r('app.media.image_1'))// 设置与标题栏高度一致，以便观察STACK效果
                 .height(138)
                 .width('100%')
               Button('BarStyle.STANDARD')
@@ -3210,7 +3337,10 @@ class DerivedNavPathStack extends NavPathStack {
 
 class param {
   info: string = "__default_param__";
-  constructor(info: string) { this.info = info }
+
+  constructor(info: string) {
+    this.info = info
+  }
 }
 
 @Entry
@@ -3263,6 +3393,7 @@ struct PageOne {
           .fontSize(20)
           .textAlign(TextAlign.Start)
       }.backgroundColor(Color.Pink)
+
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
@@ -3293,51 +3424,55 @@ import { SymbolGlyphModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct NavigationExample {
-  @Provide('navPathStack') navPathStack:NavPathStack = new NavPathStack();
-  @State menuItems:Array<NavigationMenuItem> = [
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  @State menuItems: Array<NavigationMenuItem> = [
     {
-      value:'menuItem1',
-      icon:'resources/base/media/ic_public_ok.svg' // 图标资源路径
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg' // 图标资源路径
     },
     {
-      value:'menuItem2',
-      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
-      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      value: 'menuItem2',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
+        .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
     },
     {
-      value:'menuItem3',
+      value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
   ]
-
-  @State toolItems:Array<ToolbarItem>= [
+  @State toolItems: Array<ToolbarItem> = [
     {
-      value:'toolItem1',
-      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
-      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
-      status:ToolbarItemStatus.ACTIVE,
-      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
-      action:()=>{}
+      value: 'toolItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      status: ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,
+        Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action: () => {
+      }
     },
     {
-      value:'toolItem2',
-      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
-      status:ToolbarItemStatus.ACTIVE,
+      value: 'toolItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status: ToolbarItemStatus.ACTIVE,
       activeIcon: 'resources/base/media/ic_public_more.svg', // 图标资源路径
-      action:()=>{}
+      action: () => {
+      }
     },
     {
-      value:'toolItem3',
-      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
-      status:ToolbarItemStatus.ACTIVE,
+      value: 'toolItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status: ToolbarItemStatus.ACTIVE,
       activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
-      action:()=>{}
+      action: () => {
+      }
     }
   ]
 
   @Builder
-  myRouter(name:string,param?:Object) {
-    if(name === 'NavigationMenu') {
+  myRouter(name: string, param?: Object) {
+    if (name === 'NavigationMenu') {
       NavigationMenu();
     }
   }
@@ -3345,7 +3480,7 @@ struct NavigationExample {
   build() {
     Navigation(this.navPathStack) {
       Column() {
-        Button('跳转').onClick(()=> {
+        Button('跳转').onClick(() => {
           this.navPathStack.pushPathByName('NavigationMenu', null);
         })
       }
@@ -3360,30 +3495,34 @@ struct NavigationExample {
 }
 
 @Component
-export struct NavigationMenu{
-  @Consume('navPathStack') navPathStack:NavPathStack;
-  @State menuItems:Array<NavigationMenuItem> = [
+export struct NavigationMenu {
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  @State menuItems: Array<NavigationMenuItem> = [
     {
-      value:'menuItem1',
-      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
-      action:()=>{}
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action: () => {
+      }
     },
     {
-      value:'menuItem2',
-      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
-      action:()=>{}
+      value: 'menuItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
+        .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action: () => {
+      }
     },
     {
-      value:'menuItem3',
+      value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
-      action:()=>{}
+      action: () => {
+      }
     },
   ]
 
   build() {
-    NavDestination(){
+    NavDestination() {
       Row() {
-        Column(){
+        Column() {
         }
         .width('100%')
       }
@@ -3409,6 +3548,7 @@ import { TextModifier } from '@ohos.arkui.modifier';
 
 class MainTitleTextModfier extends TextModifier {
   useStyle1: boolean = true;
+
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
       console.log(`testTag mainTitle use style1`);
@@ -3416,7 +3556,7 @@ class MainTitleTextModfier extends TextModifier {
       instance.fontSize(35)
       instance.fontWeight(FontWeight.Bolder)
       instance.fontStyle(FontStyle.Normal)
-      instance.textShadow({radius: 5, offsetX: 9})
+      instance.textShadow({ radius: 5, offsetX: 9 })
     } else {
       console.log(`testTag mainTitle use style2`);
       instance.fontColor('#FF23A98D')
@@ -3424,13 +3564,14 @@ class MainTitleTextModfier extends TextModifier {
       instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       instance.fontWeight(FontWeight.Lighter)
       instance.fontStyle(FontStyle.Italic)
-      instance.textShadow({radius: 3, offsetX: 3})
+      instance.textShadow({ radius: 3, offsetX: 3 })
     }
   }
 }
 
 class SubTitleTextModfier extends TextModifier {
   useStyle1: boolean = true;
+
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
       console.log(`testTag subTitle use style1`);
@@ -3438,14 +3579,14 @@ class SubTitleTextModfier extends TextModifier {
       instance.fontSize(15)
       instance.fontWeight(FontWeight.Bolder)
       instance.fontStyle(FontStyle.Normal)
-      instance.textShadow({radius: 5, offsetX: 9})
+      instance.textShadow({ radius: 5, offsetX: 9 })
     } else {
       console.log(`testTag subTitle use style2`);
       instance.fontColor('#FF23A98D')
       instance.fontSize(10)
       instance.fontWeight(FontWeight.Lighter)
       instance.fontStyle(FontStyle.Italic)
-      instance.textShadow({radius: 3, offsetX: 3})
+      instance.textShadow({ radius: 3, offsetX: 3 })
     }
   }
 }
@@ -3481,33 +3622,34 @@ struct NavigationExample {
             this.paddingStart = LengthMetrics.vp(32);
             this.paddingEnd = LengthMetrics.vp(32);
           })
-          .margin({top: 70})
+          .margin({ top: 70 })
           .width(180)
         Button('apply padding 20vp')
           .onClick(() => {
             this.paddingStart = LengthMetrics.vp(20);
             this.paddingEnd = LengthMetrics.vp(20);
           })
-          .margin({top: 40})
+          .margin({ top: 40 })
           .width(180)
         Button('pushPage')
           .onClick(() => {
-            this.navPathStack.pushPath({name: 'NavDestinationExample'})
+            this.navPathStack.pushPath({ name: 'NavDestinationExample' })
           })
-          .margin({top: 40})
+          .margin({ top: 40 })
           .width(180)
         Row() {
           Text(`apply Modifier`)
-          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.applyModifier, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.applyModifier = isOn;
           })
         }
         .padding({ top: 95, left: 5, right: 5 })
         .width(180)
         .justifyContent(FlexAlign.SpaceBetween)
+
         Row() {
           Text(`use Style1`)
-          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.useStyle1, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.mainTitleModifier.useStyle1 = isOn;
             this.subTitleModifier.useStyle1 = isOn;
             this.useStyle1 = isOn;
@@ -3522,7 +3664,7 @@ struct NavigationExample {
     }
     .titleMode(NavigationTitleMode.Full)
     .title(
-      {main: "Title", sub: "subTitle"},
+      { main: "Title", sub: "subTitle" },
       this.applyModifier ?
         {
           paddingStart: this.paddingStart,
@@ -3530,9 +3672,9 @@ struct NavigationExample {
           mainTitleModifier: this.mainTitleModifier,
           subTitleModifier: this.subTitleModifier,
         } : {
-          paddingStart: this.paddingStart,
-          paddingEnd: this.paddingEnd
-        })
+        paddingStart: this.paddingStart,
+        paddingEnd: this.paddingEnd
+      })
     .navDestination(this.myRouter)
   }
 }
@@ -3565,27 +3707,28 @@ export struct NavDestinationExample {
             this.paddingStart = LengthMetrics.vp(32);
             this.paddingEnd = LengthMetrics.vp(32);
           })
-          .margin({top: 150})
+          .margin({ top: 150 })
           .width(180)
         Button('apply padding 20vp')
           .onClick(() => {
             this.paddingStart = LengthMetrics.vp(20);
             this.paddingEnd = LengthMetrics.vp(20);
           })
-          .margin({top: 40})
+          .margin({ top: 40 })
           .width(180)
         Row() {
           Text(`apply Modifier`)
-          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.applyModifier, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.applyModifier = isOn;
           })
         }
         .padding({ top: 95, left: 5, right: 5 })
         .width(180)
         .justifyContent(FlexAlign.SpaceBetween)
+
         Row() {
           Text(`use Style1`)
-          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.useStyle1, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.mainTitleModifier.useStyle1 = isOn;
             this.subTitleModifier.useStyle1 = isOn;
             this.useStyle1 = isOn;
@@ -3600,7 +3743,7 @@ export struct NavDestinationExample {
     }
     .hideTitleBar(false)
     .title(
-      {main: "Title", sub: "subTitle"},
+      { main: "Title", sub: "subTitle" },
       this.applyModifier ?
         {
           paddingStart: this.paddingStart,

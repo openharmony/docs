@@ -17,21 +17,21 @@ Before working with JS objects using JSVM-API, you need to understand the follow
 
 | API                      | Description                      |
 |----------------------------|--------------------------------|
-| OH_JSVM_GetPropertyNames   | Obtains the names of all enumerable properties of a JS object as a JS array. |
-| OH_JSVM_SetProperty        | Sets a property for a JS object. |
-| OH_JSVM_GetProperty        | Obtains a property from a JS object. |
-| OH_JSVM_HasProperty        | Checks whether a JS object has the specified property. |
-| OH_JSVM_DeleteProperty     | Deletes a property from a JS object. |
+| OH_JSVM_GetPropertyNames   | Obtains the names of all enumerable properties of a JS object as a JS array.|
+| OH_JSVM_SetProperty        | Sets a property for a JS object.|
+| OH_JSVM_GetProperty        | Obtains a property from a JS object.|
+| OH_JSVM_HasProperty        | Checks whether a JS object has the specified property.|
+| OH_JSVM_DeleteProperty     | Deletes a property from a JS object.|
 | OH_JSVM_HasOwnProperty     | Checks whether an object has the own property specified by **key**.|
 | OH_JSVM_SetNamedProperty   | Sets a property with the given property name for a JS object. This API is equivalent to calling **OH_JSVM_SetNamedProperty** with a **JSVM_Value** created from the string passed in as **utf8Name**.|
 | OH_JSVM_GetNamedProperty   | Obtains a property from a JS object. This API is equivalent to calling **OH_JSVM_GetNamedProperty** with a **JSVM_Value** created from the string passed in as **utf8Name**.|
 | OH_JSVM_HasNamedProperty   | Checks whether a JS object has the specified property. This API is equivalent to calling **OH_JSVM_HasProperty** with a **JSVM_Value** created from the string passed in as **utf8Name**.|
-| OH_JSVM_DefineProperties   | Defines multiple properties for a JS object. |
-| OH_JSVM_GetAllPropertyNames | Obtains the names of all available properties of a JS object as a JS array. |
+| OH_JSVM_DefineProperties   | Defines multiple properties for a JS object.|
+| OH_JSVM_GetAllPropertyNames | Obtains the names of all available properties of a JS object as a JS array.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to JS property APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in setting properties.
 
 ### OH_JSVM_GetPropertyNames
 
@@ -40,15 +40,6 @@ Use **OH_JSVM_GetPropertyNames** to obtain names of all enumerable properties of
 CPP code:
 
 ```cpp
-// Register the GetPropertyNames callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetPropertyNames},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getPropertyNames and associate it with a callback. This allows the CreateStringLatin1 callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetPropertyNames.
 static JSVM_Value GetPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -67,22 +58,26 @@ static JSVM_Value GetPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the GetPropertyNames callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetPropertyNames},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getPropertyNames and associate it with a callback. This allows the CreateStringLatin1 callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = '{ data: 0, message: "hello world"}';
+    let script = getPropertyNames(obj);
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let obj = '{ data: 0, message: "hello world"}';
-let script: string = `getPropertyNames(${obj})`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getPropertyNames: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getPropertyNames error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetPropertyNames success
 ```
 
 ### OH_JSVM_SetProperty
@@ -92,15 +87,6 @@ Use **OH_JSVM_SetProperty** to set a property for an object.
 CPP code:
 
 ```cpp
-// Register the SetProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named setProperty and associate it with a callback. This allows the SetProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_SetProperty.
 static JSVM_Value SetProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -123,24 +109,26 @@ static JSVM_Value SetProperty(JSVM_Env env, JSVM_CallbackInfo info)
     // Return the object that is successfully set.
     return args[0];
 }
+// Register the SetProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named setProperty and associate it with a callback. This allows the SetProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    setProperty(obj, "code", "hi")
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  setProperty(obj, "code", "hi")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM setProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM setProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_SetProperty success
 ```
 
 ### OH_JSVM_GetProperty
@@ -150,15 +138,6 @@ Use **OH_JSVM_GetProperty** to obtain a property value of a JS object based on t
 CPP code:
 
 ```cpp
-// Register the GetProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getProperty and associate it with a callback. This allows the GetProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetProperty.
 static JSVM_Value GetProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -177,24 +156,26 @@ static JSVM_Value GetProperty(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the GetProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getProperty and associate it with a callback. This allows the GetProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    getProperty(obj, "message")
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  getProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetProperty success
 ```
 
 ### OH_JSVM_HasProperty
@@ -204,15 +185,6 @@ Use **OH_JSVM_HasProperty** to check whether an object has the specified propert
 CPP code:
 
 ```cpp
-// Register the HasProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named hasProperty and associate it with a callback. This allows the HasProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_HasProperty.
 static JSVM_Value HasProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -234,31 +206,30 @@ static JSVM_Value HasProperty(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &returnReslut);
     return returnReslut;
 }
+// Register the HasProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named hasProperty and associate it with a callback. This allows the HasProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    hasProperty(obj, "data")
+    hasProperty(obj, 0)
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-`
-let scriptTrue: string = script + `\n` + `
-  hasProperty(obj, "data")
-`
-let scriptFalse: string = script + `\n` + `
-  hasProperty(obj, 0)
-`
-try {
-  let resultTrue = napitest.runJsVm(scriptTrue);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM HasProperty: %{public}s', resultTrue);
-  let resultFalse = napitest.runJsVm(scriptFalse);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM HasProperty: %{public}s', resultFalse);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasProperty error: %{public}s', error.message);
-}
+// Output of hasProperty (obj, "data").
+JSVM OH_JSVM_HasProperty success:1
+// Output of hasProperty (obj, 0).
+JSVM OH_JSVM_HasProperty success:0
 ```
 
 ### OH_JSVM_DeleteProperty
@@ -269,15 +240,6 @@ If the object is a non-extensible object or the property is not configurable, th
 CPP code:
 
 ```cpp
-// Register the DeleteProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = DeleteProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named deleteProperty and associate it with a callback. This allows the DeleteProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"deleteProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_DeleteProperty.
 static JSVM_Value DeleteProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -305,24 +267,26 @@ static JSVM_Value DeleteProperty(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &ret);
     return ret;
 }
+// Register the DeleteProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = DeleteProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named deleteProperty and associate it with a callback. This allows the DeleteProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"deleteProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    deleteProperty(obj, "message")
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  deleteProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM deleteProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM deleteProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_DeleteProperty success:1
 ```
 
 ### OH_JSVM_HasOwnProperty
@@ -332,15 +296,6 @@ Use **OH_JSVM_HasOwnProperty** to check whether a JS object has its own property
 CPP code:
 
 ```cpp
-// Register the HasOwnProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasOwnProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named hasOwnProperty and associate it with a callback. This allows the HasOwnProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasOwnProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_HasOwnProperty.
 static JSVM_Value HasOwnProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -362,7 +317,7 @@ static JSVM_Value HasOwnProperty(JSVM_Env env, JSVM_CallbackInfo info)
         OH_JSVM_ThrowError(env, nullptr, "Second argument must be a string.");
         return nullptr;
     }
-    // Check whether the object has the specified property and return the result in hasProperty.
+    // Check whether the object has the specified property. The result is in hasProperty.
     bool hasProperty;
     JSVM_Status status = OH_JSVM_HasOwnProperty(env, args[0], args[1], &hasProperty);
     if (status != JSVM_OK) {
@@ -376,31 +331,31 @@ static JSVM_Value HasOwnProperty(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, hasProperty, &result);
     return result;
 }
+// Register the HasOwnProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasOwnProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named hasOwnProperty and associate it with a callback. This allows the HasOwnProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasOwnProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    hasOwnProperty(obj, "message")
+    hasOwnProperty(obj, "__defineGetter__")
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-`
-let scriptTrue: string = script + `\n` + `
-  hasOwnProperty(obj, "message")
-`
-let scriptFalse: string = script + `\n` + `
-  hasOwnProperty(obj, "__defineGetter__")
-`
-try {
-  let resultTrue = napitest.runJsVm(scriptTrue);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM hasOwnProperty: %{public}s', resultTrue);
-  let resultFalse = napitest.runJsVm(scriptFalse);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM hasOwnProperty: %{public}s', resultFalse);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasOwnProperty error: %{public}s', error.message);
-}
+// hasOwnProperty (obj, "message") output
+JSVM OH_JSVM_HasOwnProperty success:1
+// hasOwnProperty(obj, "__defineGetter__") output
+// `__defineGetter__` is the prototype method of the object, not OwnProperty. The expected return value is 0.
+JSVM OH_JSVM_HasOwnProperty success:0
 ```
 
 ### OH_JSVM_SetNamedProperty
@@ -410,15 +365,6 @@ Use **OH_JSVM_SetNamedProperty** to set a property for a JS object.
 CPP code:
 
 ```cpp
-// Register the SetNamedProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetNamedProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named SetNamedProperty and associate it with a callback. This allows the SetNamedProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_SetNamedProperty.
 static JSVM_Value SetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -448,23 +394,25 @@ static JSVM_Value SetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
     // Return the newly created object with the property set.
     return newObj;
 }
+// Register the SetNamedProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetNamedProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named SetNamedProperty and associate it with a callback. This allows the SetNamedProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    setNamedProperty("message")
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  setNamedProperty("message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM setNamedProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM setNamedProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_SetNamedProperty success
 ```
 
 ### OH_JSVM_GetNamedProperty
@@ -474,15 +422,6 @@ Use **OH_JSVM_GetNamedProperty** to obtain the value of the specified property f
 CPP code:
 
 ```cpp
-// Register the GetNamedProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetNamedProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getNamedProperty and associate it with a callback. This allows the GetNamedProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetNamedProperty.
 static JSVM_Value GetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -505,24 +444,26 @@ static JSVM_Value GetNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the GetNamedProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetNamedProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getNamedProperty and associate it with a callback. This allows the GetNamedProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    getNamedProperty(obj, "message")
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  getNamedProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getNamedProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getNamedProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetNamedProperty success
 ```
 
 ### OH_JSVM_HasNamedProperty
@@ -532,15 +473,6 @@ Use **OH_JSVM_HasNamedProperty** to check whether a JS object contains the speci
 CPP code:
 
 ```cpp
-// Register the HasNamedProperty callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasNamedProperty},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named hasNamedProperty and associate it with a callback. This allows the HasNamedProperty callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_HasNamedProperty.
 static JSVM_Value HasNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -552,7 +484,7 @@ static JSVM_Value HasNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
     // Obtain the property name.
     size_t keyLength;
     OH_JSVM_GetValueStringUtf8(env, args[1], strKey, 32, &keyLength);
-    // Check whether the object has the specified property and store the result in hasProperty.
+    // Check whether the object has the specified property. The result is in hasProperty.
     bool hasProperty = false;
     JSVM_Status status = OH_JSVM_HasNamedProperty(env, args[0], strKey, &hasProperty);
     if (status != JSVM_OK) {
@@ -561,48 +493,41 @@ static JSVM_Value HasNamedProperty(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_HasNamedProperty success:%{public}d", hasProperty);
     }
-    // Convert the bool value to JSVM_Value and return JSVM_Value.
+    // Convert the bool value to JSVM_Value and return JSVM_value.
     JSVM_Value result;
     OH_JSVM_GetBoolean(env, hasProperty, &result);
     return result;
 }
+// Register the HasNamedProperty callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasNamedProperty},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named hasNamedProperty and associate it with a callback. This allows the HasNamedProperty callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasNamedProperty", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = { data: 0, message: "hello world", 50: 1};
+    hasNamedProperty(obj, "message")
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-  let obj = { data: 0, message: "hello world", 50: 1};
-  hasNamedProperty(obj, "message")
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM hasNamedProperty: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasNamedProperty error: %{public}s', error.message);
-}
+JSVM OH_JSVM_HasNamedProperty success:1
 ```
 
 ### OH_JSVM_DefineProperties
 
-Use **OH_JSVM_DefineProperties** to define properties for an object.
+Use **OH_JSVM_DefineProperties** to customize one or more properties for an object.
 
 CPP code:
 
 ```cpp
-// Register the DefineProperties callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = DefineProperties},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named defineProperties and associate it with a callback. This allows the DefineProperties callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"defineProperties", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Define OH_JSVM_DefineProperties.
+// Callback for defineMethodPropertiesExample in the property descriptor list.
 static JSVM_Value DefineMethodPropertiesExample(JSVM_Env env, JSVM_CallbackInfo info)
 {
     int32_t propValue = 26;
@@ -610,8 +535,7 @@ static JSVM_Value DefineMethodPropertiesExample(JSVM_Env env, JSVM_CallbackInfo 
     OH_JSVM_CreateInt32(env, propValue, &returnValue);
     return returnValue;
 }
-
-// Define a callback for Getter.
+// Callback for getterCallback in the property descriptor list.
 static JSVM_Value GetterCallback(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value result;
@@ -622,6 +546,7 @@ static JSVM_Value GetterCallback(JSVM_Env env, JSVM_CallbackInfo info)
     return result;
 }
 
+// Function to execute a JS string.
 static JSVM_Value RunScriptAndLogResult(JSVM_Env env, const std::string &srcCode) {
     JSVM_Value sourceCodeValue;
     OH_JSVM_CreateStringUtf8(env, srcCode.c_str(), srcCode.size(), &sourceCodeValue);
@@ -634,23 +559,22 @@ static JSVM_Value RunScriptAndLogResult(JSVM_Env env, const std::string &srcCode
     return jsVmResult;
 }
 
+// Define OH_JSVM_DefineProperties.
 static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
     // Obtain an empty object passed from JS.
-    size_t argc = 2;
-    JSVM_Value argv[2] = {nullptr};
+    size_t argc = 1;
+    JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     // Create a property value of the string type.
-    size_t length = 0;
-    OH_JSVM_GetValueStringUtf8(env, argv[1], nullptr, 0, &length);
-    char *buf = (char *)malloc(length + 1);
-    OH_JSVM_GetValueStringUtf8(env, argv[1], buf, length + 1, &length);
     JSVM_Value stringValue;
     OH_JSVM_CreateStringUtf8(env, "Hello!", JSVM_AUTO_LENGTH, &stringValue);
+    // Create the callback lists corresponding to the property descriptors.
     JSVM_CallbackStruct param[] = {
         {.data = nullptr, .callback = DefineMethodPropertiesExample},
         {.data = nullptr, .callback = GetterCallback},
 
     };
+    // Create a property descriptor list. For details, see the definition of JSVM_PropertyDescriptor.
     JSVM_PropertyDescriptor descriptor[] = {
         // Define a property value of the method type.
         {"defineMethodPropertiesExample", nullptr, &param[0], nullptr, nullptr, nullptr, JSVM_DEFAULT},
@@ -658,43 +582,39 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         {"defineStringPropertiesExample", nullptr, nullptr, nullptr, nullptr, stringValue, JSVM_DEFAULT},
         // Define the property value of the getter type.
         {"getterCallback", nullptr, nullptr, &param[1], nullptr, nullptr,JSVM_DEFAULT}};
-    // Create a property value of the method type.
-    // Define the defineMethodPropertiesExample function for the obj object and a variable in this function, and return it.
-    // When the obj object is called, this function can be invoked.
-    static std::string srcMethod;
-    JSVM_Status statusMethod;
-    statusMethod = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[0]), descriptor);
-    // Run obj.defineMethodPropertiesExample() and return the result to JS.
-    srcMethod = R"JS(obj.defineMethodPropertiesExample();)JS";
-    JSVM_Value jsVmResult = RunScriptAndLogResult(env, srcMethod);
-    // Create a property value of the string type.
-    static std::string srcString;
-    JSVM_Status statusString;
-    statusString = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[1]), descriptor);
-    // Run obj.defineStringPropertiesExample() and return the result to JS.
-    srcString = R"JS(obj.defineStringPropertiesExample;)JS";
-    JSVM_Value jsVmResult1 = RunScriptAndLogResult(env, srcString);
-    // Define a property with getter.
-    static std::string srcGetter;
-    JSVM_Status statusGetter;
-    statusGetter = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[2]), descriptor);
-    // Call getterCallback() of obj and return the result string to JS.
-    srcGetter = R"JS(obj.getterCallback;)JS";
-    JSVM_Value jsVmResult2 = RunScriptAndLogResult(env, srcGetter);
-    if (statusMethod != JSVM_OK || statusString != JSVM_OK || statusGetter != JSVM_OK) {
+    // Create properties for the obj object based on the property descriptor list.
+    JSVM_Status statusProperty;
+    statusProperty = OH_JSVM_DefineProperties(env, *argv, sizeof(descriptor) / sizeof(descriptor[0]), descriptor);
+    if (statusProperty != JSVM_OK) {
         OH_JSVM_ThrowError(env, nullptr, "JSVM DefineProperties fail");
         return nullptr;
-    } else if (statusMethod == JSVM_OK) {
+    }
+    // Call the properties added to the obj object.
+    // Run obj.defineMethodPropertiesExample() and return the result to JS.
+    static std::string srcMethod;
+    srcMethod = R"JS(obj.defineMethodPropertiesExample();)JS";
+    JSVM_Value jsVmResult = RunScriptAndLogResult(env, srcMethod);
+    if (jsVmResult != nullptr) {
         int32_t number;
         OH_JSVM_GetValueInt32(env, jsVmResult, &number);
         OH_LOG_INFO(LOG_APP, "JSVM DefineMethodPropertiesExample success:%{public}d", number);
-    } else if (statusString == JSVM_OK) {
+    }
+    // Run obj.defineStringPropertiesExample() and return the result to JS.
+    static std::string srcString;
+    srcString = R"JS(obj.defineStringPropertiesExample;)JS";
+    JSVM_Value jsVmResult1 = RunScriptAndLogResult(env, srcString);
+    if (jsVmResult1 != nullptr) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM defineStringPropertiesExample success:%{public}s", buf);
-    } else if (statusGetter == JSVM_OK) {
+    }
+    // Call getterCallback() of obj and return the result string to JS.
+    static std::string srcGetter;
+    srcGetter = R"JS(obj.getterCallback;)JS";
+    JSVM_Value jsVmResult2 = RunScriptAndLogResult(env, srcGetter);
+    if (jsVmResult2 != nullptr) {
         size_t length = 0;
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, nullptr, 0, &length);
         char *buf = (char *)malloc(length + 1);
@@ -703,21 +623,29 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return jsVmResult;
 }
+
+// Register the DefineProperties callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = DefineProperties},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named defineProperties and associate it with a callback. This allows the DefineProperties callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"defineProperties", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = {};
+    defineProperties(obj)
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-// Define a property of the method type.
-let script: string = `
-  let obj = {};
-  defineProperties(obj)
-`
-let result = napitest.runJsVm(script);
-hilog.info(0x0000, 'testJSVM', 'Test JSVM defineGetterProperties: %{public}s', result);
+JSVM DefineMethodPropertiesExample success:26
+JSVM defineStringPropertiesExample success:Hello!
+JSVM getterCallback success:Hello world!
 ```
 
 ### OH_JSVM_GetAllPropertyNames
@@ -727,15 +655,6 @@ Use **OH_JSVM_GetAllPropertyNames** to obtain the names of all available propert
 CPP code:
 
 ```cpp
-// Register the GetAllPropertyNames callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetAllPropertyNames},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getAllPropertyNames and associate it with a callback. This allows the GetAllPropertyNames callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getAllPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_GetAllPropertyNames.
 static JSVM_Value GetAllPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -757,22 +676,24 @@ static JSVM_Value GetAllPropertyNames(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the GetAllPropertyNames callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetAllPropertyNames},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getAllPropertyNames and associate it with a callback. This allows the GetAllPropertyNames callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getAllPropertyNames", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(
+    let obj = '{ data: 0, message: "hello world", 50: 1}';
+    let script = getAllPropertyNames(obj);
+)JS";
 ```
 
-ArkTS code:
-
+**Expected output**
 ```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let obj = '{ data: 0, message: "hello world", 50: 1}';
-let script: string = `
-  getAllPropertyNames(${obj})
- `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetAllPropertyNames: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetAllPropertyNames error: %{public}s', error.message);
-}
+JSVM OH_JSVM_GetAllPropertyNames success
 ```

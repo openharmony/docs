@@ -41,13 +41,14 @@ TapGesture(value?: TapGestureParameters)
 
 ## 属性
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | 设置Tap手势标志，用于自定义手势判定时区分绑定的手势。|
+| tag<sup>11+</sup>   | string  | 设置Tap手势标志，用于自定义手势判定时区分绑定的手势。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)> | 设置Tap手势支持的事件输入源。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
+
+该示例通过TapGesture实现了双击手势的识别。
 
 ```ts
 // xxx.ets

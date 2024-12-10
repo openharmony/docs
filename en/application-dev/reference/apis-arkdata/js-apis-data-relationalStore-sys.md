@@ -922,6 +922,14 @@ Manually locks the cloud database of an application. This API uses a promise to 
 | ------------------- | ---------------------------------------|
 | Promise&lt;number&gt; | Promise used to return the lock validity period (in ms) if the operation is successful. If the operation fails, **0** is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**           |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
+
 **Example**
 
 ```ts
@@ -951,6 +959,14 @@ Manually unlocks the cloud database of an application. This API uses a promise t
 | Type               | Description                                   |
 | ------------------- | --------------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**           |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
 
 **Example**
 

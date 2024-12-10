@@ -9,7 +9,6 @@ The EmbeddedUIExtensionAbility must be used together with the [EmbeddedComponent
 > **NOTE**
 >
 > Currently, the EmbeddedUIExtensionAbility and **EmbeddedComponent** are supported only on devices configured with multiple processes.
->
 > The **EmbeddedComponent** can be used only in the UIAbility, and the EmbeddedUIExtensionAbility to start must belong to the same application as the UIAbility.<!--Del-->
 > The EmbeddedUIExtensionAbility supports the multiton pattern and inherits the process model of the UIExtensionAbility. For details about the multiton pattern and process configuration of the UIExtensionAbility, see [UIExtensionAbility](uiextensionability.md).<!--DelEnd-->
 
@@ -75,7 +74,7 @@ To implement a provider, create an [EmbeddedUIExtensionAbility](../reference/api
     }
     ```
 
-4. Write the entry page file **pages/Index.ets**, which will be loaded in [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy) of the EmbeddedUIExtensionAbility.
+4. Write the entry page file **pages/Index.ets**, which will be loaded in [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate) of the EmbeddedUIExtensionAbility.
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';

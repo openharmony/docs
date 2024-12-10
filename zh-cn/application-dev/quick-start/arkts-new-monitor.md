@@ -2,6 +2,9 @@
 
 为了增强状态管理框架对状态变量变化的监听能力，开发者可以使用\@Monitor装饰器对状态变量进行监听。
 
+
+\@Monitor提供了对V2状态变量的监听。在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，[\@Local](./arkts-new-local.md)。
+
 >**说明：**
 >
 >\@Monitor装饰器从API version 12开始支持。
@@ -797,7 +800,7 @@ message change from initialized to Index aboutToAppear
 message change from Index aboutToAppear to Index click to change message
 ```
 
-类中定义的\@Monitor随着类的销毁失效。而由于类的实际销毁释放依赖于垃圾回收机制，因此会出现即使所在自定义组件已经销毁，类确还未及时销毁，导致类中定义的\@Monitor仍在监听变化的情况。
+类中定义的\@Monitor随着类的销毁失效。而由于类的实际销毁释放依赖于垃圾回收机制，因此会出现即使所在自定义组件已经销毁，类却还未及时销毁，导致类中定义的\@Monitor仍在监听变化的情况。
 
 ```ts
 @ObservedV2

@@ -1,6 +1,6 @@
 # SaveButton
- 
-The **SaveButton** security component allows you to obtain temporary storage permission from the user by their touching the button, eliminating the need for a permission request dialog box.
+
+The **SaveButton** security component represents a Paste button that allows you to obtain temporary storage permissions from users with a simple button touch, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >
@@ -40,9 +40,16 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SaveButtonOptions](#savebuttonoptions) | Yes| Creates a Save button that contains the specified elements.|
+| options | [SaveButtonOptions](#savebuttonoptions) | Yes| Options for creating the Save button.|
 
 ## SaveButtonOptions
+
+Describes the icon, text, and other specific elements for the Save button.
+
+> **NOTE**
+> 
+> At least one of **icon** or **text** must be provided.<br>
+> If neither **icon** nor **text** is provided, the **options** parameter in [SaveButton](#savebutton-1) will not take effect, and the created Save button will be in the default style.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -50,8 +57,8 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the Save button.<br>If this parameter is not specified, no icon is contained. Either **icon** or **text**, or both, must be set.|
-| text | [SaveDescription](#savedescription) | No| Text on the Save button.<br>If this parameter is not specified, no text is contained. Either **icon** or **text**, or both, must be set.|
+| icon | [SaveIconStyle](#saveiconstyle) | No| Icon style of the Save button.<br>If this parameter is not specified, there is no icon.|
+| text | [SaveDescription](#savedescription) | No| Text on the Save button.<br>If this parameter is not specified, there is no text description.|
 | buttonType | [ButtonType](ts-basic-components-button.md#buttontype) | No| Background type of the Save button.<br>If this parameter is not specified, the system uses a capsule-type button as the Save button.|
 
 ## SaveIconStyle

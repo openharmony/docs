@@ -3,7 +3,7 @@
 This topic explores the structure of an application package in different phases of application development – development phase, build phase, and release phase.
 
 ## Package Structure in the Development Phase
-To have a clearer idea on the application package structure, it would be helpful if you have a project directory at hand. As such, first create a project] in DevEco Studio and add modules of different types to the project.
+To have a clearer idea on the application package structure, it would be helpful if you have a project directory at hand. As such, first create a project in DevEco Studio and add modules of different types to the project.
 
 **Figure 1** Project structure (for reference only)
 

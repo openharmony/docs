@@ -186,11 +186,11 @@ zh-cn/application-dev/arkts-utils/xml-conversion.md @ge-yafang @gongjunsong @bla
 zh-cn/application-dev/ui/arkui-overview.md			@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-ui-development-overview.md			@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-overview.md			@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-linear.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-stack-layout.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-flex-layout.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-relative-layout.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-grid-layout.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-linear.md	@crazyracing0726		@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-stack-layout.md	@crazyracing0726		@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-flex-layout.md	@crazyracing0726		@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-relative-layout.md	@crazyracing0726		@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-grid-layout.md	@crazyracing0726		@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-media-query.md	@laigerendaqiu	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-create-list.md	@yeyinglong_admin	@cc520bf	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-create-grid.md	@zcdqs	@cc520bf	@tomatodevboy	@HelloCrease
@@ -199,8 +199,8 @@ zh-cn/application-dev/ui/arkts-common-components-button.md		@zhangfanfan2	@tomat
 zh-cn/application-dev/ui/arkts-common-components-radio-button.md		@zhangfanfan2	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-switch.md		@zhangfanfan2	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-progress-indicator.md	@yeyinglong_admin	@cc520bf	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-common-components-text-display.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-common-components-text-input.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-common-components-text-display.md	@crazyracing0726		@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-common-components-text-input.md	@crazyracing0726		@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-custom-dialog.md		@zhangfanfan2	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-video-player.md	@keerecles	@seaside_wu	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-xcomponent.md	@keerecles	@laigerendaqiu	@luyuxuan1	@HelloCrease
@@ -209,7 +209,7 @@ zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md		@zhangfanfan2	
 zh-cn/application-dev/ui/arkts-routing.md	@raulnaruto_admin	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-navigation.md	@jiangdayuan	@raulnaruto_admin	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@cc520bf	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/ui/arkts-graphics-display.md	@crazyracing0726	@ileft2019	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/ui/arkts-graphics-display.md	@crazyracing0726		@tomatodevboy	@HelloCrease
 zh-cn/application-dev/ui/arkts-geometric-shape-drawing.md	@keerecles	@seaside_wu	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-drawing-customization-on-canvas.md	@keerecles	@seaside_wu	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-animation.md	@lightningHo	@huaweimaxuchu	@luyuxuan1	@HelloCrease
@@ -349,7 +349,7 @@ zh-cn/application-dev/connectivity/subscribe-remote-state.md @zhang_yixin13 @luo
 
 
 [开发-Localization Kit]
-zh-cn/application-dev/internationalization/ @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/internationalization/ @ningningW @yliupy @yangqing3 @sunyaozu
 
 
 [开发-Location Kit]
@@ -597,7 +597,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-loca
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md	@laigerendaqiu	@crazyracing0726	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md	@laigerendaqiu	@crazyracing0726	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md	@laigerendaqiu	@crazyracing0726	@luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md	@ileft2019	@crazyracing0726	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md		@crazyracing0726	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md	@jiangtao92	@sunfei2021	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-opacity.md		@lightningHo	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md	@jiangtao92	@sunfei2021	@tomatodevboy	@HelloCrease
@@ -624,8 +624,8 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-attr
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md @luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md	@jiangtao92	@zhaojian2021	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md	@jiangtao92	@zhaojian2021	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md	@zhangfanfan2	@zhanghaibo0	@luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md	@zhangfanfan2	@zhanghaibo0	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md	@raulnaruto_admin	@cheng-feiwang	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md	@raulnaruto_admin	@cheng-feiwang	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md	@jiangtao92	@sunfei2021	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md	@jyj-0306	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md	@jiangtao92	@piggyguy	@tomatodevboy	@HelloCrease
@@ -654,12 +654,12 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-calendar
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md @jyj-0306 @tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md		@ileft2019 @lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md		 @lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-divider.md	@laigerendaqiu	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md	@ileft201	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md	@ileft2019	@crazyracing0726	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md	@ileft2019	@crazyracing0726	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md		@crazyracing0726	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md		@crazyracing0726	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md	 @jyj-0306	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md	@jyj-0306	@tomatodevboy	@HelloCrease
@@ -697,8 +697,8 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@laigerendaqiu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md @ileft2019	@crazyracing0726	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md	@laigerendaqiu	@keerecles	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md 	@crazyracing0726	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md	@lmleon	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md @jyj-0306	@tomatodevboy	@HelloCrease
 
@@ -804,7 +804,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-pixel-units.md	@jiangtao9
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md	@jiangtao92	@sunfei2021	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md	@jiangtao92	@sunfei2021	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md	@ileft2019	@crazyracing0726	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md		@crazyracing0726	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md	@jiangtao92	@zhaojian2021	@tomatodevboy	@HelloCrease
 
 [API参考-ArkUI-ArkTS]
@@ -812,7 +812,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md     @lightningHo 
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentSnapshot.md    @piggyguy  @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentUtils.md    @piggyguy  @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-dragController.md    @piggyguy  @tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor.md     @ileft2019   @crazyracing0726  @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor.md        @crazyracing0726  @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-inspector.md  @HelloCrease   
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-node.md  @lightningHo  @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-observer.md   @tomatodevboy	@HelloCrease
@@ -827,7 +827,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md      @luyuxua
 zh-cn/application-dev/reference/apis-arkui/js-apis-router.md   @raulnaruto_admin  @tomatodevboy @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-getContext.md   @luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md    @arondave  @hehe9876		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md   @ileft2019   @crazyracing0726  @tomatodevboy @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md      @crazyracing0726  @tomatodevboy @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md   @lushi1202  @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md    @piggyguy  @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent-sys.md  @seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
@@ -1048,10 +1048,10 @@ zh-cn/application-dev/reference/apis-input-kit/ @hhh2 @ningningW @mayunteng @sta
 zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md @luodh0157 @zhang_yixin13 @zhaopeng_gitee @zhang-yang123321
 
 [API参考-Localization Kit]
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @ningningW @mengjingzhimo @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @ningningW @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @ningningW @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @ningningW @yliupy @yangqing3 @sunyaozu
+zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @ningningW @yliupy @yangqing3 @sunyaozu
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-resource-manager.md  @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/rawfile.md  @ningningW @budda-wang @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/raw__dir_8h.md  @ningningW @budda-wang @yangqing3

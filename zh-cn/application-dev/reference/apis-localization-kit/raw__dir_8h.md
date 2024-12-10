@@ -5,6 +5,10 @@
 
 提供rawfile目录相关功能，包括遍历和关闭rawfile目录。
 
+ **系统能力：** SystemCapability.Global.ResourceManager
+
+ **库：** librawfile.z.so
+
 **起始版本：** 8
 
 **相关模块：**[Rawfile](rawfile.md)

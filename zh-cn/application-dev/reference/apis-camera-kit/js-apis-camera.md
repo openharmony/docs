@@ -903,9 +903,10 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400201                |  Camera service fatal error.               |
+| 错误码ID         | 错误信息                                                                                                                                           |
+| --------------- |------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
+| 7400201                | Camera service fatal error.                                                                                                                    |
 
 **示例：**
 
@@ -1359,11 +1360,12 @@ open(): Promise\<void\>
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400107                |  Can not use camera cause of conflict.               |
-| 7400108                |  Camera disabled cause of security reason.                                  |
-| 7400201                |  Camera service fatal error.                                  |
+| 错误码ID   | 错误信息                                      |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400107 | Can not use camera cause of conflict.     |
+| 7400108 | Camera disabled cause of security reason. |
+| 7400201 | Camera service fatal error.               |
 
 **示例：**
 
@@ -2103,7 +2105,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 获取预览旋转角度。
 
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
-- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -3321,7 +3323,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 获取拍照旋转角度。
 
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
-- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -3350,7 +3352,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : number): camera.ImageRotation {
   let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     photoRotation = photoOutput.getPhotoRotation(deviceDegree);
@@ -3863,7 +3865,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 获取录像旋转角度。
 
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
-- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -3892,7 +3894,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
   let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     videoRotation = videoOutput.getVideoRotation(deviceDegree);
@@ -7829,9 +7831,9 @@ isAutoDeviceSwitchSupported(): boolean
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103         |  Session not config.                           |
+| 错误码ID         | 错误信息                                              |
+| --------------- |---------------------------------------------------|
+| 7400103         | Session not config, only throw in session usage.  |
 
 **示例：**
 
@@ -7882,11 +7884,12 @@ enableAutoDeviceSwitch(enabled: boolean): void
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400102         |  The colorSpace does not match the format.     |
-| 7400103         |  Session not config.                           |
-| 7400201         |  Camera service fatal error.                   |
+| 错误码ID   | 错误信息                                                                                                                                       |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400102  | Operation not allowed.                                                                                                                         |
+| 7400103  | Session not config.                                                                                                                            |
+| 7400201  | Camera service fatal error.                                                                                                                    |
 
 **示例：**
 
@@ -7942,7 +7945,7 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
-查询当前Session是否支持指定的与配置类型。
+查询当前Session是否支持指定的预配置类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

@@ -57,12 +57,13 @@ The following describes how to log and subscribe to button onclick events.
 3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   # include "json/json.h"
-   # include "hilog/log.h"
-   # include "hiappevent/hiappevent.h"
+   #include "napi/native_api.h"
+   #include "json/json.h"
+   #include "hilog/log.h"
+   #include "hiappevent/hiappevent.h"
    
-   # undef LOG_TAG
-   # define LOG_TAG "testTag"
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
    ```
 
 4. Subscribe to application events.
@@ -243,5 +244,3 @@ The following describes how to log and subscribe to button onclick events.
         return {};
     }
     ```
-
-<!--no_check-->

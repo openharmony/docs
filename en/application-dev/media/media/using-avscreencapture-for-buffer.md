@@ -1,26 +1,26 @@
-# Using AVScreenCapture to Obtain Original Streams (C/C++)
+# Using AVScreenCapture to Capture Screens and Obtain Streams (C/C++)
 
 Screen capture is mainly used to record the main screen.
 
-You can call the C APIs of the **AVScreenCapture** module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
+You can call the C APIs of the AVScreenCapture module to record the screen and collect audio and video source data output by the device and microphone. When developing a live streaming or an office application, you can call the APIs to obtain original audio and video streams and transfer the streams to other modules for processing. In this way, the home screen can be shared during live streaming.
 
-The **AVScreenCapture**, **Window**, and **Graphics** modules together implement the entire video capture process.
+The AVScreenCapture, Window, and Graphics modules together implement the entire video capture process.
 
-By default, the main screen is captured, and the **Graphics** module generates the screen capture frame data based on the main screen and places the data to the display data buffer. The screen capture framework obtains the data from the buffer for processing.
+By default, the main screen is captured, and the Graphics module generates the screen capture frame data based on the main screen and places the data to the display data buffer. The player framework obtains the data from the buffer for processing.
 
-The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
+The full screen capture process involves creating an AVScreenCapture instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing resources.
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
 Screen capture automatically stops upon system user switching, and **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES** is reported.
 
-This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
+This topic describes how to use the AVScreenCapture APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
 
-If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
+If microphone data collection is configured, configure the permission ohos.permission.MICROPHONE and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
 ## How to Develop
 
-After an **AVScreenCapture** instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
+After an AVScreenCapture instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
 
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
@@ -43,35 +43,30 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     #include "unistd.h"
     ```
 
-2. Create an **AVScreenCapture** instance, named **capture** in this example.
+2. Check whether there is a running screen capture service instance. If yes, wait until the instance is stopped and the resources are released.
+
+3. Create an AVScreenCapture instance, named **capture** in this example.
 
     ```c++
     OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
     ```
 
-3. Set screen capture parameters.
+4. Set screen capture parameters.
 
-    After creating the **capture** instance, you can set the parameters required for screen capture.
+    After the **capture** instance is created, you can set the parameters required for screen capture. For details about how to set the audio and video parameters, see [Detailed Description](#detailed-description).
 
     ```c++
-    OH_AudioCaptureInfo miccapinfo = {
-        .audioSampleRate = 16000,
-        .audioChannels = 2,
-        .audioSource = OH_MIC
-    };
-
-    OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 768,
-        .videoFrameHeight = 1280,
-        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
-    };
+    OH_AVScreenCaptureConfig config;
 
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
+        .innerCapInfo = innerCapInfo,
+        .audioEncInfo = audioEncInfo
     };
 
     OH_VideoInfo videoinfo = {
-        .videoCapInfo = videocapinfo
+        .videoCapInfo = videocapinfo,
+        .videoEncInfo = videoEncInfo
     };
 
     OH_AVScreenCaptureConfig config = {
@@ -84,14 +79,14 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-4. Enable the microphone.
+5. (Optional) Enable the microphone.  
 
     ```c++
     bool isMic = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-5. Set callback functions, which are used to listen for errors that may occur during screen capture and the generation of audio and video stream data.
+6. Set callback functions, which are used to listen for errors that may occur during screen capture and the generation of audio and video stream data. See [Detailed Description](#detailed-description) for more information.
 
     ```c++
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
@@ -99,9 +94,10 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
     ```
 
-6. Call **StartScreenCapture()** to start screen capture.
+7. Call **StartScreenCapture()** to start screen capture.
 
     ```c++
+    bool IsCaptureStreamRunning = true;
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
@@ -111,17 +107,10 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
     ```
 
-7. Call **StopScreenCapture()** to stop screen capture.
+8. Call **StopScreenCapture()** to stop screen capture. See [Detailed Description](#detailed-description) for more information.
 
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
-    ```
-
-8. Obtain and process the original audio and video stream data from the callback function **OnBufferAvailable()**.
-
-    ```c++
-    OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
-        OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData)
     ```
 
 9. Call **Release()** to release the instance.
@@ -130,11 +119,231 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Release(capture);
     ```
 
+## Specifications for Selecting the Window to Capture on 2-in-1 Devices
+For 2-in-1 devices, a selection page is offered to users for capturing a specific window. To maintain compatibility with the existing interface design, when third-party applications set the screen capture mode to **OH_CAPTURE_SPECIFIED_SCREEN** or **OH_CAPTURE_SPECIFIED_WINDOW**, a picker dialog appears with the designated window ID pre-selected. The content that gets captured ultimately depends on the user's choice within the picker.
+
+It is recommended that the selection page be used in **OH_CAPTURE_SPECIFIED_WINDOW** mode. You need to configure the screen capture height and width based on the 2-in-1 device's resolution and pass the display ID (and a window ID if you want to capture a specific window).
+
+```c++
+// Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+// Set the screen capture mode to OH_CAPTURE_SPECIFIED_WINDOW and pass a display ID.
+config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
+config_.videoInfo.videoCapInfo.displayId = 0;
+
+// (Optional) Pass a window ID if you want to capture a specific window.
+vector<int32_t> missionIds = {61}; // Window 61 is pre-selected in the picker.
+config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
+config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+```
+
+The selection page is also compatible with the following screen capture modes:
+
+1. OH_CAPTURE_SPECIFIED_WINDOW mode, with multiple window IDs passed.
+
+    The 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval. Multiple windows can be captured at the same time.
+
+    ```c++
+    // Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+    config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+    config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+    // Set the screen capture mode to OH_CAPTURE_SPECIFIED_WINDOW and pass a display ID.
+    config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
+    config_.videoInfo.videoCapInfo.displayId = 0;
+
+    // Pass multiple window IDs.
+    vector<int32_t> missionIds = {60, 61}; // Windows 60 and 61 are to be captured at the same time.
+    config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
+    config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+    ```
+
+2. OH_CAPTURE_SPECIFIED_SCREEN mode.
+
+    The 2-in-1 device displays a picker dialog box, with the display (specified by the passed display ID) pre-selected.
+
+    ```c++
+    // Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+    config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+    config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+    // Set the screen capture mode to OH_CAPTURE_SPECIFIED_SCREEN and pass a display ID.
+    config_.captureMode = OH_CAPTURE_SPECIFIED_SCREEN;
+    config_.videoInfo.videoCapInfo.displayId = 0;
+    ```
+
+3. OH_CAPTURE_HOME_SCREEN mode.
+
+    The 2-in-1 device does not display a picker dialog box. Instead, it displays a privacy dialog box to ask for user approval.
+
+    ```c++
+    // Configure the screen capture width and height in config_ based on the 2-in-1 device's resolution.
+    config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+    config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+    // Set the screen capture mode to OH_CAPTURE_HOME_SCREEN and pass a display ID.
+    config_.captureMode = OH_CAPTURE_HOME_SCREEN;
+    config_.videoInfo.videoCapInfo.displayId = 0;
+    ```
+
+## Detailed Description
+This section describes how to set screen capture parameters, set callback functions, and stop the screen capture service instance involved in [How to Develop](#how-to-develop).
+
+1. Set screen capture parameters.
+    ```c++
+    // Configure audio information in audioinfo.
+    OH_AudioCaptureInfo micCapinfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_SOURCE_DEFAULT
+    };
+    OH_AudioCaptureInfo innerCapInfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_ALL_PLAYBACK
+    };
+    OH_AudioEncInfo audioEncInfo = {
+        .audioSampleRate = 48000,
+        .audioCodecformat = OH_AudioCodecFormat::OH_AAC_LC
+    };
+
+    // Configure video information in videoinfo.
+    OH_VideoCaptureInfo videoCapInfo = {
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
+        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
+    };
+    OH_VideoEncInfo videoEncInfo = {
+        .videoCodec = OH_VideoCodecFormat::OH_H264,
+        .videoBitrate = 2000000,
+        .videoFrameRate = 30
+    };
+    ```
+
+2. Set callback functions.
+    
+    Listeners are provided for error events, state changes, and data obtained involved in screen capture.
+
+    ```c++
+    // OnError(), a callback function invoked when an error occurs.
+    void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
+        (void)capture;
+        (void)errorCode;
+        (void)userData;
+    }
+
+    // OnStageChange(), a callback function invoked when the state changes.
+    void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+        (void)capture;
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+            // Process the screen capture start event.
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_CANCELED) {
+            // Process the screen capture cancellation event.
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+            // Process the event indicating that screen capture is interrupted by a call.
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE) {
+            // Process the event indicating that the microphone is unavailable during screen capture.
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+            // Process the event indicating that screen capture is interrupted by others.
+        }
+        ...
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
+            // Process the event indicating that the application exits the privacy mode during screen capture.
+        }
+        (void)userData;
+    }
+
+    // Obtain and process the OnBufferAvailable() callback function of the original audio and video stream data.
+    void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
+        // Screen capture is in progress.
+        if (IsCaptureStreamRunning) {
+            if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
+                // Video buffer.
+                OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+                if (nativeBuffer != nullptr && capture != nullptr) {
+                    // Obtain the buffer capacity.
+                    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+                    // Obtain the buffer attribute.
+                    OH_AVCodecBufferAttr info;
+                    OH_AVBuffer_GetBufferAttr(buffer, &info);
+
+                    // Obtain the native buffer configuration.
+                    OH_NativeBuffer_Config config;
+                    OH_NativeBuffer_GetConfig(nativeBuffer, &config);
+
+                    // Obtain the buffer address.
+                    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+                    if (buf != nullptr) {
+                        return;
+                    }
+                    // Use the buffer data.
+
+                    // The reference count of the native buffer is decremented by 1. When the reference count reaches 0, the buffer is released.
+                    OH_NativeBuffer_Unreference(nativeBuffer);
+                }
+            } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
+                // Buffer for internal recording.
+                // Obtain the buffer attribute.
+                OH_AVCodecBufferAttr info;
+                OH_AVBuffer_GetBufferAttr(buffer, &info);
+
+                // Obtain the buffer capacity.
+                int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+                // Obtain the buffer address.
+                uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+                if (buf != nullptr) {
+                    return;
+                }
+                // Use the buffer data.
+            } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
+                // Microphone buffer.
+                // Obtain the buffer capacity.
+                int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+                // Obtain the buffer address.
+                uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+                if (buf != nullptr) {
+                    return;
+                }
+                // Use the buffer data.
+            }
+        }
+    }
+    ```
+
+3. Stops the screen capture service and releases resources.
+    ```c++
+    void StopScreenCapture() {
+        // Screen capture is in progress and a screen capture service instance exists.
+        if (IsCaptureStreamRunning && capture != nullptr) {
+            // Stop screen capture.
+            OH_AVScreenCapture_StopScreenCapture(capture);
+
+            // Release screen capture resources.
+            OH_AVScreenCapture_Release(capture);
+
+            // Clear other resources, such as closing the file.
+
+            // Set IsCaptureStreamRunning to false and the screen capture service instance to a null pointer.
+            IsCaptureStreamRunning = false;
+            capture = nullptr;
+        }
+    }
+    ```
+
 ## Sample Code
 
-Refer to the sample code below to implement screen capture using **AVScreenCapture**.
+Refer to the sample code below to implement screen capture using AVScreenCapture.
 
-For details about how to create an **OH_AVBuffer** instance, see [Buffer Output](../avcodec/video-decoding.md#buffer-output).
+For details about how to create an OH_AVBuffer instance, see [Buffer Output](../avcodec/video-decoding.md#buffer-output).
 
 For details about screen capture in surface mode, see [Surface Input](../avcodec/video-encoding.md#surface-input).
 
@@ -155,46 +364,6 @@ Currently, the buffer holds original streams, which can be encoded and saved in 
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
-
-void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
-    (void)capture;
-    (void)errorCode;
-    (void)userData;
-}
-
-void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
-    (void)capture;
-    
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
-        // Process the state change.
-    }
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
-        stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
-        // Process screen capture interruption.
-    }
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
-        // Process the state change.
-    }
-    (void)userData;
-}
-
-void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
-    OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
-    // Obtain the decoded information. For details, see the encoding and decoding API reference.
-    int bufferLen = OH_AVBuffer_GetCapacity(buffer);
-    OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
-    OH_NativeBuffer_Config config;
-    OH_NativeBuffer_GetConfig(nativeBuffer, &config);
-    int32_t videoSize= config.height * config.width * 4;
-    uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-    if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
-        // Process the video buffer.
-    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
-        // Process the internal capture buffer.
-    } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
-        // Process the microphone buffer.
-    }
-}
 
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
@@ -270,8 +439,11 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
     //     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
 
-    // (Optional) Adjust the screen capture resolution after the capture starts. For details about the resolution range, see the AVCODEC encoding and decoding capabilities.
+    // (Optional) Adjust the screen capture resolution after the capture starts. For details about the resolution range, see the AVCodec encoding and decoding capabilities.
     // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
+
+    // (Optional) Set the maximum frame rate for screen capture. Call the function after screen capture starts.
+    // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
     sleep(10); // Capture the screen for 10s.
     // Stop screen capture.

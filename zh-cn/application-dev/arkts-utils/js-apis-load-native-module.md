@@ -1,6 +1,6 @@
 # 同步方式动态加载native模块
 
-loadNativeModule接口的功能是同步方式动态加载native模块。当需要使用某个模块时，再使用该接口进行加载，可以缩短冷起耗时。但是使用该接口时会产生加载so耗时，需要开发者自行评估是否会对功能产生影响。
+loadNativeModule接口的功能是同步方式动态加载native模块。它的主要目的是在需要某个native模块时才进行加载，从而避免在应用启动时加载不必要的模块。但是使用该接口时会产生加载so耗时，需要开发者自行评估是否会对功能产生影响。
 
 ## 函数说明
 
@@ -15,7 +15,7 @@ loadNativeModule(moduleName: string): Object;
 > **说明**
 > moduleName指的是待加载模块所在的HAP下module.json5中配置的名字。
 >
-> loadNativeModule只局限于在主线程中进行模块加载。
+> loadNativeModule只局限于在UI主线程中进行模块加载。
 >
 > 该接口功能不论是加载常量字符串还是变量表达式入参，都需要配置依赖。
 

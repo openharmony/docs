@@ -145,7 +145,7 @@ onEnter(event: PageTransitionCallback): PageTransitionEnterInterface
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback13) | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback14) | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
 
 **示例：**
 
@@ -173,15 +173,15 @@ onExit(event: PageTransitionCallback): PageTransitionExitInterface
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | [PageTransitionCallback](#pagetransitioncallback13) | 是   | 出场动画的逐帧回调直到出场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback14) | 是   | 出场动画的逐帧回调直到出场动画结束，progress从0变化到1。 |
 
-## PageTransitionCallback<sup>13+</sup>
+## PageTransitionCallback<sup>14+</sup>
 
 type PageTransitionCallback = (type: RouteType, progress: number) => void
 
 页面转场事件回调。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

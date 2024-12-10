@@ -28,7 +28,9 @@
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
   - 设置组件导航和页面路由
+    - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
+    - [实现组件导航转场](arkts-navigation-transition.md)
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 使用文本
@@ -38,7 +40,7 @@
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗
-    - [模态弹窗 (ModelDialog)](arkts-modal-dialog.md)
+    - [模态弹窗 (ModalDialog)](arkts-modal-dialog.md)
     - [不依赖UI组件的全局自定义弹窗 (推荐)](arkts-uicontext-custom-dialog.md)
     - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
   - 显示图形
@@ -53,7 +55,6 @@
     - 转场动画
       - [转场动画概述](arkts-transition-overview.md)
       - [出现/消失转场](arkts-enter-exit-transition.md)
-      - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场 (一镜到底)](arkts-shared-element-transition.md)
       - [旋转屏动画增强](arkts-rotation-transition-animation.md)    
@@ -98,8 +99,8 @@
   - [使用镜像能力](arkts-mirroring-display.md)
   - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置
-    - [设置主题换肤](theme_skinning.md)
-  - [Stage模型下ArkUI全局接口开发指导](arkts-global-interface.md)
+    - [设置应用内主题换肤](theme_skinning.md)
+  - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
   - 跨进程拉起页面
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
     <!--Del-->

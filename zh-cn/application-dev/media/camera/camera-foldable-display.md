@@ -1,4 +1,6 @@
 # 适配不同折叠状态的摄像头变更(ArkTS)
+
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
 一台可折叠设备在不同折叠状态下，可使用不同的摄像头，应用可调用[CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)或[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备的折叠状态变化，并调用[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)获取当前状态下可用摄像头，完成相应适配，确保应用在折叠状态变更时的用户体验。
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。

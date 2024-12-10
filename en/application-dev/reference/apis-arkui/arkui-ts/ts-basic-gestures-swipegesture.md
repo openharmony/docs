@@ -41,11 +41,10 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 
 ## Attributes
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the swipe gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the swipe gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)> | Allowed event input types for the swipe gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
 

@@ -241,7 +241,7 @@ initialOffset(value: OffsetOptions)
 
 ### onScrollFrameBegin<sup>9+</sup>
 
-onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number; })
+onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。
 
@@ -257,18 +257,11 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
-| 参数名 | 类型                                                    | 必填 | 说明                       |
-| ------ | ------------------------------------------------------- | ---- | -------------------------- |
-| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
-| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
-
-**返回值：** 
-
-| 类型                     | 说明                 |
-| ------------------------ | -------------------- |
-| { offsetRemain: number } | 实际滑动量，单位vp。 |
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [OnScrollFrameBeginCallback](#onscrollframebegincallback14) | 是   | 每帧滚动开始回调函数。 |
 
 ### onScroll<sup>(deprecated)</sup>
 
@@ -351,7 +344,7 @@ onDidScroll(handler: ScrollOnScrollCallback)
 
 ### onScrollEdge
 
-onScrollEdge(event: (side: Edge) => void)
+onScrollEdge(event: OnScrollEdgeCallback)
 
 滚动到边缘事件回调。
 
@@ -367,7 +360,7 @@ onScrollEdge(event: (side: Edge) => void)
 
 | 参数名 | 类型                              | 必填 | 说明               |
 | ------ | --------------------------------- | ---- | ------------------ |
-| side   | [Edge](ts-appendix-enums.md#edge) | 是   | 滚动到的边缘位置。 |
+| event   | [OnScrollEdgeCallback](#onscrolledgecallback14) | 是   | 滚动到的边缘位置。 |
 
 ### onScrollEnd<sup>(deprecated) </sup>
 
@@ -385,7 +378,7 @@ onScrollEnd(event: () => void)
 
 ### onScrollStart<sup>9+</sup>
 
-onScrollStart(event: () => void)
+onScrollStart(event: VoidCallback)
 
 滚动开始时触发。手指拖动Scroll或拖动Scroll的滚动条触发的滚动开始时，会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画开始时会触发该事件。
 
@@ -397,9 +390,15 @@ onScrollStart(event: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [VoidCallback](ts-types.md#voidcallback12) | 是   | 滚动开始回调。 |
+
 ### onScrollStop<sup>9+</sup>
 
-onScrollStop(event: () => void)
+onScrollStop(event: VoidCallback)
 
 滚动停止时触发。手拖动Scroll或拖动Scroll的滚动条触发的滚动，手离开屏幕并且滚动停止时会触发该事件。使用[Scroller](#scroller)滚动控制器触发的带动画的滚动，动画停止时会触发该事件。
 
@@ -410,6 +409,12 @@ onScrollStop(event: () => void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [VoidCallback](ts-types.md#voidcallback12) | 是   | 滚动停止回调。 |
 
 ## ScrollOnScrollCallback<sup>12+</sup>
 
@@ -454,6 +459,53 @@ Scroll滚动前触发的回调。
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | void \| [OffsetResult](#offsetresult11) |  返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset，yOffset)滚动。 |
 
+## OnScrollEdgeCallback<sup>14+</sup>
+
+type OnScrollEdgeCallback = (side: Edge) => void
+
+滚动到边缘时触发的回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型   | 必填 | 说明    |
+| ------- | ----- | ---- | ------ |
+| side    | [Edge](ts-appendix-enums.md#edge)  | 是   | 滚动到的边缘位置。 |
+
+## OnScrollFrameBeginCallback<sup>14+</sup>
+
+type OnScrollFrameBeginCallback = (offset: number, scrollState: ScrollState) => OnScrollFrameBeginHandlerResult;
+
+Scroll每帧滚动前触发的回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                    | 必填 | 说明                       |
+| ------ | ------------------------------------------------------- | ---- | -------------------------- |
+| offset | number                                                  | 是   | 即将发生的滑动量，单位vp。 |
+| state  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。             |
+
+**返回值：** 
+
+| 类型                     | 说明                 |
+| ------------------------ | -------------------- |
+| [OnScrollFrameBeginHandlerResult](#onscrollframebeginhandlerresult14对象说明) | 返回实际滑动量。 |
+
+## OnScrollFrameBeginHandlerResult<sup>14+</sup>对象说明
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型  | 必填 | 说明  |
+| ----- | ------ | ---- | ----- |
+| offsetRemain     | number                                                  | 是   | 实际滚动偏移量。<br/>单位vp。 |
+
 ## Scroller
 
 可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar、Grid、WaterFlow上。
@@ -483,7 +535,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: ScrollAnimationOptions | boolean })
+scrollTo(value: [ScrollOptions](#scrolloptions14对象说明))
 
 
 滑动到指定位置。
@@ -494,12 +546,9 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 **参数：** 
 
-| 参数名    | 类型                                                     | 必填 | 说明                                                     |
-| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为x轴时生效。 |
-| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为y轴时生效。 |
-| animation | [ScrollAnimationOptions](#scrollanimationoptions12)<sup>12+</sup>&nbsp;\|&nbsp;boolean<sup>10+ </sup> | 否   | 动画配置。<br/>- ScrollAnimationOptions:&nbsp; 自定义滚动动效。 <br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值：<br/>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br/>boolean:&nbsp;false<br/>**说明：** <br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。<br/>于API12将原来的 {duration?:&nbsp;number, curve?:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+ </sup>}&nbsp;抽象为了ScrollAnimationOptions接口，并在其中添加了一个参数canOverScroll。 |
-
+| 参数名   | 类型 | 必填   | 说明      |
+| ----- | ---- | ---- | --------- |
+| value | [ScrollOptions](#scrolloptions14对象说明) | 是    | 滑动到指定位置的参数。 
 
 ### scrollEdge
 
@@ -814,6 +863,18 @@ getItemIndex(x: number, y: number): number
 | 名称    | 类型 | 必填 | 说明                                                   |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |
+
+## ScrollOptions<sup>14+</sup>对象说明
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                     | 必填 | 说明                                                     |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为x轴时生效。 |
+| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滑动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>仅滚动轴为y轴时生效。 |
+| animation | [ScrollAnimationOptions](#scrollanimationoptions12)&nbsp;\|&nbsp;boolean | 否   | 动画配置。<br/>- ScrollAnimationOptions:&nbsp; 自定义滚动动效。 <br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值：<br/>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br/>boolean:&nbsp;false<br/>**说明：** <br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。 |
 
 ## 示例
 ### 示例1

@@ -479,7 +479,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
 
 客户端在[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)中获取到[rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象后便可与Service进行通信，有如下两种方式：
 
-- 使用服务端提供的IDL接口进行通信（推荐）
+- 使用服务端提供的IDL接口进行通信（推荐）。
 
   ```ts
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中

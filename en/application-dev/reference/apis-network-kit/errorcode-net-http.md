@@ -259,7 +259,7 @@ The TCP connection or the read/write operation times out.
 
 **Solution**
 
-Rectify network faults.
+Check whether the network is stable and the signal strength is strong. If the network is normal, check whether the server is overloaded or service processing is slow.
 
 ## 2300047 Maximum Redirections Reached
 

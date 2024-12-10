@@ -252,7 +252,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 | -a&nbsp;-f | -a为可选参数，指定-a后，-f为必选参数。执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
 | -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数，未指定-q。根据包名查询补丁信息。 |
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
-| -t | 可选参数，应用的目标路径。|
+| -t | 可选参数，快速修复应用到指定目标路径。|
 | -d | 可选参数，应用快速修复调试模式。|
 
 
@@ -312,7 +312,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## 共享库依赖关系查询命令
 
-显示指定应用和指定模块依赖的共享库信息
+显示指定应用和指定模块依赖的共享库信息。
 ```bash
 bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
@@ -333,7 +333,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## 应用执行编译AOT命令
 
-应用执行编译AOT命令
+应用执行编译AOT命令。
 ```bash
 bm compile [-h] [-m mode] [-r bundleName]
 ```
@@ -355,7 +355,7 @@ bm compile -m partial com.example.myapplication
 
 ## 拷贝ap文件命令
 
-拷贝ap文件到指定应用的/data/local/pgo路径
+拷贝ap文件到指定应用的/data/local/pgo路径。
 
 ```bash
 bm copy-ap [-h] [-a] [-n bundleName]
@@ -378,7 +378,7 @@ bm copy-ap -n com.example.myapplication
 
 ## 查询overlay应用信息命令
 
-打印overlay应用的overlayModuleInfo
+打印overlay应用的overlayModuleInfo。
 ```bash
 bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName]
 ```
@@ -435,6 +435,7 @@ bm dump-target-overlay -b com.ohos.app -m entry
 **错误信息**
 
 Failed to install bundle, no signature file.
+
 ![示例图](figures/zh-cn_image_0000001389116960.png)
 
 **错误描述**
@@ -447,8 +448,8 @@ HAP包未经签名认证。
 
 **处理步骤**
 
-1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。在连接设备后，重新为应用进行签名。
-2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP1-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP1End-->。
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section297715173233)。
 <br></br>
 
 ### 9568347 解析本地so文件失败
@@ -476,7 +477,7 @@ Error: install parse native so failed.
     hdc shell
     param get const.product.cpu.abilist
     ```
-4. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-sample-V5#section4322212200)文件中的“abiFilters”参数中的配置，规则如下：
+4. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section4322212200)文件中的“abiFilters”参数中的配置，规则如下：
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
       ```
       cd /system/
@@ -493,6 +494,7 @@ Error: install parse native so failed.
 **错误信息**
 
 Error: install parse profile prop check error.
+
 ![示例图](figures/zh-cn_image_0000001585361412.png)
 
 **错误描述**
@@ -507,7 +509,7 @@ Error: install parse profile prop check error.
 
 1. 获取新的签名指纹。
 
-    a. 在[项目级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-sample-V5#section1448071082016)文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
+    a. 在[项目级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section1448071082016)文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
 
     b. 打开该签名文件（后缀为.p7b），打开后在文件内搜索“development-certificate”，将“-----BEGIN CERTIFICATE-----”和“-----END CERTIFICATE-----”以及中间的信息拷贝到新的文本中，注意换行并去掉换行符，保存为一个新的.cer文件，如命名为xxx.cer。
 
@@ -563,6 +565,7 @@ Error: install parse profile prop check error.
 **错误信息**
 
 Error: dependent module does not exist.
+
 ![示例图](figures/zh-cn_image_0000001560338986.png)
 
 **错误描述**
@@ -584,7 +587,8 @@ Error: dependent module does not exist.
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 
-Error: install parse profile missing prop.<br>
+Error: install parse profile missing prop.
+
 ![示例图](figures/zh-cn_image_0000001559130596.png)
 
 **错误描述**
@@ -613,7 +617,8 @@ Error: install parse profile missing prop.<br>
 ### 9568258 安装应用的releaseType与已安装应用的releaseType不相同
 **错误信息**
 
-Error: install releaseType target not same.<br>
+Error: install releaseType target not same.
+
 ![示例图](figures/zh-cn_image_0000001609976041.png)
 
 **错误描述**
@@ -633,6 +638,7 @@ Error: install releaseType target not same.<br>
 **错误信息**
 
 Error: signature verification failed due to not trusted app source.
+
 ![示例图](figures/zh-cn_image_0000001585042216.png)
 
 **错误描述**
@@ -648,8 +654,8 @@ Error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
+	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
+	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 		```
 		//UDID获取命令
 		hdc shell bm get -u
@@ -661,6 +667,7 @@ Error: signature verification failed due to not trusted app source.
 **错误信息**
 
 Error: install failed due to grant request permissions failed.
+
 ![示例图](figures/zh-cn_image_0000001585201996.png)
 
 **错误描述**
@@ -680,6 +687,7 @@ Error: install failed due to grant request permissions failed.
 **错误信息**
 
 Error: install failed due to older sdk version in the device.
+
 ![示例图](figures/zh-cn_image_0000001635521909.png)
 
 **错误描述**
@@ -705,6 +713,7 @@ Error: install failed due to older sdk version in the device.
 **错误信息**
 
 Error: install sign info inconsistent.
+
 ![示例图](figures/zh-cn_image_0000001635761329.png)
 
 **错误描述**
@@ -713,12 +722,13 @@ Error: install sign info inconsistent.
 
 **可能原因**
 
-设备上已安装的应用与新安装的应用中签名不一致。如果在Edit Configurations中勾选了“Keep Application Data”（不卸载应用，覆盖安装），并且重新进行了签名，将导致该报错。
+设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+
 
 **处理步骤**
 
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
-
+2. 如果是因不同团队提供的HSP导致签名不一致问题，可以采用[集成态HSP](../quick-start/integrated-hsp.md)的方式统一提供HSP；在多HAP包的情况下，必须确保所有HAP包的签名一致。
 
 ### 9568329 签名信息验证失败
 **错误信息**
@@ -742,13 +752,14 @@ Error: verify signature failed.
 
 * 场景一：HSP只能给同包名的应用使用，只有集成态HSP可以给不同包名的应用使用。需要用户与三方开发者确认，三方开发者应提供集成态HSP、或同包名的HSP给用户使用。
 
-* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)。
+* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)。
 
 
 ### 9568266 安装权限拒绝
 **错误信息**
 
 Error: install permission denied.
+
 ![示例图](figures/zh-cn_image_9568266.png)
 
 **错误描述**
@@ -1033,7 +1044,7 @@ Error: verify code signature failed.
 	// 执行结果2：verify codesign success。说明包已签名
 	```
 
-* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)。
+* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13)。
 
 
 ### 9568257 验证pkcs7文件失败
@@ -1169,6 +1180,7 @@ Error: install version name not same.
 **处理步骤**
 
 * 场景一：DevEco entry配置界面中取消勾选“Keep Application Data”。
+
 ![示例图](figures/zh-cn_image_9568279.png)
 
 * 场景二：对其HSP和HAP的包名、版本号、sdk版本号、releaseType使其一致。
@@ -1226,9 +1238,12 @@ Error: installd set selinux label failed.
 **处理步骤**
 
 1. 确认签名文件p7b中apl字段是否有误。
-![示例图](figures/zh-cn_image_9568359.png)
+
+    ![示例图](figures/zh-cn_image_9568359.png)
+
 2. 若apl字段有误，修改UnsgnedReleasedProfileTemplate.json文件中apl字段，并重新签名。
-![示例图](figures/zh-cn_image_9568359_2.png)
+
+    ![示例图](figures/zh-cn_image_9568359_2.png)
 
 
 ### 9568403 安装加密校验失败

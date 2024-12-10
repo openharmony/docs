@@ -175,8 +175,6 @@ struct Page {
               ForEach(this.infoList, (info: Info, index) => {
                 ListItem() {
                   Information({
-                    // in low version, DevEco may throw a warning, but it does not matter.
-                    // you can still compile and run.
                     info: info,
                     index: index
                   })
@@ -231,7 +229,7 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
     console.log("SpecialImage is rendered");
     return 1;
   }
@@ -244,13 +242,13 @@ struct SpecialImage {
         x: this.uiStyle.translateImageX,
         y: this.uiStyle.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // 如果Image重新渲染，该函数将被调用
   }
 }
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle
-  // the following functions are used to show whether the component is called to be rendered
+  // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -270,8 +268,6 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
       Stack() {
@@ -356,8 +352,6 @@ struct Page {
   build() {
     Stack() {
       CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
     }
@@ -382,47 +376,47 @@ struct Page {
 
 ```typescript
 @Observed
-class NeedRenderImage { // properties only used in the same component can be divided into the same new divided class
+class NeedRenderImage { // 在同一组件中使用的属性可以划分为相同的类
   public translateImageX: number = 0;
   public translateImageY: number = 0;
   public imageWidth:number = 78;
   public imageHeight:number = 78;
 }
 @Observed
-class NeedRenderScale { // properties usually used together can be divided into the same new divided class
+class NeedRenderScale { // 在一起使用的属性可以划分为相同的类
   public scaleX: number = 0.3;
   public scaleY: number = 0.3;
 }
 @Observed
-class NeedRenderAlpha { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderAlpha { // 在不同地方使用的属性可以划分为相同的类
   public alpha: number = 0.5;
 }
 @Observed
-class NeedRenderSize { // properties usually used together can be divided into the same new divided class
+class NeedRenderSize { // 在一起使用的属性可以划分为相同的类
   public width: number = 336;
   public height: number = 178;
 }
 @Observed
-class NeedRenderPos { // properties usually used together can be divided into the same new divided class
+class NeedRenderPos { // 在一起使用的属性可以划分为相同的类
   public posX: number = 10;
   public posY: number = 50;
 }
 @Observed
-class NeedRenderBorderRadius { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderBorderRadius { // 在不同地方使用的属性可以划分为相同的类
   public borderRadius: number = 24;
 }
 @Observed
-class NeedRenderFontSize { // properties that may be used in different places can be divided into the same new divided class
+class NeedRenderFontSize { // 在不同地方使用的属性可以划分为相同的类
   public fontSize: number = 20;
 }
 @Observed
-class NeedRenderTranslate { // properties usually used together can be divided into the same new divided class
+class NeedRenderTranslate { // 在一起使用的属性可以划分为相同的类
   public translateX: number = 0;
   public translateY: number = 0;
 }
 @Observed
 class UIStyle {
-  // define new variable instead of using old one
+  // 使用NeedRenderxxx类
   needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
   needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
   needRenderBorderRadius: NeedRenderBorderRadius = new NeedRenderBorderRadius();
@@ -435,34 +429,34 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle : UIStyle;
-  @ObjectLink needRenderImage: NeedRenderImage // receive the new class from its parent component
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  @ObjectLink needRenderImage: NeedRenderImage // 从其父组件接收新类
+  private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
     console.log("SpecialImage is rendered");
     return 1;
   }
   build() {
     Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
-      .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
+      .width(this.needRenderImage.imageWidth) // 使用this.needRenderImage.xxx
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
       .translate({
         x: this.needRenderImage.translateImageX,
         y: this.needRenderImage.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // 如果Image重新渲染，该函数将被调用
   }
 }
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle;
-  @ObjectLink needRenderTranslate: NeedRenderTranslate; // receive the new class from its parent component
+  @ObjectLink needRenderTranslate: NeedRenderTranslate; // 从其父组件接收新定义的NeedRenderxxx类的实例
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
   @ObjectLink needRenderBorderRadius: NeedRenderBorderRadius;
   @ObjectLink needRenderPos: NeedRenderPos;
   @ObjectLink needRenderSize: NeedRenderSize;
   @ObjectLink needRenderAlpha: NeedRenderAlpha;
   @ObjectLink needRenderScale: NeedRenderScale;
-  // the following functions are used to show whether the component is called to be rendered
+  // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -482,17 +476,15 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle,
-        needRenderImage: this.uiStyle.needRenderImage //send it to its child
+        needRenderImage: this.uiStyle.needRenderImage // 传递给子组件
       })
       Stack() {
         Column() {
           Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
             .opacity(this.needRenderAlpha.alpha)
             .scale({
-              x: this.needRenderScale.scaleX, // use this.needRenderXxx.xxx rather than this.uiStyle.needRenderXxx.xxx
+              x: this.needRenderScale.scaleX, // 使用this.needRenderXxx.xxx
               y: this.needRenderScale.scaleY
             })
             .padding(this.isRenderImage())
@@ -556,7 +548,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .fontSize(20)
           .width(312)
-          .onClick(() => { // in the parent component, still use this.uiStyle.needRenderXxx.xxx to change the properties
+          .onClick(() => { // 在父组件中，仍使用 this.uiStyle.endRenderXxx.xxx 更改属性
             this.uiStyle.needRenderImage.imageWidth = (this.uiStyle.needRenderImage.imageWidth + 30) % 160;
             this.uiStyle.needRenderImage.imageHeight = (this.uiStyle.needRenderImage.imageHeight + 30) % 160;
           })
@@ -579,10 +571,8 @@ struct Page {
   build() {
     Stack() {
       CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle,
-        needRenderTranslate: this.uiStyle.needRenderTranslate, //send all the new class child need
+        needRenderTranslate: this.uiStyle.needRenderTranslate, // 传递needRenderxxx类给子组件
         needRenderFontSize: this.uiStyle.needRenderFontSize,
         needRenderBorderRadius: this.uiStyle.needRenderBorderRadius,
         needRenderPos: this.uiStyle.needRenderPos,
@@ -634,7 +624,7 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+  private isRenderSpecialImage() : number { // 显示组件是否渲染的函数
     console.log("SpecialImage is rendered");
     return 1;
   }
@@ -647,13 +637,13 @@ struct SpecialImage {
         x: this.uiStyle.translateImageX,
         y: this.uiStyle.translateImageY
       })
-      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+      .opacity(this.isRenderSpecialImage()) // 如果Image重新渲染，该函数将被调用
   }
 }
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle
-  // the following functions are used to show whether the component is called to be rendered
+  // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
     console.log("Column is rendered");
     return 1;
@@ -673,8 +663,6 @@ struct CompA {
   build() {
     Column() {
       SpecialImage({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
       Stack() {
@@ -759,8 +747,6 @@ struct Page {
   build() {
     Stack() {
       CompA({
-        // in low version, Dev Eco may throw a warning
-        // But you can still build and run the code
         uiStyle: this.uiStyle
       })
     }
@@ -859,8 +845,6 @@ struct CompList {
       List() {
         ForEach(this.childList, (item: Child, index) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             CompChild({
               childList: this.childList,
               child: item
@@ -880,8 +864,6 @@ struct CompAncestor {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompList({ childList: this.ancestor.childList })
       Row() {
         Button("Clear")
@@ -907,8 +889,6 @@ struct Page {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompAncestor({ ancestor: this.ancestor})
     }
   }
@@ -1030,8 +1010,6 @@ struct CompList {
       List() {
         ForEach(this.childList, (item: Child, index) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             CompChild({
               childList: this.childList,
               child: item
@@ -1051,8 +1029,6 @@ struct CompAncestor {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompList({ childList: this.ancestor.childList })
       Row() {
         Button("Clear")
@@ -1078,8 +1054,6 @@ struct Page {
 
   build() {
     Column() {
-      // in low version, Dev Eco may throw a warning
-      // But you can still build and run the code
       CompAncestor({ ancestor: this.ancestor})
     }
   }
@@ -1356,8 +1330,6 @@ struct MyComponent {
     List({ space: 3 }) {
       LazyForEach(this.data, (item: StringData, index: number) => {
         ListItem() {
-          // in low version, Dev Eco may throw a warning
-          // But you can still build and run the code
           ChildComponent({data: item})
         }
         .onClick(() => {
@@ -1399,10 +1371,10 @@ struct ChildComponent {
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1415,7 +1387,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-    this.styleList.push(new TextStyle(i));
+    this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1428,7 +1400,7 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
             Text("Hello World")
               .fontSize(item.fontSize)
@@ -1448,10 +1420,10 @@ struct Page {
 
 ```typescript
 @Observed
-class StyleList extends Array<TextStyle> {
+class StyleList extends Array<TextStyles> {
 };
 @Observed
-class TextStyle {
+class TextStyles {
   fontSize: number;
 
   constructor(fontSize: number) {
@@ -1460,7 +1432,7 @@ class TextStyle {
 }
 @Component
 struct TextComponent {
-  @ObjectLink textStyle: TextStyle;
+  @ObjectLink textStyle: TextStyles;
   build() {
     Text("Hello World")
       .fontSize(this.textStyle.fontSize)
@@ -1472,7 +1444,7 @@ struct Page {
   @State styleList: StyleList = new StyleList();
   aboutToAppear() {
     for (let i = 15; i < 50; i++)
-      this.styleList.push(new TextStyle(i));
+      this.styleList.push(new TextStyles(i));
   }
   build() {
     Column() {
@@ -1485,10 +1457,8 @@ struct Page {
           console.log("change font size");
         })
       List() {
-        ForEach(this.styleList, (item: TextStyle) => {
+        ForEach(this.styleList, (item: TextStyles) => {
           ListItem() {
-            // in low version, Dev Eco may throw a warning
-            // But you can still build and run the code
             TextComponent({ textStyle: item})
           }
         })

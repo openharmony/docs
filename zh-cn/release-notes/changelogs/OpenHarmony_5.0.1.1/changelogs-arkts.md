@@ -156,7 +156,7 @@ let res_le = encoderUtf16Le.encodeIntoUint8Array('abcdefg', dest_le); // dest_le
 let res_be = encoderUtf16Be.encodeIntoUint8Array('abcdefg', dest_be); // dest_be: 0,97,0,98,0,99,0,100,0,101,0,102,0,103
 ```
 
-## cl.arkui.3  backgroundEffect在modifier中radius参数单位修改
+## cl.arkui.3 通用属性backgroundEffect在modifier中radius参数单位修改
 
 **访问级别**
 

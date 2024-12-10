@@ -7,24 +7,24 @@ JSVM-API provide APIs for retrieving JavaScript virtual machine (JSVM) instances
 ## Basic Concepts
 
 - JSVM: A JSVM is an environment for executing JavaScript (JS) code. It parses and executes JS code, manages memory, and provides interaction with other system resources. For example, you can use **OH_JSVM_GetVM** to retrieve JSVM instances in a specific environment. This is one of the basic JSVM management operations.
-- Debug: As an important activity in program development, debugging involves locating, analyzing, and rectifying code errors. For example, you can use **OH_JSVM_OpenInspector** to open inspector, a tool used to debug JS code, on a host and port and view the running status of an application on a real-time basis. You can useOH_JSVM_CloseInspector to close inspector.
+- Debug: As an important activity in program development, debugging involves locating, analyzing, and rectifying code errors. For example, you can use **OH_JSVM_OpenInspector** to open inspector, a tool used to debug JS code, on a host and port and view the running status of an application on a real-time basis. You can use **OH_JSVM_CloseInspector** to close inspector.
 
 ## Available APIs
 
 | API                      | Description                      |
 |----------------------------|--------------------------------|
-| OH_JSVM_GetVM              |  Obtains a VM instance. |
-| OH_JSVM_GetHeapStatistics  |  Obtains heap statistics of a VM. |
-| OH_JSVM_StartCpuProfiler   |  Creates and starts a CPU profiler instance. |
-| OH_JSVM_StopCpuProfiler    |  Stops the CPU profiler and outputs the result to a stream. |
-| OH_JSVM_TakeHeapSnapshot   |  Obtains a snapshot of the current heap and outputs it to a stream. |
-| OH_JSVM_OpenInspector      |  Opens an inspector instance on the specified host and port for debugging JS code. |
-| OH_JSVM_CloseInspector     |  Closes all remaining inspector connections. |
-| OH_JSVM_WaitForDebugger    |  Waits for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets. |
+| OH_JSVM_GetVM              |  Obtains a VM instance.|
+| OH_JSVM_GetHeapStatistics  |  Obtains heap statistics of a VM.|
+| OH_JSVM_StartCpuProfiler   |  Creates and starts a CPU profiler instance.|
+| OH_JSVM_StopCpuProfiler    |  Stops the CPU profiler and outputs the result to a stream.|
+| OH_JSVM_TakeHeapSnapshot   |  Obtains a snapshot of the current heap and outputs it to a stream.|
+| OH_JSVM_OpenInspector      |  Opens an inspector instance on the specified host and port for debugging JS code.|
+| OH_JSVM_CloseInspector     |  Closes all remaining inspector connections.|
+| OH_JSVM_WaitForDebugger    |  Waits for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to the APIs for debugging and profiling.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in debugging and profiling JS code.
 
 ### OH_JSVM_GetVM
 
@@ -37,15 +37,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetVM callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetVM},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getVM and associate it with a callback. This allows the GetVM callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getVM", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // Define OH_JSVM_GetVM.
 static JSVM_Value GetVM(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -62,19 +54,21 @@ static JSVM_Value GetVM(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+// Register the GetVM callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetVM},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getVM and associate it with a callback. This allows the GetVM callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getVM", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS code:
+// Call C++ code from JS.
 
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-    getVM()
-`
-let result = napitest.runJsVm(script);
-hilog.info(0x0000, 'testJSVM', 'Test JSVM getVM: %{public}s', result);
+```c++
+const char *srcCallNative = R"JS(getVM())JS";
 ```
 
 ### OH_JSVM_GetHeapStatistics
@@ -88,15 +82,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// Register the GetHeapStatistics callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetHeapStatistics},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getHeapStatistics and associate it with a callback. This allows the GetHeapStatistics callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getHeapStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // Define OH_JSVM_GetHeapStatistics.
 void PrintHeapStatistics(JSVM_HeapStatistics result)
 {
@@ -130,19 +116,21 @@ static JSVM_Value GetHeapStatistics(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateInt64(env, result.numberOfNativeContexts, &nativeContextsCnt);
     return nativeContextsCnt;
 }
+// Register the GetHeapStatistics callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetHeapStatistics},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named getHeapStatistics and associate it with a callback. This allows the GetHeapStatistics callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getHeapStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS code:
+// Call C++ code from JS.
 
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `
-    getHeapStatistics()
-`
-let numberOfNativeContexts = napitest.runJsVm(script);
-hilog.info(0x0000, 'testJSVM', 'Test JSVM getHeapStatistics: %{public}s', numberOfNativeContexts);
+```c++
+const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
 
 For details about the sample code of the previous APIs, see:
@@ -171,4 +159,5 @@ Use **OH_JSVM_CloseInspector** to close all remaining inspector connections.
 
 ### OH_JSVM_WaitForDebugger
 
-Use **OH_JSVM_WaitForDebugger** to wait for the host to set up a socket connection with inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.
+Use **OH_JSVM_WaitForDebugger** to wait for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.
+

@@ -2,7 +2,7 @@
 
 HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使用该接口所提供的功能，帮助开发者迅速获取指定业务流程调用链的运行日志，定位跨设备、跨进程、跨线程的故障问题。
 
-## 前置条件
+## 环境要求
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
@@ -35,43 +35,285 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。通过使�
 
 在hdc shell执行如下命令：
 
-1. 查看hitrace包含的tag：`hitrace -l`。
+1. 查看hitrace包含的tag。
 
-   ![](figures/hitrace-l.png)
+   ```
+   hitrace -l
+   ```
 
-2. 开始抓指定tag的trace：`hitrace --trace_begin app`。
+   **使用样例：**
 
-   ![](figures/hitrace-begin-app.png)
+   ```
+   $ hitrace -l
+   2024/11/14 11:43:00 hitrace enter, running_state is SHOW_LIST_CATEGORY
+           tagName:   description:
+            ability - Ability Manager
+      accesscontrol - Access Control Module
+            account - Account Manager
+                ace - ACE development framework
+          animation - Animation
+                app - APP Module
+                ark - ARK Module
+          bluetooth - communicatio bluetooth
+              cloud - Cloud subsystem tag
+          cloudfile - Cloud file system
+         commercial - Commercial version tag
+      commonlibrary - commonlibrary subsystem
+             daudio - Distributed Audio
+            dcamera - Distributed Camera
+         deviceauth - Device Auth
+      devicemanager - Device Manager
+      deviceprofile - Device Profile
+              dhfwk - Distributed Hardware FWK
+             dinput - Distributed Input
+               disk - Disk I/O
+   istributeddatamgr - Distributed Data Manager
+             dlpcre - Dlp Credential Service
+                drm - Digital Rights Management
+             dsched - Distributed Schedule
+            dscreen - Distributed Screen
+               dslm - device security level
+           dsoftbus - Distributed Softbus
+               ffrt - ffrt tasks
+     filemanagement - filemanagement
+               freq - CPU Frequency
+            graphic - Graphic Module
+          gresource - Global Resource Manager
+               hdcd - hdcd
+                hdf - hdf subsystem
+               huks - Universal KeyStore
+                i2c - I2C Events
+               idle - CPU Idle
+          interconn - Interconnection subsystem
+                ipa - thermal power allocator
+                irq - IRQ Events
+             irqoff - IRQ-disabled code section tracing
+               load - CPU Load
+               mdfs - Mobile Distributed File System
+             membus - Memory Bus Utilization
+             memory - Memory
+         memreclaim - Kernel Memory Reclaim
+               misc - Misc Module
+                mmc - eMMC commands
+               msdp - Multimodal Sensor Data Platform
+    multimodalinput - HITRACE_TAG_MULTIMODALINPUT
+                net - net
+       notification - Notification Module
+               nweb - NWEB Module
+               ohos - OpenHarmony
+          pagecache - Page cache
+              power - Power Manager
+         preemptoff - Preempt-disabled code section tracing
+               push - Push subsystem
+         regulators - Voltage and Current Regulators
+                rpc - RPC and IPC
+              samgr - samgr
+              sched - CPU Scheduling
+           security - Security subsystem
+            sensors - Sensors Module
+               sync - Synchronization
+                ufs - UFS commands
+                usb - usb subsystem
+            useriam - useriam
+              virse - Virtualization Service
+             window - Window Manager
+              workq - Kernel Workqueues
+             zaudio - OpenHarmony Audio Module
+            zcamera - OpenHarmony Camera Module
+             zimage - OpenHarmony Image Module
+             zmedia - OpenHarmony Media Module
+   ```
 
-3. 结束抓trace：`hitrace --trace_finish` 、 `hitrace --trace_finish -o /data/local/tmp/test.ftrace`。默认将trace信息打印在命令行窗口，若添加输出路径，trace信息将导出至对应的文件中。
+2. 开始抓指定tag的trace。
 
-   ![](figures/hitrace-finish.png)
+   ```
+   hitrace --trace_begin --record app
+   ```
+
+   **使用样例：**
+
+   ```
+   $ hitrace --trace_begin --record app
+   2024/11/14 11:48:45 hitrace enter, running_state is RECORDING_LONG_BEGIN_RECORD
+   2024/11/14 11:48:45 args: tags:app bufferSize:18432 overwrite:1
+   2024/11/14 11:48:45 OpenRecording done.
+   ```
+
+3. 结束抓trace。
+
+   ```
+   hitrace --trace_finish --record，默认将trace信息打印在命令行窗口。
+   ```
+
+   **使用样例1：**
+
+   ```
+   $ hitrace --trace_finish --record
+   2024/11/14 11:50:33 hitrace enter, running_state is RECORDING_LONG_FINISH_RECORD
+   2024/11/14 11:50:33 capture done, output files:
+       /data/log/hitrace/record_trace_20241114115033@3010728-656499531.sys
+   ```
+
+   ```
+   hitrace --trace_finish -o /data/local/tmp/test.ftrace，添加输出路径，trace信息将导出至对应的文件中。
+   ```
+
+   **使用样例2：**
+
+   ```
+   $ hitrace --trace_finish -o /data/local/tmp/test.ftrace
+   2024/11/14 11:50:33 start to read trace.
+   2024/11/14 11:50:33 trace read done, output: /data/local/tmp/test.ftrace
+   ```
 
 4. 设置抓trace的一些信息：`hitrace -b 10240 -t 10 -o /data/local/tmp/test2.ftrace app ability`。
 
-   ![](figures/hitrace-b.png)
+   ```
+   hitrace -b 10240 -t 10 -o /data/local/tmp/test2.ftrace app ability。
+   ```
+
+   **使用样例：**
+
+   ```
+   $ hitrace -b 10240 -t 10 -o /data/local/tmp/test2.ftrace app ability
+   2024/11/14 11:52:13 start capture, please wait 10s ...
+   2024/11/14 11:52:23 capture done, start to read trace.
+   2024/11/14 11:52:23 trace read done, output: /data/local/tmp/test2.ftrace
+   ```
 
    - 设置缓冲区大小为10240KB；
    - 设置抓trace时间为10s；
    - 设置抓完trace后文件存储在/data/local/tmp/test1.htrace中；
    - 抓取app/ability两个tag的trace；
 
-5. 导出trace信息：`hitrace --trace_dump` 、 `hitrace --trace_dump -o /data/local/tmp/test3.ftrace`。默认将信息显示在命令行窗口，若添加输出路径，trace信息将导出至对应的文件中。
+5. 导出trace信息。
 
-   ![](figures/hitrace-dump.png)
+   ```
+   hitrace --trace_dump，默认将信息显示在命令行窗口。
+   ```
 
+   **使用样例1：**
+
+   ```
+   $ hitrace --trace_dump
+   2024/11/14 11:54:23 start to read trace.
+   # tracer: nop
+   #
+   # entries-in-buffer/entries-written: 2/2   #P:4
+   #
+   #                                          _-----=> irqs-off
+   #                                         / _----=> need-resched
+   #                                        | / _---=> hardirq/softirq
+   #                                        || / _--=> preempt-depth
+   #                                        ||| /     delay
+   #           TASK-PID       TGID    CPU#  ||||   TIMESTAMP  FUNCTION
+   #              | |           |       |   ||||      |         |
+            <...>-21829   (  19280) [003] .... 3011033.731844: tracing_mark_write: trace_event_clock_sync: realtime_ts=1732002022239
+            <...>-21829   (  19280) [003] .... 3011033.731865: tracing_mark_write: trace_event_clock_sync: parent_ts=3011033.750000
+   #
+   ```
+
+   ```
+   hitrace --trace_dump -o /data/local/tmp/test3.ftrace，添加输出路径，trace信息将导出至对应的文件中。
+   ```
+
+   **使用样例2：**
+
+   ```
+   $ hitrace -b 10240 -t 10 -o /data/local/tmp/test2.ftrace app ability
+   2024/11/14 11:54:23 start to read trace.
+   2024/11/14 11:54:23 trace read done, output: /data/local/tmp/test3
+   ```
+
+   ```
    也可根据关键词打印trace信息，使用命令`hitrace --trace_dump |grep \*\*\*`即可。
+   ```
 
-6. 开启快照模式trace采集服务：`hitrace --start_bgsrv`。
+6. 开启快照模式trace采集服务。
 
-   ![](figures/hitrace-start_bgsrv.png)
+   ```
+   hitrace --start_bgsrv。
+   ```
 
-7. 快照模式导出trace：hitrace --dump_bgsrv。
+   **使用样例：**
+
+   ```
+   $ `hitrace --start_bgsrv
+   2024/11/14 11:55:53 hitrace enter, running_state is SNAPSHOT_START
+   2024/11/14 11:55:54 OpenSnapshot done.
+   ```
+
+7. 快照模式导出trace。
 
    默认将trace信息保存至/data/log/hitrace/文件夹下，文件命名格式为`trace-YYMMDDHHmmSS@[BOOT_TIME].sys`，抓到的是二进制trace。可通过[smpartperf在线工具](https://www.smartperf.host)进行查看。
 
-   ![](figures/hitrace-dump_bgsrv.png)
+   ```
+   hitrace --dump_bgsrv。
+   ```
 
-8. 关闭快照模式trace采集服务：`hitrace --stop_bgsrv`。
+   **使用样例：**
 
-   ![](figures/hitrace-stop_bgsrv.png)
+   ```
+   $ hitrace --dump_bgsrv
+   2024/11/14 12:12:56 hitrace enter, running_state is SNAPSHOT_DUMP
+   2024/11/14 12:12:57 DumpSnapshot done, output:
+       /data/log/hitrace/record_trace_20241114121257@2566589-103807063.sys
+   ```
+
+8. 关闭快照模式trace采集服务。
+
+   ```
+   hitrace --stop_bgsrv。
+   ```
+
+   **使用样例：**
+
+   ```
+   $ hitrace --stop_bgsrv
+   2024/11/14 11:59:43 hitrace enter, running_state is SNAPSHOT_STOP
+   2024/11/14 11:59:43 CloseSnapshot done.
+   ```
+
+9. 抓取trace后进行压缩。
+
+   ```
+   hitrace -z -b 102400 -t 10 sched freq idle disk -o /data/local/tmp/test.ftrace。
+   ```
+
+   **使用样例：**
+
+   ```
+   $ hitrace -z -b 102400 -t 10 sched freq idle disk -o /data/local/tmp/test.ftrace
+   2024/11/14 12:00:18 start capture, please wait 10s ...
+   2024/11/14 12:00:28 capture done, start to read trace.
+   2024/11/14 12:00:29 trace read done, output: /data/local/tmp/test.ftrace
+   ```
+
+10. 设置trace的输出时钟为boot(设备系统时间)。
+
+   ```
+   hitrace --trace_clock boot -b 102400 -t 10 sched freq idle disk -o /data/local/tmp/test.ftrace。
+   ```
+
+   **使用样例：**
+
+   ```
+   $ hitrace --trace_clock boot -b 102400 -t 10 sched freq idle disk -o /data/local/tmp/test.ftrace
+   2024/11/14 12:01:42 start capture, please wait 10s ...
+   2024/11/14 12:01:52 capture done, start to read trace.
+   2024/11/14 12:01:52 trace read done, output: /data/local/tmp/test.ftrace
+   ```
+
+11. 结束抓trace，取消trace信息打印在命令行窗口。
+
+   ```
+   hitrace --trace_finish_nodump，默认将trace信息保存至/data/log/hitrace/文件夹下。
+   ```
+
+   **使用样例：**
+
+   ```
+   $ hitrace --trace_finish_nodump
+   2024/11/14 12:03:07 hitrace enter, running_state is RECORDING_LONG_FINISH_NODUMP
+   2024/11/14 12:03:07 end capture trace.
+   ```

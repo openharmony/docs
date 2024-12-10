@@ -14,8 +14,8 @@ The **NotificationSubscribeInfo** module provides APIs for defining the informat
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name                | Type                 |  Mandatory | Description                                      |
+| Name                | Type                 |  Mandatory| Description                                      |
 | -------------------- | --------------------- | --- | ------------------------------------------ |
-| bundleNames          | Array<string>         | No | Bundle names of the applications whose notifications are to be subscribed to.                             |
+| bundleNames          | Array<string\>         | No | Bundle names of the applications whose notifications are to be subscribed to.                             |
 | userId               | number                | No | User ID.                                     |
-| deviceType<sup>12+</sup>           | string                | No | Device type.                                   |
+| deviceType<sup>12+</sup>           | string                | No | Device type. The value is obtained based on [device information](../apis-basic-services-kit/js-apis-device-info.md).                                   |

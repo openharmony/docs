@@ -164,15 +164,15 @@ The width and height of a component need to be obtained to calculate the size an
 [Component Area Change Event](../reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md), [Click Event](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md), [Touch Event](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
 
 
-## How do I clear the content of the \<TextInput> and \<TextArea> components by one click? (API version 9)
+## How do I clear the content of the TextInput and TextArea components by one click? (API version 9)
 
 **Symptom**
 
-A click-to-clear feature is required to remove all characters in the **\<TextInput>** and **\<TextArea>** component at once.
+A click-to-clear feature is required to remove all characters in the **TextInput** and **TextArea** component at once.
 
 **Solution**
 
-Convert the **text** attribute of the **\<TextInput>** and **\<TextArea>** component to a state variable. Assign an empty string to the state variable when the click-to-clear event is performed.
+Convert the **text** attribute of the **TextInput** and **TextArea** component to a state variable. Assign an empty string to the state variable when the click-to-clear event is performed.
 
 **Example**
 
@@ -276,41 +276,41 @@ To remove the white background, set the custom dialog box to a custom style.
 [Custom Dialog Box](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
 
-## How do I customize the eye icon for the password input mode of the \<TextInput> component? (API version 9)
+## How do I customize the eye icon for the password input mode of the TextInput component? (API version 9)
 
 **Symptom**
 
-The eye icon for the password input mode (with the **type** attribute of the **\<TextInput>** component set to **InputType.Password**) cannot be customized.
+The eye icon for the password input mode (with the **type** attribute of the **TextInput** component set to **InputType.Password**) cannot be customized.
 
 **Solution**
 
-The eye icon itself cannot be customized. You can use set the **showPasswordIcon** attribute of the **\<TextInput>** component to **false** to hide the icon, and use the **\<Image>** component to control the type of the **\<TextInput>** component.
+The eye icon itself cannot be customized. You can use set the **showPasswordIcon** attribute of the **TextInput** component to **false** to hide the icon, and use the **\<Image>** component to control the type of the **TextInput** component.
 
 **Reference**
 
 [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
 
-## How do I use the onSubmit event of the \<TextInput> component? (API version 9)
+## How do I use the onSubmit event of the TextInput component? (API version 9)
 
 **Solution**
 
-The **onSubmit** event is triggered when a user presses **Enter** on the (physical or soft) keyboard. The callback parameter in the event is the current Enter key type. The Enter key type can be set through the **enterKeyType** attribute of the **\<TextInput>** component. Setting the key style of the soft keyboard requires support by the input method.
+The **onSubmit** event is triggered when a user presses **Enter** on the (physical or soft) keyboard. The callback parameter in the event is the current Enter key type. The Enter key type can be set through the **enterKeyType** attribute of the **TextInput** component. Setting the key style of the soft keyboard requires support by the input method.
 
 **Reference**
 
 [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
 
 
-## How do I set the caret position to the start point for when the \<TextInput> component obtains focus? (API version 9)
+## How do I set the caret position to the start point for when the TextInput component obtains focus? (API version 9)
 
 **Symptom**
 
-When the **\<TextInput>** component obtains focus, the caret automatically moves to the position of the touch point, instead of the start position.
+When the **TextInput** component obtains focus, the caret automatically moves to the position of the touch point, instead of the start position.
 
 **Solution**
 
-1. Bind the **\<TextInput>** component to the **onEditChange** event, which is triggered when the component enters the input state.
+1. Bind the **TextInput** component to the **onEditChange** event, which is triggered when the component enters the input state.
 
 2. Call the **setTimeout** API for asynchronous processing. Then call the **TextInputController.caretPosition** API in the event callback to set the caret position.
 

@@ -26,6 +26,8 @@
 - State：状态，指驱动UI更新的数据。用户通过触发组件的事件方法，改变状态数据。状态数据的改变，引起UI的重新渲染。
 
 
+在阅读状态管理文档前，开发者需要对UI范式基本语法有基本的了解。建议提前阅读：[基本语法概述](./arkts-basic-syntax-overview.md)，[声明式UI描述](./arkts-declarative-ui-description.md)，[自定义组件-创建自定义组件](./arkts-create-custom-components.md)。
+
 ## 基本概念
 
 - 状态变量：被状态装饰器装饰的变量，状态变量值的改变会引起UI的渲染更新。示例：@State num: number = 1,其中，@State是状态装饰器，num是状态变量。
@@ -78,9 +80,9 @@
 ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状态变量不仅可以观察在组件内的改变，还可以在不同组件层级间传递，比如父子组件、跨组件层级，也可以观察全局范围内的变化。根据状态变量的影响范围，将所有的装饰器可以大致分为：
 
 
-- 管理组件拥有状态的装饰器：组件级别的状态管理，可以观察组件内变化，和不同组件层级的变化，但需要唯一观察同一个组件树上，即同一个页面内。
+- 管理组件内状态的装饰器：组件级别的状态管理，可以观察同一个组件树上（即同一个页面内）组件内或不同组件层级的变量变化。
 
-- 管理应用拥有状态的装饰器：应用级别的状态管理，可以观察不同页面，甚至不同UIAbility的状态变化，是应用内全局的状态管理。
+- 管理应用级状态的装饰器：应用级别的状态管理，可以观察不同页面，甚至不同UIAbility的状态变化，是应用内全局的状态管理。
 
 
 从数据的传递形式和同步类型层面看，装饰器也可分为：
@@ -149,6 +151,10 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 为了增强状态管理V1版本的部分能力，例如深度观察、属性级更新等，ArkUI推出状态管理V2供开发者使用。
 
+> **说明：**
+>
+> 当前状态管理V2能力相较于状态管理V1能力仍有GAP，请开发者慎重选择。
+
 ### 状态管理V1现状以及V2优点
 
 状态管理V1使用代理观察数据，当创建一个状态变量时，同时也创建了一个数据代理观察者。该观察者可感知代理变化，但无法感知实际数据变化，因此在使用上有如下限制：
@@ -156,7 +162,9 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 - 状态变量不能独立于UI存在，同一个数据被多个视图代理时，在其中一个视图的更改不会通知其他视图更新。
 - 只能感知对象属性第一层的变化，无法做到深度观测和深度监听。
 - 在更改对象中属性以及更改数组中元素的场景下存在冗余更新的问题。
-- 装饰器间配合使用限制多，不易用。组件中没有明确状态变量的输入与输出，不利于组件化。![arkts-old-state-management](figures/arkts-old-state-management.png)
+- 装饰器间配合使用限制多，不易用。组件中没有明确状态变量的输入与输出，不利于组件化。
+
+![arkts-old-state-management](figures/arkts-old-state-management.png)
 
 状态管理V2将观察能力增强到数据本身，数据本身就是可观察的，更改数据会触发相应的视图的更新。相较于状态管理V1，状态管理V2有如下优点：
 
@@ -198,7 +206,7 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 ### 状态管理V1与V2能力对比
 
-| V1装饰器名   | V2装饰器名                                             | 说明                                                         |
+| V1能力   | V2能力                                             | 说明                                                         |
 | ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
 | \@Observed   | \@ObservedV2                                           | 表明当前对象为可观察对象。但两者能力并不相同。 <br/>\@Observed可观察第一层的属性，需要搭配\@ObjectLink使用才能生效。 <br/>\@ObservedV2本身无观察能力，仅代表当前class可被观察，如果要观察其属性，需要搭配\@Trace使用。 |
 | \@Track      | \@Trace                                                | V1装饰器\@Track为精确观察，不使用则无法做到类属性的精准观察。 <br/>V2\@Trace装饰的属性可以被精确跟踪观察。 |
@@ -214,5 +222,10 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 | AppStorage               | AppStorageV2   | 兼容。 |
 | Environment       | 调用Ability接口获取系统环境变量   | Environment获取环境变量能力和AppStorage耦合。在V2中可直接调用Ability接口获取系统环境变量。 |
 | PersistentStorage     | PersistenceV2   | PersistentStorage持久化能力和AppStorage耦合，PersistenceV2持久化能力可独立使用。 |
+| @Reusable     | 暂未提供   | 组件复用。 |
+| $$            | !!         | 双向绑定。V2建议使用!!实现双向绑定。 |
+| @CustomDialog | [openCustomDialog](../../application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口   | 自定义弹窗。V2建议使用openCustomDialog实现自定义弹窗功能。 |
+| withTheme     | 暂未提供   | 主题。用于设置应用局部页面自定义主题风格。 |
+| 高级组件     | 暂未提供   | 高级组件。例如：[DownloadFileButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)、[ProgressButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)、[SegmentButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md) |
 
 有关V1向V2的迁移可参考[迁移指导](./arkts-v1-v2-migration.md)，有关V1与V2的混用可参考[混用文档](./arkts-custom-component-mixed-scenarios.md)。

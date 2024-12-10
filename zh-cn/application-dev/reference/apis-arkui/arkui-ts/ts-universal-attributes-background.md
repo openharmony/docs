@@ -203,8 +203,8 @@ backgroundEffect(options: BackgroundEffectOptions)
 | color        | [ResourceColor](ts-types.md#resourcecolor)         |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
-| policy<sup>13+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
-| inactiveColor<sup>13+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
+| policy<sup>14+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
+| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
 ## backgroundImageResizable<sup>12+</sup>
 
@@ -232,10 +232,12 @@ backgroundImageResizable(value: ResizableOptions)
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy<sup>13+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
-| inactiveColor<sup>13+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
+| policy<sup>14+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
+| inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
 
 ## backgroundBrightness<sup>12+</sup> 
@@ -258,15 +260,24 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称            | 参数类型                                     | 必填   | 描述                                       |
-| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| rate          | number | 是    | 亮度变化速率。亮度变化速率越大，亮度下降速度越快，亮度提升程度越低。<br/>默认值：0.0 <br/>取值范围：(0.0, +∞)<br/> |
-| lightUpDegree | number | 是    | 提亮程度。提亮程度越大，亮度提升程度越大。<br/> 默认值：0.0 <br/>取值范围：[-1.0, 1.0]<br/> |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| rate          | number | 是   | 亮度变化速率。亮度变化速率越大，提亮程度下降速度越快。若rate为0，则lightUpDegree将不生效，即不会产生任何提亮效果。<br/>默认值：0.0 <br/>取值范围：(0.0, +∞) |
+| lightUpDegree | number | 是   | 提亮程度。提亮程度越大，亮度提升程度越大。<br/> 默认值：0.0 <br/>取值范围：[-1.0, 1.0] |
+
+>  **说明：**
+>
+>  对于组件背景内容，每个像素自身的亮度（灰阶值）的计算公式为：
+>  `Y = （0.299R + 0.587G + 0.114B）/ 255.0`（R、G、B分别表示像素红色、绿色和蓝色通道的值，Y表示灰阶值），通过上述公式将像素点的灰阶值归一化至0~1的范围。
+>  每个像素的亮度提升计算公式为：`ΔY = -rate*Y + lightUpDegree`。例如，当rate=0.5，lightUpDegree=0.5时，对于灰阶值为0.2的像素点，亮度增加值为`-0.5*0.2 + 0.5 = 0.4`，对于灰阶值为1的像素点，亮度增加值为`-0.5*1 + 0.5 = 0`。
 
 ## 示例
 
-### 示例1
+### 示例1（设置背景基础样式）
+
+该示例通过配置backgroundColor、backgroundImage、backgroundImageSize和backgroundImagePosition设置背景的基础样式。
 
 ```ts
 // xxx.ets
@@ -336,7 +347,9 @@ struct BackgroundExample {
 
 ![zh-cn_image_0000001219982703](figures/zh-cn_image_0000001219982703.png)
 
-### 示例2
+### 示例2（设置背景模糊样式）
+
+该示例通过backgroundBlurStyle设置背景模糊样式。
 
 ```ts
 // xxx.ets
@@ -363,7 +376,9 @@ struct BackgroundBlurStyleDemo {
 
 ![zh-cn_image_background_blur_style](figures/zh-cn_image_background_blur_style.png)
 
-### 示例3
+### 示例3（设置组件背景）
+
+该示例通过background设置组件背景。
 
 ```ts
 // xxx.ets
@@ -395,9 +410,9 @@ struct BackgroundExample {
 
 ![zh-cn_image_background](figures/zh-cn_image_background.png)
 
-### 示例4
+### 示例4（设置组件背景提亮效果）
 
-设置组件背景提亮效果
+该示例通过backgroundBrightness设置组件背景提亮效果。
 
 ```ts
 // xxx.ets
@@ -437,8 +452,10 @@ rate和lightUpDegree参数值为0.5,0.5：
 
 ![zh-cn_image_background_brightness3](figures/zh-cn_image_background_brightness3.png)
 
-### 示例5
-模糊属性的用法，blur内容模糊，backdropBlur背景模糊。
+### 示例5（设置模糊属性）
+
+该示例提供了模糊属性的实现方法。通过blur设置内容模糊，通过backdropBlur设置背景模糊。
+
 ```ts
 // xxx.ets
 @Entry
@@ -476,9 +493,9 @@ struct BlurEffectsExample {
 
 ![textblur](figures/textblur.png)
 
-### 示例6
+### 示例6（设置文字异形模糊效果）
 
-blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
+该示例通过blendMode和backgroundEffect实现文字异形模糊效果。<br/>
 如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
@@ -571,8 +588,9 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
 
-### 示例7
-backgroundEffect,backDropBlur,backgroundBlurStyle 模糊效果对比。
+### 示例7（模糊效果对比）
+
+该示例对比了backgroundEffect、backDropBlur和backgroundBlurStyle三种不同的模糊效果。
 
 ```ts
 // xxx.ets

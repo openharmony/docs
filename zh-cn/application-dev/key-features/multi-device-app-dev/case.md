@@ -111,6 +111,7 @@
 
 
 ```ts
+@Entry
 @Component
  struct TopArea {
    build() {
@@ -131,14 +132,15 @@
 
 
 ```ts
+@Entry
 @Component
  struct TopArea {
    build() {
      Flex({ alignItems: ItemAlign.Center }) {
-       Image($r('app.media.back'))
+       Image($r('app.media.back')) //在应用的resources/base/media目录放置名为back的资源文件
          .width(24)
          .height(24)
-       Image($r('app.media.contact'))
+       Image($r('app.media.contact')) //在应用的resources/base/media目录放置名为contact的资源文件
          .width(40)
          .height(40)
        Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center,
@@ -147,10 +149,10 @@
          Text('+123 4567 8901').fontSize(14).fontColor("#66182431")
        }
        Blank()                  // 拉伸能力
-       Image($r("app.media.phone"))
+       Image($r("app.media.phone")) //在应用的resources/base/media目录放置名为phone的资源文件
          .width(24)
          .height(24)
-       Image($r('app.media.dots'))
+       Image($r('app.media.dots')) //在应用的resources/base/media目录放置名为dots的资源文件
          .width(24)
          .height(24)
      }
@@ -169,15 +171,16 @@
 
 
 ```ts
+@Entry
 @Component
  struct TopArea {
    build() {
      Flex({ alignItems: ItemAlign.Center }) {
-       Image($r('app.media.back'))
+       Image($r('app.media.back')) //在应用的resources/base/media目录放置名为back的资源文件
          .width(24)
          .height(24)
          .margin({ left:24 })             // 设置间距
-       Image($r('app.media.contact'))
+       Image($r('app.media.contact')) //在应用的resources/base/media目录放置名为contact的资源文件
          .width(40)
          .height(40)
          .margin({ left:16, right:16 })  // 设置间距
@@ -187,10 +190,10 @@
          Text('+123 4567 8901').fontSize(14).fontColor("#66182431")
        }
        Blank()
-       Image($r("app.media.phone"))
+       Image($r("app.media.phone")) //在应用的resources/base/media目录放置名为phone的资源文件
          .width(24)
          .height(24)
-       Image($r('app.media.dots'))
+       Image($r('app.media.dots')) //在应用的resources/base/media目录放置名为dots的资源文件
          .width(24)
          .height(24)
          .margin({ left:16, right:24 })  // 设置间距
@@ -217,6 +220,7 @@
 
 
 ```ts
+@Entry
 @Component
  struct BottomArea {
    build() {
@@ -229,7 +233,7 @@
          .height(40)
          .flexGrow(1)           // 将父容器的剩余空间全部分配给此组件
 
-       Image($r("app.media.send"))
+       Image($r("app.media.send")) //在应用的resources/base/media目录放置名为send的资源文件
          .height(36)
          .width(36)
          .opacity(0.4)
@@ -266,6 +270,7 @@
 
 
 ```ts
+@Entry
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -298,6 +303,7 @@ struct MessageBubble {
 
 
 ```ts
+@Entry
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -335,6 +341,7 @@ struct MessageBubble {
 
 
 ```ts
+@Entry
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -383,9 +390,10 @@ struct MessageBubble {
 
 
 ```ts
+@Entry
 @Component
  struct MessageBubble {
-   private isReceived:boolean = true// 通过标志位，判断是发送or接收场景，进而使用不同的样式
+   private isReceived:boolean = true // 通过标志位，判断是发送or接收场景，进而使用不同的样式
    private content:string = "Introduction"
    private time:string = "今天 10:35"
 
@@ -483,6 +491,8 @@ const globalMessageList:globalMessageItem[] = [
 
 
 ```ts
+import  { globalMessageList } from "../data/globalMessageList"; //将globalMessageList文件export后导入；
+import  { MessageBubble } from "./MessageBubble"; //将文件MessageBubble去除@entry作为组件export后导入；
 @Component
 export default struct MessageItem {
   private isReceived?: boolean
@@ -540,7 +550,11 @@ struct Conversation {
 
 
 ```ts
-@Entry
+import { globalMessageList,globalMessageItem} from "../data/globalMessageList"; //将globalMessageList、globalMessageItem文件export后导入；
+import { MessageItem } from "./MessageItem"; //将文件MessageItem去除@entry作为组件export后导入；
+import { BottomArea } from "./BottomArea"; //将文件BottomArea去除@entry作为组件export后导入；
+import {TopArea } from "./TopArea"; //将文件TopArea去除@entry作为组件export后导入；
+ @Entry
  @Component
  struct Conversation {
    build() {

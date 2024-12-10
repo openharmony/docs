@@ -45,6 +45,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Home页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -67,6 +68,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Login页面中
   function onJumpClick(): void {
     router.replaceUrl({
@@ -89,6 +91,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   // 在Setting页面中
   function onJumpClick(): void {
     router.pushUrl({
@@ -129,13 +132,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ```ts
 import { router } from '@kit.ArkUI';
+
 class DataModelInfo {
   age: number = 0;
 }
 
 class DataModel {
   id: number = 0;
-  info: DataModelInfo|null = null;
+  info: DataModelInfo | null = null;
 }
 
 function onJumpClick(): void {
@@ -204,6 +208,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back();
   ```
 
@@ -216,6 +221,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home'
   });
@@ -225,6 +231,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage' //myPage为返回的命名路由页面别名
   });
@@ -239,6 +246,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'pages/Home',
     params: {
@@ -251,6 +259,7 @@ import { router } from '@kit.ArkUI';
 
   ```ts
   import { router } from '@kit.ArkUI';
+
   router.back({
     url: 'myPage', //myPage为返回的命名路由页面别名
     params: {
@@ -279,6 +288,7 @@ struct Home {
       const info: string = params.info as string; // 获取info属性的值
     }
   }
+
   ...
 }
 ```
@@ -374,7 +384,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result:promptAction.ShowDialogSuccessResponse) => {
+  }).then((result: promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // 用户点击了“取消”按钮
       console.info('User canceled the operation.');
@@ -384,7 +394,7 @@ function onBackClick() {
       // 调用router.back()方法，返回上一个页面
       router.back();
     }
-  }).catch((err:Error) => {
+  }).catch((err: Error) => {
     let message = (err as BusinessError).message
     let code = (err as BusinessError).code
     console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
@@ -435,7 +445,8 @@ export struct MyComponent {
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import '@ohos/library/src/main/ets/pages/Index';  // 引入共享包中的命名路由页面
+import '@ohos/library/src/main/ets/pages/Index'; // 引入共享包中的命名路由页面
+
 @Entry
 @Component
 struct Index {

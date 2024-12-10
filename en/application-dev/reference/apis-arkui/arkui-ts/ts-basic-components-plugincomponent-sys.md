@@ -1,6 +1,6 @@
 # PluginComponent (System API)
 
-The **\<PluginComponent>** allows an application to display external UI from another application. To implement update through inter-process communication (IPC), see [@ohos.pluginComponent](../js-apis-plugincomponent.md).
+The **PluginComponent** allows an application to display external UI from another application. To implement update through inter-process communication (IPC), see [@ohos.pluginComponent](../js-apis-plugincomponent.md).
 
 
 >  **NOTE**

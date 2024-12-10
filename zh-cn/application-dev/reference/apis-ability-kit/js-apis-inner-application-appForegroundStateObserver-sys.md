@@ -21,7 +21,7 @@ import { appManager } from '@kit.AbilityKit';
 
 | 名称                             | 类型                    | 可读 | 可写 | 说明   |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAppStateChanged   | AsyncCallback\<void>   | 是   | 否   | 应用启动和退出状态发生变化时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData-sys.md)。 |
+| onAppStateChanged   | AsyncCallback\<void>   | 是   | 否   | 应用启动和退出状态发生变化时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData.md)。 |
 
 **示例：**
 ```ts

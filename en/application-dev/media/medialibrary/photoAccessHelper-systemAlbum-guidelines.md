@@ -292,7 +292,7 @@ Use [PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis
 **How to Develop**
 
 1. Set the album type to **photoAccessHelper.AlbumType.SYSTEM** and the album subtype to **photoAccessHelper.AlbumSubtype.SCREENSHOT**.
-2. Use **PhotoAccessHelper.getAlbums** to obtain a **Screenshots** object.
+2. call **PhotoAccessHelper.getAlbums** to obtain a **Screenshots** object.
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';

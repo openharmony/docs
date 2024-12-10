@@ -61,12 +61,21 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | tid | number | 线程id。 |
 | frames | object[] | 线程调用栈，详见frame属性。 |
 
-**frame属性：**
+**frame属性(C/C++帧)：**
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
-| symbol | string | 函数名称。 |
 | file | string | 文件名。 |
+| symbol | string | 函数名称。 |
 | buildId | string | 文件唯一标识。 |
 | pc | string | pc寄存器地址。 |
 | offset | number | 函数偏移量。 |
+
+**frame属性(JS帧)：**
+
+| 名称    | 类型   | 说明                       |
+| ------- | ------ | ------------------------- |
+| file | string | 文件名。 |
+| symbol | string | 函数名称。 |
+| column | number | 异常所在行。 |
+| line | number | 异常所在列。 |

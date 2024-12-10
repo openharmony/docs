@@ -85,7 +85,7 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
                              [[maybe_unused]] void* finalize_hint)
    {
      OH_LOG_INFO(LOG_APP, "MyObject::Destructor called");
-     reinterpret_cast<MyObject*>(nativeObject)->~MyObject();
+     delete reinterpret_cast<MyObject*>(nativeObject);
    }
    
    napi_value MyObject::Init(napi_env env, napi_value exports)
@@ -128,7 +128,7 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
    }
    ```
 
-2. Wrap a C++ object in an ArkJS object in a constructor.
+2. Wrap a C++ object in an ArkTS object in a constructor.
 
    ```cpp
    napi_value MyObject::New(napi_env env, napi_callback_info info)
@@ -155,12 +155,24 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
    
        obj->env_ = env;
        // Use napi_wrap to wrap the C++ object obj in the ArkTS object jsThis.
-       napi_wrap(env,
-                 jsThis,
-                 reinterpret_cast<void*>(obj),
-                 MyObject::Destructor,
-                 nullptr,  // finalize_hint
-                 &obj->wrapper_);
+       napi_status status = napi_wrap(env,
+                                      jsThis,
+                                      reinterpret_cast<void*>(obj),
+                                      MyObject::Destructor,
+                                      nullptr,  // finalize_hint
+                                      &obj->wrapper_);
+       // If napi_wrap fails, the allocated memory must be manually released to prevent memory leaks.
+       if (status != napi_ok) {
+         OH_LOG_INFO(LOG_APP, "Failed to bind native object to js object"
+                     ", return code: %{public}d", status);
+         delete obj;
+         return jsThis;
+       }
+       // Obtain the napi_ref behavior from result of napi_wrap() to create a strong reference to jsThis.
+       // If you do not want to manage the lifecycle of jsThis, pass nullptr in the last parameter of napi_wrap
+       // or call napi_reference_unref to convert napi_ref to a weak reference.
+       uint32_t refCount = 0;
+       napi_reference_unref(env, obj->wrapper, &refCount);
    
        return jsThis;
      } else {

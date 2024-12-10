@@ -144,7 +144,7 @@ auto-stretch模式只支持track-size为一个有效行高值，并且track-size
 >  - 如果设置了rowsTemplate，Grid滚动方向为水平方向，主轴方向为水平方向，交叉轴方向为垂直方向。
 >  - 此模式下以下属性不生效：layoutDirection、maxCount、minCount、cellLength。
 >  - 网格交叉轴方向尺寸根据Grid自身内容区域交叉轴尺寸减去交叉轴方向所有Gap后按所占比重分配。
->  - 网格主轴方向尺寸取当前网格交叉轴方向所有GridItem高度最大值。
+>  - 网格主轴方向尺寸取当前网格交叉轴方向所有GridItem主轴方向尺寸最大值。
 >
 >  3、rowsTemplate、columnsTemplate都不设置：
 >

@@ -7,6 +7,10 @@
 Environment是ArkUI框架在应用程序启动时创建的单例对象。它为AppStorage提供了一系列描述应用程序运行状态的属性。Environment的所有属性都是不可变的（即应用不可写入），所有的属性都是简单类型。
 
 
+Environment提供了读取系统某些环境变量的能力，具体见[Environment内置参数](#environment内置参数)，并将其值写入AppStorage里，所以开发者需要通过AppStorage才能获取环境变量的值。
+
+在阅读本文档前，建议提前阅读：[AppStorage](./arkts-appstorage.md)。
+
 ## Environment内置参数
 
 | 键 | 数据类型 | 描述                                      |

@@ -5,7 +5,7 @@
 
 提供屏幕管理的一些基础能力，包括获取默认显示设备的信息，以及监听显示设备的旋转、折叠、展开等状态变化的能力。
 
-**引用文件**：&lt;window_manager/oh_display_manager.h&gt;
+**引用文件：**&lt;window_manager/oh_display_manager.h&gt;
 
 **库：** libnative_display_manager.so.
 
@@ -51,3 +51,8 @@
 | [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_UnregisterDisplayChangeListener](_o_h___display_manager.md#oh_nativedisplaymanager_unregisterdisplaychangelistener) (uint32_t listenerIndex) | 取消屏幕状态变化的监听。 | 
 | [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_RegisterFoldDisplayModeChangeListener](_o_h___display_manager.md#oh_nativedisplaymanager_registerfolddisplaymodechangelistener) ([OH_NativeDisplayManager_FoldDisplayModeChangeCallback](_o_h___display_manager.md#oh_nativedisplaymanager_folddisplaymodechangecallback) displayModeChangeCallback, uint32_t \*listenerIndex) | 注册屏幕展开、折叠状态变化的监听。 | 
 | [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener](_o_h___display_manager.md#oh_nativedisplaymanager_unregisterfolddisplaymodechangelistener) (uint32_t listenerIndex) | 取消屏幕展开、折叠状态变化的监听。 | 
+| [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_CreateAllDisplays](_o_h___display_manager.md#oh_nativedisplaymanager_createalldisplays) ([NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md) \*\*allDisplays) | 获取当前所有屏幕信息对象。 | 
+| void [OH_NativeDisplayManager_DestroyAllDisplays](_o_h___display_manager.md#oh_nativedisplaymanager_destroyalldisplays) ([NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md) \*allDisplays) | 销毁所有屏幕的信息对象。 | 
+| [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_CreateDisplayById](_o_h___display_manager.md#oh_nativedisplaymanager_createdisplaybyid) (uint32_t displayId, [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) \*\*displayInfo) | 获取指定屏幕的信息对象。 | 
+| void [OH_NativeDisplayManager_DestroyDisplay](_o_h___display_manager.md#oh_nativedisplaymanager_destroydisplay) ([NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) \*displayInfo) | 销毁指定屏幕的信息对象。 | 
+| [NativeDisplayManager_ErrorCode](_o_h___display_manager.md#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_CreatePrimaryDisplay](_o_h___display_manager.md#oh_nativedisplaymanager_createprimarydisplay) ([NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) \*\*displayInfo) | 获取主屏信息对象。除2in1之外的设备获取的是设备自带屏幕的屏幕信息；2in1设备外接屏幕时获取的是当前主屏幕的屏幕信息；2in1设备没有外接屏幕时获取的是自带屏幕的屏幕信息。 | 

@@ -22,14 +22,14 @@
     import { BusinessError } from '@kit.BasicServicesKit';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-      channels: audio.AudioChannel.CHANNEL_1,
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+      channels: audio.AudioChannel.CHANNEL_2,
       sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
       encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 
