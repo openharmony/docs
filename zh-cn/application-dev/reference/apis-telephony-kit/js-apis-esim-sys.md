@@ -962,7 +962,7 @@ euicc信息。
 | ----- | ----- | ----- | -----|
 | osVersion | string |  是  | 系统版本。 |
 
-## ResetOption
+## ResetOption<sup>14+</sup>
 
 重置状态。
 
@@ -976,7 +976,7 @@ euicc信息。
 |DELETE_FIELD_LOADED_TEST_PROFILES | 1 << 1 | 删除所有字段加载的测试配置文件 |
 |RESET_DEFAULT_SMDP_ADDRESS | 1 << 2 | 重置默认SM-DP+地址 |
 
-## OsuStatus
+## OsuStatus<sup>14+</sup>
 
 操作系统升级状态。
 
@@ -992,7 +992,7 @@ euicc信息。
 |EUICC_UPGRADE_ALREADY_LATEST | 4 | 当前为最新版本，无需升级 |
 |EUICC_UPGRADE_SERVICE_UNAVAILABLE | 5 | 升级服务不可用 |
 
-## ResultCode
+## ResultCode<sup>14+</sup>
 
 结果码。
 
@@ -1038,7 +1038,7 @@ euicc信息。
 | RESULT_DOWNLOAD_TIMEOUT | 287 | 下载超时 |
 | RESULT_SGP_22_OTHER | 400 | SGP.22中定义的其他错误 |
 
-## CancelReason
+## CancelReason<sup>14+</sup>
 
 取消会话的原因。
 
@@ -1053,7 +1053,7 @@ euicc信息。
 |CANCEL_REASON_TIMEOUT | 2 | 下载已超时，稍后可以重新启动 |
 |CANCEL_REASON_PPR_NOT_ALLOWED | 3 | 由于eUICC上的RAT es授权表或其他已安装的配置文件不允许其策略规则，因此无法安装 |
 
-## ProfileState
+## ProfileState<sup>14+</sup>
 
 配置文件状态。
 
@@ -1067,7 +1067,7 @@ euicc信息。
 |PROFILE_STATE_DISABLED | 0 | 禁用配置文件 |
 |PROFILE_STATE_ENABLED | 1 | 已启用配置文件 |
 
-## ProfileClass
+## ProfileClass<sup>14+</sup>
 
 配置文件类。
 
@@ -1082,7 +1082,7 @@ euicc信息。
 |PROFILE_CLASS_PROVISIONING | 1 | 预加载在eUICC上的配置文件 |
 |PROFILE_CLASS_OPERATIONAL | 2 | 可预加载或下载的操作配置文件 |
 
-## PolicyRules
+## PolicyRules<sup>14+</sup>
 
 配置文件的策略规则。
 
@@ -1096,7 +1096,7 @@ euicc信息。
 |POLICY_RULE_DELETE_NOT_ALLOWED | 1 << 1 | 无法删除此配置文件 |
 |POLICY_RULE_DISABLE_AND_DELETE | 1 << 2 | 禁用后应删除此配置文件 |
 
-## SolvableErrors
+## SolvableErrors<sup>14+</sup>
 
 可解决错误码。
 
@@ -1109,7 +1109,7 @@ euicc信息。
 |SOLVABLE_ERROR_NEED_CONFIRMATION_CODE | 1 << 0 | 下载过程需要用户输入确认码 |
 |SOLVABLE_ERROR_NEED_POLICY_RULE | 1 << 1 | 下载过程需要用户同意才能允许配置文件策略规则 |
 
-## DownloadConfiguration
+## DownloadConfiguration<sup>14+</sup>
 
 下载配置。
 
