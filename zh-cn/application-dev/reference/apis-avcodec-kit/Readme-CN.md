@@ -13,7 +13,6 @@
     - [VideoEncoder](_video_encoder.md)
     - [Multimedia_Drm](_multimedia___drm.md)
   - 头文件
-    - [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md)
     - [native_audio_channel_layout.h](native__audio__channel__layout_8h.md)
     - [native_avbuffer.h](native__avbuffer_8h.md)
     - [native_avbuffer_info.h](native__avbuffer__info_8h.md)
@@ -41,5 +40,6 @@
       - [AudioDecoder](_audio_decoder.md)
       - [AudioEncoder](_audio_encoder.md)
     - 头文件
+      - [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md)
       - [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)
       - [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md)
