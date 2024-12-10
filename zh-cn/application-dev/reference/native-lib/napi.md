@@ -280,6 +280,10 @@ libace_napi.z.so
 
 - object: 该导出接口支持TypedArray或[Sendable TypedArray](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)类型。
 
+**返回：**
+
+- 标准库接口中出参length返回typedarray的元素数量，而OpenHarmony的该导出接口返回typedarray中元素的字节长度。
+
 ### napi_coerce_to_object
 
 **返回：**
