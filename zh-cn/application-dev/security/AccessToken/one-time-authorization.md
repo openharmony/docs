@@ -19,9 +19,9 @@
 当前仅支持下列权限，当应用向用户申请下列权限时，弹窗将会出现“允许本次使用”的授权选项，设置中修改权限将会出现“每次询问”授权选项。
 
 - 剪切板：<!--RP1-->["ohos.permission.READ_PASTEBOARD"](permissions-for-system-apps.md#ohospermissionread_pasteboard)<!--RP1End-->
-- 模糊位置：["ohos.permission.APPROXIMATELY_LOCATION"](permissions-for-all.md#ohospermissionapproximately_location)
-- 位置：["ohos.permission.LOCATION"](permissions-for-all.md#ohospermissionlocation)
-- 后台位置：["ohos.permission.LOCATION_IN_BACKGROUND"](permissions-for-all.md#ohospermissionlocation_in_background)
+- 模糊位置：["ohos.permission.APPROXIMATELY_LOCATION"](permissions-for-all-user.md#ohospermissionapproximately_location)
+- 位置：["ohos.permission.LOCATION"](permissions-for-all-user.md#ohospermissionlocation)
+- 后台位置：["ohos.permission.LOCATION_IN_BACKGROUND"](permissions-for-all-user.md#ohospermissionlocation_in_background)
 
 ## 使用限制
 
