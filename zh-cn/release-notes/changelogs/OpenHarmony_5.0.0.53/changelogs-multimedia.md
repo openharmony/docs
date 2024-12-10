@@ -73,7 +73,7 @@ image.Component.OH_PackingOptions_GetMimeType()接口
 
 **适配指导**
 
-Image_ErrorCode OH_PackingOptions_GetMimeType (OH_PackingOptions * options, Image_MimeType * format )
+Image_ErrorCode OH_PackingOptions_GetMimeType (OH_PackingOptions * options, Image_MimeType * format)
 
 获取Heif格式图片mimeType为image/heic，即返回的format为image/heic。
 
@@ -145,7 +145,7 @@ API 10
 
 /interface/sdk-js/api/@ohos.multimedia.image.d.ts下的属性：
 
-image.Component.readonly supportedFormats: Array<string>
+image.Component.readonly supportedFormats: Array\<string>
 
 **适配指导**
 
@@ -182,7 +182,7 @@ API 10
 
 /interface/sdk-js/api/@ohos.multimedia.image.d.ts下的属性：
 
-image.Component.readonly supportedFormats: Array<string>
+image.Component.readonly supportedFormats: Array\<string>
 
 **适配指导**
 
