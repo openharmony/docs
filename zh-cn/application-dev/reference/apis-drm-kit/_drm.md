@@ -5,6 +5,12 @@
 
 提供数字版权保护能力的C接口API。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [DRM系统管理](../../media/drm/native-drm-mediakeysystem-management.md)
+- [DRM会话管理](../../media/drm/native-drm-mediakeysession-management.md)
+
+
 **起始版本：** 11
 
 

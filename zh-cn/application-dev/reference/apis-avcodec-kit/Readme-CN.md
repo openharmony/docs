@@ -3,8 +3,6 @@
 - C API
   - 模块
     - [AudioCodec](_audio_codec.md)
-    - [AudioDecoder](_audio_decoder.md)
-    - [AudioEncoder](_audio_encoder.md)
     - [AVCapability](_a_v_capability.md)
     - [AVDemuxer](_a_v_demuxer.md)
     - [AVMuxer](_a_v_muxer.md)
@@ -21,8 +19,6 @@
     - [native_avbuffer_info.h](native__avbuffer__info_8h.md)
     - [native_avcapability.h](native__avcapability_8h.md)
     - [native_avcodec_audiocodec.h](native__avcodec__audiocodec_8h.md)
-    - [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)
-    - [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md)
     - [native_avcodec_base.h](native__avcodec__base_8h.md)
     - [native_avcodec_videodecoder.h](native__avcodec__videodecoder_8h.md)
     - [native_avcodec_videoencoder.h](native__avcodec__videoencoder_8h.md)
@@ -40,3 +36,10 @@
     - [OH_AVDataSource](_o_h___a_v_data_source.md)
     - [OH_AVRange](_o_h___a_v_range.md)
     - [DrmSubsample](_drm_subsample.md)
+  - 已停止维护的接口
+    - 模块
+      - [AudioDecoder](_audio_decoder.md)
+      - [AudioEncoder](_audio_encoder.md)
+    - 头文件
+      - [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)
+      - [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md)
