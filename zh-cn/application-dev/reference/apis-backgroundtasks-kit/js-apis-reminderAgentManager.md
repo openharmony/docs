@@ -775,7 +775,7 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
-| ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延时提醒的按钮，提醒次数和间隔通过[ReminderRequest](#ReminderRequest)中snoozeTimes和timeInterval设置。 |
+| ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延时提醒的按钮，提醒次数和间隔通过 [ReminderRequest](#reminderrequest) 中snoozeTimes和timeInterval设置。 |
 
 ## ReminderType
 
