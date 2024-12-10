@@ -707,7 +707,7 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&gt;): void
 
-注册长时任务取消，使用callback异步回调。
+注册长时任务取消的监听，使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -717,7 +717,7 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskCancel                            | 是    | 长时任务取消接口，固定值。 |
+| type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
 | callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 是    | 长时任务取消回调信息。 |
 
 **错误码**：
@@ -760,7 +760,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInfo&gt;): void
 
-取消注册长时任务取消，使用callback异步回调。
+解除长时任务取消的监听，使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -770,7 +770,7 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskCancel                            | 是    | 长时任务取消接口，固定值。 |
+| type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
 | callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 否    | 长时任务取消回调信息，未传入则取消所有注册回调。 |
 
 **错误码**：
