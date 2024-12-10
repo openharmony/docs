@@ -776,7 +776,7 @@ Nullable\<T> {
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
-组件边界像素级取整计算策略。
+组件边界像素取整计算策略。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
