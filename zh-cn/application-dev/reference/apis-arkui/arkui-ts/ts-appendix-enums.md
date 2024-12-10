@@ -859,7 +859,7 @@ Nullable\<T> {
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
-组件边界像素级取整计算策略。
+组件边界像素取整计算策略。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
