@@ -87,7 +87,7 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
 | uri      | string                                                   | 是   | 要连接的服务端应用的路径。                               |
-| options | [DataShareHelperOptions](#datasharehelperoptions10)| 是   | 可选配置，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。|
+| options | [DataShareHelperOptions](#datasharehelperoptions10)| 是   | 指定[DataShareHelper](#datasharehelper)是否在代理模式下，指定非静默访问时的等待拉起时间。如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。|
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当创建DataShareHelper实例成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
 **错误码：**
@@ -290,7 +290,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isProxy | boolean | 否 | 默认为false，如果为true，则要创建的[DataShareHelper](#datasharehelper)处于代理模式，所有操作都不会打开数据提供者APP，除非数据库不存在，当数据库不存在时，[createDataShareHelper](#datasharecreatedatasharehelper10)会拉起数据提供者创建数据库。 |
-| waitTime<sup>14+</sup> | number | 否 | 非静默访问时的拉起等待时间（单位：秒），默认值为2秒。 |
+| waitTime<sup>14+</sup> | number | 否 | 非静默访问时的拉起等待时间（单位：秒），默认值为2秒。静默访问若失败，则也需拉起数据提供者进程，此种情况也可设置等待时间。 |
 
 ## TemplateId<sup>10+</sup>
 
