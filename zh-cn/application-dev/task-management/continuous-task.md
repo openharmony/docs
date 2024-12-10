@@ -121,6 +121,14 @@
    **设备本应用**申请长时任务示例代码如下：
 
    ```ts
+
+    function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
+      // 长时任务id
+      console.info('OnContinuousTaskCancel callback id ' + info.id);
+      // 长时任务取消原因
+      console.info('OnContinuousTaskCancel callback reason ' + info.reason);
+    }
+
     @Entry
     @Component
     struct Index {
@@ -128,20 +136,12 @@
      // 通过getContext方法，来获取page所在的UIAbility上下文。
       private context: Context = getContext(this);
 
-      // 长时任务取消回调
-      callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
-        // 长时任务id
-        console.info('OnContinuousTaskCancel callback id ' + info.id);
-        // 长时任务取消原因
-        console.info('OnContinuousTaskCancel callback reason ' + info.reason);
-      }
-
       OnContinuousTaskCancel() {
         try {
            backgroundTaskManager.on("continuousTaskCancel", callback);
            console.info(`Succeeded in operationing OnContinuousTaskCancel.`);
-        } catch (err: BusinessError) {
-           console.error(`Operation OnContinuousTaskCancel failed. code is ${err.code} message is ${err.message}`);
+        } catch (error) {
+           console.error(`Operation OnContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
       }
 
@@ -150,8 +150,8 @@
            // callback参数不传，则取消所有已注册的回调
            backgroundTaskManager.off("continuousTaskCancel", callback);
            console.info(`Succeeded in operationing OffContinuousTaskCancel.`);
-        } catch (err: BusinessError) {
-           console.error(`Operation OffContinuousTaskCancel failed. code is ${err.code} message is ${err.message}`);
+        } catch (error) {
+           console.error(`Operation OffContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
       }
 
@@ -172,18 +172,27 @@
           // 点击通知后，动作执行属性
           actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
-   
-        // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-          backgroundTaskManager.startBackgroundRunning(this.context,
-            backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-            // 此处执行具体的长时任务逻辑，如放音等。
-            console.info(`Succeeded in operationing startBackgroundRunning.`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+
+        try {
+          // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+          wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+            try {
+              let list: Array<string> = ["audioRecording"];
+              backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+                console.info("Operation startBackgroundRunning succeeded");
+                // 此处执行具体的长时任务逻辑，如录音，录制等。
+              }).catch((error: BusinessError) => {
+                console.error(`Failed to Operation startBackgroundRunning. code is ${error.code} message is ${error.message}`);
+              });
+            } catch (error) {
+              console.error(`Failed to Operation startBackgroundRunning. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            }
           });
-        });
+        } catch (error) {
+          console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
       }
+
    
       stopContinuousTask() {
          backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
