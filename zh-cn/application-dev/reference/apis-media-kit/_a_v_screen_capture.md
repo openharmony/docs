@@ -5,6 +5,11 @@
 
 调用本模块下的接口，应用可以完成屏幕录制的功能。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用AVScreenCapture录屏取码流](../../media/media/using-avscreencapture-for-buffer.md)
+- [使用AVScreenCapture录屏写文件](../../media/media/using-avscreencapture-for-file.md)
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
