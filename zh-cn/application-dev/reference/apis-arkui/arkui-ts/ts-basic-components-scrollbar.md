@@ -58,7 +58,7 @@ ScrollBar(value: ScrollBarOptions)
 | Horizontal | 横向滚动条。 |
 
 
-## 示例1
+## 示例1（设置子节点）
 
 该示例为ScrollBar组件有子节点时的滚动条样式。
 
@@ -108,7 +108,7 @@ struct ScrollBarExample {
 
 ![zh-cn_image_0000001232775585](figures/zh-cn_image_0000001232775585.gif)
 
-## 示例2
+## 示例2（不设置子节点）
 
 该示例为ScrollBar组件没有子节点时的滚动条样式。
 
