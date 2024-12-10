@@ -146,16 +146,24 @@
           actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
    
-        // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-          backgroundTaskManager.startBackgroundRunning(this.context,
-            backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-            // 此处执行具体的长时任务逻辑，如放音等。
-            console.info(`Succeeded in operationing startBackgroundRunning.`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+        try {
+          // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+          wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+            try {
+              let list: Array<string> = ["audioRecording"];
+              backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+                console.info("Operation startBackgroundRunning succeeded");
+                // 此处执行具体的长时任务逻辑，如录音，录制等。
+              }).catch((error: BusinessError) => {
+                console.error(`Failed to Operation startBackgroundRunning. code is ${error.code} message is ${error.message}`);
+              });
+            } catch (error) {
+              console.error(`Failed to Operation startBackgroundRunning. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+            }
           });
-        });
+        } catch (error) {
+          console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
       }
    
       stopContinuousTask() {
