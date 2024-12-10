@@ -1399,7 +1399,7 @@
           - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
-          - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
+          - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
         - 录屏<!--media-recording-c-->
           - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
           - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
