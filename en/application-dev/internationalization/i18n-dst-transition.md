@@ -34,7 +34,7 @@ The DST transition rules are as follows:
 
    It is recommended that the DST flag be added to the local time when DST is active.
 
-   ![DST flag](figures/dst-flag.png)
+   ![DST flag](figures/dst-transition.png)
 
 3. Store and transmit time data.
    You are advised to use the standard time (UTC or GMT) of time zone 0 for time data storage and transmission. This helps prevent data loss or errors caused by DST transition.
