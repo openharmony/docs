@@ -1579,7 +1579,6 @@
             - [使用JSVM-API接口进行ArrayBuffer相关开发](napi/use-jsvm-about-arraybuffer.md)
             - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
             - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
-            - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
             - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
             - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
             - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
@@ -1597,7 +1596,6 @@
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例
-              - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
