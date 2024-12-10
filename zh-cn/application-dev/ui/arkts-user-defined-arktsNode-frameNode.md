@@ -532,7 +532,6 @@ class MyFrameNode extends FrameNode {
   }
 
   onLayout(position: Position): void {
-    let y = 0;
     for (let i = 0;i < this.getChildrenCount(); i++) {
       let child = this.getChild(i);
       if (child) {
@@ -540,7 +539,6 @@ class MyFrameNode extends FrameNode {
           x: vp2px(100),
           y: vp2px(this.offsetY)
         });
-        y += child.getMeasuredSize().height + this.space;
       }
     }
     this.setLayoutPosition(position);
