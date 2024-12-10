@@ -163,5 +163,6 @@ FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换�
 
 ### 其他约束
 
-- 不支持在运行过程中修改切换后端拉起的原子化服务EmbeddableUIAbility
-- 不支持预览，不在开发IDE中提供预览能力
+- 不支持在运行过程中修改切换后端拉起的原子化服务EmbeddableUIAbility。
+
+- 不支持预览，不在开发DevEco Studio中提供预览能力。
