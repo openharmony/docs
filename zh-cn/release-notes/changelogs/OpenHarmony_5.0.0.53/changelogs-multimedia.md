@@ -14,11 +14,9 @@
 
 该变更为不兼容变更。
 
-变更前：
-设置Heif格式图片mimeType传入参数为image/heif。
+变更前：设置Heif格式图片mimeType传入参数为image/heif。
 
-变更后：
-设置Heif格式图片mimeType传入参数为image/heic。
+变更后：设置Heif格式图片mimeType传入参数为image/heic。
 
 **起始API Level**
 
@@ -55,11 +53,9 @@ Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options, Image_
 
 该变更为不兼容变更。
 
-变更前：
-获取Heif格式图片mimeType为image/heif。
+变更前：获取Heif格式图片mimeType为image/heif。
 
-变更后：
-获取Heif格式图片mimeType为image/heic。
+变更后：获取Heif格式图片mimeType为image/heic。
 
 **起始API Level**
 
@@ -96,11 +92,9 @@ Image_ErrorCode OH_PackingOptions_GetMimeType (OH_PackingOptions * options, Imag
 
 该变更为不兼容变更。
 
-变更前：
-查询设备支持的解码类型Heif格式返回值为image/heif。
+变更前：查询设备支持的解码类型Heif格式返回值为image/heif。
 
-变更后：
-查询设备支持的解码类型Heif格式返回值为image/heic。
+变更后：查询设备支持的解码类型Heif格式返回值为image/heic。
 
 **起始API Level**
 
@@ -135,11 +129,9 @@ image.Component.OH_ImageSource_GetSupportedFormats()接口
 
 该变更为不兼容变更。
 
-变更前：
-查询设备支持的解码类型Heif格式返回值为image/heif。
+变更前：查询设备支持的解码类型Heif格式返回值为image/heif。
 
-变更后：
-查询设备支持的解码类型Heif格式返回值为image/heic。
+变更后：查询设备支持的解码类型Heif格式返回值为image/heic。
 
 **起始API Level**
 
@@ -174,11 +166,9 @@ image.Component.readonly supportedFormats: Array<string>
 
 该变更为不兼容变更。
 
-变更前：
-查询设备支持的编码类型Heif格式返回值为image/heif。
+变更前：查询设备支持的编码类型Heif格式返回值为image/heif。
 
-变更后：
-查询设备支持的编码类型Heif格式返回值为image/heic。
+变更后：查询设备支持的编码类型Heif格式返回值为image/heic。
 
 **起始API Level**
 
@@ -213,11 +203,9 @@ image.Component.readonly supportedFormats: Array<string>
 
 该变更为兼容性变更。
 
-变更前：
-Heif格式图片编码参数的mimeType类型为image/heif。
+变更前：Heif格式图片编码参数的mimeType类型为image/heif。
 
-变更后：
-Heif格式图片编码参数的mimeType类型为image/heif或者image/heic。
+变更后：Heif格式图片编码参数的mimeType类型为image/heif或者image/heic。
 
 **起始API Level**
 
@@ -252,11 +240,9 @@ image.Component.packing()
 
 该变更为兼容性变更。
 
-变更前：
-Heif格式图片编码参数的mimeType类型为image/heif。
+变更前：Heif格式图片编码参数的mimeType类型为image/heif。
 
-变更后：
-Heif格式图片编码参数的mimeType类型为image/heif或者image/heic。
+变更后：Heif格式图片编码参数的mimeType类型为image/heif或者image/heic。
 
 **起始API Level**
 
