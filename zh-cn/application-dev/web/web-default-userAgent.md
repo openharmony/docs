@@ -33,7 +33,7 @@ UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、
 >
 > - 当前通过UserAgent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当UserAgent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置[metaViewport](../reference/apis-arkweb/ts-basic-components-web.md#metaviewport12)属性为true来覆盖关闭状态。
 >
-> - Arkweb关键字表示设备使用的web内核，OpenHarmony关键字表示设备使用的操作系统，建议开发者通过OpenHarmony关键字识别是否是OpenHarmony设备，同时可以通过deviceType识别设备类型用于不同设备上的页面显示。
+> - 建议通过OpenHarmony关键字识别是否是OpenHarmony设备，同时可以通过deviceType识别设备类型用于不同设备上的页面显示。（Arkweb关键字表示设备使用的web内核，OpenHarmony关键字表示设备使用的操作系统，因此将“建议通过ArkWeb关键字识别是否是OpenHarmony设备“调整为”建议通过OpenHarmony关键字识别是否是OpenHarmony设备“。）
 
 ## 自定义UserAgent结构
 
