@@ -1,4 +1,4 @@
-# Media Kit 知识地图
+# Media Kit开发速览
 
 当前 Media Kit 提供了 ArkTS 和 C/C++ 两种开发接口，实现了音视频播放、录制、元数据、转码等能力。Media Kit 的 API 文档和开发指导如下表所示。
 
