@@ -3600,8 +3600,6 @@
       - C API<!--avcodec-c-->
         - 模块<!--avcodec-module-->
           - [AudioCodec](reference/apis-avcodec-kit/_audio_codec.md)
-          - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
-          - [AudioEncoder](reference/apis-avcodec-kit/_audio_encoder.md)
           - [AVCapability](reference/apis-avcodec-kit/_a_v_capability.md)
           - [AVDemuxer](reference/apis-avcodec-kit/_a_v_demuxer.md)
           - [AVMuxer](reference/apis-avcodec-kit/_a_v_muxer.md)
@@ -3612,14 +3610,11 @@
           - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
           - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
         - 头文件<!--avcodec-headerfile-->
-          - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
           - [native_audio_channel_layout.h](reference/apis-avcodec-kit/native__audio__channel__layout_8h.md)
           - [native_avbuffer.h](reference/apis-avcodec-kit/native__avbuffer_8h.md)
           - [native_avbuffer_info.h](reference/apis-avcodec-kit/native__avbuffer__info_8h.md)
           - [native_avcapability.h](reference/apis-avcodec-kit/native__avcapability_8h.md)
           - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/native__avcodec__audiocodec_8h.md)
-          - [native_avcodec_audiodecoder.h](reference/apis-avcodec-kit/native__avcodec__audiodecoder_8h.md)
-          - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
@@ -3637,6 +3632,14 @@
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
+        - 已停止维护的接口
+          - 模块
+            - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
+            - [AudioEncoder](reference/apis-avcodec-kit/_audio_encoder.md)
+          - 头文件
+            - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
+            - [native_avcodec_audiodecoder.h](reference/apis-avcodec-kit/native__avcodec__audiodecoder_8h.md)
+            - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
     - AVSession Kit（音视频播控服务）<!--avsession-api-->
       - ArkTS API<!--avsession-arkts-->
         - [@ohos.multimedia.avsession (媒体会话管理)](reference/apis-avsession-kit/js-apis-avsession.md)

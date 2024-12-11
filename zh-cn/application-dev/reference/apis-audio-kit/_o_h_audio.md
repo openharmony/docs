@@ -5,6 +5,12 @@
 
 提供音频模块C接口定义。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用OHAudio开发音频播放功能](../../media/audio/using-ohaudio-for-playback.md)
+- [使用OHAudio开发音频录制功能](../../media/audio/using-ohaudio-for-recording.md)
+- [使用AudioSession管理应用音频焦点](../../media/audio/using-ohaudio-for-session.md)
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10
