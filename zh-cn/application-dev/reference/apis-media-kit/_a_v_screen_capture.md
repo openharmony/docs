@@ -1654,7 +1654,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 
 该接口设置最大帧率时，实际设置的帧率受限设备的能力，由底层的系统能力决定。
 
-目前对于最大帧率设置的最大值不设入参限制。不管应用是否设置录屏的最大帧率，实际录屏帧率上限都是60FPS。
+调用该接口设置录屏最大帧率时，实际帧率将受限于设备能力。目前接口入参的最大值不设限制，但当前支持的最高帧率为60FPS，当入参设置超过60FPS，将以60FPS处理。不超过上限时，则按照实际入参值处理。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
