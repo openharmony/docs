@@ -29,7 +29,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | 创建一个上下文的对象。 |
+| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | 创建一个上下文的对象。注意：此接口需跟[OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy)配套使用。 |
 | [OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) \*context) | 释放上下文对象。 |
 | [OH_AI_ContextSetThreadNum](_mind_spore.md#oh_ai_contextsetthreadnum) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context, int32_t thread_num) | 设置运行时的线程数量。 |
 | [OH_AI_ContextGetThreadNum](_mind_spore.md#oh_ai_contextgetthreadnum) (const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context) | 获取线程数量。 |
