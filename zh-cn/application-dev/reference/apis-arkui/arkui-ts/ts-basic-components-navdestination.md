@@ -326,6 +326,6 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | pageSourceFile| string | 是 | 页面在当前包中的路径。|
 | data | object | 是 | 页面自定义字段信息。|
 
-## 示例
+## 示例（NavDestination使用）
 
-NavDestination用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。
+NavDestination用法可参考[Navigation示例](ts-basic-components-navigation.md#示例2使用路由栈方法)。

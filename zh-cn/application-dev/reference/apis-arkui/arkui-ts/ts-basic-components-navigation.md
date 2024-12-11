@@ -488,7 +488,7 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10)。
+Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10定义路由栈派生类)。
 
 > **说明：**
 >
@@ -1515,9 +1515,9 @@ Navigation首页名字。
 
 示例效果请以真机为准，系统路由表不支持预览器，跨平台以及模拟器。
 
-### 示例1
+### 示例1（Navigation页面布局）
 
-该示例主要演示Navigation页面的布局。
+该示例主要演示Navigation页面的布局包括标题栏(title)，菜单栏(menus)，内容区和工具栏(toolbarConfiguration)。
 
 ```ts
 // xxx.ets
@@ -1624,7 +1624,7 @@ struct NavigationExample {
 
 
 
-### 示例2
+### 示例2（使用路由栈方法）
 
 该示例主要演示NavPathStack中方法的使用及路由拦截。
 
@@ -1887,7 +1887,7 @@ export struct PageTwo {
 ```
 ![navigation.gif](figures/navigation.gif)
 
-### 示例3
+### 示例3（设置可交互转场动画）
 
 该示例主要演示设置每个NavDestination子页面的自定义转场动画及可交互转场动画。
 
@@ -2366,9 +2366,9 @@ export class CustomTransition {
 ```
 ![navigation_interactive_transition](figures/navigation_interactive_transition.gif)
 
-### 示例4
+### 示例4（Navigation带参返回）
 
-该示例主要演示Navigation带参返回。
+该示例主要演示Navigation通过NavPathStack提供的接口来实现将设置的参数传给上一级页面。
 
 ```ts
 // Index.ets
@@ -2655,7 +2655,7 @@ export struct PageTwo {
 ```
 ![navigationWithOnPop.gif](figures/navigationWithOnPop.gif)
 
-### 示例5
+### 示例5（设置背景颜色和模糊效果）
 
 该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。
 
@@ -2812,7 +2812,7 @@ struct Index {
 ```
 ![navigationColorBlur.gif](figures/navigationColorBlur.gif)
 
-### 示例6
+### 示例6（嵌套场景下获取外层栈）
 
 该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
 
@@ -2880,7 +2880,7 @@ struct NavigationExample1 {
 ```
 ![navPathStackGetParent.gif](figures/navPathStackGetParent.gif)
 
-### 示例7
+### 示例7（通过onReady获取栈）
 
 该示例主要演示如下两点功能：
 
@@ -2991,9 +2991,9 @@ struct NavigationExample2 {
 ```
 ![navigationOnReady1.gif](figures/navigationOnReady1.gif)
 
-### 示例8
+### 示例8（NavDestination生命周期时序）
 
-该示例演示NavDestination的生命周期时序。
+该示例演示NavDestination的onAppear，onDisAppear，onShown，onHidden，onWillAppear，onWillDisappear，onWillShow，onWillHide接口的生命周期时序。
 
 ```ts
 @Builder
@@ -3111,7 +3111,7 @@ struct NavigationExample3 {
 ![navigationOnReady2.gif](figures/navigationOnReady2.gif)
 
 
-### 示例9
+### 示例9（标题栏布局效果）
 
 该示例演示Navigation标题栏STACK布局效果。
 
@@ -3182,7 +3182,7 @@ struct NavigationExample {
 ![titlebar_stack.gif](figures/titlebar_stack.gif)
 
 
-### 示例10
+### 示例10（定义路由栈派生类）
 
 该示例主要演示如何定义NavPathStack的派生类和派生类在Navigation中的基本用法。
 
@@ -3303,8 +3303,7 @@ struct PageOne {
 ```
 ![derive_stack.gif](figures/derive_stack.gif)
 
-### 示例11
-
+### 示例11（使用Symbol组件）
 该示例主要演示Navigation和NavDestination如何使用Symbol组件。
 
 ```ts
@@ -3427,7 +3426,7 @@ export struct NavigationMenu {
 ```
 ![navigation_symbol.gif](figures/navigation_symbol.gif)
 
-### 示例12
+### 示例12（设置自定义标题栏边距）
 
 该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。
 

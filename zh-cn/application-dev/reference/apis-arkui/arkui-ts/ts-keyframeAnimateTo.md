@@ -45,6 +45,8 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 ## 示例
 
+该示例主要演示如何通过keyframeAnimateTo来设置关键帧动画。
+
 ```ts
 // xxx.ets
 import { UIContext } from '@kit.ArkUI';
