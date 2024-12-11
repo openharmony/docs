@@ -17,6 +17,7 @@
 - [录像](../../media/camera/native-camera-recording.md)
 - [元数据](../../media/camera/native-camera-metadata.md)
 - [手电筒使用](../../media/camera/native-camera-torch-use.md)
+<!--RP1--><!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
