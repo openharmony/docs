@@ -4628,7 +4628,7 @@ Checks whether a UTD is a higher-level type of the target UTD. For example, **SO
 
 **Returns**
 
-Returns **true** if the UTD a higher-level type of the target UTD; returns **false** otherwise.
+Returns **true** if the UTD is a higher-level type of the target UTD; returns **false** otherwise.
 
 
 ### OH_Utd_IsLower()
@@ -4652,4 +4652,4 @@ Checks whether a UTD is a lower-level type of the target UTD. For example, **TYP
 
 **Returns**
 
-Returns **true** if the UTD a lower-level type of the target UTD; returns **false** otherwise.
+Returns **true** if the UTD is a lower-level type of the target UTD; returns **false** otherwise.
