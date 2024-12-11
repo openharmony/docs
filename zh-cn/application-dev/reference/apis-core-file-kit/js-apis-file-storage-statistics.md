@@ -112,7 +112,7 @@ getTotalSize(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 storageStatistics.getTotalSize().then((number: number) => {
   console.info("getTotalSize successfully:" + JSON.stringify(number));
 }).catch((err: BusinessError) => {
@@ -147,7 +147,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 storageStatistics.getTotalSize((error: BusinessError, number: number) => {
   if (error) {
     console.error("getTotalSize failed with error:" + JSON.stringify(error));
@@ -158,7 +158,7 @@ storageStatistics.getTotalSize((error: BusinessError, number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSize<sup>9+</sup>
+## storageStatistics.getFreeSize<sup>16+</sup>
 
 getFreeSize(): Promise&lt;number&gt;
 
@@ -185,7 +185,7 @@ getFreeSize(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 storageStatistics.getFreeSize().then((number: number) => {
   console.info("getFreeSize successfully:" + JSON.stringify(number));
 }).catch((err: BusinessError) => {
@@ -193,7 +193,7 @@ storageStatistics.getFreeSize().then((number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSize<sup>9+</sup>
+## storageStatistics.getFreeSize<sup>16+</sup>
 
 getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
@@ -220,7 +220,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 storageStatistics.getFreeSize((error: BusinessError, number: number) => {
   if (error) {
     console.error("getFreeSize failed with error:" + JSON.stringify(error));
