@@ -172,7 +172,7 @@ struct Index {
   // 在以下demo中，使用fs文件系统打开沙箱地址获取媒体文件地址，设置dataSrc属性，获取音频元数据并打印，
   // 获取音频专辑封面并通过Image控件显示在屏幕上。
   async testFetchMetadataFromDataSrc() {
-    let context = getContext(this) as common.UIAbilityContext
+    let context = getContext(this) as common.UIAbilityContext;
     // 通过UIAbilityContext获取沙箱地址filesDir（以Stage模型为例）
     let fd: number = fs.openSync(this.rootPath + this.testFilename).fd;
     let fileSize: number = fs.statSync(this.rootPath + this.testFilename).size;
@@ -189,7 +189,7 @@ struct Index {
           length: len
         };
         let num = fs.readSync(fd, buffer, options);
-        console.info(TAG, 'readAt end, num: ' + num)
+        console.info(TAG, 'readAt end, num: ' + num);
         if (num > 0 && fileSize >= pos) {
           return num;
         }
