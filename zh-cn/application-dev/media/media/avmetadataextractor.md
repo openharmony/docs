@@ -69,9 +69,9 @@ struct Index {
           this.testFetchMetadataFromFdSrcByCallback();
           // 设置fdSrc, 获取音频元数据和专辑封面（异步接口以Promise形式调用）
           this.testFetchMetadataFromFdSrcByPromise();
-          // 通过fdSrc获取沙箱路径下音频元数据和专辑封面
+          // 通过fdSrc获取沙箱路径下音频元数据和专辑封面（文件必须在沙箱路径里存在）
           this.testFetchMetadataFromFdSrc();
-          // 设置dataSrc, 获取音频元数据和专辑封面
+          // 设置dataSrc, 获取沙箱路径下音频元数据和专辑封面（文件必须在沙箱路径里存在）
           this.testFetchMetadataFromDataSrc();
         })
 
