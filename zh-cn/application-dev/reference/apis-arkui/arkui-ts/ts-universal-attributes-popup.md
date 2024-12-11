@@ -202,7 +202,6 @@ struct PopupExample {
 @Component
 struct PopupExample {
   @State handlePopup: boolean = false
-  @State customPopup: boolean = false
 
   build() {
     Column({ space: 100 }) {
