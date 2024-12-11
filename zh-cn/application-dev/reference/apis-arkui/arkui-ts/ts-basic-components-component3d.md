@@ -180,7 +180,7 @@ renderHeight(value: Dimension)
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
-示例效果请以真机运行为准，当前IDE预览器不支持。<br/>
+示例效果请以真机运行为准，当前DevEco Studio预览器不支持。<br/>
 GLTF模型加载示例。 <br/>
 ```ts
 // xxx.ets
