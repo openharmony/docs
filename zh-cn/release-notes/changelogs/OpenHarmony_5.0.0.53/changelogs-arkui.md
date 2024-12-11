@@ -130,7 +130,42 @@ common.d.ts文件的sharedTransition接口
 **适配指导**
 
 如果同一组件sharedTransition的id需要保持不变，应维持原状，而非将其更改为空字符串或undefined。若需清空sharedTransition的id，可将sharedTransition的id设置为空字符串或undefined来实现。
-## cl.arkui.4 getSnapshot接口行为变更
+## cl.arkui.4 hideNonSystemFloatingWindows接口行为变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+pc场景下，系统应用调用hideNonSystemFloatingWindows接口导致应用弹窗被隐藏，页面点击无响应。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：pc场景，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗被隐藏。
+
+变更后：pc场景，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗不被隐藏。
+
+**起始API Level**
+
+API 11
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.51版本开始。
+
+**变更的接口/组件**
+
+@ohos.window.d.ts
+
+hideNonSystemFloatingWindows接口
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+## cl.arkui.5 getSnapshot接口行为变更
 
 **访问级别**
 
@@ -166,7 +201,7 @@ getSnapshot接口
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.5 setWindowBrightness接口行为变更
+## cl.arkui.6 setWindowBrightness接口行为变更
 
 **访问级别**
 
