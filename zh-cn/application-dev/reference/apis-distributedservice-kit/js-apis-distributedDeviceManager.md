@@ -35,7 +35,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | 是   | 指示应用程序的bundle名称。                                  |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
 
 **返回值：**
 
