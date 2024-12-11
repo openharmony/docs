@@ -45,8 +45,8 @@
 
   @Entry
   @Component
-  struct attributeDemo {
-    @State modifier: MyButtonModifier = new MyButtonModifier()
+  struct AttributeDemo {
+    @State modifier: MyButtonModifier = new MyButtonModifier();
 
     build() {
       Row() {
@@ -67,7 +67,7 @@
   ```ts
   // setAttribute.ets
   export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-    isDark: boolean = false
+    isDark: boolean = false;
     applyNormalAttribute(instance: ButtonAttribute): void {
       if (this.isDark) {
         instance.backgroundColor(Color.Black)
@@ -83,12 +83,12 @@
   ```ts
   @Component
   struct FancyUse {
-    @State heightValue: number = 100
+    @State heightValue: number = 100;
     @Styles fancy() {
       .height(this.heightValue)
       .backgroundColor(Color.Yellow)
       .onClick(() => {
-        this.heightValue = 200
+        this.heightValue = 200;
       })
     }
   }
@@ -149,7 +149,7 @@
 @Entry
 @Component
 struct FancyUse {
-  @State heightValue: number = 100
+  @State heightValue: number = 100;
   // 定义在组件内的@Styles封装的样式
   @Styles fancy() {
     .width(200)
