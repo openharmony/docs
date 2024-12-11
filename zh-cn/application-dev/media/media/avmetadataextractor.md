@@ -195,7 +195,7 @@ struct Index {
         }
         return -1;
       }
-    }
+    };
 
     if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
       // 创建AVMetadataExtractor对象
