@@ -370,6 +370,7 @@
           - [延迟加载（lazy import）](arkts-utils/arkts-lazy-import.md)
           - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
           - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
+          - [模块加载副作用及优化](arkts-utils/arkts-module-side-effects.md)
       - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
         - [ArkTS编译工具链概述](arkts-utils/compilation-tool-chain-overview.md)
         - 方舟字节码<!--arkts-bytecode-->
@@ -1583,6 +1584,26 @@
             - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
             - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
             - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
+            - [使用JSVM-API接口进行函数创建和调用](napi/use-jsvm-function-call.md)
+            - [使用JSVM-API接口进行JSON操作](napi/use-jsvm-about-JSON.md)
+            - [使用JSVM-API接口进行array相关开发](napi/use-jsvm-about-array.md)
+            - [使用JSVM-API接口进行ArrayBuffer相关开发](napi/use-jsvm-about-arraybuffer.md)
+            - [使用JSVM-API接口操作bigint类型值](napi/use-jsvm-about-bigint.md)
+            - [使用JSVM进行class相关开发](napi/use-jsvm-about-class.md)
+            - [使用JSVM-API接口进行Date相关开发](napi/use-jsvm-about-date.md)
+            - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
+            - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
+            - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
+            - [使用Node-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
+            <!--Del-->
+            - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
+            <!--DelEnd-->
+            - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
+            - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
+            - [使用JSVM-API接口进行JavaScript代码调试调优](napi/use-jsvm-heapstatistics-debugger-cpuprofiler-heapsnapshot.md)
+            - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
+            - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
+            - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例
@@ -3642,8 +3663,6 @@
       - C API<!--avcodec-c-->
         - 模块<!--avcodec-module-->
           - [AudioCodec](reference/apis-avcodec-kit/_audio_codec.md)
-          - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
-          - [AudioEncoder](reference/apis-avcodec-kit/_audio_encoder.md)
           - [AVCapability](reference/apis-avcodec-kit/_a_v_capability.md)
           - [AVDemuxer](reference/apis-avcodec-kit/_a_v_demuxer.md)
           - [AVMuxer](reference/apis-avcodec-kit/_a_v_muxer.md)
@@ -3654,14 +3673,11 @@
           - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
           - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
         - 头文件<!--avcodec-headerfile-->
-          - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
           - [native_audio_channel_layout.h](reference/apis-avcodec-kit/native__audio__channel__layout_8h.md)
           - [native_avbuffer.h](reference/apis-avcodec-kit/native__avbuffer_8h.md)
           - [native_avbuffer_info.h](reference/apis-avcodec-kit/native__avbuffer__info_8h.md)
           - [native_avcapability.h](reference/apis-avcodec-kit/native__avcapability_8h.md)
           - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/native__avcodec__audiocodec_8h.md)
-          - [native_avcodec_audiodecoder.h](reference/apis-avcodec-kit/native__avcodec__audiodecoder_8h.md)
-          - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
@@ -3679,6 +3695,14 @@
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
+        - 已停止维护的接口
+          - 模块
+            - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)
+            - [AudioEncoder](reference/apis-avcodec-kit/_audio_encoder.md)
+          - 头文件
+            - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
+            - [native_avcodec_audiodecoder.h](reference/apis-avcodec-kit/native__avcodec__audiodecoder_8h.md)
+            - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
     - AVSession Kit（音视频播控服务）<!--avsession-api-->
       - ArkTS API<!--avsession-arkts-->
         - [@ohos.multimedia.avsession (媒体会话管理)](reference/apis-avsession-kit/js-apis-avsession.md)
@@ -4199,3 +4223,37 @@
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
       - [Native api中导出的ICU4C符号列表](reference/native-lib/icu4c-symbol.md)
       - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/openglesv3-symbol.md)
+
+<!--Del-->
+- 常见问题
+  - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
+  - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
+  - [应用模型常见问题](faqs/faqs-ability.md)
+  - ArkUI框架开发常见问题(ArkTS)
+    - [ArkTS语法使用常见问题](faqs/faqs-arkui-arkts.md)
+    - [ArkUI组件开发常见问题(ArkTS)](faqs/faqs-arkui-component.md)
+    - [ArkUI布局开发常见问题(ArkTS)](faqs/faqs-arkui-layout.md)
+    - [ArkUI路由/导航开发常见问题(ArkTS)](faqs/faqs-arkui-route-nav.md)
+    - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
+  - [ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+  - [ArkTS语言基础类库开发常见问题](faqs/faqs-arkts-utils.md)
+  - [Web开发常见问题](faqs/faqs-arkui-web.md)
+  - [包管理开发常见问题](faqs/faqs-bundle-management.md)
+  - [资源管理开发常见问题](faqs/faqs-globalization.md)
+  - [事件通知开发常见问题](faqs/faqs-event-notification.md)
+  - [图形图像开发常见问题](faqs/faqs-graphics.md)
+  - [窗口管理开发常见问题](faqs/faqs-window-manager.md)
+  - [媒体开发常见问题](faqs/faqs-multimedia.md)
+  - [安全基础能力开发常见问题](faqs/faqs-security.md)
+  - [程序访问控制开发常见问题](faqs/faqs-ability-access-control.md)
+  - [数据管理开发常见问题](faqs/faqs-distributed-data-management.md)
+  - [文件管理开发常见问题](faqs/faqs-file-management.md)
+  - [网络管理开发常见问题](faqs/faqs-network-management.md)
+  - [DFX开发常见问题](faqs/faqs-dfx.md)
+  - [泛Sensor服务开发常见问题](faqs/faqs-sensor.md)
+  - [启动恢复开发常见问题](faqs/faqs-startup.md)
+  - [SDK使用常见问题](faqs/faqs-sdk.md)
+  - [NDK开发常见问题](faqs/faqs-ndk.md)
+  - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
+  - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
+<!--DelEnd-->

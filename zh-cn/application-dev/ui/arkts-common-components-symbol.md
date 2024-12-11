@@ -1,11 +1,11 @@
 # 图标小符号 (SymbolGlyph/SymbolSpan)
 
-SymbolGlyph是图标小符号组件，便于使用精美的图标，如渲染多色图标。具体用法请参考[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)。
+SymbolGlyph是图标小符号组件，便于使用精美的图标，如渲染多色图标和使用动效图标。SymbolSpan作为Text组件的子组件，可在文本中穿插显示图标小符号。具体用法请参考[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)和[SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md)组件的文档。
 
 
 ## 创建图标
 
-SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$r创建Resource类型对象。
+SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置的Symbol资源名。
 
   ```ts
   SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
@@ -18,11 +18,11 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
 
 ## 添加到文本中
 
-[SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md)能作为[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)的子组件显示图标小符号。可以在一个Text内添加多个SymbolSpan来显示一串图标。
+[SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md)可作为[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)的子组件用于显示图标小符号。可以在一个Text组件内添加多个SymbolSpan，从而展示一串连续的图标。  
 
 - 创建SymbolSpan。
 
-  SymbolSpan组件需要写到Text组件内，单独的SymbolSpan组件不会显示。
+  SymbolSpan组件必须嵌入在Text组件中才能显示，单独的SymbolSpan组件不会呈现任何内容。
 
 
   ```ts
@@ -35,7 +35,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
   ![symbol_trash](figures/symbolspan_trash.png)
 
 
-- 通过fontSize属性设置SymbolSpan的大小。
+- 通过[fontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontsize)属性设置SymbolSpan的大小。
 
 
   ```ts
@@ -73,7 +73,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
   ```
   ![symbolSpan_multi_fontSize](figures/symbolspan_multi_fontsize.png)
 
-- 通过fontWeight属性设置SymbolSpan组件的粗细。
+- 通过[fontWeight](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontweight)属性设置SymbolSpan组件的粗细。
 
   ```ts
   Row() {
@@ -107,7 +107,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
   ```
   ![symbolSpan_multi_fontWeight_trash](figures/symbol_multi_fontweight_trash.png)
 
-- 通过fontColor属性设置SymbolSpan的颜色。
+- 通过[fontColor](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)属性设置SymbolSpan的颜色。
 
   ```ts
   Row() {
@@ -141,7 +141,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
   ```
   ![symbolSpan_multi_fontColor](figures/symbolspan_multi_fontcolor.PNG)
 
-- 通过renderingStrategy属性设置SymbolSpan的渲染策略。
+- 通过[renderingStrategy](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#renderingstrategy)属性设置SymbolSpan的渲染策略。
 
   ```ts
   Row() {
@@ -178,7 +178,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
   ```
   ![symbolSpan_multi_renderingStrategy](figures/symbolspan_multi_renderingStrategy.png)
 
-- 通过effectStrategy属性设置SymbolSpan的动效策略。
+- 通过[effectStrategy](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#effectstrategy)属性设置SymbolSpan的动效策略。
 
   ```ts
   Row() {
@@ -216,11 +216,11 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
 
 ## 自定义图标动效
 
-相较于effectStrategy属性启动即触发动效，可以通过以下两种方式控制动效的播放状态以及更多样的动效策略选择。
+相较于effectStrategy属性在启动时即触发动效，可以通过以下两种方式来控制动效的播放状态，以及选择更多样化的动效策略。
 
-关于effectStrategy属性与symbolEffect属性多种动态属性使用生效原则，详见[SymbolGlyph.symbolEffect属性说明](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symboleffect12-1)。
+关于effectStrategy属性与symbolEffect属性的多种动态属性使用及生效原则，详情请参阅[SymbolGlyph.symbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symboleffect12-1)属性的说明。  
 
-- 通过symbolEffect属性同时设置SymbolGlyph的动效策略及动效播放状态。
+- 通过设置SymbolEffect属性，可以同时配置SymbolGlyph的动效策略及其播放状态。
 
   ```ts
   @State isActive: boolean = true;
@@ -236,7 +236,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
   ```
   ![symbolGlyph_symbolEffect_isActive](figures/symbolGlyph_symbolEffect_isActive.gif)
 
-- 通过symbolEffect属性同时设置SymbolGlyph的动效策略及播放触发器。
+- 通过设置SymbolEffect属性，可以同时指定SymbolGlyph的动画效果策略及其播放触发条件。 
 
   ```ts
   @State triggerValueReplace: number = 0;
@@ -256,7 +256,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
 
 ## 添加事件
 
-SymbolGlyph组件可以添加通用事件，例如绑定onClick、onTouch等事件来响应操作。
+SymbolGlyph组件可以添加通用事件，例如绑定[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)、[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)等事件来响应操作。
 
 ```ts
 @State wifiColor: ResourceColor = Color.Black;
@@ -271,6 +271,7 @@ SymbolGlyph($r('sys.symbol.ohos_wifi'))
 
 ## 场景示例
 
+该示例通过symbolEffect、fontSize、fontColor属性展示了播放列表的效果。
 
 ```ts
 // xxx.ets

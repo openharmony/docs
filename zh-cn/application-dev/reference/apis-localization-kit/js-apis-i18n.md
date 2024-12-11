@@ -367,7 +367,7 @@ static getFirstPreferredLanguage(): string
 
 static setAppPreferredLanguage(language: string): void
 
-设置应用的偏好语言。
+设置应用的偏好语言。设置偏好语言为"default"后，应用语言将跟随系统语言，应用冷启动生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +377,7 @@ static setAppPreferredLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID。 |
+| language | string | 是    | 合法的语言ID或"default"。 |
 
 **错误码：**
 

@@ -722,7 +722,7 @@ struct MyComponent {
 4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
 5. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
 
-- ### 改变数据子属性
+### 改变数据子属性
 
 若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了`@Observed`与@`ObjectLink`机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
 
@@ -804,7 +804,7 @@ struct ChildComponent {
 **图10**  LazyForEach改变数据子属性  
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
-- ### 使用状态管理V2
+### 使用状态管理V2
 
 状态管理V2提供了`@ObservedV2`与`@Trace`装饰器可以实现对属性的深度观测，使用`@Local`和`@Param`可以实现对子组件的刷新管理，仅刷新使用了对应属性的组件。
 
@@ -1077,6 +1077,83 @@ class MyDataSource extends BasicDataSource {
     this.notifyDataAdd(index);
   }
 
+  public moveDataWithoutNotify(from: number, to: number): void {
+    let tmp = this.dataArray.splice(from, 1);
+    this.dataArray.splice(to, 0, tmp[0])
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public deleteData(index: number): void {
+    this.dataArray.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  private data: MyDataSource = new MyDataSource();
+
+  build() {
+    Row() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+            ListItem() {
+              Text(item.toString())
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .size({height: 100, width: "100%"})
+            }.margin(10)
+            .borderRadius(10)
+            .backgroundColor("#FFFFFFFF")
+          }, (item: string) => item)
+          .onMove((from:number, to:number)=>{
+            this.data.moveDataWithoutNotify(from, to)
+          })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor("#FFDCDCDC")
+    }
+  }
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.data.pushData(i.toString())
+    }
+  }
+}
+```
+
+**图11** LazyForEach拖拽排序效果图  
+![LazyForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+
+## 常见使用问题
+
+### 渲染结果非预期
+
+```ts
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -1155,79 +1232,6 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.splice(index, 1);
     this.notifyDataDelete(index);
   }
-}
-
-@Entry
-@Component
-struct MyComponent {
-  private data: MyDataSource = new MyDataSource();
-
-  aboutToAppear() {
-    for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
-    }
-  }
-
-  build() {
-    List({ space: 3 }) {
-      LazyForEach(this.data, (item: string, index: number) => {
-        ListItem() {
-          Row() {
-            Text(item).fontSize(50)
-              .onAppear(() => {
-                console.info("appear:" + item)
-              })
-          }.margin({ left: 10, right: 10 })
-        }
-        .onClick(() => {
-          // 点击删除子组件
-          this.data.deleteData(index);
-        })
-      }, (item: string) => item)
-    }.cachedCount(5)
-  }
-}
-```
-
-class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = [];
-
-  public totalCount(): number {
-    return this.dataArray.length;
-  }
-
-  public getData(index: number): string {
-    return this.dataArray[index];
-  }
-
-```ts
-/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
-
-class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = [];
-
-  public totalCount(): number {
-    return this.dataArray.length;
-  }
-
-  public getData(index: number): string {
-    return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
-  public pushData(data: string): void {
-    this.dataArray.push(data);
-    this.notifyDataAdd(this.dataArray.length - 1);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
     
   public reloadData(): void {
     this.notifyDataReload();
@@ -1268,7 +1272,7 @@ struct MyComponent {
 }
 ```
 
-  在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。要保证`reloadData`方法重建数据项，必须保证数据项能生成新的key。这里用了`item + index.toString()`保证被删除数据项后面的数据项都被重建。如果用`item + Date.now().toString()`替代，那么所有数据项都生成新的key，导致所有数据项都被重建。这种方法，效果是一样的，只是性能略差。
+在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。要保证`reloadData`方法重建数据项，必须保证数据项能生成新的key。这里用了`item + index.toString()`保证被删除数据项后面的数据项都被重建。如果用`item + Date.now().toString()`替代，那么所有数据项都生成新的key，导致所有数据项都被重建。这种方法，效果是一样的，只是性能略差。
 
 **图13**  修复LazyForEach删除数据非预期  
 ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
@@ -1350,24 +1354,12 @@ struct MyComponent {
 }
 ```
 
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
+**图14**  LazyForEach仅改变文字但是图片闪烁问题  
+![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
+在我们点击`ListItem`子组件时，我们只改变了数据项的`message`属性，但是`LazyForEach`的刷新机制会导致整个`ListItem`被重建。由于`Image`组件是异步刷新，所以视觉上图片会发生闪烁。为了解决这种情况我们应该使用`@ObjectLink`和`@Observed`去单独刷新使用了`item.message`的`Text`组件。
 
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+修复代码如下所示。
 
 ```ts
 /** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
@@ -1448,8 +1440,8 @@ struct ChildComponent {
 }
 ```
 
-  **图15**  修复LazyForEach仅改变文字但是图片闪烁问题  
-  ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
+**图15**  修复LazyForEach仅改变文字但是图片闪烁问题  
+![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
 ### @ObjectLink属性变化UI未更新
 
@@ -1626,26 +1618,8 @@ struct ChildComponent {
 **图17**  修复ObjectLink属性变化后UI更新  
 ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)
 
-@Component
-struct ChildComponent {
-  @ObjectLink data: StringData
-  build() {
-    Row() {
-      Text(this.data.message.message).fontSize(50)
-        .onAppear(() => {
-          console.info("appear:" + this.data.message.message)
-        })
-    }.margin({ left: 10, right: 10 })
-  }
-}
-```
-
-**图16**  ObjectLink属性变化后UI未更新  
-![LazyForEach-ObjectLink-NotRenderUI](./figures/LazyForEach-ObjectLink-NotRenderUI.gif)
-
-@ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到了，因此我们只能改变它的子属性去通知对应组件重新渲染，具体[请查看@ObjectLink与@Observed的详细使用方法和限制条件](./arkts-observed-and-objectlink.md)。
-
-修复代码如下所示。
+### 在List内使用屏幕闪烁
+在List的onScrollIndex方法中调用onDataReloaded有产生屏幕闪烁的风险。
 
 ```ts
 /** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
@@ -1701,7 +1675,6 @@ struct MyComponent {
       this.data.pushData(`Hello ${i}`)
     }
   }
-}
 
   build() {
     List({ space: 3 }) {
@@ -1736,29 +1709,6 @@ struct MyComponent {
 
 ```ts
 /** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
-
-@Component
-struct ChildComponent {
-  @ObjectLink data: StringData
-  build() {
-    Row() {
-      Text(this.data.message.message).fontSize(50)
-        .onAppear(() => {
-          console.info("appear:" + this.data.message.message)
-        })
-    }.margin({ left: 10, right: 10 })
-  }
-}
-```
-
-**图17**  修复ObjectLink属性变化后UI更新  
-![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)
-
-### 在List内使用屏幕闪烁
-在List的onScrollIndex方法中调用onDataReloaded有产生屏幕闪烁的风险。
-
-```ts
-/** BasicDataSource代码见文档末尾 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];

@@ -1099,6 +1099,8 @@ accessForward(): boolean
 
 当前页面是否可前进，即当前页面是否有前进历史记录。
 
+可以结合使用[getBackForwardEntries](#getbackforwardentries)来获取当前WebView的历史信息列表，以及使用[accessStep](#accessstep)来判断是否可以按照给定的步数前进或后退。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -1193,6 +1195,8 @@ struct WebComponent {
 accessBackward(): boolean
 
 当前页面是否可后退，即当前页面是否有返回历史记录。
+
+可以结合使用[getBackForwardEntries](#getbackforwardentries)来获取当前WebView的历史信息列表，以及使用[accessStep](#accessstep)来判断是否可以按照给定的步数前进或后退。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

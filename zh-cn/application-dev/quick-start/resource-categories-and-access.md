@@ -17,21 +17,7 @@
 资源目录示例：
 ```
 resources
-|---base
-|   |---element
-|   |   |---string.json
-|   |---media
-|   |   |---icon.png
-|   |---profile
-|   |   |---test_profile.json
-|---en_US  // 默认存在的目录，设备语言环境是美式英文时，优先匹配此目录下资源
-|   |---element
-|   |   |---string.json
-|   |---media
-|   |   |---icon.png
-|   |---profile
-|   |   |---test_profile.json
-|---zh_CN  // 默认存在的目录，设备语言环境是简体中文时，优先匹配此目录下资源
+|---base  // 默认存在的目录
 |   |---element
 |   |   |---string.json
 |   |---media
@@ -57,7 +43,7 @@ base目录是默认存在的目录，二级子目录element用于存放字符串
 
 #### 限定词目录
 
-en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需要开发者根据开发需要自行创建。二级子目录element、media、profile用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件。<br/>同样，目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）来访问。
+限定词目录需要开发者根据开发需要自行创建，二级子目录element、media、profile用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件。<br/>同样，目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）来访问。
 
 **限定词目录的命名要求**
 
@@ -388,7 +374,7 @@ string资源配置attr属性示例如下：
 >
 > - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
 >
-> - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
+> - 当前，界面加载的系统资源字体进行显示时（可以在配置中system/etc/fontconfig.json文件中查看），默认使用的字体是鸿蒙黑体（HarmonyOS Sans），支持的范围是[中文编码字符集GB18030-2022（级别一/级别二）](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3)。
 
 ```ts
 Text('Hello')

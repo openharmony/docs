@@ -159,7 +159,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-4. （可选）OH_AudioCodec_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+4. （可选）OH_AudioCodec_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
     添加头文件:
 
@@ -303,8 +303,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     使用示例：
     ```c++
     auto buffer = signal_->inBufferQueue_.front();
-    int64_t size;
-    int64_t pts;
     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
     uint8_t keyId[] = {
         0xd4, 0xb2, 0x01, 0xe4, 0x61, 0xc8, 0x98, 0x96,
@@ -318,34 +316,38 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     uint32_t firstEncryptedOffset = 0;
     uint32_t subsampleCount = 1;
     DrmSubsample subsamples[1] = { {0x10, 0x16} };
-    inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
-    inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-    inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
+    // 创建CencInfo实例
     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
     if (cencInfo == nullptr) {
         // 异常处理
     }
+    // 设置解密算法
     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置KeyId和Iv
     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置Sample信息
     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
         subsampleCount, subsamples);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置模式：KeyId、Iv和SubSamples已被设置
     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 将CencInfo设置到AVBuffer中
     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 销毁CencInfo实例
     errNo = OH_AVCencInfo_Destroy(cencInfo);
     if (errNo != AV_ERR_OK) {
         // 异常处理

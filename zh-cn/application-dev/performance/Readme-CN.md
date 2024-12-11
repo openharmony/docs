@@ -29,6 +29,7 @@
     - [避免在主线程中执行耗时操作](avoid_time_consuming_operations_in_mainthread.md)
     - [模糊场景性能优化](fuzzy_scene_performance_optimization.md)
     - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
+    - [应用闪屏问题解决方案](screen_flicker_solution.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
