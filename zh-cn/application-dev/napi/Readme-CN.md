@@ -66,7 +66,6 @@
       - [使用JSVM-API接口进行ArrayBuffer相关开发](use-jsvm-about-arraybuffer.md)
       - [使用JSVM-API接口操作bigint类型值](use-jsvm-about-bigint.md)
       - [使用JSVM进行class相关开发](use-jsvm-about-class.md)
-      - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)
       - [使用JSVM-API接口进行Date相关开发](use-jsvm-about-date.md)
       - [使用JSVM-API接口进行object相关开发](use-jsvm-about-object.md)
       - [使用JSVM-API接口进行primitive类相关开发](use-jsvm-about-primitive.md)
@@ -81,9 +80,7 @@
       - [使用JSVM-API判断给定的两个JS value是否严格相等](use-jsvm-strict-equals.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
-      - [JSVM-API Tracing](use-jsvm-about-trace.md)
       - JSVM-API调优&高性能使用示例
-        - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)
         - [JSVM 通用调优实践](jsvm-optimizations.md)

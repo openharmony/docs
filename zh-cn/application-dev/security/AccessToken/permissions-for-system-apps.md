@@ -1,4 +1,4 @@
-# 仅对系统应用开放
+# 系统应用可用权限
 
 在申请目标权限前，建议开发者先阅读[权限工作流程](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
@@ -3216,6 +3216,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.ENABLE_EXPERIENCE_HBM
+
+允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 

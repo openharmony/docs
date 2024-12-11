@@ -1,6 +1,7 @@
 # 录像实现方案(C/C++)
 
-在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 当前示例提供完整的录像流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、录像）的介绍请参考[相机开发指导(Native)](camera-preparation.md)的具体章节。
 
 ## 开发流程
@@ -297,6 +298,26 @@
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Release success ");
         } else {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. %d ", ret);
+        }
+
+        // 资源释放
+        ret = OH_CameraManager_DeleteSupportedCameras(cameraManager, cameras, size);
+        if (ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+        } else {
+          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameras. ok");
+        }
+        ret = OH_CameraManager_DeleteSupportedCameraOutputCapability(cameraManager, cameraOutputCapability);
+        if (ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+        } else {
+          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameraOutputCapability. ok");
+        }
+        ret = OH_Camera_DeleteCameraManager(cameraManager);
+        if (ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+        } else {
+          OH_LOG_ERROR(LOG_APP, "OH_Camera_DeleteCameraManager. ok");
         }
     }
     ```

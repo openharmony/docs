@@ -169,7 +169,28 @@
       });
       ```
 
-5. 释放picture。
+5. 对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/js-apis-image.md#picture13)。
+
+   ```ts
+   // 获取辅助图对象
+   let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
+   let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
+   // 获取辅助图信息
+   let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+   console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
+      ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
+      ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
+      ' colorSpace: ' +  auxinfo.colorSpace);
+   // 将辅助图数据读到ArrayBuffer
+   auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
+      console.info('Read pixels to buffer success.');
+   }).catch((error: BusinessError) => {
+      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+   });
+   auxPicture.release();
+   ```
+
+6. 释放picture。
 
    ```ts
    picture.release();
@@ -223,7 +244,28 @@
    });
    ```
 
-4. 释放picture。
+4. 对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/js-apis-image.md#picture13)。
+
+   ```ts
+   // 获取辅助图对象
+   let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
+   let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
+   // 获取辅助图信息
+   let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+   console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
+      ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
+      ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
+      ' colorSpace: ' +  auxinfo.colorSpace);
+   // 将辅助图数据写入ArrayBuffer
+   auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
+      console.info('Read pixels to buffer success.');
+   }).catch((error: BusinessError) => {
+      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+   });
+   auxPicture.release();
+   ```
+
+5. 释放picture。
 
    ```ts
    picture.release();
