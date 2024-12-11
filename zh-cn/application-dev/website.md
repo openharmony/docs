@@ -1611,6 +1611,8 @@
             - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
             - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
             - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
+            - [使用JSVM-API进行异常的定制化处理](napi/use-jsvm-trigger-exceptions.md)
+            - [使用JSVM-API感知JSVM引擎生命周期管理](napi/use-jsvm-trigger-gc.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
