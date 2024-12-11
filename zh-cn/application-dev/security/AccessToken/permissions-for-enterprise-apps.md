@@ -65,3 +65,18 @@
 **起始版本**：10
 
 **变更信息**：API version 10-13该权限仅向系统应用开放；从API version 14开始，开放范围从系统应用变更为企业普通应用。
+
+## ohos.permission.QUERY_AUDIT_EVENT
+
+允许应用查询安全审计事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+**变更信息**：API version 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变更为企业普通应用。
