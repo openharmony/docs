@@ -204,7 +204,9 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 ## 示例
 
-### 示例1
+### 示例1（使用外描边属性）
+
+该示例主要演示如何通过outline来实现组件外描边。
 
 ```ts
 // xxx.ets
@@ -249,10 +251,12 @@ struct OutlineExample {
 
 ![zh-cn_image_0000001219982706](figures/zh-cn_image_0000001219982706.png)
 
-### 示例2
+### 示例2（使用LocalizedEdgeColors类型）
+
+该示例将outline属性中的color属性值设置为LocalizedEdgeColors类型。
+
 ```ts
 // xxx.ets
-// outline属性的color属性值使用LocalizedEdgeColors类型
 
 @Entry
 @Component

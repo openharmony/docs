@@ -74,6 +74,10 @@ radialGradient(value: { center: [Length, Length]; radius: number | string; color
 
 ## 示例
 
+### 示例1（颜色从右向左线性渐变）
+
+该示例通过linearGradient来实现组件颜色线性渐变。
+
 ```ts
 // xxx.ets
 @Entry
@@ -106,6 +110,10 @@ struct ColorGradientExample {
 ```
 
 ![zh-cn_image_0000001219864149](figures/gradientColor1.png)
+
+### 示例2（颜色按旋转角度渐变）
+
+该示例通过sweepGradient来实现组件颜色旋转角度渐变。
 
 ```ts
 @Entry
@@ -144,6 +152,10 @@ struct ColorGradientExample {
 ```
 
 ![zh-cn_image_0000001219864149](figures/gradientColor2.png)
+
+### 示例3（颜色按径向渐变）
+
+该示例通过radialGradient来实现组件颜色径向渐变。
 
 ```ts
 // xxx.ets
