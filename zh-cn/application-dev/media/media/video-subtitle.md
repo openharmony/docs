@@ -58,7 +58,7 @@ export class AVPlayerSubtitleDemo {
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       avPlayer.reset(); // 调用reset重置资源，触发idle状态
-    })
+    });
     // 注册字幕回调函数
     avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
       if (info) {
