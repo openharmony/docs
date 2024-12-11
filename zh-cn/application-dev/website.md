@@ -301,6 +301,7 @@
           - [通过标准化数据通路实现数据共享](database/unified-data-channels.md)
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
+      - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
       - [ArkTS简介](arkts-utils/arkts-overview.md)
       - ArkTS基础类库<!--arkts-utils-->
@@ -617,6 +618,7 @@
         - [Web组件嵌套滚动](web/web-nested-scrolling.md)
         - [Web页面显示内容滚动](web/web-content-scrolling.md)
         - [Web组件对接软键盘](web/web-docking-softkeyboard.md)
+        - [Web组件焦点管理](web/web-focus.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -800,12 +802,14 @@
             <!--Del-->
             - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
             <!--DelEnd-->
-          - 应用权限列表<!--app-permissions-->
-            - [对所有应用开放](security/AccessToken/permissions-for-all.md)
+          - [应用权限列表](security/AccessToken/app-permissions.md)
+            - [开放权限（系统授权）](security/AccessToken/permissions-for-all.md)
+            - [开放权限（用户授权）](security/AccessToken/permissions-for-all-user.md)
             <!--Del-->
-            - [仅对系统应用开放](security/AccessToken/permissions-for-system-apps.md)
+            - [系统应用可用权限](security/AccessToken/permissions-for-system-apps.md)
             <!--DelEnd-->
-            - [仅对MDM应用开放](security/AccessToken/permissions-for-mdm-apps.md)
+            - [企业类应用可用权限](security/AccessToken/permissions-for-enterprise-apps.md)
+            - [仅MDM应用可用权限](security/AccessToken/permissions-for-mdm-apps.md)
           - [应用权限组列表](security/AccessToken/app-permission-group-list.md)
         - 使用安全控件<!--security-components-->
           - [安全控件概述](security/AccessToken/security-component-overview.md)
@@ -1761,6 +1765,7 @@
             - [processInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
           - application
             - [abilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
+            - [AbilityRunningInfo](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md)
             - [AbilityStageContext](reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)
             - [abilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
             - [AbilityStartCallback](reference/apis-ability-kit/js-apis-inner-application-abilityStartCallback.md)
@@ -2137,7 +2142,6 @@
             - [图形变换](reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)
             - [图像效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md)
             - [形状裁剪](reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md)
-            - [栅格设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-grid.md)
             - [颜色渐变](reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md)
             - [Popup控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
             - [菜单控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)
@@ -2429,6 +2433,7 @@
           - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
+          - [栅格设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-grid.md)
       - JS组件<!--arkui-js-comp-->
         - 兼容JS的类Web开发范式（ArkUI.Full）<!--arkui-js-full-comp-->
           - 组件通用信息
@@ -3388,6 +3393,7 @@
           - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent.md)
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
           - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
+          - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
           - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
@@ -4192,3 +4198,36 @@
       - [Native api中导出的EGL符号列表](reference/native-lib/egl-symbol.md)
       - [Native api中导出的ICU4C符号列表](reference/native-lib/icu4c-symbol.md)
       - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/openglesv3-symbol.md)
+<!--Del-->
+- 常见问题
+  - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
+  - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
+  - [应用模型常见问题](faqs/faqs-ability.md)
+  - ArkUI框架开发常见问题(ArkTS)
+    - [ArkTS语法使用常见问题](faqs/faqs-arkui-arkts.md)
+    - [ArkUI组件开发常见问题(ArkTS)](faqs/faqs-arkui-component.md)
+    - [ArkUI布局开发常见问题(ArkTS)](faqs/faqs-arkui-layout.md)
+    - [ArkUI路由/导航开发常见问题(ArkTS)](faqs/faqs-arkui-route-nav.md)
+    - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
+  - [ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+  - [ArkTS语言基础类库开发常见问题](faqs/faqs-arkts-utils.md)
+  - [Web开发常见问题](faqs/faqs-arkui-web.md)
+  - [包管理开发常见问题](faqs/faqs-bundle-management.md)
+  - [资源管理开发常见问题](faqs/faqs-globalization.md)
+  - [事件通知开发常见问题](faqs/faqs-event-notification.md)
+  - [图形图像开发常见问题](faqs/faqs-graphics.md)
+  - [窗口管理开发常见问题](faqs/faqs-window-manager.md)
+  - [媒体开发常见问题](faqs/faqs-multimedia.md)
+  - [安全基础能力开发常见问题](faqs/faqs-security.md)
+  - [程序访问控制开发常见问题](faqs/faqs-ability-access-control.md)
+  - [数据管理开发常见问题](faqs/faqs-distributed-data-management.md)
+  - [文件管理开发常见问题](faqs/faqs-file-management.md)
+  - [网络管理开发常见问题](faqs/faqs-network-management.md)
+  - [DFX开发常见问题](faqs/faqs-dfx.md)
+  - [泛Sensor服务开发常见问题](faqs/faqs-sensor.md)
+  - [启动恢复开发常见问题](faqs/faqs-startup.md)
+  - [SDK使用常见问题](faqs/faqs-sdk.md)
+  - [NDK开发常见问题](faqs/faqs-ndk.md)
+  - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
+  - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
+<!--DelEnd-->
