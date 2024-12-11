@@ -32,11 +32,11 @@
 import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
-const TAG = 'MetadataDemo'
+const TAG = 'MetadataDemo';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   // pixelMap对象声明，用于图片显示
   @State pixelMap: image.PixelMap | undefined = undefined;
@@ -59,7 +59,7 @@ struct Index {
         .height('5%')
         .onClick(() => {
           // 设置fdSrc, 获取视频的缩略图
-          this.testFetchFrameByTime()
+          this.testFetchFrameByTime();
         })
         Image(this.pixelMap).width(300).height(300)
           .margin({
@@ -75,24 +75,24 @@ struct Index {
   // 获取视频指定时间的缩略图，并通过Image控件显示在屏幕上。
   async testFetchFrameByTime() {
     // 创建AVImageGenerator对象
-    let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator()
+    let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
     // 设置fdSrc
     avImageGenerator.fdSrc = await getContext(this).resourceManager.getRawFd('demo.mp4');
 
     // 初始化入参
-    let timeUs = 0
-    let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+    let timeUs = 0;
+    let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
     let param: media.PixelMapParams = {
       width : 300,
       height : 300
-    }
+    };
 
     // 获取缩略图（promise模式）
-    this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param)
+    this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
 
     // 释放资源（promise模式）
-    avImageGenerator.release()
-    console.info(TAG, `release success.`)
+    avImageGenerator.release();
+    console.info(TAG, `release success.`);
   }
 }
 ```
