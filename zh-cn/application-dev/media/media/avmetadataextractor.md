@@ -189,7 +189,7 @@ struct Index {
           length: len
         };
         let num = fs.readSync(fd, buffer, options);
-        console.info(TAG, 'readAt end, num: ' + num)
+        console.info(TAG, 'readAt end, num: ' + num);
         if (num > 0 && fileSize >= pos) {
           return num;
         }
