@@ -92,7 +92,8 @@
       ```
    通过本模块获取到的坐标均为WGS-84坐标系坐标点，如需使用其它坐标系类型的坐标点，请进行坐标系转换后再使用。
 
-   可使用三方地图提供的SDK能力进行坐标系转换。
+   <!--RP1-->   可使用三方地图提供的SDK能力进行坐标系转换。<!--RP1End-->
+   
 5. 持续定位。多用于导航、运动轨迹、出行等场景。</br>
    首先要实例化[ContinuousLocationRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#continuouslocationrequest12)对象，用于告知系统该向应用提供何种类型的位置服务，以及位置结果上报的频率。<br/>
    - 设置locationScenario：<br/>

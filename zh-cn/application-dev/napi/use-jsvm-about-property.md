@@ -1,4 +1,4 @@
-# 使用Node-API接口设置JavaScript对象的属性
+# 使用JSVM-API接口设置JavaScript对象的属性
 
 ## 简介
 

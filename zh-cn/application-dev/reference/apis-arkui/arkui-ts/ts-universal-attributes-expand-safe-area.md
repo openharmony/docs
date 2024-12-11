@@ -74,7 +74,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 >  **说明：**
 >
->  KeyboardAvoidMode.RESIZE是压缩Page的大小，Page下设置百分比宽高的组件会跟随Page压缩，直接设置宽高的组件会按设置的固定大小布局。设置KeyboardAvoidMode.RESIZE时，expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])不生效。
+>  KeyboardAvoidMode的RESIZE模式是压缩Page的大小，Page下设置百分比宽高的组件会跟随Page压缩，直接设置宽高的组件会按设置的固定大小布局。设置KeyboardAvoidMode的RESIZE模式时，expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])不生效。
 >
 >  KeyboardAvoidMode.NONE配置Page不避让键盘，Page会被抬起的键盘遮盖。
 

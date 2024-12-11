@@ -152,7 +152,7 @@ Web组件指定共享渲染进程。
   }
   ```
 
-加载沙箱路径下的本地资源文件。
+加载沙箱路径下的本地资源文件，需要开启应用中文件系统的访问[fileAccess](#fileaccess)权限。
 
 1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
@@ -196,6 +196,7 @@ Web组件指定共享渲染进程。
        Column() {
          // 加载沙箱路径文件。
          Web({ src: url, controller: this.controller })
+         .fileAccess(true)
        }
      }
    }
@@ -1057,12 +1058,12 @@ textZoomRatio(textZoomRatio: number)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State atio: number = 150;
+    @State ratio: number = 150;
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomRatio(this.atio)
+          .textZoomRatio(this.ratio)
       }
     }
   }
@@ -1733,8 +1734,8 @@ allowWindowOpenMethod(flag: boolean)
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
       }
@@ -2002,7 +2003,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 > - 可以设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 > - value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
 > - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为NestedScrollMode.SELF_FIRST。
-> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow、Refresh、bindSheet。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
@@ -4129,6 +4130,48 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { cert } from '@kit.DeviceCertificateKit';
+  
+  function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
+    if (!(certChainData instanceof Array)) {
+      console.log('failed, cert chain data type is not array');
+      return;
+    }
+
+    for (let i = 0; i < certChainData.length; i++) {
+      let encodeBlobData: cert.EncodingBlob = {
+        data: certChainData[i],
+        encodingFormat: cert.EncodingFormat.FORMAT_DER
+      }
+      cert.createX509Cert(encodeBlobData, (error, x509Cert) => {
+        if (error) {
+          console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('createX509Cert success');
+          console.log(ParseX509CertInfo(x509Cert));
+        }
+      });
+    }
+    return;
+  }
+  
+  function Uint8ArrayToString(dataArray: Uint8Array) {
+    let dataString = '';
+    for (let i = 0; i < dataArray.length; i++) {
+      dataString += String.fromCharCode(dataArray[i]);
+    }
+    return dataString;
+  }
+
+  function ParseX509CertInfo(x509Cert: cert.X509Cert) {
+    let res: string = 'getCertificate success, '
+      + 'issuer name = '
+      + Uint8ArrayToString(x509Cert.getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509Cert.getSubjectName().data) + ', valid start = '
+      + x509Cert.getNotBeforeTime()
+      + ', valid end = ' + x509Cert.getNotAfterTime();
+    return res;
+  }
 
   @Entry
   @Component
@@ -4139,6 +4182,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEventReceive((event) => {
+            LogCertInfo(event.certChainData);
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
               message: 'text',
@@ -4960,7 +5004,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 使能multiWindowAccess情况下，通知用户新建窗口请求。
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
+如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
 
 应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
 
@@ -5024,8 +5068,8 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
             })
             this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
             event.handler.setWebController(popController);
           })
       }
@@ -9581,6 +9625,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
+| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 

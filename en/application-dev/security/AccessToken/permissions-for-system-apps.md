@@ -265,18 +265,6 @@ Allows an application to publish unremovable notifications.
 
 **Valid since**: 11
 
-### ohos.permission.GET_DOMAIN_ACCOUNTS
-
-Allows an application to obtain domain account information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 10
-
 ### ohos.permission.UNINSTALL_BUNDLE
 
 Allows an application to uninstall applications.
@@ -396,18 +384,6 @@ Allows an application to intercept the startup of the Ability component. This pe
 **Enable via ACL**: true
 
 **Valid since**: 9
-
-### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
-Allows an application to interact across local accounts.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 7
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
@@ -1399,7 +1375,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information. 
+Allows an application to read telephony information.
 
 **Permission level**: system_basic
 
@@ -3217,6 +3193,18 @@ Allows a system application to use infrared interfaces.
 
 **Valid since**: 12
 
+### ohos.permission.ENABLE_EXPERIENCE_HBM
+
+Allows an application to enable High Brightness Mode(HBM) for the screen.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
 Allows an application to set whether to support application cache and quick startup after cached.
@@ -4036,6 +4024,20 @@ Allows a system application or system service to grant third-party applications 
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+Allows a system service or system application to check the patch installation result.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+**Changelog**: From API version 12 to 13, this permission is available to system services. Starting from API version 14, this permission is available to system applications.
 
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 

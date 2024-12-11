@@ -296,10 +296,12 @@ struct attributeDemo {
 }
 ```
 
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 浅色模式拉起。使用资源文件作为入参，切换深浅色时，无法使用资源文件触发UI的更新。<br>![light_mode](figures/light_mode1.jpg) | 浅色模式拉起。使用资源文件作为入参，切换深浅色时，可以使用资源文件触发UI的更新。<br>![dark_mode](figures/dark_mode1.jpg) |
-|                                                                                                                            |
+| 变更前                                                                               | 变更后                                                                             |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                             | 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                           |
+|                                                                                      |
+| 切换深色时，无法使用资源文件触发UI的更新。<br>![light_mode](figures/light_mode1.jpg) | 切换深色时，可以使用资源文件触发UI的更新。<br>![dark_mode](figures/dark_mode1.jpg) |
+|                                                                                      |
 
 **起始API Level**
 
@@ -361,19 +363,10 @@ struct attributeDemo {
 }
 ```
 
-浅色模式拉起：
-
-切换深浅色时，UI不更新。
-
-![light_mode](figures/light_mode1.jpg)
-
-深色模式拉起：
-
-切换深浅色时，UI不更新。
-
-![dark_mode](figures/dark_mode1.jpg)
-
-
+| 变更前                                                   | 变更后                                                 |
+| -------------------------------------------------------- | ------------------------------------------------------ |
+| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg) | 深色模式拉起。<br>![dark_mode](figures/dark_mode1.jpg) |
+| 切换深色。<br>![light_mode](figures/light_mode1.jpg)     | 切换浅色。<br>![dark_mode](figures/dark_mode1.jpg)     |
 
 ## cl.arkui.3 废弃gridSpan和gridOffset属性
 **访问级别**
@@ -394,10 +387,10 @@ gridSpan和gridOffset属性仅设置在gridContaier的子组件上有效，gridC
 
 **废弃的接口/组件**
 
-|            废弃接口            |               替代接口               |
-| :----------------------------: | :----------------------------------: |
-| gridSpan(value: number): T; |  GridCol(option?: GridColOptions)中的span |
-| gridOffset(value: number): T; |  GridCol(option?: GridColOptions)中的offset |
+|           废弃接口            |                  替代接口                  |
+| :---------------------------: | :----------------------------------------: |
+|  gridSpan(value: number): T;  |  GridCol(option?: GridColOptions)中的span  |
+| gridOffset(value: number): T; | GridCol(option?: GridColOptions)中的offset |
 
 **适配指导**
 
@@ -487,15 +480,15 @@ struct GridRowExample {
 
 **变更原因**
 
-原来的布局逻辑未考虑像素取整情况，导致部分界面显示异常。因此发起布局重构，重构后会因为像素取整导致组件的整体宽度可能差1px。
+原来的布局逻辑未考虑像素取整情况，导致部分界面显示异常。因此发起布局重构，重构后会因为像素取整导致组件的整体宽度可能偏差1像素单位。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 组件布局过程中不会进行像素取整 <br>![chip_before](figures/chip_before.PNG) | 组件布局过程中会进行像素取整<br>![chip_before](figures/chip_after.PNG)  |
+| 变更前                                                                     | 变更后                                                                 |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 组件布局过程中不会进行像素取整 <br>![chip_before](figures/chip_before.PNG) | 组件布局过程中会进行像素取整<br>![chip_before](figures/chip_after.PNG) |
 
 变更后可能影响自动化UI测试结果，产生像素级偏差。
 
@@ -514,3 +507,97 @@ Chip与ChipGroup组件。
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.5 router转场动画过程中，启用事件响应，并增加默认转场动画的拖尾效果
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+router默认转场动效无拖尾效果，导致应用动画最后一帧出现跳变，影响用户体验。变更后，router支持转场动画打断和接续，在动画转场过程中可响应事件。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+运行以下示例：
+
+```js
+@Entry
+@Component
+struct TestPage {
+  isAnimation: boolean = false;
+
+  build() {
+    Row() {
+      Column() {
+        TextInput().id('textInput')
+      }
+      .width('100%')
+    }
+    .height('100%')
+    .onAppear(() => {
+      if (this.isAnimation) {
+        setTimeout(() => {
+          focusControl.requestFocus('textInput');
+        }, 5)
+      } else {
+        setTimeout(() => {
+          focusControl.requestFocus('textInput')
+        }, 500)
+      }
+    })
+  }
+}
+```
+
+变更前：
+
+- router转场过程中请求焦点，必须要按照示例代码的形式启动定时器延迟到动画结束才能请求成功。router转场过程中无法点击、侧滑，必须在动画结束后才能操作对应页面。
+
+- router转场时间为400ms。
+
+变更后：
+
+- 页面跳转后即可请求焦点，无需添加定时器延迟操作请求。这可能会导致开发者使用定时器请求焦点，用户点击输入组件后，出现焦点跳变。
+
+- router转场时间变成600ms。
+
+**起始API Level**
+
+API Version 8
+
+**发生变更版本**
+
+从OpenHarmony SDK 5.0.0.56开始。
+
+**变更的接口/组件**
+
+router.pushUrl；router.back；router.pushNamedRoute
+
+**适配指导**
+
+1. 动画时长变更，无需适配。
+
+2. 针对焦点请求，在目标跳转页面中直接请求对应的焦点即可，可参照如下示例代码：
+```js
+@Entry
+@Component
+struct TestPage {
+
+  build() {
+    Row() {
+      Column() {
+        TextInput().id('textInput')
+      }
+      .width('100%')
+    }
+    .height('100%')
+    .onAppear(() => {
+      focusControl.requestFocus('textInput');
+    })
+  }
+}
+```

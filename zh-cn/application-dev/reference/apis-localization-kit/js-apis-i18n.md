@@ -367,7 +367,7 @@ static getFirstPreferredLanguage(): string
 
 static setAppPreferredLanguage(language: string): void
 
-设置应用的偏好语言。
+设置应用的偏好语言。设置偏好语言为"default"后，应用语言将跟随系统语言，应用冷启动生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +377,7 @@ static setAppPreferredLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID。 |
+| language | string | 是    | 合法的语言ID或"default"。 |
 
 **错误码：**
 
@@ -443,6 +443,49 @@ static getUsingLocalDigit(): boolean
   let status: boolean = i18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   ```
 
+### getSimplifiedLanguage<sup>15+</sup>
+
+static getSimplifiedLanguage(language?: string): string
+
+获取语言的最简化表示。如："zh-Hans-CN"的最简化表示是"zh"，"zh-Hant-TW"的最简表示为"zh-TW"。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| language | string | 否    | 合法的语言ID。默认值：系统语言。 |
+
+**返回值：**
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| string | 不传入language时，会根据系统语言和地区判断是否存在系统支持的方言，若存在则返回方言的最简表示；若不存在，则返回系统语言的最简表示。<br>传入language时，返回language的最简表示。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh, 如果当前系统语言为简体中文
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## i18n.isRTL
 

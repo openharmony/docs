@@ -94,6 +94,8 @@ contentOpacity(value: number | Resource)
 
 ## 示例
 
+该示例展示了QRCode组件的基本使用方法，通过color属性设置二维码颜色、backgroundColor属性设置二维码背景颜色、contentOpacity属性设置二维码不透明度。
+
 ```ts
 // xxx.ets
 @Entry

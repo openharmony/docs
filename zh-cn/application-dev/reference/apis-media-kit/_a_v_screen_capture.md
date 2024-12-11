@@ -5,6 +5,11 @@
 
 调用本模块下的接口，应用可以完成屏幕录制的功能。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用AVScreenCapture录屏取码流](../../media/media/using-avscreencapture-for-buffer.md)
+- [使用AVScreenCapture录屏写文件](../../media/media/using-avscreencapture-for-file.md)
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
@@ -1649,6 +1654,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 
 该接口设置最大帧率时，实际设置的帧率受限设备的能力，由底层的系统能力决定。
 
+调用该接口设置录屏最大帧率时，实际帧率将受限于设备能力。目前接口入参的最大值不设限制，但当前支持的最高帧率为60FPS，当入参设置超过60FPS，将以60FPS处理。不超过上限时，则按照实际入参值处理。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 14
@@ -1668,4 +1675,4 @@ AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针，或者输入参数frameRate不支持。
 
-AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：操作受限，建议重试。

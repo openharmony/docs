@@ -503,7 +503,7 @@ struct TodoList {
           .onClick(() => {
             let wantInfo: Want = {
               deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.example.mvvmv2_new',
+              bundleName: 'com.example.mvvmv2_new', // 替换成AppScope/app.json5里的bundleName
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -526,7 +526,8 @@ struct TodoList {
 
 ```ts
 // SettingAbility的SettingPage页面代码
-import { router, AppStorageV2 } from '@kit.ArkUI';
+import { AppStorageV2 } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @ObservedV2
 export class Setting {
@@ -537,6 +538,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
+  private context = getContext(this) as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -551,7 +553,7 @@ struct SettingPage {
           })
       }
       Button('返回待办')
-        .onClick(()=>{router.back()})
+        .onClick(()=>this.context.terminateSelf())
         .margin({ top: 10 })
     }
     .alignItems(HorizontalAlign.Start)
@@ -592,7 +594,7 @@ class TaskList {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: Task)=>{
       let newTask = new Task();
       newTask.taskName = task.taskName;
@@ -747,7 +749,7 @@ class TaskList {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: Task)=>{
       let newTask = new Task();
       newTask.taskName = task.taskName;
@@ -924,7 +926,7 @@ export default class TaskListModel {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: TaskModel)=>{
       let newTask = new TaskModel();
       newTask.taskName = task.taskName;
@@ -1187,7 +1189,8 @@ struct TodoList {
 ```ts
 // src/main/ets/pages/SettingPage.ets
 
-import { router, AppStorageV2 } from '@kit.ArkUI';
+import { AppStorageV2 } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @ObservedV2
 export class Setting {
@@ -1198,6 +1201,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
+  private context = getContext(this) as common.UIAbilityContext;
 
   build(){
     Column(){
@@ -1212,7 +1216,7 @@ struct SettingPage {
           })
       }
       Button('返回待办')
-        .onClick(()=>{router.back()})
+        .onClick(()=>this.context.terminateSelf())
         .margin({ top: 10 })
     }
     .alignItems(HorizontalAlign.Start)
