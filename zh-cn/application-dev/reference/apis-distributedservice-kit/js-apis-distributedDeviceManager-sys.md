@@ -54,7 +54,7 @@ replyUiAction(action: number, actionResult: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -106,7 +106,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -162,7 +162,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string;}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[创建一个设备管理实例](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
