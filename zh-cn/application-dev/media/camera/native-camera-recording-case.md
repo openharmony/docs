@@ -299,5 +299,25 @@
         } else {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. %d ", ret);
         }
+
+        // 资源释放
+        ret = OH_CameraManager_DeleteSupportedCameras(cameraManager, cameras, size);
+        if (ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+        } else {
+          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameras. ok");
+        }
+        ret = OH_CameraManager_DeleteSupportedCameraOutputCapability(cameraManager, cameraOutputCapability);
+        if (ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+        } else {
+          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameraOutputCapability. ok");
+        }
+        ret = OH_Camera_DeleteCameraManager(cameraManager);
+        if (ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+        } else {
+          OH_LOG_ERROR(LOG_APP, "OH_Camera_DeleteCameraManager. ok");
+        }
     }
     ```
