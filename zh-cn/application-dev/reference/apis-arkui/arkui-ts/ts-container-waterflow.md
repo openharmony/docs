@@ -49,6 +49,10 @@ WaterFlow(options?:  WaterFlowOptions)
 
 瀑布流分组信息。
 
+> **说明：**
+>
+> 使用splice、push、update修改分组信息后需要保证所有分组子节点总数与瀑布流实际子节点总数一致，否则会出现瀑布流因为不能正常布局而无法滑动的问题。
+
 ### constructor
 
 constructor()
