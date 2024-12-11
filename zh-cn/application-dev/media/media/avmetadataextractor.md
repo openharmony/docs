@@ -187,7 +187,7 @@ struct Index {
         let options: ReadOptions = {
           offset: pos,
           length: len
-        }
+        };
         let num = fs.readSync(fd, buffer, options);
         console.info(TAG, 'readAt end, num: ' + num);
         if (num > 0 && fileSize >= pos) {
@@ -195,7 +195,7 @@ struct Index {
         }
         return -1;
       }
-    }
+    };
     if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
       // 创建AVMetadataExtractor对象
       let avMetadataExtractor = await media.createAVMetadataExtractor();
