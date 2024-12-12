@@ -138,15 +138,15 @@ common.d.ts文件的sharedTransition接口
 
 **变更原因**
 
-pc场景下，系统应用调用hideNonSystemFloatingWindows接口导致应用弹窗被隐藏，页面点击无响应。
+修复在2in1设备下，系统应用调用hideNonSystemFloatingWindows接口导致三方应用弹窗被隐藏，页面点击无响应的bug。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：pc场景，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗被隐藏。
+变更前：2in1设备下，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗被隐藏。
 
-变更后：pc场景，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗不被隐藏。
+变更后：2in1设备下，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗不被隐藏。
 
 **起始API Level**
 
@@ -209,15 +209,15 @@ getSnapshot接口
 
 **变更原因**
 
-pc场景下，在视频播放页面，通过快捷键调节屏幕亮度不生效，原因是快捷键调节系统亮度，而视频播放页面使用的是窗口亮度。
+2in1设备下，在视频播放页面，通过快捷键调节屏幕亮度不生效，原因是快捷键调节系统亮度，而视频播放页面使用的是窗口亮度。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：pc场景，通过setWindowBrightness接口设置的是窗口亮度，和通过快捷键或控制中心设置的系统亮度不同。
+变更前：2in1设备下，通过setWindowBrightness接口设置的是窗口亮度，和通过快捷键或控制中心设置的系统亮度不同。
 
-变更后：pc场景，通过setWindowBrightness接口直接调节系统亮度，窗口不单独设置亮度值。
+变更后：2in1设备下，通过setWindowBrightness接口直接调节系统亮度，窗口不单独设置亮度值。
 
 **起始API Level**
 
