@@ -1,10 +1,10 @@
-# RenderNode
+# 自定义渲染节点 (RenderNode)
 
 ## 概述
 
-对于不具备自己的渲染环境的三方框架，虽然实现了前端的解析以及布局、事件等处理，但需要依赖系统提供的基础渲染、动画的能力。[FrameNode](./arkts-user-defined-arktsNode-frameNode.md)上的通用属性、通用事件对这一类框架是多余的，会进行多次冗余的操作，包括布局、事件等处理逻辑。
+对于不具备自己的渲染环境的三方框架，尽管已实现前端解析、布局及事件处理等功能，但仍需依赖系统的基础渲染和动画能力。[FrameNode](./arkts-user-defined-arktsNode-frameNode.md)上的通用属性与通用事件对这类框架而言是冗余的，会导致多次不必要的操作，涵盖布局、事件处理等逻辑。
 
-[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)是更加轻量级的渲染节点，仅包含渲染相关的能力。在该节点上暴露了设置基础的渲染属性的能力，并提供节点的动态增加、删除能力以及自定义绘制的能力。可以向三方框架提供基础的渲染、动画能力。
+自定义渲染节点 ([RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md))是更加轻量的渲染节点，仅具备与渲染相关的功能。它提供了设置基础渲染属性的能力，以及节点的动态添加、删除和自定义绘制的能力。RenderNode能够为第三方框架提供基础的渲染和动画支持。
 
 ## 创建和删除节点
 
@@ -18,7 +18,7 @@ RenderNode提供了节点的增、删、查、改的能力，能够修改节点�
 >
 > - RenderNode中查询获取得到的子树结构按照开发通过RenderNode的接口传递的参数构建。
 >
-> - RenderNode如果要与原生组件结合显示，使用需要依赖FrameNode中获取的RenderNode进行挂载上树。
+> - RenderNode如果要与系统直接结合显示，使用需要依赖FrameNode中获取的RenderNode进行挂载上树。
 
 ## 设置和获取渲染相关属性
 
