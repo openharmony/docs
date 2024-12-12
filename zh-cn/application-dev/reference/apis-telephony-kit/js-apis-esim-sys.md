@@ -19,9 +19,9 @@ getEid\(slotId: number\): string
 
 获取指定卡槽标识eUICC硬件的EID。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -61,9 +61,9 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 获取指定卡槽操作系统升级的状态。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -77,7 +77,7 @@ getOsuStatus\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#OsuStatus)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osustatus14)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
 
 **错误码：**
 
@@ -109,9 +109,9 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 如果指定卡槽的操作系统不是最新的，则执行操作系统升级。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -125,7 +125,7 @@ startOsu\(slotId: number\): Promise\<OsuStatus\>
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#OsuStatus)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
+| Promise\<[OsuStatus](#osustatus14)\> |  返回值含义：<br/> 1.正在升级 <br/>   2. 升级失败<br/>  3.升级失败<br/> 4.当前版本是最新版本<br/> 5.升级服务不可用 |
 
 **错误码：**
 | 错误码ID                 | 错误信息                               |
@@ -158,9 +158,9 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 
 填充可下载配置文件的元数据。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -170,14 +170,14 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex | number | 是 | 插槽的端口索引 |
-| profile | [DownloadableProfile](#DownloadableProfile) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
+| profile | [DownloadableProfile](#downloadableprofile14) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
 | forceDisableProfile | boolean | 是 | 如果为真，则必须停用活动SIM才能执行操作。否则，返回结果提示用户首先同意此操作 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfileMetadataResult](#GetDownloadableProfileMetadataResult)\> | 以Promise形式填充可下载配置文件的元数据。 |
+| Promise\<[GetDownloadableProfileMetadataResult](#getdownloadableprofilemetadataresult14)\> | 以Promise形式填充可下载配置文件的元数据。 |
 
 **错误码：**
 
@@ -221,9 +221,9 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 获取可用的可下载配置文件列表。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -239,7 +239,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetDownloadableProfilesResult](#GetDownloadableProfilesResult)\> | 以Promise形式获取可用的可下载配置文件列表。 |
+| Promise\<[GetDownloadableProfilesResult](#getdownloadableprofilesresult14)\> | 以Promise形式获取可用的可下载配置文件列表。 |
 
 **错误码：**
 
@@ -272,9 +272,9 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 
 下载配置文件。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -284,14 +284,14 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex | number | 是 | 插槽的端口索引 |
-| profile | [DownloadableProfile](#DownloadableProfile) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
-| configuration | [DownloadConfiguration](#DownloadConfiguration) | 是 | 下载的配置信息 |
+| profile | [DownloadableProfile](#downloadableprofile14) | 是 | SM-DP+服务器返回的绑定配置文件包数据 |
+| configuration | [DownloadConfiguration](#downloadconfiguration14) | 是 | 下载的配置信息 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[DownloadProfileResult](#DownloadProfileResult)\> | 以Promise形式获取下载配置文件的结果。 |
+| Promise\<[DownloadProfileResult](#downloadprofileresult14)\> | 以Promise形式获取下载配置文件的结果。 |
 
 **错误码：**
 
@@ -340,9 +340,9 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 获取配置文件信息列表。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -356,7 +356,7 @@ getEuiccProfileInfoList\(slotId: number\): Promise\<GetEuiccProfileInfoListResul
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[GetEuiccProfileInfoListResult](#GetEuiccProfileInfoListResult)\> | 以Promise形式获取配置文件信息列表。 |
+| Promise\<[GetEuiccProfileInfoListResult](#geteuiccprofileinfolistresult14)\> | 以Promise形式获取配置文件信息列表。 |
 
 **错误码：**
 
@@ -388,9 +388,9 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
 获取eUicc信息。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -404,7 +404,7 @@ getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[EuiccInfo](#EuiccInfo)\> | 以Promise形式获取eUicc信息。 |
+| Promise\<[EuiccInfo](#euiccinfo14)\> | 以Promise形式获取eUicc信息。 |
 
 **错误码：**
 
@@ -436,9 +436,9 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 
 删除配置文件。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -453,7 +453,7 @@ deleteProfile\(slotId: number, iccid: string\): Promise\<ResultCode\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取删除配置文件的结果状态或者返回错误异常。 |
+| Promise\<[ResultCode](#resultcode14)\> | 以Promise形式获取删除配置文件的结果状态或者返回错误异常。 |
 
 **错误码：**
 
@@ -486,9 +486,9 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 切换到（启用）给定的配置文件。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -505,7 +505,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取切换后的状态码。 |
+| Promise\<[ResultCode](#resultcode14)\> | 以Promise形式获取切换后的状态码。 |
 
 **错误码：**
 
@@ -537,9 +537,9 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 设置给定配置文件的昵称。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -555,7 +555,7 @@ setProfileNickname\(slotId: number, iccid: string, nickname: string\): Promise\<
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取切换后的状态码。 |
+| Promise\<[ResultCode](#resultcode14)\> | 以Promise形式获取切换后的状态码。 |
 
 **错误码：**
 
@@ -587,9 +587,9 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
 
 清除所有特定配置文件并重置eUICC。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -598,13 +598,13 @@ resetMemory\(slotId: number, options?: ResetOption\): Promise\<ResultCode\>;
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| options | [ResetOption](#ResetOption) | 否 | 重置状态 |
+| options | [ResetOption](#resetoption14) | 否 | 重置状态 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取重置后的状态码。 |
+| Promise\<[ResultCode](#resultcode14)\> | 以Promise形式获取重置后的状态码。 |
 
 **错误码：**
 
@@ -636,9 +636,9 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 
 恢复出厂设置，并保留profiles。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -652,7 +652,7 @@ reserveProfilesForFactoryRestore\(slotId: number\): Promise\<ResultCode\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取操作后的状态码。 |
+| Promise\<[ResultCode](#resultcode14)\> | 以Promise形式获取操作后的状态码。 |
 
 **错误码：**
 
@@ -684,9 +684,9 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 
 设置或更新eUICC中存储的默认SM-DP+地址。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -701,7 +701,7 @@ setDefaultSmdpAddress\(slotId: number, address: string\): Promise\<ResultCode\>;
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式获取操作后的状态码。 |
+| Promise\<[ResultCode](#resultcode14)\> | 以Promise形式获取操作后的状态码。 |
 
 **错误码：**
 
@@ -733,9 +733,9 @@ getDefaultSmdpAddress\(slotId: number\): Promise\<string\>;
 
 获取存储在eUICC中的默认SM-DP+地址。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.GET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.GET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -781,9 +781,9 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 
 取消会话。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：**：ohos.permission.SET_TELEPHONY_ESIM_STATE
+**需要权限**： ohos.permission.SET_TELEPHONY_ESIM_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -793,13 +793,13 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 | ------ | ------ | ----- | ----- |
 | slotId | number | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | transactionId | string | 是 | SM-DP+服务器返回的业务ID |
-| cancelReason | [CancelReason](#CancelReason) | 是 | 取消会话的原因 |
+| cancelReason | [CancelReason](#cancelreason14) | 是 | 取消会话的原因 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<[ResultCode](#ResultCode)\> | 以Promise形式取消会话。 |
+| Promise\<[ResultCode](#resultcode14)\> | 以Promise形式取消会话。 |
 
 **错误码：**
 
@@ -829,7 +829,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 访问规则。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -843,7 +843,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 可下载的配置文件。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -858,7 +858,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 获取可下载配置文件的元数据。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -878,7 +878,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 获取默认可下载配置文件的列表。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -891,7 +891,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 下载配置文件的结果。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -905,7 +905,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 获取配置文件信息列表。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -919,7 +919,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 获取eUICC芯片/设备的相关信息。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -934,7 +934,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 配置文件信息。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -954,7 +954,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 euicc信息。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -966,7 +966,7 @@ euicc信息。
 
 重置状态。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -980,7 +980,7 @@ euicc信息。
 
 操作系统升级状态。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -996,7 +996,7 @@ euicc信息。
 
 结果码。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -1042,7 +1042,7 @@ euicc信息。
 
 取消会话的原因。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -1057,7 +1057,7 @@ euicc信息。
 
 配置文件状态。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -1071,7 +1071,7 @@ euicc信息。
 
 配置文件类。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -1086,7 +1086,7 @@ euicc信息。
 
 配置文件的策略规则。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -1100,7 +1100,7 @@ euicc信息。
 
 可解决错误码。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -1113,7 +1113,7 @@ euicc信息。
 
 下载配置。
 
-**系统接口：**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 

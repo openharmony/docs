@@ -10,7 +10,7 @@ eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡
 ## 导入模块
 
 ```ts
-import { eSIM } from '@ohos.telephony.esim';
+import eSIM from '@ohos.telephony.esim';
 ```
 
 ## eSIM.isSupported<sup>14+</sup>
@@ -43,7 +43,7 @@ isSupported\(slotId: number\): boolean
 **示例：**
 
 ```ts
-import { eSIM } from '@ohos.telephony.esim';
+import eSIM from '@ohos.telephony.esim';
 
 let isSupported: boolean = eSIM.isSupported(0);
 console.log(`the esim is Supported:` + isSupported);
@@ -82,7 +82,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { eSIM } from '@ohos.telephony.esim';
+import eSIM from '@ohos.telephony.esim';
 
 let profile: eSIM.DownloadableProfile={
   activationCode:'1',
