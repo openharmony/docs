@@ -1,6 +1,6 @@
 # 自定义节点概述
 
-自定义节点是ArkUI通过接口提供的底层实体节点，具备部分基础能力，能够与系统组件混合显示。自定义节点的挂载与显示依赖于[自定义占位节点](./arkts-user-defined-place-hoder.md#自定义占位节点-nodecontainer或contentslot)。当前，自定义节点涵盖三类对象：[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)、[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)和[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)。FrameNode表示单个自定义组件节点，RenderNode表示为更轻量级的渲染节点，而BuilderNode对象赋予了创建、更新系统组件及其组件树的能力。
+自定义节点是ArkUI通过接口提供的底层实体节点，具备部分基础能力，能够与系统组件混合显示。自定义节点的挂载与显示依赖于[自定义占位节点](./arkts-user-defined-place-hoder.md)。当前，自定义节点涵盖三类对象：[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)、[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)和[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)。FrameNode表示单个自定义组件节点，RenderNode表示为更轻量级的渲染节点，而BuilderNode对象赋予了创建、更新系统组件及其组件树的能力。
 
 ![zh-cn_image_user-defined-node](figures/user-defined-node.png)
 
@@ -10,7 +10,7 @@
 
 - 实体节点：由后端创建的Native节点。
 
-## 自定义占位节点 (NodeContainer或ContentSlot)
+## 自定义占位节点
 自定义占位节点作为系统组件可以在原生组件树上为自定义节点提供挂载的点。通过自定义占位节点，可以将自定义节点挂载在占位节点上，实现自定义节点与原生组件的混合显示。
 
 ## 自定义组件节点 (FrameNode)
