@@ -13,13 +13,13 @@ UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、
 - 举例说明
 
   ```ts
-  Mozilla/5.0 (Tablet; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1
+  Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile
   ```
 
 
 | 字段                  | 含义                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| deviceType            | 当前的设备类型。<br>取值范围：<br>- Tablet：平板设备<br>-  PC：2in1设备 |
+| deviceType            | 当前的设备类型。<br>取值范围：<br>- Phone：手机<br>- Tablet：平板设备<br>-  PC：2in1设备 |
 | OSName                | 基础操作系统名称。<br>默认取值：OpenHarmony                  |
 | OSVersion             | 基础操作系统版本，两位数字，M.S。<br>默认取值：例如5.0       |
 | DistributionOSName    | 发行版操作系统名称。                                         |
@@ -137,7 +137,15 @@ struct WebComponent {
 
 OpenHarmony设备的识别主要通过UserAgent中的系统版本和设备类型两个维度来判断。建议同时检查系统版本和设备类型，以确保更准确的设备识别。
 
-1. 系统版本识别
+1. 系统识别
+
+   通过UserAgent中的{OSName}和{OSVersion}字段识别OpenHarmony系统。格式为：OpenHarmony + 版本号。
+
+   ```ts
+   const matches = navigator.userAgent.match(/OpenHarmony (\d+\.?\d*)/);   
+   ```
+
+2. 系统版本识别
 
    通过UserAgent中的{OSName}和{OSVersion}字段识别OpenHarmony系统。格式为：OpenHarmony + 版本号。
 
@@ -146,11 +154,13 @@ OpenHarmony设备的识别主要通过UserAgent中的系统版本和设备类型
    matches?.length && Number(matches[1]) >= 5;  
    ```
 
-2. 设备类型识别
+3. 设备类型识别
 
     通过deviceType字段来识别不同设备类型。
 
    ```ts
+   // 检测是否为手机设备
+   const isPhone = () => /Phone/i.test(navigator.userAgent);
    // 检测是否为平板设备  
    const isTablet = () => /Tablet/i.test(navigator.userAgent);
    
