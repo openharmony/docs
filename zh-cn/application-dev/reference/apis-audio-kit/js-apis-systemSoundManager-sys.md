@@ -361,22 +361,23 @@ let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomize
 | STANDARD| 0  | 标准振动风格。 |
 | GENTLE   | 1  | 轻柔振动风格。 |
 
-## ToneHapticsType<sup>13+</sup>
+## ToneHapticsType<sup>14+</sup>
 
-type ToneHapticsType = RingtoneType | SystemToneType
-
-联合枚举，系统铃音的振动类型。
+枚举，系统铃音的振动类型。
 
 **系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-| 名称                                 | 说明         |
-| ------------------------------------|------------|
-| [RingtoneType](#ringtonetype)       | 通话铃音类型。 |
-| [SystemToneType](#systemtonetype11) | 系统短音类型。 |
+| 名称                     | 值 | 说明         |
+| ------------------------|----|--------|
+| CALL_SIM_CARD_0         | 0  | sim卡1的来电铃声的振动。 |
+| CALL_SIM_CARD_1         | 1  | sim卡2的来电铃声的振动。 |
+| TEXT_MESSAGE_SIM_CARD_0 | 20 | sim卡1的短信提示音的振动。 |
+| TEXT_MESSAGE_SIM_CARD_1 | 21 | sim卡2的短信提示音的振动。 |
+| NOTIFICATION            | 40 | 通知提示音的振动。 |
 
-## ToneHapticsMode<sup>13+</sup>
+## ToneHapticsMode<sup>14+</sup>
 
 枚举，系统铃音场景的振动模式。
 
@@ -390,7 +391,7 @@ type ToneHapticsType = RingtoneType | SystemToneType
 | SYNC        | 1  | 与铃音同步模式。 |
 | NON_SYNC    | 2  | 非同步模式。 |
 
-## ToneHapticsSettings<sup>13+</sup>
+## ToneHapticsSettings<sup>14+</sup>
 
 系统铃音的振动设置。
 
@@ -400,14 +401,14 @@ type ToneHapticsType = RingtoneType | SystemToneType
 
 | 名称          | 类型 | 只读 | 可选 | 说明                 |
 | ------------ | -- | -- | -- | -------------------- |
-| mode | [ToneHapticsMode](#tonehapticsmode13) | 否 | 否 | 系统铃音的振动模式。 |
-| hapticsUri | string                          | 否 | 是 | 系统铃音的振动路径，当振动模式不是非同步振动应该被忽略，振动的路径可通过[getToneHapticsList](#gettonehapticslist13)获取。 |
+| mode | [ToneHapticsMode](#tonehapticsmode14) | 否 | 否 | 系统铃音的振动模式。 |
+| hapticsUri | string                          | 否 | 是 | 系统铃音的振动路径，当振动模式不是非同步振动应该被忽略，振动的路径可通过[getToneHapticsList](#gettonehapticslist14)获取。 |
 
-## ToneHapticsAttrs<sup>13+</sup>
+## ToneHapticsAttrs<sup>14+</sup>
 
-系统铃音的振动属性。在调用ToneHapticsAttrs<sup>13+</sup>的接口前，需要先通过[getToneHapticsList](#gettonehapticslist13)或[getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone13)方法获取实例。
+系统铃音的振动属性。在调用ToneHapticsAttrs<sup>14+</sup>的接口前，需要先通过[getToneHapticsList](#gettonehapticslist14)或[getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone14)方法获取实例。
 
-### getUri<sup>13+</sup>
+### getUri<sup>14+</sup>
 
 getUri(): string
 
@@ -435,7 +436,7 @@ getUri(): string
 toneHapticsAttrs.getUri();
 ```
 
-### getTitle<sup>13+</sup>
+### getTitle<sup>14+</sup>
 
 getTitle(): string
 
@@ -463,7 +464,7 @@ getTitle(): string
 toneHapticsAttrs.getTitle();
 ```
 
-### getFileName<sup>13+</sup>
+### getFileName<sup>14+</sup>
 
 getFileName(): string
 
@@ -491,7 +492,7 @@ getFileName(): string
 toneHapticsAttrs.getFileName();
 ```
 
-## ToneHapticsAttrsArray<sup>13+</sup>
+## ToneHapticsAttrsArray<sup>14+</sup>
 
 type ToneHapticsAttrsArray = Array&lt;ToneHapticsAttrs&gt;
 
@@ -501,7 +502,7 @@ type ToneHapticsAttrsArray = Array&lt;ToneHapticsAttrs&gt;
 
 | 类型                                     | 说明      |
 |----------------------------------------|---------|
-| Array&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | 系统铃音的振动属性数组。 |
+| Array&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | 系统铃音的振动属性数组。 |
 
 ## systemSoundManager.getSystemSoundManager
 
@@ -1745,7 +1746,7 @@ systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
 });
 ```
 
-### getToneHapticsSettings<sup>13+</sup>
+### getToneHapticsSettings<sup>14+</sup>
 
 getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;ToneHapticsSettings&gt;
 
@@ -1760,13 +1761,13 @@ getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;
 | 参数名 | 类型        | 必填 | 说明                                                                          |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
-| type  | [ToneHapticsType](#tonehapticstype13)    | 是   | 待获取系统铃音的振动类型。 |
+| type  | [ToneHapticsType](#tonehapticstype14)    | 是   | 待获取系统铃音的振动类型。 |
 
 **返回值：**
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsSettings](#tonehapticssettings13)&gt; | Promise回调返回铃声的振动设置。 |
+| Promise&lt;[ToneHapticsSettings](#tonehapticssettings14)&gt; | Promise回调返回铃声的振动设置。 |
 
 **错误码：**
 
@@ -1786,7 +1787,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsType.CALL_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: systemSoundManager.ToneHapticsSettings) => {
@@ -1796,7 +1797,7 @@ systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: sy
 });
 ```
 
-### setToneHapticsSettings<sup>13+</sup>
+### setToneHapticsSettings<sup>14+</sup>
 
 setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: ToneHapticsSettings): Promise&lt;void&gt;
 
@@ -1811,8 +1812,8 @@ setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: To
 | 参数名 | 类型        | 必填 | 说明                                                                          |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
-| type  | [ToneHapticsType](#tonehapticstype13)    | 是   | 被设置的系统铃音的振动类型。 |
-| settings  | [ToneHapticsSettings](#tonehapticssettings13)    | 是   | 被设置的系统铃音的振动设置。 |
+| type  | [ToneHapticsType](#tonehapticstype14)    | 是   | 被设置的系统铃音的振动类型。 |
+| settings  | [ToneHapticsSettings](#tonehapticssettings14)    | 是   | 被设置的系统铃音的振动设置。 |
 
 **返回值：**
 
@@ -1839,7 +1840,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsType.CALL_SIM_CARD_0;
 let toneHapticsSettings: systemSoundManager.ToneHapticsSettings = {
   mode: systemSoundManager.ToneHapticsMode.NON_SYNC,
   hapticsUri: '/data/storage/el2/base/haptics/synchronized/alarms/test.json', // 需更改为通过getToneHapticsList获取的Uri
@@ -1853,7 +1854,7 @@ systemSoundManagerInstance.setToneHapticsSettings(context, type, toneHapticsSett
 });
 ```
 
-### getToneHapticsList<sup>13+</sup>
+### getToneHapticsList<sup>14+</sup>
 
 getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapticsAttrsArray&gt;
 
@@ -1874,7 +1875,7 @@ getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapt
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray13)&gt; | Promise回调返回同步或者非同步的系统铃音的振动属性列表。 |
+| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray14)&gt; | Promise回调返回同步或者非同步的系统铃音的振动属性列表。 |
 
 **错误码：**
 
@@ -1903,7 +1904,7 @@ systemSoundManagerInstance.getToneHapticsList(context, false).then((value: syste
 });
 ```
 
-### getHapticsAttrsSyncedWithTone<sup>13+</sup>
+### getHapticsAttrsSyncedWithTone<sup>14+</sup>
 
 getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt;ToneHapticsAttrs&gt;
 
@@ -1924,7 +1925,7 @@ getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt
 
 | 类型                  | 说明                    |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | Promise回调返回与指定铃音同步的振动属性。 |
+| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | Promise回调返回与指定铃音同步的振动属性。 |
 
 **错误码：**
 
@@ -1955,7 +1956,7 @@ systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then(
 });
 ```
 
-### openToneHaptics<sup>13+</sup>
+### openToneHaptics<sup>14+</sup>
 
 openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 
