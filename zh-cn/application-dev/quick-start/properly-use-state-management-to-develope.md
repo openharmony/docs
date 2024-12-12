@@ -246,7 +246,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
@@ -351,7 +351,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
@@ -447,7 +447,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle;
   @ObjectLink needRenderTranslate: NeedRenderTranslate; // 从其父组件接收新定义的NeedRenderxxx类的实例
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
@@ -570,7 +570,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle,
         needRenderTranslate: this.uiStyle.needRenderTranslate, // 传递needRenderxxx类给子组件
         needRenderFontSize: this.uiStyle.needRenderFontSize,
@@ -641,7 +641,7 @@ struct SpecialImage {
   }
 }
 @Component
-struct CompA {
+struct PageChild {
   @ObjectLink uiStyle: UIStyle
   // 下面的函数用于显示组件是否被渲染
   private isRenderColumn() : number {
@@ -746,7 +746,7 @@ struct Page {
   @State uiStyle: UIStyle = new UIStyle();
   build() {
     Stack() {
-      CompA({
+      PageChild({
         uiStyle: this.uiStyle
       })
     }
