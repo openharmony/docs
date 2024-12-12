@@ -368,16 +368,6 @@ Allows an application to access the distributed travel service engine.
 
 **Valid since**: 12
 
-### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
-
-Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
-
-**Permission level**: normal
-
-**Authorization mode**: system_grant
-
-**Valid since**: 13
-
 ### ohos.permission.WINDOW_TOPMOST
 
 Allows an application to set pinned windows.
@@ -387,6 +377,16 @@ Allows an application to set pinned windows.
 **Authorization mode**: system_grant
 
 **Valid since**: 13
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 14
 
 ## user_grant Permissions
 

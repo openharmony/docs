@@ -3875,7 +3875,7 @@ Allows a system application to obtain eSIM profile information and data written 
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE
 
@@ -3887,7 +3887,7 @@ Allows a system application to modify the eSIM profile and upgrade the eSIM.
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.CAMERA_BACKGROUND
 
