@@ -19,6 +19,8 @@
 
 ## 示例
 
+设置不同设备类型的宽度，以及单独设置组件的span和offset，在sm尺寸大小的设备上使用useSizeType中sm的数据实现一样的效果。
+
 ```ts
 // xxx.ets
 @Entry

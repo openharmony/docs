@@ -101,6 +101,8 @@ reverse(isReversed: Optional\<boolean\>)
 
 ## 示例
 
+设置水平方向的布局属性，如间距、对齐方式等。
+
 ```ts
 // xxx.ets
 @Entry

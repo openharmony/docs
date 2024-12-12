@@ -225,7 +225,11 @@ chainMode(direction: Axis, style: ChainStyle)
 | PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7（设置链）](ts-container-relativecontainer.md#示例7设置链)。 |
 
 ## 示例
-### 示例1
+
+### 示例1（对齐方式和主轴方向上的布局）
+
+设置内容在元素内的对齐方式和子元素在父容器主轴方向上的布局。
+
 ```ts
 // xxx.ets
 @Entry
@@ -274,7 +278,10 @@ struct PositionExample1 {
 
 ![align.png](figures/align.png)
 
-### 示例2
+### 示例2（位置偏移）
+
+基于父组件、相对定位、锚点作出位置偏移。
+
 ```ts
 // xxx.ets
 @Entry
@@ -360,7 +367,10 @@ struct PositionExample2 {
 
 ![position.png](figures/position.png)
 
-### 示例3
+### 示例3（绝对定位和相对偏移）
+
+使用position设置绝对定位，确定子组件相对父组件的位置。使用offset设置相对偏移，组件相对原本的布局位置进行偏移。
+
 ```ts
 // xxx.ets
 @Entry
@@ -399,12 +409,12 @@ struct Example3 {
 
 ![position.png](figures/position2.jpeg)
 
-### 示例4
+### 示例4（镜像效果）
+
+通用布局属性支持镜像能力。从上到下依次通过position，offset，markAnchor实现镜像效果。黄色赋值为原本效果，粉色赋值为镜像效果。
+
 ```ts
-// xxx.ets 
-// 通用布局属性支持镜像能力
-// 从上到下依次为position，offset，markAnchor接口效果
-// 黄色赋值为原本效果，粉色赋值为镜像效果
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
