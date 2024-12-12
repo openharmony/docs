@@ -61,7 +61,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| profile | [DownloadableProfile](#downloadableprofile14) | 是   | SM-DP+服务器返回的绑定配置文件包数据 |
+| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | 是   | SM-DP+服务器返回的绑定配置文件包数据 |
 
 **返回值：**
 
