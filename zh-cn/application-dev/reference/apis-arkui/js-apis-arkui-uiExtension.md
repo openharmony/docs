@@ -437,8 +437,9 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
+| -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 1300002  | This window state is abnormal. |
 
 **示例：**
 
@@ -467,13 +468,15 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                                | 值              | 说明               |
-|-------------------------------------| --------------- |-------------------|
-| NONE                                | 0x00000000      | 表示无事件         |
-| GESTURE_CLICK                       | 0x00000001      | 表示点击事件       |
-| GESTURE_LONG_PRESS                  | 0x00000002      | 表示长按事件       |
-| GESTURE_PAN_GESTURE_VERTICAL        | 0x00000004      | 表示垂直方向滑动    |
-| GESTURE_PAN_GESTURE_HORIZONTAL      | 0x00000008      | 表示水平方向滑动    |
+| 名称                        | 值              | 说明            |
+|-----------------------------| --------------- |----------------|
+| EVENT_NONE                  | 0x00000000      | 表示无事件      |
+| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 表示左滑事件    |
+| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 表示右滑事件    |
+| EVENT_PAN_GESTURE_UP        | 0x00000004      | 表示上滑事件    |
+| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 表示下滑事件    |
+| EVENT_CLICK                 | 0x00000100      | 表示点击事件    |
+| EVENT_LONG_PRESS            | 0x00000200      | 表示长按事件    |
 
 ## AvoidAreaInfo
 
