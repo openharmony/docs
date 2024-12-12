@@ -1,12 +1,18 @@
-# BuilderNode
+# 自定义声明式节点 (BuilderNode)
 
 ## 概述
 
-[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)提供能够挂载原生组件的能力，支持通过无状态的UI方法[全局自定义构建函数](../quick-start/arkts-builder.md#全局自定义构建函数)@Builder生成组件树，并通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取组件树的根[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点。该节点可以通过[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)直接返回，挂载在[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)节点下，也可以在FrameNode树结构和[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)树结构嵌入声明式的组件结构，实现混合显示的能力。同时BuilderNode可以提供纹理导出的功能，导出的纹理用于在[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)中进行同层渲染显示。
+自定义声明式节点 ([BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md))提供能够挂载系统组件的能力，支持采用无状态的UI方式，通过[全局自定义构建函数](../quick-start/arkts-builder.md#全局自定义构建函数)@Builder定制组件树。组件树的根[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点可通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取，该节点既可直接由[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)返回并挂载于[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)节点下，亦可在FrameNode树与[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)树中嵌入声明式组件，实现混合显示。同时，BuilderNode具备纹理导出功能，导出的纹理可在[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)中实现同层渲染。
 
-BuilderNode创建的ArkTS原生控件树支持与自定义节点(例如：FrameNode、RenderNode)进行关联使用，实现了原生组件与自定义节点的混合显示。对于使用自定义节点的能力进行对接的三方框架，BuilderNode为其提供了嵌入原生组件的能力。
+由BuilderNode构建的ArkTS原生控件树，支持与自定义节点（如FrameNode、RenderNode）关联使用，确保了系统组件与自定义节点的混合显示效果。对于需与自定义节点对接的第三方框架，BuilderNode提供了嵌入系统组件的方法。
 
-BuilderNode提供了组件预创建的能力，能够自定义原生组件的创建开始的时间，在后续的业务中动态挂载显示。对于一些在创建初始化耗时较长的声明式组件，比如[Web](../reference/apis-arkweb/ts-basic-components-web.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)等，预创建可以有效减少组件初始化的耗时。
+此外，BuilderNode还提供了组件预创建的能力，能够自定义系统组件的创建开始的时间，在后续业务中实现动态挂载与显示。此功能尤其适用于初始化耗时较长的声明式组件，如[Web](../reference/apis-arkweb/ts-basic-components-web.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)等，通过预创建，可以有效减少初始化时间，优化组件加载效率。
+
+## 基本概念
+
+- 系统组件：组件是UI的必要元素，形成了在界面中的样子，由ArkUI直接提供的称为[系统组件](arkts-ui-development-overview.md)。
+
+- 实体节点：由后端创建的Native节点。
 
 ![zh-cn_image_builder-node](figures/builder-node.png)
 
