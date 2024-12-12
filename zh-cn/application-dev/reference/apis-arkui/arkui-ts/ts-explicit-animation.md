@@ -21,7 +21,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 > **说明：**
 > - 在duration为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。
-> - 如果需要在组件出现时创建动画，可以参考[示例1](#设置动画在onAppear中执行)，在onAppear中实现动画的创建。
+> - 如果需要在组件出现时创建动画，可以参考[示例1](#示例1设置动画在onappear中执行)，在onAppear中实现动画的创建。
 > - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
 > - 如果在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
 > - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
