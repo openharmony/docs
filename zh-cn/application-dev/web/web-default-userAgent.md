@@ -135,11 +135,11 @@ struct WebComponent {
 
 ### 如何通过UserAgent来识别OpenHarmony操作系统中不同设备
 
-OpenHarmony设备的识别主要通过UserAgent中的系统版本和设备类型两个维度来判断。建议同时检查系统版本和设备类型，以确保更准确的设备识别。
+OpenHarmony设备的识别主要通过UserAgent中的系统、系统版本和设备类型三个维度来判断。建议同时检查系统、系统版本和设备类型，以确保更准确的设备识别。
 
 1. 系统识别
 
-   通过UserAgent中的{OSName}和{OSVersion}字段识别OpenHarmony系统。格式为：OpenHarmony + 版本号。
+   通过UserAgent中的{OSName}和字段识别OpenHarmony系统。格式为：OpenHarmony。
 
    ```ts
    const matches = navigator.userAgent.match(/OpenHarmony (\d+\.?\d*)/);   
@@ -147,7 +147,7 @@ OpenHarmony设备的识别主要通过UserAgent中的系统版本和设备类型
 
 2. 系统版本识别
 
-   通过UserAgent中的{OSName}和{OSVersion}字段识别OpenHarmony系统。格式为：OpenHarmony + 版本号。
+   通过UserAgent中的{OSName}和{OSVersion}字段识别OpenHarmony系统及系统版本。格式为：OpenHarmony + 版本号。
 
    ```ts
    const matches = navigator.userAgent.match(/OpenHarmony (\d+\.?\d*)/);  
@@ -161,6 +161,7 @@ OpenHarmony设备的识别主要通过UserAgent中的系统版本和设备类型
    ```ts
    // 检测是否为手机设备
    const isPhone = () => /Phone/i.test(navigator.userAgent);
+
    // 检测是否为平板设备  
    const isTablet = () => /Tablet/i.test(navigator.userAgent);
    
