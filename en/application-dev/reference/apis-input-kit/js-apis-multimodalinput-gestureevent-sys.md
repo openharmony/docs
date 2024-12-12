@@ -25,7 +25,7 @@ Defines a touchscreen-gesture event.
 | action | [TouchGestureAction](#touchgestureaction14) | Yes   | No   | The type of touchscreen-gesture. |
 | touches | [Touch](js-apis-touchevent.md#touch)[] | Yes | No | The information of touches. |
 
-## TouchGestureAction
+## TouchGestureAction<sup>14+</sup>
 
 Enumerate touchscreen-gesture types.
 

@@ -25,7 +25,7 @@ import { Touch } from '@kit.InputKit';
 | action | [TouchGestureAction](#touchgestureaction14) | 是   | 否   | 触摸屏手势类型。 |
 | touches | [Touch](js-apis-touchevent.md#touch)[] | 是 | 否 | 触摸点信息。 |
 
-## TouchGestureAction
+## TouchGestureAction<sup>14+</sup>
 
 触摸屏手势类型。
 
