@@ -173,15 +173,15 @@ hideNonSystemFloatingWindows接口
 
 **变更原因**
 
-window.getSnapshot接口当前获取的是窗口尺寸x0.5的图片，没有提供悬浮窗实际尺寸的图片。
+window.getSnapshot接口当前获取到的图片尺寸是windowRect*0.5，不是窗口实际尺寸。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：window.getSnapshot接口获取的是窗口尺寸x0.5的图片。
+变更前：window.getSnapshot接口获取到的图片尺寸是windowRect*0.5。
 
-变更后：window.getSnapshot接口获取到悬浮窗实际尺寸的图片。
+变更后：window.getSnapshot接口获取到的图片尺寸是窗口实际尺寸。
 
 **起始API Level**
 
