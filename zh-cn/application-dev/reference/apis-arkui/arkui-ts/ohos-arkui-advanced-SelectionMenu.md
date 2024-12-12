@@ -99,7 +99,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)，宽度默认256vp， 高度自适应内容。
+不支持[通用属性](ts-universal-attributes-size.md)，宽度默认224vp， 高度自适应内容。
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)。
