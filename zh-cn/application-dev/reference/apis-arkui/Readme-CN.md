@@ -475,6 +475,7 @@
     - [焦点错误码](errorcode-focus.md)
     - [系统资源错误码](errorcode-system-resource.md)
     - [半模态错误码](errorcode-bindSheet.md)
+    - [滚动类组件错误码](errorcode-scroll.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
