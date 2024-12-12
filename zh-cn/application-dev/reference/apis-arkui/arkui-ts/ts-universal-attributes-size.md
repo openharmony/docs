@@ -215,7 +215,10 @@ constraintSize(value: ConstraintSizeOptions)
 >  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
 
 ## 示例
-### 示例1
+
+### 示例1（设置组件的宽高和边距）
+
+设置组件的宽度和高度，以及内边距和外边距。
 
 ```ts
 // xxx.ets
@@ -274,8 +277,10 @@ struct SizeExample {
 
 ![size](figures/size.png)
 
-### 示例2
-padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型
+### 示例2（LocalizedPadding和LocalizedMargin类型的使用）
+
+padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型。
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
@@ -320,8 +325,10 @@ struct SizeExample {
 
 ![size](figures/size-rtl.png)
 
-### 示例3
-对容器设置组件级安全区
+### 示例3（设置安全区）
+
+对容器设置组件级安全区。
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';
