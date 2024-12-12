@@ -55,7 +55,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let userAgent = this.controller.getUserAgent();
-            console.info("userAgent: " + userAgent);
+            console.log("userAgent: " + userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -88,7 +88,7 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
       .onControllerAttached(() => {
-        console.info("onControllerAttached");
+        console.log("onControllerAttached");
         try {
           let userAgent = this.controller.getUserAgent() + this.customUserAgent;
           this.controller.setCustomUserAgent(userAgent);
@@ -120,7 +120,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.userAgent = this.controller.getCustomUserAgent();
-            console.info("userAgent: " + this.userAgent);
+            console.log("userAgent: " + this.userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
