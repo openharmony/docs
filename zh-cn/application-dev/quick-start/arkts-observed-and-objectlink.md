@@ -391,13 +391,13 @@ class BookName extends Bag {
 }
 
 @Component
-struct ViewA {
-  label: string = 'ViewA';
+struct Son {
+  label: string = 'Son';
   @ObjectLink bag: Bag;
 
   build() {
     Column() {
-      Text(`ViewA [${this.label}] this.bag.size = ${this.bag.size}`)
+      Text(`Son [${this.label}] this.bag.size = ${this.bag.size}`)
         .fontColor('#ffffffff')
         .backgroundColor('#ff3d9dba')
         .width(320)
@@ -405,7 +405,7 @@ struct ViewA {
         .borderRadius(25)
         .margin(10)
         .textAlign(TextAlign.Center)
-      Button(`ViewA: this.bag.size add 1`)
+      Button(`Son: this.bag.size add 1`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -417,14 +417,14 @@ struct ViewA {
 }
 
 @Component
-struct ViewC {
-  label: string = 'ViewC1';
+struct Father {
+  label: string = 'Father';
   @ObjectLink bookName: BookName;
 
   build() {
     Row() {
       Column() {
-        Text(`ViewC [${this.label}] this.bookName.size = ${this.bookName.size}`)
+        Text(`Father [${this.label}] this.bookName.size = ${this.bookName.size}`)
           .fontColor('#ffffffff')
           .backgroundColor('#ff3d9dba')
           .width(320)
@@ -432,7 +432,7 @@ struct ViewC {
           .borderRadius(25)
           .margin(10)
           .textAlign(TextAlign.Center)
-        Button(`ViewC: this.bookName.size add 1`)
+        Button(`Father: this.bookName.size add 1`)
           .width(320)
           .backgroundColor('#ff17a98d')
           .margin(10)
@@ -448,17 +448,17 @@ struct ViewC {
 
 @Entry
 @Component
-struct ViewB {
+struct GrandFather {
   @State user: User = new User(new Bag(0));
   @State child: Book = new Book(new BookName(0));
 
   build() {
     Column() {
-      ViewA({ label: 'ViewA #1', bag: this.user.bag })
+      Son({ label: 'Son #1', bag: this.user.bag })
         .width(320)
-      ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
+      Father({ label: 'Father #3', bookName: this.child.bookName })
         .width(320)
-      Button(`ViewB: this.child.bookName.size add 10`)
+      Button(`GrandFather: this.child.bookName.size add 10`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -466,14 +466,14 @@ struct ViewB {
           this.child.bookName.size += 10
           console.log('this.child.bookName.size:' + this.child.bookName.size)
         })
-      Button(`ViewB: this.user.bag = new Bag(10)`)
+      Button(`GrandFather: this.user.bag = new Bag(10)`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
           this.user.bag = new Bag(10);
         })
-      Button(`ViewB: this.user = new User(new Bag(20))`)
+      Button(`GrandFather: this.user = new User(new Bag(20))`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -490,7 +490,7 @@ struct ViewB {
 被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
 
 
-ViewB中的事件句柄：
+GrandFather中的事件句柄：
 
 
 - this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量size和其属性的修改。
@@ -498,7 +498,7 @@ ViewB中的事件句柄：
 - this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
 
 
-ViewC中的事件句柄：
+Father中的事件句柄：
 
 
 - this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
