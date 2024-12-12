@@ -28,7 +28,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | dump-target-overlay | 打印目标应用的所有关联overlay应用的overlayModuleInfo。 |
 
 
-## 帮助命令
+## 帮助命令（help）
 
 ```bash
 # 显示帮助信息
@@ -36,7 +36,7 @@ bm help
 ```
 
 
-## 安装命令
+## 安装命令（install）
 
 ```bash
 bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
@@ -68,7 +68,7 @@ bm install -p aaa.hap -s xxx.hsp yyy.hsp
 bm install -p /data/app/ohos.app.hap -w 10
 ```
 
-## 卸载命令
+## 卸载命令（uninstall）
 
 ```bash
 bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
@@ -102,7 +102,7 @@ bm uninstall -n com.ohos.app -k
 ```
 
 
-## 查询应用信息命令
+## 查询应用信息命令（dump）
 
 ```bash
 bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
@@ -132,7 +132,7 @@ bm dump -s -n com.ohos.app
 bm dump -n com.ohos.app -d xxxxx
 ```
 
-## 清理命令
+## 清理命令（clean）
 
 ```bash
 bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
@@ -159,7 +159,7 @@ clean bundle data files successfully.
 ```
 
 <!--Del-->
-## 使能命令
+## 使能命令（enable）
 
 ```bash
 bm enable [-h] [-n bundleName] [-a abilityName]
@@ -185,7 +185,7 @@ enable bundle successfully.
 ```
 
 
-## 禁用命令
+## 禁用命令（disable）
 
 ```bash
 bm disable [-h] [-n bundleName] [-a abilityName]
@@ -212,7 +212,7 @@ disable bundle successfully.
 <!--DelEnd-->
 
 
-## 获取udid命令
+## 获取udid命令（get）
 
 ```bash
 bm get [-h] [-u]
@@ -237,7 +237,7 @@ udid of current device is :
 ```
 
 
-## 快速修复命令
+## 快速修复命令（quickfix）
 
 ```bash
 bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName]
@@ -283,7 +283,7 @@ bm quickfix -r -b com.ohos.app
 delete quick fix successfully
 ```
 
-## 共享库查询命令
+## 共享库查询命令（dump-shared）
 
 ```bash
 bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
@@ -310,7 +310,7 @@ bm dump-shared -n com.ohos.lib
 bm dump-dependencies -n com.ohos.app -m entry
 ```
 
-## 共享库依赖关系查询命令
+## 共享库依赖关系查询命令（dump-dependencies）
 
 显示指定应用和指定模块依赖的共享库信息。
 ```bash
@@ -331,7 +331,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 
-## 应用执行编译AOT命令
+## 应用执行编译AOT命令（compile）
 
 应用执行编译AOT命令。
 ```bash
@@ -353,7 +353,7 @@ bm compile [-h] [-m mode] [-r bundleName]
 bm compile -m partial com.example.myapplication
 ```
 
-## 拷贝ap文件命令
+## 拷贝ap文件命令（copy-ap）
 
 拷贝ap文件到指定应用的/data/local/pgo路径。
 
@@ -376,7 +376,7 @@ bm copy-ap [-h] [-a] [-n bundleName]
 bm copy-ap -n com.example.myapplication
 ```
 
-## 查询overlay应用信息命令
+## 查询overlay应用信息命令（dump-overlay）
 
 打印overlay应用的overlayModuleInfo。
 ```bash
@@ -404,7 +404,7 @@ bm dump-overlay -b com.ohos.app -m entry
 bm dump-overlay -b com.ohos.app -m feature
 ```
 
-## 查询应用的overlay相关信息命令
+## 查询应用的overlay相关信息命令（dump-target-overlay）
 
 查询目标应用的所有关联overlay应用的overlayModuleInfo信息。
 
