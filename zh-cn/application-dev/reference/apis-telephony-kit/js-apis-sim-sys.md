@@ -3298,14 +3298,14 @@ SIM卡鉴权。使用Promise异步回调。
 | 参数名   | 类型                             | 必填 | 说明                                   |
 | -------- | -------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| authType | [AuthType](#authType14)          | 是   | 身份验证类型。                         |
+| authType | [AuthType](#authtype14)          | 是   | 身份验证类型。                         |
 | authData | string                           | 是   | 密码或其他认证信息。                   |
 
 **返回值：**
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<[SimAuthenticationResponse](#simAuthenticationResponse14)\> | 以Promise形式返回身份验证响应的字符串。 |
+| Promise\<[SimAuthenticationResponse](#simauthenticationresponse14)\> | 以Promise形式返回身份验证响应的字符串。 |
 
 **错误码：**
 
