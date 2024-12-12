@@ -177,6 +177,10 @@ stateEffect(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
+>  **说明：**
+> 
+>  使用多态样式设置按压态时，需优先设置stateEffect为false，防止内置按压态与多态样式按压态冲突。
+
 ### fontFamily<sup>8+</sup>
 
 fontFamily(value: string | Resource)
