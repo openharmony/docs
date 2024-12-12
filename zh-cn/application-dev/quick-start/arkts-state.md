@@ -65,10 +65,10 @@
   ```
 
 - 当装饰的数据类型为class或者Object时，可以观察到自身的赋值的变化，和其属性赋值的变化，即Object.keys(observedObject)返回的所有属性。例子如下。
-    声明ClassA和Model类。
+    声明Person和Model类。
 
     ```ts
-      class ClassA {
+      class Person {
         public value: string;
       
         constructor(value: string) {
@@ -78,10 +78,10 @@
       
       class Model {
         public value: string;
-        public name: ClassA;
-        constructor(value: string, a: ClassA) {
+        public name: Person;
+        constructor(value: string, person: Person) {
           this.value = value;
-          this.name = a;
+          this.name = person;
         }
       }
     ```
@@ -90,14 +90,14 @@
 
     ```ts
     // class类型
-    @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new Person('World'));
     ```
 
     对\@State装饰变量的赋值。
 
     ```ts
     // class类型赋值
-    this.title = new Model('Hi', new ClassA('ArkUI'));
+    this.title = new Model('Hi', new Person('ArkUI'));
     ```
 
     对\@State装饰变量的属性赋值。
@@ -926,9 +926,9 @@ struct ConsumerChild {
 
 下面的示例，渲染的流程是：
 
-1. 创建CompA自定义组件。
+1. 创建Index自定义组件。
 
-2. 执行CompA的build方法：
+2. 执行Index的build方法：
 
     1. 创建Column组件。
 
@@ -941,7 +941,7 @@ struct ConsumerChild {
 ```ts
 @Entry
 @Component
-struct CompA {
+struct Index {
   @State count: number = 1;
 
   build() {
@@ -960,7 +960,7 @@ struct CompA {
 框架识别到在build里改变状态变量会打error日志，error日志为：
 
 ```ts
-FIX THIS APPLICATION ERROR: @Component 'CompA'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
+FIX THIS APPLICATION ERROR: @Component 'Index'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
 ```
 
 在上面的例子中，这个错误行为不会造成很严重的后果，只有Text组件多渲染了一次，所以很多开发者忽略了这个日志。
