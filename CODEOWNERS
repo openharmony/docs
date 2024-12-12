@@ -650,12 +650,12 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md	@cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-blank.md	@laigerendaqiu	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md	@zhangfanfan2	@youzhi92	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md	@jinweiliu	@lexiaoyao2	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md @jyj-0306 @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md		 @lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md	@jinweiliu	@lexiaoyao2	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-divider.md	@laigerendaqiu	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md		@crazyracing0726	@tomatodevboy	@HelloCrease
@@ -690,9 +690,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-text.md	
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md	@jyj-0306	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md		@jyj-0306	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md	@jinweiliu	@lexiaoyao2	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md	@ileft201	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md	@jinweiliu	@lexiaoyao2	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md	@zhangfanfan2	@youzhi92	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@laigerendaqiu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md @HelloCrease
@@ -791,10 +791,10 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmedia
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-datepicker-dialog.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md	@jinweiliu	@lexiaoyao2		@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-datepicker-dialog.md	@jinweiliu	@lexiaoyao2		@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md	@jinweiliu	@lexiaoyao2		@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md	@jinweiliu	@lexiaoyao2		@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-menu.md	@zhangfanfan2	@youzhi92	@luyuxuan1	@HelloCrease
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md	@seaside_wu	 @s10021109	@tomatodevboy	@HelloCrease
