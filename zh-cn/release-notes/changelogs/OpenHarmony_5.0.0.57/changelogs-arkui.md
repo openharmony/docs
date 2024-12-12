@@ -246,3 +246,188 @@ List组件的initialIndex接口和Scroller控制器的跳转接口（scrollToInd
 **适配指导**
 
 需要对使用List组件的页面进行排查，检查是否在onAppear或其他List组件首次布局之前的阶段，同时设置了initialIndex并调用了scrollToIndex,、scrollToItemInGroup或scrollEdge接口。在变更后，initialIndex的生效优先级将低于scrollToIndex、scrollToItemInGroup或scrollEdge的优先级。
+
+## cl.arkui.4  CanvasRenderingContext2D的drawImage接口联合阴影绘制由阴影无法正确绘制变更为阴影正确绘制
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+drawImage同名接口根据传入参数的不同，视为不同方法。当drawImage传入image、dx和dy三个参数，且与阴影颜色（shadowColor）、阴影偏置距离（shadowOffsetX和shadowOffsetY）联合绘制时，阴影无法正确绘制。变更后，阴影可以正确绘制。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+- 变更前：当drawImage接口传入image、dx和dy三个参数，且与阴影进行联合绘制时，阴影无法正确绘制。
+- 变更后：当drawImage接口传入image、dx和dy三个参数，且与阴影进行联合绘制时，阴影可以正确绘制。
+
+|               变更前                |              变更后               |
+| :---------------------------------: | :-------------------------------: |
+| ![](figures/drawImage_without_shadow.jpg) | ![](figures/drawImage_with_shadow.jpg) |
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.57 版本开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D的drawImage接口
+
+**适配指导**
+
+API version 15及以后，使用drawImage接口与阴影进行联合绘制时，阴影能够被正确绘制。
+
+**示例**
+
+```ts
+@Entry
+@Component
+struct Page1 {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private img: ImageBitmap = new ImageBitmap("common/images/example.png")
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.context.shadowColor = "rgb(213,213,213)"
+          this.context.shadowOffsetX = 40
+          this.context.shadowOffsetY = 40
+          this.context.drawImage(this.img, 20, 20)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## cl.arkui.5  CanvasRenderingContext2D的measureText接口测算文本的结果变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在运用measureText接口进行文本尺寸测量时，在下述场景1与场景2中，所测得的文本宽度呈现异常值：
+- 场景1：当Context与某一Canvas解除绑定后，再与另一Canvas重新绑定时，若未重新设定font属性，或在重新设定font属性时遗漏了font-size的指定，那么在绘制文本时将采用重置后的font-size（即默认值）。然而，在进行文本尺寸测量时，系统会错误地沿用前一Canvas中设定的font-size，从而导致文本宽度测量结果出现偏差；
+- 场景2：在font属性的设定过程中，若首次已明确指定font-style，而第二次设定了不同的font-style，虽然在绘制文本时会采用新设定的font-style，但在进行文本尺寸测量时，系统却依旧沿用上一次设定的font-style，同样造成文本宽度测量结果的不准确。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+使用measureText接口进行文本测算时：
+
+- 变更前：在场景1和场景2中，文本测算得到的文本宽度均为错误值；
+- 变更后：在场景1和场景2中，文本测算得到的文本宽度均为正确值。
+
+运行场景1的示例：
+
+```ts
+@Entry
+@Component
+struct example1 {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  @State flag: boolean = false
+
+  build() {
+    Column() {
+      Button('transfer')
+        .position({x:200, y:0})
+        .width(100)
+        .height(40)
+        .onClick(() => {
+          this.flag = !this.flag
+        })
+      Canvas(this.context)
+        .position({x:100, y:45})
+        .width('300')
+        .height('100')
+        .backgroundColor('rgb(39,135,237)')
+        .onReady(() => {
+          this.context.textAlign = 'center'
+          this.context.font = '20vp'
+          this.context.fillText('width:' + this.context.measureText('Hello World').width, this.context.width/2, 30)
+        })
+      if (this.flag) {
+        Canvas(this.context)
+          .position({x:100, y:145})
+          .width('300')
+          .height('100')
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
+            this.context.textAlign = 'center'
+            this.context.fillText('width:' + this.context.measureText('Hello World').width, this.context.width/2, 30)
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+|                   变更前                   |                 变更后                  |
+| :----------------------------------------: | :-------------------------------------: |
+| ![](figures/measureText_1.gif) | ![](figures/measureText_2.gif) |
+
+运行场景2的示例：
+
+```ts
+@Entry
+@Component
+struct example2 {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('rgb(255,192,0)')
+        .onReady(() => {
+          this.context.font = 'italic 25vp'
+          this.context.fillText('width:' + this.context.measureText('Hello World').width, 10, 50)
+          this.context.font = 'normal'
+          this.context.fillText('width:' + this.context.measureText('Hello World').width, 10, 100)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+|                   变更前                   |                 变更后                  |
+| :----------------------------------------: | :-------------------------------------: |
+| ![](figures/measureText_3.jpg) | ![](figures/measureText_4.jpg) |
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.57 版本开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D的measureText接口
+
+**适配指导**
+
+无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。

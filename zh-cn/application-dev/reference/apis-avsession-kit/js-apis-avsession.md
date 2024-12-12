@@ -8003,7 +8003,7 @@ constructor(context: Context)
 
 ```ts
 import { common } from '@kit.AbilityKit';
-import { avSession, AVCastPickerState } from '@kit.AVSessionKit';
+import { avSession } from '@kit.AVSessionKit';
 @Entry
 @Component
 struct Index {
@@ -8095,6 +8095,8 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 **示例：**
 
 ```ts
+import { AVCastPickerState } from '@kit.AVSessionKit';
+
 avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
   console.info(`picker state change : ${state}`);
 });

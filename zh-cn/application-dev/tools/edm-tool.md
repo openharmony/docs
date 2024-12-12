@@ -14,7 +14,7 @@ Enterprise Device Manager（企业设备管理工具，简称为edm），为设�
 | enable-admin  | 激活命令，用于激活企业设备管理拓展能力，目标组件必须为[enterpriseAdmin类型的ExtensionAbility](../mdm/mdm-kit-admin.md)。 |
 | disable-admin | 解除激活命令，用于解除激活企业设备管理拓展能力。             |
 
-## 帮助命令
+## 帮助命令（help）
 
 
   ```bash
@@ -22,7 +22,7 @@ Enterprise Device Manager（企业设备管理工具，简称为edm），为设�
 edm help
   ```
 
-## 激活命令
+## 激活命令（enable-admin）
 
 
   ```bash
@@ -47,7 +47,7 @@ enable-admin success.
 ```
 
 
-## 解除激活命令
+## 解除激活命令（disable-admin）
 
   ```bash
 edm disable-admin [-h] [-n bundleName]

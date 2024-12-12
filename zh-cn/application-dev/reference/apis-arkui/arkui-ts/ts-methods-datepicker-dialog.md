@@ -22,7 +22,7 @@ static show(options?: DatePickerDialogOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                                        | 必填 | 说明                       |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
@@ -40,7 +40,7 @@ static show(options?: DatePickerDialogOptions)
 | showTime<sup>10+</sup> | boolean | 否 | 是否展示时间项，true表示显示时间，false表示不显示时间。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | useMilitaryTime<sup>10+</sup> | boolean | 否 | 展示时间是否为24小时制，true表示显示24小时制，false表示显示12小时制。<br/>默认值：false<br />**说明：** <br/>当展示时间为12小时制时，上下午与小时无联动关系。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | lunarSwitch<sup>10+</sup> | boolean | 否 | 是否展示切换农历的开关，true表示展示开关，false表示不展示开关。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| lunarSwitchStyle<sup>14+</sup> | [LunarSwitchStyle](#lunarswitchstyle14类型说明) | 否 | 设置农历开关的颜色样式。<br/>默认值：{ selectedColor: $r('sys.color.ohos_id_color_text_primary_actived'), unselectedColor: $r('sys.color.ohos_id_color_switch_outline_off'), strokeColor: Color.White }<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| lunarSwitchStyle<sup>14+</sup> | [LunarSwitchStyle](#lunarswitchstyle14类型说明) | 否 | 设置农历开关的颜色样式。<br/>默认值：{ selectedColor: `$r('sys.color.ohos_id_color_text_primary_actived')`, unselectedColor: `$r('sys.color.ohos_id_color_switch_outline_off')`, strokeColor: Color.White }<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -125,9 +125,9 @@ static show(options?: DatePickerDialogOptions)
 >
 > 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
 
-### 示例1（弹出日期选择弹窗）
+### 示例1（设置显示时间）
 
-该示例通过点击按钮弹出日期选择弹窗。
+该示例通过showTime、useMilitaryTime、dateTimeOptions设置显示时间。
 
 ```ts
 // xxx.ets
@@ -141,53 +141,16 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({ // 建议使用 this.getUIContext().showDatePickerDialog()接口
+          DatePickerDialog.show({
+            // 建议使用 this.getUIContext().showDatePickerDialog()接口
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
-            showTime:true,
-            useMilitaryTime:false,
-            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
-            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
-            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
+            showTime: true,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
-            },
-            onCancel: () => {
-              console.info("DatePickerDialog:onCancel()")
-            },
-            onDateChange: (value: Date) => {
-              console.info("DatePickerDialog:onDateChange()" + value.toString())
-            },
-            onDidAppear: () => {
-              console.info("DatePickerDialog:onDidAppear()")
-            },
-            onDidDisappear: () => {
-              console.info("DatePickerDialog:onDidDisappear()")
-            },
-            onWillAppear: () => {
-              console.info("DatePickerDialog:onWillAppear()")
-            },
-            onWillDisappear: () => {
-              console.info("DatePickerDialog:onWillDisappear()")
-            }
-          })
-        })
-
-      Button("Lunar DatePickerDialog")
-        .margin(20)
-        .onClick(() => {
-          DatePickerDialog.show({
-            start: new Date("2000-1-1"),
-            end: new Date("2100-12-31"),
-            selected: this.selectedDate,
-            lunar: true,
-            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
-            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
-            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
-            onDateAccept: (value: Date) => {
               this.selectedDate = value
               console.info("DatePickerDialog:onDateAccept()" + value.toString())
             },
@@ -238,17 +201,33 @@ struct DatePickerDialogExample {
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
-            showTime:true,
-            useMilitaryTime:false,
-            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
-            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
-            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
-            acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-              fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-              borderRadius: 20 },
-            cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-              fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-              borderRadius: 10 },
+            disappearTextStyle: { color: '#297bec', font: { size: '20fp', weight: FontWeight.Bold } },
+            textStyle: { color: Color.Black, font: { size: '18fp', weight: FontWeight.Normal } },
+            selectedTextStyle: { color: Color.Blue, font: { size: '26fp', weight: FontWeight.Regular } },
+            acceptButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: 'rgb(81, 81, 216)',
+              fontSize: '26fp',
+              fontWeight: FontWeight.Bolder,
+              fontStyle: FontStyle.Normal,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#A6ACAF',
+              borderRadius: 20
+            },
+            cancelButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: Color.Blue,
+              fontSize: '16fp',
+              fontWeight: FontWeight.Normal,
+              fontStyle: FontStyle.Italic,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#50182431',
+              borderRadius: 10
+            },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
               this.selectedDate = value
@@ -281,7 +260,7 @@ struct DatePickerDialogExample {
 
 ![DataPickerDialog](figures/DatePickerDialog_CustomButton.png)
 
-> **说明：** 
+> **说明：**
 >
 > 如需完全自定义实现日期滑动选择器弹窗，可以通过先使用[自定义弹窗 (CustomDialog)](ts-methods-custom-dialog-box.md)，然后使用[DatePicker组件](ts-basic-components-datepicker.md)来实现。
 
@@ -342,3 +321,168 @@ struct DatePickerDialogExample {
 ```
 
 ![DataPickerDialog](figures/DatePickerDialog_HoverMode.gif)
+
+### 示例4（设置弹窗位置）
+
+该示例通过alignment、offset设置弹窗的位置。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            // 建议使用 this.getUIContext().showDatePickerDialog()接口
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            alignment: DialogAlignment.Center,
+            offset: { dx: 20, dy: 0 },
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo4.png)
+
+### 示例5（设置遮蔽区）
+
+该示例通过maskRect设置遮蔽区。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            maskRect: {
+              x: 30,
+              y: 60,
+              width: '100%',
+              height: '60%'
+            },
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo5.png)
+
+### 示例6（设置弹窗背板）
+
+该示例通过backgroundColor、backgroundBlurStyle、shadow设置弹窗背板。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            backgroundColor: 'rgb(204, 226, 251)',
+            backgroundBlurStyle: BlurStyle.NONE,
+            shadow: ShadowStyle.OUTER_FLOATING_SM,
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo6.png)
+
+### 示例7（设置公历农历）
+
+该示例通过lunar、lunarSwitch设置弹窗显示公历或农历。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            lunar: false,
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+
+      Button("Lunar DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            lunar: true,
+            lunarSwitch: true,
+            onDateAccept: (value: Date) => {
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo7.gif)
