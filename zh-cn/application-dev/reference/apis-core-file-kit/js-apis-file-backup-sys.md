@@ -1134,7 +1134,7 @@ release(): Promise&lt;void&gt;
 
 cancel(bundleName: string): number;
 
-备份任务过程中，工具应用发现数据异常，需要放弃某应用的备份时调用此接口，使此应用的备份任务终止。
+备份任务过程中，工具应用发现数据异常，需要取消某应用的备份时调用此接口，使此应用的备份任务终止。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1144,16 +1144,13 @@ cancel(bundleName: string): number;
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName | string | 是   | 需要备份的应用名称。 |
+| bundleName | string | 是   | 需要取消备份的应用名称。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| number | 取消任务是否下发成功，如未成功，返回未成功的错误类型 |
-|    0     | 取消任务下发成功 |
-| 13500011 | 想要取消的任务未开始 |
-| 13500012 | 想要取消的任务不存在 |
+| number | 返回取消状态。0：取消任务下发成功；13500011：想要取消的任务未开始； 13500012：想要取消的任务不存在。 |
 
 **错误码：**
 
@@ -1177,11 +1174,12 @@ cancel(bundleName: string): number;
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
+        // 文件fd传输失败，调用取消接口，取消此应用的备份任务
+        let result = this.sessionBackup.cancel("com.example.myapplication");
+        console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
       }
-      let result = this.sessionBackup.cancel("cc.studio97.dailycafe");
-      console.info('cancel result:' + result);
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
@@ -2064,7 +2062,7 @@ release(): Promise&lt;void&gt;
 
 cancel(bundleName: string): number;
 
-恢复任务过程中，工具应用发现数据异常，需要放弃某应用的恢复时调用此接口，使此应用的恢复任务终止。
+恢复任务过程中，工具应用发现数据异常，需要取消某应用的恢复时调用此接口，使此应用的恢复任务终止。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -2074,16 +2072,13 @@ cancel(bundleName: string): number;
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName | string | 是   | 需要备份的应用名称。 |
+| bundleName | string | 是   | 需要取消备份的应用名称。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| number | 取消任务是否下发成功，如未成功，返回未成功的错误类型 |
-|    0     | 取消任务下发成功 |
-| 13500011 | 想要取消的任务未开始 |
-| 13500012 | 想要取消的任务不存在 |
+| number | 返回取消状态。0：取消任务下发成功；13500011：想要取消的任务未开始； 13500012：想要取消的任务不存在。 |
 
 **错误码：**
 
@@ -2107,11 +2102,12 @@ cancel(bundleName: string): number;
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
+        // 文件fd传输失败，调用取消接口，取消此应用的备份任务
+        let result = this.sessionRestore.cancel("com.example.myapplication");
+        console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
       }
-      let result = this.sessionRestore.cancel("cc.studio97.dailycafe");
-      console.info('cancel result:' + result);
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
@@ -2553,7 +2549,7 @@ release(): Promise&lt;void&gt;
 
 cancel(bundleName: string): number;
 
-增量备份任务过程中，工具应用发现数据异常，需要放弃某应用的增量备份时调用此接口，使此应用的增量备份任务终止。
+增量备份任务过程中，工具应用发现数据异常，需要取消某应用的增量备份时调用此接口，使此应用的增量备份任务终止。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -2563,16 +2559,13 @@ cancel(bundleName: string): number;
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName | string | 是   | 需要备份的应用名称。 |
+| bundleName | string | 是   | 需要取消备份的应用名称。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| number | 取消任务是否下发成功，如未成功，返回未成功的错误类型 |
-|    0     | 取消任务下发成功 |
-| 13500011 | 想要取消的任务未开始 |
-| 13500012 | 想要取消的任务不存在 |
+| number | 返回取消状态。0：取消任务下发成功；13500011：想要取消的任务未开始； 13500012：想要取消的任务不存在。 |
 
 **错误码：**
 
@@ -2596,11 +2589,12 @@ cancel(bundleName: string): number;
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
+        // 文件fd传输失败，调用取消接口，取消此应用的备份任务
+        let result = this.incrementalBackupSession.cancel("com.example.myapplication");
+        console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
       }
-      let result = this.incrementalBackupSession.cancel("cc.studio97.dailycafe");
-      console.info('cancel result:' + result);
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
