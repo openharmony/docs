@@ -1017,8 +1017,6 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 Creates an asset with a temporary permission of the given period. When this API is called by an application for the first time, a dialog box will be displayed for the user to confirm whether to save the asset. If the user agrees to save the asset, the asset instance will be created and the file URI granted with the save permission will be returned. The application can write the asset based on the URI
 within 5 minutes after the user agrees to save the asset. If the same application calls this API again within the 5 minutes, the authorized URI can be automatically returned without the need to display the conformation dialog box.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Required permissions**: ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
@@ -1049,13 +1047,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import fs from '@ohos.file.fs';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
     
     try {
-        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
         let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
             title: '123456', 
             fileNameExtension: 'jpg',
