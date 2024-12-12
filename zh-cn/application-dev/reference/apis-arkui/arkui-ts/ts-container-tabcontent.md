@@ -64,6 +64,26 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [SubTabBarStyle](#subtabbarstyle9对象说明) \| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 是   | TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式。 |
 
+### tabBar<sup>16+</sup>
+
+tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string | Resource | CustomBuilder | TabBarOptions)
+
+设置TabBar上显示内容。
+
+使用BottomTabBarStyle或TabBarOptions类型作为入参并设置icon，icon异常时显示灰色图块。如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。例如，采用带有宽高属性的svg图源时，icon大小是svg本身内置的宽高属性值。
+
+设置的内容超出TabBar页签时进行裁切。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| content | [ComponentContent](../js-apis-arkui-ComponentContent.md)<br/>[SubTabBarStyle](#subtabbarstyle9对象说明) \|[BottomTabBarStyle](#bottomtabbarstyle9对象说明)<br/>string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)\|&nbsp;<br/>[TabBarOptions](#tabbaroptions14) | 是   | TabBar上显示内容。<br/>ComponentContent: 组件内容的实体封装，可以设置自定义内容。<br/>SubTabBarStyle:&nbsp;子页签样式。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，底部样式没有下划线效果。<br/>string: 字符串类型。<br/>Resource: 资源引用类型，引入系统资源或者应用资源中的字符串。<br/>CustomBuilder: 构造器，内部可以传入组件。<br/>TabBarOptions: 设置页签内的图片和文字内容。 |
+
 >  **说明：**
 >
 >  - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
