@@ -441,4 +441,4 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 
 ## 示例
 
-NavDestination用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。
+NavDestination用法可参考[Navigation示例](ts-basic-components-navigation.md#示例2使用路由栈方法)。

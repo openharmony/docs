@@ -24,7 +24,10 @@ foregroundColor(value: ResourceColor | ColoringStrategy)
 
 ## 示例
 
-### 示例1
+### 示例1（使用前景色设置）
+
+该示例主要演示通过foregroundColor设置前置景色。
+
 ```ts
 // xxx.ets
 @Entry
@@ -43,7 +46,9 @@ struct ForegroundColorExample {
 
 ![foregroundColor_circle](figures/foregroundColor_circle.png)
 
-### 示例2
+### 示例2（设置前景色为组件背景色反色）
+
+该示例通过ColoringStrategy.INVERT将前置景色设置为背景色反色。
 
 ```ts
 // xxx.ets
@@ -64,7 +69,9 @@ struct ColoringStrategyExample {
 ```
 ![foregroundColor_circle](figures/ColoringStrategy_circle.png)
 
-### 示例3
+### 示例3（前置景色未继承父组件）
+
+该示例主要演示组件同时设置前置景色和背景色与只设置背景色的效果对比。
 
 ```ts
 // xxx.ets

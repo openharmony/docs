@@ -486,9 +486,7 @@ freeze(value: boolean)
 
 ## 示例
 
-
-
-### 示例1
+### 示例1（设置图片不同属性效果）
 设置图片的效果，包括阴影，灰度，高光，饱和度，对比度，图像反转，叠色，色相旋转等。
 ```ts
 // xxx.ets
@@ -555,9 +553,9 @@ struct ImageEffectsExample {
 ![imageeffect](figures/imageeffect.png)
 
 
-### 示例2
+### 示例2（设置组件线性渐变模糊效果）
 
-设置组件的内容线性渐变模糊效果。
+该示例主要演示通过linearGradientBlur设置组件的内容线性渐变模糊效果。
 
 ```ts
 // xxx.ets
@@ -582,8 +580,10 @@ struct ImageExample1 {
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
 
-### 示例3
-renderGroup示例
+### 示例3（设置离屏渲染效果）
+
+该示例主要演示通过renderGroup来设置组件是否先整体离屏渲染绘制后，再与父控件融合绘制。
+
 ```ts
 // xxx.ets
 @Component
@@ -631,8 +631,10 @@ struct RenderGroupExample {
 
 ![renderGroup](figures/renderGroup.png)
 
-### 示例4
-单独使用blendMode
+### 示例4（当前组件内容与下方画布内容混合）
+
+该示例主要演示通过blendMode将当前组件内容与下方画布内容混合。
+
 ```ts
 // xxx.ets
 @Entry
@@ -673,8 +675,10 @@ struct Index {
 ![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode.png)
 <br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
-### 示例5
-通过 InvertOptions 实现反色。
+### 示例5（前景智能取反色）
+
+该示例主要通过InvertOptions来实现前景智能取反色。
+
 ```ts
 // xxx.ets
  @Entry
@@ -710,8 +714,10 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
 
-### 示例6
-useShadowBatching搭配shadow实现同层阴影不重叠效果。
+### 示例6（设置同层阴影不重叠效果）
+
+该示例主要通过useShadowBatching搭配shadow实现同层阴影不重叠效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -769,9 +775,9 @@ struct UseShadowBatchingExample {
 
 ![testUseShadowBatchingDemo](figures/testUseShadowBatching.png)
 
-### 示例7
+### 示例7（设置组件图像球面效果）
 
-设置组件的图像球面效果。
+该示例主要演示通过sphericalEffect设置组件的图像球面效果。
 
 ```ts
 // xxx.ets
@@ -807,9 +813,9 @@ struct SphericalEffectExample {
 
 ![textInputSpherical2](figures/textInputSpherical2.png)
 
-### 示例8
+### 示例8（设置组件图像渐亮效果）
 
-设置组件的图像渐亮效果。
+该示例主要演示通过lightUpEffect设置组件的图像渐亮效果。
 
 ```ts
 // xxx.ets
@@ -843,9 +849,9 @@ struct LightUpExample {
 
 ![textLightUp1](figures/textLightUp1.png)
 
-### 示例9
+### 示例9（设置组件图像边缘像素扩展效果）
 
-设置组件的图像边缘像素扩展效果。
+该示例主要演示通过pixelStretchEffect设置组件的图像边缘像素扩展效果。
 
 ```ts
 // xxx.ets
@@ -877,9 +883,9 @@ struct PixelStretchExample {
 ![textPixelStretch2](figures/textPixelStretch2.png)
 
 
-### 示例10
+### 示例10（系统导航条智能反色）
 
-系统导航条智能反色
+该示例主要演示通过systemBarEffect来实现系统导航条智能反色。
 
 ```ts
 // xxx.ets

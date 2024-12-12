@@ -62,6 +62,8 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 
 ## 示例
 
+该示例主要演示通过foregroundBlurStyle给图片设置内容模糊。
+
 ```ts
 // xxx.ets
 @Entry
