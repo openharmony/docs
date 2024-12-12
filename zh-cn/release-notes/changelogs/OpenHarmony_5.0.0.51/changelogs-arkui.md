@@ -377,11 +377,13 @@ struct KeyEventExample {
   build() {
     Column() {
       Text(this.text1)
+      // Button中仅包含onClick事件，在非走焦态的时，即使Button获焦，空格键和回车键依然不响应onClick事件。
       Button('KeyEvent')
         .onClick(() => {
           this.text1 = 'respond click event'
         })
       Text(this.text2)
+      // 若需要在非走焦态下，Button获焦且空格键或回车键能够响应，需要通过增加onKeyEvent事件来触发。
       Button('KeyEvent')
         .onClick(() => {
           this.text2 = 'respond click event'
