@@ -3,6 +3,7 @@
 
 子组件中被\@Link装饰的变量与其父组件中对应的数据源建立双向数据绑定。
 
+在阅读\@Link文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。
 
 > **说明：**
 >
@@ -612,7 +613,7 @@ struct Child {
           this.name = "Bob"
         })
 
-      Button('Child change animal to undefined')
+      Button('Child change name to undefined')
         .onClick(() => {
           this.name = undefined
         })
@@ -855,72 +856,6 @@ struct Child {
           this.changeScore2(score2);
         })
     }
-  }
-}
-```
-
-### \@State放在build后定义时初始化\@Link报错
-
-当\@State变量放在build函数后定义，用来初始化\@Link变量时，会被识别为常量，而\@Link变量不能被常量初始化，所以会造成编译报错。
-
-【反例】
-
-```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      child({ count: this.count })
-      Button(`click times: ${this.count}`)
-        .onClick(() => {
-          this.count += 1;
-        })
-    }
-  }
-  // 在build函数之后定义@State变量
-  @State count: number = 0;
-}
-
-@Component
-struct child {
-  @Link count: number;
-
-  build() {
-    Text(`cout: ${this.count}`).fontSize(30)
-  }
-}
-```
-
-![State-After-Build](figures/State-After-Build.png)
-
-正确的写法，可以把\@State变量放在build函数前定义。
-
-【正例】
-
-```ts
-@Entry
-@Component
-struct Index {
-  @State count: number = 0;
-
-  build() {
-    Column() {
-      child({ count: this.count })
-      Button(`click times: ${this.count}`)
-        .onClick(() => {
-          this.count += 1;
-        })
-    }
-  }
-}
-
-@Component
-struct child {
-  @Link count: number;
-
-  build() {
-    Text(`cout: ${this.count}`).fontSize(30)
   }
 }
 ```

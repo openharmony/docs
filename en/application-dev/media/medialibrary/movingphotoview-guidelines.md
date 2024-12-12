@@ -38,56 +38,68 @@ The **MovingPhotoView** component is used to play moving photos and control the 
    The values in the following sample code are only examples. For details about the value range of each parameter, see [@ohos.multimedia.movingphotoview](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md).
    
    ```ts
-    MovingPhotoView({
-        movingPhoto: this.src,
-        controller: this.controller
-        })
-        .width('100%')
-        .height('100%')
-        // Whether to mute the playback. The default value is false. In this example, it is controlled by the button.
-        .muted(this.isMuted)
-        // Video display mode, which is set to Contain. The default value is Cover.
-        .objectFit(ImageFit.Contain)
-        // Triggered when the playback starts.
-        .onStart(() => {
-            console.log('onStart')
-        })
-        // Triggered when the playback ends.
-        .onFinish(() => {
-            console.log('onFinish')
-        })
-        // Triggered when the playback stops.
-        .onStop(() => {
-            console.log('onStop')
-        })
-        // Triggered when an error occurs.
-        .onError(() => {
-            console.log('onError')
-        })
+    import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
-      Row() {
-        // Button for starting playback.
-        Button('start')
-          .onClick(() => {
-            this.controller.startPlayback()
+    @Entry
+    @Component
+    struct Index {
+      @State src: photoAccessHelper.MovingPhoto | undefined = undefined
+      @State isMuted: boolean = false
+      controller: MovingPhotoViewController = new MovingPhotoViewController();
+      build() {
+        Column() {
+          MovingPhotoView({
+            movingPhoto: this.src,
+            controller: this.controller
+            // imageAIOptions: this.options
           })
-          .margin(5)
-        // Button for stopping playback.
-        Button('stop')
-          .onClick(() => {
-            this.controller.stopPlayback()
-          })
-          .margin(5)
-        // Button controlling whether to mute the playback.
-        Button('mute')
-          .onClick(() => {
-            this.isMuted = !this.isMuted
-          })
-          .margin(5)
+            // Whether to mute the playback. The default value is false. In this example, it is controlled by the button.
+            .muted(this.isMuted)
+            // Video display mode. The default value is Cover.
+            .objectFit(ImageFit.Cover)
+            // Triggered when the playback starts.
+            .onStart(() => {
+              console.log('onStart');
+            })
+            // Triggered when the playback ends.
+            .onFinish(() => {
+              console.log('onFinish');
+            })
+            // Triggered when the playback stops.
+            .onStop(() => {
+              console.log('onStop')
+            })
+            // Triggered when an error occurs.
+            .onError(() => {
+              console.log('onError');
+            })
+    
+          Row() {
+            // Button for starting playback.
+            Button('start')
+              .onClick(() => {
+                this.controller.startPlayback()
+              })
+              .margin(5)
+            // Button for stopping playback.
+            Button('stop')
+              .onClick(() => {
+                this.controller.stopPlayback()
+              })
+              .margin(5)
+            // Button controlling whether to mute the playback.
+            Button('mute')
+              .onClick(() => {
+                this.isMuted = !this.isMuted
+              })
+              .margin(5)
+          }
+          .alignItems(VerticalAlign.Center)
+          .justifyContent(FlexAlign.Center)
+          .height('15%')
+        }
       }
-      .alignItems(VerticalAlign.Center)
-      .justifyContent(FlexAlign.Center)
-      .height('15%')
+    }
    ```
 
 ## Effect

@@ -28,8 +28,8 @@ The operation for requesting a permission varies, depending on the permission AP
 | -------- | -------- | -------- |
 | [Permissions for all applications](permissions-for-all.md#system_grant-permissions)| system_grant | [Declare permission](declare-permissions.md) &gt; Access API|
 | [Permissions for all applications](permissions-for-all.md#user_grant-permissions)| user_grant  | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API|
-| <!--DelRow-->[system_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#system_grant-permissions-requestable-via-acl)| system_grant | [Declare permission](declare-permissions.md) &gt; [Declare permission in ACL](declare-permissions-in-acl.md) &gt; Access API|
-| <!--DelRow-->[user_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#user_grant-permissions-requestable-via-acl)| user_grant | [Declare permission](declare-permissions.md) &gt; [Declare permission in ACL](declare-permissions-in-acl.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API|
+| <!--DelRow-->[system_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#system_grant-permissions-requestable-via-acl)| system_grant | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API |
+| <!--DelRow-->[user_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#user_grant-permissions-requestable-via-acl)| user_grant | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API |
 <!--RP2--><!--RP2End-->
 
 <!--Del-->
@@ -44,10 +44,10 @@ The operation for requesting a permission varies, depending on the permission AP
 | -------- | -------- | -------- | -------- |
 | normal or system_basic| system_grant | - | [Declare permission](declare-permissions.md) &gt; Access API|
 | normal or system_basic| user_grant | - | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API|
-| system_core | system_grant | true | [Declare permission](declare-permissions.md) &gt; [Declare permission in ACL](declare-permissions-in-acl.md) &gt; Access API|
-| system_core | user_grant | true | [Declare permission](declare-permissions.md) &gt; [Declare permission in ACL](declare-permissions-in-acl.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API|
+| system_core | system_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API |
+| system_core | user_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permissions](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API |
 
-To change the application APL to system_basic or system_core, modify the HarmonyAppProvision file (**Toolchains / _{Version} _/ lib / UnsgnedReleasedProfileTemplate.json** file in the SDK directory) of the application when developing the application installation package, and sign the application again.
+To change the application APL to system_basic or system_core, modify the HarmonyAppProvision file (**Toolchains/_{Version}_/lib/UnsgnedReleasedProfileTemplate.json** file in the SDK directory) of the application when developing the application installation package, and sign the application again.
 
 **Example**
 
@@ -62,7 +62,7 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 ```
 
 > **NOTE**
-> 
+>
 > Modifying the HarmonyAppProvision configuration file applies to the applications in the debug phase, but not to the applications released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 <!--DelEnd-->

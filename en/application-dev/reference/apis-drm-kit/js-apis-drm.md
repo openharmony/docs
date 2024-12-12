@@ -504,7 +504,7 @@ Sets a configuration item in the form of a string.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 | value  | string     | Yes  | Value of the configuration item.                  |
 
 **Error codes**
@@ -544,7 +544,7 @@ Obtains the value of a configuration item in the form of a string.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 
 **Return value**
 
@@ -589,8 +589,8 @@ Sets a configuration item in the form of a byte array.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
-| value  | Uint8Array     | Yes  | Value of the configuration item in the form of an array.                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| value  | Uint8Array     | Yes  | Value of the configuration item in the form of an array. The specific value is determined by the DRM scheme on the device.                  |
 
 **Error codes**
 
@@ -632,7 +632,7 @@ Obtains the value of a configuration item in the form of a byte array.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device and cannot be empty. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 
 **Return value**
 
@@ -867,7 +867,7 @@ try {
 
 on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
-Subscribes to events indicating that the application requests a DRM certificate.
+Subscribes to events indicating that the application requires a DRM certificate.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -875,7 +875,7 @@ Subscribes to events indicating that the application requests a DRM certificate.
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application requires a DRM certificate.|
+| type     | string               | Yes  | Event type. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application requests a DRM certificate.|
 | callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, a DRM certificate must be requested.                |
 
 **Error codes**
@@ -1380,7 +1380,7 @@ Generates a request to release offline media keys.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<Uint8Array\>          | Promise used to return the request generated.                  |
+| Promise<Uint8Array\>          | Promise used to return the request generated if the DRM scheme on the device supports offline media key release.                  |
 
 **Error codes**
 
@@ -1430,7 +1430,7 @@ Processes a response to a request for releasing offline media keys.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<void\>          | Promise                  |
+| Promise<void\>          | Promise used to return the result if the DRM scheme on the device supports offline media key release.                  |
 
 **Error codes**
 

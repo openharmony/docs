@@ -2,6 +2,9 @@
 
 当开发者了解了状态管理的概念之后，跃跃欲试去开发一款自己的应用，倘若开发者在应用开发时不注意设计自己的项目结构，随着项目越来越庞大，状态变量设计的越来越多，组件与组件之间的关系变得越来越模糊，当开发一个新需求时，牵一发而动全身，需求开发和维护成本也会成倍增加，为此，本文旨在介绍MVVM模式以及ArkUI的UI开发模式与MVVM的关系，指引开发者如何去设计自己的项目结构，从而在产品迭代和升级时，能更容易的去开发和维护。
 
+
+本文档涵盖了大多数状态管理V1装饰器，所以在阅读本文当前，建议开发者对状态管理V1有一定的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)和状态管理V1装饰器相关文档。
+
 ## MVVM模式介绍
 
 ### 概念
@@ -16,7 +19,7 @@ ArkUI的UI开发模式就属于MVVM模式，通过对MVVM概念的基本介绍�
 
 ### ArkUI开发模式图
 
-ArkUI的UI开发开发模式即是MVVM模式，而状态管理在MVVM模式中扮演者ViewModel的角色，向上刷新UI，向下更新数据，整体框架如下图：
+ArkUI的UI开发开发模式即是MVVM模式，而状态变量在MVVM模式中扮演着ViewModel的角色，向上刷新UI，向下更新数据，整体框架如下图：
 
 ![MVVM图](./figures/MVVM_架构.png)
 
@@ -101,11 +104,13 @@ struct Index {
       // 待办事项
       Row({space: 15}) {
         if (this.isFinished) {
+          // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           Image($r('app.media.finished'))
             .width(28)
             .height(28)
         }
         else {
+          // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           Image($r('app.media.unfinished'))
             .width(28)
             .height(28)
@@ -184,11 +189,13 @@ struct ThingsComponent1 {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -216,11 +223,13 @@ struct ThingsComponent2 {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -318,11 +327,13 @@ struct ThingsComponent {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -459,9 +470,11 @@ struct ThingsComponent {
     // 待办事项1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         this.displayIcon($r('app.media.finished'));
       }
       else {
+        // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         this.displayIcon($r('app.media.unfinished'));
       }
       Text(`${this.things}`)
@@ -696,9 +709,11 @@ View层根据需要来组织，但View层需要区分一下三种组件：
       // 待办事项1
       Row({space: 15}) {
         if (this.isFinished) {
+          // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           this.displayIcon($r('app.media.finished'));
         }
         else {
+          // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           this.displayIcon($r('app.media.unfinished'));
         }
         Text(`${this.things}`)

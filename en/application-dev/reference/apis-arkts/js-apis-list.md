@@ -8,7 +8,7 @@ Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **Lis
 >
 > Although using \[index\] in **List** can obtain an element with the given index, this operation will result in undefined results. Due to this reason, **get()** method is recommended.
 
-**Recommended use case**: Use **List** for frequent insertion and removal operations.
+**Recommended use case**: Use **List** for frequent insertion and removal operations when a singly linked list is required.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -75,13 +75,13 @@ Adds an element at the end of this container.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
@@ -122,7 +122,7 @@ Inserts an element at the specified position in this container.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 | index | number | Yes| Index of the position where the element is to be inserted. The value must be less than or equal to int32_max, that is, 2147483647.|
@@ -158,13 +158,13 @@ Checks whether this container has the specified element.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
@@ -196,13 +196,13 @@ Obtains the element at the specified position in this container.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | Element obtained.|
 
@@ -241,13 +241,13 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | number | Returns the index if obtained; returns **-1** otherwise.|
 
@@ -285,13 +285,13 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
@@ -329,13 +329,13 @@ Compares whether a specified object is equal to this container.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | obj | Object | Yes| Object used for comparison.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the two are equal; returns **false** otherwise.|
 
@@ -373,13 +373,13 @@ Searches for an element based on its index and then removes it.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | Element removed.|
 
@@ -417,13 +417,13 @@ Removes the first occurrence of the specified element from this container.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
@@ -459,14 +459,14 @@ Replaces all elements in this container with new elements, and returns the new o
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
@@ -508,14 +508,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
 | index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
@@ -555,13 +555,13 @@ Sorts elements in this container.
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | comparator | function | Yes| Callback invoked for sorting.|
 
 comparator
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | firstValue | T | Yes| Previous element.|
 | secondValue | T | Yes| Next element.|
@@ -599,14 +599,14 @@ Obtains elements within a range in this container, including the element at the 
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | fromIndex | number | Yes| Index of the start position.|
 | toIndex | number | Yes| Index of the end position.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | List&lt;T&gt; | New **List** instance obtained.|
 
@@ -672,14 +672,14 @@ Replaces an element at the specified position in this container with a given ele
 
 **Parameters**
 
-| Name| Value Type | Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | element | T | Yes| Element to be used for replacement.|
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | New element.|
 
@@ -716,7 +716,7 @@ Converts this container into an array.
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | Array&lt;T&gt; | Array obtained.|
 
@@ -751,7 +751,7 @@ Checks whether this container is empty (contains no element).
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
@@ -786,7 +786,7 @@ Obtains the first element in this container.
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | The first element obtained.|
 
@@ -821,7 +821,7 @@ Obtains the last element in this container.
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | T | The last element obtained.|
 
@@ -850,17 +850,13 @@ let result = list.getLast();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Value Type | Description|
+| Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 

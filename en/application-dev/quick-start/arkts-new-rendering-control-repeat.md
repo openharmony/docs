@@ -4,40 +4,48 @@
 >
 >Repeat is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 For details about API parameters, see [Repeat APIs](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
 
-When **virtualScroll** is disabled, the **Repeat** component, which is used together with the container component, performs loop rendering based on array data. In addition, the component returned by the API should be a child component that can be contained in the **Repeat** parent container. Compared with ForEach, **Repeat** optimizes the rendering performance in some update scenarios and generates function with the index maintained by the framework.
+In the non-virtualScroll scenario (that is, **virtualScroll** is disabled), **Repeat**, used together with container components, renders repeated components based on the data source. In addition, the component returned by the API must be a child component that can be contained in the **Repeat** parent container component. Compared with ForEach, **Repeat** optimizes the rendering performance in some update scenarios and generates function with the index maintained by the framework.
 
-When **virtualScroll** is enabled, **Repeat** iterates data from the provided data source as required and creates the corresponding component during each iteration. When **Repeat** is used in the scrolling container, the framework creates components as required based on the visible area of the scrolling container. When a component slides out of the visible area, the framework caches the component and uses it in the next iteration.
+When virtualScroll is enabled, **Repeat** iterates data from the provided data source as required and creates the corresponding component during each iteration. In this way, **Repeat** must be used together with the scrolling container component. When **Repeat** is used in the scrolling container component, the framework creates components as required based on the visible area of the scrolling container. When a component slides out of the visible area, the framework caches the component and uses it in the next iteration.
 
 > **Note:**
 >
-> The **virtualScroll** scenario of the **Repeat** component is not fully compatible with the decorators in V1. Using decorators in V1 together with **virtualScroll** scenario may cause rendering exceptions.
+> When **virtualScroll** is enabled, **Repeat** is not fully compatible with the decorators of V1. Using them together may throw an exception during rendering.
 
 ## Constraints
 
-- **Repeat** must be used in container components. Only the following components support virtual scrolling: [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md). In this case, **cachedCount** takes effect. Do not enable the **virtualScroll** function when other container components are using the **Repeat** component.
-- After **virtualScroll** is enabled for **Repeat**, only one child component can be created in each iteration. Otherwise, there is no constraint.
-- The generated child components must be allowed in the parent container component of **Repeat**.
-- **Repeat** can be included in an **if/else** statement, and can also contain such a statement.
-- **Repeat** uses key as identifiers internally. Therefore, the key generator must generate a unique value for each piece of data. If the key generated for multiple pieces of data at the same time are the same, UI component rendering will be faulty.
-- If **virtualScroll** is disabled, the **template** is not supported currently and problems may occur when reusing.
+- Repeat uses key value as identifiers. Therefore, **key()** must generate a unique value for each data.
+- **Repeat virtualScroll** must be used in the scrolling container component. Only the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support this scenario. In this case, **cachedCount** takes effect. Other container components apply only to the non-virtualScroll scenario.
+- After **virtualScroll** is enabled for **Repeat**, only one child component can be created in each iteration. Otherwise, there is no constraint. The generated child components must be allowed in the parent container component of **Repeat**.
 - When **Repeat** and **\@Builder** are used together, parameters of the **RepeatItem** type must be passed so that the component can listen for data changes. If only **RepeatItem.item** or **RepeatItem.index** is passed, UI rendering exceptions occur.
-- In the virtualScroll scenario, the value of totalCount is customized. When the length of data source changes, the value of totalCount should be manually updated. Otherwise, the rendering exception occurs on the list display area.
+- Currently, the template applies to scenarios where **virtualScroll** is enabled. If multiple template types are the same, **Repeat** overrides old **template()** and only the latest **template()** takes effect.
+- If the value of **totalCount** is greater than that of **array.length**, when the parent component container is scrolling, the application should ensure that subsequent data is requested when the list is about to slide to the end of the data source until all data sources are loaded. Otherwise, the scrolling effect is abnormal. For details about the solution, see [The totalCount Value Is Greater Than the Length of Data Source](#the-totalcount-value-is-greater-than-the-length-of-data-source).
 
 ## Key Generation Rules
 
-### non-virtualScroll
+The purpose of **key()** is to allow **Repeat** to identify the details of array changes, including addition, deletion, and location (index) of data.
 
-![Repeat-Slide](./figures/Repeat-NonVirtualScroll-Key.png)
+Suggestions:
+
+- Even if there are duplicate data items (or the data source changes), you must ensure that the key is unique .
+- Each time **key()** is executed, the same data item is used as the input, and the output must be consistent.
+- Using index in **key()** is allowed, but not recommended. The reason is that the index changes when the data item is moved, that is, the key changes. Therefore, Repeat considers that the data item changes and triggers UI re-rendering, which deteriorates the performance.
+- You are advised to convert a simple array to a class object array, add a **readonly id** property, and assign a unique value to it in the constructor.
+
+### Non-virtualScroll
+
+**key()** can be left empty. **Repeat** will generate the default key.
+
+![Repeat-NonVS-KeyGen](./figures/Repeat-NonVS-KeyGen.png)
 
 ### virtualScroll
 
-**virtualScroll** has a key generation rule similar to that of **non-virtualScroll.** However, it does not automatically handle the duplicate keys, so you need to ensure that the keys are unique.
+The rule is basically the same as that of non-virtualScroll: **key()** can be left empty.
 
-![Repeat-Slide](./figures/Repeat-VirtualScroll-Key.png)
+![Repeat-VS-KeyGen](./figures/Repeat-VS-KeyGen.png)
 
 ## Component Generation and Reuse Rules
 
@@ -45,11 +53,13 @@ When **virtualScroll** is enabled, **Repeat** iterates data from the provided da
 
 All child components are created when **Repeat** is rendered for the first time. The original components are reused when data is updated.
 
-When the **Repeat** component updates data, it compares all keys in the last update with those in the latest update. If the current key is the same as the last one, **Repeat** reuses the child component and updates the **RepeatItem.index** index.
+When the **Repeat** component updates data, it compares all keys in the last update with those in the latest update. If the current key is the same as the last one, **Repeat** reuses the child component and updates **RepeatItem.index**.
 
-After **Repeat** compares all duplicate keys and reuses them, if the last key is unique and a new key is generated after this update, a child component needs to be created. In this case, **Repeat** will reuse redundant child components, update the **RepeatItem.item** data source and **RepeatItem.index** index, and re-render the UI.
+After **Repeat** compares all duplicate keys and reuses them, if the last key is unique and a new key is generated after this update, a child component needs to be created. In this case, **Repeat** will reuse redundant child components, update the **RepeatItem.item** data source and **RepeatItem.index**, and re-render the UI.
 
 If the number of remaining child components is greater than or equal to the number of newly updated components, the components are fully reused and redundant components are released. If the number of remaining child components is less than the number of newly updated components, **Repeat** will create components corresponding to the extra data items after the remaining data items are all reused.
+
+![Repeat-NonVS-FuncGen](./figures/Repeat-NonVS-FuncGen.png)
 
 ### virtualScroll
 
@@ -59,51 +69,63 @@ At the first time when **Repeat** renders child components, only the required co
 
 The following figure describes the node state before sliding.
 
-![Repeat-Start](./figures/Repeat-Start.png)
+![Repeat-Start](./figures/Repeat-Start.PNG)
 
 Currently, the **Repeat** component has two types of templateId. **templateId a** sets three as its maximum cache value for the corresponding cache pool. **templateId b** sets four as its maximum cache value and preloads one note for its parent components by default. Now swipe right on the screen, and **Repeat** will reuse the nodes in the cache pool.
 
-![Repeat-Slide](./figures/Repeat-Slide.png)
+![Repeat-Slide](./figures/Repeat-Slide.PNG)
 
 The data of **index=18** enters the screen and the preloading range of the parent component, coming up with a result of **templateId b**. In this case, **Repeat** obtains a node from the **type=b** cache pool for reuse and updates its key, index, and data. Other grandchildren notes that use the data and index in the child node are updated based on the state management V2 rules.
 
 The **index=10** note slides out of the screen and the preloading range of the parent component. When the UI main thread is idle, it checks whether the **type=a** cache pool has sufficient space. In this case, there are four nodes in the cache pool, which exceeds the rated three, so **Repeat** will release the last node.
 
-![Repeat-Slide-Done](./figures/Repeat-Slide-Done.png)
+![Repeat-Slide-Done](./figures/Repeat-Slide-Done.PNG)
 
 #### Data Update Scenarios
 
-![Repeat-Start](./figures/Repeat-Start.png)
+![Repeat-Start](./figures/Repeat-Start.PNG)
 
 In this case, delete the **index=12** node, update the data of the **index=13** node, change the **templateId b** to **templateId a** of the **index=14** node, and update the key of the **index=15** node.
 
-![Repeat-Update1](./figures/Repeat-Update1.png)
+![Repeat-Update1](./figures/Repeat-Update1.PNG)
 
 Now, **Repeat** notifies the parent component to re-lay out the nodes and compares the keys one by one. If the template ID of the node is the same as that of the original one, the note is reused to update the **key**, **index** and **data**. Otherwise, the node in the cache pool with the same template ID is reused to update the **key**, **index**, and **data**.
 
-![Repeat-Update2](./figures/Repeat-Update2.png)
+![Repeat-Update2](./figures/Repeat-Update2.PNG)
 
 As shown in the preceding figure, node13 updates **data** and **index**; node14 updates the template ID and **index** and reuses a node from the cache pool; node15 reuses its own node and updates the **key**, **index**, and **data** synchronously because of the changed **key** and the unchanged template ID; node 16 and node 17 only update the **index**. The **index=17** node is new and reused from the cache pool.
 
-![Repeat-Update-Done](./figures/Repeat-Update-Done.png)
+![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
-## cachedCount Rules
+## totalCount
 
-The differences between the **.cachedCount** attribute of the the **List** or **Grid** component and the **cachedCount** attribute of the **Repeat** must be clarified. Both are used to balance performance and memory, but their definitions are different.
-- **.cachedCount** of **List** or **Grid**: indicates the nodes that are located in the component tree and treated as invisible. Container components such as **List** or **Grid** render these nodes to achieve better performance. But **Repeat** treats these nodes as visible.
-- template `cachedCount`: indicates the nodes that are treated as invisible by **Repeat**. These nodes are idle and are temporarily stored in the framework. You can update these nodes as required to implement reuse.
+Total length of the data source, which can be greater than the number of loaded data items. Define the data source length as **arr.length**. The processing rules of **totalCount** are as follows:
+
+- When **totalCount** is set to the default value or a non-natural number, the value of **totalCount** is **arr.length**, and the list scrolls normally.
+- When **0** <= **totalCount** < **arr.length**, only **totalCount** list items are rendered.
+- When **totalCount** is greater than **arr.length**, Repeat renders **totalCount** list items, and the scroll bar style changes based on the value of **totalCount**.
+
+> **Note**<br>If **totalCount** is smaller than **arr.length**, when the parent component container is scrolling, the application needs to ensure that subsequent data is requested when the list is about to slide to the end of the data source. You need to fix the data request error (caused by, for example, network delay) until all data sources are loaded. Otherwise, the scrolling effect is abnormal.
+
+## cachedCount
+
+**cachedCount** indicates the maximum number of subnodes that can be cached in the **Repeat** cache pool of the current template. This parameter is valid only when **virtualScroll** is enabled.
+
+You need to understand the differences between **.cachedCount()** of the scrolling container component and **cachedCount()** of **Repeat**. Both are used to balance performance and memory, but their definitions are different.
+
+- **.cachedCount()** indicates the nodes that are located in the component tree and treated as invisible. Container components such as **List** or **Grid** render these nodes to achieve better performance. But **Repeat** treats these nodes as visible.
+- **cachedCount()** of **Repeat** indicates the nodes that are treated as invisible by **Repeat**. These nodes are idle and are temporarily stored in the framework. You can update these nodes as required to implement reuse.
+
+When **cachedCount** is set to the maximum number of nodes that may appear on the screen of the current template, **Repeat** can be reused as much as possible. However, when there is no node of the current template on the screen, the cache pool is not released and the application memory increases. You need to set the configuration based on the actual situation.
+
+- If the default value is used, the framework calculates the value of **cachedCount** for each template based on the number of nodes displayed on the screen and the number of preloaded nodes. If the number increases, the value of **cachedCount** increases accordingly. Note that the value of cachedCount does not decrease.
+- Explicitly specify **cachedCount**. It is recommended that the value be the same as the number of nodes on the screen. Yet, setting **cachedCount** to less than 2 is not advised. Doing so may lead to the creation of new nodes during rapid scrolling, which could result in performance degradation.
 
 ## Use Scenarios
 
-### non-virtualScroll
+### Non-virtualScroll
 
 #### Changing the Data Source
-
-When **Repeat** component implements the non-initial rendering, it compares all keys in the last update with those in the latest update. If the current key is the same as the last one, **Repeat** reuses the child component and updates the **RepeatItem.index** index.
-
-After **Repeat** compares all duplicate keys and reuses them, if the last key is unique and a new key is generated after this update, a child component needs to be created. In this case, **Repeat** will reuse redundant child components and update the **RepeatItem.item** data source and **RepeatItem.index** index.
-
-If the number of remaining child components is greater than or equal to the number of newly updated components, the components are fully reused. If the number of remaining child components is less than the number of newly updated components, **Repeat** will create components corresponding to the extra data items after the remaining components are all reused.
 
 ```ts
 @Entry
@@ -206,17 +228,17 @@ struct ChildItem {
 
 ![Repeat-Non-Initial-Render-Case-Exchange-Effect](./figures/Repeat-Non-Initial-Render-Case-Exchange-Effect.gif)
 
-### virtualScroll
+### VirtualScroll
 
 This section describes the actual application scenarios of **Repeat** and the reuse of component nodes in the **virtualScroll** scenario. A large number of test scenarios can be derived based on reuse rules. This section only describes typical data changes.
 
-#### Examples
+#### One template
 
-The following code designs typical data source operations in the **virtualScroll** scenario of the **Repeat** component, including **inserting, modifying, deleting, and exchanging data**. Click the corresponding text to trigger the data change. Click two data items in sequence to exchange them.
+The following code designs typical data source operations in the **virtualScroll** scenario of the **Repeat** component, including **inserting, modifying, deleting, and exchanging data**. Select an index value from the drop-down list and click the corresponding button to change the data. You can click two data items in sequence to exchange them.
 
 ```ts
 @ObservedV2
-class Clazz {
+class Repeat005Clazz {
   @Trace message: string = '';
 
   constructor(message: string) {
@@ -226,275 +248,256 @@ class Clazz {
 
 @Entry
 @ComponentV2
-struct TestPage {
-  @Local simpleList: Array<Clazz> = [];
+struct RepeatVirtualScroll {
+  @Local simpleList: Array<Repeat005Clazz> = [];
   private exchange: number[] = [];
   private counter: number = 0;
+  @Local selectOptions: SelectOption[] = [];
+  @Local selectIdx: number = 0;
+
+  @Monitor("simpleList")
+  reloadSelectOptions(): void {
+    this.selectOptions = [];
+    for (let i = 0; i < this.simpleList.length; ++i) {
+      this.selectOptions.push({ value: i.toString() });
+    }
+    if (this.selectIdx >= this.simpleList.length) {
+      this.selectIdx = this.simpleList.length - 1;
+    }
+  }
 
   aboutToAppear(): void {
     for (let i = 0; i < 100; i++) {
-      this.simpleList.push(new Clazz('Hello ' + i));
+      this.simpleList.push(new Repeat005Clazz(`item_${i}`));
+    }
+    this.reloadSelectOptions();
+  }
+
+  handleExchange(idx: number): void { // Click to exchange child components.
+    this.exchange.push(idx);
+    if (this.exchange.length === 2) {
+      let _a = this.exchange[0];
+      let _b = this.exchange[1];
+      let temp: Repeat005Clazz = this.simpleList[_a];
+      this.simpleList[_a] = this.simpleList[_b];
+      this.simpleList[_b] = temp;
+      this.exchange = [];
     }
   }
 
   build() {
     Column({ space: 10 }) {
-      Text('Click to insert the fifth item.')
-        .fontSize(24)
-        .fontColor(Color.Red)
-        .onClick(() => {
-          this.simpleList.splice(4, 0, new Clazz(`${this.counter++}_new item`));
-        })
-      Text('Click to modify the fifth item.')
-        .fontSize(24)
-        .fontColor(Color.Red)
-        .onClick(() => {
-          this.simpleList[4].message = `${this.counter++}_new item`;
-        })
-      Text ('Click to delete the fifth item.')
-        .fontSize(24)
-        .fontColor(Color.Red)
-        .onClick(() => {
-          this.simpleList.splice(4, 1);
-        })
-      Text('Click two items to change them.')
-        .fontSize(24)
-        .fontColor(Color.Red)
+      Text('virtualScroll each()&template() 1t')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+      Text('Select an index and press the button to update data.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
 
-      List({ initialIndex: 10 }) {
-        Repeat<Clazz>(this.simpleList)
-          .each((obj: RepeatItem<Clazz>) => {
+      Select(this.selectOptions)
+        .selected(this.selectIdx)
+        .value(this.selectIdx.toString())
+        .key('selectIdx')
+        .onSelect((index: number) => {
+          this.selectIdx = index;
+        })
+      Row({ space: 5 }) {
+        Button('Add No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 0, new Repeat005Clazz(`${this.counter++}_add_item`));
+            this.reloadSelectOptions();
+          })
+        Button('Modify No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1, new Repeat005Clazz(`${this.counter++}_modify_item`));
+          })
+        Button('Del No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1);
+            this.reloadSelectOptions();
+          })
+      }
+      Button('Update array length to 5.')
+        .onClick(() => {
+          this.simpleList = this.simpleList.slice(0, 5);
+          this.reloadSelectOptions();
+        })
+
+      Text('Click on two items to exchange.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      List({ space: 10 }) {
+        Repeat<Repeat005Clazz>(this.simpleList)
+          .each((obj: RepeatItem<Repeat005Clazz>) => {
             ListItem() {
-              Text('[each] ' + obj.item.message)
-                .fontSize(30)
-                .margin({ top: 10 })
+              Text(`[each] index${obj.index}: ${obj.item.message}`)
+                .fontSize(25)
+                .onClick(() => {
+                  this.handleExchange(obj.index);
+                })
             }
           })
-          .key((item: Clazz, index: number) => {
+          .key((item: Repeat005Clazz, index: number) => {
             return item.message;
           })
           .virtualScroll({ totalCount: this.simpleList.length })
-          .templateId((item: Clazz, index: number) => "default")
-          .template('default', (ri) => {
-            Text('[template] ' + ri.item.message)
-              .fontSize(30)
-              .margin({ top: 10 })
+          .templateId(() => "a")
+          .template('a', (ri) => {
+            Text(`[a] index${ri.index}: ${ri.item.message}`)
+              .fontSize(25)
               .onClick(() => {
-                this.exchange.push(ri.index);
-                if (this.exchange.length === 2) {
-                  let _a = this.exchange[0];
-                  let _b = this.exchange[1];
-                  // click to exchange
-                  let temp: string = this.simpleList[_a].message;
-                  this.simpleList[_a].message = this.simpleList[_b].message;
-                  this.simpleList[_b].message = temp;
-                  this.exchange = [];
-                }
+                this.handleExchange(ri.index);
               })
           }, { cachedCount: 3 })
       }
-      .cachedCount(1)
+      .cachedCount(2)
       .border({ width: 1 })
-      .width('90%')
-      .height('70%')
+      .width('95%')
+      .height('40%')
     }
-    .height('100%')
     .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
   }
 }
 ```
-The following figure lists 100 **message** string properties of the custom class **Clazz**. The **cachedCount** of the **List** component is set to 1, and the size of the **template "default"** cache pool is set to 3. The application screen is shown as bellow.
+The application list contains 100 **message** properties of the custom class **RepeatClazz**. The value of **cachedCount** of the **List** component is set to **2**, and the cache pool size of the template A is set to **3**. The application screen is shown as bellow.
 
-![Repeat-VirtualScroll-Demo](./figures/Repeat-VirtualScroll-Demo.jpg)
+![Repeat-VirtualScroll-Demo](./figures/Repeat-VirtualScroll-Demo.gif)
 
-#### Node Operation Instance
-
-When the data source is changed, the node whose key is changed will be re-created. If a cache node exists in the cache pool of the corresponding template, the node is reused. When the **key** remains unchanged, the component reuses and updates the **index** value.
-
-**Inserting Data**
-
-Operations
-
-![Repeat-VirtualScroll-InsertData](./figures/Repeat-VirtualScroll-InsertData.gif)
-
-This example shows four data insertions. Two data items are inserted on the upper part of the screen for the first two times, and another two are inserted on the current screen for the last two times. Print the execution state of the **onUpdateNode** function. "[Old key]->[New key]" indicates that the old node reuses the new node. The node reuse is as follows:
-
-```
-// Insert data twice on the upper part of the screen.
-onUpdateNode [Hello 22] -> [Hello 8]
-onUpdateNode [Hello 21] -> [Hello 7]
-// Insert data twice on the current screen.
-onUpdateNode [Hello 11] -> [2_new item]
-onUpdateNode [Hello 10] -> [3_new item]
-```
-
-When data is inserted on the upper part of the screen, the nodes move. As a result, the pre-loading node of the current screen changes and is reused. That is, the node 22 that exits the cache in the lower part is reused by the node 8 that enters the cache in the upper part. When data is inserted into the current screen, a new data item is generated. The new node will reuse the cached pre-loading node on the lower part of the screen. Data will not be reused when you add data to the lower part of the screen.
-
-**Modifying Data**
-
-Operations
-
-![Repeat-VirtualScroll-ModifyData](./figures/Repeat-VirtualScroll-ModifyData.gif)
-
-This example shows four data modifications. Two data items are modified on the upper part of the screen for the first two times, and another two are modified on the current screen for the last two times. Print the execution state of the **onUpdateNode** function. "[Old key]->[New key]" indicates that the old node reuses the new node. The node reuse is as follows:
-
-```
-// Modify data twice on the current screen.
-onUpdateNode [1_new item] -> [2_new item]
-onUpdateNode [2_new item] -> [3_new item]
-```
-
-Because the rendering nodes does not exist in the upper or lower part of the screen, node reuse does not occur. When a node on the current screen is modified, the template ID of the node does not change. Therefore, the node is reused.
-
-**Exchanging Data**
-
-Operations
-
-![Repeat-VirtualScroll-ExchangeData](./figures/Repeat-VirtualScroll-ExchangeData.gif)
-
-This example shows two data exchanges. Exchanging two nodes does not change the keys, so no node will be reused.
-
-**Deleting Data**
-
-Operations
-
-![Repeat-VirtualScroll-DeleteData](./figures/Repeat-VirtualScroll-DeleteData.gif)
-
-This example shows five data deletions. Two data items are deleted on the upper part of the screen for the first two times, and another three are deleted on the current screen for the last three times. Print the execution state of the **onUpdateNode** function. "[Old key]->[New key]" indicates that the old node reuses the new node. The node reuse is as follows:
-
-```
-// Delete data twice on the upper part of the screen.
-onUpdateNode [Hello 9] -> [Hello 23]
-onUpdateNode [Hello 10] -> [Hello 24]
-// The onUpdateNode function is not called when the data is deleted twice on the current screen.
-// The data on the current screen is deleted for the third time.
-onUpdateNode [Hello 6] -> [Hello 17]
-```
-
-When data is deleted from the upper part of the screen, the nodes move. As a result, the pre-loading node of the current screen changes and is reused. That is, the node 9 that exits the cache in the upper part is reused by the node 23 that enters the cache in the lower part. When data is deleted from the current screen, because of the **cachedCount** pre-loading property of the **List** component, the node that enters the screen in the first two deletions has been rendered and will not be reused. The deleted node enters the cache pool of the corresponding template. In the third deletion, the pre-loading node 17 that enters from the lower part reuses the node 6 in the cache pool.
-
-#### Using Multiple Templates
+#### Multiple templates
 
 ```
 @ObservedV2
-class Wrap1 {
-    @Trace message: string = '';
-    
-    constructor(message: string) {
-        this.message = message;
-    }
+class Repeat006Clazz {
+  @Trace message: string = '';
+
+  constructor(message: string) {
+    this.message = message;
+  }
 }
 
 @Entry
 @ComponentV2
-struct Parent {
-    @Local simpleList: Array<Wrap1> = [];
-    
-    aboutToAppear(): void {
-        for (let i=0; i<100; i++) {
-            this.simpleList.push(new Wrap1('Hello' + i));
-        }
+struct RepeatVirtualScroll2T {
+  @Local simpleList: Array<Repeat006Clazz> = [];
+  private exchange: number[] = [];
+  private counter: number = 0;
+  @Local selectOptions: SelectOption[] = [];
+  @Local selectIdx: number = 0;
+
+  @Monitor("simpleList")
+  reloadSelectOptions(): void {
+    this.selectOptions = [];
+    for (let i = 0; i < this.simpleList.length; ++i) {
+      this.selectOptions.push({ value: i.toString() });
     }
-    
-    build() {
-        Column() {
-            List() {
-                Repeat<Wrap1>(this.simpleList)
-                	.each((obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                    		Row() {
-                    			Text('default index ' + obj.index + ': ')
-                            		.fontSize(30)
-                            	Text(obj.item.message)
-                            		.fontSize(30)
-                    		}
-                        }
-                        .margin(20)
-                	})
-                	.template('odd', (obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                    		Row() {
-                    			Text('odd index ' + obj.index + ': ')
-                            		.fontSize(30)
-                            		.fontColor(Color.Blue)
-                            	Text(obj.item.message)
-                            		.fontSize(30)
-                            		.fontColor(Color.Blue)
-                    		}
-                        }
-                        .margin(20)
-                	})
-                	.template('even', (obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                    		Row() {
-                    			Text('even index ' + obj.index + ': ')
-                            		.fontSize(30)
-                            		.fontColor(Color.Green)
-                            	Text(obj.item.message)
-                            		.fontSize(30)
-                            		.fontColor(Color.Green)
-                    		}
-                        }
-                        .margin(20)
-                	})
-                	.templateId((item: Wrap1, index: number) => {
-                		return index%2 ? 'odd' : 'even';
-                	})
-                	.key((item: Wrap1, index: number) => {
-                		return item.message;
-                	})
-            }
-            .cachedCount(5)
-            .width('100%')
-            .height('100%')
-        }
-        .height('100%')
+    if (this.selectIdx >= this.simpleList.length) {
+      this.selectIdx = this.simpleList.length - 1;
     }
-}
-```
-
-![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-Template.gif)
-
-#### The GUI is rendered abnormally when the keys are the same.
-
-If the duplicate keys are misused in the virtualScroll scenario, the GUI rendering is abnormal.
-
-```ts
-@Entry
-@ComponentV2
-struct RepeatKey {
-  @Local simpleList: Array<string> = [];
+  }
 
   aboutToAppear(): void {
-    for (let i = 0; i < 200; i++) {
-      this.simpleList.push(`item ${i}`);
+    for (let i = 0; i < 100; i++) {
+      this.simpleList.push(new Repeat006Clazz(`item_${i}`));
+    }
+    this.reloadSelectOptions();
+  }
+
+  handleExchange(idx: number): void { // Click to exchange child components.
+    this.exchange.push(idx);
+    if (this.exchange.length === 2) {
+      let _a = this.exchange[0];
+      let _b = this.exchange[1];
+      let temp: Repeat006Clazz = this.simpleList[_a];
+      this.simpleList[_a] = this.simpleList[_b];
+      this.simpleList[_b] = temp;
+      this.exchange = [];
     }
   }
 
   build() {
     Column({ space: 10 }) {
-      List() {
-        Repeat<string>(this.simpleList)
-          .each((obj: RepeatItem<string>) => {
+      Text('virtualScroll each()&template() 2t')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+      Text('Select an index and press the button to update data.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      Select(this.selectOptions)
+        .selected(this.selectIdx)
+        .value(this.selectIdx.toString())
+        .key('selectIdx')
+        .onSelect((index: number) => {
+          this.selectIdx = index;
+        })
+      Row({ space: 5 }) {
+        Button('Add No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 0, new Repeat006Clazz(`${this.counter++}_add_item`));
+            this.reloadSelectOptions();
+          })
+        Button('Modify No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1, new Repeat006Clazz(`${this.counter++}_modify_item`));
+          })
+        Button('Del No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1);
+            this.reloadSelectOptions();
+          })
+      }
+      Button('Update array length to 5.')
+        .onClick(() => {
+          this.simpleList = this.simpleList.slice(0, 5);
+          this.reloadSelectOptions();
+        })
+
+      Text('Click on two items to exchange.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      List({ space: 10 }) {
+        Repeat<Repeat006Clazz>(this.simpleList)
+          .each((obj: RepeatItem<Repeat006Clazz>) => {
             ListItem() {
-              Text(obj.item)
-                .fontSize(30)
+              Text(`[each] index${obj.index}: ${obj.item.message}`)
+                .fontSize(25)
+                .onClick(() => {
+                  this.handleExchange(obj.index);
+                })
             }
           })
-          .key((item: string, index: number) => {
-            return 'same key'; // Define the same key.
+          .key((item: Repeat006Clazz, index: number) => {
+            return item.message;
           })
-          .virtualScroll({ totalCount: 200 })
-          .templateId((item:string, index: number) => 'default')
-          .template('default', (ri) => {
-            Text(ri.item)
-              .fontSize(30)
-          }, { cachedCount: 2 })
+          .virtualScroll({ totalCount: this.simpleList.length })
+          .templateId((item: Repeat006Clazz, index: number) => {
+            return (index % 2 === 0) ? 'odd' : 'even';
+          })
+          .template('odd', (ri) => {
+            Text(`[odd] index${ri.index}: ${ri.item.message}`)
+              .fontSize(25)
+              .fontColor(Color.Blue)
+              .onClick(() => {
+                this.handleExchange(ri.index);
+              })
+          }, { cachedCount: 3 })
+          .template('even', (ri) => {
+            Text(`[even] index${ri.index}: ${ri.item.message}`)
+              .fontSize(25)
+              .fontColor(Color.Green)
+              .onClick(() => {
+                this.handleExchange(ri.index);
+              })
+          }, { cachedCount: 1 })
       }
       .cachedCount(2)
       .border({ width: 1 })
-      .width('90%')
-      .height('70%')
+      .width('95%')
+      .height('40%')
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
@@ -503,9 +506,73 @@ struct RepeatKey {
 }
 ```
 
-The following figure shows the abnormal effect (the first data item **item 0** disappears).
+![Repeat-VirtualScroll-2T-Demo](./figures/Repeat-VirtualScroll-2T-Demo.gif)
 
-<img src="./figures/Repeat-VirtualScroll-Same-Key.jpg" width="300" />
+### Using Repeat in a Nesting Manner
+
+ Example:
+
+```ts
+// Repeat can be nested in other components.
+@Entry
+@ComponentV2
+struct RepeatNest {
+  @Local outerList: string[] = [];
+  @Local innerList: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 20; i++) {
+      this.outerList.push(i.toString());
+      this.innerList.push(i);
+    }
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      Text('Using Repeat virtualScroll in a Nesting Manner')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+      List() {
+        Repeat<string>(this.outerList)
+          .each((obj) => {
+            ListItem() {
+              Column() {
+                Text('outerList item: ' + obj.item)
+                  .fontSize(30)
+                List() {
+                  Repeat<number>(this.innerList)
+                    .each((subObj) => {
+                      ListItem() {
+                        Text('innerList item: ' + subObj.item)
+                          .fontSize(20)
+                      }
+                    })
+                    .key((item) => "innerList_" + item)
+                }
+                .width('80%')
+                .border({ width: 1 })
+                .backgroundColor(Color.Orange)
+              }
+              .height('30%')
+              .backgroundColor(Color.Pink)
+            }
+            .border({ width: 1 })
+          })
+          .key((item) => "outerList_" + item)
+      }
+      .width('80%')
+      .border({ width: 1 })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('90%')
+    .height('80%')
+  }
+}
+```
+
+The figure below shows the effect.
+
+![Repeat-Nest](./figures/Repeat-Nest.png)
 
 ## FAQs
 
@@ -579,19 +646,7 @@ In some scenarios, if you do not want the data source change outside the screen 
 The following code shows the case of adding data to the data source.
 
 ```ts
-// Define a class and mark it as observable.
-// Customize an array in the class and mark it as traceable.
-@ObservedV2
-class ArrayHolder {
-  @Trace arr: Array<number> = [];
-
-  // constructor, used to initialize arrays.
-  constructor(count: number) {
-    for (let i = 0; i < count; i++) {
-      this.arr.push(i);
-    }
-  }
-}
+// The definition of ArrayHolder is the same as that in the demo code.
 
 @Entry
 @ComponentV2
@@ -653,7 +708,7 @@ The figure below shows the effect.
 
 When the total length of the data source is large, the lazy loading is used to load some data first. To enable **Repeat** to display the correct scrollbar style, you need to change the value of **totalCount** to the total length of data. That is, before all data sources are loaded, the value of **totalCount** is greater than that of **array.length**.
 
-When the **Repeat** component is initialized, the application must provide sufficient data items for rendering. During the scrolling process of the parent container, the application needs to execute the request instruction for subsequent data items before rendering to ensure that no blank area is displayed during the list sliding process until all data sources are loaded.
+If **totalCount** is larger than **array.length**, when the parent component container is scrolling, the application needs to ensure that subsequent data is requested when the list is about to slide to the end of the data source. You need to fix the data request error (caused by, for example, network delay) until all data sources are loaded. Otherwise, the scrolling effect is abnormal.
 
 You can use the callback of [onScrollIndex](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ui/arkts-layout-development-create-list.md#controlling-the-scrolling-position) attribute of the **List** or **Grid** parent component to implement the preceding specification. The sample code is as follows:
 
@@ -744,3 +799,100 @@ struct entryCompSucc {
 The figure below shows the effect.
 
 ![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)
+
+### Constraints on the Mixed Use of Repeat and @Builder
+
+When **Repeat** and \@Builder are used together, parameters of the **RepeatItem** type must be passed so that the component can listen for data changes. If only **RepeatItem.item** or **RepeatItem.index** is passed, UI rendering exceptions occur.
+
+The sample code is as follows:
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatBuilderPage {
+  @Local simpleList1: Array<number> = [];
+  @Local simpleList2: Array<number> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.simpleList1.push(i)
+      this.simpleList2.push(i)
+    }
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      Text('Use Repeat and @Builder together: The abnormal display is on the left, and the normal display is on the right.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      Row({ space: 20 }) {
+        List({ initialIndex: 5, space: 20 }) {
+          Repeat<number>(this.simpleList1)
+            .each((ri) => {})
+            .virtualScroll({ totalCount: this.simpleList1.length })
+            .templateId((item: number, index: number) => "default")
+            .template('default', (ri) => {
+              ListItem() {
+                Column() {
+                  Text('Text id = ' + ri.item)
+                    .fontSize(20)
+                  this.buildItem1 (ri.item) // Change to this.buildItem1(ri).
+                }
+              }
+              .border({ width: 1 })
+            }, { cachedCount: 3 })
+        }
+        .cachedCount(1)
+        .border({ width: 1 })
+        .width('45%')
+        .height('60%')
+
+        List({ initialIndex: 5, space: 20 }) {
+          Repeat<number>(this.simpleList2)
+            .each((ri) => {})
+            .virtualScroll({ totalCount: this.simpleList2.length })
+            .templateId((item: number, index: number) => "default")
+            .template('default', (ri) => {
+              ListItem() {
+                Column() {
+                  Text('Text id = ' + ri.item)
+                    .fontSize(20)
+                  this.buildItem2(ri)
+                }
+              }
+              .border({ width: 1 })
+            }, { cachedCount: 3 })
+        }
+        .cachedCount(1)
+        .border({ width: 1 })
+        .width('45%')
+        .height('60%')
+      }
+    }
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
+  @Builder
+  // The @Builder parameter must be of the RepeatItem type for normal rendering.
+  buildItem1(item: number) {
+    Text('Builder1 id = ' + item)
+      .fontSize(20)
+      .fontColor(Color.Red)
+      .margin({ top: 2 })
+  }
+
+  @Builder
+  buildItem2(ri: RepeatItem<number>) {
+    Text('Builder2 id = ' + ri.item)
+      .fontSize(20)
+      .fontColor(Color.Red)
+      .margin({ top: 2 })
+  }
+}
+```
+
+The following figure shows the display effect. Swipe down the list and you can see the difference.The incorrect usage is on the left, and the correct usage is on the right. (The **Text** component is in black and the **Builder** component is in red). The preceding code shows the error-prone scenario during development. That is, only the value, instead the entire **RepeatItem** class, is passed in the @Builder function.
+
+![Repeat-Builder](./figures/Repeat-Builder.png)

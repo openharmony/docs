@@ -1099,21 +1099,22 @@ export default class EntryAbility extends UIAbility {
 
 ```
 // Page1.ets
-import { router } from '@kit.ArkUI';
-
 // 通过getShared接口获取stage共享的LocalStorage实例
 @Entry(LocalStorage.getShared())
 @Component
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
+  pageStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.count}`)
-        .fontSize(50)
-      Button('push to Page2')
-        .onClick(() => {
-          router.pushUrl({url: 'pages/Page2'});
-        })
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
     }
   }
 }
@@ -1121,17 +1122,42 @@ struct Page1 {
 
 ```
 // Page2.ets
-// 通过getShared接口获取stage共享的LocalStorage实例
-@Entry(LocalStorage.getShared())
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
+// Page2组件获得了父亲Page1组件的LocalStorage实例
 @Component
 struct Page2 {
   @LocalStorageLink('count') count: number = 0;
+  pathStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.count}`)
-        .fontSize(50)
+    NavDestination() {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+      }
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
 }
 ```
 V2:
@@ -1155,21 +1181,23 @@ export class MyStorage {
 
 ```
 // Page1.ets
-import { router } from '@kit.ArkUI';
 import { MyStorage } from './storage';
 
 @Entry
 @ComponentV2
 struct Page1 {
   storage: MyStorage = MyStorage.instance();
+  pageStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.storage.count}`)
-        .fontSize(50)
-      Button('push to Page2')
-        .onClick(() => {
-          router.pushUrl({url: 'pages/Page2'});
-        })
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.storage.count}`)
+          .fontSize(50)
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
     }
   }
 }
@@ -1179,16 +1207,41 @@ struct Page1 {
 // Page2.ets
 import { MyStorage } from './storage';
 
-@Entry
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
 @ComponentV2
 struct Page2 {
   storage: MyStorage = MyStorage.instance();
-    build() {
+  pathStack: NavPathStack = new NavPathStack();
+  build() {
+    NavDestination() {
       Column() {
         Text(`${this.storage.count}`)
           .fontSize(50)
       }
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
 }
 ```
 
@@ -2003,6 +2056,8 @@ struct ListExample {
 
 需要注意的是，数组arr的长度需要与WaterFlowSections的中所有SectionOptions的itemsCount的总和保持一致，否则WaterFlow无法处理，导致UI不刷新。
 
+以下两个示例请按照'push option' -> 'splice option' -> 'update option'的顺序进行点击。
+
 V1：
 
 在状态管理V1中，可以通过[\@State](./arkts-state.md)装饰观察其api调用。
@@ -2065,7 +2120,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {
@@ -2149,7 +2204,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {
@@ -2291,6 +2346,7 @@ struct MyImage1 {
   @Link modifier: CommonModifier;
 
   build() {
+    // 此处'app.media.app_icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     Image($r('app.media.app_icon'))
       .attributeModifier(this.modifier as MyModifier)
   }
@@ -2356,6 +2412,7 @@ struct MyImage1 {
   @Param @Require modifier: CommonModifier;
 
   build() {
+    // 此处'app.media.app_icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     Image($r('app.media.app_icon'))
       .attributeModifier(this.modifier as MyModifier)
   }

@@ -373,7 +373,14 @@ stop()
 | timeValue | number | 是 | 当前文本时钟时区的UTC秒数。 |
 
 ## 示例
-### 示例1
+### 示例1（支持启停的文本样式时钟）
+
+该示例展示了TextClock组件的基本使用方法，通过format属性设置时钟文本的格式。
+
+点击"start TextClock"按钮，按钮回调函数会调用TextClockController启动文本时钟。点击"stop TextClock"按钮，会调用TextClockController暂停文本时钟。
+
+示例中的组件通过设置onDateChange回调函数，在文本时钟更新时，持续修改accumulateTime的内容。
+
 ```ts
 @Entry
 @Component
@@ -412,7 +419,10 @@ struct Second {
 ```
 ![text_clock](figures/text_clock.gif)
 
-### 示例2
+### 示例2（设定文本阴影样式）
+
+该示例通过textShadow属性设置文本时钟的文本阴影样式。
+
 ``` ts
 @Entry
 @Component
@@ -429,7 +439,7 @@ struct TextClockExample {
 ```
 ![TextshadowExample](figures/text_clock_textshadow.png)
 
-### 示例3
+### 示例3（设定自定义内容区）
 该示例实现了自定义文本时钟样式的功能，自定义样式实现了一个时间选择器组件：通过文本时钟的时区偏移量与UTC秒数，来动态改变时间选择器的选中值，实现时钟效果。同时，根据文本时钟的启动状态，实现文本选择器的12小时制与24小时制的切换。
 
 ``` ts
@@ -509,7 +519,7 @@ struct TextClockExample {
 ```
 ![ContentModifierExample](figures/text_clock_contentmodifier.gif)
 
-### 示例4
+### 示例4（设置前导零）
 该示例演示了dateTimeOptions属性为小时字段增加或去除前导0的功能。24小时制的小时字段默认带有前导0，可通过dateTimeOptions属性去除前导0，12小时制的小时字段默认不带有前导0，可通过dateTimeOptions属性增加前导0。
 ``` ts
 @Entry

@@ -60,7 +60,7 @@ TextInput组件showCounter接口。
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.2 Image组件draggable接口默认值由false变更为true
+## cl.arkui.2 当Image组件的draggable接口接收到异常值时，其默认值将由false更改为true
 
 **访问级别**
 
@@ -68,7 +68,7 @@ TextInput组件showCounter接口。
 
 **变更原因**
 
-Image组件的draggable接口默认值由false变更为true，默认支持拖拽。
+当Image组件的draggable接口接收到异常参数，如undefined或null时，其默认值将从false更改为true，从而默认启用拖拽功能。
 
 **变更影响**
 
@@ -227,6 +227,58 @@ struct PanGesture {
         PanGesture({distance: 5})
           .onActionStart(() => {})
       )
+    }
+  }
+}
+```
+
+## cl.arkui.5 TextClock、TextTimer使用start、end参数设置borderColor、margin、padding行为更改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+TextClock、TextTimer使用start、end参数设置borderColor、margin、padding未生效。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+| 变更前                                                                                                                     | 变更后                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 使用start、end参数设置borderColor、margin、padding不生效。<br>![textclock_before](figures/textclock_before.png)| 使用start、end参数设置borderColor、margin、padding生效。<br>![textclock_after](figures/textclock_after.png) |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.50 版本开始。
+
+**变更的接口/组件**
+
+TextClock、TextTimer。
+
+**适配指导**
+
+正确使用start、end参数设置borderColor、margin、padding。
+
+示例：
+```
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct Index {
+  
+  build() {
+    Column(){
+      TextClock().borderWidth(50)
+        .borderColor({start: "#D5D5D5", end: "#D5D5D5", top: "#D5D5D5", bottom: "#D5D5D5"})
+        .padding({start: LengthMetrics.vp(20), end: LengthMetrics.vp(40)})
+        .margin({start: LengthMetrics.vp(20), end: LengthMetrics.vp(40)})
     }
   }
 }

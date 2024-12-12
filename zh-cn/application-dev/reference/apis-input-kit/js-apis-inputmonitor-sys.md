@@ -948,3 +948,216 @@ try {
 }
 ```
 
+## inputMonitor.on('touchscreenSwipe')<sup>14+</sup>
+
+on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
+
+监听触摸屏滑动手势事件。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenSwipe'。                    |
+| fingers  | number                                                       | 是   | 滑动手势的手指数，取值范围：[3,5]。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 是   | 回调函数，异步上报触摸屏滑动手势事件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```js
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('touchscreenSwipe')<sup>14+</sup>
+
+off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
+
+取消监听触摸屏滑动手势事件。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenSwipe'。                    |
+| fingers  | number                                                       | 是   | 滑动手势的手指数，取值范围：[3,5]。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```js
+// 取消监听单个回调函数
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (event: TouchGestureEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, callback);
+  inputMonitor.off('touchscreenSwipe', fingers, callback);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// 取消监听所有回调函数
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off('touchscreenSwipe', fingers);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.on('touchscreenPinch')<sup>14+</sup>
+
+on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
+
+监听触摸屏捏合手势事件。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenPinch'。                    |
+| fingers  | number                                                       | 是   | 捏合手势的手指数，取值范围：[4,5]。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 是   | 回调函数，异步上报触摸屏捏合手势事件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```js
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('touchscreenPinch')<sup>14+</sup>
+
+off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
+
+取消监听触摸屏捏合手势事件。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenPinch'。                    |
+| fingers  | number                                                       | 是   | 捏合手势的手指数，取值范围：[4,5]。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```js
+// 取消监听单个回调函数
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (event: TouchGestureEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, callback);
+  inputMonitor.off("touchscreenPinch", fingers, callback);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// 取消监听所有回调函数
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off("touchscreenPinch", fingers);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```

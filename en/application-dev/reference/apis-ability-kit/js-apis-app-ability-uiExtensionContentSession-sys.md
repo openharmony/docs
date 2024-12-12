@@ -42,6 +42,37 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
 
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Index {
+  private session: UIExtensionContentSession | undefined =
+    storage.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('SendData')
+        .onClick(() => {
+          let data: Record<string, Object> = {
+            'number': 123456,
+            'message': 'test'
+          };
+
+          this.session?.sendData(data);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## UIExtensionContentSession.setReceiveDataCallback
 
 setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
@@ -67,6 +98,34 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Index {
+  private session: UIExtensionContentSession | undefined =
+    storage.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('SendData')
+        .onClick(() => {
+          this.session?.setReceiveDataCallback((data: Record<string, Object>) => {
+            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+          });
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
@@ -94,6 +153,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Index {
+  private session: UIExtensionContentSession | undefined =
+    storage.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('SetReceiveDataForResultCallback')
+        .onClick(() => {
+          this.session?.setReceiveDataForResultCallback((data: Record<string, Object>) => {
+            console.info(`Successed in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            return data;
+          });
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.startAbility
 
@@ -140,7 +228,31 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    session.startAbility(want, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Successed in startAbility`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbility
 
@@ -186,7 +298,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbility(want, starOptions, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Successed in startAbility`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbility
 
@@ -239,7 +379,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbility(want, starOptions)
+      .then(() => {
+        console.info(`Successed in startAbility`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -291,7 +459,31 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    session.startAbilityForResult(want, (err: BusinessError, data: common.AbilityResult) => {
+      if (err) {
+        console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -342,7 +534,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityForResult(want, starOptions, (err: BusinessError, data: common.AbilityResult) => {
+      if (err) {
+        console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -401,7 +621,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityForResult(want, starOptions)
+      .then((data: common.AbilityResult) => {
+        console.info(`Successed in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.setWindowBackgroundColor
 
@@ -428,6 +676,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('session', session);
+    session.loadContent('pages/Extension', storage);
+
+    session.setWindowBackgroundColor('#00FF00');
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -469,7 +737,36 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    session.startAbilityAsCaller(localWant, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Successed in startAbilityAsCaller`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -510,7 +807,40 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let startOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityAsCaller(localWant, startOptions, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Successed in startAbilityAsCaller`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -558,7 +888,40 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let startOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityAsCaller(localWant, startOptions)
+      .then(() => {
+        console.info(`Successed in startAbilityAsCaller`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
 
@@ -594,7 +957,6 @@ import { uiExtensionHost } from '@kit.ArkUI';
 const TAG: string = '[UIExtAbility]';
 
 export default class UIExtAbility extends UIExtensionAbility {
-
   onCreate() {
     console.log(TAG, `UIExtAbility onCreate`);
   }

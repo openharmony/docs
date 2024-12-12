@@ -561,7 +561,9 @@ SegmentButtonItemOptions的构造参数。
 
 ## 示例
 
-### 示例1
+### 示例1（设置分段按钮的类型）
+
+该示例通过配置SegmentButtonOptions的tab和capsule创建两种不同类型的分段按钮。
 
 ```ts
 // xxx.ets
@@ -641,7 +643,9 @@ struct Index {
 
 ![segmentbutton-sample1](figures/segmentbutton-sample1.png)
 
-### 示例2
+### 示例2（设置分段按钮样式）
+
+该示例通过配置CommonSegmentButtonOptions实现了自定义分段按钮的文本以及背板样式。
 
 ```ts
 // xxx.ets
@@ -730,7 +734,9 @@ struct Index {
 
 ![segmentbutton-sample2](figures/segmentbutton-sample2.png)
 
-### 示例3
+### 示例3（分段按钮数组处理）
+
+该示例通过pop、shift、unshift等函数实现分段按钮数组的新增、删除等操作。
 
 ```ts
 import {
@@ -795,8 +801,8 @@ struct Index {
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
 
-### 示例4
-SegmentButton布局镜像展示
+### 示例4（设置镜像效果）
+该示例通过配置direction设置分段按钮的布局方向，实现镜像效果。
 
 ```ts
 // xxx.ets
@@ -900,8 +906,8 @@ struct Index {
 
 ![segmentbutton-sample4](figures/segmentbutton-sample4.png)
 
-### 示例5
-该示例实现了分段按钮的无障碍朗读功能。
+### 示例5（设置无障碍朗读）
+该示例通配置accessibilityLevel、selectedIconAccessibilityText等属性实现了分段按钮的无障碍朗读功能。
 
 ```ts
 // xxx.ets

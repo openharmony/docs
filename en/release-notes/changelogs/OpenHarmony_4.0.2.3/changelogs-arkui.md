@@ -23,7 +23,7 @@
 2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
 
     The **Length**, **ResourceStr**, and **ResourceColor** types are combinations of primitive data types or reference data types. Therefore, they cannot be used by the aforementioned types of state variables.
-    For details about the definitions of **Length**, **ResourceStr**, and **ResourceColor**, see [Types](../../../application-dev/reference/arkui-ts/ts-types.md).
+    For details about the definitions of **Length**, **ResourceStr**, and **ResourceColor**, see [Types](../../../application-dev/reference/apis-arkui/arkui-ts/ts-types.md).
 
     Example:
 
@@ -189,7 +189,7 @@ N/A
     
     To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
     
-2. For details about how to use **@ObjectLink**, see [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](../../../application-dev/quick-start/arkts-observed-and-objectlink.md).
+2. For details about how to use **@ObjectLink**, see [\@Observed and \@ObjectLink Decorators: Observing Property Changes in Nested Class Objects](../../../application-dev/quick-start/arkts-observed-and-objectlink.md).
 
 ## cl.arkui.3 Change of the onScrollBegin Event of the \<List> and \<Scroll> Components
 
@@ -206,8 +206,8 @@ The **onScrollBegin** event is deprecated and must be replaced with the **onScro
 | onScrollBegin(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number }) |
 
 For details about the **onScrollFrameBegin** event, see the following:
-- [Scroll Events](../../../application-dev/reference/arkui-ts/ts-container-scroll.md#events)
-- [List Events](../../../application-dev/reference/arkui-ts/ts-container-list.md#events)
+- [Scroll Events](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md#events)
+- [List Events](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md#events)
 
 **Adaptation Guide**
 

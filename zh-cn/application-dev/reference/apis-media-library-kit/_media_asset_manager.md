@@ -5,6 +5,8 @@
 
 提供媒体库资源请求能力的API。
 
+对应的开发指南及样例可参考[使用MediaAssetManager请求图片资源](../../media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)。
+
 **起始版本：** 12
 
 

@@ -144,7 +144,6 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
     onCreate() {
       console.info(TAG, `onCreate`);
     }
-
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
       if (want.parameters) {
@@ -156,37 +155,33 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
         session.loadContent('pages/Index', storage);
       }
     }
-
     onForeground() {
       console.info(TAG, `ononForeground`);
     }
-
     onBackground() {
       console.info(TAG, `onBackground`);
     }
-
     onSessionDestroy(session: UIExtensionContentSession) {
       console.info(TAG, `onSessionDestroy`);
     }
-
     onDestroy() {
       console.info(TAG, `onDestroy`);
     }
   }
   ```
 
-4. Register the ShareExtensionAbility in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **shared** and **srcEntry** to the code path of the ShareExtensionAbility component.
+4. Register the ShareExtensionAbility in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **share** and **srcEntry** to the code path of the ShareExtensionAbility component.
 
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "ShareExtAbility",
            "icon": "$media:icon",
            "description": "share",
-           "type": "shared",
+           "type": "share",
            "exported": true,
            "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ets"
          }

@@ -6,7 +6,6 @@ You can use \@Local, a variable decorator in state management V2, to observe the
 >
 >The \@Local decorator is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 
@@ -264,7 +263,7 @@ The \@Local decorator has the following constraints:
   }
   @Component
   struct CompB {
-    @Local message: string = "Hello World"; // Incorrect usage.
+    @Local message: string = "Hello World"; // Incorrect usage. An error is reported during compilation.
     build() {
     }
   }
@@ -282,7 +281,7 @@ The \@Local decorator has the following constraints:
   @ComponentV2
   struct CompB {
     build() {
-      CompA({ message: "Hello" }) // Incorrect usage.
+      CompA({ message: "Hello" }) // Incorrect usage. An error is reported during compilation.
     }
   }
   ```
@@ -335,7 +334,7 @@ struct Index {
 
 ### Decorating Variables of the Date Type
 
-When the decorated object is of the**Date** type, the overall value changes of **Date** can be observed. In addition, you can call the following APIs to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
+When the decorated object is of the **Date** type, the overall value changes of **Date** can be observed. In addition, you can call the following APIs to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
 
 ```ts
 @Entry

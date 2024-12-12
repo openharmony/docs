@@ -55,7 +55,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_create_int32(env, 0, &flag);
 
     napi_value args[3] = {flag, tag, outputString};
-    //3. Use napi_call_function to call the info function.
+    // 3. Call napi_call_function to invoke the info function.
     napi_call_function(env, result, infoFn, 3, args, nullptr);
     return result;
 }
@@ -74,42 +74,42 @@ function test() {
 export {value, test};
 ```
 
-1. Add the following to the **build-profile.json5** file of the project.
+1. Configure the **build-profile.json5** file of the project.
 
-```json
-{
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "sources": [
-                    "./src/main/ets/Test.ets"
-                ]
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "sources": [
+                        "./src/main/ets/Test.ets"
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
-2. Use **napi_load_module** to load the **Test.ets** file, call the **test()** function, and obtain the variable values.
+2. Call **napi_load_module** to load the module from the **Test.ets** file, call the **test()** function, and obtain the variable values.
 
-```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    napi_value result;
-    // 1. Call napi_load_module to load the module from the Test.ets file.
-    napi_status status = napi_load_module(env, "ets/Test", &result);
+    ```cpp
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module to load the module from the Test.ets file.
+        napi_status status = napi_load_module(env, "ets/Test", &result);
 
-    napi_value testFn;
-    // 2. Call napi_get_named_property to obtain the test function.
-    napi_get_named_property(env, result, "test", &testFn);
-    // 3. Call napi_call_function to call the test function.
-    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        napi_value testFn;
+        // 2. Call napi_get_named_property to obtain the test function.
+        napi_get_named_property(env, result, "test", &testFn);
+        // 3. Call napi_call_function to invoke the test function.
+        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
 
-    napi_value value;
-    napi_value key;
-    std::string keyStr = "value";
-    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    // 4. Call napi_get_property to obtain a variable value.
-    napi_get_property(env, result, key, &value);
-    return result;
-}
-```
+        napi_value value;
+        napi_value key;
+        std::string keyStr = "value";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 4. Call napi_get_property to obtain a variable value.
+        napi_get_property(env, result, key, &value);
+        return result;
+    }
+    ```

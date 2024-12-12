@@ -754,7 +754,7 @@ hdc list targets -v
 1. 从本地发送文件至远端设备，命令格式如下：
 
    ```shell
-   hdc file send localpath remotepath
+   hdc file send [-a|-sync|-z|-m] localpath remotepath
    ```
 
    **参数：**
@@ -762,6 +762,10 @@ hdc list targets -v
    | -------- | -------- |
    | _localpath_ | 本地待发送的文件路径 |
    | _remotepath_ | 远程待接收的文件路径 |
+   |-a|保留文件时间戳|
+   |-sync|只传输文件mtime有更新的文件|
+   |-z|通过LZ4格式压缩传输|
+   |-m|文件传输时同步文件DAC权限,uid,gid,MAC权限|
 
    **返回值：**
 
@@ -776,7 +780,7 @@ hdc list targets -v
 2. 从远端设备发送文件至本地，命令格式如下：
 
    ```shell
-   hdc file recv remotepath localpath
+   hdc file recv [-a|-sync|-z|-m] remotepath localpath
    ```
 
    **参数：**
@@ -784,6 +788,10 @@ hdc list targets -v
    | -------- | -------- |
    | _localpath_ | 本地待接收的文件路径 |
    | _remotepath_ | 远程待发送的文件路径 |
+   |-a|保留文件时间戳|
+   |-sync|只传输文件mtime有更新的文件|
+   |-z|通过LZ4格式压缩传输|
+   |-m|文件传输时同步文件DAC权限,uid,gid,MAC权限|
 
    **返回值：**
 
@@ -794,6 +802,15 @@ hdc list targets -v
    ```shell
    hdc file recv  /data/local/tmp/a.txt   ./a.txt
    ```
+
+   > **注意：**
+   > hdc file recv命令无法将媒体库目录内文件从远端设备接收文件至本地。
+   >
+   > 媒体库目录包含:
+   > /storage/cloud/\<USERID\>/files/Photo</br>
+   > /storage/media/\<USERID\>/local/files/Photo</br>
+   >
+   > 开发者可通过mediatool recv命令将指定uri对应的媒体库资源的源文件内容导出到定的设备路径下，具体操作说明可阅读[mediatool参考文档](../tools/mediatool.md#mediatool-recv)。
 
 ### 应用相关命令
 

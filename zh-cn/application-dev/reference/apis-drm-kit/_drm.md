@@ -5,6 +5,12 @@
 
 提供数字版权保护能力的C接口API。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [DRM系统管理](../../media/drm/native-drm-mediakeysystem-management.md)
+- [DRM会话管理](../../media/drm/native-drm-mediakeysession-management.md)
+
+
 **起始版本：** 11
 
 
@@ -93,8 +99,8 @@
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_EventCallback](#mediakeysession_eventcallback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | MediaKeySession事件回调函数，不返回MediaKeySession实例，适用于单个媒体解密的场景。 | 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback)) ([DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | MediaKeySession密钥变换回调函数，不返回MediaKeySession实例，适用于单个媒体解密的场景。 | 
 | typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](#mediakeysession_callback) | MediaKeySession_Callback结构体，适用于单个媒体解密的场景。 | 
-| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | MediaKeySession事件回调函数，返回MediaKeySession实例，适用于多个媒体解密的场景。 | 
-| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_KeyChangeCallback](#oh_mediakeysession_keychangecallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | MediaKeySession密钥变换回调函数，返回MediaKeySession实例，适用于多个媒体解密的场景。 | 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | MediaKeySession事件回调函数，返回MediaKeySession实例，适用于多个媒体解密的场景。 | 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_KeyChangeCallback](#oh_mediakeysession_keychangecallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | MediaKeySession密钥变换回调函数，返回MediaKeySession实例，适用于多个媒体解密的场景。 | 
 | typedef struct [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) [OH_MediaKeySession_Callback](#oh_mediakeysession_callback) | OH_MediaKeySession_Callback结构体，适用多个媒体解密的场景。 | 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySystem_Callback](#mediakeysystem_callback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | MediaKeySystem事件回调函数，不返回MediaKeySystem实例，适用于单个MediaKeySystem实例的场景。 | 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback)) (MediaKeySystem \*mediaKeySystem, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | MediaKeySystem事件回调函数，返回MediaKeySystem实例，适用于多个MediaKeySystem实例的场景。 | 
@@ -119,16 +125,16 @@
 | -------- | -------- |
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GenerateMediaKeyRequest](#oh_mediakeysession_generatemediakeyrequest) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) \*info, [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) \*mediaKeyRequest) | 生成媒体密钥请求。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ProcessMediaKeyResponse](#oh_mediakeysession_processmediakeyresponse) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*response, int32_t responseLen, uint8_t \*offlineMediaKeyId, int32_t \*offlineMediaKeyIdLen) | 处理媒体密钥请求响应。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_CheckMediaKeyStatus](#oh_mediakeysession_checkmediakeystatus) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) \*mediaKeyStatus) | 检查媒体密钥状态。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ClearMediaKeys](#oh_mediakeysession_clearmediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin) | 清除当前会话的媒体密钥。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GenerateOfflineReleaseRequest](#oh_mediakeysession_generateofflinereleaserequest) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseRequest, int32_t \*releaseRequestLen) | 生成离线媒体密钥释放请求。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ProcessOfflineReleaseResponse](#oh_mediakeysession_processofflinereleaseresponse) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseReponse, int32_t releaseReponseLen) | 处理离线媒体密钥释放响应。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RestoreOfflineMediaKeys](#oh_mediakeysession_restoreofflinemediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen) | 恢复离线媒体密钥。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GetContentProtectionLevel](#oh_mediakeysession_getcontentprotectionlevel) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | 获取会话的内容保护级别。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RequireSecureDecoderModule](#oh_mediakeysession_requiresecuredecodermodule) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, const char \*mimeType, bool \*status) | 是否需要安全解码。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetMediaKeySessionCallback](#oh_mediakeysession_setmediakeysessioncallback) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [MediaKeySession_Callback](_media_key_session___callback.md) \*callback) | 设置MediaKeySession事件回调，适用于单个媒体解密的场景。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetCallback](#oh_mediakeysession_setcallback) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) \*callback) | 设置MediaKeySession事件回调，适用于多个媒体解密的场景。 | 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_Destroy](#oh_mediakeysession_destroy) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin) | 释放MediaKeySession。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_CheckMediaKeyStatus](#oh_mediakeysession_checkmediakeystatus) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) \*mediaKeyStatus) | 检查媒体密钥状态。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ClearMediaKeys](#oh_mediakeysession_clearmediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySession) | 清除当前会话的媒体密钥。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GenerateOfflineReleaseRequest](#oh_mediakeysession_generateofflinereleaserequest) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseRequest, int32_t \*releaseRequestLen) | 生成离线媒体密钥释放请求。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ProcessOfflineReleaseResponse](#oh_mediakeysession_processofflinereleaseresponse) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseReponse, int32_t releaseReponseLen) | 处理离线媒体密钥释放响应。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RestoreOfflineMediaKeys](#oh_mediakeysession_restoreofflinemediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen) | 恢复离线媒体密钥。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GetContentProtectionLevel](#oh_mediakeysession_getcontentprotectionlevel) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | 获取会话的内容保护级别。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RequireSecureDecoderModule](#oh_mediakeysession_requiresecuredecodermodule) ([MediaKeySession](#mediakeysession) \*mediaKeySession, const char \*mimeType, bool \*status) | 是否需要安全解码。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetMediaKeySessionCallback](#oh_mediakeysession_setmediakeysessioncallback) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [MediaKeySession_Callback](_media_key_session___callback.md) \*callback) | 设置MediaKeySession事件回调，适用于单个媒体解密的场景。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetCallback](#oh_mediakeysession_setcallback) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) \*callback) | 设置MediaKeySession事件回调，适用于多个媒体解密的场景。 | 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_Destroy](#oh_mediakeysession_destroy) ([MediaKeySession](#mediakeysession) \*mediaKeySession) | 释放MediaKeySession。 | 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetCallback](#oh_mediakeysystem_setcallback) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback) callback) | 设置MediaKeySystem事件回调。 | 
 | bool [OH_MediaKeySystem_IsSupported](#oh_mediakeysystem_issupported) (const char \*name) | 判断设备是否支持指定的DRM解决方案。 | 
 | bool [OH_MediaKeySystem_IsSupported2](#oh_mediakeysystem_issupported2) (const char \*name, const char \*mimeType) | 判断设备是否支持指定DRM解决方案及媒体类型。 | 
@@ -866,7 +872,7 @@ OH_MediaKeySession_Callback结构体，用于监听密钥过期等事件，返�
 ### OH_MediaKeySession_EventCallback
 
 ```
-typedef Drm_ErrCode(* OH_MediaKeySession_EventCallback) (MediaKeySession *mediaKeySessoin, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+typedef Drm_ErrCode(* OH_MediaKeySession_EventCallback) (MediaKeySession *mediaKeySession, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
 ```
 
 **描述**
@@ -879,7 +885,7 @@ MediaKeySystem事件触发时将调用的回调。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mediaKeySessoin | 会话实例。 | 
+| mediaKeySession | 会话实例。 | 
 | eventType | 事件类型。 | 
 | info | 事件信息。 | 
 | infoLen | 事件信息长度。 | 
@@ -893,7 +899,7 @@ Drm_ErrCode 错误码。
 ### OH_MediaKeySession_KeyChangeCallback
 
 ```
-typedef Drm_ErrCode(* OH_MediaKeySession_KeyChangeCallback) (MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo, bool newKeysAvailable)
+typedef Drm_ErrCode(* OH_MediaKeySession_KeyChangeCallback) (MediaKeySession *mediaKeySession, DRM_KeysInfo *keysInfo, bool newKeysAvailable)
 ```
 
 **描述**
@@ -906,7 +912,7 @@ typedef Drm_ErrCode(* OH_MediaKeySession_KeyChangeCallback) (MediaKeySession *me
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mediaKeySessoin | 媒体密钥会话实例。 | 
+| mediaKeySession | 媒体密钥会话实例。 | 
 | keysInfo | 密钥信息。 | 
 | newKeysAvailable | 新密钥是否可用，true表示可用，false表示不可用。 | 
 
@@ -1118,7 +1124,7 @@ enum DRM_OfflineMediaKeyStatus
 ### OH_MediaKeySession_CheckMediaKeyStatus()
 
 ```
-Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus (MediaKeySession *mediaKeySessoin, DRM_MediaKeyStatus *mediaKeyStatus)
+Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus (MediaKeySession *mediaKeySession, DRM_MediaKeyStatus *mediaKeyStatus)
 ```
 
 **描述**
@@ -1146,7 +1152,7 @@ Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus (MediaKeySession *mediaKeySes
 ### OH_MediaKeySession_ClearMediaKeys()
 
 ```
-Drm_ErrCode OH_MediaKeySession_ClearMediaKeys (MediaKeySession *mediaKeySessoin)
+Drm_ErrCode OH_MediaKeySession_ClearMediaKeys (MediaKeySession *mediaKeySession)
 ```
 
 **描述**
@@ -1172,7 +1178,7 @@ Drm_ErrCode OH_MediaKeySession_ClearMediaKeys (MediaKeySession *mediaKeySessoin)
 ### OH_MediaKeySession_Destroy()
 
 ```
-Drm_ErrCode OH_MediaKeySession_Destroy (MediaKeySession *mediaKeySessoin)
+Drm_ErrCode OH_MediaKeySession_Destroy (MediaKeySession *mediaKeySession)
 ```
 
 **描述**
@@ -1227,7 +1233,7 @@ Drm_ErrCode OH_MediaKeySession_GenerateMediaKeyRequest (MediaKeySession *mediaKe
 ### OH_MediaKeySession_GenerateOfflineReleaseRequest()
 
 ```
-Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest (MediaKeySession *mediaKeySessoin, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseRequest, int32_t *releaseRequestLen)
+Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest (MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseRequest, int32_t *releaseRequestLen)
 ```
 
 **描述**
@@ -1258,7 +1264,7 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest (MediaKeySession *m
 ### OH_MediaKeySession_GetContentProtectionLevel()
 
 ```
-Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel (MediaKeySession *mediaKeySessoin, DRM_ContentProtectionLevel *contentProtectionLevel)
+Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel (MediaKeySession *mediaKeySession, DRM_ContentProtectionLevel *contentProtectionLevel)
 ```
 
 **描述**
@@ -1316,7 +1322,7 @@ Drm_ErrCode OH_MediaKeySession_ProcessMediaKeyResponse (MediaKeySession *mediaKe
 ### OH_MediaKeySession_ProcessOfflineReleaseResponse()
 
 ```
-Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession *mediaKeySessoin, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseReponse, int32_t releaseReponseLen)
+Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseReponse, int32_t releaseReponseLen)
 ```
 
 **描述**
@@ -1346,7 +1352,7 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession *m
 ### OH_MediaKeySession_RequireSecureDecoderModule()
 
 ```
-Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession *mediaKeySessoin, const char *mimeType, bool *status)
+Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession *mediaKeySession, const char *mimeType, bool *status)
 ```
 
 **描述**
@@ -1374,7 +1380,7 @@ Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession *medi
 ### OH_MediaKeySession_RestoreOfflineMediaKeys()
 
 ```
-Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession *mediaKeySessoin, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)
+Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)
 ```
 
 **描述**
@@ -1402,7 +1408,7 @@ Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession *mediaKe
 ### OH_MediaKeySession_SetCallback()
 
 ```
-Drm_ErrCode OH_MediaKeySession_SetCallback (MediaKeySession *mediaKeySessoin, OH_MediaKeySession_Callback *callback)
+Drm_ErrCode OH_MediaKeySession_SetCallback (MediaKeySession *mediaKeySession, OH_MediaKeySession_Callback *callback)
 ```
 
 **描述**
@@ -1428,7 +1434,7 @@ Drm_ErrCode OH_MediaKeySession_SetCallback (MediaKeySession *mediaKeySessoin, OH
 ### OH_MediaKeySession_SetMediaKeySessionCallback()
 
 ```
-Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback (MediaKeySession *mediaKeySessoin, MediaKeySession_Callback *callback)
+Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback (MediaKeySession *mediaKeySession, MediaKeySession_Callback *callback)
 ```
 
 **描述**

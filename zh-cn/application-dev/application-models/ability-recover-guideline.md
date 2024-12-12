@@ -20,7 +20,7 @@
 
 - 重启设备不支持还原备份。
 
-- [UIExtensionAbility](./uiextensionability.md)不支持备份恢复。
+- [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)不支持备份恢复。
 
 ## 接口说明
 

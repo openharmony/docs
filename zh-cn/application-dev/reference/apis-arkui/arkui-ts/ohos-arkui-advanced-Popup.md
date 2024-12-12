@@ -100,7 +100,9 @@ PopupIconOptions定义icon（右上角图标）的属性。
 
 ## 示例
 
-### 示例1
+### 示例1（设置气泡样式）
+
+该示例通过配置PopupIconOptions、PopupTextOptions、PopupButtonOptions实现气泡的样式。
 
 ```ts
 // xxx.ets
@@ -114,7 +116,7 @@ struct PopupExample {
     Row() {
       // popup 自定义高级组件
       Popup({
-        //PopupIconOptions 类型设置图标内容
+        // PopupIconOptions类型设置图标内容
         icon: {
           image: $r('app.media.icon'),
           width:32,
@@ -122,14 +124,14 @@ struct PopupExample {
           fillColor:Color.White,
           borderRadius: 16
         } as PopupIconOptions,
-        // PopupTextOptions 类型设置文字内容
+        // PopupTextOptions类型设置文字内容
         title: {
           text: 'This is a popup with PopupOptions',
           fontSize: 20,
           fontColor: Color.Black,
           fontWeight: FontWeight.Normal
         } as PopupTextOptions,
-        //PopupTextOptions 类型设置文字内容
+        // PopupTextOptions类型设置文字内容
         message: {
           text: 'This is the message',
           fontSize: 15,
@@ -139,7 +141,7 @@ struct PopupExample {
         onClose: () => {
           console.info('close Button click')
         },
-        // PopupButtonOptions 类型设置按钮内容
+        // PopupButtonOptions类型设置按钮内容
         buttons: [{
           text: 'confirm',
           action: () => {
@@ -168,8 +170,8 @@ struct PopupExample {
 
 ![](figures/popup_7.png)
 
-### 示例 2
-Popup布局镜像展示
+### 示例 2（设置镜像效果）
+该示例通过配置direction实现Popup的镜像效果。
 
 ```ts
 // xxx.ets

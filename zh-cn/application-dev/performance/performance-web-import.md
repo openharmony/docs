@@ -195,8 +195,11 @@ struct WebComponent {
 
 ![](./figures/web-node-container.png)
 
-> 说明  
+> **说明**
+>
 > 预渲染相比于预下载、预连接方案，会消耗更多的内存、算力，仅建议针对高频页面使用，单应用后台创建的ArkWeb组件要求小于200个。
+>
+> 在后台，预渲染的网页会持续进行渲染，为了防止发热和功耗问题，建议在预渲染完成后立即停止渲染过程。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12) 来确定预渲染的停止时机，该接口适用于http和https的在线网页。
 
 **实践案例**
 
@@ -230,13 +233,27 @@ struct WebComponent {
     import { NodeController, BuilderNode, Size, FrameNode }  from '@kit.ArkUI';
     // @Builder中为动态组件的具体组件内容
     // Data为入参封装类
-    // 调用onActive，开启渲染
+    class Data{
+      url: string = 'https://www.example.com';
+      controller: WebviewController = new webview.WebviewController();
+    }
+    // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染
+    let shouldInactive: boolean = true;
     @Builder
     function WebBuilder(data:Data) {
       Column() {
         Web({ src: data.url, controller: data.controller })
           .onPageBegin(() => {
+            // 调用onActive，开启渲染
             data.controller.onActive();
+          })
+          .onFirstMeaningfulPaint(() =>{
+            if (!shouldInactive) {
+              return;
+            }
+            // 在预渲染完成时触发，停止渲染
+            data.controller.onInactive();
+            shouldInactive = false;
           })
           .width("100%")
           .height("100%")
@@ -264,6 +281,8 @@ struct WebComponent {
       // 当controller对应的NodeContainer在Appear的时候进行回调
       aboutToAppear() {
         console.info("aboutToAppear")
+        // 切换到前台后，不需要停止渲染
+        shouldInactive = false;
       }
       // 当controller对应的NodeContainer在Disappear的时候进行回调
       aboutToDisappear() {

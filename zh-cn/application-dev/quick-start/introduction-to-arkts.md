@@ -97,6 +97,15 @@ factorial(n3)  //  1
 factorial(n4)  //  9.33262154439441e+157 
 ```
 
+`number`类型在表示大整数时会造成精度丢失。在开发时可以按需使用`BigInt`类型来确保精度：
+
+```typescript
+
+let bigIntger: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
+console.log('bigIntger' + bigIntger.toString());
+
+```
+
 #### `Boolean`类型
 
 `boolean`类型由`true`和`false`两个逻辑值组成。
@@ -674,7 +683,7 @@ console.log(x);
 type trigFunc = (x: number) => number // 这是一个函数类型
 
 function do_action(f: trigFunc) {
-   f(3.141592653589); // 调用函数
+  f(3.141592653589); // 调用函数
 }
 
 do_action(Math.sin); // 将函数作为参数传入
@@ -1411,6 +1420,16 @@ interface ExtendedStyle extends Style {
 
 继承接口包含被继承接口的所有属性和方法，还可以添加自己的属性和方法。
 
+
+### 抽象类和接口
+
+抽象类与接口都无法实例化。抽象类是类的抽象，抽象类用来捕捉子类的通用特性，接口是行为的抽象。在ArkTS中抽象类与接口的区别如下：
+
+* 一个类只能继承一个抽象类，而一个类可以实现一个或多个接口；
+* 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+* 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
+* 抽象类可以有构造函数，而接口不能有构造函数。
+
 ## 泛型类型和函数
 
 泛型类型和函数允许创建的代码在各种类型上运行，而不仅支持单一类型。
@@ -1627,8 +1646,6 @@ p.spouse?.nick; // undefined
 
 未导出的声明名称被视为私有名称，只能在声明该名称的模块中使用。
 
-**注意**：通过export方式导出，在导入时要加{}。
-
 ```typescript
 export class Point {
   x: number = 0;
@@ -1660,7 +1677,7 @@ export function Distance(p1: Point, p2: Point): number {
 导入绑定`* as A`表示绑定名称“A”，通过`A.name`可访问从导入路径指定的模块导出的所有实体：
 
 ```typescript
-import * as Utils from './utils'
+import * as Utils from './utils';
 Utils.X // 表示来自Utils的X
 Utils.Y // 表示来自Utils的Y
 ```
@@ -1668,7 +1685,7 @@ Utils.Y // 表示来自Utils的Y
 导入绑定`{ ident1, ..., identN }`表示将导出的实体与指定名称绑定，该名称可以用作简单名称：
 
 ```typescript
-import { X, Y } from './utils'
+import { X, Y } from './utils';
 X // 表示来自utils的X
 Y // 表示来自utils的Y
 ```
@@ -1676,7 +1693,7 @@ Y // 表示来自utils的Y
 如果标识符列表定义了`ident as alias`，则实体`ident`将绑定在名称`alias`下：
 
 ```typescript
-import { X as Z, Y } from './utils'
+import { X as Z, Y } from './utils';
 Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
@@ -1688,10 +1705,19 @@ import()语法通常称为动态导入dynamic import，是一种类似函数的�
 如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
 
 ```typescript
-let modulePath = prompt("Which module to load?");
-import(modulePath)
-.then(obj => <module object>)
-.catch(err => <loading error, e.g. if no such module>)
+// Calc.ts
+export function add(a:number, b:number):number {
+  let c = a + b;
+  console.info('Dynamic import, %d + %d = %d', a, b, c);
+  return c;
+}
+
+// Index.ts
+import("./Calc").then((obj: ESObject) => {
+  console.info(obj.add(3, 5));  
+}).catch((err: Error) => {
+  console.error("Module dynamic import error: ", err);
+});
 ```
 
 如果在异步函数中，可以使用let module = await import(modulePath)。

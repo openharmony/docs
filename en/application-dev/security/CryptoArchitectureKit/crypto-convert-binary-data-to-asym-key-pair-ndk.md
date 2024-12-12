@@ -122,66 +122,6 @@ static OH_Crypto_ErrCode doAsymEccCovert()
 }
 ```
 
-## Converting PKCS #8 Binary Data into an ECC Private Key
-
-For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
-
-Obtain the binary data of the ECC public or private key, encapsulate the data into a [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob) object, and convert the data into the ECC key format.  
-
-1. Use [OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create) with the string parameter **'ECC256'** to create an asymmetric key generator (**OH_CryptoAsymKeyGenerator**) object for a 256-bit ECC key pair.
-
-2. Use [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) to obtain the public key data byte stream.
-
-3. Use [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the binary key data into an asymmetric key object (**OH_CryptoKeyPair**).
-
-**Example**
-
-```c++
-#include "CryptoArchitectureKit/crypto_common.h"
-#include "CryptoArchitectureKit/crypto_asym_key.h"
-
-static OH_Crypto_ErrCode doAsymEccCovert() 
-{
-   OH_CryptoAsymKeyGenerator *ctx = nullptr;
-   OH_CryptoKeyPair *keyPair = nullptr;
-   OH_Crypto_ErrCode ret;
-
-   ret = OH_CryptoAsymKeyGenerator_Create("ECC256", &ctx);
-   if (ret != CRYPTO_SUCCESS) {
-      return ret;
-   }
-
-   ret = OH_CryptoAsymKeyGenerator_Generate(ctx, &keyPair);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(ctx);
-      return ret;
-   }
-
-   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
-   Crypto_DataBlob retBlob = { .data = nullptr, .len = 0 };
-   ret = OH_CryptoPubKey_Encode(pubKey, CRYPTO_DER, nullptr, &retBlob);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(ctx);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      return ret;
-   }
-
-   OH_CryptoKeyPair *dupKeyPair = nullptr;
-   ret = OH_CryptoAsymKeyGenerator_Convert(ctx, CRYPTO_DER, &retBlob, nullptr, &dupKeyPair);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(ctx);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      return ret;
-   }
-
-   OH_Crypto_FreeDataBlob(&retBlob);
-   OH_CryptoAsymKeyGenerator_Destroy(ctx);
-   OH_CryptoKeyPair_Destroy(keyPair);
-   OH_CryptoKeyPair_Destroy(dupKeyPair);
-   return ret;
-}
-```
-
 ## Converting Binary Data into an SM2 Key Pair
 
 For details about the algorithm specifications, see [SM2](crypto-asym-key-generation-conversion-spec.md#sm2).
@@ -195,7 +135,6 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 3. Use [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the binary data into an asymmetric key pair (**OH_CryptoKeyPair**).
 
 Example: Convert binary data into an SM2 key pair.
-
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"

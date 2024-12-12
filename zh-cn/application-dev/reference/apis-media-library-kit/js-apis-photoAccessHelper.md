@@ -1084,6 +1084,7 @@ async function example() {
 ```
 
 ### grantPhotoAssetsReadPermission<sup>14+</sup>
+
 grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 <!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
@@ -1774,6 +1775,8 @@ async function example() {
 
 clone(title: string): Promise&lt;PhotoAsset&gt;
 
+将一个资产进行克隆，支持设置文件名，不支持修改文件类型。
+
 **需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1782,7 +1785,7 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | 是    | 克隆后资产的标题。 title参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255。<br>- 不允许出现非法字符，包括：. .. \ / : * ? " ' ` < > \| { } [ ] |
+| title| string | 是    | 克隆后资产的标题。 title参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
 
 **返回值：**
 
@@ -3465,7 +3468,7 @@ setTitle(title: string): void
 title参数规格为：
 - 不应包含扩展名。
 - 文件名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **错误码：**
 
@@ -3761,13 +3764,13 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
-### setOrientation<sup>13+</sup>
+### setOrientation<sup>14+</sup>
 
 setOrientation(orientation: number): void
 
 修改图片的旋转角度。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3906,7 +3909,7 @@ setAlbumName(name: string): void
 
 相册名的参数规格为：
 - 相册名字符串长度为1~255。
-- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 不允许出现非法字符，包括：<br> . \ / : * ? " ' ` < > | { } [ ]
 - 英文字符大小写不敏感。
 - 相册名不允许重名。
 
@@ -5103,8 +5106,8 @@ title参数规格为：
 | 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
-| compatibleMode<sup>13+</sup>      | [CompatibleMode](#compatiblemode13) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
-| mediaAssetProgressHandler<sup>13+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler13) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
+| compatibleMode<sup>14+</sup>      | [CompatibleMode](#compatiblemode14) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
+| mediaAssetProgressHandler<sup>14+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler14) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -5364,7 +5367,7 @@ async function example() {
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，DEFAULT或者MOVING_PHOTO。|
 
-## CompatibleMode<sup>13+</sup>
+## CompatibleMode<sup>14+</sup>
 
 配置转码模式。
 
@@ -5372,16 +5375,16 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
-| FAST_ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
+| ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
 | COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
 
-## MediaAssetProgressHandler<sup>13+</sup>
+## MediaAssetProgressHandler<sup>14+</sup>
 
 媒体资产进度处理器，应用在onProgress方法中获取媒体资产进度。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### onProgress<sup>13+</sup>
+### onProgress<sup>14+</sup>
 
 onProgress(progress: number): void
 
