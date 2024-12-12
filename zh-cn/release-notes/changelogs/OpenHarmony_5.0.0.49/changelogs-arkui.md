@@ -336,7 +336,7 @@ C: OH_ArkUI_NodeUtils_GetLayoutPositionInScreen和OH_ArkUI_NodeUtils_GetPosition
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.5 setSpecificSystemBarEnabled接口在横屏的行为变更
+## cl.arkui.6 setSpecificSystemBarEnabled接口在横屏的行为变更
 
 **访问级别**
 
