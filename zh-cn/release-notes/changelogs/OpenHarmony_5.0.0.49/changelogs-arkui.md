@@ -366,7 +366,7 @@ API 12
 
 **变更的接口/组件**
 
-Window#setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise<void>
+Window#setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise\<void\>
 
 **适配指导**
 
