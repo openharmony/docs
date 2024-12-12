@@ -41,7 +41,8 @@
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
     - [HiTraceId](_hi_trace_id.md)
-    - [HiCollie](_hi_hicollie___detection_param.md)
+    - [HiCollie_DetectionParam](_hi_hicollie___detection_param.md)
+    - [HiCollie_SetTimerParam](_hi_hicollie___set_timer_param.md)
 - 错误码
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)
