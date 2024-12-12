@@ -63,7 +63,7 @@ try {
   usbManager.addAllowedUsbDevices(wantTemp, usbDeviceIds);
   console.info(`Succeeded in adding allowed USB devices.`);
 } catch (err) {
-  console.error(`Failed to adding allowed USB devices. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to add allowed USB devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -113,7 +113,7 @@ try {
   usbManager.removeAllowedUsbDevices(wantTemp, usbDeviceIds);
   console.info(`Succeeded in removing allowed USB devices.`);
 } catch (err) {
-  console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to remove allowed USB devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -162,9 +162,9 @@ let wantTemp: Want = {
 };
 try {
   let result: Array<usbManager.UsbDeviceId> = usbManager.getAllowedUsbDevices(wantTemp);
-  console.info(`Succeeded in removing allowed USB devices. Result: ${JSON.stringify(result)}`);
+  console.info(`Succeeded in getting allowed USB devices. Result: ${JSON.stringify(result)}`);
 } catch (err) {
-  console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get allowed USB devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
