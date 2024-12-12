@@ -22,8 +22,8 @@ import { inputConsumer } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键集合，数量范围[1, 2]，修饰按键无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
-| finalKey  | number  | 是      | 否      | 被修饰键。<br>如Ctrl+Shift+Esc中，Esc称为被修饰键。 |
+| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，修饰按键无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
+| finalKey  | number  | 是      | 否      | 被修饰键，为除修饰键和 Meta 以外的其它按键。<br>如Ctrl+Shift+Esc中，Esc称为被修饰键。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
