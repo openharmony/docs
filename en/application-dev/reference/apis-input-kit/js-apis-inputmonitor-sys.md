@@ -947,3 +947,217 @@ try {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputMonitor.on('touchscreenSwipe')<sup>14+</sup>
+
+on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
+
+Start monitoring events of swiping on touchscreen.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**.  |
+| fingers  | number                                                       | Yes  | Number of fingers swiping, must be in the range [3,5]. |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes   | The callback as monitor to which touchscreen-swipe events will be reported. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('touchscreenSwipe')<sup>14+</sup>
+
+off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
+
+Stop monitoring events of swiping on touchscreen.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes   | Event type. This field has a fixed value of **touchscreenSwipe**. |
+| fingers  | number                                                       | Yes   | Number of fingers swiping, must be in the range [3,5]. |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No   | The monitor that will be stopped; If not specified, all monitors of touchscreen-swipe events will be stopped. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+// Stop one specific monitor of touchscreen-swipe events.
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (event: TouchGestureEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, callback);
+  inputMonitor.off('touchscreenSwipe', fingers, callback);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Stop all monitors of touchscreen-swipe events.
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off('touchscreenSwipe', fingers);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.on('touchscreenPinch')<sup>14+</sup>
+
+on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
+
+Start monitoring events of pinching on touchscreen.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**. |
+| fingers  | number                                                       | Yes  | Number of fingers pinching, must be in the range [4,5]. |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes | The callback as monitor to which touchscreen-pinch events will be reported. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('touchscreenPinch')<sup>14+</sup>
+
+off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
+
+Stop monitoring events of pinching on touchscreen.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes   | Event type. This field has a fixed value of **touchscreenPinch**. |
+| fingers  | number                                                       | Yes   | Number of fingers pinching, must be in the range [4,5]. |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No | The monitor that will be stopped; If not specified, all monitors of touchscreen-pinch events will be stopped. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+// Stop one specific monitor of touchscreen-pinch events.
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (event: TouchGestureEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, callback);
+  inputMonitor.off("touchscreenPinch", fingers, callback);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Stop all monitors of touchscreen-pinch events.
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off("touchscreenPinch", fingers);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
