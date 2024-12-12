@@ -49,7 +49,9 @@ displayPriority(value: number)
 
 ## 示例
 
-### 示例1
+### 示例1（设置组件宽高比）
+
+通过aspectRatio设置不同的宽高比。
 
 ```ts
 // xxx.ets
@@ -110,7 +112,9 @@ struct AspectRatioExample {
 **图2** 横屏显示<br>
 ![zh-cn_image_0000001174264382](figures/zh-cn_image_0000001174264382.PNG)
 
-### 示例2
+### 示例2（设置组件显示优先级）
+
+使用displayPriority给子组件绑定显示优先级。
 
 ```ts
 class ContainerInfo {
