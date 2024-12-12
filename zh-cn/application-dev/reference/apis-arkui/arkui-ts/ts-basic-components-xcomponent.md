@@ -454,7 +454,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 ## 示例
 
-示例效果请以真机运行为准，当前IDE预览器不支持。
+示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ### 示例1
 
