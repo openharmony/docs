@@ -81,7 +81,7 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData)(OH_Aud
 | -------- | -------- |
 | capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
 | userData | 指向应用自定义的数据存储区域。 |
-| buffer | 指向播放数据存储区域，用于应用填充播放数据。 |
+| buffer | 指向录制数据存储区域，用于应用填充录制数据。 |
 | length | buffer的长度。 |
 
 

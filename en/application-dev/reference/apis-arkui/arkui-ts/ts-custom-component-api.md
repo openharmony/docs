@@ -45,7 +45,7 @@ struct MyComponent {
 
 getUniqueId(): number
 
-Obtains the unique ID of this component. This unique ID is assigned by the system to each component. If this API is called before the component is built, an invalid value **-1** is returned.
+Obtains the unique ID of this component. This unique ID is assigned by the system to each component. If this API is called before the component's corresponding node is created or after it has been destroyed, an invalid unique ID, which is **-1**, will be returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

@@ -5,6 +5,12 @@
 
 提供音频模块C接口定义。
 
+开发者可根据实际的开发需求，参考对应的开发指南及样例：
+
+- [使用OHAudio开发音频播放功能](../../media/audio/using-ohaudio-for-playback.md)
+- [使用OHAudio开发音频录制功能](../../media/audio/using-ohaudio-for-recording.md)
+- [使用AudioSession管理应用音频焦点](../../media/audio/using-ohaudio-for-session.md)
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10
@@ -337,7 +343,11 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 
 **返回：**
 
-音频数据回调结果。
+函数返回值[OH_AudioData_Callback_Result](#oh_audiodata_callback_result)：
+
+AUDIO_DATA_CALLBACK_RESULT_INVALID：音频数据回调结果无效，且音频数据不播放。
+
+AUDIO_DATA_CALLBACK_RESULT_VALID：音频数据回调结果有效，将播放音频数据。
 
 **参见：**
 
@@ -548,8 +558,8 @@ enum OH_AudioData_Callback_Result
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIO_DATA_CALLBACK_RESULT_INVALID  | 表示音频数据回调结果无效。   | 
-| AUDIO_DATA_CALLBACK_RESULT_VALID  | 表示音频数据回调结果有效。   | 
+| AUDIO_DATA_CALLBACK_RESULT_INVALID  | 表示音频数据回调结果无效，且音频数据不播放。   | 
+| AUDIO_DATA_CALLBACK_RESULT_VALID  | 表示音频数据回调结果有效，将播放音频数据。   | 
 
 
 ### OH_AudioDevice_BlockStatus

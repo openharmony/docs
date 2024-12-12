@@ -32,7 +32,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
+| 801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
 | 2501003  | Operation failed because the service is being closed. |
 
@@ -104,7 +104,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
+| 801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
 | 2501004  | Operation failed because the service is being opened. |
 
@@ -178,7 +178,7 @@ Sets whether scan is always allowed.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -258,9 +258,9 @@ Adds network configuration. This API uses a promise to return the result.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If **-1** is returned, the network configuration fails to be added.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If **-1** is returned, the network configuration fails to be added.|
 
 **Error codes**
 
@@ -444,9 +444,9 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| networkId | number | Yes| Network configuration ID.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | Yes| Network configuration ID.|
 
 **Error codes**
 
@@ -613,9 +613,9 @@ Obtains the features supported by this device.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| number | Feature value. |
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | Feature value. |
 
 **Feature IDs**
 
@@ -671,9 +671,9 @@ Obtains the device MAC address.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| string[] | MAC address obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | string[] | MAC address obtained.|
 
 **Error codes**
 
@@ -714,9 +714,9 @@ Obtains the Wi-Fi state.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| WifiDetailState | Wi-Fi state obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | WifiDetailState | Wi-Fi state obtained.|
 
 **Error codes**
 
@@ -849,9 +849,9 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | Array of network configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | Array of network configuration obtained.|
 
 **Error codes**
 
@@ -890,15 +890,15 @@ Updates network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| New WLAN configuration.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| New WLAN configuration.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
 **Error codes**
 
@@ -944,9 +944,9 @@ Disables network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of the network configuration to disable.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the network configuration to disable.|
 
 **Error codes**
 
@@ -1022,8 +1022,8 @@ Removes the specified network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
 | id | number | Yes| ID of the network configuration to remove.|
 
 **Error codes**
@@ -1065,9 +1065,9 @@ Obtains the list of 5 GHz channels supported by this device.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;number&gt; | List of 5 GHz channels supported by the device.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;number&gt; | List of 5 GHz channels supported by the device.|
 
 **Error codes**
 
@@ -1350,9 +1350,9 @@ Checks whether the hotspot supports dual band.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
 
 **Error codes**
 
@@ -1391,9 +1391,9 @@ Checks whether this hotspot is active.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
 **Error codes**
 
@@ -1432,9 +1432,9 @@ Sets hotspot configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [HotspotConfig](#hotspotconfig9) | Yes| Hotspot configuration to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [HotspotConfig](#hotspotconfig9) | Yes| Hotspot configuration to set.|
 
 **Error codes**
 
@@ -1499,9 +1499,9 @@ Obtains hotspot configuration.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| [HotspotConfig](#hotspotconfig9) | Hotspot configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | [HotspotConfig](#hotspotconfig9) | Hotspot configuration obtained.|
 
 **Error codes**
 
@@ -1704,7 +1704,7 @@ Obtains the list of blocked devices of the hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
@@ -1739,9 +1739,9 @@ Deletes a persistent group.
 **Parameters**
 
 
-| **Name**| **Type**| Mandatory| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of the group to delete.|
+  | **Name**| **Type**| Mandatory| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the group to delete.|
 
 **Error codes**
 
@@ -1868,9 +1868,9 @@ Sets the device name.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| devName | string | Yes| Device name to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | devName | string | Yes| Device name to set.|
 
 **Error codes**
 
@@ -1902,7 +1902,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 on(type: 'streamChange', callback: Callback&lt;number&gt;): void
 
-Subscribes to Wi-Fi stream changes.
+Subscribes to Wi-Fi stream changes. When the service exits, call off(type: 'streamChange', callback?: Callback&lt;number&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -1915,7 +1915,7 @@ Subscribes to Wi-Fi stream changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback used to return the stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
 
 **Error codes**
 
@@ -1979,7 +1979,7 @@ wifi.off("streamChange", recvStreamChangeFunc);
 
 on(type: 'deviceConfigChange', callback: Callback&lt;number&gt;): void
 
-Subscribes to Wi-Fi device configuration changes.
+Subscribes to Wi-Fi device configuration changes. When the service exits, call off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -2057,7 +2057,7 @@ wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
 
 on(type: 'hotspotStaJoin', callback: Callback&lt;StationInfo&gt;): void
 
-Subscribes to the event of an STA joining a Wi-Fi hotspot.
+Subscribes to the event of an STA joining a Wi-Fi hotspot. When the service exits, call off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -2070,7 +2070,7 @@ Subscribes to the event of an STA joining a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
-| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked immediately after an STA is connected to a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInfo&gt; | Yes| Callback used to return the event.|
 
 **Error codes**
 
@@ -2135,7 +2135,7 @@ wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 on(type: 'hotspotStaLeave', callback: Callback&lt;StationInfo&gt;): void
 
-Subscribes to the event of an STA leaving a Wi-Fi hotspot.
+Subscribes to the event of an STA leaving a Wi-Fi hotspot. When the service exits, call off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -2145,10 +2145,10 @@ Subscribes to the event of an STA leaving a Wi-Fi hotspot.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
-| callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked immediately after an STA is disconnected from a Wi-Fi hotspot.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
+  | callback | Callback&lt;StationInf]&gt; | Yes| Callback used to return the event.|
 
 **Error codes**
 

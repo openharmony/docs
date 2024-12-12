@@ -263,7 +263,7 @@ struct Index {
       Column() {
         Image($r('app.media.icon'))
           .width('200px').height('200px')
-          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+          .clipShape(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
         Text(`Obtain the built-in clip path parameters:`)
           .fontWeight(800)
         Text(JSON.stringify(LayeredDrawableDescriptor.getMaskClipPath()))

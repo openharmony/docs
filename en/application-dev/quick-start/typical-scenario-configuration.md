@@ -2,7 +2,6 @@
 
 A static shortcut is a link created in the system to quickly access an application or a specific feature. Generally, the shortcut icon and text will appear above the application icon by long touching the application icon, so that a user can quickly start a specific component of the application. Using shortcuts can improve efficiency and save the time for searching and starting specific components. In addition, you can create multiple shortcuts to meet personalized workflow and operation preferences. The following figure shows a static shortcut of an application displayed on the home screen.
 
-**Figure 1** Example<br>
 
 After installing the application, long touch the icon on the home screen. The shortcuts (Add to Favorites and Share) configured by you are displayed above the application icon. Touch a label to start the corresponding component.
 
@@ -14,8 +13,8 @@ After installing the application, long touch the icon on the home screen. The sh
 
 The following describes how to configure a static shortcut in a project.
 
-1.  
-    Configure the [shortcut configuration file](module-configuration-file.md#shortcuts) in the **resources/base/profile** directory of a specific module, for example, **shortcuts_config.json** file.
+1. Configure the configuration file of a static shortcut.
+    Configure the [shortcut configuration file](module-configuration-file.md#shortcuts) in the **resources/base/profile** directory of a specific module, for example, **shortcuts_config.json**.
 
     ```json
     {

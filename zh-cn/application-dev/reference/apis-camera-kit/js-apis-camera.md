@@ -7886,7 +7886,7 @@ enableAutoDeviceSwitch(enabled: boolean): void
 
 | 错误码ID   | 错误信息                                                                                                                                       |
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 7400102  | Operation not allowed.                                                                                                                         |
 | 7400103  | Session not config.                                                                                                                            |
 | 7400201  | Camera service fatal error.                                                                                                                    |
@@ -7945,7 +7945,7 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
-查询当前Session是否支持指定的与配置类型。
+查询当前Session是否支持指定的预配置类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

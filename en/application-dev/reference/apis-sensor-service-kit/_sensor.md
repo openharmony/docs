@@ -148,7 +148,7 @@ typedef struct Sensor_Subscriber Sensor_Subscriber
 ```
 **Description**
 
-Defines a struct the sensor subscriber information.
+Defines a struct for the sensor subscriber information.
 
 **Since**: 11
 

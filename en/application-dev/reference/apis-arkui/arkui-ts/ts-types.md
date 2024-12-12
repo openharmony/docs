@@ -255,7 +255,7 @@ The **Font** type is used to set the text style.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | No  | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.<br>Default value: **16.0**|
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| **FontWeight.Normal** |
-| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md)) are supported.|
+| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.|
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | No  | Font style.<br>Default value: **FontStyle.Normal**            |
 
 ## Area<sup>8+</sup>
@@ -518,6 +518,8 @@ The **KeyboardAvoidMode** type is used to define the avoidance mode for the virt
 | ------ | ---------- |
 | OFFSET | Avoid the virtual keyboard through offset.|
 | RESIZE | Avoid the virtual keyboard through resizing.|
+| OFFSET_WITH_CARET<sup>14+</sup> | The layout moves up, and this adjustment also occurs if the caret position in the text box changes.|
+| RESIZE_WITH_CARET<sup>14+</sup> | The layout is resized, and this adjustment also occurs if the caret position in the text box changes.|
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -584,7 +586,7 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 | Name           | Type                 | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11)) => void | Callback for the hover event.|
+| HoverCallback | (isHover: boolean, event: HoverEvent) => void | Callback for the hover event.|
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 
@@ -601,13 +603,13 @@ The **VisibleAreaEventOptions** type is used to describe visible area changes.
 
 The **VisibleAreaChangeCallback** type is used to represent a callback for visible area changes of the component.
 
-type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
+type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) => void;
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | The **VisibleAreaChangeCallback** type is used to represent a callback for visible area changes of the component.<br>- **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
+| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | Callback for visible area changes of the component.<br>- **isExpanding**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
 
 ## StyledStringValue<sup>12+</sup>
 
@@ -736,7 +738,7 @@ The **getCaretOffset** type is used to obtain the position information of the ca
 
 ## SelectionOptions<sup>12+</sup>
 
-Provides the configuration options for text selection.
+The **SelectionOptions** type is used to describe the configuration options for text selection.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -744,7 +746,21 @@ Provides the configuration options for text selection.
 
 | Name      | Type                                           | Mandatory| Description            |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | No  | Menu display policy.|
+| menuPolicy | [MenuPolicy](#menupolicy12) | No  | Menu display policy.|
+
+## MenuPolicy<sup>12+</sup>
+
+The **MenuPolicy** type is used to describe the menu display policy.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | Whether the menu is displayed depends on the underlying default logic.|
+| HIDE    | 1    | The menu is always hidden.                  |
+| SHOW    | 2    | The menu is always displayed.                    |
 
 ## CaretOffset<sup>11+</sup>
 

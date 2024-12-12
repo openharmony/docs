@@ -94,7 +94,7 @@
 | 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>-&nbsp;[自定义扩展](arkts-user-defined-modifier.md)|
 | 使用镜像能力        | 介绍了镜像能力的基本概念和如何使用镜像能力。       | -&nbsp;[使用镜像能力](arkts-mirroring-display.md) |
 | 支持适老化        | 介绍了适老化的使用场景和使用方法。       | -&nbsp;[支持适老化](arkui-support-for-aging-adaptation.md) |
-| 主题设置       | 介绍了应用级和页面级的主题设置能力。       | <!--RP1--><!--RP1End-->-&nbsp;[设置主题换肤](theme_skinning.md) |
+| 主题设置       | 介绍了应用级和页面级的主题设置能力。       | <!--RP1--><!--RP1End-->-&nbsp;[设置应用内主题换肤](theme_skinning.md) |
 | 使用UI上下文接口操作界面       | 介绍了如何使用UIContext中对应的接口获取与实例绑定的对象。       | -&nbsp;[使用UI上下文接口操作界面](arkts-global-interface.md) |
 | 跨进程拉起页面 | 介绍了全屏方式拉起原子化服务的方法。 | - [全屏启动原子化服务组件](arkts-FullScreenComponent.md) |
 | 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[监听组件事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|

@@ -57,9 +57,9 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
   ```ts
-  // for simple type
+  // Simple type.
   @State count: number = 0;
-  // value changing can be observed
+  // The value change can be observed.
   this.count = 1;
   ```
 
@@ -217,6 +217,21 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 - The framework executes an update method of the dependent components, which triggers re-rendering of the components.
 
 - Components or UI descriptions irrelevant to the state variable are not re-rendered, thereby implementing on-demand page updates.
+
+
+## Constraints
+
+1. Variables decorated by \@State must be initialized. Otherwise, an error is reported during compilation.
+
+```ts
+// Incorrect format. An error is reported during compilation.
+@State count: number;
+
+// Correct format.
+@State count: number = 10;
+```
+
+2. \@State cannot decorate variables of the function type. Otherwise, the framework throws a runtime error.
 
 
 ## Application Scenarios
@@ -485,7 +500,7 @@ struct PlayDetailPage {
     Stack() {
       Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
       Row() {
-        Button ('Change Color')
+        Button('Change Color')
           .onClick(() => {
             this.vm.changeCoverUrl();
           })
@@ -526,7 +541,7 @@ struct PlayDetailPage {
     Stack() {
       Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
       Row() {
-        Button ('Change Color')
+        Button('Change Color')
           .onClick(() => {
             let self = this.vm;
             this.vm.changeCoverUrl(self);
@@ -907,3 +922,231 @@ struct ConsumerChild {
 ```
 
 In the preceding example, **getTarget** is used to obtain the original value of the corresponding state variable before value change. After comparison, if the original value is the same as the new value, re-rendering will not be triggered.
+
+### State Variables Modification in build() Is Forbidden
+
+State variables cannot be changed in **build()**. Otherwise, the state management framework reports error logs during runtime.
+
+The rendering process is as follows:
+
+1. Create a custom component **CompA**.
+
+2. Execute the **build** method of **CompA** as follows:
+
+    1. Create a **Column** component.
+
+    2. Create a Text component. **This.count++** is triggered when the **Text** component is created.
+
+    3. The value change of **count** triggers the re-render of the **Text** component.
+
+    4. Return value of **Text** is 2.
+
+```ts
+@Entry
+@Component
+struct CompA {
+  @State count: number = 1;
+
+  build() {
+    Column() {
+      // Avoid directly changing the value of count in the Text component.
+      Text(`${this.count++}`)
+        .width(50)
+        .height(50)
+    }
+  }
+}
+```
+
+During the first creation, the **Text** component is rendered twice. As a result, return value of the **Text** component is **2**.
+
+If the framework identifies that the state variable is changed in **build()**, an error log is generated. The error log is as follows:
+
+```ts
+FIX THIS APPLICATION ERROR: @Component 'CompA'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
+```
+
+In the preceding example, this error does not cause serious consequences, for only the **Text** component is rendered one more time. Therefore, you may ignore this log.
+
+However, this behavior is a serious mistake. As the project becomes more complex, the potential risk becomes more and more serious.<br> Example:
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: number = 20;
+
+  build() {
+    Column() {
+      Text(`${this.message++}`)
+
+      Text(`${this.message++}`)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+The rendering process in the preceding example is as follows:
+
+1. Create the first **Text** component to trigger the change of **this.message**.
+
+2. The change of **this.message** triggers the re-render of the second **Text** component.
+
+3. The re-render of the second **Text** component triggers the change of **this.message**, which again triggers the re-render of the first **Text** component.
+
+4. Re-render is performed repeatedly.
+
+5. The system does not respond for a long time, causing an App Freeze.
+
+Therefore, you are not advised to change the state variables in **build**. When the error "FIX THIS APPLICATION ERROR: @Component ... has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!" is reported, even if it does not bring serious consequences for now, you should pay attention to. Checking the application and modifying the corresponding error code to clear the error log are recommended.
+
+### Using the a.b(this.object) Format Fails to Trigger UI Re-render
+
+In the **build** method, when the variable decorated by @State is of the object type and is called using the **a.b(this.object)** format, the native object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, when the static method **Balloon.increaseVolume** or **this.reduceVolume** is used to change the **volume** of **Balloon**, the UI is not re-rendered.
+
+[Incorrect Usage]
+
+```ts
+class Balloon {
+  volume: number;
+  constructor(volume: number) {
+    this.volume = volume;
+  }
+
+  static increaseVolume(balloon:Balloon) {
+    balloon.volume += 2;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State balloon: Balloon = new Balloon(10);
+
+  reduceVolume(balloon:Balloon) {
+    balloon.volume -= 1;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The volume of the balloon is ${this.balloon.volume} cubic centimeters.`)
+        .fontSize(30)
+      Button(`increaseVolume`)
+        .onClick(()=>{
+          // The UI cannot be re-rendered using a static method.
+          Balloon.increaseVolume(this.balloon);
+        })
+      Button(`reduceVolume`)
+        .onClick(()=>{
+          // The UI cannot be re-rendered using this.
+          this.reduceVolume(this.balloon);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+You can add a proxy for **this.balloon** to re-render the UI by assigning a value to the variable and then calling the variable.
+
+[Example]
+
+```ts
+class Balloon {
+  volume: number;
+  constructor(volume: number) {
+    this.volume = volume;
+  }
+
+  static increaseVolume(balloon:Balloon) {
+    balloon.volume += 2;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State balloon: Balloon = new Balloon(10);
+
+  reduceVolume(balloon:Balloon) {
+    balloon.volume -= 1;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The volume of the balloon is ${this.balloon.volume} cubic centimeters.`)
+        .fontSize(30)
+      Button(`increaseVolume`)
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let balloon1 = this.balloon;
+          Balloon.increaseVolume(balloon1);
+        })
+      Button(`reduceVolume`)
+        .onClick(()=>{
+          // Add a proxy by assigning a value.
+          let balloon2 = this.balloon;
+          this.reduceVolume(balloon2);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### Changing State Variables Outside a Custom Component
+
+You can register the arrow function in **aboutToAppear** to change the state variables in the component. Note that the registered function must be left empty in **aboutToDisappear**. Otherwise, the custom component cannot be released because the arrow function captures the **this** instance of the component, causing memory leakage.
+
+```ts
+class Model {
+  private callback: Function | undefined = () => {}
+
+  add(callback: () => void): void {
+    this.callback = callback;
+  }
+
+  delete(): void {
+    this.callback = undefined;
+  }
+
+  call(): void {
+    if (this.callback) {
+      this.callback();
+    }
+  }
+}
+
+let model: Model = new Model();
+
+@Entry
+@Component
+struct Test {
+  @State count: number = 10;
+
+  aboutToAppear(): void {
+    model.add(() => {
+      this.count++;
+    })
+  }
+
+  build() {
+    Column() {
+      Text(`Value of count: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call();
+        })
+    }
+  }
+
+  aboutToDisappear(): void {
+    model.delete();
+  }
+}
+```
+
+In addition, you can use [LocalStorage](./arkts-localstorage.md#changing-state-variables-outside-a-custom-component) to change the state variables outside a custom component.

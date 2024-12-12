@@ -516,7 +516,7 @@ The WAL file size exceeds the default limit.
 
 **错误描述**
 
-WAL文件大小超过默认上限（200M）。
+WAL文件大小超过默认上限（512MB）。
 
 **可能原因**
 

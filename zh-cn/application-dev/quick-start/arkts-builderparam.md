@@ -4,6 +4,8 @@
 当开发者创建了自定义组件，并想对该组件添加特定功能时，例如在自定义组件中添加一个点击跳转操作。若直接在组件内嵌入事件方法，将会导致所有引入该自定义组件的地方均增加了该功能。为解决此问题，ArkUI引入了\@BuilderParam装饰器，\@BuilderParam用来装饰指向[\@Builder](./arkts-builder.md)方法的变量（@BuilderParam是用来承接@Builder函数的）。开发者可以在初始化自定义组件时，使用不同的方式（如：参数修改、尾随闭包、借用箭头函数等）对\@BuilderParam装饰的自定义构建函数进行传参赋值，在自定义组件内部通过调用\@BuilderParam为组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。
 
 
+在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
+
 > **说明：**
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
@@ -167,7 +169,7 @@ struct Parent {
 
 ### 参数初始化组件
 
-\@BuilderParam装饰的方法可以是有参数和无参数的两种形式，需与指向的\@Builder方法类型匹配。\@BuilderParam装饰的方法类型需要和\@Builder方法类型一致。
+\@BuilderParam装饰的方法可以是有参数和无参数的两种形式，需与指向的\@Builder方法类型匹配。
 
 ```ts
 class Tmp{
@@ -185,7 +187,7 @@ class Tmp{
 struct Child {
   label: string = 'Child';
   @Builder customBuilder() {};
-  // 无参数类型，指向的componentBuilder也是无参数类型
+  // 无参数类型，指向的customBuilder也是无参数类型
   @BuilderParam customBuilderParam: () => void = this.customBuilder;
   // 有参数类型，指向的overBuilder也是有参数类型的方法
   @BuilderParam customOverBuilderParam: ($$: Tmp) => void = overBuilder;

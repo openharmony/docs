@@ -41,21 +41,25 @@ The following example only covers how to configure the page for switching to the
 
 ```ts
 import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-// Set navigationButtonText for the authentication page.
-const widgetParam: userAuth.WidgetParam = {
-  title: 'Verify identity',
-  navigationButtonText: 'Use password',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // Set navigationButtonText for the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+    navigationButtonText: 'Use password',
+  };
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {

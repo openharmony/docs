@@ -142,7 +142,7 @@ To listen for system locale changes, enable listening for [COMMON_EVENT_LOCALE_C
 
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| locale | string | Yes   | Valid locale ID, for example, **zh-CN**.|
+| locale | string | Yes   | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Error codes**
 
@@ -418,7 +418,7 @@ Obtains the country/region sorting array.
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
 | regions   | Array&lt;string&gt; | Yes  | Valid IDs of the countries or regions to be sorted.|
-| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option. The default value of **locale** is the system locale, the default value of **isUseLocalName** is **false**, and the default value of **isSuggestedFirst** is **true**.|
+| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.<br>The default value of **locale** is the system locale, the default value of **isUseLocalName** is **false**, and the default value of **isSuggestedFirst** is **true**.|
 
 **Return value**
 
@@ -551,6 +551,6 @@ Represents the language or country/region sorting option.
 
 | Name           | Type           |  Mandatory|   Description                                |
 | --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  No | System locale, for example, **zh-Hans-CN**. The default value of **locale** is the system locale.   |
-| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**. If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
-| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The default value of **isSuggestedFirst** is **true**. |
+| locale          | string          |  No | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value of **locale** is the system locale.   |
+| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting.<br>If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**.<br>If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
+| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result.<br>The default value of **isSuggestedFirst** is **true**. |

@@ -113,7 +113,7 @@ MyTsfnContext(napi_env env, napi_value workName) {
     // 创建线程安全函数
     if (napi_create_threadsafe_function(env, nullptr, nullptr, workName, 1, 1, this,
             TsfnFinalize, this, TsfnCallJs, &tsfn_) != napi_ok) {
-        OH_LOG_INFO(LOG_APP, "tsfn is created faild");
+        OH_LOG_INFO(LOG_APP, "tsfn is created failed");
         return;
     };
 };
@@ -191,7 +191,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
     napi_create_string_utf8(env, "MyTsfnWork", NAPI_AUTO_LENGTH, &workName);
     MyTsfnContext *myContext = new MyTsfnContext(env, workName);
     if (myContext->GetTsfn() == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "faild to create tsfn");
+        OH_LOG_ERROR(LOG_APP, "failed to create tsfn");
         delete myContext;
         return nullptr;
     };
@@ -204,7 +204,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
     std::thread(
         [](MyTsfnContext *myCtx) {
             if (!myCtx->Acquire()) {
-                OH_LOG_ERROR(LOG_APP, "acquire tsfn faild");
+                OH_LOG_ERROR(LOG_APP, "acquire tsfn failed");
                 return;
             };
             char *data1 = new char[]{"Im call in std::thread"};

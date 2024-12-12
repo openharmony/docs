@@ -10,7 +10,7 @@ The dialog box APIs are defined within a struct named **ArkUI_NativeDialogAPI_*x
 ## Creating and Destroying a Dialog Controller
 
 - Create a dialog controller.
-  **ArkUI_NativeDialogHandle** represents a pointer to the dialog controller, which you can create by calling the **create** API of **ArkUI_NativeDialogAPI_*x***.
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nativedialoghandle) represents a pointer to the dialog controller, which you can create by calling the [create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create) API of [ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md).
 
   This API returns data of the **ArkUI_NativeDialogHandle** type.
   ```
@@ -66,7 +66,7 @@ You can set the alignment, offset, corner radius of the background, background c
    }
    ```
 
-2. Control dialog box styles with the controller.
+2. Control dialog box styles with the controller. For details about the available dialog box APIs, see [native_dialog.h](../reference/apis-arkui/native__dialog_8h.md).
    ```
    void ShowDialog() {
        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -99,14 +99,14 @@ You can set the alignment, offset, corner radius of the background, background c
 
 Create an interactive page to open or close a dialog box.
 
-1. Create an interactive page, where a button click triggers the dialog box.
+1. Create an interactive page, where a button click triggers the dialog box. For details about how to obtain and use the ArkUI_NodeContentHandle node, see [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md).
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool isShown = false;
    ArkUI_NativeDialogHandle dialogController;
    ArkUI_NodeHandle buttonNode;
    
-   void MainViewMethod(OH_NativeXComponent *component) {
+   void MainViewMethod(ArkUI_NodeContentHandle handle) {
        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -126,7 +126,7 @@ Create an interactive page to open or close a dialog box.
        ArkUI_AttributeItem buttonHeightItem = {.value = buttonHeightValue,
                                                .size = sizeof(buttonHeightValue) / sizeof(ArkUI_NumberValue)};
        nodeAPI->setAttribute(buttonNode, NODE_HEIGHT, &buttonHeightItem);
-       ArkUI_AttributeItem labelItem = {.string = "Click Dialog Box};
+       ArkUI_AttributeItem labelItem = {.string = "Click Dialog Box"};
        nodeAPI->setAttribute(buttonNode, NODE_BUTTON_LABEL, &labelItem);
        ArkUI_NumberValue buttonTypeValue[] = {{.i32 = static_cast<int32_t>(ARKUI_BUTTON_TYPE_NORMAL)}};
        ArkUI_AttributeItem buttonTypeItem = {.value = buttonTypeValue,
@@ -135,7 +135,7 @@ Create an interactive page to open or close a dialog box.
        nodeAPI->registerNodeEvent(buttonNode, NODE_ON_CLICK, BUTTON_CLICK_ID, nullptr);
        nodeAPI->addNodeEventReceiver(buttonNode, OnButtonClicked);
        nodeAPI->addChild(column, buttonNode);
-       OH_NativeXComponent_AttachNativeRootNode(component, column);
+       OH_ArkUI_NodeContent_AddNode(handle, column);
    }
    ```
 

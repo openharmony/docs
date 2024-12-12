@@ -12,13 +12,13 @@ In the ArkUI component tree hierarchy, pages that were originally managed by the
 
 3. Integrates UX design and one-time development for multi-device deployment capabilities, with default capabilities for unified title display, page switching, and single or double column adaptation.
 
-4. Enables flexible page configuration by allowing you to determine the relationship between page aliases and UI through UIBuilder.
+4. Enables flexible page configuration by allowing you to determine the relationship between page aliases and UI through [UIBuilder](../quick-start/arkts-builder.md).
 
 5. Transforms page transition animations into component property animations, offering a richer and more flexible range of transition effects.
 
 6. Provides an inheritable page stack object for improved page display management.
 
-## Capability Comparison
+## Capability Comparison 
 
 | Scenario                                     | Navigation                            | Router                                 |
 | --------------------------------------------- | ------------------------------------- | -------------------------------------- |
@@ -98,7 +98,7 @@ struct Index {
               url: 'pages/pageOne' // Target URL.
               }, router.RouterMode.Standard, (err) => {
                 if (err) {
-                  console.error(Invoke pushUrl failed, code is ${err.code}, message is ${err.message});
+                  console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                   return;
                 }
                 console.info('Invoke pushUrl succeeded.');
@@ -116,7 +116,7 @@ struct Index {
 // pageOne.ets
 import { router } from '@kit.ArkUI';
 
-@entry
+@Entry
 @Component
 struct pageOne {
   @State message: string = 'This is pageOne';
@@ -166,6 +166,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 ```
@@ -258,9 +259,10 @@ struct Index {
   build() {
     // Set NavPathStack and pass it to Navigation.
     Navigation(this.pathStack) {
-        ...
+        // ...
     }.width('100%').height('100%')
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -280,7 +282,7 @@ this.pathStack.replacePath({ name: 'pageOne' })
 this.pathStack.clear()
 
 // Obtain the size of the page stack.
-let size = this.pathStack.size()
+let size: number = this.pathStack.size()
 
 // Remove all pages whose name is PageOne from the stack.
 this.pathStack.removeByName("pageOne")
@@ -299,7 +301,7 @@ this.pathStack.getParamByName("pageOne")
 
 // Obtain the index set of the PageOne page.
 this.pathStack.getIndexByName("pageOne")
-...
+// ...
 ```
 
 **Router** serves as a global module that can be used across any page, whereas **Navigation** operates as a component. If subpages within a **Navigation** component need to perform routing operations, they must access the **NavPathStack** object held by **Navigation**. The following are several methods to obtain the **NavPathStack** object:
@@ -312,14 +314,14 @@ this.pathStack.getIndexByName("pageOne")
 @Component
 struct Index {
   // Navigation creates a NavPathStack object decorated by @Provide.
- @Provide('pathStack') pathStack: NavPathStack
+ @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
 
   build() {
     Navigation(this.pathStack) {
-        ...
-      }.width('100%').height('100%')
+        // ...
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -331,7 +333,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -347,7 +349,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack
@@ -371,10 +373,9 @@ struct Index {
 
   build() {
     Navigation(this.pathStack) {
-        ...
-      }.width('100%').height('100%')
-    }
-    .title("Navigation")
+      // ...
+    }.title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -386,7 +387,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -461,7 +462,7 @@ struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .onWillAppear(()=>{
     })
@@ -574,7 +575,7 @@ As a routing component, **Navigation** natively supports cross-package navigatio
    export struct PageInHSP {
      build() {
        NavDestination() {
-           ...
+           // ...
        }
      }
    }
@@ -611,6 +612,7 @@ As a routing component, **Navigation** natively supports cross-package navigatio
    		  this.pageStack.pushPath({ name: "PageInHSP"});
    	 })
       }
+      .mode(NavigationMode.Stack)
       .navDestination(this.pageMap)
     }
    }
@@ -679,11 +681,11 @@ A registered callback is invoked when there is a change in the page state. You c
 
 ```ts
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    ...
+    // ...
     windowStage.getMainWindow((err: BusinessError, data) => {
-      ...
+      // ...
       windowClass = data;
       // Obtain a UIContext instance.
       let uiContext: UIContext = windowClass.getUIContext();

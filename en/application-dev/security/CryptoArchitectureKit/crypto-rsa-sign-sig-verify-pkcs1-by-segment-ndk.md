@@ -18,9 +18,10 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 
 3. Use [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.
    
-Currently, the amount of data to be passed in by a single **OH_CryptoSymCipher_Update()** is not limited. You can determine how to pass in data based on the data volume.
+   Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can call **OH_CryptoVerify_Final** immediately after **OH_CryptoVerify_Init()**.
    
 4. Use [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
+
 
 **Example**
 

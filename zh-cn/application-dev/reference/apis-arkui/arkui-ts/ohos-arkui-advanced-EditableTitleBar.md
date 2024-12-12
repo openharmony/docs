@@ -101,10 +101,10 @@ type EditableTitleBarItem = EditableTitleBarMenuItem
 
 ## 示例
 
-### 示例1
+### 示例1（右侧图标自定义标题栏）
+ 该示例主要演示EditableTitleBar设置左侧图标、主标题及自定义右侧图标区的效果。
 
 ```ts
-// 该示例主要演示EditableTitleBar设置左侧图标、主标题及自定义右侧图标区的效果。
 import { EditableLeftIconType, EditableTitleBar, promptAction } from '@kit.ArkUI';
 
 @Entry
@@ -151,10 +151,10 @@ struct Index {
 
 ![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
 
-### 示例2
+### 示例2（头像与背景模糊标题栏）
+该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
 
 ```ts
-// 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
 import { EditableLeftIconType, EditableTitleBar, LengthMetrics, promptAction, router } from '@kit.ArkUI';
 
 @Entry

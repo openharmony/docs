@@ -18,7 +18,7 @@ For details about the algorithm specifications, see [ECDSA](crypto-sign-sig-veri
 2. Use [OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init) to initialize the **Verify** instance by using the public key (**OH_CryptoPubKey**).
 
 3. Use [OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update) to pass in the data to be verified.
-   <br>Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update()** is not limited. You can determine how to pass in data based on the data volume.
+   Currently, the amount of data to be passed in by a single **OH_CryptoVerify_Update** is not limited. You can determine how to pass in data based on the data volume. If a small amount of data is to be verified, you can call **OH_CryptoVerify_Final** immediately after **OH_CryptoVerify_Init()**.
 
 4. Use [OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final) to verify the signature.
 
@@ -81,7 +81,7 @@ static bool doTestEcdsaSignature()
    }
    OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
    // verify
-   ret = OH_CryptoVerify_Create((const char *)"ECC|SHA256", &verify);
+   ret = OH_CryptoVerify_Create((const char *)"ECC256|SHA256", &verify);
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
@@ -94,7 +94,7 @@ static bool doTestEcdsaSignature()
       return false;
    }
    bool res = OH_CryptoVerify_Final(verify, &msgBlob, &signBlob);
-   if (ret != true) {
+   if (res != true) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;

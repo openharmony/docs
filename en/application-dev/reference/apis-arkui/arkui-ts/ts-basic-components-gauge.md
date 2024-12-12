@@ -671,12 +671,12 @@ struct refreshExample {
 
       Column({ space: 20 }) {
         Row({ space: 20 }) {
-          Button('Increase').onClick () => {
+          Button('Increase').onClick(() => {
             if (this.gaugeValue < this.gaugeMax) {
               this.gaugeValue += 1
             }
           })
-          Button('Decrease').onClick () => {
+          Button('Decrease').onClick(() => {
             if (this.gaugeValue > this.gaugeMin) {
               this.gaugeValue -= 1
             }

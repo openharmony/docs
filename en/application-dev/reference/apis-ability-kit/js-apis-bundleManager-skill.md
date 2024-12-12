@@ -1,11 +1,16 @@
 # Skill
 
-The **Skill** module defines a skill object. Such an object can be obtained through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with at least **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_SKILL** passed in to **bundleFlags**.
+The Skill module defines a skill object. Such an object can be obtained through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with at least **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_SKILL** passed in to **bundleFlags**. (The skill information is contained in [BundleInfo](./js-apis-bundleManager-bundleInfo.md) -> [HapModuleInfo](./js-apis-bundleManager-hapModuleInfo.md) -> [AbilityInfo](./js-apis-bundleManager-abilityInfo.md) or [ExtensionAbilityInfo](./js-apis-bundleManager-extensionAbilityInfo.md).)
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
 
 ## Skill
 
@@ -16,7 +21,7 @@ The **Skill** module defines a skill object. Such an object can be obtained thro
 | -------- | ------ | ---- | ---- | ---------- |
 | actions     | Array\<string> | Yes  | No  | Actions received by the skill.|
 | entities    | Array\<string> | Yes  | No  | Entities received by the skill.  |
-| uris | Array<\<SkillUri>> | Yes  | No  | URIs that match Want.|
+| uris | Array\<SkillUri> | Yes  | No  | URIs that match Want.|
 | domainVerify     | boolean | Yes  | No  | DomainVerify value received by the skill. This parameter exists only in **AbilityInfo**.|
 
 ## SkillUri

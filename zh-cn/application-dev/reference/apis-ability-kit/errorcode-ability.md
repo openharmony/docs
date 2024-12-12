@@ -893,6 +893,24 @@ Creating an instance is not supported.
 
 删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
 
+## 16000082 单实例模式下的UIAbility未完成启动
+
+**错误信息**
+
+The UIAbility is being started.
+
+**错误描述**
+
+如果UIAbility启动模式为“singleton”，在UIAbility启动完成之前不能再次调用启动接口，否则将返回该错误码。
+
+**可能原因**
+
+该UIAbility为singleton模式，正在启动过程中。
+
+**处理步骤**
+
+确保该UIAbility启动完成，再执行新的启动任务。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**

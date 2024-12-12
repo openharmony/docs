@@ -36,32 +36,30 @@ Chip({options:ChipOptions})
 
 Defines the type and style parameters of the chip.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name           | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Size of the chip.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>   If of the SizeOptions type, this parameter cannot be set in percentage.|
-| enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**|
-| activated<sup>12+</sup>       | boolean                                        | No  | Whether the chip is activated.<br>Default value: **false**                     |
-| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | No  | Prefix icon of the chip.|
-| prefixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type prefix icon of the chip.|
-| label           | [LabelOptions](#labeloptions)                                | Yes  | Text of the chip.  |
-| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | No  | Suffix icon of the chip.|
-| suffixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type suffix icon of the chip.|
-| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | No| Accessibility settings of the symbol-type suffix icon.|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**|
-| activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | No  | Background color of the chip when it is activated.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**|
-| borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**|
-| allowClose      | boolean                                                      | No  | Whether to show the close icon.<br>Default value: **true**|
-| onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.|
-| onClicked<sup>12+</sup>       | Callback\<void> | No  | Event triggered when the chip is clicked.                                      |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**|
-| closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | No| Accessibility settings of the default close icon.|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the chip.|
-| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip.<br>Default value: **"auto"**|
-| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | No| Type of selected state for the chip.|
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Size of the chip.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>   If of the SizeOptions type, this parameter cannot be set in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| activated      | boolean                                        | No  | Whether the chip is activated.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
+| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | No  | Prefix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| prefixSymbol   | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type prefix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| label           | [LabelOptions](#labeloptions)                                | Yes  | Text of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | No  | Suffix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| suffixSymbol    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type suffix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | No| Accessibility settings of the symbol-type suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| activatedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)          | No  | Background color of the chip when it is activated.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| allowClose      | boolean                                                      | No  | Whether to show the close icon.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onClicked      | Callback\<void> | No  | Event triggered when the chip is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
+| direction | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | No| Accessibility settings of the default close icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | No| Type of selected state for the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 > **NOTE**
 >
@@ -138,16 +136,14 @@ Defines the suffix icon options.
 
 Inherits [IconCommonOptions](#iconcommonoptions).
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Type      | Mandatory| Description              |
 | ------ | ---------- | ---- | ------------------ |
-| action | () => void | No  | Action of the suffix icon.|
-| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the suffix icon.|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the suffix icon.|
-| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the suffix icon.<br>Default value: **"auto"**|
+| action | () => void | No  | Action of the suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the suffix icon.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the suffix icon.<br>Default value: **"auto"**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## AccessibilityOptions<sup>14+</sup>
 
@@ -609,7 +605,7 @@ struct ChipExample2 {
               suffixIcon: {
                 src: $r('sys.media.ohos_ic_public_cut'),
                 accessibilityText: 'Icon',
-                accessibilityDescription: 'Speak usage hints',
+                accessibilityDescription: 'Usage hints',
                 action: () => {
                   this.getUIContext().getPromptAction().showToast({
                     message: 'Suffix icon touched.'
@@ -706,7 +702,7 @@ struct ChipExample2 {
                 suffixSymbolOptions: {
                   activatedAccessibility: {
                     accessibilityText: 'Music',
-                    accessibilityDescription: 'Speak usage hints'
+                    accessibilityDescription: 'Usage hints'
                   },
                   action: () => {
                     this.getUIContext().getPromptAction().showToast({
@@ -731,7 +727,7 @@ struct ChipExample2 {
                 suffixSymbolOptions: {
                   normalAccessibility: {
                     accessibilityText: 'Music',
-                    accessibilityDescription: 'Speak usage hints'
+                    accessibilityDescription: 'Usage hints'
                   },
                   action: () => {
                     this.getUIContext().getPromptAction().showToast({

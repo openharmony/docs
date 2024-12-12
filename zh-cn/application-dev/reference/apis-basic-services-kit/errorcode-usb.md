@@ -90,6 +90,24 @@ Database operation exception.
 
 尝试重新调用接口。
 
+## 14400006 不支持的USB设备侧功能
+
+**错误信息**
+
+Unsupported operation. The function is not supported.
+
+**错误描述**
+
+不支持的操作。当前设备不支持该USB设备侧功能切换。
+
+**可能原因**
+
+不是正确的USB设备侧功能。
+
+**处理步骤**
+
+使用正确的USB设备侧功能。
+
 ## 14401001 目标USB配件未匹配
 
 **错误信息**

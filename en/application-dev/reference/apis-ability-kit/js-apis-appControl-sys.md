@@ -521,7 +521,7 @@ Deletes the disposed status for an application or an application clone. This API
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| appIndex   | number  | No  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to delete the disposed status of an application, rather than an application clone.             |
+| appIndex   | number  | No  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to delete the disposed status of the application.             |
 
 **Error codes**
 
@@ -554,7 +554,7 @@ try {
 
 ## Obtaining appId of an Application
 
-**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. It can be obtained by calling [getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo).
+**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. It can be obtained by calling [getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14).
 
 **Example**
 

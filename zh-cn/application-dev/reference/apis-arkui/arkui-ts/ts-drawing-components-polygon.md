@@ -14,7 +14,7 @@
 
 ## 接口
 
-Polygon(value?: {width?: string | number, height?: string | number})
+Polygon(options?: PolygonOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -26,8 +26,21 @@ Polygon(value?: {width?: string | number, height?: string | number})
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
+| options | [PolygonOptions](ts-drawing-components-polygon.md#polygonoptions14对象说明) | 否 | Polygon绘制区域。 |
+
+## PolygonOptions<sup>14+</sup>对象说明
+用于描述Polygon绘制区域。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -49,7 +62,7 @@ points(value: Array&lt;Point&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                  |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | 是   | 多边形的顶点坐标列表。<br/>默认值：[] |
+| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | 是   | 多边形的顶点坐标列表。<br/>默认值：[]<br/>默认单位：vp |
 
 ### fill
 
@@ -121,7 +134,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -139,7 +152,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -231,7 +244,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -263,6 +276,8 @@ antiAlias(value: boolean)
 
 
 ## 示例
+
+使用points、fill、fillOpacity、stroke属性分别绘制多边形的经过坐标、填充颜色、透明度、边框颜色。
 
 ```ts
 // xxx.ets

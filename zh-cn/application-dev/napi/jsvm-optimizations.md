@@ -133,9 +133,8 @@ bool Test::IsFunction() const {
     JSVM_ValueType valueType;
     OH_JSVM_TypeOf(*env, jsvmValue, &valueType);
     OH_JSVM_CloseHandleScope(*env, scope);
-    result = (valueType == JSVM_FUNCTION)
     // type judement end
-    return result;
+    return valueType == JSVM_FUNCTION;
 }
 ```
 
@@ -148,7 +147,7 @@ bool Test::IsFunction() const {
     JSVM_Value jsvmValue;
     ObjectWrappingGet(*env, jsvmRef, jsvmValue);
     // type judement start
-    bool result;
+    bool result = false;
     OH_JSVM_IsFunction(*env, jsvmValue, &result); // 可直接判断是否为Function类型
     OH_JSVM_CloseHandleScope(*env, scope);
     // type judement end

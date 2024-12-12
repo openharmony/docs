@@ -188,7 +188,7 @@
         // 一次性读取rawfile全部内容
         int res = OH_ResourceManager_ReadRawFile(rawFile, data.get(), len);
 
-        // 多次部分读取rawfile, 每次读取100 Byte。获取全部内容
+        // 多次部分读取rawfile, 每次读取100 Bytes。获取全部内容
         // long offset = 0;
         // while (OH_ResourceManager_GetRawFileRemainingLength(rawFile) > 0) {
         //     OH_ResourceManager_ReadRawFile(rawFile, data.get() + offset, 100);

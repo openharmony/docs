@@ -50,6 +50,8 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 
 ## 示例
 
+该示例通过responseRegion对按钮设置触摸热区响应点击事件。
+
 ```ts
 // xxx.ets
 @Entry

@@ -212,8 +212,8 @@ Keycode value.
 | KEYCODE_FINANCE                  |  2647 | Finance key                        |
 | KEYCODE_CANCEL                   |  2648 | Cancel key                        |
 | KEYCODE_KBDILLUM_TOGGLE          |  2649 | Keyboard Illumination Toggle key                    |
-| KEYCODE_KBDILLUM_DOWN            |  2650 | Keyboard Illumination Up key                    |
-| KEYCODE_KBDILLUM_UP              |  2651 | Keyboard Illumination Down key                    |
+| KEYCODE_KBDILLUM_DOWN            |  2650 | Keyboard Illumination Down key                    |
+| KEYCODE_KBDILLUM_UP              |  2651 | Keyboard Illumination Up key                    |
 | KEYCODE_SEND                     |  2652 | Send key                        |
 | KEYCODE_REPLY                    |  2653 | Reply key                        |
 | KEYCODE_FORWARDMAIL              |  2654 | Forward Mail key                      |

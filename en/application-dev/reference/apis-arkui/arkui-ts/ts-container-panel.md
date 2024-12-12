@@ -104,7 +104,7 @@ Sets the height of the panel in the **PanelType.CUSTOM** type.
 
 fullHeight(value: number | string)
 
-Sets the height of the panel in the **PanelMode.Full** type.
+Sets the height of the panel in the **PanelType.Full** type.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -112,29 +112,13 @@ Sets the height of the panel in the **PanelMode.Full** type.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string \| number | Yes  | Height of the panel in **PanelMode.Full** mode.<br>Default value: main axis height of the panel minus 8 vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
+| Name| Type                      | Mandatory| Description                                                        |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number \| string | Yes  | Height of the panel in **PanelMode.Full** mode.<br>Default value: main axis height of the panel minus 8 vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
 
 ### halfHeight
 
 halfHeight(value: number | string)
-
-Sets the height of the panel in **PanelMode.Half** mode.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type                                                        | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string \| number | Yes  | Height of the panel in **PanelMode.Half** mode.<br>Default value: half of the main axis height of the panel<br>**NOTE**<br>This attribute cannot be set in percentage.|
-
-### miniHeight
-
-miniHeight(value: number | string)
 
 Sets the height of the panel in **PanelMode.Mini** mode.
 
@@ -144,9 +128,25 @@ Sets the height of the panel in **PanelMode.Mini** mode.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string \| number | Yes  | Panel height in the **PanelMode.Mini** mode.<br>Default value: **48**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
+| Name| Type                      | Mandatory| Description                                                        |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number \| string | Yes  | Height of the panel in **PanelMode.Half** mode.<br>Default value: half of the main axis height of the panel<br>**NOTE**<br>This attribute cannot be set in percentage.|
+
+### miniHeight
+
+miniHeight(value: number | string)
+
+Panel height in the **PanelMode.Mini** mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                      | Mandatory| Description                                                        |
+| ------ | -------------------------- | ---- | ------------------------------------------------------------ |
+| value  | number \| string | Yes  | Panel height in the **PanelMode.Mini** mode.<br>Default value: **48**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
 
 ### show
 
@@ -178,7 +178,7 @@ Background mask of the panel.
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background mask of the panel.<br>Default value: **'#08182431'**|
+| color   | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background mask of the panel.<br>Default value: **'#08182431'**|
 
 ### showCloseIcon<sup>10+</sup>
 
@@ -228,7 +228,7 @@ Sets whether to display the close icon.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
-| -------- | -------- | 
+| -------- | -------- |
 | WRAP_CONTENT | When the type is **CUSTOM**, the panel automatically adapts its height to the content.|
 ## Events
 
@@ -239,6 +239,10 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 onChange(event: (width: number, height: number, mode: PanelMode) =&gt; void)
 
 Triggered when the status of the panel changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -253,6 +257,10 @@ Triggered when the status of the panel changes.
 onHeightChange(callback: (value: number) => void)
 
 Triggered when the height of the panel changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 

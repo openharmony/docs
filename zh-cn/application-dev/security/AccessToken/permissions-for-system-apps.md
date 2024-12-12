@@ -1,4 +1,4 @@
-# 仅对系统应用开放
+# 系统应用可用权限
 
 在申请目标权限前，建议开发者先阅读[权限工作流程](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
@@ -265,18 +265,6 @@
 
 **起始版本**：11
 
-### ohos.permission.GET_DOMAIN_ACCOUNTS
-
-允许应用查询域账号信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：10
-
 ### ohos.permission.UNINSTALL_BUNDLE
 
 允许应用卸载应用。
@@ -397,18 +385,6 @@
 
 **起始版本**：9
 
-### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
-允许应用跨系统本地账号交互。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 允许应用跨系统本地账号交互。
@@ -504,6 +480,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.RECEIVE_ENTERPRISE_POLICY_EVENT
+
+允许系统应用订阅企业设备管理策略事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
 
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
@@ -2929,6 +2917,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_CMAP_SERVICE
+
+允许系统应用访问通信地图服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.MANAGE_USER_ACCOUNT_INFO
 
 允许系统应用及系统SA调用账号服务。
@@ -3192,6 +3192,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.ENABLE_EXPERIENCE_HBM
+
+允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
@@ -4001,6 +4013,80 @@
 
 **起始版本**：12
 
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+允许系统服务或应用检查补丁安装结果。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-13，开放范围为系统服务；从API 14开始，开放范围变更为系统应用。
+
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+允许应用/服务在后台发起用户身份认证请求。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+允许应用创建或删除恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+允许应用使用恢复密钥重设锁屏密码或恢复用户数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+允许应用获取恢复密钥的简要信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.ACCESS_VIRTUAL_KEYBOARD
 
 允许应用/服务更新/查询虚拟键盘状态。
@@ -4008,6 +4094,106 @@
 通过该权限，应用可以更新虚拟键盘状态，服务可以查询虚拟键盘状态。当前仅2in1设备场景下可申请此权限。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.READ_APP_LOCK
+
+允许系统应用读取应用锁状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.WRITE_APP_LOCK
+
+允许系统应用修改应用锁状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+允许应用访问应用锁。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+
+允许应用禁用本应用的代码运行时完整性保护。
+
+针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+
+允许应用申请可写可执行匿名内存。
+
+针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+
+允许应用设置或移除其使用UDMF支持的数据分享范围。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+允许应用设置或移除剪贴板数据的可粘贴范围。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.ACCESS_APP_INSTALL_DIR
+
+允许系统应用访问安装文件目录。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
@@ -4237,18 +4423,6 @@
 
 **起始版本**：11
 
-### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
-
-允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ACCESS_SUPER_HUB
 
 允许应用拉起"中转站"。
@@ -4261,54 +4435,6 @@
 
 **起始版本**：12
 
-### ohos.permission.USER_AUTH_FROM_BACKGROUND
-
-允许应用/服务在后台发起用户身份认证请求。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
-
-### ohos.permission.MANAGE_RECOVERY_KEY
-
-允许应用创建或删除恢复密钥。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：14
-
-### ohos.permission.UTILIZE_RECOVERY_KEY
-
-允许应用使用恢复密钥重设锁屏密码或恢复用户数据。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：14
-
-### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
-
-允许应用获取恢复密钥的简要信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：14
-
 ### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
 
 允许UIExtensionAbility显示在锁屏之上。
@@ -4320,42 +4446,6 @@
 **ACL使能**：false
 
 **起始版本**：14
-
-### ohos.permission.READ_APP_LOCK
-
-允许系统应用读取应用锁状态。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
-
-### ohos.permission.WRITE_APP_LOCK
-
-允许系统应用修改应用锁状态。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
-
-### ohos.permission.ACCESS_APP_LOCK
-
-允许应用访问应用锁。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
 
 ## user_grant，允许ACL跨级申请
 

@@ -27,7 +27,7 @@ import { preferences } from '@kit.ArkData';
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16 * 1024 * 1024个字节。 |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
 
 
 ## preferences.getPreferences
@@ -1130,18 +1130,79 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## Options<sup>10+</sup>
+## StorageType<sup>16+</sup>
+Preferences的存储模式枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+| 名称 | 值   | 说明 |
+| ---- | ---- | ---- |
+| XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br> **特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
+| CLKV |  1    |表示CLKV存储模式。<br> **特点：** 数据以CLKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
+
+
+> **说明：**
+>   - 在选择存储模式前，建议调用isStorageTypeSupported检查当前平台是否支持对应存储模式。
+>   - 当选择某一模式通过getPreferences接口获取实例后，不允许中途切换模式。
+>   - 首选项不提供不同模式间数据的迁移，若想将数据从一模式切换至另一模式，需通过读写首选项的形式进行数据迁移。
+>   - 若需要变更首选项的存储路径，不能通过移动文件或覆盖文件的方式进行，需通过读写首选项的形式进行数据迁移。
+
+## preferences.isStorageTypeSupported<sup>16+</sup>
+isStorageTypeSupported(type: StorageType): boolean
+
+判断当前平台是否支持传入的存储模式，此为同步接口。
+
+当当前平台支持传入模式时，该接口返回true；反之，返回false。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type | [StorageType](#storagetype16)               | 是   | 需要判断是否支持的存储模式。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| boolean | true表示当前平台支持当前校验的存储模式，false表示当前平台不支持当前校验的存储模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error: Incorrect parameter types.  |
+
+
+**示例：**
+
+```ts
+let xmlType = preferences.StorageType.XML;
+let clkvType = preferences.StorageType.CLKV;
+let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
+let isClkvSupported = preferences.isStorageTypeSupported(clkvType);
+console.info("Is xml supported in current platform: " + isXmlSupported);
+console.info("Is clkv supported in current platform: " + isClkvSupported);
+```
+
+## Options<sup>10+</sup> 
 
 Preferences实例配置选项。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string\|null\|undefined | 否   | 应用组ID，需要向应用市场获取，暂不支持。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
+| name        | string | 是   | Preferences实例的名称。 <br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/>                                    |
+| dataGroupId | string\|null\|undefined | 否   | 应用组ID，需要向应用市场获取，暂不支持。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。<br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/> |
+| storageType<sup>16+</sup> | [StorageType](#storagetype16)\|null\|undefined | 否  | 存储模式，为可选参数。表示当前Preferences实例需要使用的存储模式。当此参数不填时，默认使用XML存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。 <br/>**原子化服务API：** 从API version 16开始，该参数支持在原子化服务中使用。 <br/> |
 
 
 ## Preferences

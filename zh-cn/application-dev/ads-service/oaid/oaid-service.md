@@ -35,7 +35,7 @@ OAID会在下述场景中发生变化：
 
 
 ### 开发步骤
-1. 在模块的module.json5文件中，申请广告跨应用关联访问权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent)，该权限为user_grant权限，当申请的权限为user_grant权限时，reason，abilities标签必填，配置方式参见[requestPermissions标签说明](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)，示例代码如下所示：
+1. 在模块的module.json5文件中，申请广告跨应用关联访问权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent)，该权限为user_grant权限，当申请的权限为user_grant权限时，reason，abilities标签必填，配置方式参见[requestPermissions标签说明](../../security/AccessToken/declare-permissions.md#在配置文件中声明权限)，示例代码如下所示：
    ```ts
    {
      "module": {

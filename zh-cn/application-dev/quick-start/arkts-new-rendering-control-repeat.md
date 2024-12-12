@@ -2,18 +2,13 @@
 
 >**说明：**
 >
->Repeat从API version 12开始支持。
->
+> Repeat从API version 12开始支持。
 
 API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
 
 Repeat组件non-virtualScroll场景（不开启virtualScroll开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
 Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件，必须与滚动类容器组件配合使用。当在滚动类容器组件中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
-
-> **注意：**
->
-> Repeat组件的virtualScroll场景不完全兼容V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
 
 ## 使用限制
 
@@ -23,6 +18,8 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 - 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
 - template模板目前只支持virtualScroll场景。当多个template type相同时，Repeat会覆盖旧的`template()`函数，仅生效最新的`template()`。
 - totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
+- 在容器组件内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
+- Repeat组件的virtualScroll场景不支持V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
 
 ## 键值生成规则
 
@@ -362,7 +359,7 @@ struct RepeatVirtualScroll {
   }
 }
 ```
-该应用列表内容为100项自定义类`RpeatClazz`的`message`字符串属性，List组件的cachedCount设为2，模板'a'的缓存池大小设为3。应用界面如下图所示：
+该应用列表内容为100项自定义类`RepeatClazz`的`message`字符串属性，List组件的cachedCount设为2，模板'a'的缓存池大小设为3。应用界面如下图所示：
 
 ![Repeat-VirtualScroll-Demo](./figures/Repeat-VirtualScroll-Demo.gif)
 
@@ -573,6 +570,319 @@ struct RepeatNest {
 运行效果：
 
 ![Repeat-Nest](./figures/Repeat-Nest.png)
+
+## 父容器组件应用场景
+
+### 与List组合使用
+
+在List容器组件中使用Repeat的virtualScroll模式，示例如下：
+
+```ts
+class DemoListItemInfo {
+  name: string;
+  icon: Resource;
+
+  constructor(name: string, icon: Resource) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+
+@Entry
+@ComponentV2
+struct DemoList {
+  @Local videoList: Array<DemoListItemInfo> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.videoList.push(new DemoListItemInfo('视频' + i,
+        i % 3 == 0 ? $r("app.media.listItem0") :
+        i % 3 == 1 ? $r("app.media.listItem1") : $r("app.media.listItem2")));
+    }
+  }
+
+  @Builder
+  itemEnd(index: number) {
+    Button('删除')
+      .backgroundColor(Color.Red)
+      .onClick(() => {
+        this.videoList.splice(index, 1);
+      })
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      Text('List容器组件中包含Repeat组件')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      List({ space: 5 }) {
+        Repeat<DemoListItemInfo>(this.videoList)
+          .each((obj: RepeatItem<DemoListItemInfo>) => {
+            ListItem() {
+              Column() {
+                Image(obj.item.icon)
+                  .width('80%')
+                  .margin(10)
+                Text(obj.item.name)
+                  .fontSize(20)
+              }
+            }
+            .swipeAction({
+              end: {
+                builder: () => {
+                  this.itemEnd(obj.index);
+                }
+              }
+            })
+            .onAppear(() => {
+              console.info('AceTag', obj.item.name);
+            })
+          })
+          .key((item: DemoListItemInfo) => item.name)
+          .virtualScroll()
+      }
+      .cachedCount(2)
+      .height('90%')
+      .border({ width: 1 })
+      .listDirection(Axis.Vertical)
+      .alignListItem(ListItemAlign.Center)
+      .divider({
+        strokeWidth: 1,
+        startMargin: 60,
+        endMargin: 60,
+        color: '#ffe9f0f0'
+      })
+
+      Row({ space: 10 }) {
+        Button('删除第1项')
+          .onClick(() => {
+            this.videoList.splice(0, 1);
+          })
+        Button('删除第5项')
+          .onClick(() => {
+            this.videoList.splice(4, 1);
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+右滑并点击按钮，或点击底部按钮，可删除视频卡片：
+
+![Repeat-Demo-List](./figures/Repeat-Demo-List.gif)
+
+### 与Grid组合使用
+
+在Grid容器组件中使用Repeat的virtualScroll模式，示例如下：
+
+```ts
+class DemoGridItemInfo {
+  name: string;
+  icon: Resource;
+
+  constructor(name: string, icon: Resource) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+
+@Entry
+@ComponentV2
+struct DemoGrid {
+  @Local itemList: Array<DemoGridItemInfo> = [];
+  @Local isRefreshing: boolean = false;
+  private layoutOptions: GridLayoutOptions = {
+    regularSize: [1, 1],
+    irregularIndexes: [10]
+  }
+  private GridScroller: Scroller = new Scroller();
+  private num: number = 0;
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.itemList.push(new DemoGridItemInfo('视频' + i,
+        i % 3 == 0 ? $r("app.media.gridItem0") :
+        i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
+    }
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      Text('Grid容器组件中包含Repeat组件')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      Refresh({ refreshing: $$this.isRefreshing }) {
+        Grid(this.GridScroller, this.layoutOptions) {
+          Repeat<DemoGridItemInfo>(this.itemList)
+            .each((obj: RepeatItem<DemoGridItemInfo>) => {
+              if (obj.index === 10 ) {
+                GridItem() {
+                  Text('先前浏览至此，点击刷新')
+                    .fontSize(20)
+                }
+                .height(30)
+                .border({ width: 1 })
+                .onClick(() => {
+                  this.GridScroller.scrollToIndex(0);
+                  this.isRefreshing = true;
+                })
+                .onAppear(() => {
+                  console.info('AceTag', obj.item.name);
+                })
+              } else {
+                GridItem() {
+                  Column() {
+                    Image(obj.item.icon)
+                      .width('100%')
+                      .height(80)
+                      .objectFit(ImageFit.Cover)
+                      .borderRadius({ topLeft: 16, topRight: 16 })
+                    Text(obj.item.name)
+                      .fontSize(15)
+                      .height(20)
+                  }
+                }
+                .height(100)
+                .borderRadius(16)
+                .backgroundColor(Color.White)
+                .onAppear(() => {
+                  console.info('AceTag', obj.item.name);
+                })
+              }
+            })
+            .key((item: DemoGridItemInfo) => item.name)
+            .virtualScroll()
+        }
+        .columnsTemplate('repeat(auto-fit, 150)')
+        .cachedCount(4)
+        .rowsGap(15)
+        .columnsGap(10)
+        .height('100%')
+        .padding(10)
+        .backgroundColor('#F1F3F5')
+      }
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.itemList.splice(10, 1);
+          this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0')));
+          for (let i = 0; i < 10; i++) {
+            this.itemList.unshift(new DemoGridItemInfo('新视频' + this.num,
+              i % 3 == 0 ? $r("app.media.gridItem0") :
+              i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
+            this.num++;
+          }
+          this.isRefreshing = false;
+        }, 1000);
+        console.info('AceTag', 'onRefreshing');
+      })
+      .refreshOffset(64)
+      .pullToRefresh(true)
+      .width('100%')
+      .height('85%')
+
+      Button('刷新')
+        .onClick(() => {
+          this.GridScroller.scrollToIndex(0);
+          this.isRefreshing = true;
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+下拉屏幕，或点击刷新按钮，或点击“先前浏览至此，点击刷新”，可加载新的视频内容：
+
+![Repeat-Demo-Grid](./figures/Repeat-Demo-Grid.gif)
+
+### 与Swiper组合使用
+
+在Swiper容器组件中使用Repeat的virtualScroll模式，示例如下：
+
+```ts
+const remotePictures: Array<string> = [
+  'https://www.example.com/xxx/0001.jpg', // 请填写具体的网络图片地址
+  'https://www.example.com/xxx/0002.jpg',
+  'https://www.example.com/xxx/0003.jpg',
+  'https://www.example.com/xxx/0004.jpg',
+  'https://www.example.com/xxx/0005.jpg',
+  'https://www.example.com/xxx/0006.jpg',
+  'https://www.example.com/xxx/0007.jpg',
+  'https://www.example.com/xxx/0008.jpg',
+  'https://www.example.com/xxx/0009.jpg',
+]
+
+@ObservedV2
+class DemoSwiperItemInfo {
+  id: string;
+  @Trace url: string = 'default';
+
+  constructor(id: string) {
+    this.id = id;
+  }
+}
+
+@Entry
+@ComponentV2
+struct DemoSwiper {
+  @Local pics: Array<DemoSwiperItemInfo> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 9; i++) {
+      this.pics.push(new DemoSwiperItemInfo('pic' + i));
+    }
+    setTimeout(() => {
+      this.pics[0].url = remotePictures[0];
+    }, 1000);
+  }
+
+  build() {
+    Column() {
+      Text('Swiper容器组件中包含Repeat组件')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      Stack() {
+        Text('图片加载中')
+          .fontSize(15)
+          .fontColor(Color.Gray)
+        Swiper() {
+          Repeat(this.pics)
+            .each((obj: RepeatItem<DemoSwiperItemInfo>) => {
+              Image(obj.item.url)
+                .onAppear(() => {
+                  console.info('AceTag', obj.item.id);
+                })
+            })
+            .key((item: DemoSwiperItemInfo) => item.id)
+            .virtualScroll()
+        }
+        .cachedCount(9)
+        .height('50%')
+        .loop(false)
+        .indicator(true)
+        .onChange((index) => {
+          setTimeout(() => {
+            this.pics[index].url = remotePictures[index];
+          }, 1000);
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor(Color.Black)
+    }
+  }
+}
+```
+定时1秒后加载图片，模拟网络延迟：
+
+![Repeat-Demo-Swiper](./figures/Repeat-Demo-Swiper.gif)
 
 ## 常见问题
 

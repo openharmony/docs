@@ -187,8 +187,9 @@ onDateChange(callback: Callback\<Date>)
 | month | number | 否   | 否   | 选中日期的月(0~11)，0表示1月，11表示12月。 |
 | day   | number | 否   | 否   | 选中日期的日。                             |
 
-
 ## 示例
+
+该示例实现了日期选择器组件，点击按钮可以切换公历农历。
 
 
 ```ts

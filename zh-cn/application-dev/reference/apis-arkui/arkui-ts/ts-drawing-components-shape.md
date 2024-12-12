@@ -39,7 +39,7 @@ Shape(value?: PixelMap)
 
 ### viewPort
 
-viewPort(value: { x?: number | string; y?: number | string; width?: number | string; height?: number | string })
+viewPort(value: ViewportRect)
 
 设置形状的视口。 
 
@@ -53,7 +53,23 @@ viewPort(value: { x?: number | string; y?: number | string; width?: number | str
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | 是 | 形状的视口。 <br/>默认值：{ x:0, y:0, width:0, height:0 } |
+| value | [ViewportRect](ts-drawing-components-shape.md#viewportrect14对象说明) | 是 | Viewport绘制属性。 |
+
+## ViewportRect<sup>14+</sup>对象说明
+用于描述Viewport绘制属性。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| x | string \| number | 否 | 形状视口起始点的水平坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| y | string \| number | 否 | 形状视口起始点的垂直坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | string \| number | 否 | 形状视口的宽度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 形状视口的高度。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### fill
 
@@ -125,7 +141,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型             | 必填 | 说明                      |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -143,7 +159,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -235,7 +251,7 @@ strokeWidth(value: number | string)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框宽度。<br/>默认值：1 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框宽度。<br/>默认值：1<br/>默认单位：vp |
 
 ### antiAlias
 
@@ -276,6 +292,8 @@ mesh(value: Array&lt;number&gt;, column: number, row: number)
 | row    | number              | 是   | mesh矩阵行数。                                               |
 
 ## 示例
+
+Shape绘制矩形、椭圆、直线路径。
 
 ```ts
 // xxx.ets

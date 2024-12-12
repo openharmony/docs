@@ -2,6 +2,9 @@
 
 为了实现对\@ComponentV2装饰的自定义组件中变量变化的观测，开发者可以使用\@Local装饰器装饰变量。
 
+
+在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)。
+
 >**说明：**
 >
 >从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Local装饰器。
