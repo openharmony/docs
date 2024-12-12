@@ -1008,6 +1008,22 @@ getPreviewText(): PreviewText
 | ---------------------------------------- | ------- |
 | [PreviewText](ts-text-common.md#previewtext12) | 预上屏信息。 |
 
+### getCaretRect<sup>16+</sup>
+
+getCaretRect(): RectResult | undefined
+
+返回当前光标与RichEditor组件的相对位置。如果光标不闪烁，返回undefined。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [RectResult](ts-types.md#rectresult10) \| undefined | 当前光标与RichEditor的相对位置。 |
+
 ## RichEditorController
 
 RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorbasecontroller12)。
