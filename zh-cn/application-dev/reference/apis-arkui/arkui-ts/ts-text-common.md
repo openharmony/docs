@@ -380,7 +380,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 ## FontSettingOptions<sup>12+</sup>对象说明
 
-字体配置项。
+字体配置项，比如通过设置应用内组件的字体粗细，进行字体粗细的无极调节（指在一定范围内无限制的调节的状态）。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
