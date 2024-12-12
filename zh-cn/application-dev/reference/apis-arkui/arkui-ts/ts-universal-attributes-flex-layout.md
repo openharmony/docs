@@ -80,6 +80,8 @@ alignSelf(value: ItemAlign)
 
 ## 示例
 
+通过配置flexBasis/flexGrow/flexShrink/alignSelf属性设置Flex布局。
+
 ```ts
 // xxx.ets
 @Entry
