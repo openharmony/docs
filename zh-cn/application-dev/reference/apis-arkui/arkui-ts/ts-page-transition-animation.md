@@ -218,7 +218,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 
 ## 示例
 
-### 示例1
+### 示例1（设置退入场动画）
 
 自定义方式1：通过不同的退入场类型配置不同的退场，入场动画。
 
@@ -364,7 +364,7 @@ struct PageTransitionExample1 {
 
 ![pageTransition2](figures/pageTransition2.gif)
 
-### 示例2
+### 示例2（设置退入场平移效果）
 
 自定义方式1：配置提供的不同退入场平移效果，将系统语言排版模式改为RTL。
 

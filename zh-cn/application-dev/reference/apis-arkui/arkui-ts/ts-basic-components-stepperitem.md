@@ -90,7 +90,7 @@ status(value?: ItemState)
 | Skip |跳过状态，右侧文本按钮默认显示“跳过”，此时可在Stepper的onSkip回调中自定义相关逻辑。 |
 
 
-## 示例
+## 示例（StepperItem使用）
 
 见[Stepper](ts-basic-components-stepper.md)。
 
