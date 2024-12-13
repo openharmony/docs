@@ -283,6 +283,8 @@ Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/
 
 从API version 12开始，页面栈允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。具体示例代码参见：[页面栈继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10)。
 
+不建议开发者通过监听生命周期的方式管理自己的页面栈。
+
 ```ts
 @Entry
 @Component
