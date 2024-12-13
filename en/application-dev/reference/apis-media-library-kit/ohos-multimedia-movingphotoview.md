@@ -29,15 +29,15 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | Name | Type                                                 | Mandatory| Description      |
 | ------- | --------------------------------------------------------- | ---- | -------------- |
-| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information.|
+| options | [MovingPhotoViewOptions](#movingphotoviewoptions) | Yes  | Moving photo information.<br>Atomic service API: This API can be used in atomic services since API version 12. |
 
 ## MovingPhotoViewOptions
 
 
 | Name     | Type                                                                                        | Mandatory| Description                                                                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).|
-| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.                                                                                               |
+| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | Yes  | **MovingPhoto** instance. For details, see [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12).<br>Atomic service API: This API can be used in atomic services since API version 12.|
+| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | No  | Controller used to control the playback status of the moving photo.<br>Atomic service API: This API can be used in atomic services since API version 12.|
 
 ## Properties
 
