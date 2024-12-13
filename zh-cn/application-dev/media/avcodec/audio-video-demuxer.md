@@ -291,10 +291,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_DISCARD  | 可丢弃的帧。 |
 
    ```c++
-   // 创建 buffer，用与保存用户解封装得到的数据
-   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
-   // 按照指定size创建buffer，用于保护用户解封装得到的数据。
+   // 按照指定size创建buffer，用于保存用户解封装得到的数据。
    // buffer大小设置建议大于待获取的码流大小，示例中以单帧图像大小为例。
+   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
       printf("build buffer failed");
       return;
