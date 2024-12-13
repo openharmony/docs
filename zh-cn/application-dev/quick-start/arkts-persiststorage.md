@@ -107,7 +107,7 @@ struct Index {
 - 新应用安装后首次启动运行：
   1. 调用persistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装。
   2. 接着查询属性“aProp”在AppStorage中是否存在，依旧不存在。
-  3. 在AppStorge中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47。
+  3. 在AppStorage中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47。
   4. PersistentStorage将属性“aProp”和值47写入磁盘，AppStorage中“aProp”对应的值和其后续的更改将被持久化。
   5. 在Index组件中创建状态变量\@StorageLink('aProp') aProp，和AppStorage中“aProp”双向绑定，在创建的过程中会在AppStorage中查找，成功找到“aProp”，所以使用其在AppStorage找到的值47。
 

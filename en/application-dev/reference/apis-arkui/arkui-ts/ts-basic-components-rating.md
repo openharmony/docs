@@ -440,14 +440,14 @@ struct ratingExample {
             }
           }).margin({top : 5})
 
-        Button(this.ratingStars < 5 ? "ratingStars + 1, ratingStars =" + this.ratingStars : "Maximum value of ratingStars: 5")
+        Button(this.ratingStars < 5 ? "ratingStars + 1, ratingStars = " + this.ratingStars : "Maximum value of ratingStars: 5")
           .onClick((event) => {
             if (this.ratingStars < 5) {
               this.ratingStars += 1
             }
           }).margin({top : 5})
 
-        Button(this.ratingStars > 0 ? "ratingStars - 1, ratingStars =" + this.ratingStars : "Values less than or equal to 0 are handled as 5")
+        Button(this.ratingStars > 0 ? "ratingStars - 1, ratingStars = " + this.ratingStars : "Values less than or equal to 0 are handled as 5")
           .onClick((event) => {
             if (this.ratingStars > 0) {
               this.ratingStars -= 1

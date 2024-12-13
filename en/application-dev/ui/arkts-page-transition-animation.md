@@ -1,6 +1,6 @@
 # Page Transition Animation (Not Recommended)
 
-To achieve a better transition effect, you are advised to use the [\<Navigation>](arkts-navigation-transition.md) component and [modal transition](arkts-modal-transition.md).
+To achieve a better transition effect, you are advised to use the [Navigation](arkts-navigation-transition.md) component and [modal transition](arkts-modal-transition.md).
 
 During page redirection, one page enters and the other page exits. You can customize the [page transition effects](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md) for these pages through the **pageTransition** function. Specifically, [PageTransitionEnter](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionenter) defines the page entrance animation, while [PageTransitionExit](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md#pagetransitionexit) defines the page exit animation.
 The **pageTransition** function is as follows:

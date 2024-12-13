@@ -479,7 +479,7 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
+struct MapSample {
   @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
@@ -533,7 +533,7 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample1 {
+struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
@@ -613,7 +613,7 @@ struct Child {
           this.name = "Bob"
         })
 
-      Button('Child change animal to undefined')
+      Button('Child change name to undefined')
         .onClick(() => {
           this.name = undefined
         })
@@ -657,11 +657,11 @@ struct Index {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
@@ -677,43 +677,43 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum.c })
+      LinkChild({ testNum: this.info.age })
     }
   }
 }
 ```
 
-\@Link testNum: number从父组件的LinkChild({testNum:this.testNum.c})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: ClassA，从父组件初始化的方式为LinkChild({testNum: this.testNum})
+\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})
 
 【正例】
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA;
+  @Link testNum: Info;
 
   build() {
-    Text(`LinkChild testNum ${this.testNum?.c}`)
+    Text(`LinkChild testNum ${this.testNum?.age}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.testNum.age += 1;
       })
   }
 }
@@ -721,16 +721,16 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum })
+      LinkChild({ testNum: this.info })
     }
   }
 }

@@ -21,9 +21,9 @@
    // 获取图像像素的总字节数
    let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
    // 获取图像像素每行字节数
-   let rowCount : number = pixelMap.getBytesNumberPerRow();
+   let rowBytes : number = pixelMap.getBytesNumberPerRow();
    // 获取当前图像像素密度。像素密度是指每英寸图片所拥有的像素数量。像素密度越大，图片越精细。
-   let getDensity : number = pixelMap.getDensity();
+   let density : number = pixelMap.getDensity();
    ```
 
 3. 读取并修改目标区域像素数据，写回原图。
@@ -38,10 +38,14 @@
    pixelMap.readPixelsToBuffer(buffer).then(() => {
      console.info('Succeeded in reading image pixel data.');
    }).catch((error : BusinessError) => {
-     console.error('Failed to read image pixel data. And the error is: ' + error);
+     console.error('Failed to read image pixel data. The error is: ' + error);
    })
    // 按照PixelMap的像素格式，读取缓冲区中的图像像素数据，并写入PixelMap。
-   pixelMap.writeBufferToPixels(buffer, () => {});
+   pixelMap.writeBufferToPixels(buffer).then(() => {
+     console.info('Succeeded in writing image pixel data.');
+   }).catch((error : BusinessError) => {
+     console.error('Failed to write image pixel data. The error is: ' + error);
+   })
 
    // 场景二：读取并修改指定区域内的图片数据
    // 固定按照BGRA_8888格式，读取PixelMap指定区域内的图像像素数据，并写入PositionArea.pixels缓冲区中，该区域由PositionArea.region指定。
@@ -54,11 +58,13 @@
    pixelMap.readPixels(area).then(() => {
      console.info('Succeeded in reading the image data in the area.');
    }).catch((error : BusinessError) => {
-     console.error('Failed to read the image data in the area. And the error is: ' + error);
+     console.error('Failed to read the image data in the area. The error is: ' + error);
    })
    // 固定按照BGRA_8888格式，读取PositionArea.pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由PositionArea.region指定。
    pixelMap.writePixels(area).then(() => {
-     console.info('Succeeded to write pixelMap into the specified area.');
+     console.info('Succeeded in writing the image data in the area.');
+   }).catch((error : BusinessError) => {
+     console.error('Failed to write the image data in the area. The error is: ' + error);
    })
    ```
 

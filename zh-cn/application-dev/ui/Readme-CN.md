@@ -40,7 +40,7 @@
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗
-    - [模态弹窗 (ModelDialog)](arkts-modal-dialog.md)
+    - [模态弹窗 (ModalDialog)](arkts-modal-dialog.md)
     - [不依赖UI组件的全局自定义弹窗 (推荐)](arkts-uicontext-custom-dialog.md)
     - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
   - 显示图形
@@ -88,10 +88,10 @@
     - [自定义能力概述](arkts-user-defined.md)
     - 自定义节点
       - [自定义节点概述](arkts-user-defined-node.md)
-      - [自定义占位节点](arkts-user-defined-place-hoder.md)
-      - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
-      - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
-      - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+      - [自定义占位节点 (NodeContainer或ContentSlot)](arkts-user-defined-place-hoder.md)
+      - [自定义组件节点 (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
+      - [自定义渲染节点 (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
+      - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
     - 自定义扩展
       - [自定义扩展概述](arkts-user-defined-modifier.md)
       - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)

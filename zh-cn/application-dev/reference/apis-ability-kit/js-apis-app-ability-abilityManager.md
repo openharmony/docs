@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager)
 
-AbilityManager模块提供获取Ability相关信息和状态信息进行的能力。
+AbilityManager模块提供获取Ability相关信息和运行状态信息的能力。
 
 > **说明：**
 >
@@ -26,7 +26,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<AbilityRunningInfo>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 

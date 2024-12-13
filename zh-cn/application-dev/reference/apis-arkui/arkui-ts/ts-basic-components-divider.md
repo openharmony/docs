@@ -99,6 +99,8 @@ lineCap(value: LineCapStyle)
 
 ## 示例
 
+定义了Divider的样式，如方向、颜色及宽度。
+
 ```ts
 // xxx.ets
 @Entry

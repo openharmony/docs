@@ -3,7 +3,9 @@
 The **connection** module provides basic network management capabilities. With the APIs provided by this module, you can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> Unless otherwise specified, the APIs of this module do no support concurrent calls.
 
 ## Modules to Import
 
@@ -1892,7 +1894,7 @@ For details about the error codes, see [Network Connection Management Error Code
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exists.      |
+| 2101007 | The callback does not exist.      |
 
 **Example**
 

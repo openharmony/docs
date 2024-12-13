@@ -22,7 +22,7 @@ With the functions for interacting with the **Date** object, the JSVM module can
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for date management.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in date management.
 
 ### OH_JSVM_CreateDate
 
@@ -31,10 +31,33 @@ Use **OH_JSVM_IsTypedarray** to create a **Date** object representing the given 
 CPP code:
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include <time.h>
+// Define OH_JSVM_CreateDate.
+static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info) {
+    // Obtain the number of seconds elapsed since the Unix epoch using the C function and convert the value into milliseconds.
+    double value = static_cast<double>(time(NULL) * 1000);
+    // Call OH_JSVM_CreateDate to convert the double value into a JS value indicating the date and time.
+    JSVM_Value returnValue = nullptr;
+
+    JSVM_CALL(OH_JSVM_CreateDate(env, value, &returnValue));
+
+    bool isDate;
+    JSVM_CALL(OH_JSVM_IsDate(env, returnValue, &isDate));
+    if (isDate == false) {
+        OH_LOG_ERROR(LOG_APP, "JSVM IsDate fail");
+        return returnValue;
+    }
+
+    value = 0;
+    JSVM_CALL(OH_JSVM_GetDateValue(env, returnValue, &value));
+
+    uint64_t time = static_cast<uint64_t>(value) / 1000;
+    char *date = ctime(reinterpret_cast<time_t *>(&time));
+    OH_LOG_INFO(LOG_APP, "JSVM CreateDate success:%{public}s", date);
+
+    return returnValue;
+}
+
 // Register the CreateDate callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateDate},
@@ -42,36 +65,10 @@ static JSVM_CallbackStruct param[] = {
 static JSVM_CallbackStruct *method = param;
 // Set a property descriptor named createDate and associate it with a callback. This allows the createDate callback to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
-    {"createDate", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"createDate", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Define OH_JSVM_CreateDate.
-static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info) {
-    double value = 1501924876711;
-    // Call OH_JSVM_CreateDate to convert the double value into a JS value indicating the date and time.
-    JSVM_Value returnValue = nullptr;
-    JSVM_Status status = OH_JSVM_CreateDate(env, value, &returnValue);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM CreateDate fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM CreateDate success");
-    }
-    return returnValue;
-}
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `createDate()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM CreateDate: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM CreateDate error: %{public}s', error.message);
-}
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(createDate())JS";
 ```
 
 ### OH_JSVM_GetDateValue
@@ -81,53 +78,37 @@ Use **OH_JSVM_GetDateValue** to obtain the C double primitive of the time value 
 CPP code:
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Register the GetDateValue callback.
+#include <time.h>
+// Define OH_JSVM_GetDateValue.
+static JSVM_Value GetDateValue(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
+    // Obtain the Unix timestamp passed in.
+    double value;
+    JSVM_CALL(OH_JSVM_GetDateValue(env, args[0], &value)); 
+   
+    // Convert the obtained Unix Time Stamp time into a date string for printing.
+    uint64_t time = static_cast<uint64_t>(value) / 1000;
+    char *date = ctime(reinterpret_cast<time_t *>(&time));
+    OH_LOG_INFO(LOG_APP, "JSVM GetDateValue success:%{public}s", date);
+   
+    JSVM_Value returnValue = nullptr;
+    JSVM_CALL(OH_JSVM_CreateDouble(env, value, &returnValue));
+    return returnValue;
+}
+
+// Register the CreateDate callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetDateValue},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getDateValue and associate it with a callback. This allows the GetDateValue callback to be called from JS.
+// Set a property descriptor named createDate and associate it with a callback. This allows the createDate callback to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getDateValue", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Define OH_JSVM_GetDateValue.
-static JSVM_Value GetDateValue(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // Obtain the Unix timestamp passed in.
-    double value;
-    JSVM_Status status = OH_JSVM_GetDateValue(env, args[0], &value);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM IsArray fail");
-    } else {
-        // Print the obtained Unix timestamp.
-        OH_LOG_INFO(LOG_APP, "JSVM gets the incoming Green time:%{public}lf.", value);
-    }
-    JSVM_Value returnValue = nullptr;
-    OH_JSVM_CreateDouble(env, value, &returnValue);
-    return returnValue;
-}
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-let script: string = `getDateValue(new Date(Date.now()))`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetDateValue: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetDateValue error: %{public}s', error.message);
-}
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(getDateValue(new Date(Date.now())))JS";
 ```
 
 ### OH_JSVM_IsDate
@@ -137,51 +118,28 @@ Use **OH_JSVM_IsDate** to check whether a JS object is a date.
 CPP code:
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// Register the IsDate callback.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsDate},
-};
-static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named isDate and associate it with a callback. This allows the IsDate callback to be called from JS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isDate", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // Define OH_JSVM_IsDate.
 static JSVM_Value IsDate(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    bool result;
-    JSVM_Status status = OH_JSVM_IsDate(env, args[0], &result);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM IsDate fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM IsDate success:%{public}d", result);
-    }
-    JSVM_Value isDate = nullptr;
-    OH_JSVM_GetBoolean(env, result, &isDate);
-    return isDate;
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
+    bool isData;
+    JSVM_CALL(OH_JSVM_IsDate(env, args[0], &isData));
+    OH_LOG_INFO(LOG_APP, "JSVM IsDate success:%{public}d", isData);
+    
+    JSVM_Value result = nullptr;
+    JSVM_CALL(OH_JSVM_GetBoolean(env, isData, &result));
+    return result;
 }
-```
-
-ArkTS code:
-
-```ts
-import hilog from "@ohos.hilog"
-// Import the native APIs.
-import napitest from "libentry.so"
-try {
-  let script: string = `isDate(new Date(Date.now()))`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM IsDate: %{public}s', napitest.runJsVm(script));
-  script = `
-      isDate(1)
-  `;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM IsDate: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM IsDate error: %{public}s', error.message);
-}
+// Register the CreateDate callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsDate},
+};
+static JSVM_CallbackStruct *method = param;
+// Set a property descriptor named createDate and associate it with a callback. This allows the createDate callback to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isDate", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char *srcCallNative = R"JS(isDate(new Date(Date.now())))JS";
 ```

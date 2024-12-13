@@ -92,6 +92,9 @@ invalidate(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 示例
+
+通过DrawModifier对Text组件进行自定义绘制。
+
 ```ts
 // xxx.ets
 import { drawing } from '@kit.ArkGraphics2D';

@@ -2254,15 +2254,6 @@ struct TextInputExample {
   @State text: string = 'TextInput editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "复制change"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "全选change"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
@@ -2315,6 +2306,8 @@ struct TextInputExample {
 该示例通过cancelButton属性展示了自定义右侧symbol类型清除按钮样式的效果。
 
 ```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
 // xxx.ets
 @Entry
 @Component

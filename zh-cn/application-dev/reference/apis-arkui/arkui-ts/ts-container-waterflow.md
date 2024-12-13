@@ -49,6 +49,10 @@ WaterFlow(options?:  WaterFlowOptions)
 
 瀑布流分组信息。
 
+> **说明：**
+>
+> 使用splice、push、update修改分组信息后需要保证所有分组子节点总数与瀑布流实际子节点总数一致，否则会出现瀑布流因为不能正常布局而无法滑动的问题。
+
 ### constructor
 
 constructor()
@@ -1123,7 +1127,7 @@ struct WaterFlowDemo {
 ![pinch](figures/waterflow-pinch.gif)
 
 ### 示例5（设置边缘渐隐效果）
-该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge13)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
+该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
 ```ts
 // Index.ets
 import { LengthMetrics } from '@kit.ArkUI'

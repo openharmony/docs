@@ -29,6 +29,8 @@ enabled(value: boolean)
 
 ## 示例
 
+该示例通过enable设置按钮是否可交互。
+
 ```ts
 // xxx.ets
 @Entry

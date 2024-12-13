@@ -3,7 +3,7 @@
 
 ## Placeholder Components
 
-When building a UI with NDK APIs, you need to create placeholder components in the ArkTS page for mounting components created by the NDK APIs. The placeholder component type is [ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md), which can bind a **NodeContent** object. This object can be passed to the native side through the Node-API for mounting and displaying native components.
+When building a UI with NDK APIs, you need to create placeholder components in the ArkTS page for mounting components created by the NDK APIs. The placeholder component type is [ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md), which can bind a [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md) object. This object can be passed to the native side through the Node-API for mounting and displaying native components.
 
 - The usage of placeholder components is the same as other built-in ArkTS components.
   ```ts
@@ -167,9 +167,8 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    Native implementation:
    ```cpp
    // entry/src/main/cpp/napi_init.cpp
-   
-   #include "NativeEntry.h"
    #include "napi/native_api.h"
+   #include "NativeEntry.h"
    
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {
@@ -576,7 +575,7 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
 
 5. Complete the **CreateTextListExample** function from step 3 to create and mount the display of the native text list.
    ```c
-   // NativeEntry.h
+   // NormalTextListExample.h
    // Define custom NDK API entry functions.
    
    #ifndef MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H

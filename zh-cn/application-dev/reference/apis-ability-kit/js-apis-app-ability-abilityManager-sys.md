@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager)(系统接口)
 
-AbilityManager模块提供获取、新增、修改Ability相关信息和状态信息进行的能力。
+AbilityManager模块提供获取、新增、修改Ability相关信息和运行状态信息的能力。
 
 > **说明：**
 >
@@ -15,7 +15,7 @@ import { abilityManager } from '@kit.AbilityKit';
 
 ## AbilityState
 
-Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)返回Ability的状态。
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 
 **系统接口**: 该接口为系统接口。
 
@@ -183,7 +183,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 

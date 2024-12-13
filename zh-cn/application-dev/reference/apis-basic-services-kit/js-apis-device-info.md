@@ -34,7 +34,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | softwareModel | string | 是 | 否 | 内部软件子型号。<br/>示例：<!--RP5-->TAS-AL00<!--RP5End--> |
 | hardwareModel | string | 是 | 否 | 硬件版本号。<br/>示例：<!--RP6-->TASA00CVN1<!--RP6End--> |
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。 |
-| serial | string | 是 | 否 | 设备序列号,仅限系统应用使用。<br/>**说明**：可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID <br/>示例：序列号随设备差异 |
+| serial | string | 是 | 否 | 设备序列号。<br/>**说明**：可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID <br/>示例：序列号随设备差异 |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。<br/>示例：bootloater |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）。<br/>示例：arm64-v8a |
 | securityPatchTag | string | 是 | 否 | 安全补丁级别。<br/>示例：<!--RP7-->2021-01-01<!--RP7End--> |
@@ -46,7 +46,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | seniorVersion | number | 是 | 否 | Senior版本号，随局部架构、重大特性增加，值为osFullName中的第二位数值，建议直接使用deviceInfo.seniorVersion获取，不建议开发者自主解析osFullName获取。<br/>示例：0 |
 | featureVersion | number | 是 | 否 | Feature版本号，标识规划的新特性版本，值为osFullName中的第三位数值，建议直接使用deviceInfo.featureVersion获取，不建议开发者自主解析osFullName获取。<br/>示例：0 |
 | buildVersion | number | 是 | 否 | Build版本号，标识编译构建的版本号，值为osFullName中的第四位数值，建议直接使用deviceInfo.buildVersion获取，不建议开发者自主解析osFullName获取。<br/>示例：1 |
-| sdkApiVersion | number | 是 | 否 | 系统软件API版本。<br/>示例：12 |
+| sdkApiVersion | number | 是 | 否 | 系统软件API版本。<br/>**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。<br/>示例：12 |
 | firstApiVersion | number | 是 | 否 | 首个版本系统软件API版本。<br/>示例：3 |
 | versionId | string | 是 | 否 | 版本ID。由deviceType、manufacture、brand、productSeries、osFullName、productModel、softwareModel、sdkApiVersion、incrementalVersion、buildType拼接组成。 |
 | buildType | string | 是 | 否 | 构建类型。<br/>示例：release:nolog |
@@ -54,7 +54,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | buildHost | string | 是 | 否 | 构建主机。 |
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID  |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID  |
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP11--><!--RP11End-->  |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本<!--Del-->，由发行方定义<!--DelEnd-->。 |

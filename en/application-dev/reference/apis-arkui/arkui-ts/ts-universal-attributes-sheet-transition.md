@@ -41,7 +41,7 @@ Binds a sheet to the component, which is displayed when the component is touched
 >
 ## SheetOptions
 
-Inherits from [BindOptions](#bindoptions).
+Inherits [BindOptions](#bindoptions).
 
 | Name             | Type                                      | Mandatory  | Description             |
 | --------------- | ---------------------------------------- | ---- | --------------- |

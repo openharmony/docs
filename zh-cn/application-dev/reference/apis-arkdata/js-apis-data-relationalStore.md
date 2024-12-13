@@ -6891,7 +6891,7 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 
 attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
 
-attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。
+attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。除此之外，attach附加加密数据库时，可能受到并发的影响，出现解密失败的情况，报错14800011，需要显式指定加密参数并重试。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

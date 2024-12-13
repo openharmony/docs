@@ -169,7 +169,7 @@ struct Parent {
 
 ### 参数初始化组件
 
-\@BuilderParam装饰的方法可以是有参数和无参数的两种形式，需与指向的\@Builder方法类型匹配。\@BuilderParam装饰的方法类型需要和\@Builder方法类型一致。
+\@BuilderParam装饰的方法可以是有参数和无参数的两种形式，需与指向的\@Builder方法类型匹配。
 
 ```ts
 class Tmp{
@@ -187,7 +187,7 @@ class Tmp{
 struct Child {
   label: string = 'Child';
   @Builder customBuilder() {};
-  // 无参数类型，指向的componentBuilder也是无参数类型
+  // 无参数类型，指向的customBuilder也是无参数类型
   @BuilderParam customBuilderParam: () => void = this.customBuilder;
   // 有参数类型，指向的overBuilder也是有参数类型的方法
   @BuilderParam customOverBuilderParam: ($$: Tmp) => void = overBuilder;

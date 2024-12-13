@@ -28,7 +28,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | dump-target-overlay | 打印目标应用的所有关联overlay应用的overlayModuleInfo。 |
 
 
-## 帮助命令
+## 帮助命令（help）
 
 ```bash
 # 显示帮助信息
@@ -36,7 +36,7 @@ bm help
 ```
 
 
-## 安装命令
+## 安装命令（install）
 
 ```bash
 bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
@@ -68,7 +68,7 @@ bm install -p aaa.hap -s xxx.hsp yyy.hsp
 bm install -p /data/app/ohos.app.hap -w 10
 ```
 
-## 卸载命令
+## 卸载命令（uninstall）
 
 ```bash
 bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
@@ -102,7 +102,7 @@ bm uninstall -n com.ohos.app -k
 ```
 
 
-## 查询应用信息命令
+## 查询应用信息命令（dump）
 
 ```bash
 bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
@@ -132,7 +132,7 @@ bm dump -s -n com.ohos.app
 bm dump -n com.ohos.app -d xxxxx
 ```
 
-## 清理命令
+## 清理命令（clean）
 
 ```bash
 bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
@@ -159,7 +159,7 @@ clean bundle data files successfully.
 ```
 
 <!--Del-->
-## 使能命令
+## 使能命令（enable）
 
 ```bash
 bm enable [-h] [-n bundleName] [-a abilityName]
@@ -185,7 +185,7 @@ enable bundle successfully.
 ```
 
 
-## 禁用命令
+## 禁用命令（disable）
 
 ```bash
 bm disable [-h] [-n bundleName] [-a abilityName]
@@ -212,7 +212,7 @@ disable bundle successfully.
 <!--DelEnd-->
 
 
-## 获取udid命令
+## 获取udid命令（get）
 
 ```bash
 bm get [-h] [-u]
@@ -237,7 +237,7 @@ udid of current device is :
 ```
 
 
-## 快速修复命令
+## 快速修复命令（quickfix）
 
 ```bash
 bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName]
@@ -283,7 +283,7 @@ bm quickfix -r -b com.ohos.app
 delete quick fix successfully
 ```
 
-## 共享库查询命令
+## 共享库查询命令（dump-shared）
 
 ```bash
 bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
@@ -310,7 +310,7 @@ bm dump-shared -n com.ohos.lib
 bm dump-dependencies -n com.ohos.app -m entry
 ```
 
-## 共享库依赖关系查询命令
+## 共享库依赖关系查询命令（dump-dependencies）
 
 显示指定应用和指定模块依赖的共享库信息。
 ```bash
@@ -331,7 +331,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 
-## 应用执行编译AOT命令
+## 应用执行编译AOT命令（compile）
 
 应用执行编译AOT命令。
 ```bash
@@ -353,7 +353,7 @@ bm compile [-h] [-m mode] [-r bundleName]
 bm compile -m partial com.example.myapplication
 ```
 
-## 拷贝ap文件命令
+## 拷贝ap文件命令（copy-ap）
 
 拷贝ap文件到指定应用的/data/local/pgo路径。
 
@@ -376,7 +376,7 @@ bm copy-ap [-h] [-a] [-n bundleName]
 bm copy-ap -n com.example.myapplication
 ```
 
-## 查询overlay应用信息命令
+## 查询overlay应用信息命令（dump-overlay）
 
 打印overlay应用的overlayModuleInfo。
 ```bash
@@ -404,7 +404,7 @@ bm dump-overlay -b com.ohos.app -m entry
 bm dump-overlay -b com.ohos.app -m feature
 ```
 
-## 查询应用的overlay相关信息命令
+## 查询应用的overlay相关信息命令（dump-target-overlay）
 
 查询目标应用的所有关联overlay应用的overlayModuleInfo信息。
 
@@ -708,7 +708,6 @@ Error: install failed due to older sdk version in the device.
 
 * 场景二：对于需要运行在OpenHarmony设备上的应用，请确认runtimeOS已改为OpenHarmony。
 
-
 ### 9568332 签名不一致导致安装失败
 **错误信息**
 
@@ -722,13 +721,15 @@ Error: install sign info inconsistent.
 
 **可能原因**
 
-设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其身份信息的一致性。如果两者的签名信息皆不一致，则会导致该报错。
 
 
 **处理步骤**
 
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
 2. 如果是因不同团队提供的HSP导致签名不一致问题，可以采用[集成态HSP](../quick-start/integrated-hsp.md)的方式统一提供HSP；在多HAP包的情况下，必须确保所有HAP包的签名一致。
+3. 如果某个应用被卸载但是保留了数据，后面安装相同包名但签名信息不一致的应用时，安装失败。如果出现这种情况，则需要把之前已卸载掉的应用重新安装之后，执行不保留数据地卸载，这样相同包名但签名信息不一致的应用才能安装成功。
 
 ### 9568329 签名信息验证失败
 **错误信息**

@@ -8003,7 +8003,7 @@ constructor(context: Context)
 
 ```ts
 import { common } from '@kit.AbilityKit';
-import { avSession, AVCastPickerState } from '@kit.AVSessionKit';
+import { avSession } from '@kit.AVSessionKit';
 @Entry
 @Component
 struct Index {
@@ -8091,11 +8091,12 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
 
 **示例：**
 
 ```ts
+import { AVCastPickerState } from '@kit.AVSessionKit';
+
 avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
   console.info(`picker state change : ${state}`);
 });
@@ -8126,7 +8127,6 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
-| 6600102  | The session does not exist. |
 
 **示例：**
 

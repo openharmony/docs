@@ -27,6 +27,8 @@ opacity(value: number | Resource)
 
 ## 示例
 
+该示例主要显示通过opacity设置组件的不透明度。
+
 ```ts
 // xxx.ets
 @Entry
