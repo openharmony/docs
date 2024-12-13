@@ -1015,7 +1015,7 @@ Error: bundle manager service is died.
 
 **处理步骤**
 
-1. 请联系内部人员协助定位问题。
+1. 若多次重试仍无法解决，请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 
 
 ### 9568393 验证代码签名失败
