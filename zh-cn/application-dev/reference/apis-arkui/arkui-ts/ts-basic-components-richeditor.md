@@ -4600,7 +4600,7 @@ struct RichEditorExample {
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
 ### 示例23（组件部分常用属性）
-通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。
+通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。
 
 ```ts
 // xxx.ets
@@ -4648,7 +4648,6 @@ struct RichEditor_example {
         .height(100)
         .margin(20)
         .enableKeyboardOnFocus(this.e)
-        .enableHapticFeedback(true)
 
       RichEditor(this.options1).width(300)
 
