@@ -4347,6 +4347,18 @@ Allows an application to access the application lock.
 
 **Valid since**: 13
 
+### ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+Allows an application to send notifications to specified users in the system.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
