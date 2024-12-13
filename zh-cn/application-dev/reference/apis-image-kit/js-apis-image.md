@@ -2450,6 +2450,100 @@ async function ScaleSync() {
 }
 ```
 
+### createScaledPixelMap<sup>16+</sup>
+
+createScaledPixelMap(x: number, y: number, level?: AntiAliasingLevel): Promise\<PixelMap>
+
+根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 否   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreateScaledPixelMap() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+      pixelMap.createScaledPixelMap(scaleX, scaleY, image.AntiAliasingLevel.LOW).then((scaledPixelMap: image.PixelMap) => {
+      console.info('Succeeded in creating scaledPixelMap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to create scaledPixelMap. Error code is ${error.code}, error message is ${error.message}`);
+    })
+  }
+}
+```
+
+### createScaledPixelMapSync<sup>16+</sup>
+
+createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): PixelMap
+
+根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreateScaledPixelMapSync() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    let scaledPixelMap = pixelMap.createScaledPixelMapSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
+  }
+}
+```
+
 ### translate<sup>9+</sup>
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
