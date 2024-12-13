@@ -34,6 +34,7 @@
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 使用文本
+    - [文本概述](arkts-text-introduction.md)
     - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
     - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
     - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
