@@ -108,7 +108,8 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-### 示例1
+### 示例1（效率型子标题）
+该示例主要演示子标题左侧为icon、secondaryTitle，右侧operationType为按钮类型。
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -135,7 +136,8 @@ struct SubHeaderExample {
 
 ![子标题1](figures/zh-cn_image_subheader_example01.png)
 
-### 示例2
+### 示例2（双行文本内容型子标题）
+该示例主要演示子标题左侧为primaryTitle、secondaryTitle，右侧operationType类型为TEXT_ARROW。
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -162,7 +164,8 @@ struct SubHeaderExample {
 
 ![子标题2](figures/zh-cn_image_subheader_example02.png)
 
-### 示例3
+### 示例3（spinner型内容型子标题）
+该示例主要演示子标题左侧为select，右侧operationType类型为ICON_GROUP。
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -206,7 +209,8 @@ struct SubHeaderExample {
 
 ![子标题5](figures/zh-cn_image_subheader_example03.png)
 
-### 示例4
+### 示例4（设置左侧symbol图标）
+该示例主要演示子标题左侧icon设置symbol图标。
 
 ```ts
 
@@ -237,7 +241,8 @@ struct SubHeaderExample {
 
 ![子标题4](figures/zh-cn_image_subheader_example04.gif)
 
-### 示例5
+### 示例5（设置右侧symbol图标）
+该示例主要演示子标题operationType设置为OperationType.ICON_GROUP，operationItem的value设置为symbol图标。
 
 ```ts
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
@@ -290,10 +295,10 @@ struct SubHeaderExample {
 
 ![子标题5](figures/zh-cn_image_subheader_example05.png)
 
-### 示例6
+### 示例6（自定义标题内容）
+ 该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
 
 ```ts
-// 该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
 import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
@@ -331,10 +336,10 @@ struct SubHeaderExample {
 
 ![子标题6](figures/zh-cn_image_subheader_example06.png)
 
-### 示例7
+### 示例7（自定义标题样式）
+该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
 
 ```ts
-// 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
 import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
 
 @Entry

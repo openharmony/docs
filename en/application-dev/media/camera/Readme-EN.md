@@ -38,6 +38,7 @@
   - [Preview (C/C++)](native-camera-preview.md)
   - [Secondary Processing of Preview Streams (C/C++)](native-camera-preview-imageReceiver.md)
   - [Photo Capture (C/C++)](native-camera-shooting.md)
+  - [Deferred Photo Delivery (C/C++)](native-camera-deferred-capture.md)
   - [Video Recording (C/C++)](native-camera-recording.md)
   - [Secondary Processing of Video Streams (C/C++)](native-camera-recording-imageReceiver.md)
   - [Camera Metadata (C/C++)](native-camera-metadata.md)

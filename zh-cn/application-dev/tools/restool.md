@@ -11,7 +11,7 @@ restool当前支持以下命令选项:
 
 | 选项 | 是否可缺省 | 是否存在入参 | 描述 |
 | -------- | -------- | -------- | -------- |
-| -i | 不可缺省 | 带参数 | 指定需要构建的资源目录或者需要构建的资源中间件。同一个命令可以多次指定。<br>具体可参考如下[编译资源命令](#编译资源)。 |
+| -i | 不可缺省 | 带参数 | 指定需要构建的资源目录或者资源中间件。<br>在资源目录中支持指定一个编译好的Hap资源目录（解压态），在此Hap的基础上完成叠加编译。<br>具体可参考如下[编译资源命令](#编译资源)。 |
 | -j | 不可缺省 | 带参数 | 指定config.json或者module.json文件路径。 |
 | -o | 不可缺省 | 带参数 | 指定已编译资源的输出路径。 |
 | -p | 不可缺省 | 带参数 | 指定编译资源的bundle名称。 |
@@ -63,7 +63,7 @@ entry/src/main
 
 ### 编译资源
 
-编译资源的方式有两种，分别是全量资源编译和增量资源编译。
+编译资源的方式有三种，分别是全量资源编译、增量资源编译和叠加资源编译。其中增量编译仅预览模式可用，用于预览开发阶段的组件效果；全量编译用于构建工程的资源文件；叠加编译支持将工程中的资源叠加进已有的Hap模板资源中，复用已编译的资源项。
 
 1、全量资源编译，命令如下：
 
@@ -82,6 +82,13 @@ restool -x entry/src/main/resource -o out
 
 ```
 restool -i out1 -i out2 -o out -p com.ohos.demo -r out/ResourceTable.txt -j entry/src/main/module.json -f -z
+```
+
+3、叠加资源编译，命令如下：
+
+```
+# hapResource为解压后的Hap包路径
+restool -i entry/src/main -i hapResource -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
 ```
 
 ### 固定资源ID

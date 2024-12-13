@@ -33,3 +33,4 @@ The **native_interface_bundle.h** file declares the APIs for querying applicatio
 | [OH_NativeBundle_GetAppId](_bundle.md#oh_nativebundle_getappid) | Obtains the appId information about the current application.|
 | [OH_NativeBundle_GetAppIdentifier](_bundle.md#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the current application.|
 | [OH_NativeBundle_GetMainElementName](_bundle.md#oh_nativebundle_getmainelementname) | Obtains the application entry information.|
+| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | Obtains the compatible device type of the application.|

@@ -37,6 +37,7 @@ The bundle module provides APIs for querying application information.
 | [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | Obtains the appId information about the current application.|
 | [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | Obtains the appIdentifier information about the current application.|
 | [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | Obtains the application entry information.|
+| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | Obtains the compatible device type of the application.|
 
 
 ## Function Description
@@ -105,3 +106,19 @@ Obtains the application entry information, including the bundle name, module nam
 **Returns**
 
 Returns the [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) struct.
+
+### OH_NativeBundle_GetCompatibleDeviceType()
+
+```
+char* OH_NativeBundle_GetCompatibleDeviceType()
+```
+
+**Description**
+
+Obtains the compatible device type of the application.
+
+**Since**: 14
+
+**Returns**
+
+Returns a string indicating the compatible device type.

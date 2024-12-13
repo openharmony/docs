@@ -34,6 +34,8 @@ EffectComponent()
 
 ## 示例
 
+该示例主要演示如何使用特效绘制合并组件。
+
 ```ts
 //Index.ets
 @Entry

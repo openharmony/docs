@@ -8,7 +8,7 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 示例效果请以真机运行为准，当前IDE预览器不支持。
+> 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## UIContext
 
@@ -479,7 +479,7 @@ getFrameNodeByUniqueId(id: number): FrameNode | null
 
 提供getFrameNodeByUniqueId接口通过组件的uniqueId获取组件树的实体节点。
 1. 当uniqueId对应的是内置组件时，返回组件所对应的FrameNode；
-2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回其FrameNode，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
+2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回该自定义组件的根节点，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
 3. 当uniqueId无对应的组件时，返回null。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -2189,6 +2189,10 @@ uiContext.getMaxFontScale()
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
 绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
+
+>  **说明：**
+>
+>  当多个可滚动容器组件绑定了同一个Tabs组件时，只要滑动任意一个可滚动容器组件，就会触发TabBar的显示或隐藏。且当任意一个可滚动容器组件滑动到底部时，会立即触发TabBar的显示动效。因此不建议同时触发多个可滚动容器组件的滑动。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5029,11 +5033,11 @@ try {
 };
 ```
 
-### openToast<sup>13+</sup>
+### openToast<sup>16+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5103,11 +5107,11 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>13+</sup>
+### closeToast<sup>16+</sup>
 
 closeToast(toastId: number): void
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5128,7 +5132,7 @@ closeToast(toastId: number): void
 
 **示例：**
 
-示例请看[openToaset13](#opentoast13)的示例。
+示例请看[openToaset16](#opentoast16)的示例。
 
 ### showDialog
 
@@ -6860,7 +6864,7 @@ activate(isActive: boolean, atuoInactive?: boolean): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
 | isActive| boolean| 是 | 设置是否进入/退出焦点激活态。 |
-| autoInactive | boolean | 否 | 设置焦点激活态退出逻辑。为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制|
+| autoInactive | boolean | 否 | 设置焦点激活态退出逻辑。为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制。|
 
 ```ts
 // 该示例表示在页面加载完成时进入焦点激活态，可按方向键在button间走焦
@@ -6897,6 +6901,68 @@ struct ActivateExample {
 }
 ```
 
+### setAutoFocusTransfer<sup>14+</sup>
+
+setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
+
+设置页面切换时，新的页面是否需要主动获取焦点。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| setAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+  build() {
+    Column() {
+      Text('这是自定义弹窗')
+        .fontSize(30)
+        .height(100)
+      Text('弹窗不能主动获取焦点')
+        .fontSize(20)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+  })
+  aboutToDisappear() {
+    this.dialogController = null
+  }
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+    .onFocus(()=>{this.getUIContext().getFocusController().setAutoFocusTransfer(false)})
+  }
+}
+```
 
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
@@ -7834,23 +7900,23 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 | GESTURE | 0   | 手势操作场景 |
 | ANIMATION | 1   | 动画过度场景 |
 
-## MarqueeDynamicSyncScene<sup>13+</sup>
+## MarqueeDynamicSyncScene<sup>14+</sup>
 
 MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Marquee的动态帧率场景。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型                                                      | 只读 | 可选 | 说明                                |
 | --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
-| type      | [MarqueeDynamicSyncSceneType](#marqueedynamicsyncscenetype13) | 是   | 否   | Marquee的动态帧率场景。             |
+| type      | [MarqueeDynamicSyncSceneType](#marqueedynamicsyncscenetype14) | 是   | 否   | Marquee的动态帧率场景。             |
 
-## MarqueeDynamicSyncSceneType<sup>13+</sup>
+## MarqueeDynamicSyncSceneType<sup>14+</sup>
 
 枚举值，表示Marquee的动态帧率场景的类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

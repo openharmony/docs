@@ -20,7 +20,7 @@ System common events refer to events released by system services or system appli
 
 publish(event: string, callback: AsyncCallback\<void>): void
 
-Publishes a common event and executes an asynchronous callback after the event is published.
+Publishes a common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -40,31 +40,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- | 
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | not System services.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Callback for common event publication
+// Callback for common event publication.
 function publishCB(err: BusinessError) {
-    if (err) {
-        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publish success");
-    }
+  if (err) {
+    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publish success");
+  }
 }
-
 // Publish a common event.
 try {
-    commonEventManager.publish("event", publishCB);
+  commonEventManager.publish("event", publishCB);
 } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -72,7 +71,7 @@ try {
 
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
-Publishes a common event with given attributes. This API uses an asynchronous callback to return the result.
+Publishes a common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -93,10 +92,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | not System services.                |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
-| 1500009  | error obtaining system parameters.  |
+| 1500004  | A third-party application cannot send system common events.                |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500009  | Failed to obtain system parameters.  |
 
 **Example**
 
@@ -105,26 +104,24 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Attributes of a common event.
 let options:commonEventManager.CommonEventPublishData = {
-	code: 0,			 // Result code of the common event.
-	data: "initial data",// Result data of the common event.
-	isOrdered: true	 // The common event is an ordered one.
+  code: 0,			 // Result code of the common event.
+  data: "initial data",// Result data of the common event.
+  isOrdered: true	 // The common event is an ordered one.
 }
-
-// Callback for common event publication
+// Callback for common event publication.
 function publishCB(err: BusinessError) {
-	if (err) {
-        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("publish success");
-    }
+  if (err) {
+    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("publish success");
+  }
 }
-
 // Publish a common event.
 try {
-    commonEventManager.publish("event", options, publishCB);
+  commonEventManager.publish("event", options, publishCB);
 } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -158,29 +155,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-
-// Subscriber information.
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber:commonEventManager.CommonEventSubscriber;
+// Attributes of a subscriber.
 let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
-    events: ["event"]
+  events: ["event"]
 };
-
 // Callback for subscriber creation.
 function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
-    if(!err) {
-        console.info("createSubscriber success");
-        subscriber = commonEventSubscriber;
-    } else {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-    }
+  if(!err) {
+    console.info("createSubscriber success");
+    subscriber = commonEventSubscriber;
+  } else {
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  }
 }
-
 // Create a subscriber.
 try {
-    commonEventManager.createSubscriber(subscribeInfo, createCB);
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -203,7 +198,7 @@ Creates a subscriber. This API uses a promise to return the result.
 **Return value**
 | Type                                                     | Description            |
 | --------------------------------------------------------- | ---------------- |
-| Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Promise used to return the subscriber object.|
+| Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Promise used to return the result.|
 
 **Error codes**
 
@@ -218,21 +213,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-
-// Subscriber information.
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber:commonEventManager.CommonEventSubscriber;
+// Attributes of a subscriber.
 let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
-	events: ["event"]
+  events: ["event"]
 };
-
 // Create a subscriber.
 commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => {
-    console.info("createSubscriber success");
-    subscriber = commonEventSubscriber;
+  console.info("createSubscriber success");
+  subscriber = commonEventSubscriber;
 }).catch((err: BusinessError) => {
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 });
-
 ```
 
 ## commonEventManager.createSubscriberSync<sup>10+</sup>
@@ -269,28 +262,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-
-// Subscriber information.
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber: commonEventManager.CommonEventSubscriber;
+// Attributes of a subscriber.
 let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["event"]
 };
-
 // Create a subscriber.
 try {
-    subscriber = commonEventManager.createSubscriberSync(subscribeInfo);
+  subscriber = commonEventManager.createSubscriberSync(subscribeInfo);
 } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
 }
-
 ```
 
 ## commonEventManager.subscribe
 
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
-Subscribes to common events. This API uses an asynchronous callback to return the result.
+Subscribes to a common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -311,54 +302,50 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-
-// Subscriber information.
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber:commonEventManager.CommonEventSubscriber;
+// Attributes of a subscriber.
 let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
-    events: ["event"]
+  events: ["event"]
 };
-
 // Callback for common event subscription.
 function SubscribeCB(err: BusinessError, data:commonEventManager.CommonEventData) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("Consume callback " + JSON.stringify(data));
-        console.info("subscribe success");
-    }
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success, Consume callback " + JSON.stringify(data));
+  }
 }
-
 // Callback for subscriber creation.
 function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
-    if(!err) {
-        console.info("createSubscriber success");
-        subscriber = commonEventSubscriber;
-        // Subscribe to a common event.
-        try {
-            commonEventManager.subscribe(subscriber, SubscribeCB);
-        } catch (error) {
-            let err: BusinessError = error as BusinessError;
-            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-        }
-    } else {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  if(!err) {
+    console.info("createSubscriber success");
+    subscriber = commonEventSubscriber;
+    // Subscribe to a common event.
+    try {
+      commonEventManager.subscribe(subscriber, SubscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     }
+  } else {
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  }
 }
-
 // Create a subscriber.
 try {
-    commonEventManager.createSubscriber(subscribeInfo, createCB);
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -366,7 +353,7 @@ try {
 
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
-Unsubscribes from common events. This API uses an asynchronous callback to return the result.
+Unsubscribes from a common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -387,58 +374,58 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
-| 1500007  | error sending message to Common Event Service. |
-| 1500008  | Common Event Service does not complete initialization. |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-// Subscriber information.
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber:commonEventManager.CommonEventSubscriber; 
+// Attributes of a subscriber.
 let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
-    events: ["event"]
+  events: ["event"]
 };
 // Callback for common event subscription.
 function subscribeCB(err: BusinessError, data:commonEventManager.CommonEventData) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("Consume callback " + JSON.stringify(data));
-        console.info("subscribe success");
-    }
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success, Consume callback " + JSON.stringify(data));
+  }
 }
 // Callback for subscriber creation.
 function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
-    if (err) {
-        console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("createSubscriber success");
-        subscriber = commonEventSubscriber;
-        // Subscribe to a common event.
-        try {
-            commonEventManager.subscribe(subscriber, subscribeCB);
-        } catch (error) {
-            let err: BusinessError = error as BusinessError;
-            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-        }
+  if (err) {
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("createSubscriber success");
+    subscriber = commonEventSubscriber;
+    // Subscribe to a common event.
+    try {
+      commonEventManager.subscribe(subscriber, subscribeCB);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     }
+  }
 }
 // Callback for common event unsubscription.
 function unsubscribeCB(err: BusinessError) {
-    if (err) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribe success");
-    }
+  if (err) {
+    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("unsubscribe success");
+  }
 }
 // Create a subscriber.
 try {
-    commonEventManager.createSubscriber(subscribeInfo, createCB);
+  commonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 
 // Unsubscribe from the common event.

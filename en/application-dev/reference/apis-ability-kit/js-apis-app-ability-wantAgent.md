@@ -1,10 +1,12 @@
 # @ohos.app.ability.wantAgent (WantAgent)
 
-The **app.ability.WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID, Want, and bundle name of a **WantAgent** object. You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
+app.ability.WantAgent is a class that encapsulates a [Want](./js-apis-app-ability-want.md) object and allows the application to execute the Want at a future time point. The module provides APIs for creating and comparing WantAgent objects, and obtaining the user ID and bundle name of a WantAgent object.
+
+A typical use scenario of WantAgent is notification processing. For example, when a user touches a notification, the [trigger](#wantagenttrigger) API of WantAgent is triggered and the target application is started. For details, see [Notification](../../notification/notification-with-wantagent.md). You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -16,7 +18,7 @@ import { wantAgent } from '@kit.AbilityKit';
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
+Obtains a WantAgent object. This API uses an asynchronous callback to return the result. If the creation fails, a null WantAgent object is returned.
 
 Third-party applications can set only their own abilities.
 
@@ -28,8 +30,8 @@ Third-party applications can set only their own abilities.
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the **WantAgent** object to obtain.          |
-| callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the WantAgent object to obtain.          |
+| callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the WantAgent object.|
 
 **Error codes**
 
@@ -98,7 +100,7 @@ try {
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-Obtains a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
+Obtains a WantAgent object. This API uses a promise to return the result. If the creation fails, a null WantAgent object is returned.
 
 Third-party applications can set only their own abilities.
 
@@ -110,13 +112,13 @@ Third-party applications can set only their own abilities.
 
 | Name| Type         | Mandatory| Description         |
 | ---- | ------------- | ---- | ------------- |
-| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Information about the **WantAgent** object to obtain.|
+| info | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | Yes  | Information about the WantAgent object to obtain.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<WantAgent\> | Promise used to return the **WantAgent** object.|
+| Promise\<WantAgent\> | Promise used to return the WantAgent object.|
 
 **Error codes**
 
@@ -181,7 +183,7 @@ try {
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
-Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains the bundle name of a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -191,7 +193,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 | Name    | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
-| agent    | WantAgent               | Yes  | Target **WantAgent** object.                    |
+| agent    | WantAgent               | Yes  | Target WantAgent object.                    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
 **Error codes**
@@ -274,7 +276,7 @@ try {
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
-Obtains the bundle name of a **WantAgent** object. This API uses a promise to return the result.
+Obtains the bundle name of a WantAgent object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -284,7 +286,7 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| agent | WantAgent | Yes  | Target WantAgent object.|
 
 **Return value**
 
@@ -367,7 +369,7 @@ try {
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
-Obtains the user ID of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains the user ID of a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -377,7 +379,7 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 | Name    | Type                   | Mandatory| Description                               |
 | -------- | ----------------------- | ---- | ----------------------------------- |
-| agent    | WantAgent               | Yes  | Target **WantAgent** object.                      |
+| agent    | WantAgent               | Yes  | Target WantAgent object.                      |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
 
 **Error codes**
@@ -460,7 +462,7 @@ try {
 
 getUid(agent: WantAgent): Promise\<number\>
 
-Obtains the user ID of a **WantAgent** object. This API uses a promise to return the result.
+Obtains the user ID of a WantAgent object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -470,7 +472,7 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| agent | WantAgent | Yes  | Target WantAgent object.|
 
 **Return value**
 
@@ -554,7 +556,7 @@ try {
 
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
-Cancels a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Cancels a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -564,7 +566,7 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                 | Mandatory| Description                       |
 | -------- | --------------------- | ---- | --------------------------- |
-| agent    | WantAgent             | Yes  | Target **WantAgent** object.              |
+| agent    | WantAgent             | Yes  | Target WantAgent object.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -647,7 +649,7 @@ try {
 
 cancel(agent: WantAgent): Promise\<void\>
 
-Cancels a **WantAgent** object. This API uses a promise to return the result.
+Cancels a WantAgent object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -657,7 +659,7 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 | Name | Type     | Mandatory| Description         |
 | ----- | --------- | ---- | ------------- |
-| agent | WantAgent | Yes  | Target **WantAgent** object.|
+| agent | WantAgent | Yes  | Target WantAgent object.|
 
 **Return value**
 
@@ -741,7 +743,7 @@ try {
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<CompleteData\>): void
 
-Triggers a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Proactively triggers a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -751,8 +753,8 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
-| agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
-| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | **TriggerInfo** object.                |
+| agent       | WantAgent                     | Yes  | Target WantAgent object.                  |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | TriggerInfo object.                |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | No  | Callback used to return the result.|
 
 **Error codes**
@@ -837,7 +839,7 @@ try {
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
+Checks whether two WantAgent objects are equal, so as to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -847,9 +849,9 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
-| agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
-| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
+| agent      | WantAgent                | Yes  | The first WantAgent object.                          |
+| otherAgent | WantAgent                | Yes  | The second WantAgent object.                          |
+| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two WantAgent objects are equal, and **false** means the opposite.|
 
 **Error codes**
 
@@ -931,7 +933,7 @@ try {
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses a promise to return the result.
+Checks whether two WantAgent objects are equal, so as to determine whether the same operation is from the same application. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -941,14 +943,14 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
-| agent      | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | WantAgent | Yes  | The second **WantAgent** object.|
+| agent      | WantAgent | Yes  | The first WantAgent object.|
+| otherAgent | WantAgent | Yes  | The second WantAgent object.|
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the two WantAgent objects are equal, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1026,7 +1028,7 @@ try {
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
-Obtains the operation type of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+Obtains the operation type of a WantAgent object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1036,7 +1038,7 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
-| agent      | WantAgent                | Yes  | Target **WantAgent** object.                          |
+| agent      | WantAgent                | Yes  | Target WantAgent object.                          |
 | callback   | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
 
 **Error codes**
@@ -1120,7 +1122,7 @@ try {
 
 getOperationType(agent: WantAgent): Promise\<number>
 
-Obtains the operation type of a **WantAgent** object. This API uses a promise to return the result.
+Obtains the operation type of a WantAgent object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1130,7 +1132,7 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
-| agent      | WantAgent | Yes  | Target **WantAgent** object.|
+| agent      | WantAgent | Yes  | Target WantAgent object.|
 
 **Return value**
 
@@ -1215,7 +1217,7 @@ try {
 
 ## WantAgentFlags
 
-Enumerates the flags used by the **WantAgent** objects.
+Enumerates the flags used by the WantAgent objects.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1223,11 +1225,11 @@ Enumerates the flags used by the **WantAgent** objects.
 
 | Name               | Value            | Description                                                                     |
 | ------------------- | -------------- |-------------------------------------------------------------------------|
-| ONE_TIME_FLAG       | 0 | The **WantAgent** object can be used only once.                                                       |
-| NO_BUILD_FLAG       | 1 | The **WantAgent** object does not exist and hence it is not created. In this case, **null** is returned.                                     |
-| CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.                                |
-| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.                               |
-| CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                                        |
+| ONE_TIME_FLAG       | 0 | The WantAgent object can be used only once.                                                       |
+| NO_BUILD_FLAG       | 1 | The WantAgent object does not exist and hence it is not created. In this case, **null** is returned.                                     |
+| CANCEL_PRESENT_FLAG | 2 | The existing WantAgent object should be canceled before a new object is generated.                                |
+| UPDATE_PRESENT_FLAG | 3 | Extra information of the existing WantAgent object is replaced with that of the new object.                               |
+| CONSTANT_FLAG       | 4 | The WantAgent object is immutable.                                                        |
 | REPLACE_ELEMENT     | 5 | The **element** property in the current Want can be replaced by the **element** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.      |
 | REPLACE_ACTION      | 6 | The **action** property in the current Want can be replaced by the **action** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.        |
 | REPLACE_URI         | 7 | The **uri** property in the current Want can be replaced by the **uri** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.              |
@@ -1238,7 +1240,7 @@ Enumerates the flags used by the **WantAgent** objects.
 
 ## OperationType
 
-Enumerates the operation types of the **WantAgent** objects.
+Enumerates the operation types of the WantAgent objects.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1254,9 +1256,9 @@ Enumerates the operation types of the **WantAgent** objects.
 
 
 
-## CompleteData 
+## CompleteData
 
-Describes the data returned by the **WantAgent** object after being triggered.
+Describes the data returned by the operation of proactive triggering a WantAgent object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1264,8 +1266,8 @@ Describes the data returned by the **WantAgent** object after being triggered.
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| info           | WantAgent                       | No| No  | A triggered **WantAgent** object.      |
-| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| No  | An existing triggered Want.    |
-| finalCode      | number                          | No| No  | Request code that triggers the **WantAgent** object.|
+| info           | WantAgent                       | No| No  | WantAgent object that is triggered.      |
+| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| No  | Existing Want that is triggered.    |
+| finalCode      | number                          | No| No  | Execution result of the triggering operation.<br>- In ability startup scenarios (where [OperationType](#operationtype) is set to **1**, **2**, or **3**), **finalCode** is **0** for a successful execution. For details about the value of **finalCode** returned in the case of execution failures, see [Ability Error Codes](errorcode-ability.md).<br>- In common event publish scenarios (where [OperationType](#operationtype) is set to **4**), **finalCode** is **0** for a successful execution. For details about the value of **finalCode** returned in the case of execution failures, see [Event Error Codes](../apis-basic-services-kit/errorcode-CommonEventService.md).|
 | finalData      | string                          | No| No  | Final data collected by the common event. |
 | extraInfo      | Record\<string, Object>            | No|Yes  | Extra information.              |

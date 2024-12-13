@@ -138,6 +138,7 @@ TS通过打开编译选项`strictNullChecks`来实现此特性。但是TS是被�
   - compatibleSdkVersion >= 10 为标准模式。在该模式下，对.ets文件，违反ArkTS语法规则的代码会导致工程编译失败，需要完全适配ArkTS语法后方可编译成功。
   - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件，以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但是需要完全适配ArkTS语法后方可在标准模式下编译成功。
 
+ArkTS支持与TS/JS的高效互操作，在当前版本上，ArkTS运行时兼容动态类型对象语义。
 
 ## 方舟运行时兼容TS/JS
 

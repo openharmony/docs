@@ -1,4 +1,4 @@
-# Using AVTranscoder for Video Transcoding
+# Using AVTranscoder to Transcode Videos (ArkTS)
 
 This topic describes how to use AVTranscoder to implement video transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
 

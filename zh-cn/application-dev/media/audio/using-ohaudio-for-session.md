@@ -1,4 +1,4 @@
-# 音频会话管理(C/C++)
+# 使用AudioSession管理应用音频焦点(C/C++)
 
 对于涉及多个音频流并发播放的场景，系统已预设了默认的[音频焦点策略](audio-playback-concurrency.md#音频焦点策略)，该策略将对所有音频流（包括播放和录制）实施统一的焦点管理。
 
@@ -65,7 +65,7 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 
 在使用AudioSession功能的过程中，推荐应用监听[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)。
 
-当AudioSession被停用（非主动停用）时，应用会收到[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)。，其中包含[音频会话停用原因（OH_AudioSession_DeactivatedReason）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedreason)。
+当AudioSession被停用（非主动停用）时，应用会收到[音频会话停用事件（OH_AudioSession_DeactivatedEvent）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedevent)，其中包含[音频会话停用原因（OH_AudioSession_DeactivatedReason）](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiosession_deactivatedreason)。
 
 在收到AudioSessionDeactivatedEvent时，应用可根据自身业务需求，做相应的处理，例如释放相应资源、重新激活AudioSession等。
 

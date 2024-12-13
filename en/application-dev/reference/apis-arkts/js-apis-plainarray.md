@@ -689,10 +689,6 @@ for(let i = 0;i < 10;i++) {
 
 Obtains an iterator object that contains key-value pairs, where the key is of the number type.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang

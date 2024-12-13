@@ -1991,7 +1991,7 @@ class DrawingRenderNode extends RenderNode {
 
 ### clear<sup>13+</sup>
 
-clear(number): void
+clear(color: number): void
 
 使用指定颜色填充画布上的裁剪区域。
 
@@ -4658,6 +4658,168 @@ let font : drawing.Font = new drawing.Font();
 let text : string = 'hello world';
 let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
+```
+
+### getBounds<sup>14+</sup>
+
+getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
+
+获取字形数组中每个字形对应的边界矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| glyphs | Array\<number> | 是   | 字形索引数组，可由[textToGlyphs](#texttoglyphs12)生成。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | 返回得到的字形边界矩形数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let font: drawing.Font = new drawing.Font();
+            let text: string = 'hello world';
+            let glyphs: number[] = font.textToGlyphs(text);
+            let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
+            for (let index = 0; index < fontBounds.length; index++) {
+              console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
+                " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### getTextPath<sup>14+</sup>
+
+getTextPath(text: string, byteLength: number, x: number, y: number): Path;
+
+获取文字的轮廓路径。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明                    |
+| ------   | ------------------------------------------------   | ---- | ---------------------- |
+|   text   |    string                                          | 是   | 表示存储UTF-8 文本编码的字符。|
+|byteLength|    number                                          | 是   | 表示要获取对应文本路径的字节长度，按传入的字节长度和实际的文本字节大小之间的最小值来获取对应的文本路径。|
+|    x     |    number                                          | 是   | 表示文本在绘图区域内以原点为起始位置的X坐标。|
+|    y     |    number                                          | 是   | 表示文本在绘图区域内以原点为起始位置的Y坐标。|
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| [Path](#path) | 返回获取到的文本的路径轮廓。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+import { buffer } from '@kit.ArkTS';
+import { RenderNode } from '@kit.ArkUI';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let myString: string = "你好, HarmonyOS";
+    let length = buffer.from(myString).length;
+    let path = font.getTextPath(myString, length, 0, 100)
+    canvas.drawPath(path)
+  }
+}
+```
+
+### createPathForGlyph<sup>14+</sup>
+
+createPathForGlyph(index: number): Path
+
+获取指定字形的路径轮廓。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| index | number | 是   | 字形索引。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| [Path](#path) | 返回指定字形的路径轮廓。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let text: string = '你好';
+    let glyphs: number[] = font.textToGlyphs(text);
+    for (let index = 0; index < glyphs.length; index++) {
+      let path: drawing.Path = font.createPathForGlyph(glyphs[index])
+      canvas.drawPath(path)
+    }
+  }
+}
 ```
 
 ## FontMetricsFlags<sup>12+</sup>

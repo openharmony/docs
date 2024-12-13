@@ -61,7 +61,7 @@ Provides HID driver development kit (DDK) functions, including those for creatin
 | [Hid_AbsAxes](#hid_absaxes) {<br>HID_ABS_X = 0x00, HID_ABS_Y = 0x01, HID_ABS_Z = 0x02, HID_ABS_RX = 0x03,<br>HID_ABS_RY = 0x04, HID_ABS_RZ = 0x05, HID_ABS_THROTTLE = 0x06, HID_ABS_RUDDER = 0x07,<br>HID_ABS_WHEEL = 0x08, HID_ABS_GAS = 0x09, HID_ABS_BRAKE = 0x0a, HID_ABS_HAT0X = 0x10,<br>HID_ABS_HAT0Y = 0x11, HID_ABS_HAT1X = 0x12, HID_ABS_HAT1Y = 0x13, HID_ABS_HAT2X = 0x14,<br>HID_ABS_HAT2Y = 0x15, HID_ABS_HAT3X = 0x16, HID_ABS_HAT3Y = 0x17, HID_ABS_PRESSURE = 0x18,<br>HID_ABS_DISTANCE = 0x19, HID_ABS_TILT_X = 0x1a, HID_ABS_TILT_Y = 0x1b, HID_ABS_TOOL_WIDTH = 0x1c,<br>HID_ABS_VOLUME = 0x20, HID_ABS_MISC = 0x28<br>} | Enumerates the absolute coordinates. | 
 | [Hid_RelAxes](#hid_relaxes) {<br>HID_REL_X = 0x00, HID_REL_Y = 0x01, HID_REL_Z = 0x02, HID_REL_RX = 0x03,<br>HID_REL_RY = 0x04, HID_REL_RZ = 0x05, HID_REL_HWHEEL = 0x06, HID_REL_DIAL = 0x07,<br>HID_REL_WHEEL = 0x08, HID_REL_MISC = 0x09, HID_REL_RESERVED = 0x0a, HID_REL_WHEEL_HI_RES = 0x0b,<br>HID_REL_HWHEEL_HI_RES = 0x0c<br>} | Enumerates the relative coordinates. | 
 | [Hid_MscEvent](#hid_mscevent) {<br>HID_MSC_SERIAL = 0x00, HID_MSC_PULSE_LED = 0x01, HID_MSC_GESTURE = 0x02, HID_MSC_RAW = 0x03,<br>HID_MSC_SCAN = 0x04, HID_MSC_TIMESTAMP = 0x05<br>} | Enumerates miscellaneous input events. | 
-| [Hid_DdkErrCode](#hid_ddkerrcode) {<br>HID_DDK_SUCCESS = 0, HID_DDK_FAILURE = -1, HID_DDK_INVALID_PARAMETER = -2, HID_DDK_INVALID_OPERATION = -3,<br>HID_DDK_NULL_PTR = -4, HID_DDK_TIMEOUT = -5, HID_DDK_NO_PERM = -6<br>} | Enumerates the HID DDK error codes. | 
+| [Hid_DdkErrCode](#hid_ddkerrcode) {<br>HID_DDK_SUCCESS = 0, HID_DDK_NO_PERM = 201, HID_DDK_INVALID_PARAMETER = 401,HID_DDK_FAILURE = 27300001,<br>HID_DDK_NULL_PTR = 27300002, HID_DDK_INVALID_OPERATION = 27300003, HID_DDK_TIMEOUT = 27300004<br>} | Enumerates the HID DDK error codes. | 
 
 
 ### Functions
@@ -252,16 +252,15 @@ Enumerates the HID DDK error codes.
 
 **Since**: 11
 
-| Value| Description| 
-| -------- | -------- |
-| HID_DDK_SUCCESS  | Operation successful.| 
-| HID_DDK_FAILURE  | Operation failed.| 
-| HID_DDK_INVALID_PARAMETER  | Invalid parameter.| 
-| HID_DDK_INVALID_OPERATION  | Invalid operation.| 
-| HID_DDK_NULL_PTR  | Null pointer.| 
-| HID_DDK_TIMEOUT  | Timeout.| 
-| HID_DDK_NO_PERM  | Permission denied.| 
-
+| Enum| Value| Description| 
+| -------- | -------- |-------- |
+| HID_DDK_SUCCESS | 0 | Operation successful.| 
+| HID_DDK_NO_PERM | 201 | Permission denied.| 
+| HID_DDK_INVALID_PARAMETER | 401 | Invalid parameter.| 
+| HID_DDK_FAILURE | 27300001 | Operation failed.| 
+| HID_DDK_NULL_PTR | 27300002 | Null pointer.| 
+| HID_DDK_INVALID_OPERATION | 27300003 | Invalid operation.| 
+| HID_DDK_TIMEOUT | 27300004 | Timeout.| 
 
 ### Hid_DeviceProp
 
@@ -548,8 +547,6 @@ ohos.permission.ACCESS_DDK_HID
 - [HID_DDK_SUCCESS](#hid_ddkerrcode): The API call is successful.
 - [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification failed.
 - [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails or the caller is not the device creator.
-- [HID_DDK_FAILURE](#hid_ddkerrcode): The corresponding device does not exist.
-
 
 ### OH_Hid_EmitEvent()
 
@@ -579,8 +576,7 @@ ohos.permission.ACCESS_DDK_HID
 - [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification failed.
 - [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails or the caller is not the device creator.
 - [HID_DDK_INVALID_PARAMETER](#hid_ddkerrcode): Parameter verification fails. The possible causes are as follows: 1. The device ID is smaller than 0. 2. The length of the input parameter exceeds 7 characters. 3. The input **items** is a null pointer.
-- [HID_DDK_NULL_PTR](#hid_ddkerrcode): The input device is empty.
-- [HID_DDK_FAILURE](#hid_ddkerrcode): The corresponding device does not exist.
+- [HID_DDK_NULL_PTR](#hid_ddkerrcode): The corresponding device does not exist.
 
 
 ## Variable Description

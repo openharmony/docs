@@ -7,7 +7,6 @@
 >
 >\@Provider and \@Consumer decorators are supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 ## Overview
 
@@ -17,7 +16,7 @@ Data types decorated by \@Provider and \@Consumer must be the same.
 
 
 The following notes must be paid attention to when using \@Provider and \@Consumer:
-- \@Provider and \@Consumer both depend on the custom component levels. \@Consumer decorated component will be initialized to different values due to different parent components.
+- \@Provider and \@Consumer strongly depend on the custom component levels. \@Consumer is initialized to different values because the parent component of the custom component is different.
 - Using \@Provider with \@Consumer is equivalent to bonding components together. From the perspective of independent component, usage of \@Provider and \@Consumer should be lessened.
 
 
@@ -25,7 +24,7 @@ The following notes must be paid attention to when using \@Provider and \@Consum
 In state management V1, [\@Provide and \@Consume](./arkts-provide-and-consume.md) are the decorators which provide two-way synchronization across component levels. This topic introduces \@Provider and \@Consumer decorators in state management V2. Although the names and features of the two pairs are similar, there are still some differences.
 If you are not familiar with \@Provide and \@Consume in state management V1, please skip this section.
 
-| Capability| Decorators in V2: \@Provider and \@Consumer                                            |Decorators in V1: \@Provide and \@Consume|
+| Capability| \@Provider and \@Consumer Decorators of V2                                            |\@Provide and \@Consume Decorators of V1|
 | ------------------ | ----------------------------------------------------- |----------------------------------------------------- |
 | \@Consume(r)         |Local initialization is allowed. Local default value will be used when \@Provider is not found.| Local initialization is forbidden. An exception will be thrown when the \@Provide is not found.|
 | Supported type          | **function** is supported.| **function** is not supported.|
@@ -39,77 +38,98 @@ If you are not familiar with \@Provide and \@Consume in state management V1, ple
 
 ### Basic Rules
 \@Provider syntax:
-`@Provider(alias?: string) varName : varType = initValue`
+@Provider(alias?: string) varName : varType = initValue
 
 | \@Provider Property Decorator| Description                                                 |
 | ------------------ | ----------------------------------------------------- |
 | Decorator parameters        | **aliasName?: string**: alias. The default value is the attribute name.|
-| Supported type          | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The [arrow function](#decorating-callback-by-using-provider-and-consumer-and-facilitating-behavior-abstraction-between-components) can be decorated.|
+| Supported type          | Member variables in the custom component.<br>Property types include number, string, boolean, class, Array, Date, Map, and Set.<br>[Arrow function](#decorating-callback-by-using-provider-and-consumer-and-facilitating-behavior-abstraction-between-components). |
 | Initialization from the parent component     | Forbidden.|
 | Local initialization        | Required.|
 | Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Consumer.|
 
 \@Consumer syntax:
-`@Consumer(alias?: string) varName : varType = initValue`
+@Consumer(alias?: string) varName : varType = initValue
 
 
 | \@Consumer Property Decorator| Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
 | Decorator parameters           | **aliasName?: string**: alias. The default value is the attribute name. The nearest \@Provider is searched upwards.   |
-| Allowed variable types         | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The arrow function can be decorated.|
+| Supported type | Member variables in the custom component.<br>Property types include number, string, boolean, class, Array, Date, Map, and Set.<br>Arrow function. |
 | Initialization from the parent component     | Forbidden.|
 | Local initialization        | Required.|
 | Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Provider.|
 
 ### aliasName and Attribute Name
-\@Provider and \@Consumer accept the optional parameter **aliasName**. If the parameter is not set, the attribute name will be used as the default value. Note: **aliasName** is the unique key for \@Provider and \@Consumer matching.
+\@Provider and \@Consumer accept the optional parameter **aliasName**. If the parameter is not set, the attribute name will be used as the default **aliasName** Note that **aliasName** is the unique key used to match \@Provider and \@Consumer.
 
-The following three examples describe how \@Provider and \@Consumer use **aliasName** to search for relationships.
+The following three examples clearly describe how \@Provider and \@Consumer use **aliasName** for searching and matching.
 ```ts
-@ComponentV2 struct Parent {
-    @Provider() str: string = 'hello';   // no aliasName, use propertyName "str" as aliasName
+@ComponentV2
+struct Parent {
+  // The aliasName is not defined. Use the property name "str" as the aliasName.
+  @Provider() str: string = 'hello';
 }
 
-@ComponentV2 struct Child {
-    @Consumer('str') str: string = 'world';   // use aliasName 'str' to find
-                                              // can find in Parent, use Provider value 'hello'
+@ComponentV2
+struct Child {
+  // Define aliasName as"str" and use it to search.
+  // If the value can be found on the Parent component, use the value "hello" of @Provider.
+  @Consumer('str') str: string = 'world';
 }
 ```
 
 ```ts
-@ComponentV2 struct Parent {
-    @Provider('alias') str: string = 'hello';   // has alias
+@ComponentV2
+struct Parent {
+  // Define aliasName as "alias".
+  @Provider('alias') str: string = 'hello';
 }
 
 @ComponentV2 struct Child {
-    @Consumer('alias') str: string = 'world';   // use aliasName 'alias' to find Provider value 'hello'
+  // Define aliasName as "alias", find out @Provider, and obtain the value "hello".
+  @Consumer('alias') str: string = 'world';
 }
 ```
 
 ```ts
-@ComponentV2 struct Parent {
-    @Provider('alias') str: string = 'hello';   // has alias
+@ComponentV2
+struct Parent {
+  // Define aliasName as "alias".
+  @Provider('alias') str: string = 'hello';
 }
 
-@ComponentV2 struct Child {
-    @Consumer() str: string = 'world';   // no aliasName, use propertyName "str" as aliasName, cannot find Provider, so use the local value 'world'
+@ComponentV2
+struct Child {
+  // The aliasName is not defined. Use the property name "str" as the aliasName.
+  // The corresponding @Provider is not found, use the local value "world".
+  @Consumer() str: string = 'world';
 }
 ```
+
+## Variable Passing
+
+| Passing Rules      | Description                                                        |
+| -------------- | ------------------------------------------------------------ |
+| Initialization from the parent component| Variables decorated by \@Provider and \@Consumer can only be initialized locally.|
+| Child component initialization  | Variables decorated by \@Provider and \@Consumer can be used to initialize \@Param decorated variables in the child component.|
 
 ## Constraints
-1. \@Provider and \@Consumer are property decorators for custom components. They can only modify the attributes of custom components and cannot modify the class attributes.
-2. \@Provider and \@Consumer are new state management decorators, which can be used only in \@ComponentV2 but not in \@Component.
+
+1. \@Provider and \@Consumer are property decorators for custom components. They can only decorate the attributes of custom components and cannot decorate the class properties.
+2. \@Provider and \@Consumer are decorators of the state management V2, which can be used only in \@ComponentV2 but not in \@Component.
+3. \@Provider and \@Consumer support only local initialization.
 
 ## Use Scenarios
 
 ### Synchronizing \@Provider and \@Consumer in a Two-Way Manner
-#### Establish a Two-Way Binding
+#### Establishing a Two-Way Binding
 1. Initialize the **Parent** and **Child** custom components:
     - **@Consumer() str: string = 'world'** in the **Child** component searches upwards to find **@Provider() str: string = 'hello'** in the **Parent** component.
     - **@Consumer() str: string = 'world'** is initialized to the value of **@Provider**, that is, **'hello'**.
     - Both of them establish a two-way synchronization relationship.
-2. Click the button in the **Parent** component to change the @Provider decorated **str** and notify the corresponding @Consumer. UI will be updated.
-3. Click the button in the **Child** component to change the @Consumer decorated **str** and notify the corresponding @Provider. UI will be updated.
+2. Click the button in **Parent** to change the \@Provider decorated **str** and notify the corresponding \@Consumer to re-render the UI.
+3. Click the button in **Child** to change the \@Consumer decorated **str**, and notify the corresponding \@Provider to re-render the UI.
 
 ```ts
 @Entry
@@ -128,7 +148,6 @@ struct Parent {
   }
 }
 
-
 @ComponentV2
 struct Child {
   @Consumer() str: string = 'world';
@@ -143,15 +162,15 @@ struct Child {
   }
 }
 ```
-#### Fail to Establish a Two-Way Binding
+#### Establishing a Two-Way Binding Failed
 
-In the following example, \@Provider and \@Consumer fail to establish a two-way synchronization relationship because of different **key** value.
+In the following example, \@Provider and \@Consumer fail to establish a two-way synchronization relationship because of different **aliasName** value.
 1. Initialize the **Parent** and **Child** custom components:
     - @Provider is not found when **@Consumer() str: string = 'world'** in the **Child** component searches upwards.
     - **@Consumer() str: string = 'world'** uses the local default value 'world'.
     - Both of them fail to establish a two-way synchronization relationship.
-2. Click the button in the **Parent** component to change @Provider decorated **str1** and refresh the **Button** component associated with @Provider.
-3. Click the button in the **Child** component to change the @Consumer decorated **str** and refresh the **Button** component associated with @Consumer.
+2. Click the button in the **Parent** component to change @Provider decorated **str1** and re-render only the **Button** component associated with @Provider.
+3. Click the button in the **Child** component to change the @Consumer decorated **str** and re-render only the **Button** component associated with @Consumer.
 
 ```ts
 @Entry
@@ -170,7 +189,6 @@ struct Parent {
   }
 }
 
-
 @ComponentV2
 struct Child {
   @Consumer() str: string = 'world';
@@ -186,10 +204,10 @@ struct Child {
 }
 ```
 
-### Decorating Callback by Using \@Provider and \@Consumer and Facilitating Behavior Abstraction Between Components
+### Decorating Callback by Using @Provider and @Consumer and Facilitating Behavior Abstraction Between Components
 
 To register a callback function for a child component in a parent component, you can use \@Provider and \@Consumer to decorate a callback.
-For instance, when a drag event occurs, if you want to synchronize the start position of a child component to the parent component, see the following example:
+For example, when a drag event occurs, if you want to synchronize the start position of the child component to the parent component, see the example below.
 
 ```ts
 @Entry
@@ -219,7 +237,7 @@ struct Child {
     Button("changed")
       .draggable(true)
       .onDragStart((event: DragEvent) => {
-        // Current previewer does not support common drag events.
+        // Current Previewer does not support common drag events.
         this.onDrag(event.getDisplayX(), event.getDisplayY());
       })
   }
@@ -227,10 +245,10 @@ struct Child {
 ```
 
 
-### Decorating Complex Types by Using \@Provider, \@Consumer, and \@Trace
+### Decorating Complex Types by \@Provider and \@Consumer and Using together with \@Trace
 
-1. \@Provider and \@Consumer can only observe the changes of the data. If they are used to decorate complex data types and you need to observe the changes of the attributes, \@Trace is also required.
-2. Changes of some APIs can be observed when modifying **buildin** types, such as Array, Map, Set, and Data. The observation capability is the same as that of [\@Trace](./arkts-new-observedV2-and-trace.md#observed-changes).
+1. \@Provider and \@Consumer can only observe the changes of the data. If they are used to decorate complex data types and you need to observe the changes of the properties, \@Trace is also required.
+2. When decorating built-in types, such as Array, Map, Set, and Date, you can observe the changes of some APIs. The observation capability is the same as that of [\@Trace](./arkts-new-observedV2-and-trace.md#observed-changes).
 
 ```ts
 @ObservedV2
@@ -243,9 +261,7 @@ class User {
     this.age = age;
   }
 }
-
 const data: User[] = [new User('Json', 10), new User('Eric', 15)];
-
 @Entry
 @ComponentV2
 struct Parent {
@@ -254,7 +270,7 @@ struct Parent {
   build() {
     Column() {
       Child()
-      Button('age new user')
+      Button('add new user')
         .onClick(() => {
           this.users.push(new User('Molly', 18));
         })
@@ -269,7 +285,6 @@ struct Parent {
     }
   }
 }
-
 
 @ComponentV2
 struct Child {
@@ -291,9 +306,6 @@ struct Child {
 
 ### Searching Upwards by \@Consumer for the Nearest \@Provider
 If \@Provider has duplicate names in the component tree, \@Consumer will search upwards for the \@Provider data of the nearest parent node.
-- In **AComp**, \@Consumer searches upwards to find **@Provider() val: number = 10** defined in the **Parent** component. Therefore, the value is initialized to 10.
-- In **A1Comp**, \@Consumer searches upwards to find **@Provider() val: number = 20** defined in **AComp** and stops searching when it is found. Therefore, the value is initialized to 20.
-
 ```ts
 @Entry
 @ComponentV2
@@ -304,7 +316,6 @@ struct Parent {
     Column() {
       AComp()
     }
-
   }
 }
 
@@ -318,7 +329,6 @@ struct AComp {
       Text(`${this.val2}`)
       A1Comp()
     }
-
   }
 }
 
@@ -327,14 +337,22 @@ struct A1Comp {
   @Consumer() val: number = 0; // 20
 
   build() {
-    Text(`${this.val}`)
+    Column() {
+      Text(`${this.val}`)
+    }
   }
 }
 ```
 
+In the preceding example:
+
+- In **AComp**, \@Consumer searches upwards to find **@Provider() val: number = 10** defined in the **Parent** component. Therefore, the value is initialized to 10.
+- In **A1Comp**, \@Consumer searches upwards to find **@Provider() val: number = 20** defined in **AComp** and stops searching when it is found. Therefore, the value is initialized to 20.
+
 ### Initializing \@Param by \@Provider and \@Consumer
-- Click **Text** (**@Consumer val: ${this.val}**) to trigger the change of **@Consumer() val**. This change will be synchronized to **@Provider() val** in the **Parent** component, triggering the change of the **Text** (**@Param val2: ${this.val2}**) in the **Child** component.
-- The change of **@Consumer() val** is also synchronized to **A1Comp**, triggering the change of **Text** (**A1Comp @Param val ${this.val}**).
+
+- Click **Text(\`@Consumer val: ${this.val}\`)** to trigger the change of **@Consumer() val**. This change will be synchronized to **@Provider() val** in the **Parent** component, triggering the re-render of the **Text(@Param val2: ${this.val2})** in the **Child** component.
+- The change of **@Consumer() val** is also synchronized to **A1Comp**, triggering the re-render of **Text(A1Comp @Param val ${this.val})**.
 
 ```ts
 @Entry

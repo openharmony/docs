@@ -28,7 +28,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 3. Obtain the surface ID.
    
-   Create an **AVRecorder** instance, and call **getInputSurface()** of the instance to obtain a surface ID.
+   Create an AVRecorder instance, and call **getInputSurface()** of the instance to obtain a surface ID.
 
 4. Create a video output stream.
 
@@ -72,7 +72,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 5. Start video recording.
    
-   Call **OH_VideoOutput_Start()** of the **VideoOutput** instance to start the video output stream.
+   Call [OH_VideoOutput_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_start) of the VideoOutput instance to start the video output stream.
 
    ```c++
       // Start the video output stream.
@@ -84,7 +84,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 6. Stop video recording.
      
-   Call **OH_VideoOutput_Stop()** of the **VideoOutput** instance to stop the video output stream.
+   Call [OH_VideoOutput_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_stop) of the VideoOutput instance to stop the video output stream.
 
    ```c++
       // Stop the video output stream.
@@ -99,7 +99,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 During camera application development, you can listen for the status of the video output stream, including recording start, recording end, and video output errors.
 
-- Register the **'frameStart'** event to listen for recording start events. This event can be registered when a **VideoOutput** instance is created and is triggered when the bottom layer starts exposure for recording for the first time. Video recording starts as long as a result is returned.
+- Register the **'frameStart'** event to listen for recording start events. This event can be registered when a VideoOutput instance is created and is triggered when the bottom layer starts exposure for recording for the first time. Video recording starts as long as a result is returned.
 
   ```c++
     ret = OH_VideoOutput_RegisterCallback(videoOutput, GetVideoOutputListener());
@@ -124,7 +124,7 @@ During camera application development, you can listen for the status of the vide
     }
   ```
 
-- Register the **'frameEnd'** event to listen for recording end events. This event can be registered when a **VideoOutput** instance is created and is triggered when the last frame of recording ends. Video recording ends as long as a result is returned.
+- Register the **'frameEnd'** event to listen for recording end events. This event can be registered when a VideoOutput instance is created and is triggered when the last frame of recording ends. Video recording ends as long as a result is returned.
     
   ```c++
     void VideoOutputOnFrameEnd(Camera_VideoOutput* videoOutput, int32_t frameCount)

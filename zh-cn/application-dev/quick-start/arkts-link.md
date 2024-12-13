@@ -3,6 +3,7 @@
 
 子组件中被\@Link装饰的变量与其父组件中对应的数据源建立双向数据绑定。
 
+在阅读\@Link文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。
 
 > **说明：**
 >
@@ -20,7 +21,7 @@
 | \@Link变量装饰器                                             | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无                                                           |
-| 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
+| 同步类型                                                     | 双向同步。<br/>父组件中的状态变量可以与子组件\@Link建立双向同步，当其中一方改变时，另外一方能够感知到变化。 |
 | 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
@@ -478,7 +479,7 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
+struct MapSample {
   @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
@@ -532,7 +533,7 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample1 {
+struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {
@@ -612,7 +613,7 @@ struct Child {
           this.name = "Bob"
         })
 
-      Button('Child change animal to undefined')
+      Button('Child change name to undefined')
         .onClick(() => {
           this.name = undefined
         })
@@ -656,11 +657,11 @@ struct Index {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
@@ -676,43 +677,43 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum.c })
+      LinkChild({ testNum: this.info.age })
     }
   }
 }
 ```
 
-\@Link testNum: number从父组件的LinkChild({testNum:this.testNum.c})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: ClassA，从父组件初始化的方式为LinkChild({testNum: this.testNum})
+\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，比如\@Link: T和\@State : T。所以，这里应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})
 
 【正例】
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public age: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(age: number) {
+    this.age = age;
   }
 }
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA;
+  @Link testNum: Info;
 
   build() {
-    Text(`LinkChild testNum ${this.testNum?.c}`)
+    Text(`LinkChild testNum ${this.testNum?.age}`)
       .onClick(() => {
-        this.testNum.c += 1;
+        this.testNum.age += 1;
       })
   }
 }
@@ -720,16 +721,16 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA = new ClassA(1);
+  @State info: Info = new Info(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum.c}`)
+      Text(`Parent testNum ${this.info.age}`)
         .onClick(() => {
-          this.testNum.c += 1;
+          this.info.age += 1;
         })
       // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.testNum })
+      LinkChild({ testNum: this.info })
     }
   }
 }
@@ -855,72 +856,6 @@ struct Child {
           this.changeScore2(score2);
         })
     }
-  }
-}
-```
-
-### \@State放在build后定义时初始化\@Link报错
-
-当\@State变量放在build函数后定义，用来初始化\@Link变量时，会被识别为常量，而\@Link变量不能被常量初始化，所以会造成编译报错。
-
-【反例】
-
-```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Column() {
-      child({ count: this.count })
-      Button(`click times: ${this.count}`)
-        .onClick(() => {
-          this.count += 1;
-        })
-    }
-  }
-  // 在build函数之后定义@State变量
-  @State count: number = 0;
-}
-
-@Component
-struct child {
-  @Link count: number;
-
-  build() {
-    Text(`cout: ${this.count}`).fontSize(30)
-  }
-}
-```
-
-![State-After-Build](figures/State-After-Build.png)
-
-正确的写法，可以把\@State变量放在build函数前定义。
-
-【正例】
-
-```ts
-@Entry
-@Component
-struct Index {
-  @State count: number = 0;
-
-  build() {
-    Column() {
-      child({ count: this.count })
-      Button(`click times: ${this.count}`)
-        .onClick(() => {
-          this.count += 1;
-        })
-    }
-  }
-}
-
-@Component
-struct child {
-  @Link count: number;
-
-  build() {
-    Text(`cout: ${this.count}`).fontSize(30)
   }
 }
 ```

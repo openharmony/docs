@@ -72,6 +72,7 @@
 | [OH_NativeXComponent_RegisterMouseEventCallback](#oh_nativexcomponent_registermouseeventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;[OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)&nbsp;\*callback) | 为此OH_NativeXComponent实例注册鼠标事件回调。       |
 | [OH_NativeXComponent_RegisterFocusEventCallback](#oh_nativexcomponent_registerfocuseventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册获焦事件回调。       |
 | [OH_NativeXComponent_RegisterKeyEventCallback](#oh_nativexcomponent_registerkeyeventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册按键事件回调。       |
+| [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。       |
 | [OH_NativeXComponent_RegisterBlurEventCallback](#oh_nativexcomponent_registerblureventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册失焦事件回调。       |
 | [OH_NativeXComponent_GetKeyEvent](#oh_nativexcomponent_getkeyevent)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;[OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*\*keyEvent) | 获取ArkUI&nbsp;XComponent调度的按键事件。        |
 | [OH_NativeXComponent_GetKeyEventAction](#oh_nativexcomponent_getkeyeventaction)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;[OH_NativeXComponent_KeyAction](#oh_nativexcomponent_keyaction)&nbsp;\*action) | 获取传入按键事件的动作。                           |
@@ -92,6 +93,7 @@
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | 获取ArkUI XComponent触摸事件的输入设备类型。  |
 | [OH_NativeXComponent](#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。  |
 | int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle); |  |
+| int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。  | 
 
 ### 变量
 
@@ -727,16 +729,16 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| root | 指向Native接口创建的组件实例的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| root | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
 0：成功。 
 
-401：参数异常。
+-2：参数异常。
 
 
 ### OH_NativeXComponent_DetachNativeRootNode()
@@ -752,16 +754,16 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| root | 指向Native接口创建的组件实例的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| root | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
 0：成功。 
 
-401：参数异常。
+-2：参数异常。
 
 
 
@@ -960,9 +962,9 @@ OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent (ArkUI_NodeHandle n
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| node | 指向Native接口创建的组件实例的指针。  | 
+| node | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
@@ -1371,6 +1373,54 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * comp
 
 10
 
+### OH_NativeXComponent_RegisterKeyEventCallbackWithResult()
+
+```
+int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult (OH_NativeXComponent * component, bool(*)(OH_NativeXComponent *component, void *window) callback )
+```
+**描述：**
+
+为此OH_NativeXComponent实例注册有返回值的按键事件回调。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  | 
+| callback | 表示指向有返回值的按键事件回调的指针。  | 
+
+**返回：**
+
+返回执行的状态代码。 OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 回调函数注册成功。 OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 传入参数异常。
+
+
+### OH_NativeXComponent_RegisterKeyEventCallbackWithResult()
+
+```
+int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult (OH_NativeXComponent * component, bool(*callback)(OH_NativeXComponent *component, void *window))
+```
+
+**描述:**
+
+为此OH_NativeXComponent实例注册带有返回值的按键事件回调。通过此接口注册的按键事件回调都必须返回一个结果，即true或false。当返回值为true时，该事件将不会继续分发；当返回值为false时，该事件将按照事件处理流程继续分发。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| callback  | 指示指向按键事件回调的指针。                |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+14
+
 
 ### OH_NativeXComponent_RegisterMouseEventCallback()
 
@@ -1412,6 +1462,8 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* compon
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
 | callback | 指示指向显示更新回调的指针。  |
+| timestamp | 当前帧到达的时间（单位：纳秒）。 |
+| targetTimestamp | 下一帧预期到达的时间（单位：纳秒）。 |
 
 **返回：**
 
@@ -1434,10 +1486,10 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback (OH_NativeXComponen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| callback | 指示指向自定义事件拦截回调的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| callback | 指示指向自定义事件拦截回调的指针。  |
 
 **返回：**
 
@@ -1456,11 +1508,11 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback (OH_NativeXComponent * 
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| callback | 指示指向UI输入事件回调的指针。  | 
-| type | 指示当前UI输入事件的类型。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| callback | 指示指向UI输入事件回调的指针。  |
+| type | 指示当前UI输入事件的类型。  |
 
 **返回：**
 
@@ -1547,7 +1599,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。
+为此OH_NativeXComponent实例注册surface显示回调，该回调在应用窗口已经回到前台时触发。
 
 **参数:**
 
@@ -1572,7 +1624,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。
+为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用窗口已经进入后台时触发。
 
 **参数:**
 
@@ -1760,6 +1812,13 @@ void(* OH_NativeXComponent_MouseEvent_Callback::DispatchMouseEvent) (OH_NativeXC
 
 当鼠标事件被触发时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1880,6 +1939,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceChanged) (OH_NativeXComponent *com
 
 当surface改变时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1895,6 +1961,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceCreated) (OH_NativeXComponent *com
 
 创建surface时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1909,6 +1982,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceDestroyed) (OH_NativeXComponent *c
 **描述:**
 
 当surface被销毁时调用。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
 
 **起始版本：**
 

@@ -1,4 +1,4 @@
-# @ohos.hiAppEvent (HiAppEvent)
+# @ohos.hiAppEvent (Application Event Logging)
 
 The **hiAppEvent** module provides the application event logging functions, such as writing application events to the event file and managing the event logging configuration.
 

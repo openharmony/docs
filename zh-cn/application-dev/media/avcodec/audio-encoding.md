@@ -177,7 +177,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    <!--RP3--><!--RP3End-->
 
    对于44100Hz采样率、2声道立体声、SAMPLE_S16LE采样格式的PCM音频，以32000bps的码率进行AAC编码的调用流程如下：
-
+    <!--RP4-->
     ```cpp
     int32_t ret;
     // 配置音频采样率（必须）
@@ -190,10 +190,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // 配置音频位深（必须）
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
-    // 配置音频compliance level (默认值0，取值范围-2~2)
-    constexpr int32_t COMPLIANCE_LEVEL = 0;
-    // 配置音频精度（必须） SAMPLE_S16LE
-    constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S16LE;
     // 每20ms一帧音频数据
     constexpr float TIME_PER_FRAME = 0.02;
     // 配置最大输入长度, 每帧音频数据的大小（可选）
@@ -212,7 +208,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-
+    <!--RP4End-->
     例FLAC调用流程：
 
     ```cpp
@@ -275,7 +271,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
    aac： 每帧样点数(SAMPLES_PER_FRAME)建议使用20ms的PCM样点数，即采样率*0.02。
 
@@ -321,6 +316,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
+   在上方案例中，attr.flags代表缓冲区标记的类别。  
+   如果是结束，需要将flags标识成AVCODEC_BUFFER_FLAGS_EOS。
+   | 枚举值 | 描述 | 
+   | -------- | -------- |
+   | AVCODEC_BUFFER_FLAGS_NONE | 表示为普通帧。 | 
+   | AVCODEC_BUFFER_FLAGS_EOS | 表示缓冲区是流结束帧。 | 
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 表示缓冲区包含编解码特定数据。 | 
 
 8. 调用OH_AudioCodec_FreeOutputBuffer()，输出编码格式码流。
 

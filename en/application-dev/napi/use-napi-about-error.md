@@ -142,7 +142,7 @@ static napi_value CreatRangeError(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "napi_create_error errorCode", NAPI_AUTO_LENGTH, &errorCode);
     napi_value errorMessage = nullptr;
     napi_create_string_utf8(env, "napi_create_error errorMessage", NAPI_AUTO_LENGTH, &errorMessage);
-    // Call napi_create_range_error to create a rangeError object.
+    // Call napi_create_range_error to create a typeError object.
     napi_value error = nullptr;
     napi_create_range_error(env, errorCode, errorMessage, &error);
     return error;
@@ -174,9 +174,7 @@ Use **napi_create_error** to create an ArkTS error object with text information.
 
 ### napi_throw
 
-Use **napi_throw** to throw an ArkTS exception. You need to create an error object first and pass it to **napi_throw**. 
-
-You can use this API to throw an ArkTS exception that indicates an error or unexpected behavior occurred in the native code so that exception can be captured and handled.
+Use **napi_throw** to throw an ArkTS exception. You need to create an error object first and pass it to **napi_throw**. You can use this API to throw an ArkTS exception that indicates an error or unexpected behavior occurred in the native code so that exception can be captured and handled.
 
 CPP code:
 
@@ -340,7 +338,7 @@ try {
 
 ### napi_throw_range_error
 
-Use **napi_throw_range_error** to throw an ArkTS **RangeError** with text information.
+Use **napi_create_range_error** to create an ArkTS **RangeError** with text information.
 
 CPP code:
 

@@ -130,7 +130,6 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 5. Use **restore()** to restore the KV store.
      
    ```ts
-   let backupFile = 'BK001';
    try {
      kvStore.restore(backupFile, (err) => {
        if (err) {
@@ -148,7 +147,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 6. Use **deleteBackup()** to delete the backup file to release storage space.
      
    ```ts
-   let files = ['BK001'];
+   let files = [backupFile];
    try {
      kvStore.deleteBackup(files).then((data) => {
        console.info(`Succeed in deleting Backup. Data:filename is ${data[0]},result is ${data[1]}.`);

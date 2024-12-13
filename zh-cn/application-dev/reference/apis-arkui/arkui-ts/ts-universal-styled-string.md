@@ -978,15 +978,15 @@ constructor(value?: ParagraphStyleInterface)
 | LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
 | LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。|
 | TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
-| BACKGROUND_COLOR<sup>13+</sup> | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle13)所属键。|
-| URL<sup>13+</sup> | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle13)所属键。|
+| BACKGROUND_COLOR<sup>14+</sup> | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14)所属键。|
+| URL<sup>14+</sup> | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle14)所属键。|
 | GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
 | PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
 | IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
 | CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
 | USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
 
-## BackgroundColorStyle<sup>13+</sup>
+## BackgroundColorStyle<sup>14+</sup>
 
 文本背景颜色对象说明。
 
@@ -994,7 +994,7 @@ constructor(value?: ParagraphStyleInterface)
 
 ### 属性
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1002,11 +1002,11 @@ constructor(value?: ParagraphStyleInterface)
 | ------------ |---------------------| ---- | ---- | ------ |
 | textBackgroundStyle  |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明)  |  是  |  是  | 获取属性字符串的文本背景颜色。<br />默认值：<br />{<br /> color: Color.Transparent,<br />  radius: 0<br />} |
 
-### constructor<sup>13+</sup>
+### constructor<sup>14+</sup>
 
 constructor(textBackgroundStyle: TextBackgroundStyle)
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1016,7 +1016,7 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | textBackgroundStyle |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 是   | 文本背景色设置项。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
-## UrlStyle<sup>13+</sup>
+## UrlStyle<sup>14+</sup>
 
 超链接对象说明。
 
@@ -1026,7 +1026,7 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 
 ### 属性
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1034,11 +1034,11 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 | ------------ |---------------------| ---- | ---- | ------ |
 | url  | string |  是  |  是  | 获取属性字符串的超链接内容。 |
 
-### constructor<sup>13+</sup>
+### constructor<sup>14+</sup>
 
 constructor(url: string)
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1050,9 +1050,9 @@ constructor(url: string)
 
 ## 示例
 
-### 示例1
+### 示例1（属性字符串处理）
 
-属性字符串接口基本使用示例
+该示例通过insertString、removeStyles、replaceStyle、getStyles接口实现属性字符串的插入、删除、替换、查看。
 
 ```ts
 // xxx.ets
@@ -1216,9 +1216,9 @@ struct styled_string_demo1 {
 
 ![](figures/styledstring_1.PNG)
 
-### 示例2
+### 示例2（设置事件）
 
-属性字符串支持事件接口示例
+该示例通过styledKey、styledValue接口实现属性字符串绑定事件。
 
 ```ts
 // xxx.ets
@@ -1304,9 +1304,9 @@ struct styled_string_demo2 {
 
 ![](figures/styledstring_2.png)
 
-### 示例3
+### 示例3（设置文本样式）
 
-属性字符串支持文本样式接口示例
+该示例通过getStyles、setStyle接口实现属性字符串查询和设置样式。
 
 ```ts
 // xxx.ets
@@ -1490,9 +1490,9 @@ struct styled_string_demo3 {
 ```
 ![](figures/styledstring_3.png)
 
-### 示例4
+### 示例4（设置图片）
 
-属性字符串图片接口使用示例
+该示例通过ImageAttachment接口实现属性字符串设置图片。
 
 ```ts
 // xxx.ets
@@ -1619,9 +1619,9 @@ struct styled_string_demo4 {
 
 ![](figures/styledstring_4.png)
 
-### 示例5
+### 示例5（设置文本行高和段落样式）
 
-属性字符串LineHeightStyle、ParagraphStyle使用示例
+该示例通过LineHeightStyle、ParagraphStyle接口实现属性字符串设置文本行高和段落样式。
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
@@ -1765,9 +1765,9 @@ struct Index {
 
 ![](figures/styledstring_5.png)
 
-### 示例6
+### 示例6（设置自定义绘制Span）
 
-属性字符串自定义绘制Span使用示例
+该示例通过CustomSpan接口实现属性字符串设置自定义绘制Span。
 
 ```ts
 // xxx.ets
@@ -1892,9 +1892,9 @@ struct styled_string_demo6 {
 
 ![](figures/styledstring_6.gif)
 
-### 示例7
+### 示例7（支持存储自定义扩展信息）
 
-属性字符串UserDataSpan使用示例
+该示例通过UserDataSpan接口实现属性字符串支持存储自定义扩展信息的功能。
 
 ```ts
 // xxx.ets
@@ -1944,9 +1944,9 @@ struct styled_string_demo7 {
 ![](figures/styledstring_7.gif)
 
 
-### 示例8
+### 示例8（支持转换HTML格式字符串）
 
-属性字符串toHtml、fromHtml使用示例
+该示例通过toHtml、fromHtml接口实现属性字符串与HTML格式字符串的相关转换。
 
 ```ts
 // xxx.ets
@@ -2017,7 +2017,40 @@ struct styled_string_demo8 {
 }
 ```
 
-![](figures/styledstring_8.gif)
+![](figures/styledString_8.gif)
+
+
+### 示例9（设置超链接）
+
+该示例通过UrlStyle接口，实现了对属性字符串中超链接设置的支持。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct styled_string {
+  urlString: StyledStringValue = new UrlStyle( "https://www.example.com" );
+  mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
+    start: 0,
+    length: "Hello".length,
+    styledKey: StyledStringKey.URL,
+    styledValue: this.urlString
+  }]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString)
+  }
+  build() {
+    Column() {
+      Column() {
+        Text(undefined, { controller: this.controller }).key('mutableStyledString').fontSize(30)
+      }
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![](figures/styledString_9.gif)
 
 
 

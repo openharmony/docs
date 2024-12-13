@@ -716,7 +716,7 @@ isAttached(): boolean
 
 getInspectorInfo(): Object
 
-获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
+获取节点的结构信息，该信息和DevEco Studio内置<!--RP1-->ArkUI Inspector<!--RP1End-->工具里面的一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -908,6 +908,26 @@ LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点
 **示例：**
 
 请参考[基础事件示例](#基础事件示例)和[LazyForEach场景基础事件使用示例](#lazyforeach场景基础事件使用示例)。
+
+### gestureEvent<sup>14+</sup>
+
+get gestureEvent(): UIGestureEvent
+
+获取FrameNode中持有的UIGestureEvent对象，用于设置组件绑定的手势事件。通过gestureEvent接口设置的手势不会覆盖通过[声明式手势接口](./arkui-ts/ts-gesture-settings.md)绑定的手势，两者同时设置了手势时，优先回调声明式接口设置的手势事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                                                             |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#设置组件绑定的手势) | UIGestureEvent对象，用于设置组件绑定的手势。 |
+
+**示例：**
+
+请参考[手势事件示例](#手势事件示例)。
 
 ### onDraw<sup>12+</sup>
 
@@ -1402,7 +1422,9 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 | ------------------ | ------------------ |
 | [Text](#text12) | Text类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Text');
@@ -1443,7 +1465,9 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 | ------------------ | ------------------ |
 | [Column](#column12) | Column类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Column');
@@ -1483,7 +1507,9 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 | ------------------ | ------------------ |
 | [Row](#row12) | Row类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Row');
@@ -1523,7 +1549,9 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 | ------------------ | ------------------ |
 | [Stack](#stack12) | Stack类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Stack');
@@ -1563,7 +1591,9 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 | ------------------ | ------------------ |
 | [GridRow](#gridrow12) | GridRow类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'GridRow');
@@ -1603,7 +1633,9 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 | ------------------ | ------------------ |
 | [GridCol](#gridcol12) | GridCol类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'GridCol');
@@ -1643,7 +1675,9 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 | ------------------ | ------------------ |
 | [Flex](#flex12) | Flex类型的FrameNode节点。 |
 
-**示例：**
+**示例： **
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Flex');
@@ -1683,7 +1717,9 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 | ------------------ | ------------------ |
 | [Swiper](#swiper12) | Swiper类型的FrameNode节点。 |
 
-**示例：**
+**示例： ** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Swiper');
@@ -1803,7 +1839,9 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 | ------------------ | ------------------ |
 | [RelativeContainer](#relativecontainer12) | RelativeContainer类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'RelativeContainer');
@@ -1843,7 +1881,9 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 | ------------------ | ------------------ |
 | [Divider](#divider12) | Divider类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Divider');
@@ -1883,7 +1923,9 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 | ------------------ | ------------------ |
 | [LoadingProgress](#loadingprogress12) | LoadingProgress类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'LoadingProgress');
@@ -1923,7 +1965,9 @@ createNode(context: UIContext, nodeType: 'Search'): Search
 | ------------------ | ------------------ |
 | [Search](#search12) | Search类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Search');
@@ -1963,7 +2007,9 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank;
 | ------------------ | ------------------ |
 | [Blank](#blank12) | Blank类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Blank');
@@ -2003,7 +2049,9 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 | ------------------ | ------------------ |
 | [Image](#image12) | Image类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Image');
@@ -2043,7 +2091,9 @@ createNode(context: UIContext, nodeType: 'List'): List
 | ------------------ | ------------------ |
 | [List](#list12) | List类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'List');
@@ -2083,7 +2133,9 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 | ------------------ | ------------------ |
 | [ListItem](#listitem12) | ListItem类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'ListItem');
@@ -2124,7 +2176,9 @@ createNode(context: UIContext, nodeType: 'TextInput'): TextInput
 | ------------------ | ------------------ |
 | [TextInput](#textinput12) | TextInput类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'TextInput');
@@ -2165,7 +2219,9 @@ createNode(context: UIContext, nodeType: 'Button'): Button
 | ------------------ | ------------------ |
 | [Button](#button12) | Button类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Button');
@@ -2206,7 +2262,9 @@ createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
 | ------------------ | ------------------ |
 | [ListItemGroup](#listitemgroup12) | ListItemGroup类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'ListItemGroup');
@@ -2247,7 +2305,9 @@ createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 | ------------------ | ------------------ |
 | [WaterFlow](#waterflow12) | WaterFlow类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'WaterFlow');
@@ -2288,7 +2348,9 @@ createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
 | ------------------ | ------------------ |
 | [FlowItem](#flowitem12) | FlowItem类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'FlowItem');
@@ -2329,7 +2391,9 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 | ------------------ | ------------------ |
 | [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'XComponent');
@@ -2358,7 +2422,9 @@ createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOption
 | ------------------ | ------------------ |
 | [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 let controller: XComponentController = new XComponentController();
@@ -2445,7 +2511,9 @@ createNode(context: UIContext, nodeType: 'Badge'): Badge
 | ------------------ | ------------------ |
 | [Badge](#badge13) | Badge类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Badge');
@@ -2486,7 +2554,9 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 | ------------------ | ------------------ |
 | [Grid](#grid13) | Grid类型的FrameNode节点。 |
 
-**示例：**
+**示例： ** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Grid');
@@ -2527,7 +2597,9 @@ createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 | ------------------ | ------------------ |
 | [GridItem](#griditem13) | GridItem类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'GridItem');
@@ -2568,7 +2640,9 @@ createNode(context: UIContext, nodeType: 'TextClock'): TextClock
 | ------------------ | ------------------ |
 | [TextClock](#textclock13) | TextClock类型的FrameNode节点。 |
 
-**示例：**
+**示例： ** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'TextClock');
@@ -2609,7 +2683,9 @@ createNode(context: UIContext, nodeType: 'TextTimer'): TextTimer
 | ------------------ | ------------------ |
 | [TextTimer](#texttimer13) | TextTimer类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'TextTimer');
@@ -2650,7 +2726,9 @@ createNode(context: UIContext, nodeType: 'Marquee'): Marquee
 | ------------------ | ------------------ |
 | [Marquee](#marquee13) | Marquee类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Marquee');
@@ -2691,7 +2769,9 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 | ------------------ | ------------------ |
 | [TextArea](#textarea13) | TextArea类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'TextArea');
@@ -2732,7 +2812,9 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 | ------------------ | ------------------ |
 | [SymbolGlyph](#symbolglyph13) | SymbolGlyph类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'SymbolGlyph');
@@ -2773,7 +2855,9 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 | ------------------ | ------------------ |
 | [Checkbox](#checkbox13) | Checkbox类型的FrameNode节点。 |
 
-**示例：**
+**示例： ** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Checkbox');
@@ -2814,7 +2898,9 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 | ------------------ | ------------------ |
 | [CheckboxGroup](#checkboxgroup13) | CheckboxGroup类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'CheckboxGroup');
@@ -2855,7 +2941,9 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 | ------------------ | ------------------ |
 | [Rating](#rating13) | Rating类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Rating');
@@ -2896,7 +2984,9 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 | ------------------ | ------------------ |
 | [Radio](#radio13) | Radio类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Radio');
@@ -2937,7 +3027,9 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 | ------------------ | ------------------ |
 | [Slider](#slider13) | Slider类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Slider');
@@ -2978,7 +3070,9 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 | ------------------ | ------------------ |
 | [Select](#select13) | Select类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Select');
@@ -3020,7 +3114,9 @@ createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Tog
 | ------------------ | ------------------ |
 | [Toggle](#toggle13) | Toggle类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 let toggleOptions: ToggleOptions = {type: ToggleType.Button, isOn: false};
@@ -4208,6 +4304,73 @@ export class TrackManager {
 
   dump(): void {
     this.rootTrack?.dump(0)
+  }
+}
+```
+## 手势事件示例
+```ts
+import { NodeController, FrameNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.rootNode.commonAttribute.width(100)
+      .overlay('This is a FrameNode')
+      .backgroundColor(Color.Pink)
+      .width('100%')
+      .height('100%');
+    this.addGestureEvent(this.rootNode);
+    return this.rootNode;
+  }
+
+  addGestureEvent(frameNode: FrameNode) {
+    frameNode.gestureEvent.addGesture(new PanGestureHandler()
+        .onActionStart((event: GestureEvent) => {
+            console.log(`Pan start: ${JSON.stringify(event)}`);
+        })
+        .onActionUpdate((event: GestureEvent) => {
+            console.log(`Pan update: ${JSON.stringify(event)}`);
+        })
+        .onActionEnd((event: GestureEvent) => {
+            console.log(`Pan end: ${JSON.stringify(event)}`);
+        })
+        .onActionCancel(() => {
+            console.log('Pan cancel');
+        })
+    )
+    frameNode.gestureEvent.addGesture(new LongPressGestureHandler()
+        .onAction((event: GestureEvent) => {
+            console.log(`Long press action: ${JSON.stringify(event)}`);
+        })
+        .onActionEnd((event: GestureEvent) => {
+            console.log(`Long press action end: ${JSON.stringify(event)}`);
+        })
+        .onActionCancel(() => {
+            console.log('Long press cancel');
+        })
+    )
+    frameNode.gestureEvent.addGesture(new TapGestureHandler()
+        .onAction((event: GestureEvent) => {
+            console.log(`Tap action: ${JSON.stringify(event)}`);
+        })
+    )
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+        .width(300)
+        .height(300)
+    }.width("100%")
   }
 }
 ```

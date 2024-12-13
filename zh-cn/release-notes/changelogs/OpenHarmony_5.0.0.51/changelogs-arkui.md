@@ -207,7 +207,7 @@ ImageAttributeModifier不支持new方式创建ColorFilter对象传入colorFilter
 
 **起始API Level**
 
-API 14
+API 9
 
 **变更发生版本**
 
@@ -297,7 +297,7 @@ API version 14及以后，使用drawImage接口时，若传入9个参数，且�
 **示例**
 
 ```ts
-import image from '@ohos.multimedia.image'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component
@@ -323,6 +323,81 @@ struct Demo {
     }
     .width('100%')
     .height('100%')
+  }
+}
+```
+
+## cl.arkui.4  空格/回车响应按键事件行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+空格键和回车键能够默认触发获焦组件的点击事件。即便当前界面未进入焦点激活状态（即未显示焦点框），这些按键依然会触发相应的事件。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+影响范围：依赖空格键/回车键响应点击事件的应用；
+
+- 变更前：组件获焦，无需进入焦点激活态，空格/回车可以触发点击事件。
+- 变更后：组件获焦且界面进入焦点激活态，空格/回车才可以触发点击事件。
+
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.51 版本开始。
+
+**变更的接口/组件**
+
+不涉及
+
+**适配指导**
+
+适配的场景仅限于在非走焦态响应点击事件。适配方案是在原本绑定点击事件的组件上新绑定按键事件，而按键事件的触发不依赖于走焦状态。示例如下：
+
+**示例**
+
+```ts
+import { KeyCode } from '@kit.InputKit';
+
+@Entry
+@Component
+struct KeyEventExample {
+  @State text1: string = "can not respond event"
+  @State text2: string = "can not respond event"
+
+  build() {
+    Column() {
+      Text(this.text1)
+      // Button中仅包含onClick事件，在非走焦态的时，即使Button获焦，空格键和回车键依然不响应onClick事件。
+      Button('KeyEvent')
+        .onClick(() => {
+          this.text1 = 'respond click event'
+        })
+      Text(this.text2)
+      // 若需要在非走焦态下，Button获焦且空格键或回车键能够响应，需要通过增加onKeyEvent事件来触发。
+      Button('KeyEvent')
+        .onClick(() => {
+          this.text2 = 'respond click event'
+        })
+        .onKeyEvent((event?: KeyEvent) => {
+          if (event && event.type == KeyType.Down &&
+            (event.keyCode == KeyCode.KEYCODE_ENTER || event.keyCode == KeyCode.KEYCODE_NUMPAD_ENTER ||
+              event.keyCode == KeyCode.KEYCODE_SPACE)) {
+            this.text2 = 'respond onKeyEvent event'
+            return true
+          }
+          return false
+        })
+    }
   }
 }
 ```

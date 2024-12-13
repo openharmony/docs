@@ -76,7 +76,7 @@ struct Index {
 
 当一系列同步任务需要使用同一个句柄调度，或者需要依赖某个类对象调度，无法在不同任务池之间共享时，需要使用Worker。
 
-1. 在主线程中创建Worker对象，同时接收Worker线程发送回来的消息。DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息。
+1. 在UI主线程中创建Worker对象，同时接收Worker线程发送回来的消息。DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 > New > Worker，即可自动生成Worker的模板文件及配置信息。
 
     ```ts
     // Index.ets

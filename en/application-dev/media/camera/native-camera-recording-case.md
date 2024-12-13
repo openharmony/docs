@@ -1,5 +1,7 @@
 # Video Recording Sample (C/C++)
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 This topic provides sample code that covers the complete video recording process and the API calling sequence. For details about a single process (such as device input, session management, and video recording), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
 ## Development Process

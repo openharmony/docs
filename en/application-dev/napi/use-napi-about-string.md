@@ -16,6 +16,7 @@ As a common data type in programming, string is a sequence of characters used to
 ## Available APIs
 
 The following table lists the APIs provided by the Node-API module for creating and obtaining strings.
+
 | API| Description|
 | -------- | -------- |
 | napi_get_value_string_utf8 | Obtains a UTF8-encoded string from an ArkTS value.|
@@ -37,7 +38,7 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
-#include <string>
+#include <cstring>
 
 static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info) 
 {
@@ -45,15 +46,22 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    std::string buf;
+    // Obtain the length of the string.
     size_t length = 0;
-    napi_status status = napi_get_value_string_utf8(env, args[0], (char*)buf.c_str(), NAPI_AUTO_LENGTH, &length);
+    napi_status status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &length);
     // napi_string_expected will be returned for non-string inputs.
-    if (status == napi_string_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
-    napi_value result;
-    napi_create_string_utf8(env, buf.c_str(), length, &result);
+    char* buf = new char[length + 1];
+    std::memset(buf, 0, length + 1);
+    napi_get_value_string_utf8(env, args[0], buf, length + 1, &length);
+    napi_value result = nullptr;
+    status = napi_create_string_utf8(env, buf, length, &result);
+    delete buf;
+    if (status != napi_ok) {
+        return nullptr;
+    };
     return result;
 }
 ```

@@ -49,6 +49,10 @@ WaterFlow(options?:  WaterFlowOptions)
 
 瀑布流分组信息。
 
+> **说明：**
+>
+> 使用splice、push、update修改分组信息后需要保证所有分组子节点总数与瀑布流实际子节点总数一致，否则会出现瀑布流因为不能正常布局而无法滑动的问题。
+
 ### constructor
 
 constructor()
@@ -490,8 +494,8 @@ onScrollIndex(event: (first: number, last: number) => void)
 
 ## 示例
 
-### 示例1
-WaterFlow的基本使用。
+### 示例1（使用基本瀑布流）
+该示例展示了WaterFlow组件数据加载处理、属性设置和事件回调等基本使用场景。
 ```ts
 // WaterFlowDataSource.ets
 
@@ -724,10 +728,10 @@ struct WaterFlowDemo {
 
 ![zh-cn_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
 
-### 示例2
-auto-fill的使用。
+### 示例2（自动计算列数）
+该示例通过auto-fill实现了自动计算列数的效果。
 ```ts
-//index.ets
+// Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
@@ -788,8 +792,9 @@ struct WaterFlowDemo {
 ![waterflow_auto-fill.png](figures/waterflow_auto-fill.png)
 
 
-### 示例3
-WaterFlowSections的使用。
+### 示例3（使用分组）
+该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。
+如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#waterflow)。
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
@@ -1004,9 +1009,8 @@ struct WaterFlowDemo {
 
 ![waterflowSections.png](figures/waterflowSections.png)
 
-### 示例4
-双指缩放改变列数。
-
+### 示例4（双指缩放改变列数）
+该示例通过[priorityGesture](ts-gesture-settings.md)和[PinchGesture](ts-basic-gestures-pinchgesture.md)实现了双指缩放改变列数效果。
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
@@ -1122,11 +1126,10 @@ struct WaterFlowDemo {
 
 ![pinch](figures/waterflow-pinch.gif)
 
-### 示例5
-
+### 示例5（设置边缘渐隐效果）
+该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
 ```ts
-//index.ets
-//该示例实现了WaterFlow组件开启边缘渐隐效果并设置边缘渐隐长度
+// Index.ets
 import { LengthMetrics } from '@kit.ArkUI'
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 @Entry

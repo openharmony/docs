@@ -3,6 +3,9 @@
 
 为了增强子组件接受外部参数输入的能力，开发者可以使用\@Param装饰器。
 
+
+\@Param不仅可以接受组件外部输出，还可以接受\@Local的同步变化。在阅读本文档前，建议提前阅读：[\@Local](./arkts-new-local.md)。
+
 > **说明：**
 >
 > 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Param装饰器。
@@ -355,13 +358,13 @@ struct Child {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct MyComponent {
     @Param message: string = "Hello World"; // 正确用法
     build() {
     }
   }
   @Component
-  struct CompB {
+  struct TestComponent {
     @Param message: string = "Hello World"; // 错误用法，编译时报错
     build() {
     }
@@ -372,7 +375,7 @@ struct Child {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct ChildComponent {
     @Param param1: string = "Initialize local";
     @Param param2: string = "Initialize local and put in";
     @Require @Param param3: string;
@@ -387,11 +390,11 @@ struct Child {
   }
   @Entry
   @ComponentV2
-  struct CompB {
+  struct MyComponent {
     @Local message: string = "Put in";
     build() {
       Column() {
-        CompA({
+        ChildComponent({
           param2: this.message,
           param3: this.message
         })

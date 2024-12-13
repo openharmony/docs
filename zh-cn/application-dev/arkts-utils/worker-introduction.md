@@ -1,6 +1,6 @@
 # Worker简介
 
-Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与主线程分离，在后台线程中运行一个脚本进行耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞主线程的运行。具体接口信息及使用方法详情请见[Worker](../reference/apis-arkts/js-apis-worker.md)。
+Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与宿主线程分离，在后台线程中运行一个脚本进行耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞宿主线程的运行。具体接口信息及使用方法详情请见[Worker](../reference/apis-arkts/js-apis-worker.md)。
 
 
 ## Worker运作机制
@@ -19,9 +19,8 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - Worker创建后需要手动管理生命周期，且最多同时运行的Worker子线程数量为64个，详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 由于不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
 - 序列化传输的数据量大小限制为16MB。
-- 使用Worker模块时，需要在主线程中注册onerror接口，否则当Worker线程出现异常时会发生jscrash问题。
+- 使用Worker模块时，需要在宿主线程中注册onerror接口，否则当Worker线程出现异常时会发生jscrash问题。
 - 不支持跨HAP使用Worker线程文件。
-- 创建Worker对象时仅允许加载本模块下存在的Worker线程文件，不支持加载其他模块的Worker线程文件。若依赖其他模块提供的Worker功能，需要将Worker实现的整套逻辑封装到方法中，将方法导出后供其他模块使用。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
 - 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
 
@@ -72,6 +71,7 @@ const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/
 // API 8及之前版本使用：
 const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets');
 ```
+
 
 #### Stage模型下的文件路径规则
 
@@ -130,6 +130,7 @@ const workerStage4: worker.ThreadWorker = new worker.ThreadWorker('@har/ets/work
 const workerStage5: worker.ThreadWorker = new worker.ThreadWorker('../../workers/worker.ets');
 ```
 
+
 #### FA模型下的文件路径规则
 
   构造函数中的scriptURL为：Worker线程文件与"{moduleName}/src/main/ets/MainAbility"的相对路径。
@@ -150,10 +151,298 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/worke
 ```
 
 
-
 ### 生命周期注意事项
 
 - Worker的创建和销毁耗费性能，建议开发者合理管理已创建的Worker并重复使用。Worker空闲时也会一直运行，因此当不需要Worker时，可以调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)接口或[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
 
 
 - Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小者。在内存允许的情况下，系统最多可以同时运行64个Worker。如果尝试创建的Worker数量超出这一上限，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况动态调整。一旦所有Worker和主线程的累积内存占用超过了设定的阈值，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。
+
+
+## 跨har包加载Worker
+
+1. 创建har详情参考[开发静态共享包](../quick-start/har-package.md)。
+
+2. 在har中创建Worker线程文件相关内容。
+
+   ```ts
+   // worker.ets
+   workerPort.onmessage = (e: MessageEvents) => {
+     console.info("worker thread receive message: ", e.data);
+     workerPort.postMessage('worker thread post message to main thread');
+   }
+   ```
+
+3. 在entry模块的oh-package.json5文件中配置har包的依赖。
+
+   ```ts
+   // 在entry模块配置har包的依赖
+   {
+     "name": "entry",
+     "version": "1.0.0",
+     "description": "Please describe the basic information.",
+     "main": "",
+     "author": "",
+     "license": "",
+     "dependencies": {
+       "har": "file:../har"
+     }
+   }
+   ```
+
+4. 在entry模块中加载har包中的Worker线程文件。
+
+   ```ts
+   // Index.ets
+   import { worker } from '@kit.ArkTS';
+
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+
+     build() {
+       RelativeContainer() {
+         Text(this.message)
+           .id('HelloWorld')
+           .fontSize(50)
+           .fontWeight(FontWeight.Bold)
+           .alignRules({
+             center: { anchor: '__container__', align: VerticalAlign.Center },
+             middle: { anchor: '__container__', align: HorizontalAlign.Center }
+           })
+           .onClick(() => {
+             // 通过@标识路径加载形式，加载har中Worker线程文件
+             let workerInstance = new worker.ThreadWorker('@har/ets/workers/worker.ets');
+             workerInstance.onmessage = () => {
+               console.info('main thread onmessage');
+             };
+             workerInstance.postMessage('hello world');
+           })
+       }
+       .height('100%')
+       .width('100%')
+     }
+   }
+   ```
+
+
+## 多级Worker生命周期管理
+由于支持创建多级Worker（即通过父Worker创建子Worker的机制形成层级线程关系），且Worker线程生命周期由用户自行管理，因此需要注意多级Worker生命周期的正确管理。若用户销毁父Worker时未能结束其子Worker的运行，会产生不可预期的结果。建议用户确保子Worker的生命周期始终在父Worker生命周期范围内，并在销毁父Worker前先销毁所有子Worker。
+
+
+### 推荐使用示例
+
+```ts
+// 在主线程中创建Worker线程（父Worker），在worker线程中再次创建Worker线程（子Worker）
+// main thread
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+// 主线程中创建父worker对象
+const parentworker = new worker.ThreadWorker("entry/ets/workers/parentworker.ets");
+
+parentworker.onmessage = (e: MessageEvents) => {
+  console.info("主线程收到父worker线程信息 " + e.data);
+}
+
+parentworker.onexit = () => {
+  console.info("父worker退出");
+}
+
+parentworker.onerror = (err: ErrorEvent) => {
+  console.info("主线程接收到父worker报错 " + err);
+}
+
+parentworker.postMessage("主线程发送消息给父worker-推荐示例");
+```
+
+```ts
+// parentworker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+// 创建父Worker线程中与主线程通信的对象
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e : MessageEvents) => {
+  if (e.data == "主线程发送消息给父worker-推荐示例") {
+    let childworker = new worker.ThreadWorker("entry/ets/workers/childworker.ets");
+
+    childworker.onmessage = (e: MessageEvents) => {
+      console.info("父Worker收到子Worker的信息 " + e.data);
+      if (e.data == "子Worker向父Worker发送信息") {
+        workerPort.postMessage("父Worker向主线程发送信息");
+      }
+    }
+
+    childworker.onexit = () => {
+      console.info("子Worker退出");
+      // 子Worker退出后再销毁父Worker
+      workerPort.close();
+    }
+
+    childworker.onerror = (err: ErrorEvent) => {
+      console.info("子Worker发生报错 " + err);
+    }
+
+    childworker.postMessage("父Worker向子Worker发送信息-推荐示例");
+  }
+}
+```
+
+```ts
+// childworker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+// 创建子Worker线程中与父Worker线程通信的对象
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e: MessageEvents) => {
+  if (e.data == "父Worker向子Worker发送信息-推荐示例") {
+    // 子Worker线程业务逻辑...
+    console.info("业务执行结束，然后子Worker销毁");
+    workerPort.close();
+  }
+}
+```
+
+
+### 不推荐使用示例
+
+不建议父Worker主动销毁后，子Worker仍向父Worker发送消息。
+
+```ts
+// main thread
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+const parentworker = new worker.ThreadWorker("entry/ets/workers/parentworker.ets");
+
+parentworker.onmessage = (e: MessageEvents) => {
+  console.info("主线程收到父Worker信息" + e.data);
+}
+
+parentworker.onexit = () => {
+  console.info("父Worker退出");
+}
+
+parentworker.onerror = (err: ErrorEvent) => {
+  console.info("主线程接收到父Worker报错 " + err);
+}
+
+parentworker.postMessage("主线程发送消息给父Worker");
+```
+
+```ts
+// parentworker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e : MessageEvents) => {
+  console.info("父Worker收到主线程的信息 " + e.data);
+
+  let childworker = new worker.ThreadWorker("entry/ets/workers/childworker.ets")
+
+  childworker.onmessage = (e: MessageEvents) => {
+    console.info("父Worker收到子Worker的信息 " + e.data);
+  }
+
+  childworker.onexit = () => {
+    console.info("子Worker退出");
+    workerPort.postMessage("父Worker向主线程发送信息");
+  }
+
+  childworker.onerror = (err: ErrorEvent) => {
+    console.info("子Worker发生报错 " + err);
+  }
+
+  childworker.postMessage("父Worker向子Worker发送信息");
+
+  // 创建子Worker后，销毁父Worker
+  workerPort.close();
+}
+```
+
+```ts
+// childworker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e: MessageEvents) => {
+  console.info("子Worker收到信息 " + e.data);
+
+  // 父Worker销毁后，子Worker向父Worker发送信息，行为不可预期
+  workerPort.postMessage("子Worker向父Worker发送信息");
+  setTimeout(() => {
+    workerPort.postMessage("子Worker向父Worker发送信息");
+  }, 1000);
+}
+```
+
+不建议在明确父Worker发起销毁操作的同步调用前后仍在父Worker线程创建子Worker。不建议在不确定父Worker是否发起销毁操作的情况下，仍在父Worker线程创建子Worker，即创建子Worker线程成功之前需保证父Worker线程始终处于存活状态。
+
+```ts
+// main thread
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+const parentworker = new worker.ThreadWorker("entry/ets/workers/parentworker.ets");
+
+parentworker.onmessage = (e: MessageEvents) => {
+  console.info("主线程收到父Worker信息" + e.data);
+}
+
+parentworker.onexit = () => {
+  console.info("父Worker退出");
+}
+
+parentworker.onerror = (err: ErrorEvent) => {
+  console.info("主线程接收到父Worker报错 " + err);
+}
+
+parentworker.postMessage("主线程发送消息给父Worker");
+```
+
+```ts
+// parentworker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e : MessageEvents) => {
+  console.info("父Worker收到主线程的信息 " + e.data);
+
+  // 父Worker销毁后创建子Worker，行为不可预期
+  workerPort.close();
+  let childworker = new worker.ThreadWorker("entry/ets/workers/childworker.ets");
+
+  // 子Worker线程未确认创建成功前销毁父Worker，行为不可预期
+  // let childworker = new worker.ThreadWorker("entry/ets/workers/childworker.ets");
+  // workerPort.close();
+
+  childworker.onmessage = (e: MessageEvents) => {
+    console.info("父Worker收到子Worker的信息 " + e.data);
+  }
+
+  childworker.onexit = () => {
+    console.info("子Worker退出");
+    workerPort.postMessage("父Worker向主线程发送信息");
+  }
+
+  childworker.onerror = (err: ErrorEvent) => {
+    console.info("子Worker发生报错 " + err);
+  }
+
+  childworker.postMessage("父Worker向子Worker发送信息");
+}
+```
+
+```ts
+// childworker.ets
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e: MessageEvents) => {
+  console.info("子Worker收到信息 " + e.data);
+}
+```

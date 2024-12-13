@@ -14,7 +14,7 @@
 
 **参考链接**
 
-[应用权限列表 - ohos.permission.LOCATION](../security/AccessToken/permissions-for-all.md#ohospermissionlocation)
+[应用权限列表 - ohos.permission.LOCATION](../security/AccessToken/permissions-for-all-user.md#ohospermissionlocation)
 
 
 ## 向用户申请授予权限但被用户拒绝后，如何处理才能避免应用二次进入时崩溃(API 9)

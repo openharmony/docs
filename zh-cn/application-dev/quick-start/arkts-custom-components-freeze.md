@@ -19,6 +19,8 @@
 其他场景，如堆叠布局（Stack）下的被遮罩的组件，这些组件尽管不可见，但并不被视为inactive状态，因此不在组件冻结的适用范围内。
 
 
+在阅读本文档前，开发者需要了解自定义组件基本语法。建议提前阅读：[自定义组件](./arkts-create-custom-components.md)。
+
 > **说明：**
 >
 > 从API version 11开始，支持自定义组件冻结功能。
@@ -27,8 +29,13 @@
 
 ### 页面路由
 
+> **说明：**
+>
+> 本示例使用了router进行页面跳转，建议开发者使用组件导航(Navigation)代替页面路由(router)来实现页面切换。Navigation提供了更多的功能和更灵活的自定义能力。请参考[使用Navigation的组件冻结用例](#navigation)。
+
 当页面1调用router.pushUrl接口跳转到页面2时，页面1为隐藏不可见状态，此时如果更新页面1中的状态变量，不会触发页面1刷新。
 图示如下：
+
 ![freezeInPage](./figures/freezeInPage.png)
 
 页面1：
@@ -179,7 +186,7 @@ struct FreezeChild {
 - 对LazyForEach中缓存的自定义组件进行冻结，不会触发组件的更新。
 
 ```ts
-// Basic implementation of IDataSource to handle data listener
+// 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];
@@ -542,11 +549,11 @@ struct NavigationContentMsgStack {
 
 ### 组件复用
 
-[组件复用](../performance/component-recycle.md)通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
+<!--RP1-->[组件复用](../performance/component-recycle.md)<!--RP1End-->通过重利用缓存池中已存在的节点，而非创建新节点，来优化UI性能并提升应用流畅度。复用池中的节点尽管未在UI组件树上展示，但是状态变量的更改仍会触发UI刷新。为了解决复用池中组件异常刷新问题，可以使用组件冻结避免复用池中的组件刷新。
 
-#### 组件复用、逻辑组件和组件冻结混用场景
-下面是组件复用和组件冻结混合使用场景的例子，组件复用可通过降低组件创建和销毁的次数来功耗。而搭配组件冻结，可以解决当服用池中组件状态变量发生变化时，复用池中组件刷新的问题。
-其流程如下：
+#### 组件复用、if和组件冻结混用场景
+下面是组件复用、if组件和组件冻结混合使用场景的例子，if组件绑定的状态变量变化成false时，触发子组件`ChildComponent`的下树，由于`ChildComponent`被标记了组件复用，所以不会被销毁，而是进入复用池，这个时候如果同时开启了组件冻结，则可以使在复用池里不再刷新。
+具体流程如下：
 1. 点击`change flag`，改变`flag`为false：
     -  被标记\@Reusable的`ChildComponent`组件在下树时，不会被销毁，而是进入复用池，触发aboutToRecycle生命周期，同时设置状态为inactive。
     - `ChildComponent`同时也开启了组件冻结，当其状态为inactive时，不会响应任何状态变量变化带来的UI刷新。
@@ -611,7 +618,7 @@ struct Page {
 ```
 #### LazyForEach、组件复用和组件冻结混用场景
 在数据很多的长列表滑动场景下，开发者会使用LazyForEach来按需创建组件，同时配合组件复用降低在滑动过程中因创建和销毁组件带来的开销。
-但是开发者如果根据其复用类型不同，设置了[reuseId](../performance/component-recycle.md#接口说明)，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
+但是开发者如果根据其复用类型不同，设置了<!--RP2-->[reuseId](../performance/component-recycle.md#接口说明)<!--RP2End-->，或者为了保证滑动性能设置了较大的cacheCount，这就可能使复用池或者LazyForEach缓存较多的节点。
 在这种情况下，如果开发者触发List下所有子节点的刷新，就会带来节点刷新数量过大的问题，这个时候，可以考虑搭配组件冻结使用。
 
 如下面例子：
@@ -628,9 +635,9 @@ struct Page {
 可通过trace观察，仅触发了15个`ChildComponent`节点的刷新。
 ![freeze](./figures/traceWithFreeze.png)
 完整示例如下：
-```
+```ts
 import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
-// Basic implementation of IDataSource to handle data listener
+// 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];
@@ -722,7 +729,179 @@ class MyDataSource extends BasicDataSource {
 @Component({freezeWhenInactive: true})
 struct ChildComponent {
   @Link @Watch('descChange') desc: string;
-  @State item: string = ''
+  @State item: string = '';
+  @State index: number = 0;
+  descChange() {
+    console.info(`ChildComponent messageChange ${this.desc}`);
+  }
+
+  aboutToReuse(params: Record<string, ESObject>): void {
+    this.item = params.item;
+    this.index = params.index;
+  }
+
+  aboutToRecycle(): void {
+    console.info(`ChildComponent has been recycled`);
+  }
+  build() {
+    Column() {
+      Text(`ChildComponent index: ${this.index} item: ${this.item}`)
+        .fontSize(20)
+      Text(`desc: ${this.desc}`)
+        .fontSize(20)
+    }.border({width: 2, color: Color.Pink})
+  }
+}
+
+@Entry
+@Component
+struct Page {
+  @State desc: string = 'Hello World';
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i < 50; i++) {
+      this.data.pushData(`Hello ${i}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Button(`change desc`).onClick(() => {
+        hiTraceMeter.startTrace('change decs', 1);
+        this.desc += '!';
+        hiTraceMeter.finishTrace('change decs', 1);
+      })
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string, index: number) => {
+          ListItem() {
+            ChildComponent({index: index, item: item, desc: this.desc}).reuseId(index % 10 < 5 ? "1": "0")
+          }
+        }, (item: string) => item)
+      }.cachedCount(5)
+    }
+    .height('100%')
+  }
+}
+```
+#### LazyForEach、if、组件复用和组件冻结混用场景
+
+下面的场景中展示了LazyForEach、if、组件复用和组件冻结混用场景。在同一个父自定义组件下，可复用的节点可能通过不同的方式进入复用池，比如：
+- 通过滑动从LazyForEach的缓存区域下树，进入复用池。
+- if条件切换通知子节点下树，进入复用池。
+
+在下面的例子中：
+1. 当滑动到index为14的位置，屏幕上可见区域内有10个`ChildComponent`，9个是LazyForEach的子节点，1个是if的子节点。
+2. 点击`change flag`，if的条件变成false，其子节点`ChildComponent`进入复用池。当前屏幕显示9个节点。
+3. 此时不管是通过LazyForEach还是if下树的节点都会进入`Page`节点下的复用池。
+4. 点击`change desc`，仅更新屏幕上的9个`ChildComponent`节点，具体可参考下面的trace。
+5. 再次点击`change flag`，if的条件变成true，`ChildComponent`从复用池中重新加入到组件树上，其状态变成active。
+6. 再次点击`change desc`，从复用池中通过if和LazyForEach上树的节点都可正常刷新。
+
+开启组件冻结trace：
+
+![traceWithFreezeLazyForeachAndIf](./figures/traceWithFreezeLazyForeachAndIf.png)
+
+没有开启组件冻结trace：
+
+![traceWithFreezeLazyForeachAndIf](./figures/traceWithLazyForeachAndIf.png)
+
+
+完整例子如下：
+```
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@Reusable
+@Component({freezeWhenInactive: true})
+struct ChildComponent {
+  @Link @Watch('descChange') desc: string;
+  @State item: string = '';
   @State index: number = 0;
   descChange() {
     console.info(`ChildComponent messageChange ${this.desc}`);
@@ -763,21 +942,145 @@ struct Page {
     Column() {
       Button(`change desc`).onClick(() => {
         hiTraceMeter.startTrace('change decs', 1);
-        this.desc += '!'
+        this.desc += '!';
         hiTraceMeter.finishTrace('change decs', 1);
       })
+
+      Button(`change flag`).onClick(() => {
+        hiTraceMeter.startTrace('change flag', 1);
+        this.flag = !this.flag;
+        hiTraceMeter.finishTrace('change flag', 1);
+      })
+
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string, index: number) => {
           ListItem() {
             ChildComponent({index: index, item: item, desc: this.desc}).reuseId(index % 10 < 5 ? "1": "0")
           }
         }, (item: string) => item)
-      }.cachedCount(5)
+      }
+      .cachedCount(5)
+      .height('60%')
+
+      if (this.flag) {
+        ChildComponent({index: -1, item: 'Hello', desc: this.desc}).reuseId( "1")
+      }
     }
     .height('100%')
   }
 }
 ```
 
+## 限制条件
+如下面的例子所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。
 
+```
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
+// 定义一个Params类，用于传递参数
+class Params {
+  index: number = 0;
+
+  constructor(index: number) {
+    this.index = index;
+  }
+}
+
+// 定义一个buildNodeChild组件，它包含一个message属性和一个index属性
+@Component
+struct buildNodeChild {
+  @StorageProp("buildNodeTest") @Watch("onMessageUpdated") message: string = "hello world";
+  @State index: number = 0;
+
+  // 当message更新时，调用此方法
+  onMessageUpdated() {
+    console.log(`FreezeBuildNode builderNodeChild message callback func ${this.message},index：${this.index}`);
+  }
+
+  build() {
+    Text(`buildNode Child message: ${this.message}`).fontSize(30)
+  }
+}
+
+// 定义一个buildText函数，它接收一个Params参数并构建一个Column组件
+@Builder
+function buildText(params: Params) {
+  Column() {
+    buildNodeChild({ index: params.index })
+  }
+}
+
+// 定义一个TextNodeController类，继承自NodeController
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private index: number = 0;
+
+  // 构造函数接收一个index参数
+  constructor(index: number) {
+    super();
+    this.index = index;
+  }
+
+  // 创建并返回一个FrameNode
+  makeNode(context: UIContext): FrameNode | null {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.index));
+    return this.textNode.getFrameNode();
+  }
+}
+
+// 定义一个Index组件，它包含一个message属性和一个data数组
+@Entry
+@Component
+struct Index {
+  @StorageLink("buildNodeTest") message: string = "hello";
+  private data: number[] = [0, 1];
+
+  build() {
+    Row() {
+      Column() {
+        Button("change").fontSize(30)
+          .onClick(() => {
+            this.message += 'a';
+          })
+
+        Tabs() {
+          ForEach(this.data, (item: number) => {
+            TabContent() {
+              FreezeBuildNode({ index: item })
+            }.tabBar(`tab${item}`)
+          }, (item: number) => item.toString())
+        }
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+// 定义一个FreezeBuildNode组件，它包含一个message属性和一个index属性
+@Component({ freezeWhenInactive: true })
+struct FreezeBuildNode {
+  @StorageProp("buildNodeTest") @Watch("onMessageUpdated") message: string = "1111";
+  @State index: number = 0;
+
+  // 当message更新时，调用此方法
+  onMessageUpdated() {
+    console.log(`FreezeBuildNode message callback func ${this.message}, index: ${this.index}`);
+  }
+
+  build() {
+    NodeContainer(new TextNodeController(this.index))
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#FFF0F0F0')
+  }
+}
+```
+
+在上面的示例中：
+
+点击Button("change")。改变message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。未显示的TabContent中的BuilderNode节点下组件的@Watch方法onMessageUpdated也被触发，并没有被冻结。
+
+![builderNode.gif](figures/builderNode.gif)
 

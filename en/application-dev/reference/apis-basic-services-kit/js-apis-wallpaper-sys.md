@@ -29,6 +29,47 @@ Enumerates the types of wallpaper resources.
 | VIDEO | 2 |Video resource.|
 | PACKAGE | 3 |Package resource.|
 
+## FoldState<sup>14+</sup>
+
+Enumerates the types of the folding state of a device.
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| NORMAL | 0 |Default state.|
+| UNFOLD_ONCE_STATE | 1 |Initial unfolded state.|
+| UNFOLD_TWICE_STATE | 2 |Secondary unfolded state.|
+
+## RotateState<sup>14+</sup>
+
+Enumerates the landscape or portrait mode of a device.
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| PORTRAIT | 0 |Portrait mode (default).|
+| LANDSCAPE | 1 |Landscape mode.|
+
+## WallpaperInfo<sup>14+</sup>
+
+Defines the wallpaper information structure.
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+| Name| Type| Description|
+| -------- | -------- |  -------- |
+| [FoldState](#foldstate14) | enum | Folding state of a device.|
+| [RotateState](#rotatestate14) | enum | Landscape/portrait mode of a device.|
+| source | string | Wallpaper resource URI. Only the application sandbox directory is supported.|
+
 ## wallpaper.setVideo<sup>10+</sup>
 
 setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
@@ -71,7 +112,7 @@ try {
             console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
             return;
         }
-        console.log(`success to setVideo.`);
+        console.info(`success to setVideo.`);
     });
 } catch (error) {
     console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
@@ -122,7 +163,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
     wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-        console.log(`success to setVideo.`);
+        console.info(`success to setVideo.`);
     }).catch((error: BusinessError) => {
         console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
     });
@@ -173,7 +214,7 @@ try {
             console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
             return;
         }
-        console.log(`success to setCustomWallpaper.`);
+        console.info(`success to setCustomWallpaper.`);
     });
 } catch (error) {
     console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
@@ -224,7 +265,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
     wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-        console.log(`success to setCustomWallpaper.`);
+        console.info(`success to setCustomWallpaper.`);
     }).catch((error: BusinessError) => {
         console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
     });
@@ -264,7 +305,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
     let listener = (wallpaperType: wallpaper.WallpaperType, resourceType: wallpaper.WallpaperResourceType): void => {
-        console.log(`wallpaper color changed.`);
+        console.info(`wallpaper color changed.`);
     };
     wallpaper.on('wallpaperChange', listener);
 } catch (error) {
@@ -302,7 +343,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let listener = (wallpaperType: wallpaper.WallpaperType, resourceType: wallpaper.WallpaperResourceType): void => {
-    console.log(`wallpaper color changed.`);
+    console.info(`wallpaper color changed.`);
 };
 try {
     wallpaper.on('wallpaperChange', listener);
@@ -361,7 +402,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
     let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
-    console.log(`success to getColorsSync: ${JSON.stringify(colors)}`);
+    console.info(`success to getColorsSync: ${JSON.stringify(colors)}`);
 } catch (error) {
     console.error(`failed to getColorsSync because: ${JSON.stringify(error)}`);
 }
@@ -466,7 +507,7 @@ wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessErro
         console.error(`failed to restore because: ${JSON.stringify(error)}`);
         return;
     }
-    console.log(`success to restore.`);
+    console.info(`success to restore.`);
 });
 ```
 
@@ -510,7 +551,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
  
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-    console.log(`success to restore.`);
+    console.info(`success to restore.`);
   }).catch((error: BusinessError) => {
     console.error(`failed to restore because: ${JSON.stringify(error)}`);
 });
@@ -559,7 +600,7 @@ wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (err
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
         return;
      }
-    console.log(`success to setImage.`);
+    console.info(`success to setImage.`);
 });
   
 // The source type is image.PixelMap.
@@ -576,7 +617,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
             console.error(`failed to setImage because: ${JSON.stringify(error)}`);
             return;
         }
-        console.log(`success to setImage.`);
+        console.info(`success to setImage.`);
     });
 }).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
@@ -627,7 +668,7 @@ import { image } from '@kit.ImageKit';
 // The source type is string.
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-    console.log(`success to setImage.`);
+    console.info(`success to setImage.`);
 }).catch((error: BusinessError) => {
     console.error(`failed to setImage because: ${JSON.stringify(error)}`);
 });
@@ -642,7 +683,7 @@ let opts: image.DecodingOptions = {
 };
 imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
     wallpaper.setImage(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-        console.log(`success to setImage.`);
+        console.info(`success to setImage.`);
     }).catch((error: BusinessError) => {
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
     });
@@ -691,10 +732,9 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessErr
         console.error(`failed to getImage because: ${JSON.stringify(error)}`);
         return;
     }
-    console.log(`success to getImage: ${JSON.stringify(data)}`);
+    console.info(`success to getImage: ${JSON.stringify(data)}`);
 });
 ```
-
 
 ## wallpaper.getImage<sup>9+</sup>
 
@@ -737,13 +777,126 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
-    console.log(`success to getImage: ${JSON.stringify(data)}`);
+    console.info(`success to getImage: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`failed to getImage because: ${JSON.stringify(error)}`);
 });
 ```
+## wallpaper.getWallpaperByState<sup>14+</sup>
 
+getWallpaperByState(wallpaperType:WallpaperType, foldState:FoldState, rotateState:RotateState): Promise&lt;image.PixelMap&gt;
 
+Obtains the pixel map of the wallpaper of a specific type, folding state, or landscape/portrait mode. If the specified wallpaper does not exist, the matching follows a degrading order: unfolded-land > unfolded-port > normal-port. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
+| foldState | [FoldState](#foldstate14) | Yes| Folding state type.|
+| rotateState | [RotateState](#rotatestate14) | Yes| Landscape/portrait mode.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wallpaper } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+wallpaper.getWallpaperByState(wallpaper.WallpaperType.WALLPAPER_SYSTEM,wallpaper.FoldState.NORMAL,wallpaper.RotateState.PORTRAIT).then((data:image.PixelMap) => {
+  console.info(`success to getWallpaperByState: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+  console.error(`failed to getWallpaperByState because: ${JSON.stringify(error)}`);
+});
+```
+
+## wallpaper.setAllWallpapers<sup>14+</sup>
+
+setAllWallpapers(wallpaperInfos: Array\<WallpaperInfo>\, wallpaperType: WallpaperType): Promise&lt;void&gt;
+
+Sets all wallpaper to a specific folding state, landscape/portrait mode, and resource path, where **wallpaper.FoldState.NORMAL** and **wallpaper.RotateState.PORTRAIT** are mandatory. This API uses a promise to return the result.  
+
+**Required permissions**: ohos.permission.SET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wallpaperInfos | Array<[WallpaperInfo](#wallpaperinfo14)> | Yes| Information structure of all wallpapers.|
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wallpaper } from '@kit.BasicServicesKit';
+
+let wallpaperInfos: Array<wallpaper.WallpaperInfo>
+wallpaperInfos = [
+  {
+    foldState: wallpaper.FoldState.NORMAL,
+    rotateState: wallpaper.RotateState.PORTRAIT,
+    source: '/data/storage/el2/base/haps/entry/files/normal.jpeg'
+  },
+  {
+    foldState: wallpaper.FoldState.UNFOLD_ONCE_STATE,
+    rotateState: wallpaper.RotateState.LANDSCAPE,
+    source: '/data/storage/el2/base/haps/entry/files/unfold_once_state.jpeg'
+  },
+  {
+    foldState: wallpaper.FoldState.UNFOLD_TWICE_STATE,
+    rotateState: wallpaper.RotateState.PORTRAIT,
+    source: '/data/storage/el2/base/haps/entry/files/unfold_twice_state.jpeg'
+  }
+];
+wallpaper.setAllWallpapers(wallpaperInfos, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
+  console.info(`success to setAllWallpapers.`);
+}).catch((error: BusinessError) => {
+  console.error(`failed to setAllWallpapers because: ${JSON.stringify(error)}`);
+});
+```
 
 ## wallpaper.getPixelMap<sup>(deprecated)</sup>
 
@@ -779,7 +932,7 @@ wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: Business
         console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
         return;
     }
-    console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
+    console.info(`success to getPixelMap : ${JSON.stringify(data)}`);
   });
 ```
 
@@ -818,7 +971,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
-    console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
+    console.info(`success to getPixelMap : ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
 });

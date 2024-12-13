@@ -173,7 +173,7 @@ The key configuration of the RDB store has been modified.
 
 **Possible Causes**
 
-Key configuration, such as **area**, **isEncrypt**, and **securityLevel**, of the RDB store is changed.
+Key configuration, such as **area** and **securityLevel**, of the RDB store is changed.
 
 **Solution**
 

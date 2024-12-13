@@ -7,7 +7,7 @@
 
 提供标准的开放api，定义常用传感器属性。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ## 汇总
@@ -86,11 +86,11 @@
 ```
 typedef enum Sensor_Accuracy Sensor_Accuracy
 ```
-**描述：**
+**描述**：
 
 枚举传感器上报的数据的精度级别。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_Event
@@ -98,11 +98,11 @@ typedef enum Sensor_Accuracy Sensor_Accuracy
 ```
 typedef struct Sensor_Event Sensor_Event
 ```
-**描述：**
+**描述**：
 
 定义传感器数据信息。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_EventCallback
@@ -110,11 +110,11 @@ typedef struct Sensor_Event Sensor_Event
 ```
 typedef void(*Sensor_EventCallback)(Sensor_Event *event)
 ```
-**描述：**
+**描述**：
 
 定义用于上报传感器数据的回调函数。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_Info
@@ -122,11 +122,11 @@ typedef void(*Sensor_EventCallback)(Sensor_Event *event)
 ```
 typedef struct Sensor_Info Sensor_Info
 ```
-**描述：**
+**描述**：
 
 定义传感器信息。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_Result
@@ -134,11 +134,11 @@ typedef struct Sensor_Info Sensor_Info
 ```
 typedef enum Sensor_Result Sensor_Result
 ```
-**描述：**
+**描述**：
 
 定义传感器错误码。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_Subscriber
@@ -146,11 +146,11 @@ typedef enum Sensor_Result Sensor_Result
 ```
 typedef struct Sensor_Subscriber Sensor_Subscriber
 ```
-**描述：**
+**描述**：
 
 定义传感器订阅者信息。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_SubscriptionAttribute
@@ -158,11 +158,11 @@ typedef struct Sensor_Subscriber Sensor_Subscriber
 ```
 typedef struct Sensor_SubscriptionAttribute Sensor_SubscriptionAttribute
 ```
-**描述：**
+**描述**：
 
 定义传感器订阅属性。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_SubscriptionId
@@ -170,11 +170,11 @@ typedef struct Sensor_SubscriptionAttribute Sensor_SubscriptionAttribute
 ```
 typedef struct Sensor_SubscriptionId Sensor_SubscriptionId
 ```
-**描述：**
+**描述**：
 
 定义传感器订阅ID，唯一标识传感器。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ### Sensor_Type
@@ -182,11 +182,11 @@ typedef struct Sensor_SubscriptionId Sensor_SubscriptionId
 ```
 typedef enum Sensor_Type Sensor_Type
 ```
-**描述：**
+**描述**：
 
 枚举传感器类型。
 
-**起始版本：** 11
+**起始版本**：11
 
 
 ## 枚举类型说明
@@ -197,11 +197,11 @@ typedef enum Sensor_Type Sensor_Type
 ```
 enum Sensor_Accuracy
 ```
-**描述：**
+**描述**：
 
 枚举传感器上报的数据的精度级别。
 
-**起始版本：** 11
+**起始版本**：11
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -216,11 +216,11 @@ enum Sensor_Accuracy
 ```
 enum Sensor_Result
 ```
-**描述：**
+**描述**：
 
 定义传感器错误码。
 
-**起始版本：** 11
+**起始版本**：11
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -235,11 +235,11 @@ enum Sensor_Result
 ```
 enum Sensor_Type
 ```
-**描述：**
+**描述**：
 
 枚举传感器类型。
 
-**起始版本：** 11
+**起始版本**：11
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -266,19 +266,19 @@ enum Sensor_Type
 ```
 Sensor_Info **OH_Sensor_CreateInfos(uint32_t count)
 ```
-**描述：**
+**描述**：
 
 用给定的数字创建一个实例数组，请参考 [Sensor_Info](#sensor_info)。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | count | 要创建的实例的数量，请参考 [Sensor_Info](#sensor_info)。 |
 
-**返回：**
+**返回**：
 
 如果操作成功，返回指向 [Sensor_Info](#sensor_info) 实例数组的双指针；否则返回**NULL**。
 
@@ -288,13 +288,13 @@ Sensor_Info **OH_Sensor_CreateInfos(uint32_t count)
 ```
 Sensor_Subscriber *OH_Sensor_CreateSubscriber(void)
 ```
-**描述：**
+**描述**：
 
 创建一个 [Sensor_Subscriber ](#sensor_subscriber)实例。
 
-**起始版本：** 11
+**起始版本**：11
 
-**返回：**
+**返回**：
 
 如果操作成功，返回指向 [Sensor_Subscriber](#sensor_subscriber) 实例的指针；否则返回**NULL**。
 
@@ -304,13 +304,13 @@ Sensor_Subscriber *OH_Sensor_CreateSubscriber(void)
 ```
 Sensor_SubscriptionAttribute *OH_Sensor_CreateSubscriptionAttribute(void)
 ```
-**描述：**
+**描述**：
 
 创建 [Sensor_SubscriptionAttribute ](#sensor_subscriptionattribute)实例。
 
-**起始版本：** 11
+**起始版本**：11
 
-**返回：**
+**返回**：
 
 如果操作成功，返回指向 [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) 实例的指针；否则返回**NULL**。
 
@@ -320,13 +320,13 @@ Sensor_SubscriptionAttribute *OH_Sensor_CreateSubscriptionAttribute(void)
 ```
 Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void)
 ```
-**描述：**
+**描述**：
 
 创建一个 [Sensor_SubscriptionId](#sensor_subscriptionid) 实例。
 
-**起始版本：** 11
+**起始版本**：11
 
-**返回：**
+**返回**：
 
 如果操作成功，返回指向 [Sensor_SubscriptionId](#sensor_subscriptionid) 实例的指针；否则返回**NULL**。
 
@@ -336,20 +336,20 @@ Sensor_SubscriptionId *OH_Sensor_CreateSubscriptionId(void)
 ```
 int32_t OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count)
 ```
-**描述：**
+**描述**：
 
 销毁实例数组并回收内存，请参考 [Sensor_Info](#sensor_info)。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensors | 指向 [Sensor_Info](#sensor_info) 实例数组的双指针。 |
 | count | 要销毁的 [Sensor_Info](#sensor_info) 实例的数量。 |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -359,19 +359,19 @@ int32_t OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count)
 ```
 int32_t OH_Sensor_DestroySubscriber(Sensor_Subscriber *subscriber)
 ```
-**描述：**
+**描述**：
 
 销毁 [Sensor_Subscriber ](#sensor_subscriber)实例并回收内存。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | subscriber | 指向 [Sensor_Subscriber](#sensor_subscriber) 实例的指针。 |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -381,19 +381,19 @@ int32_t OH_Sensor_DestroySubscriber(Sensor_Subscriber *subscriber)
 ```
 int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *attribute)
 ```
-**描述：**
+**描述**：
 
 销毁 [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) 实例并回收内存。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | attribute | 指向 [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) 实例的指针。 |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -403,19 +403,19 @@ int32_t OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *att
 ```
 int32_t OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id)
 ```
-**描述：**
+**描述**：
 
 销毁 [Sensor_SubscriptionId](#sensor_subscriptionid) 实例并回收内存。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | id | 指向 [Sensor_SubscriptionId](#sensor_subscriptionid) 实例的指针。 |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -425,20 +425,20 @@ int32_t OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id)
 ```
 Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count)
 ```
-**描述：**
+**描述**：
 
 获取设备上所有传感器的信息。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | infos | 双指针指向设备上所有传感器的信息。请参考 [Sensor_Info](#sensor_info)。 |
 | count | 指向设备上传感器数量的指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -448,13 +448,13 @@ Sensor_Result OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count)
 ```
 Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id, const Sensor_SubscriptionAttribute *attribute, const Sensor_Subscriber *subscriber)
 ```
-**描述：**
+**描述**：
 
 订阅传感器数据。系统将以指定的频率向用户上报传感器数据。 订阅加速度传感器，需要申请ohos.permission.ACCELEROMETER权限； 订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限； 订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限； 订阅与健康相关的传感器时，比如心率传感器，需要申请ohos.permission.READ_HEALTH_DATA权限，否则订阅失败。 订阅其余传感器不需要申请权限。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -462,11 +462,11 @@ Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id, const Sensor_
 | attribute | 指向订阅属性的指针，该属性用于指定数据报告频率。请参考 [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)。 |
 | subscriber | 指向订阅者信息的指针，该信息用于指定的回调函数报告传感器数据。请参考 [Sensor_Subscriber](#sensor_subscriber)。 |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
-**Permission：**
+**Permission**:
 
 ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.ACTIVITY_MOTION or ohos.permission.READ_HEALTH_DATA
 
@@ -476,24 +476,24 @@ ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.AC
 ```
 Sensor_Result OH_Sensor_Unsubscribe(const Sensor_SubscriptionId *id, const Sensor_Subscriber *subscriber)
 ```
-**描述：**
+**描述**：
 
 取消订阅传感器数据。 取消订阅加速度计传感器，需要申请ohos.permission.ACCELEROMETER权限； 取消订阅陀螺仪传感器，需要申请ohos.permission.GYROSCOPE权限； 取消订阅计步器相关传感器时，需要申请ohos.permission.ACTIVITY_MOTION权限； 取消订阅与健康相关的传感器时，需要申请ohos.permission.READ_HEALTH_DATA权限，否则取消订阅失败。 取消订阅其余传感器不需要申请权限。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | id | 指向传感器订阅ID的指针。请参考 [Sensor_SubscriptionId](#sensor_subscriptionid)。 |
 | subscriber | 指向订阅者信息的指针，该信息用于指定的回调函数报告传感器数据。请参考 [Sensor_Subscriber](#sensor_subscriber)。 |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
-**Permission：**
+**Permission**:
 
 ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.ACTIVITY_MOTION or ohos.permission.READ_HEALTH_DATA
 
@@ -503,20 +503,20 @@ ohos.permission.ACCELEROMETER or ohos.permission.GYROSCOPE or ohos.permission.AC
 ```
 int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *accuracy)
 ```
-**描述：**
+**描述**：
 
 获取传感器数据的精度。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensorEvent | 指向传感器数据信息的指针。  |
 | accuracy | 指向精度的指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -526,7 +526,7 @@ int32_t OH_SensorEvent_GetAccuracy(Sensor_Event* sensorEvent, Sensor_Accuracy *a
 ```
 int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t *length)
 ```
-**描述：**
+**描述**：
 
 获取传感器数据。数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下：
 
@@ -560,9 +560,9 @@ SENSOR_TYPE_LINEAR_ACCELERATION:从API Version 13开始支持，data[0]、data[1
 
 SENSOR_TYPE_GAME_ROTATION_VECTOR:从API Version 13开始支持，data[0]、data[1]、data[2]分别表示设备分别围绕x、y、z的旋转角度，单位为度，data[3]表示旋转向量。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -570,7 +570,7 @@ SENSOR_TYPE_GAME_ROTATION_VECTOR:从API Version 13开始支持，data[0]、data[
 | data | 出参，传感器数据。  |
 | length | 出参，数组长度。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -580,20 +580,20 @@ SENSOR_TYPE_GAME_ROTATION_VECTOR:从API Version 13开始支持，data[0]、data[
 ```
 int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestamp)
 ```
-**描述：**
+**描述**：
 
 获取传感器数据的时间戳。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensorEvent | 指向传感器数据信息的指针。  |
 | timestamp | 时间戳指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -603,20 +603,20 @@ int32_t OH_SensorEvent_GetTimestamp(Sensor_Event* sensorEvent, int64_t *timestam
 ```
 int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorType)
 ```
-**描述：**
+**描述**：
 
 获取传感器类型。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensorEvent | 指向传感器数据信息的指针。  |
 | sensorType | 指向传感器类型的指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -626,20 +626,20 @@ int32_t OH_SensorEvent_GetType(Sensor_Event* sensorEvent, Sensor_Type *sensorTyp
 ```
 int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSamplingInterval)
 ```
-**描述：**
+**描述**：
 
 获取传感器的最大数据上报间隔时间。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensor | 指向传感器信息的指针。  |
 | maxSamplingInterval | 指向最大数据报告间隔的指针，单位为纳秒。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -649,20 +649,20 @@ int32_t OH_SensorInfo_GetMaxSamplingInterval(Sensor_Info* sensor, int64_t *maxSa
 ```
 int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSamplingInterval)
 ```
-**描述：**
+**描述**：
 
 获取传感器的最小数据上报间隔。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensor | 指向传感器信息的指针。  |
 | minSamplingInterval | 指向最小数据报告间隔的指针，以纳秒为单位。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -672,13 +672,13 @@ int32_t OH_SensorInfo_GetMinSamplingInterval(Sensor_Info* sensor, int64_t *minSa
 ```
 int32_t OH_SensorInfo_GetName (Sensor_Info* sensor, char *sensorName, uint32_t *length)
 ```
-**描述：**
+**描述**：
 
 获取传感器名称。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -686,7 +686,7 @@ int32_t OH_SensorInfo_GetName (Sensor_Info* sensor, char *sensorName, uint32_t *
 | sensorName | 指向传感器名称的指针。  |
 | length | 指向长度的指针，以字节为单位。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -696,20 +696,20 @@ int32_t OH_SensorInfo_GetName (Sensor_Info* sensor, char *sensorName, uint32_t *
 ```
 int32_t OH_SensorInfo_GetResolution(Sensor_Info* sensor, float *resolution)
 ```
-**描述：**
+**描述**：
 
 获取传感器分辨率。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensor | 指向传感器信息的指针。  |
 | resolution | 指向传感器分辨率的指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -719,20 +719,20 @@ int32_t OH_SensorInfo_GetResolution(Sensor_Info* sensor, float *resolution)
 ```
 int32_t OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType)
 ```
-**描述：**
+**描述**：
 
 获取传感器类型。
 
-**起始版本：** 11
+**起始版本**： 11
 
-**参数:**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | sensor | 指向传感器信息的指针。  |
 | sensorType | 指向传感器类型的指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -742,13 +742,13 @@ int32_t OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType)
 ```
 int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint32_t *length)
 ```
-**描述：**
+**描述**：
 
 获取传感器的厂商名称。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -756,7 +756,7 @@ int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint3
 | vendorName | 指向供应商名称的指针。  |
 | length | 指向长度的指针，以字节为单位。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -766,20 +766,20 @@ int32_t OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint3
 ```
 int32_t OH_SensorSubscriber_GetCallback(Sensor_Subscriber* subscriber, Sensor_EventCallback *callback)
 ```
-**描述：**
+**描述**：
 
 获取用于上报传感器数据的回调函数。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | subscriber | 指向传感器订阅者信息的指针。  |
 | callback | 指向回调函数的指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -789,20 +789,20 @@ int32_t OH_SensorSubscriber_GetCallback(Sensor_Subscriber* subscriber, Sensor_Ev
 ```
 int32_t OH_SensorSubscriber_SetCallback (Sensor_Subscriber* subscriber, const Sensor_EventCallback callback )
 ```
-**描述：**
+**描述**：
 
 设置一个回调函数来上报传感器数据。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | subscriber | 指向传感器订阅者信息的指针。  |
 | callback | 设置回调函数。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -812,20 +812,20 @@ int32_t OH_SensorSubscriber_SetCallback (Sensor_Subscriber* subscriber, const Se
 ```
 int32_t OH_SensorSubscriptionAttribute_GetSamplingInterval (Sensor_SubscriptionAttribute * attribute, int64_t * samplingInterval )
 ```
-**描述：**
+**描述**：
 
 获取传感器数据上报间隔。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | attribute | 指向传感器订阅属性的指针。  |
 | samplingInterval | 指向数据报告间隔的指针，以纳秒为单位。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -835,20 +835,20 @@ int32_t OH_SensorSubscriptionAttribute_GetSamplingInterval (Sensor_SubscriptionA
 ```
 int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAttribute* attribute, const int64_t samplingInterval)
 ```
-**描述：**
+**描述**：
 
 设置传感器数据上报间隔。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | attribute | 指向传感器订阅属性的指针。  |
 | samplingInterval | 要设置的数据报告间隔，以纳秒为单位。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -858,20 +858,20 @@ int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAt
 ```
 int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *sensorType)
 ```
-**描述：**
+**描述**：
 
 获取传感器类型。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | id | 指向传感器订阅ID的指针。  |
 | sensorType | 指向传感器类型的指针。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。
 
@@ -881,19 +881,19 @@ int32_t OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId* id, Sensor_Type *
 ```
 int32_t OH_SensorSubscriptionId_SetType(Sensor_SubscriptionId* id, const Sensor_Type sensorType)
 ```
-**描述：**
+**描述**：
 
 设置传感器类型。
 
-**起始版本：** 11
+**起始版本**：11
 
-**参数：**
+**参数**：
 
 | 名称 | 描述 |
 | -------- | -------- |
 | id | 指向传感器订阅ID的指针。  |
 | sensorType | 要设置的传感器类型。  |
 
-**返回：**
+**返回**：
 
 如果操作成功返回**SENSOR_SUCCESS**；否则返回 [Sensor_Result](#sensor_result) 中定义的错误代码。

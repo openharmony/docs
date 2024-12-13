@@ -5,11 +5,12 @@ FeatureAbility模块提供与用户进行交互的Ability的能力，包括启�
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 > 本模块接口仅可在FA模型下使用。
 
 ## 使用限制
 
-FeatureAbility模块的接口只能在Page类型的Ability中调用
+FeatureAbility模块的接口只能在Page类型的Ability中调用。
 
 ## 导入模块
 
@@ -27,9 +28,9 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 >
 > 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -83,7 +84,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -132,12 +133,12 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)。
+>
 > 跨应用访问dataAbility，对端应用需配置关联启动。
 
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
-
-**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -175,10 +176,9 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 >
 > 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)。
 
+**模型约束**：此接口仅可在FA模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
-
-**说明**：本接口仅可在FA模型下使用。
-
 
 **参数：**
 
@@ -231,9 +231,10 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 >
 > 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)。
 
+**模型约束**：此接口仅可在FA模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明            |
@@ -289,9 +290,9 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 停止当前的Ability。使用callback异步回调。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -344,9 +345,9 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 停止当前的Ability。使用Promise异步回调。如果该Ability是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#featureabilitystartabilityforresult7)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -403,9 +404,9 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 检查Ability的主窗口是否具有窗口焦点。使用callback异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -434,6 +435,8 @@ hasWindowFocus(): Promise\<boolean>
 
 检查Ability的主窗口是否具有窗口焦点。使用Promise异步回调。
 
+**模型约束**：此接口仅可在FA模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **返回值：**
@@ -459,9 +462,9 @@ getWant(callback: AsyncCallback\<Want>): void
 
 获取要拉起的Ability对应的Want。使用callback异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -490,9 +493,9 @@ getWant(): Promise\<Want>
 
 获取要拉起的Ability对应的Want。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **返回值：**
 
@@ -517,9 +520,9 @@ getContext(): Context
 
 获取应用上下文。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **返回值：**
 
@@ -549,9 +552,9 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 停止当前的Ability。使用callback异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -578,9 +581,9 @@ terminateSelf(): Promise\<void>
 
 停止当前的Ability。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **返回值：**
 
@@ -610,10 +613,9 @@ connectAbility(request: Want, options:ConnectOptions): number
 > 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)。
 > 跨应用连接serviceAbility，对端应用需配置关联启动。
 
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
-
-**说明**：本接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -661,9 +663,9 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 断开与指定ServiceAbility的连接。使用callback异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -712,9 +714,9 @@ disconnectAbility(connection: number): Promise\<void>
 
 断开与指定ServiceAbility的连接。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -768,9 +770,9 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 获取当前Ability对应的窗口。使用callback异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **参数：**
 
@@ -801,9 +803,9 @@ getWindow(): Promise\<window.Window>
 
 获取当前Ability对应的窗口。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+**模型约束**：此接口仅可在FA模型下使用。
 
-**说明**：本接口仅可在FA模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 **返回值：**
 
@@ -830,14 +832,7 @@ featureAbility.getWindow().then((data: window.Window) => {
 
 表示当前Ability对应的窗口配置项，使用时通过featureAbility.AbilityWindowConfiguration获取。
 
-**示例：**
-
-<!--code_no_check_fa-->
-```ts
-import { featureAbility } from '@kit.AbilityKit';
-
-featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
-```
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -849,12 +844,30 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 | WINDOW_MODE_SPLIT_SECONDARY | 101  | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。 |
 | WINDOW_MODE_FLOATING        | 102  | 悬浮窗。 |
 
+**示例：**
+
+<!--code_no_check_fa-->
+```ts
+import { featureAbility } from '@kit.AbilityKit';
+
+featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
+```
 
 ## AbilityStartSetting<sup>7+</sup>
 
 表示当前Ability对应的窗口属性，abilityStartSetting属性是一个定义为[key: string]: any的对象，key对应设定类型为：AbilityStartSetting枚举类型，value对应设定类型为：AbilityWindowConfiguration枚举类型。
 
 使用时通过featureAbility.AbilityStartSetting获取。
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+| 名称                           | 值              | 说明                                       |
+| ---------------------------- | --------------- | ---------------------------------------- |
+| BOUNDS_KEY      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
+| WINDOW_MODE_KEY | 'windowMode'    | 窗口显示模式属性的参数名。|
+| DISPLAY_ID_KEY  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
 
 **示例：**
 
@@ -865,17 +878,11 @@ import { featureAbility } from '@kit.AbilityKit';
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
-
-| 名称                           | 值              | 说明                                       |
-| ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
-| WINDOW_MODE_KEY | 'windowMode'    | 窗口显示模式属性的参数名。|
-| DISPLAY_ID_KEY  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
-
 ## ErrorCode<sup>7+</sup>
 
 定义启动Ability时返回的错误码。
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -889,6 +896,8 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 ## DataAbilityOperationType<sup>7+</sup>
 
 表示数据的操作类型。DataAbility批量操作数据时可以通过该枚举值指定操作类型。
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 

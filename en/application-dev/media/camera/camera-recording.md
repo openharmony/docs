@@ -7,7 +7,7 @@ As another important function of the camera application, video recording is the 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
 1. Import the media module. The [APIs](../../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a video output stream.
-     
+   
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { camera } from '@kit.CameraKit';
@@ -47,7 +47,10 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    Obtain the video output streams supported by the current device from **videoProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class. Then, define video recording parameters and use [createVideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#createvideooutput) to create a video output stream.
 
    > **NOTE**
+   >
    > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 640:480 (which is equal to 4:3), then the aspect ratio of the resolution of the preview stream must also be 4:3. This means that the resolution can be 640:480, 960:720, 1440:1080, or the like.
+   >
+   > To obtain the video rotation angle (specified by **rotation**), call [getVideoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getvideorotation12) in the [VideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#videooutput) class.
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -70,7 +73,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
-       rotation: 90 // 90° is the default vertical display angle. You can use other values based on project requirements.
+       rotation: 90 // The value of rotation is 90, which is obtained through getPhotoRotation.
      };
      // Create an AVRecorder instance.
      let avRecorder: media.AVRecorder | undefined = undefined;
@@ -130,7 +133,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 5. Stop video recording.
 
    Call [stop](../../reference/apis-media-kit/js-apis-media.md#stop9-3) of the **AVRecorder** instance to stop recording, and then call [stop](../../reference/apis-camera-kit/js-apis-camera.md#stop-1) of the **VideoOutput** instance to stop the video output stream.
-     
+   
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
      try {
@@ -155,7 +158,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 During camera application development, you can listen for the status of the video output stream, including recording start, recording end, and video output errors.
 
 - Register the **'frameStart'** event to listen for recording start events. This event can be registered when a **VideoOutput** instance is created and is triggered when the bottom layer starts exposure for recording for the first time. Video recording starts as long as a result is returned.
-    
+  
   ```ts
   function onVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
     videoOutput.on('frameStart', (err: BusinessError) => {
@@ -168,7 +171,7 @@ During camera application development, you can listen for the status of the vide
   ```
 
 - Register the **'frameEnd'** event to listen for recording end events. This event can be registered when a **VideoOutput** instance is created and is triggered when the last frame of recording ends. Video recording ends as long as a result is returned.
-    
+  
   ```ts
   function onVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
     videoOutput.on('frameEnd', (err: BusinessError) => {
@@ -181,7 +184,7 @@ During camera application development, you can listen for the status of the vide
   ```
 
 - Register the **'error'** event to listen for video output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
-    
+  
   ```ts
   function onVideoOutputError(videoOutput: camera.VideoOutput): void {
     videoOutput.on('error', (error: BusinessError) => {

@@ -34,8 +34,7 @@ hitTestBehavior(value: HitTestMode)
 
 ## 示例
 
-Text组件设置hitTestBehavior为HitTestMode.Transparent，不会阻塞内层Stack的触摸测试，因此Text和内层Stack的onTouch事件都会触发。  
-内层Stack设置hitTestBehavior为HitTestMode.Block，会阻塞子节点和外层Button进行触摸测试，因此内层Button和外层Button组件不会响应onTouch事件。
+该示例通过设置不同的HitTestMode值演示了Block和Transparent的触摸类型效果。
 
 ```ts
 // xxx.ets

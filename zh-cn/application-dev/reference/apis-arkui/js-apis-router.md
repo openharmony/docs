@@ -14,7 +14,7 @@
 >
 > - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
 >
-> - 如果使用传入callback形式的pushUrl，pushNamedRoute接口，则在callback中使用getLength等接口获取的栈信息是中间态的栈信息，可能和最终状态不一致。
+> - 如果使用传入callback形式的[pushUrl](#routerpushurl9-1)或[pushNamedRoute](#routerpushnamedroute10-1)接口，callback中通过[getLength](#routergetlength)等接口获取的栈信息为中间态的栈信息，可能与栈操作完全结束后，再通过[getLength](#routergetlength)等接口获取的栈信息不一致。
 
 ## 导入模块
 
@@ -47,6 +47,9 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -108,6 +111,9 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -174,6 +180,9 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -236,6 +245,9 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -302,6 +314,9 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -352,6 +367,9 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -409,6 +427,9 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -460,6 +481,9 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -516,6 +540,9 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -579,6 +606,9 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -645,6 +675,9 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -707,6 +740,9 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -773,6 +809,9 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -823,6 +862,9 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -880,6 +922,9 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -931,6 +976,9 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
+> **说明**：
+>
+> 该接口返回的以下错误码均为string类型。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |

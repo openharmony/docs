@@ -3,6 +3,7 @@
 
 \@Prop装饰的变量可以和父组件建立单向的同步关系。\@Prop装饰的变量是可变的，但是变化不会同步回其父组件。
 
+在阅读\@Prop文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。
 
 > **说明：**
 >
@@ -40,11 +41,11 @@
 
 ## 变量的传递/访问规则说明
 
-| 传递/访问     | 说明                                       |
-| --------- | ---------------------------------------- |
-| 从父组件初始化   | 如果本地有初始化，则是可选的。没有的话，则必选，支持父组件中的常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新。只有状态变量才能触发UI刷新）、[\@State](arkts-state.md)、[\@Link](arkts-link.md)、\@Prop、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)去初始化子组件中的\@Prop变量。 |
-| 用于初始化子组件  | \@Prop支持去初始化子组件中的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
-| 是否支持组件外访问 | \@Prop装饰的变量是私有的，只能在组件内访问。                |
+| 传递/访问          | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| 从父组件初始化     | 如果本地有初始化，则是可选的，初始化行为和[\@State](./arkts-state.md#变量的传递访问规则说明)保持一致。没有的话，则必选，支持父组件中的常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新。只有状态变量才能触发UI刷新）、[\@State](arkts-state.md)、[\@Link](arkts-link.md)、\@Prop、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)去初始化子组件中的\@Prop变量。 |
+| 用于初始化子组件   | \@Prop支持去初始化子组件中的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
+| 是否支持组件外访问 | \@Prop装饰的变量是私有的，只能在组件内访问。                 |
 
 
   **图1** 初始化规则图示  
@@ -75,8 +76,8 @@
 
 - 当装饰的类型是Object或者class复杂类型时，可以观察到第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性；
 
-```
-class ClassA {
+```ts
+class Info {
   public value: string;
   constructor(value: string) {
     this.value = value;
@@ -84,10 +85,10 @@ class ClassA {
 }
 class Model {
   public value: string;
-  public a: ClassA;
-  constructor(value: string, a: ClassA) {
+  public info: Info;
+  constructor(value: string, info: Info) {
     this.value = value;
-    this.a = a;
+    this.info = info;
   }
 }
 
@@ -95,14 +96,14 @@ class Model {
 // 可以观察到第一层的变化
 this.title.value = 'Hi'
 // 观察不到第二层的变化
-this.title.a.value = 'ArkUi' 
+this.title.info.value = 'ArkUI' 
 ```
 
 对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
 - 当装饰的类型是数组的时候，可以观察到数组本身的赋值和数组项的添加、删除和更新。
 
-```
+```ts
 // @State装饰的对象为数组时
 @Prop title: string[]
 // 数组自身的赋值可以观察到
@@ -629,7 +630,7 @@ struct MainProgram {
 ```ts
 // 以下是嵌套类对象的数据结构。
 @Observed
-class ClassA {
+class Son {
   public title: string;
 
   constructor(title: string) {
@@ -638,13 +639,13 @@ class ClassA {
 }
 
 @Observed
-class ClassB {
+class Father {
   public name: string;
-  public a: ClassA;
+  public son: Son;
 
-  constructor(name: string, a: ClassA) {
+  constructor(name: string, son: Son) {
     this.name = name;
-    this.a = a;
+    this.son = son;
   }
 }
 ```
@@ -654,29 +655,29 @@ class ClassB {
 ```ts
 @Entry
 @Component
-struct Parent {
-  @State votes: ClassB = new ClassB('Hello', new ClassA('world'))
+struct Person {
+  @State person: Father = new Father('Hello', new Son('world'))
 
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-        Button('change ClassB name')
+        Button('change Father name')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF，90%')
           .onClick(() => {
-            this.votes.name = "aaaaa"
+            this.person.name = "Hi";
           })
-        Button('change ClassA title')
+        Button('change Son title')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF，90%')
           .onClick(() => {
-            this.votes.a.title = "wwwww"
+            this.person.son.title = "ArkUI";
           })
-        Text(this.votes.name)
+        Text(this.person.name)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -686,9 +687,9 @@ struct Parent {
           .textAlign(TextAlign.Center)
           .fontColor('#e6000000')
           .onClick(() => {
-            this.votes.name = 'Bye'
+            this.person.name = 'Bye';
           })
-        Text(this.votes.a.title)
+        Text(this.person.son.title)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -697,9 +698,9 @@ struct Parent {
           .borderRadius(20)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.votes.a.title = "openHarmony"
+            this.person.son.title = "openHarmony";
           })
-        Child1({ vote1: this.votes.a })
+        Child({ child: this.person.son })
       }
 
     }
@@ -709,12 +710,12 @@ struct Parent {
 
 
 @Component
-struct Child1 {
-  @Prop vote1: ClassA = new ClassA('');
+struct Child {
+  @Prop child: Son = new Son('');
 
   build() {
     Column() {
-      Text(this.vote1.title)
+      Text(this.child.title)
         .fontSize(16)
         .margin(12)
         .width(312)
@@ -723,7 +724,7 @@ struct Child1 {
         .borderRadius(20)
         .textAlign(TextAlign.Center)
         .onClick(() => {
-          this.vote1.title = 'Bye Bye'
+          this.child.title = 'Bye Bye'
         })
     }
   }
@@ -774,7 +775,7 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
+struct MapSample {
   @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
@@ -828,7 +829,7 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample11 {
+struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {

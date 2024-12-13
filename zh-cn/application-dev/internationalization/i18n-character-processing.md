@@ -92,7 +92,7 @@ let result = transliter.transform('中国'); // result: zhong guo
 
 // 汉语姓氏读音
 let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-let result = nameTransliter.transform('单老师'); // result: shàn lǎo shī
+let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
 let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
 
 

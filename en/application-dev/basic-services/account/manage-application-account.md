@@ -50,13 +50,8 @@ Create an application account for an application user.
 
 **Procedure**
 
-1. Specify the account owner.
 
-   ```ts
-   let owner: string = 'com.example.accountjsdemo2';
-   ```
-
-2. Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9) to obtain the application account list.
+Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9) to obtain the application account list.
 
    ```ts
    appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
@@ -169,7 +164,7 @@ Remove the application account after the user logs out of the system.
 
 **Procedure**
 
-1. Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to remove the application account.
+Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to remove the application account.
 
    ```ts
    let name: string = 'Zhangsan';
