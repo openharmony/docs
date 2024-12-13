@@ -4768,3 +4768,17 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+### ohos.permission.CAPTURE_PLAYBACK
+
+Allows the app to capture audio streams that is playing.
+
+With this permission, app can directly use the innercapture capability of the audio framework to capture the audio streams that is playing. Currently, this permission is available only for system services and system applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
