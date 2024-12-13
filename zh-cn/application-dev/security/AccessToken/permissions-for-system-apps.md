@@ -4345,6 +4345,18 @@
 
 **起始版本**：13
 
+### ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+允许应用发送通知给系统中指定用户。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.ANTI_FRAUD
 
 允许应用接入风控探针，检测端侧风险，作为云侧风险决策的输入。
