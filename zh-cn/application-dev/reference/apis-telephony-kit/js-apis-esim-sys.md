@@ -386,7 +386,7 @@ eSIM.getEuiccProfileInfoList(0).then((data: eSIM.GetEuiccProfileInfoListResult) 
 
 getEuiccInfo\(slotId: number\): Promise\<EuiccInfo\>;
 
-获取eUicc信息。使用Promise异步回调。
+获取eUICC信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
