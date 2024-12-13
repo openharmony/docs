@@ -209,7 +209,7 @@
    同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
 
    ```ets
-   import { numberSourceListData, sourceListType } from './keyboardKeyData';
+   import { numberSourceListData, sourceListType } from './KeyboardKeyData';
    import keyboardController from '../model/KeyboardController';
    
    @Component
