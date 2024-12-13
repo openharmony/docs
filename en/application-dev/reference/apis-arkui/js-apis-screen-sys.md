@@ -516,49 +516,6 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 });
 ```
 
-## screen.makeUnique<sup>13+</sup>
-
-makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
-
-Sets screen unique. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name   | Type  | Mandatory| Description         |
-| --------- | ------ | ---- | ------------- |
-| uniqueScreen  | Array&lt;number&gt; | Yes  | IDs of unique screens. Each ID must be an integer.|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the display IDs of the unique screens, Each ID must be an integer.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | ----------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
-| 1400001 | Invalid display or screen. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let uniqueScreenIds: Array<number> = [1001, 1002, 1003];
-screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
-  console.info('Succeeded in making unoque screens.';
-}).catch((err: BusinessError) => {
-  console.error(`Failed to make unoque screens. Code:${err.code},message is ${err.message}`);
-});
-```
-
 ## screen.createVirtualScreen
 
 createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Screen&gt;): void
@@ -1057,7 +1014,6 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 | activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
 | orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.                                                      |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.                                                    |
-| edId<sup>13+</sup> | string                                         | Yes  | No  | EdId of the screen.                                                 |
 
 ### setOrientation
 
