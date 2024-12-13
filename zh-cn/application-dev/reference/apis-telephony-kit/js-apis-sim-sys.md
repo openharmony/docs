@@ -3534,7 +3534,7 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 
 | 名称                | 值                    | 说明      |
 | ------------------ | --------------------- | -------- |
-| SIM_AUTH_EAP_SIM_TYPE   | 128  | 认证类型为EAP-SIM。 |
+| SIM_AUTH_EAP_SIM_TYPE   | 128  | 鉴权类型为EAP-SIM。 |
 | SIM_AUTH_EAP_AKA_TYPE   | 129  | 鉴权类型为EAP-AKA。 |
 
 ## SimAuthenticationResponse<sup>14+</sup>
