@@ -440,6 +440,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
