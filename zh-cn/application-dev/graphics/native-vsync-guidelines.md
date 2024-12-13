@@ -8,7 +8,7 @@ NativeVsync模块用来获取系统VSync信号，提供了OH_NativeVSync实例�
 
 | 接口名 | 描述 | 
 | -------- | -------- |
-| OH_NativeVSync_Create (const char \*name, unsigned int length) | 创建一个OH_NativeVSync实例，每次调用都会产生一个新的实例。 | 
+| OH_NativeVSync_Create (const char \*name, unsigned int length) | 创建一个OH_NativeVSync实例，每次调用都会产生一个新的实例。本接口需要与OH_NativeVSync_Destroy接口配合使用，否则会存在内存泄露。 |
 | OH_NativeVSync_Destroy (OH_NativeVSync \*nativeVsync) | 销毁OH_NativeVSync实例。 | 
 | OH_NativeVSync_FrameCallback (long long timestamp, void \*data) | 回调函数的形式，timestamp表示时间戳，data为回调函数入参。 | 
 | OH_NativeVSync_RequestFrame (OH_NativeVSync \*nativeVsync, OH_NativeVSync_FrameCallback callback, void \*data) | 请求下一次VSync信号，当信号到来时，调用回调函数callback。 | 
