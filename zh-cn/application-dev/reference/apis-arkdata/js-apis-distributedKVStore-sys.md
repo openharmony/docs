@@ -68,13 +68,14 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 try {
   let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
   let bucket2: ValuesBucket = {key:"age", value: 20};
   let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
   let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
-  kvStore.putBatch(people, async (err: BusinessError) => {
+  kvStore.putBatch(people, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -83,7 +84,7 @@ try {
   })
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`Failed to put batch.code is ${error.code},message is ${error.message}`);
+  console.error(`Failed to do putBatch error.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -132,20 +133,21 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 try {
   let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
   let bucket2: ValuesBucket = {key:"age", value: 20};
   let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
   let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
-  kvStore.putBatch(people).then(async () => {
+  kvStore.putBatch(people).then(() => {
     console.info(`Succeeded in putting patch`);
   }).catch((err: BusinessError) => {
-    console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to do putBatch error.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`putBatch fail.code is ${error.code},message is ${error.message}`);
+  console.error(`Failed to do putBatch error.code is ${error.code},message is ${error.message}`);
 }
 ```
 
