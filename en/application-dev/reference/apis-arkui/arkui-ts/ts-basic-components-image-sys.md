@@ -1,6 +1,6 @@
 # Image (System API)
 
-The **\<Image>** component is usually used to display images in applications.
+The **Image** component is usually used to display images in applications.
 
 > **NOTE**
 >

@@ -1,6 +1,6 @@
 # UIExtensionContext
 
-**UIExtensionContext**, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). It provides UIExtensionAbility-related configuration and APIs for operating the UIExtensionAbility. For example, you can use the APIs to start a UIExtensionAbility.
+**UIExtensionContext**, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). It provides UIExtensionAbility-related configurations and APIs for operating the UIExtensionAbility. For example, you can use the APIs to start a UIExtensionAbility.
 
 > **NOTE**
 >
@@ -67,6 +67,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -155,6 +156,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -253,6 +255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -347,6 +350,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -437,6 +441,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -539,6 +544,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1199,6 +1205,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
+| 16000082 | The UIAbility is being started. |
 
 **Example**
 

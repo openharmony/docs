@@ -49,14 +49,14 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 Most of the APIs for cross-device data sync of RDB stores are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the distributed tables to be synced.| 
-| sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void | Synchronizes data across devices.| 
-| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Subscribes to changes in the distributed data.| 
-| off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Unsubscribe from changes in the distributed data.| 
-| obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void; | Obtains the table name on the specified device based on the local table name.| 
-| remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void | Queries data from the RDB store of a remote device based on specified conditions.| 
+| setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the distributed tables to be synced.|
+| sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void | Synchronizes data across devices.|
+| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Subscribes to changes in the distributed data.|
+| off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void | Unsubscribe from changes in the distributed data.|
+| obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void | Obtains the table name on the specified device based on the local table name.|
+| remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void | Queries data from the RDB store of a remote device based on specified conditions.|
 
 
 ## How to Develop
@@ -66,7 +66,7 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
 > The security level of the destination device (to which data is synced) cannot be higher than that of the source device. For details, see [Access Control Mechanism in Cross-Device Sync](access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-sync).
 
 1. Import the module.
-     
+   
    ```ts
    import { relationalStore } from '@kit.ArkData';
    ```
@@ -77,7 +77,7 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
    2. Display a dialog box to ask for user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create an RDB store and set a table for distributed sync.
-     
+   
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -102,7 +102,7 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
    ```
 
 4. Synchronize data across devices. After **sync()** is called to trigger a sync, data is synced from the local device to all other devices on the network.
-     
+   
    ```ts
    // Construct the predicate object for synchronizing the distributed table.
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -124,7 +124,7 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
    ```
 
 5. Subscribe to changes in the distributed data. The data sync triggers the **observer** callback registered in **on()**. The input parameter of the callback is the ID of the device whose data changes.
-     
+   
    ```ts
    let devices: string | undefined = undefined;
    try {
@@ -159,7 +159,7 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
    >
    > The value of **deviceIds** can be obtained by using [deviceManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync) method.
 
-     
+   
    ```ts
    // Obtain device IDs.
    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
@@ -194,3 +194,4 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
      console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
    }
    ```
+

@@ -5,6 +5,10 @@
 
 提供rawfile文件相关功能，功能包括搜索、读取和关闭。
 
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**库：** librawfile.z.so
+
 **起始版本：** 8
 
 **相关模块：**[Rawfile](rawfile.md)

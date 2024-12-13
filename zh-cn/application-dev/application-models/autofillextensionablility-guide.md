@@ -27,15 +27,15 @@
 
 #### 生命周期
 
-[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)提供了[onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityoncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonbackground)和[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityondestroy)生命周期回调，根据需要重写对应的回调方法。
+[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)提供了[onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityoncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonbackground)、[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityondestroy)、[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest)和[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest)生命周期回调，根据需要重写对应的回调方法。
 
 - **onCreate**：当AutoFillExtensionAbility创建时回调，执行初始化业务逻辑操作。
 - **onSessionDestroy**：当AutoFillExtensionAbility界面内容对象销毁后调用。
 - **onForeground**：当AutoFillExtensionAbility从后台转到前台时触发。
 - **onBackground**：当AutoFillExtensionAbility从前台转到后台时触发。
 - **onDestroy**：当AutoFillExtensionAbility销毁时回调，可以执行资源清理等操作。
-- **onSaveRequest**  表单中有数据存在并且切换页面时，会触发自动保存的生命周期回调。
-- **onFillRequest** 当fill request发送请求的时候，实现账号密码自动填充。
+- **onSaveRequest**：表单中有数据存在并且切换页面时，会触发自动保存的生命周期回调。
+- **onFillRequest**：当fill request发送请求的时候，实现账号密码自动填充。
 
 #### 实现账号密码自动填充功能
 

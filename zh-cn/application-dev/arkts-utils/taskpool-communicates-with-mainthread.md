@@ -1,6 +1,6 @@
-# TaskPool任务与主线程通信
+# TaskPool任务与宿主线程通信
 
-如果一个Task，不仅需要返回最后的执行结果，而且需要定时通知主线程状态、数据的变化，或者需要分段返回数量级较大的数据（比如从数据库中读取大量数据），可以通过下面这种方式实现。
+如果一个Task，不仅需要返回最后的执行结果，而且需要定时通知宿主线程状态、数据的变化，或者需要分段返回数量级较大的数据（比如从数据库中读取大量数据），可以通过下面这种方式实现。
 
 下面以多个图片加载任务结果实时返回为例进行说明。
 
@@ -13,7 +13,7 @@
    }
    ```
 
-2. 然后，在Task需要执行的任务中，添加sendData()接口将消息发送给主线程。
+2. 然后，在Task需要执行的任务中，添加sendData()接口将消息发送给宿主线程。
 
    ```ts
    // IconItemSource.ets
@@ -33,7 +33,7 @@
    import { taskpool } from '@kit.ArkTS';
    import { IconItemSource } from './IconItemSource';
    
-   // 通过Task的sendData方法，即时通知主线程信息
+   // 通过Task的sendData方法，即时通知宿主线程信息
    @Concurrent
    export function loadPictureSendData(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
@@ -54,8 +54,8 @@
    }
    ```
 
-3. 最后，在主线程通过onReceiveData()接口接收消息。
-   这样主线程就可以通过notice()接口接收到Task发送的数据。
+3. 最后，在宿主线程通过onReceiveData()接口接收消息。
+   这样宿主线程就可以通过notice()接口接收到Task发送的数据。
 
    ```ts
    // TaskSendDataUsage.ets

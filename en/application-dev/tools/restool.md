@@ -11,7 +11,7 @@ The tool supports the following command options.
 
 | Option| Default Value Allowed| Argument Carried| Description|
 | -------- | -------- | -------- | -------- |
-| -i | No| Yes| [Resource directory](#compiling-resources) or [resource intermediate file directory](#compiling-resources) to create. The same command can run multiple times.|
+| -i | No| Yes| Resource directory or resource middleware to create. The same command can run multiple times.<br>For details, see [Compiling Resources](#compiling-resources).|
 | -j | No| Yes| Path of the **config.json** or **module.json** file.|
 | -o | No| Yes| Output path of the compiled resource.|
 | -p | No| Yes| Bundle name of the compiled resource.|
@@ -30,9 +30,9 @@ The tool supports the following command options.
 
 ### target-config Parameters
 
-Supported parameters: **MccMnc**, **Locale**, **Orientation**, **Device**, **ColorMode**, and **Density**
+Supported parameters: **MccMnc**, **Locale**, **Orientation**, **Device**, **ColorMode**, and **Density**.
 
-Format: Use semicolons (;) to separate different parameter configurations. Use square brackets ([]) to encapsulate values for a parameter and use commas (,) to separate values.
+Format: Use semicolons (;\) to separate different parameter configurations. Use square brackets ([]) to encapsulate values for a parameter and use commas (,) to separate values.
 
 **MccMnc** matching rule: The MCC must always be used for matching. If an MNC is not included, a match is found as long as the MCC is the same. If an MNC is included, a match is found when both the MCC and MNC are the same.
 

@@ -186,7 +186,7 @@ import { collections } from '@kit.ArkTS';
 try {
   let arr1: collections.Array<number> = new collections.Array<number>();
   let num: number = 1;
-  arr1.push(num)
+  arr1.push(num);
 } catch (e) {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
 }
@@ -199,9 +199,9 @@ import { collections } from '@kit.ArkTS';
 
 try {
   let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
-  let arr2: Array<number> = new Array<number>()
-  arr2.push(1)
-  arr1.push(arr2)
+  let arr2: Array<number> = new Array<number>();
+  arr2.push(1);
+  arr1.push(arr2);
 } catch (e) {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
 }
@@ -386,7 +386,7 @@ class SendableClass {
   func: SendableFuncType;
 }
 
-let sendableClass = new SendableClass(SendableFunc)
+let sendableClass = new SendableClass(SendableFunc);
 ```
 
 **反例：**

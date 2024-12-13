@@ -1,6 +1,6 @@
-# 使用SoundPool开发音频播放功能
+# 使用SoundPool播放短音频(ArkTS)
 
-使用SoundPool（音频池）提供的接口，可以实现低时延短音播放。
+使用[SoundPool](media-kit-intro.md#soundpool)（音频池）提供的接口，可以实现低时延短音播放。
 
 当应用开发时，经常需要使用一些急促简短的音效（如相机快门音效、系统通知音效等），此时建议调用SoundPool，实现一次加载，多次低时延播放。
 
@@ -263,7 +263,7 @@ function loadCallback() {
 function finishPlayCallback() {
   // 播放完成回调
   soundPool.on('playFinished', () => {
-    console.info("recive play finished message");
+    console.info("receive play finished message");
     // 可进行下次播放
   })
 }

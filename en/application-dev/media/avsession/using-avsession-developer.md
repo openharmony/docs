@@ -14,22 +14,22 @@ The table below lists the key APIs used by the provider. The APIs use either a c
 
 For details, see [AVSession Management](../../reference/apis-avsession-kit/js-apis-avsession.md).
 
-| API | Description | 
+| API| Description| 
 | -------- | -------- |
-| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void<sup>10+<sup> | Creates an AVSession.<br>Only one AVSession can be created for a UIAbility. | 
-| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets AVSession metadata. | 
-| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets the AVSession playback state. | 
-| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Starts a UIAbility. | 
-| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void<sup>10+<sup> | Obtains the controller of the AVSession. | 
-| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+<sup> | Obtains the output device information. |
-| activate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Activates the AVSession. | 
-| deactivate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Deactivates this session. |
-| destroy(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Destroys the AVSession. | 
-| setAVQueueItems(items: Array&lt;AVQueueItem&gt;, callback: AsyncCallback&lt;void&gt;): void <sup>10+<sup> | Sets a playlist. |
-| setAVQueueTitle(title: string, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets a name for the playlist. |
-| dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Dispatches a custom session event. |
+| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void<sup>10+<sup> | Creates an AVSession.<br>Only one AVSession can be created for a UIAbility.| 
+| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets AVSession metadata.| 
+| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets the AVSession playback state.| 
+| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Starts a UIAbility.| 
+| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void<sup>10+<sup> | Obtains the controller of the AVSession.| 
+| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+<sup> | Obtains the output device information.|
+| activate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Activates the AVSession.| 
+| deactivate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Deactivates this session.|
+| destroy(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Destroys the AVSession.| 
+| setAVQueueItems(items: Array&lt;AVQueueItem&gt;, callback: AsyncCallback&lt;void&gt;): void <sup>10+<sup> | Sets a playlist.|
+| setAVQueueTitle(title: string, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets a name for the playlist.|
+| dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Dispatches a custom session event.|
 | setExtras(extras: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sets a custom media packet in the form of a key-value pair.|
-| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | Obtains the output device information. This API is a synchronous API. |
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | Obtains the output device information. This API is a synchronous API.|
 
 ## How to Develop
 
@@ -133,10 +133,6 @@ To enable an audio and video application to access the AVSession service as a pr
 
 3. Set the UIAbility to be started by the controller. The UIAbility configured here is started when a user operates the UI of the controller, for example, clicking a widget in Media Controller.
    The UIAbility is set through the **WantAgent** API. For details, see [WantAgent](../../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md).
- 
-   ```ts
-   import { wantAgent } from '@kit.AbilityKit';
-   ```
 
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
@@ -154,7 +150,8 @@ To enable an audio and video application to access the AVSession service as a pr
            abilityName: 'MainAbility'
          }
        ],
-       operationType: wantAgent.OperationType.START_ABILITIES,
+       // OperationType.START_ABILITIES
+       operationType: 2,
        requestCode: 0,
        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
      }
@@ -223,7 +220,7 @@ To enable an audio and video application to access the AVSession service as a pr
    >
    > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event (not used temporarily) as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
 
-   Fixed playback control commands on the session side include basic operation commands such as play, pause, previous, and next. For details, see [AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md).
+   Fixed playback control commands on the session side include basic operation commands such as play, pause, previous, and next. For details, see [AVControlCommand](../../reference/apis-avsession-kit/js-apis-avsession.md#avcontrolcommand10).
      
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
@@ -270,7 +267,6 @@ To enable an audio and video application to access the AVSession service as a pr
         // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('rewind') to cancel listening.
         // After the processing is complete, call SetAVPlayState to report the playback state and position.
      });
-
      session.on('seek', (time) => {
        console.info(`on seek , the seek time is ${time}`);
         // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('seek') to cancel listening.

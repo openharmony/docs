@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -14,7 +14,7 @@
 import { inputConsumer } from '@kit.InputKit';
 ```
 
-## HotkeyOptions<sup>13+</sup>
+## HotkeyOptions<sup>14+</sup>
 
 快捷键选项。
 
@@ -22,11 +22,11 @@ import { inputConsumer } from '@kit.InputKit';
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键集合，数量范围[1, 2]，修饰按键无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
-| finalKey  | number  | 是      | 否      | 被修饰键。<br>如Ctrl+Shift+Esc中，Esc称为被修饰键。 |
+| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，修饰按键无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
+| finalKey  | number  | 是      | 否      | 被修饰键，为除修饰键和 Meta 以外的其它按键。<br>如Ctrl+Shift+Esc中，Esc称为被修饰键。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，若不填默认为true。 |
 
-## inputConsumer.getAllSystemHotkeys<sup>13+</sup>
+## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
@@ -48,7 +48,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on<sup>13+</sup>
+## inputConsumer.on('hotkeyOptions')<sup>14+</sup>
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
@@ -61,8 +61,18 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。                   |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | 是    | 快捷键选项。                 |
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。                 |
 | callback   | Callback&lt;HotkeyOptions&gt; | 是    | 回调函数，当满足条件的全局组合按键输入事件发生时，异步上报组合按键数据。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[inputconsumer错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 4200002  | Parameter error. The hotkey has been used by the system. You can call the [inputConsumer.getAllSystemHotkeys](#inputconsumergetallsystemhotkeys14) interface to query all system hotkeys. |
+| 4200003  | Parameter error. The hotkey has been subscribed to by another. |
 
 **示例：** 
 
@@ -84,7 +94,7 @@ try {
 }
 ```
 
-## inputConsumer.off<sup>13+</sup>
+## inputConsumer.off('hotkeyOptions')<sup>14+</sup>
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
@@ -97,8 +107,16 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | 参数名         | 类型                         | 必填   | 说明                              |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。        |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | 是    | 快捷键选项。             |
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。             |
 | callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前应用全局快捷键选项已订阅的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：** 
 

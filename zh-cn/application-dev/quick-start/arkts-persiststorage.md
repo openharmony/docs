@@ -7,6 +7,8 @@
 PersistentStorage是应用程序中的可选单例对象。此对象的作用是持久化存储选定的AppStorage属性，以确保这些属性在应用程序重新启动时的值与应用程序关闭时的值相同。
 
 
+PersistentStorage提供状态变量持久化的能力，但是需要注意，其持久化和读回UI的能力都需要依赖AppStorage。在阅读本文档前，建议提前阅读：[AppStorage](./arkts-appstorage.md)，[PersistentStorage API文档](../reference/apis-arkui/arkui-ts/ts-state-management.md#persistentstorage)。
+
 ## 概述
 
 PersistentStorage将选定的AppStorage属性保留在设备磁盘上。应用程序通过API，以决定哪些AppStorage属性应借助PersistentStorage持久化。UI和业务逻辑不直接访问PersistentStorage中的属性，所有属性访问都是对AppStorage的访问，AppStorage中的更改会自动同步到PersistentStorage。
@@ -105,7 +107,7 @@ struct Index {
 - 新应用安装后首次启动运行：
   1. 调用persistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装。
   2. 接着查询属性“aProp”在AppStorage中是否存在，依旧不存在。
-  3. 在AppStorge中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47。
+  3. 在AppStorage中创建名为“aProp”的number类型属性，属性初始值是定义的默认值47。
   4. PersistentStorage将属性“aProp”和值47写入磁盘，AppStorage中“aProp”对应的值和其后续的更改将被持久化。
   5. 在Index组件中创建状态变量\@StorageLink('aProp') aProp，和AppStorage中“aProp”双向绑定，在创建的过程中会在AppStorage中查找，成功找到“aProp”，所以使用其在AppStorage找到的值47。
 

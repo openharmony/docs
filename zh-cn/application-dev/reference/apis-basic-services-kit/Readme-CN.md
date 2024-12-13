@@ -36,7 +36,6 @@
     - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
     <!--Del-->
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
-    - [@ohos.pasetboard (剪贴板)(系统接口)](js-apis-pasteboard-sys.md)
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
@@ -93,6 +92,8 @@
 - C API
   - 模块
     - [CommonEvent](capi-common-event.md)
+    - [DeviceInfo](_device_info.md)
+    - [InitSync](_init_sync.md)
     - [OsAccount](_os_account.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
@@ -100,6 +101,8 @@
     - [Pasteboard](_pasteboard.md)
     - [TimeService](_time_service.md)
   - 头文件
+    - [deviceinfo.h](deviceinfo_8h.md)
+    - [init_sync.h](init__sync_8h.md)
     - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)

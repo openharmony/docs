@@ -12,7 +12,7 @@ The **Environment** module provides APIs for obtaining the root directories of t
 import { Environment } from '@kit.CoreFileKit';
 ```
 
-## environment.getUserDownloadDir<sup>11+</sup>
+## Environment.getUserDownloadDir<sup>11+</sup>
 
 getUserDownloadDir(): string
 
@@ -49,7 +49,7 @@ function getUserDownloadDirExample() {
 }
 ```
 
-## environment.getUserDesktopDir<sup>11+</sup>
+## Environment.getUserDesktopDir<sup>11+</sup>
 
 getUserDesktopDir(): string
 
@@ -86,7 +86,7 @@ function getUserDesktopDirExample() {
 }
 ```
 
-## environment.getUserDocumentDir<sup>11+</sup>
+## Environment.getUserDocumentDir<sup>11+</sup>
 
 getUserDocumentDir(): string
 

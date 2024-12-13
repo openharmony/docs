@@ -81,7 +81,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");
         return nullptr;
     }
-    // 注册环境清理钩子函数，此处不移除环境清理钩子，为了在Javas环境被销毁时，这个钩子函数被调用，用来模拟执行一些清理操作，例如释放资源、关闭文件等。
+    // 注册环境清理钩子函数，此处不移除环境清理钩子，为了在Java环境被销毁时，这个钩子函数被调用，用来模拟执行一些清理操作，例如释放资源、关闭文件等。
     status = napi_add_env_cleanup_hook(env, Cleanup, &hookParameter);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");

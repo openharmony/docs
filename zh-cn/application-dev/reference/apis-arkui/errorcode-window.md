@@ -123,19 +123,19 @@ WindowExtension拉起应用的参数异常。
 1. 检查确保子窗口成功绑定父窗口。<br>
 2. 检查子窗口绑定的父窗口状态，确保父窗口状态正常。
 
-## 1300010 全屏窗口的无效操作
+## 1300010 当前窗口模式不支持该操作
 
-**错误信息**<br>The operation is not supported in full-screen mode.
+**错误信息**<br>The operation in the current window status is invalid.
 
-**错误描述**<br>全屏窗口下的无效操作。
+**错误描述**<br>当前窗口模式不支持该操作。
 
 **可能原因**<br>
-1. 对全屏窗口进行move操作。<br>
-2. 对全屏窗口进行resize操作。
+1. 对全屏或分屏窗口进行move操作。<br>
+2. 对全屏或分屏窗口进行resize操作。
 
 **处理步骤**<br>
-1. 不要对全屏窗口进行move操作。<br>
-2. 不要对全屏窗口进行resize操作。
+1. 不要对全屏或分屏窗口进行move操作。<br>
+2. 不要对全屏或分屏窗口进行resize操作。
 
 ## 1300011 销毁画中画窗口失败
 

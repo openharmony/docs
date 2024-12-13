@@ -1,8 +1,8 @@
-# 视频播放
+# 使用AVPlayer播放视频(ArkTS)
 
 当前提供两种视频播放开发的方案：
 
-- AVPlayer：功能较完善的音视频播放ArkTS/JS API，集成了流媒体和本地资源解析，媒体资源解封装，视频解码和渲染功能，适用于对媒体资源进行端到端播放的场景，可直接播放mp4、mkv等格式的视频文件。
+- [AVPlayer](media-kit-intro.md#avplayer)：功能较完善的音视频播放ArkTS/JS API，集成了流媒体和本地资源解析，媒体资源解封装，视频解码和渲染功能，适用于对媒体资源进行端到端播放的场景，可直接播放mp4、mkv等格式的视频文件。
 
 - Video组件：封装了视频播放的基础能力，需要设置数据源以及基础信息即可播放视频，但相对扩展能力较弱。Video组件由ArkUI提供能力，相关指导请参考UI开发文档-[Video组件](../../ui/arkts-common-components-video-player.md)。
 
@@ -23,6 +23,7 @@
 - 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
 - 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[处理音频焦点事件](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
 - 面对设备同时连接多个音频输出设备的情况，应用可以通过[on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo11)监听音频输出设备的变化，从而做出相应处理。
+- 如果需要访问在线媒体资源，需要申请 ohos.permission.INTERNET 权限。
 
 ## 开发步骤及注意事项
 
@@ -96,16 +97,16 @@ export class AVPlayerDemo {
     // startRenderFrame首帧渲染回调函数
     avPlayer.on('startRenderFrame', () => {
       console.info(`AVPlayer start render frame`);
-    })
+    });
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
-    })
+    });
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       avPlayer.reset(); // 调用reset重置资源，触发idle状态
-    })
+    });
     // 状态机变化回调函数
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
@@ -156,7 +157,7 @@ export class AVPlayerDemo {
           console.info('AVPlayer state unknown called.');
           break;
       }
-    })
+    });
   }
 
   // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过url属性进行播放示例
@@ -214,14 +215,14 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     let context = getContext(this) as common.UIAbilityContext;
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     // 获取播放文件的大小
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
@@ -249,13 +250,13 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     this.isSeek = false; // 不支持seek操作
     avPlayer.dataSrc = src;
   }

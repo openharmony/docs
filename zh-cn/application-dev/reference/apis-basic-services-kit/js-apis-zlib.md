@@ -1111,7 +1111,7 @@ for (let i = 0, j = str.length; i < j; i++) {
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
 
-zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
+zip.compress(arrayBufferOut, arrayBufferIn, 20).then((data) => {
   console.info('compress success:');
 }).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -1455,7 +1455,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1606,7 +1606,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1764,7 +1764,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1823,7 +1823,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1884,7 +1884,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1942,13 +1942,13 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateMark({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
+  await zip.inflateMark({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
     console.info('inflateMark success');
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -2058,7 +2058,7 @@ for (let i = 0, j = str.length; i < j; i++) {
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
 
-zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
 ).then(data => {
   console.info('inflateInit success');
 }).catch((errData: BusinessError) => {
@@ -2172,7 +2172,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit2({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
+  await zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
   ).then(data => {
     console.info('inflateInit2 success');
   }).catch((errData: BusinessError) => {
@@ -2231,7 +2231,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2295,7 +2295,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2353,7 +2353,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2693,7 +2693,7 @@ async function demo() {
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {

@@ -5,14 +5,15 @@
 You can use [ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md) to allow a third-party application to access files in a user directory.
 
  **Constraints**
- - The device must have SystemCapability.FileManagement.File.Environment.FolderObtain.
+ - The device must have the SystemCapability.FileManagement.File.Environment.FolderObtain system capability. Currently, only 2-in-1 devices are supported.
    ```ts
    if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
        console.error('this api is not supported on this device');
        return;
    }
    ```
- - The APIs for obtaining user directories do not verify the permissions for accessing the related user directories. To access the user directories, the caller must have the related permissions. If a third-party application needs to access a user directory, user authorization for the access to the **Download**, **Documents**, or **Desktop** directory is required via a dialog box. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+ - The APIs for obtaining user directories do not verify the permissions for accessing the related user directories. To access the user directories, the caller must have the related permissions. If a third-party application needs to access a user directory, user authorization for access to the **Download**, **Documents**, or **Desktop** directory is required via a dialog box. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+   <!--RP1-->
    ```json
    "requestPermissions" : [
        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
@@ -20,6 +21,8 @@ You can use [ohos.file.environment](../reference/apis-core-file-kit/js-apis-file
        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY",
    ]
    ```
+   <!--RP1End-->
+
 ### Example
 
 1. Obtain the path to a user folder, for example, **Download**.
@@ -34,8 +37,6 @@ You can use [ohos.file.environment](../reference/apis-core-file-kit/js-apis-file
             console.info(`success to getUserDownloadDir: ${downloadPath}`);
             const documentsPath = Environment.getUserDocumentDir();
             console.info(`success to getUserDocumentDir: ${documentsPath}`);
-            const desktopPath = Environment.getUserDesktopDir();
-            console.info(`success to getUserDesktopDir: ${desktopPath}`);
         } catch (error) {
             const err: BusinessError = error as BusinessError;
             console.error(`failed to get user dir, because: ${JSON.stringify(err)}`);
@@ -140,7 +141,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so libhilog_ndk.z.so)
 #include <hilog/log.h>
 ```
 
-- Use **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder. The memory allocated by **malloc()** must be released using **free()**. <br>Example:
+- Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder. The memory allocated by **malloc()** must be released using **free()**. <br>Example:
 
     ```c++
     void GetUserDownloadDirExample()
@@ -156,7 +157,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so libhilog_ndk.z.so)
     }
     ```
 
-- Use **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the **Download** folder and view the files in it. <br>Example:
+- Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the **Download** folder and view the files in it. <br>Example:
 
     ```c++
     void ScanUserDownloadDirPathExample()
@@ -186,7 +187,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so libhilog_ndk.z.so)
     }
     ```
 
-- Use **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder and save **temp.txt** to this folder. <br>Example:
+- Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder and save **temp.txt** to this folder. <br>Example:
 
     ```c++
     void WriteUserDownloadDirPathExample()

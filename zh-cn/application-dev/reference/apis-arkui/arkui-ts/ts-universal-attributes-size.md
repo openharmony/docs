@@ -116,11 +116,29 @@ margin(value: Margin | Length | LocalizedMargin)
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | value  | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;[LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Flex](./ts-container-flex.md)交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件水平方向偏移10。 |
 
+## safeAreaPadding<sup>14+</sup>
+
+safeAreaPadding(value: Padding | LengthMetrics | LocalizedPadding)
+
+设置安全区边距属性。允许容器向自身添加组件级安全区域，供子组件延伸。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                       |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| paddingValue | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;&nbsp; [LocalizedPadding](ts-types.md#localizedpadding12)| 是    | 设置组件的安全区边距。<br/>默认值：0 <br/>单位：vp |
+
 ## layoutWeight
 
 layoutWeight(value: number | string)
 
-对子组件进行重新布局。
+设置组件的布局权重，使用该属性的组件在父容器（[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)）的主轴方向按照权重分配尺寸。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -197,7 +215,10 @@ constraintSize(value: ConstraintSizeOptions)
 >  在[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)组件中，width、height设置auto表示自适应子组件。在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
 
 ## 示例
-### 示例1
+
+### 示例1（设置组件的宽高和边距）
+
+设置组件的宽度和高度，以及内边距和外边距。
 
 ```ts
 // xxx.ets
@@ -256,11 +277,12 @@ struct SizeExample {
 
 ![size](figures/size.png)
 
-### 示例2
+### 示例2（LocalizedPadding和LocalizedMargin类型的使用）
+
+padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型。
+
 ```ts
 // xxx.ets
-// padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型
-
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
@@ -302,3 +324,37 @@ struct SizeExample {
 从右至左显示语言示例图
 
 ![size](figures/size-rtl.png)
+
+### 示例3（设置安全区）
+
+对容器设置组件级安全区。
+
+```ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SafeAreaPaddingExample {
+  build() {
+    Column() {
+      Column() {
+        Column()
+          .width("100%")
+          .height("100%")
+          .backgroundColor(Color.Pink)
+      }
+      .width(200)
+      .height(200)
+      .backgroundColor(Color.Yellow)
+      .borderWidth(10)
+      .padding(10)
+      .safeAreaPadding(LengthMetrics.vp(40))
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![safeAreaPaddingExample](figures/safeAreaPaddingExample.png)

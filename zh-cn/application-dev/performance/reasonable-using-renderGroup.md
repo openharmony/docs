@@ -63,7 +63,7 @@ renderGroup本质上使用了用空间换时间的思想，如果缓存能够一
 
 ## 推荐示例
 
-以下展示了推荐场景的示例代码，分别是组件树结构以及自定义组件IconItem，场景采用grid布局，将多个IconItem放置在组件树上，每个IconItem内部使用固定图片和固定文本表示固定内容的组件。renderGroup方法在自定义组件IconItem内调用，通过开关按钮切换来关闭和开启renderGroup，通过Profiler Frame工具进行数据收集，从丢帧率、CPU使用率和GPU使用率三个方面，对比场景示例在关闭和开启renderGroup时的性能差异。
+以下展示了推荐场景的示例代码，分别是组件树结构以及自定义组件IconItem，场景采用grid布局，将多个IconItem放置在组件树上，每个IconItem内部使用固定图片和固定文本表示固定内容的组件。renderGroup方法在自定义组件IconItem内调用，通过开关按钮切换来关闭和开启renderGroup，通过[Profiler](./application-performance-analysis.md) Frame工具进行数据收集，从丢帧率、CPU使用率和GPU使用率三个方面，对比场景示例在关闭和开启renderGroup时的性能差异。
 
 ```ts
 // Index.ets

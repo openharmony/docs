@@ -8,7 +8,9 @@ Aging-friendly design offers a method to enlarge selected areas or components th
 
 * Aging-friendly rules
 
-  Since components do not automatically enlarge when the system font size is greater than 1x, the aging-friendly feature is necessary to magnify the components.
+  To ensure that components enlarge appropriately when the system font size is greater than 1x, you need to configure the [configuration tag](../quick-start/app-configuration-file.md#configuration) for implementing an aging-friendly feature.
+
+<!--RP1--><!--RP1End-->
 
 * Aging-friendly operations
 
@@ -35,11 +37,12 @@ Aging-friendly design offers a method to enlarge selected areas or components th
 | Activation Method            | Component                                                    |
 | -------------------- | ------------------------------------------------------------ |
 | Long press on the component        | [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md), [Bottom Tab Bar (tabBar)](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md#tabbar9), [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md), [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10), [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md)|
-| Default system font enlargement| [Picker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md), [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md), [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md), [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md), [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)/[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)/[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)/[SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md), [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip), [Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md), [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md), [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md)|
+| Default system font enlargement| [PickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md), [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md), [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md), [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md), [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md), [SelectionMenu](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md), [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip), [Dialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md), [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md), [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md), [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md)|
 
 ## Example
 
-This example involves the **SideBarContainer** component, which triggers an aging-friendly dialog box when the control button is long-pressed. The dialog box does not appear if the system font size is at the default 1x setting; it appears only when the system font size is set to greater than 1x.
+<!--RP2-->
+This example uses the **SideBarContainer** component to trigger an aging-friendly dialog box through a long press of the control button. Note that the dialog box does not appear if the system font size is at the 1x setting. Instead, it appears only when the system font size is set to greater than 1x.
 
 ```ts
 import { abilityManager, Configuration } from '@kit.AbilityKit';
@@ -132,7 +135,7 @@ Switching system font sizes and long-pressing components with aging-friendly cap
 | ---------------------------------- | ------------------------------------ |
 | ![](figures/aging_01.png)          | ![](figures/aging_02.png)            |
 
-The **TextPickerDialog** component triggers an aging-friendly dialog box when the system font is set to greater than 1x, which does not occur at the default 1x setting.
+The [TextPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md) component triggers an aging-friendly dialog box when the system font is set to greater than 1x, which does not occur at the default 1x setting.
 
 ```ts
 import { abilityManager, Configuration } from '@kit.AbilityKit';
@@ -252,3 +255,4 @@ struct TextPickerExample {
 | System Font at 1x (Before Aging-Friendly Features Are Enabled)| System Font at 1.75x (After Aging-Friendly Features Are Enabled)|
 | ---------------------------------- | ------------------------------------ |
 | ![](figures/aging_03.png)          | ![](figures/aging_04.png)            |
+<!--RP2End-->

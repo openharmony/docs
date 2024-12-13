@@ -20,7 +20,7 @@
 import { omapi } from '@kit.ConnectivityKit';
 ```
 
-## omapi.ServiceState
+## ServiceState
 
 定义不同的SE服务状态值。
 
@@ -49,7 +49,7 @@ newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService
 | **参数名** | **类型**                                             | **必填** | **说明**             |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
 | type       | string                                               | 是      | 固定填'serviceState' 。      |
-| callback   | Callback<[ServiceState](#omapiservicestate)> | 是      | 返回SE服务状态的回调 。|
+| callback   | Callback<[ServiceState](#servicestate)> | 是      | 返回SE服务状态的回调 。|
 
 **返回值：**
 

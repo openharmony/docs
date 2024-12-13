@@ -38,8 +38,8 @@ TextTimer(options?: TextTimerOptions)
 
 | 名称   | 类型     | 必填  | 说明                   |
 | ----------- | -------- | -------- | -------- |
-| isCountDown | boolean  | 否   | 是否倒计时。<br/>默认值：false |
-| count       | number   | 否   | 倒计时时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。&nbsp;0&lt;count&lt;86400000时，count值为倒计时初始值。否则，使用默认值为倒计时初始值。<br/>默认值：60000 |
+| isCountDown | boolean  | 否   | 是否倒计时。值为true时，计时器开启倒计时，值为false时，计时器开始计时。<br/>默认值：false |
+| count       | number   | 否   | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。&nbsp;0&lt;count&lt;86400000时，count值为计时器初始值。否则，使用默认值为计时器初始值。<br/>默认值：60000 |
 | controller  | [TextTimerController](#texttimercontroller) | 否  | TextTimer控制器。 |
 
 ## 属性
@@ -281,13 +281,18 @@ reset()
 
 | 名称 | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
-| count | number | 是 | 倒计时时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。 0<count<86400000时，count值为倒计时初始值。否则，使用默认值为倒计时初始值。<br> 默认值：60000。 |
-| isCountDown | boolean| 是 | 是否倒计时。<br> 默认值：false。 |
-| started | boolean | 是 | 是否已经开始了倒计时。 |
+| count | number | 是 | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。 0<count<86400000时，count值为倒计时初始值。否则，使用默认值为倒计时初始值。<br> 默认值：60000。 |
+| isCountDown | boolean| 是 | 是否倒计时。值为true时，计时器开启倒计时，值为false时，计时器开始计时。<br> 默认值：false |
+| started | boolean | 是 | 是否已经开始了计时。 |
 | elapsedTime | number | 是 | 计时器经过的时间，单位为设置格式的最小单位。 |
 
 ## 示例
-### 示例1
+### 示例1（支持手动启停的文本计时器）
+
+该示例展示了TextTimer组件的基本使用方法，通过format属性设置计时器的文本显示格式。
+
+用户可以通过点击"start"、"pause"、"reset"按钮，开启、暂停、重置计时器。
+
 ```ts
 // xxx.ets
 @Entry
@@ -324,7 +329,10 @@ struct TextTimerExample {
 
 ![zh-cn_image_0000001251007721](figures/zh-cn_image_0000001251007721.gif)
 
-### 示例2
+### 示例2（设定文本阴影样式）
+
+该示例通过textShadow属性设置计时器的文本阴影样式。
+
 ``` ts
 // xxx.ets
 @Entry
@@ -342,8 +350,10 @@ struct TextTimerExample {
 ```
 ![TextshadowExample](figures/text_timer_textshadow.png)
 
-### 示例3
+### 示例3（设定自定义内容区）
+
 该示例实现了两个简易秒表，使用浅灰色背景。计时器开始后，会实时显示时间变化。倒计时器开始后，背景会变成黑色，正计时器开始后，背景会变成灰色。
+
 ``` ts
 // xxx.ets
 class MyTextTimerModifier implements ContentModifier<TextTimerConfiguration> {
@@ -415,8 +425,10 @@ struct Index {
 ```
 ![text_timer_content_modifier](figures/text_timer_content_modifier.gif)
 
-### 示例4
-TextTimer计时器创建之后立即执行。
+### 示例4（创建之后立即执行计时）
+
+该示例展示了TextTimer计时器如何在创建完成之后立即开始计时。
+
 ``` ts
 @Entry
 @Component

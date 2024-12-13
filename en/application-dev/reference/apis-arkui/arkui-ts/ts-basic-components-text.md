@@ -25,7 +25,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | No| Text content. This parameter does not take effect if the component contains a **\<Span>** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '**|
+| content | string \| [Resource](ts-types.md#resource) | No| Text content. This parameter does not take effect if the component contains a **Span** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '**|
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | No| Initialization options of the component.|
 
 ## Attributes
@@ -58,7 +58,7 @@ When **textAlign** is set to **TextAlign.JUSTIFY**, you must set the [wordBreak]
 
 ### textOverflow
 
-textOverflow(value: { overflow: TextOverflow })
+textOverflow(options: TextOverflowOptions)
 
 Sets the display mode when the text is too long.
 
@@ -68,7 +68,7 @@ If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **Tex
 
 If **overflow** is set to **TextOverflow.MARQUEE**, the text scrolls in a line, and neither **maxLines** nor **copyOption** takes effect. The **textAlign** attribute takes effect only when the text is not scrollable. With **overflow** set to **TextOverflow.MARQUEE**, the **clip** attribute is set to **true** by default. **TextOverflow.MARQUEE** is not available for [CustomSpan](ts-universal-styled-string.md#customspan) of the styled string.
 
-Since API version 12, **TextOverflow.MARQUEE** is available for the **\<ImageSpan>** component, where the text and images are displayed in scrolling mode in a line.
+Since API version 12, **TextOverflow.MARQUEE** is available for the **ImageSpan** component, where the text and images are displayed in scrolling mode in a line.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -80,7 +80,7 @@ Since API version 12, **TextOverflow.MARQUEE** is available for the **\<ImageSpa
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Yes  | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**|
+| options | [TextOverflowOptions](#textoverflowoptions13) | Yes  | Display mode when the text is too long.|
 
 ### maxLines
 
@@ -141,6 +141,8 @@ Sets the color, type, and style of the text decorative line.
 baselineOffset(value: number | string)
 
 Sets the offset of the text baseline. If the value specified is a percentage, the default value is used.
+
+Positive values shift the content upwards, while negative values shift it downwards.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -272,7 +274,7 @@ Sets the text size.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
 
 ### fontStyle
 
@@ -308,7 +310,7 @@ Sets the font weight. If the value is too large, the text may be clipped dependi
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
+| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
 
 ### fontFamily
 
@@ -326,7 +328,7 @@ Sets the font family.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| string | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
+| value  | string \| [Resource](ts-types.md#resource) | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
 
 ### copyOption<sup>9+</sup>
 
@@ -548,9 +550,9 @@ This API must be used together with [enableDataDetector](#enabledatadetector11).
 
 When entities A and B overlap, the following rules are followed:
 
-1. If A ⊂ B, retain B. Otherwise, retain A.
+1. If A is a subset of B (A ⊂ B), then B is retained; otherwise, A is retained.
 
-2. When A ⊄ B and B ⊄ A: If A.start < B.start, retain A; otherwise, retain B.
+2. If A is not a subset of B (A ⊄ B) and B is not a subset of A (B ⊄ A), and if the starting point of A is earlier than that of B (A.start < B.start), then A is retained; otherwise, B is retained.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -571,7 +573,7 @@ Sets the custom context menu on text selection.
 
 The duration required for a long-press gesture is 600 ms for **bindSelectionMenu** and 800 ms for **bindContextMenu**. When both **bindSelectionMenu** and **bindContextMenu** are set and both are configured to be triggered by a long-press gesture, **bindSelectionMenu** is triggered first.
 
-If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) component to prevent the keyboard from being blocked.
+If the custom menu is too long, embed a [Scroll](./ts-container-scroll.md) component to prevent the keyboard from being blocked.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -584,7 +586,7 @@ If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) co
 | spanType     | [TextSpanType](#textspantype11)          | Yes  | Span type of the menu.<br>Default value: **TextSpanType.TEXT**              |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | Yes  | Content of the menu.                                            |
 | responseType | [TextResponseType](#textresponsetype11)  | Yes  | Response type of the menu.<br>Default value: **TextResponseType.LONG_PRESS**|
-| options      | [SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11) | No  | Options of the menu.                                            |
+| options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions10) | No  | Options of the menu.                                            |
 
 ### fontFeature<sup>12+</sup>
 
@@ -599,6 +601,8 @@ Format of **\<feature-tag-value\>**: \<string\> \[ \<integer\> \| on \| off ]
 There can be multiple **\<feature-tag-value\>** values, which are separated by commas (,).
 
 For example, the input format for monospaced clock fonts is "ss01" on.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -618,11 +622,11 @@ For more information about the font features, see [Low-level font feature settin
 
 >  **NOTE**<br/>
 >
->  The **Text** component cannot contain both text and the child component **\<Span>** or **\<ImageSpan>**. If both of them exist, only the content in **\<Span>** or **\<ImageSpan>** is displayed.
+>  The **Text** component cannot contain both text and the child component **Span** or **ImageSpan**. If both of them exist, only the content in **Span** or **ImageSpan** is displayed.
 >
 >  The typesetting engine rounds down the value of [width](ts-universal-attributes-size.md#width) to ensure that the value is an integer. If the typesetting engine rounds up the value instead, the right side of the text may be clipped.
 >
->  When multiple **Text** components are placed in the [\<Row>](ts-container-row.md) container with no specific layout or space allocation settings configured, the components are laid out based on the maximum size of the container. To make sure the sum of the components' main axis sizes does not exceed the main axis size of the container, you can set [layoutWeight](ts-universal-attributes-size.md#layoutweight) or use the [flex layout](ts-universal-attributes-flex-layout.md).
+>  When multiple **Text** components are placed in the [Row](ts-container-row.md) container with no specific layout or space allocation settings configured, the components are laid out based on the maximum size of the container. To make sure the sum of the components' main axis sizes does not exceed the main axis size of the container, you can set [layoutWeight](ts-universal-attributes-size.md#layoutweight) or use the [flex layout](ts-universal-attributes-flex-layout.md).
 
 ### lineSpacing<sup>12+</sup>
 
@@ -720,7 +724,7 @@ Sets the minimum font scale factor for text.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: (0,1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: (0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
 
 ### maxFontScale<sup>12+</sup>
 
@@ -795,8 +799,67 @@ It is only effective for the **Text** component, not for its child components.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes | Font weight.|
+| weight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes | Font weight.|
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12) | No | Font settings.|
+
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+Specifies whether to enable haptic feedback.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                              |
+| ------ | ------- | ---- | ---------------------------------- |
+| isEnabled | boolean | Yes  | Whether to enable haptic feedback.<br>Default value: **true**|
+
+>  **NOTE**
+>
+>  To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
+### caretColor<sup>14+</sup>
+
+caretColor(value: ResourceColor)
+
+Sets the color of the text selection handle, also known as the caret, in the text box.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                  |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the text selection handle.<br>Default value: **'#007DFF'**|
+
+### selectedBackgroundColor<sup>14+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+Sets the background color of the selected text. If the opacity is not set, a 20% opacity will be used.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                      |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the selected text.<br>By default, a 20% opacity is applied.<br>Default value: **'#007DFF'**|
 
 ## TextSpanType<sup>11+</sup>
 
@@ -818,11 +881,27 @@ Provides the [span](ts-basic-components-span.md) type information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Description           |
+| Name        | Description         |
 | ---------- | ------------- |
 | RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
 | LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
 | SELECT | The menu is displayed when the component is selected.|
+
+## TextOverflowOptions<sup>13+</sup>
+
+Describes the display mode when the text is too long.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | Yes  | Display mode when the text is too long.<br>Default value: **TextOverflow.Clip**|
 
 ## Events
 
@@ -927,7 +1006,7 @@ Obtains the **LayoutManager** object.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager) | **LayoutManager** object.|
+| [LayoutManager](ts-text-common.md#layoutmanager12) | **LayoutManager** object.|
 
 ## Example
 
@@ -1459,7 +1538,7 @@ struct TextExample8 {
         .width('100%')
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
-        Button('Change lineBreakStrategy Value:' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+        Button('Current lineBreakStrategy value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
           this.lineBreakStrategyIndex++
           if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
             this.lineBreakStrategyIndex = 0
@@ -1581,10 +1660,10 @@ struct TextExample11 {
     menuItems.forEach((value, index) => {
       value.icon = $r('app.media.startIcon')
       if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy"
+        value.content = "Copy_custom"
       }
       if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select All"
+        value.content = "Select all_custom"
       }
     })
     let item1: TextMenuItem = {

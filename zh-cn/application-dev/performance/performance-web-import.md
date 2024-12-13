@@ -146,26 +146,37 @@ webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2)
 | additionalHeaders | Array\<WebHeader> | url的附加HTTP请求头。 |
 
 使用方法如下：
-```javascript
+```typescript
 // src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
-  // ...
+import { webview } from '@kit.ArkWeb';
 
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    // ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .onPageEnd((event) => {
-        //  ...
-        // 在确定即将跳转的页面时开启预加载
-        this.controller.prefetchPage('https://www.example.com/nextpage');
-      })
-    Button('下一页')
-      .onClick(() => {
-        // ...
-        // 跳转下一页
-        this.controller.loadUrl('https://www.example.com/nextpage');
-      })
+
+  build() {
+    Column() {
+       // ...
+       Web({ src: 'https://www.example.com', controller: this.controller })
+         .onPageEnd((event) => {
+           //  ...
+           // 在确定即将跳转的页面时开启预加载，url请替换真实地址
+           this.controller.prefetchPage('https://www.example.com/nextpage');
+         })
+         .width('100%')
+         .height('80%')
+         
+       Button('下一页')
+         .onClick(() => {
+           // ...
+           // 跳转下一页
+           this.controller.loadUrl('https://www.example.com/nextpage');
+         })
+    }
+  }
+}
 ```
 
 ### 预渲染优化
@@ -184,27 +195,34 @@ import webview from '@ohos.web.webview';
 
 ![](./figures/web-node-container.png)
 
-> 说明  
+> **说明**
+>
 > 预渲染相比于预下载、预连接方案，会消耗更多的内存、算力，仅建议针对高频页面使用，单应用后台创建的ArkWeb组件要求小于200个。
+>
+> 在后台，预渲染的网页会持续进行渲染，为了防止发热和功耗问题，建议在预渲染完成后立即停止渲染过程。可以参考以下示例，使用 [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12) 来确定预渲染的停止时机，该接口适用于http和https的在线网页。
 
 **实践案例**
 
 1. 创建载体，并创建ArkWeb组件
-    ```typescript
-    // 载体Ability
-    // EntryAbility.ets
-    import {createNWeb} from "../pages/common"
+   ```typescript
+   // 载体Ability
+   // EntryAbility.ets
+   import {createNWeb} from "../pages/common";
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
    
-    onWindowStageCreate(windowStage: window.WindowStage): void {
-      windowStage.loadContent('pages/Index', (err, data) => {
-        // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-        createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-        if (err.code) {
-          return;
-        }
-      });
-    }
-    ```
+   export default class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建
+         createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
+         if (err.code) {
+           return;
+         }
+       });
+     }
+   }
+   ```
 2. 创建NodeContainer和对应的NodeController，渲染后台ArkWeb组件
 
     ```typescript
@@ -215,13 +233,27 @@ import webview from '@ohos.web.webview';
     import { NodeController, BuilderNode, Size, FrameNode }  from '@kit.ArkUI';
     // @Builder中为动态组件的具体组件内容
     // Data为入参封装类
-    // 调用onActive，开启渲染
+    class Data{
+      url: string = 'https://www.example.com';
+      controller: WebviewController = new webview.WebviewController();
+    }
+    // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染
+    let shouldInactive: boolean = true;
     @Builder
     function WebBuilder(data:Data) {
       Column() {
         Web({ src: data.url, controller: data.controller })
           .onPageBegin(() => {
+            // 调用onActive，开启渲染
             data.controller.onActive();
+          })
+          .onFirstMeaningfulPaint(() =>{
+            if (!shouldInactive) {
+              return;
+            }
+            // 在预渲染完成时触发，停止渲染
+            data.controller.onInactive();
+            shouldInactive = false;
           })
           .width("100%")
           .height("100%")
@@ -249,6 +281,8 @@ import webview from '@ohos.web.webview';
       // 当controller对应的NodeContainer在Appear的时候进行回调
       aboutToAppear() {
         console.info("aboutToAppear")
+        // 切换到前台后，不需要停止渲染
+        shouldInactive = false;
       }
       // 当controller对应的NodeContainer在Disappear的时候进行回调
       aboutToDisappear() {
@@ -583,7 +617,7 @@ struct WebComponent {
 }
 ```
 
-前端页面代码：
+加载的html文件：
 ```html
 <!DOCTYPE html>
 <html>
@@ -668,7 +702,7 @@ struct Index {
           .javaScriptAccess(true)
           .fileAccess(true)
           .onControllerAttached(() => {
-            console.info(this.controller.getWebId());
+            console.info(`${this.controller.getWebId()}`);
           })
       }.height('80%')
     }
@@ -869,6 +903,8 @@ JSBridge优化方案适用于ArkWeb应用侧与前端网页通信场景，开发
 步骤1.只注册同步函数
 ```typescript
 import webview from '@ohos.web.webview';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 // 定义ETS侧对象及函数
 class TestObj {
   test(testStr:string): string {
@@ -1850,7 +1886,6 @@ document.querySelectorAll('img').forEach(img => {observer.observe(img)});
 ```javascript
 // src/main/ets/pages/WebUninitialized.ets
 
-// ...
 Button('进入网页')
   .onClick(() => {
     hilog.info(0x0001, "WebPerformance", "UnInitializedWeb");
@@ -1861,7 +1896,6 @@ Web页使用Web组件加载指定网页
 ```javascript
 // src/main/ets/pages/WebBrowser.ets
 
-// ...
 Web({ src: 'https://www.example.com', controller: this.controller })
   .domStorageAccess(true)
   .onPageEnd((event) => {
@@ -1875,40 +1909,60 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 
 入口页提前进行Web组件的初始化和预连接
 
-```javascript
+```typescript
 // src/main/ets/pages/WebInitialized.ets
 
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
+import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// ...
-Button('进入网页')
-  .onClick(() => {
-     hilog.info(0x0001, "WebPerformance", "InitializedWeb");
-     router.pushUrl({ url: 'pages/WebBrowser' });
-  })
-// ...
-aboutToAppear() {
-  webview.WebviewController.initializeWebEngine();
-  webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear() {
+    webview.WebviewController.initializeWebEngine();
+    webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+  }
+
+  build() {
+    Column() {
+      Button('进入网页')
+        .onClick(() => {
+          hilog.info(0x0001, "WebPerformance", "InitializedWeb");
+          router.pushUrl({ url: 'pages/WebBrowser' });
+        })
+    }
+  }
 }
 ```
 Web页加载的同时使用prefetchPage预加载下一页
-```javascript
+```typescript
 // src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  // ...
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    // ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .domStorageAccess(true)
-      .onPageEnd((event) => {
-         if (event) {
-           hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
-           this.controller.prefetchPage('https://www.example.com/nextpage');
-         }
-      })
+
+  build() {
+    Column() {
+      // ...
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .domStorageAccess(true)
+        .onPageEnd((event) => {
+          if (event) {
+            hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
+            this.controller.prefetchPage('https://www.example.com/nextpage');
+          }
+        })
+    }
+  }
+}
 ```
 
 ### 数据对比

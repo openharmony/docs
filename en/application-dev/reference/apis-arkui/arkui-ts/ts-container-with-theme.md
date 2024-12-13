@@ -14,9 +14,13 @@ This component supports only one child component.
 
 WithTheme(options: WithThemeOptions)
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name                           | Type                                 | Mandatory | Description         |
+| Name                           | Type                                 | Mandatory | Description    |
 |--------------------------------|---------------------------------------|-----|---------------|
 | options | [WithThemeOptions](#withthemeoptions) | Yes  | Color scheme for components within the scope.|
 
@@ -29,16 +33,29 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported.
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## WithThemeOptions
+
 Defines the default theme and color mode for components within the **WithTheme** scope.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                   | Type                                                   | Mandatory| Description                                                            |
+| Name       | Type                              | Mandatory| Description               |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
 | theme     | [CustomTheme](../js-apis-arkui-theme.md#customtheme)    | No  | Default theme for components in the **WithTheme** scope.<br> Default value: **undefined**, indicating that the styles will follow the system's default theme.<br>|
-| colorMode | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | No  | Color mode for components in the **WithTheme** scope.<br>Default value: **ThemeColorMode.System**<br>   |
+| colorMode | [ThemeColorMode](#themecolormode10) | No  | Color mode for components in the **WithTheme** scope.<br>Default value: **ThemeColorMode.System**<br>      |
+
+## ThemeColorMode<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description      |
+| ------ | ---------- |
+| SYSTEM | System color mode.|
+| LIGHT  | Light color mode. |
+| DARK   | Dark color mode. |
 
 ## Example
 

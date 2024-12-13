@@ -241,7 +241,7 @@ systemTonePlayer.release().then(() => {
 });
 ```
 
-### setAudioVolumeScale<sup>12+</sup>
+### setAudioVolumeScale<sup>13+</sup>
 
 setAudioVolumeScale(scale: number): void
 
@@ -279,7 +279,7 @@ try {
 }
 ```
 
-### getAudioVolumeScale<sup>12+</sup>
+### getAudioVolumeScale<sup>13+</sup>
 
 getAudioVolumeScale(): number;
 
@@ -316,7 +316,7 @@ try {
 }
 ```
 
-### getSupportedHapticsFeatures<sup>12+</sup>
+### getSupportedHapticsFeatures<sup>13+</sup>
 
 getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHapticsFeature&gt;&gt;
 
@@ -329,9 +329,9 @@ Obtains the supported haptics styles. This API uses a promise to return the resu
 **Return value**
 
 
-| Type   | Description                                                                                                                 |
-| ------- | --------------------------------------------------------------------------------------------------------------------- |
-| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12)&gt;&gt; | Promise used to return an array of the supported haptics styles.|
+| Type                                                                                                                         | Description                                                                                                                 |
+|-----------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- |
+| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise used to return an array of the supported haptics styles.|
 
 **Error codes**
 
@@ -354,13 +354,13 @@ try {
 }
 ```
 
-### setHapticsFeature<sup>12+</sup>
+### setHapticsFeature<sup>13+</sup>
 
 setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 
 Sets a haptics style of the ringtone.
 
-Before calling this API, call [getSupportedHapticsFeatures](#getsupportedhapticsfeatures12) to obtain the supported haptics styles. The setting fails if the haptics style to set is not supported.
+Before calling this API, call [getSupportedHapticsFeatures](#getsupportedhapticsfeatures13) to obtain the supported haptics styles. The setting fails if the haptics style to set is not supported.
 
 **System API**: This is a system API.
 
@@ -368,9 +368,9 @@ Before calling this API, call [getSupportedHapticsFeatures](#getsupportedhaptics
 **Parameters**
 
 
-| Name        | Type                                                                                         | Mandatory| Description            |
-| -------------- | --------------------------------------------------------------------------------------------- | ---- | ---------------- |
-| hapticsFeature | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12) | Yes  | Haptics style.|
+| Name        | Type                                                                                             | Mandatory| Description            |
+| -------------- |-------------------------------------------------------------------------------------------------| ---- | ---------------- |
+| hapticsFeature | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | Yes  | Haptics style.|
 
 **Error codes**
 
@@ -400,7 +400,7 @@ try {
 }
 ```
 
-### getHapticsFeature<sup>12+</sup>
+### getHapticsFeature<sup>13+</sup>
 
 getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 
@@ -413,9 +413,9 @@ Obtains the haptics style of the ringtone. This API returns the result synchrono
 **Return value**
 
 
-| Type                                                                                         | Description    |
-| --------------------------------------------------------------------------------------------- | -------- |
-| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12) | Haptics style.|
+| Type                                                                                             | Description    |
+|-------------------------------------------------------------------------------------------------| -------- |
+| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | Haptics style.|
 
 **Error codes**
 

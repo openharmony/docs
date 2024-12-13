@@ -1,6 +1,6 @@
-# 使用AVRecorder开发音频录制功能
+# 使用AVRecorder录制音频(ArkTS)
 
-使用AVRecorder可以实现音频录制功能，本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解AVRecorder音频录制相关功能。
+使用[AVRecorder](media-kit-intro.md#avrecorder)可以实现音频录制功能，本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解AVRecorder音频录制相关功能。
 
 在进行应用开发的过程中，开发者可以通过AVRecorder的state属性，主动获取当前状态或使用on('stateChange')方法监听状态变化。开发过程中应该严格遵循状态机要求，例如只能在started状态下调用pause()接口，只能在paused状态下调用resume()接口。
 
@@ -9,6 +9,16 @@
 ![Recording status change](figures/recording-status-change.png)
 
 状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
+
+## 申请权限
+
+在开发此功能前，开发者应根据实际需求申请相关权限：
+- 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+- 当需要读取和保存音频文件时，请优先使用[AudioViewPicker音频选择器对象](../../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)。
+  
+> **说明：** 
+> 
+> 仅应用需要克隆、备份或同步用户公共目录的音频类文件时，可申请ohos.permission.READ_AUDIO、ohos.permission.WRITE_AUDIO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
 
 
 ## 开发步骤及注意事项
@@ -59,10 +69,12 @@
    > **说明：**
    > 配置参数需要注意：
    >
+   > - 配置参数之前需要确保完成对应权限的申请，请参考[申请权限](#申请权限)。
+   >
    > - prepare接口的入参avConfig中仅设置音频相关的配置参数，如示例代码所示。
    >   如果只需要录制音频，请不要设置视频相关配置参数；如果需要录制视频，可以参考[视频录制开发指导](video-recording.md)进行开发。直接设置视频相关参数会导致后续步骤报错。
    > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)。
-   > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
+   > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
 
    ```ts
    import { media } from '@kit.MediaKit';

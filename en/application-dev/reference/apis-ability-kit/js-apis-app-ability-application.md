@@ -27,7 +27,7 @@ Creates the context for a module.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| context | [Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md) | Yes| Application context.| 
+| context | [Context](js-apis-inner-application-context.md) | Yes| Application context.|
 | moduleName | string | Yes| Module name.|
 
 **Return value**
@@ -54,14 +54,64 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let moduleContext: common.Context;
     try {
-      application.createModuleContext(this.context,'entry').then((data: Context)=>{
+      application.createModuleContext(this.context, 'entry').then((data: Context) => {
         moduleContext = data;
         console.info('createBundleContext success!');
-      }).catch((error : BusinessError)=>{
-        console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+      }).catch((error: BusinessError) => {
+        let code: number = (error as BusinessError).code;
+        let message: string = (error as BusinessError).message;
+        console.error(`createModuleContext failed, error.code: ${code}, error.message: ${message}`);
       })
     } catch (error) {
-      console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`createModuleContext failed, error.code: ${code}, error.message: ${message}`);
+    }
+  }
+}
+```
+
+## application.getApplicationContext<sup>14+</sup>
+
+getApplicationContext(): ApplicationContext
+
+Obtains the application context.
+> **NOTE**
+>
+>The application context obtained through this API can only be used to obtain the corresponding [application information](js-apis-bundleManager-applicationInfo.md) and all [sandbox paths](js-apis-inner-application-context.md#properties).
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type                                                        | Description               |
+| ------------------------------------------------------------ | ------------------- |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | Application context obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message       |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIAbility, application } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(): void {
+    try {
+      let applicationContext = application.getApplicationContext();
+    } catch (error) {
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`getApplicationContext failed, error.code: ${code}, error.message: ${message}`);
     }
   }
 }

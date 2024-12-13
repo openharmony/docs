@@ -466,7 +466,7 @@ function testExecutePeriodically(args: number): void {
   while ((Date.now() - t) < args) {
     continue;
   }
-  taskpool.Task.sendData(args); // 向主线程发送消息
+  taskpool.Task.sendData(args); // 向宿主线程发送消息
 }
 
 function printResult(data: number): void {
@@ -541,7 +541,7 @@ function testExecutePeriodically(args: number): void {
   while ((Date.now() - t) < args) {
     continue;
   }
-  taskpool.Task.sendData(args); // 向主线程发送消息
+  taskpool.Task.sendData(args); // 向宿主线程发送消息
 }
 
 function printResult(data: number): void {
@@ -1186,7 +1186,7 @@ export class DeriveClass extends BaseClass {
 <!--code_no_check-->
 ```ts
 // index.ets
-// 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
+// 宿主线程（这里的宿主线程为UI主线程）调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { BaseClass, DeriveClass } from './sendable'
@@ -2071,10 +2071,11 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 constructor(name: string, priority?: Priority)
 
-SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回相同的串行队列。
+SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回同一个串行队列。
 
 > **说明：**
 >
+> - 底层通过单例模式保证了：创建同名串行队列时，获取到同一个实例。
 > - 不支持修改串行队列的优先级。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2251,7 +2252,7 @@ async function seqRunner()
 ## 其他说明
 
 ### 序列化支持类型
-序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。详情可见[TaskPool和Worker支持的序列化类型](../../arkts-utils/interthread-communication-overview.md)。
+序列化支持类型包括：目前支持的数据类型有[普通对象](../../arkts-utils/normal-object.md)、[ArrayBuffer对象](../../arkts-utils/arraybuffer-object.md)、[SharedArrayBuffer对象](../../arkts-utils/shared-arraybuffer-object.md)、[Transferable对象（NativeBinding对象）](../../arkts-utils/transferabled-object.md)、[Sendable对象](../../arkts-utils/arkts-sendable.md)五种。
 
 ### 简单使用
 

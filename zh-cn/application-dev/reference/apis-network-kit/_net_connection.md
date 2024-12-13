@@ -15,8 +15,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [net_connection.h](net__connection_8h.md) | 为网络管理数据网络连接模块提供C接口。 | 
-| [net_connection_type.h](net__connection__type_8h.md) | 定义网络连接模块的C接口需要的数据结构。 | 
+| [net_connection.h](net__connection_8h.md) | 为网络管理数据网络连接模块提供C接口。<br>**引用文件：** \<network\/netmanager\/net_connection.h\> | 
+| [net_connection_type.h](net__connection__type_8h.md) | 定义网络连接模块的C接口需要的数据结构。<br>**引用文件：** \<network\/netmanager\/net_connection_type.h\> | 
 
 
 ### 结构体

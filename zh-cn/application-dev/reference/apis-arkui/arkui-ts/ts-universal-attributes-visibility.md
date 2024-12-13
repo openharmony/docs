@@ -27,6 +27,8 @@ visibility(value: Visibility)
 
 ## 示例
 
+ 该示例通过visibility配置不同的值实现不同的显隐控制效果。
+
 ```ts
 // xxx.ets
 @Entry

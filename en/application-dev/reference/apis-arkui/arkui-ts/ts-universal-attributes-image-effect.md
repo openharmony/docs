@@ -23,26 +23,7 @@ Applies a foreground blur effect to the component.
 | Name               | Type                                             | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | number                                            | Yes  | Foreground blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the content is. If the value is **0**, the content is not blurred.|
-| options<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11) | No  | Grayscale parameters.                                                |
-
-## backdropBlur
-
-backdropBlur(value: number, options?: BlurOptions)
-
-Applies a background blur effect to the component.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name               | Type                                             | Mandatory| Description                                                        |
-| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | number                                            | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.|
-| options<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11) | No  | Grayscale parameters.                                                |
+| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
 
 ## shadow
 
@@ -96,7 +77,7 @@ Applies a brightness effect to the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Brightness of the component. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than 1, the brightness decreases. If the value is greater than 1, the brightness increases. A larger value indicates a higher brightness. However, if the value is greater than 2, the brightness does not change significantly with the value.<br>Default value: **1.0**<br>Recommended value range: [0, 2]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| value  | number | Yes  | Brightness of the component. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than **1**, the brightness decreases. If the value is greater than **1**, the brightness increases. A larger value indicates a higher brightness. A brightness of 2 turns the component completely white.<br>Default value: **1.0**<br>Recommended value range: [0, 2]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 
 ## saturate
 
@@ -212,6 +193,8 @@ linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 
 Applies a linear gradient foreground blur effect to the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -245,6 +228,8 @@ Defines how the component's content (including the content of it child component
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -252,7 +237,22 @@ Defines how the component's content (including the content of it child component
 | Name| Type                           | Mandatory| Description                                                        |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlendMode](#blendmode11)  | Yes  | Blend mode.<br>Default value: **BlendMode.NONE**  |
-| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. Available options:<br>**BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. **BlendApplyType.OFFSCREEN**: The component's content (including the content of it child components) is drawn on the offscreen canvas, and then blended with the existing content on the canvas in the specified blend mode.    |
+| type   | [BlendApplyType](#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. Available options:<br>**BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. When **BlendApplyType.OFFSCREEN** is set, an offscreen canvas the size of the current component is created. The content of the current component (including child components) is then drawn onto the offscreen canvas, and blended with the existing content on the canvas below using the specified blend mode.    |
+
+## BlendApplyType<sup>11+</sup>
+
+Defines how to apply the specified blend mode to the content of a view.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Description                                                            |
+| ---------------| ---------------------------------------------------------------- |
+| FAST           |   The content of the view is blended in sequence on the target image.                       |
+| OFFSCREEN      |   The content of the component and its child components are drawn on the offscreen canvas, and then blended with the existing content on the canvas.   |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -263,6 +263,8 @@ Sets whether to draw shadows of child nodes in the component at the same layer, 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
 **Parameters**
 
@@ -276,19 +278,23 @@ sphericalEffect(value: number)
 
 Applies a spherical effect to the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Spherical degree of the component.<br>The value ranges from 0 to 1.<br>**NOTE**<br>1. If the value is **0**, the component remains unchanged. If the value is 1, the component is completely spherical. Between **0** and **1**, a larger value indicates a higher spherical degree.<br>A value less than 0 is handled as the value **0**. A value greater than 1 is handled as the value **1**.<br>2. If a component image is loaded asynchronously, the spherical effect is not supported. For example, the **\<Image>** component uses asynchronous loading by default, which means that **syncLoad** must be set to **true** to apply the spherical effect. However, this setting is not recommended. Asynchronous loading is also used for **backgroundImage**. Therefore, if **backgroundImage** is set, the spherical effect is not supported.<br>3. If the shadow effect is set for a component, the spherical effect is not supported.<br>4. If the value is greater than 0, the component is frozen and not updated, and its content is drawn to the transparent offscreen buffer. To update the component attributes, set the value to **0**.|
+| value  | number | Yes  | Spherical degree of the component.<br>The value ranges from 0 to 1.<br>**NOTE**<br>1. If the value is **0**, the component remains unchanged. If the value is 1, the component is completely spherical. Between **0** and **1**, a larger value indicates a higher spherical degree.<br>A value less than 0 is handled as the value **0**. A value greater than 1 is handled as the value **1**.<br>2. The component's shadow and outer stroke do not support spherical effects.<br>3. If the value is greater than 0, the component is frozen and not updated, and its content is drawn to the transparent offscreen buffer. To update the component attributes, set the value to **0**.|
 
 ## lightUpEffect<sup>12+</sup> 
 
 lightUpEffect(value: number)
 
 Applies a light up effect to the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -304,13 +310,30 @@ pixelStretchEffect(options: PixelStretchEffectOptions)
 
 Applies a pixel stretch effect to the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | Yes  | Pixel stretch effect options.<br>The value includes the length by which a pixel is stretched toward the four edges.<br>**NOTE**<br>1. If the length is a positive value, the original image is stretched, and the image size increases. The edge pixels grow by the set length toward the top, bottom, left, and right edges.<br>2. If the length is a negative value, the original image shrinks as follows, but the image size remains unchanged:<br>Shrinking mode:<br>(1) The image shrinks from the four edges by the absolute value of length set through **options**.<br>(2) The image is stretched back to the original size with edge pixels.<br>3. Constraints on **options**:<br>(1) The length values for the four edges must be all positive or all negative. That is, the four edges are stretched or shrink at the same time in the same direction.<br>(2) The length values must all be a percentage or a specific value. Combined use of the percentage and specific value is not allowed.<br>(3) If the input value is invalid, the image is displayed as {0, 0, 0, 0}, that is, the image is the same as the original image.|
+| options | [PixelStretchEffectOptions](#pixelstretcheffectoptions10) | Yes  | Pixel stretch effect options.<br>The value includes the length by which a pixel is stretched toward the four edges.<br>**NOTE**<br>1. If the length is a positive value, the original image is stretched, and the image size increases. The edge pixels grow by the set length toward the top, bottom, left, and right edges.<br>2. If the length is a negative value, the original image shrinks as follows, but the image size remains unchanged:<br>Shrinking mode:<br>(1) The image shrinks from the four edges by the absolute value of length set through **options**.<br>(2) The image is stretched back to the original size with edge pixels.<br>3. Constraints on **options**:<br>(1) The length values for the four edges must be all positive or all negative. That is, the four edges are stretched or shrink at the same time in the same direction.<br>(2) The length values must all be a percentage or a specific value. Combined use of the percentage and specific value is not allowed.<br>(3) If the input value is invalid, the image is displayed as {0, 0, 0, 0}, that is, the image is the same as the original image.|
+
+## PixelStretchEffectOptions<sup>10+</sup>
+
+Describes the pixel stretch effect options.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type               | Mandatory  | Description            |
+| ------ | ----------------- | ---- | -------------- |
+| left   | [Length](ts-types.md#length) | No   | Length by which a pixel is stretched towards the left edge of the image.|
+| right  | [Length](ts-types.md#length) | No   | Length by which a pixel is stretched towards the right edge of the image.|
+| top    | [Length](ts-types.md#length) | No   | Length by which a pixel is stretched towards the top edge of the image.|
+| bottom | [Length](ts-types.md#length) | No   | Length by which a pixel is stretched towards the right edge of the image.|
 
 ## systemBarEffect<sup>12+</sup>
 
@@ -318,7 +341,20 @@ systemBarEffect()
 
 Applies a system bar effect to the component, which means to invert colors based on the background and add a blur.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+## ShadowType<sup>10+<sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Description                                  |
+| -------- | ---------------------------------------- |
+| COLOR    | Color.                                   |
+| BLUR     | Blur.                                   |
 
 
 ## ShadowOptions
@@ -333,11 +369,11 @@ Provides the shadow attributes, including the blur radius, color, and offset alo
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>Unit: px<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **radius** is of the Resource type, its value must be of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      No   | Shadow type.<br>Default value: **COLOR**<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#attributes) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10)  |      No   | Shadow type.<br>Default value: **COLOR**<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#textshadow10) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetX** is of the Resource type, its value must be of the number type.<br> **Atomic service API**: This API can be used in atomic services since API version 11.|
 | offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetY** is of the Resource type, its value must be of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| fill<sup>11+</sup>     | boolean                                    | No   | Whether to fill the inside of the component with shadow.<br>The default value is **false**.<br>**NOTE**<br>This attribute does not take effect in [textShadow](ts-basic-components-text.md#attributes).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fill<sup>11+</sup>     | boolean                                    | No   | Whether to fill the inside of the component with shadow.<br>The default value is **false**.<br>**NOTE**<br>This attribute does not take effect in [textShadow](ts-basic-components-text.md#textshadow10).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ShadowStyle<sup>10+</sup>
 
@@ -359,6 +395,8 @@ Provides the shadow attributes, including the blur radius, color, and offset alo
 >  In the **blendMode** enums, **s** indicates the source pixel, **d** indicates the target pixel, **sa** indicates the opacity of the source pixel, **da** indicates the opacity of the target pixel, **r** indicates the pixel after blending, and **ra** indicates the opacity of the pixel after blending.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name          | Description                                                            |
 | ---------------| ------                                                        |
@@ -395,9 +433,11 @@ Provides the shadow attributes, including the blur radius, color, and offset alo
 
 ## LinearGradientBlurOptions<sup>12+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name         | Type                                                       | Mandatory | Description                                                        |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
-| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | Yes   | Gradient blur stops. The value is a set of binary arrays, each of which indicates [blur degree, blur position] and consists of numbers ranging from 0 to 1 (those less than 0 evaluate to **0**, and those greater than 1 evaluate to **1**). The blur positions in the arrays must be in strict ascending order. Noncompliance will be logged. For the blur settings to take effect, the number of binary arrays must be greater than or equal to 2.|
+| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | Yes   | Gradient blur stops. The value is a set of binary arrays, each of which indicates [blur degree, blur position] and consists of numbers ranging from 0 to 1 (those less than 0 are treated as **0**, and those greater than 1 are treated as **1**). The blur positions in the arrays must be in strict ascending order. Noncompliance will be logged. For the blur settings to take effect, the number of binary arrays must be greater than or equal to 2.|
 | direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | Yes   | Gradient blur direction.<br>Default value:<br>GradientDirection.Bottom |
 
 ## FractionStop<sup>12+</sup>
@@ -405,6 +445,8 @@ Provides the shadow attributes, including the blur radius, color, and offset alo
 FractionStop = [ number, number ]
 
 Defines a gradient blur stop.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -432,6 +474,8 @@ freeze(value: boolean)
 
 Sets whether to freeze the component. A frozen component can no longer be changed once it and its child components are rendered off the screen: Its attributes cannot be updated across renders.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -442,46 +486,9 @@ Sets whether to freeze the component. A frozen component can no longer be change
 
 ## Example
 
+
+
 ### Example 1
-This example uses **blur** to apply a foreground blur effect and **backdropBlur** to apply a background blur effect.
-```ts
-// xxx.ets
-@Entry
-@Component
-struct BlurEffectsExample {
-  build() {
-    Column({ space: 10 }) {
-      // Blur the font.
-      Text('font blur').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Flex({ alignItems: ItemAlign.Center }) {
-        Text('original text').margin(10)
-        Text('blur text')
-          .blur(5).margin(10)
-        Text('blur text')
-          .blur(10).margin(10)
-        Text('blur text')
-          .blur(15).margin(10)
-      }.width('90%').height(40)
-      .backgroundColor(0xF9CF93)
-
-
-      // Blur the background.
-      Text('backdropBlur').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Text()
-        .width('90%')
-        .height(40)
-        .fontSize(16)
-        .backdropBlur(3)
-        .backgroundImage($r('app.media.image'))
-        .backgroundImageSize({ width: 1200, height: 160 })
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-
-![textblur](figures/textblur.png)
-
-### Example 2
 This example applies different image effects.
 ```ts
 // xxx.ets
@@ -548,7 +555,7 @@ struct ImageEffectsExample {
 ![imageeffect](figures/imageeffect.png)
 
 
-### Example 3
+### Example 2
 
 This example applies a linear gradient blur effect to a component.
 
@@ -575,7 +582,7 @@ struct ImageExample1 {
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
 
-### Example 4
+### Example 3
 This example shows how to use **renderGroup**:
 ```ts
 // xxx.ets
@@ -624,7 +631,7 @@ struct RenderGroupExample {
 
 ![renderGroup](figures/renderGroup.png)
 
-### Example 5
+### Example 4
 This example shows how to use **blendMode** alone:
 ```ts
 // xxx.ets
@@ -666,102 +673,7 @@ struct Index {
 ![en-us_image_effect_blendMode2](figures/en-us_image_effect_blendMode.png)
 <br>**blendMode** can be used with offscreen rendering to produce different effects.
 
-### Example 6
-
-This example uses **blendMode** with **backgroundEffect** to implement the gradient effect of text and images.<br>
-If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Index {
-  @State shColor: Color = Color.White;
-  @State sizeDate: number = 20;
-  @State rVal: number = 255;
-  @State gVal: number = 255;
-  @State bVal: number = 255;
-  @State aVal: number = 0.1;
-  @State rad: number = 40;
-  @State satVal: number = 0.8;
-  @State briVal: number = 1.5;
-  build() {
-    Stack() {
-      Image($r('app.media.image'))
-      Column() {
-        Column({ space: 0 }) {
-          Column() {
-            Text('11')
-              .fontSize(144)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('rgba(255,255,255,1)')
-              .fontFamily('HarmonyOS-Sans-Digit')
-              .maxLines(1)
-              .lineHeight(120 * 1.25)
-              .height(120 * 1.25)
-              .letterSpacing(4 * 1.25)
-            Text('42')
-              .fontSize(144)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('rgba(255,255,255,1)')
-              .fontFamily('HarmonyOS-Sans-Digit')
-              .maxLines(1)
-              .lineHeight(120 * 1.25)
-              .height(120 * 1.25)
-              .letterSpacing(4 * 1.25)
-              .shadow({
-                color: 'rgba(0,0,0,0)',
-                radius: 20,
-                offsetX: 0,
-                offsetY: 0
-              })
-            Row() {
-              Text ('October 16')
-                .fontSize(this.sizeDate)
-                .height(22)
-                .fontWeight('medium')
-                .fontColor('rgba(255,255,255,1)')
-              Text('Monday')
-                .fontSize(this.sizeDate)
-                .height(22)
-                .fontWeight('medium')
-                .fontColor('rgba(255,255,255,1)')
-            }
-          }
-          .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
-          .pixelRound({
-            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
-            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
-            end: PixelRoundCalcPolicy.FORCE_CEIL,
-            bottom: PixelRoundCalcPolicy.FORCE_CEIL
-          })
-        }
-        .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
-        .backgroundEffect({
-          radius: this.rad,
-          saturation: this.satVal,
-          brightness: this.briVal,
-          color: this.getVolumeDialogWindowColor()
-        })
-        .justifyContent(FlexAlign.Center)
-        .pixelRound({
-          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
-          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
-          end: PixelRoundCalcPolicy.FORCE_CEIL,
-          bottom: PixelRoundCalcPolicy.FORCE_CEIL
-        })
-      }
-    }
-  }
-  getVolumeDialogWindowColor(): ResourceColor | string {
-    return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.aVal.toFixed(0)})`;
-  }
-}
-```
-
-![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
-
-### Example 7
+### Example 5
 This example shows how to use **InvertOptions**:
 ```ts
 // xxx.ets
@@ -798,7 +710,7 @@ This example shows how to use **InvertOptions**:
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
 
-### Example 8
+### Example 6
 This example shows how to use **UseShadowBatching** with **shadow** to ensure that shadows at the same layer do not overlap:
 ```ts
 // xxx.ets
@@ -857,7 +769,7 @@ struct UseShadowBatchingExample {
 
 ![testUseShadowBatchingDemo](figures/testUseShadowBatching.png)
 
-### Example 9
+### Example 7
 
 This example applies a spherical effect to a component.
 
@@ -895,7 +807,7 @@ Below is how the component looks without the spherical effect applied.
 
 ![textInputSpherical2](figures/textInputSpherical2.png)
 
-### Example 10
+### Example 8
 
 This example applies a light up effect to a component.
 
@@ -931,7 +843,7 @@ Below is how the component looks without the light up effect applied.
 
 ![textLightUp1](figures/textLightUp1.png)
 
-### Example 11
+### Example 9
 
 This example applies a pixel stretch effect to a component.
 
@@ -965,7 +877,7 @@ Below is how the component looks without the pixel stretch effect applied.
 ![textPixelStretch2](figures/textPixelStretch2.png)
 
 
-### Example 12
+### Example 10
 
 This example applies a system bar effect to a component.
 

@@ -42,7 +42,7 @@
 
 2. Q：js执行虚拟机初始化注入的native函数时程序崩溃
 
-   A：检查`JSVM_CallbackStruce`是否为栈上变量，跨函数使用时需保证`JSVM_CallbackStruct`生命周期 >`JSVM_Env`的生命周期
+   A：检查`JSVM_CallbackStruct`是否为栈上变量，跨函数使用时需保证`JSVM_CallbackStruct`生命周期 >`JSVM_Env`的生命周期
 
    ```
    func {

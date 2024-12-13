@@ -2,7 +2,7 @@
 
 ## 简介
 
-SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。该工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。关于工具使用的更多内容可查看[SmartPerf-Host调优工具使用指导](https://docs.openharmony.cn/pages/v4.0/zh-cn/device-dev/device-test/smartperf-host.md/)。
+SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。该工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。关于工具使用的更多内容可查看[SmartPerf-Host调优工具使用指导](../../device-dev/device-test/smartperf-host.md/)。
 
 本文提供一些性能分析示例，介绍如何使用帧率分析和应用启动分析两个模板采集数据、分析数据，从而发现性能优化点。
 
@@ -108,7 +108,7 @@ struct Index {
 
 - App侧有橙色出现，需要审视UI线程的处理逻辑是否过于复杂或低效，以及是否被其它任务抢占资源。
 
-- RS侧有橙色出现，需要审视界面布局是否过于复杂，可以使用布局检查器ArkUI Inspector工具和HiDumper命令行工具辅助分析定位，相关指导可以参考[使用HiDumper命令行工具优化性能](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/performance-optimization-using-hidumper.md/)。
+- RS侧有橙色出现，需要审视界面布局是否过于复杂，可以使用布局检查器ArkUI Inspector工具和HiDumper命令行工具辅助分析定位，相关指导可以参考[使用HiDumper命令行工具优化性能](./performance-optimization-using-hidumper.md/)。
 
 从图5和图6结合来看可以确定场景示例明显属于App侧的帧卡顿。点击卡顿帧进行详细分析，相应的关联帧会通过线连起来，同时在Current Selection显示它的Details信息，如图7。
 

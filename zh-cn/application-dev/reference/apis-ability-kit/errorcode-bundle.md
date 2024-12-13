@@ -727,7 +727,7 @@ Failed to install the HAP because the HAP requests wrong permissions.
 
 **处理步骤**<br/>
 1. 排查是否申请了<!--Del-->[<!--DelEnd-->MDM类型的权限<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->，MDM类型的权限仅针对应用类型为MDM的应用开放。
-2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/permissions-for-all.md)。
+2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/app-permissions.md)。
 
 ## 17700055 指定的link无效
 
@@ -924,6 +924,21 @@ Launch Want不存在。
 
 **处理步骤**<br/>
 应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
+
+## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
+**错误信息**<br/>
+Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
+
+**错误描述**<br/>
+由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
+
+**可能原因**<br/>
+1、由于设备上存在具有相同包名称但不同签名信息的已安装应用程序，导致安装失败。
+2、设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败。
+
+**处理步骤**<br/>
+1、卸载设备上相同包名的应用。
+2、若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

@@ -72,9 +72,7 @@ The following describes how to subscribe to the main thread jank event, which is
      .fontWeight(FontWeight.Bold)
      .onClick(() => {
          let t = Date.now();
-         while (Date.now() - t <= 350){
-         
-         }
+         while (Date.now() - t <= 350) {}
      })
    ```
 
@@ -146,32 +144,13 @@ The following describes how to subscribe to the main thread jank event, which is
 
 ## Main Thread Jank Event Specifications
 
-1. Event specifications
-
-   You can run the **hdc shell** command (**hisysevent -l | grep MAIN_THREAD_JANK**) to view the main thread jank events. For details, see [HiSysEvent](./hisysevent.md).
-   
-   The information of the reported event is described as follows.
-
-    |   Type |   Description  |
-    | -------------- | ------------------------------------- |
-    | BUNDLE_VERSION | App version number.                            |
-    | BUNDLE_NAME    | App process name.                            |
-    | BEGIN_TIME     | Begin timestamp of the main thread jank event.               |
-    | END_TIME       | End timestamp of the main thread jank event.               |
-    | EXTERNAL_LOG   | Stack file storage path.                        |
-    | STACK          | Stack content.                             |
-    | JANK_LEVEL     | Flag (**0**: stack sampling; **1**: trace sampling).        |
-    | THREAD_NAME    | Thread name.                               |
-    | FOREGROUND     | Whether the app is in the foreground.                        |
-    | LOG_TIME       | Log timestamp.                            |
-
-2. Log aging
+1. Log aging
 
     Generally, the size of a stack file is 7 KB to 10 KB, and the size of a trace file is 3 MB to 6 MB. The **watchdog** directory in the app sandbox can store a maximum of 10 MB files. If the total file size exceeds 10 MB, the user needs to manually delete files. The path to **watchdog** is **/data/app/el2/100/log/*app_bundle_name*/watchdog**.
 
-3. You can obtain the log path from **EXTERNAL_LOG**.
+2. You can obtain the log path from **EXTERNAL_LOG**.
 
-4. Currently, stack capturing supports only the ARM64 architecture. The stack capture result contains both native frames and JS frames parsed.
+3. Currently, stack capturing supports only the ARM64 architecture. The stack capture result contains both native frames and JS frames parsed.
 
    An example of the stack capture result is as follows:
    ```text
@@ -226,7 +205,7 @@ The following describes how to subscribe to the main thread jank event, which is
     4 indicates the path, file, row number, and column number of the called function.
    ```
 
-5. Trace specifications
+4. Trace specifications
 
     The size of a trace file is 1 MB to 5 MB. You can parse the trace file using [SmartPerf](https://www.smartperf.host).
 

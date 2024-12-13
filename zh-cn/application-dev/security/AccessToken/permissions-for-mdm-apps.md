@@ -1,4 +1,4 @@
-# 仅对MDM应用开放
+# 仅MDM应用可用权限
 
 以下权限仅对MDM（Mobile Device Management）设备管理应用开放。MDM应用的详细介绍，请参考[MDM Kit简介](../../mdm/mdm-kit-intro.md)。
 
@@ -225,7 +225,7 @@
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-允许在企业设备上安装企业MDM应用包
+允许在企业设备上安装企业MDM应用包。
 
 **权限级别**：system_core
 
@@ -238,7 +238,7 @@
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-允许企业MDM应用在企业设备上自升级
+允许企业MDM应用在企业设备上自升级。
 
 **权限级别**：system_core
 
@@ -274,32 +274,6 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
-
-## ohos.permission.SET_FILE_GUARD_POLICY
-
-允许应用下发文件管控策略。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：10
-
-## ohos.permission.FILE_GUARD_MANAGER
-
-允许应用进行公共目录扫描及设置文件扩展属性。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：10
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -457,19 +431,6 @@
 
 **起始版本**：12
 
-## ohos.permission.QUERY_AUDIT_EVENT
-
-允许MDM应用查询安全审计事件。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-<!--Del-->
-**ACL使能**：true<!--DelEnd-->
-
-**起始版本**：12
-
 ## ohos.permission.ENTERPRISE_RECOVERY_KEY
 
 允许应用管理企业级恢复密钥。
@@ -482,3 +443,16 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：13
+
+## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+允许设备管理应用委托其他应用设置设备管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：14

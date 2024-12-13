@@ -12,7 +12,7 @@ rotate(value: RotateOptions)
 
 Rotates the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -22,7 +22,7 @@ Rotates the component.
 
 | Name| Type                                   | Mandatory| Description                                                        |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [RotateOptions](#rotateoptions) | Yes  | How the component rotates in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. (x, y, z) specifies a vector as the axis of rotation.<br>The axis and center of rotation are set based on the coordinate system, which remains where it is when the component is moved.<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0,<br>centerX: '50%',<br>centerY: '50%'<br>centerZ: 0,<br>perspective: 0<br>}<br>![coordinates](figures/coordinates.png)<br>Since API version 10, **CenterZ** and **perspective** are supported in ArkTS widgets.|
+| value  | [RotateOptions](#rotateoptions) | Yes  | How the component rotates in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. (x, y, z) specifies a vector as the axis of rotation.<br>The axis and center of rotation are set based on the coordinate system, which remains where it is when the component is moved.<br>Default value: When **x**, **y**, and **z** are not specified, their default values are **0**, **0**, and **1**, respectively. If any of **x**, **y**, and **z** is specified, the default value for the unspecified one is **0**.<br>{<br>centerX: '50%',<br>centerY: '50%'<br>centerZ: 0,<br>perspective: 0<br>}<br>Unit: vp<br>![coordinates](figures/coordinates.png)<br>Since API version 10, **CenterZ** and **perspective** are supported in ArkTS widgets.|
 
 ## translate
 
@@ -30,7 +30,9 @@ translate(value: TranslateOptions)
 
 Translates the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -38,7 +40,7 @@ Translates the component.
 
 | Name| Type                                         | Mandatory| Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [TranslateOptions](#translateoptions) | Yes  | How the component is translated in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. Values of **x**, **y**, and **z** indicate the translation distance along the respective axis. A positive value indicates a forward movement towards the respective axis, and a negative value indicates a backward movement towards the respective axis. The translation distance can be a number or a string (for example, **'10px'** or **'10%'**).<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0<br>}<br>![coordinates](figures/coordinates.png)<br>**NOTE**<br>When the component is translated along the z-axis, the position of the observation point remains unchanged. As such, the component appears larger when the value of **z** places it closer to the observation point and smaller when the value of **z** places it further away from the observation point.<br>![coordinateNode](figures/coordinateNote.png) |
+| value  | [TranslateOptions](#translateoptions) | Yes  | How the component is translated in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. Values of **x**, **y**, and **z** indicate the translation distance along the respective axis. A positive value indicates a forward movement towards the respective axis, and a negative value indicates a backward movement towards the respective axis. The translation distance can be a number or a string (for example, **'10px'** or **'10%'**).<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0<br>}<br>Unit: vp<br>![coordinates](figures/coordinates.png)<br>**NOTE**<br>When the component is translated along the z-axis, the position of the observation point remains unchanged. As such, the component appears larger when the value of **z** places it closer to the observation point and smaller when the value of **z** places it further away from the observation point.<br>![coordinateNode](figures/coordinateNote.png) |
 
 ## scale
 
@@ -46,7 +48,7 @@ scale(value: ScaleOptions)
 
 Scales the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -60,7 +62,7 @@ Scales the component.
 
 ## transform
 
-transform(value: Matrix4Transit)
+transform(value: object)
 
 Sets the transformation matrix of the component.
 
@@ -72,7 +74,7 @@ Sets the transformation matrix of the component.
 
 | Name| Type                                   | Mandatory| Description                    |
 | ------ | --------------------------------------- | ---- | ------------------------ |
-| value  | [Matrix4Transit](../js-apis-matrix4.md) | Yes  | Transformation matrix of the component.|
+| value  | object | Yes  | Transformation matrix of the component. Only the [Matrix4Transit](../js-apis-matrix4.md) object type is supported.|
 
 ## RotateOptions
 
@@ -125,7 +127,7 @@ Sets the transformation matrix of the component.
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component

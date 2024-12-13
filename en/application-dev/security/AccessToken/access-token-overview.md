@@ -6,7 +6,7 @@ To prevent improper or malicious use of data or functions, the system provides a
 
 ## Application Sandbox
 
-All applications running on the system are deployed in independent sandbox directories, which isolate the data of different applications and prevent improper application behavior, such as unauthorized data access between applications and device tampering. Each application has a unique ID ([TokenID](app-permission-mgmt-overview.md#tokenid)), which can be used to identify the application and restrict its access behavior.
+All applications running on the system are deployed in independent sandbox directories, which isolate the data of different applications and prevent improper application behavior, such as unauthorized data access between applications and device tampering. Each application has a unique ID ([TokenID](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism)), which can be used to identify the application and restrict its access behavior.
 
 The application sandbox directory specifies the data range visible to an application. For details, see [Application Sandbox](../../file-management/app-sandbox-directory.md).
 

@@ -15,10 +15,10 @@ Provides C APIs for the network protocol stack module.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.| 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.| 
-| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module.| 
-| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module.| 
+| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.<br>**File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module. **File to include**:  \<network\/netstack\/net_ssl\/net_ssl_c_type.h\>| 
+| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module. **File to include**: \<network\/netstack\/net_websocket.h\>| 
+| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module. **File to include**: \<network\/net_websocket_type.h\>| 
 
 
 ### Structs
@@ -266,10 +266,10 @@ Hash algorithm.
 ## Function Description
 
 
-### OH_NetStack_VerifyCertification()
+### OH_NetStack_CertVerification()
 
 ```
-uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
+uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
 ```
 
 **Description**
@@ -320,6 +320,8 @@ Verifies the certificate chain.
 **2305024**: The certificate authority (CA) is invalid.
 
 **2305027**: The certificate is untrusted.
+
+**2305069**: A call error occurred during certificate verification or the parameter is invalid.
 
 ### OH_NetStack_GetPinSetForHostName()
 
@@ -375,7 +377,7 @@ Obtains the certificate information.
 
 **0**: Success.
 
-**401**: Incorrect parameter settings.
+**401**: Parameter error.
 
 **2305999**: Memory error.
 
@@ -508,7 +510,6 @@ Constructor used to create a **WebSocketClient** instance.
 Returns the pointer to the WebSocket client if the operation is successful; returns NULL otherwise.
 
 
-
 ### OH_WebSocketClient_Destroy()
 
 ```
@@ -557,8 +558,6 @@ Sends data from the WebSocket client to the server.
 | length | Length of the data sent by the WebSocket client. | 
 
 **Returns**
-
- 
 
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 

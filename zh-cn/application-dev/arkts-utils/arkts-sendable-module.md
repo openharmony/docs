@@ -84,12 +84,12 @@
 
    ```ts
    import { ArkTSUtils, taskpool } from '@kit.ArkTS';
-   import { singletonA } from './sharedModule'
+   import { singletonA } from './sharedModule';
    
    @Sendable
    export class A {
      private count_: number = 0;
-     lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
+     lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
    
      public async getCount(): Promise<number> {
        return this.lock_.lockAsync(() => {
@@ -125,7 +125,7 @@
          Column() {
            Button("MainThread print count")
              .onClick(async () => {
-               await printCount()
+               await printCount();
              })
            Button("Taskpool print count")
              .onClick(async () => {
@@ -133,7 +133,7 @@
              })
            Button("MainThread increase count")
              .onClick(async () => {
-               await increaseCount()
+               await increaseCount();
              })
            Button("Taskpool increase count")
              .onClick(async () => {

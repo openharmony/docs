@@ -215,6 +215,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 
@@ -306,6 +307,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 
@@ -401,6 +403,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 
@@ -664,6 +667,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 
@@ -727,6 +731,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 
@@ -791,6 +796,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 ```ts
@@ -1343,6 +1349,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
 | 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **Example**
 

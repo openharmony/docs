@@ -8,7 +8,7 @@ TaskPool运作机制示意图
 
 ![zh-cn_image_0000001964858368](figures/zh-cn_image_0000001964858368.png)
 
-TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择合适的工作线程，进行任务的分发及执行，再将结果返回给主线程。接口直观易用，支持任务的执行、取消，以及指定优先级的能力，同时通过系统统一线程管理，结合动态调度及负载均衡算法，可以节约系统资源。系统默认会启动一个任务工作线程，当任务较多时会扩容，工作线程数量上限跟当前设备的物理核数相关，具体数量内部管理，保证最优的调度及执行效率，长时间没有任务分发时会缩容，减少工作线程数量。
+TaskPool支持开发者在宿主线程封装任务抛给任务队列，系统选择合适的工作线程，进行任务的分发及执行，再将结果返回给宿主线程。接口直观易用，支持任务的执行、取消，以及指定优先级的能力，同时通过系统统一线程管理，结合动态调度及负载均衡算法，可以节约系统资源。系统默认会启动一个任务工作线程，当任务较多时会扩容，工作线程数量上限跟当前设备的物理核数相关，具体数量内部管理，保证最优的调度及执行效率，长时间没有任务分发时会缩容，减少工作线程数量。
 
 ## TaskPool注意事项
 
@@ -46,7 +46,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 | -------- | -------- |
 | 装饰器参数 | 无。 |
 | 使用场景 | 仅支持在Stage模型的工程中使用。仅支持在.ets文件中使用。 |
-| 装饰的函数类型 | 允许标注async函数或普通函数。禁止标注generator、箭头函数、method。不支持类成员函数或者匿名函数。 |
+| 装饰的函数类型 | 允许标注async函数或普通函数。禁止标注generator、箭头函数、类方法。不支持类成员函数或者匿名函数。 |
 | 装饰的函数内的变量类型 | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量。 |
 | 装饰的函数内的返回值类型 | 支持的类型请查[线程间通信对象](interthread-communication-overview.md)。 |
 
@@ -137,7 +137,7 @@ async function testPromise1(args1: number, args2: number): Promise<number> {
 @Concurrent
 async function testPromise2(args1: number, args2: number): Promise<number> {
   return await new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2)
+    testFuncA(args1 + args2);
   });
 }
 
@@ -169,34 +169,34 @@ async function testConcurrentFunc() {
   let task6: taskpool.Task = new taskpool.Task(testPromise5);
 
   taskpool.execute(task1).then((d:object)=>{
-    console.info("task1 res is: " + d)
+    console.info("task1 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task1 catch e: " + e)
+    console.info("task1 catch e: " + e);
   })
   taskpool.execute(task2).then((d:object)=>{
-    console.info("task2 res is: " + d)
+    console.info("task2 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task2 catch e: " + e)
+    console.info("task2 catch e: " + e);
   })
   taskpool.execute(task3).then((d:object)=>{
-    console.info("task3 res is: " + d)
+    console.info("task3 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task3 catch e: " + e)
+    console.info("task3 catch e: " + e);
   })
   taskpool.execute(task4).then((d:object)=>{
-    console.info("task4 res is: " + d)
+    console.info("task4 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task4 catch e: " + e)
+    console.info("task4 catch e: " + e);
   })
   taskpool.execute(task5).then((d:object)=>{
-    console.info("task5 res is: " + d)
+    console.info("task5 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task5 catch e: " + e)
+    console.info("task5 catch e: " + e);
   })
   taskpool.execute(task6).then((d:object)=>{
-    console.info("task6 res is: " + d)
+    console.info("task6 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task6 catch e: " + e)
+    console.info("task6 catch e: " + e);
   })
 }
 
@@ -359,19 +359,19 @@ async function testConcurrentFunc() {
   let task3: taskpool.Task = new taskpool.Task(testPromiseError2);
 
   taskpool.execute(task1).then((d:object)=>{
-    console.info("task1 res is: " + d)
+    console.info("task1 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task1 catch e: " + e)
+    console.info("task1 catch e: " + e);
   })
   taskpool.execute(task2).then((d:object)=>{
-    console.info("task2 res is: " + d)
+    console.info("task2 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task2 catch e: " + e)
+    console.info("task2 catch e: " + e);
   })
   taskpool.execute(task3).then((d:object)=>{
-    console.info("task3 res is: " + d)
+    console.info("task3 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task3 catch e: " + e)
+    console.info("task3 catch e: " + e);
   })
 }
 

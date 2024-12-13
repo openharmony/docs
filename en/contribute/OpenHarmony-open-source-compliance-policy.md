@@ -42,7 +42,7 @@ This document applies to all contributors to the OpenHarmony community, includin
 
 - [SPDX Information Declaration Specifications]()
 
-- [Specifications for README.OpenSource](specifications-for-readme.opensource.md)
+- [Specifications for README.OpenSource](readme.opensource_design_specification_document_and_usage_guide.md)
 
 #### Gated Check-In Compliance Specifications
 

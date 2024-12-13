@@ -28,12 +28,12 @@ napi_status napi_load_module_with_info(napi_env env,
 
 | 场景            | 详细分类           | 说明                         |
 | :------------- | :----------------------------- | :--------------------------- |
-| 本地工程模块   | HAP加载模块内文件路径       | 要求路径以moduleName开头             |
-| 本地工程模块   | HAP加载HAR模块名           | -                            |
-| 远程包         | HAP加载远程HAR模块名        | -                            |
-| 远程包         | HAP加载ohpm包名            | -                            |
-| API        |    HAP加载@ohos.*或 @system.*          | -                            |
-| 模块Native库   | HAP加载libNativeLibrary.so | -                            |
+| 本地工程模块   | 加载模块内文件路径       | 要求路径以moduleName开头             |
+| 本地工程模块   | 加载HAR模块名           | -                            |
+| 远程包         | 加载远程HAR模块名        | -                            |
+| 远程包         | 加载ohpm包名            | -                            |
+| API        |    加载@ohos.*或 @system.*          | -                            |
+| 模块Native库   | 加载libNativeLibrary.so | -                            |
 
 > **注意**
 >
@@ -43,7 +43,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 ## 使用示例
 
-- **HAP加载模块内文件路径**
+- **加载模块内文件路径**
 
 当加载文件中的模块时，如以下ArkTS代码：
 
@@ -56,7 +56,7 @@ function test() {
 export {value, test};
 ```
 
-1. 需要在工程的build-profile.json5文件中进行以下配置：
+1. 需要当前模块的build-profile.json5文件中进行以下配置：
 
     ```json
     {
@@ -76,7 +76,7 @@ export {value, test};
 
     > **注意**
     >
-    > 开启seNormalizedOHMUrl后(即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true)，加载hap包内文件路径时，bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。
+    > 开启useNormalizedOHMUrl后(即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true)，加载模块内文件路径时：1、bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。2、路径需要以packageName开头，packageName指的是模块的oh-package.json5中配置的name字段。
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -100,7 +100,7 @@ export {value, test};
     }
     ```
 
-- **HAP加载HAR模块名**
+- **加载HAR模块名**
 
 HAR包Index.ets文件如下：
 
@@ -123,7 +123,7 @@ export {value, test};
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用library的模块中，对build-profile.json5进行配置：
 
     ```json
     {
@@ -163,7 +163,7 @@ export {value, test};
     }
     ```
 
-- **HAP加载远程HAR模块名**
+- **加载远程HAR模块名**
 
 1. 在oh-package.json5文件中配置dependencies项。
 
@@ -175,7 +175,7 @@ export {value, test};
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用@ohos/hypium的模块中，对build-profile.json5进行配置：
 
     ```json
     {
@@ -209,7 +209,7 @@ export {value, test};
     }
     ```
 
-- **HAP加载ohpm包名**
+- **加载ohpm包名**
 
 1. 在oh-package.json5文件中配置dependencies项。
 
@@ -221,7 +221,7 @@ export {value, test};
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用json5的模块中，对build-profile.json5进行配置：
 
     ```json
     {
@@ -267,7 +267,7 @@ export {value, test};
     }
     ```
 
-- **HAP加载API模块**
+- **加载API模块**
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -297,7 +297,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-- **HAP加载Native库**
+- **加载Native库**
 
 libentry.so的index.d.ts文件如下
 
@@ -316,7 +316,7 @@ export const add: (a: number, b: number) => number;
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用libentry.so的模块中，对build-profile.json5进行配置：
 
     ```json
     {

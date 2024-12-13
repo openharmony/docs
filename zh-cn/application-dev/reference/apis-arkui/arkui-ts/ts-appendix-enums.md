@@ -48,6 +48,7 @@
 | BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| MATRIX<sup>16+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix16)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 
 ## BorderStyle
@@ -489,15 +490,13 @@
 
 ## ImageSize
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 说明                                  |
 | ------- | ----------------------------------- |
-| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| Auto    | 默认值，保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
+| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| Auto    | 默认值，保持原图的比例不变。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
 | FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## GradientDirection
@@ -861,7 +860,7 @@ Nullable\<T> {
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
-组件边界像素级取整计算策略。
+组件边界像素取整计算策略。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -888,20 +887,6 @@ Nullable\<T> {
 | DOTTED    | 点线。  |
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 值   | 说明                               |
-| ------- | ---- | ---------------------------------- |
-| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
-| HIDE    | 1    | 始终不弹出菜单。                   |
-| SHOW    | 2    | 始终弹出菜单。                     |
 
 ## EmbeddedType<sup>12+</sup>
 枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
@@ -938,7 +923,7 @@ Nullable\<T> {
 | ROTATION_180 | 应用方向为180度。|
 | ROTATION_270 | 应用方向为270度。|
 
-## BlurStyleActivePolicy<sup>13+</sup>
+## BlurStyleActivePolicy<sup>14+</sup>
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1036,3 +1021,16 @@ Nullable\<T> {
 | HEIGHT_SM | 0   | 窗口高宽比小于0.8。 |
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
+
+### PageFlipMode<sup>14+</sup>
+
+表示鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| CONTINUOUS | 0   | 连续翻页模式，鼠标滚轮连续滚动时连续翻多页。 |
+| SINGLE | 1   | 单次翻页模式，在一次翻页动画结束前不响应滚轮事件。 |

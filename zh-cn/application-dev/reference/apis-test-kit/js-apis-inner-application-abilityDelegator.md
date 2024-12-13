@@ -679,6 +679,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -743,6 +744,7 @@ startAbility(want: Want): Promise\<void>
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**

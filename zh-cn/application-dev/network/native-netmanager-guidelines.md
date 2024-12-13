@@ -141,7 +141,7 @@ export const GetDefaultNet: (code: number) => number;
 export const NetId: () => number;
 ```
 
-5、在index.ets文件中对上述封装好的接口进行调用
+5、在index.ets文件中对上述封装好的接口进行调用。
 
 ```ts
 import testNetManager from 'libentry.so';
@@ -199,7 +199,7 @@ struct Index {
 
 ## 测试步骤
 
-1、连接设备，使用DevEco Studio打开搭建好的工程
+1、连接设备，使用DevEco Studio打开搭建好的工程。
 
 2、运行工程，设备上会弹出以下所示图片：
 

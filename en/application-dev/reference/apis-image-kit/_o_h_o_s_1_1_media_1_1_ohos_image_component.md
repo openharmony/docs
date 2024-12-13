@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OHOS::Media::OhosImageComponent** struct defines the information about an image component.
+The **OHOS::Media::OhosImageComponent** struct describes the information about an image component.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -76,7 +76,7 @@ int32_t OhosImageComponent::rowStride
 
 **Description**
 
-Row stride of the pixel data.
+Row stride of the pixel data. Camera preview stream data must be read based on the stride. For details, see [Secondary Processing of Preview Streams (C/C++)](../../media/camera/native-camera-preview-imageReceiver.md).
 
 
 ### size
