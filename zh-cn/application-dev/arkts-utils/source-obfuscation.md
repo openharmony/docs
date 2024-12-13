@@ -419,7 +419,7 @@ class A {
 
 #### -keep-global-name *[,identifiers,...]*
 
-指定要保留的顶层作用域的名称，支持使用名称类通配符。例如，
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如，
 
 ```
 -keep-global-name
@@ -427,7 +427,7 @@ Person
 printPersonName
 ```
 
-namespace中导出的名称也可以通过`-keep-global-name`保留。
+`namespace`中导出的名称可以通过`-keep-global-name`选项保留，示例如下：
 
 ```
 export namespace Ns {
@@ -709,13 +709,13 @@ age
 
 ### 混淆规则合并策略
 
-一个工程中经常会有许多混淆规则文件，这些文件来自于:
+编译工程中的某个模块时，其最终所应用的混淆规则是以下文件中配置的混淆规则的合并:
 
-* 主工程的`ruleOptions.files` (这里主工程指的是正在构建的工程)
+* 本模块的build-profile.json5文件中`ruleOptions.files`字段指定的文件
 * 本地依赖的library中的`consumerFiles`选项中指定的文件
 * 远程依赖的HAR包中的`obfuscation.txt`文件
 
-当构建主工程的时候，这些文件中的混淆规则会按照下面的合并策略(伪代码)进行合并:
+上述文件中的混淆规则的优先级是一致的。构建模块时，这些规则文件将按照以下合并策略（伪代码）进行合并。
 
 ```
 let `listRules` 表示上面提到的所有混淆规则文件的列表
@@ -958,7 +958,7 @@ let jsonObj = jsonStr.i
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
 
-#### 开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
+#### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
 
@@ -1010,7 +1010,7 @@ import {a3} from './file1'
 let person1 = new a3.person1()
 ```
 
-namespace里的 "person1" 属于顶层作用域的class名称，通过 "ns1.person1" 来调用时，它是属于一个属性，由于未开启属性混淆，所以在使用它时没有被混淆。
+namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时，它被视为一个属性。由于未开`-enable-property-obfuscation`选项，导致在使用时未对其进行混淆。
 
 **解决方案：**
 
