@@ -10,7 +10,7 @@ eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡
 ## 导入模块
 
 ```ts
-import eSIM from '@ohos.telephony.esim';
+import { eSIM } from '@kit.TelephonyKit';
 ```
 
 ## eSIM.isSupported<sup>14+</sup>
@@ -43,7 +43,7 @@ isSupported\(slotId: number\): boolean
 **示例：**
 
 ```ts
-import eSIM from '@ohos.telephony.esim';
+import { eSIM } from '@kit.TelephonyKit';
 
 let isSupported: boolean = eSIM.isSupported(0);
 console.log(`the esim is Supported:` + isSupported);
@@ -53,7 +53,7 @@ console.log(`the esim is Supported:` + isSupported);
 
 addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
-此界面将允许最终用户添加单个配置文件。
+此界面将允许最终用户添加单个配置文件。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -61,13 +61,13 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | 是   | SM-DP+服务器返回的绑定配置文件包数据 |
+| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | 是   | SM-DP+服务器返回的绑定配置文件包数据。 |
 
 **返回值：**
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回最终用户添加单个配置文件是否成功或者返回错误码。 |
+| Promise\<boolean\> | 以Promise形式返回最终用户添加单个配置文件的结果，返回true为成功，false为失败。 |
 
 **错误码：**
 
@@ -82,7 +82,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import eSIM from '@ohos.telephony.esim';
+import { eSIM } from '@kit.TelephonyKit';
 
 let profile: eSIM.DownloadableProfile={
   activationCode:'1',
