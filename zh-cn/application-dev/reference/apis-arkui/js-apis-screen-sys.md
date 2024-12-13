@@ -823,7 +823,7 @@ setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;v
 
 设置屏幕的隐私蒙版图片，使用Promise异步回调。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
 
@@ -846,9 +846,10 @@ setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;v
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 201 | Permission verification failed. |
+| 201     | Permission verification failed. |
 | 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
 
 **示例：**
