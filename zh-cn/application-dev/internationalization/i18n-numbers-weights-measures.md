@@ -129,10 +129,10 @@ console.log(numberFormat5.format(-2.25)); // -2.2
 let options = {
     roundingPriority: 'lessPrecision',
     maximumFractionDigits: 3,
-    maximumSignificantDigits: 3
+    maximumSignificantDigits: 2
 };
 let numberFormat6 = new intl.NumberFormat('en', options);
-console.log(numberFormat6.format(1.23456)); // 1.23
+console.log(numberFormat6.format(1.23456)); // 1.2
 
 // 舍入增量
 let numOptions = {

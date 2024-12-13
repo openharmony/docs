@@ -480,7 +480,7 @@ format(number: number): string
   let result = numberFmt.format(1.23456); // result = 1.23
   ```
 
-### formatRange
+### formatRange<sup>16+</sup>
 
 formatRange(startRange: number, endRange: number): string
 
@@ -566,7 +566,7 @@ resolvedOptions(): NumberOptions
 | maximumFractionDigits    | number  | 否    | 表示要使用的最大分数位数，取值范围：1~21。<br>maximumFractionDigits属性默认值为3。                  |
 | minimumSignificantDigits | number  | 否    | 表示要使用的最低有效位数，取值范围：1~21。<br>minimumSignificantDigits属性默认值为1。                  |
 | maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。<br>maximumSignificantDigits属性默认值为21。                  |
-| roundingPriority<sup>16+</sup>   | string  | 否    | 当分数位数和有效位数冲突时的舍入优先级，取值包括："auto",&nbsp;"morePrecision",&nbsp;"lessPrecision"。<br>roundingPriority默认值为auto。                  |
+| roundingPriority<sup>16+</sup>   | string  | 否    | 最大分数位数和最大有效位数同时设置时的舍入优先级，取值包括："auto"&nbsp;<br>"morePrecision"&nbsp;取最大分数位数,<br>"lessPrecision"&nbsp;取最大有效位数。<br>roundingPriority默认值为auto。                  |
 | roundingIncrement<sup>16+</sup>  | number  | 否    | 表示舍入增量，取值范围：1，2，5，10，20，25，50，100，200，250，500，1000，2000，2500，5000。<br>roundingIncrement属性默认值为1。                  |
 | roundingMode<sup>16+</sup>       | string  | 否    | 表示舍入模式，取值包括："ceil",&nbsp;"floor",&nbsp;"expand",&nbsp;"trunc",&nbsp;"falfCeil",&nbsp;"falfFloor",&nbsp;"falfExpand",&nbsp;"falfTrunc",&nbsp;"falfEven"。<br>roundingMode属性默认值为halfExpand。                  |
 
