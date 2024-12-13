@@ -55,11 +55,11 @@ import { display } from '@kit.ArkUI';
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| DISPLAY_NONE | 0 | 表示设备当前未使用。|
-| DISPLAY_MAIN | 1 | 表示设备当前为主屏。 |
-| DISPLAY_MIRROR | 2 | 表示设备当前为镜像显示模式。|
-| DISPLAY_EXTEND | 3 | 表示设备当前为扩展显示模式。|
-| DISPLAY_ALONE | 4 | 表示设备当前为异源显示模式。|
+| NONE | 0 | 表示设备当前未使用。|
+| MAIN | 1 | 表示设备当前为主屏。 |
+| MIRROR | 2 | 表示设备当前为镜像显示模式。|
+| EXTEND | 3 | 表示设备当前为扩展显示模式。|
+| ALONE | 4 | 表示设备当前为异源显示模式。|
 
 ## FoldStatus<sup>10+</sup>
 
