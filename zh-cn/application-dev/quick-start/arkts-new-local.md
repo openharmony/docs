@@ -259,13 +259,13 @@ struct Index {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct MyComponent {
     @Local message: string = "Hello World"; // 正确用法
     build() {
     }
   }
   @Component
-  struct CompB {
+  struct TestComponent {
     @Local message: string = "Hello World"; // 错误用法，编译时报错
     build() {
     }
@@ -276,15 +276,15 @@ struct Index {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct ChildComponent {
     @Local message: string = "Hello World";
     build() {
     }
   }
   @ComponentV2
-  struct CompB {
+  struct MyComponent {
     build() {
-      CompA({ message: "Hello" }) // 错误用法，编译时报错
+      ChildComponent({ message: "Hello" }) // 错误用法，编译时报错
     }
   }
   ```
@@ -319,16 +319,16 @@ class Info {
 @Entry
 @ComponentV2
 struct Index {
-  info1: Info = new Info("Tom", 25);
-  @Local info2: Info = new Info("Tom", 25);
+  info: Info = new Info("Tom", 25);
+  @Local localInfo: Info = new Info("Tom", 25);
   build() {
     Column() {
-      Text(`info1: ${this.info1.name}-${this.info1.age}`) // Text1
-      Text(`info2: ${this.info2.name}-${this.info2.age}`) // Text2
-      Button("change info1&info2")
+      Text(`info: ${this.info.name}-${this.info.age}`) // Text1
+      Text(`localInfo: ${this.localInfo.name}-${this.localInfo.age}`) // Text2
+      Button("change info&localInfo")
         .onClick(() => {
-          this.info1 = new Info("Lucy", 18); // Text1不会刷新
-          this.info2 = new Info("Lucy", 18); // Text2会刷新
+          this.info = new Info("Lucy", 18); // Text1不会刷新
+          this.localInfo = new Info("Lucy", 18); // Text2会刷新
       })
     }
   }
