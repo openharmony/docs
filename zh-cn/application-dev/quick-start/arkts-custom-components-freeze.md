@@ -54,7 +54,7 @@ struct Page1 {
 
   build() {
     Column() {
-      Text(`From fist Page ${this.storageLink}`).fontSize(50)
+      Text(`From first Page ${this.storageLink}`).fontSize(50)
       Button('first page storageLink + 1').fontSize(30)
         .onClick(() => {
           this.storageLink += 1
