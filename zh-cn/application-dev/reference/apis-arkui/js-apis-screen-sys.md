@@ -516,13 +516,13 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 });
 ```
 
-## screen.makeUnique<sup>13+</sup>
+## screen.makeUnique<sup>16+</sup>
 
 makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将屏幕设置为异源模式，使用Promise异步回调。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
@@ -544,7 +544,9 @@ makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -1057,7 +1059,7 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。                                                       |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。                                                     |
-| edId<sup>13+</sup> | string                                        | 是   | 否   | 屏幕edId。                                                     |
+| edId<sup>16+</sup> | ArrayBuffer                                        | 是   | 否   | 屏幕edId。可选参数                                                     |
 
 ### setOrientation
 
