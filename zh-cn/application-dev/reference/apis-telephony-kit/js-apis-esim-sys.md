@@ -169,8 +169,8 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| portIndex           | number                                        | 是 | 插槽的端口索引。 |
-| profile             | [DownloadableProfile](#downloadableprofile14) | 是 | SM-DP+服务器返回的绑定配置文件包数据。  |
+| portIndex           | number                                        | 是 | 插槽的端口索引。     |
+| profile             | [DownloadableProfile](#downloadableprofile14) | 是 | 可下载的配置文件信息。|
 | forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
 
 **返回值：**
@@ -284,7 +284,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 | ------ | ------ | ----- | ----- |
 | slotId        | number                                            | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | portIndex     | number                                            | 是 | 插槽的端口索引。 |
-| profile       | [DownloadableProfile](#downloadableprofile14)     | 是 | SM-DP+服务器返回的绑定配置文件包数据。 |
+| profile       | [DownloadableProfile](#downloadableprofile14)     | 是 | 可下载的配置文件信息。 |
 | configuration | [DownloadConfiguration](#downloadconfiguration14) | 是 | 下载的配置信息。 |
 
 **返回值：**
@@ -792,7 +792,7 @@ cancelSession\(slotId: number, transactionId: string, cancelReason: CancelReason
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ----- | ----- |
 | slotId        | number                          | 是 | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| transactionId | string                          | 是 | SM-DP+服务器返回的业务ID。|
+| transactionId | string                          | 是 | 业务ID。|
 | cancelReason  | [CancelReason](#cancelreason14) | 是 | 取消会话的原因。|
 
 **返回值：**
@@ -864,7 +864,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-| downloadableProfile | DownloadableProfile  |  是  | 可下载配置文件信息。   |
+| downloadableProfile | DownloadableProfile  |  是  | 可下载的配置文件信息。   |
 | pprType             | number               |  是  | 配置文件策略规则类型。 |
 | pprFlag             | boolean              |  是  | 配置文件策略规则标记。 |
 | iccid               | string               |  是  | 配置文件的iccId。     |

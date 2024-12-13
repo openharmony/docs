@@ -1,6 +1,6 @@
 # @ohos.telephony.esim (eSIM卡管理)
 
-eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡槽是否支持eSIM功能, 如果支持则允许最终用户添加单个配置文件。
+eSIM卡管理模块提供了eSIM卡管理的基础能力，包括获取指定卡槽是否支持eSIM功能，如果支持则允许用户添加单个配置文件。
 
 >**说明：** 
 >
@@ -53,7 +53,7 @@ console.log(`the esim is Supported:` + isSupported);
 
 addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
-此界面将允许最终用户添加单个配置文件。使用Promise异步回调。
+通过该接口拉起下载界面，允许用户添加单个配置文件。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
@@ -61,7 +61,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | 是   | SM-DP+服务器返回的绑定配置文件包数据。 |
+| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | 是   | 可下载的配置文件信息。 |
 
 **返回值：**
 
