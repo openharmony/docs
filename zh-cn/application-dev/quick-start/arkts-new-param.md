@@ -358,13 +358,13 @@ struct Child {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct MyComponent {
     @Param message: string = "Hello World"; // 正确用法
     build() {
     }
   }
   @Component
-  struct CompB {
+  struct TestComponent {
     @Param message: string = "Hello World"; // 错误用法，编译时报错
     build() {
     }
@@ -375,7 +375,7 @@ struct Child {
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct ChildComponent {
     @Param param1: string = "Initialize local";
     @Param param2: string = "Initialize local and put in";
     @Require @Param param3: string;
@@ -390,11 +390,11 @@ struct Child {
   }
   @Entry
   @ComponentV2
-  struct CompB {
+  struct MyComponent {
     @Local message: string = "Put in";
     build() {
       Column() {
-        CompA({
+        ChildComponent({
           param2: this.message,
           param3: this.message
         })
