@@ -139,10 +139,10 @@ OpenHarmony设备的识别主要通过UserAgent中的系统、系统版本和设
 
 1. 系统识别
 
-   通过UserAgent中的{OSName}和字段识别OpenHarmony系统。格式为：OpenHarmony。
+   通过UserAgent中的{OSName}字段识别OpenHarmony系统。
 
    ```ts
-   const matches = /OpenHarmony/test(navigator.userAgent);   
+   const isOpenHarmony = () => /OpenHarmony/i.test(navigator.userAgent);   
    ```
 
 2. 系统版本识别
