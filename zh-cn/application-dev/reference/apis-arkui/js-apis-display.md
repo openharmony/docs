@@ -45,6 +45,22 @@ import { display } from '@kit.ArkUI';
 | PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
 | LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
 
+## DisplaySourceMode<sup>16+</sup>
+
+显示设备当前的内容来源模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DISPLAY_NONE | 0 | 表示设备当前未使用。|
+| DISPLAY_MAIN | 1 | 表示设备当前为主屏。 |
+| DISPLAY_MIRROR | 2 | 表示设备当前为镜像显示模式。|
+| DISPLAY_EXTEND | 3 | 表示设备当前为扩展显示模式。|
+| DISPLAY_ALONE | 4 | 表示设备当前为异源显示模式。|
+
 ## FoldStatus<sup>10+</sup>
 
 当前可折叠设备的折叠状态枚举。
@@ -1064,6 +1080,7 @@ promise.then((data: Array<display.Display>) => {
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| sourceMode<sup>16+</sup> | [DisplaySourceMode](#displaysourcemode16) | 是 | 是 | 屏幕内容来源模式。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void

@@ -817,6 +817,61 @@ screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
 });
 ```
 
+## screen.setScreenPrivacyMaskImage
+
+setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
+
+设置屏幕的隐私蒙版图片，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 屏幕的id，该参数仅支持整数输入。    |
+| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入时，则清理蒙版图片。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  console.info('Succeeded in creating pixelmap.');
+  let screenId: number = 1;
+  screen.setScreenPrivacyMaskImage(screenId, pixelMap).then(() => {
+    console.info('Succeeded in setting the privacy mask image for the screen.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the privacy mask image for the screen. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+})
+```
+
 ## screen.isScreenRotationLocked
 
 isScreenRotationLocked(): Promise&lt;boolean&gt;
