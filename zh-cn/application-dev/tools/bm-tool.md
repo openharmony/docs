@@ -1012,11 +1012,11 @@ Error: bundle manager service is died.
 
 **可能原因**
 
-使用bm install -p ***.hap方式安装预置应用会杀掉正在运行的应用，导致异常（例如foundation进程重启）。
+系统出现未知的异常，导致系统服务重启。
 
 **处理步骤**
 
-1. 预置应用请参考OTA升级。
+1. 若多次重试仍无法解决，请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 
 
 ### 9568393 验证代码签名失败      
