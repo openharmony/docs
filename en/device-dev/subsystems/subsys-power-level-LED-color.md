@@ -25,7 +25,7 @@ For details about the requirements on the Linux environment, see [Quick Start](.
 
 ### Getting Started with Development
 
-The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568) as an example to illustrate customization of the battery level and LED color mapping.
+The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568) as an example to illustrate battery level and LED color mapping customization.
 
 1. Create the `battery` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568).
 
@@ -211,7 +211,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ![high_power_led_alter](figures/high_power_led_alter.jpg)
 
 ## Reference
-During development, you can refer to the [default battery level and LED color mapping configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json), as shown below:
+During development, you can refer to the [default battery level and LED color mapping configuration](https://gitee.com/openharmony/powermgr_battery_manager/tree/master/services/native/profile/battery_config.json), as shown below:
 
  
 
