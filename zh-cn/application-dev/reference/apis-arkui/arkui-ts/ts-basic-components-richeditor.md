@@ -1620,7 +1620,7 @@ SymbolSpan样式选项。
 
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
-添加图片的偏移位置和图片样式信息。
+添加builder的偏移位置和builder样式信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1788,7 +1788,8 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 
 ## 示例
 
-### 示例1
+### 示例1（更新文本样式）
+通过[updateSpanStyle](#updatespanstyle)接口更新已有文本样式，更改样式后，使用[getSpans](#getspans)获取文本新的样式信息。
 
 ```ts
 // xxx.ets
@@ -1962,7 +1963,8 @@ struct Index {
 ```
 ![richeditor](figures/richeditor.gif)
 
-### 示例2
+### 示例2（绑定自定义键盘）
+通过[customKeyboard](#customkeyboard)给组件绑定自定义键盘。
 
 ```ts
 // xxx.ets
@@ -2011,7 +2013,8 @@ struct RichEditorExample {
 
 ![customKeyboard](figures/richEditorCustomKeyboard.gif)
 
-### 示例3
+### 示例3（绑定自定义菜单）
+通过[bindSelectionMenu](#bindselectionmenu)给组件绑定自定义菜单。
 
 ```ts
 // xxx.ets
@@ -2526,7 +2529,8 @@ struct SelectionMenu {
 
 ![selectionMenu](figures/richEditorSelectionMenu.png)
 
-### 示例4
+### 示例4（更新图片样式）
+通过[updateSpanStyle](#updatespanstyle)接口更新已有图片样式。
 
 ```ts
 // xxx.ets
@@ -2760,7 +2764,8 @@ struct Index {
 ```
 ![ImageSpanStyle](figures/richEditorImageSpanStyle.gif)
 
-### 示例5
+### 示例5（Span绑定手势事件）
+为Span绑定[gesture](#richeditorgesture11)回调。
 
 ```ts
 // xxx.ets
@@ -2848,7 +2853,8 @@ struct Index {
 ```
 ![OnClickAndLongPress](figures/richEditorGestureAndHover.gif)
 
-### 示例6
+### 示例6（更新和获取段落样式）
+通过[updateParagraphStyle](#updateparagraphstyle11)接口更新段落样式，通过[getParagraphs](#getparagraphs11)接口获取指定范围段落的信息。
 
 ```ts
 // xxx.ets
@@ -2933,7 +2939,8 @@ struct Index {
 ```
 ![TextAlignAndGetParagraphInfo](figures/richEditorTextAlignAndGetParagraphInfo.gif)
 
-### 示例7
+### 示例7（更新预设样式与缩进）
+通过[setTypingStyle](#settypingstyle11)接口更新文本预设样式，通过[updateParagraphStyle](#updateparagraphstyle11)接口设置不同段落缩进。
 
 ```ts
 // xxx.ets
@@ -3200,7 +3207,9 @@ struct Index {
 ```
 ![UpdateParagraphAndTypingStyle](figures/richEditorUpdateParagraphAndTypingStyle.gif)
 
-### 示例8
+### 示例8（设置文本字重与阴影）
+通过[updateParagraphStyle](#updateparagraphstyle11)接口设置文本字重与阴影。
+
 ``` ts
 @Entry
 @Component
@@ -3281,7 +3290,9 @@ struct Index {
 
 ![TextshadowExample](figures/rich_editor_textshadow.gif)
 
-### 示例9
+### 示例9（添加用户自定义布局Span）
+通过[addBuilderSpan](#addbuilderspan11)接口添加用户自定义布局Span。
+
 ``` ts
 @Builder
 function placeholderBuilder2() {
@@ -3576,8 +3587,8 @@ struct Index {
 ```
 ![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.gif)
 
-### 示例10
-enableDataDetector和dataDetectorConfig使用示例
+### 示例10（设置文本识别配置）
+设置[enableDataDetector](#enabledatadetector11)为true时，通过[dataDetectorConfig](#datadetectorconfig11)接口设置文本识别配置。
 
 ```ts
 @Entry
@@ -3640,8 +3651,9 @@ struct TextExample7 {
   }
 }
 ```
-### 示例11
-caretColor和selectedBackgroundColor使用示例
+### 示例11（设置光标、手柄和底板颜色）
+通过[caretColor](#caretcolor12)属性设置输入框光标、手柄颜色，通过[selectedBackgroundColor](#selectedbackgroundcolor12)属性设置文本选中底板颜色。
+
 ``` ts
 @Entry
 @Component
@@ -3672,8 +3684,9 @@ struct RichEditorDemo {
 ```
 ![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
 
-### 示例12
-lineHeight和letterSpacing使用示例
+### 示例12（设置行高和字符间距）
+通过[updateSpanStyle](#updatespanstyle)接口配置文本行高（[lineHeight](#richeditortextstyle)）和字符间距（[letterSpacing](#richeditortextstyle)）。
+
 ```ts
 @Entry
 @Component
@@ -3793,8 +3806,9 @@ struct RichEditorDemo03 {
 ```
 ![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
 
-### 示例13
-preventDefault使用示例
+### 示例13（自定义粘贴事件）
+为组件添加[onPaste](#onpaste11)事件，通过[PasteEvent](#pasteevent11)自定义用户粘贴事件。
+
 ```ts
 @Entry
 @Component
@@ -3823,9 +3837,8 @@ struct RichEditorDemo {
 ```
 ![PreventDefaultExample](figures/richEditorPreventDefault.gif)
 
-### 示例14
-
-当添加“ss01”特性的FontFeature属性时，数字“0”由原来的椭圆形改变为带有倒圆角形。
+### 示例14（配置文字特性效果）
+通过[addTextSpan](#addtextspan)接口设置文字特性效果（[fontFeature](#richeditortextstyle)）。当添加“ss01”特性的FontFeature属性时，数字“0”由原来的椭圆形改变为带有倒圆角形。
 
 ```ts
 @Entry
@@ -3871,9 +3884,8 @@ struct RichEditorExample {
 ```
 ![FontFeatureExample](figures/richEditorFontFeature.png)
 
-### 示例15
-
-自定义键盘弹出发生避让示例。
+### 示例15（自定义键盘避让）
+通过[customKeyboard](#customkeyboard)属性绑定自定义键盘，通过参数[KeyboardOptions](#keyboardoptions12)设置自定义键盘是否支持避让功能。
 
 ```ts
 @Entry
@@ -3951,9 +3963,8 @@ struct RichEditorExample {
 ```
 ![CustomRichEditorType](figures/Custom_Rich_Editor.gif)
 
-### 示例16
-
-onEditingChange，isEditing使用示例。
+### 示例16（查看编辑状态）
+通过[isEditing](#isediting12)接口获取当前富文本的编辑状态。为组件添加[onEditingChange](#oneditingchange12)事件，可通过打印日志，获取当前组件是否在编辑态。
 
 ```ts
 @Entry
@@ -3991,9 +4002,8 @@ struct RichEditor_onEditingChange {
 
 ![RichEditorOnEditingChange](figures/richEditorOnEditingChange.gif)
 
-### 示例17
-
-onWillChange，onDidChange，onCut，onCopy使用示例。
+### 示例17（配置文本变化回调）
+为组件添加[onWillChange](#onwillchange12)事件，能够在组件执行增删操作前，触发回调。
 
 ```ts
 @Entry
@@ -4077,9 +4087,8 @@ struct RichEditorExample {
   }
 }
 ```
-### 示例18
-
-enterKeyType，onSubmit，stopEditing使用示例。
+### 示例18（配置输入法enter键功能）
+通过[enterKeyType](#enterkeytype12)属性设置软键盘输入法回车键类型。
 
 ```ts
 @Entry
@@ -4112,8 +4121,8 @@ struct SoftKeyboardEnterTypeExample {
 
 ![SoftKeyboardEnterType](figures/richeditorentertype.gif)
 
-### 示例19
-lineBreakStrategy属性值设置、更新、查询使用示例。
+### 示例19（设置段落折行规则）
+通过[updateParagraphStyle](#updateparagraphstyle11)接口设置折行类型（[lineBreakStrategy](#richeditorparagraphstyle11)），通过[getParagraphs](#getparagraphs11)接口获取此时段落的折行类型。
 
 ```ts
 @Entry
@@ -4190,8 +4199,8 @@ struct LineBreakStrategyExample {
 
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
 
-### 示例20
-属性字符串使用示例。
+### 示例20（属性字符串基本功能）
+[属性字符串](./ts-universal-styled-string.md)通过[RichEditorStyledStringController](#richeditorstyledstringcontroller12)中的[setStyledString](#setstyledstring12)方法与RichEditor组件绑定。通过[getStyledString](#getstyledstring12)接口获取富文本组件显示的属性字符串。
 
 ```ts
 // xxx.ets
@@ -4405,8 +4414,8 @@ struct Index {
 
 ![StyledString](figures/StyledString(example20).gif)
 
-### 示例21
-LayoutManager使用示例。
+### 示例21（获取布局信息）
+通过[getLayoutManager](#getlayoutmanager12)接口获取布局管理器对象，通过[getLineCount](ts-text-common.md#getlinecount)接口获取组件内容的总行数，通过[getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate)接口获取较为接近给定坐标的字形的位置信息，通过[getLineMetrics](ts-text-common.md#getlinemetrics)接口获取指定行的行信息、文本样式信息、以及字体属性信息。
 
 ```ts
 @Entry
@@ -4475,9 +4484,8 @@ export struct Index {
 
 ![LayoutManager](figures/getLayoutManager.gif)
 
-### 示例22
-
-editMenuOptions 使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+### 示例22（设置自定义菜单扩展项）
+通过[editMenuOptions](#editmenuoptions12)属性设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
 ```ts
 // xxx.ets
@@ -4540,9 +4548,8 @@ struct RichEditorExample {
 
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
-### 示例23
-
-barState、enableKeyboardOnFocus、getPreviewText使用示例。
+### 示例23（组件部分常用属性）
+通过[barState](#barstate13)属性设置组件编辑态时滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。
 
 ```ts
 // xxx.ets
