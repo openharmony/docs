@@ -54,12 +54,11 @@ Crypto Architecture Kit屏蔽了第三方密码学算法库实现差异的算法
 
 如果业务需要由系统提供密钥管理功能（密钥存储等），请使用[Universal Keystore Kit（密钥管理服务）](../UniversalKeystoreKit/huks-overview.md)。
 
-## 与双框架之间的关系
+## HarmonyOS 3.1/4.0到HarmonyOS 5.0的差异（更新中）
 
-加解密算法库框架在一些使用上需要与双框架区分开来，具体体现在某些关键字段的不同。如下表：
+加解密算法库框架从HarmonyOS 3.1/4.0到HarmonyOS 5.0在一些关键字段上有所不同，具体如下表：
 
 | 关键字段 | 加解密算法库框架 | 双框架 |
 | -------- | -------- | -------- |
 | 填充模式 | PKCS1/PKCS5/PKCS7 | PKCS1Padding/PKCS5Padding/PKCS7Padding |
-| 非对称密钥 | RSA1024 | RSA1024 |
 
