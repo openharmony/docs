@@ -24,9 +24,6 @@
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
-    - 添加气泡和菜单
-      - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
-      - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
   - 设置组件导航和页面路由
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
@@ -40,9 +37,20 @@
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗
-    - [模态弹窗 (ModalDialog)](arkts-modal-dialog.md)
-    - [不依赖UI组件的全局自定义弹窗 (推荐)](arkts-uicontext-custom-dialog.md)
-    - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
+     - [弹窗概述](arkts-dialog-overview.md)
+     - 使用弹出框 (Dialog)
+       - [弹出框概述](arkts-base-dialog-overview.md)
+       - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
+       - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
+       - [固定样式弹出框](arkts-fixes-style-dialog.md)
+     - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+     - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+     - 绑定模态页面
+        - [绑定模态页面概述](arkts-modal-overview.md)
+        - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
+        - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
+     - [即时反馈 (Toast)](arkts-create-toast.md)
+     - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
