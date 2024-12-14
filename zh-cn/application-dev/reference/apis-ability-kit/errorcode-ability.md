@@ -893,6 +893,28 @@ Creating an instance is not supported.
 
 删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
 
+## 16000081 获取目标应用信息失败
+
+**错误信息**
+
+Get target application info failed.
+
+**错误描述**
+
+调用<!--RP1-->[<!--RP1End-->URI授权相关接口<!--RP1-->](js-apis-uripermissionmanager-sys.md)<!--RP1End-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
+
+**可能原因**
+
+1. 没有安装目标应用。
+2. 分身索引超出允许的范围。
+3. 目标应用没有该索引的分身。
+
+**处理步骤**
+
+1. 检查目标应用是否已经安装。
+2. 检查分身应用索引是否在允许范围内。
+3. 检查目标应用是否创建了该索引对应的分身应用。
+
 ## 16000082 单实例模式下的UIAbility未完成启动
 
 **错误信息**
