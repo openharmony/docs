@@ -48,7 +48,7 @@ static bool doTestEcdsaSignature()
       0x86, 0x48, 0xce, 0x3d, 0x03, 0x01, 0x07, 0x03, 0x22, 0x00, 0x03, 0x4d, 0xe4, 0xbb, 0x11, 0x10,
       0x1a, 0xd2, 0x05, 0x74, 0xf1, 0x0b, 0xb4, 0x75, 0x57, 0xf4, 0x3e, 0x55, 0x14, 0x17, 0x05, 0x4a,
       0xb2, 0xfb, 0x8c, 0x84, 0x64, 0x38, 0x02, 0xa0, 0x2a, 0xa6, 0xf0
-   };
+   }; // 此处为DER格式的公钥编码数据，仅供参考
 
    Crypto_DataBlob keyBlob = {
       .data = reinterpret_cast<uint8_t *>(pubKeyText),
@@ -74,14 +74,14 @@ static bool doTestEcdsaSignature()
    if (ret != CRYPTO_SUCCESS) {
       return false;
    }
-   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_DER, &keyBlob, nullptr, &keyPair);
+   ret = OH_CryptoAsymKeyGenerator_Convert(keyCtx, CRYPTO_DER, &keyBlob, nullptr, &keyPair); // 将DER格式的公钥编码数据转换为OH_CryptoKeyPair
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       return false;
    }
-   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
+   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair); // 获取公钥对象
    // verify
-   ret = OH_CryptoVerify_Create((const char *)"ECC256|SHA256", &verify);
+   ret = OH_CryptoVerify_Create((const char *)"ECC256|SHA256", &verify); // 创建Verify实例
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoVerify_Destroy(verify);
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
