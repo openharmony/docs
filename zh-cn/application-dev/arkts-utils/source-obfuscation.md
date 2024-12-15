@@ -365,6 +365,15 @@ strip-language-default
 -extra-options strip-system-api-args
 ```
 
+#### -enable-lib-obfuscation-options  
+配置此开关后，依赖模块的混淆选项将被合并到主模块的混淆配置中。  
+
+混淆配置分为[混淆选项](#混淆选项)和[保留选项](#保留选项)：  
+- **默认情况下**，生效的混淆配置为主模块的混淆配置与依赖模块的保留选项的合并结果。  
+- **启用该开关后**，生效的混淆配置为主模块的混淆配置与依赖模块的混淆配置的合并结果。 
+混淆规则合并逻辑参考[混淆规则合并策略](#混淆规则合并策略)。
+ 
+
 ### 保留选项
 
 #### -keep-property-name *[,identifiers,...]*
@@ -726,84 +735,43 @@ age
 
 ### 混淆规则合并策略
 
-一个工程中经常会有许多混淆规则文件，这些文件来自于:
+在编译一个模块时，生效的混淆规则是 **当前模块混淆规则** 和 **依赖模块混淆规则** 的合并结果，具体规则如下：
 
-* 主工程的`ruleOptions.files` (这里主工程指的是正在构建的工程)
-* 依赖的本地HAR中的`consumerFiles`选项中指定的文件
-* 依赖的本地HSP中的`consumerFiles`选项中指定的文件
-* 依赖的远程HAR中的`obfuscation.txt`文件
-* 依赖的远程HSP中的`obfuscation.txt`文件
+**当前模块混淆规则**  
+指当前模块配置文件 `build-profile.json5` 中`arkOptions.obfuscation.ruleOptions.files`字段指定的混淆配置文件内容。  
 
-当构建主工程的时候，这些文件中的混淆规则会按照下面的合并策略(伪代码)进行合并:
+**依赖模块混淆规则**  
+依赖模块的混淆规则来源于本地源码依赖模块和远程依赖模块中的混淆配置文件：  
 
-```
-let `listRules` 表示上面提到的所有混淆规则文件的列表
-let finalRule = {
-    disableObfuscation: false,
-    enablePropertyObfuscation: false,
-    enableToplevelObfuscation: false,
-    compact: false,
-    removeLog: false,
-    keepPropertyName: [],
-    keepGlobalName: [],
-    keepDts: [],
-    printNamecache: string,
-    applyNamecache: string
-}
-for each file in `listRules`:
-    for each option in file:
-        switch(option) {
-            case -disable-obfuscation:
-                finalRule.disableObfuscation = true;
-                continue;
-            case -enable-property-obfuscation:
-                finalRule.enablePropertyObfuscation = true;
-                continue;
-            case -enable-toplevel-obfuscation:
-                finalRule.enableToplevelObfuscation = true;
-                continue;
-            case -compact:
-                finalRule.compact = true;
-                continue;
-            case -remove-log:
-                finalRule.removeLog = true;
-                continue;
-            case -print-namecache:
-                finalRule.printNamecache = #{指定的路径名};
-                continue;
-            case -apply-namecache:
-                finalRule.applyNamecache = #{指定的路径名};
-                continue;
-            case -keep-property-name:
-                finalRule.keepPropertyName.push(#{指定的名称});
-                continue;
-            case -keep-global-name:
-                finalRule.keepGlobalName.push(#{指定的名称});
-                continue;
-            case -keep-dts:
-                finalRule.keepDts.push(#{指定的路径});
-                continue;
-        }
-    end-for
-end-for
-```
+- **本地 HAR/HSP 模块**  
+  当前模块依赖的本地 HAR/HSP 模块，其配置文件 `build-profile.json5` 中`arkOptions.obfuscation.consumerFiles`字段指定的混淆配置文件内容。
 
-最后使用的混淆规则来自于对象`finalRule`。
+- **远程 HAR/HSP 包**  
+  当前模块依赖的远程 HAR/HSP 包中 `obfuscation.txt` 文件内容。  
 
 当构建HAP、HSP和HAR的时候，最终的混淆规则是下列文件的合并：
 * 当前构建模块的ruleOptions.files属性
 * 依赖的本地HSP的consumerFiles属性
 * 依赖的本地HAR的consumerFiles属性
-* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件  
 
 如果构建的是HAR，生成的远程HAR中的obfuscation.txt是下列文件的合并：
 * 自身的consumerFiles属性
 * 依赖的本地HSP的consumerFiles属性
 * 依赖的本地HAR的consumerFiles属性
-* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件  
 
-如果构建的是HSP，生成的远程HSP中的obfuscation.txt仅包含自身的consumerFiles属性。
+如果构建的是HSP，生成的远程HSP中的obfuscation.txt仅包含自身的consumerFiles属性。  
 如果构建的是HAP，则不会生成obfuscation.txt。
+
+#### 混淆规则合并逻辑
+
+混淆选项：使用或运算进行合并，即开关选项只要在参与合并的任意一个规则文件中存在，最终的合并结果中就会包含该开关选项。  
+保留选项：合并时，对于白名单选项，其内容取并集。
+
+- **如果当前模块混淆配置未包含`-enable-lib-obfuscation-options`选项**：合并对象为当前模块的所有混淆规则与依赖模块混淆规则中的[保留选项](#保留选项)。  
+
+- **如果当前模块混淆配置包含`-enable-lib-obfuscation-options`选项**：合并对象为当前模块的所有混淆规则与依赖模块的所有混淆规则。  
 
 当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到远程HAR和远程HSP的`obfuscation.txt`文件中，而其他混淆规则不会。
 ```
