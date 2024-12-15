@@ -4768,4 +4768,3 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
-
