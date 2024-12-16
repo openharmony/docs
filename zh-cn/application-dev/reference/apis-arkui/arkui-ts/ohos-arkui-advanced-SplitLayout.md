@@ -46,7 +46,7 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-
+该示例通过SplitLayout实现了页面布局，并具备自适应能力。
 ```ts
 import { SplitLayout } from '@kit.ArkUI'
 

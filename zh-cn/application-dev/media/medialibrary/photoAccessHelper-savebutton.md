@@ -16,8 +16,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  @State saveButtonOptions: SaveButtonOptions = {
+    saveButtonOptions: SaveButtonOptions = {
     icon: SaveIconStyle.FULL_FILLED,
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
@@ -26,9 +25,6 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
         SaveButton(this.saveButtonOptions) // 创建安全控件按钮
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {

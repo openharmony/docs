@@ -469,7 +469,7 @@ options.signal = s;
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/sendable-overview.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
+为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
 
 ### ISendable
 
@@ -575,6 +575,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 
 ```ts
 import { lang } from '@kit.ArkTS';
+import { collections } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';

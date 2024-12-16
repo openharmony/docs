@@ -6,6 +6,7 @@
 
 其中\@Provide装饰的变量是在祖先组件中，可以理解为被“提供”给后代的状态变量。\@Consume装饰的变量是在后代组件中，去“消费（绑定）”祖先组件提供的变量。
 
+\@Provide/\@Consume是跨组件层级的双向同步。在阅读\@Provide和\@Consume文档前，建议开发者对UI范式基本语法和自定义组件有基本的了解。建议提前阅读：[基本语法概述](./arkts-basic-syntax-overview.md)，[声明式UI描述](./arkts-declarative-ui-description.md)，[自定义组件-创建自定义组件](./arkts-create-custom-components.md)。
 
 > **说明：**
 >
@@ -26,12 +27,12 @@
 
 ```ts
 // 通过相同的变量名绑定
-@Provide a: number = 0;
-@Consume a: number;
+@Provide age: number = 0;
+@Consume age: number;
 
 // 通过相同的变量别名绑定
-@Provide('a') b: number = 0;
-@Consume('a') c: number;
+@Provide('a') id: number = 0;
+@Consume('a') age: number;
 ```
 
 
@@ -48,7 +49,7 @@
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
 | 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Provide a : string \| undefined = undefined`是推荐的，不推荐`@Provide a: string = undefined`。
 | 被装饰变量的初始值      | 必须指定。                                    |
-| 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见\@Provide支持allowOverride参数。 |
+| 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见[\@Provide支持allowOverride参数](#provide支持allowoverride参数)。 |
 
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
@@ -105,7 +106,7 @@
 
 ```ts
 @Component
-struct CompD {
+struct Child {
   @Consume selectedDate: Date;
 
   build() {
@@ -130,7 +131,7 @@ struct CompD {
 
 @Entry
 @Component
-struct CompA {
+struct Parent {
   @Provide selectedDate: Date = new Date('2021-08-08')
 
   build() {
@@ -150,7 +151,7 @@ struct CompA {
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
-      CompD()
+      Child()
     }
   }
 }
@@ -178,56 +179,203 @@ struct CompA {
 ![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
 
 
+## 限制条件
+
+1. \@Provider/\@Consumer的参数key必须为string类型，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+let change: number = 10;
+@Provide(change) message: string = 'Hello';
+
+// 正确写法
+let change: string = 'change';
+@Provide(change) message: string = 'Hello';
+```
+
+2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
+
+【反例】
+
+```ts
+@Component
+struct Child {
+  @Consume msg: string;
+  // 错误写法，不允许本地初始化
+  @Consume msg1: string = 'Hello';
+
+  build() {
+    Text(this.msg)
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @Provide message: string = 'Hello';
+
+  build() {
+    Column() {
+      // 错误写法，不允许外部传入初始化
+      Child({msg: 'Hello'})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Component
+struct Child {
+  @Consume num: number;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @Provide num: number = 10;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+      Child()
+    }
+  }
+}
+```
+
+3. \@Provide的key重复定义时，框架会抛出运行时错误，提醒开发者重复定义key，如果开发者需要重复key，可以使用[allowoverride](#provide支持allowoverride参数)。
+
+```ts
+// 错误写法，a重复定义
+@Provide('a') count: number = 10;
+@Provide('a') num: number = 10;
+
+// 正确写法
+@Provide('a') count: number = 10;
+@Provide('b') num: number = 10;
+```
+
+4. 在初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量。
+
+【反例】
+
+```ts
+@Component
+struct Child {
+  @Consume num: number;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  // 错误写法，缺少@Provide
+  num: number = 10;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+      Child()
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Component
+struct Child {
+  @Consume num: number;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  // 正确写法
+  @Provide num: number = 10;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+      Child()
+    }
+  }
+}
+```
+
+5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
+
+
 ## 使用场景
 
-在下面的示例是与后代组件双向同步状态\@Provide和\@Consume场景。当分别点击CompA和CompD组件内Button时，reviewVotes 的更改会双向同步在CompA和CompD中。
+在下面的示例是与后代组件双向同步状态\@Provide和\@Consume场景。当分别点击ToDo和ToDoItem组件内Button时，count 的更改会双向同步在ToDo和ToDoItem中。
 
 
 
 ```ts
 @Component
-struct CompD {
-  // @Consume装饰的变量通过相同的属性名绑定其祖先组件CompA内的@Provide装饰的变量
-  @Consume reviewVotes: number;
+struct ToDoItem {
+  // @Consume装饰的变量通过相同的属性名绑定其祖先组件ToDo内的@Provide装饰的变量
+  @Consume count: number;
 
   build() {
     Column() {
-      Text(`reviewVotes(${this.reviewVotes})`)
-      Button(`reviewVotes(${this.reviewVotes}), give +1`)
-        .onClick(() => this.reviewVotes += 1)
+      Text(`count(${this.count})`)
+      Button(`count(${this.count}), count + 1`)
+        .onClick(() => this.count += 1)
     }
     .width('50%')
   }
 }
 
 @Component
-struct CompC {
+struct ToDoList {
   build() {
     Row({ space: 5 }) {
-      CompD()
-      CompD()
+      ToDoItem()
+      ToDoItem()
     }
   }
 }
 
 @Component
-struct CompB {
+struct ToDoDemo {
   build() {
-    CompC()
+    ToDoList()
   }
 }
 
 @Entry
 @Component
-struct CompA {
-  // @Provide装饰的变量reviewVotes由入口组件CompA提供其后代组件
-  @Provide reviewVotes: number = 0;
+struct ToDo {
+  // @Provide装饰的变量index由入口组件ToDo提供其后代组件
+  @Provide count: number = 0;
 
   build() {
     Column() {
-      Button(`reviewVotes(${this.reviewVotes}), give +1`)
-        .onClick(() => this.reviewVotes += 1)
-      CompB()
+      Button(`count(${this.count}), count + 1`)
+        .onClick(() => this.count += 1)
+      ToDoDemo()
     }
   }
 }
@@ -614,78 +762,78 @@ class Animal {
     this.age = age;
   }
 
-  static changeName1(animal:Animal) {
-    animal.name = 'Black';
+  static changeName(animal:Animal) {
+    animal.name = 'Jack';
   }
-  static changeAge1(animal:Animal) {
+  static changeAge(animal:Animal) {
     animal.age += 1;
   }
 }
 
 @Entry
 @Component
-struct Demo1 {
+struct Zoo {
   @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
 
-  changeAge2(animal:Animal) {
+  changeZooDogAge(animal:Animal) {
     animal.age += 2;
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`Zoo: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Red)
         .fontSize(30)
-      Button('changeAge1')
+      Button('changeAge')
         .onClick(()=>{
           // 通过静态方法调用，无法触发UI刷新
-          Animal.changeAge1(this.dog);
+          Animal.changeAge(this.dog);
         })
-      Button('changeAge2')
+      Button('changeZooDogAge')
         .onClick(()=>{
           // 使用this通过自定义组件内部方法调用，无法触发UI刷新
-          this.changeAge2(this.dog);
+          this.changeZooDogAge(this.dog);
         })
-      Demo2()
+      ZooChild()
     }
   }
 }
 
 @Component
-struct Demo2 {
+struct ZooChild {
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo2.`)
+      Text(`ZooChild`)
         .fontColor(Color.Blue)
         .fontSize(30)
-      Demo3()
+      ZooGrandChild()
     }
   }
 }
 
 @Component
-struct Demo3 {
+struct ZooGrandChild {
   @Consume dog:Animal;
 
-  changeName2(animal:Animal) {
-    animal.name = 'White';
+  changeZooGrandChildName(animal:Animal) {
+    animal.name = 'Marry';
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`ZooGrandChild: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Yellow)
         .fontSize(30)
-      Button('changeName1')
+      Button('changeName')
         .onClick(()=>{
           // 通过静态方法调用，无法触发UI刷新
-          Animal.changeName1(this.dog);
+          Animal.changeName(this.dog);
         })
-      Button('changeName2')
+      Button('changeZooGrandChildName')
         .onClick(()=>{
           // 使用this通过自定义组件内部方法调用，无法触发UI刷新
-          this.changeName2(this.dog);
+          this.changeZooGrandChildName(this.dog);
         })
     }
   }
@@ -708,82 +856,82 @@ class Animal {
     this.age = age;
   }
 
-  static changeName1(animal:Animal) {
-    animal.name = 'Black';
+  static changeName(animal:Animal) {
+    animal.name = 'Jack';
   }
-  static changeAge1(animal:Animal) {
+  static changeAge(animal:Animal) {
     animal.age += 1;
   }
 }
 
 @Entry
 @Component
-struct Demo1 {
+struct Zoo {
   @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
 
-  changeAge2(animal:Animal) {
+  changeZooDogAge(animal:Animal) {
     animal.age += 2;
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`Zoo: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Red)
         .fontSize(30)
-      Button('changeAge1')
+      Button('changeAge')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let a1 = this.dog;
-          Animal.changeAge1(a1);
+          let newDog = this.dog;
+          Animal.changeAge(newDog);
         })
-      Button('changeAge2')
+      Button('changeZooDogAge')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let a2 = this.dog;
-          this.changeAge2(a2);
+          let newDog = this.dog;
+          this.changeZooDogAge(newDog);
         })
-      Demo2()
+      ZooChild()
     }
   }
 }
 
 @Component
-struct Demo2 {
+struct ZooChild {
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo2.`)
+      Text(`ZooChild.`)
         .fontColor(Color.Blue)
         .fontSize(30)
-      Demo3()
+      ZooGrandChild()
     }
   }
 }
 
 @Component
-struct Demo3 {
+struct ZooGrandChild {
   @Consume dog:Animal;
 
-  changeName2(animal:Animal) {
-    animal.name = 'White';
+  changeZooGrandChildName(animal:Animal) {
+    animal.name = 'Marry';
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`ZooGrandChild: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Yellow)
         .fontSize(30)
-      Button('changeName1')
+      Button('changeName')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let b1 = this.dog;
-          Animal.changeName1(b1);
+          let newDog = this.dog;
+          Animal.changeName(newDog);
         })
-      Button('changeName2')
+      Button('changeZooGrandChildName')
         .onClick(()=>{
           // 通过赋值添加 Proxy 代理
-          let b2 = this.dog;
-          this.changeName2(b2);
+          let newDog = this.dog;
+          this.changeZooGrandChildName(newDog);
         })
     }
   }

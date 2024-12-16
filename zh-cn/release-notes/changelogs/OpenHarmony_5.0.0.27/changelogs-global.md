@@ -12,22 +12,73 @@
 
 **变更影响**
 
-该变更为非兼容性变更。使用硬编码通过路径访问字体的应用受影响。
+该变更为不兼容变更。
 
-字体对照表：
+使用硬编码通过路径访问字体的应用受影响。
 
-|| 变更前          | 变更后   | 
-|-------| -------- | --------------- | 
-|默认字体|  HarmonyOS_Sans_Regular.ttf    |  HarmonyOS_Sans.ttf   |
-|简体中文字体|  HarmonyOS_Sans_SC_Regular.ttf    |  HarmonyOS_Sans_SC.ttf  | 
-|繁体中文字体|  HarmonyOS_Sans_TC_Regular.ttf    |  HarmonyOS_Sans_TC.ttf | 
-|阿拉伯文字体|  HarmonyOS_Sans_Naskh_Arabic_UI_Regular.ttf    |  HarmonyOS_Sans_Naskh_Arabic_UI.ttf   | 
-||  HarmonyOS_Sans_Naskh_Arabic_Regular.ttf    |  HarmonyOS_Sans_Naskh_Arabic.ttf   | 
-|日文字体|  NotoSans_JP_Regular.otf   |  NotoSansCJK-Regular.ttc   | 
-|韩文字体|  NotoSans_KR_Regular.otf  |  NotoSansCJK-Regular.ttc   | 
-||  HarmonyOS_Sans_Condensed_Regular.ttf  |  HarmonyOS_Sans_Condensed.ttf   | 
+如果应用通过硬编码的方式使用了变更前的字体，现在需将字体文件改成新的字体文件。
 
-如应用单独使用了上述类型字体，需适配新字体文件。
+常用字体对照表：
+
+下表列举了变更前后常用字体文件，在实际的开发过程中，开发者可以通过API接口获取当前系统支持的字体文件，详细内容可以参考[API接口文档](../../../application-dev/reference/apis-arkui/js-apis-font.md)。
+
+| 变更前                                      | 变更后                              |
+| ------------------------------------------- | ----------------------------------- |
+| HarmonyOS_Sans_Thin.ttf                     | HarmonyOS_Sans.ttf                  |
+| HarmonyOS_Sans_Light.ttf                    | HarmonyOS_Sans.ttf                  |
+| HarmonyOS_Sans_Regular.ttf                  | HarmonyOS_Sans.ttf                  |
+| HarmonyOS_Sans_Medium.ttf                   | HarmonyOS_Sans.ttf                  |
+| HarmonyOS_Sans_Bold.ttf                     | HarmonyOS_Sans.ttf                  |
+| HarmonyOS_Sans_Black.ttf                    | HarmonyOS_Sans.ttf                  |
+| HarmonyOS_Sans_Thin_Italic.ttf              | HarmonyOS_Sans_Italic.ttf           |
+| HarmonyOS_Sans_Light_Italic.ttf             | HarmonyOS_Sans_Italic.ttf           |
+| HarmonyOS_Sans_Regular_Italic.ttf           | HarmonyOS_Sans_Italic.ttf           |
+| HarmonyOS_Sans_Medium_Italic.ttf            | HarmonyOS_Sans_Italic.ttf           |
+| HarmonyOS_Sans_Bold_Italic.ttf              | HarmonyOS_Sans_Italic.ttf           |
+| HarmonyOS_Sans_Black_Italic.ttf             | HarmonyOS_Sans_Italic.ttf           |
+| HarmonyOS_Sans_SC_Thin.ttf                  | HarmonyOS_Sans_SC.ttf               |
+| HarmonyOS_Sans_SC_Light.ttf                 | HarmonyOS_Sans_SC.ttf               |
+| HarmonyOS_Sans_SC_Regular.ttf               | HarmonyOS_Sans_SC.ttf               |
+| HarmonyOS_Sans_SC_Medium.ttf                | HarmonyOS_Sans_SC.ttf               |
+| HarmonyOS_SansSC_Semibold.ttf               | HarmonyOS_Sans_SC.ttf               |
+| HarmonyOS_Sans_SC_Bold.ttf                  | HarmonyOS_Sans_SC.ttf               |
+| HarmonyOS_Sans_SC_Black.ttf                 | HarmonyOS_Sans_SC.ttf               |
+| HarmonyOS_Sans_TC_Thin.ttf                  | HarmonyOS_Sans_TC.ttf               |
+| HarmonyOS_Sans_TC_Light.ttf                 | HarmonyOS_Sans_TC.ttf               |
+| HarmonyOS_Sans_TC_Regular.ttf               | HarmonyOS_Sans_TC.ttf               |
+| HarmonyOS_Sans_TC_Medium.ttf                | HarmonyOS_Sans_TC.ttf               |
+| HarmonyOS_Sans_TC_Bold.ttf                  | HarmonyOS_Sans_TC.ttf               |
+| HarmonyOS_Sans_TC_Black.ttf                 | HarmonyOS_Sans_TC.ttf               |
+| HarmonyOS_Sans_Naskh_Arabic_Thin.ttf        | HarmonyOS_Sans_Naskh_Arabic.ttf     |
+| HarmonyOS_Sans_Naskh_Arabic_Light.ttf       | HarmonyOS_Sans_Naskh_Arabic.ttf     |
+| HarmonyOS_Sans_Naskh_Arabic_Regular.ttf     | HarmonyOS_Sans_Naskh_Arabic.ttf     |
+| HarmonyOS_Sans_Naskh_Arabic_Medium.ttf      | HarmonyOS_Sans_Naskh_Arabic.ttf     |
+| HarmonyOS_Sans_Naskh_Arabic_Bold.ttf        | HarmonyOS_Sans_Naskh_Arabic.ttf     |
+| HarmonyOS_Sans_Naskh_Arabic_Black.ttf       | HarmonyOS_Sans_Naskh_Arabic.ttf     |
+| HarmonyOS_Sans_Naskh_Arabic_UI_Thin.ttf     | HarmonyOS_Sans_Naskh_Arabic_UI.ttf  |
+| HarmonyOS_Sans_Naskh_Arabic_UI_Light.ttf    | HarmonyOS_Sans_Naskh_Arabic_UI.ttf  |
+| HarmonyOS_Sans_Naskh_Arabic_UI_Regular.ttf  | HarmonyOS_Sans_Naskh_Arabic_UI.ttf  |
+| HarmonyOS_Sans_Naskh_Arabic_UI_Medium.ttf   | HarmonyOS_Sans_Naskh_Arabic_UI.ttf  |
+| HarmonyOS_Sans_Naskh_Arabic_UI_Bold.ttf     | HarmonyOS_Sans_Naskh_Arabic_UI.ttf  |
+| HarmonyOS_Sans_Naskh_Arabic_UI_Black.ttf    | HarmonyOS_Sans_Naskh_Arabic_UI.ttf  |
+| HarmonyOS_Sans_Condensed_Thin.ttf           | HarmonyOS_Sans_Condensed.ttf        |
+| HarmonyOS_Sans_Condensed_Light.ttf          | HarmonyOS_Sans_Condensed.ttf        |
+| HarmonyOS_Sans_Condensed_Regular.ttf        | HarmonyOS_Sans_Condensed.ttf        |
+| HarmonyOS_Sans_Condensed_Medium.ttf         | HarmonyOS_Sans_Condensed.ttf        |
+| HarmonyOS_Sans_Condensed_Bold.ttf           | HarmonyOS_Sans_Condensed.ttf        |
+| HarmonyOS_Sans_Condensed_Black.ttf          | HarmonyOS_Sans_Condensed.ttf        |
+| HarmonyOS_Sans_Condensed_Thin_Italic.ttf    | HarmonyOS_Sans_Condensed_Italic.ttf |
+| HarmonyOS_Sans_Condensed_Light_Italic.ttf   | HarmonyOS_Sans_Condensed_Italic.ttf |
+| HarmonyOS_Sans_Condensed_Regular_Italic.ttf | HarmonyOS_Sans_Condensed_Italic.ttf |
+| HarmonyOS_Sans_Condensed_Medium_Italic.ttf  | HarmonyOS_Sans_Condensed_Italic.ttf |
+| HarmonyOS_Sans_Condensed_Bold_Italic.ttf    | HarmonyOS_Sans_Condensed_Italic.ttf |
+| HarmonyOS_Sans_Condensed_Black_Italic.ttf   | HarmonyOS_Sans_Condensed_Italic.ttf |
+| NotoSans_JP_Light.otf                       | NotoSansCJK-Regular.ttc             |
+| NotoSans_JP_Regular.otf                     | NotoSansCJK-Regular.ttc             |
+| NotoSans_JP_Bold.otf                        | NotoSansCJK-Regular.ttc             |
+| NotoSans_KR_Light.otf                       | NotoSansCJK-Regular.ttc             |
+| NotoSans_KR_Regular.otf                     | NotoSansCJK-Regular.ttc             |
+| NotoSans_KR_Bold.otf                        | NotoSansCJK-Regular.ttc             |
 
 **起始 API Level**
 
@@ -39,4 +90,5 @@
 
 **适配指导**
 
-使用变更后的字体文件名。
+参照常用字体对照表修改字体文件名。
+

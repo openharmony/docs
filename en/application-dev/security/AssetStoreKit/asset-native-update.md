@@ -2,8 +2,6 @@
 
 ## Available APIs
 
- 
-
 You can use [OH_Asset_Update](../../reference/apis-asset-store-kit/_asset_api.md#oh_asset_update) to update an asset.
 
 The following table describes the attributes for updating an asset.

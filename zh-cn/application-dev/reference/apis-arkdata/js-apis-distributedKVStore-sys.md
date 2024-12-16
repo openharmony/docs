@@ -1,4 +1,4 @@
- # @ohos.data.distributedKVStore (分布式键值数据库)(系统接口)
+# @ohos.data.distributedKVStore (分布式键值数据库)(系统接口)
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、同步等操作。
 
@@ -68,18 +68,14 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 try {
-  let v8Arr: distributedKVStore.Entry[] = [];
-  let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
-
-  v8Arr.push(vb1);
-  v8Arr.push(vb2);
-  v8Arr.push(vb3);
-  kvStore.putBatch(v8Arr, async (err: BusinessError) => {
+  let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
+  let bucket2: ValuesBucket = {key:"age", value: 20};
+  let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  kvStore.putBatch(people, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -88,7 +84,7 @@ try {
   })
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`Failed to put batch.code is ${error.code},message is ${error.message}`);
+  console.error(`Failed to do putBatch error.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -137,25 +133,21 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 try {
-  let v8Arr: distributedKVStore.Entry[] = [];
-  let arr = new Uint8Array([4, 5, 6, 7]);
-  let vb1: distributedKVStore.Entry = { key: "name_1", value: {type: distributedKVStore.ValueType.INTEGER, value: 32} }
-  let vb2: distributedKVStore.Entry = { key: "name_2", value: {type: distributedKVStore.ValueType.BYTE_ARRAY, value: arr} };
-  let vb3: distributedKVStore.Entry = { key: "name_3", value: {type: distributedKVStore.ValueType.STRING, value: "lisi"} };
-
-  v8Arr.push(vb1);
-  v8Arr.push(vb2);
-  v8Arr.push(vb3);
-  kvStore.putBatch(v8Arr).then(async () => {
+  let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
+  let bucket2: ValuesBucket = {key:"age", value: 20};
+  let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  kvStore.putBatch(people).then(() => {
     console.info(`Succeeded in putting patch`);
   }).catch((err: BusinessError) => {
-    console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to do putBatch error.code is ${err.code},message is ${err.message}`);
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`putBatch fail.code is ${error.code},message is ${error.message}`);
+  console.error(`Failed to do putBatch error.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -323,7 +315,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -392,7 +384,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -463,7 +455,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -532,7 +524,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -597,7 +589,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -671,7 +663,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 

@@ -218,6 +218,115 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
+### on('windowRectChange')<sup>14+</sup>
+
+on(type: 'windowRectChange', callback: Callback<window.RectChangeOptions>): void
+
+注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | 是 | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // 注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听
+    extensionWindow.on('windowRectChange', (data: window.RectChangeOptions) => {
+        console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+    });
+  }
+}
+```
+
+### off('windowRectChange')<sup>14+</sup>
+
+off(type: 'windowRectChange', callback?: Callback<window.RectChangeOptions>): void
+
+注销组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | 否   | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有组件（EmbeddedComponent或UIExtensionComponent）矩形变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
+
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // 注销组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听
+    extensionWindow.off('windowRectChange');
+  }
+}
+```
+
+### properties<sup>14+</sup>
+
+properties: WindowProxyProperties
+
+宿主应用窗口和组件（EmbeddedComponent或UIExtensionComponent）的信息。
+
+| 参数名     | 类型                                 | 说明                             |
+| ---------- | ------------------------------------ | -------------------------------- |
+| properties | [WindowProxyProperties](#windowproxyproperties14) | 组件（EmbeddedComponent或UIExtensionComponent）以及宿主窗口的信息。 |
+
+**示例**
+
+```ts
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // 获取组件（EmbeddedComponent或UIExtensionComponent）位置和尺寸信息
+    const rect = extensionWindow.properties.uiExtensionHostWindowProxyRect;
+    console.log(`Rect Info: ${JSON.stringify(rect)}`);
+  }
+}
+```
+
 ### createSubWindowWithOptions
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
@@ -314,6 +423,13 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 | type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 窗口规避区类型。   |
 | area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 是| 窗口内容规避区域。 |
 
+## WindowProxyProperties<sup>14+</sup>
+
+用于表示宿主应用窗口和组件（EmbeddedComponent或UIExtensionComponent）的信息。
+
+| 名称                         | 类型        | 必填      | 说明                             |
+| ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
+| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | 组件（EmbeddedComponent或UIExtensionComponent）的位置和宽高。 |
 
 ## 完整示例
 
@@ -410,6 +526,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
       this.extensionWindow?.on('windowSizeChange', (size: window.Size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
+      this.extensionWindow?.on('windowRectChange', (data: window.RectChangeOptions) => {
+          console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+      });
       this.extensionWindow?.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
@@ -417,6 +536,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
     aboutToDisappear(): void {
       this.extensionWindow?.off('windowSizeChange');
+      this.extensionWindow?.off('windowRectChange');
       this.extensionWindow?.off('avoidAreaChange');
     }
 
@@ -425,6 +545,10 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
         Text(this.message)
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
+        Button("获取组件大小").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+          let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+          console.info(`EmbeddedComponent的宽高和位置信息: ${JSON.stringify(rect)}`);
+        })
         Button("获取系统规避区信息").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
           let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
           console.info(`系统规避区: ${JSON.stringify(avoidArea)}`);

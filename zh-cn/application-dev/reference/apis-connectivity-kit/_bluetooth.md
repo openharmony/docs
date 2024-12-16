@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_bluetooth.h](oh__bluetooth_8h.md) | 定义查询蓝牙开关状态的接口。 | 
+| [oh_bluetooth.h](oh__bluetooth_8h.md) | 定义查询蓝牙开关状态的接口。<br>**引用文件：** \<ConnectivityKit\/bluetooth\/oh_bluetooth.h\> | 
 
 
 ### 类型定义

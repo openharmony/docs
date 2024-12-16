@@ -10,8 +10,7 @@ You can customize the attributes for priority-based task scheduling based on the
 
 ### QoS
 
-In OpenHarmony, the QoS feature allows critical tasks to receive necessary resources to meet performance requirements. You can prioritize tasks with different QoS levels based on their importance. The system then arranges the running time and sequence of each task based on their QoS level
-. For example, when multiple tasks need to be executed in the system, the tasks with less interaction with users, such as the background download tasks, can be executed later than the tasks perceived by users, such as animation drawing.
+In OpenHarmony, the QoS feature allows critical tasks to receive necessary resources to meet performance requirements. You can prioritize tasks with different QoS levels based on their importance. The system then arranges the running time and sequence of each task based on their QoS level. For example, when multiple tasks need to be executed in the system, the tasks with less interaction with users, such as the background download tasks, can be executed later than the tasks perceived by users, such as animation drawing.
 
 ### QoS Level
 Currently, OpenHarmony provides six QoS levels in ascending order based on the degree of system-user interaction.

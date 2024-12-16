@@ -1,6 +1,6 @@
 # Using OpenSL ES for Audio Recording (C/C++)
 
-OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cross-platform audio processing library that is free of charge. It provides high-performance and low-latency APIs for you to develop applications running on embedded mobile multimedia devices. OpenHarmony has implemented certain native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications developed by the [Khronos Group](https://www.khronos.org/). You can use these APIs through <OpenSLES.h\> and <OpenSLES_OpenHarmony.h\>.
+OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cross-platform audio processing library that is free of charge. It provides high-performance and low-latency APIs for you to develop applications running on embedded mobile multimedia devices. OpenHarmony has implemented certain native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications developed by the [Khronos Group](https://www.khronos.org/). You can use these APIs through &lt;OpenSLES.h&gt; and &lt;OpenSLES_OpenHarmony.h&gt;.
 
 ## Using OHAudio to Replace OpenSL ES
 OpenHarmony provides the OpenSL ES APIs for audio development at the native layer since SDK8. As the version evolves, these APIs fail to meet the capability expansion requirements of the audio system and therefore are no longer recommended.
@@ -21,11 +21,11 @@ The following lists the OpenSL ES APIs that have been implemented on OpenHarmony
 
 - **SLInterfaceID implemented on OpenHarmony**
 
-  | SLInterfaceID | Description |
+  | SLInterfaceID | Description|
   | -------- | -------- |
-  | SL_IID_ENGINE | Universal engine, which provides the interface for creating capturer objects. |
-  | SL_IID_RECORD | Provides the capturer status interface. |
-  | SL_IID_OH_BUFFERQUEUE | Provides the callback registration interface for audio recording stream data. |
+  | SL_IID_ENGINE | Universal engine, which provides the interface for creating capturer objects.|
+  | SL_IID_RECORD | Provides the capturer status interface.|
+  | SL_IID_OH_BUFFERQUEUE | Provides the callback registration interface for audio recording stream data.|
 
 - **Engine APIs implemented on OpenHarmony**
   - SLresult (\*CreateAudioPlayer) (SLEngineItf self, SLObjectItf \* pPlayer, SLDataSource \*pAudioSrc, SLDataSink \*pAudioSnk, SLuint32 numInterfaces, const SLInterfaceID \* pInterfaceIds, const SLboolean \* pInterfaceRequired)
@@ -44,15 +44,15 @@ The following lists the OpenSL ES APIs that have been implemented on OpenHarmony
 
 - **BufferQueue APIs implemented on OpenHarmony**
   
-  The APIs listed below can be used only after <OpenSLES_OpenHarmony.h\> is introduced.
+  The APIs listed below can be used only after &lt;OpenSLES_OpenHarmony.h&gt; is introduced.
 
-  | API | Description | 
+  | API| Description|
   | -------- | -------- |
-  | SLresult (\*Enqueue) (SLOHBufferQueueItf self, const void \*buffer, SLuint32 size) | Adds a buffer to the corresponding queue.<br>For an audio playback operation, this API adds the buffer with audio data to the **filledBufferQ_** queue. For an audio recording operation, this API adds the idle buffer after recording data storage to the **freeBufferQ_** queue.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **buffer** parameter indicates the pointer to the buffer with audio data or the pointer to the idle buffer after the recording data is stored.<br>The **size** parameter indicates the size of the buffer. | 
-  | SLresult (\*Clear) (SLOHBufferQueueItf self) | Releases a **BufferQueue** object.<br>The **self** parameter indicates the **BufferQueue** object that calls this API. | 
-  | SLresult (\*GetState) (SLOHBufferQueueItf self, SLOHBufferQueueState \*state) | Obtains the state of a **BufferQueue** object.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **state** parameter indicates the pointer to the state of the **BufferQueue** object. | 
-  | SLresult (\*RegisterCallback) (SLOHBufferQueueItf self, SlOHBufferQueueCallback callback, void\* pContext) | Registers a callback.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **callback** parameter indicates the callback to be registered for the audio playback or recording operation.<br>The **pContext** parameter indicates the pointer to the audio file to be played for an audio playback operation or the pointer to the audio file to be recorded for an audio recording operation. | 
-  | SLresult (\*GetBuffer) (SLOHBufferQueueItf self, SLuint8\*\* buffer, SLuint32\* size) | Obtains a buffer.<br>For an audio playback operation, this API obtains an idle buffer from the **freeBufferQ_** queue. For an audio recording operation, this API obtains the buffer that carries recording data from the **filledBufferQ_** queue.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **buffer** parameter indicates the double pointer to the idle buffer or the buffer carrying recording data.<br>The **size** parameter indicates the size of the buffer. | 
+  | SLresult (\*Enqueue) (SLOHBufferQueueItf self, const void \*buffer, SLuint32 size) | Adds a buffer to the corresponding queue.<br>For an audio playback operation, this API adds the buffer with audio data to the **filledBufferQ_** queue. For an audio recording operation, this API adds the idle buffer after recording data storage to the **freeBufferQ_** queue.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **buffer** parameter indicates the pointer to the buffer with audio data or the pointer to the idle buffer after the recording data is stored.<br>The **size** parameter indicates the size of the buffer.|
+  | SLresult (\*Clear) (SLOHBufferQueueItf self) | Releases a **BufferQueue** object.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.|
+  | SLresult (\*GetState) (SLOHBufferQueueItf self, SLOHBufferQueueState \*state) | Obtains the state of a **BufferQueue** object.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **state** parameter indicates the pointer to the state of the **BufferQueue** object.|
+  | SLresult (\*RegisterCallback) (SLOHBufferQueueItf self, SlOHBufferQueueCallback callback, void\* pContext) | Registers a callback.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **callback** parameter indicates the callback to be registered for the audio playback or recording operation.<br>The **pContext** parameter indicates the pointer to the audio file to be played for an audio playback operation or the pointer to the audio file to be recorded for an audio recording operation.|
+  | SLresult (\*GetBuffer) (SLOHBufferQueueItf self, SLuint8\*\* buffer, SLuint32\* size) | Obtains a buffer.<br>For an audio playback operation, this API obtains an idle buffer from the **freeBufferQ_** queue. For an audio recording operation, this API obtains the buffer that carries recording data from the **filledBufferQ_** queue.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **buffer** parameter indicates the double pointer to the idle buffer or the buffer carrying recording data.<br>The **size** parameter indicates the size of the buffer.|
 
 ## Sample Code
 
@@ -73,7 +73,7 @@ Refer to the sample code below to record an audio file.
    ```
 
 2. Use the **slCreateEngine** API to create and instantiate an **engine** object.
-     
+   
    ```c++
    SLObjectItf engineObject = nullptr;
    slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
@@ -81,14 +81,14 @@ Refer to the sample code below to record an audio file.
    ```
 
 3. Obtain the **engineEngine** instance of the **SL_IID_ENGINE** API.
-     
+   
    ```c++
    SLEngineItf engineItf = nullptr;
    (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineItf);
    ```
 
 4. Configure the recorder information (including the input source **audiosource** and output source **audiosink**), and create a **pcmCapturerObject** instance.
-     
+   
    ```c++
    SLDataLocator_IODevice io_device = {
        SL_DATALOCATOR_IODEVICE,
@@ -127,21 +127,21 @@ Refer to the sample code below to record an audio file.
    ```
 
 5. Obtain the **recordItf** instance of the **SL_IID_RECORD** API.
-     
+   
    ```c++
    SLRecordItf  recordItf;
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
    ```
 
 6. Obtain the **bufferQueueItf** instance of the **SL_IID_OH_BUFFERQUEUE** API.
-     
+   
    ```c++
    SLOHBufferQueueItf bufferQueueItf;
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
    ```
 
 7. Register the **BufferQueueCallback** function.
-     
+   
    ```c++
    static void BufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
    {
@@ -150,7 +150,7 @@ Refer to the sample code below to record an audio file.
        SLuint32 pSize = 0;
        (*bufferQueueItf)->GetBuffer(bufferQueueItf, &buffer, &pSize);
        if (buffer != nullptr) {
-           // The recording data can be read from the buffer for subsequent processing. 
+           // The recording data can be read from the buffer for subsequent processing.
            (*bufferQueueItf)->Enqueue(bufferQueueItf, buffer, size);
        }
    }
@@ -159,15 +159,17 @@ Refer to the sample code below to record an audio file.
    ```
 
 8. Start audio recording.
-     
+   
    ```c++
    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_RECORDING);
    ```
 
 9. Stop audio recording.
-     
+   
    ```c++
    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_STOPPED);
    (*pcmCapturerObject)->Destroy(pcmCapturerObject);
    (*engineObject)->Destroy(engineObject);
    ```
+
+ <!--no_check--> 

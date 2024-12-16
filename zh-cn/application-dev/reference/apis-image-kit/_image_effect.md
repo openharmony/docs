@@ -5,6 +5,8 @@
 
 提供图片编辑能力。
 
+对应的开发指南及样例可参考[使用ImageEffect编辑图片](../../media/image/image-effect-guidelines.md)。
+
 **起始版本：** 12
 
 
@@ -1921,14 +1923,18 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer (OH_ImageEffect * ima
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| nativeBuffer | 指向OH_NativeBuffer实例的指针。 | 
+| imageEffect | 效果器指针。 |
+| nativeBuffer | 指向OH_NativeBuffer实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_NativeBuffer对象上。 |
 
 **返回：**
 
-EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+EFFECT_SUCCESS，如果方法调用成功。
+
+EFFECT_ERROR_PARAM_INVALID，如果效果器入参为空指针。
+
+EFFECT_PARAM_ERROR，如果参数异常导致方法调用失败。
 
 
 ### OH_ImageEffect_SetOutputPicture()
@@ -1945,14 +1951,18 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffec
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。  | 
-| picture | 指向OH_PictureNative实例的指针。  | 
+| imageEffect | 效果器指针。  |
+| picture | 指向OH_PictureNative实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_PictureNative对象上。 |
 
 **返回：**
 
-EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+EFFECT_SUCCESS，如果方法调用成功。
+
+EFFECT_ERROR_PARAM_INVALID，如果效果器入参为空指针。
+
+EFFECT_PARAM_ERROR，如果参数异常导致方法调用失败。
 
 
 ### OH_ImageEffect_SetOutputPixelmap()
@@ -1971,14 +1981,18 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap (OH_ImageEffect * imageEf
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| imageEffect | 效果器指针。 | 
-| pixelmap | 指向OH_PixelmapNative实例的指针。 | 
+| imageEffect | 效果器指针。 |
+| pixelmap | 指向OH_PixelmapNative实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_PixelmapNative对象上。 |
 
 **返回：**
 
-EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
+EFFECT_SUCCESS，如果方法调用成功。
+
+EFFECT_ERROR_PARAM_INVALID，如果效果器入参为空指针。
+
+EFFECT_PARAM_ERROR，如果参数异常导致方法调用失败。
 
 
 ### OH_ImageEffect_SetOutputSurface()

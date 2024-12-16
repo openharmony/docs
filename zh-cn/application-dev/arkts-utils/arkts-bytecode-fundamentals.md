@@ -189,7 +189,7 @@ function foo(): void {
 指令*ldlexvar 0x0, 0x0*：将0个层次外的词法环境的0号槽位上的值存放到acc中。
 
 #### 共享词法环境
-共享词法环境是一类特殊的词法环境。与一般词法环境的区别在于，共享词法环境中的每个词法变量都是[sendable对象](sendable-overview.md)。方舟编译器通过共享词法环境实现词法变量在多线程的共享。
+共享词法环境是一类特殊的词法环境。与一般词法环境的区别在于，共享词法环境中的每个词法变量都是[sendable对象](arkts-sendable.md)。方舟编译器通过共享词法环境实现词法变量在多线程的共享。
 
 示例代码：
 ```ets
@@ -390,7 +390,7 @@ function foo(a: number, b: number): void {}
 |  0x31	|  IMM8_IMM8_V8	|  callthisrange RR, +AA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：参数数量<br>B：对象<br>B + 1, ..., B + A：参数	|  将`this`的值设置为B，以B + 1，...，B + A作为参数，调用acc中存放的函数对象，并将计算结果存放到acc中。   |
 |  0x32	|  IMM8_IMM8_V8	|  supercallthisrange RR, +AA, vBB	|  R：方舟运行时内部使用的8位保留数字<br>A：参数数量<br>B, ..., B + A - 1：参数	|  以B, ..., B + A - 1作为参数, 调用`super`函数，并将结果存放到acc中。<br>当A的值是0时，B是**undefined**。<br>此指令仅出现在非箭头函数中。   |
 |  0x33	|  IMM8_ID16_IMM8	|  definefunc RR, @AAAA, +BB	|  R：方舟运行时内部使用的8位保留数字<br>A：method id<br>B：方法A的形参数量 | 创建方法A的函数对象，并将其存放到acc中。   |
-|  0x34	|  IMM8_ID16_IMM8	|  definemethod RR, @AAAA, +BB	|  默认入参：acc：类对象或类对象的对象原型，方法为静态方法时，acc中是类对象<br>R：方舟运行时内部使用的8位保留数字<br>A：method id<br>B：方法A的形参数量 	|  创建方法A的函数对象，将acc中的对象设置为该函数对象的[[[HomeObject]]](https://262.ecma-international.org/12.0/#sec-ecmascript-function-objects)属性，并将该函数对象存放到acc中。   |
+|  0x34	|  IMM8_ID16_IMM8	|  definemethod RR, @AAAA, +BB	|  默认入参：acc：类对象或类对象的对象原型，方法为静态方法时，acc中是类对象<br>R：方舟运行时内部使用的8位保留数字<br>A：method id<br>B：方法A的形参数量 	|  创建方法A的函数对象，将acc中的对象设置为该函数对象的[HomeObject](https://262.ecma-international.org/12.0/#sec-ecmascript-function-objects)属性，并将该函数对象存放到acc中。   |
 |  0x35	|  IMM8_ID16_ID16_IMM16_V8	|  defineclasswithbuffer RR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的8位保留数字<br>A：类的构造函数的method id<br>B：literal id<br>C：方法A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建A的类对象，并将其存放到acc中。   |
 |  0x36	|  V8	|  getnextpropname vAA	| A：迭代器	|  执行[for-in迭代器](https://262.ecma-international.org/12.0/#sec-createiterresultobject)A的[next](https://262.ecma-international.org/12.0/#sec-%25foriniteratorprototype%25.next)方法，并将结果存放到acc中。   |
 |  0x37	|  IMM8_V8	|  ldobjbyvalue RR, vAA	|  默认入参：acc：属性键值<br>R：方舟运行时内部使用的8位保留数字<br>A：对象	|  加载A对象的键值为acc的属性，并将结果存放到acc中。
@@ -587,15 +587,15 @@ function foo(a: number, b: number): void {}
 |  0x06fc	|  (deprecated)	 |  |  | （弃用的操作码） |  	 
 |  0x06fd	|  PREF_IMM16_V8	|  wide.supercallthisrange +AAAA, vBB	|  A：参数数量<br>B, ..., B + A - 1：参数	|  以B, ..., B + A - 1作为参数, 调用`super`函数，并将结果存放到acc中。<br>当A的值是0时，B是**undefined**。<br>此指令仅出现在非箭头函数中。   |
 |  0x06fe	|  PREF_V8_V8	|  throw.undefinedifhole vAA, vBB	|  A：对象<br>B：对象名称	|  如果A的值是**hole**，则抛出异常：B的值是**undefined**。   |
-|  0x07fb	|  PREF_IMM16_ID16_ID16_IMM16_V8	|  callruntime.definesendableclass RRRR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的16位保留数字<br>A：[sendable class](sendable-overview.md#sendable-class)的构造函数的method id<br>B：literal id<br>C：方法A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建一个A类的对象，并将其存放到acc中。   |
+|  0x07fb	|  PREF_IMM16_ID16_ID16_IMM16_V8	|  callruntime.definesendableclass RRRR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的16位保留数字<br>A：[sendable class](arkts-sendable.md#sendable-class)的构造函数的method id<br>B：literal id<br>C：方法A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建一个A类的对象，并将其存放到acc中。   |
 |  0x07fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x07fd	|  PREF_IMM16_V8	|  wide.supercallarrowrange +AAAA, vBB	|  默认入参：acc：类对象<br>A：参数数量<br>B, ..., B + A - 1:参数	|  以B, ..., B + A - 1作为参数，调用acc中所存类的父类的构造函数，并将结果存放到acc中。<br>如果A的值为0，则B为**undefined**。<br>此指令仅出现在箭头函数中。   |
 |  0x07fe	|  PREF_IMM8	|  throw.ifsupernotcorrectcall +AA	|  默认入参：acc：对象<br>A：错误种类	|  如果`super`没有被正确调用，抛出错误。   |
-|  0x08fb	|  PREF_IMM16	|  callruntime.ldsendableclass +AAAA	|  A：词法环境层级	|  将A个层次外的词法环境的[sendable class](sendable-overview.md#sendable-class)存放到acc中。   |
+|  0x08fb	|  PREF_IMM16	|  callruntime.ldsendableclass +AAAA	|  A：词法环境层级	|  将A个层次外的词法环境的[sendable class](arkts-sendable.md#sendable-class)存放到acc中。   |
 |  0x08fc	|  (deprecated)	 |  |  | （弃用的操作码） | 
 |  0x08fd	|  PREF_IMM32	|  wide.ldobjbyindex +AAAAAAAA	|  默认入参：acc：对象<br>A：属性键值	|  加载acc中所存对象的键值为A的属性，并将其存放到acc中。   |
 |  0x08fe	|  PREF_IMM16	|  throw.ifsupernotcorrectcall +AAAA	|  默认入参：acc：对象<br>A：错误种类	|  如果`super`没有被正确调用，抛出错误。   |
-|  0x09fb	|  PREF_IMM8	|  callruntime.ldsendableexternalmodulevar +AA	|  A：槽位号	|  将槽位号为A的外部模块变量存放到acc中。此指令仅出现在sendable class和[sendable function](sendable-overview.md#sendable-function)中。   |
+|  0x09fb	|  PREF_IMM8	|  callruntime.ldsendableexternalmodulevar +AA	|  A：槽位号	|  将槽位号为A的外部模块变量存放到acc中。此指令仅出现在sendable class和[sendable function](arkts-sendable.md#sendable-function)中。   |
 |  0x09fc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0x09fd	|  PREF_V8_IMM32	|  wide.stobjbyindex vAA, +BBBBBBBB	|  默认入参：acc：值<br>A：对象<br>B：属性键值	|  将acc中的值存放到对象A的键值为B的属性上。   |
 |  0x09fe	|  PREF_ID16	|  throw.undefinedifholewithname @AAAA	|  默认入参：acc：对象<br>A：string id	|  如果acc中的值是**hole**，则抛出异常：A的值是**undefined**。   |

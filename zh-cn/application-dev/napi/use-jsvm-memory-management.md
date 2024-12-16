@@ -30,15 +30,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// AdjustExternalMemory注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = AdjustExternalMemory},
-};
-static JSVM_CallbackStruct *method = param;
-// AdjustExternalMemory方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"adjustExternalMemory", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_AdjustExternalMemory的样例方法
 static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -56,24 +47,26 @@ static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, true, &checked);
     return checked;
 }
+// AdjustExternalMemory注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = AdjustExternalMemory},
+};
+static JSVM_CallbackStruct *method = param;
+// AdjustExternalMemory方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"adjustExternalMemory", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS侧示例代码
+// 样例测试JS
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   adjustExternalMemory()
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'adjustExternalMemory:%{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'adjustExternalMemory: %{public}s', error.message);
-}
+```c++
+const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 ```
+输出结果
+在LOG中输出下面的信息：
+JSVM OH_JSVM_AdjustExternalMemory: success
+JSVM Allocate memory size: 1048576
 
 ### OH_JSVM_MemoryPressureNotification
 
@@ -86,15 +79,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// MemoryPressureNotification注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = MemoryPressureNotification},
-};
-static JSVM_CallbackStruct *method = param;
-// MemoryPressureNotification方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"memoryPressureNotification", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_MemoryPressureNotification的样例方法
 static JSVM_Value MemoryPressureNotification(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -108,21 +92,23 @@ static JSVM_Value MemoryPressureNotification(JSVM_Env env, JSVM_CallbackInfo inf
     }
     return nullptr;
 }
+// MemoryPressureNotification注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = MemoryPressureNotification},
+};
+static JSVM_CallbackStruct *method = param;
+// MemoryPressureNotification方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"memoryPressureNotification", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
 ```
 
-ArkTS侧示例代码
+// 样例测试JS
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   memoryPressureNotification();
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'memoryPressureNotification:%{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'memoryPressureNotification:%{public}s', error.message);
-}
+```c++
+const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
+输出结果
+在LOG中输出下面的信息：
+JSVM OH_JSVM_MemoryPressureNotification: success
+JSVM Current JSVM memory pressure level: 2

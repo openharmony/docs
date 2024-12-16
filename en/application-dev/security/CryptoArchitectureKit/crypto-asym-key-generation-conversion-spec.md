@@ -20,6 +20,7 @@ Rivest-Shamir-Adleman (RSA) is an asymmetric encryption algorithm widely used fo
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the RSA key type and prime count with a vertical bar (|) in between.
 
 > **NOTE**
+>
 > When an RSA asymmetric key is generated, the default number of primes is 2 and the **PRIMES_2** parameter can be omitted.
 
 | RSA Key Type| Prime Count| String Parameter| API Version|
@@ -111,6 +112,7 @@ When creating an asymmetric key generator instance, you need to specify the key 
 | ECC | 384 | NID_brainpoolP384t1 | ECC_BrainPoolP384t1 | 11+ |
 | ECC | 512 | NID_brainpoolP512r1 | ECC_BrainPoolP512r1 | 11+ |
 | ECC | 512 | NID_brainpoolP512t1 | ECC_BrainPoolP512t1 | 11+ |
+| ECC | 256 | NID_secp256k1 | ECC_Secp256k1 | 14+ |
 
 > **NOTE**
 >
@@ -153,7 +155,7 @@ The following table illustrates the composition of the ECC key parameters.
 | sk | - | - | √ | √ |
 
 > **NOTE**
-> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute the property **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
+> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
 > 
 > - **g** and **pk** are points of the [Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10) type on the ECC curve. You need to specify their X and Y coordinates.
 
@@ -336,6 +338,7 @@ The following table illustrates the composition of the Ed25519 key parameters.
 | sk | - | √ | √ |
 
 > **NOTE**
+>
 > Ed25519 does not have the common parameter.
 
 
@@ -375,6 +378,7 @@ The following table illustrates the composition of the X25519 key parameters.
 | sk | - | √ | √ |
 
 > **NOTE**
+>
 > X25519 does not have the common parameter.
 
 

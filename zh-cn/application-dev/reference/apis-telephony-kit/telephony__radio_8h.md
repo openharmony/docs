@@ -5,7 +5,7 @@
 
 为网络搜索模块定义C接口。
 
-**库：** libtelephony_data.so
+**库：** libtelephony_radio.so
 
 **系统能力：** SystemCapability.Telephony.CoreService
 

@@ -1,11 +1,8 @@
 # Converting a Compressed or Uncompressed ECC Public Key (C/C++)
 
-You can generate a public key object [PubKey](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey)) from ECC public key data or obtain the ECC public key data from a public key (**PubKey**) object.
-
+You can generate a public key object [PubKey](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey)) from ECC public key data or obtain the ECC public key data from a public key (**PubKey**) object. 
 Currently, only the compressed/uncompressed public key data that complies with the ECC X.509 standard is supported. The public key data mentioned in this topic is a complete X509 public key. For details about the operations on point data, see [Converting Compressed or Uncompressed ECC Point Data](crypto-convert-compressed-or-uncompressed-ECC-point.md). 
-
 For details about the ECC algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc). 
-
 You can pass in the string parameter to set the format of the ECC public key to obtain. To obtain a compressed public key that complies with the X.509 standard, pass in **X509|COMPRESSED**. To obtain an uncompressed public key, pass in **X509|UNCOMPRESSED**.
 
 
@@ -16,7 +13,6 @@ Either the public key or private key can be passed in. In this example, an uncom
 2. Use [OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_generate) with the string parameter **'ECC_BrainPoolP256r1'** to create an asymmetric key generator (**OH_CryptoAsymKeyGenerator**) object for a 256-bit ECC key pair.
 3. Use [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob) object into an asymmetric key object (**OH_CryptoKeyPair**).
 4. Use [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) with the parameter set to **'X509|COMPRESSED'** to obtain the byte stream of the compressed public key data.
-
 **Example**
 
 ```c++
@@ -30,7 +26,7 @@ static OH_Crypto_ErrCode doTestEccDataCovert()
     Crypto_DataBlob returnBlob = { .data = nullptr, .len = 0 };
     OH_Crypto_ErrCode ret = CRYPTO_INVALID_PARAMS;
 
-    ret = HcfAsyKeyGeneratorCreate("ECC_BrainPoolP256r1", &generator);
+    ret = OH_CryptoAsymKeyGenerator_Create("ECC_BrainPoolP256r1", &generator);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
@@ -53,7 +49,7 @@ static OH_Crypto_ErrCode doTestEccDataCovert()
     }
 
     OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
-    ret = OH_CryptoPubKey_Encode(pubKey, CRYPTO_DER, "X509|UNCOMPRESSED", &returnBlob);
+    ret = OH_CryptoPubKey_Encode(pubKey, CRYPTO_DER, "X509|COMPRESSED", &returnBlob);
     if (ret != CRYPTO_SUCCESS) {
         OH_CryptoAsymKeyGenerator_Destroy(generator);
         OH_CryptoKeyPair_Destroy(keyPair);

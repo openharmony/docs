@@ -46,6 +46,14 @@ enableNestedScroll(value: boolean)
 | ------ | ------- | ---- | ------------------------------------- |
 | value  | boolean | 是   | 是否执行嵌套滚动。设置为true执行嵌套滚动，设置为false不嵌套滚动。 <br/>默认值：false |
 
+>  **说明：**
+>
+> 滚动条使能嵌套滚动时，滚动条的滚动偏移量会先发给绑定的内层滚动组件，内层滚动组件再根据设置的嵌套滚动优先级依次传递给外层父滚动组件。
+>
+> WaterFlow组件的布局模式为移动窗口式（SLIDING_WINDOW）时，不支持嵌套滚动。
+>
+> 设置嵌套滚动模式为PARALLEL时，父子组件同时滚动，需要开发者在onScrollFrameBegin中按照所需逻辑，自行设置父子组件滚动顺序。
+
 ## ScrollBarOptions对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -78,7 +86,7 @@ enableNestedScroll(value: boolean)
 | Horizontal | 横向滚动条。 |
 
 
-## 示例1
+## 示例1（设置子节点）
 
 该示例为ScrollBar组件有子节点时的滚动条样式。
 
@@ -128,7 +136,7 @@ struct ScrollBarExample {
 
 ![zh-cn_image_0000001232775585](figures/zh-cn_image_0000001232775585.gif)
 
-## 示例2
+## 示例2（不设置子节点）
 
 该示例为ScrollBar组件没有子节点时的滚动条样式。
 
@@ -171,9 +179,9 @@ struct ScrollBarExample {
 
 ![zh-cn_image_scrollbar](figures/zh-cn_image_scrollbar.gif)
 
-## 示例3
+## 示例3（支持嵌套滚动）
 
-该示例为ScrollBar组件支持嵌套滚动的样式。
+该示例通过enableNestedScroll属性使ScrollBar组件支持嵌套滚动。
 ```ts
 @Entry
 @Component

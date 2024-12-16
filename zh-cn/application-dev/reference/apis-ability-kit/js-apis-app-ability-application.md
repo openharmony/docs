@@ -76,6 +76,9 @@ export default class EntryAbility extends UIAbility {
 getApplicationContext(): ApplicationContext
 
 获取应用程序上下文。
+> **说明：**
+>
+>通过该接口取得的ApplicationContext，只支持获取对应的[应用信息](js-apis-bundleManager-applicationInfo.md)和全部的[沙箱路径](js-apis-inner-application-context.md#属性)。
 
 **元服务API：** 从API version 14开始，该接口支持在元服务中使用。
 

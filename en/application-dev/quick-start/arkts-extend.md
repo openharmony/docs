@@ -23,11 +23,6 @@ Apart from [\@Styles](arkts-style.md) used to reuse styles, ArkUI also provides 
 
 ### Rules of Use
 
-- Unlike \@Styles, \@Extend can be defined only globally, that is, outside a component declaration.
-
-> **NOTE**
-> This decorator can be used only in the current file and cannot be exported.
-
 - Unlike \@Styles, \@Extend can encapsulate private attributes, private events, and custom global methods of specified components.
 
   ```ts
@@ -115,6 +110,58 @@ Apart from [\@Styles](arkts-style.md) used to reuse styles, ArkUI also provides 
     }
   }
   ```
+
+
+## Constraints
+
+- Unlike \@Styles, \@Extend can be defined only globally, that is, outside a component declaration.
+
+> **NOTE**
+>
+> This decorator can be used only in the current file and cannot be exported.
+>
+> To the export the decorator, you are advised to use [AttributeModifier](../ui/arkts-user-defined-extension-attributeModifier.md).
+
+[Negative Example]
+
+```ts
+@Entry
+@Component
+struct FancyUse {
+  // Incorrect format. @Extend can be defined only globally, but not inside a component.
+  @Extend(Text) function fancy (fontSize: number) {
+    .fontSize(fontSize)
+  }
+
+  build() {
+    Row({ space: 10 }) {
+      Text('Fancy')
+        .fancy(16)
+    }
+  }
+}
+```
+
+[Positive Example]
+
+```ts
+// Correct format.
+@Extend(Text) function fancy (fontSize: number) {
+  .fontSize(fontSize)
+}
+
+@Entry
+@Component
+struct FancyUse {
+
+  build() {
+    Row({ space: 10 }) {
+      Text('Fancy')
+        .fancy(16)
+    }
+  }
+}
+```
 
 
 ## Use Scenarios

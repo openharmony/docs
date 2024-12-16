@@ -31,11 +31,12 @@ import { StartOptions } from '@kit.AbilityKit';
 | startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#startupvisibility12) | 是 | 否 | Ability启动后的可见性。<br>**约束：**<br>1.仅在平板类设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.processMode和startupVisibility必须同时设置。 |
 | startWindowIcon<sup>14+</sup> | [image.PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 是 |  在应用内启动UIAbility时，启动页所显示的图标。如果未配置该字段，则默认采用module.json5文件中startWindowIcon字段的配置。<br>**约束：**<br>1.仅在平板与2in1设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.图片数据大小限制为600M。|
 | startWindowBackgroundColor<sup>14+</sup> | string | 否 | 是 |  在应用内启动UIAbility时，启动页所显示的背景颜色。如果未配置该字段，则默认采用module.json5文件中startWindowBackground字段的配置。<br>**约束：**<br>1.仅在平板与2in1设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。 |
+| supportWindowModes<sup>14+</sup> | Array\<[bundleManager.SupportWindowMode](./js-apis-bundleManager.md#supportwindowmode)> | 否 | 是 |  在应用内启动UIAbility时，指定窗口是否显示最大化/窗口化/分屏按键。如果未配置该字段，则默认采用module.json5文件中supportWindowMode字段的配置。<br>**约束：**<br>仅在平板与2in1设备上生效。|
  
 **示例：**
 
   ```ts
-  import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+  import { UIAbility, Want, StartOptions, bundleManager } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { image } from '@kit.ImageKit';
 
@@ -59,7 +60,12 @@ import { StartOptions } from '@kit.AbilityKit';
         let options: StartOptions = {
           displayId: 0,
           startWindowIcon: imagePixelMap,
-          startWindowBackgroundColor: '#00000000'
+          startWindowBackgroundColor: '#00000000',
+          supportWindowModes: [
+            bundleManager.SupportWindowMode.FULL_SCREEN,
+            bundleManager.SupportWindowMode.SPLIT,
+            bundleManager.SupportWindowMode.FLOATING
+          ]
         };
 
         try {

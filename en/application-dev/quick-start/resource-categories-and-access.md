@@ -1,10 +1,11 @@
 # Resource Categories and Access
 
-During application development, you may need to use different resources, such as colors, fonts, spacing, and images, based on the device or configuration. Depending on the resource type, you can achieve this using the following methods:
+During application development, you may need to use different resources, such as colors, fonts, spacing, and icons, based on the device or configuration. Depending on the resource type, you can achieve this using the following methods:
 
-- Application resources: Configure device- or configuration-specific resources in the resource files.
+- Application resources: configure device- or configuration-specific resources in the resource files.
 
-- System resources: Use the preset resource definitions<!--Del--> (that is, [layered parameters](../../design/ux-design/design-resources.md), with which each resource ID is assigned different values under different configurations, including device types and color modes)<!--DelEnd-->.
+- System resources: Obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md); obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/).
+
 
 ## Resource Categories
 
@@ -53,11 +54,11 @@ resources
 #### base Directory
 
 The **base** directory is provided by default. Under this directory, the **element** subdirectory stores basic elements such as strings, colors, and boolean values, and the **media** and **profile** subdirectories store resource files such as media, animations, and layouts.<br>
-Resource files in the subdirectories are compiled into binary files, and each resource file is assigned an ID. Resource files in the subdirectories are referenced based on the resource type and resource name.
+Resource files in the directories are compiled into binary files, and each resource file is assigned an ID. Access resource files in the directories based on the resource type and resource name.
 
 #### Qualifiers Directory
 
-**en_US** and **zh_CN** are two default qualifiers directories. You need to create other qualifiers directories on your own. Under this directory, the subdirectories store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts.<br>Resource files in the subdirectories are compiled into binary files, and each resource file is assigned an ID. Resource files in the subdirectories are referenced based on the resource type and resource name.
+**en_US** and **zh_CN** are two default qualifiers directories. You need to create other qualifiers directories on your own. Under this directory, the **element**, **media**, and **profile** subdirectories store basic elements such as strings, colors, and Boolean values, as well as resource files such as media, animations, and layouts.<br>Resource files in the directories are compiled into binary files, and each resource file is assigned an ID. Access resource files in the directories based on the resource type and resource name.
 
 **Naming Conventions for Qualifiers Directories**
 
@@ -78,13 +79,13 @@ Table 2 Requirements for qualifier values
 | Text         | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters. For example, **Hans** indicates simplified Chinese, and **Hant** indicates traditional Chinese.<br>For details about the value range, see [ISO 15924](https://www.iso.org/standard/81905.html) (codes for the representation of names of scripts).|
 | Country/Region      | Indicates the country or region where the user is located. The value consists of two or three uppercase letters or three digits. For example, **CN** indicates China, and **GB** indicates the United Kingdom.<br>For details about the value range, see [ISO 3166-1](https://www.iso.org/iso-3166-country-codes.html) (codes for the representation of names of countries and their subdivisions).|
 | Screen orientation        | Indicates the screen orientation of the device. The value can be:<br>- **vertical**: portrait orientation<br>- **horizontal**: landscape orientation|
-| Device type       | <!--RP1-->Indicates the device type. The value can be:<br>- **car**: head unit<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable<!--RP1End--> |
+| Device type       | <!--RP1-->Indicates the device type. The value can be:<br>- **car**: a telematics device<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable<!--RP1End--> |
 | Color mode       | Indicates the color mode of the device. The value can be:<br>- **dark**: dark mode<br>- **light**: light mode|
-| Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: screen density with small-scale dots per inch (SDPI). This value is applicable for devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale screen density (Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch), applicable to DPI whose value is (120, &nbsp;160] device.<br>- **ldpi**: screen density with large-scale dots per inch (LDPI). This value is applicable for devices with a DPI range of (160, 240].<br>- **xldpi**: screen density with extra-large-scale dots per inch (XLDPI). This value is applicable for devices with a DPI range of (240, 320].<br>- **xxldpi**: screen density with extra-extra-large-scale dots per inch (XXLDPI). This value is applicable for devices with a DPI range of (320, 480].<br>- **xxxldpi**: screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). This value is applicable for devices with a DPI range of (480, 640].|
+| Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: small-scale DPI. This value is applicable to devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale DPI. This value is applicable to devices with a DPI range of (120, 160].<br>- **ldpi**: large-scale DPI. This value is applicable to devices with a DPI range of (160, 240].<br>- **xldpi**: extra-large-scale DPI. This value is applicable to devices with a DPI range of (240, 320].<br>- **xxldpi**: extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (320, 480].<br>- **xxxldpi**: extra-extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (480, 640].|
 
 #### rawfile Directory
 
-You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. The subdirectories are referenced based on the specified file path and file name.
+You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. Access the directories based on the specified file path and file name.
 
 #### resfile Directory
 
@@ -219,7 +220,7 @@ In **File name**, enter the name of the resource file to create. In **Resource t
 
 ### Creating a Resource Directory
 
-Right-click the **resources** directory and choose **New** > **Resource Directory** to create a directory only. By default, the **base** directory is created. You can create qualifiers directories as required, by specifying the qualifier and resource group type.
+Right-click the **resources** directory and choose **New** > **Resource Directory** to create a directory only. By default, the **base** directory is created. You can create qualifiers directories as required, by specifying the qualifier and resource group type, including element, media, and profile.
 
   ![create-resource-file-2](figures/create-resource-file-2.png)
 
@@ -246,7 +247,7 @@ If the **attr** attribute is not configured, a string is translated by default.
 
 | Name       | Type                   |  Description  |
 | --------- | ----------------------- |  ---- |
-| translatable |  boolean |  Whether the string needs to be translated.<br>  **true**: The string needs to be translated.<br> **false**: The string does not need to be translated.|
+| translatable |  boolean | Whether the string needs to be translated.<br> **true**: The string needs to be translated.<br> **false**: The string does not need to be translated. |
 | priority    | string   |  Translation status of the string.<br>**code**: untranslated<br>**translate**: translated but not verified<br>**LT**: translated and verified<br>**customer**: custom  |
 
 ### Constraints
@@ -288,7 +289,7 @@ This example sets the **attr** attribute for strings.
 
 ### HAP Resources
 
- - Use **$r** or **$rawfile** to reference resources.<br>To reference resources of the color, float, string, plural, media, or profile type, use the "$r('app.type.name')" format, where **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type or resource save path, and **name** indicates the name you assign to the resource.<br>To reference strings with multiple placeholders in the **string.json** file, use the "$r('app.string.label','aaa','bbb',444)" format.<br>To reference resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
+ - Access resources through **$r()** or **$rawfile()**.<br>To access resources of the color, float, string, plural, media, or profile type, use the "$r('app.type.name')" format, where **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type or resource save path, and **name** indicates the name you assign to the resource.<br>To access strings with multiple placeholders in the **string.json** file, use the "$r('app.string.label','aaa','bbb',444)" format.<br>To access resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
    > **NOTE**
    >
@@ -297,7 +298,8 @@ This example sets the **attr** attribute for strings.
   As described in [Resource Group Directories](#resource-group-directories), you can reference .json resource files, including **color.json**, **string.json**, and** plural.json**.<br>The usage is as follows:
 
   ```ts
-    Text('Hello')
+    // Access through $r('app.type.name').
+    Text($r('app.string.string_hello'))
     .fontColor($r('app.color.ohos_id_color_emphasize'))
     .fontSize($r('app.float.ohos_id_text_size_headline1'))
     .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
@@ -314,6 +316,9 @@ This example sets the **attr** attribute for strings.
     })
     .height(200)
     .width(300)
+
+    //Access placeholders through $r('app.string.label','aaa','bbb',444).
+    Text($r('app.string.message_notification','LiHua',2))
   ```
 
 - Obtain a **ResourceManager** object through the application context, and then call [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to access different resources.<br>For example, call **getContext().resourceManager.getStringByNameSync('test')** to obtain string resources; call **getContext().resourceManager.getRawFd('rawfilepath')** to obtain the descriptor of the HAP where a raw file is located, and then use the descriptor ({fd, offset, length}) to access the raw file.
@@ -323,16 +328,19 @@ This example sets the **attr** attribute for strings.
 <!--Del-->
 #### Cross-Bundle Access (for System Applications Only)
 
-- Call **createModuleContext(bundleName, moduleName)** to obtain the context of the target HAP/HSP module in another application. Obtain a **ResourceManager** object through the context, and then call [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to access different resources.<br>Example: **getContext().createModuleContext(bundleName, moduleName).resourceManager.getStringByNameSync('test')**.
+- Create the context of the HAP/HSP file through [createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12). After obtaining the **resourceManager** object, call [resource management](../reference/apis-localization-kit/js-apis-resource-manager.md) APIs to access different resources.
 <!--DelEnd-->
 
 #### Inter-Bundle, Cross-Module Access
 
-- Call **createModuleContext(moduleName)** to obtain the context of the target HAP/HSP module in the same application. Obtain a **ResourceManager** object through the context, and then call resource management APIs to access different resources.<br>Example: **getContext().createModuleContext(moduleName).resourceManager.getStringByNameSync('test')**.
+- Create the context of different modules in an application through [createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12). After obtaining the **resourceManager** object, call [resource management](../reference/apis-localization-kit/js-apis-resource-manager.md) APIs to access different resources.
 
-- Use **$r** or **$rawfile** to reference resources. Specifically, perform either of the following:
+- Access resources through **$r()** or **$rawfile()**. Specifically, perform either of the following:
 
-  1. Use *[hsp].type.name*, where **hsp** indicates the HSP module name, **type** indicates the resource type, and **name** indicates the resource name. The following is an example:
+  1. Add dependencies to the **oh-package.json5** file in the **entry** directory. For example, **"dependencies": {"library":"file":../library}**.
+  ![Alt text](figures/add_dependencies.png)
+
+  2. Use *[hsp].type.name*, where **hsp** indicates the HSP module name, **type** indicates the resource type, and **name** indicates the resource name. The following is an example:
   
     ```ts
       Text($r('[hsp].string.test_string'))
@@ -340,7 +348,7 @@ This example sets the **attr** attribute for strings.
         .fontColor($r('[hsp].color.font_color'))  
       Image($rawfile('[hsp].icon.png'))
     ```
-  2. Use variables. The following is an example:
+  3. Use variables. The following is an example:
 
    ```ts
     @Entry
@@ -367,19 +375,20 @@ This example sets the **attr** attribute for strings.
    ```
   > **NOTE**
   >
-  > The HSP module name must be placed in the brackets ([]). If the **rawfile** directory contains multiple levels of folders, the path must start from the first level, for example, **\$rawfile('[hsp].oneFile/twoFile/icon.png')**. When **$r** or **$rawfile** is used for cross-HSP resource access, resource verification is not available at compile time, and you need to manually check that the target resources exist in the corresponding location.
+  > The HSP module name must be placed in the brackets ([]). If the **rawfile** directory contains multiple levels of folders, the path must start from the first level, for example, **$rawfile('[hsp].oneFile/twoFile/icon.png')**. When **$r** or **$rawfile** is used for cross-HSP resource access, resource verification is not available at compile time, and you need to manually check that the target resources exist in the corresponding location.
+
 
 ### System Resources
 
-Apart from custom resources, you can use system resources to maintain a consistent visual style throughout your application. <!--Del-->For details about the system resource IDs and their values in different configurations, see [Resources](../../design/ux-design/design-resources.md).<!--DelEnd-->
+You can obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md), obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/), and further set the icon colors through [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md).
 
-During development, the usage of layered parameters is basically the same as that of qualifiers. To reference a system resource, use the "$r('sys.type.resource_id')" format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID.
+To access system resources, use the "$r('sys.type.resource_name')" format, where **sys** indicates the system resource, **type** indicates the resource type, such as color, float, string, media, or symbol, and **resource_name** indicates the resource name.
 
 > **NOTE**
 >
 > - The use of system resources is only supported in the declarative development paradigm.
 >
-> - For preset applications, you are advised to use system resources.<!--Del--> For third-party applications, you can choose to use system resources or custom application resources as required.<!--DelEnd-->
+> - For preset applications, you are advised to use system resources. For third-party applications, you can choose to use system resources or custom application resources as required.
 >
 > - You can view the fonts for the system resources in the **system/etc/fontconfig.json** file. The default font is **'HarmonyOS Sans'**.
 
@@ -421,7 +430,7 @@ For more information about how resources are loaded in applications, see the int
 
 #### Background
 
-When using [qualifiers directories](#qualifiers-directory) to apply configuration-specific resources, you may find some resources fail to be obtained due to matching rules of the qualifiers directories.
+You can add qualifiers to the project-level **resources** directory to meet different system settings such as multi-language support and dark and light color modes. you may find some resources fail to be obtained due to matching rules of the qualifiers directories.
 
 If this is the case, you can use the following APIs to obtain resources for a specific configuration.
 
@@ -528,26 +537,30 @@ struct Index {
 
 ### Overlay Mechanism
 
-Overlay is a resource replacement mechanism. With overlay resource packages, you enable your application GUI to adapt to different styles of various brands and products, without having to repack your application HAPs. The overlay mechanism works in dynamic and static modes. Overlay resource packages contain only resource files, resource index files, and configuration files.
+Overlay is a resource replacement mechanism. With overlay resource packages, you can enable your application UI to adapt to different styles of various brands and products, without having to repack your application HAPs. The overlay mechanism works in dynamic and static modes. Overlay resource packages contain only resource files, resource index files, and configuration files.
 
 - Using overlay in dynamic mode
 
 1. Place the overlay resource package in the target application installation path and install the package using **hdc install**. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
 
-2. The application uses [addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().BundleCodeDir**) and the overlay resource package name. For example, **let path = getContext().bundleCodeDir + "Overlay resource package name"**, such as **/data/storage/el1/bundle/overlayResourcePackageName**.
+2. The application uses [addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().bundleCodeDir**) and the overlay resource bundle name. For example, **let path = getContext().bundleCodeDir + "Overlay resource bundle name"**, such as **/data/storage/el1/bundle/overlayResourcePackageName**.
 
 - Using overlay in static mode
 
-The **module.json5** file in the inter-application overlay resource package supports the following fields:
+The **app.json5** file in the inter-application overlay resource package supports the following fields:
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
     "vendor" : "example",
-    "versinCode": "1000000",
+    "versionCode": "1000000",
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-  },
+  }
+}
+```
+The **module.json5** file in the inter-application overlay resource package supports the following fields:
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -563,19 +576,22 @@ The **module.json5** file in the inter-application overlay resource package supp
   }
 }
 ```
-<!--Del-->
-The **module.json5** file in the cross-application overlay resource package supports the following fields, which are available for system applications only:
+The **app.json5** file in the cross-application overlay resource package supports the following fields, which are available for system applications only:
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
     "vendor" : "example",
-    "versinCode": "1000000",
+    "versionCode": "1000000",
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
     "targetPariority": 1,
-  },
+  }
+}
+```
+The **module.json5** file in the cross-application overlay resource package supports the following fields, which are available for system applications only:
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -591,8 +607,6 @@ The **module.json5** file in the cross-application overlay resource package supp
   }
 }
 ```
-<!--DelEnd-->
-
 > **NOTE**
 > - **targetBundleName**: name of the target application to apply the overlay feature. The value is a string.
 >

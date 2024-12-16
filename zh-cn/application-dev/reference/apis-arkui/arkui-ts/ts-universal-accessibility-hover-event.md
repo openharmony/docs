@@ -70,6 +70,8 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 
 ## 示例
 
+该示例主要演示通过使用onAccessibilityHover事件，对无障碍模式下的按钮进行设置。
+
 ```ts
 // xxx.ets
 @Entry

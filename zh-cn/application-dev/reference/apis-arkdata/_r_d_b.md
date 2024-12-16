@@ -60,6 +60,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| typedef struct [OH_Rdb_ConfigV2](#oh_rdb_configv2) [OH_Rdb_ConfigV2](#oh_rdb_configv2) | 管理关系数据库配置，与[OH_Rdb_Config](_o_h___rdb___config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性。 | 
+| typedef enum [Rdb_DBType](#rdb_dbtype) [Rdb_DBType](#rdb_dbtype) | 描述数据库的内核类型。 | 
 | [OH_ColumnType](#oh_columntype) | 数据库字段类型。 | 
 | [OH_Cursor](#oh_cursor) | 表示结果集。 | 
 | [OH_OrderType](#oh_ordertype) | 排序方式。 | 
@@ -94,14 +96,15 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_ColumnType](#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br/>} | 数据库字段类型. |
+| [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | 描述数据库的内核类型。 | 
+| [OH_ColumnType](#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br/>} | 数据库字段类型。 |
 | [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | 排序方式。 |
 | [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
 | [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | 描述数据库的安全区域等级。 |
 | [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | 描述表的分布式类型的枚举。 |
 | [Rdb_ChangeType](#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | 描述数据变更类型。 |
 | [Rdb_SubscribeType](#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | 描述订阅类型。 |
-| [Rdb_SyncMode](#rdb_syncmode-1) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | 表示数据库的同步模式 |
+| [Rdb_SyncMode](#rdb_syncmode-1) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | 表示数据库的同步模式。 |
 | [Rdb_Progress](#rdb_progress-1) { RDB_SYNC_BEGIN, RDB_SYNC_IN_PROGRESS, RDB_SYNC_FINISH } | 描述端云同步过程。 |
 | [Rdb_ProgressCode](#rdb_progresscode-1) {<br/>RDB_SUCCESS, RDB_UNKNOWN_ERROR, RDB_NETWORK_ERROR, RDB_CLOUD_DISABLED,<br/>RDB_LOCKED_BY_OTHERS, RDB_RECORD_LIMIT_EXCEEDED, RDB_NO_SPACE_FOR_ASSET<br/>} | 表示端云同步过程的状态。 |
 | [OH_Rdb_ErrCode](#oh_rdb_errcode-1) {<br/>RDB_ERR = -1, RDB_OK = 0, E_BASE = 14800000, RDB_E_NOT_SUPPORTED = 801,<br/>RDB_E_ERROR = E_BASE, RDB_E_INVALID_ARGS = (E_BASE + 1), RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2), RDB_E_REMOVE_FILE = (E_BASE + 3),<br/>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5), RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6), RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7), RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br/>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9), RDB_E_EMPTY_FILE_NAME = (E_BASE + 10), RDB_E_INVALID_FILE_PATH = (E_BASE + 11), RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br/>RDB_E_INVALID_STATEMENT = (E_BASE + 13), RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14), RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15), RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br/>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17), RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18), RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19), RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br/>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21), RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br/>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25), RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26), RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27), RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br/>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29), RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30), RDB_E_RELATIVE_PATH = (E_BASE + 31), RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br/>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33), RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34), RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35), RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br/>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37), RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38), RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39), RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br/>RDB_E_NOT_SUPPORT = (E_BASE + 41), RDB_E_INVALID_PARCEL = (E_BASE + 42), RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43), RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br/>RDB_E_DB_NOT_EXIST = (E_BASE + 45), RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46), RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47), RDB_E_CON_OVER_LIMIT = (E_BASE + 48)<br/>} | 表示错误码信息。 |
@@ -111,6 +114,23 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_Rdb_ConfigV2](#oh_rdb_configv2) \* [OH_Rdb_CreateConfig](#oh_rdb_createconfig) () | 创建一个[OH_Rdb_ConfigV2](#oh_rdb_configv2)实例，并返回指向该实例的指针。 | 
+| int [OH_Rdb_DestroyConfig](#oh_rdb_destroyconfig) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config) | 销毁由[OH_Rdb_CreateConfig](#oh_rdb_createconfig)创建的[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象。 | 
+| int [OH_Rdb_SetDatabaseDir](#oh_rdb_setdatabasedir) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, const char \*databaseDir) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库文件路径。 | 
+| int [OH_Rdb_SetStoreName](#oh_rdb_setstorename) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, const char \*storeName) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库名称。 | 
+| int [OH_Rdb_SetBundleName](#oh_rdb_setbundlename) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, const char \*bundleName) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置应用包名。 | 
+| int [OH_Rdb_SetModuleName](#oh_rdb_setmodulename) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, const char \*moduleName) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置应用模块名。 | 
+| int [OH_Rdb_SetEncrypted](#oh_rdb_setencrypted) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, bool isEncrypted) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库是否加密。 | 
+| int [OH_Rdb_SetSecurityLevel](#oh_rdb_setsecuritylevel) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int securityLevel) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库安全级别[OH_Rdb_SecurityLevel](#oh_rdb_securitylevel)。 | 
+| int [OH_Rdb_SetArea](#oh_rdb_setarea) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int area) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库安全区域等级[Rdb_SecurityArea](#rdb_securityarea)。 | 
+| int [OH_Rdb_SetDbType](#oh_rdb_setdbtype) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int dbType) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库类型[Rdb_DBType](#rdb_dbtype)。 | 
+| const int \* [OH_Rdb_GetSupportedDbType](#oh_rdb_getsupporteddbtype) (int \*typeCount) | 获得支持的数据库类型[Rdb_DBType](#rdb_dbtype)。 | 
+| [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int \*errCode) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2), 获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。 | 
+| int [OH_Rdb_DeleteStoreV2](#oh_rdb_deletestorev2) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)删除数据库。当使用向量数据库时，在调用接口前，应当确保向量数据库已经被正确关闭。 | 
+| int [OH_Rdb_ExecuteByTrxId](#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | 使用指定的事务ID执行无返回值的SQL语句。 | 
+| int [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务, 并获得该事务的ID。 | 
+| int [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID, 回滚已经执行的SQL语句。 | 
+| int [OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID, 提交已经执行的SQL语句。 | 
 | [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | 将**OH_Asset**类型的对象放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
 | [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | 将**OH_Asset**类型的对象数组放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 | 
 | [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | 创建[OH_VObject](_o_h___v_object.md)实例。 | 
@@ -290,6 +310,31 @@
 
 ## 类型定义说明
 
+
+### OH_Rdb_ConfigV2
+
+```
+typedef struct OH_Rdb_ConfigV2 OH_Rdb_ConfigV2
+```
+
+**描述**
+
+管理关系数据库配置，与[OH_Rdb_Config](_o_h___rdb___config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性。
+
+**起始版本：** 14
+
+
+### Rdb_DBType
+
+```
+typedef enum Rdb_DBType Rdb_DBType
+```
+
+**描述**
+
+描述数据库的内核类型。
+
+**起始版本：** 14
 
 ### OH_ColumnType
 
@@ -699,6 +744,24 @@ typedef struct Rdb_TableDetails Rdb_TableDetails
 ## 枚举类型说明
 
 
+### Rdb_DBType
+
+```
+enum Rdb_DBType
+```
+
+**描述**
+
+描述数据库的内核类型。
+
+**起始版本：** 14
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| RDB_SQLITE | 表示使用sqlite作为数据库内核。 | 
+| RDB_CAYLEY | 表示使用凯莱数据库作为数据库内核。 | 
+| DBTYPE_BUTT | 表示内核类型枚举值允许取值的最大值，这是一个非法值。 | 
+
 ### OH_ColumnType
 
 ```
@@ -966,6 +1029,433 @@ enum Rdb_SyncMode
 ## 函数说明
 
 
+### OH_Rdb_CreateOrOpen()
+
+```
+OH_Rdb_Store *OH_Rdb_CreateOrOpen (const OH_Rdb_ConfigV2 *config, int *errCode )
+```
+
+**描述**
+
+使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2), 获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| errCode | 表示函数执行状态, 作为出参使用。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。 | 
+
+**返回：**
+
+创建成功则返回一个指向[OH_Rdb_Store](_o_h___rdb___store.md)结构体实例的指针，否则返回NULL。
+
+**参见：**
+
+[OH_Rdb_ConfigV2](#oh_rdb_configv2), [OH_Rdb_Store](_o_h___rdb___store.md).
+
+
+### OH_Rdb_BeginTransWithTrxId()
+
+```
+int OH_Rdb_BeginTransWithTrxId (OH_Rdb_Store *store, int64_t *trxId )
+```
+
+**描述**
+
+在开始执行SQL语句之前，开始事务, 并获得该事务的ID。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示一个指向 [OH_Rdb_Store](_o_h___rdb___store.md) 实例的指针。 | 
+| trxId | 事务ID, 作为出参使用。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+
+### OH_Rdb_CommitByTrxId()
+
+```
+int OH_Rdb_CommitByTrxId (OH_Rdb_Store *store, int64_t trxId )
+```
+
+**描述**
+
+使用指定的事务ID, 提交已经执行的SQL语句。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示一个指向 [OH_Rdb_Store](_o_h___rdb___store.md) 实例的指针。 | 
+| trxId | 表示需要提交的事务的ID。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功. RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。 当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。 当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。 当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+
+### OH_Rdb_CreateConfig()
+
+```
+OH_Rdb_ConfigV2 *OH_Rdb_CreateConfig ()
+```
+
+**描述**
+
+创建一个[OH_Rdb_ConfigV2](#oh_rdb_configv2)实例，并返回指向该实例的指针。
+
+**起始版本：** 14
+
+**返回：**
+
+返回一个指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)实例的指针。
+
+**参见：**
+
+[OH_Rdb_ConfigV2](#oh_rdb_configv2)
+
+
+
+### OH_Rdb_DeleteStoreV2()
+
+```
+int OH_Rdb_DeleteStoreV2 (const OH_Rdb_ConfigV2 *config)
+```
+
+**描述**
+
+使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)删除数据库。当使用向量数据库时，在调用接口前，应当确保向量数据库已经被正确关闭。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示数据库的配置。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+**参见：**
+
+OH_Rdb_ErrCode.
+
+
+### OH_Rdb_DestroyConfig()
+
+```
+int OH_Rdb_DestroyConfig (OH_Rdb_ConfigV2 *config)
+```
+
+**描述**
+
+销毁由[OH_Rdb_CreateConfig](#oh_rdb_createconfig)创建的[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_ExecuteByTrxId()
+
+```
+int OH_Rdb_ExecuteByTrxId (OH_Rdb_Store *store, int64_t trxId, const char *sql )
+```
+
+**描述**
+
+使用指定的事务ID执行无返回值的SQL语句。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示一个指向 [OH_Rdb_Store](_o_h___rdb___store.md) 实例的指针。 | 
+| trxId | 调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的事务ID，当设置为0时，表示不启用事务。 | 
+| sql | 指定要执行的SQL语句。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。 当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。 当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。 当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。 当store或者sql为NULL时。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+
+### OH_Rdb_GetSupportedDbType()
+
+```
+const int *OH_Rdb_GetSupportedDbType (int *typeCount)
+```
+
+**描述**
+
+获得支持的数据库类型[Rdb_DBType](#rdb_dbtype)。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| typeCount | 表示支持的数据库类型的数组的长度, 作为出参使用。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_RollBackByTrxId()
+
+```
+int OH_Rdb_RollBackByTrxId (OH_Rdb_Store *store, int64_t trxId )
+```
+
+**描述**
+
+使用指定的事务ID, 回滚已经执行的SQL语句。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| store | 表示一个指向 [OH_Rdb_Store](_o_h___rdb___store.md) 实例的指针。 | 
+| trxId | 表示需要回滚的事务的ID。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数, 可能情况如下： 传入参数为空指针。 当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。 当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。 当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+
+**参见：**
+
+[OH_Rdb_Store](_o_h___rdb___store.md).
+
+
+### OH_Rdb_SetArea()
+
+```
+int OH_Rdb_SetArea (OH_Rdb_ConfigV2 *config, int area )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库安全区域等级[Rdb_SecurityArea](#rdb_securityarea)。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| area | 表示数据库安全区域等级[Rdb_SecurityArea](#rdb_securityarea)。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_SetBundleName()
+
+```
+int OH_Rdb_SetBundleName (OH_Rdb_ConfigV2 *config, const char *bundleName )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置应用包名。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| bundleName | 表示数据库应用包名。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_SetDatabaseDir()
+
+```
+int OH_Rdb_SetDatabaseDir (OH_Rdb_ConfigV2 *config, const char *databaseDir )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库文件路径。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| dataBaseDir | 表示数据库文件路径。包含数据库名称在内的全路径长度不超过1024个字符。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_SetDbType()
+
+```
+int OH_Rdb_SetDbType (OH_Rdb_ConfigV2 *config, int dbType )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库类型[Rdb_DBType](#rdb_dbtype)。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| dbType | 表示数据库的数据库类型 [Rdb_DBType](#rdb_dbtype)。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+
+
+### OH_Rdb_SetEncrypted()
+
+```
+int OH_Rdb_SetEncrypted (OH_Rdb_ConfigV2 *config, bool isEncrypted )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库是否加密。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| isEncrypted | 表示数据库是否加密, true表示加密, false表示不加密。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_SetModuleName()
+
+```
+int OH_Rdb_SetModuleName (OH_Rdb_ConfigV2 *config, const char *moduleName )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置应用模块名。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| moduleName | 表示数据库应用模块名。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_SetSecurityLevel()
+
+```
+int OH_Rdb_SetSecurityLevel (OH_Rdb_ConfigV2 *config, int securityLevel )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库安全级别[OH_Rdb_SecurityLevel](#oh_rdb_securitylevel)。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| securityLevel | 表示数据库安全级别 [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel)。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+
+### OH_Rdb_SetStoreName()
+
+```
+int OH_Rdb_SetStoreName (OH_Rdb_ConfigV2 *config, const char *storeName )
+```
+
+**描述**
+
+给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库名称。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 表示指向[OH_Rdb_ConfigV2](#oh_rdb_configv2)对象的指针，即与此RDB存储相关的数据库配置。 | 
+| storeName | 表示数据库名称。 | 
+
+**返回：**
+
+返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
 ### OH_Rdb_Backup()
 
 ```
@@ -987,7 +1477,7 @@ int OH_Rdb_Backup (OH_Rdb_Store *store, const char *databasePath )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1014,7 +1504,7 @@ int OH_Rdb_BeginTransaction (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1041,7 +1531,7 @@ int OH_Rdb_CloseStore (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1072,7 +1562,7 @@ int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1099,7 +1589,7 @@ int OH_Rdb_Commit (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1196,7 +1686,7 @@ int OH_Rdb_Delete (OH_Rdb_Store *store, OH_Predicates *predicates )
 
 **返回：**
 
-如果更新成功，返回受影响的行数，否则返回特定的错误码。
+如果删除成功，返回删除的行数；如果失败，则返回的结果小于0。
 
 **参见：**
 
@@ -1247,7 +1737,7 @@ int OH_Rdb_Execute (OH_Rdb_Store *store, const char *sql )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1420,7 +1910,7 @@ int OH_Rdb_Insert (OH_Rdb_Store *store, const char *table, OH_VBucket *valuesBuc
 
 **返回：**
 
-如果插入成功，返回行ID。否则返回特定的错误码。
+如果插入成功，返回rowID，否则返回的结果小于0。
 
 **参见：**
 
@@ -1532,7 +2022,7 @@ int OH_Rdb_Restore (OH_Rdb_Store *store, const char *databasePath )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1559,7 +2049,7 @@ int OH_Rdb_RollBack (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1590,7 +2080,7 @@ int OH_Rdb_SetDistributedTables (OH_Rdb_Store *store, const char *tables[], uint
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1618,7 +2108,7 @@ int OH_Rdb_SetVersion (OH_Rdb_Store *store, int version )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1647,7 +2137,7 @@ int OH_Rdb_Subscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Dat
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1664,7 +2154,7 @@ int OH_Rdb_SubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressObs
 
 **描述**
 
-订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。
+订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **起始版本：** 11
 
@@ -1734,7 +2224,7 @@ int OH_Rdb_Unsubscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_D
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1764,7 +2254,7 @@ int OH_Rdb_UnsubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressO
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。
+返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -1795,7 +2285,7 @@ int OH_Rdb_Update (OH_Rdb_Store *store, OH_VBucket *valuesBucket, OH_Predicates 
 
 **返回：**
 
-如果更新成功，返回受影响的行数，否则返回特定的错误码。
+如果更新成功，返回更新的行数，否则返回的结果小于0。
 
 **参见：**
 

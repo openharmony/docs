@@ -15,8 +15,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_pasteboard.h](oh__pasteboard_8h.md) | 提供访问系统剪贴板的接口、数据结构、枚举类型。 <br>引用文件：&lt;database/pasteboard/oh_pasteboard.h&gt;  <br>**库：** libpasteboard.so| 
-| [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md) | 声明剪贴板框架错误码信息。 <br>引用文件：&lt;database/pasteboard/oh_pasteboard_err_code.h&gt;  <br>**库：** libpasteboard.so| 
+| [oh_pasteboard.h](oh__pasteboard_8h.md) | 提供访问系统剪贴板的接口、数据结构、枚举类型。 | 
+| [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md) | 声明剪贴板框架错误码信息。 | 
 
 
 ### 类型定义
@@ -57,6 +57,7 @@
 | OH_UdmfData \* [OH_Pasteboard_GetData](#oh_pasteboard_getdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, int \*status) | 获取剪贴板中的数据。  | 
 | int [OH_Pasteboard_SetData](#oh_pasteboard_setdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | 将统一数据对象数据写入剪贴板。  | 
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 清空剪贴板中的数据。  | 
+| char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪切板中的MIME类型。  | 
 
 
 ## 类型定义说明
@@ -579,3 +580,33 @@ int OH_PasteboardObserver_SetData (OH_PasteboardObserver * observer, void * cont
 [Pasteboard_Notify](#pasteboard_notify)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
+
+### OH_Pasteboard_GetMimeTypes()
+
+```
+char ** OH_Pasteboard_GetMimeTypes (OH_Pasteboard * pasteboard, unsigned int * count)
+```
+**描述：**
+
+获取剪切板中的MIME类型。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。  | 
+| count | 该参数是输出参数，结果集中的类型数量会写入该变量。  | 
+
+**返回：**
+
+执行成功时返回剪切板所有内容的MIME类型，否则返回nullptr。
+
+本接口返回对象的生命周期由入参对象pasteboard管理，应用调用[OH_Pasteboard_Destroy](#oh_pasteboard_destroy)销毁入参对象pasteboard时同步释放本接口返回的结果，不允许应用主动释放。
+
+入参对象pasteboard只保存本接口最新返回的结果，接口历史调用获得的结果将失效。
+
+**参见：**
+
+[OH_Pasteboard](#oh_pasteboard)

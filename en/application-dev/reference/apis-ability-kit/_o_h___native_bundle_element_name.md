@@ -7,13 +7,9 @@ The OH_NativeBundle_ElementName struct describes the information about an elemen
 
 This struct is an output parameter of [OH_NativeBundle_GetMainElementName()](_bundle.md#oh_nativebundle_getmainelementname).
 
-**Since**
+**Since**: 13
 
-13
-
-**Related module**
-
-[Bundle](_bundle.md)
+**Related module**: [Bundle](_bundle.md)
 
 
 ## Summary
@@ -42,9 +38,7 @@ char* OH_NativeBundle_ElementName::bundleName
 
 Bundle name of the application.
 
-**Since**
-
-13
+**Since**: 13
 
 
 ### moduleName
@@ -58,9 +52,7 @@ char* OH_NativeBundle_ElementName::moduleName
 
 Module name.
 
-**Since**
-
-13
+**Since**: 13
 
 
 ### abilityName
@@ -74,6 +66,4 @@ char* OH_NativeBundle_ElementName::abilityName
 
 Ability name.
 
-**Since**
-
-13
+**Since**: 13

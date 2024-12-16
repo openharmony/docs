@@ -1,6 +1,50 @@
 # multimedia子系统变更说明
 
-## cl.multimedia.1 image.Component.OH_AuxiliaryPictureNative_SetInfo()接口行为变更。
+## cl.multimedia.1 Image.ImageSource.DecodingOptionsForPicture接口的desiredAuxiliaryPictures属性系统能力变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+接口DecodingOptionsForPicture与属性desiredAuxiliaryPictures归属的系统能力不一致，会影响对接口支持系统能力情况的判断，需要将desiredAuxiliaryPictures的SystemCapability中的SystemCapability.Multimedia.Image.Core改为SystemCapability.Multimedia.Image.ImageSource。
+
+**变更影响**
+
+此变更为不兼容变更。
+对接口中属性的SystemCapability进行调整，对接口本身的使用方式无影响。
+
+变更前：
+
+DecodingOptionsForPicture接口的系统能力要求为“SystemCapability.Multimedia.Image.Core”。
+
+变更后：
+
+DecodingOptionsForPicture接口的系统能力要求为“SystemCapability.Multimedia.Image.ImageSource”。
+
+**起始 API Level**
+
+13
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.57版本开始。
+
+**变更的接口/组件**
+
+@ohos.multimedia.image中涉及修改的属性如下：
+
+| 接口名| 接口说明 | 属性名 | 属性说明 |
+| -------- | -------- | -------- | -------- |
+|image.ImageSource.DecodingOptionsForPicture|图像解码设置选项|desiredAuxiliaryPictures|设置AuxiliaryPicture类型，默认解码所有AuxiliaryPicture类型|
+
+
+**适配指导**
+
+接口中属性的SystemCapability正常应该与对应接口的SystemCapability一致。但如果代码中涉及调用canIUse()方法对本次变更涉及接口支持情况进行判断，则应修改canIUse()方法传入的SystemCapability，判断设备是否支持图片源解码解析能力需使用canIUse("SystemCapability.Multimedia.Image.ImageSource")。
+
+## cl.multimedia.2 image.Component.OH_AuxiliaryPictureNative_SetInfo()接口行为变更
 
 **访问级别**
 
@@ -28,7 +72,7 @@ OH_AuxiliaryPictureNative_SetInfo()接口设置辅助图信息时，若将存储
 
 **变更发生版本**
 
-从OpenHarmony [5.0.0.57](http://5.0.0.57)版本开始。
+从OpenHarmony 5.0.0.57版本开始。
 
 **变更的接口/组件**
 
@@ -41,77 +85,77 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *aux
 设置辅助图信息时，如果将存储像素字节数变大，则设置不成功，返回错误码401。
 
 ```c++
-	char filePath[1024];
-    size_t filePathSize;
-	napi_get_value_string_utf8(env, args[0], filePath, 1024, &filePathSize);
-    OH_ImageSourceNative* imageSource = nullptr;
-    Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreateFromUri(filePath, filePathSize, &imageSource);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || imageSource == nullptr) {
-        H_LOGE("OH_ImageSourceNative_CreateFromUri failed.");
-    }
-    OH_DecodingOptionsForPicture* opts = nullptr;
-    OH_DecodingOptionsForPicture_Create(&opts);
-    OH_PictureNative* picture = nullptr;
-    image_ErrorCode = OH_ImageSourceNative_CreatePicture(imageSource, opts, &picture);
-    OH_ImageSourceNative_Release(imageSource);
-    OH_DecodingOptionsForPicture_Release(opts);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || picture == nullptr) {
-        H_LOGE("OH_ImageSourceNative_CreatePicture failed. image_ErrorCode=%d", image_ErrorCode);
-    }
-    OH_PixelmapNative* pixelmap = nullptr;
-    image_ErrorCode = OH_PictureNative_GetMainPixelmap(picture, &pixelmap);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || pixelmap == nullptr) {
-        H_LOGE("OH_PictureNative_GetMainPixelmap failed! image_ErrorCode=%d", image_ErrorCode);
-    }
-    uint32_t positionx = 0;
-    uint32_t positionY = 3686;
-    uint32_t width = 3072;
-    uint32_t height = 410;
-    Image_Region image_Region ={.x= positionx, .y = positionY, .width = width, .height = height};
-    image_ErrorCode = OH_PixelmapNative_Crop(pixelmap, &image_Region);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
-        H_LOGE("OH_PixeLmapNative_Crop failed. image_ErrorCode=%d", image_ErrorCode);
-    }
-    uint32_t PIXEL_BYTES_FOUR = 4;
-    unsigned char *data = new unsigned char[width * height * PIXEL_BYTES_FOUR];
-    size_t bufferSize = width * height * PIXEL_BYTES_FOUR;
+char filePath[1024];
+size_t filePathSize;
+napi_get_value_string_utf8(env, args[0], filePath, 1024, &filePathSize);
+OH_ImageSourceNative* imageSource = nullptr;
+Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreateFromUri(filePath, filePathSize, &imageSource);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || imageSource == nullptr) {
+    H_LOGE("OH_ImageSourceNative_CreateFromUri failed.");
+}
+OH_DecodingOptionsForPicture* opts = nullptr;
+OH_DecodingOptionsForPicture_Create(&opts);
+OH_PictureNative* picture = nullptr;
+image_ErrorCode = OH_ImageSourceNative_CreatePicture(imageSource, opts, &picture);
+OH_ImageSourceNative_Release(imageSource);
+OH_DecodingOptionsForPicture_Release(opts);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || picture == nullptr) {
+    H_LOGE("OH_ImageSourceNative_CreatePicture failed. image_ErrorCode=%d", image_ErrorCode);
+}
+OH_PixelmapNative* pixelmap = nullptr;
+image_ErrorCode = OH_PictureNative_GetMainPixelmap(picture, &pixelmap);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || pixelmap == nullptr) {
+    H_LOGE("OH_PictureNative_GetMainPixelmap failed! image_ErrorCode=%d", image_ErrorCode);
+}
+uint32_t positionx = 0;
+uint32_t positionY = 3686;
+uint32_t width = 3072;
+uint32_t height = 410;
+Image_Region image_Region ={.x= positionx, .y = positionY, .width = width, .height = height};
+image_ErrorCode = OH_PixelmapNative_Crop(pixelmap, &image_Region);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
+    H_LOGE("OH_PixeLmapNative_Crop failed. image_ErrorCode=%d", image_ErrorCode);
+}
+uint32_t PIXEL_BYTES_FOUR = 4;
+unsigned char *data = new unsigned char[width * height * PIXEL_BYTES_FOUR];
+size_t bufferSize = width * height * PIXEL_BYTES_FOUR;
 
-    image_ErrorCode = OH_PixelmapNative_ReadPixels(pixelmap, data, &bufferSize);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
-        H_LOGE("OH_PixeLmapNative_ReadPixels fail! image_ErrorCode=%d", image_ErrorCode);
-        delete[] data;
-    }
-    OH_PixelmapNative_Release(pixelmap);
-
-    size_t dataLength = width * height * PIXEL_BYTES_FOUR;
-    Image_Size size = {.width = width,.height = height};
-    OH_AuxiliaryPictureNative* auxiliaryPicture = nullptr;
-    image_ErrorCode = OH_AuxiliaryPictureNative_Create(
-    data, dataLength, &size, Image_AuxiliaryPictureType::AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP, &auxiliaryPicture);
+image_ErrorCode = OH_PixelmapNative_ReadPixels(pixelmap, data, &bufferSize);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
+    H_LOGE("OH_PixeLmapNative_ReadPixels fail! image_ErrorCode=%d", image_ErrorCode);
     delete[] data;
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || auxiliaryPicture == nullptr) {
-        H_LOGE("OH_AuxiliaryPictureNative_Create fail! image_ErrorCode=%d", image_ErrorCode);
-    }
+}
+OH_PixelmapNative_Release(pixelmap);
 
-    OH_AuxiliaryPictureInfo *auxInfo;
-    image_ErrorCode = OH_AuxiliaryPictureInfo_Create(&auxInfo);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || auxInfo == nullptr) {
-        H_LOGE("OH_AuxiliaryPictureInfo_Create FRAGMENT_MAP fail! image_ErrorCode=%d", image_ErrorCode);
-    }
+size_t dataLength = width * height * PIXEL_BYTES_FOUR;
+Image_Size size = {.width = width,.height = height};
+OH_AuxiliaryPictureNative* auxiliaryPicture = nullptr;
+image_ErrorCode = OH_AuxiliaryPictureNative_Create(
+data, dataLength, &size, Image_AuxiliaryPictureType::AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP, &auxiliaryPicture);
+delete[] data;
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || auxiliaryPicture == nullptr) {
+    H_LOGE("OH_AuxiliaryPictureNative_Create fail! image_ErrorCode=%d", image_ErrorCode);
+}
 
-    image_ErrorCode = OH_AuxiliaryPictureInfo_SetPixelFormat(auxInfo, PIXEL_FORMAT_RGBA_F16);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
+OH_AuxiliaryPictureInfo *auxInfo;
+image_ErrorCode = OH_AuxiliaryPictureInfo_Create(&auxInfo);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS || auxInfo == nullptr) {
+    H_LOGE("OH_AuxiliaryPictureInfo_Create FRAGMENT_MAP fail! image_ErrorCode=%d", image_ErrorCode);
+}
+
+image_ErrorCode = OH_AuxiliaryPictureInfo_SetPixelFormat(auxInfo, PIXEL_FORMAT_RGBA_F16);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
     H_LOGE("OH_AuxiliaryPictureInfo_SetSize FRAGMENT_MAP fail! image_ErrorCode=%d", image_ErrorCode);
     OH_AuxiliaryPictureInfo_Release(auxInfo);
-    }
-    image_ErrorCode = OH_AuxiliaryPictureNative_SetInfo(auxiliaryPicture, auxInfo);
-    OH_AuxiliaryPictureInfo_Release(auxInfo);
-    if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
-        H_LOGE("OH_AuxiliaryPictureNative_SetInfo FRAGMENT_MAP fail! image_ErrorCode=%d", image_ErrorCode);
-    }
+}
+image_ErrorCode = OH_AuxiliaryPictureNative_SetInfo(auxiliaryPicture, auxInfo);
+OH_AuxiliaryPictureInfo_Release(auxInfo);
+if (image_ErrorCode != Image_ErrorCode::IMAGE_SUCCESS) {
+    H_LOGE("OH_AuxiliaryPictureNative_SetInfo FRAGMENT_MAP fail! image_ErrorCode=%d", image_ErrorCode);
+}
 ```
 
-## cl.multimedia.2 image.Component.setAuxiliaryPictureInfo接口行为变更。
+## cl.multimedia.3 image.Component.setAuxiliaryPictureInfo接口行为变更
 
 **访问级别**
 
@@ -139,7 +183,7 @@ setAuxiliaryPictureInfo()接口设置辅助图信息时，若将存储像素字�
 
 **变更发生版本**
 
-从OpenHarmony [5.0.0.57](http://5.0.0.57)版本开始。
+从OpenHarmony 5.0.0.57版本开始。
 
 **变更的接口/组件**
 

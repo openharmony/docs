@@ -122,6 +122,7 @@ The AVScreenCapture module provides APIs for screen capture.
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ContentFilter_AddWindowContent](#oh_avscreencapture_contentfilter_addwindowcontent) (struct [OH_AVScreenCapture_ContentFilter](#oh_avscreencapture_contentfilter) \*filter, int32_t \*windowIDs, int32_t windowCount) | Adds a list of window IDs to a **ContentFilter** instance. | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | Adjusts the screen resolution. | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | Exempts privacy windows during screen capture. | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | Sets the maximum frame rate for screen capture. | 
 
 
 ## Type Description
@@ -1767,5 +1768,38 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 **AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
 
 **AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** is a null pointer.
+
+**AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed.
+
+
+### OH_AVScreenCapture_SetMaxVideoFrameRate()
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_AVScreenCapture * capture, int32_t frameRate)
+```
+
+**Description**
+
+Sets the maximum frame rate for screen capture.
+
+The maximum frame rate that can be configured is subject to the device's limitations and is ultimately governed by the capabilities of the underlying system.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capture | Pointer to an [OH_AVScreenCapture](#oh_avscreencapture) instance.| 
+| frameRate | Maximum frame rate.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_SCREEN_CAPTURE_ERR_OK**: The operation is successful.
+
+**AV_SCREEN_CAPTURE_ERR_INVALID_VAL**: The input parameter **capture** is a null pointer, or the input parameter **frameRate** is not supported.
 
 **AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed.

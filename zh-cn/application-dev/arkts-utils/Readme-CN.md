@@ -20,7 +20,7 @@
         - [多线程并发概述](multi-thread-concurrency-overview.md)
         - [TaskPool简介](taskpool-introduction.md)
         - [Worker简介](worker-introduction.md)
-        - [TaskPool与Worker对比](taskpool-vs-worker.md)
+        - [TaskPool与Worker对比 (TaskPool和Worker)](taskpool-vs-worker.md)
     - 并发线程间通信
         - [ArkTS线程间通信概述](interthread-communication-overview.md)
         - 线程间通信对象
@@ -29,7 +29,7 @@
             - [SharedArrayBuffer对象](shared-arraybuffer-object.md)
             - [Transferable对象（NativeBinding对象）](transferabled-object.md)
             - Sendable对象
-                - [Sendable对象简介](sendable-overview.md)
+                - [Sendable对象简介](arkts-sendable.md)
                 - [Sendable使用规则与约束](sendable-constraints.md)
                 - [异步锁](arkts-async-lock-introduction.md)
                 - [ASON解析与生成](ason-parsing-generation.md)
@@ -40,16 +40,16 @@
         - 线程间通信场景
             - [使用TaskPool执行独立的耗时任务](independent-time-consuming-task.md)
             - [使用TaskPool执行多个耗时任务](multi-time-consuming-tasks.md)
-            - [TaskPool任务与主线程通信](taskpool-communicates-with-mainthread.md)
-            - [Worker和主线程的即时消息通信](worker-communicates-with-mainthread.md)
-            - [Worker同步调用主线程的接口](worker-invoke-mainthread-interface.md)
+            - [TaskPool任务与宿主线程通信](taskpool-communicates-with-mainthread.md)
+            - [Worker和宿主线程的即时消息通信](worker-communicates-with-mainthread.md)
+            - [Worker同步调用宿主线程的接口](worker-invoke-mainthread-interface.md)
     - 应用多线程开发
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景
             - [耗时任务并发场景简介](time-consuming-task-overview.md)
-            - [CPU密集型任务开发指导](cpu-intensive-task-development.md)
-            - [I/O密集型任务开发指导](io-intensive-task-development.md)
-            - [同步任务开发指导](sync-task-development.md)
+            - [CPU密集型任务开发指导 (TaskPool和Worker)](cpu-intensive-task-development.md)
+            - [I/O密集型任务开发指导 (TaskPool)](io-intensive-task-development.md)
+            - [同步任务开发指导 (TaskPool和Worker)](sync-task-development.md)
         - 长时任务并发场景
             - [长时任务并发场景简介](long-time-task-overview.md)
             - [长时任务开发指导（TaskPool）](long-time-task-guide.md)
@@ -72,6 +72,7 @@
         - [延迟加载（lazy import）](arkts-lazy-import.md)
         - [同步方式动态加载native模块](js-apis-load-native-module.md)
         - [基于Node-API加载模块](load-module-base-nodeapi.md)
+        - [模块加载副作用及优化](arkts-module-side-effects.md)
 - ArkTS编译工具链
     - [ArkTS编译工具链概述](compilation-tool-chain-overview.md)
     - 方舟字节码

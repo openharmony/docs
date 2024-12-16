@@ -20,7 +20,7 @@ static show(options?: CalendarDialogOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                                    | 必填 | 说明                       |
 | ------- | ------------------------------------------------------- | ---- | -------------------------- |
@@ -51,9 +51,9 @@ static show(options?: CalendarDialogOptions)
 
 ## 示例
 
-### 示例1
+### 示例1（设置弹窗背板）
 
-CalendarPickerDialog基本使用
+该示例通过backgroundColor、backgroundBlurStyle、shadow设置弹窗背板。
 
 ```ts
 // xxx.ets
@@ -70,7 +70,11 @@ struct CalendarPickerDialogExample {
           console.info("CalendarDialog.show")
           CalendarPickerDialog.show({
             selected: this.selectedDate,
+            backgroundColor: Color.White,
+            backgroundBlurStyle: BlurStyle.NONE,
+            shadow: ShadowStyle.OUTER_FLOATING_SM,
             onAccept: (value) => {
+              this.selectedDate = value
               console.info("calendar onAccept:" + JSON.stringify(value))
             },
             onCancel: () => {
@@ -100,9 +104,9 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog.gif)
 
-### 示例2
+### 示例2（自定义按钮样式）
 
-按钮支持自定义样式
+该示例通过配置 acceptButtonStyle、cancelButtonStyle实现自定义按钮样式。
 
 ```ts
 // xxx.ets
@@ -110,6 +114,7 @@ struct CalendarPickerDialogExample {
 @Component
 struct CalendarPickerDialogExample {
   private selectedDate: Date = new Date()
+
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")
@@ -118,32 +123,33 @@ struct CalendarPickerDialogExample {
           console.info("CalendarDialog.show")
           CalendarPickerDialog.show({
             selected: this.selectedDate,
-            acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-              fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-              borderRadius: 20 },
-            cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-              fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-              borderRadius: 10 },
+            acceptButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: 'rgb(81, 81, 216)',
+              fontSize: '26fp',
+              fontWeight: FontWeight.Bolder,
+              fontStyle: FontStyle.Normal,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#A6ACAF',
+              borderRadius: 20
+            },
+            cancelButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: Color.Blue,
+              fontSize: '16fp',
+              fontWeight: FontWeight.Normal,
+              fontStyle: FontStyle.Italic,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#50182431',
+              borderRadius: 10
+            },
             onAccept: (value) => {
+              this.selectedDate = value
               console.info("calendar onAccept:" + JSON.stringify(value))
-            },
-            onCancel: () => {
-              console.info("calendar onCancel")
-            },
-            onChange: (value) => {
-              console.info("calendar onChange:" + JSON.stringify(value))
-            },
-            onDidAppear: () => {
-              console.info("calendar onDidAppear")
-            },
-            onDidDisappear: () => {
-              console.info("calendar onDidDisappear")
-            },
-            onWillAppear: () => {
-              console.info("calendar onWillAppear")
-            },
-            onWillDisappear: () => {
-              console.info("calendar onWillDisappear")
             }
           })
         })
@@ -154,7 +160,7 @@ struct CalendarPickerDialogExample {
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog_CustomButton.png)
 
-### 示例3
+### 示例3（悬停态弹窗）
 
 该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
 
@@ -203,3 +209,36 @@ struct CalendarPickerDialogExample {
 ```
 
 ![CalendarPickerDialog](figures/CalendarPickerDialog_HoverMode.gif)
+
+### 示例4（设置日期选中态底板样式）
+
+该示例通过hintRadius设置日期选中态底板样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2024-04-23')
+
+  build() {
+    Column() {
+      Button("Show CalendarPicker Dialog")
+        .margin(20)
+        .onClick(() => {
+          console.info("CalendarDialog.show")
+          CalendarPickerDialog.show({
+            selected: this.selectedDate,
+            hintRadius: 1,
+            onAccept: (value) => {
+              this.selectedDate = value
+              console.info("calendar onAccept:" + JSON.stringify(value))
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![CalendarPickerDialog](figures/CalendarPickerDialogDemo4.png)

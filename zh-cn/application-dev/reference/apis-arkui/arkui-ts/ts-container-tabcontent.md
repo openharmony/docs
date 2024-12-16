@@ -30,7 +30,7 @@ TabContent()
 
 ### tabBar
 
-tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; text?: string | Resource })
+tabBar(options: string | Resource | CustomBuilder | TabBarOptions)
 
 设置TabBar上显示内容。
 
@@ -46,7 +46,7 @@ tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; te
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 是 | TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。 |
+| value | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;<br/>[TabBarOptions<sup>14+</sup>](#tabbaroptions14) | 是 | TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API version 8版本以上适用）。 |
 
 ### tabBar<sup>9+</sup>
 
@@ -70,6 +70,22 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 >  - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
 >  - vertical属性为false值，交换上述2个限制。
 >  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
+>  - 建议对Tabs组件的所有TabContent子组件的tabBar属性，采用统一的参数类型。
+
+### TabBarOptions<sup>14+</sup>
+
+设置页签内的图片和文字内容。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型         | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| icon | string | [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。 |
+| text | string | [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。 |
 
 ## SubTabBarStyle<sup>9+</sup>对象说明
 
@@ -287,7 +303,7 @@ padding(padding: LocalizedPadding): SubTabBarStyle
 
 id(value: string): SubTabBarStyle
 
-设置子页签的[id](ts-universal-attributes-component-id.md#属性)。
+设置子页签的[id](ts-universal-attributes-component-id.md#id)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -297,7 +313,7 @@ id(value: string): SubTabBarStyle
 
 | 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | string | 是   | 子页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| value | string | 是   | 子页签的[id](ts-universal-attributes-component-id.md#id)。 |
 
 **返回值：**
 
@@ -351,7 +367,7 @@ id(value: string): SubTabBarStyle
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号（不支持百分比设置）。需配合maxFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号（不支持百分比设置）。需配合minFontSize以及maxLines或布局大小限制使用。自适应文本大小生效后，font.size不生效。默认值是0.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。默认值是最大行数优先。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。<br/>从API version 12开始，底部页签页签内容左右排布时默认字体大小为12.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。<br/>当页签为子页签时，默认值是字体大小16.0fp、字体类型'HarmonyOS Sans'，字体风格正常，选中时字重中等，未选中时字重正常。<br/>当页签为底部页签时，默认值是字体大小10.0fp、字体类型'HarmonyOS Sans'，字体风格正常，字重中等。<br/>从API version 12开始，底部页签页签内容左右排布时默认字体大小为12.0fp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | unselectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体未选中时的颜色。<br/>默认值:#99182431 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | selectedColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label文本字体选中时的颜色。<br/>默认值:#FF007DFF <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -523,7 +539,7 @@ id(value: string): BottomTabBarStyle
 
 | 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | string | 是   | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| value | string | 是   | 设置底部页签的[id](ts-universal-attributes-component-id.md#id)。 |
 
 **返回值：**
 
@@ -625,7 +641,9 @@ onWillHide(event: VoidCallback)
 
 ## 示例
 
-### 示例1
+### 示例1（自定义页签切换联动）
+
+本示例通过onAnimationStart、onChange实现切换时自定义tabBar和TabContent的联动。
 
 ```ts
 // xxx.ets
@@ -721,6 +739,7 @@ struct TabContentExample {
       .onChange((index: number) => {
         // currentIndex控制TabContent显示页签
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
@@ -740,7 +759,9 @@ struct TabContentExample {
 
 ![tabContent](figures/tabContent1.gif)
 
-### 示例2
+### 示例2（自定义侧边页签）
+
+本示例通过vertical、barPosition实现侧边页签。
 
 ```ts
 // xxx.ets
@@ -786,6 +807,7 @@ struct TabContentExample {
       .onChange((index: number) => {
         // currentIndex控制TabContent显示页签
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         if (index === targetIndex) {
@@ -805,7 +827,9 @@ struct TabContentExample {
 
 ![tabContent](figures/tabContent2.gif)
 
-### 示例3
+### 示例3（子页签/底部页签/侧边页签样式对比）
+
+本示例使用了SubTabBarStyle、BottomTabBarStyle实现了子页签、底部页签和侧边页签。
 
 ```ts
 // xxx.ets
@@ -975,7 +999,9 @@ struct TabBarStyleExample {
 
 ![tabbarStyle](figures/TabBarStyle.jpeg)
 
-### 示例4
+### 示例4（设置子页签下划线基本属性）
+
+本示例通过SubTabBarStyle中的indicator属性，实现了子页签下划线基本属性的展示。
 
 ```ts
 // xxx.ets
@@ -1211,7 +1237,9 @@ struct TabsAttr {
 
 ![tabContent3](figures/tabContent3.gif)
 
-### 示例5
+### 示例5（设置子页签文本自适应高度属性）
+
+本示例通过heightAdaptivePolicy实现了子页签文本高度自适应。
 
 ```ts
 // xxx.ets
@@ -1299,7 +1327,9 @@ struct TabsTextOverflow {
 
 ![tabContent4](figures/tabContent4.png)
 
-### 示例6
+### 示例6（设置底部页签基本属性）
+
+本示例通过padding、verticalAlign、layoutMode、symmetricExtensible实现了底部页签基本属性的展示。
 
 ```ts
 // xxx.ets
@@ -1449,7 +1479,7 @@ struct TabContentExample6 {
 
 ![tabContent4](figures/tabContent5.gif)
 
-### 示例7
+### 示例7（设置子页签/底部页签文本颜色）
 
 本示例通过labelStyle中的unselectedColor和selectedColor改变底部页签以及子页签的文本颜色。
 通过iconStyle中的unselectedColor和selectedColor改变底部页签的图标颜色。
@@ -1543,8 +1573,10 @@ struct TabBarStyleExample {
 
 ![tabContent](figures/tabContent6.gif)
 
-### 示例8
+### 示例8（设置自定义子页签）
+
 该示例实现了通过ComponentContent设置SubTabBarStyle。
+
 ```ts
 // xxx.ets
 import { ComponentContent, UIContext } from "@kit.ArkUI"
@@ -1620,8 +1652,10 @@ struct Index {
 
 ![tabContent7](figures/tabContent7.gif)
 
-### 示例9
+### 示例9（设置底部页签使用symbol图标）
+
 该示例实现了BottomTabBarStyle图片传入Symbol。
+
 ```ts
 // xxx.ets
 import { SymbolGlyphModifier } from '@kit.ArkUI'

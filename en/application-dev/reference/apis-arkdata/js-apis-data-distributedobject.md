@@ -183,7 +183,7 @@ Sets a session ID. This API uses an asynchronous callback to return the result. 
   | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | 201      | Permission verification failed.                                                                                                                                    |
   | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
-  | 15400001 | Create table failed.                                                                                                                                               |
+  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **Example**
 
@@ -222,7 +222,7 @@ Exits all sessions. This API uses an asynchronous callback to return the result.
   | -------- | -------- |
   | 201      | Permission verification failed. |
   | 401      | Parameter error. Incorrect parameter types. |
-  | 15400001 | Create table failed. |
+  | 15400001 | Failed to create the in-memory database. |
 
 **Example**
 
@@ -267,7 +267,7 @@ Sets a session ID. This API uses a promise to return the result. For the devices
   | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | 201      | Permission verification failed.                                                                                                                                    |
   | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. The sessionId allows only letters, digits, and underscores(_), and cannot exceed 128 in length. |
-  | 15400001 | Create table failed.                                                                                                                                               |
+  | 15400001 | Failed to create the in-memory database.                                                                                                                                               |
 
 **Example**
 

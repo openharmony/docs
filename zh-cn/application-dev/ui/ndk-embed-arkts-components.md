@@ -202,9 +202,9 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
 
    ```cpp
    // native_init.cpp
+   #include "napi/native_api.h"
    #include "ArkUIMixedRefresh.h"
    #include "NativeEntry.h"
-   #include "napi/native_api.h"
    
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {

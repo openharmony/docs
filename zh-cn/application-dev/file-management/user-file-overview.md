@@ -1,6 +1,6 @@
 # 用户文件概述
 
-用户文件：文件所有者为登录到该终端设备的用户，包括用户私有的[图片、视频](../media/medialibrary/photoAccessHelper-overview.md)、音频、文档等。
+用户文件：登录到该终端设备的用户所拥有的文件，包括用户私有的[图片、视频](../media/medialibrary/photoAccessHelper-overview.md)、音频、文档等。
 
 1. 用户文件存放在用户目录下，归属于该设备上登录的用户。
 

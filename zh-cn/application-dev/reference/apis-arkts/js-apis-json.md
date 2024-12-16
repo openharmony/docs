@@ -17,7 +17,9 @@ import { JSON } from '@kit.ArkTS';
 
 type Transformer = (this: Object, key: string, value: Object) => Object | undefined | null
 
-用于转换结果函数的类型。
+用于转换结果函数的类型。<br>
+作为[JSON.parse](#jsonparse)函数的参数时，对象的每个成员将会调用此函数，解析过程中允许对数据进行自定义处理或转换。<br>
+作为[JSON.stringify](#jsonstringify-1)函数的参数时，在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

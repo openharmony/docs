@@ -5,6 +5,11 @@
 
 关系型数据库基于SQLite组件，适用于存储包含复杂关系数据的场景，比如一个班级的学生信息，需要包括姓名、学号、各科成绩等，又或者公司的雇员信息，需要包括姓名、工号、职位等，由于数据之间有较强的对应关系，复杂程度比键值型数据更高，此时需要使用关系型数据库来持久化保存数据。
 
+大数据量场景下查询数据可能会导致耗时长甚至应用卡死，如有相关操作可参考文档[批量数据写数据库场景](../arkts-utils/batch-database-operations-guide.md)，且有建议如下：
+- 单次查询数据量不超过5000条。
+- 在[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)中查询。
+- 拼接SQL语句尽量简洁。
+- 合理地分批次查询。
 
 ## 基本概念
 
@@ -314,6 +319,38 @@
    > **说明：**
    >
    > 当应用完成查询数据操作，不再使用结果集（ResultSet）时，请及时调用close方法关闭结果集，释放系统为其分配的内存。
+
+   当前RDB还支持进行FTS全文检索，可以根据中文或者英文进行文本检索，针对中文分词器支持ICU分词器。
+
+   以中文关键字检索为例：
+
+   ```ts
+   let store: relationalStore.RdbStore | undefined = undefined;
+   if (store !== undefined) {
+     // 创建全文检索表
+     const  SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)";
+     (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to creating fts table.`);
+         return;
+       }
+       console.info(`Succeeded in creating fts table.`);
+     })
+   }
+   if(store != undefined) {
+      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH '测试'", (err, resultSet) => {
+        if (err) {
+          console.error(`Query failed.`);
+          return;
+        }
+        while (resultSet.goToNextRow()) {
+          const name = resultSet.getString(resultSet.getColumnIndex("name"));
+          console.info(`name=${name}`);
+        }
+        resultSet.close();
+      })
+   }
+   ```
 
 5. 在同路径下备份数据库。关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
 

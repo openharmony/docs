@@ -1,4 +1,4 @@
-# Uniform Type Descriptor(UTD)预置列表
+# UTD预置列表
 
 标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决系统中的类型模糊问题，即针对同一种数据类型，存在不同的类型描述方式：MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使用image/jpeg、.jpg、.jpeg或image/picture等方式进行描述。
 

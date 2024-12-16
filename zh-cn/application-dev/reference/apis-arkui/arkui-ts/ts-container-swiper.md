@@ -30,7 +30,7 @@
 >
 >  - 当Swiper子组件设置了offset属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的zIndex属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
 >
->  - 不建议在执行翻页动画过程中增加或减少子组件，会导致未进行动画的子组件提前进入视窗，引起显示异常。
+>  - 当使用渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）时，不要在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
 
 ## 接口
 
@@ -226,7 +226,7 @@ displayMode(value: SwiperDisplayMode)
 
 ### cachedCount<sup>8+</sup>
 
-cachedCount(value: number)
+cachedCount(value: number, isShown?: boolean)
 
 设置预加载子组件个数，以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
 
@@ -241,6 +241,7 @@ cachedCount(value: number)
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| isShown<sup>16+</sup>  | boolean | 否   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
 
 ### disableSwipe<sup>8+</sup>
 
@@ -442,6 +443,22 @@ indicatorInteractive(value: boolean)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
 
+### pageFlipMode<sup>14+</sup>
+
+pageFlipMode(value: PageFlipMode)
+
+设置鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PageFlipMode](ts-appendix-enums.md#PageFlipMode) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
 从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
@@ -558,7 +575,7 @@ changeIndex(index: number, useAnimation?: boolean)
 
 ### finishAnimation
 
-finishAnimation(callback?: () => void)
+finishAnimation(callback?: VoidCallback)
 
 停止播放动画。
 
@@ -572,7 +589,42 @@ finishAnimation(callback?: () => void)
 
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
-| callback | () => void | 否    | 动画结束的回调。 |
+| callback | [VoidCallback](./ts-types.md#voidcallback12) | 否    | 动画结束的回调。 |
+
+### preloadItems<sup>16+</sup>
+
+preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
+
+控制Swiper预加载指定子节点。调用该接口后会一次性加载所有指定的子节点，因此为了性能考虑，建议分批加载子节点。
+
+如果SwiperController对象未绑定任何Swiper组件，直接调用该接口，会抛出JS异常，并返回错误码100004。因此使用该接口时，建议通过try-catch捕获异常。
+
+与[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。<br/>默认值：空数组。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| Promise\<void> | 预加载完成后触发的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[滚动类组件错误码](../../apis-arkui/errorcode-scroll.md)错误码。
+
+| 错误码ID   | 错误信息                                      |
+| --------   | -------------------------------------------- |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 100004 | Controller not bound to component. |
 
 ## Indicator<sup>10+</sup>
 
@@ -586,7 +638,7 @@ finishAnimation(callback?: () => void)
 
 ### left
 
-left(value: Length)
+left(value: Length): T
 
 导航点左侧相对于Swiper的位置。
 
@@ -604,7 +656,7 @@ left(value: Length)
 
 ### top
 
-top(value: Length)
+top(value: Length): T
 
 导航点顶部相对于Swiper的位置。
 
@@ -622,7 +674,7 @@ top(value: Length)
 
 ### right
 
-right(value: Length)
+right(value: Length): T
 
 导航点右侧相对于Swiper的位置。
 
@@ -640,7 +692,7 @@ right(value: Length)
 
 ### bottom
 
-bottom(value: Length)
+bottom(value: Length): T
 
 导航点底部相对于Swiper的位置。
 
@@ -658,7 +710,7 @@ bottom(value: Length)
 
 ### start<sup>12+</sup>
 
-start(value: LengthMetrics)
+start(value: LengthMetrics): T
 
 在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离。
 
@@ -676,7 +728,7 @@ start(value: LengthMetrics)
 
 ### end<sup>12+</sup>
 
-end(value: LengthMetrics)
+end(value: LengthMetrics): T
 
 在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。
 
@@ -726,7 +778,7 @@ static digit(): DigitIndicator
 
 ### itemWidth
 
-itemWidth(value: Length)
+itemWidth(value: Length): DotIndicator
 
 Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
@@ -742,9 +794,15 @@ Swiper组件圆点导航指示器的宽，不支持设置百分比。
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### itemHeight
 
-itemHeight(value: Length)
+itemHeight(value: Length): DotIndicator
 
 Swiper组件圆点导航指示器的高，不支持设置百分比。
 
@@ -760,9 +818,15 @@ Swiper组件圆点导航指示器的高，不支持设置百分比。
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### selectedItemWidth
 
-selectedItemWidth(value: Length)
+selectedItemWidth(value: Length): DotIndicator
 
 选中Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
@@ -778,9 +842,15 @@ selectedItemWidth(value: Length)
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：12<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### selectedItemHeight
 
-selectedItemHeight(value: Length)
+selectedItemHeight(value: Length): DotIndicator
 
 选中Swiper组件圆点导航指示器的高，不支持设置百分比。
 
@@ -796,9 +866,15 @@ selectedItemHeight(value: Length)
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### mask
 
-mask(value: boolean)
+mask(value: boolean): DotIndicator
 
 是否显示Swiper组件圆点导航指示器的蒙版样式。
 
@@ -814,9 +890,15 @@ mask(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### color
 
-color(value: ResourceColor)
+color(value: ResourceColor): DotIndicator
 
 Swiper组件圆点导航指示器的颜色。
 
@@ -832,9 +914,15 @@ Swiper组件圆点导航指示器的颜色。
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: ResourceColor): DotIndicator
 
 选中Swiper组件圆点导航指示器的颜色。
 
@@ -850,9 +938,15 @@ selectedColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### maxDisplayCount<sup>12+</sup>
 
-maxDisplayCount(maxDisplayCount: number)
+maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 圆点导航点指示器样式下，导航点显示个数最大值。
 
@@ -865,6 +959,12 @@ maxDisplayCount(maxDisplayCount: number)
 | 参数名          | 类型   | 必填 | 说明                                                         |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
 | maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。 |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
 
 ### constructor
 
@@ -894,11 +994,12 @@ DotIndicator的构造函数。
 
 >**说明：**
 >
->按组翻页时，数字导航点显示的子节点数量，不包括占位节点。
+>按组翻页时，数字导航点显示的子节点数量，不包括占位节点。<br/>
+>数字导航点文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)为2。
 
 ### fontColor
 
-fontColor(value: ResourceColor)
+fontColor(value: ResourceColor): DigitIndicator
 
 Swiper组件数字导航点的字体颜色。
 
@@ -914,9 +1015,15 @@ Swiper组件数字导航点的字体颜色。
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
 
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
 ### selectedFontColor
 
-selectedFontColor(value: ResourceColor)
+selectedFontColor(value: ResourceColor): DigitIndicator
 
 选中Swiper组件数字导航点的字体颜色。
 
@@ -932,9 +1039,15 @@ selectedFontColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
 
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
 ### digitFont
 
-digitFont(value: Font)
+digitFont(value: Font): DigitIndicator
 
 Swiper组件数字导航点的字体样式。
 
@@ -948,11 +1061,17 @@ Swiper组件数字导航点的字体样式。
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 设置Swiper组件数字导航点的字体样式。<br/>默认值：<br/>{&nbsp;size:&nbsp;14,&nbsp;weight:&nbsp;FontWeight.Normal&nbsp;} |
+| value  | [Font](ts-types.md#font) | 是   | 设置Swiper组件数字导航点的字体样式。<br/>只支持Font中size和weight参数，family和style设置不生效。<br/>默认值：<br/>{&nbsp;size:&nbsp;14,&nbsp;weight:&nbsp;FontWeight.Normal&nbsp;} |
+
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
 
 ### selectedDigitFont
 
-selectedDigitFont(value: Font)
+selectedDigitFont(value: Font): DigitIndicator
 
 选中Swiper组件数字导航点的字体样式。
 
@@ -971,6 +1090,12 @@ selectedDigitFont(value: Font)
 >**说明：**
 >
 > 按组翻页时，数字导航点显示的子节点数量，不包括占位节点。
+
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
 
 ### constructor
 
@@ -1020,7 +1145,7 @@ DigitIndicator的构造函数。
 
 ### onChange
 
-onChange(event: (index: number) => void)
+onChange(event: Callback\<number>)
 
 当前显示的子组件索引变化时触发该事件，返回值为当前显示的子组件的索引值。
 
@@ -1036,13 +1161,13 @@ Swiper组件结合LazyForEach使用时，不能在onChange事件里触发子页�
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 当前显示元素的索引。 |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前显示元素的索引。 |
 
 ### onAnimationStart<sup>9+</sup>
 
-onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void)
+onAnimationStart(event: OnSwiperAnimationStartCallback)
 
-切换动画开始时触发该回调。参数为动画开始前的index值（不是最终结束动画的index值），多列Swiper时，index为最左侧组件的索引。
+切换动画开始时触发该回调。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -1052,11 +1177,9 @@ onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAn
 
 **参数：** 
 
-| 参数名                    | 类型                                                       | 必填 | 说明                                                         |
-| ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index                     | number                                                     | 是   | 当前显示元素的索引。                                         |
-| targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
-| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | [OnSwiperAnimationStartCallback](#onswiperanimationstartcallback14) | 是   | 切换动画开始时触发的回调。 |
 
 >**说明：**
 >
@@ -1064,11 +1187,11 @@ onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAn
 
 ### onAnimationEnd<sup>9+</sup>
 
-onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
+onAnimationEnd(event: OnSwiperAnimationEndCallback)
 
 切换动画结束时触发该回调。
 
-当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列Swiper时，index为最左侧组件的索引。
+当Swiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -1078,10 +1201,9 @@ onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
 **参数：** 
 
-| 参数名                  | 类型                                                       | 必填 | 说明                                                         |
-| ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index                   | number                                                     | 是   | 当前显示元素的索引。                                         |
-| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | [OnSwiperAnimationEndCallback](#onswiperanimationendcallback14) | 是   | 切换动画结束时触发的回调。 |
 
 >**说明：**
 >
@@ -1089,9 +1211,9 @@ onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
 ### onGestureSwipe<sup>10+</sup>
 
-onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
+onGestureSwipe(event: OnSwiperGestureSwipeCallback)
 
-在页面跟手滑动过程中，逐帧触发该回调。多列Swiper时，index为最左侧组件的索引。
+在页面跟手滑动过程中，逐帧触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1099,10 +1221,9 @@ onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
 **参数：** 
 
-| 参数名    | 类型                                                       | 必填 | 说明                                                         |
-| --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index     | number                                                     | 是   | 当前显示元素的索引。                                         |
-| extraInfo | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | [OnSwiperGestureSwipeCallback](#onswipergestureswipecallback14) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
 
 ### customContentTransition<sup>12+</sup>
 
@@ -1143,6 +1264,66 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | 是 | Swiper滑动时触发的回调。 |
+
+## 回调函数
+
+### OnSwiperAnimationStartCallback<sup>14+</sup>
+
+type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void
+
+切换动画开始时触发的回调。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                    | 类型                                                       | 必填 | 说明                                                         |
+| ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                     | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
+| targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
+| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
+
+### OnSwiperAnimationEndCallback<sup>14+</sup>
+
+type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
+
+切换动画结束时触发的回调。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                  | 类型                                                       | 必填 | 说明                                                         |
+| ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                   | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
+| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+
+### OnSwiperGestureSwipeCallback<sup>14+</sup>
+
+type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
+
+在页面跟手滑动过程中，逐帧触发的回调。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                                       | 必填 | 说明                                                         |
+| --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index     | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
+| extraInfo | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
 ## SwiperAnimationEvent<sup>10+</sup>对象说明
 
@@ -1224,8 +1405,10 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 
 ## 示例
 
-### 示例1
-该示例实现了通过indicatorInteractive控制导航点交互功能。
+### 示例1（设置导航点交互）
+
+该示例通过indicatorInteractive接口，实现了控制导航点交互的功能。
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1338,8 +1521,10 @@ struct SwiperExample {
 
 ![swiper](figures/swiper.gif)
 
-### 示例2
-该示例演示了使用数字指示器的效果和功能。
+### 示例2（设置数字指示器）
+
+该示例通过DigitIndicator接口，实现了数字指示器的效果和功能。
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1422,8 +1607,10 @@ struct SwiperExample {
 ```
 ![swiper](figures/swiper-digit.gif)
 
-### 示例3
-该示例通过dislayCount属性实现了按组翻页的效果。
+### 示例3（设置按组翻页）
+
+该示例通过displayCount属性实现了按组翻页效果。
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1506,9 +1693,9 @@ struct SwiperExample {
 ```
 ![swiper](figures/swiper-swipe-by-group.gif)
 
-### 示例4
+### 示例4（设置自定义页面切换动画）
 
-本示例通过customContentTransition接口实现了自定义Swiper页面切换动画。
+该示例通过customContentTransition接口，实现了自定义Swiper页面切换动画效果。
 
 ```ts
 // xxx.ets
@@ -1585,9 +1772,9 @@ struct SwiperCustomAnimationExample {
 ```
 ![swiper](figures/swiper-custom-animation.gif)
 
-### 示例5
+### 示例5（设置圆点导航点超长显示）
 
-本示例通过DotIndicator接口的maxDisplayCount属性实现了圆点导航点超长显示动画效果。
+该示例通过DotIndicator接口的maxDisplayCount属性，实现了圆点导航点超长显示动画效果。
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -1680,3 +1867,75 @@ struct Index {
 ```
 
 ![swiper](figures/point_animation.gif)
+
+### 示例6（预加载子节点）
+
+本示例通过preloadItems接口实现了预加载指定子节点。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct SwiperPreloadItems {
+  @State currentIndex: number = 1
+  private swiperController: SwiperController = new SwiperController()
+  @State arr: string[] = ["0", "1", "2", "3", "4", "5"]
+
+  build() {
+    Column() {
+      Swiper(this.swiperController) {
+        ForEach(this.arr, (item: string) => {
+          MyComponent({ txt: item })
+        })
+      }
+      .cachedCount(1, true)
+      .width("70%")
+      .height("50%")
+
+
+      Button('preload items: [2, 3]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载index=2和index=3的子节点
+          try {
+            this.swiperController.preloadItems([2, 3])
+              .then(() => {
+                console.info('preloadItems [2, 3] success.')
+              })
+              .catch((error: BusinessError) => {
+                console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+              })
+          } catch (error) {
+            console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+          }
+
+        })
+    }
+    .width("100%")
+    .margin(5)
+  }
+}
+
+@Component
+struct MyComponent {
+  private txt: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear txt:' + this.txt)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear txt:' + this.txt)
+  }
+
+  build() {
+    Text(this.txt)
+      .textAlign(TextAlign.Center)
+      .width('100%')
+      .height('100%')
+      .backgroundColor(0xAFEEEE)
+  }
+}
+```

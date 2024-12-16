@@ -22,7 +22,7 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                            | 必填 | 说明                   |
 | ------- | ----------------------------------------------- | ---- | ---------------------- |
@@ -88,7 +88,7 @@ defaultPickerItemHeight(value: number | string)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
@@ -104,7 +104,7 @@ disappearTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -120,7 +120,7 @@ textStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -136,7 +136,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -152,7 +152,7 @@ selectedIndex(value: number | number[])
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
@@ -168,7 +168,7 @@ canLoop(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
@@ -225,7 +225,7 @@ onAccept(callback: (value: string, index: number) => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -252,15 +252,18 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
 | value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
-
 ## 示例
+
+### 示例1（设置选择器列数）
+
+该示例通过配置range实现单列或多列文本选择器。
 
 ```ts
 // xxx.ets
@@ -318,6 +321,10 @@ struct TextPickerExample {
 
 ![textpicker](figures/textpicker.gif)
 
+### 示例2（设置文本样式）
+
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle实现文本选择器中的文本样式。
+
 ```ts
 // xxx.ets
 @Entry
@@ -328,19 +335,30 @@ struct TextPickerExample {
 
   build() {
     Column() {
-      TextPicker({ range: this.fruits, selected: this.select })
+      TextPicker({
+        range: this.fruits,
+        selected: this.select,
+        value: this.fruits[this.select]
+      })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
-        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
-        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
-        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
+        .disappearTextStyle({ color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } })
+        .textStyle({ color: Color.Black, font: { size: 20, weight: FontWeight.Normal } })
+        .selectedTextStyle({ color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } })
+        .defaultPickerItemHeight(50)
+        .canLoop(false)
+        .selectedIndex(2)
     }.width('100%').height('100%')
   }
 }
 ```
 
 ![textpicker](figures/textpicker1.gif)
+
+### 示例3（设置无分割线样式）
+
+该示例通过配置divider为null实现无分割线样式的文本选择器。
 
 ```ts
 // xxx.ets
@@ -365,6 +383,10 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker2.gif)
+
+### 示例4（设置分割线样式）
+
+该示例通过配置divider的DividerOptions类型实现分割线样式的文本选择器。
 
 ```ts
 // xxx.ets
@@ -394,8 +416,12 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker3.gif)
+### 示例5（设置渐隐效果）
+
+该示例通过gradientHeight自定义TextPicker的渐隐效果高度。
+
 ```ts
-// xxx.ets 该示例实现了通过gradientHeight()自定义TextPicker的渐隐效果高度
+// xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
@@ -418,3 +444,92 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker4.gif)
+
+### 示例6（设置选择项高度）
+
+该示例通过配置defaultPickerItemHeight设置选择项的高度。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private select: number = 1
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: this.select })
+        .defaultPickerItemHeight(60)
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo6.png)
+
+
+### 示例7（设置循环滚动）
+
+该示例使用canLoop设置TextPicker是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  @State isLoop: boolean = false
+  private select: number = 1
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: this.select })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .canLoop(this.isLoop)
+
+      Row() {
+        Text('循环滚动').fontSize(20)
+
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .onChange((isOn: boolean) => {
+            this.isLoop = isOn
+          })
+      }.position({ x: '60%', y: '40%' })
+
+    }.width('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo7.gif)
+
+### 示例8（设置选中项索引值）
+
+该示例通过配置selectedIndex设置默认选中项的索引值。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: 1 })
+        .selectedIndex(2)
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo8.png)

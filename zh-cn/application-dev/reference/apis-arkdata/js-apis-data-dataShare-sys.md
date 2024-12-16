@@ -9,6 +9,8 @@
 > - 本模块接口为系统接口。
 >
 > - 本模块接口仅可在Stage模型下使用。
+>
+> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于200KB数据的传输。
 
 
 ## 导入模块
@@ -264,7 +266,7 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist. |
+| 15700011 | The URI does not exist. |
 
 **示例：**
 
@@ -316,7 +318,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-订阅/取消订阅RDB数据变更的结果。
+订阅/取消订阅RDB数据变更的结果，回调支持传输不大于200KB的数据。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -324,7 +326,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | -------- | -------- |
 | uri | string | 是 | 指定回调的uri。 |
 | templateId | [TemplateId](#templateid10) | 是 | 处理回调的templateId。 |
-| data | Array&lt;string&gt; | 是 | 指定回调的数据。 |
+| data | Array&lt;string&gt; | 是 | 指定回调的数据。若处理回调数据时发生错误，则回调将不会被触发。 |
 
 ## PublishedDataChangeNode<sup>10+</sup>
 
@@ -347,6 +349,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | -------- | -------- | -------- | -------- |
 | predicates | Record<string, string> | 是 | 指定模板的谓词。当调用[on](#onrdbdatachange10)的回调时，谓词用于生成数据。仅适用于rdb存储数据。 |
 | scheduler | string | 是 | 指定模板的调度程序sql。其中嵌入自定义函数处理，目前预置自定义函数remindTimer处理。remindTimer在指定场景触发一次订阅刷新。<br/>触发场景：<br/>1. 修改数据时且有订阅的情况下触发对应的调度程序sql语句。<br/>2. 添加对应库第一个订阅的情况下触发对应的调度程序sql语句。 |
+| update<sup>14+<sup> | string | 否 | 指定模板的update sql语句，未定义时默认值为空字符串。当调用[on](#onrdbdatachange10)的回调时，update参数用于更新数据。仅适用于rdb存储数据。 |
 
 ## OperationResult<sup>10+</sup>
 
@@ -606,7 +609,8 @@ let template: dataShare.Template = {
     key1 : value1,
     key2 : value2,
   },
-  scheduler : "select remindTimer(time) from TBL00"
+  scheduler : "select remindTimer(time) from TBL00",
+  update : "update TBL00 set cityColumn = 'visited' where cityColumn = 'someCity'"
 }
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);

@@ -42,6 +42,7 @@ Enumerates the initial ability launch reasons. You can use it together with the 
 | SHARE<sup>10+</sup>           | 5    | The ability is started by means of atomic service sharing.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | AUTO_STARTUP<sup>11+</sup>           | 8    | The ability is automatically started upon system boot.|
 | INSIGHT_INTENT<sup>11+</sup>           | 9    | The ability is started by the InsightIntent framework.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PREPARE_CONTINUATION<sup>12+</sup>           | 10    | The ability is started in advance during cross-device migration.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 **Example**
 
@@ -154,9 +155,9 @@ Enumerates the window mode when the ability is started. It can be used together 
 
 | Name                       | Value| Description                |
 | ---                         | --- | ---                  |
-| WINDOW_MODE_FULLSCREEN      | 1   | Full screen mode. It takes effect only on 2-in-1 devices and tablets.        |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | Primary screen (left screen in the case of horizontal orientation) in split-screen mode. It is valid only in intra-app redirection scenarios.  |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | Secondary screen (right screen in the case of horizontal orientation) in split-screen mode. It is valid only in intra-app redirection scenarios.  |
+| WINDOW_MODE_FULLSCREEN      | 1   | Full screen mode. It takes effect only on 2-in-1 devices and tablets. |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | Primary screen (left screen in the case of horizontal orientation) in split-screen mode. It is valid only in intra-app redirection scenarios. It takes effect only on foldable devices and tablets.  |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | Secondary screen (right screen in the case of horizontal orientation) in split-screen mode. It is valid only in intra-app redirection scenarios. It takes effect only on foldable devices and tablets.  |
 
 **Example**
 

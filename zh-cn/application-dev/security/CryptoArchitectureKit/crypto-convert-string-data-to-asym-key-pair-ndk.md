@@ -28,8 +28,7 @@
    生成RSA非对称密钥时，默认素数为2，此处省略了参数PRIMES_2。
 
 2. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，传入二进制密钥数据，生成非对称密钥对象（OH_CryptoKeyPair）。
-3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)，将非对称密钥对象中的公钥转换成pkcs1或x509格式，私钥转
-换成pkcs1或pkcs8格式，
+3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)，将非对称密钥对象中的公钥转换成pkcs1或x509格式。
 
 - 以下以生成RSA密钥对为例：
 
@@ -71,7 +70,7 @@ static OH_Crypto_ErrCode doTestPemDataCovertAsymKey()
       OH_CryptoKeyPair_Destroy(dupKeyPair);
       return ret;
    }
-   OH_Crypto_FreeDataBlob(retBlob);
+   OH_Crypto_FreeDataBlob(&retBlob);
    OH_CryptoAsymKeyGenerator_Destroy(ctx);
    OH_CryptoKeyPair_Destroy(dupKeyPair);
    return ret;

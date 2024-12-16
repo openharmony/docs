@@ -22,7 +22,7 @@ DatePicker(options?: DatePickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                            | 必填 | 说明                       |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
@@ -76,7 +76,7 @@ lunar(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
@@ -92,7 +92,7 @@ disappearTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -108,7 +108,7 @@ textStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -124,7 +124,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -153,7 +153,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                          | 必填 | 说明             |
 | ------ | --------------------------------------------- | ---- | ---------------- |
@@ -169,7 +169,7 @@ onDateChange(callback: Callback\<Date>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -187,8 +187,11 @@ onDateChange(callback: Callback\<Date>)
 | month | number | 否   | 否   | 选中日期的月(0~11)，0表示1月，11表示12月。 |
 | day   | number | 否   | 否   | 选中日期的日。                             |
 
-
 ## 示例
+
+### 示例1（切换公历农历）
+
+该示例实现了日期选择器组件，点击按钮可以切换公历农历。
 
 
 ```ts
@@ -211,9 +214,6 @@ struct DatePickerExample {
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
-        .disappearTextStyle({color: Color.Gray, font: {size: '16fp', weight: FontWeight.Bold}})
-        .textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}})
-        .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}})
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
           this.selectedDate = value
@@ -226,3 +226,36 @@ struct DatePickerExample {
 ```
 
 ![datePicker](figures/DatePickerApi10.gif)
+
+### 示例2（设置文本样式）
+
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle设置文本样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerExample {
+  private selectedDate: Date = new Date('2021-08-08')
+
+  build() {
+    Column() {
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+        .disappearTextStyle({ color: Color.Gray, font: { size: '16fp', weight: FontWeight.Bold } })
+        .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
+        .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular } })
+        .onDateChange((value: Date) => {
+          this.selectedDate = value
+          console.info('select current date is: ' + value.toString())
+        })
+
+    }.width('100%')
+  }
+}
+```
+
+![datePicker](figures/DatePickerDemo2.png)

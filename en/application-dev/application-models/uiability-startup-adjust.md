@@ -3,7 +3,9 @@
 
 ## Overview
 
-Since API version 12, you must use Linking to implement cross-application redirection.
+Since API version 12, it is not recommended that third-party applications start other applications by specifying an ability (implicit Want mode). Instead, the [linking mode](app-startup-overview.md#application-links) is recommended.
+
+This section describes how to switch from explicit Want mode to linking mode.
 
 ## Starting the UIAbility of Another Application
 

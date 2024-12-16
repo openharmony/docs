@@ -2,11 +2,13 @@
 
 \@Computed装饰器：计算属性，在被计算的值变化的时候，只会计算一次。主要应用于解决UI多次重用该属性从而重复计算导致的性能问题。
 
+
+状态变量的变化可以触发其关联\@Computed的重新计算。在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，[\@Local](./arkts-new-local.md)。
+
 >**说明：**
 >
 >\@Computed装饰器从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -18,7 +20,8 @@
 \@Computed语法：
 
 ```ts
-@Computed get varName(): T {
+@Computed
+get varName(): T {
     return value;
 }
 ```
@@ -28,33 +31,45 @@
 | 支持类型           | getter访问器。 |
 | 从父组件初始化      | 禁止。 |
 | 可初始化子组件      | \@Param  |
-| 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发被计算。当被计算的值改变的时候，计算属性也会发生计算。 |
-|是否允许赋值         | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](##使用限制)。|
+| 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发计算。当被计算的值改变的时候，计算属性也会发生计算。 |
+|是否允许赋值         | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](#使用限制)。 |
 
 ## 使用限制
 
-- \@Computed为方法装饰器装饰getter方法，在getter方法中，不能改变参与计算的属性。
+- \@Computed为方法装饰器，仅能装饰getter方法。
+
+  ```ts
+  @Computed
+  get fullName() { // 正确用法
+    return this.firstName + ' ' + this.lastName;
+  }
+  @Computed val: number = 0; // 错误用法，编译时报错
+  @Computed
+  func() { // 错误用法，编译时报错
+  }
+  ```
+- 在\@Computed装饰的getter方法中，不能改变参与计算的属性。
 
   ```ts
   @Computed
   get fullName() {
-    this.lastName += 'a'; // error
+    this.lastName += 'a'; // 错误，不能改变参与计算的属性
     return this.firstName + ' ' + this.lastName;
   }
   ```
 
-- \@Computed不能和双向绑定!!连用，即\@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效。
+- \@Computed不能和双向绑定!!连用，\@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效，且产生运行时报错。
 
   ```ts
   @ComponentV2
   struct Child {
-    @Param double: number = 100
+    @Param double: number = 100;
     @Event $double: (val: number) => void;
   
     build() {
       Button('ChildChange')
         .onClick(() => {
-          this.$double(200)
+          this.$double(200);
         })
     }
   }
@@ -62,14 +77,14 @@
   @Entry
   @ComponentV2
   struct Index {
-    @Local count: number = 100
+    @Local count: number = 100;
   
     @Computed
     get double() {
-      return this.count * 2
+      return this.count * 2;
     }
   
-    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效
+    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效，且产生运行时报错
     set double(newValue : number) {
       this.count = newValue / 2;
     }
@@ -93,13 +108,14 @@
   @Local a : number = 1;
   @Computed
   get b() {
-    return this.a + ' ' + this.c;  // error: b -> c -> b
+    return this.a + ' ' + this.c;  // 错误写法，存在循环b -> c -> b
   }
   @Computed
   get c() {
-    return this.a + ' ' + this.b; // error: c -> b -> c
+    return this.a + ' ' + this.b; // 错误写法，存在循环c -> b -> c
   }
   ```
+
 ## 使用场景
 ### 当被计算的属性变化时，\@Computed装饰的getter访问器只会被求解一次
 1. 在自定义组件中使用计算属性
@@ -298,7 +314,6 @@ struct Child {
       Text(`Total: ${this.total} `).fontSize(30)
       Text(`Discount: ${this.qualifiesForDiscount} `).fontSize(30)
     }
-
   }
 }
 ```

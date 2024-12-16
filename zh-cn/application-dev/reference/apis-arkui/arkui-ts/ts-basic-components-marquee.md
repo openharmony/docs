@@ -16,7 +16,7 @@
 
 ## 接口
 
-Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string })
+Marquee(options: MarqueeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -28,7 +28,27 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string } | 是 | 配置跑马灯组件的参数。<br/>-&nbsp;start：控制跑马灯是否进入播放状态。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。<br/>-&nbsp;step：滚动动画文本滚动步长，当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6，单位vp<br/>-&nbsp;loop：设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。<br/>-&nbsp;fromStart：设置文本从头开始滚动或反向滚动。<br/>默认值：true<br/>-&nbsp;src：需要滚动的文本。 |
+| options | [MarqueeOptions](#marqueeoptions14对象说明) | 是 | 配置跑马灯组件的参数。|
+
+## MarqueeOptions<sup>14+</sup>对象说明
+
+Marquee初始化参数。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| start | boolean | 是 | 控制跑马灯是否进入播放状态。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。|
+| step | number | 否 | 滚动动画文本滚动步长，当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6，单位vp。|
+| loop | number | 否 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。|
+| fromStart | boolean | 否 | 设置文本从头开始滚动或反向滚动。<br/>默认值：true。 |
+| src | string | 是 | 需要滚动的文本。 |
 
 ## 属性
 
@@ -180,6 +200,7 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
+该示例通过设置start、step、loop、fromStart、src、marqueeUpdateStrategy展示了跑马灯内容动态更新时运行的效果。  
 
 ```ts
 // xxx.ets
@@ -211,31 +232,31 @@ struct MarqueeExample {
         src: this.marqueeText + this.src
       })
         .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE_POSITION)
-        .width(300)
-        .height(80)
+        .width('300vp')
+        .height('80vp')
         .fontColor('#FFFFFF')
-        .fontSize(48)
+        .fontSize('48fp')
         .fontWeight(700)
         .backgroundColor('#182431')
-        .margin({ bottom: 40 })
+        .margin({ bottom: '40vp' })
         .onStart(() => {
-          console.info('Marquee animation complete onStart')
+          console.info('Succeeded in completing the onStart callback of marquee animation')
         })
         .onBounce(() => {
-          console.info('Marquee animation complete onBounce')
+          console.info('Succeeded in completing the onBounce callback of marquee animation')
         })
         .onFinish(() => {
-          console.info('Marquee animation complete onFinish')
+          console.info('Succeeded in completing the onFinish callback of marquee animation')
         })
       Button('Start')
         .onClick(() => {
           this.start = true
-          //启动文本时钟
+          // 启动文本时钟
           this.controller.start()
         })
-        .width(120)
-        .height(40)
-        .fontSize(16)
+        .width('120vp')
+        .height('40vp')
+        .fontSize('16fp')
         .fontWeight(500)
         .backgroundColor('#007DFF')
       TextClock({ timeZoneOffset: -8, controller: this.controller })
@@ -243,8 +264,8 @@ struct MarqueeExample {
         .onDateChange((value: number) => {
           this.src = this.convert2time(value);
         })
-        .margin(20)
-        .fontSize(30)
+        .margin('20vp')
+        .fontSize('30fp')
     }
     .width('100%')
     .height('100%')

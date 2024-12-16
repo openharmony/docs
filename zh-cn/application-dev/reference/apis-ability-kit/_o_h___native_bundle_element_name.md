@@ -7,13 +7,9 @@
 
 OH_NativeBundle_ElementName是[OH_NativeBundle_GetMainElementName()](_bundle.md#oh_nativebundle_getmainelementname)的输出参数，描述ElementName信息。
 
-**起始版本：**
+**起始版本**：13
 
-13
-
-**相关模块：**
-
-[Bundle](_bundle.md)
+**相关模块：**[Bundle](_bundle.md)
 
 
 ## 汇总
@@ -42,9 +38,7 @@ char* OH_NativeBundle_ElementName::bundleName
 
 应用的包名。
 
-**起始版本：**
-
-13
+**起始版本**：13
 
 
 ### moduleName
@@ -58,9 +52,7 @@ char* OH_NativeBundle_ElementName::moduleName
 
 模块名称。
 
-**起始版本：**
-
-13
+**起始版本**：13
 
 
 ### abilityName
@@ -74,6 +66,4 @@ char* OH_NativeBundle_ElementName::abilityName
 
 ability名称。
 
-**起始版本：**
-
-13
+**起始版本**：13

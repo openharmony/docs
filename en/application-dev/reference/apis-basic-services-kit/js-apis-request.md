@@ -39,13 +39,9 @@ The table below lists the values of **err** in the callback of [on('fail')<sup>7
 | ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | Insufficient storage space.|
 | ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | Error caused by too many network redirections.|
 | ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | Unidentified HTTP code.|
-| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | Unknown error.|
+| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | Unknown error. (In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an **ERROR_UNKNOWN** error.)|
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | No network connection.|
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | Network type mismatch.|
-
-> **NOTE**
->
-> In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an **ERROR_UNKNOWN** error.
 
 ### Causes of Download Pause
 The table below lists the values of **pausedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
@@ -74,7 +70,7 @@ The table below lists the values of **status** returned by [getTaskInfo<sup>9+</
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
-Uploads files. This API uses a promise to return the result. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
+Uploads a file. This API uses a promise to return the result. HTTP is supported. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -92,7 +88,7 @@ Uploads files. This API uses a promise to return the result. You can use [on('co
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
+| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
 
 **Error codes**
 
@@ -137,7 +133,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
-Uploads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
+Uploads a file. This API uses an asynchronous callback to return the result. HTTP is supported. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -149,7 +145,7 @@ Uploads files. This API uses an asynchronous callback to return the result. You 
 | -------- | -------- | -------- | -------- |
 | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
 | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object. If the operation is successful, **err** is **undefined**, and **data** is the **UploadTask** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -217,7 +213,7 @@ Uploads files. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the upload task.|
+| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
 
 **Error codes**
 
@@ -267,7 +263,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | config | [UploadConfig](#uploadconfig6) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object. If the operation is successful, **err** is **undefined**, and **data** is the **UploadTask** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -307,7 +303,7 @@ Implements file uploads. Before using any APIs of this class, you must obtain an
 
 on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
 
-Subscribes to upload progress events. This API uses a callback to return the result asynchronously.
+Subscribes to upload progress events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -320,7 +316,7 @@ Subscribes to upload progress events. This API uses a callback to return the res
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
-| callback | function | Yes| Callback for the upload progress event.|
+| callback | function | Yes| Callback used to return the size of the uploaded file and the total size of the file to upload.|
 
   Parameters of the callback function
 
@@ -361,7 +357,7 @@ Subscribes to HTTP response events for the upload task. This API uses a callback
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response received).|
-| callback | function | Yes| Callback for the HTTP response event.|
+| callback | function | Yes| Callback used to return the response content.|
 
   Parameters of the callback function
 
@@ -392,22 +388,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-Subscribes to upload completion or failure events. This API uses a callback to return the result asynchronously.
+Subscribes to upload completion or failure events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.Upload
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Callback types for subscribing to the upload events, including **'complete' |**|**'fail'**.<br>\-**'complete'**: the upload is complete.<br>\-**'fail'**: the upload fails.
+  | callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | Yes| Callback used to return the result.  |
 
-  Parameters of the callback function
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | Yes| Upload result.|
 
 **Error codes**
 
@@ -450,8 +441,14 @@ Unsubscribes from upload progress events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
+Parameters of the callback function
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uploadedSize | number | Yes| Size of the uploaded files, in bytes.|
+| totalSize | number | Yes| Total size of the files to upload, in bytes.|
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -533,7 +530,7 @@ Unsubscribes from upload completion or failure events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -629,7 +626,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 delete(callback: AsyncCallback&lt;boolean&gt;): void
 
-Deletes this upload task. This API uses an asynchronous callback to return the result. 
+Deletes this upload task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -671,7 +668,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 remove(): Promise&lt;boolean&gt;
 
-Removes this upload task. This API uses a promise to return the result. 
+Removes this upload task. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -710,7 +707,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 remove(callback: AsyncCallback&lt;boolean&gt;): void
 
-Removes this upload task. This API uses an asynchronous callback to return the result. 
+Removes this upload task. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -796,7 +793,7 @@ The following table describes the enum values of **responseCode**.
 | 20  | Other errors. Verify the parameter configuration or the network connection, or try again.       |
 
 ## File
-Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
+Defines the file list in [UploadConfig<sup>6+</sup>](#uploadconfig6).
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -804,12 +801,12 @@ Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 | -------- | -------- | -------- | -------- |
 | filename | string | Yes| File name in the header when **multipart** is used.|
 | name | string | Yes| Name of a form item when **multipart** is used. The default value is **file**.|
-| uri | string | Yes| Local path for storing files.<br>Only internal protocols are supported in the path. Therefore, **internal://cache/**, that is, **context.cacheDir** of the caller (namely, cache directory of the input **context**), must be included in the path.<br>Example: **internal://cache/path/to/file.txt** |
+| uri | string | Yes| Local path for storing files.<br>Only internal protocols are supported in the path. Therefore, **internal://cache/**, that is, **context.cacheDir** of the caller (namely, cache directory of the input **context**), must be included in the path,<br>for example, **internal://cache/path/to/file.txt**.|
 | type | string | Yes| Type of the file content. By default, the type is obtained based on the extension of the file name or URI.|
 
 
 ## RequestData
-Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
+Defines the form data in [UploadConfig<sup>6+</sup>](#uploadconfig6).
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -822,7 +819,7 @@ Defines the form data in [UploadConfig<sup>6+<sup>](#uploadconfig6).
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
-Downloads files. This API uses a promise to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
+Downloads a file. This API uses a promise to return the result. HTTP is supported. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -839,11 +836,11 @@ Downloads files. This API uses a promise to return the result. You can use [on('
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
+| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the **DownloadTask** object.|
 
 **Error codes**
 
-For details about the following error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -879,7 +876,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
-Downloads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
+Downloads a file. This API uses an asynchronous callback to return the result. HTTP is supported. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -891,11 +888,11 @@ Downloads files. This API uses an asynchronous callback to return the result. Yo
 | -------- | -------- | -------- | -------- |
 | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
 | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadTask** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the following error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -957,7 +954,7 @@ Downloads files. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the download task.|
+| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the **DownloadTask** object.|
 
 **Error codes**
 
@@ -1001,7 +998,7 @@ Downloads files. This API uses an asynchronous callback to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | config | [DownloadConfig](#downloadconfig) | Yes| Download configuration.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the download task.|
+| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadTask** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1035,7 +1032,7 @@ Implements file downloads. Before using any APIs of this class, you must obtain 
 
 on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
 
-Subscribes to download progress events. This API uses a callback to return the result asynchronously.
+Subscribes to download progress events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1048,13 +1045,13 @@ Subscribes to download progress events. This API uses a callback to return the r
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
-| callback | function | Yes| Callback used to return the result.|
+| callback | function | Yes| Callback used to return the size of the uploaded file and the total size of the file to download.|
 
   Parameters of the callback function
 
 | Name| Type| Mandatory| Description                                                                     |
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
-| receivedSize | number | Yes| Size of the downloaded files, in bytes.                                                          |
+| receivedSize | number | Yes| Current download progress, in bytes.                                                          |
 | totalSize | number | Yes| Total size of the files to download, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **totalSize** is treated as **-1**.|
 
 **Error codes**
@@ -1100,7 +1097,14 @@ Unsubscribes from download progress events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
-| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+  Parameters of the callback function
+
+| Name| Type| Mandatory| Description                                                                     |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | Yes| Current download progress, in bytes.                                                          |
+| totalSize | number | Yes| Total size of the files to download, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **totalSize** is treated as **-1**.|
 
 **Error codes**
 
@@ -1197,7 +1201,7 @@ try {
 
 ### off('complete'|'pause'|'remove')<sup>7+</sup>
 
-off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
+off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 
 Unsubscribes from download events.
 
@@ -1279,7 +1283,7 @@ try {
 
 on(type: 'fail', callback: (err: number) =&gt; void): void
 
-Subscribes to download failure events. This API uses a callback to return the result asynchronously.
+Subscribes to download failure events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -1496,7 +1500,7 @@ Obtains the information about this download task. This API uses a promise to ret
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  Promise used to return the download task information.|
+| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  Promise used to return the **DownloadInfo** object.|
 
 **Error codes**
 
@@ -1537,7 +1541,7 @@ try {
 
 getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
-Obtains the information about this download task. This API uses an asynchronous callback to return the result.
+Obtains this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1547,7 +1551,7 @@ Obtains the information about this download task. This API uses an asynchronous 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1590,7 +1594,7 @@ try {
 
 getTaskMimeType(): Promise&lt;string&gt;
 
-Queries **MimeType** (that is, media type of resources) of a download task. This API uses a promise to return the result.
+Obtains **MimeType** (that is, media type of resources) of a download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1600,7 +1604,7 @@ Queries **MimeType** (that is, media type of resources) of a download task. This
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+| Promise&lt;string&gt; | Promise used to return the **MimeType** object.|
 
 **Error codes**
 
@@ -1651,7 +1655,7 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the **MimeType** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1694,7 +1698,7 @@ try {
 
 suspend(): Promise&lt;boolean&gt;
 
-Pauses this download task. This API uses a promise to return the result.
+Suspends this download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1704,7 +1708,7 @@ Pauses this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1745,7 +1749,7 @@ try {
 
 suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
-Pauses this download task. This API uses an asynchronous callback to return the result.
+Suspends this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1755,7 +1759,7 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1798,7 +1802,7 @@ try {
 
 restore(): Promise&lt;boolean&gt;
 
-Resumes this download task. This API uses a promise to return the result.
+Restores this download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1808,7 +1812,7 @@ Resumes this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1849,7 +1853,7 @@ try {
 
 restore(callback: AsyncCallback&lt;boolean&gt;): void
 
-Resumes this download task. This API uses an asynchronous callback to return the result.
+Restores this download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1859,7 +1863,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1916,7 +1920,7 @@ Removes this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1955,7 +1959,7 @@ Removes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1996,7 +2000,7 @@ Queries this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
+| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the **DownloadInfo** object.|
 
 **Error codes**
 
@@ -2035,7 +2039,7 @@ Queries this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DownloadInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2076,7 +2080,7 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+| Promise&lt;string&gt; | Promise used to return the **MimeType** object.|
 
 **Error codes**
 
@@ -2115,7 +2119,7 @@ Queries the **MimeType** of this download task. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the **MimeType** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2156,7 +2160,7 @@ Pauses this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2195,7 +2199,7 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2236,7 +2240,7 @@ Resumes this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2275,7 +2279,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2333,7 +2337,7 @@ Defines the download task information, which is the callback parameter of the [g
 | downloadTitle | string |Yes| Name of the download task.|
 | downloadTotalBytes | number |Yes| Total size of the files to download, in bytes.|
 | description | string |Yes| Description of the download task.|
-| downloadedBytes | number |Yes| Size of the files downloaded, in bytes.|
+| downloadedBytes | number |Yes| Real-time download size, in bytes.|
 
 ## Action<sup>10+</sup>  
 
@@ -2437,12 +2441,12 @@ Provides the configuration information of an upload or download task.
 | method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | headers | object | No| HTTP headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**. for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry enabled for the task.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a roaming network.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: task enabled for an automatic retry.<br>- **false**: task disabled for an automatic retry.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | proxy<sup>12+</sup> | string | No| Proxy address. The value contains a maximum of 512 characters.<br>It is in the format of http://\<domain or address\>:\<port\>. By default, this parameter is left blank.|
 | index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -2486,7 +2490,7 @@ Describes the data structure of the task progress.
 | state | [State](#state10) | Yes| Current task status.                                                           |
 | index | number | Yes| Index of the file that is being processed in the task.                                                    |
 | processed | number | Yes| Size of processed data in the current file in the task, in bytes.                                              |
-| sizes | Array&lt;number&gt; | Yes| Size of files in the task, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **sizes** is treated as **-1**.|
+| sizes | Array&lt;number&gt; | Yes| Size of a file in a task, in bytes. If the server uses the chunk mode for data transmission and the total file size cannot be obtained from the request header, the value of **sizes** is treated as **-1**.|
 | extras | object | No| Extra information of the task, for example, the header and body of the response from the server.                                    |
 
 
@@ -2547,13 +2551,14 @@ Defines the data structure of the task information for query. The fields availab
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
 | gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.|
-| ctime | number | Yes | Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br/>**NOTE**<br/>When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10). |
-| mtime | number | Yes | Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device. |
-| retry | boolean | Yes | Whether automatic retry is enabled for the task. This parameter applies only to background tasks. |
-| tries | number | Yes | Number of retries of the task. |
-| faults | [Faults](#faults10) | Yes | Failure cause of the task. |
-| reason | string | Yes | Reason why the task is waiting, failed, stopped, or paused. |
-| extras | object | No | Extra information of the task. |
+| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>Note: When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).|
+| mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
+| retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
+| tries | number | Yes| Number of retries of the task.|
+| faults | [Faults](#faults10) | Yes| Failure cause of the task.|
+| reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
+| extras | object | No| Extra information of the task|
+
 
 ## HttpResponse<sup>12+</sup> 
 Data structure of the task response header.
@@ -2587,9 +2592,9 @@ Task attributes include the task ID and task configuration.
 
 ### on('progress')<sup>10+</sup>
 
-on(event: 'progress', callback: (progress: Progress) =&gt; void): void
+on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task progress changes. This API uses a callback to return the result asynchronously.
+Subscribes to task progress changes. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2663,9 +2668,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 ### on('completed')<sup>10+</sup>
 
-on(event: 'completed', callback: (progress: Progress) =&gt; void): void
+on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task completion events. This API uses a callback to return the result asynchronously.
+Subscribes to task completion events. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2739,9 +2744,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 ### on('failed')<sup>10+</sup>
 
-on(event: 'failed', callback: (progress: Progress) =&gt; void): void
+on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task failure events. This API uses a callback to return the result asynchronously.
+Subscribes to task failure events. This API uses an asynchronous callback to return the result. You can call [request.agent.show<sup>10+</sup>](#requestagentshow10-1) to check the error.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2815,9 +2820,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 ### on('pause')<sup>11+</sup>
 
-on(event: 'pause', callback: (progress: Progress) =&gt; void): void
+on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task pause events. This API uses a callback to return the result asynchronously.
+Subscribes to task pause events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2825,7 +2830,7 @@ Subscribes to task pause events. This API uses a callback to return the result a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
+| event | string | Yes| Type of the event to subscribe to.<br>- **'pause'**: task pause event.|
 | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
@@ -2889,9 +2894,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### on('resume')<sup>11+</sup>
 
-on(event: 'resume', callback: (progress: Progress) =&gt; void): void
+on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task resume events. This API uses a callback to return the result asynchronously.
+Subscribes to task resume events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2963,9 +2968,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### on('remove')<sup>11+</sup>
 
-on(event: 'remove', callback: (progress: Progress) =&gt; void): void
+on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-Subscribes to task removal events. This API uses a callback to return the result asynchronously.
+Subscribes to task removal events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2973,7 +2978,7 @@ Subscribes to task removal events. This API uses a callback to return the result
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
+| event | string | Yes| Type of the event to subscribe to.<br>- **'remove'**: task removal event.|
 | callback | function | Yes| Callback used to return the data structure of the task progress.|
 
 **Error codes**
@@ -3113,7 +3118,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### off('progress')<sup>10+</sup>
 
-off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
+off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from task progress events.
 
@@ -3197,7 +3202,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 ### off('completed')<sup>10+</sup>
 
-off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
+off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from task completion events.
 
@@ -3281,7 +3286,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 ### off('failed')<sup>10+</sup>
 
-off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
+off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from task failure events.
 
@@ -3365,7 +3370,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 ### off('pause')<sup>11+</sup>
 
-off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
+off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from the foreground task pause event.
 
@@ -3375,7 +3380,7 @@ Unsubscribes from the foreground task pause event.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
+| event | string | Yes| Type of the event to subscribe to.<br>- **'pause'**: task pause event.|
 | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
@@ -3447,7 +3452,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### off('resume')<sup>11+</sup>
 
-off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
+off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from the foreground task resume event.
 
@@ -3529,7 +3534,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### off('remove')<sup>11+</sup>
 
-off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
+off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 Unsubscribes from the task removal event.
 
@@ -3539,7 +3544,7 @@ Unsubscribes from the task removal event.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
+| event | string | Yes| Type of the event to subscribe to.<br>- **'remove'**: task removal event.|
 | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
@@ -3699,7 +3704,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 Tasks in the following states can be started:
 1. Task created by **request.agent.create**.
-2. Download tasks that are created by **request.agent.create** but have failed or stopped
+2. Download tasks that are created by **request.agent.create** but have failed or paused.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -3774,7 +3779,7 @@ start(): Promise&lt;void&gt;
 
 Tasks in the following states can be started:
 1. Task created by **request.agent.create**.
-2. Download tasks that are created by **request.agent.create** but have failed or stopped
+2. Download tasks that are created by **request.agent.create** but have failed or paused.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -4250,7 +4255,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
-Creates an upload or download task and adds it to the queue. This API uses an asynchronous callback to return the result.
+Creates an upload or download task and adds it to the queue. This API uses an asynchronous callback to return a result. HTTP is supported.
 
 
 **Required permissions**: ohos.permission.INTERNET
@@ -4265,7 +4270,7 @@ Creates an upload or download task and adds it to the queue. This API uses an as
 | -------- | -------- | -------- | -------- |
 | config | [Config](#config10) | Yes| Task configuration.|
 | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| callback | AsyncCallback&lt;[Task](#task10)&gt; | Yes| Callback used to return the configuration about the created task.|
+| callback | AsyncCallback&lt;[Task](#task10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **Task** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4333,7 +4338,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-Creates an upload or download task and adds it to the queue. This API uses a promise to return the result.
+Creates an upload or download task and adds it to the queue. This API uses a promise to return a result. HTTP is supported.
 
 
 **Required permissions**: ohos.permission.INTERNET
@@ -4493,7 +4498,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in creating a download task.`);
@@ -4559,7 +4564,7 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | id | string | Yes| Task ID.|
-| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TaskInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -4603,7 +4608,7 @@ Queries a task details based on the task ID. This API uses a promise to return t
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise used to return the **TaskInfo** object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -4641,7 +4646,7 @@ Queries the task details based on the task ID and token. This API uses an asynch
 | -------- | -------- | -------- | -------- |
 | id | string | Yes| Task ID.|
 | token | string | Yes| Token for task query.|
-| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
+| callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **TaskInfo** object obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -4686,7 +4691,7 @@ Queries the task details based on the task ID and token. This API uses a promise
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise used to return the **TaskInfo** object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -4721,7 +4726,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the task ID. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -4738,10 +4743,10 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   request.agent.search((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Upload task search succeeded. `);
+    console.info(`Succeeded in searching a upload task. `);
   });
   ```
 
@@ -4758,7 +4763,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | filter | [Filter](#filter10) | Yes| Filter criteria.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the task ID. Otherwise, **err** is an error object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
@@ -4779,10 +4784,10 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   }
   request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Upload task search succeeded. `);
+    console.info(`Succeeded in searching a upload task. `);
   });
   ```
 
@@ -4825,8 +4830,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     mode: request.agent.Mode.BACKGROUND
   }
   request.agent.search(filter).then((data: Array<string>) => {
-    console.info(`Upload task search succeeded. `);
+    console.info(`Succeeded in searching a upload task. `);
   }).catch((err: BusinessError) => {
-    console.error(`Upload task search failed. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```

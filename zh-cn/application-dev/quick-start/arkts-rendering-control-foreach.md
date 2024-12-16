@@ -307,6 +307,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -407,6 +408,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -422,6 +424,7 @@ struct ArticleCard {
           .margin({ bottom: 8 })
 
         Row() {
+          // 此处app.media.iconLiked'，'app.media.iconUnLiked'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
             .width(24)
             .height(24)

@@ -61,7 +61,7 @@
 | [Hid_AbsAxes](#hid_absaxes) {<br/>HID_ABS_X = 0x00, HID_ABS_Y = 0x01, HID_ABS_Z = 0x02, HID_ABS_RX = 0x03,<br/>HID_ABS_RY = 0x04, HID_ABS_RZ = 0x05, HID_ABS_THROTTLE = 0x06, HID_ABS_RUDDER = 0x07,<br/>HID_ABS_WHEEL = 0x08, HID_ABS_GAS = 0x09, HID_ABS_BRAKE = 0x0a, HID_ABS_HAT0X = 0x10,<br/>HID_ABS_HAT0Y = 0x11, HID_ABS_HAT1X = 0x12, HID_ABS_HAT1Y = 0x13, HID_ABS_HAT2X = 0x14,<br/>HID_ABS_HAT2Y = 0x15, HID_ABS_HAT3X = 0x16, HID_ABS_HAT3Y = 0x17, HID_ABS_PRESSURE = 0x18,<br/>HID_ABS_DISTANCE = 0x19, HID_ABS_TILT_X = 0x1a, HID_ABS_TILT_Y = 0x1b, HID_ABS_TOOL_WIDTH = 0x1c,<br/>HID_ABS_VOLUME = 0x20, HID_ABS_MISC = 0x28<br/>} | 绝对坐标编码。  | 
 | [Hid_RelAxes](#hid_relaxes) {<br/>HID_REL_X = 0x00, HID_REL_Y = 0x01, HID_REL_Z = 0x02, HID_REL_RX = 0x03,<br/>HID_REL_RY = 0x04, HID_REL_RZ = 0x05, HID_REL_HWHEEL = 0x06, HID_REL_DIAL = 0x07,<br/>HID_REL_WHEEL = 0x08, HID_REL_MISC = 0x09, HID_REL_RESERVED = 0x0a, HID_REL_WHEEL_HI_RES = 0x0b,<br/>HID_REL_HWHEEL_HI_RES = 0x0c<br/>} | 相对坐标编码。  | 
 | [Hid_MscEvent](#hid_mscevent) {<br/>HID_MSC_SERIAL = 0x00, HID_MSC_PULSE_LED = 0x01, HID_MSC_GESTURE = 0x02, HID_MSC_RAW = 0x03,<br/>HID_MSC_SCAN = 0x04, HID_MSC_TIMESTAMP = 0x05<br/>} | 不适合其它类型的输入事件编码。  | 
-| [Hid_DdkErrCode](#hid_ddkerrcode) {<br/>HID_DDK_SUCCESS = 0, HID_DDK_FAILURE = -1, HID_DDK_INVALID_PARAMETER = -2, HID_DDK_INVALID_OPERATION = -3,<br/>HID_DDK_NULL_PTR = -4, HID_DDK_TIMEOUT = -5, HID_DDK_NO_PERM = -6<br/>} | HID DDK错误码定义。  | 
+| [Hid_DdkErrCode](#hid_ddkerrcode) {<br/>HID_DDK_SUCCESS = 0, HID_DDK_NO_PERM = 201, HID_DDK_INVALID_PARAMETER = 401,HID_DDK_FAILURE = 27300001,<br/>HID_DDK_NULL_PTR = 27300002, HID_DDK_INVALID_OPERATION = 27300003, HID_DDK_TIMEOUT = 27300004<br/>} | HID DDK错误码定义。  | 
 
 
 ### 函数
@@ -252,16 +252,15 @@ HID DDK错误码定义。
 
 **起始版本：** 11
 
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| HID_DDK_SUCCESS  | 操作成功 | 
-| HID_DDK_FAILURE  | 操作失败 | 
-| HID_DDK_INVALID_PARAMETER  | 非法参数 | 
-| HID_DDK_INVALID_OPERATION  | 非法操作 | 
-| HID_DDK_NULL_PTR  | 空指针异常 | 
-| HID_DDK_TIMEOUT  | 超时 | 
-| HID_DDK_NO_PERM  | 没有权限 | 
-
+| 枚举定义 | 值 | 描述 | 
+| -------- | -------- |-------- |
+| HID_DDK_SUCCESS | 0 | 操作成功 | 
+| HID_DDK_NO_PERM | 201 | 没有权限 | 
+| HID_DDK_INVALID_PARAMETER | 401 | 非法参数 | 
+| HID_DDK_FAILURE | 27300001 | 操作失败 | 
+| HID_DDK_NULL_PTR | 27300002 | 空指针异常 | 
+| HID_DDK_INVALID_OPERATION | 27300003 | 非法操作 | 
+| HID_DDK_TIMEOUT | 27300004 | 超时 | 
 
 ### Hid_DeviceProp
 
@@ -548,8 +547,6 @@ ohos.permission.ACCESS_DDK_HID
 - [HID_DDK_SUCCESS](#hid_ddkerrcode)：表示调用接口成功。
 - [HID_DDK_NO_PERM](#hid_ddkerrcode)：表示权限校验失败。
 - [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode)：表示连接hid_ddk服务失败或者调用方不是设备的创建者。
-- [HID_DDK_FAILURE](#hid_ddkerrcode)：表示对应设备不存在。
-
 
 ### OH_Hid_EmitEvent()
 
@@ -579,8 +576,7 @@ ohos.permission.ACCESS_DDK_HID
 - [HID_DDK_NO_PERM](#hid_ddkerrcode)：表示权限校验失败。
 - [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode)：表示连接hid_ddk服务失败或者调用方不是设备的创建者。
 - [HID_DDK_INVALID_PARAMETER](#hid_ddkerrcode)：表示参数校验失败。可能原因包括：1. 设备ID小于0；2. 入参length长度超过7；3. 入参items为空指针。
-- [HID_DDK_NULL_PTR](#hid_ddkerrcode)：表示对应设备的注入为空。
-- [HID_DDK_FAILURE](#hid_ddkerrcode)：表示对应设备不存在。
+- [HID_DDK_NULL_PTR](#hid_ddkerrcode)：表示对应设备不存在。
 
 
 ## 变量说明

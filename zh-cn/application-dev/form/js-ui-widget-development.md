@@ -169,7 +169,7 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "JsCardFormAbility",
@@ -198,7 +198,7 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
    | name | 表示卡片的类名，字符串最大长度为127字节。 | 字符串 | 否 |
    | description | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
    | src | 表示卡片对应的UI代码的完整路径。 | 字符串 | 否 |
-   | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省 |
+   | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省。 |
    | isDefault | 表示该卡片是否为默认卡片，每个UIAbility有且只有一个默认卡片。<br/>-&nbsp;true：默认卡片。<br/>-&nbsp;false：非默认卡片。 | 布尔值 | 否 |
    | colorMode | 表示卡片的主题样式，取值范围如下：<br/>-&nbsp;auto：自适应。<br/>-&nbsp;dark：深色主题。<br/>-&nbsp;light：浅色主题。 | 字符串 | 可缺省，缺省值为“auto”。 |
    | supportDimensions | 表示卡片支持的外观规格，取值范围：<br/>-&nbsp;1&nbsp;\*&nbsp;2：表示1行2列的二宫格。<br/>-&nbsp;2&nbsp;\*&nbsp;2：表示2行2列的四宫格。<br/>-&nbsp;2&nbsp;\*&nbsp;4：表示2行4列的八宫格。<br/>-&nbsp;4&nbsp;\*&nbsp;4：表示4行4列的十六宫格。 | 字符串数组 | 否 |
