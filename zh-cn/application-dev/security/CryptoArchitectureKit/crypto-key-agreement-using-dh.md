@@ -30,7 +30,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = await keyAgreement.generateSecret(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('DH success');
       console.info('DH output is ' + secret1.data);
     } else {
@@ -56,7 +56,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = keyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('DH success');
       console.info('DH output is ' + secret1.data);
     } else {

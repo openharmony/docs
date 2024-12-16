@@ -11,7 +11,7 @@
 
 2. 调用[cryptoFramework.createKeyAgreement](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement)，指定字符串参数'X25519'，创建密钥算法为X25519的密钥协议生成器（KeyAgreement）。
 
-3. 调用[KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1)，基于传入的私钥（KeyPair.priKey）与公钥（KeyPair.pubKey）进行密钥协商，返回共享秘密。
+3. 调用[KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1)，基于传入的私钥（KeyPair.priKey）与公钥（KeyPair.pubKey）进行密钥协商，返回共享秘钥。
 
 - 异步方法示例：
 
@@ -33,7 +33,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = await keyAgreement.generateSecret(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('x25519 success');
       console.info('x25519 output is ' + secret1.data);
     } else {
@@ -62,7 +62,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = keyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('x25519 success');
       console.info('x25519 output is ' + secret1.data);
     } else {

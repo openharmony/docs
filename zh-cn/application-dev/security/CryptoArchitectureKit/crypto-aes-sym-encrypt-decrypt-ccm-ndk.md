@@ -11,7 +11,7 @@
 
 ## 开发步骤
 
-**开始**
+**创建对象**
 
 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为AES、密钥长度为128位的对称密钥（OH_CryptoSymKey）。
    
@@ -39,7 +39,7 @@
 
 6. 使用[OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create)创建Params，使用[OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置authTag，作为解密的认证信息。
    
-   在CCM模式下，需要从加密后的数据中取出末尾12字节，作为解密时初始化的认证信息。示例中authTag恰好为12字节。
+   在CCM模式下，算法库当前只支持12字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为12字节。
 
 
 
@@ -62,7 +62,7 @@
    - 由于已使用update传入数据，此处data传入null。
    - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
 
-**结束**
+**销毁对象**
 
 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy)、[OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob)释放申请的内存，销毁对称密钥、Cipher实例和Params。
 

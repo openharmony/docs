@@ -31,7 +31,7 @@
 
 6. 读取[GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag作为解密的认证信息。
    
-   在GCM模式下，需要从加密后的数据中取出末尾16字节，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
+   在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
 
 **解密**
@@ -116,7 +116,7 @@
       decryptText = mergeText;
     }
     let decryptData = await decoder.doFinal(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
@@ -216,7 +216,7 @@
       decryptText = mergeText;
     }
     let decryptData = decoder.doFinalSync(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };

@@ -10,7 +10,7 @@
 
 ## 开发步骤
 
-**准备**
+**创建对象**
 
 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为3DES、密钥长度为192位的对称密钥（OH_CryptoSymKey）。
    
@@ -48,13 +48,14 @@
    
    - 当数据量较小时，可以在init完成后直接调用final。
    - 当数据量较大时，可以多次调用update，即分段解密。
+   - 数据量大小可以使用者自行决定。比如大于20使用update。
 
 4. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取解密后的数据。
 
    - 如果使用update接口传入数据，此处data传入null。如果使用final接口传入数据，此处data传入密文数据。
    - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
 
-**结束**
+**销毁对象**
 
 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymKey_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_destroy)、[OH_Crypto_FreeDataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#oh_crypto_freedatablob)释放申请的内存，销毁对象。
 

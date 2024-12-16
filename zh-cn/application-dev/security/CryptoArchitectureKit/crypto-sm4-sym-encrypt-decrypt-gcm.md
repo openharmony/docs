@@ -91,7 +91,7 @@
     let decryptUpdate = await decoder.update(cipherText);
     // gcm模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。
     let decryptData = await decoder.doFinal(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     return decryptUpdate;
@@ -169,7 +169,7 @@
     let decryptUpdate = decoder.updateSync(cipherText);
     // gcm模式解密doFinal时传入空，验证init时传入的tag数据，如果验证失败会抛出异常。
     let decryptData = decoder.doFinalSync(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     return decryptUpdate;
