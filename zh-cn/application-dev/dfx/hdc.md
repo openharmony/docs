@@ -1535,7 +1535,7 @@ There is no bundle name.
 
 **处理步骤**
 
-确认命令的[bundlename]参数不为空。
+确认命令的[bundlename]、[localpath]、[remotepath]参数均不为空。
 
 ### E005004 SDK或者设备系统版本不支持-b选项
 
