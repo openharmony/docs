@@ -211,7 +211,7 @@ try {
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
@@ -271,7 +271,7 @@ try {
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
@@ -411,7 +411,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
@@ -514,7 +514,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { ThreeFingersSwipe } from '@kit.InputKit';
 
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
@@ -617,7 +617,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { FourFingersSwipe } from '@kit.InputKit';
 
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
@@ -723,7 +723,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
@@ -829,7 +829,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
@@ -932,7 +932,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import { ThreeFingersTap } from '@kit.InputKit';
 
 let callback = (threeFingersTap: ThreeFingersTap) => {
@@ -1040,7 +1040,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
@@ -1147,7 +1147,7 @@ try {
 ```
 
 ```js
-// Cancel listening for all callbacks.
+// Disable listening for all callbacks.
 import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
