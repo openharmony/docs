@@ -96,6 +96,7 @@ hiperf list hw
 | -t | 采集线程ID，以逗号隔开，不能和-a一起使用。 |
 | --exclude-tid | 不采集线程ID，以逗号隔开，不能和-a一起使用。 |
 | --exclude-thread | 不采集线程名，以逗号隔开，不能和-a一起使用。 |
+| --exclude-process | 不采集进程名，以逗号隔开，必须和-a一起使用。 |
 | --offcpu | 跟踪线程何时脱离cpu调度。 |
 | -j | 分支堆栈采样，过滤器支持any、any_call、any_ret、ind_call、ind_jmp、cond、call。 |
 | -s/--callstack | 设置回栈模式。 |
@@ -115,10 +116,12 @@ hiperf list hw
 | -z | 以压缩文件形式输出。 |
 | --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，记录将退出。 |
 | --verbose | 输出更详细的报告。 |
-| --control [command]| 采集命令控制参数。命令包括prepare/start/pause/resume/stop。 |
+| --control [command]| 采集命令控制参数。命令包括prepare/start/pause/resume/output/stop。 |
 | --dedup_stack | 删除记录中的重复堆栈，不能和-a一起使用。 |
 | --cmdline-size | 设置/sys/kernel/tracing/saved_cmdlines_size节点的值，取值范围：512 - 4096。 |
 | --report | 采集后回栈报告，不能和-a一起使用。 |
+| --backtrack | 采集之前一段时间的数据，必须和--control prepare一起使用。 |
+| --backtrack-sec | 采集之前数据的时长，取值范围5-30，默认10s，必须和--backtrack一起使用 |
 | --dumpoptions | dump命令选项。 |
 
 ```
