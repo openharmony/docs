@@ -16497,6 +16497,10 @@ struct WebComponent {
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
 
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+
 ## ScrollType<sup>12+</sup>
 
 Scroll滚动类型，用于[setScrollable](#setscrollable12)。
