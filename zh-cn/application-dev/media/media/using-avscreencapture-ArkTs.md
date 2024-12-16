@@ -21,7 +21,7 @@
 - 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 - 当需要读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
 - 当需要保存图片或视频文件时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
-  
+
 > **说明：**
 >
 > 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
@@ -35,7 +35,7 @@
     ```javascript
     import media from '@ohos.multimedia.media';
     ```
-    
+
 2. 创建AVScreenCaptureRecorder类型的成员变量screenCapture。
 
     ```javascript
@@ -116,7 +116,7 @@
         audioChannelCount: 2,
         audioBitrate: 96000,
         preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
-    }
+    };
     ```
 
 5. 基于预先配置的屏幕录制参数，调用init()方法初始化screenCapture。
@@ -176,7 +176,7 @@ export class AVScreenCaptureDemo {
     audioBitrate: 96000,
     preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
   };
-	
+
   // 调用startRecording方法可以开始一次录屏存文件的流程，结束录屏可以通过点击录屏胶囊停止按钮进行操作。
   public async startRecording() {
     this.screenCapture = await media.createAVScreenCaptureRecorder();
@@ -234,11 +234,11 @@ export class AVScreenCaptureDemo {
       console.info("处理异常情况");
     })
     await this.screenCapture?.init(this.captureConfig);
-    
+
     // 豁免隐私窗口
     let windowIDs = [57, 86];
     await this.screenCapture?.skipPrivacyMode(windowIDs);
-    
+
     await this.screenCapture?.startRecording();
   }
 
@@ -249,7 +249,7 @@ export class AVScreenCaptureDemo {
       return;
     }
     await this.screenCapture?.stopRecording();
-    
+
     // 调用release()方法销毁实例，释放资源。
     await this.screenCapture?.release();
 
