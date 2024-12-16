@@ -291,7 +291,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ```
 
 ## Reference
-During development, you can refer to the [default battery level configuration](https://gitee.com/openharmony/powermgr_battery_manager/tree/master/services/native/profile/battery_config.json), as shown below:
+During development, you can refer to the [default battery level configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json), as shown below:
 
  
 

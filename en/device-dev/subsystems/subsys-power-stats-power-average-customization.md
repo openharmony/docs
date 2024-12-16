@@ -195,7 +195,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 ## Reference
 
-During development, you can refer to the [default power consumption statistics configuration](https://gitee.com/openharmony/powermgr_battery_statistics/tree/master/services/profile/power_average.json).
+During development, you can refer to the [default power consumption statistics configuration](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/services/profile/power_average.json).
 
 Default packing path: /system/etc/profile
 
