@@ -487,6 +487,9 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    hdc shell -b com.example.myapplication ls # 指定应用数据目录执行shell，支持touch、rm、ls、stat、cat、mkdir等命令。
    ```
 
+   > **说明：**
+   > 配置的指定调试应用名参数[-b _bundlename_]，仅支持调试debug应用。如何查询一个应用是否为debug应用请参考[错误码E003001处理场景二](#e003001-shell指定的应用名称不是debug应用或应用目录不存在)。
+
 ## 应用管理
 
 | 命令 | 说明 |
@@ -1382,6 +1385,8 @@ The specified bundle name is not a debug application or the debug application pa
    "appProvisionType": "debug"
    ```
 
+   如何构建debug应用请参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)
+
 * 场景三：确定命令指定的应用已启动。
 
    a.启动应用后，系统会挂载相应的资源目录，可执行如下命令查询是否已挂载资源目录：
@@ -1400,7 +1405,7 @@ The specified bundle name is not a debug application or the debug application pa
    hdc shell aa start -b com.example.myapplication -a EntryAbility
    ```
 
-   更多详细用法请参考`aa`命令介绍。
+   更多详细用法请参考[aa命令介绍](../tools/aa-tool.md)。
 
 ### E003002 shell指定的参数不支持交互模式命令行
 
