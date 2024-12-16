@@ -411,11 +411,11 @@ MSG:ability:EntryAbility background timeout
     hiAppEvent 提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
 
 <!--Del-->
-- 方式三：通过shell获取日志
+- 方式三：设备ROOT模式下通过shell获取日志
 
-    应用无响应日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。
+    应用无响应日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-毫秒级时间.log”。
 
-    ![appfreeze_20230308145160](figures/appfreeze_20230308145160.png)
+    ![appfreeze_2024111501](figures/appfreeze_2024111501.png)
 <!--DelEnd-->
 
 ### 确认基本信息

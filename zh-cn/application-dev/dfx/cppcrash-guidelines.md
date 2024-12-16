@@ -100,9 +100,9 @@ SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存�
 
         ![cppcrash-temp-log](figures/20230407111853.png)
 
-    2. CppCrash故障会同步在`/data/log/faultlog/faultlogger/`路径下生成一份完善日志，故障日志文件名格式为`cppcrash-进程名-进程UID-秒级时间`，日志内容较`/data/log/faultlog/temp`下日志更加完善，增加有设备名，系统版本，进程流水日志等信息。
+    2. CppCrash故障会同步在`/data/log/faultlog/faultlogger/`路径下生成一份完善日志，故障日志文件名格式为`cppcrash-进程名-进程UID-毫秒级时间.log`，日志内容较`/data/log/faultlog/temp`下日志更加完善，增加有设备名，系统版本，进程流水日志等信息。
 
-        ![cppcrash-faultlogger-log](figures/20230407112159.png)
+        ![cppcrash-faultlogger-log](figures/cppcrash_image_023.png)
 
 <!--DelEnd-->
 **日志格式 - 空指针故障场景**
