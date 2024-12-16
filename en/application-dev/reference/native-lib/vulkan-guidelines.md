@@ -4,7 +4,7 @@
 
 Vulkan is a set of graphics APIs for 2D and 3D rendering. To start with, you need to create a **VkSurfaceKHR** instance, which works with the **OHNativeWindow** module to implement buffer recycling.
 
-A **VkSurfaceKHR** instance is obtained through an **OHNativeWindow**, which is obtained from the **\<XComponent>**. Therefore, the **OHNativeWindow** module must be used together with the **XComponent** and **NativeWindow** modules.
+A **VkSurfaceKHR** instance is obtained through an **OHNativeWindow**, which is obtained from the **XComponent**. Therefore, the **OHNativeWindow** module must be used together with the **XComponent** and **NativeWindow** modules.
 
 ## Available APIs
 
@@ -70,9 +70,9 @@ libvulkan.so
 
 2. Obtain an **OHNativeWindow** instance.
 
-   The **OHNativeWindow** instance is obtained from the **\<XComponent>**. For details about how to use the **\<XComponent>**, see [XComponent](../../ui/arkts-common-components-xcomponent.md) and [XComponent Development](../../ui/napi-xcomponent-guidelines.md).
+   The **OHNativeWindow** instance is obtained from the **XComponent**. For details about how to use the **XComponent**, see [Custom Rendering (XComponent)](../../ui/napi-xcomponent-guidelines.md).
 
-   1. Add an **\<XComponent>** to **ets/pages/Index.ets**.
+   1. Add an **XComponent** to **ets/pages/Index.ets**.
 
       ```ts
       XComponent({
@@ -85,10 +85,10 @@ libvulkan.so
       .height(360)
       ```
 
-   2. Obtain an **OHNativeWindow** instance from the **\<XComponent>**.
+   2. Obtain an **OHNativeWindow** instance from the **XComponent**.
 
       ```c++
-      // Callback function of the \<XComponent> triggered when a surface is created.
+      // Callback function of the XComponent triggered when a surface is created.
       void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
           // You can obtain an OHNativeWindow instance from the callback function.
           OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
@@ -133,5 +133,3 @@ libvulkan.so
    ```
 
 For details about how to use Vulkan, visit the [Vulkan official website](https://www.vulkan.org/).
-
- <!--no_check--> 
