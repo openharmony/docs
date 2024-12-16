@@ -33,10 +33,12 @@
 
     ```ts
     import { image } from '@kit.ImageKit';
-    
+    imageWidth: number = 1920; // 请使用设备支持profile的size的宽
+    imageHeight: number = 1080; // 请使用设备支持profile的size的高
+
     async function initImageReceiver():Promise<void>{
       // 创建ImageReceiver对象
-      let size: image.Size = { width: 640, height: 480 };
+      let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
       // 获取取第一路流SurfaceId
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
@@ -109,7 +111,7 @@
     方式一：去除component.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
 
     ```ts
-    // 当前相机预览流仅支持NV21（YUV_420_SP格式的图片）
+    // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2
     const dstBufferSize = width * height * 1.5;
     const dstArr = new Uint8Array(dstBufferSize);
     // 逐行读取buffer数据
@@ -139,7 +141,7 @@
 
 ### 用于显示画面的第二路预览流
 
-1. 获取第二路预览流SurfaceId：创建XComponent组件用于预览流显示，获取surfaceId请参考XComponent组件提供的[getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)方法，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+获取第二路预览流SurfaceId：创建XComponent组件用于预览流显示，获取surfaceId请参考XComponent组件提供的[getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)方法，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
 ```ts
 @Component
@@ -239,7 +241,7 @@ struct Index {
   async initImageReceiver(): Promise<void> {
     if (!this.imageReceiver) {
       // 创建ImageReceiver
-      let size: image.Size = { width: 640, height: 480 };
+      let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
       this.imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
       // 获取取第一路流SurfaceId
       this.imageReceiverSurfaceId = await this.imageReceiver.getReceivingSurfaceId();
@@ -282,7 +284,7 @@ struct Index {
               })
             } else {
               // stride与width不一致
-              const dstBufferSize = width * height * 1.5
+              const dstBufferSize = width * height * 1.5 // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2
               const dstArr = new Uint8Array(dstBufferSize)
               for (let j = 0; j < height * 1.5; j++) {
                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
@@ -356,8 +358,8 @@ struct Index {
       }
       // 根据业务需求选择一个支持的预览流profile
       let previewProfile: camera.Profile = capability.previewProfiles[0];
-      this.imageWidth = previewProfile.size.width;
-      this.imageHeight = previewProfile.size.height;
+      this.imageWidth = previewProfile.size.width; // 更新xComponent组件的宽
+      this.imageHeight = previewProfile.size.height; // 更新xComponent组件的高
       console.info(`initCamera imageWidth:${this.imageWidth} imageHeight:${this.imageHeight}`);
       // 使用imageReceiverSurfaceId创建第一路预览
       this.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
