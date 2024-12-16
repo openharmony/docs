@@ -115,28 +115,66 @@ zh-cn/application-dev/application-models/accessibilityextensionability.md @li-ya
 [开发-ArkData]
 zh-cn/application-dev/database @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
 zh-cn/application-dev/database/data-mgmt-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/unified-data-definition-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
-zh-cn/application-dev/database/uniform-data-type-descriptors.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
-zh-cn/application-dev/database/uniform-data-structure.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
+zh-cn/application-dev/database/unified-data-definition-overview.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
+zh-cn/application-dev/database/uniform-data-type-descriptors.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
+zh-cn/application-dev/database/uniform-data-structure.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
 zh-cn/application-dev/database/app-data-persistence-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/data-persistence-by-preferences.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/data-persistence-by-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
-zh-cn/application-dev/database/data-persistence-by-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-persistence-by-preferences.md @ge-yafang @logic42 @houpengtao
+zh-cn/application-dev/database/data-persistence-by-kv-store.md @ge-yafang @logic42 @dboy190 @houpengtao
+zh-cn/application-dev/database/data-persistence-by-rdb-store.md @ge-yafang @logic42 @widecode
 zh-cn/application-dev/database/sync-app-data-across-devices-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/data-sync-of-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/data-sync-of-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
-zh-cn/application-dev/database/data-sync-of-distributed-data-object.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
+zh-cn/application-dev/database/data-sync-of-rdb-store.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/database/data-sync-of-kv-store.md @ge-yafang @logic42 @dboy190 @houpengtao
+zh-cn/application-dev/database/data-sync-of-distributed-data-object.md @ge-yafang @logic42 @lyf2021
 zh-cn/application-dev/database/data-reliability-security-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/data-backup-and-restore.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/data-encryption.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-backup-and-restore.md @ge-yafang @dboy190 @houpengtao @logic42 @widecode
+zh-cn/application-dev/database/data-encryption.md @ge-yafang @dboy190 @houpengtao @logic42 @widecode
 zh-cn/application-dev/database/access-control-by-device-and-data-level.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/data-share-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/share-data-by-datashareextensionability.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/share-data-by-silent-access.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/database/unified-data-definition.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
-zh-cn/application-dev/database/unified-data-channels.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
-zh-cn/application-dev/database/native-relation-store-guidelines.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-share-overview.md @ge-yafang @lou-zhihao @xue-lei3 @logic42
+zh-cn/application-dev/database/share-data-by-datashareextensionability.md @ge-yafang @lou-zhihao @xue-lei3 @logic42
+zh-cn/application-dev/database/share-data-by-silent-access.md @ge-yafang @lou-zhihao @xue-lei3 @logic42
+zh-cn/application-dev/database/unified-data-definition.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
+zh-cn/application-dev/database/unified-data-channels.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
+zh-cn/application-dev/database/native-relation-store-guidelines.md @ge-yafang @logic42 @widecode
 
+
+[API参考-ArkData]
+zh-cn/application-dev/reference/apis-arkdata @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-commonType.md @ge-yafang @lvcong-oh @logic4
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-ability.md @lou-zhihao @xue-lei3 @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataSharePredicates.md @lou-zhihao @xue-lei3 @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md @ge-yafang @logic42 @lyf2021
+zh-cn/application-dev/reference/apis-arkdata/js-apis-distributedKVStore.md @dboy190 @houpengtao @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-preferences.md @ge-yafang @logic42 @houpengtao
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-sendablePreferences.md @ge-yafang @logic42 @houpengtao
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-sendableRelationalStore.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-ValuesBucket.md @lou-zhihao @xue-lei3 @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-application-DataShareExtensionAbility-sys.md @ge-yafang @lou-zhihao @xue-lei3 @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-cloudData-sys.md @ge-yafang @lvcong-oh @logic4
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-cloudExtension-sys.md @ge-yafang @lvcong-oh @logic4
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataShare-sys.md @lou-zhihao @xue-lei3 @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md @lou-zhihao @xue-lei3 @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md @lou-zhihao @xue-lei3 @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-distributedKVStore-sys.md @dboy190 @houpengtao @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore-sys.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/js-apis-distributed-data.md @dboy190 @houpengtao @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-rdb.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-storage.md @ge-yafang @logic42 @houpengtao
+zh-cn/application-dev/reference/apis-arkdata/js-apis-system-storage.md @ge-yafang @logic42 @houpengtao
+zh-cn/application-dev/reference/apis-arkdata/js-apis-data-resultset.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/_data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/_r_d_b.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/_u_d_m_f.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
+zh-cn/application-dev/reference/apis-arkdata/_preferences.md @ge-yafang @logic42 @houpengtao
+zh-cn/application-dev/reference/apis-arkdata/errorcode-preferences.md @ge-yafang @logic42 @houpengtao 
+zh-cn/application-dev/reference/apis-arkdata/errorcode-distributed-dataObject.md @ge-yafang @logic42 @lyf2021
+zh-cn/application-dev/reference/apis-arkdata/errorcode-distributedKVStore.md @dboy190 @houpengtao @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/errorcode-data-rdb.md @ge-yafang @logic42 @widecode
+zh-cn/application-dev/reference/apis-arkdata/errorcode-datashare.md @lou-zhihao @xue-lei3 @ge-yafang @logic42
+zh-cn/application-dev/reference/apis-arkdata/errorcode-udmf.md @ge-yafang  @logic42 @junathuawei @lyf2021 @yuchaozhng
 
 [开发-ArkGraphics2D]
 zh-cn/application-dev/graphics @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
@@ -540,41 +578,6 @@ zh-cn/application-dev/reference/apis-arkts/js-apis-vector.md @gongjunsong @ge-ya
 zh-cn/application-dev/reference/apis-arkts/js-apis-xml.md @gongjunsong @ge-yafang @flyingwolf@blackstone-oh @yingguofeng
 zh-cn/application-dev/reference/apis-arkts/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
 zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
-
-
-
-[API参考-ArkData]
-zh-cn/application-dev/reference/apis-arkdata @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-commonType.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-ability.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataSharePredicates.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-distributedKVStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-preferences.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode @dboy190
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode @dboy190
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-ValuesBucket.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-application-DataShareExtensionAbility-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-cloudData-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-cloudExtension-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataShare-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-distributedKVStore-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore-sys.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-distributed-data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-rdb.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-system-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/js-apis-data-resultset.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/_data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/_r_d_b.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
-zh-cn/application-dev/reference/apis-arkdata/errorcode-preferences.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 
-zh-cn/application-dev/reference/apis-arkdata/errorcode-distributed-dataObject.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis-arkdata/errorcode-distributedKVStore.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
-zh-cn/application-dev/reference/apis-arkdata/errorcode-data-rdb.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis-arkdata/errorcode-datashare.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
 
 
 [API参考-ArkUI-JS]
