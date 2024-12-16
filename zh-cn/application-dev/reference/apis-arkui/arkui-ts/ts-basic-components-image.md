@@ -11,6 +11,8 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 > 图片格式支持SVG图源，SVG标签文档请参考[SVG标签说明](./ts-basic-svg.md)
 >
 > 动图在Image组件不可见时停止动画，通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件实现组件的可见状态，可见阈值ratios大于0时，Image可见。
+>
+> API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模> 块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
 
 ## 需要权限
 
