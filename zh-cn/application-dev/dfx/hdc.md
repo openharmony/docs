@@ -1454,7 +1454,7 @@ Device does not supported this shell command
 
 **处理步骤**
 
-升级设备ROM版本，`hdc shell -b`参数选项为API16支持的特性。
+升级设备系统版本，`hdc shell -b`参数选项为API16支持的特性。
 
 ### E003005 指定的应用名称为空
 
@@ -1514,19 +1514,19 @@ Remote path: [remotepath] is invalid, it is out of the application directory.
 
 检查参数[remotepath]指定的应用数据目录相对路径是否真实存在。
 
-### E005004 file命令在执行时，hdc sdk或者设备ROM版本不支持-b选项
+### E005004 SDK或者设备系统版本不支持-b选项
 
 **错误信息**
 
-Hdc sdk/Device ROM doesn't support -b option. 
+SDK/Device ROM doesn't support -b option. 
 
 **错误描述**
 
-hdc file send/recv 命令带-b选项时，SDK中的hdc或设备系统软件版本不支持该选项。
+hdc file send/recv 命令带-b选项时，SDK中的hdc或设备系统版本不支持该选项。
 
 **可能原因**
 
-* 场景一：执行命令`hdc file send [-b bundlename] [localpath] [remotepath]`时，设备系统软件版本不支持-b选项。
+* 场景一：执行命令`hdc file send [-b bundlename] [localpath] [remotepath]`时，设备系统版本不支持-b选项。
 
 * 场景二：执行命令`hdc file recv [-b bundlename] [remotepath] [localpath]`时，SDK中的hdc不支持-b选项。
 
