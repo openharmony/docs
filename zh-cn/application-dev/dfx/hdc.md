@@ -1469,11 +1469,11 @@ The specified bundle name is empty.
 
 **错误描述**
 
-命令`hdc shell [-b bundlename] [command]`指定的[bundlename]参数为空。
+`hdc shell [-b bundlename] [command]`命令指定-b选项时，未指定应用名称(bundlename)。
 
 **可能原因**
 
-命令未指定应用包名参数。
+命令未指定应用名称(bundlename)参数。
 
 **处理步骤**
 
@@ -1497,7 +1497,7 @@ Invalid bundle name: [bundlename]
 
 同错误码[E003001](#e003001-shell指定的应用名称不是debug应用或应用目录不存在)
 
-### E005102 file指定的远程路径不存在
+### E005102 非法的远程路径
 
 **错误信息**
 
@@ -1518,6 +1518,24 @@ Remote path: [remotepath] is invalid, it is out of the application directory.
 **处理步骤**
 
 检查参数[remotepath]指定的应用数据目录相对路径是否真实存在。
+
+### E005003 未指定应用名称
+
+**错误信息**
+
+There is no bundle name.
+
+**错误描述**
+
+`hdc file send [-b bundlename] [localpath] [remotepath]`命令指定-b选项时，未指定应用名称(bundlename)。
+
+**可能原因**
+
+命令未指定应用名称(bundlename)参数。
+
+**处理步骤**
+
+确认命令的[bundlename]参数不为空。
 
 ### E005004 SDK或者设备系统版本不支持-b选项
 
