@@ -1699,6 +1699,8 @@
         - [应用性能问题分析指导](performance/application-performance-guide.md)
         - [页面布局检查器ArkUI Inspector](performance/arkUI-inspector.md)
         - [跨线程序列化耗时点分析](performance/cross-thread-serialization-time-consumption-analysis.md)
+    - 功耗
+        - [高效利用HWC的低功耗设计](performance/utilize_hwc_effiently.md)
   <!--DelEnd-->
 
 - API参考
