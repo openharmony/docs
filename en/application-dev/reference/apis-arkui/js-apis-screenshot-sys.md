@@ -57,7 +57,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
+| options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Information about the snapshot.|
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 **Error codes**
@@ -167,7 +167,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
 
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
+| options | [ScreenshotOptions](#screenshotoptions) | No  | Information about the snapshot.|
 
 **Return value**
 
