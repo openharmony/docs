@@ -15,7 +15,7 @@
 
 3. 调用[huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9)，传入密钥别名和密钥属性集，即可导入密钥。
 
-#### 导入AES256密钥
+### 导入AES256密钥
 ```ts
 /* 以下以导入AES256密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
@@ -60,7 +60,7 @@ try {
   console.error(`callback: importKeyItem input arg invalid` + JSON.stringify(error));
 }
 ```
-#### 导入RSA2048密钥对
+### 导入RSA2048密钥对
 ```ts
 /* 以下以导入RSA2048密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
@@ -150,7 +150,7 @@ try {
   console.error(`callback: importKeyItem input arg invalid` + error);
 }
 ```
-#### 导入X25519密钥公钥
+### 导入X25519密钥公钥
 ```ts
 /* 以下以导入X25519密钥的Callback操作使用为例 */
 import { huks } from '@kit.UniversalKeystoreKit'
