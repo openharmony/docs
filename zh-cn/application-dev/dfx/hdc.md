@@ -586,7 +586,7 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
 
    > **说明：**
    >
-   > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下，并重命名为b.txt，传输完成后，文件的完整绝对路径为：`/mnt/debug/100/debug_hap/com.example.myapplication/data/storage/el2/base/b.txt`。
+   > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下，并重命名为b.txt。
    > 
    > hdc file send 指定-b参数时，可以省略 _remotepath_ 参数，此时将传输文件到可调试应用进程数据根目录：`/mnt/debug/<userid>/debug_hap/<bundlename>/`,其中`<userid>`代表当前用户id，`<bundlename>`代表可调试应用进程的包名。
 
@@ -1474,11 +1474,11 @@ The specified bundle name is empty.
 
 确认命令的[bundlename]参数不为空。
 
-### E005101 file指定的应用名称非法，即不是debug应用，或应用目录不存在
+### E005101 指定的应用名称非法
 
 **错误信息**
 
-Invalid bundle name:[bundlename]
+Invalid bundle name: [bundlename]
 
 **错误描述**
 
@@ -1496,7 +1496,7 @@ Invalid bundle name:[bundlename]
 
 **错误信息**
 
-Remote path:[remotepath] is invalid, it is out of the application directory.
+Remote path: [remotepath] is invalid, it is out of the application directory.
 
 **错误描述**
 
@@ -1512,17 +1512,17 @@ Remote path:[remotepath] is invalid, it is out of the application directory.
 
 **处理步骤**
 
-检查参数[remotepath]与应用数据根目录拼接后的路径是否真实存在。
+检查参数[remotepath]指定的应用数据目录相对路径是否真实存在。
 
-### E005004 file命令在执行时，hdc sdk或者设备Rom版本不支持-b选项
+### E005004 file命令在执行时，hdc sdk或者设备ROM版本不支持-b选项
 
 **错误信息**
 
-Hdc sdk/Device Rom doesn't support -b option. 
+Hdc sdk/Device ROM doesn't support -b option. 
 
 **错误描述**
 
-hdc file send/recv 命令带-b选项时，hdc sdk或者设备Rom版本有一方不支持该选项。
+hdc file send/recv 命令带-b选项时，SDK中的hdc或设备系统软件版本不支持该选项。
 
 **可能原因**
 
