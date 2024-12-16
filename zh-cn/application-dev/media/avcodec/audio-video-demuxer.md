@@ -292,7 +292,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
    ```c++
    // 按照指定size创建buffer，用于保存用户解封装得到的数据。
-   // buffer大小设置建议大于待获取的码流大小，示例中以单帧图像大小为例。
+   // buffer大小设置建议大于待获取的码流大小，示例中buffer大小设置为单帧图像的大小。
    OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
       printf("build buffer failed");
