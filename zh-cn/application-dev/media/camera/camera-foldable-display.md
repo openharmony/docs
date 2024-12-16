@@ -263,7 +263,7 @@ struct Index {
     // 获取相机列表
     let cameraArray: Array<camera.CameraDevice> = this.mCameraManager.getSupportedCameras();
     if (cameraArray.length <= 0) {
-      console.error(TAG + "cameraManager.getSupportedCameras error");
+      console.error(TAG + 'cameraManager.getSupportedCameras error');
       return;
     }
   
@@ -278,7 +278,7 @@ struct Index {
       return cameraDevice.cameraPosition === cameraPosition;
     })
     if (deviceIndex === -1) {
-      console.error(TAG + "not found camera");
+      console.error(TAG + 'not found camera');
       return;
     }
     this.curCameraDevice = cameraArray[deviceIndex];
@@ -306,10 +306,10 @@ struct Index {
     let cameraOutputCapability: camera.CameraOutputCapability =
       this.mCameraManager.getSupportedOutputCapability(this.curCameraDevice, camera.SceneMode.NORMAL_PHOTO);
     if (!cameraOutputCapability) {
-      console.error(TAG + "cameraManager.getSupportedOutputCapability error");
+      console.error(TAG + 'cameraManager.getSupportedOutputCapability error');
       return;
     }
-    console.info(TAG + "outputCapability: " + JSON.stringify(cameraOutputCapability));
+    console.info(TAG + 'outputCapability: ' + JSON.stringify(cameraOutputCapability));
   
     let previewProfile = this.getPreviewProfile(cameraOutputCapability);
     if (previewProfile === undefined) {
