@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **NativeDisplayManager_Rect** struct describes a rectangle.
+The NativeDisplayManager_Rect struct describes a rectangle.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
