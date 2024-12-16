@@ -6348,7 +6348,7 @@ setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVi
 | --------- | ------- | ---- | --------------------------------------------- |
 | isMaximizeButtonVisible | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。如果最大化按钮隐藏，那么在最大化场景下，也隐藏对应的还原按钮。 |
 | isMinimizeButtonVisible | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
-| isCloseButtonVisible | boolean | 否   | 设置关闭按钮是否可见，true为可见，false为隐藏。 |
+| isCloseButtonVisible | boolean | 否   | 设置关闭按钮是否可见，true为可见，false为隐藏，默认值true。 |
 
 **错误码：**
 
