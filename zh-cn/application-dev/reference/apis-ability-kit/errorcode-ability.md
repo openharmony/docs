@@ -901,7 +901,7 @@ Get target application info failed.
 
 **错误描述**
 
-调用<!--RP1-->[<!--RP1End-->URI授权相关接口<!--RP1-->](js-apis-uripermissionmanager-sys.md)<!--RP1End-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
+调用<!--Del-->[<!--DelEnd-->URI授权相关接口<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
 
 **可能原因**
 
