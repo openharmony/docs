@@ -204,7 +204,7 @@ int32_t OH_NativeImage_GetBufferMatrix (OH_NativeImage* image, float matrix[16] 
 
 获取根据生产端设置的旋转角度和buffer实际有效内容区域计算出的变换矩阵。
 
-本接口返回一个变换矩阵，该矩阵是[OH_NativeImage](zh-cn_topic_0000002106210118.xml)在消费buffer，即调用[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) 或者[OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer)时，根据buffer的旋转角度和实际有效内容区域计算所得。
+本接口返回一个变换矩阵，该矩阵是[OH_NativeImage](#oh_nativeimage)在消费buffer，即调用[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) 或者[OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer)时，根据buffer的旋转角度和实际有效内容区域计算所得。
 
 本接口为非线程安全类型接口。
 
@@ -216,7 +216,7 @@ int32_t OH_NativeImage_GetBufferMatrix (OH_NativeImage* image, float matrix[16] 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| image | 指向[OH_NativeImage](zh-cn_topic_0000002106210118.xml)实例的指针。 | 
+| image | 指向[OH_NativeImage](#oh_nativeimage)实例的指针。 | 
 | matrix | 用于存储获取的4\*4变换矩阵。 | 
 
 **返回：**
