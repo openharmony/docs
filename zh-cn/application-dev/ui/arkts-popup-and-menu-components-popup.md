@@ -259,6 +259,5 @@ struct PopupExample {
 }
 ```
 
-![image](figures/UIPopupStyle.gif)
 
 
