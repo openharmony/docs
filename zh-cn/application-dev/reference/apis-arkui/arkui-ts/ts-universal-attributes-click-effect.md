@@ -8,7 +8,7 @@
 
 ## clickEffect
 
-clickEffect(value: ClickEffect | null)
+clickEffect(effect: Optional\<ClickEffect | null>)
 
 设置当前组件点击回弹效果。
 
@@ -18,9 +18,9 @@ clickEffect(value: ClickEffect | null)
 
 **参数：**
 
-| 参数名 | 类型                                                  | 必填 | 说明                                                         |
-| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ClickEffect](#clickeffect对象说明)&nbsp;\|&nbsp;null | 是   | 设置当前组件点击回弹效果。<br/>**说明：**<br/>可通过undefined或者null取消点击回弹效果。<br/>不建议在组件大小动态变化的场景中使用该功能。<br/>当组件无法触发通用事件时，不支持该属性。 |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| effect | Optional\<[ClickEffect](#clickeffect对象说明)&nbsp;\|&nbsp;null> | 是   | 设置当前组件点击回弹效果。<br/>**说明：**<br/>可通过undefined或者null取消点击回弹效果。<br/>不建议在组件大小动态变化的场景中使用该功能。<br/>当组件无法触发通用事件时，不支持该属性。 |
 
 ## ClickEffect对象说明
 
