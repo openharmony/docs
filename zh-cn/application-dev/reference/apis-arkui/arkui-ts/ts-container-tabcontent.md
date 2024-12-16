@@ -71,6 +71,7 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 >  - vertical属性为false值，交换上述2个限制。
 >  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 >  - 建议对Tabs组件的所有TabContent子组件的tabBar属性，采用统一的参数类型。
+>  - 若TabContent内部有可获焦组件，Tabs组件内TabContent组件和TabBar组件之间的走焦，仅支持使用键盘上下左右控制。
 
 ### TabBarOptions<sup>14+</sup>
 
