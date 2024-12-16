@@ -1,4 +1,4 @@
-# 消息摘要计算(C/C++)
+# 消息摘要计算MD5(C/C++)
 
 对应的算法规格请查看[消息摘要计算算法规格](crypto-generate-message-digest-overview.md#支持的算法与规格)。
 
@@ -27,7 +27,7 @@
 
 5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要实例（OH_CryptoDigest）。
 
-- 以下使用单次传入数据，获取摘要计算结果为例：
+以下使用单次传入数据，获取摘要计算结果为例：
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
