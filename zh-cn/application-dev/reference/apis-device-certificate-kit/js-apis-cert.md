@@ -411,7 +411,7 @@ buffer数组的列表。
 
 | 名称         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
-| password     | string                                            | 是   | 表示p12文件的密码。             |
+| password     | string                                            | 是   | 表示P12文件的密码。             |
 | needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。                       |
 | privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat16)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
 | needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。 |
@@ -9937,8 +9937,8 @@ parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| data | Uint8Array | 是 | p12文件，DER格式。 |
-| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig16) | 是 | p12文件的解析配置。 |
+| data | Uint8Array | 是 | P12文件，DER格式。 |
+| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig16) | 是 | P12文件的解析配置。 |
 
 **返回值：**
 
@@ -10149,8 +10149,8 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| keystore | Uint8Array | 是 | p12文件，DER格式。 |
-| pwd | string | 是 | p12文件的密码。 |
+| keystore | Uint8Array | 是 | P12文件，DER格式。 |
+| pwd | string | 是 | P12文件的密码。 |
 
 **返回值：**
 
