@@ -1254,3 +1254,71 @@ struct ImageExample11 {
 ```
 
 ![imageContent](figures/imageScanEffect.gif)
+
+### 示例12（通过imageMatrix为图片设置旋转、平移等）
+
+该示例通过[imageMatrix](ts-basic-components-image.md#imagematrix16)接口和[objectFit](ts-basic-components-image.md#objectfit)实现了给图片设置变换效果。
+
+```ts
+import { matrix4 } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Test {
+  private matrix1 = matrix4.identity()
+    .translate({ x: -200, y: -200 })
+    .scale({ x: 0.2, y: 0.2 })
+    .rotate({
+      x: 2,
+      y: 0.5,
+      z: 3,
+      centerX: 10,
+      centerY: 10,
+      angle: -10
+    })
+
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text("无变换")
+          .fontSize('30px')
+        Image($r("app.media.test"))
+          .border({ width: 5, color: Color.Orange })
+          .objectFit(ImageFit.None)
+          .width(150)
+          .height(150)
+        Text("Image直接变换")
+          .height(30)
+          .width(150)
+          .fontSize('30px')
+        Image($r("app.media.test"))
+          .border({ width: 5, color: Color.Orange })
+          .objectFit(ImageFit.None)
+          .translate({ x: 50, y: 50 })
+          .scale({ x: 0.2, y: 0.2 })
+          .rotate({
+            x: 2,
+            y: 0.5,
+            z: 3,
+            centerX: 10,
+            centerY: 10,
+            angle: -10
+          })
+          .width(150)
+          .height(150)
+        Text("Image通过imageMatrix变换")
+          .fontSize('30px')
+        Image($r("app.media.test"))
+          .objectFit(ImageFit.MATRIX)
+          .imageMatrix(this.matrix1)
+          .border({ width: 5, color: Color.Orange })
+          .width(150)
+          .height(150)
+      }
+      .width('100%')
+    }
+  }
+}
+```
+
+![imageMatrix](figures/imageMatrix.jpeg)
