@@ -67,7 +67,7 @@
 4. 设置目标视频文件fd：设置属性fdDst。
    > **说明：**
    >
-   > - 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
+   > 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
    
    ```ts
    // 设置转码的目标文件属性fdDst
