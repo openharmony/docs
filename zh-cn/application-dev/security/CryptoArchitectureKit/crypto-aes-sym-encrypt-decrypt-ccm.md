@@ -28,7 +28,7 @@
 
 6. 读取[CcmParamsSpec.authTag](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ccmparamsspec)作为解密的认证信息。
 
-    在CCM模式下，需要从加密后的数据中取出末尾12字节，作为解密时初始化的认证信息。示例中authTag恰好为12字节。
+    在CCM模式下，算法库当前只支持12字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为12字节。
 
 
 **解密**

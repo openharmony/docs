@@ -15,10 +15,10 @@
     - [随机生成非对称密钥对(C/C++)](crypto-generate-asym-key-pair-randomly-ndk.md)
     - [指定二进制数据转换非对称密钥对(ArkTS)](crypto-convert-binary-data-to-asym-key-pair.md)
     - [指定二进制数据转换非对称密钥对(C/C++)](crypto-convert-binary-data-to-asym-key-pair-ndk.md)
-    - [指定密钥参数生成非对称密钥对](crypto-generate-asym-key-pair-from-key-spec.md)
+    - [指定密钥参数生成非对称密钥对(ArkTS)](crypto-generate-asym-key-pair-from-key-spec.md)
     - [使用ECC压缩/非压缩公钥格式转换(ArkTS)](crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
     - [使用ECC压缩/非压缩公钥格式转换(C/C++)](crypto-convert-compressed-or-uncompressed-ECC-pubkey-ndk.md)
-    - [使用ECC压缩/非压缩点格式转换](crypto-convert-compressed-or-uncompressed-ECC-point.md)
+    - [使用ECC压缩/非压缩点格式转换(ArkTS)](crypto-convert-compressed-or-uncompressed-ECC-point.md)
     - [指定PEM格式字符串数据转换非对称密钥对(ArkTS)](crypto-convert-string-data-to-asym-key-pair.md)
     - [指定PEM格式字符串数据转换非对称密钥对(C/C++)](crypto-convert-string-data-to-asym-key-pair-ndk.md)
 - 加解密<!--crypto-encryption-decryption-->

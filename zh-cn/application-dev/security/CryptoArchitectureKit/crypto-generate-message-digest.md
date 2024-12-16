@@ -1,4 +1,4 @@
-# 消息摘要计算(ArkTS)
+# 消息摘要计算SHA256(ArkTS)
 
 对应的算法规格请查看[消息摘要计算算法规格](crypto-generate-message-digest-overview.md#支持的算法与规格)。
 

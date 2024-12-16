@@ -116,7 +116,7 @@
       decryptText = mergeText;
     }
     let decryptData = await decoder.doFinal(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
@@ -216,7 +216,7 @@
       decryptText = mergeText;
     }
     let decryptData = decoder.doFinalSync(null);
-    if (decryptData == null) {
+    if (decryptData === null) {
       console.info('GCM decrypt success, decryptData is null');
     }
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
