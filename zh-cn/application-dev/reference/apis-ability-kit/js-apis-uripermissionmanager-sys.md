@@ -28,9 +28,9 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限：** ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -38,7 +38,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，scheme固定为"file"，参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。 | 
   | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | 是 | URI的读权限或写权限。 | 
-  | targetBundleName | string | 是 | 被授权URI的应用包名 | 
+  | targetBundleName | string | 是 | 被授权URI的应用包名。 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回0表示有权限，返回-1表示无权限。 | 
 
 **错误码：**
@@ -90,9 +90,9 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限：** ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -100,7 +100,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，scheme固定为"file"，参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。 | 
   | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | 是 | URI的读权限或写权限。 | 
-  | targetBundleName | string | 是 | 被授权URI的应用包名 |  
+  | targetBundleName | string | 是 | 被授权URI的应用包名。 |  
 
 **返回值：**
 
@@ -161,9 +161,9 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限：** ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -254,14 +254,14 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，scheme固定为"file"，参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。 | 
-  | targetBundleName | string | 是 | 被撤销授权uri的应用包名 | 
+  | targetBundleName | string | 是 | 被撤销授权uri的应用包名。 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回0表示有权限，返回-1表示无权限。 | 
 
 **错误码：**
@@ -301,14 +301,14 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，scheme固定为"file"，参考[FileUri](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)。 | 
-  | targetBundleName | string | 是 | 被授权URI的应用包名 |  
+  | targetBundleName | string | 是 | 被授权URI的应用包名。 |  
 
 **返回值：**
 
@@ -357,7 +357,7 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
