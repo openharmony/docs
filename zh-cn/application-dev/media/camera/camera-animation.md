@@ -215,7 +215,7 @@
        // 直板机前置截图内容旋转补偿270°
        await shotPixel.rotate(270);
        // 直板机前置截图组件旋转补偿180°
-       this.shotImgRotation = { y: 0.5, angle: 180 };;
+       this.shotImgRotation = { y: 0.5, angle: 180 };
      }
      this.screenshotPixelMap = shotPixel;
      // 初始化动效参数
