@@ -8252,7 +8252,7 @@ getRows(maxCount: number, position?: number): Promise<Array<[ValuesBucket](#valu
 // 假设结果集resultSet有100条数据
 // 示例1：仅指定maxCount
 if (resultSet != undefined) {
-  let rows:Array<data_relationalStore.ValuesBucket>
+  let rows:Array<relationalStore.ValuesBucket>
   let maxCount:number = 50
   while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
     console.info(JSON.stringify(rows[0]))
@@ -8261,7 +8261,7 @@ if (resultSet != undefined) {
 
 // 示例2：指定maxCount和起始的position
 if (resultSet != undefined) {
-  let rows:Array<data_relationalStore.ValuesBucket>
+  let rows:Array<relationalStore.ValuesBucket>
   let maxCount:number = 50
   let position:number = 50
   while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
