@@ -225,6 +225,8 @@ Represents a tuple used to store button information.
 
 ## SegmentButtonItemTuple
 
+type SegmentButtonItemTuple = ItemRestriction\<SegmentButtonTextItem> | ItemRestriction\<SegmentButtonIconItem> | ItemRestriction\<SegmentButtonIconTextItem>
+
 Represents the tuple union type used to store button information.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -238,6 +240,8 @@ Represents the tuple union type used to store button information.
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonIconTextItem](#segmentbuttonicontextitem)\> | A tuple of icon and text button information.|
 
 ## SegmentButtonItemArray
+
+type SegmentButtonItemArray = Array\<SegmentButtonTextItem> | Array\<SegmentButtonIconItem> | Array\<SegmentButtonIconTextItem>
 
 Represents the array union type used to store button information.
 
@@ -558,7 +562,9 @@ Describes the constructor parameters of **SegmentButtonItemOptions**.
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Type of the SegmentButton component
+
+This example demonstrates how to create two different types of **SegmentButton** components by configuring **SegmentButtonOptions** with **tab** and **capsule** types.
 
 ```ts
 // xxx.ets
@@ -638,7 +644,9 @@ struct Index {
 
 ![segmentbutton-sample1](figures/segmentbutton-sample1.png)
 
-### Example 2
+### Example 2: Setting the Style of the SegmentButton component
+
+This example demonstrates how to use **CommonSegmentButtonOptions** to customize the text and background style of the **SegmentButton** component.
 
 ```ts
 // xxx.ets
@@ -727,7 +735,9 @@ struct Index {
 
 ![segmentbutton-sample2](figures/segmentbutton-sample2.png)
 
-### Example 3
+### Example 3: Performing Array Operations on the SegmentButton Component
+
+This example shows how to perform operations such as adding and removing segmented buttons using array functions like **pop**, **shift**, and **unshift**.
 
 ```ts
 import {
@@ -792,8 +802,8 @@ struct Index {
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
 
-### Example 4
-This example shows a mirrored layout of segment buttons.
+### Example 4: Implementing a Mirror Effect
+This example shows how to implement a mirror effect by configuring the **direction** property of the **SegmentButton** component.
 
 ```ts
 // xxx.ets
@@ -897,8 +907,8 @@ struct Index {
 
 ![segmentbutton-sample4](figures/segmentbutton-sample4.png)
 
-### Example 5
-This example implements the accessibility feature of the segment button.
+### Example 5: Setting Accessibility
+This example showcases how to implement accessibility features for the **SegmentButton** component by configuring properties such as **accessibilityLevel** and **selectedIconAccessibilityText**.
 
 ```ts
 // xxx.ets

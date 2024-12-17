@@ -65,7 +65,7 @@ Defines a custom dialog box.
 >   It should be noted that this height adjustment is applied to the outermost container. If a child component within this container has been assigned a larger fixed height, since the container does not clip its content by default, parts of the dialog box may still be displayed off-screen.
 > - Use the custom dialog box to contain simple alert messages only. Do not use it as a page. When the dialog box avoids the soft keyboard, there is a 16 vp safe spacing between the two.
 >
-> - Currently, ArkUI dialog boxes do not close automatically when you switch pages unless you manually call **close**. If you need a dialog box to close in sync with page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](../../../ui/arkts-navigation-navigation.md#page-display-mode).
+> - Currently, dialog boxes in ArkUI do not close automatically when you switch pages unless you manually call **close**.To enable a dialog box to be covered during page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](../../../ui/arkts-navigation-navigation.md#page-display-mode).
 
 ## DismissDialogAction<sup>12+</sup>
 

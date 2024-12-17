@@ -12,7 +12,7 @@
 
 ## Usage
 
-Invoke the API in the **mediaquery** module to set the media query condition and the callback, and change the page layout or implement service logic in the callback corresponding to the condition. The procedure is as follows:
+Invoke the API in the **mediaquery** module to set the media query condition and define a callback. Whenever a change occurs in any [media feature](#media-feature) changes, the callback is triggered and the matching result is returned. Based on this returned value, you can then adjust the page layout or implement service logic to implement responsive page design. The procedure is as follows:
 
 Import the **mediaquery** module, as shown below:
 
@@ -133,7 +133,7 @@ For width and height related features, the units vp and px are supported. If no 
 | min-device-width  | Minimum width of the device.                                |
 | max-device-width  | Maximum width of the device.                                |
 | round-screen      | Screen type. The value **true** indicates a circular screen, and **false** indicates a non-circular screen.             |
-| dark-mode         | Whether the device is in dark mode. The value **true** means that the device is in dark mode, and **false** means the opposite.                 |
+| dark-mode         | Whether the system is in dark mode. The value can be **true** or **false**.<br> The value **true** means that the system is in dark mode, and **false** means the opposite.        |
 
 >**NOTE**
 >
@@ -155,7 +155,6 @@ import { common } from '@kit.AbilityKit';
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // The query is valid when the device is in landscape mode.
   listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 
@@ -186,7 +185,7 @@ struct MediaQueryExample {
   // Change the landscape/portrait mode of the device in the callback.
   private changeOrientation(isLandscape: boolean) {
     // Obtain the context information of the UIAbility instance.
-    let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+    let context:common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // Invoke this API to manually change the landscape/portrait mode of the device.
     window.getLastWindow(context).then((lastWindow) => {
       lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT)
@@ -222,7 +221,6 @@ import { featureAbility } from '@kit.AbilityKit';
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // The query is valid when the device is in landscape mode.
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // The callback is triggered when the query is valid.

@@ -25,7 +25,7 @@ Sets the background color of the component.
 
 >  **NOTE**
 >
->  The custom background takes some time to render, during which it cannot respond to events, or be dynamically updated. This attribute cannot be nested or be previewed in the previewer.
+>  The custom background takes some time to render, during which it cannot respond to events, or be dynamically updated. This attribute cannot be nested or be previewed in DevEco Studio Previewer.
 
 ## backgroundColor
 
@@ -47,7 +47,7 @@ Sets the background color of the component.
 
 >  **NOTE**
 >
->  If the background color is specified by inactiveColor in [backgroundBlurStyle] (#backgroundblurstyle9), you are advised not to set the background color by using backgroundColor.
+>  If the background color is specified through **inactiveColor** in [backgroundBlurStyle](#backgroundblurstyle9), avoid setting the background color again using **backgroundColor**.
 
 ## backgroundImage
 
@@ -147,7 +147,7 @@ Defines the blur style to apply between the background and content of a componen
 
 >  **NOTE**
 >
->  If the background color is specified through **inactiveColor** in **backgroundBlurStyle**, avoid setting the background color again using [backgroundColor] (#backgroundcolor).
+>  If the background color is specified through **inactiveColor** in **backgroundBlurStyle**, avoid setting the background color again using [backgroundColor](#backgroundcolor).
 
 ## backdropBlur
 
