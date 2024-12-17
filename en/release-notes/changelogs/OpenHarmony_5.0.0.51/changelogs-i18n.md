@@ -8,20 +8,20 @@ Public API
 
 **Reason for Change**
 
- 1. The current localized names for the Hong Kong, Macao, and Taiwan regions of China use commas or spaces as separators, which can lead to ambiguity when multiple countries/regions are listed together.
+ 1. The localized names for the Hong Kong, Macao, and Taiwan regions of China use commas or spaces as separators, which can lead to ambiguity when multiple countries/regions are listed together.
  2. The country name of the State of Palestine has been changed internationally from Palestinian Territories to Palestine.
 
 **Change Impact**
 
 This change is a non-compatible change.
 
-Before change: A comma or space is used as the separator between the localized names of the region and home country.
+Before the change: A comma or space is used as the separator between the localized names of the region and home country.
 
-After change: The localized name of the home country is placed in the parentheses after the region, for example, Hong Kong (China).
+After the change: The localized name of the home country is placed in the parentheses after the region, for example, Hong Kong (China).
 
-Before change: The localized name of the State of Palestine is Palestinian Territories.
+Before the change: The localized name of the State of Palestine is Palestinian Territories.
 
-After change: The localized name of the State of Palestine is Palestine.
+After the change: The localized name of the State of Palestine is Palestine.
 
 **Start API Level**
 
@@ -80,7 +80,7 @@ i18n.system.getRegionInfoArray
 Do not perform special judgment on the return values of the API. The values are used only for display on the UI.
 
 
-## cl.global.3 Modification of the Incorrect Date and Time Formatting Result for November
+## cl.global.3 Modification of the Incorrect Date and Time Formatting Result for November in the Lunar Calendar
 
 **Access Level**
 
@@ -158,15 +158,15 @@ Public API
 
 **Reason for Change**
 
-When an invalid number is passed to **getLocationName**, the locale passed to the **PhoneNumberFormat** object is returned as the home location of the number.
+If an invalid number is passed to **getLocationName**, the locale passed to the **PhoneNumberFormat** object is returned as the home location of the number.
 
 **Change Impact**
 
 This change is a non-compatible change.
 
-Before change: When an invalid number is passed to **getLocationName**, the locale passed to the **PhoneNumberFormat** object is returned as the home location of the number.
+Before change: If an invalid number is passed to **getLocationName**, the locale passed to the **PhoneNumberFormat** object is returned as the home location of the number.
 
-After change: When an invalid number is passed to **getLocationName**, an empty string is returned.
+After change: If an invalid number is passed to **getLocationName**, an empty string is returned.
 
 **Start API Level**
 

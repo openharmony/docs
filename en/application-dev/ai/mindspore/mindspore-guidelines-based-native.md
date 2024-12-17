@@ -15,7 +15,7 @@ Image classification can be used to recognize objects in images and is widely us
 1. Select an image classification model.
 2. Use the MindSpore Lite inference model on the device to classify the selected images.
 
-## Environment Preparation
+## Environment Setup
 
 Install DevEco Studio 4.1 or later, and update the SDK to API version 11 or later.
 
@@ -190,7 +190,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
        *buffer = nullptr;
    }
    
-   OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
+   OH_AI_ContextHandle CreateMSLiteContext(void *modelBuffer) {
        // Set executing context for model.
        auto context = OH_AI_ContextCreate();
        if (context == nullptr) {
@@ -202,7 +202,12 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
    
        OH_AI_DeviceInfoSetEnableFP16(cpu_device_info, true);
        OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
+       
+       LOGI("MS_LITE_LOG: Build MSLite context success.\n");
+       return context;
+   }
    
+   OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize, OH_AI_ContextHandle context) {
        // Create model
        auto model = OH_AI_ModelCreate();
        if (model == nullptr) {
@@ -257,7 +262,6 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
        // Predict model.
        auto predict_ret = OH_AI_ModelPredict(model, inputs, &outputs, nullptr, nullptr);
        if (predict_ret != OH_AI_STATUS_SUCCESS) {
-           OH_AI_ModelDestroy(&model);
            LOGE("MS_LITE_ERR: MSLite Predict error.\n");
            return OH_AI_STATUS_LITE_ERROR;
        }
@@ -323,15 +327,22 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
            return error_ret;
        }
        LOGI("MS_LITE_LOG: Read model file success");
-       auto model = CreateMSLiteModel(modelBuffer, modelSize);
+       
+       auto context = CreateMSLiteContext(modelBuffer);
+       if (context == nullptr) {
+           LOGE("MS_LITE_ERR: MSLiteFwk Build context failed.\n");
+           return error_ret;
+       }
+       auto model = CreateMSLiteModel(modelBuffer, modelSize, context);
        if (model == nullptr) {
-           OH_AI_ModelDestroy(&model);
+           OH_AI_ContextDestroy(&context);
            LOGE("MS_LITE_ERR: MSLiteFwk Build model failed.\n");
            return error_ret;
        }
        int ret = RunMSLiteModel(model, input_data);
        if (ret != OH_AI_STATUS_SUCCESS) {
            OH_AI_ModelDestroy(&model);
+           OH_AI_ContextDestroy(&context);
            LOGE("MS_LITE_ERR: RunMSLiteModel failed.\n");
            return error_ret;
        }
@@ -346,6 +357,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
            napi_set_element(env, out_data, i, element);
        }
        OH_AI_ModelDestroy(&model);
+       OH_AI_ContextDestroy(&context);
        LOGI("MS_LITE_LOG: Exit runDemo()");
        return out_data;
    }
@@ -477,5 +489,3 @@ console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
 <img src="figures/stepc1.png"  width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/stepc4.png" width="20%"/>
-
-
