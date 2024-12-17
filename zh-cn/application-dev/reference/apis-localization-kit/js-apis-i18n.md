@@ -2763,7 +2763,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | pattern | string      | 是    | 合法的模式字符串，其中合法的字符及含义参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)，支持添加文本，文本内容以''标识。 |
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象，默认使用系统区域。 |
 
 **返回值：**
 
@@ -2803,7 +2803,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | 是    | 合法的框架字符串，其中合法的字符及含义参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)，不支持添加额外的文本内容。 |
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象，默认使用系统区域。 |
 
 **返回值：**
 
@@ -2886,7 +2886,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | 是    | 合法的框架字符串，参考[Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons)。 |
-| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象，默认使用系统区域。 |
 
 **返回值：**
 
