@@ -667,6 +667,22 @@ maxFontSize(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
+### halfLeading<sup>16+</sup>
+
+halfLeading(halfLeading: boolean)
+
+设置文本是否将行间距平分至行的顶部与底部。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+
 ### heightAdaptivePolicy<sup>12+</sup>
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
