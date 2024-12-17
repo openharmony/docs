@@ -404,17 +404,13 @@
             - [创建轮播 (Swiper)](ui/arkts-layout-development-create-looping.md)
             - [选项卡 (Tabs)](ui/arkts-navigation-tabs.md)
         - 添加组件<!--arkts-add-component-->
-          - 添加常用组件<!--arkts-add-common-component-->
-            - [按钮 (Button)](ui/arkts-common-components-button.md)
-            - [单选框 (Radio)](ui/arkts-common-components-radio-button.md)
-            - [切换按钮 (Toggle)](ui/arkts-common-components-switch.md)
-            - [进度条 (Progress)](ui/arkts-common-components-progress-indicator.md)
-            - [显示图片 (Image)](ui/arkts-graphics-display.md)
-            - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
-            - [自定义渲染 (XComponent)](ui/napi-xcomponent-guidelines.md)
-          - 添加气泡和菜单<!--arkts-add-popup-menu-->
-            - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
-            - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
+          - [按钮 (Button)](ui/arkts-common-components-button.md)
+          - [单选框 (Radio)](ui/arkts-common-components-radio-button.md)
+          - [切换按钮 (Toggle)](ui/arkts-common-components-switch.md)
+          - [进度条 (Progress)](ui/arkts-common-components-progress-indicator.md)
+          - [显示图片 (Image)](ui/arkts-graphics-display.md)
+          - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
+          - [自定义渲染 (XComponent)](ui/napi-xcomponent-guidelines.md)
         - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
           - [组件导航和页面路由概述](ui/arkts-navigation-introduction.md)
           - [组件导航 (Navigation)(推荐)](ui/arkts-navigation-navigation.md)
