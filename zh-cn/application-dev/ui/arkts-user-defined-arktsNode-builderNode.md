@@ -379,3 +379,284 @@ struct MyComponent {
 }
 ```
 
+## 节点复用能力
+
+将[reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)事件和[recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12)事件传递至BuilderNode中的自定义组件，以实现BuilderNode节点的复用。
+
+```ts
+import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("hello")) {
+  ReusableChildComponent2({ item: param.item });
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @State item: string = '';
+  private controller: MyNodeController = new MyNodeController();
+
+  aboutToAppear() {
+    this.controller.item = this.item;
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.item);
+    this.controller?.builderNode?.recycle();
+  }
+
+  aboutToReuse(params: object): void {
+    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
+    this.controller?.builderNode?.reuse(params);
+  }
+
+  build() {
+    NodeContainer(this.controller);
+  }
+}
+
+@Component
+struct ReusableChildComponent2 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+  }
+
+  build() {
+    Row() {
+      Text(this.item)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0;i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({ item: item })
+          }
+        }, (item: string) => item)
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+## 通过系统环境变化更新节点
+
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
+
+> **说明：**
+>
+> updateConfiguration接口用于通知对象进行更新，更新所使用的系统环境取决于应用当前系统环境的变化。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+// 自定义组件
+@Component
+struct TextBuilder {
+  // 作为自定义组件中需要更新的属性，数据类型为基础属性，定义为@Prop
+  @Prop message: string = "TextBuilder";
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 36 })
+          .fontColor($r(`app.color.text_color`))
+          .backgroundColor($r(`app.color.start_window_background`))
+      }
+    }
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+      .fontColor($r(`app.color.text_color`))
+    TextBuilder({ message: params.text }) // 自定义组件
+  }.backgroundColor($r(`app.color.start_window_background`))
+}
+
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = "";
+
+  constructor(message: string) {
+    super()
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    return this.textNode?.getFrameNode() ? this.textNode?.getFrameNode() : null;
+  }
+
+  createNode(context: UIContext) {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    builderNodeMap.push(this.textNode);
+  }
+
+  deleteNode() {
+    let node = builderNodeMap.pop();
+    node?.dispose();
+  }
+
+  update(message: string) {
+    if (this.textNode !== null) {
+      // 调用update进行更新。
+      this.textNode.update(new Params(message));
+    }
+  }
+}
+
+// 记录创建的自定义节点对象
+const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
+
+function updateColorMode() {
+  builderNodeMap.forEach((value, index) => {
+    // 通知BuilderNode环境变量改变
+    value.updateConfiguration();
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+  private textNodeController: TextNodeController = new TextNodeController(this.message);
+  private count = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+        console.log('onMemoryLevel');
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        updateColorMode();
+      }
+    }
+    // 注册监听回调
+    this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    //创建自定义节点并添加至map
+    this.textNodeController.createNode(this.getUIContext());
+  }
+
+  aboutToDisappear(): void {
+    //移除map中的引用，并将自定义节点释放
+    this.textNodeController.deleteNode();
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.textNodeController)
+          .width('100%')
+          .height(200)
+          .backgroundColor('#FFF0F0F0')
+        Button('Update')
+          .onClick(() => {
+            this.count += 1;
+            const message = "Update " + this.count.toString();
+            this.textNodeController.update(message);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
