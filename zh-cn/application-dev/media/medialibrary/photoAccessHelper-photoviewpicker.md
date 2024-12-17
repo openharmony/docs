@@ -45,7 +45,7 @@
 
 ## 指定URI读取文件数据
 
-1. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fileIo.OpenMode.READ_ONLY。
+1. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)打开这个文件得到fd。这里需要注意接口权限参数是fileIo.OpenMode.READ_ONLY。
 
    ```ts
    let uri: string = '';
@@ -64,7 +64,7 @@
 
 ## 指定URI获取图片或视频资源
 
-媒体库支持Picker选择文件URI后，根据指定URI获取图片或视频资源，下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
+媒体库支持Picker选择[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)URI后，根据指定URI获取图片或视频资源，下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
