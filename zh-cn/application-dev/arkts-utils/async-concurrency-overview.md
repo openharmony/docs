@@ -42,6 +42,10 @@ promise.then((result: number) => {
 
 上述代码中，then方法的回调函数接收Promise对象的成功结果作为参数，并将其输出到控制台上。如果Promise对象进入rejected状态，则catch方法的回调函数接收错误对象作为参数，并将其输出到控制台上。
 
+> **说明：**
+>
+> 当Promise被reject且未通过catch方法来处理时，会触发unhandledrejection事件。可使用[errorManager.on('error')](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)接口监听该事件，以全局捕获未处理的Promise reject。
+
 ## async/await
 
 async/await是一种用于处理异步操作的Promise语法糖，使得编写异步代码变得更加简单和易读。通过使用async关键字声明一个函数为异步函数，并使用await关键字等待Promise的解析（完成或拒绝），以同步的方式编写异步操作的代码。
