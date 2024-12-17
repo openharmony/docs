@@ -16,14 +16,13 @@
       - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
       - [选项卡 (Tabs)](arkts-navigation-tabs.md)
   - 添加组件
-    - 添加常用组件
-      - [按钮 (Button)](arkts-common-components-button.md)
-      - [单选框 (Radio)](arkts-common-components-radio-button.md)
-      - [切换按钮 (Toggle)](arkts-common-components-switch.md)
-      - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
-      - [显示图片 (Image)](arkts-graphics-display.md)
-      - [视频播放 (Video)](arkts-common-components-video-player.md)
-      - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
+    - [按钮 (Button)](arkts-common-components-button.md)
+    - [单选框 (Radio)](arkts-common-components-radio-button.md)
+    - [切换按钮 (Toggle)](arkts-common-components-switch.md)
+    - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
+    - [显示图片 (Image)](arkts-graphics-display.md)
+    - [视频播放 (Video)](arkts-common-components-video-player.md)
+    - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
   - 设置组件导航和页面路由
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
