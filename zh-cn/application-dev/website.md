@@ -9,9 +9,9 @@
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
   <!--DelEnd-->
   - 开发基础知识<!--development-fundamentals-->
-    - 应用程序包基础知识<!--application-package-fundamentals-->
+    - 应用程序包基础知识<!--development-fundamentals-->
       - [应用程序包概述](quick-start/application-package-overview.md)
-      - 应用程序包结构<!--application-package-structure-->
+      - 应用程序包结构<!--development-fundamentals-->
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
       - 应用程序包开发与使用<!--application-package-dev-->
@@ -1341,6 +1341,7 @@
         - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
         - [双路预览(ArkTS)](media/camera/camera-dual-channel-preview.md)
         - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
+        - [相机启动恢复实现方案(ArkTS)](media/camera/camera-background-recovery.md)
         <!--Del-->
         - [性能提升方案(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
         - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
@@ -1391,7 +1392,6 @@
         - [使用Image完成图片编码](media/image/image-encoding-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
-      - [Media Kit开发速览](media/media/media-kit-quick-overview.md)
       - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
@@ -4072,7 +4072,7 @@
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-api-->
       - C API<!--neural-network-runtime-c-->
         - 模块<!--neural-network-runtime-module-->
-          - [NeuralNetworkRuntime](reference/apis-neural-network-runtime-kit/_neural_nework_runtime.md)
+          - [NeuralNetworkRuntime](reference/apis-neural-network-runtime-kit/_neural_network_runtime.md)
         - 头文件<!--neural-network-runtime-headerfile-->
           - [neural_network_core.h](reference/apis-neural-network-runtime-kit/neural__network__core_8h.md)
           - [neural_network_runtime.h](reference/apis-neural-network-runtime-kit/neural__network__runtime_8h.md)
