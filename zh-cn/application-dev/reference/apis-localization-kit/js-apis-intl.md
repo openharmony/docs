@@ -471,7 +471,7 @@ format(number: number): string
   // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
   let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
-  let options = {
+  let options : object = {
     roundingPriority: "lessPrecision",
     maximumFractionDigits: "3",
     maximumSignificantDigits: "3"
@@ -568,7 +568,7 @@ resolvedOptions(): NumberOptions
 | maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。<br>maximumSignificantDigits属性默认值为21。                  |
 | roundingPriority<sup>16+</sup>   | string  | 否    | 最大分数位数和最大有效位数同时设置时的舍入优先级，取值包括："auto",&nbsp;"morePrecision"&nbsp;取最大分数位数,&nbsp;"lessPrecision"&nbsp;取最大有效位数。<br>roundingPriority默认值为auto。                  |
 | roundingIncrement<sup>16+</sup>  | number  | 否    | 表示舍入增量，取值范围：1，2，5，10，20，25，50，100，200，250，500，1000，2000，2500，5000。<br>roundingIncrement属性默认值为1。                  |
-| roundingMode<sup>16+</sup>       | string  | 否    | 表示舍入模式，取值包括："ceil",&nbsp;"floor",&nbsp;"expand",&nbsp;"trunc",&nbsp;"falfCeil",&nbsp;"falfFloor",&nbsp;"falfExpand",&nbsp;"falfTrunc",&nbsp;"falfEven"。<br>roundingMode属性默认值为halfExpand。                  |
+| roundingMode<sup>16+</sup>       | string  | 否    | 表示舍入模式，取值包括："ceil",&nbsp;"floor",&nbsp;"expand",&nbsp;"trunc",&nbsp;"halfCeil",&nbsp;"halfFloor",&nbsp;"halfExpand",&nbsp;"halfTrunc",&nbsp;"halfEven"。<br>roundingMode属性默认值为halfExpand。                  |
 
 >  **说明：**
 >
