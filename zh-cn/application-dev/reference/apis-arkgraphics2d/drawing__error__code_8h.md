@@ -35,4 +35,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](_drawing.md#oh_drawing_errorcodeget) () | 获取本模块的错误码。 | 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](_drawing.md#oh_drawing_errorcodeget) () | 获取本模块的最近一次的错误码。当函数成功运行后，本函数返回的错误码不会被修改。 | 
