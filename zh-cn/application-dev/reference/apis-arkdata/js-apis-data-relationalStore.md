@@ -8204,7 +8204,7 @@ if(resultSet != undefined) {
 
 getRows(maxCount: number, position?: number): Promise<Array<[ValuesBucket](#valuesbucket)>>
 
-从结果集中获取指定数量的数据，使用Promise异步回调。禁止与resultSet其他接口并发调用，否则会出现异常执行情况。
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与结果集resultSet其他接口并发调用，否则会出现异常执行情况。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
