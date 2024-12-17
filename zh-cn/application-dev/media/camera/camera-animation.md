@@ -120,7 +120,7 @@
       */
      public static async doSurfaceShot(surfaceId: string) {
        console.info(`doSurfaceShot surfaceId:${surfaceId}.`);
-       if (surfaceId === ") {
+       if (surfaceId === '') {
          console.error('surface not ready!');
          return;
        }
