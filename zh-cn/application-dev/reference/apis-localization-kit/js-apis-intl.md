@@ -469,15 +469,15 @@ format(number: number): string
 **示例：** 
   ```ts
   // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
-  let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
-  let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
+  let numfmt : intl.NumberFormat = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let formattedNumber : string = numfmt.format(1223); // formattedNumber = 1.223E3
   let options : object = {
     roundingPriority: "lessPrecision",
     maximumFractionDigits: "3",
     maximumSignificantDigits: "3"
   }
-  let numberFmt = new intl.NumberFormat("en", options);
-  let result = numberFmt.format(1.23456); // result = 1.23
+  let numberFmt : intl.NumberFormat = new intl.NumberFormat("en", options);
+  let result : string = numberFmt.format(1.23456); // result = 1.23
   ```
 
 ### formatRange<sup>16+</sup>

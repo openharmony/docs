@@ -121,28 +121,32 @@ let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
 let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
 
 // 舍入模式
-let numberFormat5 = new intl.NumberFormat('en', {roundingMode: 'trunc', maximumSignificantDigits: 2});
+let numberFormat5 : intl.NumberFormat = new intl.NumberFormat('en',
+    {
+        roundingMode: 'trunc',
+        maximumSignificantDigits: 2
+    });
 console.log(numberFormat5.format(2.28)); // 2.2
 console.log(numberFormat5.format(-2.25)); // -2.2
 
 // 舍入优先级
-let options = {
+let options : object = {
     roundingPriority: 'lessPrecision',
     maximumFractionDigits: 3,
     maximumSignificantDigits: 2
 };
-let numberFormat6 = new intl.NumberFormat('en', options);
+let numberFormat6 : intl.NumberFormat = new intl.NumberFormat('en', options);
 console.log(numberFormat6.format(1.23456)); // 1.2
 
 // 舍入增量
-let numOptions = {
+let numOptions : object = {
     style: "currency",
     currency: "USD",
     roundingIncrement: 5,
     maximumFractionDigits: 2,
     roundingMode: "halfCeil"
 };
-let numberFormat7 = new intl.NumberFormat('en-US', numOptions);
+let numberFormat7 : intl.NumberFormat = new intl.NumberFormat('en-US', numOptions);
 console.log(numberFormat7.format(11.21)); // $11.20
 ```
 
@@ -175,12 +179,12 @@ console.log(numberFormat7.format(11.21)); // $11.20
 import { intl } from '@kit.LocalizationKit';
 
 // 数字范围格式化
-let options = {
+let options : object = {
     style: "currency",
     currency: "EUR",
     maximumFractionDigits: 0
 };
-let numberRangeFormat = new intl.NumberFormat('es-ES', options);
+let numberRangeFormat : intl.NumberFormat = new intl.NumberFormat('es-ES', options);
 console.log(numberRangeFormat.formatRange(2, 8)); // 2-8 €
 console.log(numberRangeFormat.formatRange(2.9, 3.1)); // ~3 €
 ```
