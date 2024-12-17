@@ -277,7 +277,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
 
 ## 多种组件的对齐布局
 
-Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组件规则进行对其排布。
+Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组件规则进行对齐排布。
 
   ```ts
   @Entry
