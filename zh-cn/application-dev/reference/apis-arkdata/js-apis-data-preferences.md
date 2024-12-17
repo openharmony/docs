@@ -1803,6 +1803,10 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
@@ -1842,6 +1846,10 @@ dataPreferences.flush((err: BusinessError) => {
 flush(): Promise&lt;void&gt;
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用Promise异步回调。
+
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2019,7 +2027,9 @@ dataPreferences.flush((err: BusinessError) => {
 
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
-订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
+订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程（包括本进程）发生变更后，执行[flush](#flush)方法后，触发callback回调。
+
+本接口提供给申请了[dataGroupId](#options10)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2163,6 +2173,8 @@ dataPreferences.off('change', observer);
 off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 取消订阅进程间数据变更。
+
+本接口提供给申请了[dataGroupId](#options10)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
