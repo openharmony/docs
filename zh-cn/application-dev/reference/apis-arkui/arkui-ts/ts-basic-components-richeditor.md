@@ -1077,7 +1077,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
 > - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
 > - 此占位Span不可获焦，支持拖拽，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
-> - 不支持通过[bindSelectionMenu](#bindselectionmenu)设置自定义菜单。
+> - 支持通过[bindSelectionMenu](#bindselectionmenu)设置自定义菜单。
 > - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#onselect)，[aboutToDelete](#abouttodelete)获取builderSpan信息。
 > - 不支持通过[updateSpanStyle](#updatespanstyle)，[updateParagraphStyle](#updateparagraphstyle11)等方式更新builder。
 > - 对此builder节点进行复制或粘贴不生效。
@@ -1734,7 +1734,7 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
