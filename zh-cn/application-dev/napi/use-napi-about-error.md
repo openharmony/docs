@@ -93,7 +93,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreatTypeError(napi_env env, napi_callback_info info)
+static napi_value CreateTypeError(napi_env env, napi_callback_info info)
 {
     // 构造errorCode和errorMessage
     napi_value errorCode = nullptr;
@@ -111,7 +111,7 @@ static napi_value CreatTypeError(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const creatTypeError: () => Error;
+export const createTypeError: () => Error;
 ```
 
 ArkTS侧示例代码
@@ -120,7 +120,7 @@ ArkTS侧示例代码
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
-  throw testNapi.creatTypeError();
+  throw testNapi.createTypeError();
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_type_error errorCode: %{public}s, errorMessage %{public}s', error.code, error.message);
 }
@@ -135,7 +135,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreatRangeError(napi_env env, napi_callback_info info)
+static napi_value CreateRangeError(napi_env env, napi_callback_info info)
 {
     // 构造errorCode和errorMessage
     napi_value errorCode = nullptr;
@@ -153,7 +153,7 @@ static napi_value CreatRangeError(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const creatRangeError: () => Error;
+export const createRangeError: () => Error;
 ```
 
 ArkTS侧示例代码
@@ -162,7 +162,7 @@ ArkTS侧示例代码
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
-  throw testNapi.creatRangeError();
+  throw testNapi.createRangeError();
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_range_error errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
