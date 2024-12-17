@@ -4359,6 +4359,18 @@ Allows an application to send notifications to specified users in the system.
 
 **Valid since**: 16
 
+### ohos.permission.ANTI_FRAUD
+
+Allows an application to access risk control probes to detect device security risks. The detection result can be used as input for risk control decision-making in the cloud.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
