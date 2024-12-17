@@ -61,7 +61,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     {
       int* num = reinterpret_cast<int*> (callBackParam);
       OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk callBackParam: %{public}d", *num);  // 回调函数中打印日志
-      detele num;
+      delete num;
     }
 
     static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
