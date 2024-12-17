@@ -81,7 +81,7 @@
 
 **变更信息**：API version 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变更为企业普通应用。
 
-## **ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT** 
+## ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT
 
 允许应用管理企业设备的用户CA证书。
 
