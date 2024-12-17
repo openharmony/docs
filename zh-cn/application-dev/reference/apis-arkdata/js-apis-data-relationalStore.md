@@ -8202,9 +8202,9 @@ if(resultSet != undefined) {
 
 ### getRows<sup>16+</sup>
 
-getRows(maxCount: number, position?: number): Promise<Array<[ValuesBucket](#valuesbucket)>>
+getRows(maxCount: number, position?: number): Promise<Array<ValuesBucket>>
 
-从结果集中获取指定数量的数据，使用Promise异步回调。禁止[ResultSet](#resultset)其他接口并发调用，否则会出现异常执行情况。
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](#resultset)的其它接口并发调用，否则会导致数据获取异常。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8213,14 +8213,14 @@ getRows(maxCount: number, position?: number): Promise<Array<[ValuesBucket](#valu
 | 参数名      | 类型   | 必填 | 说明                    |
 | ----------- | ------ | ---- | ----------------------- |
 | maxCount | number | 是   | 正整数，指定要从结果集中获取数据的条数。 |
-| position | number | 否   | 非负整数，指定获取数据的起始位置，不填则从当前位置开始读取。 |
+| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行开始读取。 |
 
 
 **返回值：**
 
 | 类型              | 说明                           |
 | ---------------- | ---------------------------- |
-| Promise<Array<[ValuesBucket](#valuesbucket)>> | 返回maxCount条数据，剩余数据不足maxCount条则按实际情况返回，返回空数组时代表已经遍历到结果集的末尾。 |
+| Promise<Array<[ValuesBucket](#valuesbucket)>> | 返回maxCount条数据，剩余数据不足maxCount条则返回剩余数据，返回空数组时代表已经遍历到结果集的末尾。 |
 
 **错误码：**
 
