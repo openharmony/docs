@@ -1,4 +1,4 @@
-# 仅对系统应用开放
+# 系统应用可用权限
 
 在申请目标权限前，建议开发者先阅读[权限工作流程](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
@@ -265,18 +265,6 @@
 
 **起始版本**：11
 
-### ohos.permission.GET_DOMAIN_ACCOUNTS
-
-允许应用查询域账号信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：10
-
 ### ohos.permission.UNINSTALL_BUNDLE
 
 允许应用卸载应用。
@@ -396,18 +384,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
-允许应用跨系统本地账号交互。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
@@ -3217,6 +3193,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ENABLE_EXPERIENCE_HBM
+
+允许应用启用屏幕HBM（High Brightness Mode）亮度模式。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.SET_PROCESS_CACHE_STATE
 
 允许应用设置是否支持应用缓存及缓存后快速启动。
@@ -4037,6 +4025,20 @@
 
 **起始版本**：12
 
+### ohos.permission.CHECK_QUICKFIX_RESULT
+
+允许系统服务或应用检查补丁安装结果。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-13，开放范围为系统服务；从API 14开始，开放范围变更为系统应用。
+
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
 允许应用/服务在后台发起用户身份认证请求。
@@ -4444,6 +4446,18 @@
 **ACL使能**：false
 
 **起始版本**：14
+
+### ohos.permission.USE_USER_ACCESS_MANAGER
+
+允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
+
+**权限级别** system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：16
 
 ## user_grant，允许ACL跨级申请
 

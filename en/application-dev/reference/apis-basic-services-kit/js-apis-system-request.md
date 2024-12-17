@@ -15,7 +15,7 @@ The **system.request** module provides applications with basic upload and downlo
 import request from '@system.request';
 ```
 
-## request.upload
+## request.upload<sup>(deprecated)</sup>
 
 upload(options: UploadRequestOptions): void
 
@@ -27,7 +27,7 @@ Uploads a file. This API returns no value.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | options | [UploadRequestOptions](#uploadrequestoptions) | Yes| Upload configurations.|
+  | options | [UploadRequestOptions](#uploadrequestoptionsdeprecated) | Yes| Upload configurations.|
 
 **Example**
 
@@ -67,7 +67,7 @@ Uploads a file. This API returns no value.
   ```
 
 
-## UploadRequestOptions
+## UploadRequestOptions<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -75,8 +75,8 @@ Uploads a file. This API returns no value.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | url | string | Yes| URL of the upload server.|
-  | data | Array&lt;[RequestData](#requestdata)&gt; | No| Form data in the request body.|
-  | files | Array&lt;[RequestFile](#requestfile)&gt; | Yes| List of files to upload, which is submitted through **multipart/form-data**.|
+  | data | Array&lt;[RequestData](#requestdatadeprecated)&gt; | No| Form data in the request body.|
+  | files | Array&lt;[RequestFile](#requestfiledeprecated)&gt; | Yes| List of files to upload, which is submitted through **multipart/form-data**.|
   | header | Object | No| Request header.|
   | method | string | No| Request method, which can be **'POST'** or **'PUT'**. The default value is **POST**.|
   | success | Function | No| Called when API call is successful.|
@@ -86,7 +86,7 @@ Uploads a file. This API returns no value.
 **success parameter**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | data | [UploadResponse](#uploadresponse) | Yes| Information returned when the upload task is successful.|
+  | data | [UploadResponse](#uploadresponsedeprecated) | Yes| Information returned when the upload task is successful.|
 
 **fail parameters**
   | Name| Type| Mandatory| Description|
@@ -96,7 +96,7 @@ Uploads a file. This API returns no value.
 
 
 
-## UploadResponse
+## UploadResponse<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -107,7 +107,7 @@ Uploads a file. This API returns no value.
   | headers | Object | Yes| Headers returned by the server.|
 
 
-## RequestFile
+## RequestFile<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -119,7 +119,7 @@ Uploads a file. This API returns no value.
   | type | string | No| Type of the file content. By default, the type is obtained based on the extension of the file name or URI.|
 
 
-## RequestData
+## RequestData<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Upload
 
@@ -130,7 +130,7 @@ Uploads a file. This API returns no value.
 
 
 
-## request.download
+## request.download<sup>(deprecated)</sup>
 
 download(options: DownloadRequestOptions): void
 
@@ -142,7 +142,7 @@ Downloads a file. This API returns no value.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | options | [DownloadRequestOptions](#downloadrequestoptions) | Yes| Download configurations.|
+  | options | [DownloadRequestOptions](#downloadrequestoptionsdeprecated) | Yes| Download configurations.|
 
 **Example**
 
@@ -174,7 +174,7 @@ Downloads a file. This API returns no value.
   ```
 
 
-## DownloadRequestOptions
+## DownloadRequestOptions<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -191,7 +191,7 @@ Downloads a file. This API returns no value.
 **success parameter**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | data | [DownloadResponse](#downloadresponse) | Yes| Information returned when the download task is successful.|
+  | data | [DownloadResponse](#downloadresponsedeprecated) | Yes| Information returned when the download task is successful.|
 
 **fail parameters**
   | Name| Type| Mandatory| Description|
@@ -199,7 +199,7 @@ Downloads a file. This API returns no value.
   | data | any | Yes| Header information returned when the download task fails.|
   | code | number | Yes| HTTP status code returned when the download task fails.|
 
-## DownloadResponse
+## DownloadResponse<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -208,7 +208,7 @@ Downloads a file. This API returns no value.
   | token | string | Yes| Download token, which is used to obtain the download status|
 
 
-## request.onDownloadComplete
+## request.onDownloadComplete<sup>(deprecated)</sup>
 
 onDownloadComplete(options: OnDownloadCompleteOptions): void
 
@@ -220,7 +220,7 @@ Listens for download task status. This API returns no value.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | options | [OnDownloadCompleteOptions](#ondownloadcompleteoptions) | Yes| Configurations of the download task.|
+  | options | [OnDownloadCompleteOptions](#ondownloadcompleteoptionsdeprecated) | Yes| Configurations of the download task.|
 
 **Example**
 
@@ -244,7 +244,7 @@ Listens for download task status. This API returns no value.
   ```
 
 
-## OnDownloadCompleteOptions
+## OnDownloadCompleteOptions<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Download
 
@@ -258,7 +258,7 @@ Listens for download task status. This API returns no value.
 **success parameter**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | data | [OnDownloadCompleteResponse](#ondownloadcompleteresponse) | Yes| Information returned when the download task is successful.|
+  | data | [OnDownloadCompleteResponse](#ondownloadcompleteresponsedeprecated) | Yes| Information returned when the download task is successful.|
 
 **fail parameters**
   | Name| Type| Mandatory| Description|
@@ -267,7 +267,7 @@ Listens for download task status. This API returns no value.
   | code | number | Yes| HTTP status code returned when the download task fails.|
 
 
-## OnDownloadCompleteResponse
+## OnDownloadCompleteResponse<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.MiscServices.Download
 

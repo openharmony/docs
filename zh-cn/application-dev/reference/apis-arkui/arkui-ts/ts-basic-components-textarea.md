@@ -1147,7 +1147,7 @@ type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKeyType | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。 |
+| enterKeyType | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。<br>类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
 | event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。         |
 
 ## 示例
@@ -1745,15 +1745,6 @@ struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "复制change"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "全选change"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),

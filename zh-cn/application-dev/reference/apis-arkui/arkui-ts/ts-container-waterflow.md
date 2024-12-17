@@ -49,6 +49,10 @@ WaterFlow(options?:  WaterFlowOptions)
 
 瀑布流分组信息。
 
+> **说明：**
+>
+> 使用splice、push、update修改分组信息后需要保证所有分组子节点总数与瀑布流实际子节点总数一致，否则会出现瀑布流因为不能正常布局而无法滑动的问题。
+
 ### constructor
 
 constructor()
@@ -1123,7 +1127,7 @@ struct WaterFlowDemo {
 ![pinch](figures/waterflow-pinch.gif)
 
 ### 示例5（设置边缘渐隐效果）
-该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge13)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
+该示例通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)实现了WaterFlow组件开启边缘渐隐效果，并通过fadingEdgeLength参数设置边缘渐隐长度。
 ```ts
 // Index.ets
 import { LengthMetrics } from '@kit.ArkUI'
@@ -1184,3 +1188,66 @@ struct WaterFlowDemo {
 ```
 
 ![fadingEdge_waterFlow](figures/fadingEdge_waterFlow.gif)
+
+### 示例6（单边边缘效果）
+
+该示例通过edgeEffect接口，实现了WaterFlow组件设置单边边缘效果。
+
+```ts
+//index.ets
+import { WaterFlowDataSource } from '../data/WaterFlowDataSource'
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  scroller: Scroller = new Scroller()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      WaterFlow({ scroller:this.scroller }) {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            Column() {
+              Text("N" + item).fontSize(12).height('16')
+            }
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('repeat(auto-fill,80)')
+      .columnsGap(10)
+      .rowsGap(5)
+      .height('90%')
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+
+    }
+  }
+}
+```
+
+![edgeEffect_waterFlow](figures/edgeEffect_waterFlow.gif)

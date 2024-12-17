@@ -225,9 +225,54 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 **示例：**
 
 ```ts
-observer.on('navDestinationUpdate', (info) => {
-  console.info('NavDestination state update', JSON.stringify(info));
-});
+// Index.ets
+// 演示 observer.on('navDestinationUpdate', callback)
+// observer.off('navDestinationUpdate', callback)
+import { uiObserver as observer } from '@kit.ArkUI';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationUpdate', (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationUpdate');
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationUpdate')
@@ -249,9 +294,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 
 **示例：**
 
-```ts
-observer.off('navDestinationUpdate');
-```
+参考[observer.on('navDestinationUpdate')](#observeronnavdestinationupdate)示例。
 
 ## observer.on('navDestinationUpdate')
 
@@ -274,9 +317,55 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 **示例：**
 
 ```ts
-observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
-    console.info('NavDestination state update', JSON.stringify(info));
-});
+// Index.ets
+// 演示 observer.on('navDestinationUpdate', navigationId, callback)
+// observer.off('navDestinationUpdate', navigationId, callback)
+import { uiObserver as observer } from '@kit.ArkUI';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+      console.info('NavDestination state update', JSON.stringify(info));
+    });
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationUpdate', { navigationId: "testId" });
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationUpdate')
@@ -299,9 +388,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
-```ts
-observer.off('navDestinationUpdate', { navigationId: "testId" });
-```
+参考[observer.on('navDestinationUpdate')](#observeronnavdestinationupdate-1)示例。
 
 ## observer.on('scrollEvent')<sup>12+</sup>
 
@@ -930,7 +1017,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .title("Navigation")
@@ -1000,12 +1087,16 @@ function callBackFunc(info: observer.NavDestinationSwitchInfo) {
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    observer.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.on('navDestinationSwitch', this.context, {
+      navigationId: "myNavId"
+    }, callBackFunc);
   }
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    observer.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+    observer.off('navDestinationSwitch', this.context, {
+      navigationId: "myNavId"
+    }, callBackFunc);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -1079,7 +1170,7 @@ struct Index {
     Column() {
       Navigation(this.stack) {
         Button("push").onClick(() => {
-          this.stack.pushPath({name: "pageOne"});
+          this.stack.pushPath({ name: "pageOne" });
         })
       }
       .id("myNavId")

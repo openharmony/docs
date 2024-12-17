@@ -2356,7 +2356,7 @@ off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 ```ts
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
+    console.log(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
   };
   inputMethodController.off('selectByRange', onSelectByRangeCallback);
   inputMethodController.off('selectByRange');

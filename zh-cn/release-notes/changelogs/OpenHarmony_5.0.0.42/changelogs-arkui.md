@@ -192,3 +192,89 @@ struct MyComponent {
   }
 }
 ```
+
+## cl.arkui.3 Navdestination的Dialog模式默认支持系统动画
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Navdestination的Dialog模式支持系统动画
+
+**变更影响**
+该变更为不兼容变更。
+
+变更前：Navdestination的Dialog模式，无系统默认动画。
+
+变更后：Navdestination的Dialog模式，默认带有系统转场动画。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/dialog_before.gif) | ![](figures/dialog_after.gif) |
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.42开始。
+
+**变更的接口/组件**
+
+Navdestination
+
+**适配指导**
+
+开发者可以通过在pop与push接口中设置false关闭Navdestination的系统默认动画。
+
+示例：
+
+```ts
+@Entry
+@Component
+
+struct NavigationDemo {
+	@State pageInfos: NavPathStack = new NavPathStack();
+
+	@Builder
+	pageOneTmp() {
+		NavDestination() {
+		}
+		.title("PageOne")
+		.mode(NavDestinationMode.DIALOG)
+	}
+
+	@Builder
+	PageMap(name: string, param: object) {
+		if (name === 'pageOne') {
+			this.pageOneTmp()
+		}
+	}
+
+	build() {
+		Column({ space: 10 }) {
+			Button('Pop Dialog')
+			.onClick(() => {
+				// set false to close system pop animation
+				this.pageInfos.pop(false)
+			})
+			Button('Push Dialog')
+			.onClick(() => {
+				// set false to close system push animation
+				this.pageInfos.pushPath({ name: 'pageOne' }, false)
+			})
+			Navigation(this.pageInfos) {
+				Column({ space: 10 }) {
+					Text("This is navigation").fontSize(60).align(Alignment.Center)
+				}
+			}
+			.height(500)
+			.backgroundColor(Color.Grey)
+			.navDestination(this.PageMap)
+		}.height(50)
+	}
+}
+```

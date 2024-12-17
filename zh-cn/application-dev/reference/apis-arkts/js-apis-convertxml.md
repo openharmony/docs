@@ -15,11 +15,78 @@ import { convertxml } from '@kit.ArkTS';
 
 ## ConvertXML
 
-### convertToJSObject<sup>9+</sup>
+### fastConvertToJSObject<sup>14+</sup>
+
+fastConvertToJSObject(xml: string, options?: ConvertOptions) : Object
+
+转换xml文本为JavaScript对象。
+
+> **说明：**
+>
+> 在Windows环境中，通常以回车符（CR）和换行符（LF）一对字符来表示换行。fastConvertToJSObject接口转换后的对象以换行符（LF）表示换行。
+
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明            |
+| ------- | --------------------------------- | ---- | --------------- |
+| xml     | string                            | 是   | xml文本，若包含“&”字符，请使用实体引用“\&amp;”替换。|
+| options | [ConvertOptions](#convertoptions) | 否   | 转换选项，默认值是ConvertOptions对象，由其中各个属性的默认值组成。|
+
+**返回值：**
+
+| 类型   | 说明                         |
+| ------ | ---------------------------- |
+| Object | 处理后返回的JavaScript对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 10200002 | Invalid xml string. |
+
+**示例：**
+
+```ts
+try {
+  let xml =
+    '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '   <title>Hello\r\nWorld</title>' +
+    '   <todo><![CDATA[Work\r\n]]></todo>' +
+    '</note>';
+  let conv = new convertxml.ConvertXML()
+  let options: convertxml.ConvertOptions = {
+    trim: false, declarationKey: "_declaration",
+    instructionKey: "_instruction", attributesKey: "_attributes",
+    textKey: "_text", cdataKey: "_cdata", doctypeKey: "_doctype",
+    commentKey: "_comment", parentKey: "_parent", typeKey: "_type",
+    nameKey: "_name", elementsKey: "_elements"
+  }
+  let result = JSON.stringify(conv.fastConvertToJSObject(xml, options));
+  console.log(result);
+} catch (e) {
+  console.log((e as Object).toString());
+}
+// 输出(宽泛型)
+// {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Hello\nWorld"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"cdata","_cdata":"Work\n"}]}]}]}
+```
+
+### convertToJSObject<sup>(deprecated)</sup>
 
 convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 转换xml文本为JavaScript对象。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 14开始废弃，建议使用[fastConvertToJSObject<sup>14+</sup>](#fastconverttojsobject14)替代。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -83,7 +150,7 @@ convert(xml: string, options?: ConvertOptions) : Object
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[convertToJSObject<sup>9+</sup>](#converttojsobject9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[fastConvertToJSObject<sup>14+</sup>](#fastconverttojsobject14)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 

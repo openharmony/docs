@@ -2484,7 +2484,6 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit'
 import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
@@ -2525,8 +2524,6 @@ addSubtitleFromUrl(url: string): Promise\<void>
 **示例：**
 
 ```ts
-import { media } from '@kit.MediaKit'
-
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer()
@@ -2843,7 +2840,7 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
-| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
+| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回填充数据的长度，返回-1表示到达流的末尾，返回-2表示遇到不可恢复的错误。|
 
 ## SubtitleInfo<sup>12+</sup>
 

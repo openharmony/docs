@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [audioSampleRate](#audiosamplerate) | 音频采样率，支持列表参考OH_AudioCapturer_GetSamplingRate。  | 
+| int32_t [audioSampleRate](#audiosamplerate) | 音频采样率。  | 
 | int32_t [audioChannels](#audiochannels) | 音频声道数。  | 
 | [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype) [audioSource](#audiosource) | 音频源。  | 
 
@@ -44,7 +44,7 @@ int32_t OH_AudioCaptureInfo::audioChannels
 int32_t OH_AudioCaptureInfo::audioSampleRate
 ```
 **描述**
-音频采样率，支持列表参考OH_AudioCapturer_GetSamplingRate。
+音频采样率，支持列表请查阅Audio Kit的[AudioSamplingRate](../apis-audio-kit/js-apis-audio.md#audiosamplingrate8)。
 
 
 ### audioSource

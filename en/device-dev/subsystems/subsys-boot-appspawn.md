@@ -134,15 +134,20 @@ The appspawn module is used only for the standard system.
    Modify configuration files by referring to the sandbox configuration description.
 
    - On the device, go to **/system/etc/sandbox/**, modify the sandbox configuration files, and restart the device.
-   - In the code path, go to **base/startup/appspawn_standard**, and modify the sandbox configuration files.
+   - In the code path, go to **base/startup/appspawn**, and modify the sandbox configuration files.
 
   **Table 3**  Description of sandbox configuration files
 
   | Sandbox Configuration File| Description|
   | -------- | -------- |
-  | appdata-sandbox64.json | Sandbox configuration for the 64-bit OS|
-  | appdata-sandbox.json | Sandbox configuration for the 32-bit OS|
-  | product-sandbox.json  | Product-specific configuration for the application sandbox|
+  | appdata-sandbox-app.json            | Mount point configuration for applications in the new feature sandbox.|
+  | appdata-sandbox-asan.json           | Additional mount point configuration for applications in the new feature sandbox of the ASan version.|
+  | appdata-sandbox-isolated-new.json   | Mount point configuration for native processes in the new feature sandbox. |
+  | appdata-sandbox-isolated.json       | Mount point configuration for native processes in the sandbox.|
+  | appdata-sandbox-nweb.json           | Mount point configuration for rendering processes in the new feature sandbox.|
+  | appdata-sandbox.json                | Sandbox configuration for the 32-bit OS.|
+  | appdata-sandbox64.json              | Sandbox configuration for the 64-bit OS.|
+  | appspawn_preload.json               | Preloading configuration.|
 
 ### Development Example
 The following is the sample code for adding product-specific configuration for the launcher application:

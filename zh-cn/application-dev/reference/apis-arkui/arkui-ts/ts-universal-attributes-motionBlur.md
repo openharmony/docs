@@ -9,7 +9,7 @@
 
 ## motionBlur
 
-motionBlur(value: MotionBlurOptions)
+motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
 在当前组件由缩放大小或位移变化引起的运动过程中，增加动态模糊效果。
 
@@ -29,9 +29,9 @@ motionBlur(value: MotionBlurOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                                         | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [MotionBlurOptions](#motionbluroptions对象说明) | 是   | 定义运动模糊参数。 |
+| 参数名                | 类型                                            | 必填 | 说明               |
+| --------------------- | ----------------------------------------------- | ---- | ------------------ |
+| Optional\<motionBlur> | [MotionBlurOptions](#motionbluroptions对象说明) | 是   | 定义运动模糊参数。 |
 
 ## MotionBlurOptions对象说明
 

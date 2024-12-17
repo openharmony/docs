@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Node-API [extension APIs](../reference/native-lib/napi.md) extends Node-API functionalities and provides APIs for creating custom ArkTS objects, which allows more flexible interaction between ArkTS and C/C++.
+The Node-API [extension APIs](napi-data-types-interfaces.md#extended-capabilities) extend Node-API functionalities and allow you to create custom ArkTS objects, which enable more flexible interaction between ArkTS and C/C++.
 
 If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code involved in the Node-API extension APIs.
 
@@ -604,7 +604,7 @@ await taskpool.execute(task6);
 
 **NOTE**
 
-Call **napi_coerce_to_native_binding_object** to add the **detach()** and **attach()** callbacks and native object information to ArkTs object A, and then pass object A across threads. Object A needs to be serialized and deserialized when passed cross threads. In thread 1, "data" is obtained after object A is serialized, and the **detach()** callback is invoked in the serialization process. Then, "data" is passed to thread 2 and deserialized in thread 2. The **attach()** callback is invoked to obtain the ArkTS object A'.
+Call **napi_coerce_to_native_binding_object** to add the **detach()** and **attach()** callbacks and native object information to ArkTs object A, and then pass object A across threads. Object A needs to be serialized and deserialized when passed cross threads. In thread 1, "data" is obtained after object A is serialized, and the **detach()** callback is invoked in the serialization process. Then, "data" is passed to thread 2 and deserialized in thread 2. The **attach()** callback is invoked to obtain the ArkTS object A.
 ![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
 
 ## Event Loop
@@ -651,7 +651,7 @@ See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.
 
 #### napi_serialize, napi_deserialize, napi_delete_serialization_data
 
-Use **napi_serialize** to convert an ArkTS object into native data; use **napi_deserialize** to convert native data into an ArkTS object; use napi_delete_serialization_data to delete serialized data.
+Use **napi_serialize** to convert an ArkTS object into native data; use **napi_deserialize** to convert native data into an ArkTS object; use **napi_delete_serialization_data** to delete serialized data.
 
 CPP code:
 
@@ -1060,7 +1060,7 @@ static napi_value WrapSendable(napi_env env, napi_callback_info info) {
 
     const char* testStr = "test";
     napi_wrap_sendable(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr);
-    
+
     return nullptr;
 }
 ```
@@ -1101,7 +1101,7 @@ static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info) {
 
     const char* testStr = "test";
     napi_wrap_sendable_with_size(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr, 100);
-    
+
     return nullptr;
 }
 ```
@@ -1146,7 +1146,7 @@ static napi_value UnwrapSendable(napi_env env, napi_callback_info info) {
     char* tmpTestStr = nullptr;
     napi_unwrap_sendable(env, obj, (void**)&tmpTestStr);
     OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
-    
+
     return nullptr;
 }
 ```
@@ -1191,7 +1191,7 @@ static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info) {
     char* tmpTestStr = nullptr;
     napi_remove_wrap_sendable(env, obj, (void**)&tmpTestStr);
     OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
-    
+
     return nullptr;
 }
 ```

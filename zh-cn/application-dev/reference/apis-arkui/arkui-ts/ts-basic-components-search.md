@@ -588,7 +588,7 @@ enableHapticFeedback(isEnabled: boolean)
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
-| autoDisable<sup>14+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
+| autoDisable<sup>16+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -1364,15 +1364,6 @@ struct SearchExample {
   @State text: string = 'Search editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "复制change"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "全选change"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),

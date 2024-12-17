@@ -81,6 +81,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -172,6 +173,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -274,6 +276,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -370,6 +373,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -463,6 +467,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -568,6 +573,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
+| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **Example**
@@ -1093,6 +1099,8 @@ export default class EntryAbility extends UIAbility {
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 Starts an ability in the foreground or background in the cross-device scenario and obtains the caller object for communicating with the ability. This API uses a promise to return the result. It can be called only by the main thread.
+
+This API cannot be used to start the UIAbility with the launch type set to [specified](../../application-models/uiability-launch-type.md#specified).
 
 > **NOTE**
 >
@@ -2023,7 +2031,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br><!--RP1-->This API applies only to devices whose **deviceTypes** is **default**.<!--RP1End-->
+Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br><!--RP1--><!--RP1End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2222,6 +2230,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000019 | No matching ability is found. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
+| 16000082 | The UIAbility is being started. |
 
 **Example**
 
@@ -2420,7 +2429,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setRestoreEnabled<sup>13+</sup>
+## UIAbilityContext.setRestoreEnabled<sup>14+</sup>
 
 setRestoreEnabled(enabled: boolean): Promise\<void>
 
@@ -2459,15 +2468,11 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let enabled = true;
     try {
-      this.context.setRestoreEnabled(enabled).then((data) => {
-        console.log('setRestoreEnabled success.');
-      }).catch((err: BusinessError) => {
-        console.error(`setRestoreEnabled fail, err: ${JSON.stringify(err)}`);
-      });
+      this.context.setRestoreEnabled(enabled);
     } catch (paramError) {
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.error(`[UIAbilityContext] error: ${code}, ${message}`);
+      console.error(`setRestoreEnabled failed, err code: ${code}, err msg: ${message}`);
     }
   }
 }
@@ -2477,8 +2482,7 @@ export default class EntryAbility extends UIAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-Starts a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md).
-
+Starts a UIServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -2771,5 +2775,3 @@ struct UIServiceExtensionAbility {
   }
 }
 ```
-
- <!--no_check--> 

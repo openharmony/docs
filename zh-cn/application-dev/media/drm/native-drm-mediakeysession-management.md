@@ -36,12 +36,12 @@ DRM会话管理（MediaKeySession）支持媒体密钥管理及媒体解密等�
     }
 
     // 适用于多个MediaKeySystem实例的场景。
-    static Drm_ErrCode SessoinEventCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+    static Drm_ErrCode SessoinEventCallBackWithObj(MediaKeySession *mediaKeySession, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
     {
         return DRM_ERR_OK;
     }
 
-    static Drm_ErrCode SessoinKeyChangeCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo, bool hasNewGoodKeys)
+    static Drm_ErrCode SessoinKeyChangeCallBackWithObj(MediaKeySession *mediaKeySession, DRM_KeysInfo *keysInfo, bool hasNewGoodKeys)
     {
         return DRM_ERR_OK;
     }

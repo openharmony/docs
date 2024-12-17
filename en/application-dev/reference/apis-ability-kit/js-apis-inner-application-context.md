@@ -33,11 +33,15 @@ import { common } from '@kit.AbilityKit';
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | No   | No   | Event hub that implements event subscription, unsubscription, and triggering.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | No   | Encryption level of the directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
-## Context.createModuleContext
+## Context.createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(moduleName: string): Context
 
 Creates the context based on the module name.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [application.createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -48,8 +48,15 @@ SaveButton(options:SaveButtonOptions)
 
 > **说明：**
 > 
-> icon或text需至少传入一个。<br>
-> 如果icon、text都不传入，[SaveButton](#savebutton-1)中的options参数不起效，创建的SaveButton为默认样式。
+> - icon或text需至少传入一个。<br>
+> - 如果icon、text都不传入，[SaveButton](#savebutton-1)中的options参数不起效，创建的SaveButton为默认样式，默认样式：
+>
+>   SaveIconStyle默认样式为FULL_FILLED；
+>
+>   SaveDescription默认样式为DOWNLOAD；
+>
+>   ButtonType默认样式为Capsule。
+> - icon、text、buttonType不支持动态修改。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

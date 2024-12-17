@@ -18,7 +18,7 @@ The **List** component provides a list container that presents a series of list 
 >
 >   - The **editable** attribute of **ListItem** is set to **true**.
 >
-> - To enable dragging for a list item, the following conditions must be met:
+> - To enable list item dragging, the following conditions must be met:
 >
 >   - **editMode** is set to **true**. (This is not required since API version 9.)
 >
@@ -50,7 +50,7 @@ Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-l
 
 ## APIs
 
-List(value?:{space?: number | string, initialIndex?: number, scroller?: Scroller})
+List(value?: [ListOptions](#listoptions14))
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -60,10 +60,24 @@ List(value?:{space?: number | string, initialIndex?: number, scroller?: Scroller
 
 **Parameters**
 
+| Name | Type| Mandatory| Description|
+| ------ | ---- | ---- | ---- |
+| value    | [ListOptions](#listoptions14)  | No  | Options of the **List** component.|
+
+## ListOptions<sup>14+</sup>
+
+Defines the options of the **List** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Type                                   | Mandatory| Description                                                    |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | space        | number \| string                  | No  | Spacing between list items along the main axis.<br>Default value: **0**<br>If the parameter type is number, the unit is vp.<br>**NOTE**<br>If this parameter is set to a negative number or a value greater than or equal to the length of the list content area, the default value is used.<br>If this parameter is set to a value less than the width of the list divider, the width of the list divider is used as the spacing.|
-| initialIndex | number                                      | No  | Item displayed at the beginning of the viewport when the current list is loaded for the first time, that is, the first item to be displayed.<br>Default value: **0**<br>**NOTE**<br>If the set value is a negative number or is greater than the index of the last item in the list, the value is invalid. In this case, the default value will be used.|
+| initialIndex | number                                      | No  | Index of the item to be displayed at the start when the list is initially loaded.<br>Default value: **0**<br>**NOTE**<br>If the set value is a negative number or is greater than the index of the last item in the list, the value is invalid. In this case, the default value will be used.|
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | No  | Scroller, which can be bound to scrollable components.<br>**NOTE**<br>The scroller cannot be bound to other scrollable components.|
 
 ## Attributes
@@ -90,7 +104,7 @@ Sets the direction in which the list items are arranged.
 
 ### divider
 
-divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
+divider(value: [ListDividerOptions](#listdivideroptions14) | null)
 
 Sets the style of the divider for the list items. By default, there is no divider.
 
@@ -114,7 +128,7 @@ When a list item has [polymorphic styles](ts-universal-attributes-polymorphic-st
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Yes  | Style of the divider for the list items.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>Default value: **0x08000000**<br>- **startMargin**: distance between the divider and the start edge of the list.<br>Default value: **0**, in vp<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Default value: **0**, in vp|
+| value  | [ListDividerOptions](#listdivideroptions14) \| null | Yes  | Style of the divider for the list items.<br>Default value: **null**|
 
 ### scrollBar
 
@@ -154,13 +168,34 @@ When a list is nested with **LazyForEach**, and within **LazyForEach** there is 
 
 | Name| Type  | Mandatory| Description                                              |
 | ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | Yes  | Number of list items or list item groups to be preloaded (cached).<br>Default value: **1**|
+| value  | number | Yes  | Number of list items or list item groups to be preloaded (cached).<br>Default value: **1**<br>Value range: [0, +∞)|
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(count: number, show: boolean)
+
+Sets the number of list items or list item groups to be cached (preloaded) and specifies whether to display the preloaded nodes.
+
+When **cachedCount** is set for the list, the system preloads and lays out the **cachedCount**-specified number of rows of list items both above and below the currently visible area of the list. When calculating the number of rows for list items, the system takes into account the number of rows from the list items within a list item group. If a list item group does not contain any list items, then the entire list item group is counted as one row. This attribute can be combined with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes to display the preloaded nodes.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| count  | number | Yes  | Number of list items to be preloaded.<br>Default value: **1**<br>Value range: [0, +∞)|
+| show  | boolean | Yes  | Whether to display the preloaded list items.<br> Default value: **false**|
 
 ### editMode<sup>(deprecated)</sup>
 
 editMode(value: boolean)
 
-Sets whether to enable edit mode. For details about how to implement deletion of a selected list item, see [Example 3](#example-3).
+Sets whether to enable edit mode. For details about how to delete selected list items, see [Example 3](#example-3-setting-the-editable-mode).
 
 This API is deprecated since API version 9. There is no substitute API.
 
@@ -195,17 +230,17 @@ Sets the effect used when the scroll boundary is reached.
 
 chainAnimation(value: boolean)
 
-Sets whether to enable chained animations, which are displayed when the list slides or its top or bottom is dragged.
+Sets whether to enable chained animations, which provide a visually connected, or "chained," effect when the list is scrolled or its top or bottom edge is dragged.
 
-The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.
+With chained animations enabled, list items are spaced apart by a certain distance, which is 20 vp by default and can be adjusted as needed using the **space** parameter of the **List** component. During scrolling, the list item being actively dragged by the user's finger is considered the active object, while adjacent items are driven objects. The active object triggers a physics-based spring animation that affects the driven objects.
 
-When chained animations are in motion, the list divider is not displayed.
+When chained animations are active, the list divider is not displayed.
 
-The following prerequisites must be met for the chained animations to take effect:
+For chained animations to work properly, the following conditions must be met:
 
- 1. The spring effect is used when the scroll boundary of the list is reached.
+ 1. The list is configured to use a spring effect when its scroll boundary is reached.
 
- 2. The multi-column mode is not enabled for the list.
+ 2. The list is not in multi-column mode.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -288,6 +323,10 @@ sticky(value: StickyStyle)
 
 Sets whether to pin the header to the top or the footer to the bottom in the [list item group](ts-container-listitemgroup.md), if set. To support both the pin-to-top and pin-to-bottom features, set **sticky** to **StickyStyle.Header \| StickyStyle.Footer**.
 
+> **NOTE**
+>
+> Occasionally, after **sticky** is set, floating-point calculation precision may result in small gaps appearing during scrolling. To address this issue, you can apply the [pixelRound](ts-universal-attributes-pixelRound.md#pixelround) attribute to the current component, which rounds down the pixel values and help eliminate the gaps.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -304,7 +343,7 @@ Sets whether to pin the header to the top or the footer to the bottom in the [li
 
 scrollSnapAlign(value: ScrollSnapAlign)
 
-Sets the alignment mode of list items when scrolling ends.
+Sets the alignment mode for the scroll snap position.
 
 This attribute is effective only when the heights of list items are the same.
 
@@ -318,7 +357,7 @@ It does not take effect after scrolling by a touchpad or mouse device ends.
 
 | Name| Type                                         | Mandatory| Description                                                     |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | [ScrollSnapAlign](#scrollsnapalign10) | Yes  | Alignment mode of list items when scrolling ends.<br>Default value: **ScrollSnapAlign.NONE**|
+| value  | [ScrollSnapAlign](#scrollsnapalign10) | Yes  | Alignment mode of the scroll snap position.<br>Default value: **ScrollSnapAlign.NONE**|
 
 ### enableScrollInteraction<sup>10+</sup>
 
@@ -416,6 +455,27 @@ Sets the size information of the child components of a **List** component along 
 | ---------- | ------ | ---- | ------------------------------- |
 | value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12) | Yes  | 1. Purpose:<br>By providing a **ChildrenMainSize** object to the **List** component, it accurately conveys the size information of all child components along the main axis. This enables the **List** component to maintain an accurate scroll position even when child components have varying sizes on the main axis, when child components are added or removed, or when [scrollToIndex](ts-container-scroll.md#scrolltoindex) is used. This ensures that [scrollTo](ts-container-scroll.md#scrollto) can jump to an exact specified location, [currentOffset](ts-container-scroll.md#currentoffset) can obtain the current exact scroll position, and the built-in scrollbar can move smoothly without any discontinuities.<br>2. Constraints:<br>(1) The provided size along the main axis must be consistent with the actual size of the child components on the main axis. Any changes in size or additions/removals of child components must be communicated to the **List** component through the **ChildrenMainSize** object method.<br>(2) When the child component is a list item group, the overall size of the list item group along the main axis must be accurately calculated based on the number of columns in the list item group, the spacing between list items along the main axis, and the size of the header, footer, and list items within the list item group. The calculated size must then be provided to the **List** component.<br>(3) If child components include list item groups, the **childrenMainSize** attribute must be set for each individual list item group. Each list item group, as well as the **List** component itself, must be bound one-to-one with a **ChildrenMainSize** object through the **childrenMainSize** attribute.<br>(4) For a multi-column list where child components are generated using **LazyForEach**, ensure that **LazyForEach** generates either all **ListItemGroup** components or all** ListItem** components. |
 
+### maintainVisibleContentPosition<sup>12+</sup>
+
+maintainVisibleContentPosition(enabled: boolean)
+
+Sets whether the visible content position should remain unchanged when data is inserted or deleted above the visible area.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | Yes  | Whether the visible content position should remain unchanged when data is inserted or deleted above the visible area.<br>Default value: **false**<br>**false**: The visible content position will change when data is inserted or deleted. **true**: The visible content position remains unchanged when data is inserted or deleted.|
+
+> **NOTE**
+> - The visible content position will only remain unchanged when **LazyForEach** is used to insert or delete data outside the visible area. If **ForEach** is used to insert or delete data, or if **LazyForEach** is used for data reloading, the visible content position will change even if **maintainVisibleContentPosition** is set to **true**.
+> - When **maintainVisibleContentPosition** is set to **true**, inserting or deleting data above the visible area will trigger **onDidScroll** and **onScrollIndex** events.
+> - In a multi-column scenario, setting **maintainVisibleContentPosition** to **true** allows you to insert or delete entire rows of data while keeping the visible content position unchanged. If the insertion or deletion does not involve entire rows, however, the visible content position will still change.
+
 ## ListItemAlign<sup>9+</sup>
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
@@ -424,7 +484,7 @@ Sets the size information of the child components of a **List** component along 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    |  Value | Description                       |
+| Name    |  Value | Description                     |
 | ------ | ------ | ------------------------- |
 | Start  | 0 | The list items are packed toward the start edge of the **List** component along the cross axis.|
 | Center | 1 | The list items are centered in the **List** component along the cross axis.|
@@ -438,7 +498,7 @@ Sets the size information of the child components of a **List** component along 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    |  Value | Description                                |
+| Name    |  Value | Description                              |
 | ------ | ------ | ---------------------------------- |
 | None   | 0 | In the **ListItemGroup** component, the header is not pinned to the top, and the footer is not pinned to the bottom.|
 | Header | 1 | In the **ListItemGroup** component, the header is pinned to the top, and the footer is not pinned to the bottom. |
@@ -456,7 +516,7 @@ This API is available only when the heights of list items are the same.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    |  Value | Description                                      |
+| Name    |  Value | Description                                    |
 | ------ | ------ | ---------------------------------------- |
 | NONE   | 0 | No alignment. This is the default value.           |
 | START  | 1 | The first item in the view is aligned at the start of the list.<br>**NOTE**<br>When the list hits the end, the items at the end must be completely displayed. In this case, the items at the start may not be aligned.|
@@ -471,8 +531,25 @@ Implements the callbacks and events for the [ListItem](ts-container-listitem.md)
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type    | Mandatory| Description                  |
-| :------- | -------- | ---- | ---------------------- |
+| ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | No  | Triggered after the collapse animation is complete.|
+
+## ListDividerOptions<sup>14+</sup>
+
+Defines the divider style of the list or list item group.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type    | Mandatory| Description                  |
+| ------- | -------- | ---- | ---------------------- |
+| strokeWidth | [Length](ts-types.md#length) | Yes  | Width of the divider.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the divider.<br>Default value: **0x08000000**|
+| startMargin | [Length](ts-types.md#length) | No  | Distance between the divider and the start edge of the list.<br>Default value: **0**, in vp<br>|
+| endMargin | [Length](ts-types.md#length) | No  | Distance between the divider and the end edge of the list.<br>Default value: **0**, in vp<br>|
 
 ## Events
 
@@ -725,7 +802,7 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate))
 
 Triggered when the list scrolls.
 
-This API is deprecated since API version 12. You are advised to use [onDidScroll](#ondidscroll12) instead.
+This API is deprecated since API version 12. You are advised to use [onDidScroll](ts-container-scrollable-common.md#ondidscroll12) instead.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -738,44 +815,6 @@ This API is deprecated since API version 12. You are advised to use [onDidScroll
 | ------ | ------ | ------ | ------|
 | scrollOffset | number | Yes| Scroll offset of each frame. The offset is positive when the list is scrolled up and negative when the list is scrolled down.<br>Unit: vp|
 | scrollState | [ScrollState](ts-container-list.md#scrollstate) | Yes| Current scroll state.|
-
-### onWillScroll<sup>12+</sup>
-onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
-
-Triggered when the list is about to scroll. The callback provides the amount of offset that is about to be scrolled in the current frame, along with the current scroll state and the source of the scroll operation. The offset provided in the callback is the calculated intended scrolling offset, not the final actual scrolling offset. You can specify the intended scrolling offset through the return value of this callback.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------ | ------ | ------ | ------|
-| handler | Optional&lt;[OnWillScrollCallback](ts-container-scrollable-common.md#onwillscrollcallback12)&gt; | Yes| Callback invoked when the list is about to scroll.|
-
-> **NOTE**
-> 
-> When **ScrollEdge** and **ScrollToIndex** that does not involve animation is called, **onWillScroll** is not invoked.
-
-### onDidScroll<sup>12+</sup>
-onDidScroll(handler: OnScrollCallback)
-
-Triggered when the list scrolls. The return value is the offset amount by which the list has scrolled and the current scroll state.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](ts-container-scrollable-common.md#onscrollcallback12) | Yes| Callback invoked when the list scrolls.|
 
 ### onScrollVisibleContentChange<sup>12+</sup>
 onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
@@ -804,7 +843,7 @@ This event is triggered once when the list is initialized and when the index of 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    |  Value | Description                                      |
+| Name    |  Value | Description                                    |
 | ------ | ------ | ---------------------------------------- |
 | Idle   |  0  | Idle state. Triggered when the scroll state returns to idle, and when the controller's non-animated methods are used to control the scroll.|
 | Scroll |  1  | Scrolling state. Triggered when the list is dragged with the finger, when the scrollbar is dragged, or when the mouse scroll wheel is used.|
@@ -865,9 +904,43 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
+### getVisibleListContentInfo<sup>13+</sup>
 
+getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
+
+Obtains the index information of the child component at the specified coordinates.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Description             |
+| ----- | ------ | ---- | ----------------- |
+| x | number | Yes   | X-coordinate, in vp.|
+| y | number | Yes   | Y-coordinate, in vp.|
+
+> **NOTE**
+>
+> If the provided value of **x** or **y** is invalid, the returned [VisibleListContentInfo](#visiblelistcontentinfo12) object has the **index** property set to **-1**, and both **itemGroupArea** and **itemIndexInGroup** are **undefined**.
+
+**Return value**
+
+| Type      | Description      |
+| -------------------  | -------- |
+|  [VisibleListContentInfo](#visiblelistcontentinfo12) | Index information of the child component at the specified coordinates.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 ### scrollToItemInGroup<sup>11+</sup>
 
 scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align?: ScrollAlign): void
@@ -895,7 +968,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
 
 ### closeAllSwipeActions<sup>11+</sup>
@@ -910,8 +983,8 @@ Collapses the [list items](ts-container-listitem.md) in the [EXPANDED](ts-contai
 
 **Parameters**
 
-| Name | Type                                                  | Mandatory| Description                                                    |
-| ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name | Type                                 | Mandatory| Description                                           |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------- |
 | options | [CloseSwipeActionOptions](#closeswipeactionoptions11) | No  | Callback events for collapsing [list items](ts-container-listitem.md) in the [EXPANDED](ts-container-listitem.md#swipeactionstate11) state.|
 
 
@@ -921,7 +994,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
 
 > **NOTE**
@@ -961,7 +1034,7 @@ Called when a child component enters or leaves the list display area.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    |  Value | Description                                      |
+| Name    |  Value | Description                                    |
 | ------ | ------ | ---------------------------------------- |
 | NONE |  0  | The edge of the viewport is in the position of **none**. Applicable when the list item group does not contain any header, footer, or list item.|
 | IN_LIST_ITEM_AREA |  1  | The edge of the viewport is in the position of a list item.|
@@ -970,7 +1043,7 @@ Called when a child component enters or leaves the list display area.
 
 ## Example
 
-### Example 1
+### Example 1: Adding a Scroll Event
 In this example, a vertical list is implemented, and a callback is invoked when the first or last item displayed in the list changes.
 ```ts
 // xxx.ets
@@ -1024,7 +1097,8 @@ struct ListExample {
 ![en-us_image_0000001174264378](figures/en-us_image_0000001174264378.gif)
 
 
-### Example 2
+### Example 2: Setting Child Element Alignment
+This example showcases the alignment effects of child elements in the cross-axis direction of the **List** component using different **ListItemAlign** enumeration values.
 
 ```ts
 // xxx.ets
@@ -1075,7 +1149,8 @@ struct ListLanesExample {
 ![list](figures/list-alignListItem.gif)
 
 
-### Example 3
+### Example 3: Setting the Editable Mode
+This example illustrates how to set whether the current **List** component is in editable mode.
 
 ```ts
 // xxx.ets
@@ -1132,7 +1207,8 @@ struct ListExample {
 
 ![list](figures/list3.gif)
 
-### Example 4
+### Example 4: Setting the Alignment Mode for the Scroll Snap Position
+This example shows how to configure the **List** component to align the scroll snap position to the center.
 
 ```ts
 // xxx.ets
@@ -1183,8 +1259,10 @@ struct ListExample {
 
 ![list](figures/list4.gif)
 
-### Example 5
+### Example 5: Implementing Accurate Scrolling
 This example shows that, by setting the **childrenMainSize** attribute, the list can jump to an exact specific location when the **scrollTo** API is called, even when the heights of the child components are inconsistent.
+
+For details about how to use these features in conjunction with state management V2, see [List](../../../quick-start/arkts-v1-v2-migration.md#list).
 ```ts
 // xxx.ets
 @Entry
@@ -1245,3 +1323,146 @@ struct ListExample {
 ```
 
 ![list](figures/list5.gif)
+
+### Example 6: Obtaining Child Component Index Information
+This example demonstrates how to obtain index information of list items in a **List** component when groups are involved.
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemGroupExample {
+  private timeTable: TimeTable[] = [
+    {
+      title: 'Monday',
+      projects: ['Language', 'Math', 'English']
+    },
+    {
+      title: 'Tuesday',
+      projects: ['Physics', 'Chemistry', 'Biology']
+    },
+    {
+      title: 'Wednesday',
+      projects: ['History', 'Geography', 'Politics']
+    },
+    {
+      title: 'Thursday',
+      projects: ['Art', 'Music', 'Sports']
+    }
+  ]
+  private scroller: ListScroller = new ListScroller()
+  @State listIndexInfo: VisibleListContentInfo = {index: -1}
+  @State mess:string = "null"
+  @State itemBackgroundColorArr: boolean[] = [false]
+  @Builder
+  itemHead(text: string) {
+    Text(text)
+      .fontSize(20)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(10)
+  }
+
+  @Builder
+  itemFoot(num: number) {
+    Text('Total lessons: ' + num)
+      .fontSize(16)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(5)
+  }
+
+  build() {
+    Column() {
+      List({ space: 20, scroller: this.scroller}) {
+        ForEach(this.timeTable, (item: TimeTable, index: number) => {
+          ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
+            ForEach(item.projects, (project: string, subIndex: number) => {
+              ListItem() {
+                Text(project)
+                  .width("100%")
+                  .height(100)
+                  .fontSize(20)
+                  .textAlign(TextAlign.Center)
+                  .backgroundColor(this.itemBackgroundColorArr[index *3 +subIndex] ? 0x68B4FF: 0xFFFFFF)
+              }
+            }, (item: string) => item)
+          }
+          .divider({ strokeWidth: 1, color: Color.Blue }) // Divider between lines
+        },(item: string) => item)
+      }
+      .width('90%')
+      .sticky(StickyStyle.Header | StickyStyle.Footer)
+      .scrollBar(BarState.Off)
+      .gesture(
+        PanGesture()
+          .onActionUpdate((event: GestureEvent) => {
+            if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
+              this.listIndexInfo  = this.scroller.getVisibleListContentInfo(event.fingerList[0].localX, event.fingerList[0].localY)
+              let itemIndex:string = 'undefined';
+              if (this.listIndexInfo.itemIndexInGroup != undefined ) {
+                itemIndex = this.listIndexInfo.itemIndexInGroup.toString()
+                if (this.listIndexInfo.index != undefined && this.listIndexInfo.index >= 0 &&
+                  this.listIndexInfo.itemIndexInGroup >= 0 ) {
+                  this.itemBackgroundColorArr[this.listIndexInfo.index * 3 + this.listIndexInfo.itemIndexInGroup] = true;
+                }
+              }
+              this.mess = 'index:' + this.listIndexInfo.index.toString() + ' itemIndex:' + itemIndex
+            }
+          }))
+      .gesture(
+        TapGesture({ count: 1 })
+          .onAction((event: GestureEvent) => {
+            if (event) {
+              this.itemBackgroundColorArr.splice(0,this.itemBackgroundColorArr.length);
+            }
+          })
+      )
+      Text('You are currently at index '+ this.mess)
+        .fontColor(Color.Red)
+        .height(50)
+    }.width('100%').height('90%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+  }
+}
+
+interface TimeTable {
+  title: string;
+  projects: string[];
+}
+
+```
+
+![list](figures/getItemIndex_listGroup.gif)
+
+### Example 7: Setting Edge Fading
+This example demonstrates how to implement a **List** component with an edge fading effect and set the length of the fading edge.
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct ListExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  scrollerForList: Scroller = new Scroller()
+  build() {
+    Column() {
+
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![fadingEdge_list](figures/fadingEdge_list.gif)

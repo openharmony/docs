@@ -29,8 +29,8 @@
 
 代码混淆目前只提供名称混淆的能力(因为其它混淆能力会劣化性能)。 开启代码混淆可以混淆以下名称:
 
-* 参数名和局部变量名  
-* 顶层作用域的名称  
+* 参数名和局部变量名
+* 顶层作用域的名称
 * 属性名称
 * 导出名称
 * 文件名称
@@ -142,7 +142,7 @@
     -enable-string-property-obfuscation
     ```
 
-    **注意**：  
+    **注意**：
 
     **1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z, A-Z, 0-9, _`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#保留选项)来指定保留这些名字。  
     **2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中
@@ -184,14 +184,14 @@ const module = import('../directory/filename');
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
 * 被[-keep-file-name](#保留选项)指定的文件/文件夹名称不会被混淆。
 * 非ECMAScript模块引用方式（ECMAScript模块示例：`import {foo} from './filename'`）
-* 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`  
+* 非路径引用方式，例如例子中的json5不会被混淆 `import module from 'json5'`
 
-**注意**：  
+**注意**：
 
 由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[-keep-file-name](#保留选项)选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
-上述需要手动配置白名单的情况，包括但不限于以下场景：  
+上述需要手动配置白名单的情况，包括但不限于以下场景：
 
-* 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
+* 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。
 * 当模块中包含Worker多线程服务时，用户需要将`build-profiles.json5`中，'buildOption'-'sourceOption'-'workers'字段下所有的路径配置到白名单中。
 
 **提醒**：
@@ -208,16 +208,16 @@ const module = import('../directory/filename');
 
 **注意**：
 
-1. 混淆导入或导出的类中属性名称需要同时开启`-enable-property-obfuscation`与`-enable-export-obfuscation`选项。  
+1. 混淆导入或导出的类中属性名称需要同时开启`-enable-property-obfuscation`与`-enable-export-obfuscation`选项。
 2. 编译HSP时，如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留对外暴露的接口。
-3. HAP/HSP/HAR依赖HSP场景下，编译时如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留HSP导入的接口。  
+3. HAP/HSP/HAR依赖HSP场景下，编译时如果开启`-enable-export-obfuscation`选项，需要在模块中的混淆配置文件`obfuscation-rules.txt`中保留HSP导入的接口。
 
     ```
     // 代码示例(HSP中入口文件Index.ets)：
     export { add, customApiName } from './src/main/ets/utils/Calc'
 
     // 保留接口名称配置示例：
-    // HSP以及依赖此HSP的模块中obfuscation-rules.txt文件配置： 
+    // HSP以及依赖此HSP的模块中obfuscation-rules.txt文件配置：
     -keep-global-name
     add
     customApiName
@@ -242,7 +242,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### -print-namecache *filepath*
 
-将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。  
+将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。
 
 **注意**：
 
@@ -258,9 +258,9 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### -remove-comments
 
-删除编译生成的声明文件中的JsDoc注释。  
+删除编译生成的声明文件中的JsDoc注释。
 
-**注意**：  
+**注意**：
 
 编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
 可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
@@ -319,6 +319,52 @@ enum Test {
 ```
 
 其中，编译hap/hsp模块的情况下，enum白名单内容为['outdoor', 'member1']；编译字节码har模块的情况下，enum白名单内容为['outdoor', 'member1', 'member2']。
+
+#### -extra-options strip-language-default
+
+混淆的预置语言白名单中**默认包含了typescript的系统接口中关于dom、webworker、scriphost等API的名称以及Web API的名称**。如果开发者源码中的属性与这部分名称重名，混淆工具会对这些属性进行保留。
+
+如果开发者需要混淆这部分代码，需要配置`-extra-options strip-language-default`选项。
+
+开发者可通过以下方式确定混淆工具默认保留的API的具体减少范围：
+
+开启`-print-kept-names`选项，对比开启和关闭`-extra-options strip-language-default`选项时全量白名单（whitelist.json）中`lang`字段的内容差异，该差异即为预置语言白名单的具体减少范围。
+
+#### -extra-options strip-system-api-args
+
+当前混淆的系统API白名单中**默认包含了系统API中的局部变量名称**，且系统API白名单默认对开发者源码中的局部变量生效。如果开发者源码中的属性与系统API中的局部变量重名或源码中的局部变量与系统API白名单重名，混淆工具会对这部分属性和局部变量名称进行保留。
+
+如果开发者需要混淆这部分代码，需要配置`-extra-options strip-system-api-args`选项。
+
+系统API白名单文件（systemApiCache.json）的ReservedLocalNames、ReservedPropertyNames和ReservedGlobalNames字段可以查看系统API白名单的具体内容。系统API白名单文件位于模块目录下build/default/cache/{...}/release/obfuscation路径中，记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
+
+开发者可通过以下方式确定系统白名单减少的具体范围：
+
+通过对比开启和关闭`-extra-options strip-system-api-args`选项时系统API白名单文件（systemApiCache.json）中ReservedLocalNames和ReservedPropertyNames字段的内容差异，该差异即为系统白名单的具体减少范围，ReservedGlobalNames字段的内容不会产生变化。
+
+**如何使用-extra-options选项**：
+
+需要在混淆配置文件中添加`-extra-options`前缀，且前缀与选项之间没有其他内容时，白名单优化选项才生效。支持开启单个选项和同时开启两个选项，例如下面的写法：
+
+单个选项：
+
+```
+-extra-options
+strip-language-default
+
+-extra-options strip-language-default
+```
+
+同时开启两个选项：
+
+```
+-extra-options strip-language-default, strip-system-api-args
+
+-extra-options strip-language-default strip-system-api-args
+
+-extra-options strip-language-default
+-extra-options strip-system-api-args
+```
 
 ### 保留选项
 
@@ -394,7 +440,7 @@ let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要被保留
 使用到的数据库相关的字段，需要手动保留。
 
 ```
-const dataToInsert = {  
+const dataToInsert = {
   value1: 'example1',   // value1 需要被保留
 };
 ```
@@ -419,7 +465,7 @@ class A {
 
 #### -keep-global-name *[,identifiers,...]*
 
-指定要保留的顶层作用域的名称，支持使用名称类通配符。例如，
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如，
 
 ```
 -keep-global-name
@@ -427,7 +473,7 @@ Person
 printPersonName
 ```
 
-namespace中导出的名称也可以通过`-keep-global-name`保留。
+`namespace`中导出的名称可以通过`-keep-global-name`选项保留，示例如下：
 
 ```
 export namespace Ns {
@@ -547,6 +593,34 @@ export class exportClass {}
 ../folder                    // folder目录下文件及子文件夹中的名称都不混淆
 ../oh_modules/json5          // 引用的三方库json5里所有文件中的名称都不混淆
 ```
+
+**如何在模块中保留远程HAR包**
+
+方式一：指定远程`HAR`包在模块级`oh_modules`中的具体路径（该路径为软链接路径，真实路径为工程级`oh_modules`中的文件路径）。因为在配置模块级`oh_modules`中的路径作为白名单时，需要具体到包名或之后的目录才能正确地软链接到真实的目录路径，所以不能仅配置`HAR`包的上级目录名称。
+
+```
+// 正例
+-keep
+./oh_modules/harName1         // harName1目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/harName1/src     // src目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/folder/harName2  // harName2目录下所有文件及子文件夹中的名称都不混淆
+
+// 反例
+-keep
+./oh_modules                  // 保留模块级oh_modules里HAR包时，不支持配置HAR包的上级目录名称
+```
+
+方式二：指定远程`HAR`包在工程级`oh_modules`中的具体路径。因为工程级`oh_modules`中的文件路径都为真实路径，所以其路径均可配置。
+
+```
+-keep
+../oh_modules                  // 工程级oh_modules目录下所有文件及子文件夹中的名称都不混淆
+../oh_modules/harName3          // harName3目录下所有文件及子文件夹中的名称都不混淆
+```
+
+模块级`oh_moudles`和工程级`oh_modules`在`DevEco Studio`中的目录结构如下图所示：
+
+![oh_modules](./figures/oh_modules.png)
 
 **注意**：
 
@@ -681,13 +755,13 @@ age
 
 ### 混淆规则合并策略
 
-一个工程中经常会有许多混淆规则文件，这些文件来自于:
+编译工程中的某个模块时，其最终所应用的混淆规则是以下文件中配置的混淆规则的合并:
 
-* 主工程的`ruleOptions.files` (这里主工程指的是正在构建的工程)
+* 本模块的build-profile.json5文件中`ruleOptions.files`字段指定的文件
 * 本地依赖的library中的`consumerFiles`选项中指定的文件
 * 远程依赖的HAR包中的`obfuscation.txt`文件
 
-当构建主工程的时候，这些文件中的混淆规则会按照下面的合并策略(伪代码)进行合并:
+上述文件中的混淆规则的优先级是一致的。构建模块时，这些规则文件将按照以下合并策略（伪代码）进行合并。
 
 ```
 let `listRules` 表示上面提到的所有混淆规则文件的列表
@@ -886,7 +960,7 @@ end-for
 假设当前模块未配置`-compact`，但是混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
 
 1. 查看当前模块的oh-package.json5中的dependencies，此字段记录了当前模块的依赖信息。
-2. 在依赖的模块/三方库中的混淆配置文件内检索"-comapct"：
+2. 在依赖的模块/三方库中的混淆配置文件内检索"-compact"：
     * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
     * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
 
@@ -930,7 +1004,7 @@ let jsonObj = jsonStr.i
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
 
-#### 开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
+#### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
 
@@ -982,7 +1056,7 @@ import {a3} from './file1'
 let person1 = new a3.person1()
 ```
 
-namespace里的 "person1" 属于顶层作用域的class名称，通过 "ns1.person1" 来调用时，它是属于一个属性，由于未开启属性混淆，所以在使用它时没有被混淆。
+namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时，它被视为一个属性。由于未开`-enable-property-obfuscation`选项，导致在使用时未对其进行混淆。
 
 **解决方案：**
 

@@ -29,8 +29,13 @@
 
 ### 页面路由
 
+> **说明：**
+>
+> 本示例使用了router进行页面跳转，建议开发者使用组件导航(Navigation)代替页面路由(router)来实现页面切换。Navigation提供了更多的功能和更灵活的自定义能力。请参考[使用Navigation的组件冻结用例](#navigation)。
+
 当页面1调用router.pushUrl接口跳转到页面2时，页面1为隐藏不可见状态，此时如果更新页面1中的状态变量，不会触发页面1刷新。
 图示如下：
+
 ![freezeInPage](./figures/freezeInPage.png)
 
 页面1：
@@ -49,7 +54,7 @@ struct Page1 {
 
   build() {
     Column() {
-      Text(`From fist Page ${this.storageLink}`).fontSize(50)
+      Text(`From first Page ${this.storageLink}`).fontSize(50)
       Button('first page storageLink + 1').fontSize(30)
         .onClick(() => {
           this.storageLink += 1

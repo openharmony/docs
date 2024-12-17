@@ -5,12 +5,13 @@
 
 > **NOTE**
 >
-> When an application page is opened using a browser, the browser automatically converts uppercase letters in **scheme** and **host** in **uris** to lowercase letters, causing a failure to match the application. Therefore, it is recommended that **scheme** and **host** do not contain uppercase letters.
+> - When an application page is opened using a browser, the browser automatically converts uppercase letters in **scheme** and **host** in **uris** to lowercase letters, causing a failure to match the application. Therefore, it is recommended that **scheme** and **host** do not contain uppercase letters.
+> - Do not add slashes (/) before and after the values of **path**, **pathStartWith**, and **pathRegex**. For example, for the application link **https://developer.huawei.com/consumer/en/support**, set **path** to **consumer/en/support**.
 
 - **scheme**: scheme name, for example, **http**, **https**, **file**, and **ftp**. Custom values are also supported.
 - **host**: domain name or IP address, for example, developer.huawei.com or 127.0.0.1.
 - **port**: port number, for example, 80 in developer.huawei.com:80.
-- **path**: directory or file path on the DNS, for example, consumer in developer.huawei.com/consumer/.
+- **path**: directory or file path on the DNS, The **path** field does not support wildcards. If wildcards are required, use **pathRegex**.
 - **pathStartWith**: prefix of the directory or file path on the DNS. It is used for prefix matching.
 - **pathRegex**: regular expression of the directory or file path on the DNS. It is used for regular expression matching.
 - [linkFeature](#description-of-linkfeature): application's function type (such as file opening, sharing, and navigation). The value is a string with a maximum of 127 bytes.

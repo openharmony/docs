@@ -12,7 +12,9 @@
 
 onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 
-组件区域变化时触发该回调。仅会响应由布局变化所导致的组件大小、位置发生变化时的回调。由绘制变化所导致的渲染属性变化不会响应回调，如[translate](ts-universal-attributes-transformation.md#translate)、[offset](ts-types.md#offset)。
+组件区域变化时触发该回调。仅会响应由布局变化所导致的组件大小、位置发生变化时的回调。
+
+由绘制变化所导致的渲染属性变化不会响应回调，如[translate](ts-universal-attributes-transformation.md#translate)、[offset](ts-types.md#offset)。若组件自身位置由绘制变化决定也不会响应回调，如[bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -32,6 +34,8 @@ onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 | T | 返回当前组件。 |
 
 ## 示例
+
+该示例通过Text组件设置组件区域变化事件，当Text布局变化时可以触发onAreaChange事件，获取相关参数。
 
 ```ts
 // xxx.ets

@@ -970,9 +970,9 @@ httpRequest.on("dataEnd", () => {
 httpRequest.off("dataEnd");
 ```
 
-### on("dataReceiveProgress")<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -997,9 +997,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### off("dataReceiveProgress")<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -1027,9 +1027,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### on("dataSendProgress")<sup>11+</sup>
+### on('dataSendProgress')<sup>11+</sup>
 
-on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
+on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 Registers an observer for events indicating progress of sending HTTP requests.
 
@@ -1054,9 +1054,9 @@ httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
 httpRequest.off("dataSendProgress");
 ```
 
-### off("dataSendProgress")<sup>11+</sup>
+### off('dataSendProgress')<sup>11+</sup>
 
-off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
+off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of sending HTTP requests.
 
@@ -1507,11 +1507,11 @@ Enumerates HTTP protocol versions.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name | Description    |
-| :-------- | :----------- |
-| HTTP1_1   |  HTTP1.1<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| HTTP2     |  HTTP2<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| HTTP3<sup>11+</sup> | HTTP3 protocol. If the system or server does not support HTTP3, the HTTP protocol of an earlier version is used.<br>This field is valid only for HTTPS URLs. For HTTP URLs, the request fails.|
+| Name |   Value  | Description    |
+| :-------- | :----------- | :----------- |
+| HTTP1_1   |   0   |  HTTP1.1<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| HTTP2     |   1   |  HTTP2<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| HTTP3<sup>11+</sup> |  2  | HTTP3 protocol. If the system or server does not support HTTP3, the HTTP protocol of an earlier version is used.<br>This field is valid only for HTTPS URLs. For HTTP URLs, the request fails.|
 
 ## CertType<sup>11+</sup>
 

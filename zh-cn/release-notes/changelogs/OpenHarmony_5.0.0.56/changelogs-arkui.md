@@ -36,9 +36,10 @@ API 12
 
 当子组件使用了组件冻结，父组件没有使用组件冻结的情况下，当组件处于inactive时，子组件组件冻结功能生效。示例如下：
 
-页面A：
+页面1：
 
 ```ts
+// Page1.ets
 import { router } from '@kit.ArkUI';
 
 @ObservedV2
@@ -50,11 +51,9 @@ export class Book {
   }
 }
 
-export let book: Book = new Book("Pilgrimage to the West");
-
 @Entry
 @ComponentV2
-export struct FirstTest {
+export struct Page1 {
   build() {
     Column() {
       Child()
@@ -66,25 +65,24 @@ export struct FirstTest {
 export struct Child {
   @Local bookTest: Book = new Book("A Midsummer Night’s Dream");
 
-  @Monitor("book.name")
+  @Monitor("bookTest.name")
   onMessageChange(monitor: IMonitor) {
     console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   textUpdate(): number{
     console.log("The text is update");
-    return 50;
+    return 25;
   }
 
   build() {
     Column() {
-      Text(`The Monitor book name is  ${this.bookTest.name}`).fontSize(50)
-      Text(`The text book name is  ${book.name}`).fontSize(this.textUpdate())
+      Text(`The book name is  ${this.bookTest.name}`).fontSize(this.textUpdate())
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page' });
-          setTimeout(function() {
-            this.book = new Book("Jane Austen oPride and Prejudice");
+          router.pushUrl({ url: 'pages/Page2' });
+          setTimeout(() => {
+            this.bookTest = new Book("Jane Austen oPride and Prejudice");
           }, 1000);
         })
     }
@@ -92,15 +90,15 @@ export struct Child {
 }
 ```
 
-页面B：
+页面2：
 
 ```ts
+// Page2.ets
 import { router } from '@kit.ArkUI';
-import { book } from './Index';
 
 @Entry
 @ComponentV2
-struct SecondTest {
+struct Page2 {
   build() {
     Column() {
       Text(`This is the page`).fontSize(50)
@@ -108,24 +106,30 @@ struct SecondTest {
         .onClick(() => {
           router.back();
         })
-      Button('Change the book name')
-        .onClick(() => {
-          book.name = "The Old Man and the Sea";
-        })
     }
   }
 }
 ```
 
+如果开发者不关注组件冻结的功能是否生效，只是调用了其接口，会发现组件冻结能力在该场景下并没有生效，即在跳转到页面2后，改变状态变量`@Local bookTest`，页面1的Child组件还会刷新，其@Monitor也会调用。
 
-在上面的用例中，页面A的子组件Child，开启了组件冻结功能，当点击Button跳转到页面B的时候，修改状态变量bookTest，因为Child组件开启了组件冻结，状态变量将不响应更新，即@Monitor不会调用，状态变量关联的节点不会刷新。同理，修改状态变量book，也不会触发刷新。
+trace如下：
+![Example Image](../../figures/freeze2.png)
 
-如果开发者不关注freezeWhenInactive的功能，只是加了这个标签，会发现变更前页面还会刷新，也会有对应的回调，变更后，就不回调了。如果还想触发回调，建议不使用组件冻结功能。示例如下：
+变更后，修复了上面示例中组件冻结接口不生效的行为，变更后的行为是：
+- 页面1的子组件Child，设置`freezeWhenInactive: true`, 开启了组件冻结功能。
+- 点击Button跳转到页面2，然后延迟1s更新状态变量`bookTest`。在更新`bookTest`的时候，已经跳转到页面2，页面1的组件处于inactive状态，又因为Child组件开启了组件冻结，状态变量`@Local bookTest`将不响应更新，其@Monitor不会调用，状态变量关联的节点不会刷新。
+
+变更后trace如下：
+![Example Image](../../figures/freeze1.png)
+
+如果开发者希望Page1在不可见的时候依旧刷新，和正常触发@Monitor回调，建议不使用组件冻结功能，即不设置`freezeWhenInactive: true`。示例如下：
 
 
-页面A：
+页面1：
 
 ```ts
+// Page1.ets
 import { router } from '@kit.ArkUI';
 
 @ObservedV2
@@ -137,11 +141,9 @@ export class Book {
   }
 }
 
-export let book: Book = new Book("Pilgrimage to the West");
-
 @Entry
 @ComponentV2
-export struct FirstTest {
+export struct Page1 {
   build() {
     Column() {
       Child()
@@ -151,39 +153,42 @@ export struct FirstTest {
 
 @ComponentV2
 export struct Child {
-  @Local book: Book = new Book("A Midsummer Night’s Dream");
+  @Local bookTest: Book = new Book("A Midsummer Night’s Dream");
 
-  @Monitor("book.name")
+  @Monitor("bookTest.name")
   onMessageChange(monitor: IMonitor) {
     console.log(`The book name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
+  textUpdate(): number{
+    console.log("The text is update");
+    return 25;
+  }
+
   build() {
     Column() {
-      Text(`The Monitor book name is  ${this.book.name}`).fontSize(50)
-      Text(`The text book name is  ${book.name}`).fontSize(50)
+      Text(`The book name is  ${this.bookTest.name}`).fontSize(this.textUpdate())
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page' });
-          setTimeout(function() {
-            this.book = new Book("Jane Austen oPride and Prejudice");
+          router.pushUrl({ url: 'pages/Page2' });
+          setTimeout(() => {
+            this.bookTest = new Book("Jane Austen oPride and Prejudice");
           }, 1000);
-
         })
     }
   }
 }
 ```
 
-页面B：
+页面2：
 
 ```ts
+// Page2.ets
 import { router } from '@kit.ArkUI';
-import { book } from './Index';
 
 @Entry
 @ComponentV2
-struct SecondTest {
+struct Page2 {
   build() {
     Column() {
       Text(`This is the page`).fontSize(50)
@@ -191,16 +196,13 @@ struct SecondTest {
         .onClick(() => {
           router.back();
         })
-      Button('Change the book name')
-        .onClick(() => {
-          book.name = "The Old Man and the Sea";
-        })
     }
   }
 }
 ```
 
-当子组件Child不使用组件冻结功能时，跳转到页面B，修改状态变量将响应更新，@Monitor被调用，状态变量关联的节点将会刷新。
+当子组件Child不使用组件冻结功能时，跳转到页面2，修改状态变量将响应更新，@Monitor被调用，状态变量关联的节点将会刷新。
+
 
 ## cl.arkui.2 当AttributeModifer的applyNormalAttribute方法中instance参数设置为资源类型数据时更新的行为发生变更
 
@@ -294,10 +296,12 @@ struct attributeDemo {
 }
 ```
 
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 浅色模式拉起。使用资源文件作为入参，切换深浅色时，无法使用资源文件触发UI的更新。<br>![light_mode](figures/light_mode1.jpg) | 浅色模式拉起。使用资源文件作为入参，切换深浅色时，可以使用资源文件触发UI的更新。<br>![dark_mode](figures/dark_mode1.jpg) |
-|                                                                                                                            |
+| 变更前                                                                               | 变更后                                                                             |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                             | 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg)                           |
+|                                                                                      |
+| 切换深色时，无法使用资源文件触发UI的更新。<br>![light_mode](figures/light_mode1.jpg) | 切换深色时，可以使用资源文件触发UI的更新。<br>![dark_mode](figures/dark_mode1.jpg) |
+|                                                                                      |
 
 **起始API Level**
 
@@ -359,19 +363,10 @@ struct attributeDemo {
 }
 ```
 
-浅色模式拉起：
-
-切换深浅色时，UI不更新。
-
-![light_mode](figures/light_mode1.jpg)
-
-深色模式拉起：
-
-切换深浅色时，UI不更新。
-
-![dark_mode](figures/dark_mode1.jpg)
-
-
+| 变更前                                                   | 变更后                                                 |
+| -------------------------------------------------------- | ------------------------------------------------------ |
+| 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg) | 深色模式拉起。<br>![dark_mode](figures/dark_mode1.jpg) |
+| 切换深色。<br>![light_mode](figures/light_mode1.jpg)     | 切换浅色。<br>![dark_mode](figures/dark_mode1.jpg)     |
 
 ## cl.arkui.3 废弃gridSpan和gridOffset属性
 **访问级别**
@@ -392,10 +387,10 @@ gridSpan和gridOffset属性仅设置在gridContaier的子组件上有效，gridC
 
 **废弃的接口/组件**
 
-|            废弃接口            |               替代接口               |
-| :----------------------------: | :----------------------------------: |
-| gridSpan(value: number): T; |  GridCol(option?: GridColOptions)中的span |
-| gridOffset(value: number): T; |  GridCol(option?: GridColOptions)中的offset |
+|           废弃接口            |                  替代接口                  |
+| :---------------------------: | :----------------------------------------: |
+|  gridSpan(value: number): T;  |  GridCol(option?: GridColOptions)中的span  |
+| gridOffset(value: number): T; | GridCol(option?: GridColOptions)中的offset |
 
 **适配指导**
 
@@ -485,15 +480,15 @@ struct GridRowExample {
 
 **变更原因**
 
-原来的布局逻辑未考虑像素取整情况，导致部分界面显示异常。因此发起布局重构，重构后会因为像素取整导致组件的整体宽度可能差1px。
+原来的布局逻辑未考虑像素取整情况，导致部分界面显示异常。因此发起布局重构，重构后会因为像素取整导致组件的整体宽度可能偏差1像素单位。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-| 变更前                                                                                                                     | 变更后                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 组件布局过程中不会进行像素取整 <br>![chip_before](figures/chip_before.PNG) | 组件布局过程中会进行像素取整<br>![chip_before](figures/chip_after.PNG)  |
+| 变更前                                                                     | 变更后                                                                 |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 组件布局过程中不会进行像素取整 <br>![chip_before](figures/chip_before.PNG) | 组件布局过程中会进行像素取整<br>![chip_before](figures/chip_after.PNG) |
 
 变更后可能影响自动化UI测试结果，产生像素级偏差。
 
@@ -512,3 +507,131 @@ Chip与ChipGroup组件。
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.5 router转场动画过程中，启用事件响应，并增加默认转场动画的拖尾效果
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+router默认转场动效无拖尾效果，导致应用动画最后一帧出现跳变，影响用户体验。变更后，router支持转场动画打断和接续，在动画转场过程中可响应事件。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+运行以下示例：
+
+```js
+@Entry
+@Component
+struct TestPage {
+  isAnimation: boolean = false;
+
+  build() {
+    Row() {
+      Column() {
+        TextInput().id('textInput')
+      }
+      .width('100%')
+    }
+    .height('100%')
+    .onAppear(() => {
+      if (this.isAnimation) {
+        setTimeout(() => {
+          focusControl.requestFocus('textInput');
+        }, 5)
+      } else {
+        setTimeout(() => {
+          focusControl.requestFocus('textInput')
+        }, 500)
+      }
+    })
+  }
+}
+```
+
+变更前：
+
+- router转场过程中请求焦点，必须要按照示例代码的形式启动定时器延迟到动画结束才能请求成功。router转场过程中无法点击、侧滑，必须在动画结束后才能操作对应页面。
+
+- router转场时间为400ms。
+
+变更后：
+
+- 页面跳转后即可请求焦点，无需添加定时器延迟操作请求。这可能会导致开发者使用定时器请求焦点，用户点击输入组件后，出现焦点跳变。
+
+- router转场时间变成600ms。
+
+**起始API Level**
+
+API Version 8
+
+**发生变更版本**
+
+从OpenHarmony SDK 5.0.0.56开始。
+
+**变更的接口/组件**
+
+router.pushUrl；router.back；router.pushNamedRoute
+
+**适配指导**
+
+1. 动画时长变更，无需适配。
+
+2. 针对焦点请求，在目标跳转页面中直接请求对应的焦点即可，可参照如下示例代码：
+```js
+@Entry
+@Component
+struct TestPage {
+
+  build() {
+    Row() {
+      Column() {
+        TextInput().id('textInput')
+      }
+      .width('100%')
+    }
+    .height('100%')
+    .onAppear(() => {
+      focusControl.requestFocus('textInput');
+    })
+  }
+}
+```
+
+## cl.arkui.5 RichEditor（富文本）向前删除空文本时onWillChange回调变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]，不符合接口定义。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]。
+
+变更后：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[0, 0]。
+
+**起始API Level**
+
+API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.56开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。

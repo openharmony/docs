@@ -25,6 +25,8 @@ obscured(reasons: Array&lt;ObscuredReasons&gt;)
 
 ## 示例
 
+该示例通过obscured对Text、Image组件实现了隐私遮罩效果。
+
 ```ts
 // xxx.ets
 @Entry

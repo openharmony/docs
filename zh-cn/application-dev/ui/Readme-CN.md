@@ -24,9 +24,6 @@
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
-    - 添加气泡和菜单
-      - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
-      - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
   - 设置组件导航和页面路由
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
@@ -34,15 +31,27 @@
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 使用文本
+    - [文本概述](arkts-text-introduction.md)
     - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
     - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
     - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗
-    - [模态弹窗 (ModelDialog)](arkts-modal-dialog.md)
-    - [不依赖UI组件的全局自定义弹窗 (推荐)](arkts-uicontext-custom-dialog.md)
-    - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
+     - [弹窗概述](arkts-dialog-overview.md)
+     - 使用弹出框 (Dialog)
+       - [弹出框概述](arkts-base-dialog-overview.md)
+       - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
+       - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
+       - [固定样式弹出框](arkts-fixes-style-dialog.md)
+     - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+     - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+     - 绑定模态页面
+        - [绑定模态页面概述](arkts-modal-overview.md)
+        - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
+        - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
+     - [即时反馈 (Toast)](arkts-create-toast.md)
+     - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -84,18 +93,19 @@
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
+      - [手势拦截](arkts-gesture-events-gesture-judge.md)
   - 使用自定义能力
     - [自定义能力概述](arkts-user-defined.md)
     - 自定义节点
       - [自定义节点概述](arkts-user-defined-node.md)
       - [自定义占位节点](arkts-user-defined-place-hoder.md)
-      - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
-      - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
-      - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+      - [自定义组件节点 (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
+      - [自定义渲染节点 (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
+      - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
     - 自定义扩展
       - [自定义扩展概述](arkts-user-defined-modifier.md)
-      - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
-      - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
+      - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
+      - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置

@@ -43,7 +43,7 @@ You can subscribe to system environment variable changes in the following ways:
         let environmentCallback: EnvironmentCallback = {
           onConfigurationUpdated(newConfig: Configuration) {
             hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-            if (this.systemLanguage !== newConfig.language) {
+            if (systemLanguage !== newConfig.language) {
               hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
               systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
             }

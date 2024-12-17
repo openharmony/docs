@@ -39,7 +39,7 @@
 
 | 传递/访问          | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化将会覆盖本地初始化。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)装饰的变量，初始化子组件的\@State。 |
+| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化，并且从父组件传入的值非undefined，将会覆盖本地初始化；如果从父组件传入的值为undefined，则初值为@State装饰变量自身的初值。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)装饰的变量，初始化子组件的\@State。 |
 | 用于初始化子组件   | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | 不支持，只能在组件内访问。                                   |
 
@@ -65,10 +65,10 @@
   ```
 
 - 当装饰的数据类型为class或者Object时，可以观察到自身的赋值的变化，和其属性赋值的变化，即Object.keys(observedObject)返回的所有属性。例子如下。
-    声明ClassA和Model类。
+    声明Person和Model类。
 
     ```ts
-      class ClassA {
+      class Person {
         public value: string;
       
         constructor(value: string) {
@@ -78,10 +78,10 @@
       
       class Model {
         public value: string;
-        public name: ClassA;
-        constructor(value: string, a: ClassA) {
+        public name: Person;
+        constructor(value: string, person: Person) {
           this.value = value;
-          this.name = a;
+          this.name = person;
         }
       }
     ```
@@ -90,14 +90,14 @@
 
     ```ts
     // class类型
-    @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new Person('World'));
     ```
 
     对\@State装饰变量的赋值。
 
     ```ts
     // class类型赋值
-    this.title = new Model('Hi', new ClassA('ArkUI'));
+    this.title = new Model('Hi', new Person('ArkUI'));
     ```
 
     对\@State装饰变量的属性赋值。
@@ -926,9 +926,9 @@ struct ConsumerChild {
 
 下面的示例，渲染的流程是：
 
-1. 创建CompA自定义组件。
+1. 创建Index自定义组件。
 
-2. 执行CompA的build方法：
+2. 执行Index的build方法：
 
     1. 创建Column组件。
 
@@ -941,7 +941,7 @@ struct ConsumerChild {
 ```ts
 @Entry
 @Component
-struct CompA {
+struct Index {
   @State count: number = 1;
 
   build() {
@@ -960,7 +960,7 @@ struct CompA {
 框架识别到在build里改变状态变量会打error日志，error日志为：
 
 ```ts
-FIX THIS APPLICATION ERROR: @Component 'CompA'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
+FIX THIS APPLICATION ERROR: @Component 'Index'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
 ```
 
 在上面的例子中，这个错误行为不会造成很严重的后果，只有Text组件多渲染了一次，所以很多开发者忽略了这个日志。

@@ -552,14 +552,14 @@ static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateExternal fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CreateExternal sucess");
+        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CreateExternal success");
     }
     void *data_value;
     status = OH_JSVM_GetValueExternal(env, externalValue, &data_value);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueExternal fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueExternal sucess");
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueExternal success");
     }
     // 将符号位转化为int类型传出去
     JSVM_Value returnValue = nullptr;
@@ -582,8 +582,8 @@ const char* srcCallNative = R"JS(getValueExternal())JS";
 
 预期的输出结果
 ```ts
-JSVM OH_JSVM_CreateExternal sucess
-JSVM GetValueExternal sucess
+JSVM OH_JSVM_CreateExternal success
+JSVM GetValueExternal success
 ```
 
 ### OH_JSVM_CreateSymbol

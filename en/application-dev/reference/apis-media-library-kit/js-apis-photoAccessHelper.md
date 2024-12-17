@@ -1784,7 +1784,7 @@ Clones a media asset. The file name can be set, but the file type cannot be chan
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | Yes   | Title of the cloned asset. The title is not allowed to:<br>- Contain the filename extension.<br>- Exceed 255 characters.<br>- Contain any of the following characters: . .. \ / : * ? " ' ` < > \| { } [ ] |
+| title| string | Yes   | Title of the cloned asset. It is not allowed to:<br>- Contain the filename extension.<br>- Exceed 255 characters.<br>- Contain any of the following characters: . .. \ / : * ? " ' ` < > \| { } [ ] |
 
 **Return value**
 
@@ -3462,12 +3462,8 @@ Sets the media asset title.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title | string | Yes  | Title to set.|
+| title | string | Yes  | Title to set. It is not allowed to:<br>- Contain the filename extension.<br>- Exceed 255 characters.<br>- Contain any of the following characters:. .. \ / : * ? " ' ` < > | { } [ ] |
 
-The title is not allowed to:
-- Contain the filename extension.
-- Exceed 255 characters.
-- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **Error codes**
 
@@ -3906,10 +3902,10 @@ setAlbumName(name: string): void
 
 Sets the album name.
 
-The album name is not allowed to:
-- Exceed 255 characters.
-- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
-- The album name is case-insensitive.
+The album name must comply with the following:
+- It cannot exceed 255 characters.
+- It cannot contain any of the following characters:. .. \ / : * ? " ' ` < > | { } [ ]
+- It is case-insensitive.
 - Duplicate album names are not allowed.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core

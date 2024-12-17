@@ -467,6 +467,93 @@ struct Parent {
 }
 ```
 
+在V1中，子组件可以修改\@Prop的变量，且只会在本地更新，不会同步回父组件。父组件数据源更新时，会通知子组件更新，并覆写子组件本地\@Prop的值。
+
+V1：
+- 改变子组件`Child`的`localValue`，不会同步回父组件`Parent`。
+- 父组件更新`value`，通知子组件`Child`更新，并覆写本地子组件`localValue`的值。
+
+```ts
+@Component
+struct Child {
+  @Prop localValue: number = 0;
+
+  build() {
+    Column() {
+      Text(`${this.localValue}`).fontSize(25)
+      Button('Child +100')
+        .onClick(() => {
+          // 改变localValue不会传递给父组件Parent
+          this.localValue += 100;
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State value: number = 10;
+  build() {
+    Column() {
+      Button('Parent +1')
+        .onClick(() => {
+          // 改变value的值，通知子组件Child value更新
+          this.value += 1;
+        })
+      Child({ localValue: this.value })
+    }
+  }
+}
+```
+V2中，\@Param本地不可写，和\@Once搭配使用只会同步一次。如果要实现子组件本地可写，且父组件后续更新还是能通知子组件，可以借助\@Monitor来实现这一效果。
+
+V2实现：
+- 父组件`Parent`更新通知子组件`value`的刷新，并回调\@Monitor修饰的`onValueChange`回调方法，`onValueChange`将更新后的值赋值给`localValue`。
+- 子组件`Child`改变`localValue`的值，不会同步给父组件`Parent`。
+- 父组件`Parent`中再次改变`value`，将会继续通知给子组件，并覆写子组件本地`localValue`的值。
+
+```ts
+@ComponentV2
+struct Child {
+  @Local localValue: number = 0;
+  @Param value: number = 0;
+  @Monitor('value')
+  onValueChange(mon: IMonitor) {
+    console.info(`value has been changed from ${mon.value()?.before} to ${mon.value()?.now}`);
+    // 父组件value变化时，通知子组件value更新，回调Monitor函数，将更新的值覆写给本地的localValue
+    this.localValue = this.value;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.localValue}`).fontSize(25)
+      Button('Child +100')
+        .onClick(() => {
+          // 改变localValue不会传递给父组件Parent
+          this.localValue += 100;
+        })
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+  @Local value: number = 10;
+  build() {
+    Column() {
+      Button('Parent +1')
+        .onClick(() => {
+          // 改变value的值，通知子组件Child value更新
+          this.value += 1;
+        })
+      Child({ value: this.value })
+    }
+  }
+}
+```
+
 ### @ObjectLink/@Observed/@Track -> @ObservedV2/@Trace
 #### 迁移规则
 在V1中，@Observed与@ObjectLink装饰器用于观察类对象及其嵌套属性的变化，但V1只能直接观察对象的第一层属性。对于嵌套对象的属性，必须通过自定义组件和@ObjectLink实现观察。此外，V1中提供了@Track装饰器来实现对属性级别变化的精确控制。
@@ -1096,24 +1183,29 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+在下面的示例中，使用\@LocalStorageLink，可以使得开发者本地的修改同步回LocalStorage中。
 
 ```
 // Page1.ets
-import { router } from '@kit.ArkUI';
-
 // 通过getShared接口获取stage共享的LocalStorage实例
 @Entry(LocalStorage.getShared())
 @Component
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
+  pageStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.count}`)
-        .fontSize(50)
-      Button('push to Page2')
-        .onClick(() => {
-          router.pushUrl({url: 'pages/Page2'});
-        })
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
     }
   }
 }
@@ -1121,17 +1213,45 @@ struct Page1 {
 
 ```
 // Page2.ets
-// 通过getShared接口获取stage共享的LocalStorage实例
-@Entry(LocalStorage.getShared())
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
+// Page2组件获得了父亲Page1组件的LocalStorage实例
 @Component
 struct Page2 {
   @LocalStorageLink('count') count: number = 0;
+  pathStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.count}`)
-        .fontSize(50)
+    NavDestination() {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+      }
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
 }
 ```
 V2:
@@ -1155,21 +1275,26 @@ export class MyStorage {
 
 ```
 // Page1.ets
-import { router } from '@kit.ArkUI';
 import { MyStorage } from './storage';
 
 @Entry
 @ComponentV2
 struct Page1 {
   storage: MyStorage = MyStorage.instance();
+  pageStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.storage.count}`)
-        .fontSize(50)
-      Button('push to Page2')
-        .onClick(() => {
-          router.pushUrl({url: 'pages/Page2'});
-        })
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.storage.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.storage.count++;
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
     }
   }
 }
@@ -1179,16 +1304,197 @@ struct Page1 {
 // Page2.ets
 import { MyStorage } from './storage';
 
-@Entry
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
 @ComponentV2
 struct Page2 {
   storage: MyStorage = MyStorage.instance();
-    build() {
+  pathStack: NavPathStack = new NavPathStack();
+  build() {
+    NavDestination() {
       Column() {
         Text(`${this.storage.count}`)
           .fontSize(50)
+          .onClick(() => {
+            this.storage.count++;
+          })
       }
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
+}
+```
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
+}
+```
+
+如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例:
+- 在`Page1`中改变`count`值，因为count是\@LocalStorageProp装饰的，所以其改变只会在本地生效，并不会同步回LocalStorage。
+- 点击`push to Page2`，跳转到`Page2`中。因为在`Page1`中改变`count`值并不会同步会LocalStorage，所以在`Page2`中Text组件依旧显示原本的值47。
+- 点击`change Storage Count`，调用LocalStorage的setOrCreate，改变`count`对应的值，并通知所有绑定该key的变量。
+
+```ts
+// Page1.ets
+export let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('count', 47);
+
+@Entry(storage)
+@Component
+struct Page1 {
+  @LocalStorageProp('count') count: number = 0;
+  pageStack: NavPathStack = new NavPathStack();
+  build() {
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            storage.setOrCreate('count', storage.get<number>('count') as number + 100);
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
+    }
+  }
+}
+```
+
+```ts
+// Page2.ets
+import { storage } from './Page1'
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
+// Page2组件获得了父亲Page1组件的LocalStorage实例
+@Component
+struct Page2 {
+  @LocalStorageProp('count') count: number = 0;
+  pathStack: NavPathStack = new NavPathStack();
+  build() {
+    NavDestination() {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            storage.setOrCreate('count', storage.get<number>('count') as number + 100);
+          })
+      }
+    }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
+}
+```
+在V2中，可以借助\@Local和\@Monitor实现类似的效果。
+- \@Local装饰的`count`变量为组件本地的值，其改变不会同步回`storage`。
+- \@Monitor监听`storage.count`的变化，当`storage.count`改变时，在\@Monitor的回调里改变本地\@Local的值。
+
+```ts
+// Page1.ets
+import { MyStorage } from './storage';
+
+@Entry
+@ComponentV2
+struct Page1 {
+  storage: MyStorage = MyStorage.instance();
+  pageStack: NavPathStack = new NavPathStack();
+  @Local count: number = this.storage.count;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+  build() {
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            this.storage.count += 100;
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
+    }
+  }
+}
+```
+
+```ts
+// Page2.ets
+import { MyStorage } from './storage';
+
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
+@ComponentV2
+struct Page2 {
+  storage: MyStorage = MyStorage.instance();
+  pathStack: NavPathStack = new NavPathStack();
+  @Local count: number = this.storage.count;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Page2 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+  build() {
+    NavDestination() {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            this.storage.count += 100;
+          })
+      }
+    }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
 }
 ```
 
@@ -1198,7 +1504,7 @@ struct Page2 {
 对于该场景，V2可以采用多个全局\@ObservedV2/\@Trace实例来替代。
 
 V1:
-```
+```ts
 let localStorageA: LocalStorage = new LocalStorage();
 localStorageA.setOrCreate('PropA', 'PropA');
 
@@ -1347,7 +1653,7 @@ struct NavigationContentMsgStack {
 V2：
 
 声明\@ObservedV2装饰的class代替LocalStorage。其中LocalStorage的key可以用\@Trace装饰的属性代替。
-```
+```ts
 // storage.ets
 @ObservedV2
 export class MyStorageA {
@@ -1378,7 +1684,7 @@ export class MyStorageC extends MyStorageA {
 
 在`pageOneStack`、`pageTwoStack`和`pageThreeStack`组件内分别创建`MyStorageA`、`MyStorageB`、`MyStorageC`的实例，并通过\@Param传递给其子组件`NavigationContentMsgStack`，从而实现类似LocalStorage实例在子组件树上共享的能力。
 
-```
+```ts
 // Index.ets
 import { MyStorageA, MyStorageB, MyStorageC } from './storage';
 
@@ -1529,9 +1835,10 @@ struct NavigationContentMsgStack {
 
 ### AppStorage->AppStorageV2
 上一小节中，对于全局的@ObserveV2/@Trace的改造并不适合跨Ability的数据共享，该场景可以使用AppStorageV2来替换。
+
 V1:
 AppStorage是和应用进程绑定了，可以跨Ability实现数据共享。
-如下面示例所示：
+在下面的示例中，使用\@StorageLink，可以使得开发者本地的修改同步回AppStorage中。
 
 ```
 // EntryAbility Index.ets
@@ -1656,12 +1963,171 @@ struct Index1 {
     }
 }
 ```
+
+如果开发者需要实现类似于\@StorageProp的效果，希望本地的修改不要同步回AppStorage中，而AppStorage的变化又可以通知给使用\@StorageProp装饰器的组件，可以参考以下示例对比。
+
+V1：
+
+```ts
+// EntryAbility Index.ets
+import { common, Want } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  @StorageProp('count') count: number = 0;
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  build() {
+    Column() {
+      Text(`EntryAbility count: ${this.count}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          AppStorage.setOrCreate('count', AppStorage.get<number>('count') as number + 100);
+        })
+      Button('Jump to EntryAbility1').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'EntryAbility1'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
+```ts
+// EntryAbility1 Index1.ets
+import { common, Want } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index1 {
+  @StorageProp('count') count: number = 0;
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.count}`)
+        .fontSize(50)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          AppStorage.setOrCreate('count', AppStorage.get<number>('count') as number + 100);
+        })
+      Button('Jump to EntryAbility').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'EntryAbility'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
+V2:
+开发者可以借助\@Monitor和\@Local来实现类似的效果，示例如下。
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+export class MyStorage {
+  @Trace count: number = 0;
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
+  @Local count: number = this.storage.count;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.count}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          this.storage.count += 100;
+        })
+      Button('Jump to EntryAbility1').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'EntryAbility1'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+export class MyStorage {
+  @Trace count: number = 0;
+}
+
+@Entry
+@ComponentV2
+struct Index1 {
+  @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
+  @Local count: number = this.storage.count;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.count}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          this.storage.count += 100;
+        })
+      Button('Jump to EntryAbility').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'EntryAbility'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
 ### Environment->调用Ability接口直接获取系统环境变量
 V1中，开发者可以通过Environment来获取环境变量，但Environment获取的结果无法直接使用，需要配合AppStorage才能得到对应环境变量的值。
 在切换V2的过程中，开发者无需再通过Environment来获取环境变量，可以直接通过[UIAbilityContext的config属性](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#属性)获取系统环境变量。
 V1:
 以`languageCode`为例。
-```
+```ts
 // 将设备languageCode存入AppStorage中
 Environment.envProp('languageCode', 'en');
 
@@ -2003,6 +2469,8 @@ struct ListExample {
 
 需要注意的是，数组arr的长度需要与WaterFlowSections的中所有SectionOptions的itemsCount的总和保持一致，否则WaterFlow无法处理，导致UI不刷新。
 
+以下两个示例请按照'push option' -> 'splice option' -> 'update option'的顺序进行点击。
+
 V1：
 
 在状态管理V1中，可以通过[\@State](./arkts-state.md)装饰观察其api调用。
@@ -2065,7 +2533,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {
@@ -2149,7 +2617,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {

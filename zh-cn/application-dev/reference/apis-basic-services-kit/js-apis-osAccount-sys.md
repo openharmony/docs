@@ -906,45 +906,6 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
   }
   ```
 
-### getForegroundOsAccountLocalId<sup>12+</sup>
-
-getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
-
-获取前台系统账号的ID。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**返回值：**
-
-| 类型                   | 说明                                                               |
-| ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回前台系统账号的ID。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息       |
-| -------- | ------------- |
-| 202 | Not system application.|
-| 12300001 | The system service works abnormally. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
-  try {
-    accountManager.getForegroundOsAccountLocalId().then((localId: number) => {
-      console.log('getForegroundOsAccountLocalId, localId: ' + localId);
-    }).catch((err: BusinessError) => {
-      console.log('getForegroundOsAccountLocalId err: ' + JSON.stringify(err));
-    });
-  } catch (e) {
-    console.log('getForegroundOsAccountLocalId exception: ' + JSON.stringify(e));
-  }
-  ```
-
 ### createOsAccount
 
 createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&lt;OsAccountInfo&gt;): void

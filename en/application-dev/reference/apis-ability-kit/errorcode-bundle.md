@@ -1045,6 +1045,42 @@ The ability specified by **want** in the **ShortcutInfo** struct does not exist,
 
 Check the validity of **want** in the **ShortcutInfo** struct.
 
+## 17700066 Failed to Install the Native Software Package
+
+**Error Message**
+
+Failed to install the HAP because installing the native package failed.
+
+**Description**
+
+The native software package fails to be installed during HAP installation.
+
+**Possible Causes**
+
+The configuration of the native software package is incorrect.
+
+**Solution**
+
+Check the configuration of the native software package.
+
+## 17700067 Failed to Uninstall the Native Software Package
+
+**Error Message**
+
+Failed to uninstall the HAP because uninstalling the native package failed.
+
+**Description**
+
+The native software package fails to be uninstalled during application uninstall.
+
+**Possible Causes**
+
+The native software package to be uninstalled is occupied.
+
+**Solution**
+
+Check whether any process occupies the native software package.
+
 ## 17700069 AppClone Instance Cannot Be Created For an Application in Multi-app Mode Not Set To appClone
 
 **Error Message**
@@ -1114,6 +1150,24 @@ The application does not have an ability, or does not have an ability for which 
 **Solution**
 
 Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
+
+## 17700073 Installation Failure Caused by an Application with the Same Bundle Name but Different Signature Information
+
+**Error Message**
+
+Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
+
+**Description**
+
+The installation fails because an application with the same bundle name but different signature information exists on the device.
+
+**Possible Causes**
+1. An application with the same bundle name but different signature information exists on the device.
+2. An application with the same bundle name but different signature information has been uninstalled with data retained.
+
+**Solution**
+1. Uninstall the application with the same bundle name.
+2. Install the application that has been uninstalled with data retained, and then uninstall the application without data retained.
 
 ## 17700201 .abc File Verification Failure
 
