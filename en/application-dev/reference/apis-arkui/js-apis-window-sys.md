@@ -2844,7 +2844,7 @@ export default class EntryAbility extends UIAbility {
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
-Sets whether to display the window of the application on the lock screen.
+Sets whether to display the window of the application above the lock screen. By default, the window is displayed below the lock screen when it is created.
 
 **System API**: This is a system API.
 
@@ -2856,7 +2856,7 @@ Sets whether to display the window of the application on the lock screen.
 
 | Name          | Type   | Mandatory| Description                        |
 | ---------------- | ------- | ---- | ---------------------------- |
-| showOnLockScreen | boolean | Yes  | Whether to display the window on the lock screen. The value **true** means to display the window on the lock screen, and **false** means the opposite.|
+| showOnLockScreen | boolean | Yes  | Whether to display the window above the lock screen. The value **true** means to display the window above the lock screen, and **false** means to display the window below the lock screen.<br>If you call this API to configure the window to appear above the lock screen, it cannot be dynamically moved to appear below the lock screen while the screen is locked. In other words, calling **setShowOnLockScreen(false)** will not have an immediate effect and will only activate once the screen is unlocked. |
 
 **Error codes**
 
