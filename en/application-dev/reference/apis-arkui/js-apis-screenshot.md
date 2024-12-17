@@ -35,7 +35,6 @@ Describes the screenshot options.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-
 | Name                | Type         | Mandatory| Description                                                        |
 | -------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | pickRect             | [Rect](#rect) | Yes  | Region of the screen to capture.                      |
