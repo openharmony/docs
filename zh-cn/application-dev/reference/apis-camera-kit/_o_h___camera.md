@@ -473,7 +473,7 @@ typedef enum Camera_FocusState Camera_FocusState
 ### Camera_Format
 
 ```
-typedef enum Camera_FormatCamera_Format
+typedef enum Camera_Format Camera_Format
 ```
 
 **描述**
