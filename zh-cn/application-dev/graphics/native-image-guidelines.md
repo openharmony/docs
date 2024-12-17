@@ -155,13 +155,13 @@ libnative_buffer.so
        // 创建上下文
        eglContext_ = eglCreateContext(eglDisplay_, config_, EGL_NO_CONTEXT, context_attribs);
        if (eglContext_ == EGL_NO_CONTEXT) {
-           std::cout << "Failed to create egl context %{public}x, error:" << eglGetError() << std::endl;
+           std::cout << "Failed to create egl context, error:" << eglGetError() << std::endl;
        }
    
        // 创建eglSurface
        eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, reinterpret_cast<EGLNativeWindowType>(eglNativeWindow_), context_attribs);
        if (eglSurface_ == EGL_NO_SURFACE) {
-           std::cout << "Failed to create egl surface %{public}x, error:" << eglGetError() << std::endl;
+           std::cout << "Failed to create egl surface, error:" << eglGetError() << std::endl;
        }
    
        // 关联上下文
@@ -198,9 +198,9 @@ libnative_buffer.so
    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
    ```
 
-5. **将生产的内容写入NativeWindowBuffer**。
+5. **将生产的内容写入OHNativeWindowBuffer**。
 
-   1. 从NativeWindow中获取NativeWindowBuffer。
+   1. 从NativeWindow中获取OHNativeWindowBuffer。
 
       ```c++
       OHNativeWindowBuffer *buffer = nullptr;
@@ -211,7 +211,7 @@ libnative_buffer.so
       BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
       ```
 
-   2. 将生产的内容写入NativeWindowBuffer。
+   2. 将生产的内容写入OHNativeWindowBuffer。
 
       ```c++
       // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
@@ -234,10 +234,10 @@ libnative_buffer.so
       }
       ```
 
-   3. 将NativeWindowBuffer提交到NativeWindow。
+   3. 将OHNativeWindowBuffer提交到NativeWindow。
 
       ```c++
-      // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为NativeWindowBuffer全部有内容更改。
+      // 设置刷新区域，如果Region中的Rect数组为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部内容有更改。
       Region region{nullptr, 0};
       // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
       OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
