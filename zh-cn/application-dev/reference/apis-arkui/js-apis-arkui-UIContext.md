@@ -6936,7 +6936,7 @@ struct Index {
   @State uiContext: UIContext = this.getUIContext();
   @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
   @State textWidth: number = this.uiContextMeasure.measureText({
-    textContent: "Hello word",
+    textContent: "Hello World",
     fontSize: '50px'
   })
 
@@ -6987,7 +6987,7 @@ struct Index {
   @State uiContext: UIContext = this.getUIContext();
   @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
   textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
-    textContent: "Hello word",
+    textContent: "Hello World",
     fontSize: '50px'
   })
   build() {
