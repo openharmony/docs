@@ -506,8 +506,8 @@ formatRange(startRange: number, endRange: number): string
 
 **示例：** 
   ```ts
-  let numfmt = new intl.NumberFormat("en-US", {style:'unit', unit:"meter"});
-  let formattedRange = numfmt.formatRange(0, 3); // formattedRange: 0–3 m
+  let numfmt : intl.NumberFormat = new intl.NumberFormat("en-US", {style:'unit', unit:"meter"});
+  let formattedRange : string = numfmt.formatRange(0, 3); // formattedRange: 0–3 m
   ```
 
 
