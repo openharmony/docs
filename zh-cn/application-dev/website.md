@@ -9,9 +9,9 @@
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
   <!--DelEnd-->
   - 开发基础知识<!--development-fundamentals-->
-    - 应用程序包基础知识<!--application-package-fundamentals-->
+    - 应用程序包基础知识<!--development-fundamentals-->
       - [应用程序包概述](quick-start/application-package-overview.md)
-      - 应用程序包结构<!--application-package-structure-->
+      - 应用程序包结构<!--development-fundamentals-->
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
       - 应用程序包开发与使用<!--application-package-dev-->
