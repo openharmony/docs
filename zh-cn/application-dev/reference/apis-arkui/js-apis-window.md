@@ -6327,6 +6327,65 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
+### setWindowTitle<sup>15+</sup>
+
+setWindowTitle(titleName: string): Promise&lt;void&gt;
+
+设置窗口标题，存在标题栏的窗口形态生效，使用Promise异步回调。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+此接口仅支持2in1设备和平板设备。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型     | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| titleName | string  | 是   | 窗口标题 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowClass: window.Window | undefined = undefined;
+try {
+  let promise = window.getLastWindow(this.context);
+  promise.then((data) => {
+    windowClass = data;
+    let title = "title";
+    windowClass.setWindowTitle(title).then(() => {
+      console.info('Succeeded in setting the window title.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowTitleMoveEnabled<sup>14+</sup>
 
 setWindowTitleMoveEnabled(enabled: boolean): void
