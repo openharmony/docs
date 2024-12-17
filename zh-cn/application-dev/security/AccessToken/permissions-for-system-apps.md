@@ -4780,3 +4780,17 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
+
+允许应用访问机密计算空间。
+
+应用获取此权限后，可访问机密计算空间连云获取凭据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
