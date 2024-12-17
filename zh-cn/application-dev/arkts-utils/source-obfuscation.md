@@ -50,7 +50,7 @@
 }
 ```
 
-创建一个新的library的时候，还会额外生成consumerFiles属性:
+创建一个新的HAR或HSP模块的时候，还会额外生成consumerFiles属性:
 
 ```
 "arkOptions": {
@@ -67,14 +67,13 @@
 混淆功能被关闭希望重新开启混淆需要满足条件: 属性ruleOptions.enable的值为true。
 
 属性ruleOptions.files中指定的混淆配置文件会在构建HAP、HSP或HAR的时候生效。  
-属性consumerFiles中指定的混淆配置文件会在构建依赖这个library的模块时生效。这些混淆配置文件的内容还会被合并到HAR包中的obfuscation.txt文件。
-
-当构建HAP、HSP和HAR的时候，最终的混淆规则是当前构建模块的ruleOptions.files属性，依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。  
-如果构建的是HAR，HAR包中的obfuscation.txt是自身的consumerFiles属性， 依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。构建HAP、HSP不会生成obfuscation.txt。详细合并的策略可以查看[混淆规则合并策略](#混淆规则合并策略)。
+属性consumerFiles中指定的混淆配置文件会在构建依赖这个本地HAR或本地HSP的模块时生效。当本地HAR或本地HSP被打包生成远程HAR或远程HSP时，会在包中生成obfuscation.txt文件，该文件内容是由当前模块与依赖模块依照[混淆规则合并策略](#混淆规则合并策略)生成。
 
 ### 混淆规则配置文件
 
-在创建工程或library的时候，DevEco Studio会自动生成`obfuscation-rules.txt`和`consumer-rules.txt`文件。混淆规则可以写到这些文件中，或者其它自定义文件，然后将文件路径放到`ruleOptions.files`和`consumerFiles`中，如下面的例子所示。
+在创建HAP时，DevEco Studio会自动生成`obfuscation-rules.txt`文件。混淆规则可以写到该文件中，或者其他自定义文件，然后将路径放在`ruleOptions.files`中。
+在创建HAR和HSP时，DevEco Studio会自动生成`obfuscation-rules.txt`和`consumer-rules.txt`文件。混淆规则可以写到这些文件中，或者其它自定义文件，然后将文件路径放到`ruleOptions.files`和`consumerFiles`中。
+具体如下面的例子所示。
 
 ```
 "buildOption": {
@@ -751,15 +750,17 @@ lastName
 age
 ```
 
-构建HAR时，注释不会被合并到最后的`obfuscation.txt`文件中。
+构建HAR和HSP时，注释不会被合并到最后的`obfuscation.txt`文件中。
 
 ### 混淆规则合并策略
 
 编译工程中的某个模块时，其最终所应用的混淆规则是以下文件中配置的混淆规则的合并:
 
-* 本模块的build-profile.json5文件中`ruleOptions.files`字段指定的文件
-* 本地依赖的library中的`consumerFiles`选项中指定的文件
-* 远程依赖的HAR包中的`obfuscation.txt`文件
+* 主工程的`ruleOptions.files` (这里主工程指的是正在构建的工程)
+* 依赖的本地HAR中的`consumerFiles`选项中指定的文件
+* 依赖的本地HSP中的`consumerFiles`选项中指定的文件
+* 依赖的远程HAR中的`obfuscation.txt`文件
+* 依赖的远程HSP中的`obfuscation.txt`文件
 
 上述文件中的混淆规则的优先级是一致的。构建模块时，这些规则文件将按照以下合并策略（伪代码）进行合并。
 
@@ -817,10 +818,22 @@ end-for
 
 最后使用的混淆规则来自于对象`finalRule`。
 
-如果构建的是HAR，那么最终的`obfuscation.txt`文件内容来自于自身和本地依赖的library的`consumerFiles`选项，以及依赖的HAR的`obfuscation.txt`文件的合并。
+当构建HAP、HSP和HAR的时候，最终的混淆规则是下列文件的合并：
+* 当前构建模块的ruleOptions.files属性
+* 依赖的本地HSP的consumerFiles属性
+* 依赖的本地HAR的consumerFiles属性
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
 
-当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到HAR包的`obfuscation.txt`文件中，而其他混淆规则不会。
+如果构建的是HAR，生成的远程HAR中的obfuscation.txt是下列文件的合并：
+* 自身的consumerFiles属性
+* 依赖的本地HSP的consumerFiles属性
+* 依赖的本地HAR的consumerFiles属性
+* 依赖的远程HAR和远程HSP中的obfuscation.txt文件
 
+如果构建的是HSP，生成的远程HSP中的obfuscation.txt仅包含自身的consumerFiles属性。
+如果构建的是HAP，则不会生成obfuscation.txt。
+
+当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到远程HAR和远程HSP的`obfuscation.txt`文件中，而其他混淆规则不会。
 ```
 // 混淆选项
 -enable-property-obfuscation
@@ -834,9 +847,9 @@ end-for
 -keep-global-name
 ```
 
-**library中混淆注意事项**
+**HSP和HAR中混淆注意事项**
 
-1. 如果`consumerFiles`指定的混淆配置文件中包含上述混淆选项，当其他模块依赖该HAR包时，这些混淆选项会与主模块的混淆规则合并，从而影响主模块。因此不建议开发者在`consumer-rules.txt`文件中配置混淆选项，建议仅配置保留选项。
+1. 如果`consumerFiles`指定的混淆配置文件中包含上述混淆选项，当其他模块依赖该模块的时候，这些混淆选项会与主模块的混淆规则合并，从而影响主模块。因此不建议开发者在`consumer-rules.txt`文件中配置混淆选项，建议仅配置保留选项。
 
 2. 如果在`consumerFiles`指定的混淆配置文件中添加`-keep-dts`选项，会被转换成`-keep-global-name`和`-keep-property-name`。
 
@@ -890,7 +903,7 @@ end-for
 ## 说明
 
 * 目前不支持在hvigor构建流程中插入自定义混淆插件。
-* 混淆的HAR包被模块依赖，若模块开启混淆，则HAR包会被二次混淆。
+* 混淆的HAR被模块依赖，若模块开启混淆，则HAR会被二次混淆。
 * DevEco Studio右上角Product选项，将其中Build Mode选择release，可开启release编译模式。  
 ![product-release](figures/product-release.png)
 
@@ -1091,9 +1104,9 @@ person["b"] = 22; // 混淆后
 
 **解决方案：**
 
-1. 确认是否有依赖的HAR包开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。
+1. 确认是否有依赖的HAR开启了字符串属性名混淆，若开启了，则会影响主工程，需将其关闭。
 2. 若不能关闭`-enable-string-property-obfuscation`选项，将属性名配置到白名单中。
-3. 若依赖HAR包未开启字符串属性名混淆，同时SDK版本小于4.1.5.3，请更新SDK。
+3. 若依赖的HAR未开启字符串属性名混淆，同时SDK版本小于4.1.5.3，请更新SDK。
 
 #### 开启-enable-filename-obfuscation选项后，可能会出现的问题
 
