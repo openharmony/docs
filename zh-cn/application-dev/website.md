@@ -483,7 +483,7 @@
         - 使用自定义能力<!--arkts-user-defined-capabilities-->
           - [自定义能力概述](ui/arkts-user-defined.md)
           - 自定义节点<!--arkts-nodes-->
-            - [自定义节点概述](arkts-user-defined-node.md)
+            - [自定义节点概述](ui/arkts-user-defined-node.md)
             - [自定义占位节点](ui/arkts-user-defined-place-hoder.md)
             - [自定义组件节点 (FrameNode)](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [自定义渲染节点 (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
