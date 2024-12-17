@@ -125,7 +125,7 @@ MenuItem UX默认布局效果变更，应用无需适配。
 
 **变更原因**
 
-为了增强功能的灵活性，Image组件的borderRadius接口现在支持动态修改。
+为了增强功能的灵活性，Image组件的borderRadius接口支持动态修改。动态修改可以实时更新borderRadius的值，灵活地调整图片的圆角效果。例如，可根据用户交互或状态变化即时改变圆角半径。
 
 **变更影响**
 
@@ -134,6 +134,37 @@ MenuItem UX默认布局效果变更，应用无需适配。
 变更前：Image组件的borderRadius接口动态修改不生效。
 
 变更后：Image组件的borderRadius接口动态修改生效。
+
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| ![changeBorderRadiusBefore](figures/changeBorderRadiusBefore.gif) | ![changeBorderRadiusNow](figures/changeBorderRadiusNow.gif) |
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Text("BorderRadiusValue = " + this.borderRadiusValue)
+        .height(100)
+        .width(200)
+        .fontSize(FontWeight.Bold)
+      Image($r("app.media.sky"))
+        .height(300)
+        .width(300)
+        .borderRadius(this.borderRadiusValue)
+      Button("增加BorderRadius")
+        .onClick(()=>{
+          this.borderRadiusValue += 10
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 **起始API Level**
 
@@ -149,7 +180,8 @@ Image组件的borderRadius接口。
 
 **适配指导**
 
-如果代码中依赖borderRadius动态修改不生效的行为（如避免在运行时改变圆角效果），建议传入不变的值，例如：borderRadius('5px')。
+如果应用需要动态修改borderRadius接口，可以在运行时灵活调整圆角效果以响应用户交互或其他状态变化。
+如果应用不需要动态修改borderRadius接口，例如，避免在运行时改变圆角效果。borderRadius接口的参数建议设置为固定值，例如：borderRadius('5px')。
 
 ## cl.arkui.3 borderImage的outset属性按照实际的延伸距离来绘制边框向外扩展的效果
 
