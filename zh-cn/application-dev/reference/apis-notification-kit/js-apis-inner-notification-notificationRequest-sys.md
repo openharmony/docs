@@ -22,8 +22,9 @@
 | representativeBundle<sup>12+</sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 是 | 被代理的包信息。<br>**系统接口**: 此接口为系统接口。 |
 | notificationControlFlags<sup>12+</sup>       | number                                                   |   否  | 是  | 通知提醒方式管控。<br>可以通过此接口减少当前通知的提醒方式。与[NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus12)的枚举进行按位或运算得到该参数。<br>**系统接口**：此接口为系统接口。            |
 | unifiedGroupInfo<sup>12+</sup>       | [UnifiedGroupInfo](#unifiedgroupinfo12) |   否  | 是  |消息智能聚合信息字段。 <br>**系统接口**：此接口为系统接口。|
-| creatorInstanceKey<sup>12+</sup>       | number |   是  | 是  | 创建者实例键值。 <br>**系统接口**：此接口为系统接口。|
+| creatorInstanceKey<sup>(deprecated)</sup>      | number |   是  | 是  | 创建者实例键值。 <br>**系统接口**：此接口为系统接口。|
 | agentBundle<sup>12+</sup>       | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) |   是  | 是  | 创建通知的代理包信息。 <br>**系统接口**：此接口为系统接口。|
+| appInstanceKey<sup>15+</sup>       | string |   是  | 是  | 应用实例键值。 <br>**系统接口**：此接口为系统接口。|
 
 ## DistributedOptions<sup>8+</sup>
 
