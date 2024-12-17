@@ -19,6 +19,8 @@
 
 变更后：PC应用内弹出菜单位置正确，菜单和按钮对齐。
 
+![应用内菜单偏移4vp](figures/menu_4vp_changelog.png)
+
 **起始API Level**
 
 12
