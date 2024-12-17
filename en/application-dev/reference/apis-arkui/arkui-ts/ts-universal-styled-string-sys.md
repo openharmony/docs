@@ -14,7 +14,7 @@ Styled strings are string objects that facilitate the flexible use of text style
 
 marshalling(styledString: StyledString): ArrayBuffer
 
-Marshals a styled string.
+Serializes a styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -24,20 +24,20 @@ Marshals a styled string.
 
 | Name| Type| Mandatory| Description|
 | ----- | ----- | ---- | ---- |
-| styledString | [StyledString](ts-universal-styled-string.md) | Yes | Styled string to marshal.|
+| styledString | [StyledString](ts-universal-styled-string.md) | Yes | Styled string to serialize.|
 
 **Return value**
 
 | Type             |Description      |
 | ------- | --------------------------------- | 
-| ArrayBuffer | Buffer information after marshalling.<br>**NOTE**<br>Currently, text and images are supported.|
+| ArrayBuffer | Buffer information after serialization.<br>**NOTE**<br>Currently, text and images are supported.|
 
 
 ### unmarshalling
 
 unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
 
-Unmarshals a buffer to obtain a styled string.
+Deserializes a buffer to obtain a styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -47,7 +47,7 @@ Unmarshals a buffer to obtain a styled string.
 
 | Name| Type| Mandatory| Description|
 | ----- | ----- | ---- | ---- |
-| buffer | ArrayBuffer | Yes | Data marshalled from a styled string.|
+| buffer | ArrayBuffer | Yes | Data serialized from a styled string.|
 
 **Return value**
 
@@ -57,7 +57,8 @@ Unmarshals a buffer to obtain a styled string.
 
 ## Example
 
-This example shows the use of the marshalling and unmarshalling APIs.
+This example demonstrates the serialization and deserialization of styled strings using the **marshalling** and **unmarshalling** properties.
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
@@ -65,9 +66,9 @@ import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  @State textTitle: string = "Marshalling and Unmarshalling APIs"
+  @State textTitle: string = "Serialization and deserialization APIs"
   @State textResult: string = "Hello world"
-  @State serializeStr: string = "Marshalling"
+  @State serializeStr: string = "Serialization"
   @State flag: boolean = false
   private textAreaController: TextAreaController = new TextAreaController()
   private buff: Uint8Array = new Uint8Array()
@@ -96,9 +97,9 @@ struct Index {
         .onClick(async ()=>{
           this.flag = !this.flag
           if (!this.flag) {
-            console.info("Debug: Unmarshalling")
+            console.info("Debug: Deserialization")
             let styles: StyledString = await StyledString.unmarshalling(this.buff.buffer)
-            this.textTitle = "After calling decodeTlv, the result of unmarshalling is:"
+            this.textTitle = "After calling decodeTlv, the result of deserialization is:"
             if (styles == undefined) {
               console.error("Debug: Failed to obtain the styled string.")
               return
@@ -121,13 +122,13 @@ struct Index {
             console.info("Debug: subStr = " + subStr.getString())
             this.serializeStr = "Marshalling"
           } else {
-            console.info("Debug: Marshalling")
+            console.info("Debug: Serialization")
             let resultBuffer = StyledString.marshalling(this.styledString)
             this.buff = new Uint8Array(resultBuffer)
-            this.textTitle = "After calling encodeTlv, the result of marshalling is:"
+            this.textTitle = "After calling encodeTlv, the result of serialization is:"
             this.textResult = this.buff.toString()
             console.info("Debug: buff = " + this.buff.toString())
-            this.serializeStr = "Unmarshalling"
+            this.serializeStr = "Deserialization"
           }
         })
     }.margin(10)

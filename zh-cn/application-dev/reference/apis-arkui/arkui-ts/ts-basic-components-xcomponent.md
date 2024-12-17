@@ -498,11 +498,12 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 ## 示例
 
-示例效果请以真机运行为准，当前IDE预览器不支持。
+示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
-### 示例1
 
-图像AI分析功能使用示例。
+### 示例1（图像AI分析功能）
+
+使用enableAnalyzer属性开启图像AI分析功能。可通过XComponentController控制开始、停止图形AI分析。
 
 <!--Del-->
 > **说明：**
@@ -607,9 +608,9 @@ struct XComponentExample {
 ```
 <!--RP1--><!--RP1End-->
 
-### 示例2
+### 示例2（在surface旋转过程中锁定）
 
-surface旋转过程中锁定功能使用示例。
+通过setXComponentSurfaceRotation设置surface在屏幕旋转过程中锁定方向，不跟随屏幕进行旋转。
 
 ```ts
 // xxx.ets

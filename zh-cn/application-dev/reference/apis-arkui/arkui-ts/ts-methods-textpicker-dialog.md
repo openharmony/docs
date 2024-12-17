@@ -22,7 +22,7 @@ static show(options?: TextPickerDialogOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                                        | 必填 | 说明                       |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
@@ -87,7 +87,7 @@ static show(options?: TextPickerDialogOptions)
 struct TextPickerDialogExample {
   private select: number | number[] = 0
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  @State v:string = '';
+  @State v: string = '';
 
   build() {
     Row() {
@@ -95,12 +95,12 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
+            TextPickerDialog.show({
+              // 建议使用 this.getUIContext().showTextPickerDialog()接口
               range: this.fruits,
               selected: this.select,
-              disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-              textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-              selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+              value: this.v,
+              defaultPickerItemHeight: 40,
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index
@@ -149,7 +149,7 @@ struct TextPickerDialogExample {
 struct TextPickerDialogExample {
   private select: number | number[] = 0
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  @State v:string = '';
+  @State v: string = '';
 
   build() {
     Row() {
@@ -157,18 +157,37 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
+            TextPickerDialog.show({
+              // 建议使用 this.getUIContext().showTextPickerDialog()接口
               range: this.fruits,
               selected: this.select,
-              disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-              textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-              selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
-              acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-                fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-                borderRadius: 20 },
-              cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-                fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-                borderRadius: 10 },
+              disappearTextStyle: { color: '#297bec', font: { size: 15, weight: FontWeight.Lighter } },
+              textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+              selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
+              acceptButtonStyle: {
+                type: ButtonType.Normal,
+                style: ButtonStyleMode.NORMAL,
+                role: ButtonRole.NORMAL,
+                fontColor: 'rgb(81, 81, 216)',
+                fontSize: '26fp',
+                fontWeight: FontWeight.Bolder,
+                fontStyle: FontStyle.Normal,
+                fontFamily: 'sans-serif',
+                backgroundColor: '#A6ACAF',
+                borderRadius: 20
+              },
+              cancelButtonStyle: {
+                type: ButtonType.Normal,
+                style: ButtonStyleMode.NORMAL,
+                role: ButtonRole.NORMAL,
+                fontColor: Color.Blue,
+                fontSize: '16fp',
+                fontWeight: FontWeight.Normal,
+                fontStyle: FontStyle.Italic,
+                fontFamily: 'sans-serif',
+                backgroundColor: '#50182431',
+                borderRadius: 10
+              },
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index
@@ -266,3 +285,177 @@ struct TextPickerDialogExample {
 ```
 
 ![TextPickerDialog](figures/TextPickerDialog_HoverMode.gif)
+
+### 示例4（设置弹窗位置）
+
+该示例通过alignment、offset设置弹窗的位置。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              alignment: DialogAlignment.Center,
+              offset: { dx: 20, dy: 0 },
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo4.png)
+
+### 示例5（设置遮蔽区）
+
+该示例通过maskRect设置遮蔽区。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              maskRect: {
+                x: 30,
+                y: 60,
+                width: '100%',
+                height: '60%'
+              },
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo5.png)
+
+### 示例6（设置弹窗背板）
+
+该示例通过backgroundColor、backgroundBlurStyle、shadow设置弹窗背板。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              backgroundColor: 'rgb(204, 226, 251)',
+              backgroundBlurStyle: BlurStyle.NONE,
+              shadow: ShadowStyle.OUTER_FLOATING_SM,
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo6.png)
+
+
+### 示例7（设置循环滚动）
+
+该示例使用canLoop设置是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              value: this.v,
+              canLoop: false,
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index
+                console.log(this.select + '')
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialogDemo7.gif)

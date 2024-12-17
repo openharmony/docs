@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 需要权限
 
@@ -2134,6 +2134,8 @@ forceDisplayScrollBar(enabled: boolean)
 
 
 设置滚动条是否常驻。默认不常驻，在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
+
+全量展开模式下不支持滚动条常驻，即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

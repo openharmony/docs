@@ -87,10 +87,12 @@
       - [组件快捷键事件](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
+      - [焦点轴事件](arkui-ts/ts-universal-events-focus_axis.md)
     - 通用属性
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
       - [布局约束](arkui-ts/ts-universal-attributes-layout-constraints.md)
+      - [组件级像素取整](arkui-ts/ts-universal-attributes-pixelRound.md)
       - [Flex布局](arkui-ts/ts-universal-attributes-flex-layout.md)
       - [边框设置](arkui-ts/ts-universal-attributes-border.md)
       - [图片边框设置](arkui-ts/ts-universal-attributes-border-image.md)
@@ -474,6 +476,7 @@
     - [焦点错误码](errorcode-focus.md)
     - [系统资源错误码](errorcode-system-resource.md)
     - [半模态错误码](errorcode-bindSheet.md)
+    - [滚动类组件错误码](errorcode-scroll.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

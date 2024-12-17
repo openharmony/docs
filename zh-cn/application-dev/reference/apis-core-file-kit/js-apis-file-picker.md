@@ -394,7 +394,7 @@ getSelectedIndex(): number
 
 **原子化服务API:** 从API version 13开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection
 
 通过getSelectedIndex()方法获取保存成功后的文件后缀类型的下标。
   > **注意**：

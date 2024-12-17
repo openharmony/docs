@@ -32,6 +32,7 @@
        libimage_receiver.so
        libnative_image.so
        libohcamera.so
+       libnative_buffer.so
    )
    ```
 

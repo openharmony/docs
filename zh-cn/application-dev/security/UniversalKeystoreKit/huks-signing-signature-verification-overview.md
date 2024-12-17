@@ -21,7 +21,7 @@
 | <!--DelRow-->DSA/SHA1<br/>DSA/SHA224<br/>DSA/SHA256<br/>DSA/SHA384<br/>DSA/SHA512 | - | 8+ | 否 |
 | <!--DelRow-->DSA/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
 | <!--DelRow-->ECC/SHA1<br/>ECC/SHA224 | - | 8+ | 否 |
-| ECC/SHA256<br/>ECC/SHA384<br/>ECC/SHA512 | - | 8+ | 是 |
+| ECC/SHA256<br/>ECC/SHA384<br/>ECC/SHA512 | ECC算法支持的椭圆曲线函数包括：P-256、P-384、P-521 | 8+ | 是 |
 | <!--DelRow-->ECC/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
 | ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 8+ | 是 |
 | SM2/SM3 | - | 9+ | 是 |

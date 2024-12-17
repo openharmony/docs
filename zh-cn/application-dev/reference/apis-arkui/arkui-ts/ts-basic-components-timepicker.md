@@ -22,7 +22,7 @@ TimePicker(options?: TimePickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                            | 必填 | 说明                     |
 | ------- | ----------------------------------------------- | ---- | ------------------------ |
@@ -62,7 +62,7 @@ useMilitaryTime(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
@@ -78,7 +78,7 @@ disappearTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -94,7 +94,7 @@ textStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -110,7 +110,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -126,7 +126,7 @@ loop(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
@@ -142,7 +142,7 @@ dateTimeOptions(value: DateTimeOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -174,7 +174,7 @@ onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                          | 必填 | 说明           |
 | ------ | --------------------------------------------- | ---- | -------------- |
@@ -196,7 +196,39 @@ onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
-该示例实现了时间选择组件，根据指定参数创建选择器。
+### 示例1（设置文本样式）
+
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle实现文本选择器中的文本样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    TimePicker({
+      selected: this.selectedTime
+    })
+      .disappearTextStyle({ color: '#004aaf', font: { size: 24, weight: FontWeight.Lighter } })
+      .textStyle({ color: Color.Black, font: { size: 26, weight: FontWeight.Normal } })
+      .selectedTextStyle({ color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } })
+      .onChange((value: TimePickerResult) => {
+        if (value.hour >= 0) {
+          this.selectedTime.setHours(value.hour, value.minute)
+          console.info('select current date is: ' + JSON.stringify(value))
+        }
+      })
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo1.png)
+
+### 示例2（切换小时制）
+
+该示例通过配置useMilitaryTime实现12小时制、24小时制的切换。
 
 ```ts
 // xxx.ets
@@ -213,22 +245,92 @@ struct TimePickerExample {
         .onClick(() => {
           this.isMilitaryTime = !this.isMilitaryTime
         })
+
       TimePicker({
-        selected: this.selectedTime,
+        selected: this.selectedTime
       })
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
-          if(value.hour >= 0) {
+          if (value.hour >= 0) {
             this.selectedTime.setHours(value.hour, value.minute)
             console.info('select current date is: ' + JSON.stringify(value))
           }
         })
-        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
-        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
-        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
     }.width('100%')
   }
 }
 ```
 
-![timePicker](figures/timePicker.gif)
+![timePicker](figures/TimePickerDemo2.gif)
+
+### 示例3（设置时间格式）
+
+该示例使用format、dateTimeOptions设置TimePicker时间格式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime,
+        format: TimePickerFormat.HOUR_MINUTE_SECOND
+      })
+        .dateTimeOptions({ hour: "numeric", minute: "2-digit", second: "2-digit" })
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo3.gif)
+
+### 示例4（设置循环滚动）
+
+该示例使用loop设置TimePicker是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  @State isLoop: boolean = true
+  private selectedTime: Date = new Date('2022-07-22T12:00:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime
+      })
+        .loop(this.isLoop)
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+
+      Row() {
+        Text('循环滚动').fontSize(20)
+
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .onChange((isOn: boolean) => {
+            this.isLoop = isOn
+          })
+      }.position({ x: '60%', y: '40%' })
+
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo4.gif)

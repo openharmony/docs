@@ -10,7 +10,12 @@ Layout constraints refer to constraints on the aspect ratio and display priority
 
 aspectRatio(value: number)
 
-Sets the aspect ratio of the component.
+Sets the aspect ratio of the component, which can be obtained using the following formula: width/height.
+- If only **width** and **aspectRatio** are set, the height is calculated using the following formula: width/aspectRatio.
+- If only **height** and **aspectRatio** are set, the width is calculated using the following formula: height x aspectRatio.
+- If **width**, **height**, and **aspectRatio** are all set, the explicitly set height is ignored, and the effective height is calculated using the following formula: width/aspectRatio.
+
+After **aspectRatio** is set, the width and height of the component are constrained by the size of the parent component's content area.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -22,7 +27,7 @@ Sets the aspect ratio of the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Aspect ratio of the component, which can be obtained using the following formula: Width/Height. If **width**, **height**, and **aspectRatio** are all set, **height** is ignored, and the width and height are calculated based on **width** and aspectRatio. After **aspectRatio** is set, the width and height of the component are constrained by the size of the parent component's content area.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br><br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **Row** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **Row** component is 0.|
+| value  | number | Yes  | Aspect ratio of the component.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br><br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **Row** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **Row** component is 0.|
 
 ## displayPriority
 
@@ -42,27 +47,11 @@ Sets the display priority for the component in the layout container.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Display priority of the component in the layout container.<br>Default value: **1**<br>**NOTE**<br>This parameter is only effective in [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [Flex (single-line)](./ts-container-flex.md) container components.<br> The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>If the **displayPriority** value of all child components is not greater than 1, there is no difference in priority.<br>When the **displayPriority** value of a child component is greater than 1, a larger value indicates higher priority. If the parent container does not have enough space, child components with lower priority are hidden. If child components of a certain priority are hidden, those with an even lower priority are also hidden.|
 
-## pixelRound<sup>11+</sup>
-
-pixelRound(value: PixelRoundPolicy)
-
-Describes the rounding strategy for component pixel-level alignment.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 11.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | Yes| Rounding strategy for component pixel-level alignment.<br>**NOTE**<br>This attribute is applicable in scenarios where artifacts occur due to floating-point drawing.<br>The current pixel rounding rule is as follows:<br>In the horizontal direction, the distance from the component's left and right boundaries to the screen's left edge is rounded.<br>In the vertical direction, the distance from the component's top and bottom boundaries to the screen's top edge is rounded.<br>After the rounded positions of the top, bottom, left, and right boundaries are calculated, the final width and height of the component can be determined. Therefore, the rounding result is not only related to the component's width and height but also to its position. Even if the component's width and height are set to be the same, due to different floating-point positions described, the final width and height of the component may also be different after rounding.|
-
 ## Example
 
-### Example 1
+### Example 1: Setting the Component Aspect Ratio
+
+This example illustrates how to use the **aspectRatio** attribute to set different aspect ratios for a component.
 
 ```ts
 // xxx.ets
@@ -123,7 +112,9 @@ struct AspectRatioExample {
 **Figure 2** Landscape display<br>
 ![en-us_image_0000001174264382](figures/en-us_image_0000001174264382.PNG)
 
-### Example 2
+### Example 2: Setting the Component Display Priority
+
+This example shows how to use **displayPriority** to assign display priorities to child components.
 
 ```ts
 class ContainerInfo {
@@ -184,43 +175,3 @@ struct DisplayPriorityExample {
 Landscape display in containers of different sizes
 
 ![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)
-
-### Example 3
-
-Example of using **pixelRound**:
-
-```ts
-@Entry
-@Component
-struct PixelRoundExample {
-  build() {
-    Column() {
-      Row() {
-        Row() {
-        }
-        .width('100%')
-        .height('100%')
-        .backgroundColor(Color.Yellow)
-      }
-      .width('300.6px')
-      .height('300.6px')
-      .backgroundColor(Color.Red)
-      .position({x: '200.2px', y: '100.2px'})
-      .pixelRound({
-        start:PixelRoundCalcPolicy.FORCE_CEIL,
-        top:PixelRoundCalcPolicy.FORCE_CEIL
-       })
-    }
-    .width("100%")
-    .height('100%')
-    .backgroundColor('#ffe5e5e5')
-  }
-}
-```
-**Figure 1** Layout with pixelRound
-
-![en-us_image_pixel_round_disable.png](figures/en-us_image_pixel_round_enable.png)
-
-**Figure 2** Layout without pixelRound
-
-![en-us_image_pixel_round_disable.png](figures/en-us_image_pixel_round_disable.png)

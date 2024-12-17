@@ -508,3 +508,130 @@ Chip与ChipGroup组件。
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
+## cl.arkui.5 router转场动画过程中，启用事件响应，并增加默认转场动画的拖尾效果
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+router默认转场动效无拖尾效果，导致应用动画最后一帧出现跳变，影响用户体验。变更后，router支持转场动画打断和接续，在动画转场过程中可响应事件。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+运行以下示例：
+
+```js
+@Entry
+@Component
+struct TestPage {
+  isAnimation: boolean = false;
+
+  build() {
+    Row() {
+      Column() {
+        TextInput().id('textInput')
+      }
+      .width('100%')
+    }
+    .height('100%')
+    .onAppear(() => {
+      if (this.isAnimation) {
+        setTimeout(() => {
+          focusControl.requestFocus('textInput');
+        }, 5)
+      } else {
+        setTimeout(() => {
+          focusControl.requestFocus('textInput')
+        }, 500)
+      }
+    })
+  }
+}
+```
+
+变更前：
+
+- router转场过程中请求焦点，必须要按照示例代码的形式启动定时器延迟到动画结束才能请求成功。router转场过程中无法点击、侧滑，必须在动画结束后才能操作对应页面。
+
+- router转场时间为400ms。
+
+变更后：
+
+- 页面跳转后即可请求焦点，无需添加定时器延迟操作请求。这可能会导致开发者使用定时器请求焦点，用户点击输入组件后，出现焦点跳变。
+
+- router转场时间变成600ms。
+
+**起始API Level**
+
+API Version 8
+
+**发生变更版本**
+
+从OpenHarmony SDK 5.0.0.56开始。
+
+**变更的接口/组件**
+
+router.pushUrl；router.back；router.pushNamedRoute
+
+**适配指导**
+
+1. 动画时长变更，无需适配。
+
+2. 针对焦点请求，在目标跳转页面中直接请求对应的焦点即可，可参照如下示例代码：
+```js
+@Entry
+@Component
+struct TestPage {
+
+  build() {
+    Row() {
+      Column() {
+        TextInput().id('textInput')
+      }
+      .width('100%')
+    }
+    .height('100%')
+    .onAppear(() => {
+      focusControl.requestFocus('textInput');
+    })
+  }
+}
+```
+
+## cl.arkui.5 RichEditor（富文本）向前删除空文本时onWillChange回调变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]，不符合接口定义。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[-1, -1]。
+
+变更后：光标位于文本起始位置时向前删除，触发onWillChange回调范围是[0, 0]。
+
+**起始API Level**
+
+API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.56开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。

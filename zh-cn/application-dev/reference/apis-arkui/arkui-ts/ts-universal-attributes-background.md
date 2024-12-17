@@ -29,7 +29,7 @@ background(builder: CustomBuilder, options?: { align?: Alignment })
 
 ## backgroundColor
 
-backgroundColor(value: ResourceColor)
+backgroundColor(color: Optional\<ResourceColor>)
 
 设置组件背景色。
 
@@ -41,9 +41,9 @@ backgroundColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明               |
-| ------ | ------------------------------------------ | ---- | ------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置组件的背景色。 |
+| 参数名 | 类型                                                  | 必填 | 说明               |
+| ------ | ----------------------------------------------------- | ---- | ------------------ |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 设置组件的背景色。 |
 
 >  **说明：**
 >
@@ -128,7 +128,7 @@ backgroundImagePosition(value: Position | Alignment)
 
 ## backgroundBlurStyle<sup>9+</sup>
 
-backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
+backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions)
 
 为当前组件提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
@@ -142,7 +142,7 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BlurStyle](#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
+| style                 | Optional\<[BlurStyle](#blurstyle9)>                          | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。                                               |
 
 >  **说明：**
@@ -151,7 +151,7 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 ## backdropBlur
 
-backdropBlur(value: number, options?: BlurOptions)
+backdropBlur(radius: Optional\<number>, options?: BlurOptions)
 
 为组件添加背景模糊效果，可以自定设置模糊半径和灰阶参数。
 
@@ -163,9 +163,9 @@ backdropBlur(value: number, options?: BlurOptions)
 
 **参数：** 
 
-| 参数名                | 类型                                              | 必填 | 说明                                                         |
-| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | number                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| radius                | Optional\<number>                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
 | options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
 
 >  **说明：**
@@ -174,7 +174,7 @@ backdropBlur(value: number, options?: BlurOptions)
 
 ## backgroundEffect<sup>11+</sup> 
 
-backgroundEffect(options: BackgroundEffectOptions)
+backgroundEffect(options: Optional\<BackgroundEffectOptions>)
 
 设置组件背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
 
@@ -186,7 +186,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                       |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [BackgroundEffectOptions](#backgroundeffectoptions11) | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
+| options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
 ## BackgroundEffectOptions<sup>11+</sup>
 背景效果参数。
@@ -242,7 +242,7 @@ backgroundImageResizable(value: ResizableOptions)
 
 ## backgroundBrightness<sup>12+</sup> 
 
-backgroundBrightness(params: BackgroundBrightnessOptions)
+backgroundBrightness(options: Optional\<BackgroundBrightnessOptions>)
 
 设置组件背景提亮效果。
 
@@ -252,9 +252,9 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                 |
-| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| params | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12对象说明) | 是   | 设置组件背景提亮效果，包括：亮度变化速率，提亮程度。 |
+| 参数名  | 类型                                                         | 必填 | 说明                                                 |
+| ------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| options | Optional\<[BackgroundBrightnessOptions](#backgroundbrightnessoptions12对象说明)> | 是   | 设置组件背景提亮效果，包括：亮度变化速率，提亮程度。 |
 
 ## BackgroundBrightnessOptions<sup>12+</sup>对象说明
 
@@ -496,7 +496,7 @@ struct BlurEffectsExample {
 ### 示例6（设置文字异形模糊效果）
 
 该示例通过blendMode和backgroundEffect实现文字异形模糊效果。<br/>
-如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
+如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-pixelRound.md#pixelround)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
 // xxx.ets

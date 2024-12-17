@@ -100,9 +100,9 @@ SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存�
 
         ![cppcrash-temp-log](figures/20230407111853.png)
 
-    2. CppCrash故障会同步在`/data/log/faultlog/faultlogger/`路径下生成一份完善日志，故障日志文件名格式为`cppcrash-进程名-进程UID-秒级时间`，日志内容较`/data/log/faultlog/temp`下日志更加完善，增加有设备名，系统版本，进程流水日志等信息。
+    2. CppCrash故障会同步在`/data/log/faultlog/faultlogger/`路径下生成一份完善日志，故障日志文件名格式为`cppcrash-进程名-进程UID-毫秒级时间.log`，日志内容较`/data/log/faultlog/temp`下日志更加完善，增加有设备名，系统版本，进程流水日志等信息。
 
-        ![cppcrash-faultlogger-log](figures/20230407112159.png)
+        ![cppcrash-faultlogger-log](figures/cppcrash_image_023.png)
 
 <!--DelEnd-->
 **日志格式 - 空指针故障场景**
@@ -583,6 +583,8 @@ objdump -S -l xxxx                 对 xxxx 文件反汇编，同时将指令对
 - 二进制不匹配：通常由ABI（应用程序二进制接口）不匹配引起，如自己编译二进制与实际运行的二进制接口存在差异，数据结构定义存在差异，这种一般会产生随机的崩溃栈。
 - 踩内存：使用有效的野指针，并修改了其中的内存为非法值，访问越界，覆盖了正常的数据这种一般会产生随机的崩溃栈。
 - SIGBUS (Aligment)考虑对指针进行强转之后地址是否已经处于非对齐状态。
+- 无函数名称：函数名称长度超过256字节时，栈帧打印不包含函数名称
+- 无build-id信息：elf中如果不包含 .note.gnu.build-id时，栈帧打印不包含build-id信息
 
 ## 分析案例
 

@@ -419,7 +419,7 @@ class A {
 
 #### -keep-global-name *[,identifiers,...]*
 
-指定要保留的顶层作用域的名称，支持使用名称类通配符。例如，
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如，
 
 ```
 -keep-global-name
@@ -427,7 +427,7 @@ Person
 printPersonName
 ```
 
-namespace中导出的名称也可以通过`-keep-global-name`保留。
+`namespace`中导出的名称可以通过`-keep-global-name`选项保留，示例如下：
 
 ```
 export namespace Ns {
@@ -547,6 +547,34 @@ export class exportClass {}
 ../folder                    // folder目录下文件及子文件夹中的名称都不混淆
 ../oh_modules/json5          // 引用的三方库json5里所有文件中的名称都不混淆
 ```
+
+**如何在模块中保留远程HAR包**
+
+方式一：指定远程`HAR`包在模块级`oh_modules`中的具体路径（该路径为软链接路径，真实路径为工程级`oh_modules`中的文件路径）。因为在配置模块级`oh_modules`中的路径作为白名单时，需要具体到包名或之后的目录才能正确地软链接到真实的目录路径，所以不能仅配置`HAR`包的上级目录名称。
+
+```
+// 正例
+-keep
+./oh_modules/harName1         // harName1目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/harName1/src     // src目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/folder/harName2  // harName2目录下所有文件及子文件夹中的名称都不混淆
+
+// 反例
+-keep
+./oh_modules                  // 保留模块级oh_modules里HAR包时，不支持配置HAR包的上级目录名称
+```
+
+方式二：指定远程`HAR`包在工程级`oh_modules`中的具体路径。因为工程级`oh_modules`中的文件路径都为真实路径，所以其路径均可配置。
+
+```
+-keep
+../oh_modules                  // 工程级oh_modules目录下所有文件及子文件夹中的名称都不混淆
+../oh_modules/harName3          // harName3目录下所有文件及子文件夹中的名称都不混淆
+```
+
+模块级`oh_moudles`和工程级`oh_modules`在`DevEco Studio`中的目录结构如下图所示：
+
+![oh_modules](./figures/oh_modules.png)
 
 **注意**：
 
@@ -681,13 +709,13 @@ age
 
 ### 混淆规则合并策略
 
-一个工程中经常会有许多混淆规则文件，这些文件来自于:
+编译工程中的某个模块时，其最终所应用的混淆规则是以下文件中配置的混淆规则的合并:
 
-* 主工程的`ruleOptions.files` (这里主工程指的是正在构建的工程)
+* 本模块的build-profile.json5文件中`ruleOptions.files`字段指定的文件
 * 本地依赖的library中的`consumerFiles`选项中指定的文件
 * 远程依赖的HAR包中的`obfuscation.txt`文件
 
-当构建主工程的时候，这些文件中的混淆规则会按照下面的合并策略(伪代码)进行合并:
+上述文件中的混淆规则的优先级是一致的。构建模块时，这些规则文件将按照以下合并策略（伪代码）进行合并。
 
 ```
 let `listRules` 表示上面提到的所有混淆规则文件的列表
@@ -886,7 +914,7 @@ end-for
 假设当前模块未配置`-compact`，但是混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
 
 1. 查看当前模块的oh-package.json5中的dependencies，此字段记录了当前模块的依赖信息。
-2. 在依赖的模块/三方库中的混淆配置文件内检索"-comapct"：
+2. 在依赖的模块/三方库中的混淆配置文件内检索"-compact"：
     * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
     * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
 
@@ -930,7 +958,7 @@ let jsonObj = jsonStr.i
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
 
-#### 开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
+#### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
 
@@ -982,7 +1010,7 @@ import {a3} from './file1'
 let person1 = new a3.person1()
 ```
 
-namespace里的 "person1" 属于顶层作用域的class名称，通过 "ns1.person1" 来调用时，它是属于一个属性，由于未开启属性混淆，所以在使用它时没有被混淆。
+namespace里的 "person1" 属于export元素，当通过 "ns1.person1" 调用时，它被视为一个属性。由于未开`-enable-property-obfuscation`选项，导致在使用时未对其进行混淆。
 
 **解决方案：**
 

@@ -325,7 +325,7 @@ sticky(value: StickyStyle)
 
 > **说明：** 
 >
-> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-layout-constraints.md#pixelround11)指定当前组件向下像素取整解决该问题。
+> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-pixelRound.md#pixelround)指定当前组件向下像素取整解决该问题。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1466,3 +1466,38 @@ struct ListExample {
 ```
 
 ![fadingEdge_list](figures/fadingEdge_list.gif)
+
+### 示例8（单边边缘效果）
+
+该示例通过edgeEffect接口，实现了List组件设置单边边缘效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  scrollerForList: Scroller = new Scroller()
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .width('90%').height('90%')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_list](figures/edgeEffect_list.gif)

@@ -212,6 +212,7 @@
 | -------- | ---------- |
 | Unknown  | 输入设备类型未知。  |
 | Keyboard | 输入设备类型为键盘。 |
+| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。 |
 
 ## Edge
 
@@ -860,7 +861,7 @@ Nullable\<T> {
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
-组件边界像素级取整计算策略。
+组件边界像素取整计算策略。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 

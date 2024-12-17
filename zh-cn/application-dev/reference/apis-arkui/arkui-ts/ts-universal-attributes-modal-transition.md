@@ -47,9 +47,9 @@ bindContentCover(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: 
 
 ## 示例
 
-### 示例1
+### 示例1（使用全屏模态转场）
 
-全屏模态无动画转场模式下，自定义转场动画。
+该示例主要演示通过bindContentCover来实现全屏模态转场。
 
 ```ts
 // xxx.ets
@@ -145,7 +145,7 @@ struct ModalTransitionExample {
 
 ![zh-cn_full_screen_modal_none_1](figures/zh-cn_full_screen_modal_none_1.gif)
 
-### 示例2
+### 示例2（自定义转场动画）
 
 全屏模态无动画转场模式下，自定义转场动画。
 
@@ -259,7 +259,7 @@ struct ModalTransitionExample {
 
 ![zh-cn_full_screen_modal_none_2](figures/zh-cn_full_screen_modal_none_2.gif)
 
-### 示例3
+### 示例3（上下切换转场）
 
 全屏模态上下切换转场。
 
@@ -357,7 +357,7 @@ struct ModalTransitionExample {
 
 ![zh-cn_full_screen_modal_default](figures/zh-cn_full_screen_modal_default.gif)
 
-### 示例4
+### 示例4（透明度渐变转场）
 
 全屏模态透明度渐变转场。
 
@@ -456,9 +456,9 @@ struct ModalTransitionExample {
 
 ![zh-cn_full_screen_modal_alpha](figures/zh-cn_full_screen_modal_alpha.gif)
 
-### 示例5
+### 示例5（设置不同效果的自定义转场）
 
-全屏模态自定义转场。
+该示例主要演示全屏模态旋转，平移等自定义转场。
 
 ```ts
 // xxx.ets

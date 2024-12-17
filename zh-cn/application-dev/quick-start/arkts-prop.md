@@ -76,8 +76,8 @@
 
 - 当装饰的类型是Object或者class复杂类型时，可以观察到第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性；
 
-```
-class ClassA {
+```ts
+class Info {
   public value: string;
   constructor(value: string) {
     this.value = value;
@@ -85,10 +85,10 @@ class ClassA {
 }
 class Model {
   public value: string;
-  public a: ClassA;
-  constructor(value: string, a: ClassA) {
+  public info: Info;
+  constructor(value: string, info: Info) {
     this.value = value;
-    this.a = a;
+    this.info = info;
   }
 }
 
@@ -96,14 +96,14 @@ class Model {
 // 可以观察到第一层的变化
 this.title.value = 'Hi'
 // 观察不到第二层的变化
-this.title.a.value = 'ArkUi' 
+this.title.info.value = 'ArkUI' 
 ```
 
 对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
 - 当装饰的类型是数组的时候，可以观察到数组本身的赋值和数组项的添加、删除和更新。
 
-```
+```ts
 // @State装饰的对象为数组时
 @Prop title: string[]
 // 数组自身的赋值可以观察到
@@ -630,7 +630,7 @@ struct MainProgram {
 ```ts
 // 以下是嵌套类对象的数据结构。
 @Observed
-class ClassA {
+class Son {
   public title: string;
 
   constructor(title: string) {
@@ -639,13 +639,13 @@ class ClassA {
 }
 
 @Observed
-class ClassB {
+class Father {
   public name: string;
-  public a: ClassA;
+  public son: Son;
 
-  constructor(name: string, a: ClassA) {
+  constructor(name: string, son: Son) {
     this.name = name;
-    this.a = a;
+    this.son = son;
   }
 }
 ```
@@ -655,29 +655,29 @@ class ClassB {
 ```ts
 @Entry
 @Component
-struct Parent {
-  @State votes: ClassB = new ClassB('Hello', new ClassA('world'))
+struct Person {
+  @State person: Father = new Father('Hello', new Son('world'))
 
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-        Button('change ClassB name')
+        Button('change Father name')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF，90%')
           .onClick(() => {
-            this.votes.name = "aaaaa"
+            this.person.name = "Hi";
           })
-        Button('change ClassA title')
+        Button('change Son title')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF，90%')
           .onClick(() => {
-            this.votes.a.title = "wwwww"
+            this.person.son.title = "ArkUI";
           })
-        Text(this.votes.name)
+        Text(this.person.name)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -687,9 +687,9 @@ struct Parent {
           .textAlign(TextAlign.Center)
           .fontColor('#e6000000')
           .onClick(() => {
-            this.votes.name = 'Bye'
+            this.person.name = 'Bye';
           })
-        Text(this.votes.a.title)
+        Text(this.person.son.title)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -698,9 +698,9 @@ struct Parent {
           .borderRadius(20)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.votes.a.title = "openHarmony"
+            this.person.son.title = "openHarmony";
           })
-        Child1({ vote1: this.votes.a })
+        Child({ child: this.person.son })
       }
 
     }
@@ -710,12 +710,12 @@ struct Parent {
 
 
 @Component
-struct Child1 {
-  @Prop vote1: ClassA = new ClassA('');
+struct Child {
+  @Prop child: Son = new Son('');
 
   build() {
     Column() {
-      Text(this.vote1.title)
+      Text(this.child.title)
         .fontSize(16)
         .margin(12)
         .width(312)
@@ -724,7 +724,7 @@ struct Child1 {
         .borderRadius(20)
         .textAlign(TextAlign.Center)
         .onClick(() => {
-          this.vote1.title = 'Bye Bye'
+          this.child.title = 'Bye Bye'
         })
     }
   }
@@ -775,7 +775,7 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
+struct MapSample {
   @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
 
   build() {
@@ -829,7 +829,7 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample11 {
+struct SetSample {
   @State message: Set<number> = new Set([0, 1, 2, 3, 4])
 
   build() {

@@ -80,6 +80,8 @@
       - [使用JSVM-API判断给定的两个JS value是否严格相等](use-jsvm-strict-equals.md)
       - [使用JSVM-API进行异常的定制化处理](use-jsvm-trigger-exceptions.md)
       - [使用JSVM-API感知JSVM引擎生命周期管理](use-jsvm-trigger-gc.md)
+      - [使用JSVM-API接口进行 private 属性相关开发](use-jsvm-about-private.md)
+      - [使用JSVM-API接创建 external string](use-jsvm-about-external-string.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)

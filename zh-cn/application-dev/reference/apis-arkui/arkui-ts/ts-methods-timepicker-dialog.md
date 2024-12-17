@@ -22,7 +22,7 @@ static show(options?: TimePickerDialogOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                                        | 必填 | 说明                       |
 | ------- | ----------------------------------------------------------- | ---- | -------------------------- |
@@ -65,12 +65,11 @@ static show(options?: TimePickerDialogOptions)
 >
 > 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)来明确UI的执行上下文。
 
-### 示例1（弹出时间选择弹窗）
+### 示例1（设置时间格式）
 
-该示例通过点击按钮弹出时间选择弹窗。
+该示例通过useMilitaryTime、dateTimeOptions、format设置时间格式。
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct TimePickerDialogExample {
@@ -81,11 +80,11 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 12小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({ // 建议使用 this.getUIContext().showTimePickerDialog()接口
+          TimePickerDialog.show({
             selected: this.selectTime,
-            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
-            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
-            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
+            format: TimePickerFormat.HOUR_MINUTE,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
@@ -118,34 +117,14 @@ struct TimePickerDialogExample {
         .onClick(() => {
           TimePickerDialog.show({
             selected: this.selectTime,
+            format: TimePickerFormat.HOUR_MINUTE_SECOND,
             useMilitaryTime: true,
-            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
-            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
-            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
             onAccept: (value: TimePickerResult) => {
               if (value.hour != undefined && value.minute != undefined) {
                 this.selectTime.setHours(value.hour, value.minute)
                 console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
               }
             },
-            onCancel: () => {
-              console.info("TimePickerDialog:onCancel()")
-            },
-            onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
-            },
-            onDidAppear: () => {
-              console.info("TimePickerDialog:onDidAppear()")
-            },
-            onDidDisappear: () => {
-              console.info("TimePickerDialog:onDidDisappear()")
-            },
-            onWillAppear: () => {
-              console.info("TimePickerDialog:onWillAppear()")
-            },
-            onWillDisappear: () => {
-              console.info("TimePickerDialog:onWillDisappear()")
-            }
           })
         })
     }.width('100%')
@@ -173,40 +152,38 @@ struct TimePickerDialogExample {
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show({
-            selected: this.selectTime,
-            useMilitaryTime: true,
-            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
+            disappearTextStyle: { color: '#297bec', font: { size: 15, weight: FontWeight.Lighter } },
             textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
             selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
-            acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-              fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-              borderRadius: 20 },
-            cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-              fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-              borderRadius: 10 },
+            acceptButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: 'rgb(81, 81, 216)',
+              fontSize: '26fp',
+              fontWeight: FontWeight.Bolder,
+              fontStyle: FontStyle.Normal,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#A6ACAF',
+              borderRadius: 20
+            },
+            cancelButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: Color.Blue,
+              fontSize: '16fp',
+              fontWeight: FontWeight.Normal,
+              fontStyle: FontStyle.Italic,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#50182431',
+              borderRadius: 10
+            },
             onAccept: (value: TimePickerResult) => {
               if (value.hour != undefined && value.minute != undefined) {
                 this.selectTime.setHours(value.hour, value.minute)
                 console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
               }
-            },
-            onCancel: () => {
-              console.info("TimePickerDialog:onCancel()")
-            },
-            onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
-            },
-            onDidAppear: () => {
-              console.info("TimePickerDialog:onDidAppear()")
-            },
-            onDidDisappear: () => {
-              console.info("TimePickerDialog:onDidDisappear()")
-            },
-            onWillAppear: () => {
-              console.info("TimePickerDialog:onWillAppear()")
-            },
-            onWillDisappear: () => {
-              console.info("TimePickerDialog:onWillDisappear()")
             }
           })
         })
@@ -272,3 +249,108 @@ struct TimePickerDialogExample {
 ```
 
 ![TimetPickerDialog](figures/TimePickerDialog_HoverMode.gif)
+
+### 示例4（设置弹窗位置）
+
+该实例通过alignment、offset设置弹窗的位置
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2020-12-25T08:30:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            alignment: DialogAlignment.Center,
+            offset: { dx: 20 , dy: 0 },
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![TimetPickerDialog](figures/TimePickerDialogDemo4.png)
+
+### 示例5（设置遮蔽区）
+
+该实例通过maskRect设置遮蔽区
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2020-12-25T08:30:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            maskRect: { x: 30, y: 60, width: '100%', height: '60%' },
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![TimetPickerDialog](figures/TimePickerDialogDemo5.png)
+
+### 示例6（设置弹窗背板）
+
+该实例通过maskRect设置遮蔽区
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2020-12-25T08:30:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            backgroundColor: 'rgb(204, 226, 251)',
+            backgroundBlurStyle: BlurStyle.NONE,
+            shadow: ShadowStyle.OUTER_FLOATING_SM,
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+![TimetPickerDialog](figures/TimePickerDialogDemo6.png)
+

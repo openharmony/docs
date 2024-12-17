@@ -20,7 +20,7 @@
      // 需要在avTranscoder完成赋值后，再进行其他操作。
    }, (error: BusinessError) => {
      console.error(`createAVTranscoder failed`);
-   })
+   });
    ```
 
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
@@ -37,12 +37,12 @@
    avTranscoder.on('complete', () => {
      console.log(`transcoder is completed`);
      // 用户可以在此监听转码完成事件
-   })
+   });
    
    // 错误上报回调函数
    avTranscoder.on('error', (err: BusinessError) => {
      console.error(`avTranscoder failed, code is ${err.code}, message is ${err.message}`);
-   })
+   });
    ```
 
 3. 设置源视频文件fd：设置属性fdSrc。
@@ -67,11 +67,11 @@
 4. 设置目标视频文件fd：设置属性fdDst。
    > **说明：**
    >
-   > - 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
+   > 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
    
    ```ts
    // 设置转码的目标文件属性fdDst
-   this.avTranscoder.fdDst = 55 // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处
+   this.avTranscoder.fdDst = 55; // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处
    ```
 
 5. 配置视频转码参数，调用prepare()接口。
@@ -92,12 +92,12 @@
      videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式
      videoFrameWidth: 640, // 视频分辨率的宽为640
      videoFrameHeight: 480, // 视频分辨率的高为480
-   }
+   };
    avTranscoder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
    }, (err: BusinessError) => {
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-   })
+   });
    ```
 
 6. 开始转码，调用start()接口。
@@ -154,7 +154,7 @@ export class AVTranscoderDemo {
     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式
     videoFrameWidth: 640, // 视频分辨率的宽
     videoFrameHeight: 480, // 视频分辨率的高
-  }
+  };
 
   // 注册avTranscoder回调函数
   setAVTranscoderCallback() {
@@ -164,11 +164,11 @@ export class AVTranscoderDemo {
         this.avTranscoder.on('complete', async () => {
           console.log(`AVTranscoder is completed`);
           await this.releaseTranscoderingProcess();
-        })
+        });
         // 错误上报回调函数
         this.avTranscoder.on('error', (err: BusinessError) => {
           console.error(`AVTranscoder failed, code is ${err.code}, message is ${err.message}`);
-        })
+        });
       }
     }
   }

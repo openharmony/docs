@@ -6657,9 +6657,9 @@ try {
 
 ### setWindowTitleButtonVisible<sup>14+</sup>
 
-setWindowTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean): void
+setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVisible: boolean, isCloseButtonVisible?: boolean): void
 
-设置主窗标题栏上的最大化、最小化按钮是否可见。
+设置主窗标题栏上的最大化、最小化、关闭按钮是否可见。
 
 此接口仅支持2in1设备。
 
@@ -6669,8 +6669,9 @@ setWindowTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boole
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| isMaximizeVisible | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。如果最大化按钮隐藏，那么在最大化场景下，也隐藏对应的还原按钮。 |
-| isMinimizeVisible | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
+| isMaximizeButtonVisible | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。如果最大化按钮隐藏，那么在最大化场景下，也隐藏对应的还原按钮。 |
+| isMinimizeButtonVisible | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
+| isCloseButtonVisible | boolean | 否   | 设置关闭按钮是否可见，true为可见，false为隐藏，默认值true。 |
 
 **错误码：**
 
@@ -6701,8 +6702,8 @@ export default class EntryAbility extends UIAbility {
         data => {
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // 调用setWindowTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化按钮。
-          mainWindow.setWindowTitleButtonVisible(false, false);
+          // 调用setWindowTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化、关闭按钮。
+          mainWindow.setWindowTitleButtonVisible(false, false, false);
         }
       ).catch((err: BusinessError) => {
           if(err.code){
