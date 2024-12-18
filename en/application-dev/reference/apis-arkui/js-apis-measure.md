@@ -5,7 +5,8 @@ The **measure** module provides APIs for measuring text metrics, such as text he
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> 
+> This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 
 ## Modules to Import
 
@@ -114,7 +115,7 @@ Provides attributes of the measured text.
 | -------------- | -------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------- |
 | textContent | string \| [Resource](arkui-ts/ts-types.md#resource)                                                                                             | Yes  | Content of the measured text.                                 |
 | constraintWidth<sup>10+</sup> | number \| string \| [Resource](arkui-ts/ts-types.md#resource)   | No  | Layout width of the measured text.<br>**NOTE**<br>The default unit is vp. The value cannot be a percentage. If this parameter is not set, the value of **SizeOption** is the maximum width allowed for the single-line text.                            |
-| fontSize       | number \| string \| [Resource](arkui-ts/ts-types.md#resource)               | No  | Font size of the measured text. If the value is of the number type, the unit fp is used.<br>Default value: **16fp**<br>**NOTE**<br>The value cannot be a percentage.   |
+| fontSize       | number \| string \| [Resource](arkui-ts/ts-types.md#resource)               | No  | Font size of the measured text. If the value is of the number type, the unit vp is used.<br>Default value: **16**<br>**NOTE**<br>The value cannot be a percentage.   |
 | fontStyle      | number \| [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle)                        | No  | Font style of the measured text.<br>Default value: **FontStyle.Normal**           |
 | fontWeight     | number \| string \| [FontWeight](arkui-ts/ts-appendix-enums.md#fontweight)  | No  | Font width of the measured text.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **400**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
 | fontFamily     | string \| [Resource](arkui-ts/ts-types.md#resource)                                   | No  | Font family of the measured text. Default value: **'HarmonyOS Sans'**<br>Only the default font is supported.|

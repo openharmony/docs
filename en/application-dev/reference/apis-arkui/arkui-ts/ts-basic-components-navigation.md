@@ -120,7 +120,7 @@ Pushes the navigation destination page specified by **name**, with the data spec
 |------|------|------|------|
 | name  | string  | Yes   | Name of the navigation destination page.  |
 | param | Object | Yes   | Detailed parameters of the navigation destination page.|
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | Yes| Callback used to receive the result.|
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | Yes| Callback used to receive the result. It is invoked only after the **result** parameter is set in **pop**.|
 | animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 ### pushDestination<sup>11+</sup>
@@ -196,7 +196,7 @@ Pushes the navigation destination page specified by **name**, with the data spec
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
 | param | Object | Yes   | Detailed parameters of the navigation destination page.|
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | Yes   | Callback used to handle the result returned when the page is popped out of the stack.|
+| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | Yes   | Callback used to handle the result returned when the page is popped out of the stack. It is invoked only after the **result** parameter is set in **pop**.|
 | animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 **Return value**

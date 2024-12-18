@@ -32,35 +32,35 @@ Each **\<TabContent>** component should be mapped to a tab page, which can be co
 
 ```ts
  TabContent() {
-   Text('Content of the Home tab').fontSize(30)
+   Text('Home tab content').fontSize(30)
  }
-.tabBar ('Home')
+.tabBar('Home')
 ```
 
 
-When setting multiple **\<TabContent>** components, place them in sequence in the **\<Tabs>** component.
+When setting multiple **TabContent** components, place them in sequence in the **Tabs** component.
 
 ```ts
 Tabs() {
   TabContent() {
-    Text('Content of the Home tab').fontSize(30)
+    Text('Home tab content').fontSize(30)
   }
-  .tabBar ('Home')
+  .tabBar('Home')
 
   TabContent() {
-    Text('Content of the Recommended tab').fontSize(30)
+    Text('Recommended tab content').fontSize(30)
   }
-  .tabBar ('Recommended')
+  .tabBar('Recommended')
 
   TabContent() {
-    Text ('Content of the Discover tab').fontSize (30)
+    Text('Discover tab content').fontSize(30)
   }
-  .tabBar ('Discover')
+  .tabBar('Discover')
   
   TabContent() {
-    Text ('Content of the Me tab').fontSize (30)
+    Text('Me tab content').fontSize(30)
   }
-  .tabBar ("Me")
+  .tabBar("Me")
 }
 ```
 
@@ -75,7 +75,7 @@ Bottom navigation is the most common navigation mode in applications. The bottom
 ![bottom-navigation](figures/bottom-navigation.gif)
 
 
-You set the position of the navigation bar through the **barPosition** parameter of the **\<Tabs>** component. By default, **barPosition** is set to **BarPosition.Start**, which means that the navigation bar is located on the top. To display the navigation bar at the bottom, set **barPosition** to **BarPosition.End**.
+You set the position of the navigation bar through the **barPosition** parameter of the **Tabs** component. By default, **barPosition** is set to **BarPosition.Start**, which means that the navigation bar is located on the top. To display the navigation bar at the bottom, set **barPosition** to **BarPosition.End**.
 
 
 ```ts
@@ -113,7 +113,7 @@ Side navigation is seldom used in applications. It is more applicable to landsca
 ![side-navigation](figures/side-navigation.png)
 
 
-To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
+To implement the side navigation bar, set the **vertical** attribute of the **Tabs** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
 
 
 
@@ -157,7 +157,7 @@ Tabs({ barPosition: BarPosition.End }) {
     .backgroundColor('#ff08a8f1')
     .width('100%')
   }
-  .tabBar ('Home')
+  .tabBar('Home')
 
   // Other TabContent content: Discover, Recommended, and Me
   ...
@@ -171,12 +171,12 @@ Tabs({ barPosition: BarPosition.End }) {
 When the content categories are relatively fixed and not scalable, a fixed navigation bar can be used. For example, it can be used for the bottom navigation bar, which generally contains 3 to 5 categories. The fixed navigation bar cannot be scrolled or dragged. The tab bar width is evenly distributed among the categories.
 
 
-  **Figure 7** Fixed navigation bar
+  **Figure 7** Fixed navigation bar 
 
 ![fixed-navigation](figures/fixed-navigation.gif)
 
 
-To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **barMode.Fixed** (default).
+To use a fixed navigation bar, set the **barMode** attribute of the **Tabs** component to **barMode.Fixed** (default).
 
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
@@ -197,7 +197,7 @@ The top navigation bar or side navigation bar can be set to be scrollable if the
 ![scrollable-navigation](figures/scrollable-navigation.gif)
 
 
-To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **BarMode.Scrollable**.
+To use a scrollable navigation bar, set the **barMode** attribute of the **Tabs** component to **BarMode.Scrollable**.
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
@@ -243,7 +243,7 @@ Pass the custom function component to the **tabBar** attribute corresponding to 
 ```ts
 TabContent() {
   Column(){
-    Text('Content of the Me tab') 
+    Text('Me tab content') 
   }
   .width('100%')
   .height('100%')
@@ -255,164 +255,85 @@ TabContent() {
 
 ## Switching to a Specified Tab
 
-Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user switches to a tab, the application displays the corresponding tab page.
+Non-custom navigation bars follow the default switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user switches to a tab, the application displays the corresponding tab page.
 
 
-  **Figure 10** Switching to a specified tab in a custom navigation bar 
+  **Figure 10** Content page and tab bar not synced 
 
-![switching-to-a-specified-tab](figures/switching-to-a-specified-tab.gif)
+![Content Page and Tab Bar Not Synced](figures/tabcontent_tabbar_not_sync.gif)
 
-
-To switch to a specified tab page, use **TabsController**, which is the controller of the **\<Tabs>** component. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
-
-```ts
-class Tmp{
-  currentIndex:number = 0;
-  tabsController : TabsController = new TabsController()
-  foo(val:number){
-    this.currentIndex = val;
-  }
-  tabFoo(){
-    this.tabsController.changeIndex(this.currentIndex);
-  }
-}
-private tabsController : TabsController = new TabsController()
-@State currentIndex:number = 0;
-
-@Builder tabBuilder(title: string, targetIndex: number) {
-  Column() {
-    Text(title)
-      .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
-  }
-  ...
-  .onClick(() => {
-    let cur:Tmp = new Tmp()
-    cur.foo(targetIndex)
-    cur.tabFoo()
-  })
-}
-```
-
-
-When using a custom navigation bar, pass the corresponding \@Builder in the **tabBar** attribute and transfer the corresponding parameters.
+To sync the content page with the tab bar, use the **onChange** event provided by **Tabs** to listen for changes in the index. Pass the currently active index value to **currentIndex** to enable tab switching.
 
 ```ts
-Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
-  TabContent(){
-    ...
-  }.tabBar(this.tabBuilder('Home',0))
-
-  TabContent(){
-    ...
-  }.tabBar (this.tabBuilder ('Discover', 1))
-
-  TabContent(){
-    ...
-  }.tabBar (this.tabBuilder ('Recommended', 2))
-
-  TabContent(){
-    ...
-  }
-  .tabBar(this.tabBuilder('Me', 3))
-}
-```
-
-
-## Swiping to Switch Between Tabs
-
-For non-custom navigation bars, tabs and tab content are linked by default. For custom navigation bars, however, tabs and tab content are linked when tab switching is initiated by **TabsController**, but not when tab switching is initiated by a swipe gesture. This means that, when the user swipes on the screen to switch between tab content, the tabs do not switch automatically. In this case, manual switching is required.
-
-
-  **Figure 11** Lack of linkage between tabs and tab content 
-
-![TabsChange1](figures/TabsChange1.gif)
-
-
-To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
-
-
-```ts
-//xxx.ets
 @Entry
 @Component
-struct TabsExample {
+struct TabsExample1 {
   @State currentIndex: number = 2
-  private controller: TabsController = new TabsController()
-    
-  ...
-  
+
+  @Builder tabBuilder(title: string, targetIndex: number) {
+    Column() {
+      Text(title)
+        .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+    }
+  }
+
   build() {
     Column() {
-      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+      Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           ...
-        }.tabBar(this.tabBuilder('Home',0))
+        }.tabBar(this.tabBuilder('Home', 0))
 
         TabContent() {
           ...
-        }.tabBar (this.tabBuilder ('Discover', 1))
+        }.tabBar(this.tabBuilder('Discover', 1))
 
         TabContent() {
           ...
-        }.tabBar (this.tabBuilder ('Recommended', 2))
+        }.tabBar(this.tabBuilder('Recommended', 2))
 
         TabContent() {
           ...
         }.tabBar(this.tabBuilder('Me',3))
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
-      .barWidth(360)
-      .barHeight(60)
       .animationDuration(0)
+      .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width(360)
-      .height(600)
-      .backgroundColor('#F1F3F5')
-      .scrollable(true)
-      .onContentWillChange((currentIndex, comingIndex) => {
-        if (comingIndex == 2) {
-          return false
-        }
-        return true
-      })
-
-      Button('Change index').width('50%').margin({ top: 20 })
-        .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
-        })
-
-      Button('changeIndex').width('50%').margin({ top: 20 })
-        .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
-          this.controller.changeIndex(this.currentIndex)
-        })
     }.width('100%')
   }
 }
 ```
+  **Figure 11** Content page and tab bar synced 
 
+![Content Page and Tab Bar Synced](figures/tabcontent_tabbar_sync.gif)
 
-  **Figure 12** Linkage between tabs and tab content
-
-![TabsChange2](figures/TabsChange2.gif)
-
-  **Figure 13** Customizing the page switching interception event
-
-![TabsChange3](figures/TabsChange3.gif)
-
-You can use the **onContentWillChange** API of the **\<Tabs>** component to customize the interception callback function. The interception callback function is called when a new page is about to be displayed. If the callback returns **true**, the tab can switch to the new page. If the callback returns **false**, the tab cannot switch to the new page and will remain on the current page.
-
+To enable switching between content pages and tabs without swiping, you can pass **currentIndex** to the **index** parameter of **Tabs**. By changing the value of **currentIndex**, you can navigate to the content page corresponding to a specific index. Alternatively, use **TabsController**, which is the controller for the **Tabs** component, to manage content page switches. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
 ```ts
-Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
-.onContentWillChange((currentIndex, comingIndex) => {
-  if (comingIndex == 2) {
-    return false
-  }
-  return true
+@State currentIndex: number = 2
+private controller: TabsController = new TabsController()
+
+Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
+  ...
+}
+.height(600)
+.onChange((index: number) => {
+   this.currentIndex = index
 })
 
-```
+Button('Change Index').width('50%').margin({ top: 20 })
+  .onClick(()=>{
+    this.currentIndex = (this.currentIndex + 1) % 4
+})
 
+Button('changeIndex').width('50%').margin({ top: 20 })
+  .onClick(()=>{
+    let index = (this.currentIndex + 1) % 4
+    this.controller.changeIndex(index)
+})
+```
+  
+  **Figure 12** Switching to a specific tab page   
+
+![TabsChange2](figures/TabsChange2.gif)

@@ -164,7 +164,7 @@ struct CompA {
 1. Initial render:
    1. The \@Provide decorated variable is passed to all child components of the owning component in map mode.
    2. If an \@Consume decorated variable is used in a child component, the system checks the map for a matching \@Provide decorated variable based on the variable name or alias. If no matching variable is found, the framework throws a JS error.
-   3. The process of initializing the \@Consume decorated variable is similar to that of initializing the \@State/\@Link decorated variable. The \@Consume decorated variable saves the matching \@Provide decorated variable found in the map and registers itself with the \@Provide decorated variable.
+   3. The process of initializing the \@Consume decorated variable is similar to that of initializing the \@State/\@Link decorated variable. The @Consume decorated variable saves the matching @Provide decorated variable found in the map and registers itself with the @Provide decorated variable.
 
 2. When the \@Provide decorated variable is updated:
    1. The system traverses and updates all system components (**elementid**) and state variable (\@Consume) that depend on the \@Provide decorated variable, with which the \@Consume decorated variable has registered itself on initial render.  
@@ -478,7 +478,7 @@ In the preceding example:
 
 In the following example, when **CustomWidget** executes **this.builder()** to create the child component **CustomWidgetChild**, **this** points to **HomePage**. As such, the \@Provide decorated variable of **CustomWidget** cannot be found, and an error is thrown. In light of this, exercise caution with **this** when using \@BuilderParam.
 
-Nonexample:
+[Incorrect Example]
 
 ```ts
 class Tmp {
@@ -490,7 +490,7 @@ class Tmp {
 struct HomePage {
   @Builder
   builder2($$: Tmp) {
-    Text(`${$$.a}Test`)
+    Text(`${$$.a}test`)
   }
 
   build() {
@@ -510,7 +510,7 @@ struct CustomWidget {
 
   build() {
     Column() {
-      Button('Hello').onClick((x) => {
+      Button('Hello').onClick(() => {
         if (this.a == 'ddd') {
           this.a = 'abc';
         }
@@ -533,6 +533,63 @@ struct CustomWidgetChild {
   build() {
     Column() {
       this.builder({ a: this.a })
+    }
+  }
+}
+```
+
+[Correct Example]
+
+```ts
+class Tmp {
+  name: string = ''
+}
+
+@Entry
+@Component
+struct HomePage {
+  @Provide('name') name: string = 'abc';
+
+  @Builder
+  builder2($$: Tmp) {
+    Text (`${$$.name}test`)
+  }
+
+  build() {
+    Column() {
+      Button('Hello').onClick(() => {
+        if (this.name == 'ddd') {
+          this.name = 'abc';
+        } else {
+          this.name = 'ddd';
+        }
+      })
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+
+@Component
+struct CustomWidget {
+  @BuilderParam
+  builder: () => void;
+
+  build() {
+    this.builder()
+  }
+}
+
+@Component
+struct CustomWidgetChild {
+  @Consume('name') name: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+
+  build() {
+    Column() {
+      this.builder({ name: this.name })
     }
   }
 }

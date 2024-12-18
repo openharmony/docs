@@ -370,6 +370,10 @@ Below you can see how the preceding code snippet works.
 
 ![properly-use-state-management-to-develope-3](figures/properly-use-state-management-to-develope-3.gif)
 
+Click the **Move** button before optimization. The duration for updating dirty nodes is as follows.
+
+![img](figures/properly-use-state-management-to-develope-11.PNG)
+
 In the above example, **uiStyle** defines multiple properties, which are each associated with multiple components. When some of these properties are changed at the click of a button, all the components associated with **uiStyle** are re-rendered, even though they do not need to (because the properties of these components are not changed). The re-renders of these components can be observed through a series of defined **isRender** functions. When **Move** is clicked to perform the translation animation, the value of **translateY** changes multiple times. As a result, redundant re-renders occur at each frame, which greatly worsen the application performance.
 
 Such redundant re-renders result from an update mechanism of the state management: If multiple properties of a class are bound to different components through an object of the class, then, if any of the properties is changed, the component associated with the property is re-rendered, together with components associated with the other properties, even though the other properties do not change.
@@ -593,6 +597,10 @@ struct Page {
 ```
 
 Below you can see how the preceding code snippet works.![properly-use-state-management-to-develope-4](figures/properly-use-state-management-to-develope-4.gif)
+
+Click the **Move** button after optimization. The duration for updating dirty nodes is as follows.
+
+![img](figures/properly-use-state-management-to-develope-12.PNG)
 
 After the optimization, the 15 attributes previously in one class are divided into eight classes, and the bound components are adapted accordingly. The division of properties complies with the following principles:
 

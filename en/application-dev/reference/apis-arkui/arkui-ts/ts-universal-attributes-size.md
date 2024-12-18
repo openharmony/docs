@@ -114,7 +114,7 @@ Sets the weight of the component during layout.
 
 | Name  | Type                        | Mandatory     | Description                                      |
 | ----- | -------------------------- | ------- | ---------------------------------------- |
-| value | number \| string | Yes| Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| value | number \| string | Yes| Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number. <br>If any child component in a container has the **layoutWeight** attribute set to a value greater than 0, then child components will no longer be laid out based on **flexShrink** and **flexGrow**.|
 
 ## constraintSize
 
@@ -221,6 +221,7 @@ struct SizeExample {
         .backgroundColor(0xFFFAF0)
         .textAlign(TextAlign.Center)
         .margin('calc(25vp*2)')
+        // If width or height is set to a percentage, the width or height of the parent container are used as the basic value.
         .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
     }.width('100%').margin({ top: 5 })
   }

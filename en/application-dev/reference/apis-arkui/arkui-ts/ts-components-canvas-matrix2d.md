@@ -10,18 +10,28 @@
 
 Matrix2D()
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## Attributes
 
-| Name                     | Type  | Description                                                        |
-| ------------------------- | ------ | ------------------------------------------------------------ |
-| [scaleX](#scalex)         | number | Horizontal scale factor. This API can be used in ArkTS widgets since API version 9.|
-| [scaleY](#scaley)         | number | Vertical scale factor. This API can be used in ArkTS widgets since API version 9.|
-| [rotateX](#rotatex)       | number | Horizontal tilt coefficient. This API can be used in ArkTS widgets since API version 9.|
-| [rotateY](#rotatey)       | number | Vertical tilt coefficient. This API can be used in ArkTS widgets since API version 9.|
-| [translateX](#translatex) | number | Horizontal translation distance, in vp. This API can be used in ArkTS widgets since API version 9.|
-| [translateY](#translatey) | number | Vertical translation distance, in vp. This API can be used in ArkTS widgets since API version 9.|
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type | Read Only | Optional  | Description |
+| ----- | ----- | --------------- | ------ | ------------------------ |
+| [scaleX](#scalex)         | number | No | Yes | Horizontal scale factor.          |
+| [scaleY](#scaley)         | number | No | Yes | Vertical scale factor.          |
+| [rotateX](#rotatex)       | number | No | Yes | Horizontal tilt coefficient.          |
+| [rotateY](#rotatey)       | number | No | Yes | Vertical tilt coefficient.          |
+| [translateX](#translatex) | number | No | Yes | Distance to translate on the x-axis.<br>Default unit: vp |
+| [translateY](#translatey) | number | No | Yes | Distance to translate on the y-axis.<br>Default unit: vp |
 
 >  **NOTE**
 >  
@@ -247,6 +257,8 @@ Creates an identity matrix.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type                 | Description      |
@@ -295,6 +307,8 @@ invert(): Matrix2D
 Obtains an inverse of this matrix.
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -425,10 +439,10 @@ This API is deprecated since API version 10. You are advised to use [rotate](#ro
 
 **Parameters**
 
-| Parameter| Type  | Mandatory| Default Value| Description                            |
-| ---- | ------ | ---- | ------ | -------------------------------- |
-| rx   | number | No  | 0      | Horizontal coordinate (in vp) of the rotation point.|
-| ry   | number | No  | 0      | Vertical coordinate (in vp) of the rotation point.|
+| Name | Type  | Mandatory | Description                         |
+| ---- | ------ | ---- | -------------------------------- |
+| rx   | number | No  | Horizontal coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0** |
+| ry   | number | No  | Vertical coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0** |
 
 **Return value**
 
@@ -485,13 +499,15 @@ Performs a right multiplication rotation operation on this matrix, with the spec
 
 This API can be used in ArkTS widgets since API version 10.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Parameter  | Type  | Mandatory| Default Value| Description                                                        |
-| ------ | ------ | ---- | ------ | ------------------------------------------------------------ |
-| degree | number | Yes  | 0      | Rotation angle, in radians. A positive angle denotes a clockwise rotation. You can use **Math.PI& / 180** to convert the angle to a radian value.|
-| rx     | number | No  | 0      | Horizontal coordinate (in vp) of the rotation point.                            |
-| ry     | number | No  | 0      | Vertical coordinate (in vp) of the rotation point.                            |
+| Name  | Type  | Mandatory | Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| degree | number | Yes | Rotation angle, in radians. A positive angle denotes a clockwise rotation. You can use **Math.PI& / 180** to convert the angle to a radian value.<br>Default value: **0**|
+| rx     | number | No | Horizontal coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0**   |
+| ry     | number | No | Vertical coordinate of the rotation point.<br>Default unit: vp<br>Default value: **0**   |
 
 **Return value**
 
@@ -548,12 +564,14 @@ Performs a left multiplication translation operation on this matrix.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Parameter| Type  | Mandatory| Default Value| Description                        |
-| ---- | ------ | ---- | ------ | ---------------------------- |
-| tx   | number | No  | 0      | Horizontal translation distance, in vp.|
-| ty   | number | No  | 0      | Vertical translation distance, in vp.|
+| Name | Type  | Mandatory | Description                 |
+| ---- | ------ | ---- | ---------------------------- |
+| tx   | number | No  | Distance to translate on the x-axis.<br>Default unit: vp<br>Default value: **0** |
+| ty   | number | No  | Distance to translate on the y-axis.<br>Default unit: vp<br>Default value: **0** |
 
 **Return value**
 
@@ -610,12 +628,14 @@ Performs a right multiplication scaling operation on this matrix.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Parameter| Type  | Mandatory| Default Value| Description              |
-| ---- | ------ | ---- | ------ | ------------------ |
-| sx   | number | No  | 1      | Horizontal scale factor.|
-| sy   | number | No  | 1      | Vertical scale factor.|
+| Name | Type  | Mandatory | Description              |
+| ---- | ------ | ---- | ------------------ |
+| sx   | number | No  | Horizontal scale factor.<br>Default value: **1** |
+| sy   | number | No  | Vertical scale factor.<br>Default value: **1** |
 
 **Return value**
 

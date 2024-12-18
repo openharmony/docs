@@ -32,7 +32,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the hyperlink text.<br>Default value: **'#ff007dff'**|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the hyperlink text.<br>Default value: **'#ff0a59f7'**|
 
 ## Example
 

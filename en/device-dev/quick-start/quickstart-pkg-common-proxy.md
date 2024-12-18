@@ -6,7 +6,8 @@
 1. Create a proxy configuration file.
      
    ```
-   mkdir ~/.pipvim ~/.pip/pip.conf
+   mkdir ~/.pip
+   vim ~/.pip/pip.conf
    ```
 
 2. Add the following proxy information to the file, save the file, and exit:
@@ -30,7 +31,7 @@
 2. Add the following proxy information to the file, save the file, and exit:
      
    ```
-   Registry=http://Proxy URL
+   registry=http://Proxy URL
    strict-ssl=false
    ```
 

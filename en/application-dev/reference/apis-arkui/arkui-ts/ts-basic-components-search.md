@@ -29,19 +29,19 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                   | Type                                        | Description                                          |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton | value: string,<br>option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.<br>Default value: <br />SearchButtonOptions: {<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}    |
+| searchButton | value: string,<br>option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.<br>Default value: <br />SearchButtonOptions: {<br />fontSize: '16fp',<br />fontColor: '#ff3f97e9'<br />}    |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.<br>Default value: **'#99182431'**  |
 | placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                        |
 | textFont                | [Font](ts-types.md#font)                         | Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                          |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode in the search text box. Currently, the following alignment modes are supported: **Start**, **Center**, and **End**.<br>Default value: **TextAlign.Start**   |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the text can be pasted, but copy or cut is not allowed. <br>**NOTE**<br>For dragging, **copyOption** only restricts whether text is selected and does not involve the dragging scope.|
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the text can be pasted, but copy or cut is not allowed. <br>**NOTE**<br>Dragging is not allowed when **CopyOptions.None** is set.|
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10)                                                  | Style of the search icon on the left.<br />Default value: <br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}      |
 | cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.<br>Default value: <br />{<br />style: CancelButtonStyle.INPUT,<br />icon: {<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}<br />}<br>When **style** is set to **CancelButtonStyle.CONSTANT**, the Cancel button is always displayed. |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the input text.<br>Default value: **'#FF182431'**<br>**NOTE**<br>[Universal text attributes](ts-universal-attributes-text-style.md) **fontSize**, **fontStyle**, **fontWeight**, and **fontFamily** are set in the **textFont** attribute.|
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.<br>Default value:<br>{<br>width: '1.5vp',<br>color: '#007DFF'<br>} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus in a way other than clicking.<br>Default value: **true**  |
-| selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
+| selectionMenuHidden<sup>10+</sup> | boolean | Whether to hide the text selection menu under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box.<br>Default value: **false**|
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is presented by overlaying the original screen, which is not compressed or lifted if avoid mode is not enabled or avoidance is not needed for the text box.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
 | type<sup>11+</sup>                     | [SearchType](#searchtype11)     | Input box type.<br>Default value: **SearchType.Normal**       |
 | maxLength<sup>11+</sup>   | number                                                       | Maximum number of characters in the text input.<br>By default, no maximum number limit is imposed.<br>When the maximum number is reached, no more characters can be entered.|
 
@@ -92,9 +92,9 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onSubmit(callback: (value: string) => void)                  | Triggered when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input.|
 | onChange(callback: (value: string) => void)                  | Triggered when the input in the text box changes.<br> - **value**: current text input.|
-| onCopy(callback: (value: string) => void)                    | Triggered when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.|
-| onCut(callback: (value: string) => void)                     | Triggered when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.|
-| onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | Triggered when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text pasted.<br> - **event**: custom paste event.|
+| onCopy(callback: (value: string) => void)                    | Triggered when a copy operation is performed.<br> - **value**: text copied.|
+| onCut(callback: (value: string) => void)                     | Triggered when a cut operation is performed.<br> - **value**: text cut.|
+| onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | Triggered when a paste operation is performed.<br> - **value**: text pasted.<br> - **event**: custom paste event.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
 | onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: X coordinate offset of the text in the content area.<br>**totalOffsetY**: Y coordinate offset of the text in the content area.|
 
@@ -188,7 +188,7 @@ Returns the location information of the caret.
 ##  Example
 
 ### Example 1
-
+This example demonstrates the basic usage of **Search**.
 ```ts
 // xxx.ets
 @Entry
@@ -235,7 +235,7 @@ struct SearchExample {
 ![search](figures/search.gif)
 
 ### Example 2
-
+This example shows how to set the **searchButton**, **searchIcon**, and **cancelButton** attributes.
 ```ts
 // xxx.ets
 @Entry
@@ -281,7 +281,7 @@ struct SearchExample {
 
 
 ### Example 3
-
+This example illustrates how to bind a custom keyboard to the **Search** component.
 ```ts
 // xxx.ets
 @Entry
@@ -318,6 +318,6 @@ struct SearchExample {
     }
   }
 }
-````
+```
 
 ![customKeyboard](figures/searchCustomKeyboard.png)

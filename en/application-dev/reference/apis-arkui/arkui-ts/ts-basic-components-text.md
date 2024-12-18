@@ -105,54 +105,41 @@ Closes the custom or default context menu on selection.
 
 ### Example 1
 
+This example shows how to set the **textAlign**, **maxLines**, **textOverflow**, and **lineHeight** attributes.
+
 ```ts
 // xxx.ets
+@Extend(Text)
+function style(TextAlign: TextAlign) {
+  .textAlign(TextAlign)
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+}
+
 @Entry
 @Component
 struct TextExample1 {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      // Set the horizontal alignment mode for the text.
+      // Set the horizontal alignment for the text.
       // Single-line text
       Text('textAlign').fontSize(9).fontColor(0xCCCCCC)
       Text('TextAlign set to Center.')
-        .textAlign(TextAlign.Center)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Center)
       Text('TextAlign set to Start.')
-        .textAlign(TextAlign.Start)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Start)
       Text('TextAlign set to End.')
-        .textAlign(TextAlign.End)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.End)
 
       // Multi-line text
       Text('This is the text content with textAlign set to Center.')
-        .textAlign(TextAlign.Center)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Center)
       Text('This is the text content with textAlign set to Start.')
-        .textAlign(TextAlign.Start)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Start)
       Text('This is the text content with textAlign set to End.')
-        .textAlign(TextAlign.End)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.End)
 
 
       // Set the display mode when the text is too long.
@@ -161,26 +148,21 @@ struct TextExample1 {
       Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
         .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
+        .style(TextAlign.Start)
 
       // Show an ellipsis (...) when the value of maxLines is exceeded.
-      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.'.split('')
-        .join('\u200B'))
+      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .maxLines(1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
+        .style(TextAlign.Start)
 
       Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text with the line height set. This is the text with the line height set.')
-        .fontSize(12).border({ width: 1 }).padding(10)
+        .style(TextAlign.Start)
       Text('This is the text with the line height set. This is the text with the line height set.')
-        .fontSize(12).border({ width: 1 }).padding(10)
+        .style(TextAlign.Start)
         .lineHeight(20)
-    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+    }.height(600).width(340).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -188,7 +170,17 @@ struct TextExample1 {
 
 ### Example 2
 
+This example shows how to set the **decoration**, **baselineOffset**, **letterSpacing**, and **textCase** attributes.
+
 ```ts
+@Extend(Text)
+function style() {
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+}
+
 @Entry
 @Component
 struct TextExample2 {
@@ -200,93 +192,60 @@ struct TextExample2 {
           type: TextDecorationType.LineThrough,
           color: Color.Red
         })
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-
+        .style()
 
       Text('This is the text content with the decoration set to Overline and the color set to Red.')
         .decoration({
           type: TextDecorationType.Overline,
-          color: Color.Red
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
         })
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-
+        .style()
 
       Text('This is the text content with the decoration set to Underline and the color set to Red.')
         .decoration({
           type: TextDecorationType.Underline,
-          color: Color.Red
+          color: Color.Red,
+          style: TextDecorationStyle.WAVY
         })
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
 
-      // Set the text baseline offset.
+      // Set the offset of the text baseline.
       Text('baselineOffset').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with baselineOffset 0.')
         .baselineOffset(0)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with baselineOffset 30.')
         .baselineOffset(30)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with baselineOffset -20.')
         .baselineOffset(-20)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
 
       // Set the letter spacing.
       Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with letterSpacing 0.')
         .letterSpacing(0)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with letterSpacing 3.')
         .letterSpacing(3)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with letterSpacing -1.')
         .letterSpacing(-1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
 
       Text('textCase').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with textCase set to Normal.')
         .textCase(TextCase.Normal)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       // Display the text in lowercase.
       Text('This is the text content with textCase set to LowerCase.')
         .textCase(TextCase.LowerCase)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       // Display the text in uppercase.
       Text('This is the text content with textCase set to UpperCase.')
         .textCase(TextCase.UpperCase)
-        .fontSize(12).border({ width: 1 }).padding(10)
+        .style()
 
     }.height(700).width(350).padding({ left: 35, right: 35, top: 35 })
   }
@@ -296,12 +255,24 @@ struct TextExample2 {
 
 ### Example 3
 
-Example of using **textShadow**, **heightAdaptivePolicy**, and **TextOverflow.MARQUEE**:
+This example shows how to use **textShadow**, **heightAdaptivePolicy**, and **TextOverflow.MARQUEE**.
 
 ```ts
+@Extend(Text)
+function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
+  .width('80%')
+  .height(90)
+  .borderWidth(1)
+  .minFontSize(10)
+  .maxFontSize(30)
+  .maxLines(2)
+  .textOverflow({ overflow: TextOverflow.Ellipsis })
+  .heightAdaptivePolicy(HeightAdaptivePolicy)
+}
+
 @Entry
 @Component
-struct TextExample {
+struct TextExample3 {
   build() {
     Column({ space: 8 }) {
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
@@ -312,38 +283,22 @@ struct TextExample {
         .fontSize(40)
         .lineHeight(55)
         .textAlign(TextAlign.Center)
-        .textShadow({ radius: 10, color: Color.Black, offsetX: 0, offsetY: 0 })
+        .textShadow({
+          radius: 10,
+          color: Color.Black,
+          offsetX: 0,
+          offsetY: 0
+        })
         .borderWidth(1)
       Divider()
       // Set how the adaptive height is determined for the text.
       Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('This is the text with the height adaptive policy set')
-        .width('80%')
-        .height(90)
-        .borderWidth(1)
-        .minFontSize(10)
-        .maxFontSize(30)
-        .maxLines(3)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
       Text('This is the text with the height adaptive policy set')
-        .width('80%')
-        .height(90)
-        .borderWidth(1)
-        .minFontSize(10)
-        .maxFontSize(30)
-        .maxLines(3)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+        .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       Text('This is the text with the height adaptive policy set')
-        .width('80%')
-        .height(90)
-        .borderWidth(1)
-        .minFontSize(10)
-        .maxFontSize(30)
-        .maxLines(3)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+        .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
       Divider()
       Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       // Set the text to continuously scroll when text overflow occurs.
@@ -359,56 +314,82 @@ struct TextExample {
 ![](figures/text_3.gif)
 
 ### Example 4
-Example of using **WordBreak**:
+This example shows how to use **ellipsisMode** and **wordBreak**.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextExample4 {
-  @State type: string = 'WordBreakType:Normal with clip set to true'
-  @State text: string = 'This is set wordBreak to WordBreak text content This is set wordBreak to WordBreak text content.'
+  @State text: string =
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
+  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
+  @State wordBreakIndex: number = 0;
+  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
+  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
+  @State textClip: boolean = false
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      Text(this.type).fontSize(9).fontColor(0xCCCCCC)
+    Column({ space: 10 }) {
+      Text(this.text)
+        .fontSize(16)
+        .border({ width: 1 })
+        .lineHeight(20)
+        .maxLines(1)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
+        .width(300)
+        .margin({ left: 20, top: 20 })
+
+      Row() {
+        Button('Change Ellipsis Position:' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick (() => {
+          this.ellipsisModeIndex++
+          if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+            this.ellipsisModeIndex = 0
+          }
+        })
+      }
+
       Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
         .maxLines(2)
-      Text('WordBreakType:Normal with clip set to false').fontSize(9).fontColor(0xCCCCCC)
-      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
-        .fontSize(12)
-        .border({ width: 1 })
-        .wordBreak(WordBreak.NORMAL)
-        .lineHeight(20)
-        .maxLines(2)
-        .clip(false)
-      Text("WordBreakType:BreakAll").fontSize(9).fontColor(0xCCCCCC)
+        .clip(this.textClip)
+        .width(260)
+      Row() {
+        Button('Change Clip Mode: ' + this.textClip).onClick(() => {
+          this.textClip = !this.textClip
+        })
+      }
+
       Text(this.text)
         .fontSize(12)
         .border({ width: 1 })
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .wordBreak(WordBreak.BREAK_ALL)
+        .wordBreak(this.wordBreak[this.wordBreakIndex])
         .lineHeight(20)
-      Text("WordBreakType:BreakWord").fontSize(9).fontColor(0xCCCCCC)
-      Text(this.text)
-        .fontSize(12)
-        .border({ width: 1 })
-        .maxLines(2)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .wordBreak(WordBreak.BREAK_WORD)
-        .lineHeight(20)
-    }.height(300).width(335).padding({ left: 35, right: 35, top: 35 })
+        .width(260)
+      Row() {
+        Button('Change wordBreak Mode: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
+          this.wordBreakIndex++
+          if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
+            this.wordBreakIndex = 0
+          }
+        })
+      }
+    }
   }
 }
 ```
-![](figures/textExample4.jpeg)
+![](figures/textExample4.gif)
 
 ### Example 5
-Example of using **selection** and **onCopy**:
+This example shows how to use **selection** and **onCopy**.
 
 ```ts
 @Entry
@@ -443,52 +424,15 @@ struct TextExample5 {
   }
 }
 ```
-![](figures/textExample5.jpeg)
+![](figures/textExample5.png)
 
 ### Example 6
-Example of using **ellipsisMode**:
+This example shows how to use **enableDataDetector** and **dataDetectorConfig**.
 
 ```ts
 @Entry
 @Component
 struct TextExample6 {
-  @State text: string = 'This is set ellipsisMode to EllipsisMode text content This is set ellipsisMode to EllipsisMode text content.'
-  @State ellipsisModeIndex: number = 0;
-  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
-  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
-  build() {
-    Column() {
-      Text(this.text)
-        .fontSize(16)
-        .border({ width: 1 })
-        .lineHeight(20)
-        .maxLines(1)
-        .textOverflow({overflow:TextOverflow.Ellipsis})
-        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
-        .width(300)
-        .margin({ left: 20, top: 20 })
-
-      Row() {
-        Button ('Change Ellipsis Position:' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick (() => {
-          this.ellipsisModeIndex++
-          if(this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
-          }
-        })
-      }.margin({ top: 10 })
-    }
-  }
-}
-```
-![](figures/textExample6.gif)
-
-### Example 7
-Example of using **enableDataDetector** and **dataDetectorConfig**
-
-```ts
-@Entry
-@Component
-struct TextExample7 {
   @State phoneNumber: string = '(86) (755) ********';
   @State url: string = 'www.********.com';
   @State email: string = '***@example.com';
@@ -523,13 +467,13 @@ struct TextExample7 {
 
 ![](figures/text7.png)
 
-### Example 8
-Example of using **bindSelectionMenu**, **onTextSelectionChange**, and **closeSelectionMenu**:
+### Example 7
+This example shows how to use **bindSelectionMenu**, **onTextSelectionChange**, and **closeSelectionMenu**.
 
 ```ts
 @Entry
 @Component
-struct Demo {
+struct TextExample7 {
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
 

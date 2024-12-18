@@ -35,8 +35,6 @@ The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
 
-### Example 1
-
 ```ts
 // xxx.ets
 @Component
@@ -57,5 +55,3 @@ struct Index {
   }
 }
 ```
-
-![imagespan](figures/container_span.png)

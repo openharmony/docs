@@ -261,7 +261,7 @@ struct TabsDivider1 {
         endMargin: this.endMargin
       })
 
-      Button ('Regular Divider').width('100%').margin({ bottom: '12vp'})
+      Button('Regular Divider').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.nullFlag = false;
           this.strokeWidth = 2;
@@ -287,21 +287,21 @@ struct TabsDivider1 {
             this.strokeWidth -= 2
           }
         })
-      Button ('Increase Top Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Top Margin').width ('100%').margin ({ bottom:'12vp'})
         .onClick(() => {
           this.startMargin += 2
         })
-      Button ('Decrease Top Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Top Margin').width ('100%').margin ({ bottom:'12vp' })
         .onClick(() => {
           if (this.startMargin > 2) {
             this.startMargin -= 2
           }
         })
-      Button ('Increase Bottom Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Bottom Margin').width ('100%').margin ({ bottom:'12vp'})
         .onClick(() => {
           this.endMargin += 2
         })
-      Button ('Decrease Bottom Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Bottom Margin').width ('100%').margin ({ bottom:'12vp' })
         .onClick(() => {
           if (this.endMargin > 2) {
             this.endMargin -= 2
@@ -330,11 +330,11 @@ struct TabsOpaque {
 
   build() {
     Column() {
-      Button (Set Tab to Fade').width ('100%').margin ({bottom: '12vp'})
+      Button('Set Tab to Fade').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           this.selfFadingFade = true;
         })
-      Button (Set Tab Not to Fade').width ('100%').margin ({bottom: '12vp'})
+      Button('Set Tab Not to Fade').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           this.selfFadingFade = false;
         })
@@ -443,7 +443,7 @@ struct barBackgroundColorTest {
 
   build() {
     Column() {
-      Button ("Change barOverlap").width ('100%').margin ({ bottom:'12vp'})
+      Button("Change barOverlap").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
             this.barOverlap = false;
@@ -566,7 +566,7 @@ struct TabsExample5 {
           })
       }
 
-      Text ("Tab clicks: " + this.clickedContent).width ('100%').height (200).margin ({ top: 5 })
+      Text("Clicked content: " + this.clickedContent).width('100%').height(200).margin({ top: 5 })
 
 
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
@@ -814,9 +814,6 @@ struct TabsCustomAnimationExample {
 This example uses **onChange**, **onAnimationStart**, **onAnimationEnd**, and **onGestureSwipe** APIs to customize the tab bar switching animation.
 
 ```ts
-// xxx.ets
-import ComponentUtils from '@ohos.arkui.UIContext';
-
 @Entry
 @Component
 struct TabsExample {
@@ -825,7 +822,8 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
-  private componentUtils: ComponentUtils.ComponentUtils = this.getUIContext().getComponentUtils()
+  private textInfos: [number, number][] = []
+  private isStartAnimateTo: boolean = false
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -835,14 +833,11 @@ struct TabsExample {
         .fontColor(this.currentIndex === index ? '#007DFF' : '#182431')
         .fontWeight(this.currentIndex === index ? 500 : 400)
         .id(index.toString())
-        .onAreaChange((oldValue: Area,newValue: Area) => {
-          if (this.currentIndex === index && (this.indicatorLeftMargin === 0 || this.indicatorWidth === 0)){
-            if (newValue.position.x != undefined) {
-              let positionX = Number.parseFloat(newValue.position.x.toString())
-              this.indicatorLeftMargin = Number.isNaN(positionX) ? 0 : positionX
-            }
-            let width = Number.parseFloat(newValue.width.toString())
-            this.indicatorWidth = Number.isNaN(width) ? 0 : width
+        .onAreaChange((oldValue: Area, newValue: Area) => {
+          this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          if (this.currentIndex === index && !this.isStartAnimateTo) {
+            this.indicatorLeftMargin = this.textInfos[index][0]
+            this.indicatorWidth = this.textInfos[index][1]
           }
         })
     }.width('100%')
@@ -867,9 +862,8 @@ struct TabsExample {
           Column().width('100%').height('100%').backgroundColor('#E67C92')
         }.tabBar(this.tabBuilder(3, 'pink'))
       }
-      .onAreaChange((oldValue: Area,newValue: Area)=> {
-        let width = Number.parseFloat(newValue.width.toString())
-        this.tabsWidth = Number.isNaN(width) ? 0 : width
+      .onAreaChange((oldValue: Area, newValue: Area)=> {
+        this.tabsWidth = newValue.width as number
       })
       .barWidth('100%')
       .barHeight(56)
@@ -878,22 +872,21 @@ struct TabsExample {
       .backgroundColor('#F1F3F5')
       .animationDuration(this.animationDuration)
       .onChange((index: number) => {
-        this.currentIndex = index // Listen for index changes to switch the tab page content.
+        this.currentIndex = index // Listen for index changes to switch between tab pages.
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         // Triggered when the tab switching animation starts. The underline moves with the active tab, along with a width gradient.
         this.currentIndex = targetIndex
-        let targetIndexInfo = this.getTextInfo(targetIndex)
-        this.startAnimateTo(this.animationDuration, targetIndexInfo.left, targetIndexInfo.width)
+        this.startAnimateTo(this.animationDuration, this.textInfos[targetIndex][0], this.textInfos[targetIndex][1])
       })
-      .onAnimationEnd((index: number,event: TabsAnimationEvent) => {
+      .onAnimationEnd((index: number, event: TabsAnimationEvent) => {
         // Triggered when the tab switching animation ends. The underline animation stops.
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
-        this.startAnimateTo(0,currentIndicatorInfo.left,currentIndicatorInfo.width)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
+        this.startAnimateTo(0, currentIndicatorInfo.left, currentIndicatorInfo.width)
       })
-      .onGestureSwipe((index: number,event: TabsAnimationEvent) => {
+      .onGestureSwipe((index: number, event: TabsAnimationEvent) => {
         // Triggered on a frame-by-frame basis when the tab is switched by a swipe.
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
         this.currentIndex = currentIndicatorInfo.index
         this.indicatorLeftMargin = currentIndicatorInfo.left
         this.indicatorWidth = currentIndicatorInfo.width
@@ -907,11 +900,6 @@ struct TabsExample {
     }.width('100%')
   }
 
-  private getTextInfo(index: number): Record<string, number> {
-    let rectangle = this.componentUtils.getRectangleById(index.toString())
-    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) }
-  }
-
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
     let nextIndex = index
     if (index > 0 && event.currentOffset > 0) {
@@ -919,22 +907,24 @@ struct TabsExample {
     } else if (index < 3 && event.currentOffset < 0) {
       nextIndex++
     }
-    let indexInfo = this.getTextInfo(index)
-    let nextIndexInfo = this.getTextInfo(nextIndex)
+    let indexInfo = this.textInfos[index]
+    let nextIndexInfo = this.textInfos[nextIndex]
     let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth)
     let currentIndex = swipeRatio > 0.5 ? nextIndex : index  // When the scroll distance exceeds half of the page, the tab bar switches to the next page.
-    let currentLeft = indexInfo.left + (nextIndexInfo.left - indexInfo.left) * swipeRatio
-    let currentWidth = indexInfo.width + (nextIndexInfo.width - indexInfo.width) * swipeRatio
+    let currentLeft = indexInfo[0] + (nextIndexInfo[0] - indexInfo[0]) * swipeRatio
+    let currentWidth = indexInfo[1] + (nextIndexInfo[1] - indexInfo[1]) * swipeRatio
     return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth }
   }
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
+    this.isStartAnimateTo = true
     animateTo({
       duration: duration, // Animation duration.
       curve: Curve.Linear, // Animation curve.
       iterations: 1, // Number of playback times.
-      playMode: PlayMode.Normal // Animation playback mode.
+      playMode: PlayMode.Normal, // Animation playback mode.
       onFinish: () => {
+        this.isStartAnimateTo = false
         console.info('play end')
       }
     }, () => {

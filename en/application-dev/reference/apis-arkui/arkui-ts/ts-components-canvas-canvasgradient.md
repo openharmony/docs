@@ -16,6 +16,9 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
 
 This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -28,33 +31,33 @@ This API can be used in ArkTS widgets since API version 9.
 **Example**
 
   ```ts
-// xxx.ets
-@Entry
-@Component
-struct Page45 {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  // xxx.ets
+  @Entry
+  @Component
+  struct AddColorStop {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() => {
-          let grad = this.context.createLinearGradient(50, 0, 300, 100)
-          grad.addColorStop(0.0, '#ff0000')
-          grad.addColorStop(0.5, '#ffffff')
-          grad.addColorStop(1.0, '#00ff00')
-          this.context.fillStyle = grad
-          this.context.fillRect(0, 0, 400, 400)
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() => {
+            let grad = this.context.createLinearGradient(50, 0, 300, 100)
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
+            this.context.fillStyle = grad
+            this.context.fillRect(0, 0, 400, 400)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
-  ![en-us_image_0000001256858381](figures/en-us_image_0000001256858381.png)
+  ![en-us_image_0000001194032516](figures/en-us_image_0000001194032516.jpeg)
 
  

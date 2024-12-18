@@ -12,13 +12,17 @@ Use **RenderingContext** to draw rectangles, text, images, and other objects on 
 
 CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name     | Type                                    | Mandatory  | Description                                    |
+| Name     | Type | Mandatory  | Description   |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| settings | [RenderingContextSettings](#renderingcontextsettings) | No   | See [RenderingContextSettings](#renderingcontextsettings).|
+| settings | [RenderingContextSettings](#renderingcontextsettings) | No   | Settings of the **CanvasRenderingContext2D** object. For details, see [RenderingContextSettings](#renderingcontextsettings). |
 
 
 ### RenderingContextSettings
@@ -27,41 +31,49 @@ RenderingContextSettings(antialias?: boolean)
 
 Configures the settings of a **CanvasRenderingContext2D** object, including whether to enable antialiasing.
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name      | Type   | Mandatory  | Description                         |
 | --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | No   | Whether to enable antialiasing.<br>Default value: **false**|
+| antialias | boolean | No   | Whether to enable antialiasing.<br>Default value: **false** |
 
 
 ## Attributes
 
-| Name                                      | Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Style to fill an area.<br>- When the type is string, this attribute indicates the color of the fill area.<br>Default value: **'black'**<br>- When the type is number, this attribute indicates the color of the fill area.<br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.<br>This API can be used in ArkTS widgets since API version 9.|
-| [lineWidth](#linewidth)                  | number                                   | Line width.<br>Default value: **1(px)**<br>Unit: vp<br> The value cannot be **0** or a negative number. If it is set to **0** or a negative number, the default value is used instead.              |
-| [strokeStyle](#strokestyle)              | string \| number<sup>10+</sup> \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | Stroke color.<br>Default value: **'black'**<br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.<br>This API can be used in ArkTS widgets since API version 9.|
-| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap)                            | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness.<br>Default value: **'butt'**<br>This API can be used in ArkTS widgets since API version 9.|
-| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin)     | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a sector, whose radius at the rounded corner is equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a triangle. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments has a mitered corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'**<br>This API can be used in ArkTS widgets since API version 9.|
-| [miterLimit](#miterlimit)                | number                                   | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10**<br>Unit: px<br>The value cannot be **0** or a negative number. If it is set to **0** or a negative number, the default value is used instead.<br>This API can be used in ArkTS widgets since API version 9.|
-| [font](#font)                            | string                                   | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and line height. The unit can be px or vp.<br>- (Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **'100'**, **'200'**, **'300'**, **'400'**, **'500'**, **'600'**, **'700'**, **'800'**, **'900'**.<br>- (Optional) **font-size**: font size and line height. The unit must be specified and can be px or vp.<br>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**.<br>Default value: **'normal normal 14px sans-serif'**<br>This API can be used in ArkTS widgets since API version 9.|
-| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign)          | Text alignment mode. Available values are as follows:<br>- **'left'**: The text is left-aligned.<br>- **'right'**: The text is right-aligned.<br>- **'center'**: The text is center-aligned.<br>- **'start'**: The text is aligned with the start bound.<br>- **'end'**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>Default value: **'left'**<br>This API can be used in ArkTS widgets since API version 9.|
-| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline)           | Horizontal alignment mode of text. Available values are as follows:<br>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br>- **'top'**: The text baseline is on the top of the text bounding box.<br>- **'hanging'**: The text baseline is a hanging baseline over the text.<br>- **'middle'**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **'alphabetic'**<br>This API can be used in ArkTS widgets since API version 9.|
-| [globalAlpha](#globalalpha)              | number                                   | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.<br>Default value: **1.0**<br>This API can be used in ArkTS widgets since API version 9.|
-| [lineDashOffset](#linedashoffset)        | number                                   | Offset of the dashed line. The precision is float.<br>Default value: **0.0**<br>Unit: px<br>This API can be used in ArkTS widgets since API version 9.|
-| [globalCompositeOperation](#globalcompositeoperation) | string                                   | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>Default value: **'source-over'**<br>This API can be used in ArkTS widgets since API version 9.|
-| [shadowBlur](#shadowblur)                | number                                   | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>Default value: **0.0**<br>The value cannot be a negative number. If it is set to a negative number, the default value is used instead.<br>This API can be used in ArkTS widgets since API version 9.|
-| [shadowColor](#shadowcolor)              | string                                   | Shadow color.<br>Default value: transparent black<br>This API can be used in ArkTS widgets since API version 9.|
-| [shadowOffsetX](#shadowoffsetx)          | number                                   | X-axis shadow offset relative to the original object.<br>Default value: **0**<br>Unit: vp<br>This API can be used in ArkTS widgets since API version 9.|
-| [shadowOffsetY](#shadowoffsety)          | number                                   | Y-axis shadow offset relative to the original object.<br>Default value: **0**<br>Unit: vp<br>This API can be used in ArkTS widgets since API version 9.|
-| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true**<br>This API can be used in ArkTS widgets since API version 9.|
-| [height](#height)                        | number                                   | Component height.<br>Unit: vp<br>This API can be used in ArkTS widgets since API version 9.|
-| [width](#width)                          | number                                   | Component width.<br>Unit: vp<br>This API can be used in ArkTS widgets since API version 9.|
-| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality-1) | Quality of image smoothing. This attribute works only when **imageSmoothingEnabled** is set to **true**.<br>Default value: **ImageSmoothingQuality.low**<br>This API can be used in ArkTS widgets since API version 9.|
-| [direction](#direction)                  | [CanvasDirection](#canvasdirection) | Text direction used for drawing text.<br>Default value: **CanvasDirection.inherit**<br>This API can be used in ArkTS widgets since API version 9.|
-| [filter](#filter)                        | string                                   | Filter effect. Available values are as follows:<br>- **'none'**: no filter effect.<br>- **'blur'**: applies the Gaussian blur for the image.<br>- **'brightness'**: applies a linear multiplication to the image to make it look brighter or darker.<br>- **'contrast'**: adjusts the image contrast.<br>- **'grayscale'**: converts the image to a grayscale image.<br>- **'hue-rotate'**: applies hue rotation to the image.<br>- **'invert'**: inverts the input image.<br>- **'opacity'**: sets the opacity of the image.<br>- **'saturate'**: sets the saturation of the image.<br>- **'sepia'**: converts the image to dark brown.<br>Default value: **'none'**<br>This API can be used in ArkTS widgets since API version 9.|
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type | Read Only | Optional | Description |
+| --------- | ------------------------------- | ------------------ | ---------------------- | ---------------------------------------- |
+| [fillStyle](#fillstyle) | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | No | No | Style to fill an area.<br>- When the type is string, this attribute indicates the color of the fill area.<br>Default value: **'black'**<br>- When the type is number, this attribute indicates the color of the fill area.<br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineWidth](#linewidth) | number | No | No | Line width.<br>Default value: **1(px)**<br>Unit: vp<br> The value cannot be **0** or a negative number. If it is set to **0** or a negative number, the default value is used instead.              |
+| [strokeStyle](#strokestyle)              | string \|number<sup>10+</sup> \|[CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | No | No | Stroke color.<br> <br>Default value: **'black'**<br> <br>Default value: **'#000000'**<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap) | No | No | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness.<br>Default value: **'butt'** |
+| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin) | No | No | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a sector, whose radius at the rounded corner is equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a triangle. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments has a mitered corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'** |
+| [miterLimit](#miterlimit)                | number | No | No | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10**<br>Unit: px<br>The value cannot be **0** or a negative number. If it is set to **0** or a negative number, the default value is used instead. |
+| [font](#font)                            | string | No | No | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and line height. The unit can be px or vp.<br>- (Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **'100'**, **'200'**, **'300'**, **'400'**, **'500'**, **'600'**, **'700'**, **'800'**, **'900'**.<br>- (Optional) **font-size**: font size and line height. The unit must be specified and can be px or vp.<br>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**.<br>Default value: **'normal normal 14px sans-serif'** |
+| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign) | No | No | Text alignment mode. Available values are as follows:<br>- **'left'**: The text is left-aligned.<br>- **'right'**: The text is right-aligned.<br>- **'center'**: The text is center-aligned.<br>- **'start'**: The text is aligned with the start bound.<br>- **'end'**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>Default value: **'start'** |
+| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline) | No | No | Horizontal alignment mode of text. Available values are as follows:<br>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br>- **'top'**: The text baseline is on the top of the text bounding box.<br>- **'hanging'**: The text baseline is a hanging baseline over the text.<br>- **'middle'**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **'alphabetic'** |
+| [globalAlpha](#globalalpha)              | number | No | No | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.<br>Default value: **1.0** |
+| [lineDashOffset](#linedashoffset)        | number | No | No | Offset of the dashed line. The precision is float.<br>Default value: **0.0**<br>Unit: px |
+| [globalCompositeOperation](#globalcompositeoperation) | string | No | No | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>Default value: **'source-over'** |
+| [shadowBlur](#shadowblur)                | number | No | No | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>Default value: **0.0**<br>The value cannot be a negative number. If it is set to a negative number, the default value is used instead. |
+| [shadowColor](#shadowcolor)              | string | No | No | Shadow color.<br>Default value: transparent black |
+| [shadowOffsetX](#shadowoffsetx)          | number | No | No | X-axis shadow offset relative to the original object.<br>Unit: vp |
+| [shadowOffsetY](#shadowoffsety)          | number | No | No | Y-axis shadow offset relative to the original object.<br>Unit: vp |
+| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean | No | No | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true** |
+| [height](#height)                        | number | Yes | No | Component height.<br>Unit: vp |
+| [width](#width)                          | number | Yes | No | Component width.<br>Unit: vp |
+| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality-1) | No | No | Quality of image smoothing. This attribute works only when **imageSmoothingEnabled** is set to **true**.<br>Default value: **ImageSmoothingQuality.low** |
+| [direction](#direction)                  | [CanvasDirection](#canvasdirection) | No | No | Text direction used for drawing text.<br>Default value: **CanvasDirection.inherit** |
+| [filter](#filter)                        | string | No | No | Filter effect. Available values are as follows:<br>- **'none'**: no filter effect.<br>- **'blur'**: applies the Gaussian blur for the image.<br>- **'brightness'**: applies a linear multiplication to the image to make it look brighter or darker.<br>- **'contrast'**: adjusts the image contrast.<br>- **'grayscale'**: converts the image to a grayscale image.<br>- **'hue-rotate'**: applies hue rotation to the image.<br>- **'invert'**: inverts the input image.<br>- **'opacity'**: sets the opacity of the image.<br>- **'saturate'**: sets the saturation of the image.<br>- **'sepia'**: converts the image to dark brown.<br>Default value: **'none'** |
 
 > **NOTE**
 >
@@ -305,30 +317,30 @@ struct Fonts {
 struct CanvasExample {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Canvas(this.context)
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-        this.context.strokeStyle = '#0000ff'
-        this.context.moveTo(140, 10)
-        this.context.lineTo(140, 160)
-        this.context.stroke()
-        this.context.font = '18px sans-serif'
-        this.context.textAlign = 'start'
-        this.context.fillText('textAlign=start', 140, 60)
-        this.context.textAlign = 'end'
-        this.context.fillText('textAlign=end', 140, 80)
-        this.context.textAlign = 'left'
-        this.context.fillText('textAlign=left', 140, 100)
-        this.context.textAlign = 'center'
-        this.context.fillText('textAlign=center',140, 120)
-        this.context.textAlign = 'right'
-        this.context.fillText('textAlign=right',140, 140)
-      })
+        .onReady(() => {
+          this.context.strokeStyle = '#0000ff'
+          this.context.moveTo(140, 10)
+          this.context.lineTo(140, 160)
+          this.context.stroke()
+          this.context.font = '18px sans-serif'
+          this.context.textAlign = 'start'
+          this.context.fillText('textAlign=start', 140, 60)
+          this.context.textAlign = 'end'
+          this.context.fillText('textAlign=end', 140, 80)
+          this.context.textAlign = 'left'
+          this.context.fillText('textAlign=left', 140, 100)
+          this.context.textAlign = 'center'
+          this.context.fillText('textAlign=center', 140, 120)
+          this.context.textAlign = 'right'
+          this.context.fillText('textAlign=right', 140, 140)
+        })
     }
     .width('100%')
     .height('100%')
@@ -451,7 +463,7 @@ struct LineDashOffset {
 
 | Name              | Description                      |
 | ---------------- | ------------------------ |
-| source-over      | Displays the new drawing above the existing drawing. This attribute is used by default.  |
+| source-over      | Displays the new drawing above the existing drawing. Default value. |
 | source-atop      | Displays the new drawing on the top of the existing drawing.       |
 | source-in        | Displays the new drawing inside the existing drawing.        |
 | source-out       | Displays part of the new drawing that is outside of the existing drawing.       |
@@ -461,7 +473,7 @@ struct LineDashOffset {
 | destination-out  | Displays the existing drawing outside the new drawing.        |
 | lighter          | Displays both the new and existing drawing.         |
 | copy             | Displays the new drawing and neglects the existing drawing.       |
-| xor              | Combines the new drawing and existing drawing using the XOR operation.|
+| xor              | Combines the new drawing and existing drawing using the XOR operation. |
 
 ```ts
 // xxx.ets
@@ -859,16 +871,18 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 Fills a rectangle on the canvas.
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description           |
-| ------ | ------ | ---- | ---- | ------------- |
-| x      | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
-| y      | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
-| w      | number | Yes   | 0    | Width of the rectangle, in vp.|
-| h      | number | Yes   | 0    | Height of the rectangle, in vp.|
+| Name    | Type    | Mandatory | Description           |
+| ------ | ------ | ---- | ------------- |
+| x      | number | Yes | X coordinate of the upper left corner of the rectangle.<br>Unit: vp |
+| y      | number | Yes | Y coordinate of the upper left corner of the rectangle.<br>Unit: vp |
+| w      | number | Yes | Width of the rectangle.<br>Unit: vp |
+| h      | number | Yes | Height of the rectangle.<br>Unit: vp |
 
 **Example**
 
@@ -907,14 +921,16 @@ Draws an outlined rectangle on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description          |
-| ---- | ------ | ---- | ---- | ------------ |
-| x    | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
-| w    | number | Yes   | 0    | Width of the rectangle, in vp.|
-| h    | number | Yes   | 0    | Height of the rectangle, in vp.|
+| Name  | Type    | Mandatory  | Description          |
+| ---- | ------ | ----  | ------------ |
+| x    | number | Yes    | X coordinate of the upper left corner of the rectangle.<br>Unit: vp|
+| y    | number | Yes    | Y coordinate of the upper left corner of the rectangle.<br>Unit: vp|
+| w    | number | Yes    | Width of the rectangle.<br>Unit: vp|
+| h    | number | Yes    | Height of the rectangle.<br>Unit: vp|
 
 **Example**
 
@@ -942,7 +958,7 @@ This API can be used in ArkTS widgets since API version 9.
   }
   ```
 
-  ![en-us_image_0000001257138359](figures/en-us_image_0000001257138359.png)
+  ![en-us_image_0000001194352436](figures/en-us_image_0000001194352436.png)
 
 
 ### clearRect
@@ -953,14 +969,16 @@ Clears the content in a rectangle on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description           |
-| ---- | ------ | ---- | ---- | ------------- |
-| x    | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
-| w    | number | Yes   | 0    | Width of the rectangle, in vp.|
-| h    | number | Yes   | 0    | Height of the rectangle, in vp.|
+| Name  | Type    | Mandatory | Description |
+| ---- | ------ | ---- | ------------- |
+| x    | number | Yes| X coordinate of the upper left corner of the rectangle.<br>Unit: vp|
+| y    | number | Yes| Y coordinate of the upper left corner of the rectangle.<br>Unit: vp|
+| w    | number | Yes| Width of the rectangle.<br>Unit: vp|
+| h    | number | Yes| Height of the rectangle.<br>Unit: vp|
 
 **Example**
 
@@ -1001,14 +1019,16 @@ Draws filled text on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name      | Type    | Mandatory  | Default Value | Description             |
-| -------- | ------ | ---- | ---- | --------------- |
-| text     | string | Yes   | ''   | Text to draw.     |
-| x        | number | Yes   | 0    | X coordinate of the lower left corner of the text, in vp.|
-| y        | number | Yes   | 0    | Y coordinate of the lower left corner of the text, in vp.|
-| maxWidth | number | No   | -    | Maximum width allowed for the text, in vp.|
+| Name      | Type    | Mandatory  | Description |
+| -------- | ------ | ---- | --------------- |
+| text     | string | Yes   | Text to draw.|
+| x        | number | Yes   | X coordinate of the lower left corner of the text.<br>Unit: vp|
+| y        | number | Yes   | Y coordinate of the lower left corner of the text.<br>Unit: vp|
+| maxWidth | number | No   | Maximum width allowed for the text.<br>Unit: vp<br>Default value: no width restriction|
 
 **Example**
 
@@ -1042,20 +1062,22 @@ This API can be used in ArkTS widgets since API version 9.
 
 ### strokeText
 
-strokeText(text: string, x: number, y: number, maxWidth?:number): void
+strokeText(text: string, x: number, y: number, maxWidth?: number): void
 
 Draws a text stroke on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name      | Type    | Mandatory  | Default Value | Description             |
-| -------- | ------ | ---- | ---- | --------------- |
-| text     | string | Yes   | ''   | Text to draw.     |
-| x        | number | Yes   | 0    | X coordinate of the lower left corner of the text, in vp.|
-| y        | number | Yes   | 0    | Y coordinate of the lower left corner of the text, in vp.|
-| maxWidth | number | No   | -    | Maximum width allowed for the text, in vp.|
+| Name      | Type    | Mandatory | Description    |
+| -------- | ------ | ---- | --------------- |
+| text     | string | Yes   | Text to draw.|
+| x        | number | Yes   | X coordinate of the lower left corner of the text.<br>Unit: vp|
+| y        | number | Yes   | Y coordinate of the lower left corner of the text.<br>Unit: vp|
+| maxWidth | number | No   | Maximum width of the text.<br>Unit: vp<br>Default value: no width restriction|
 
 **Example**
 
@@ -1095,11 +1117,13 @@ Measures the specified text to obtain its width. This API returns a **TextMetric
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description        |
-| ---- | ------ | ---- | ---- | ---------- |
-| text | string | Yes   | ''   | Text to be measured.|
+| Name  | Type    | Mandatory  | Description        |
+| ---- | ------ | ---- |---------- |
+| text | string | Yes | Text to be measured.<br>Default value: **''** |
 
 **Return value**
 
@@ -1140,19 +1164,17 @@ This API can be used in ArkTS widgets since API version 9.
 
 ### stroke
 
-stroke(path?: Path2D): void
+stroke(): void
 
-Strokes a path.
+Strokes (outlines) this path.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name  | Type                                      | Mandatory  | Default Value | Description          |
-| ---- | ---------------------------------------- | ---- | ---- | ------------ |
-| path | [Path2D](ts-components-canvas-path2d.md) | No   | null | A **Path2D** path to draw.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Example**
+ **Example**
 
   ```ts
   // xxx.ets
@@ -1168,12 +1190,12 @@ This API can be used in ArkTS widgets since API version 9.
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.moveTo(25, 25)
-            this.context.lineTo(25, 105)
-            this.context.lineTo(75, 105)
-            this.context.lineTo(75, 25)
-            this.context.strokeStyle = 'rgb(0,0,255)'
+          .onReady(() => {
+            this.context.moveTo(125, 25)
+            this.context.lineTo(125, 105)
+            this.context.lineTo(175, 105)
+            this.context.lineTo(175, 25)
+            this.context.strokeStyle = 'rgb(255,0,0)'
             this.context.stroke()
           })
       }
@@ -1183,8 +1205,57 @@ This API can be used in ArkTS widgets since API version 9.
   }
   ```
 
-  ![en-us_image_0000001257058411](figures/en-us_image_0000001257058411.png)
+  ![en-us_image_0000001238832389](figures/en-us_image_0000001238832389.png)
 
+stroke(path: Path2D): void
+
+Strokes (outlines) a specified path.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type     | Mandatory  | Description    |
+| ---- | ---------------------------------------- | ---- | ------------ |
+| path | [Path2D](ts-components-canvas-path2d.md) | Yes| A **Path2D** path to draw.|
+
+ **Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct Stroke {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private path2Da: Path2D = new Path2D()
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() => {
+            this.path2Da.moveTo(25, 25)
+            this.path2Da.lineTo(25, 105)
+            this.path2Da.lineTo(75, 105)
+            this.path2Da.lineTo(75, 25)
+            this.context.strokeStyle = 'rgb(0,0,255)'
+            this.context.stroke(this.path2Da)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![en-us_image_0000001238832389](figures/en-us_image_0000001238832390.png)
 
 ### beginPath
 
@@ -1193,6 +1264,8 @@ beginPath(): void
 Creates a drawing path.
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 
@@ -1236,12 +1309,14 @@ Moves a drawing path to a target position on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description       |
-| ---- | ------ | ---- | ---- | --------- |
-| x    | number | Yes   | 0    | X coordinate of the target position, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the target position, in vp.|
+| Name  | Type    | Mandatory  | Description       |
+| ---- | ------ | ---- | --------- |
+| x    | number | Yes   | X coordinate of the target position.<br>Unit: vp |
+| y    | number | Yes   | Y coordinate of the target position.<br>Unit: vp |
 
 **Example**
 
@@ -1283,12 +1358,14 @@ Connects the current point to a target position using a straight line.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description       |
-| ---- | ------ | ---- | ---- | --------- |
-| x    | number | Yes   | 0    | X coordinate of the target position, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the target position, in vp.|
+| Name  | Type    | Mandatory  | Description       |
+| ---- | ------ | ---- | --------- |
+| x    | number | Yes   | X coordinate of the target position.<br>Unit: vp |
+| y    | number | Yes   | Y coordinate of the target position.<br>Unit: vp |
 
 **Example**
 
@@ -1329,6 +1406,8 @@ closePath(): void
 Draws a closed path.
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 
@@ -1372,12 +1451,14 @@ Creates a pattern for image filling based on a specified source image and repeti
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description |
-| ---------- | ---------- | ---- | ---------- | ---------------------------------------- |
-| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes |     | Source image. For details, see **ImageBitmap**.|
-| repetition | string \| null  | Yes   | null    | Repetition mode.<br>**'repeat'**: The image is repeated along both the x-axis and y-axis.<br>**'repeat-x'**: The image is repeated along the x-axis.<br>**'repeat-y'**: The image is repeated along the y-axis.<br>**'no-repeat'**: The image is not repeated.<br>**'clamp'**: Coordinates outside the original bounds are clamped to the edge of the image.<br>**'mirror'**: The image is mirrored with each repetition along the x-axis and y-axis.|
+| Name | Type | Mandatory | Description |
+| ---------- | ---------- | ---- | ---------------------------------------- |
+| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes | Source image. For details, see **ImageBitmap**.|
+| repetition | string \| null  | Yes | Repetition mode.<br>**'repeat'**: The image is repeated along both the x-axis and y-axis.<br>**'repeat-x'**: The image is repeated along the x-axis.<br>**'repeat-y'**: The image is repeated along the y-axis.<br>**'no-repeat'**: The image is not repeated.<br>**'clamp'**: Coordinates outside the original bounds are clamped to the edge of the image.<br>**'mirror'**: The image is mirrored with each repetition along the x-axis and y-axis.|
 
 **Return value**
 
@@ -1427,16 +1508,18 @@ Draws a cubic Bezier curve on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description            |
-| ---- | ------ | ---- | ---- | -------------- |
-| cp1x | number | Yes   | 0    | X coordinate of the first parameter of the Bezier curve, in vp.|
-| cp1y | number | Yes   | 0    | Y coordinate of the first parameter of the Bezier curve, in vp.|
-| cp2x | number | Yes   | 0    | X coordinate of the second parameter of the Bezier curve, in vp.|
-| cp2y | number | Yes   | 0    | Y coordinate of the second parameter of the Bezier curve, in vp.|
-| x    | number | Yes   | 0    | X coordinate of the end point on the Bezier curve, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the end point on the Bezier curve, in vp.|
+| Name  | Type    | Mandatory  | Description |
+| ---- | ------ | ---- | -------------- |
+| cp1x | number | Yes | X coordinate of the first parameter of the bezier curve.<br>Unit: vp |
+| cp1y | number | Yes | Y coordinate of the first parameter of the bezier curve.<br>Unit: vp |
+| cp2x | number | Yes | X coordinate of the second parameter of the bezier curve.<br>Unit: vp |
+| cp2y | number | Yes | Y coordinate of the second parameter of the bezier curve.<br>Unit: vp |
+| x    | number | Yes | X coordinate of the end point on the bezier curve.<br>Unit: vp |
+| y    | number | Yes | Y coordinate of the end point on the bezier curve.<br>Unit: vp |
 
 **Example**
 
@@ -1478,14 +1561,16 @@ Draws a quadratic curve on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description         |
-| ---- | ------ | ---- | ---- | ----------- |
-| cpx  | number | Yes   | 0    | X coordinate of the Bezier curve parameter, in vp.|
-| cpy  | number | Yes   | 0    | Y coordinate of the Bezier curve parameter, in vp.|
-| x    | number | Yes   | 0    | X coordinate of the end point on the Bezier curve, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the end point on the Bezier curve, in vp.|
+| Name  | Type    | Mandatory  | Description         |
+| ---- | ------ | ---- | ----------- |
+| cpx  | number | Yes   | X coordinate of the bezier curve parameter.<br>Unit: vp |
+| cpy  | number | Yes   | Y coordinate of the bezier curve parameter.<br>Unit: vp |
+| x    | number | Yes   | X coordinate of the end point on the bezier curve.<br>Unit: vp |
+| y    | number | Yes   | Y coordinate of the end point on the bezier curve.<br>Unit: vp |
 
 **Example**
 
@@ -1527,16 +1612,18 @@ Draws an arc on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name              | Type     | Mandatory  | Default Value  | Description        |
-| ---------------- | ------- | ---- | ----- | ---------- |
-| x                | number  | Yes   | 0     | X coordinate of the center point of the arc, in vp.|
-| y                | number  | Yes   | 0     | Y coordinate of the center point of the arc, in vp.|
-| radius           | number  | Yes   | 0     | Radius of the arc, in vp.|
-| startAngle       | number  | Yes   | 0     | Start radian of the arc.  |
-| endAngle         | number  | Yes   | 0     | End radian of the arc.  |
-| counterclockwise | boolean | No   | false | Whether to draw the arc counterclockwise.|
+| Name      | Type     | Mandatory  | Description        |
+| ---------------- | ------- | ---- | ---------- |
+| x                | number  | Yes | X coordinate of the center point of the arc.<br>Unit: vp |
+| y                | number  | Yes | Y coordinate of the center point of the arc.<br>Unit: vp |
+| radius           | number  | Yes | Radius of the arc.<br>Unit: vp |
+| startAngle       | number  | Yes | Start radian of the arc.  |
+| endAngle         | number  | Yes | End radian of the arc.  |
+| counterclockwise | boolean | No | Whether to draw the arc counterclockwise.<br>Default value: **false** |
 
 **Example**
 
@@ -1577,15 +1664,17 @@ Draws an arc based on the radius and points on the arc.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name    | Type    | Mandatory  | Default Value | Description             |
-| ------ | ------ | ---- | ---- | --------------- |
-| x1     | number | Yes   | 0    | X coordinate of the first point on the arc, in vp.|
-| y1     | number | Yes   | 0    | Y coordinate of the first point on the arc, in vp.|
-| x2     | number | Yes   | 0    | X coordinate of the second point on the arc, in vp.|
-| y2     | number | Yes   | 0    | Y coordinate of the second point on the arc, in vp.|
-| radius | number | Yes   | 0    | Radius of the arc, in vp.|
+| Name    | Type    | Mandatory  | Description         |
+| ------ | ------ | ---- | --------------- |
+| x1     | number | Yes   | X coordinate of the first point on the arc.<br>Unit: vp |
+| y1     | number | Yes   | Y coordinate of the first point on the arc.<br>Unit: vp |
+| x2     | number | Yes   | X coordinate of the second point on the arc.<br>Unit: vp |
+| y2     | number | Yes   | Y coordinate of the second point on the arc.<br>Unit: vp |
+| radius | number | Yes   | Radius of the arc.<br>Unit: vp |
 
 **Example**
 
@@ -1626,18 +1715,20 @@ Draws an ellipse in the specified rectangular region on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name              | Type     | Mandatory  | Default Value  | Description                                      |
-| ---------------- | ------- | ---- | ----- | ---------------------------------------- |
-| x                | number  | Yes   | 0     | X coordinate of the ellipse center, in vp.|
-| y                | number  | Yes   | 0     | Y coordinate of the ellipse center, in vp.|
-| radiusX          | number  | Yes   | 0     | Ellipse radius on the x-axis, in vp.|
-| radiusY          | number  | Yes   | 0     | Ellipse radius on the y-axis, in vp.|
-| rotation         | number  | Yes   | 0     | Rotation angle of the ellipse. The unit is radian.                          |
-| startAngle       | number  | Yes   | 0     | Angle of the start point for drawing the ellipse. The unit is radian.                       |
-| endAngle         | number  | Yes   | 0     | Angle of the end point for drawing the ellipse. The unit is radian.                       |
-| counterclockwise | boolean | No   | false | Whether to draw the ellipse in the counterclockwise direction.<br>**true**: Draw the arc counterclockwise.<br>**false**: Draw the arc clockwise.|
+| Name              | Type     | Mandatory  | Description                                      |
+| ---------------- | ------- | ---- | ---------------------------------------- |
+| x                | number  | Yes| X coordinate of the ellipse center.<br>Unit: vp|
+| y                | number  | Yes| Y coordinate of the ellipse center.<br>Unit: vp|
+| radiusX          | number  | Yes| Radius of the ellipse on the x-axis.<br>Unit: vp|
+| radiusY          | number  | Yes| Radius of the ellipse on the y-axis.<br>Unit: vp|
+| rotation         | number  | Yes| Rotation angle of the ellipse.<br>Unit: radian|
+| startAngle       | number  | Yes| Angle of the start point for drawing the ellipse.<br>Unit: radian|
+| endAngle         | number  | Yes| Angle of the end point for drawing the ellipse.<br>Unit: radian|
+| counterclockwise | boolean | No| Whether to draw the ellipse in the counterclockwise direction.<br>**true**: Draw the arc counterclockwise.<br>**false**: Draw the arc clockwise.<br>Default value: **false**|
 
 **Example**
 
@@ -1681,14 +1772,16 @@ Creates a rectangle on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description           |
-| ---- | ------ | ---- | ---- | ------------- |
-| x    | number | Yes   | 0    | X coordinate of the upper left corner of the rectangle, in vp.|
-| y    | number | Yes   | 0    | Y coordinate of the upper left corner of the rectangle, in vp.|
-| w    | number | Yes   | 0    | Width of the rectangle, in vp.|
-| h    | number | Yes   | 0    | Height of the rectangle, in vp.|
+| Name  | Type    | Mandatory  | Description           |
+| ---- | ------ | ---- | ------------- |
+| x    | number | Yes   | X coordinate of the upper left corner of the rectangle.<br>Unit: vp |
+| y    | number | Yes   | Y coordinate of the upper left corner of the rectangle.<br>Unit: vp |
+| w    | number | Yes   | Width of the rectangle.<br>Unit: vp |
+| h    | number | Yes   | Height of the rectangle.<br>Unit: vp |
 
 **Example**
 
@@ -1728,11 +1821,13 @@ Fills the area inside a closed path on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
+**Parameters** 
+
+| Name | Type            | Mandatory  | Description   |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | No   | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.<br>Default value: **"nonzero"** |
 
 
 **Example**  
@@ -1771,12 +1866,16 @@ Fills the area inside a closed path on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| path     | [Path2D](ts-components-canvas-path2d.md)         | Yes   |           | A **Path2D** path to fill.                             |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name   | Type            | Mandatory  | Description |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| path     | [Path2D](ts-components-canvas-path2d.md)         | Yes | A **Path2D** path to fill.                             |
+| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | No   | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.<br>Default value: **"nonzero"** |
 
 
 **Example**  
@@ -1826,11 +1925,13 @@ Sets the current path to a clipping area.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](#canvasfillrule) | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
+**Parameters** 
+
+| Name      | Type            | Mandatory  | Description                           |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| fillRule | [CanvasFillRule](#canvasfillrule) | No | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.<br>Default value: **"nonzero"** |
 
 **Example**
 
@@ -1871,12 +1972,16 @@ Sets the current path to a clipping path.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name      | Type            | Mandatory  | Default Value      | Description                                      |
-| -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| path     | [Path2D](ts-components-canvas-path2d.md)         | Yes   | -         | A **Path2D** path to use as a clipping area.                             |
-| fillRule | [CanvasFillRule](#canvasfillrule) | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters** 
+
+| Name     | Type            | Mandatory  | Description         |
+| -------- | -------------- | ---- | ---------------------------------------- |
+| path     | [Path2D](ts-components-canvas-path2d.md)         | Yes   | A **Path2D** path to use as a clipping area.                             |
+| fillRule | [CanvasFillRule](#canvasfillrule) | No | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.<br>Default value: **"nonzero"**|
 
 
 **Example**
@@ -1926,6 +2031,41 @@ Resets the current transform to the identity matrix. This API is a void API.
 This API can be used in ArkTS widgets since API version 9.
 
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ResetTransform {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.context.setTransform(1,0.5, -0.5, 1, 10, 10)
+            this.context.fillStyle = 'rgb(0,0,255)'
+            this.context.fillRect(0, 0, 100, 100)
+            this.context.resetTransform()
+            this.context.fillStyle = 'rgb(255,0,0)'
+            this.context.fillRect(0, 0, 100, 100)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![en-us_image_0000001239032417](figures/en-us_image_ResetTransform.png)
+
 ### rotate
 
 rotate(angle: number): void
@@ -1934,11 +2074,13 @@ Rotates a canvas clockwise around its coordinate axes.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name   | Type    | Mandatory  | Default Value | Description                                      |
-| ----- | ------ | ---- | ---- | ---------------------------------------- |
-| angle | number | Yes   | 0    | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
+| Name   | Type    | Mandatory  | Description                                      |
+| ----- | ------ | ---- |  ---------------------------------------- |
+| angle | number | Yes  | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian. |
 
 **Example**
 
@@ -1978,12 +2120,14 @@ Scales the canvas based on the given scale factors.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description         |
-| ---- | ------ | ---- | ---- | ----------- |
-| x    | number | Yes   | 0    | Horizontal scale factor.|
-| y    | number | Yes   | 0    | Vertical scale factor.|
+| Name  | Type    | Mandatory | Description   |
+| ---- | ------ | ---- | ----------- |
+| x    | number | Yes | Horizontal scale factor. |
+| y    | number | Yes | Vertical scale factor. |
 
 **Example**
 
@@ -2025,6 +2169,8 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 > **NOTE**
 > The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
@@ -2034,14 +2180,14 @@ This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description                  |
-| ---- | ------ | ---- | ---- | -------------------- |
-| a    | number | Yes   | 0    | X-axis scale.    |
-| b    | number | Yes   | 0    | X-axis skew.     |
-| c    | number | Yes   | 0    | Y-axis skew.     |
-| d    | number | Yes   | 0    | Y-axis scale.    |
-| e    | number | Yes   | 0    | X-axis translation, in vp.|
-| f    | number | Yes   | 0    | Y-axis translation, in vp.|
+| Name  | Type    | Mandatory  | Description                  |
+| ---- | ------ | ---- | -------------------- |
+| a    | number | Yes | **scaleX**: x-axis scale.   |
+| b    | number | Yes | **skewY**: y-axis skew.   |
+| c    | number | Yes | **skewX**: x-axis skew.   |
+| d    | number | Yes | **scaleY**: y-axis scale.   |
+| e    | number | Yes | **translateX**: distance to translate on the x-axis.<br>Unit: vp |
+| f    | number | Yes | **translateY**: distance to translate on the y-axis.<br>Unit: vp |
 
 **Example**
 
@@ -2087,16 +2233,18 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description                  |
-| ---- | ------ | ---- | ---- | -------------------- |
-| a    | number | Yes   | 0    | X-axis scale.    |
-| b    | number | Yes   | 0    | Y-axis skew.     |
-| c    | number | Yes   | 0    | X-axis skew.     |
-| d    | number | Yes   | 0    | Y-axis scale.    |
-| e    | number | Yes   | 0    | X-axis translation, in vp.|
-| f    | number | Yes   | 0    | Y-axis translation, in vp.|
+| Name  | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | -------------------- |
+| a    | number | Yes | **scaleX**: x-axis scale. |
+| b    | number | Yes | **skewY**: y-axis skew. |
+| c    | number | Yes | **skewX**: x-axis skew. |
+| d    | number | Yes | **scaleY**: y-axis scale. |
+| e    | number | Yes | **translateX**: distance to translate on the x-axis.<br>Unit: vp |
+| f    | number | Yes | **translateY**: distance to translate on the y-axis.<br>Unit: vp |
 
 **Example**
 
@@ -2138,11 +2286,15 @@ Resets the current transformation to the identity matrix, and then creates a new
 
 This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name       | Type                                      | Mandatory  | Default Value | Description   |
-| --------- | ---------------------------------------- | ---- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No   | null | Transformation matrix.|
+| Name | Type | Mandatory | Description |
+| --------- | ---------------------------------------- | ---- | ----- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No | Transformation matrix.<br>Default value: **null** |
 
 **Example**
 
@@ -2194,6 +2346,8 @@ getTransform(): Matrix2D
 Obtains the current transformation matrix being applied to the context.
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -2255,12 +2409,14 @@ Moves the origin of the coordinate system.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description      |
-| ---- | ------ | ---- | ---- | -------- |
-| x    | number | Yes   | 0    | X-axis translation, in vp.|
-| y    | number | Yes   | 0    | Y-axis translation, in vp.|
+| Name  | Type    | Mandatory  | Description |
+| ---- | ------ | ---- | -------- |
+| x    | number | Yes  | Distance to translate on the x-axis.<br>Unit: vp |
+| y    | number | Yes  | Distance to translate on the y-axis.<br>Unit: vp |
 
 **Example**
 
@@ -2297,27 +2453,65 @@ This API can be used in ArkTS widgets since API version 9.
 
 drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
+Draws an image on the canvas.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9, except that **PixelMap** objects are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type | Mandatory | Description|
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)| Yes   | Image resource. For details, see **ImageBitmap** or PixelMap.           |
+| dx    | number                                   | Yes | X coordinate of the upper left corner of the drawing area on the canvas.<br>Unit: vp|
+| dy    | number                                   | Yes | Y coordinate of the upper left corner of the drawing area on the canvas.<br>Unit: vp|
+
 drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh: number): void
 
-drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number):void
+Draws an image on the canvas.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9, except that **PixelMap** objects are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type | Mandatory | Description|
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)| Yes   | Image resource. For details, see **ImageBitmap** or PixelMap.           |
+| dx    | number                                   | Yes | X coordinate of the upper left corner of the drawing area on the canvas.<br>Unit: vp|
+| dy    | number                                   | Yes | Y coordinate of the upper left corner of the drawing area on the canvas.<br>Unit: vp|
+| dw    | number                                   | Yes | Width of the drawing area. If the width of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.<br>Unit: vp|
+| dh    | number                                   | Yes | Height of the drawing area. If the height of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.<br>Unit: vp|
+
+drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void
 
 Draws an image on the canvas.
 
 Since API version 9, this API is supported in ArkTS widgets, except that **PixelMap** objects are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name   | Type                                      | Mandatory  | Default Value | Description                                      |
-| ----- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)| Yes   | null | Image resource. For details, see **ImageBitmap** or PixelMap.           |
-| sx    | number                                   | No   | 0    | X coordinate of the upper left corner of the rectangle used to crop the source image, in vp.|
-| sy    | number                                   | No   | 0    | Y coordinate of the upper left corner of the rectangle used to crop the source image, in vp.|
-| sw    | number                                   | No   | 0    | Target width by which the source image is cropped, in vp.|
-| sh    | number                                   | No   | 0    | Target height by which the source image is cropped, in vp.|
-| dx    | number                                   | Yes   | 0    | X coordinate of the upper left corner of the drawing area on the canvas, in vp.|
-| dy    | number                                   | Yes   | 0    | Y coordinate of the upper left corner of the drawing area on the canvas, in vp.|
-| dw    | number                                   | No   | 0    | Width of the drawing area. If the width of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.<br>Unit: vp|
-| dh    | number                                   | No   | 0    | Height of the drawing area. If the height of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.<br>Unit: vp|
+| Name | Type | Mandatory | Description |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Image resource. For details, see **ImageBitmap** or PixelMap.           |
+| sx    | number                                   | Yes | X coordinate of the upper left corner of the rectangle used to crop the source image.<br>Unit: vp |
+| sy    | number                                   | Yes | Y coordinate of the upper left corner of the rectangle used to crop the source image.<br>Unit: vp |
+| sw    | number                                   | Yes | Target width to crop the source image.<br>Unit: vp |
+| sh    | number                                   | Yes | Target height to crop the source image.<br>Unit: vp |
+| dx    | number                                   | Yes | X coordinate of the upper left corner of the drawing area on the canvas.<br>Unit: vp |
+| dy    | number                                   | Yes | Y coordinate of the upper left corner of the drawing area on the canvas.<br>Unit: vp |
+| dw    | number                                   | Yes | Width of the drawing area. If the width of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.<br>Unit: vp |
+| dh    | number                                   | Yes | Height of the drawing area. If the height of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former.<br>Unit: vp |
 
 
 **Example**
@@ -2329,7 +2523,7 @@ Since API version 9, this API is supported in ArkTS widgets, except that **Pixel
   struct ImageExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2337,9 +2531,11 @@ Since API version 9, this API is supported in ArkTS widgets, except that **Pixel
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.drawImage( this.img,0,0,500,500,0,0,400,200)
-        })
+          .onReady(() => {
+            this.context.drawImage(this.img, 0, 0)
+            this.context.drawImage(this.img, 0, 150, 300, 100)
+            this.context.drawImage(this.img, 0, 0, 500, 500, 0, 300, 400, 200)
+          })
       }
       .width('100%')
       .height('100%')
@@ -2358,12 +2554,14 @@ Creates an **ImageData** object with the same width and height of the current **
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value  | Description           |
-| ---- | ------ | ---- | ---- | ------------- |
-| sw   | number | Yes   | 0    | Width of the **ImageData** object, in vp.|
-| sh   | number | Yes   | 0    | Height of the **ImageData** object, in vp.|
+| Name  | Type    | Mandatory  | Description |
+| ---- | ------ | ---- | ------------- |
+| sw   | number | Yes | Width of the **ImageData** object.<br>Unit: vp |
+| sh   | number | Yes | Height of the **ImageData** object.<br>Unit: vp |
 
 
 createImageData(imageData: ImageData): ImageData
@@ -2372,11 +2570,15 @@ Creates an **[ImageData](ts-components-canvas-imagedata.md)** object. The exampl
 
 This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name       | Type                                      | Mandatory  | Default Value  | Description               |
-| --------- | ---------------------------------------- | ---- | ---- | ----------------- |
-| imagedata | [ImageData](ts-components-canvas-imagedata.md) | Yes   | null | **ImageData** object with the same width and height copied from the original **ImageData** object.|
+| Name | Type | Mandatory | Description |
+| --------- | ---------------------------------------- | ---- | ----------------- |
+| imagedata | [ImageData](ts-components-canvas-imagedata.md) | Yes | Existing **ImageData** object. |
 
   **Return value**
 
@@ -2391,20 +2593,24 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 Obtains the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) object created with the pixels within the specified area on the canvas. This API involves time-consuming memory copy. Therefore, avoid frequent calls to it.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description             |
-| ---- | ------ | ---- | ---- | --------------- |
-| sx   | number | Yes   | 0    | X coordinate of the upper left corner of the output area, in vp.|
-| sy   | number | Yes   | 0    | Y coordinate of the upper left corner of the output area, in vp.|
-| sw   | number | Yes   | 0    | Width of the output area, in vp.|
-| sh   | number | Yes   | 0    | Height of the output area, in vp.|
+| Name  | Type    | Mandatory | Description |
+| ---- | ------ | ---- | --------------- |
+| sx   | number | Yes | X coordinate of the upper left corner of the output area.<br>Unit: vp |
+| sy   | number | Yes | Y coordinate of the upper left corner of the output area.<br>Unit: vp |
+| sw   | number | Yes | Width of the output area.<br>Unit: vp |
+| sh   | number | Yes | Height of the output area.<br>Unit: vp |
 
 **Return value**
 
 | Type                                      | Description           |
 | ---------------------------------------- | ------------- |
-| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object.|
+| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object. |
 
 **Example**
 
@@ -2415,7 +2621,7 @@ Obtains the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) object c
   struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("/images/star.png")
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2423,19 +2629,35 @@ Obtains the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) object c
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.drawImage(this.img,0,0,130,130)
-            let pixelmap = this.context.getPixelMap(50,50,130,130)
-            this.context.drawImage(pixelmap,150,150)
+          .onReady(() => {
+            this.context.drawImage(this.img, 0, 0, 130, 130)
+            let pixelmap = this.context.getPixelMap(50, 50, 130, 130)
+            this.context.setPixelMap(pixelmap)
           })
       }
       .width('100%')
       .height('100%')
     }
-  } 
+  }
   ```
 
   ![en-us_image_000000127777782](figures/en-us_image_000000127777782.jpeg)
+
+### setPixelMap
+
+setPixelMap(value?: PixelMap): void
+
+Draws the input [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) object on the canvas. The example is the same as that of **getPixelMap**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+ **Parameters**
+
+| Name  | Type    | Mandatory  | Description|
+| ---- | ------ | ---- | --------------- |
+|  value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No| **PixelMap** object that contains pixel values.<br>Default value: **null**|
 
 ### getImageData
 
@@ -2445,20 +2667,22 @@ Obtains the [ImageData](ts-components-canvas-imagedata.md) object created with t
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description             |
-| ---- | ------ | ---- | ---- | --------------- |
-| sx   | number | Yes   | 0    | X coordinate of the upper left corner of the output area, in vp.|
-| sy   | number | Yes   | 0    | Y coordinate of the upper left corner of the output area, in vp.|
-| sw   | number | Yes   | 0    | Width of the output area, in vp.|
-| sh   | number | Yes   | 0    | Height of the output area, in vp.|
+| Name | Type | Mandatory  | Description |
+| ---- | ------ | ---- | --------------- |
+| sx   | number | Yes | X coordinate of the upper left corner of the output area.<br>Unit: vp |
+| sy   | number | Yes | Y coordinate of the upper left corner of the output area.<br>Unit: vp |
+| sw   | number | Yes | Width of the output area.<br>Unit: vp |
+| sh   | number | Yes | Height of the output area.<br>Unit: vp |
 
   **Return value**
 
 | Type                                      | Description            |
 | ---------------------------------------- | -------------- |
-| [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object.|
+| [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object. |
 
 
 **Example**
@@ -2497,23 +2721,41 @@ This API can be used in ArkTS widgets since API version 9.
 
 putImageData(imageData: ImageData, dx: number | string, dy: number | string): void
 
+Puts an [ImageData](ts-components-canvas-imagedata.md) object onto a rectangular area on the canvas.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type | Mandatory  | Description |
+| ----------- | ---------------------------------------- | ---- | ----------------------------- |
+| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | Yes    | **ImageData** object with pixels to put onto the canvas. |
+| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | Yes    | X-axis offset of the rectangular area on the canvas.<br>Unit: vp |
+| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | Yes    | Y-axis offset of the rectangular area on the canvas.<br>Unit: vp |
+
 putImageData(imageData: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
 
 Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectangular area on the canvas.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name         | Type                                      | Mandatory  | Default Value         | Description                           |
-| ----------- | ---------------------------------------- | ---- | ------------ | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | Yes   | null         | **ImageData** object with pixels to put onto the canvas.|
-| dx          | number \| string<sup>10+</sup> | Yes   | 0            | X-axis offset of the rectangular area on the canvas, in vp.|
-| dy          | number \| string<sup>10+</sup> | Yes   | 0            | Y-axis offset of the rectangular area on the canvas, in vp.|
-| dirtyX      | number \| string<sup>10+</sup> | No   | 0            | X-axis offset of the upper left corner of the rectangular area relative to that of the source image, in vp.|
-| dirtyY      | number \| string<sup>10+</sup> | No   | 0            | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image, in vp.|
-| dirtyWidth  | number \| string<sup>10+</sup> | No   | Width of the **ImageData** object| Width of the rectangular area by which the source image is cropped, in vp.|
-| dirtyHeight | number \| string<sup>10+</sup> | No   | Height of the **ImageData** object| Height of the rectangular area by which the source image is cropped, in vp.|
+| Name | Type | Mandatory | Description |
+| ----------- | ---------------------------------------- | ---- | ----------------------------- |
+| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | Yes   | **ImageData** object with pixels to put onto the canvas.|
+| dx          | number \| string<sup>10+</sup> | Yes   | X-axis offset of the rectangular area on the canvas.<br>Unit: vp|
+| dy          | number \| string<sup>10+</sup> | Yes   | Y-axis offset of the rectangular area on the canvas.<br>Unit: vp|
+| dirtyX      | number \| string<sup>10+</sup> | Yes   | X-axis offset of the upper left corner of the rectangular area relative to that of the source image.<br>Unit: vp|
+| dirtyY      | number \| string<sup>10+</sup> | Yes   | Y-axis offset of the upper left corner of the rectangular area relative to that of the source image.<br>Unit: vp|
+| dirtyWidth  | number \| string<sup>10+</sup> | Yes   | Width of the rectangular area to crop the source image.<br>Unit: vp|
+| dirtyHeight | number \| string<sup>10+</sup> | Yes   | Height of the rectangular area to crop the source image.<br>Unit: vp|
 
 **Example**
 
@@ -2541,6 +2783,7 @@ This API can be used in ArkTS widgets since API version 9.
             }
             let imageData = this.context.createImageData(imageDataNum)
             this.context.putImageData(imageData, 10, 10)
+            this.context.putImageData(imageData, 150, 10, 0, 0, 50, 50)
           })
       }
       .width('100%')
@@ -2549,7 +2792,7 @@ This API can be used in ArkTS widgets since API version 9.
   }
   ```
 
-  ![en-us_image_0000001212378396](figures/en-us_image_0000001212378396.png)
+  ![en-us_image_0000001238952387](figures/en-us_image_0000001238952387.png)
 
 
 ### setLineDash
@@ -2560,11 +2803,13 @@ Sets the dash line style.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type      | Description                 |
-| -------- | -------- | ------------------- |
-| segments | number[] | An array of numbers that specify distances, in vp, to alternately draw a line and a gap.|
+**Parameters** 
+
+| Name     | Type     | Mandatory | Description |
+| -------- | -------- | ------- | ------------ |
+| segments | number[] | Yes | An array of numbers that specify distances to alternately draw a line and a gap.<br>Unit: vp |
 
 **Example**
 
@@ -2605,7 +2850,9 @@ Obtains the dash line style.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Return value**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value** 
 
 | Type      | Description                      |
 | -------- | ------------------------ |
@@ -2661,11 +2908,13 @@ Displays the specified **ImageBitmap** object.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type                                      | Description                |
-| ------ | ---------------------------------------- | ------------------ |
-| bitmap | [ImageBitmap](ts-components-canvas-imagebitmap.md) | **ImageBitmap** object to display.|
+**Parameters** 
+
+| Name | Type | Mandatory | Description |
+| ------ | ----------------------- | ----------------- | ------------------ |
+| bitmap | [ImageBitmap](ts-components-canvas-imagebitmap.md)  | Yes | **ImageBitmap** object to display. |
 
 **Example**
 
@@ -2713,12 +2962,14 @@ Generates a URL containing image display information.
 
 This API can be used in ArkTS widgets since API version 9.
 
-**Parameters**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type  | Mandatory  | Default Value        | Description                                      |
-| ------- | ------ | ---- | ----------- | ---------------------------------------- |
-| type    | string | No   | "image/png" | Image format. The default value is **image/png**.           |
-| quality | number | No   | 0.92        | Image quality, which ranges from 0 to 1, when the image format is **image/jpeg** or **image/webp**. If the set value is beyond the value range, the default value **0.92** is used.|
+**Parameters** 
+
+| Name    | Type  | Mandatory | Description |
+| ------- | ------ | ---- | ---------------------------------------- |
+| type    | string | No | Image format. The default value is **image/png**.           |
+| quality | any | No | Image quality, which ranges from 0 to 1, when the image format is **image/jpeg** or **image/webp**. If the set value is beyond the value range, the default value **0.92** is used. |
 
 **Return value**
 
@@ -2766,6 +3017,8 @@ Restores the saved drawing context.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Example**
 
   ```ts
@@ -2805,6 +3058,8 @@ save(): void
 Saves all states of the canvas in the stack. This API is usually called when the drawing state needs to be saved.
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 
@@ -2846,14 +3101,16 @@ Creates a linear gradient.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description      |
-| ---- | ------ | ---- | ---- | -------- |
-| x0   | number | Yes   | 0    | X coordinate of the start point, in vp.|
-| y0   | number | Yes   | 0    | Y coordinate of the start point, in vp.|
-| x1   | number | Yes   | 0    | X coordinate of the end point, in vp.|
-| y1   | number | Yes   | 0    | Y coordinate of the end point, in vp.|
+| Name  | Type    | Mandatory | Description  |
+| ---- | ------ | ---- | -------- |
+| x0   | number | Yes | X coordinate of the start point.<br>Unit: vp |
+| y0   | number | Yes | Y coordinate of the start point.<br>Unit: vp |
+| x1   | number | Yes | X coordinate of the end point.<br>Unit: vp |
+| y1   | number | Yes | Y coordinate of the end point.<br>Unit: vp |
 
 **Return value**
 
@@ -2892,7 +3149,7 @@ This API can be used in ArkTS widgets since API version 9.
   }
   ```
 
-  ![en-us_image_0000001212378412](figures/en-us_image_0000001212378412.png)
+  ![en-us_image_0000001194032516](figures/en-us_image_0000001194032516.jpeg)
 
 
 ### createRadialGradient
@@ -2903,16 +3160,18 @@ Creates a linear gradient.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name  | Type    | Mandatory  | Default Value | Description               |
-| ---- | ------ | ---- | ---- | ----------------- |
-| x0   | number | Yes   | 0    | X coordinate of the center of the start circle, in vp.|
-| y0   | number | Yes   | 0    | Y coordinate of the center of the start circle, in vp.|
-| r0   | number | Yes   | 0    | Radius of the start circle, in vp. The value must be a non-negative finite number.|
-| x1   | number | Yes   | 0    | X coordinate of the center of the end circle, in vp.|
-| y1   | number | Yes   | 0    | Y coordinate of the center of the end circle, in vp.|
-| r1   | number | Yes   | 0    | Radius of the end circle, in vp. The value must be a non-negative finite number.|
+| Name  | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----------------- |
+| x0   | number | Yes | X coordinate of the center of the start circle.<br>Unit: vp |
+| y0   | number | Yes | Y coordinate of the center of the start circle.<br>Unit: vp |
+| r0   | number | Yes | Radius of the start circle, which must be a non-negative finite number.<br>Unit: vp |
+| x1   | number | Yes | X coordinate of the center of the end circle.<br>Unit: vp |
+| y1   | number | Yes | Y coordinate of the center of the end circle.<br>Unit: vp |
+| r1   | number | Yes | Radius of the end circle, which must be a non-negative finite number.<br>Unit: vp |
 
 **Return value**
 
@@ -2951,7 +3210,7 @@ This API can be used in ArkTS widgets since API version 9.
   }
   ```
 
-  ![en-us_image_0000001257058405](figures/en-us_image_0000001257058405.png)
+  ![en-us_image_0000001238952407](figures/en-us_image_0000001238952407.jpeg)
 
 ### createConicGradient<sup>10+</sup>
 
@@ -2959,13 +3218,17 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
 Creates a conic gradient.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name        | Type    | Mandatory  | Default Value | Description                                 |
-| ---------- | ------ | ---- | ---- | ----------------------------------- |
-| startAngle | number | Yes   | 0    | Angle at which the gradient starts, in radians. The angle measurement starts horizontally from the right side of the center and moves clockwise.|
-| x          | number | Yes   | 0    | X coordinate of the center of the conic gradient, in vp.|
-| y          | number | Yes   | 0    | Y coordinate of the center of the conic gradient, in vp.|
+| Name  | Type    | Mandatory | Description |
+| ---------- | ------ | ---- | ----------------------------------- |
+| startAngle | number | Yes   | Angle at which the gradient starts, in radians. The angle measurement starts horizontally from the right side of the center and moves clockwise. |
+| x          | number | Yes   | X coordinate of the center of the conic gradient,<br>Unit: vp |
+| y          | number | Yes   | Y coordinate of the center of the conic gradient,<br>Unit: vp |
 
 **Return value**
 
@@ -3011,6 +3274,8 @@ struct CanvasExample {
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Description                 |
 | ------- | ------------------- |
 | inherit | The text direction is inherited from the **\<Canvas>** component.|
@@ -3021,6 +3286,8 @@ This API can be used in ArkTS widgets since API version 9.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Description   |
 | ------- | ----- |
 | evenodd | The inside part of a shape is determined based on whether the counting result is an odd number or not.|
@@ -3029,6 +3296,8 @@ This API can be used in ArkTS widgets since API version 9.
 ## CanvasLineCap
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -3040,6 +3309,8 @@ This API can be used in ArkTS widgets since API version 9.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name   | Description                                      |
 | ----- | ---------------------------------------- |
 | bevel | The intersection is a triangle. The rectangular corner of each line is independent.            |
@@ -3049,6 +3320,8 @@ This API can be used in ArkTS widgets since API version 9.
 ## CanvasTextAlign
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description          |
 | ------ | ------------ |
@@ -3061,6 +3334,8 @@ This API can be used in ArkTS widgets since API version 9.
 ## CanvasTextBaseline
 
 This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Description                                      |
 | ----------- | ---------------------------------------- |
@@ -3075,6 +3350,8 @@ This API can be used in ArkTS widgets since API version 9.
 
 This API can be used in ArkTS widgets since API version 9.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Description  |
 | ------ | ---- |
 | low    | Low quality. |
@@ -3083,18 +3360,24 @@ This API can be used in ArkTS widgets since API version 9.
 
 ## TextMetrics
 
-| Attribute                      | Type    | Description                                      |
-| ------------------------ | ------ | ---------------------------------------- |
-| width                    | number | Width of the text. Read-only.                                 |
-| height                   | number | Height of the text. Read-only.                                 |
-| actualBoundingBoxAscent  | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the bounding rectangle used to render the text. Read-only. The current value is **0**.|
-| actualBoundingBoxDescent | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the bounding rectangle used to render the text. Read-only. The current value is **0**.|
-| actualBoundingBoxLeft    | number | Distance parallel to the baseline from the alignment point determined by the [CanvasRenderingContext2D.textAlign](#canvastextalign) attribute to the left side of the bounding rectangle of the text. Read-only. The current value is **0**.|
-| actualBoundingBoxRight   | number | Distance parallel to the baseline from the alignment point determined by the [CanvasRenderingContext2D.textAlign](#canvastextalign) attribute to the right side of the bounding rectangle of the text. Read-only. The current value is **0**.|
-| alphabeticBaseline       | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the alphabetic baseline of the line box. Read-only. The current value is **0**.|
-| emHeightAscent           | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the em square in the line box. Read-only. The current value is **0**.|
-| emHeightDescent          | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the em square in the line box. Read-only. The current value is **0**.|
-| fontBoundingBoxAscent    | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the bounding rectangle of all the fonts used to render the text. Read-only. The current value is **0**.|
-| fontBoundingBoxDescent   | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the bounding rectangle of all the fonts used to render the text. Read-only. The current value is **0**.|
-| hangingBaseline          | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the hanging baseline of the line box. Read-only. The current value is **0**.|
-| ideographicBaseline      | number | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the ideographic baseline of the line box. Read-only. The current value is **0**.|
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type | Read Only | Optional | Description |
+| ---------- | -------------- | ------ | ---------------- | ------------------------ |
+| width                    | number | Yes | No | Width of the text. Read-only. |
+| height                   | number | Yes | No | Height of the text. Read-only. |
+| actualBoundingBoxAscent  | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the bounding rectangle used to render the text. Read-only. |
+| actualBoundingBoxDescent | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the bounding rectangle used to render the text. Read-only. |
+| actualBoundingBoxLeft    | number | Yes | No | Distance parallel to the baseline from the alignment point determined by the [CanvasRenderingContext2D.textAlign](#canvastextalign) attribute to the left side of the bounding rectangle of the text. Read-only. |
+| actualBoundingBoxRight   | number | Yes | No | Distance parallel to the baseline from the alignment point determined by the [CanvasRenderingContext2D.textAlign](#canvastextalign) attribute to the right side of the bounding rectangle of the text. Read-only. |
+| alphabeticBaseline       | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the alphabetic baseline of the line box. Read-only. |
+| emHeightAscent           | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the em square in the line box. Read-only. |
+| emHeightDescent          | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the em square in the line box. Read-only. |
+| fontBoundingBoxAscent    | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the top of the bounding rectangle of all the fonts used to render the text. Read-only. |
+| fontBoundingBoxDescent   | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the bottom of the bounding rectangle of all the fonts used to render the text. Read-only. |
+| hangingBaseline          | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the hanging baseline of the line box. Read-only. |
+| ideographicBaseline      | number | Yes | No | Distance from the horizontal line specified by the [CanvasRenderingContext2D.textBaseline](#canvastextbaseline) attribute to the ideographic baseline of the line box. Read-only. |

@@ -760,6 +760,10 @@ Obtains the list of supported fonts.
 | -------------- | --------- |
 | Array\<string> | List of supported fonts.|
 
+>  **NOTE**
+>
+>  This API takes effect only on 2-in-1 devices.
+
 **Example**
 
 ```ts

@@ -116,7 +116,7 @@ Use chainable event methods to configure events supported by built-in components
     })
   ```
 
-- Example of using an anonymous function expression to configure the event of a component (**() => {...}** must be used to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
+- Example of using an arrow function expression to configure the event of a component (**() => {...}** must be used to ensure that the function is bound to the component and complies with the ArkTS syntax specifications):
 
   ```ts
   Button('add counter')

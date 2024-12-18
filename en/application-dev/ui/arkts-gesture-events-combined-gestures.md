@@ -3,8 +3,6 @@
 
 A combined gesture is a combination of multiple single gestures. Its recognition mode is subject to **GestureMode** passed in **GestureGroup**. Three recognition modes are supported: [sequential recognition](#sequential-recognition), [parallel recognition](#parallel-recognition), and [exclusive recognition](#exclusive-recognition).
 
-
-
 ```ts
 GestureGroup(mode:GestureMode, gesture:GestureType[])
 ```
@@ -23,8 +21,6 @@ In the following example, the combined gestures for continuous recognition are t
 
 The **translate** attribute is bound to a **\<Column>** component. You can set the attribute to translate the component. Then, bind **LongPressGesture** and **PanGesture** to the component in the **Sequence** gesture mode. When a long press gesture is recognized, the displayed number is updated. When the user drags the component after the long press gesture, the component is dragged based on the callback function of the pan gesture.
 
-
-
 ```ts
 // xxx.ets
 @Entry
@@ -41,7 +37,8 @@ struct Index {
     Column() {
       Text('sequence gesture\n' + 'LongPress onAction:' + this.count + '\nPanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
         .fontSize(28)
-    }
+    }.margin(10)
+    .borderWidth(1)
     // Bind the translate attribute to translate the component.
     .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
     .height(250)
@@ -73,7 +70,7 @@ struct Index {
             // When the gesture is triggered, the pan distance is obtained based on the callback, and the displacement distance of the component is modified. In this way, the component is translated.
           .onActionUpdate((event: GestureEvent|undefined) => {
             if(event){
-              this.offsetX = this.positionX + event.offsetX;
+              this.offsetX = (this.positionX + event.offsetX);
               this.offsetY = this.positionY + event.offsetY;
             }
             console.info('pan update');
@@ -102,9 +99,7 @@ struct Index {
 
 For parallel recognition, the value of **GestureMode** is **Parallel**. In this gesture recognition mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
 
-For example, if the tap gesture and the double-tap gesture are bound to the \**<Column>** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
-
-
+For example, if the tap gesture and the double-tap gesture are bound to the **\<Column>** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
 
 ```ts
 // xxx.ets
@@ -116,11 +111,11 @@ struct Index {
 
   build() {
     Column() {
-      Text('parallel gesture\n' + 'tapGesture count is 1:' + this.count1 + '\ntapGesture count is 2:' + this.count2 + '\n')
+      Text('Parallel gesture\n' + 'tapGesture count is 1:' + this.count1 + '\ntapGesture count is 2:' + this.count2 + '\n')
         .fontSize(28)
     }
     .height(200)
-    .width(250)
+    .width('100%')
     // The following combined gestures are recognized in parallel mode. After a tap gesture is recognized successfully, if another tap gesture is recognized within the specified time frame, a double-tap gesture will also be recognized.
     .gesture(
       GestureGroup(GestureMode.Parallel,
@@ -171,11 +166,11 @@ struct Index {
 
   build() {
     Column() {
-      Text('parallel gesture\n' + 'tapGesture count is 1:' + this.count1 + '\ntapGesture count is 2:' + this.count2 + '\n')
+      Text('Exclusive gesture\n' + 'tapGesture count is 1:' + this.count1 + '\ntapGesture count is 2:' + this.count2 + '\n')
         .fontSize(28)
     }
     .height(200)
-    .width(250)
+    .width('100%')
     // The following combined gestures are mutually exclusive. After the tap gesture is recognized successfully, the double-tap gesture fails to be recognized.
     .gesture(
       GestureGroup(GestureMode.Exclusive,

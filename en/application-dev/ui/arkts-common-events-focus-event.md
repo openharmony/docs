@@ -190,7 +190,7 @@ Components can be classified into the following types based on their focusabilit
 
 - Components that are focusable by default: These components are usually interactive components, such as **\<Button>**, **\<Checkbox>**, and **\<TextInput>**.
 
-- Components that can be focused but are unfocusable by default: Typical examples are **\<Text>** and **\<Image>**. To enable them to be focusable, use the **focusable(true)** attribute.
+- Components that can be focused but are unfocusable by default: Typical examples are **\<Text>** and **\<Image>**. To enable them to be focusable, use the **focusable(true)** attribute. When these components do not have the **focusable** attribute set, setting an **onClick** event or a single-tap gesture implicitly makes them focusable. However, when these components have the **focusable** attribute set to **false**, they remain unfocusable even if you bind the aforementioned event or gesture to them.
 
 - Components that cannot be focused: These components usually do not allow for interactions and cannot be focused even if they use the **focusable** attribute. Examples are **\<Blank>** and **\<Circle>**.
 

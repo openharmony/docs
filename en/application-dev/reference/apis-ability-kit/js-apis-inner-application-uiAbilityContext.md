@@ -544,7 +544,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 > **NOTE**
 > 
-> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -603,7 +603,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 > **NOTE**
 > 
-> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -662,7 +662,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 > **NOTE**
 > 
-> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -735,7 +735,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 > **NOTE**
 > 
-> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

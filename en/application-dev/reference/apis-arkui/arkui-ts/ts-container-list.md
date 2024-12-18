@@ -7,6 +7,22 @@ The **\<List>** component provides a list container that presents a series of li
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > - By default, this component can produce a bounce effect only when there is more than one screen of content. To produce a bounce effect when there is less than one screen of content, use the **options** parameter of the **edgeEffect** attribute.
+>
+> - The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **\<List>** component.
+>
+> - To enable the editable mode for a list, the following conditions must be met: (This feature is deprecated since API version 9.)
+>
+>   - **editMode** is set to **true**.
+>
+>   - The list is bound to the **onItemDelete** event and the event returns **true** in the event callback.
+>
+>   - The **editable** attribute of **ListItem** is set to **true**.
+>
+> - To enable list item dragging, the following conditions must be met:
+>
+>   - **editMode** is set to **true**. (This is not required since API version 9.)
+>
+>   - The list item is bound to the **onDragStart** event and the event returns a floating UI during event callback.
 
 
 ## Child Components
@@ -158,34 +174,6 @@ This API can be used in ArkTS widgets since API version 9.
 | Idle   |  0  | Idle. The list enters this state when an API in the controller is used to scroll the list or when the scrollbar is dragged.<br>**NOTE**<br> Since API version 10, the list enters this state when it is not scrolling,<br>but not when an API in the controller that does not apply an animation is called.|
 | Scroll |  1  | Scrolling. The list enters this state when the user drags the list to scroll.<br>**NOTE**<br> Since API version 10, the list also enters this state when the user drags the scrollbar or the mouse wheel to scroll the list.|
 | Fling  |  2  | Inertial scrolling. The list enters this state when inertial scrolling occurs or when the list bounces back after being released from a fling.<br>**NOTE**<br> Since API version 10, the list enters this state when: Inertial scrolling occurs after a fling.<br>The list bounces back after being released from a fling.<br>Inertial scrolling occurs after quick dragging of the built-in scrollbar.<br>Scrolling occurs after an API in the controller that applies an animation is called.|
-
-The table below lists the changes in the **ScrollState** enums.
-
-| Scenario           | API Version 9 and Earlier| API Version 10 and Later|
-| ------------- | ---------------- | ---------------- |
-| Finger dragging       | Scroll           | Scroll           |
-| Inertial scrolling         | Fling            | Fling            |
-| Cross-boundary bouncing         | Fling            | Fling            |
-| Scrolling by mouse wheel       | Idle             | Scroll           |
-| Scrollbar dragging        | Idle             | Scroll           |
-| Scrolling by the scroll controller (with animation) | Idle             | Fling            |
-| Scrolling by the scroll controller (without animation)| Idle             | Idle             |
-
->  **NOTE**
->
->  To enable the editable mode for a list, the following conditions must be met: (This feature is deprecated since API version 9.)
->
->  - **editMode** is set to **true**.
->
->  - The list is bound to the **onItemDelete** event and the event returns **true** in the event callback.
->
->  - The **editable** attribute of **ListItem** is set to **true**.
->
->  To enable dragging for a list item, the following conditions must be met:
->
->  - **editMode** is set to **true**. (This is not required since API version 9.)
->
->  - The list item is bound to the **onDragStart** event and the event returns a floating UI during event callback.
 
 ## ListScroller<sup>11+</sup>
 

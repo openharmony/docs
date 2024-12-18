@@ -91,7 +91,7 @@ The **PixelMap** object can read or write image data and obtain image informatio
 
 ## Sendable Objects
 
-Sendable objects, decorated by the ArkTS decorator [@Sendable](../arkts-utils/arkts-sendable.md), can be transferred between threads. Sendable objects support two transfer modes: reference transfer (not supported yet) and serialized transfer. Currently, the following types are sendable : boolean, number, string, Bigint, and [SendableClass] (../arkts-utils/arkts-sendable.md#basic-concepts).
+Sendable objects, decorated by the ArkTS decorator [@Sendable](../arkts-utils/arkts-sendable.md), can be transferred between threads. Sendable objects support two transfer modes: reference transfer (not supported yet) and serialized transfer. Currently, the following types are sendable : boolean, number, string, Bigint, and [SendableClass](../arkts-utils/arkts-sendable.md#basic-concepts).
 
 
 ```ts

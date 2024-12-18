@@ -24,7 +24,7 @@ This API can be used in ArkTS widgets since API version 9.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | start | boolean | Yes| Whether to start scrolling.<br>**NOTE**<br>This parameter cannot be used to restart scrolling that has been completed.|
-| step | number | No| Scrolling step.<br>Default value: **6**, in vp|
+| step | number | No| Scrolling step. If the step is greater than the text width, the default value is taken.<br>Default value: **6**, in vp|
 | loop | number | No| Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**<br>**NOTE**<br>Regardless of the value, the marquee scrolls only once on an ArkTS widget.|
 | fromStart | boolean | No| Whether the text scrolls from the start.<br>Default value: **true**|
 | src | string | Yes| Text to scroll.|
@@ -33,13 +33,13 @@ This API can be used in ArkTS widgets since API version 9.
 In addition to the universal text attributes **fontColor**, **fontSize**, **fontWeight**, and **fontFamily**, the following attributes are supported.
 | Name      | Type| Description                                                        |
 | ---------- | -------- | ------------------------------------------------------------ |
-| allowScale | boolean  | Whether to allow text to scale.<br>This attribute is not supported currently.<br>Default value: **false** |
+| allowScale | boolean  | Whether to allow text to scale.<br>Default value: **false**<br>**NOTE**<br>This parameter is effective only when **fontSize** is in fp units. |
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onStart(event: () =&gt; void) | Triggered when the marquee starts scrolling.<br>This API can be used in ArkTS widgets since API version 9.|
+| onStart(event: () =&gt; void) | Triggered when the marquee text changes or starts scrolling.<br>This API can be used in ArkTS widgets since API version 9.|
 | onBounce(event: () =&gt; void) | Triggered when the marquee has reached the end. This event will be triggered for multiple times if the **loop** attribute is not set to **1**.<br>This API can be used in ArkTS widgets since API version 9.|
 | onFinish(event: () =&gt; void) | Triggered when the marquee has finished the number of scrolling times set by the **loop** attribute.<br>This API can be used in ArkTS widgets since API version 9.|
 

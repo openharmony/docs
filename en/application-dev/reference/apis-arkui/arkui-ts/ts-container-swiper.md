@@ -4,8 +4,9 @@
 
 > **NOTE**
 >
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
+> - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> - The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **\<Swiper>** component.
 
 ## Child Components
 
@@ -37,12 +38,12 @@ Swiper(controller?: SwiperController)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported. [Menu control](ts-universal-attributes-menu.md) is not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name                                   | Type                                    | Description                                      |
 | ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | index                                 | number                                   | Index of the child component currently displayed in the container.<br>Default value: **0**<br>**NOTE**<br>If the value is less than 0 or greater than or equal to the number of child components, the default value **0** is used.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| autoPlay                              | boolean                                  | Whether to enable automatic playback for child component switching.<br>Default value: **false**<br>**NOTE**<br>If **loop** is set to **false**, the playback stops when the last page is displayed. The playback continues when the page is not the last page after a swipe gesture.|
+| autoPlay                              | boolean                                  | Whether to enable automatic playback for child component switching.<br>Default value: **false**<br>**NOTE**<br>If **loop** is set to **false**, the playback stops when the last page is displayed. The playback continues when the page is not the last page after a swipe gesture. If the **\<Swiper>** component becomes invisible, the playback stops.|
 | interval                              | number                                   | Interval for automatic playback, in ms.<br>Default value: **3000**      |
 | indicator                             | [DotIndicator](#dotindicator10)<sup>10+</sup>  \| [DigitIndicator](#digitindicator10)<sup>10+</sup>  \| boolean | Style of the navigation point indicator.<br> \- **DotIndicator**: dot style.<br> \- **DigitIndicator**: digit style.<br> \- **boolean**: whether to enable the navigation point indicator.<br>  Default value: **true**<br>  Default type: **DotIndicator**|
 | loop                                  | boolean                                  | Whether to enable loop playback.<br>The value **true** means to enable loop playback. When LazyForEach is used, it is recommended that the number of the components to load exceed 5.<br>Default value: **true**|
@@ -299,6 +300,7 @@ struct SwiperExample {
 ![swiper](figures/swiper.gif)
 
 ### Example 2
+This example showcases how to implement a digit-style navigation point indicator.
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -383,6 +385,7 @@ struct SwiperExample {
 ![swiper](figures/swiper-digit.gif)
 
 ### Example 3
+This example illustrates the group page-turning effect using the **displayCount** property.
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {

@@ -553,7 +553,7 @@ This API is supported in ArkTS widgets.
 
 | Name     | Description                       |
 | ------- | ------------------------- |
-| DEFAULT | Adaptive color mode is not used. The default color is used as the mask color.   |
+| DEFAULT | Adaptive color mode is not used. The default color is used as the mask color. Using a mode other than **DEFAULT** can be more time-consuming.  |
 | AVERAGE | Adaptive color mode is used. The average color value of the color picking area is used as the mask color.|
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
@@ -603,7 +603,7 @@ This API is supported in ArkTS widgets.
 | Name   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
-| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>The **showError** attribute is not supported for this style.|
+| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -675,7 +675,7 @@ Describes the background effect.
 | saturation   | number        |   No  |   Saturation.<br>Value range: [0, +∞)<br>Default value: **0**    |
 | brightness   | number        |   No  |   Brightness.<br>Value range: [0, +∞)<br>Default value: **0**      |
 | color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color.<br>Default value: transparent |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**  |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**<br>When set to **AVERAGE**, the adaptive color mode takes effect only when the color has transparency. |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
 ## EllipsisMode<sup>11+</sup>
 
