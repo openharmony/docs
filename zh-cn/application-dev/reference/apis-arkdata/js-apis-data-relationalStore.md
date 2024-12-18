@@ -8202,7 +8202,7 @@ if(resultSet != undefined) {
 
 ### getRows<sup>16+</sup>
 
-getRows(maxCount: number, position?: number): Promise<Array<ValuesBucket>>
+getRows(maxCount: number, position?: number): Promise&lt;Array&lt;ValuesBucket&gt;&gt;
 
 从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](#resultset)的其它接口并发调用，否则获取的数据可能非预期。
 
