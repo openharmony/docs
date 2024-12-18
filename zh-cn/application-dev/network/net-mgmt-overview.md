@@ -23,3 +23,6 @@ Network Kit（网络服务）主要提供以下功能：
 | ohos.permission.GET_NETWORK_INFO | 获取网络连接信息。                     |
 | ohos.permission.INTERNET         | 允许程序打开网络套接字，进行网络连接。 |
 
+## 与相关Kit的关系
+
+应用使用TCP/UDP Socket通信时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免应用退后台，造成应用网络资源异常。

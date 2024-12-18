@@ -4,6 +4,11 @@
 
 Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。
 
+> **说明：**
+>
+> 应用使用TCP/UDP/TLS Socket通信时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免应用退后台，造成应用网络资源异常。
+> 应用退后台又切回前台后，需要对网络通信做失败重试，通信失败后匹配错误码并重新创建新的TCP/UDP连接对象。
+
 ## 基本概念
 
 - Socket：套接字，就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象。

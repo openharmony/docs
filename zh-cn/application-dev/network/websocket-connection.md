@@ -8,6 +8,10 @@
 
 websocket支持心跳检测机制，在客户端和服务端建立WebSocket连接之后，每间隔一段时间会客户端会发送Ping帧给服务器，服务器收到后应立即回复Pong帧。
 
+> **说明：**
+>
+> 应用使用WebSocket通信时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免应用退后台，造成应用网络资源异常。
+
 ## 接口说明
 
 WebSocket连接功能主要由[webSocket模块](../reference/apis-network-kit/js-apis-webSocket.md)提供。使用该功能需要申请ohos.permission.INTERNET权限。具体接口说明如下表。
