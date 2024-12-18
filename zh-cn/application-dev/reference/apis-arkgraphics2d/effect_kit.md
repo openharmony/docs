@@ -48,8 +48,8 @@
 | -------- | -------- |
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_CreateEffect](#oh_filter_createeffect) (OH_PixelmapNative \*pixelmap, [OH_Filter](_o_h___filter.md) \*\*filter) | 创建一个OH_Filter对象。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_Release](#oh_filter_release) ([OH_Filter](_o_h___filter.md) \*filter) | 释放OH_Filter对象。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_Blur](#oh_filter_blur) ([OH_Filter](_o_h___filter.md) \*filter, float radius) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_BlurWithTileMode](#oh_filter_blurwithtilemode) ([OH_Filter](_o_h___filter.md) \*filter, float radius, [EffectTileMode](#effecttilemode) tileMode) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Blur](#oh_filter_blur) ([OH_Filter](_o_h___filter.md) \*filter, float radius) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_BlurWithTileMode](#oh_filter_blurwithtilemode) ([OH_Filter](_o_h___filter.md) \*filter, float radius, [EffectTileMode](#effecttilemode) tileMode) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_Brighten](#oh_filter_brighten) ([OH_Filter](_o_h___filter.md) \*filter, float brightness) | 创建一个提亮效果并且添加到滤镜中。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_GrayScale](#oh_filter_grayscale) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个灰度效果并且添加到滤镜中。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_Invert](#oh_filter_invert) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个反色效果并且添加到滤镜中。 | 
