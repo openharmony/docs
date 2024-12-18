@@ -1,10 +1,10 @@
-# @ohos.multimodalInput.infraredEmitter (IR Management) (System API)
+# @ohos.multimodalInput.infraredEmitter (IR Management) 
 
 The **infraredEmitter** module generates IR signals of the specified frequency and size, and queries the frequency range supported by the device.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 16. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs provided by this module are system APIs.
 

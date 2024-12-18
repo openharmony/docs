@@ -13,7 +13,7 @@
   <!--Del-->
   - [@ohos.multimodalInput.pointer (mouse pointer) (system interface)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey (Shortcut Key) (System API)](js-apis-shortKey-sys.md)
-  - [@ohos.multimodalInput.infraredEmitter (IR Management) (System API)](js-apis-infraredemitter-sys.md)
+  - [@ohos.multimodalInput.infraredEmitter (IR Management)](js-apis-infraredemitter.md)
   - [@ohos.multimodalInput.inputConsumer (Input Consumer) (System API)](js-apis-inputconsumer-sys.md)
   - [@ohos.multimodalInput.inputDevice (Input Device) (System API)](js-apis-inputdevice-sys.md)
   - [@ohos.multimodalInput.inputEventClient (Input Event Injection) (System API)](js-apis-inputeventclient-sys.md)
