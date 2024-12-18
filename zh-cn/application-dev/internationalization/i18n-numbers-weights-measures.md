@@ -130,7 +130,7 @@ console.log(numberFormat5.format(2.28)); // 2.2
 console.log(numberFormat5.format(-2.25)); // -2.2
 
 // 舍入优先级
-let options : object = {
+let options : intl.NumberOptions = {
     roundingPriority: 'lessPrecision',
     maximumFractionDigits: 3,
     maximumSignificantDigits: 2
@@ -139,7 +139,7 @@ let numberFormat6 : intl.NumberFormat = new intl.NumberFormat('en', options);
 console.log(numberFormat6.format(1.23456)); // 1.2
 
 // 舍入增量
-let numOptions : object = {
+let numOptions : intl.NumberOptions = {
     style: "currency",
     currency: "USD",
     roundingIncrement: 5,
@@ -179,7 +179,7 @@ console.log(numberFormat7.format(11.21)); // $11.20
 import { intl } from '@kit.LocalizationKit';
 
 // 数字范围格式化
-let options : object = {
+let options : intl.NumberOptions = {
     style: "currency",
     currency: "EUR",
     maximumFractionDigits: 0

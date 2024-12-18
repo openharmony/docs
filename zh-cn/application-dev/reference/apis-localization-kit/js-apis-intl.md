@@ -471,7 +471,7 @@ format(number: number): string
   // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
   let numfmt : intl.NumberFormat = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber : string = numfmt.format(1223); // formattedNumber = 1.223E3
-  let options : object = {
+  let options : intl.NumberOptions = {
     roundingPriority: "lessPrecision",
     maximumFractionDigits: "3",
     maximumSignificantDigits: "3"
