@@ -528,10 +528,6 @@ static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export interface MyObject {
-  code: string;
-  message: string;
-}
 export const isExceptionPending: () => Object | void;
 ```
 
@@ -540,6 +536,10 @@ ArkTS侧示例代码
 ```ts
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
+interface MyObject {
+  code: string;
+  message: string;
+}
 try {
   let result = testNapi.isExceptionPending() as MyObject;
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_exception_pending, error.Code: %{public}s, error.message: %{public}s',
