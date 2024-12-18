@@ -4780,3 +4780,17 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.CAPTURE_SCREEN_AUTHORIZE_EXEMPT
+
+允许应用豁免隐私授权弹窗。
+
+应用获取此权限后，在使用录屏框架进行录屏时，不会弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
