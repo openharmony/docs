@@ -8212,8 +8212,8 @@ getRows(maxCount: number, position?: number): Promise&lt;Array&lt;ValuesBucket&g
 
 | 参数名      | 类型   | 必填 | 说明                    |
 | ----------- | ------ | ---- | ----------------------- |
-| maxCount | number | 是   | 正整数，指定要从结果集中获取数据的条数。 |
-| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行开始读取。 |
+| maxCount | number | 是   | 正整数，指定要从结果集中获取数据的条数。不为正整数则参数非法，抛出错误码401。 |
+| position | number | 否   | 非负整数，指定从结果集中获取数据的起始位置，不填则从结果集的当前行开始读取。不为非负整数则参数非法，抛出错误码401 |
 
 
 **返回值：**
@@ -8250,24 +8250,26 @@ getRows(maxCount: number, position?: number): Promise&lt;Array&lt;ValuesBucket&g
 
 ```ts
 // 假设结果集resultSet有100条数据
-// 示例1：仅指定maxCount
-if (resultSet != undefined) {
-  let rows:Array<relationalStore.ValuesBucket>
-  let maxCount:number = 50
-  // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用go类接口自行移动
-  while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
-    console.info(JSON.stringify(rows[0]))
+async function proccessRows(resultSet) {
+  // 示例1：仅指定maxCount
+  if (resultSet != undefined) {
+    let rows:Array<relationalStore.ValuesBucket>
+    let maxCount:number = 50
+    // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用go类接口自行移动
+    while ((rows = (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
+      console.info(JSON.stringify(rows[0]))
+    }
   }
-}
 
-// 示例2：指定maxCount和起始的position
-if (resultSet != undefined) {
-  let rows:Array<relationalStore.ValuesBucket>
-  let maxCount:number = 50
-  let position:number = 50
-  while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
-    console.info(JSON.stringify(rows[0]))
-    position += rows.length
+  // 示例2：指定maxCount和起始的position
+  if (resultSet != undefined) {
+    let rows:Array<relationalStore.ValuesBucket>
+    let maxCount:number = 50
+    let position:number = 50
+    while ((rows = (resultSet as relationalStore.ResultSet).getRows(maxCount, position)).length != 0) {
+      console.info(JSON.stringify(rows[0]))
+      position += rows.length
+    }
   }
 }
 ```
