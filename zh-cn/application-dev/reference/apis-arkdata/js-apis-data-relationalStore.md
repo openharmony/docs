@@ -8254,7 +8254,7 @@ getRows(maxCount: number, position?: number): Promise<Array<ValuesBucket>>
 if (resultSet != undefined) {
   let rows:Array<relationalStore.ValuesBucket>
   let maxCount:number = 50
-  // getRows会自动移动结果集当前行到上次getRows获取数据的末尾行的下一行，无需使用goTo类方法移动结果集当前行的位置
+  // getRows会自动移动结果集当前行到上次getRows获取结束位置的下一行，无需使用go类接口自行移动
   while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
     console.info(JSON.stringify(rows[0]))
   }
