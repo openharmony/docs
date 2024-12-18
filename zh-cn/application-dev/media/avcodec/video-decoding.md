@@ -102,7 +102,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### 定义基础结构
 
-本部分示例代码按照C++17标准编写的，仅作参考
+本部分示例代码按照C++17标准编写，仅作参考。开发者可以参考此部分，定义自己的buffer对象。
 
 1. 添加头文件。
 
@@ -114,7 +114,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <shared_mutex>
     ```
 
-2. 解码器回调buffer的信息
+2. 解码器回调buffer的信息。
 
     ```c++
     struct CodecBufferInfo {
@@ -128,7 +128,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     };
     ```
 
-3. 解码输入输出队列
+3. 解码输入输出队列。
 
     ```c++
     class CodecBufferQueue {
@@ -175,6 +175,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 全局变量
 
+    仅做参考，可以根据实际情况将其封装到对象中。
+
     ```c++
     // 视频帧宽度
     int32_t width = 320;
@@ -195,11 +197,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 解码器输出队列
     CodecBufferQueue outQueue;
     ```
-
-> **说明：**
->
-> 上述“全局变量”仅为示例，调用者可以根据实际情况将其封装到类中。
->
 
 ### Surface模式
 
@@ -1135,7 +1132,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
 
-后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤14-17。
+后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤13-16。
 
 <!--RP5-->
 <!--RP5End-->
