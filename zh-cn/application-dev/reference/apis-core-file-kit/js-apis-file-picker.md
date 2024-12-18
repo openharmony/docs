@@ -388,7 +388,7 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### getSelectedIndex<sup>13+</sup>;
+### getSelectedIndex<sup>14+</sup>;
 
 getSelectedIndex(): number
 
