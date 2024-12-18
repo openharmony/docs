@@ -149,7 +149,7 @@ let instance: Class <void>
 
 #### `Object`类型
 
-`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除非基本类型外的类型。
+`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除基本类型外的类型。
 
 #### `Array`类型
 
@@ -366,13 +366,12 @@ switch (expression) {
 condition ? expression1 : expression2
 ```
 
-如果`condition`的为真值（转换后为`true`的值），则使用`expression1`作为该表达式的结果；否则，使用`expression2`。
+如果`condition`的值为真值（转换后为`true`的值），则使用`expression1`作为该表达式的结果；否则，使用`expression2`。
 
 示例：
 
 ```typescript
-let isValid = Math.random() > 0.5 ? true : false;
-let message = isValid ? 'Valid' : 'Failed';
+let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
 ```
 
 #### `For`语句
