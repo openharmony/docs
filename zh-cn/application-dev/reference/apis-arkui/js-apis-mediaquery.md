@@ -49,7 +49,7 @@ matchMediaSync(condition: string): MediaQueryListener
 ```ts
 import { mediaquery } from '@kit.ArkUI';
 
-let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
+let listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
 
 
