@@ -1,4 +1,4 @@
-# @ohos.telephony.esim (eSIM卡管理)
+# @ohos.telephony.esim (eSIM卡管理) (系统接口)
 
 穿戴设备支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用。
 

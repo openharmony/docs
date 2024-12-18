@@ -371,7 +371,7 @@
 
 **起始版本**：12
 
-### ohos.permission.WINDOW_TOPMOST
+## ohos.permission.WINDOW_TOPMOST
 
 允许应用将窗口设置为应用置顶窗口。
 
