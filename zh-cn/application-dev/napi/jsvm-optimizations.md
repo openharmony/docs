@@ -61,7 +61,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
 
 那么在 native 层, 要解决冷启动和生成 code cache 之间的矛盾, 首先我们可以另起一个线程用于生成 code cache, 这样避免了生成 code cache 这个操作本身对冷启动的影响；
 
-然后, 有两个方法可以参考:
+然后, 有两个方法可以参考(下面的伪代码仅用于展示逻辑流程，不涉及真正的 api 调用):
 
 - 将生成 code cache 必需的前置编译也放到新增的线程上, 这样编译选项可以分开使用: 生成 code cache 打开 `eager compile`, 冷启动运行则关闭, 这样做的缺点是可能进一步提高运行时的峰值资源占用, 优点是 code cache 生成和运行可以完全解耦, 不再需要考虑生成 code cache 的时间点。这个流程的伪代码如下所示
 
@@ -118,22 +118,16 @@ if (script_run_completed) {
 
 从 OH_JSVM_TypeOf 接口获取对象类型后，再判断是否与某个类型相同。
 
-这种方法需要先查询 object 的类型, 这种方法相对于直接使用 is 方法会更慢, 因此我们新增了针对基础类型的 IsXXX 系列方法, 用更高效的接口代替了相对低效的接口。
+这种方法需要先查询 object 的类型, 这种方法相对于直接使用 is 方法会更慢, 因此我们新增了针对基础类型的 IsXXX 系列方法, 用更高效的接口代替了相对低效的接口。下面的示例中中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md), 这里仅展示调用的步骤。
 
 - 低效用例
 
 
 ```cpp
-bool Test::IsFunction() const {
-    HandleScopeInit(*env);
-    JSVM_Value jsvmValue;
-    ObjectWrappingGet(*env, jsvmRef, jsvmValue);
-    // type judement start
-    bool result;
+bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
+    // type judement
     JSVM_ValueType valueType;
     OH_JSVM_TypeOf(*env, jsvmValue, &valueType);
-    OH_JSVM_CloseHandleScope(*env, scope);
-    // type judement end
     return valueType == JSVM_FUNCTION;
 }
 ```
@@ -142,15 +136,10 @@ bool Test::IsFunction() const {
 
 
 ```cpp
-bool Test::IsFunction() const {
-    HandleScopeInit(*env);
-    JSVM_Value jsvmValue;
-    ObjectWrappingGet(*env, jsvmRef, jsvmValue);
-    // type judement start
+bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
+    // type judement
     bool result = false;
     OH_JSVM_IsFunction(*env, jsvmValue, &result); // 可直接判断是否为Function类型
-    OH_JSVM_CloseHandleScope(*env, scope);
-    // type judement end
     return result;
 }
 ```
@@ -164,6 +153,9 @@ bool Test::IsFunction() const {
 创建一个新的 object -> 设置 object 的值 -> 创建 object 的 reference。
 
 这种在已经有值的情况下创建一个新的 object 的操作是冗余的, 直接创建对值的引用即可。
+
+下面的示例中中使用到的 JSVM-API 可以参考 [JSVM 数据类型与接口说明](./jsvm-data-types-interfaces.md), 这里仅展示调用的步骤。
+
 
 - 低效用例
 
