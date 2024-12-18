@@ -529,3 +529,18 @@ Allows an application to obtain domain account information.
 **Valid since**: 10
 
 **Changelog**: For API version 10 to 13, the permission is available only to system applications. Starting with API version 14, the permission becomes accessible to normal enterprise applications.
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 14
+
+**Changelog**: Starting from API version 14, the permission level is changed to system_basic and this permission is accessible to normal enterprise applications.
