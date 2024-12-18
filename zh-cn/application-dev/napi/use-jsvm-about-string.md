@@ -52,12 +52,14 @@ static JSVM_Value GetValueStringUtf8(JSVM_Env env, JSVM_CallbackInfo info)
     status = OH_JSVM_GetValueStringUtf8(env, args[0], buf, length + 1, &length);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueStringUtf8 fail");
+        free(buf);
         return nullptr;
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM GetValueStringUtf8 success: %{public}s", buf);
     }
     JSVM_Value result = nullptr;
     OH_JSVM_CreateStringUtf8(env, buf, length, &result);
+    free(buf);
     return result;
 }
 // GetValueStringUtf8注册回调
