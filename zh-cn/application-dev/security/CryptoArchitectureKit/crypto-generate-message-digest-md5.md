@@ -1,4 +1,4 @@
-# 消息摘要计算SHA256(ArkTS)
+# 消息摘要计算MD5(ArkTS)
 
 对应的算法规格请查看[消息摘要计算算法规格](crypto-generate-message-digest-overview.md#支持的算法与规格)。
 
@@ -15,7 +15,7 @@
 
 ### 摘要算法（一次性传入）
 
-1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法SHA256，生成摘要实例（Md）。
+1. 调用[cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd)，指定摘要算法MD5，生成摘要实例（Md）。
 
 2. 调用[Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6)，传入自定义消息，进行摘要更新计算。单次update长度没有限制。
 
@@ -30,7 +30,7 @@
   import { buffer } from '@kit.ArkTS';
 
   async function doMd() {
-    let mdAlgName = 'SHA256'; // 摘要算法名
+    let mdAlgName = 'MD5'; // 摘要算法名
     let message = 'mdTestMessgae'; // 待摘要的数据
     let md = cryptoFramework.createMd(mdAlgName);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
@@ -49,7 +49,7 @@
   import { buffer } from '@kit.ArkTS';
 
   function doMdBySync() {
-    let mdAlgName = 'SHA256'; // 摘要算法名
+    let mdAlgName = 'MD5'; // 摘要算法名
     let message = 'mdTestMessgae'; // 待摘要的数据
     let md = cryptoFramework.createMd(mdAlgName);
     // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
@@ -78,7 +78,7 @@
   import { buffer } from '@kit.ArkTS';
 
   async function doLoopMd() {
-    let mdAlgName = "SHA256"; // 摘要算法名
+    let mdAlgName = "MD5"; // 摘要算法名
     let md = cryptoFramework.createMd(mdAlgName);
     // 假设信息总共43字节，根据utf-8解码后，也是43字节
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
@@ -103,7 +103,7 @@
   import { buffer } from '@kit.ArkTS';
 
   function doLoopMdBySync() {
-    let mdAlgName = "SHA256"; // 摘要算法名
+    let mdAlgName = "MD5"; // 摘要算法名
     let md = cryptoFramework.createMd(mdAlgName);
     // 假设信息总共43字节，根据utf-8解码后，也是43字节
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
