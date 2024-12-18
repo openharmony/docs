@@ -2871,6 +2871,218 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
 
+## i18n.getSimpleDateTimeFormatByPattern<sup>16+</sup>
+
+getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
+
+通过模式字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatBySkeleton接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat16)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| pattern | string      | 是    | 合法的模式字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。同时，pattern支持传入自定义文本，文本内容以''标识。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat16) | SimpleDateTimeFormat对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  ```
+
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>16+</sup>
+
+getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
+
+通过框架字符串获取SimpleDateTimeFormat对象。与getSimpleDateTimeFormatByPattern接口获取的对象在格式化后显示差异请参考[SimpleDateTimeFormat](#simpledatetimeformat16)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。skeleton不支持传入自定义文本。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat16) | SimpleDateTimeFormat对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  ```
+
+## SimpleDateTimeFormat<sup>16+</sup>
+
+### format<sup>16+</sup>
+
+format(date: Date): string
+
+对时间、日期进行格式化。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| date | Date | 是    | 时间日期对象。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 格式化后的时间、日期字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let date : Date = new Date(2024, 11, 13);
+
+  let formatterWithText : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  let result : string = formatterWithText.format(date); // result = month(12)
+
+  let patternFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("yMd", locale);
+  result = patternFormatter.format(date); // result = 20241213
+
+  let skeletonFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  result = skeletonFormatter.format(date); // result = 2024/12/13
+  ```
+
+
+## i18n.getSimpleNumberFormatBySkeleton<sup>16+</sup>
+
+getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
+
+通过框架字符串获取SimpleNumberFormat对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                                       |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons)。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 合法的区域对象。默认值：系统区域。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| [SimpleNumberFormat](#simplenumberformat16) | SimpleNumberFormat对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
+  ```
+
+## SimpleNumberFormat<sup>16+</sup>
+
+### format<sup>16+</sup>
+
+format(value: number): string
+
+格式化数字字符串。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明                |
+| ---- | ---- | ---- | ----------------- |
+| value | number | 是    | 数字对象。 |
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 格式化后的数字字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
+  let result : string = formatter.format(10); // result = 10%
+  ```
+
+
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
