@@ -98,7 +98,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### 定义基础结构
 
-本部分示例代码按照C++17标准编写的，仅作参考
+本部分示例代码按照C++17标准编写，仅作参考。开发者可以参考此部分，定义自己的buffer对象。
 
 1. 添加头文件。
 
@@ -110,7 +110,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     #include <shared_mutex>
     ```
 
-2. 编码器回调buffer的信息
+2. 编码器回调buffer的信息。
 
     ```c++
     struct CodecBufferInfo {
@@ -127,7 +127,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     };
     ```
 
-3. 编码输入输出队列
+3. 编码输入输出队列。
 
     ```c++
     class CodecBufferQueue {
@@ -174,6 +174,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 4. 全局变量
 
+    仅做参考，可以根据实际情况将其封装到对象中。
+
     ```c++
     // 视频帧宽度
     int32_t width = 320;
@@ -194,11 +196,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 编码器输出队列
     CodecBufferQueue outQueue;
     ```
-
-> **说明：**
->
-> 上述“全局变量”仅为示例，调用者可以根据实际情况将其封装到类中。
->
 
 ### Surface模式
 
@@ -975,4 +972,4 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-后续流程（包括刷新编码器、重置编码器、停止编码器、销毁编码器）与Surface模式一致，请参考[Surface模式](#surface模式)的步骤15-18。
+后续流程（包括刷新编码器、重置编码器、停止编码器、销毁编码器）与Surface模式一致，请参考[Surface模式](#surface模式)的步骤14-17。
