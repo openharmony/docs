@@ -6,7 +6,6 @@ The **infraredEmitter** module generates IR signals of the specified frequency a
 >
 > - The initial APIs of this module are supported since API version 16. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
