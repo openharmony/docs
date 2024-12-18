@@ -41,6 +41,12 @@ The AES256-GCM algorithm is used to encrypt and decrypt assets. The following ac
 
   ASSET protects the integrity of the attributes starting with **DATA_LABEL_CRITICAL**. These attributes cannot be changed once written.
 
+* Asset deletion
+  1. The asset data that meets the specified conditions is deleted when **remove()** is called. For details, see [Removing Assets (ArkTS)](asset-js-remove.md) and [Removing Assets (C/C++)](asset-native-remove.md).
+  2. When an application is uninstalled, the asset data of the application will be deleted. However, if [IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag) is **true**, the asset data will be retained.
+  3. When a user is deleted, the asset data of the user will be deleted.
+  4. When a device is reset to restore factory settings, the asset data will be deleted.
+
 ## Relationship with Other Kits
 
 Asset Store Kit provides secure storage of sensitive data less than 1 KB in size. To protect data greater than 1 KB, use [HUKS](../UniversalKeystoreKit/huks-overview.md) or [Crypto Framework](../CryptoArchitectureKit/crypto-architecture-kit-intro.md).
