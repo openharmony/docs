@@ -223,11 +223,11 @@
 | openharmony.styled-string  | general.composite-object |                  -                    |-                                                                    | OpenHarmony系统定义的样式字符串类型          |
 | openharmony.moving-photo   | general.media            |                  -                    |-                                                                    | OpenHarmony系统定义的动图Moving Photo类型 |
 | openharmony.pixel-map      | general.image            |                  -                    |-                                                                    | OpenHarmony系统定义的Pixel map数据类型    |
-| macos.dmg                  | general.disk-image       | .dmg                                  |- application/x-apple-diskimage                                      | MacOS系统定义的安装包格式文件类型              |
-| debian.deb                 | general.archive          | .deb,.udeb                            | application/x-debian-package,application/vnd.debian.binary-package | Debian系统中的软件安装包类型                |
-| com.android.apk            | general.archive          | .apk, .apks, .aab, .xapk, .apkm, .akp | application/vnd.android.package-archive                            | Android安装包文件类型                   |
-| redhat.rpm-archive         | general.archive          | .rpm                                  | application/x-rpm                                                  | RedHat软件安装包类型                    |
-| com.huawei.hmos.settings.wifi  | general.text         | .hmoswifi                             |                                                                    | 鸿蒙wifi分享配置文件类型                    |
+| macos.dmg                  | general.disk-image       | .dmg                                  | application/x-apple-diskimage                                      | MacOS系统定义的安装包格式文件类型              |
+| debian.deb                 | general.archive          | .deb,.udeb                            | application/x-debian-package,application/vnd.debian.binary-package  | Debian系统中的软件安装包类型                |
+| com.android.apk            | general.archive          | .apk, .apks, .aab, .xapk, .apkm, .akp | application/vnd.android.package-archive                             | Android安装包文件类型                   |
+| redhat.rpm-archive         | general.archive          | .rpm                                  | application/x-rpm                                                   | RedHat软件安装包类型                    |
+| com.huawei.hmos.settings.wifi  | general.text         | .hmoswifi                             |                                                                     | HarmonyOS wifi分享配置文件类型                    |
 
 ## 应用定义类型
 应用定义类型表示该类型由具体的应用或者组织进行定义与维护，数据的交互依赖特定的应用进行识别，标识ID为com.company-name.xxx或org.orgnization-name.xxx。当前系统中预定义的应用定义类型列表如下：
