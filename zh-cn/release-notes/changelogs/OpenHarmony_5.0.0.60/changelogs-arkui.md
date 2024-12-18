@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 navigation的toolbarConfiguration属性行为变更
+## cl.arkui.1 Navigation的toolbarConfiguration属性行为变更
 
 **访问级别**
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-navigation的toolbarConfiguration属性，不支持在ArkTS卡片中使用。
+Navigation的toolbarConfiguration属性，不支持在ArkTS卡片中使用。
 
 **变更影响**
 
