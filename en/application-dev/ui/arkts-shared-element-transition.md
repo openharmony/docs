@@ -242,8 +242,8 @@ This example implements a shared element transition for the scenario where, as a
 1. Build the component to be expanded, and build two pages for it through state variables: one for the normal state and one for the expanded state.
 
       ```ts
-      class Tmp{
-        set(item:CradData):CradData{
+      class Tmp {
+        set(item: PostData): PostData {
           return item
         }
       }
@@ -252,7 +252,8 @@ This example implements a shared element transition for the scenario where, as a
       export struct MyExtendView {
         // Declare the isExpand variable to be synced with the parent component.
         @Link isExpand: boolean;
-        @State cardList: Array<CardData> = xxxx;
+        // You need to implement the list data.
+        @State cardList: Array<PostData> = xxxx;
       
         build() {
           List() {
@@ -262,10 +263,10 @@ This example implements a shared element transition for the scenario where, as a
                 .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.8) }))
             }
       
-            ForEach(this.cardList, (item: CradData) => {
-              let Item:Tmp = new Tmp()
-              let Imp:Tmp = Item.set(item)
-              let Mc:Record<string,Tmp> = {'cardData':Imp}
+            ForEach(this.cardList, (item: PostData) => {
+              let Item: Tmp = new Tmp()
+              let Imp: Tmp = Item.set(item)
+              let Mc: Record<string, Tmp> = {'cardData': Imp}
               MyCard(Mc) // Encapsulated widget, which needs to be implemented by yourself.
             })
           }
@@ -485,9 +486,9 @@ export struct share_zIndex_expand {
                     .height(80)
 
                   Column() {
-                    Text ('Click to expand Item' + item)
+                    Text('Click to expand Item' + item)
                       .fontSize(20)
-                    Text ('Shared element transition')
+                    Text('Shared element transition')
                       .fontSize(12)
                       .fontColor(0x909399)
                   }
@@ -561,7 +562,7 @@ struct ShareZIndexDemo {
   build() {
     Scroll(this.scroller) {
       Column() {
-        Text ('zIndex changes z-axis')
+        Text('zIndex changes z-axis')
           .fontWeight(FontWeight.Bold)
           .fontSize(30)
           .fontColor(Color.Black)

@@ -56,7 +56,7 @@ Scales the component.
 
 ## transform
 
-transform(value: Matrix4Transit)
+transform(value: object)
 
 Sets the transformation matrix of the component.
 
@@ -66,7 +66,7 @@ Sets the transformation matrix of the component.
 
 | Name| Type                                   | Mandatory| Description                    |
 | ------ | --------------------------------------- | ---- | ------------------------ |
-| value  | [Matrix4Transit](../js-apis-matrix4.md) | Yes  | Transformation matrix of the component.|
+| value  | object | Yes  | Transformation matrix of the component. Only the [Matrix4Transit](../js-apis-matrix4.md) object type is supported.|
 
 ## RotateOptions
 

@@ -13,8 +13,8 @@
 ```ts
 ForEach(
   arr: Array,
-  itemGenerator: (item: any, index: number) => void,
-  keyGenerator?: (item: any, index: number) => string
+  itemGenerator: (item: Object, index: number) => void,
+  keyGenerator?: (item: Object, index: number) => string
 )
 ```
 
@@ -22,9 +22,9 @@ The parameters are described in the table below.
 
 | Name       | Type                               | Mandatory| Description                                                    |
 | ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
-| arr           | Array\<any\>                                   | Yes      | Data source, which is an array.<br>**NOTE**<br>- You can set this parameter to an empty array. In this case, no child component is created.<br>- You can also set this parameter to a function whose return value is an array, for example, **arr.slice (1, 3)**. However, the set function cannot change any state variables including the array itself. For example, **Array.splice**, **Array.sort**, and **Array.reverse** functions are not allowed, as they may change the array.|
-| itemGenerator | `(item: any, index: number) => void`   | Yes      | Component generator.<br>- It generates a component for each data item in an array. <br>- **item**: data item in the **arr** array.<br>- (Optional) **index**: index of the data item in the **arr** array.<br>**NOTE**<br>- The type of the created component must be the one allowed inside the parent container component of **ForEach**. For example, a **\<ListItem>** component is allowed only when the parent container component of **ForEach** is **\<List>**.|
-| keyGenerator  | `(item: any, index: number) => string` | No      | Key generator.<br>- It generates a unique and persistent key for each array item of the data source **arr**. The return value is the key generation rule you customize.<br>- **item**: data item in the **arr** array.<br>- (Optional) **index**: index of the data item in the **arr** array.<br>**NOTE**<br>- If this function is not specified, the default key generator of the framework is used: **(item: T, index: number) => { return index + '__' + JSON.stringify(item); }**.<br>- The key generator should not change any component state.|
+| arr           | Array\<Object\>                                   | Yes      | Data source, which is an array.<br>**NOTE**<br>- You can set this parameter to an empty array. In this case, no child component is created.<br>- You can also set this parameter to a function whose return value is an array, for example, **arr.slice (1, 3)**. However, the set function cannot change any state variables including the array itself. For example, **Array.splice**, **Array.sort**, and **Array.reverse** functions are not allowed, as they may change the array.|
+| itemGenerator | `(item: Object, index: number) => void`   | Yes      | Component generator.<br>- It generates a component for each data item in an array. <br>- **item**: data item in the **arr** array.<br>- (Optional) **index**: index of the data item in the **arr** array.<br>**NOTE**<br>- The type of the created component must be the one allowed inside the parent container component of **ForEach**. For example, a **\<ListItem>** component is allowed only when the parent container component of **ForEach** is **\<List>**.|
+| keyGenerator  | `(item: Object, index: number) => string` | No      | Key generator.<br>- It generates a unique and persistent key for each array item of the data source **arr**. The return value is the key generation rule you customize.<br>- **item**: data item in the **arr** array.<br>- (Optional) **index**: index of the data item in the **arr** array.<br>**NOTE**<br>- If this function is not specified, the default key generator of the framework is used: **(item: T, index: number) => { return index + '__' + JSON.stringify(item); }**.<br>- The key generator should not change any component state.|
 
 > **NOTE**
 >
@@ -35,7 +35,7 @@ The parameters are described in the table below.
 
 During **ForEach** rendering, the system generates a unique, persistent key for each array item to identify the corresponding component. When the key changes, the ArkUI framework considers that the array element has been replaced or modified and creates a new component based on the new key.
 
-**ForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generator, that is, **(item: any, index: number) => { return index + '__' + JSON.stringify(item); }**.
+**ForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generator, that is, **(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }**.
 
 The ArkUI framework has a set of specific judgment rules for **ForEach** key generation, which are mainly associated with the second parameter **index** of the **itemGenerator** function and the second parameter **index** of the **keyGenerator** function. The following figure shows the logic of the key generation rules.
 

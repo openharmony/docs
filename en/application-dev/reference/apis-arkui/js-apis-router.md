@@ -13,6 +13,8 @@ The **Router** module provides APIs to access pages through URLs. You can use th
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
 >
 > - To achieve a better transition effect, you are advised to use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
+>
+> - When the **pushUrl** or **pushNamedRoute** API uses a callback to return the result, the information obtained from the callback using APIs such as **getLength** may represent an intermediate state of the stack and might not be consistent with the final state.
 
 ## Modules to Import
 
@@ -971,7 +973,7 @@ console.log('pages stack size = ' + size);
 
 getState(): RouterState
 
-Obtains state information about the current page.
+Obtains state information about the page at the top of the navigation stack.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

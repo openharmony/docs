@@ -28,11 +28,17 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 ## Events
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name                        | Description                                      |
 | -------------------------- | ---------------------------------------- |
-| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>The **onAreaChange** event is triggered after the **onReady** event.<br>This API can be used in ArkTS widgets since API version 9.|
+| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If only the position of the canvas changes, only the **onAreaChange** event is triggered, not the **onReady** event.<br>The **onAreaChange** event is triggered after the **onReady** event.|
 
 **Example**
 

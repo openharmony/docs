@@ -18,21 +18,31 @@ OffscreenCanvas(width: number, height: number)
 
 This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                             |
-| ------ | -------- | ---- | ------ | ------------------------------------- |
-| width  | number   | Yes  | 0      | Width of the offscreen canvas, in vp.|
-| height | number   | Yes  | 0      | Height of the offscreen canvas, in vp.|
+| Name | Type | Mandatory | Description                       |
+| ------ | -------- | ---- | ------------------------------------- |
+| width  | number   | Yes | Width of the offscreen canvas.<br>Unit: vp |
+| height | number   | Yes | Height of the offscreen canvas.<br>Unit: vp |
 
 ## Attributes
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 The following attributes are supported.
 
-| Name  | Type  | Default Value| Description                                                        |
-| ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 0      | Width of the offscreen canvas, in vp. This API can be used in ArkTS widgets since API version 9.|
-| height | number | 0      | Height of the offscreen canvas, in vp. This API can be used in ArkTS widgets since API version 9.|
+| Name  | Type  | Read Only | Optional | Description |
+| ------ | ------ | ------ | ------- | ---- |
+| width  | number | No |  No | Width of the offscreen canvas.<br>Unit: vp |
+| height | number | No |  No | Height of the offscreen canvas.<br>Unit: vp |
 
 ### width
 
@@ -114,7 +124,11 @@ transferToImageBitmap(): ImageBitmap
 
 Creates an **ImageBitmap** object from the most recently rendered image of the offscreen canvas.
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
@@ -165,6 +179,10 @@ struct OffscreenCanvasPage {
 getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
 
 Obtains the drawing context of the offscreen canvas.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 

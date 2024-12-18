@@ -41,7 +41,7 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | caretColor                            | [ResourceColor](ts-types.md#resourcecolor)       | Color of the caret in the text box.<br>Default value: **'#007DFF'**           |
 | maxLength                             | number                                           | Maximum number of characters that can be entered into the text box.<br>Default value: **Infinity**, indicating that there is no maximum number.<br>**NOTE**<br>If this attribute is not set or is set to an invalid value, the default value is used. If a decimal number is specified, the integer part is used. |
 | inputFilter<sup>8+</sup>              | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.<br>Since API version 11, setting **inputFilter** and the entered characters are not null, the filtering effect attached to the text box type (specified through the **type** attribute) does not take effect.|
-| copyOption<sup>9+</sup>               | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.<br>**NOTE**<br>For dragging, **copyOption** only restricts whether text is selected and does not involve the dragging scope.|
+| copyOption<sup>9+</sup>               | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.<br>**NOTE**<br>Dragging is not allowed when **CopyOptions.None** is set.|
 | showPasswordIcon<sup>9+</sup>         | boolean                                          | Whether to display the password icon at the end of the password text box.<br>Default value: **true**      |
 | style<sup>9+</sup>                    | [TextInputStyle](#textinputstyle9) \| [TextContentStyle](ts-appendix-enums.md#textcontentstyle10) | Text input style. For the inline input style, only **InputType.Normal** is supported.<br>Default value: **TextInputStyle.Default**|
 | textAlign<sup>9+</sup>                | [TextAlign](ts-appendix-enums.md#textalign)      | Horizontal alignment of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>Available options are **TextAlign.Start**, **TextAlign.Center**, and **TextAlign.End**.<br>To set vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute. The **align** attribute alone does not control the horizontal position of the text. In other words, **Alignment.TopStart**, **Alignment.Top**, and **Alignment.TopEnd** produce the same effect, top-aligning the text; **Alignment.Start**, **Alignment.Center**, and **Alignment.End** produce the same effect, centered-aligning the text vertically; **Alignment.BottomStart**, **Alignment.Bottom**, and **Alignment.BottomEnd** produce the same effect, bottom-aligning the text.|
@@ -51,12 +51,12 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#custombuilder8)      | Unit for content in the component.<br>By default, there is no unit.<br>This attribute must be used together with **showUnderline**. It is effective only when **showUnderline** is set to **true**.|
 | showError<sup>10+</sup>               | string \| undefined                              | Error message displayed when an error occurs.<br>By default, no error message is displayed.<br>**NOTE**<br>If the data type is **string** and the input content does not comply with specifications, the error message is displayed. If the the error message does not fit in one line, an ellipsis (…) is displayed to represent clipped text. If the parameter type is **undefined**, no error message is displayed. See [Example 2](#example-2). |
 | showUnderline<sup>10+</sup>           | boolean                                          | Whether to show an underline. By default, the underline comes in the color of **'#33182431'**, thickness of 1 px, and text box size of 48 vp. The underline supports only the **InputType.Normal** type.<br>Default value: **false**|
-| passwordIcon<sup>10+</sup>            | [PasswordIcon](#passwordicon10)                  | Password icon to display at the end of the password text box.<br>By default, the system-provided icon is used.   |
+| passwordIcon<sup>10+</sup>            | [PasswordIcon](#passwordicon10)                  | Password icon to display at the end of the password text box. Images in JPG, PNG, BMP, HEIC, and WEBP formats are supported. The icon size is fixed at 24 vp, regardless of the source image size.<br>By default, the system-provided icon is used.   |
 | enableKeyboardOnFocus<sup>10+</sup>   | boolean                                          | Whether to enable the input method when the component obtains focus in a way other than clicking.<br>Default value: **true**  |
-| selectionMenuHidden<sup>10+</sup>     | boolean                                          | Whether to hide the text selection menu when the text box is long-pressed, double-touched, or right-clicked.<br>Default value: **false**|
+| selectionMenuHidden<sup>10+</sup>     | boolean                                          | Whether to hide the text selection menu under the following circumstances: clicking the text box cursor, long-pressing the text box, double-tapping the text box, triple-tapping the text box, or right-clicking the text box.<br>Default value: **false**|
 | barState<sup>10+</sup>                | [BarState](ts-appendix-enums.md#barstate)        | Scrollbar state when the inline input style is used.<br>Default value: **BarState.Auto**|
 | maxLines<sup>10+</sup>                | number                                           | Maximum number of lines that can be displayed when the inline input style is used.<br>Default value: **3**<br>**NOTE**<br>Value range: (0, +∞)|
-| customKeyboard<sup>10+</sup>          | [CustomBuilder](ts-types.md#custombuilder8)      | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method, and the **enterKeyType** attribute setting for the system keyboard will not take effect.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextInputController](#textinputcontroller8).[stopEditing](#stopediting10) API to close the keyboard.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
+| customKeyboard<sup>10+</sup>          | [CustomBuilder](ts-types.md#custombuilder8)      | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method, and the **enterKeyType** attribute setting for the system keyboard will not take effect.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is presented by overlaying the original screen, which is not compressed or lifted if avoid mode is not enabled or avoidance is not needed for the text box.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextInputController](#textinputcontroller8).[stopEditing](#stopediting10) API to close the keyboard.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
 | enableAutoFill<sup>11+<sup>           | boolean                                          | Whether to enable autofill. **true**: enable<br>**false**: disable<br> Default value: **true**|
 | passwordRules<sup>11+<sup>            | string                                           | Rules for generating passwords. When autofill is used, these rules are transparently transmitted to Password Vault for generating a new password.                              |
 | cancelButton<sup>11+</sup>            | {<br>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10)<br>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10) <br>} | Style of the Cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>}<br>The inline mode is not supported.|
@@ -114,7 +114,7 @@ Defines the user submission event.
 | Name     | Description                                      |
 | ------- | ---------------------------------------- |
 | Default | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.     |
-| Inline  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.|
+| Inline  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 ## PasswordIcon<sup>10+</sup>
 
@@ -129,13 +129,13 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
-| onChange(callback: (value: string) =&gt; void) | Triggered when the input in the text box changes.<br>**value**: text content.<br>This event is triggered when any of the following conditions is met:<br>1. Keyboard input is received.<br>2. Paste and cut is performed.<br>3. Ctrl+V is pressed.|
+| onChange(callback: (value: string) =&gt; void) | Triggered when the input in the text box changes.<br>**value**: text content.|
 | onSubmit(callback: (enterKey: EnterKeyType, event<sup>11+</sup>: [SubmitEvent](#submitevent11)) =&gt; void) | Triggered when the Enter key on the keyboard is pressed.<br>**enterKey**: type of the Enter key. If it is **EnterKeyType.NEW_LINE** and the text box is in inline input style, **onSubmit** is not triggered. For details, see [EnterKeyType](#enterkeytype).<br>**event**: submission event. For details, see [SubmitEvent](#submitevent11).|
 | onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Since API version 8, **onEditChange** is recommended.|
 | onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. The text box is in the editing state when the caret is placed in it. If the value of **isEditing** is **true**, text input is in progress.|
-| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is copied.|
-| onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is cut.|
-| onPaste(callback:(value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text that is pasted.<br>**event**: custom paste event.|
+| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when a copy operation is performed.<br>**value**: text that is copied.|
+| onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when a cut operation is performed.<br>**value**: text that is cut.|
+| onPaste(callback:(value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) =&gt; void) | Triggered when a paste operation is performed.<br>**value**: text that is pasted.<br>**event**: custom paste event.|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | Triggered when the text selection position changes.<br>**selectionStart**: start position of the text selection area. The start position of text in the text box is **0**.<br>**selectionEnd**: end position of the text selection area.|
 | onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | Triggered when the text content is scrolled.<br>**totalOffsetX**: offset in the X coordinate of the text in the content area, in px.<br>**totalOffsetY**: offset in the Y coordinate of the text in the content area, in px.|
 
@@ -252,7 +252,7 @@ Returns the position information of the caret.
 ## Example
 
 ### Example 1
-
+This example demonstrates the basic usage of **TextInput**.
 ```ts
 // xxx.ets
 @Entry
@@ -314,7 +314,7 @@ struct TextInputExample {
 ![TextInput](figures/TextInput.png)
 
 ### Example 2
-
+This example showcases the use of the **passwordIcon**, **showUnderline**, **showUnit**, and **showError** attributes.
 ```ts
 @Entry
 @Component
@@ -371,13 +371,16 @@ struct TextInputExample {
         .onChange((value: string) => {
           this.Text = value
         })
-        .onSubmit(() => {// If the entered user name is incorrect, the text box will be cleared and the error message will be displayed.
+        .onSubmit(() => { 
+          // If the entered user name is incorrect, the text box will be cleared and the error message will be displayed.
           if (this.Text == this.NameText) {
             this.TextError = ''
           } else {
             this.TextError ='Incorrect user name.'
             this.Text = ''
           }
+          // Call keepEditableState to maintain the editable state of the text box.
+          event.keepEditableState()
         })
 
     }.width('100%')
@@ -388,7 +391,7 @@ struct TextInputExample {
 ![TextInputError](figures/TextInputError.png)
 
 ### Example 3
-
+This example illustrates how to bind a custom keyboard to the **TextInput** component.
 ```ts
 // xxx.ets
 @Entry
@@ -431,7 +434,7 @@ struct TextInputExample {
 
 
 ### Example 4
-
+This example demonstrates the use of the **cancelButton** API.
 ```ts
 // xxx.ets
 @Entry
@@ -464,7 +467,7 @@ struct ClearNodeExample {
 ![cancelButton](figures/TextInputCancelButton.png)
 
 ### Example 5
-
+This example illustrates the use of a character counter with the **TextInput** component.
 ```ts
 // xxx.ets
 @Entry

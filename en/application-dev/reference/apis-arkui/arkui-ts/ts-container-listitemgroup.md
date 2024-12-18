@@ -5,13 +5,11 @@ The **\<ListItemGroup>** component is used to display list item groups. It must 
 > **NOTE**
 >
 > - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
-> - This component can be used only as a child of [\<List>](ts-container-list.md).
-
-## Usage Guidelines
-
-If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Vertical**, the **height** attribute of the **\<ListItemGroup>** component is fixed at the sum of the component's header height, footer height, and total height of the list items. If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Horizontal**, the **width** attribute of the **\<ListItemGroup>** component is fixed at the sum of the component's header width, footer width, and total width of the list items.
-
-The list items in the **\<ListItemGroup>** component cannot be edited or dragged. That is, their **editable** attribute does not take effect.
+> - This component can be used only as a child of [List](ts-container-list.md).
+> - The **\<ListItemGroup>** component does not support the universal attribute [aspectRatio](ts-universal-attributes-layout-constraints.md).
+> - If the parent **List** component of **\<ListItemGroup>** has its **listDirection** attribute set to **Axis.Vertical**, setting the [universal attribute height](ts-universal-attributes-size.md) has no effect. In this case, the height of the **\<ListItemGroup>** component is fixed at the sum of the component's header height, footer height, and total height of the list items.
+> - If the parent **List** component of **\<ListItemGroup>** has its **listDirection** attribute set to **Axis.Horizontal**, setting the [universal attribute width](ts-universal-attributes-size.md) has no effect. In this case, the width of the **\<ListItemGroup>** component is fixed at the sum of the component's header width, footer width, and total width of the list items.
+> - The list items in the **\<ListItemGroup>** component cannot be edited or dragged. This means that their **editable** attribute does not take effect.
 
 ## Child Components
 
@@ -35,7 +33,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 | header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.<br>**NOTE**<br>Only one child component can be placed.                                 |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.<br>**NOTE**<br>Only one child component can be placed.                                 |
 | space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between the header and list item or between the footer and list item.|
-| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.<br>If **ListItemGroupStyle.CARD** is set and **ListItemStyle.CARD** is not, only some card styles and functions are available.|
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>When **ListItemGroupStyle.CARD** is used, you are advised to pair it with **ListItemStyle.CARD** from [ListItem](ts-container-listitem.md) to apply the default card style.<br>In the card style, the default specifications for the **\<ListItemGroup>** are as follows: horizontal margin of 12 vp on both left and right sides, and vertical as well as horizontal padding of 4 vp.<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the card style, by default, the list runs along the vertical axis, that is, **listDirection** is at **Axis.Vertical**. If **listDirection** is set to **Axis.Horizontal**, a disordered display may result. The **alignListItem** attribute of the list is set to **ListItemAlign.Center** by default, which aligns the list items in the center.|
 
 ## Attributes
 
@@ -50,13 +48,6 @@ ListItemGroup(options?: ListItemGroupOptions)
 | NONE | 0 | No style.          |
 | CARD | 1 | Default card style.|
 
-> **NOTE**
->
-> The **\<ListItemGroup>** component does not support the universal attribute [aspectRatio](ts-universal-attributes-layout-constraints.md).
->
-> If the main axis of **\<ListItemGroup>** runs in the vertical direction, the [height](ts-universal-attributes-size.md) setting does not take effect.
->
-> If the main axis of **\<ListItemGroup>** runs in the horizontal direction, the [width](ts-universal-attributes-size.md) setting does not take effect.
 
 
 ## Example
@@ -98,7 +89,7 @@ struct ListItemGroupExample {
 
   @Builder
   itemFoot(num: number) {
-    Text(''Total lessons:'+ num")
+    Text('Total lessons: ' + num)
       .fontSize(16)
       .backgroundColor(0xAABBCC)
       .width("100%")
@@ -121,7 +112,7 @@ struct ListItemGroupExample {
               }
             }, (item: string) => item)
           }
-          .divider ({ strokeWidth: 1,color:Color.Blue }) // Divider between lines
+          .divider({ strokeWidth: 1, color: Color.Blue }) // Divider between lines
         })
       }
       .width('90%')

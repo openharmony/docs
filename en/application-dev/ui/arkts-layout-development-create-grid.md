@@ -3,9 +3,9 @@
 
 ## Overview
 
-The grid layout consists of cells formed by rows and columns. You can specify the cells where items are located to form various layouts. The grid layout excels at dividing a page into regions and defining the proportion of child components. It is a key adaptive layout and applies to scenarios such as photo gallery, calendar, and calculator.
+The grid layout consists of cells formed by rows and columns. You can specify the cells where items are located to create various layouts. The grid layout excels at dividing a page into regions and defining the proportion of child components. It is a key adaptive layout and applies to scenarios such as photo gallery, calendar, and calculator.
 
-ArkUI provides the [\<Grid>](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [\<GridItem>](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) components for building grid layouts. **\<Grid>** is a container for defining the grid layout, while **\<GridItem>** is a child component in the container. The **\<Grid>** component allows creation of child components with conditional rendering, rendering of repeated content, and [lazy data loading](../quick-start/arkts-rendering-control-lazyforeach.md).
+ArkUI provides the [\<Grid>](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [\<GridItem>](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) components for building grid layouts. **\<Grid>** is a container for defining the grid layout, while **\<GridItem>** is a child component in the container. The **\<Grid>** component allows creation of child components using methods such as [if/else](../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md).
 
 
 ## Layout and Constraints
@@ -70,7 +70,7 @@ Grid() {
 
 ### Setting the Number of Rows and Columns Occupied by a Child Component
 
-In real-world applications, an uneven grid layout, where grid cells span a varying number of cells and rows, is as common as its even counterpart. To implement an uneven grid layout, as shown below, you can set **rowStart**, **rowEnd**, **columnStart**, and **columnEnd** of **\<GridItem>**. The valid value range of **rowStart** and **rowEnd** is 0 to the total number of rows minus 1. The valid value range of **columnStart** and **columnEnd** is 0 to the total number of columns minus 1. For details, see [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md).
+In real-world applications, an uneven grid layout, where grid cells span a varying number of cells and rows, is as common as its even counterpart. To allow a single grid cell in a grid to span multiple rows or columns, passing appropriate [GridLayoutOptions](../reference/apis-arkui/arkui-ts/ts-container-grid.md#gridlayoutoptions10) when creating the grid. Use **irregularIndexes** and **onGetIrregularSizeByIndex** for grids with only **rowsTemplate** or **columnsTemplate**, and **onGetRectByIndex** for grids with both.
 
 **Figure 4** Uneven grid layout
 
@@ -82,34 +82,30 @@ A common application with an uneven grid layout is the calculator. As shown in t
 
 ![en-us_image_0000001511421292](figures/en-us_image_0000001511421292.png)
 
-For a single grid cell, the **rowStart** and **rowEnd** attributes indicate the start and end row numbers of the current element, and the **columnStart** and **columnEnd** attributes indicate the start and end column numbers of the current element.
+In the grid, use the **onGetRectByIndex** callback to return the array [rowStart, columnStart, rowSpan, columnSpan] to achieve a layout that spans rows and columns, wherein **rowStart** and **rowEnd** indicate the start and end row numbers of the current element, and **columnStart** and **columnEnd** indicate the start and end column numbers of the current element.
 
-Therefore, for the **0** key to span the first and second columns, just set the **\<GridItem>** component of the key as follows: **columnStart** to **1**, **columnEnd** to **2**, **rowStart** and **rowEnd** to **5**.
-
-
-```ts
-GridItem() {
-  Text(key)
-    ...
-}
-.columnStart(0)
-.columnEnd(1)
-.rowStart(5)
-.rowEnd(5)
-```
-
-For the **=** key to span the fifth and sixth rows, just set the **\<GridItem>** component of the key as follows: **rowStart** to **4**, **rowEnd** to **5**, **columnStart** and **columnStart** to **4**.
+To make the **0** key span across the first and second columns, and the **=** key span across the fifth and sixth rows, set **onGetRectByIndex** for **0** and **=** as follows: for **0**, set **rowStart** and **columnStart** at **5** and **0**, and **rowSpan** and **columnSpan** at **1** and **2**; for **=**, set **rowStart** and **columnStart** at **4** and **3**, and **rowSpan** and **columnSpan** at **2** and **1**.
 
 
 ```ts
-GridItem() {
-  Text(key)
-    ...
+layoutOptions: GridLayoutOptions = {
+  regularSize: [1, 1],
+  onGetRectByIndex: (index: number) => {
+    if (index = = key1) { // key1 is the index of the 0 key.
+      return [5, 0, 1, 2]
+    } else if (index == key2) { // key2 is the index of the = key.
+      return [4, 3, 2, 1]
+    }
+    // ...
+    // Here, you need to return the positions of other items based on the specific layout.
+  }
 }
-.rowStart(4)
-.rowEnd(5)
-.columnStart(4)
-.columnEnd(4)    
+
+Grid(undefined, this.layoutOptions) {
+  // ...
+}
+.columnsTemplate('1fr 1fr 1fr 1fr')
+.rowsTemplate('2fr 1fr 1fr 1fr 1fr 1fr')
 ```
 
 
@@ -283,14 +279,14 @@ Column({ space: 5 }) {
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 
   Row({space: 20}) {
-    Button ('Previous')
+    Button('Previous')
       .onClick(() => {
         this.scroller.scrollPage({
           next: false
         })
       })
 
-    Button ('Next')
+    Button('Next')
       .onClick(() => {
         this.scroller.scrollPage({
           next: true
@@ -307,7 +303,7 @@ Just as [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is 
 
 For details about the implementation, see the example in [LazyForEach: Lazy Data Loading](../quick-start/arkts-rendering-control-lazyforeach.md).
 
-When the grid is rendered in lazy loading mode, to improve the grid scrolling experience and minimize white blocks during grid scrolling, you can use the **cachedCount** parameter of the **\<Grid>** component. This parameter sets the number of grid items preloaded outside of the screen and is valid only in **LazyForEach**.
+When the grid is rendered in lazy loading mode, to improve the grid scrolling experience and minimize white blocks during grid scrolling, you can use the **cachedCount** parameter of the **Grid** component. This parameter sets the number of grid items preloaded outside of the screen and is valid only in **LazyForEach**.
 
   Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
 

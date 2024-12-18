@@ -60,8 +60,8 @@ Obtains all historical points of the current frame. The touch event frequency of
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | Type of the touch event.                     |
 | id      | number                                      | Unique identifier of a finger.                     |
-| x       | number                                      | X coordinate of the touch point relative to the upper left corner of the original area of the touched element.<br>Unit: vp|
-| y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the original area of the touched element.<br>Unit: vp|
+| x       | number                                      | X coordinate of the touch point relative to the upper left corner of the event responding component.<br>Unit: vp|
+| y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the event responding component.<br>Unit: vp|
 | windowX<sup>10+</sup>  | number                       | X coordinate of the touch point relative to the upper left corner of the application window.<br>Unit: vp  |
 | windowY<sup>10+</sup>  | number                       | Y coordinate of the touch point relative to the upper left corner of the application window.<br>Unit: vp  |
 | displayX<sup>10+</sup> | number                       | X coordinate of the touch point relative to the upper left corner of the application screen.<br>Unit: vp  |

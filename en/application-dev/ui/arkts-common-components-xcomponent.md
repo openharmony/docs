@@ -236,17 +236,17 @@ You can bind the **\<XComponent>** to the **XComponentController** to obtain the
 ```ts
 class suf{
   surfaceId:string = "";
-  mXComponentController: XComponentController = new XComponentController();
-  set(){
-    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+  mXComponentController: XComponentController | null = null;
+  set(xComponentController: XComponentController){
+    this.mXComponentController = xComponentController;
+    this.surfaceId = this.mXComponentController?.getXComponentSurfaceId();
   }
 }
-@State surfaceId:string = "";
-mXComponentController: object = new XComponentController();
+mXComponentController: XComponentController = new XComponentController();
+private suf: suf = new suf();
 XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   .onLoad(() => {
-    let sufset = new suf()
-    sufset.set()
+    this.suf.set(this.mXComponentController);
   })
 ```
 

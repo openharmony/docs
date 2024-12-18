@@ -155,7 +155,7 @@ In the preceding example:
 ![TabContent.gif](figures/TabContent.gif)
 
 
-### LazyforEach
+### LazyForEach
 
 - You can freeze custom components cached in **LazyforEach** so that they do not trigger UI re-rendering.
 
@@ -311,7 +311,9 @@ In the preceding example:
 
 ### Navigation
 
-- Freezing an invisible page does not trigger component update. When the page is returned, the @Watch callback is triggered to refresh the page.
+- When the navigation destination page is invisible, its child custom components are set to the inactive state and will not be re-rendered. When return to this page, its child custom components are restored to the active state and the @Watch callback is triggered to re-render the page.
+
+- In the following example, **NavigationContentMsgStack** is set to the inactive state, which does not respond to the change of the state variables, and does not trigger component re-rendering.
 
 ```ts
 @Entry

@@ -259,7 +259,7 @@ struct ViewA {
 
   build() {
     Column() {
-      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+      Text(`ViewA [${this.label}] this.bag.size = ${this.bag.size}`)
         .fontColor('#ffffffff')
         .backgroundColor('#ff3d9dba')
         .width(320)
@@ -320,7 +320,7 @@ struct ViewB {
         .width(320)
       ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
         .width(320)
-      Button(`ViewC: this.child.bookName.size add 10`)
+      Button(`ViewB: this.child.bookName.size add 10`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -355,15 +355,15 @@ The @Observed decorated **BookName** class can observe changes in the attributes
 Event handles in **ViewB**:
 
 
-- **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **b** and its attributes.
+- **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **size** and its attributes.
 
-- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
+- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated **Bag**, which is attribute **size** in this example, can be observed by \@ObjectLink.
 
 
 Event handle in **ViewC**:
 
 
-- **this.bookName.size += 1**: A change to the \@ObjectLink decorated variable **a** causes the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
+- **this.bookName.size += 1**: A change to the \@ObjectLink decorated variable **size** causes the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
 
 - The \@ObjectLink decorated variable is read-only. Assigning **this.bookName = new bookName(...)** is not allowed. Once value assignment occurs, the reference to the data source is reset and the synchronization is interrupted.
 
@@ -619,7 +619,7 @@ struct MapSampleNestedChild {
         ForEach(Array.from(this.myMap.entries()), (item: [number, string]) => {
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
-          Divider()
+          Divider().strokeWidth(5)
         })
 
         Button('set new one')
@@ -712,7 +712,7 @@ struct SetSampleNestedChild {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.mySet.entries()), (item: number) => {
+        ForEach(Array.from(this.mySet.entries()), (item: [number, number]) => {
           Text(`${item}`).fontSize(30)
           Divider()
         })

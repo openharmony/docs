@@ -54,7 +54,7 @@ Context menu bound to the component, which is displayed when the user long-press
 | Name      | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | Yes  | Array of menu item icons and text, or custom component.|
-| responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | Yes  | How the context menu is triggered, which can be long-press or right-click.            |
+| responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | Yes  | How the context menu is triggered, which can be long-press or right-click. Long pressing with a mouse device is not supported.           |
 | options      | [ContextMenuOptions](#contextmenuoptions10)        | No   | Parameters of the context menu.                        |
 
 ## MenuElement

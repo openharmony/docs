@@ -13,6 +13,9 @@ Blur effects add a sense of depth and allow for distinction of hierarchical rela
 | [backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | Applies a background blur effect to the component. The input parameter is the blur style.|
 | [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
 
+>  **NOTE**
+>
+>  The preceding APIs provide real-time blurring by rendering each frame, which can be performance-intensive. For static blur effects where content and radius remain unchanged, you are advised to use the static [blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur) API to reduce the load.
 
 ## Applying Background Blur with backdropBlur
 
@@ -111,7 +114,7 @@ struct BackDropBlurStyleDemo {
       GridItem() {
         Column() {
           Column() {
-            Text ('Original')
+            Text('Original')
               .fontSize(20)
               .fontColor(Color.White)
               .textAlign(TextAlign.Center)
@@ -123,7 +126,7 @@ struct BackDropBlurStyleDemo {
           .borderRadius(10)
           .backgroundImage($r('app.media.share'))
 
-          Text ('Original')
+          Text('Original')
             .fontSize(12)
             .fontColor(Color.Black)
         }
@@ -374,7 +377,7 @@ struct ForegroundBlurStyleDemo {
       GridItem() {
         Column() {
           Column() {
-            Text ('Original')
+            Text('Original')
               .fontSize(20)
               .fontColor(Color.White)
               .textAlign(TextAlign.Center)
@@ -386,7 +389,7 @@ struct ForegroundBlurStyleDemo {
           .borderRadius(10)
           .backgroundImage($r('app.media.share'))
 
-          Text ('Original')
+          Text('Original')
             .fontSize(12)
             .fontColor(Color.Black)
         }

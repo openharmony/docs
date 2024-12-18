@@ -10,15 +10,32 @@ An **ImageData** object stores pixel data rendered on a canvas.
 
 constructor(width: number, height: number, data?: Uint8ClampedArray);
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name | Type | Mandatory | Description |
+| ------ | ----- | ----- | ----- |
+| width | number |Yes| Actual width of the rectangle on the canvas. The default unit is vp. |
+| height | number |Yes| Actual height of the rectangle on the canvas. The default unit is vp.|
+| data | Uint8ClampedArray |No| A one-dimensional array of color values. The values range from 0 to 255. |
 
 ## Attributes
 
-| Name    | Type               | Description                                      |
-| ------ | ----------------- | ---------------------------------------- |
-| width  | number            | Actual width of the rectangle on the canvas, in pixels.<br>This API can be used in ArkTS widgets since API version 9.|
-| height | number            | Actual height of the rectangle on the canvas, in pixels.<br>This API can be used in ArkTS widgets since API version 9.|
-| data   | Uint8ClampedArray | A one-dimensional array of color values. The values range from 0 to 255.<br>This API can be used in ArkTS widgets since API version 9.|
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type  | Read Only | Optional | Description |
+| ------ | -------- | --------- | ---------- | ------------------------------ |
+| width | number | Yes | No | Actual width of the rectangle on the canvas.<br>The unit is px. |
+| height | number | Yes | No | Actual height of the rectangle on the canvas.<br>The unit is px. |
+| data | Uint8ClampedArray | Yes | No | A one-dimensional array of color values. The values range from 0 to 255. |
 
 >  **NOTE**
 >

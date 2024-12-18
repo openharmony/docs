@@ -10,8 +10,8 @@
 ```ts
 LazyForEach(
     dataSource: IDataSource,             // Data source to iterate over.
-    itemGenerator: (item: any, index: number) => void,  // Child component generation function.
-    keyGenerator?: (item: any, index: number) => string // Key generation function.
+    itemGenerator: (item: Object, index: number) => void,  // Child component generation function.
+    keyGenerator?: (item: Object, index: number) => string // Key generation function.
 ): void
 ```
 
@@ -21,8 +21,8 @@ LazyForEach(
 | Name       | Type                                              | Mandatory| Description                                                    |
 | ------------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataSource    | [IDataSource](#idatasource)                    | Yes  | **LazyForEach** data source. You need to implement related APIs.                 |
-| itemGenerator | (item: any, index:number) =&gt; void  | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
-| keyGenerator  | (item: any, index:number) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The ID generated for each data item in the data source must be unique.|
+| itemGenerator | (item: Object, index:number) =&gt; void  | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
+| keyGenerator  | (item: Object, index:number) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The ID generated for each data item in the data source must be unique.|
 
 ## IDataSource
 
@@ -38,7 +38,7 @@ interface IDataSource {
 | Declaration                                                    | Parameter Type                                         | Description                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
 | totalCount(): number                                    | -                                                 | Obtains the total number of data items.                                             |
-| getData(index: number): any                        | number                                            | Obtains the data item that matches the specified index.<br>**index**: index of the data item to obtain.|
+| getData(index: number): Object                        | number                                            | Obtains the data item that matches the specified index.<br>**index**: index of the data item to obtain.|
 | registerDataChangeListener(listener:[DataChangeListener](#datachangelistener)): void | [DataChangeListener](#datachangelistener) | Registers a listener for data changes.<br>**listener**: listener for data changes.        |
 | unregisterDataChangeListener(listener:[DataChangeListener](#datachangelistener)): void | [DataChangeListener](#datachangelistener) | Deregisters the listener for data changes.<br>**listener**: listener for data changes.        |
 
@@ -85,7 +85,7 @@ interface DataChangeListener {
 
 During **LazyForEach** rendering, the system generates a unique, persistent key for each item to identify the owing component. When the key changes, the ArkUI framework considers that the array element has been replaced or modified and creates a new component based on the new key.
 
-**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generation function, that is, **(item: any, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
+**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generation function, that is, **(item: Object, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
 
 ## Component Creation Rules
 

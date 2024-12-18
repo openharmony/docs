@@ -10,7 +10,7 @@ The ArkUI framework implements the drag and drop capability for the following co
 
 - The following component supports drag actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [FormComponent](ts-basic-components-formcomponent-sys.md), [Hyperlink](ts-container-hyperlink.md)
 
-- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Video](ts-media-components-video.md)
+- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Video](ts-media-components-video.md), [RichEditor](ts-basic-components-richeditor.md)
 
 You can also define drag responses by implementing common drag events.
 

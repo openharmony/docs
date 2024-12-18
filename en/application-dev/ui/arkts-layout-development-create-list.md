@@ -42,6 +42,8 @@ When used in horizontal layout, the list can contain one or more scrollable rows
 ![en-us_image_0000001511421344](figures/en-us_image_0000001511421344.png)
 
 
+**\<Grid>** and **\<WaterFlow>** can also achieve single-column and multi-column layouts. If the layout requires columns of equal width and does not need to span rows or columns, **List** is preferred over **\<Grid>** and **\<WaterFlow>**.
+
 ### Constraints
 
 The main axis direction of a list refers to the direction in which the child component columns are laid out and in which the list scrolls. An axis perpendicular to the main axis is referred to as a cross axis, and the direction of the cross axis is perpendicular to a direction of the main axis.

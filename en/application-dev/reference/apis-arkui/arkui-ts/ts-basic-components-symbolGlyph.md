@@ -31,7 +31,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported. With 
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | No| Color of the **\<SymbolGlyph>** component.<br> Default value: depending on the rendering strategy|
-| fontSize | number \| string \| [Resource](ts-types.md#resource) | No| Size of the **\<SymbolGlyph>** component.<br>Default value: system default value|
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | No| Size of the **\<SymbolGlyph>** component.<br>The display size of the symbol glyph is controlled by the **fontSize** setting. Once **width** or **height** is specified, other universal attributes will only affect the size of the component's placeholder, not the symbol glyph itself.<br>Default value: system default value|
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Font weight of the **\<SymbolGlyph>** component.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
 | renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| No| Rendering strategy of the **\<SymbolGlyph>** component.<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_folder_badge_plus** supports the **MULTIPLE_COLOR** and **MULTIPLE_OPACITY** modes.|
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| No| Symbol effect of the **\<SymbolGlyph>** component.<br>Default value: **SymbolEffectStrategy.NONE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_wifi** supports the hierarchical effect.|
@@ -78,7 +78,7 @@ struct Index {
 
       Row() {
         Column() {
-          Text ("Monochrome")
+          Text("Monochrome")
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.SINGLE)
@@ -86,7 +86,7 @@ struct Index {
         }
 
         Column() {
-          Text ("Multicolor")
+          Text("Multicolor")
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
@@ -94,7 +94,7 @@ struct Index {
         }
 
         Column() {
-          Text ("Multilayer")
+          Text("Multilayer")
           SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
             .fontSize(96)
             .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
@@ -104,21 +104,21 @@ struct Index {
 
       Row() {
         Column() {
-          Text ("No effect")
+          Text("No effect")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .effectStrategy(SymbolEffectStrategy.NONE)
         }
 
         Column() {
-          Text ("Overall scale effect")
+          Text("Overall scale effect")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .effectStrategy(1)
         }
 
         Column() {
-          Text ("Hierarchical effect")
+          Text("Hierarchical effect")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .effectStrategy(2)
