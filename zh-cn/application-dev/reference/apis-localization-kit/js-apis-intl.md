@@ -473,8 +473,8 @@ format(number: number): string
   let formattedNumber : string = numfmt.format(1223); // formattedNumber = 1.223E3
   let options : intl.NumberOptions = {
     roundingPriority: "lessPrecision",
-    maximumFractionDigits: "3",
-    maximumSignificantDigits: "3"
+    maximumFractionDigits: 3,
+    maximumSignificantDigits: 3
   }
   let numberFmt : intl.NumberFormat = new intl.NumberFormat("en", options);
   let result : string = numberFmt.format(1.23456); // result = 1.23
