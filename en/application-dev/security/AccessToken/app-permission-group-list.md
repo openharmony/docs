@@ -10,7 +10,7 @@
 
   - When an application requests only the ohos.permission.APPROXIMATELY_LOCATION permission (belong to the Location permission group), a dialog box containing only the requested permission will be displayed to request user authorization.
   - When an application requests the ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions (belonging to the Location permission group), a dialog box containing only the requested permissions will be displayed to request user authorization.
-  - When an app requests ohos.permission.APPROXIMATELY_LOCATION (belonging to the Location permission group) and ohos.permission.CAMERA (belonging to the Camera permission group), two dialog boxes will be displayed to request the location and camera permissions, respectively.
+  - When an application requests ohos.permission.APPROXIMATELY_LOCATION (belonging to the Location permission group) and ohos.permission.CAMERA (belonging to the Camera permission group), two dialog boxes will be displayed to request the location and camera permissions, respectively.
 
 - The following lists the permission groups supported by the system. For details about the permissions, see [Permissions for All Applications](permissions-for-all.md).
 
@@ -150,7 +150,7 @@
 
 - To read or write images or videos in the media library:
 
-  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
+  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md#using-savebutton) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
   - Apply for the <!--RP5-->[ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo) or [ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)<!--RP5End--> permission to read images and videos in the media library.
 
 - To read audio clips in the media library:
