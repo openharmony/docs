@@ -1109,7 +1109,7 @@ fileContextMenu标签示例
 | -------- | -------- | -------- | -------- |
 | menuKind | 表示什么情况下触发该右键菜单：0：空白处 1：文件 2: 文件夹 3：文件和文件夹。 | 数值 | 不可缺省 |
 | menuRule | 用来表示是单选/多选下选择单个文件/文件夹，或者两种情况都显示。单选：single, 多选：multi 单选+多选：both（全小写）。 | 字符串 | 不可缺省，当menuKind为1或2读取 |
-| fileSupportType | 当选中的文件列表里包含这些文件类型时，显示该右键菜单。 | 字符串数组 | 不可缺省，仅menuKind为1时候读取，为*才读取fileNotSupportType字段，如果为具体值，不读取fileNotSupportType字段，如果为空，这条策略废弃 |
+| fileSupportType | 当选中的文件列表里包含这些文件类型时，显示该右键菜单。 | 字符串数组 | 不可缺省，仅menuKind为1时读取。fileSupportType为*才读取fileNotSupportType字段，如果为具体值，不读取fileNotSupportType字段，如果为空，这条策略废弃 |
 | fileNotSupportType | 当选中的文件列表里包含这些文件类型时，不显示该右键菜单。 | 字符串数组 | 仅menuKind为1，且fileSupportType为*才读取该字段 |
 
 fileContextMenu配置文件示例
