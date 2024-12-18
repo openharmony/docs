@@ -22,7 +22,7 @@ TextPicker(options?: TextPickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型                                            | 必填 | 说明                   |
 | ------- | ----------------------------------------------- | ---- | ---------------------- |
@@ -88,7 +88,7 @@ defaultPickerItemHeight(value: number | string)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
@@ -104,7 +104,7 @@ disappearTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -120,7 +120,7 @@ textStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -136,7 +136,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -152,7 +152,7 @@ selectedIndex(value: number | number[])
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
@@ -168,7 +168,7 @@ canLoop(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
@@ -225,7 +225,7 @@ onAccept(callback: (value: string, index: number) => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -252,12 +252,33 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
 | value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+
+### onScrollStop<sup>14+</sup>
+
+onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
+
+文本选择器的选项列滑动停止时触发该事件。
+
+手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
+
+当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
 ## 示例
 
@@ -303,16 +324,25 @@ struct TextPickerExample {
       TextPicker({ range: this.apfruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         }).margin(bott)
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         }).margin(bott)
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
     }
   }
@@ -335,13 +365,23 @@ struct TextPickerExample {
 
   build() {
     Column() {
-      TextPicker({ range: this.fruits, selected: this.select })
+      TextPicker({
+        range: this.fruits,
+        selected: this.select,
+        value: this.fruits[this.select]
+      })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
-        .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
-        .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
-        .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
+        .disappearTextStyle({ color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } })
+        .textStyle({ color: Color.Black, font: { size: 20, weight: FontWeight.Normal } })
+        .selectedTextStyle({ color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } })
+        .defaultPickerItemHeight(50)
+        .canLoop(false)
+        .selectedIndex(2)
     }.width('100%').height('100%')
   }
 }
@@ -366,6 +406,9 @@ struct TextPickerExample {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -395,6 +438,9 @@ struct TextPickerExample {
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
         .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
@@ -414,7 +460,7 @@ struct TextPickerExample {
 该示例通过gradientHeight自定义TextPicker的渐隐效果高度。
 
 ```ts
-// xxx.ets 
+// xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
@@ -427,6 +473,9 @@ struct TextPickerExample {
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
         .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
@@ -437,3 +486,101 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker4.gif)
+
+### 示例6（设置选择项高度）
+
+该示例通过配置defaultPickerItemHeight设置选择项的高度。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private select: number = 1
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: this.select })
+        .defaultPickerItemHeight(60)
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo6.png)
+
+
+### 示例7（设置循环滚动）
+
+该示例使用canLoop设置TextPicker是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  @State isLoop: boolean = false
+  private select: number = 1
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: this.select })
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
+        .canLoop(this.isLoop)
+
+      Row() {
+        Text('循环滚动').fontSize(20)
+
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .onChange((isOn: boolean) => {
+            this.isLoop = isOn
+          })
+      }.position({ x: '60%', y: '40%' })
+
+    }.width('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo7.gif)
+
+### 示例8（设置选中项索引值）
+
+该示例通过配置selectedIndex设置默认选中项的索引值。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextPickerExample {
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
+
+  build() {
+    Column() {
+      TextPicker({ range: this.fruits, selected: 1 })
+        .selectedIndex(2)
+        .onChange((value: string | string[], index: number | number[]) => {
+          console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![textpicker](figures/TextPickerDemo8.png)

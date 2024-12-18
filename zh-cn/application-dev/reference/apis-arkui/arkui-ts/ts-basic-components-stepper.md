@@ -108,6 +108,8 @@ onPrevious(callback:&nbsp;(index:&nbsp;number,&nbsp;pendingIndex:&nbsp;number)&n
 
 ## 示例
 
+该示例主要演示如何使用步骤导航器组件。
+
 ```ts
 // xxx.ets
 @Styles function itemStyle () {

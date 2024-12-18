@@ -602,3 +602,13 @@ Allows an application to read media files from and write media files into the us
 **Substitute**:
 
 See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
+
+### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+
+After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for Just-in-time (JIT) compilation, which increases the runtime execution efficiency.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 14

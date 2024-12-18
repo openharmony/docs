@@ -56,7 +56,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | Second subtitle of the display area.<br>Default value: **Touch to add**           |
 | editTitle      | [ResourceStr](ts-types.md#resourcestr)     | No  | Title displayed in the editing state.<br>Default value: **Edit**            |
 
-## GridObjectSortComponentType 
+## GridObjectSortComponentType
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -86,6 +86,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
+This example illustrates the basic usage of the **GridObjectSortComponent** component, involving component configuration initialization, data initialization, and the use of the save and cancel APIs.
 
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@kit.ArkUI'
@@ -93,6 +94,7 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 @Entry
 @Component
 struct Index {
+  // Initialize the component data.
   @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
@@ -159,6 +161,7 @@ struct Index {
     },
   ]
 
+  // Initialize the component configuration information.
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.IMAGE_TEXT,
     imageSize: 45,
@@ -173,12 +176,14 @@ struct Index {
       GridObjectSortComponent({
         options: this.option,
         dataList: this.dataList,
+        // Callback invoked when changes are saved. The data after the changes is returned.
         onSave: (
           select: Array<GridObjectSortComponentItem>,
           unselect: Array<GridObjectSortComponentItem>
         ) => {
           // save ToDo
         },
+        // Callback invoked when changes are canceled.
         onCancel: () =>{
           // cancel ToDo
         }

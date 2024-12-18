@@ -91,6 +91,7 @@
       - [Size](arkui-ts/ts-universal-attributes-size.md)
       - [Location](arkui-ts/ts-universal-attributes-location.md)
       - [Layout Constraints](arkui-ts/ts-universal-attributes-layout-constraints.md)
+      - [Component-Level Pixel Rounding](arkui-ts/ts-universal-attributes-pixelRound.md)
       - [Flex Layout](arkui-ts/ts-universal-attributes-flex-layout.md)
       - [Border](arkui-ts/ts-universal-attributes-border.md)
       - [Border Image](arkui-ts/ts-universal-attributes-border-image.md)
@@ -103,7 +104,6 @@
       - [Transformation](arkui-ts/ts-universal-attributes-transformation.md)
       - [Image Effects](arkui-ts/ts-universal-attributes-image-effect.md)
       - [Shape Clipping](arkui-ts/ts-universal-attributes-sharp-clipping.md)
-      - [Grid](arkui-ts/ts-universal-attributes-grid.md)
       - [Gradient Color](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup Control](arkui-ts/ts-universal-attributes-popup.md)
       - [Menu Control](arkui-ts/ts-universal-attributes-menu.md)
@@ -395,6 +395,7 @@
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Click Control](arkui-ts/ts-universal-attributes-click.md)
+    - [Grid](arkui-ts/ts-universal-attributes-grid.md)
 - JavaScript Components
   - [JavaScript-compatible Web-like Development Paradigm (ArkUI.Full)](arkui-js/Readme-EN.md)   
   - [JavaScript-compatible Web-like Development Paradigm (ArkUI.Lite)](arkui-js-lite/Readme-EN.md)
@@ -425,6 +426,7 @@
     - [ui_input_event.h](ui__input__event_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
+    - [oh_display_capture.h](oh__display__capture_8h.md)
     - [oh_display_info.h](oh__display__info_8h.md)
     - [oh_display_manager.h](oh__display__manager_8h.md)
   - Structs
@@ -456,6 +458,10 @@
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
     - [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md)
+    - [NativeDisplayManager_DisplayColorSpace](_native_display_manager___display_color_space.md)
+    - [NativeDisplayManager_DisplayHdrFormat](_native_display_manager___display_hdr_format.md)
+    - [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md)
+    - [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md)
     - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
     - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
 - Error Codes
@@ -472,3 +478,4 @@
   - Graphics
     - [Display Error Codes](errorcode-display.md)
     - [Window Error Codes](errorcode-window.md)
+<!--no_check-->

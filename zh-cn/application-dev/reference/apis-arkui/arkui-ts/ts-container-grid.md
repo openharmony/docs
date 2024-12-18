@@ -1528,7 +1528,7 @@ struct Index {
 ![gridAlignItems](figures/gridAlignItems.png)
 
 ### 示例10（设置边缘渐隐）
-通过[fadingEdge](ts-container-scrollable-common.md#fadingedge13)属性来设置边缘渐隐效果。
+通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
 ```ts
 // xxx.ets
@@ -1570,3 +1570,47 @@ struct GridExample {
 ```
 
 ![fadingEdge_grid](figures/fadingEdge_grid.gif)
+
+### 示例11（单边边缘效果）
+
+该示例通过edgeEffect接口，实现了Grid组件设置单边边缘效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = ['0', '1', '2', '3', '4']
+  @State rowNumbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller) {
+        ForEach(this.rowNumbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .width('90%')
+      .backgroundColor(0xDCDCDC)
+      .height('80%')
+
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_grid](figures/edgeEffect_grid.gif)

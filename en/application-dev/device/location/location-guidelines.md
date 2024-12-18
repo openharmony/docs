@@ -92,7 +92,8 @@ This module supports only the WGS-84 coordinate system.
       ```
    The coordinates obtained by this module are in the WGS-84 coordinate system. If you need to use coordinates in other coordinate systems, perform a coordinate system conversion.
 
-   You can use the SDK capabilities provided by a third-party map to implement coordinate system conversion.
+   <!--RP1-->   You can use the SDK capabilities provided by a third-party map to implement coordinate system conversion.<!--RP1End-->
+   
 5. Obtain the device location continuously. It is mainly used in scenarios such as navigation, movement track, and travel.<br>
    Instantiate a [ContinuousLocationRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#continuouslocationrequest12) object to notify the system of the type of location service to be provided for applications and the interval for reporting location information.<br>
    - Set the location scenario by using **locationScenario**.<br>

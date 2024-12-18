@@ -127,7 +127,7 @@ cpp部分代码
 static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
-    napi_value argv[1] = nullptr;
+    napi_value argv[1] = {nullptr};
     // 获取解析传递的参数
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // 声明了一个napi_property_descriptor数组desc，其中包含了一个名为"name"的属性，其值为传入的第一个参数argv[0]。
@@ -173,7 +173,7 @@ cpp部分代码
 static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
-    napi_value argv[1] = nullptr;
+    napi_value argv[1] = {nullptr};
     // 获取解析传递的参数
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     napi_value obj = nullptr;
@@ -580,26 +580,30 @@ function clear() {
   console.info("set size is " + size + " after clear");
 }
 
-let address:number = testNapi.getAddress();
-console.info("host thread address is " + address);
+async function test01(): Promise<void> {
+    let address:number = testNapi.getAddress();
+    console.info("host thread address is " + address);
 
-let task1 = new taskpool.Task(getAddress);
-await taskpool.execute(task1);
+    let task1 = new taskpool.Task(getAddress);
+    await taskpool.execute(task1);
 
-let task2 = new taskpool.Task(store, 1, 2, 3);
-await taskpool.execute(task2);
+    let task2 = new taskpool.Task(store, 1, 2, 3);
+    await taskpool.execute(task2);
 
-let task3 = new taskpool.Task(store, 4, 5, 6);
-await taskpool.execute(task3);
+    let task3 = new taskpool.Task(store, 4, 5, 6);
+    await taskpool.execute(task3);
 
-let task4 = new taskpool.Task(erase, 3);
-await taskpool.execute(task4);
+    let task4 = new taskpool.Task(erase, 3);
+    await taskpool.execute(task4);
 
-let task5 = new taskpool.Task(erase, 5);
-await taskpool.execute(task5);
+    let task5 = new taskpool.Task(erase, 5);
+    await taskpool.execute(task5);
 
-let task6 = new taskpool.Task(clear);
-await taskpool.execute(task6);
+    let task6 = new taskpool.Task(clear);
+    await taskpool.execute(task6);
+}
+
+test01();
 ```
 
 **注意事项**
@@ -832,6 +836,32 @@ static napi_value DefineSendableClass(napi_env env) {
         nullptr, sizeof(props) / sizeof(props[0]), props, nullptr, &sendableClass);
 
     return sendableClass;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    napi_value cons = DefineSendableClass(env);
+    napi_set_named_property(env, exports, "SendableClass", cons);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void*)0),
+    .reserved = { 0 },
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
 }
 ```
 

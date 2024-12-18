@@ -226,7 +226,7 @@ displayMode(value: SwiperDisplayMode)
 
 ### cachedCount<sup>8+</sup>
 
-cachedCount(value: number)
+cachedCount(value: number, isShown?: boolean)
 
 设置预加载子组件个数，以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
 
@@ -241,6 +241,7 @@ cachedCount(value: number)
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| isShown<sup>16+</sup>  | boolean | 否   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
 
 ### disableSwipe<sup>8+</sup>
 
@@ -589,6 +590,41 @@ finishAnimation(callback?: VoidCallback)
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
 | callback | [VoidCallback](./ts-types.md#voidcallback12) | 否    | 动画结束的回调。 |
+
+### preloadItems<sup>16+</sup>
+
+preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
+
+控制Swiper预加载指定子节点。调用该接口后会一次性加载所有指定的子节点，因此为了性能考虑，建议分批加载子节点。
+
+如果SwiperController对象未绑定任何Swiper组件，直接调用该接口，会抛出JS异常，并返回错误码100004。因此使用该接口时，建议通过try-catch捕获异常。
+
+与[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和自定义组件结合使用时，由于[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)只会保留缓存范围内的自定义组件，在缓存范围外的会被删除，因此需要开发者保证通过该接口预加载的节点index在缓存范围内。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。<br/>默认值：空数组。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| Promise\<void> | 预加载完成后触发的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[滚动类组件错误码](../../apis-arkui/errorcode-scroll.md)错误码。
+
+| 错误码ID   | 错误信息                                      |
+| --------   | -------------------------------------------- |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 100004 | Controller not bound to component. |
 
 ## Indicator<sup>10+</sup>
 
@@ -1831,3 +1867,75 @@ struct Index {
 ```
 
 ![swiper](figures/point_animation.gif)
+
+### 示例6（预加载子节点）
+
+本示例通过preloadItems接口实现了预加载指定子节点。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct SwiperPreloadItems {
+  @State currentIndex: number = 1
+  private swiperController: SwiperController = new SwiperController()
+  @State arr: string[] = ["0", "1", "2", "3", "4", "5"]
+
+  build() {
+    Column() {
+      Swiper(this.swiperController) {
+        ForEach(this.arr, (item: string) => {
+          MyComponent({ txt: item })
+        })
+      }
+      .cachedCount(1, true)
+      .width("70%")
+      .height("50%")
+
+
+      Button('preload items: [2, 3]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载index=2和index=3的子节点
+          try {
+            this.swiperController.preloadItems([2, 3])
+              .then(() => {
+                console.info('preloadItems [2, 3] success.')
+              })
+              .catch((error: BusinessError) => {
+                console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+              })
+          } catch (error) {
+            console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+          }
+
+        })
+    }
+    .width("100%")
+    .margin(5)
+  }
+}
+
+@Component
+struct MyComponent {
+  private txt: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear txt:' + this.txt)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear txt:' + this.txt)
+  }
+
+  build() {
+    Text(this.txt)
+      .textAlign(TextAlign.Center)
+      .width('100%')
+      .height('100%')
+      .backgroundColor(0xAFEEEE)
+  }
+}
+```

@@ -413,6 +413,88 @@ async function Demo(surfaceId: string) {
 }
 ```
 
+## image.createPixelMapFromSurface<sup>16+</sup>
+
+createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
+
+从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                 | 必填 | 说明                                     |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo(surfaceId: string) {
+  image.createPixelMapFromSurface(surfaceId).then(() => {
+    console.info('Succeeded in creating pixelmap from Surface');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+  });
+} 
+```
+
+## image.createPixelMapFromSurfaceSync<sup>16+</sup>
+
+createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
+
+从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                 | 必填 | 说明                                     |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo(surfaceId: string) {
+  let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId);
+  return pixelMap;
+}
+```
 ## image.createPixelMapSync<sup>12+</sup>
 
 createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
@@ -2446,6 +2528,100 @@ async function ScaleSync() {
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
     pixelMap.scaleSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
+  }
+}
+```
+
+### createScaledPixelMap<sup>16+</sup>
+
+createScaledPixelMap(x: number, y: number, level?: AntiAliasingLevel): Promise\<PixelMap>
+
+根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 否   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreateScaledPixelMap() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+      pixelMap.createScaledPixelMap(scaleX, scaleY, image.AntiAliasingLevel.LOW).then((scaledPixelMap: image.PixelMap) => {
+      console.info('Succeeded in creating scaledPixelMap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to create scaledPixelMap. Error code is ${error.code}, error message is ${error.message}`);
+    })
+  }
+}
+```
+
+### createScaledPixelMapSync<sup>16+</sup>
+
+createScaledPixelMapSync(x: number, y: number, level?: AntiAliasingLevel): PixelMap
+
+根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreateScaledPixelMapSync() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    let scaledPixelMap = pixelMap.createScaledPixelMapSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
   }
 }
 ```
@@ -7936,7 +8112,7 @@ PixelMap的初始化选项。
 | SUBFILE_TYPE <sup>12+</sup>               | "SubfileType"               | **读写能力：** 可读写<br> 此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。|
 | IMAGE_WIDTH                               | "ImageWidth"                | **读写能力：** 可读写<br> 图片宽度。|
 | IMAGE_LENGTH                              | "ImageLength"               | **读写能力：** 可读写<br> 图片长度。|
-| BITS_PER_SAMPLE                           | "BitsPerSample"             | **读写能力：** 可读写<br> 每个像素比特数。|
+| BITS_PER_SAMPLE                           | "BitsPerSample"             | **读写能力：** 可读写<br> 像素各分量的位数，如RGB，3分量，格式是8, 8, 8。|
 | COMPRESSION <sup>12+</sup>                | "Compression"               | **读写能力：** 可读写<br> 图像压缩方案。|
 | PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | **读写能力：** 可读写<br> 像素构成，例如 RGB 或 YCbCr。|
 | IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"          | **读写能力：** 可读写<br> 图像信息描述。|
@@ -7953,7 +8129,7 @@ PixelMap的初始化选项。
 | RESOLUTION_UNIT <sup>12+</sup>            | "ResolutionUnit"            | **读写能力：** 可读写<br> 用于测量XResolution和YResolution的单位。|
 | TRANSFER_FUNCTION <sup>12+</sup>          | "TransferFunction"          | **读写能力：** 可读写<br> 图像的传递函数，通常用于颜色校正。|
 | SOFTWARE <sup>12+</sup>                   | "Software"                  | **读写能力：** 可读写<br> 用于生成图像的软件的名称和版本。|
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **读写能力：** 可读写<br> 日期时间。|
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **读写能力：** 可读写<br> 日期时间。格式如2024:01:25 05:51:34。|
 | ARTIST <sup>12+</sup>                     | "Artist"                    | **读写能力：** 可读写<br> 创建图像的用户名称。|
 | WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | **读写能力：** 可读写<br> 图像的白点色度。|
 | PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | **读写能力：** 可读写<br> 图像的主要颜色的色度。|
@@ -8019,13 +8195,13 @@ PixelMap的初始化选项。
 | COMPONENTS_CONFIGURATION <sup>12+</sup>   | "ComponentsConfiguration"   | **读写能力：** 可读写<br> 压缩数据的特定信息。|
 | COMPRESSED_BITS_PER_PIXEL <sup>12+</sup>  | "CompressedBitsPerPixel"    | **读写能力：** 可读写<br> 用于压缩图像的压缩模式，单位为每像素位数。|
 | SHUTTER_SPEED <sup>12+</sup>              | "ShutterSpeedValue"         | **读写能力：** 可读写<br> 快门速度，以APEX（摄影曝光的加法系统）值表示。|
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **读写能力：** 可读写<br> 光圈值。|
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **读写能力：** 可读写<br> 光圈值。格式如4/1。|
 | BRIGHTNESS_VALUE <sup>12+</sup>           | "BrightnessValue"           | **读写能力：** 可读写<br> 图像的亮度值，以APEX单位表示。|
 | EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"         | **读写能力：** 可读写<br> 曝光偏差值。|
 | MAX_APERTURE_VALUE <sup>12+</sup>         | "MaxApertureValue"          | **读写能力：** 可读写<br> 最小F数镜头。|
 | SUBJECT_DISTANCE <sup>12+</sup>           | "SubjectDistance"           | **读写能力：** 可读写<br> 测量单位为米的主体距离。|
 | METERING_MODE<sup>10+</sup>               | "MeteringMode"              | **读写能力：** 可读写<br> 测光模式。|
-| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **读写能力：** 可读写<br> 光源。|
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **读写能力：** 可读写<br> 光源。例如Fluorescent。|
 | FLASH <sup>10+</sup>                      | "Flash"                     | **读写能力：** 可读写<br> 闪光灯,记录闪光灯状态。|
 | FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | **读写能力：** 可读写<br> 焦距。|
 | SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | **读写能力：** 可读写<br> 该标签指示整个场景中主要主体的位置和区域。|

@@ -258,6 +258,8 @@ Sets the extended options of the custom context menu on selection, including the
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -546,7 +548,7 @@ This callback is not supported when the **RichEditor** component constructed wit
 
 onDidChange(callback: OnDidChangeCallback)
 
-Triggered after an addition or deletion operation is performed in the component.
+Triggered after an addition or deletion operation is performed in the component. This callback is not executed if there is no actual addition or deletion of text.
 
 This callback is not supported when the **RichEditor** component constructed with [RichEditorStyledStringOptions](#richeditorstyledstringoptions12) is used.
 
@@ -574,7 +576,7 @@ Triggered when text is about to be cut. By default, only plain text can be cut. 
 
 | Name  | Type                                   | Mandatory  | Description       |
 | ----- | --------------------------------------- | ---- | ----------- |
-| callback |Callback\<[CutEvent](#cutevent12)\> | Yes   | Defines a custom cut event.|
+| callback |Callback\<[CutEvent](#cutevent12)\> | Yes   | Custom cut event. |
 
 ### onCopy<sup>12+</sup>
 
@@ -590,7 +592,7 @@ Triggered when text is about to be copied. By default, only plain text can be co
 
 | Name  | Type                                   | Mandatory  | Description       |
 | ----- | --------------------------------------- | ---- | ----------- |
-| callback |Callback\<[CopyEvent](#copyevent12)\> | Yes   | User copy event.|
+| callback |Callback\<[CopyEvent](#copyevent12)\> | Yes   | Custom copy event. |
 
 ## RichEditorInsertValue
 
@@ -644,7 +646,7 @@ Provides the text span information.
 | Name                           | Type                                      | Mandatory  | Description                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
 | spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | Yes   | Span position.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| value                         | string                                   | Yes   | Text span content.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| value                         | string                                   | Yes   | Content of the text span or symbol ID.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | textStyle                     | [RichEditorTextStyleResult](#richeditortextstyleresult) | Yes   | Text span style.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offsetInSpan                  | [number, number]                         | Yes   | Start and end positions of the valid content in the text span.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | No   | Content of the **SymbolSpan** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
@@ -1067,6 +1069,8 @@ To avoid potential loading issues, do not directly add a network image.
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
+Adds a custom builder span.
+
 > **NOTE**
 >
 > - This API adds a builder span to take up space in the layout. It calls the system **measure** method to calculate the actual length, width, and position.
@@ -1081,7 +1085,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - If the cursor in the component is blinking, the cursor position is updated to be after the inserted image span.
 
 The following universal attributes are supported: [size](ts-universal-attributes-size.md#size), [padding](ts-universal-attributes-size.md#padding), [margin](ts-universal-attributes-size.md#margin), [aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio), [borderStyle](ts-universal-attributes-border.md#borderstyle), [borderWidth](ts-universal-attributes-border.md#borderwidth), [borderColor](ts-universal-attributes-border.md#bordercolor), [borderRadius](ts-universal-attributes-border.md#borderradius), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9), [opacity](ts-universal-attributes-opacity.md), [blur](ts-universal-attributes-image-effect.md#blur), [backdropBlur](ts-universal-attributes-background.md#backdropblur), [shadow](ts-universal-attributes-image-effect.md#shadow), [grayscale](ts-universal-attributes-image-effect.md#grayscale), [brightness](ts-universal-attributes-image-effect.md#brightness), [saturate](ts-universal-attributes-image-effect.md#saturate),
-[contrast](ts-universal-attributes-image-effect.md#contrast), [invert](ts-universal-attributes-image-effect.md#invert), [sepia](ts-universal-attributes-image-effect.md#sepia), [hueRotate](ts-universal-attributes-image-effect.md#huerotate), [colorBlend](ts-universal-attributes-image-effect.md#colorblend7), [linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur12), [clip](ts-universal-attributes-sharp-clipping.md#clip), [mask](ts-universal-attributes-sharp-clipping.md#mask12), [foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle), [accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup), [accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext), [accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription), [accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel), [sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect12), [lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect12), [pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect12)
+[contrast](ts-universal-attributes-image-effect.md#contrast), [invert](ts-universal-attributes-image-effect.md#invert), [sepia](ts-universal-attributes-image-effect.md#sepia), [hueRotate](ts-universal-attributes-image-effect.md#huerotate), [colorBlend](ts-universal-attributes-image-effect.md#colorblend7), [linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur12), [clip](ts-universal-attributes-sharp-clipping.md#clip12), [mask](ts-universal-attributes-sharp-clipping.md#mask12), [foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle), [accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup), [accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext), [accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription), [accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel), [sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect12), [lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect12), [pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect12)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1569,6 +1573,7 @@ Defines the options for adding an image span.
 | offset                | number                                   | No   | Position of the image span to be added. If this parameter is omitted, the paragraph is added to the end of all content.<br>If the value specified is less than 0, the paragraph is placed at the beginning of all content. If the value is greater than the length of all content, the paragraph is placed at the end of all content.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | No   | Image style. If this parameter is left empty, the default image style will be used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | No   | Behavior-triggered callback. If this parameter is left empty, only the default system behavior is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onHover<sup>14+</sup> | [onHoverCallback](#onhovercallback14) | No   | Callback triggered on mouse hover. If this parameter is not specified, no corresponding action is taken.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## RichEditorImageSpanStyle
 
@@ -1579,7 +1584,7 @@ Provides the image span style information.
 | Name                       | Type                                      | Mandatory  | Description                                      |
 | ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | No   | Width and height of the image. Default value: varies by the value of **objectFit**. If the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings. Values using percentage notation are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                              |
-| verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BOTTOM**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | No   | Scale mode of the image.<br> Default value: **ImageFit.Cover**<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
 | layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | No   | Image layout style. Default value: **{"borderRadius":"","margin":""}**<br><br>**Atomic service API**: This API can be used in atomic services since API version 12.                         |
 
@@ -1697,12 +1702,13 @@ Defines the behavior-triggered callbacks.
 
 | Name         | Type        | Mandatory  | Description           |
 | ----------- | ---------- | ---- | ------------- |
-| onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent)\>| No   | [ClickEvent](ts-universal-events-click.md#clickevent) indicates a user click event.<br>Called when a click is complete.<br>In the case of a double-click, this API is called upon the first click.|
-| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent)\>  | No   | [GestureEvent] (ts-gesture-settings.md#gestureevent object description) indicates a long press event.<br>Called when a long press is complete.|
+| onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent)\>| No   | Triggered when the user performs a click.<br>It is executed on completion of a single click.<br>On a double-click, the first click triggers the callback event.|
+| onDoubleClick<sup>14+</sup>    | Callback\<[GestureEvent](ts-universal-events-click.md#clickevent)\> | No   | Triggered when the user performs a double-click.<br>It is executed on completion of a double-click.<br>On a double-click, the second click triggers the callback event.|
+| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent)\>  | No   | Triggered when the user performs a long press.<br>It is executed on completion of a long press.|
 
 ## KeyboardOptions<sup>12+</sup>
 
-Whether to support keyboard avoidance.
+Sets whether to support keyboard avoidance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1750,7 +1756,7 @@ Represents the callback invoked when the custom context menu on selection is dis
 
 type PasteEventCallback = (event?: PasteEvent) => void
 
-Invoked when the paste is about to be completed.
+Triggered when the paste is about to be completed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1761,6 +1767,23 @@ Invoked when the paste is about to be completed.
 | Name    | Type                                            | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | event  | [PasteEvent](#pasteevent11) | No  | Custom paste event.|
+
+## OnHoverCallback<sup>14+</sup>
+
+type OnHoverCallback = (status: boolean, event: HoverEvent) => void
+
+Defines the callback triggered on mouse hover.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type                                            | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| status  | boolean                            | Yes  | Whether the mouse pointer is hovering over the component. The value **true** means that the mouse pointer enters the component, and **false** means that the mouse pointer leaves the component.|
+| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent11) | Yes  | Event bubbling.|
 
 ## Example
 
@@ -2822,7 +2845,7 @@ struct Index {
   }
 }
 ```
-![OnClickAndLongPress](figures/richEditorOnClickAndLongPress.gif)
+![OnClickAndLongPress](figures/richEditorGestureAndHover.gif)
 
 ### Example 6
 
@@ -3279,6 +3302,7 @@ struct Index {
   @State content: string = ""
   private my_offset: number | undefined = undefined
   private my_builder: CustomBuilder = undefined
+  @BuilderParam my_builder2:() => void = placeholderBuilder2;
 
   @Builder
   placeholderBuilder() {
@@ -3525,7 +3549,9 @@ struct Index {
             }
           })
           Button('builder2').onClick(() => {
-            this.my_builder = placeholderBuilder2.bind(this)
+            this.my_builder = () => {
+              this.my_builder2()
+            }
           })
           Button('builder3').onClick(() => {
             this.my_builder = () => {
@@ -3685,7 +3711,7 @@ struct RichEditorDemo03 {
                 }
               })
             })
-            Button("Letter Spacing ++").onClick (()=>{
+            Button("Letter Spacing ++").onClick(()=>{
               this.LS = this.LS + 5
               this.controller.updateSpanStyle({
                 start: this.start,
@@ -3696,7 +3722,7 @@ struct RichEditorDemo03 {
                 }
               })
             })
-            Button("Letter Spacing --").onClick (()=>{
+            Button("Letter Spacing --").onClick(()=>{
               this.LS = this.LS - 5
               this.controller.updateSpanStyle({
                 start: this.start,

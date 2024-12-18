@@ -10,7 +10,7 @@
 
 ## outline
 
-outline(value: OutlineOptions)
+outline(options: Optional\<OutlineOptions>)
 
 统一外描边样式设置接口。
 
@@ -24,7 +24,7 @@ outline(value: OutlineOptions)
 
 | 参数名 | 类型                                      | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ---- |
-| value  | [OutlineOptions](#outlineoptions对象说明) | 是   |   外描边样式。   |
+| Optional\<options> | [OutlineOptions](#outlineoptions对象说明) | 是   |   外描边样式。   |
 
 ## OutlineStyle<sup>11+</sup>
 
@@ -42,7 +42,7 @@ outline(value: OutlineOptions)
 
 ## outlineStyle
 
-outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
+outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
 
 设置元素的外描边样式。
 
@@ -56,11 +56,11 @@ outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                  |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| value  | [OutlineStyle](#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
+| style  | Optional\<[OutlineStyle](#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)> | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
 
 ## outlineWidth
 
-outlineWidth(value: Dimension | EdgeOutlineWidths)
+outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
 
 设置元素的外描边宽度。
 
@@ -74,11 +74,11 @@ outlineWidth(value: Dimension | EdgeOutlineWidths)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明) | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0，外描边效果width为必设项。 |
+| width  | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)> | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0，外描边效果width为必设项。 |
 
 ## outlineColor
 
-outlineColor(value: ResourceColor | EdgeColors)
+outlineColor(color: Optional\<ResourceColor | EdgeColors>)
 
 设置元素的外描边颜色。
 
@@ -92,11 +92,11 @@ outlineColor(value: ResourceColor | EdgeColors)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                             |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明) | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black。 |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)> | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black。 |
 
 ## outlineRadius
 
-outlineRadius(value: Dimension | OutlineRadiuses)
+outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
 
 设置元素的外描边圆角半径。
 
@@ -110,7 +110,7 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明) | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
+| radius | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明)> | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
 
 ## OutlineOptions对象说明
 
@@ -204,7 +204,9 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 ## 示例
 
-### 示例1
+### 示例1（使用外描边属性）
+
+该示例主要演示如何通过outline来实现组件外描边。
 
 ```ts
 // xxx.ets
@@ -249,10 +251,12 @@ struct OutlineExample {
 
 ![zh-cn_image_0000001219982706](figures/zh-cn_image_0000001219982706.png)
 
-### 示例2
+### 示例2（使用LocalizedEdgeColors类型）
+
+该示例将outline属性中的color属性值设置为LocalizedEdgeColors类型。
+
 ```ts
 // xxx.ets
-// outline属性的color属性值使用LocalizedEdgeColors类型
 
 @Entry
 @Component

@@ -1345,3 +1345,39 @@ struct ScrollExample {
 ```
 
 ![fadingEdge_scroll](figures/fadingEdge_scroll.gif)
+
+### 示例9（单边边缘效果）
+
+该示例通过edgeEffect接口，实现了Scroll组件设置单边边缘效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ScrollExample {
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![edgeEffect_scroll](figures/edgeEffect_scroll.gif)

@@ -13,7 +13,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 在应用开发过程中，开发者应通过监听方法检查当前播放状态并按照一定顺序调用接口，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
 > **说明：**
-> 
+>
 > 使用SoundPool播放短音频时，涉及音频焦点管控策略的问题，请参考[音频焦点指南](../audio/audio-playback-concurrency.md)。
 
 ## 开发步骤及注意事项
@@ -31,7 +31,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     let audioRendererInfo: audio.AudioRendererInfo = {
       usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags : 0
-    }
+    };
 
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
       if (soundpool_ != null) {
@@ -54,7 +54,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 3. 调用on('playFinished')方法，用于监听“播放完成”。
-     
+
     ```ts
     soundPool.on('playFinished', () => {
       console.info("receive play finished message");
@@ -62,7 +62,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 4. 调用on('error')方法，设置错误类型监听。
-     
+
     ```ts
     soundPool.on('error', (error: BusinessError) => {
       console.info('error happened,message is :' + error.message);
@@ -78,7 +78,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
-   
+
     let soundID: number;
     let uri: string;
     async function load() {
@@ -96,7 +96,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 6. 配置播放参数PlayParameters，并在收到loadComplete回调通知之后，调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
-  
+
     ```ts
     let soundID: number;
     let streamID: number;
@@ -106,7 +106,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
         leftVolume: 0.5, // range = 0.0-1.0
         rightVolume: 0.5, // range = 0.0-1.0
         priority: 0, // 最低优先级
-      }
+      };
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
@@ -118,10 +118,10 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 7. 调用setLoop方法设置循环次数。
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
@@ -131,7 +131,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 8. 调用setPriority方法设置优先级。
-     
+
     ```ts
     let streamID: number;
     soundPool.setPriority(streamID, 1);
@@ -141,7 +141,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     let streamID: number;
     // 先调用play方法获取到对应资源的streamID
 
@@ -153,10 +153,10 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```
 
 10. 调用stop方法终止指定流的播放。
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     let streamID: number;
     //先调用play方法给拿到对应的streamID
 
@@ -171,7 +171,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     let soundID: number;
     // 先调用load方法获取到对应资源的soundID
 
@@ -204,7 +204,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     soundPool.release().then(() => {
       console.info('release success');
     }).catch((err: BusinessError) => {
@@ -230,14 +230,14 @@ let soundId: number = 0;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
-}
+};
 let playParameters: media.PlayParameters = {
   loop: 3, // 循环4次
   rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
   leftVolume: 0.5, // range = 0.0-1.0
   rightVolume: 0.5, // range = 0.0-1.0
   priority: 0, // 最低优先级
-}
+};
 let uri: string = "";
 async function create() {
   //创建soundPool实例

@@ -8,8 +8,9 @@
 >
 > 从API version 11开始对\@Prop/\@BuilderParam进行校验。
 >
-> 从API version 12开始对\@State/\@Provide/普通变量(无状态装饰器修饰的变量)进行校验。
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
+>
+> 从API version 12开始对\@State/\@Provide/普通变量(无状态装饰器修饰的变量)进行校验。
 
 
 ## 概述

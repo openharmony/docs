@@ -335,3 +335,39 @@ C: OH_ArkUI_NodeUtils_GetLayoutPositionInScreen和OH_ArkUI_NodeUtils_GetPosition
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.6 setSpecificSystemBarEnabled接口在横屏的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修复该接口当前的实现bug。
+
+当前行为：应用窗口处于横屏状态时，应用使用该接口设置状态栏显隐不生效，状态栏始终处于隐藏状态。
+
+变更之后的行为：应用启动之后，若使用该接口设置过状态栏的显隐，状态栏的显隐状态则以应用的设置（多次设置，以最后一次设置状态为准）为准来生效。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+可能产生的影响：应用预期在横屏时隐藏状态栏，该接口行为变更后应用横屏时状态栏可能因为应用自启动之后使用该接口主动设置过状态栏显示而变为显示状态。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.49开始
+
+**变更的接口/组件**
+
+Window#setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise\<void\>
+
+**适配指导**
+
+针对应用预期在横屏时隐藏状态栏的场景，需确认应用自启动之后是否使用该接口主动设置过状态栏显示，若应用设置过状态栏显示，需再次设置状态栏隐藏，才能实现应用横屏时隐藏状态栏。

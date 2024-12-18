@@ -246,6 +246,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 |
 | -------- | -------- |
+| OH_Drawing_FontCollection \* [OH_Drawing_GetFontCollectionGlobalInstance](#oh_drawing_getfontcollectionglobalinstance) (void) | 获取全局字体集对象OH_Drawing_FontCollection，可感知主题字信息，禁止释放该对象。  | 
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | 用于创建一个位图对象。 |
 | void [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于销毁位图对象并回收该对象占有内存。 |
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreateFromPixels](#oh_drawing_bitmapcreatefrompixels) ([OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*, void \*pixels, uint32_t rowBytes) | 用于创建一个位图对象，并将位图像素存储内存地址设置为开发者申请内存的地址。 |
@@ -3099,6 +3100,22 @@ enum OH_Drawing_WordBreakType
 
 ## 函数说明
 
+### OH_Drawing_GetFontCollectionGlobalInstance()
+
+```
+OH_Drawing_FontCollection* OH_Drawing_GetFontCollectionGlobalInstance (void )
+```
+**描述**
+
+获取全局字体集对象OH_Drawing_FontCollection，可感知主题字信息，禁止释放该对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 14
+
+**返回：**
+
+指向全局字体集对象的指针。
 
 ### OH_Drawing_CreateLineTypography()
 

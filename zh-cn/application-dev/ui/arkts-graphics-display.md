@@ -42,6 +42,8 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。但是，这三个图片缓存接口并不灵活，且后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife)。
 
+  API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
+
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址
   ```
@@ -274,11 +276,31 @@ Image($r('app.media.cloud'))
 
 ![屏幕截图_20230223_141404](figures/屏幕截图_20230223_141404.png)
 
+### 矢量图引用位图
+
+如果Image加载的Svg图源中包含对本地位图的引用，则Svg图源的路径应当设置为以ets为根目录的工程路径，同时，本地位图的路径应设置为与Svg图源同级的相对路径。
+
+Image加载的Svg图源路径设置方法如下所示：
+
+```ts
+Image("images/icon.svg")
+  .width(50)
+  .height(50)
+```
+Svg图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，本地位图路径设置为跟Svg图源同级的相对路径：
+
+```
+<svg width="200" height="200">
+  <image width="200" height="200" xlink:href="sky.png"></image>
+</svg>
+```
+文件工程路径示例如图：
+
+![image path](figures/imagePath.png)
 
 ## 添加属性
 
 给Image组件设置属性可以使图片显示更灵活，达到一些自定义的效果。以下是几个常用属性的使用示例，完整属性信息详见[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)。
-
 
 ### 设置图片缩放类型
 

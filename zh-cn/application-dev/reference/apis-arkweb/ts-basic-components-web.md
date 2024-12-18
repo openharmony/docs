@@ -2135,6 +2135,8 @@ forceDisplayScrollBar(enabled: boolean)
 
 设置滚动条是否常驻。默认不常驻，在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
 
+全量展开模式下不支持滚动条常驻，即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -2872,6 +2874,42 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
   </body>
 </html>
 ```
+
+### enableSmoothDragResize<sup>16+</sup>
+
+enableSmoothDragResize(mode: boolean)
+
+
+设置是否开启Web组件窗口拖拽缩放优化能力，默认关闭。开启后在Web窗口拖拽放大时会优化跟手性，减少白块。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明           |
+| ------- | -------- | ---- | ------------------ |
+| mode | boolean  | 是   | 是否开启Web拖拽放大优化。默认值：false。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableSmoothDragResize(true)
+      }
+    }
+  }
+  ```
 
 ## 事件
 

@@ -367,7 +367,7 @@ Obtains the first language in the preferred language list.
 
 static setAppPreferredLanguage(language: string): void
 
-Sets the preferred language of the application.
+Sets the preferred language of the application. If the preferred language is set to **default**, the application's language will be the same as the system language, and the setting will take effect upon cold starting of the application.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -377,7 +377,7 @@ Sets the preferred language of the application.
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Valid language ID.|
+| language | string | Yes   | Valid language ID or **default**.|
 
 **Error codes**
 
@@ -443,6 +443,49 @@ Checks whether use of local digits is enabled.
   let status: boolean = i18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
   ```
 
+### getSimplifiedLanguage<sup>15+</sup>
+
+static getSimplifiedLanguage(language?: string): string
+
+Obtains the simplified representation of a language. For example, the simplified representation of **zh-Hans-CN** is **zh**, and the simplified representation of **zh-Hant-TW** is **zh-TW**.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description           |
+| -------- | ------ | ---- | ------------- |
+| language | string | No   | Valid language ID. The default value is the system language.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| string | If **language** is not passed, the application checks for dialects supported by the system based on the system language and locale. If such a dialect is found, the simplified representation of the dialect is returned. Otherwise, the simplified representation of the system language is returned.<br>If **language** is passed, the simplified representation of the specified language is returned.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh if the current system language is zh-Hans-CN.
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## i18n.isRTL
 

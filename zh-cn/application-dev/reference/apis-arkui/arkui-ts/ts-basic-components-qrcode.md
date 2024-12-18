@@ -50,7 +50,7 @@ color(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明         |
 | ------ | ------------------------------------------ | ---- | ------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 二维码颜色。默认值：'#ff182431' <br/> |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 二维码颜色。默认值：'#ff000000'，且不跟随系统深浅色模式切换而修改。<br/> |
 
 ### backgroundColor
 
@@ -68,7 +68,7 @@ backgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 二维码背景颜色。<br/>默认值：Color.White <br/>从API version 11开始，默认值改为'#ffffffff'。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 二维码背景颜色。<br/>默认值：Color.White <br/>从API version 11开始，默认值改为'#ffffffff'，且不跟随系统深浅色模式切换而修改。 |
 
 ### contentOpacity<sup>11+</sup>
 

@@ -728,3 +728,21 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 4. 仅采集主线程任意阶段：hdc shell param set persist.ark.properties 0x2505c
 5. 仅采集worker线程任意阶段：hdc shell param set persist.ark.properties 0x4505c
 6. 同时采集主线程及worker线程任意阶段：hdc shell param set persist.ark.properties 0x6505c
+
+## 当前ArkTS是否采用类Node.js的异步I/O机制
+
+**解决方案**
+
+是的。Node.js使用了事件循环机制来处理异步操作，在Node.js中，异步操作通过回调函数或Promise来处理。ArkTS使用了基于协程的异步I/O机制，I/O事件会分发到I/O线程，不阻塞JS线程，可以通过回调函数或Promise/async/await语法来处理异步操作。
+
+## 对于网络请求这I/O密集型任务是否需要使用多线程进行处理
+
+**解决方案**
+
+根据具体业务场景和实现决定。若I/O操作不频繁，对UI主线程其他业务没有影响，则无需使用多线程。若有频繁I/O请求导致UI主线程分发请求的耗时过长，则需要使用多线程用以提高程序的性能和响应速度，具体需要根据Profiler情况决定。
+
+## 对于@ohos.net.http网络框架是否需要使用TaskPool处理
+
+**解决方案**
+
+根据具体业务场景和实现决定。如果业务的网络请求较少或者后续网络数据的处理耗时不长，则无需使用TaskPool去承担额外的线程开启回收及数据传递耗时。如果业务中需要处理大量的网络请求并且对获取的数据进行二次加工耗时长，可以使用TaskPool进行网络请求及数据处理，降低UI主线程负载。
