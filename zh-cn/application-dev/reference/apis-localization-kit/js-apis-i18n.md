@@ -2865,9 +2865,15 @@ format(date: Date): string
   import { intl } from '@kit.LocalizationKit';
 
   let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
-  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  let formatterWithText : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
   let date : Date = new Date(2024, 11, 13);
-  let result : string = formatter.format(date); // result = month(12)
+  let result : string = formatterWithText.format(date); // result = month(12)
+
+  let patternFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("yMd", locale);
+  result = patternFormatter.format(date); // result = 20241213
+
+  let skeletonFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  result = skeletonFormatter.format(date); // result = 2024/12/13
   ```
 
 
