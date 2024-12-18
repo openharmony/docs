@@ -4781,7 +4781,7 @@
 
 **起始版本**：14
 
-### ohos.permission.CAPTURE_SCREEN_AUTHORIZE_EXEMPT
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
 
 允许应用豁免隐私授权弹窗。
 
