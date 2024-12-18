@@ -32,7 +32,7 @@ navigation.d.ts文件的toolbarConfiguration属性。
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.2 uiObserver的NavDestinationState枚举行为变更
 
@@ -66,4 +66,4 @@ API 10
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
