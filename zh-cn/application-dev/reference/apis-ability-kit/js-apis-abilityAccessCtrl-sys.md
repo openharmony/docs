@@ -513,7 +513,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 | type               | string                | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
 | tokenIDList        | Array&lt;number&gt;   | 是   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化。 |
 | permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
-| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 是 | 订阅指定tokenId与指定权限名状态变更事件的回调。|
+| callback | Callback&lt;[PermissionStateChangeInfo](js-apis-abilityAccessCtrl.md#permissionstatechangeinfo16)&gt; | 是 | 订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
@@ -567,9 +567,9 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string         | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
-| tokenIDList        | Array&lt;number&gt;   | 是   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化，必须与on的输入一致。 |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
-| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
+| tokenIDList        | Array&lt;number&gt;   | 是   | 取消订阅的tokenId列表，为空时表示取消订阅所有的应用的权限状态变化，必须与on的输入一致。 |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 取消订阅的权限名列表，为空时表示取消订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+| callback | Callback&lt;[PermissionStateChangeInfo](js-apis-abilityAccessCtrl.md#permissionstatechangeinfo16)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
@@ -601,19 +601,6 @@ try {
 }
 ```
 
-### PermissionStateChangeType<sup>9+</sup>
-
-表示权限授权状态变化操作类型的枚举。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-| 名称                     |    值 | 说明              |
-| ----------------------- | ------ | ----------------- |
-| PERMISSION_REVOKED_OPER | 0      | 表示权限取消操作。 |
-| PERMISSION_GRANTED_OPER | 1      | 表示权限授予操作。 |
-
 ### PermissionRequestToggleStatus<sup>12+</sup>
 
 表示指定权限对应的弹窗开关状态的枚举。
@@ -624,20 +611,6 @@ try {
 | ------------------ | ----- | ----------- |
 | CLOSED  | 0    | 表示关闭状态。 |
 | OPEN | 1     | 表示开启状态。 |
-
-### PermissionStateChangeInfo<sup>9+</sup>
-
-表示某次权限授权状态变化的详情。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-| 名称           | 类型                       | 只读 | 必填 | 说明                |
-| -------------- | ------------------------- | ---- | ---- | ------------------ |
-| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 是   | 权限授权状态变化类型。        |
-| tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions                    | 是   | 是   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 ### PermissionStatus<sup>12+</sup>
 
