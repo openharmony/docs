@@ -8204,7 +8204,7 @@ if(resultSet != undefined) {
 
 getRows(maxCount: number, position?: number): Promise<Array<ValuesBucket>>
 
-从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](#resultset)的其它接口并发调用，否则会导致数据获取异常。
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](#resultset)的其它接口并发调用，否则获取的数据可能非预期。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8254,6 +8254,7 @@ getRows(maxCount: number, position?: number): Promise<Array<ValuesBucket>>
 if (resultSet != undefined) {
   let rows:Array<relationalStore.ValuesBucket>
   let maxCount:number = 50
+  // getRows会自动移动结果集当前行到上次getRows获取数据的末尾行的下一行，无需使用goTo类方法移动结果集当前行的位置
   while ((rows = await (resultSet as relationalStore.ResultSet).getRows(maxCount)).length != 0) {
     console.info(JSON.stringify(rows[0]))
   }
