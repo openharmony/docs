@@ -319,6 +319,7 @@ cpp部分代码
 
 ```cpp
 #include <bits/alltypes.h>
+#include <hilog/log.h>
 #include <mutex>
 #include <unordered_set>
 #include <uv.h>
@@ -463,7 +464,7 @@ private:
     std::mutex numberSetMutex_{};
 };
 
-void FinializeCallback(napi_env env, void *data, void *hint)
+void FinializerCallback(napi_env env, void *data, void *hint)
 {
     return;
 }
@@ -487,7 +488,10 @@ napi_value AttachCallback(napi_env env, void* value, void* hint)
         {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, object, sizeof(desc) / sizeof(desc[0]), desc);
     // 将JS对象object和native对象value生命周期进行绑定
-    napi_wrap(env, object, value, FinializeCallback, nullptr, nullptr);
+    napi_status status = napi_wrap(env, object, value, FinializerCallback, nullptr, nullptr);
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "Node-API attachCallback is failed.");
+    }
     // JS对象携带native信息
     napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, hint);
     return object;
@@ -504,7 +508,10 @@ static napi_value Init(napi_env env, napi_value exports)
         {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     auto object = Object::GetInstance();
-    napi_wrap(env, exports, reinterpret_cast<void*>(object), FinializeCallback, nullptr, nullptr);
+    napi_status status = napi_wrap(env, exports, reinterpret_cast<void*>(object), FinializerCallback, nullptr, nullptr);
+    if (status != napi_ok) {
+        delete object;
+    }
     napi_coerce_to_native_binding_object(env, exports, DetachCallback, AttachCallback, reinterpret_cast<void*>(object),
                                          nullptr);
     return exports;
@@ -688,7 +695,7 @@ static napi_value AboutSerialize(napi_env env, napi_callback_info info)
     napi_valuetype valuetype;
     napi_typeof(env, number, &valuetype);
     if (valuetype != napi_number) {
-        napi_throw_error(env, nullptr, "Node-API Wrong type of argment. Expects a number.");
+        napi_throw_error(env, nullptr, "Node-API Wrong type of argument. Expects a number.");
         return nullptr;
     }
     // 调用napi_delete_serialization_data方法删除序列化数据
