@@ -42,7 +42,7 @@ thumbnailImage:image.PixelMap
 
 使用方式例如：
 
- private async quickThumbnail(err, quickThumbnail: camera.QuickThumbnail): Promise<void> {
+ private async quickThumbnail(err, quickThumbnail: camera.QuickThumbnail): Promise\<void> {
     if (!quickThumbnail?.thumbnailImage) {
          HiLog.i(TAG, 'SHOT2SEE quickThumbnail thumbnailImage is null.');
       return;
