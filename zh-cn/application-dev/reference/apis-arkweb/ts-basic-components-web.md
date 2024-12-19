@@ -401,6 +401,14 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     testObj = new TestObj();
     build() {
       Column() {
+        Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
           .javaScriptProxy({
@@ -1987,7 +1995,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
 > - 默认scrollForward和scrollBackward模式为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
-> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
