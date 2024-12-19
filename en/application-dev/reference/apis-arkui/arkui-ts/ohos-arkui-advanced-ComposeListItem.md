@@ -58,14 +58,14 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| BADGE | 1 | The icon on the left is a badge, in the size of 8 \* 8 dp.|
-| NORMAL_ICON | 2 | The icon on the left is a small icon, in the size of 16 \* 16 dp.|
-| SYSTEM_ICON | 3 | The icon on the left is a system icon, in the size of 24 \* 24 dp.|
-| HEAD_SCULPTURE | 4 | The icon on the left is a profile picture, in the size of 40 \* 40 dp.|
-| APP_ICON | 5 | The icon on the left is an application icon, in the size of 64 \* 64 dp.|
-| PREVIEW | 6 | The icon on the left is a preview image, in the size of 96 \* 96 dp.|
-| LONGITUDINAL | 7 | The icon on the left uses an aspect ratio where width is greater than height, with the longest edge being 96 dp.|
-| VERTICAL | 8 | The icon on the left uses an aspect ratio where height is greater than width, with the longest edge being 96 dp.|
+| BADGE | 1 | The icon on the left is a badge, in the size of 8 \* 8 vp.|
+| NORMAL_ICON | 2 | The icon on the left is a small icon, in the size of 16 \* 16 vp.|
+| SYSTEM_ICON | 3 | The icon on the left is a system icon, in the size of 24 \* 24 vp.|
+| HEAD_SCULPTURE | 4 | The icon on the left is a profile picture, in the size of 40 \* 40 vp.|
+| APP_ICON | 5 | The icon on the left is an application icon, in the size of 64 \* 64 vp.|
+| PREVIEW | 6 | The icon on the left is a preview image, in the size of 96 \* 96 vp.|
+| LONGITUDINAL | 7 | The icon on the left uses an aspect ratio where width is greater than height, with the longest edge being 96 vp.|
+| VERTICAL | 8 | The icon on the left uses an aspect ratio where height is greater than width, with the longest edge being 96 vp.|
 
 ## OperateItem
 
@@ -73,14 +73,14 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| arrow | [OperateIcon](#operateicon) | No| The element on the right is an arrow, in the size of 12 x 24 dp.|
-| icon | [OperateIcon](#operateicon) | No| First icon of the element on the right, in the size of 24 x 24 dp.|
-| subIcon | [OperateIcon](#operateicon) | No| Second icon of the element on the right, in the size of 24 x 24 dp.|
+| arrow | [OperateIcon](#operateicon) | No| The element on the right is an arrow, in the size of 12 x 24 vp.|
+| icon | [OperateIcon](#operateicon) | No| First icon of the element on the right, in the size of 24 x 24 vp.|
+| subIcon | [OperateIcon](#operateicon) | No| Second icon of the element on the right, in the size of 24 x 24 vp.|
 | button | [OperateButton](#operatebutton) | No| The element on the right is a button.|
 | switch | [OperateCheck](#operatecheck) | No| The element on the right is a switch.|
-| checkbox | [OperateCheck](#operatecheck) | No| The element on the right is a check box, in the size of 24 x 24 dp.|
-| radio | [OperateCheck](#operatecheck) | No| The element on the right is a radio button, in the size of 24 x 24 dp.|
-| image | [ResourceStr](ts-types.md#resourcestr) | No| The element on the right is an image, in the size of 48 x 48 dp.|
+| checkbox | [OperateCheck](#operatecheck) | No| The element on the right is a check box, in the size of 24 x 24 vp.|
+| radio | [OperateCheck](#operatecheck) | No| The element on the right is a radio button, in the size of 24 x 24 vp.|
+| image | [ResourceStr](ts-types.md#resourcestr) | No| The element on the right is an image, in the size of 48 x 48 vp.|
 | text | [ResourceStr](ts-types.md#resourcestr) | No| The element on the right is text.|
 
 ## OperateIcon
