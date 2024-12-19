@@ -27,7 +27,7 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 >  **说明：**
 >
->  overlay节点不支持onAppear和onDisappear等和节点生命周期相关的事件。
+>  overlay节点不支持onAppear和onDisappear等和节点挂载/卸载相关的事件。
 
 ## OverlayOptions<sup>12+</sup>
 
