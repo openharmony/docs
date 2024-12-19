@@ -16,6 +16,6 @@
 ## 规格约束
 
 * 通过UIContext调用的openBindSheet、updateBindSheet、closeBindSheet依赖UI的执行上下文，不可以在UI上下文不明确的地方使用，详细描述参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。其他规格约束，具体可参考 [openBindSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#openbindsheet12)  、[updateBindSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatebindsheet12)、 [closeBindSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#closebindsheet12) 说明。
-* 建议在除[ServiceExtension](../../application-dev/application-models/serviceextensionability.md)等无UI界面的场景外，均使用UIContext中的弹窗方法。
+* 建议在<!--Del-->除[ServiceExtension](../../application-dev/application-models/serviceextensionability.md)等<!--DelEnd-->无UI界面的场景外，均使用UIContext中的弹窗方法。
 
 
