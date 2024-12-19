@@ -4217,6 +4217,18 @@
 
 **起始版本**：13
 
+### ohos.permission.ANTI_FRAUD
+
+允许应用接入风控探针以检测端侧风险，检测结果可作为云侧风险决策的输入。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
