@@ -50,7 +50,7 @@
 | general.mpeg                        | general.video                 | .mpg, .mpeg, .m75, .m15,.mpe           | video/mpg, video/mpeg, video/x-mpg, video/x-mpeg                                       | MPEG-1或MPEG-2视频类型                  |
 | general.mpeg-4                      | general.video                 | .mp4, .mpeg4                           | video/mp4, video/mp4v                                                                  | MPEG-4视频类型                         |
 | general.3gpp                        | general.video                 | .3gp, .3gpp                            | video/3gpp                                                                             | 3GPP视频类型                           |
-| general.3gpp2                       | general.video                 | .3g2, .3gp2, .3gpp2                   | video/3gpp2                                                                             | 3GPP2视频类型                          |
+| general.3gpp2                       | general.video                 | .3g2, .3gp2, .3gpp2                    | video/3gpp2                                                                            | 3GPP2视频类型                          |
 | general.vob                         | general.video                 | .vob                                   | video/mpeg, video/x-ms-vob                                                             | DVD视频类媒体的容器类型                      |
 | general.dif-video                   | general.video                 | .dif                                   | video/dv                                                                               | 原始数字视频类型                           |
 | general.dv-video                    | general.video                 | .dv                                    | video/dv                                                                               | DV视频类型                             |
@@ -221,7 +221,7 @@
 | openharmony.styled-string  | general.composite-object |                  -                    |-                                                                    | OpenHarmony系统定义的样式字符串类型          |
 | openharmony.moving-photo   | general.media            |                  -                    |-                                                                    | OpenHarmony系统定义的动图Moving Photo类型 |
 | openharmony.pixel-map      | general.image            |                  -                    |-                                                                    | OpenHarmony系统定义的Pixel map数据类型    |
-| macos.dmg                  | general.disk-image       | .dmg                                  | application/x-apple-diskimage                                       | MacOS系统定义的安装包格式文件类型              |
+| macos.dmg                  | general.disk-image       | .dmg                                  | application/x-apple-diskimage                                      | MacOS系统定义的安装包格式文件类型              |
 | debian.deb                 | general.archive          | .deb,.udeb                            | application/x-debian-package,application/vnd.debian.binary-package  | Debian系统中的软件安装包类型                |
 | com.android.apk            | general.archive          | .apk, .apks, .aab, .xapk, .apkm, .akp | application/vnd.android.package-archive                             | Android安装包文件类型                   |
 | redhat.rpm-archive         | general.archive          | .rpm                                  | application/x-rpm                                                   | RedHat软件安装包类型                    |
