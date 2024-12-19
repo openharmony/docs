@@ -11,6 +11,11 @@ Harmony OS NDK中提供了OpenMP的动态库和静态库文件，支持开发者
 
 OpenMP库的引入有静态链接和动态链接两种方式。
 
+> **注意：**
+> 
+> [OMPT(OpenMP Tools Interface)](https://www.openmp.org/spec-html/5.0/openmpsu15.html#x25-240001.5.1)工具目前仅支持静态链接时使用。
+>
+
 #### 静态链接
 
 （1）打开entry/src/main/cpp/CMakeLists.txt，在target\_link\_libraries依赖中添加静态库libomp.a以及日志依赖libhilog\_ndk.z.so。
