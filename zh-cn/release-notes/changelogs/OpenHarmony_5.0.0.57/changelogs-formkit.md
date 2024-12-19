@@ -18,7 +18,7 @@ PostCardAction的router事件当前未对被拉起的Ability类型进行校验�
 变更前：通过PostCardAction接口的router事件，可以拉起所有类型的Ability。
 
 
-变更后：通过PostCardAction接口的router事件，仅允许UIAbility。
+变更后：通过PostCardAction接口的router事件，仅允许拉起UIAbility。
 
 **起始 API Level**
 
@@ -57,7 +57,7 @@ FormLink的router事件当前未对被拉起的Ability类型进行校验，但�
 变更前：通过FormLink接口的router事件，可以拉起所有类型的Ability。
 
 
-变更后：通过FormLink接口的router事件，仅允许UIAbility。
+变更后：通过FormLink接口的router事件，仅允许拉起UIAbility。
 
 **起始 API Level**
 
