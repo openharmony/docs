@@ -4783,7 +4783,7 @@
 
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
-允许应用调用storage manager服务中进行加解密相关操作的接口。
+允许系统应用和系统服务调用接口完成加解密操作。
 
 **权限级别**：system_core
 
