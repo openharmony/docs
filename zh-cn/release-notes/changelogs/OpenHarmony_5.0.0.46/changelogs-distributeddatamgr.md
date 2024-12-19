@@ -38,7 +38,14 @@
 
 变更后，接口的调用方式没有发生变化。开发者需要关注，在blob类型的列里插入长度为0的Uint8Array后，调用getRow或getValue获取到的值发生了变化。
 ```ts
-//resultSet为查询结果集
+//在ValuesBucket的blob类型插入长度为0的Uint8Array，并查询该数据。
+let resultSet: relationalStore.ResultSet | undefined = undefined;
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates).then((result: relationalStore.ResultSet) => {
+    resultSet = result;
+  });
+}
 if(resultSet != undefined) {
   //blobType是数据类型为blob的列名
   const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("blobType"));
