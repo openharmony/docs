@@ -3082,6 +3082,134 @@ format(value: number): string
   let result : string = formatter.format(10); // result = 10%
   ```
 
+## StyledNumberFormat<sup>16+</sup>
+
+### constructor<sup>16+</sup>
+
+constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
+
+创建需要富文本显示的数字格式化的对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat16) | 是   | 用于格式化数字的对象。  |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions16) | 否 | 指定数字格式化对象的配置项。默认值：默认的文本样式。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let integer_textStyle = new TextStyle({fontColor: Color.Red});
+  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
+  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
+  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+
+  // 通过intl.NumberFormat创建StyledNumberFormat对象
+  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
+  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  
+  // 通过SimpleNumberFormat创建StyledNumberFormat对象
+  let locale = new intl.Locale("zh");
+  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
+  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  ```
+
+### format<sup>16+</sup>
+
+format(value: number): StyledString
+
+对创建的数字格式化对象处理，返回富文本对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| value | Number | 是 | 需要格式化的数字。  |
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | ----------------------|
+| [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | 返回格式化后的富文本对象。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let integer_textStyle = new TextStyle({fontColor: Color.Red});
+  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
+  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
+  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+
+  // 通过intl.NumberFormat创建StyledNumberFormat对象
+  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
+  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  let result_1 = styledNumFmt_1.format(1234.5678);  // result_1.getString() 为 "1,234.568%"。显示result_1时"1,234"是红色，"."是棕色，"568"是蓝色，"%"是绿色。
+  
+  // 通过SimpleNumberFormat创建StyledNumberFormat对象
+  let locale = new intl.Locale("zh");
+  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
+  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  let result_2 = styledNumFmt_2.format(1234.5678);  // result_2.getString() 为 "1,234.5678%"。显示result_2时"1,234"是红色，"."是棕色，"5678"是蓝色，"%"是绿色。
+  ```
+
+## StyledNumberFormatOptions<sup>16+</sup>
+
+创建需要富文本显示的数字格式化的对象时，可选的配置项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型             |  必填   |  说明                                   |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| integer        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定整数部分的文本样式。默认值：默认的文本样式。     |
+| decimal        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定小数点的文本样式。默认值：默认的文本样式。    |
+| fraction       | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定小数部分的文本样式。默认值：默认的文本样式。     |
+| unit           | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定单位部分的文本样式。默认值：默认的文本样式。     |
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 
