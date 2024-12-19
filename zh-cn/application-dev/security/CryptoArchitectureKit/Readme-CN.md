@@ -21,6 +21,7 @@
     - [使用ECC压缩/非压缩点格式转换(ArkTS)](crypto-convert-compressed-or-uncompressed-ECC-point.md)
     - [指定PEM格式字符串数据转换非对称密钥对(ArkTS)](crypto-convert-string-data-to-asym-key-pair.md)
     - [指定PEM格式字符串数据转换非对称密钥对(C/C++)](crypto-convert-string-data-to-asym-key-pair-ndk.md)
+    - [使用RSA私钥进行编码解码](crypto-rsa-encoded-decoded.md)
 - 加解密
   - [加解密介绍](crypto-encryption-decryption-overview.md)
   - 加解密算法规格
