@@ -4780,3 +4780,17 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+允许应用调用storage manager服务中进行加解密相关操作的接口。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
+**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
