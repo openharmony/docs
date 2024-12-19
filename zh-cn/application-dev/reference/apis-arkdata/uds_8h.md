@@ -30,7 +30,7 @@
 | typedef struct [OH_UdsFileUri](_u_d_m_f.md#oh_udsfileuri) [OH_UdsFileUri](_u_d_m_f.md#oh_udsfileuri) | 描述文件Uri类型的统一数据结构。 | 
 | typedef struct [OH_UdsPixelMap](_u_d_m_f.md#oh_udspixelmap) [OH_UdsPixelMap](_u_d_m_f.md#oh_udspixelmap) | 描述像素图片类型的统一数据结构。 | 
 | typedef struct [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) [OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) | 描述ArrayBuffer类型的统一数据结构。 | 
-
+| typedef struct [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) | 描述内容卡片类型的统一数据结构。 | 
 
 ### 函数
 
@@ -88,3 +88,18 @@
 | int [OH_UdsArrayBuffer_Destroy](_u_d_m_f.md#oh_udsarraybuffer_destroy) ([OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) \*buffer) | 销毁ArrayBuffer类型[OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer)的实例对象。 | 
 | int [OH_UdsArrayBuffer_SetData](_u_d_m_f.md#oh_udsarraybuffer_setdata) ([OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) \*buffer, unsigned char \*data, unsigned int len) | 设置ArrayBuffer类型[OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer)对象的数据内容。 | 
 | int [OH_UdsArrayBuffer_GetData](_u_d_m_f.md#oh_udsarraybuffer_getdata) ([OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer) \*buffer, unsigned char \*\*data, unsigned int \*len) | 从ArrayBuffer类型[OH_UdsArrayBuffer](_u_d_m_f.md#oh_udsarraybuffer)实例中获取用户自定义的ArrayBuffer数据内容。 | 
+| [OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \* [OH_UdsContentForm_Create](_u_d_m_f.md#oh_udscontentform_create) () | 创建内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)指针及实例对象 | 
+| void [OH_UdsContentForm_Destroy](_u_d_m_f.md#oh_udscontentform_destroy) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | 销毁内容卡片类型数据[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)指针指向的实例对象。 | 
+| const char \* [OH_UdsContentForm_GetType](_u_d_m_f.md#oh_udscontentform_gettype) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中获取类型ID。 | 
+| int [OH_UdsContentForm_GetThumbData](_u_d_m_f.md#oh_udscontentform_getthumbdata) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, unsigned char \*\*thumbData, unsigned int \*len) | 从内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中获取图片数据。 | 
+| const char \* [OH_UdsContentForm_GetDescription](_u_d_m_f.md#oh_udscontentform_getdescription) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中获取描述信息。 | 
+| const char \* [OH_UdsContentForm_GetTitle](_u_d_m_f.md#oh_udscontentform_gettitle) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中获取标题信息。 | 
+| int [OH_UdsContentForm_GetAppIcon](_u_d_m_f.md#oh_udscontentform_getappicon) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, unsigned char \*\*appIcon, unsigned int \*len) | 从内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中获取应用图标数据。 | 
+| const char \* [OH_UdsContentForm_GetAppName](_u_d_m_f.md#oh_udscontentform_getappname) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中获取应用名称信息。 | 
+| const char \* [OH_UdsContentForm_GetLinkUri](_u_d_m_f.md#oh_udscontentform_getlinkuri) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis) | 从内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中获取超链接信息。 | 
+| int [OH_UdsContentForm_SetThumbData](_u_d_m_f.md#oh_udscontentform_setthumbdata) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const unsigned char \*thumbData, unsigned int len) | 设置内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中的图片数据。 | 
+| int [OH_UdsContentForm_SetDescription](_u_d_m_f.md#oh_udscontentform_setdescription) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*description) | 设置内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中的描述信息。 | 
+| int [OH_UdsContentForm_SetTitle](_u_d_m_f.md#oh_udscontentform_settitle) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*title) | 设置内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中的标题信息。 | 
+| int [OH_UdsContentForm_SetAppIcon](_u_d_m_f.md#oh_udscontentform_setappicon) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const unsigned char \*appIcon, unsigned int len) | 设置内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中的应用图标数据。 | 
+| int [OH_UdsContentForm_SetAppName](_u_d_m_f.md#oh_udscontentform_setappname) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*appName) | 设置内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中的应用名称数据。 | 
+| int [OH_UdsContentForm_SetLinkUri](_u_d_m_f.md#oh_udscontentform_setlinkuri) ([OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform) \*pThis, const char \*linkUri) | 设置内容卡片类型[OH_UdsContentForm](_u_d_m_f.md#oh_udscontentform)中的超链接数据。 | 
