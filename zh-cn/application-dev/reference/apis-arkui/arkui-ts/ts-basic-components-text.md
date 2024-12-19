@@ -1563,12 +1563,15 @@ struct TextExample9 {
 
 ```ts
 // xxx.ets
+import { text } from '@kit.ArkGraphics2D'
+
 @Entry
 @Component
 struct TextExample10 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
+  @State rectsForRangeStr: string = ""
   controller: TextController = new TextController()
   @State textStr: string =
     'Hello World! 您好，世界！'
@@ -1577,7 +1580,7 @@ struct TextExample10 {
     Scroll() {
       Column() {
         Text('Text组件getLayoutManager接口获取段落相对组件的信息')
-          .fontSize(9)
+          .fontSize(15)
           .fontColor(0xCCCCCC)
           .width('90%')
           .padding(10)
@@ -1589,10 +1592,10 @@ struct TextExample10 {
             this.lineCount = "LineCount: " + layoutManager.getLineCount()
           })
 
-        Text('LineCount').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineCount').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Text(this.lineCount)
 
-        Text('GlyphPositionAtCoordinate').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('GlyphPositionAtCoordinate').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
@@ -1604,12 +1607,12 @@ struct TextExample10 {
           .margin({ bottom: 20, top: 10 })
         Text(this.glyphPositionAtCoordinate)
 
-        Text('LineMetrics').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineMetrics').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("首行行信息、文本样式信息、以及字体属性信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
             let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
-            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n"
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
               this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
@@ -1617,6 +1620,21 @@ struct TextExample10 {
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.lineMetrics)
+
+        Text('getRectsForRange').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("获取指定矩形宽度和高度下，文本中任意区间范围内字符或占位符的绘制区域信息")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let range: TextRange = { start: 0, end: 1 }
+            let rectsForRangeInfo: text.TextBox[] =
+              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT)
+            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n"
+            rectsForRangeInfo.forEach((value, key) => {
+              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n"
+            })
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.rectsForRangeStr)
       }
       .margin({ top: 100, left: 8, right: 8 })
     }
