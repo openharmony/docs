@@ -1375,7 +1375,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information.
+Allows an application to read telephony information. 
 
 **Permission level**: system_basic
 
@@ -2651,7 +2651,7 @@ Allows an application to intercept input events.
 
 ### ohos.permission.RECORD_VOICE_CALL
 
-Allows the application to record voice calls.
+Allows an application to record voice calls.
 
 **Permission level**: system_core
 
@@ -3195,7 +3195,7 @@ Allows a system application to use infrared interfaces.
 
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
-Allows an application to enable High Brightness Mode(HBM) for the screen.
+Allows an application to enable the High Brightness Mode (HBM) for the screen.
 
 **Permission level**: system_basic
 
@@ -3965,7 +3965,7 @@ Allows a system application to subscribe to the restore start event of the backu
 
 Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
 
-Currently, this permission is available only for 2-in-1 device applications.
+Currently, this permission is available only to 2-in-1 device applications.
 
 **Permission level**: system_basic
 
@@ -3979,7 +3979,7 @@ Currently, this permission is available only for 2-in-1 device applications.
 
 Allows an application to access and modify files in user directories.
 
-Currently, this permission is available only for 2-in-1 device applications.
+Currently, this permission is available only to 2-in-1 device applications.
 
 **Permission level**: system_basic
 
@@ -4037,7 +4037,7 @@ Allows a system service or system application to check the patch installation re
 
 **Valid since**: 12
 
-**Changelog**: From API version 12 to 13, this permission is available to system services. Starting from API version 14, this permission is available to system applications.
+**Changelog**: This permission is available to system services in API versions 12 to 13. From API version 14, it is available to system applications.
 
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
@@ -4077,7 +4077,7 @@ Allows an application to utilize the recovery key to reset the lock screen passw
 
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
-Allows an application to obtain brief information of the recovery key.
+Allows an application to obtain brief information about the recovery key.
 
 **Permission level**: system_basic
 
@@ -4091,7 +4091,7 @@ Allows an application to obtain brief information of the recovery key.
 
 Allows an application to update the virtual keyboard status or a service to query the virtual keyboard status.
 
-With this permission, the application can update the virtual keyboard status and the service can query the virtual keyboard status. Currently, this permission is available only for applications or services running on 2-in-1 devices.
+With this permission, the application can update the virtual keyboard status and the service can query the virtual keyboard status. Currently, this permission is available only to applications or services running on 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4141,7 +4141,7 @@ Allows an application to access the application lock.
 
 Allows an application to disable its runtime code integrity protection.
 
-For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+For the application developed using the cross-platform framework, this permission allows the application to disable its runtime code integrity protection. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4155,7 +4155,7 @@ For the application developed using the cross-platform framework, this permissio
 
 Allows an application to apply for writable and executable anonymous memory.
 
-For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+For the application developed using the cross-platform framework, this permission allows the application to apply for writable and executable anonymous memory. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -4167,7 +4167,7 @@ For the application developed using the cross-platform framework, this permissio
 
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
-Allows an application to set or remove the sharing range of the data supported by UDMF.
+Allows an application to set or remove the sharing range of the data supported by the UDMF.
 
 **Permission level**: system_basic
 
@@ -4193,13 +4193,13 @@ Allows an application to manage the pasteable range of the pasteboard data.
 
 Allows a system application to access the application installation directory.
 
-**Permission level**：system_core
+**Permission level**: system_core
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：14
+**Valid since**: 14
 
 ## system_grant Permissions (Unavailable via ACL)
 
@@ -4745,7 +4745,7 @@ Allows an application to read the pasteboard.
 
 Allows an application to access the **Desktop** directory and its subdirectories in the user directory.
 
-Currently, this permission is available only for 2-in-1 device applications.
+Currently, this permission is available only to 2-in-1 device applications.
 
 **Permission level**: system_basic
 
@@ -4771,7 +4771,7 @@ Allows an application to save images and videos to the user's directory within u
 
 Allows an application to capture screen information.
 
-With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
 
 **Permission level**: system_basic
 
