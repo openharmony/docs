@@ -914,7 +914,7 @@ napi_status napi_create_ark_runtime(napi_env *env)
 
 **描述：**
 
-创建基础运行时环境。
+创建基础运行时环境，一个进程最多创建64个，并满足与[Worker](../../arkts-utils/worker-introduction.md)创建的子线程总数不超过80个。
 
 **参数：**
 
