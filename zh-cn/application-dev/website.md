@@ -1468,7 +1468,7 @@
       - [使用Drawing实现图形绘制与显示 (C/C++)](graphics/drawing-guidelines.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
-      - [NativeVsync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
+      - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
