@@ -373,9 +373,9 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
 | label | string | 否 | 否 | Button的文本标签。 |
 | pressed | boolean | 否 | 否 | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
-| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12对象说明) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
+| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
 
-## ButtonTriggerClickCallback<sup>12+</sup>对象说明
+## ButtonTriggerClickCallback<sup>12+</sup>
 
 type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 
