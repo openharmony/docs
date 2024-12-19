@@ -1264,3 +1264,20 @@ Error: check encryption failed.
 
 1. 安装新版本镜像。
 2. 删除HAP工程中lib目录内非so文件，重新签名打包。
+
+### 9568417 签名校验失败
+**错误信息**
+
+Error: bundle cannot be installed because the appId is not same with preinstalled bundle.
+
+**错误描述**
+
+签名校验失败。
+
+**可能原因**
+
+安装的应用与已经预置的同包名应用签名不一致。
+
+**处理步骤**
+
+1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。
