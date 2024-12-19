@@ -259,6 +259,27 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 | value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
+### onScrollStop<sup>14+</sup>
+
+onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
+
+文本选择器的选项列滑动停止时触发该事件。
+
+手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
+
+当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+
 ## 示例
 
 ### 示例1（设置选择器列数）
@@ -303,16 +324,25 @@ struct TextPickerExample {
       TextPicker({ range: this.apfruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         }).margin(bott)
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         }).margin(bott)
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
     }
   }
@@ -338,6 +368,9 @@ struct TextPickerExample {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -367,6 +400,9 @@ struct TextPickerExample {
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
         .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
@@ -394,6 +430,9 @@ struct TextPickerExample {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -426,6 +465,9 @@ struct TextPickerExample {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
