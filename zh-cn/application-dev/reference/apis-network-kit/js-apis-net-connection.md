@@ -954,6 +954,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     }
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
@@ -1006,6 +1008,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
