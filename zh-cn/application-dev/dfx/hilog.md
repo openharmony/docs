@@ -68,10 +68,11 @@ hilog命令行使用方式：
 |  |  | year | 显示将年份添加到显示的时间。 | 
 |  |  | zone | 显示将本地时区添加到显示的时间。 | 
 | -b | --baselevel | &lt;loglevel&gt; | 设置可打印日志的最低等级：D(DEBUG)/I(INFO)/W(WARN)/E(ERROR)/F(FATAL)。 | 
+| | --persist||配置日志级别设置命令持久化（重启设置不会丢失）|
 
 ## 常用命令
 
-### 查看帮助命令。
+### 查看帮助命令
 
    ```
    hilog -h
@@ -96,7 +97,7 @@ hilog命令行使用方式：
         Show n lines logs on tail of buffer.
    ```
 
-### 查看日志缓冲区大小。
+### 查看日志缓冲区大小
 
    ```
    hilog -g
@@ -112,7 +113,7 @@ hilog命令行使用方式：
    Log type only_prerelease buffer size is 16.0M
    ```
 
-### 修改日志缓冲区大小。
+### 修改日志缓冲区大小
 
    ```
    hilog -G size
@@ -127,7 +128,7 @@ hilog命令行使用方式：
    Set log type only_prerelease buffer size to 16.0M successfully
    ```
 
-### 进程流控开关。
+### 进程流控开关
 
    ```
    hilog -Q pidon/pidoff
@@ -144,7 +145,7 @@ hilog命令行使用方式：
    Set flow control by process to disabled successfully
    ```
 
-### domain流控开关。
+### domain流控开关
 
    ```
    hilog -Q domainon/domainoff
@@ -160,7 +161,7 @@ hilog命令行使用方式：
    Set flow control by domain to disabled successfully
    ```
 
-### 查看指定级别日志。
+### 查看指定级别日志
 
    ```
    hilog -L D/I/W/E/F
@@ -179,7 +180,7 @@ hilog命令行使用方式：
    08-28 09:01:56.408  8586  8586 E A00500/com.ohos.settingsdata/SettingsData: decoder failure: /data/migrate/settings_global.xml , error code:-1
    ```
 
-### 查看指定TAG日志。
+### 查看指定TAG日志
 
    ```
    hilog -T tag
@@ -199,7 +200,7 @@ hilog命令行使用方式：
    08-28 09:27:59.965   610  4064 I C01800/samgr/SAMGR: AddProc:media_analysis_service. size:75
    ```
 
-### 查看指定进程日志。
+### 查看指定进程日志
 
    ```
    hilog -P pid
@@ -218,7 +219,7 @@ hilog命令行使用方式：
    08-28 10:19:24.002   618 17580 W C01650/hiview/Rdb:  sctime: Wed Aug 28 00:34:30 2024
    ```
 
-### 查看、设置落盘任务。
+### 查看和设置落盘任务
 
    ```
    hilog -w control
@@ -252,17 +253,39 @@ hilog命令行使用方式：
    Persist task [jobid:2] stop successfully
    ```
 
-### 设置可打印日志的最低等级
+### 查看和设置日志级别
 
    ```
+   // 全局日志级别默认为Info，查询全局日志级别
+   param get param get hilog.loggable.global
+
+   // 设置全局日志级别
    hilog -b D/I/W/E/F
+
+   // 设置[DOMAINID]可打印的日志级别
+   hilog -b D/I/W/E/F -D [DOMAINID]
+
+   // 设置[TAG]可打印的日志级别
+   hilog -b D/I/W/E/F -T [TAG]
+
+   // 设置全局日志级别，重启仍生效
+   hilog -b D/I/W/E/F --persist
    ```
 
    **使用样例：**
 
    ```
+   $ param get hilog.loggable.global
+   I
+
    $ hilog -b E
    Set global log level to E successfully
+
+   $ hilog -b D -D 0x2d00
+   Set domain 0x2d00 log level to D successfully
+
+   $ hilog -b E -T testTag
+   Set tag testTag log level to E successfully
    ```
 <!--Del-->
 ### 隐私开关
