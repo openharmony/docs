@@ -22,7 +22,7 @@
 | <!--DelRow-->WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输文件时退后台。 |
 | TASK_KEEPING | 计算任务（仅对2in1开放） | taskKeeping  | 如杀毒软件。 |
 
-关于DATA_TRANSFE（数据传输）说明：
+关于DATA_TRANSFER（数据传输）说明：
 
 - 在数据传输时，若应用使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统，即使申请DATA_TRANSFER的后台任务，应用退后台时还是会被挂起。
 
