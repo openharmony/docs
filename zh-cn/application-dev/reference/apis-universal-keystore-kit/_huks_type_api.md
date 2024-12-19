@@ -459,10 +459,10 @@ enum OH_Huks_KeyStorageType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_HUKS_STORAGE_TEMP | 通过本地直接管理密钥。 | 
-| OH_HUKS_STORAGE_PERSISTENT | 通过HUKS service管理密钥。 | 
-| OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | 密钥只存储在huks中。 | 
-| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | 密钥从huks中导出，不存储。 | 
+| OH_HUKS_STORAGE_TEMP | 通过接口返回给业务。 | 
+| OH_HUKS_STORAGE_PERSISTENT | 密钥托管在HUKS中。 | 
+| OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | 在进行密钥派生或协商时，结果密钥托管在HUKS中。 | 
+| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | 在进行密钥派生或协商时，结果密钥可以返回给业务。 | 
 
 
 ### OH_Huks_RsaPssSaltLenType
