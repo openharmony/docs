@@ -1159,13 +1159,17 @@ Allows an application to obtain the MAC address of the local Wi-Fi device.
 
 Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
-**Permission level**: system_core
+To obtain the MAC address of the peer device when obtaining Wi-Fi scanning results, you need to apply for this permission.
+
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: true
 
 **Valid since**: 8
+
+**Changelog**: The permission level is **system_core** in API versions 8 to 13 and **system_basic** since API versions 14.
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
