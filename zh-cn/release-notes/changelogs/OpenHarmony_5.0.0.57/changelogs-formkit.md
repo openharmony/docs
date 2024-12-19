@@ -37,7 +37,6 @@ PostCardAction
 应用侧使用PostCardAction接口的router事件拉起Ability时，需确保拉起的目标Ability属于UIAbility。若需要拉起其他类型的Ability，建议通过其他类型的事件，例如message事件， 跳转到FormExtensionAbility内处理。
 
 
-# 元能力子系统Changelog
 
 ## cl.formkit.2 FormLink的router事件允许拉起Ability类型范围变更
 
