@@ -446,7 +446,7 @@ struct Index {
 
 ![zh-cn_sheet](figures/zh-cn_sheet5_rtl.gif)
 
-### 示例6
+### 示例6（监测键盘高度变化）
 
 在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动。
 
