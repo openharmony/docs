@@ -1,26 +1,27 @@
-# ArkTS方舟编程语言Changelog
+# 媒体子系统变更说明
 
-## cl.ArkTS.1 对缩略图回调进行修改，返回QuickThumbnail类，其中包含captureId信息
+## cl.multimedia.1 Camera Kit缩略图回调返回值类型变更
 
 **访问级别**
 
-其他
+系统接口
 
 **变更原因**
 
-80分图回调顺序不一定正确，导致缩略图和80分图无法正确对应。为快速缩略图新增captureId，基于captureEnd推算80分图的captureId。 
+用户在连拍后，点击缩略图，所显示的由系统快速上报轻量处理的第一阶段图片与拇指图无法正确对应。
+这是由于第一阶段图片回调顺序不一定正确，导致处理回调时第一阶段图片无法和缩略图正确对应。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前： 快速缩略图得到的回调是image.PixelMap
+变更前：通过on('quickThumbnail')监听快速缩略图输出事件，回调返回image.PixelMap对象。
 
-变更后： 快速缩略图得到的回调是一个类QuickThumbnail
+变更后：通过on('quickThumbnail')监听快速缩略图输出事件，回调返回QuickThumbnail对象。
 
 **起始 API Level**
 
-12
+10
 
 **变更发生版本**
 
@@ -28,33 +29,33 @@
 
 **变更的接口/组件**
 
-不涉及
+@ohos.multimedia.camera下的
+- on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
+- off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 
 **适配指导**
 
 应用在取用框架返回的回调信息时需要按照QuickThumbnail的类来取用快速缩略图相关信息：
 
-quickthumbnail的类包含
-
-captureId:number
-
-thumbnailImage:image.PixelMap
+QuickThumbnail中包括两个字段，分别为：
+- captureId:number，缩略图所对应的captureId。
+- thumbnailImage:image.PixelMap，上报的缩略图。
 
 使用方式例如：
 
  private async quickThumbnail(err, quickThumbnail: camera.QuickThumbnail): Promise\<void> {
     if (!quickThumbnail?.thumbnailImage) {
-         HiLog.i(TAG, 'SHOT2SEE quickThumbnail thumbnailImage is null.');
+        hilog.info(TAG, 'SHOT2SEE quickThumbnail thumbnailImage is null.');
       return;
     }
     if (!quickThumbnail?.captureId) {
-      HiLog.i(TAG, 'SHOT2SEE quickThumbnail captureId is null.');
+      hilog.info(TAG, 'SHOT2SEE quickThumbnail captureId is null.');
       return;
     }
-    HiLog.i(TAG, 'SHOT2SEE quickThumbnail success.');
+    hilog.info(TAG, 'SHOT2SEE quickThumbnail success.');
     if (err) {
       const error = `Camera_quickThumbnail Error: ${err.code}}`;
-      HiLog.e(TAG, error);
+      hilog.error(TAG, error);
       const pic: PictureCameraDuration = PictureCameraDuration.getInstance();
       pic.setSavePictureFailReason(error);
       workerCallback.onSavePictureFailed(pic.getPictureId(), pic.getPictureUri(), CaptureFailedType.THUMBNAIL, error);
@@ -78,7 +79,7 @@ thumbnailImage:image.PixelMap
       }
     } catch (e) {
       const error = `onQuickThumbnail save error: ${JSON.stringify(e)}.`;
-      HiLog.e(TAG, error);
+      hilog.error(TAG, error);
       const pic: PictureCameraDuration = PictureCameraDuration.getInstance();
       const errorReason = pic.getSavePictureFailReason();
       workerCallback.onSavePictureFailed(pic.getPictureId(), pic.getPictureUri(), CaptureFailedType.THUMBNAIL, errorReason);
@@ -90,4 +91,3 @@ thumbnailImage:image.PixelMap
       resPixelMap?.release();
     }
   }
-本变更修复缩略图和80分图无法正确对应的问题。
