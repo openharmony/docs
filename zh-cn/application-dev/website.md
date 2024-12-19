@@ -1067,24 +1067,19 @@
     - 基础功能<!--system-basicfun-->
       - Basic Services Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
-        - 应用事件<!--app-events-->
-          - 进程间通信<!--event-ipc-->
+        - 进程线程通信<!--app-events-->
+          - 使用公共事件进行进程间通信
               - [公共事件简介](basic-services/common-event/common-event-overview.md)
-              - 公共事件订阅<!--common-event-->
-                  <!--Del-->
-                  - [公共事件订阅概述](basic-services/common-event/common-event-subscription-overview.md)
-                  <!--DelEnd-->
-                  - [动态订阅公共事件](basic-services/common-event/common-event-subscription.md)
-                  <!--Del-->
-                  - [静态订阅公共事件（仅对系统应用开放）](basic-services/common-event/common-event-static-subscription.md)
-                  <!--DelEnd-->
-                  - [取消动态订阅公共事件](basic-services/common-event/common-event-unsubscription.md)
-              - [公共事件发布](basic-services/common-event/common-event-publish.md)
+              - [动态订阅公共事件](basic-services/common-event/common-event-subscription.md)
+              <!--Del-->
+              - [静态订阅公共事件（仅对系统应用开放）](basic-services/common-event/common-event-static-subscription.md)
+              <!--DelEnd-->
+              - [取消动态订阅公共事件](basic-services/common-event/common-event-unsubscription.md)
+              - [发布公共事件](basic-services/common-event/common-event-publish.md)
               <!--Del-->
               - [移除粘性公共事件（仅对系统应用开放）](basic-services/common-event/common-event-remove-sticky.md)
               <!--DelEnd-->
-          - 线程间通信<!--event-itc-->
-              - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
+          - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
         - 账号管理<!--account-management-->
           <!--Del-->
           - [账号管理概述](basic-services/account/account-overview.md)
