@@ -177,7 +177,7 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | visible | boolean | 是 | \@Link | 跟手弹出框显示状态。<br/>默认值为false，隐藏弹窗。 |
-| popover | [PopoverOptions](#popoveroptions13) | 是 | \@Prop | 配置跟手弹窗的参数。 |
+| popover | [PopoverOptions](#popoveroptions14) | 是 | \@Prop | 配置跟手弹窗的参数。 |
 | targetBuilder | Callback\<void> | 是 | - | 跟手弹出框基于的目标组件。 |
 
 
