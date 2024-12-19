@@ -8,15 +8,15 @@
 
 **变更原因**
 
-延迟加载（lazy import）特性在测试过程中发现问题，使用lazy import的变量，会导致异步任务的运行时序发生改变，与预期不符。
+延迟加载（lazy import）特性在测试过程中发现问题，使用lazy import的变量，会改变异步任务的运行时序。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前： 使用lazy import的变量，会导致异步任务的运行时序发生改变，与预期不符。
+变更前： 使用lazy import的变量，会改变异步任务的运行时序。
 
-变更后： 使用lazy import的变量，不会导致异步任务运行的时序发生改变。
+变更后： 使用lazy import的变量，不会改变异步任务的运行时序。
 
 **起始 API Level**
 
@@ -60,18 +60,18 @@ export async function taskTest() {
     MyLog.log("taskTest end");
 }
 ```
-该用例预期输出为：
-```
-taskTest start
-asyncFunc start
-taskTest end
-asyncFunc then
-```
-但是由于lazy import影响异步任务运行时序的问题，该用例的实际输出为：
+【提示】修改之前，lazy import会影响异步任务的运行时序，该用例的输出为：
 ```
 taskTest start
 asyncFunc start
 asyncFunc then
 taskTest end
+```
+修复问题之后，该用例的输出为：
+```
+taskTest start
+asyncFunc start
+taskTest end
+asyncFunc then
 ```
 本变更修复该问题，使得lazy import不会影响异步任务运行时序。
