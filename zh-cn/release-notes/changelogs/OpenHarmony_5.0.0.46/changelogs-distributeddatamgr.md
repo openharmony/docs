@@ -20,10 +20,10 @@
 
 **起始 API Level**
 
-| 接口名称  | 起始 API Level |
-|----------|--------------|
-| getRow   | API 11       |
-| getValue | API 12       |
+| 接口名称 | 起始 API Level |
+| -------- | -------------- |
+| getRow   | API 11         |
+| getValue | API 12         |
 
 **变更发生版本**
 
@@ -38,22 +38,44 @@
 
 变更后，接口的调用方式没有发生变化。开发者需要关注，在blob类型的列里插入长度为0的Uint8Array后，调用getRow或getValue获取到的值发生了变化。
 ```ts
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+const STORE_CONFIG: relationalStore.StoreConfig = {
+  name: "RdbTest.db",
+  securityLevel: relationalStore.SecurityLevel.S3
+};
+const CREATE_TABLE_TEST =
+  "CREATE TABLE IF NOT EXISTS EMPLOYEE (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, age INTEGER, salary REAL, blobType BLOB)";
+
+let store: relationalStore.RdbStore | undefined = undefined;
+relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
+  store = rdbStore;
+  store.executeSql(CREATE_TABLE_TEST);
+  if (err) {
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Get RdbStore successfully.');
+})
 //在ValuesBucket的blob类型插入长度为0的Uint8Array，并查询该数据。
 let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-if(store != undefined) {
+if (store != undefined) {
   (store as relationalStore.RdbStore).query(predicates).then((result: relationalStore.ResultSet) => {
     resultSet = result;
   });
 }
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   //blobType是数据类型为blob的列名
   const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("blobType"));
 }
 //变更前 codes为null。
 //变更后 codes为长度为0的Uint8Array。
 
-if(resultSet != undefined) {
+if (resultSet != undefined) {
   const row = (resultSet as relationalStore.ResultSet).getRow();
 }
 //变更前 row.blobType为null。
