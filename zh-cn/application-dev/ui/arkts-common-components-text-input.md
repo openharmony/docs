@@ -167,6 +167,76 @@ struct Index {
 
 ![textinputkeyboardavoid](figures/TextInputKeyboardAvoid.gif)
 
+## 光标避让
+
+[keyBoardAvoidMode](../../application-dev/reference/apis-arkui/arkui-ts/ts-types.md#keyboardavoidmode11)默认的OFFSET和RESIZE在键盘抬起后，不支持二次避让，如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。<br>
+对于滚动容器更推荐使用RESIZE_WITH_CARET，非滚动容器应该使用OFFSET_WITH_CARET。
+
+```ts
+// EntryAbility.ets
+import { KeyboardAvoidMode } from '@kit.ArkUI';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+  windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET_WITH_CARET);
+    if (err.code) {
+      hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+      return;
+    }
+    hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+  });
+}
+```
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State caretPosition: number = 600
+  areaController: TextAreaController = new TextAreaController()
+
+  text = "Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
+  So the best way to destroy happiness is to look at something and focus on even the smallest flaw. It is the smallest flaw that would make us complain. And it is the complaint that leads to us becoming unhappy.\
+  If one chooses to be happy, he will be blessed; if he chooses to be unhappy, he will be cursed. Happiness is just what you think will make you happy.Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
+  So the best way to destroy happiness is to look at something and focus on even the smallest flaw. It is the smallest flaw that would make us complain. And it is the complaint that leads to us becoming unhappy.\
+  If one chooses to be happy, he will be blessed; if he chooses to be unhappy, he will be cursed. Happiness is just what you think will make you happy.Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
+  So the best way to destroy happiness is to look at something and focus on even the smallest flaw. It is the smallest flaw that would make us complain. And it is the complaint that leads to us becoming unhappy.\
+  If one chooses to be happy, he will be blessed; if he chooses to be unhappy, he will be cursed. Happiness is just what you think will make you happy.Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
+  So the best way to destroy happiness is to look at something and focus on even the smallest flaw. It is the smallest flaw that would make us complain. And it is the complaint that leads to us becoming unhappy.\
+  If one chooses to be happy, he will be blessed; if he chooses to be unhappy, he will be cursed. Happiness is just what you think will make you happy.Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
+  ";
+
+  build() {
+    Scroll() {
+      Column() {
+        Row() {
+          Button('CaretPostiion++: ' + this.caretPosition).onClick(() => {
+            this.caretPosition += 1
+          }).fontSize(10)
+          Button('CaretPostiion--: ' + this.caretPosition).onClick(() => {
+            this.caretPosition -= 1
+          }).fontSize(10)
+          Button('SetCaretPostion:').onClick(() => {
+            this.areaController.caretPosition(this.caretPosition)
+          }).fontSize(10)
+        }
+
+        TextArea({ text: this.text, controller: this.areaController })
+          .width('100%')
+          .fontSize('20fp')
+      }
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![textinputkeyboardavoid](figures/caretavoid.gif)
+
 ## 相关实例
 
 针对文本输入开发，有以下相关实例可供参考：
