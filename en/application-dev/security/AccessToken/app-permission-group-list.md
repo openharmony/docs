@@ -10,27 +10,27 @@
 
   - When an application requests only the ohos.permission.APPROXIMATELY_LOCATION permission (belong to the Location permission group), a dialog box containing only the requested permission will be displayed to request user authorization.
   - When an application requests the ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION permissions (belonging to the Location permission group), a dialog box containing only the requested permissions will be displayed to request user authorization.
-  - When an app requests ohos.permission.APPROXIMATELY_LOCATION (belonging to the Location permission group) and ohos.permission.CAMERA (belonging to the Camera permission group), two dialog boxes will be displayed to request the location and camera permissions, respectively.
+  - When an application requests ohos.permission.APPROXIMATELY_LOCATION (belonging to the Location permission group) and ohos.permission.CAMERA (belonging to the Camera permission group), two dialog boxes will be displayed to request the location and camera permissions, respectively.
 
-- The following lists the permission groups supported by the system. For details about the permissions, see [Permissions for All Applications](permissions-for-all.md).
+- The following lists the permission groups supported by the system. For details about the permissions, see [Open user_grant Permissions](permissions-for-all-user.md).
 
 <!--RP1-->
 
 ## Location
 
-- [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all.md#ohospermissionlocation_in_background)
+- [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all-user.md#ohospermissionlocation_in_background)
 
-- [ohos.permission.LOCATION](permissions-for-all.md#ohospermissionlocation)
+- [ohos.permission.LOCATION](permissions-for-all-user.md#ohospermissionlocation)
 
-- [ohos.permission.APPROXIMATELY_LOCATION](permissions-for-all.md#ohospermissionapproximately_location)
+- [ohos.permission.APPROXIMATELY_LOCATION](permissions-for-all-user.md#ohospermissionapproximately_location)
 
 ## Camera
 
-- [ohos.permission.CAMERA](permissions-for-all.md#ohospermissioncamera)
+- [ohos.permission.CAMERA](permissions-for-all-user.md#ohospermissioncamera)
 
 ## Microphone
 
-- [ohos.permission.MICROPHONE](permissions-for-all.md#ohospermissionmicrophone)
+- [ohos.permission.MICROPHONE](permissions-for-all-user.md#ohospermissionmicrophone)
 
 ## Contacts
 
@@ -40,9 +40,9 @@
 
 ## Calendar
 
-- [ohos.permission.READ_CALENDAR](permissions-for-all.md#ohospermissionread_calendar)
+- [ohos.permission.READ_CALENDAR](permissions-for-all-user.md#ohospermissionread_calendar)
 
-- [ohos.permission.WRITE_CALENDAR](permissions-for-all.md#ohospermissionwrite_calendar)
+- [ohos.permission.WRITE_CALENDAR](permissions-for-all-user.md#ohospermissionwrite_calendar)
 
 - [ohos.permission.READ_WHOLE_CALENDAR](permissions-for-system-apps.md#ohospermissionread_whole_calendar)
 
@@ -50,11 +50,11 @@
 
 ## Fitness
 
-- [ohos.permission.ACTIVITY_MOTION](permissions-for-all.md#ohospermissionactivity_motion)
+- [ohos.permission.ACTIVITY_MOTION](permissions-for-all-user.md#ohospermissionactivity_motion)
 
 ## Body Sensors
 
-- [ohos.permission.READ_HEALTH_DATA](permissions-for-all.md#ohospermissionread_health_data)
+- [ohos.permission.READ_HEALTH_DATA](permissions-for-all-user.md#ohospermissionread_health_data)
 
 ## Images and Videos
 
@@ -62,7 +62,7 @@
 
 - [ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)
 
-- [ohos.permission.MEDIA_LOCATION](permissions-for-all.md#ohospermissionmedia_location)
+- [ohos.permission.MEDIA_LOCATION](permissions-for-all-user.md#ohospermissionmedia_location)
 
 - [ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionshort_term_write_imagevideo)
 
@@ -74,7 +74,7 @@
 
 ## Ad Tracking
 
-- [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all.md#ohospermissionapp_tracking_consent)
+- [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all-user.md#ohospermissionapp_tracking_consent)
 
 ## Installed Bundle List
 
@@ -82,11 +82,11 @@
 
 ## Multi-device Collaboration
 
-- [ohos.permission.DISTRIBUTED_DATASYNC](permissions-for-all.md#ohospermissiondistributed_datasync)
+- [ohos.permission.DISTRIBUTED_DATASYNC](permissions-for-all-user.md#ohospermissiondistributed_datasync)
 
 ## Bluetooth
 
-- [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all.md#ohospermissionaccess_bluetooth)
+- [ohos.permission.ACCESS_BLUETOOTH](permissions-for-all-user.md#ohospermissionaccess_bluetooth)
 
 ## Phone
 
@@ -120,15 +120,15 @@
 
 ## Directory
 
-- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all.md#ohospermissionread_write_download_directory)
+- [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all-user.md#ohospermissionread_write_download_directory)
 
 - [ohos.permission.READ_WRITE_DESKTOP_DIRECTORY](permissions-for-system-apps.md#ohospermissionread_write_desktop_directory)
 
-- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all.md#ohospermissionread_write_documents_directory)
+- [ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY](permissions-for-all-user.md#ohospermissionread_write_documents_directory)
 
 ## NearLink
 
-- [ohos.permission.ACCESS_NEARLINK](permissions-for-all.md#ohospermissionaccess_nearlink)
+- [ohos.permission.ACCESS_NEARLINK](permissions-for-all-user.md#ohospermissionaccess_nearlink)
 
 <!--RP1End-->
 
@@ -160,5 +160,3 @@
 - To read documents in **Files**:
 
   Use the file Picker to read documents in **Files**. For details, see [Selecting Documents](../../file-management/select-user-file.md#selecting-documents) and [Saving Documents](../../file-management/save-user-file.md#saving-documents).
-
-<!--no_check-->
