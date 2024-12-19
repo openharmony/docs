@@ -45,8 +45,8 @@ libace_napi.z.so
 |FUNC|napi_fatal_error|引发致命错误以立即终止进程。|10|
 |FUNC|napi_open_handle_scope|创建一个上下文环境使用。|10|
 |FUNC|napi_close_handle_scope|关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。|10|
-|FUNC|napi_open_escapable_handle_scope|创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。|10|
-|FUNC|napi_close_escapable_handle_scope|关闭传入的可逃逸的handel scope。|10|
+|FUNC|napi_open_escapable_handle_scope|创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。|10|
+|FUNC|napi_close_escapable_handle_scope|关闭传入的可逃逸的handle scope。|10|
 |FUNC|napi_escape_handle|提升传入的js object的生命周期到其父作用域。|10|
 |FUNC|napi_create_reference|为`Object`创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。|10|
 |FUNC|napi_delete_reference|删除传入的reference。|10|
