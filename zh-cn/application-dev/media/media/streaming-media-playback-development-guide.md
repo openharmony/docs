@@ -78,7 +78,7 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
     })
     ```
 
-2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于mediaInfo各字段信息，确定目标轨道索引
+2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于[MediaDescription](../../reference/apis-media-kit/js-apis-media.md#mediadescription8)各字段信息，确定目标轨道索引
     ```ts
     // 以获取1080p视频轨道索引为例
     public videoTrackIndex: number;
@@ -87,7 +87,9 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
         for (let i = 0; i < arrList.length; i++) {
           let propertyIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           let propertyType: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
-          if (propertyType == 0 && ) {
+          let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
+          let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
+          if (propertyType == 0 && propertyWidth == 1920 && propertyHeight == 1080) {
             videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引
           }
         }
