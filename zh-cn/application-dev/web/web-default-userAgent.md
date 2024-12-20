@@ -21,9 +21,9 @@ UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、
 | --------------------- | ------------------------------------------------------------ |
 | deviceType            | 当前的设备类型。<br>取值范围：<br>- Phone：手机<br>- Tablet：平板设备<br>-  PC：2in1设备 |
 | OSName                | 基础操作系统名称。<br>默认取值：OpenHarmony                  |
-| OSVersion             | 基础操作系统版本，两位数字，M.S。<br>默认取值：例如5.0       |
+| OSVersion             | 基础操作系统版本，两位数字，M.S。<br>通过系统参数const.product.os.dist.name得到。<br>默认取值：例如5.0       |
 | DistributionOSName    | 发行版操作系统名称。                                         |
-| DistributionOSVersion | 发行版操作系统版本，两位数字，M.S。<br>默认取值：例如5.0     |
+| DistributionOSVersion | 发行版操作系统版本，两位数字，M.S。<br>通过系统参数const.product.os.dist.apiname解析版本号得到，如果const.product.os.dist.apiname为空，通过系统参数const.product.os.dist.version解析版本号得到。<br>默认取值：例如5.0     |
 | ArkWeb                | OpenHarmony版本Web内核名称。<br>默认取值：ArkWeb             |
 | ArkWeb VersionCode    | ArkWeb版本号，格式a.b.c.d。<br>默认取值：例如4.1.6.1         |
 | deviceCompat          | 前向兼容字段。<br>默认取值：Mobile。                         |
