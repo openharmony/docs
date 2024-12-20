@@ -704,8 +704,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 调用OH_VideoDecoder_Destroy，注销解码器
+    int32_t ret = AV_ERR_OK;
     if (videoDec != NULL) {
-        int32_t ret = OH_VideoDecoder_Destroy(videoDec);
+        ret = OH_VideoDecoder_Destroy(videoDec);
         videoDec = NULL;
     }
     if (ret != AV_ERR_OK) {
