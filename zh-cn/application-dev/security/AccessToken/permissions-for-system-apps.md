@@ -3591,7 +3591,7 @@
 
 **ACL使能**：true
 
-**起始版本**：14
+**起始版本**：16
 
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
