@@ -68,7 +68,7 @@ API 10
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.ArkUI.3 FormMenu的实现发生变更
+## cl.ArkUI.3 FormMenu实现功能不支持穿戴设备
 
 **访问级别**
 
@@ -76,15 +76,15 @@ API 10
 
 **变更原因**
 
-FormMenu暂时不对穿戴设备开放。
+FormMenu暂不支持穿戴设备。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：未对设备限制，调用接口正常展示UI菜单。
+变更前：FormMenu未对设备限制，调用接口正常展示UI菜单。
 
-变更后：不对穿戴设备开放，接口可以调用但无UI效果。
+变更后：FormMenu暂不支持穿戴设备，接口可以调用但无UI效果。
 
 
 **起始 API Level**
@@ -97,8 +97,8 @@ API 12
 
 **变更的接口/组件**  
 
-@ohos.arkui.advanced.FormMenu.d.ets
+@ohos.arkui.advanced.FormMenu.d.ets文件的AddFormMenuItem接口
 
 **适配指导**
 
-应用侧使用FormMenu接口时无变化，需要注意module.json5中deviceTypes包含wearable设备时使用FormMenu不会生效。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
