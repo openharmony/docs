@@ -4,6 +4,8 @@ UserAgent（简称UA）是一个特殊的字符串，它包含了设备类型、
 
 ## 默认UserAgent结构
 
+从API version 11起，Web组件基于ArkWeb的内核。
+
 - 默认UserAgent定义
 
   ```ts
