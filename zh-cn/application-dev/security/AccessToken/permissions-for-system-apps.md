@@ -4201,6 +4201,18 @@
 
 **起始版本**：14
 
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4456,18 +4468,6 @@
 **授权方式**：system_grant
 
 **ACL使能**：false
-
-**起始版本**：16
-
-### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
-
-允许应用发起录屏的时候，不弹出隐私授权弹窗。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：16
 

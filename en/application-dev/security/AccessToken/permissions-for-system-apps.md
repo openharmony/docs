@@ -4201,6 +4201,18 @@ Allows a system application to access the application installation directory.
 
 **Valid since**：14
 
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+Allows an application to initiate screen recording without displaying the user authorization dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -4456,18 +4468,6 @@ Allows an application to query and configure user identity authentication polici
 **Authorization mode**: system_grant
 
 **Enable via ACL**: false
-
-**Valid since**: 16
-
-### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
-
-Allows an application to initiate screen recording without displaying the user authorization dialog box.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 16
 
