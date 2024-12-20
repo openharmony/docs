@@ -30,7 +30,6 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | marketName | string | 是 | 否 | 外部产品系列。<br/>示例：<!--RP2-->Mate XX<!--RP2End--> |
 | productSeries | string | 是 | 否 | 产品系列。<br/>示例：<!--RP3-->TAS<!--RP3End--> |
 | productModel | string | 是 | 否 | 认证型号。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br/>示例：<!--RP4-->TAS-AL00<!--RP4End--> |
-| productModelAlias<sup>14+</sup> | string | 是 | 否 | 认证型号别名。<br/>**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。<br/>示例：TAS-AL00 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。<br/>示例：<!--RP5-->TAS-AL00<!--RP5End--> |
 | hardwareModel | string | 是 | 否 | 硬件版本号。<br/>示例：<!--RP6-->TASA00CVN1<!--RP6End--> |
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。<br/>示例：default |
@@ -58,7 +57,6 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：OpenHarmony |
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP11--><!--RP11End--><br/>示例：5.0.0.1  |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：50001 |
-| distributionOSApiName<sup>13+</sup> | String | 是 | 否 | 发行版系统api版本名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：Release |
 | ODID<sup>12+</sup> | String | 是 | 否 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者(developerId相同)的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>根据签名信息里developerId解析出的groupId生成，developerId规则为groupId.developerId，若无groupId则取整个developerId作为groupId。<br/>同一设备上运行的同一个开发者(developerId相同)的应用，ODID相同。<br/>同一个设备上不同开发者(developerId不同)的应用，ODID不同。<br/>不同设备上同一个开发者(developerId相同)的应用，ODID不同。<br/>不同设备上不同开发者(developerId不同)的应用，ODID不同。<br/>**说明**：数据长度为37字节。<br/>示例：1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
 
@@ -90,9 +88,6 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     let productModelInfo: string = deviceInfo.productModel;
     // 输出结果：the value of the productModel is :TAS-AL00
     console.info('the value of the deviceInfo productModel is :' + productModelInfo);
-
-    let productModelAliasInfo: string = deviceInfo.productModelAlias;
-    console.info('the value of the deviceInfo productModelAlias is :' + productModelAliasInfo);
 
     let softwareModelInfo: string = deviceInfo.softwareModel;
     // 输出结果：the value of the softwareModel is :TAS-AL00
@@ -198,8 +193,6 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the distributionOSApiVersion is :500001
     console.info('the value of the deviceInfo distributionOSApiVersion is :' + distributionOSApiVersion);
 
-    let distributionOSApiName: number = deviceInfo.distributionOSApiName
-    console.info('the value of the deviceInfo distributionOSApiName is :' + distributionOSApiName);
 
     let distributionOSReleaseType: string = deviceInfo.distributionOSReleaseType
     // 输出结果：the value of the distributionOSReleaseType is :Release
