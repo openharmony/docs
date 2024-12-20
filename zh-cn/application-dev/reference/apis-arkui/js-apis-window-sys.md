@@ -2882,7 +2882,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### enableDrag<sup>13+</sup>
+### enableDrag<sup>14+</sup>
 
 enableDrag(enable: boolean): Promise&lt;void&gt;
 
