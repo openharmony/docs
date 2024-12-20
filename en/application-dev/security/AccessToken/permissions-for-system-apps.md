@@ -4217,6 +4217,18 @@ Allows a system application to invoke the services provided by the account Servi
 
 **Valid since**：13
 
+### ohos.permission.ANTI_FRAUD
+
+Allows an application to access risk control probes to detect device security risks. The detection result can be used as input for risk control decision-making in the cloud.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
