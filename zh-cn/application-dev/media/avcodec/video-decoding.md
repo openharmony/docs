@@ -632,7 +632,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVCodecBufferAttr info;
     info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
     // info信息写入buffer
-    int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
+    ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
