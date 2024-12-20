@@ -3581,6 +3581,18 @@
 
 **起始版本**：12
 
+### ohos.permission.INPUT_DEVICE_CONTROLLER
+
+允许应用查询设置输入设备相关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
 允许系统应用或系统服务上报设备激活状态。
