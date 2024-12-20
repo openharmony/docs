@@ -53,6 +53,15 @@ useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 | DEFAULT  | 0   | 使用<!--Del-->父级EffectComponent定义的<!--DelEnd-->效果模板进行定义。 |
 | WINDOW_EFFECT  | 1   | 使用窗口定义的效果模板进行定义。 |
 
+效果模板
+
+|  设备类型    | 模糊半径(单位: px)   | 饱和度                 |  亮度  |  颜色  |
+| -------- | ---- | ---------------------- | -------- | -------- |
+| 移动设备  | 0   | 0 | 0 | '#ffffffff'
+| 2in1设备：深色模式  | 80   | 1.5 | 1.0 | '#e52e3033'
+| 2in1设备：浅色模式  | 80   | 1.9 | 1.0 | '#e5ffffff'
+| Tablet设备  | 0   | 0 | 0 | '#ffffffff'
+
 <!--Del-->
 ## 示例
 
