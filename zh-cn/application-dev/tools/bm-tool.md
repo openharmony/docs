@@ -1015,9 +1015,13 @@ Error: bundle manager service is died.
 系统出现未知的异常，导致系统服务重启。
 
 **处理步骤**
+
 1.查询设备/data/log/faultlog/faultlogger/目录下是否存在crash文件。
+
 2.crash文件中是否包含foundation字样的文件。
+
 3.请多次重试安装，如果还是报同样的错误，观察是否会多出包含foundation字样的crash文件生成。
+
 4.若多次重试都无法解决，请导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 
 
