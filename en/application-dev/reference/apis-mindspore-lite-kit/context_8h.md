@@ -29,7 +29,7 @@ Provides context-related APIs for configuring runtime information. These APIs ar
 
 | Name| Description|
 | -------- | -------- |
-| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | Creates a context object.|
+| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | Creates a context object. This API must be used together with [OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy).|
 | [OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) \*context) | Destroys a context object.|
 | [OH_AI_ContextSetThreadNum](_mind_spore.md#oh_ai_contextsetthreadnum) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context, int32_t thread_num) | Sets the number of runtime threads.|
 | [OH_AI_ContextGetThreadNum](_mind_spore.md#oh_ai_contextgetthreadnum) (const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context) | Obtains the number of threads.|

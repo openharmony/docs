@@ -30,3 +30,13 @@ The following uses date and time formatting as an example to illustrate how the 
       console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
     }
    ```
+
+4. Clear the preferred language of the application. If the preferred language is set to **default**, the application's language will be the same as the system language, and the setting will take effect upon application restarting.
+   ```ts
+    try {  
+      i18n.System.setAppPreferredLanguage ("default"); // Clear the preferred language of the application.
+    } catch(error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
+    }
+   ```

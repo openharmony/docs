@@ -144,7 +144,7 @@ If this attribute is set to **'0fr'**, the row width is 0, and grid item in the 
 >  - If **rowsTemplate** is set, the component scrolls horizontally, the main axis runs horizontally, and the cross axis runs vertically.
 >  - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
 >  - The cross axis size of the grid is the cross axis size of the grid content area minus the gaps along the cross axis. It is allocated based on the proportion of each row and column.
->  - The main axis size of the grid is the maximum height of all grid items in the cross axis direction of the current grid.
+>  - The main axis size of the grid is the maximum value of the main axis sizes of all grid items in the cross axis direction of the grid.
 >
 >  3. Neither **rowsTemplate** nor **columnsTemplate** is set
 >
@@ -240,7 +240,7 @@ Sets the scrollbar width. This attribute cannot be set in percentage. After the 
 
 cachedCount(value: number)
 
-Sets the number of grid items to be preloaded (cached). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. A value less than 0 evaluates to the default value. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
+Sets the number of grid items to be cached (preloaded). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled. A value less than 0 evaluates to the default value. <!--Del-->For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<!--DelEnd-->
 
 The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.
 
@@ -254,15 +254,15 @@ In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) an
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Number of grid items to be preloaded (cached).<br>Default value: **1**|
+| value  | number | Yes  | Number of grid items to be cached (preloaded).<br>Default value: **1**|
 
 ### cachedCount<sup>14+</sup>
 
 cachedCount(count: number, show: boolean)
 
-Sets the number of grid items to be cached (preloaded) and specifies whether to display the cached nodes.
+Sets the number of grid items to be cached (preloaded) and specifies whether to display the preloaded nodes.
 
-The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. When this attribute is used in conjunction with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes, the cached nodes can be displayed.
+The number of the grid items to be preloaded before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. This attribute can be combined with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes to display the preloaded nodes.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -272,8 +272,8 @@ The number of the grid items to be cached before and after the currently display
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | Yes  | Number of grid items to be cached.<br>Default value: **1**|
-| show  | boolean | Yes  | Whether to display the cached nodes.<br> Default value: **false**|
+| count  | number | Yes  | Number of grid items to be preloaded.<br>Default value: **1**|
+| show  | boolean | Yes  | Whether to display the preloaded nodes.<br> Default value: **false**|
 
 ### editMode<sup>8+</sup>
 
@@ -1529,7 +1529,7 @@ struct Index {
 
 ```ts
 // xxx.ets
-// This example demonstrates how to implement a Grid component with an edge fading effect and set the length of the fade.
+// This example demonstrates how to implement a Grid component with an edge fading effect and set the length of the fading edge.
 import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component
@@ -1567,4 +1567,3 @@ struct GridExample {
 ```
 
 ![fadingEdge_grid](figures/fadingEdge_grid.gif)
-<!--no_check-->

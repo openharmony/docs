@@ -266,10 +266,10 @@ Hash algorithm.
 ## Function Description
 
 
-### OH_NetStack_VerifyCertification()
+### OH_NetStack_CertVerification()
 
 ```
-uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
+uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
 ```
 
 **Description**
@@ -510,7 +510,6 @@ Constructor used to create a **WebSocketClient** instance.
 Returns the pointer to the WebSocket client if the operation is successful; returns NULL otherwise.
 
 
-
 ### OH_WebSocketClient_Destroy()
 
 ```
@@ -559,8 +558,6 @@ Sends data from the WebSocket client to the server.
 | length | Length of the data sent by the WebSocket client. | 
 
 **Returns**
-
- 
 
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 
