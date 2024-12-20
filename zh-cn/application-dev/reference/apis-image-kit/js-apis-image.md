@@ -2626,6 +2626,91 @@ async function CreateScaledPixelMapSync() {
 }
 ```
 
+### clone<sup>16+</sup>
+
+clone(): Promise</PixelMap>
+
+拷贝一份当前Pixelmap对象，使用Promise形式返回。
+
+**系统能力：**: SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 501 | Resource unavailable. |
+| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
+| 62980103 | Image YUV And ASTC types are not supported. |
+| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
+| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  if (pixelMap != undefined) {
+    pixelMap.clone().then((clonePixelMap: image.PixelMap) => {
+      console.info('Succeeded clone pixelmap.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to clone pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
+}
+```
+
+### cloneSync<sup>16+</sup>
+
+cloneSync(): PixelMap
+
+拷贝一份当前Pixelmap对象, 同步返回结果。
+
+**系统能力：**: SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 501 | Resource unavailable. |
+| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
+| 62980103 | Image YUV And ASTC types are not supported. |
+| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
+| 62980106 | The image data is to large.This status code is thrown when an error occurs during the process of checking size. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async Demo() {
+  if (pixelMap != undefined) {
+    try {
+      let clonedPixelMap = pixelMap.cloneSync();
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`clone pixelmap error. code is ${error.code}, message is ${error.message}`);
+    }
+  }
+}
+```
+
 ### translate<sup>9+</sup>
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
