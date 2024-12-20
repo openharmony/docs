@@ -221,7 +221,7 @@ Applications may use AudioSession APIs to customize a focus strategy for its aud
 
 The AudioSession APIs are used to implement the following functions:
 
-- Once an application activates an audio session and specifies an [audio session strategy] (#audio-session-strategy), all audio streams of the application preferentially use this strategy during focus management.
+- Once an application activates an audio session and specifies an [audio session strategy](#audio-session-strategy), all audio streams of the application preferentially use this strategy during focus management.
 
   Typical scenario: When an application plays a short video, the music playing in the background is interrupted. It is expected that the background music be automatically restored once the audio stream of the application stops.
 
