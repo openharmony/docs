@@ -30,7 +30,7 @@ import { sendablePreferences } from '@kit.ArkData';
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16 * 1024 * 1024个字节。 |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
 
 ## sendablePreferences.getPreferences
 
@@ -771,6 +771,30 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
 })
+```
+
+### flushSync<sup>14+</sup>
+
+flushSync(): void
+
+将缓存的Preferences实例中的数据存储到共享用户首选项的持久化文件中。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**示例：**
+
+```ts
+preferences.flushSync();
 ```
 
 ### clear
