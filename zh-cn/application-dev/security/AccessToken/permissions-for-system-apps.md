@@ -3583,7 +3583,7 @@
 
 ### ohos.permission.INPUT_DEVICE_CONTROLLER
 
-允许应用查询设置输入设备相关状态。
+允许应用查询和设置输入设备相关状态。
 
 **权限级别**：system_basic
 
