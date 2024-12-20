@@ -1480,6 +1480,7 @@
       - [申请位置权限开发指导](device/location/location-permission-guidelines.md)
       - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
       - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
+      - [基于FenceExtensionAbility的地理围栏开发指导](application-models/fenceExtensionAbility.md)
       - [地理围栏开发指导](device/location/geofence-guidelines.md)
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
@@ -4090,6 +4091,10 @@
         - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)
     - Location Kit（位置服务）<!--location-api-->
       - ArkTS API<!--location-arkts-->
+        - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
+        <!--Del-->
+        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
+        <!--DelEnd-->
         - [@ohos.geoLocationManager (位置服务)](reference/apis-location-kit/js-apis-geoLocationManager.md)
         <!--Del-->
         - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
