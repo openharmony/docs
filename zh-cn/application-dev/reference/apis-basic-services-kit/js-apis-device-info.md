@@ -30,7 +30,6 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | marketName | string | 是 | 否 | 外部产品系列。<br/>示例：<!--RP2-->Mate XX<!--RP2End--> |
 | productSeries | string | 是 | 否 | 产品系列。<br/>示例：<!--RP3-->TAS<!--RP3End--> |
 | productModel | string | 是 | 否 | 认证型号。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br/>示例：<!--RP4-->TAS-AL00<!--RP4End--> |
-| productModelAlias<sup>14+</sup> | string | 是 | 否 | 认证型号别名。<br/>**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。<br/>示例：TAS-AL00 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。<br/>示例：<!--RP5-->TAS-AL00<!--RP5End--> |
 | hardwareModel | string | 是 | 否 | 硬件版本号。<br/>示例：<!--RP6-->TASA00CVN1<!--RP6End--> |
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。<br/>示例：default |
@@ -90,9 +89,6 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     let productModelInfo: string = deviceInfo.productModel;
     // 输出结果：the value of the productModel is :TAS-AL00
     console.info('the value of the deviceInfo productModel is :' + productModelInfo);
-
-    let productModelAliasInfo: string = deviceInfo.productModelAlias;
-    console.info('the value of the deviceInfo productModelAlias is :' + productModelAliasInfo);
 
     let softwareModelInfo: string = deviceInfo.softwareModel;
     // 输出结果：the value of the softwareModel is :TAS-AL00
