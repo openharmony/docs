@@ -90,9 +90,6 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the productModel is :TAS-AL00
     console.info('the value of the deviceInfo productModel is :' + productModelInfo);
 
-    let productModelAliasInfo: string = deviceInfo.productModelAlias;
-    console.info('the value of the deviceInfo productModelAlias is :' + productModelAliasInfo);
-
     let softwareModelInfo: string = deviceInfo.softwareModel;
     // 输出结果：the value of the softwareModel is :TAS-AL00
     console.info('the value of the deviceInfo softwareModel is :' + softwareModelInfo);
