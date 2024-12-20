@@ -583,7 +583,7 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，size小于等于0时返回napi_invalid_arg。
 
 - OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
 
@@ -597,9 +597,9 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，length小于等于0时返回napi_invalid_arg。
 
-- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+- OpenHarmony中，length大于2097152时返回napi_invalid_arg并打印错误日志。
 
 - OpenHarmony中，data为nullptr时返回napi_invalid_arg。
 
@@ -611,9 +611,9 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，length小于等于0时返回napi_invalid_arg。
 
-- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+- OpenHarmony中，length大于2097152时返回napi_invalid_arg并打印错误日志。
 
 - 标准库中，因未知原因导致创建失败时将返回napi_generic_failure，OpenHarmony中返回napi_pending_exception。
 
