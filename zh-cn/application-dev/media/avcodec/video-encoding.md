@@ -322,14 +322,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     <!--RP7-->
     ```c++
-    // 5.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
+    // 4.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
     static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
     {
         // 输入帧的数据parameter和对应的index送入inQueue队列
         inQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, parameter));
     }
 
-    // 5.2 注册随帧参数回调
+    // 4.2 注册随帧参数回调
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
     OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, NULL); // NULL:用户特定数据userData为空
     ```
@@ -604,8 +604,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         nativeWindow = NULL;
     }
     // 调用OH_VideoEncoder_Destroy，注销编码器
+    int32_t ret = AV_ERR_OK;
     if (videoEnc != NULL) {
-        int32_t ret = OH_VideoEncoder_Destroy(videoEnc);
+        ret = OH_VideoEncoder_Destroy(videoEnc);
         videoEnc = NULL;
     }
     if (ret != AV_ERR_OK) {
