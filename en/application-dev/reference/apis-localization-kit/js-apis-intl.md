@@ -397,7 +397,7 @@ Defines the options for a **DateTimeOptions** object. Since API version 9, the *
 
 >  **NOTE**
 >
->  - For details about the display effects of **dateStyle**, **timeStyle**, **weekday**, and **year**, see Table 1 in [Date and Time Formatting] (../../internationalization/i18n-time-date.md).
+>  - For details about the display effects of **dateStyle**, **timeStyle**, **weekday**, and **year**, see Table 1 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).
 >
 >  - For details about the parameter values in different scenarios, see [Date and Time Formatting](../../internationalization/i18n-time-date.md).
 
