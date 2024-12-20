@@ -58,17 +58,17 @@
 
 为了保证在弱网环境下的播放体验，AVPlayer会默认选择最低的视频分辨率开始播放，随后依据网络状况自动调整。开发者可根据实际需求，自定义DASH视频的起播策略，包括设定视频的宽度、高度以及色彩格式等参数。
 
-以调节视频起播分辨率为例，下述示例代码描述了设置视频宽度1280px、高度720px起播。此时，AVPlayer会选择MPD资源中一路分辨率为1280x720的视频资源进行播放。
+以调节视频起播分辨率为例，下述示例代码描述了设置视频宽度1920px、高度1080px起播。此时，AVPlayer会选择MPD资源中一路分辨率为1920x1080的视频资源进行播放。
 
 ```ts
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
-let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1280, preferredHeight: 720};
+let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1920, preferredHeight: 1080};
 avPlayer.setMediaSource(mediaSource, playbackStrategy);
 ```
 
 ### DASH切换音视频轨道
 
-DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格式等参数各不相同的音频、视频和字幕资源。默认情况下，AVPlayer会依据网络状况自动切换不同码率的视频流。开发者也可根据实际需求，自主选择指定的音视频流进行播放，此时自适应码率切换策略会失效。
+DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格式等参数各不相同的音频、视频和字幕资源。默认情况下，AVPlayer会依据网络状况自动切换不同码率的视频轨道。开发者可根据实际需求，自主选择指定的音视频轨道进行播放，此时自适应码率切换策略会失效。
 
 1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/js-apis-media.md)。
 
@@ -78,7 +78,8 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
     })
     ```
 
-2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于[MediaDescription](../../reference/apis-media-kit/js-apis-media.md#mediadescription8)各字段信息，确定目标轨道索引
+2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于[MediaDescription](../../reference/apis-media-kit/js-apis-media.md#mediadescription8)各字段信息，确定目标轨道索引。
+
     ```ts
     // 以获取1080p视频轨道索引为例
     public videoTrackIndex: number;
@@ -89,7 +90,7 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
           let propertyType: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
           let propertyWidth: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_WIDTH];
           let propertyHeight: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_HEIGHT];
-          if (propertyType == 0 && propertyWidth == 1920 && propertyHeight == 1080) {
+          if (propertyType == media.MediaType.MEDIA_TYPE_VID && propertyWidth == 1920 && propertyHeight == 1080) {
             videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引
           }
         }
@@ -260,3 +261,6 @@ export class AVPlayerDemo {
   }
 }
 ```
+
+
+
