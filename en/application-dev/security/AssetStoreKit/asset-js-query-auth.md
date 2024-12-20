@@ -39,7 +39,7 @@ The following table describes the attributes of **AssetMap** used for querying a
   | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-  | REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | Type: bool| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
+  | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
 
 - **query()** parameters
 
@@ -66,7 +66,7 @@ The following table describes the attributes of **AssetMap** used for querying a
   | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-  | REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | Type: bool| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
+  | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
 
 - **postQuery()** parameters
 
@@ -95,7 +95,7 @@ function stringToArray(str: string): Uint8Array {
 
 function arrayToString(arr: Uint8Array): string {
   let textDecoder = util.TextDecoder.create("utf-8", { ignoreBOM: true });
-  let str = textDecoder.decodeWithStream(arr, { stream: false })
+  let str = textDecoder.decodeToString(arr, { stream: false })
   return str;
 }
 

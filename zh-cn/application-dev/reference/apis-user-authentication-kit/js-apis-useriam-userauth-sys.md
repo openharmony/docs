@@ -13,6 +13,16 @@
 import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
+## AuthParam<sup>10+</sup>
+
+用户认证相关参数。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称           | 类型                               | 必填 | 说明                                                         |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| userId<sup>16+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
+
 ## WindowModeType<sup>10+</sup>
 
 用户认证界面的显示类型。

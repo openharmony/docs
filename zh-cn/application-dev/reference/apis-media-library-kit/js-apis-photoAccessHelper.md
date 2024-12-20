@@ -1083,9 +1083,9 @@ async function example() {
 }
 ```
 
-### grantPhotoAssetsReadPermission<sup>14+</sup>
+### requestPhotoUrisReadPermission<sup>14+</sup>
 
-grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
+requestPhotoUrisReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 <!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
 
@@ -1121,7 +1121,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
-  console.info('grantPhotoAssetsReadPermissionSDemo.');
+  console.info('requestPhotoUrisReadPermissionDemo.');
 
   try {
     let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
@@ -1129,10 +1129,10 @@ async function example() {
     let srcFileUris: Array<string> = [
       'file://fileUriDemo1' // 实际场景请使用真实的uri
     ];
-    let desFileUris: Array<string> = await phAccessHelper.grantPhotoAssetsReadPermission(srcFileUris);
-    console.info('grantPhotoAssetsReadPermissionsuccess, data is ' + desFileUris);
+    let desFileUris: Array<string> = await phAccessHelper.requestPhotoUrisReadPermission(srcFileUris);
+    console.info('requestPhotoUrisReadPermission success, data is ' + desFileUris);
   } catch (err) {
-    console.error('grantPhotoAssetsReadPermissionfailed, errCode is ' + err.code + ', errMsg is ' + err.message);
+    console.error('requestPhotoUrisReadPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
   }
 }
 ```
@@ -1785,7 +1785,7 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | 是    | 克隆后资产的标题。 title参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
+| title| string | 是    | 克隆后资产的标题（资产文件名为标题+扩展名）。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ] |
 
 **返回值：**
 

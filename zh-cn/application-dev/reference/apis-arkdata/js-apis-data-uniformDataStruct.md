@@ -144,3 +144,37 @@ let appItem : uniformDataStruct.OpenHarmonyAppItem = {
 }
 console.info('appItem.uniformDataType: ' + appItem.uniformDataType);
 ```
+
+## ContentForm<sup>14+</sup>
+
+内容卡片类型数据。
+
+**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称         | 类型   | 只读 | 可选 | 说明                                                                                                                             |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'general.content-form'| 是   | 否  | 统一数据类型标识为内容卡片类型数据，固定为“general.content-form”。 
+| title      | string | 否   | 否  | 内容卡片的标题。|
+| thumbData  | Uint8Array | 否   | 是  | 内容卡片对应的图片数据。|
+| description| string | 否   | 是  | 内容卡片中的描述信息。|
+| appIcon    | Uint8Array | 否   | 是  | 内容卡片中的应用图标数据。|
+| appName    | string | 否   | 是  | 内容卡片中应用的应用名。|
+| linkUri    | string | 否   | 是  | 内容卡片对应的跳转超链接。|
+
+
+**示例：**
+
+```ts
+let thumbDataU8Array = new Uint8Array([1, 2, 3, 4, 5]);
+let appIconU8Array = new Uint8Array([6, 7, 8, 9, 10]);
+let contentForm : uniformDataStruct.ContentForm = {
+    uniformDataType : 'general.content-form',
+    title : 'MyTitle',
+    thumbData : thumbDataU8Array,
+    description : 'MyDescription',
+    appName : 'MyAppName',
+    linkUri : 'MyLinkUri',
+    appIcon : appIconU8Array
+}
+console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
+```

@@ -469,8 +469,45 @@ format(number: number): string
 **示例：** 
   ```ts
   // 使用 ["en-GB", "zh"] locale列表创建NumberFormat对象，因为en-GB为合法LocaleID，因此使用en-GB创建NumberFormat对象
-  let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
-  let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
+  let numfmt : intl.NumberFormat = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let formattedNumber : string = numfmt.format(1223); // formattedNumber = 1.223E3
+  let options : intl.NumberOptions = {
+    roundingPriority: "lessPrecision",
+    maximumFractionDigits: 3,
+    maximumSignificantDigits: 3
+  }
+  let numberFmt : intl.NumberFormat = new intl.NumberFormat("en", options);
+  let result : string = numberFmt.format(1.23456); // result = 1.23
+  ```
+
+### formatRange<sup>16+</sup>
+
+formatRange(startRange: number, endRange: number): string
+
+数字范围格式化。
+
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名    | 类型     | 必填   | 说明   |
+| ------ | ------ | ---- | ---- |
+| startRange | number | 是    | 开始数字。 |
+| endRange | number | 是    | 结束数字。 |
+
+**返回值：** 
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| string | 格式化后的数字范围字符串。 |
+
+
+**示例：** 
+  ```ts
+  let numfmt : intl.NumberFormat = new intl.NumberFormat("en-US", {style:'unit', unit:"meter"});
+  let formattedRange : string = numfmt.formatRange(0, 3); // formattedRange: 0–3 m
   ```
 
 
@@ -514,7 +551,7 @@ resolvedOptions(): NumberOptions
 | currency                 | string  | 否    | 货币单位，&nbsp;取值符合[ISO-4217标准](https://www.iso.org/iso-4217-currency-codes.html)，如："EUR"，"CNY"，"USD"等。<br>从API version 12开始支持三位数字代码，如："978"，"156"，"840"等。    |
 | currencySign             | string  | 否    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。<br>默认值为standard。 |
 | currencyDisplay          | string  | 否    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。<br>默认值为symbol。 |
-| unit                     | string  | 否    | 单位名称，如："meter"，"inch"，“hectare”等。        |
+| unit                     | string  | 否    | 单位名称，如："meter"，"inch"，“hectare”等。<br>从API version 16开始新增支持的组合单位有： "beat-per-minute", "body-weight-per-second", "breath-per-minute", "foot-per-hour", "jump-rope-per-minute", "meter-per-hour", "milliliter-per-minute-per-kilogram", "rotation-per-minute", "step-per-minute", "stroke-per-minute"。       |
 | unitDisplay              | string  | 否    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值为short。 |
 | unitUsage<sup>8+</sup>   | string  | 否    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte",&nbsp;"size-shortfile-byte"。<br>默认值为default。 |
 | signDisplay              | string  | 否    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。<br>默认值为auto。 |
@@ -529,6 +566,9 @@ resolvedOptions(): NumberOptions
 | maximumFractionDigits    | number  | 否    | 表示要使用的最大分数位数，取值范围：1~21。<br>maximumFractionDigits属性默认值为3。                  |
 | minimumSignificantDigits | number  | 否    | 表示要使用的最低有效位数，取值范围：1~21。<br>minimumSignificantDigits属性默认值为1。                  |
 | maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。<br>maximumSignificantDigits属性默认值为21。                  |
+| roundingPriority<sup>16+</sup>   | string  | 否    | 最大分数位数和最大有效位数同时设置时的舍入优先级，取值包括："auto",&nbsp;"morePrecision"&nbsp;取最大分数位数,&nbsp;"lessPrecision"&nbsp;取最大有效位数。<br>roundingPriority默认值为auto。                  |
+| roundingIncrement<sup>16+</sup>  | number  | 否    | 表示舍入增量，取值范围：1，2，5，10，20，25，50，100，200，250，500，1000，2000，2500，5000。<br>roundingIncrement属性默认值为1。                  |
+| roundingMode<sup>16+</sup>       | string  | 否    | 表示舍入模式，取值包括："ceil",&nbsp;"floor",&nbsp;"expand",&nbsp;"trunc",&nbsp;"halfCeil",&nbsp;"halfFloor",&nbsp;"halfExpand",&nbsp;"halfTrunc",&nbsp;"halfEven"。<br>roundingMode属性默认值为halfExpand。                  |
 
 >  **说明：**
 >

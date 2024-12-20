@@ -40,7 +40,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [EffectErrorCode](#effecterrorcode) { EFFECT_SUCCESS = 0, EFFECT_BAD_PARAMETER = 401, EFFECT_UNSUPPORTED_OPERATION = 7600201, EFFECT_UNKNOWN_ERROR = 7600901 } | 定义滤镜效果的状态码。 | 
-
+| [EffectTileMode](#effecttilemode) { CLAMP = 0, REPEAT, MIRROR, DECAL } | 定义着色器效果平铺模式的枚举。 | 
 
 ### 函数
 
@@ -49,6 +49,7 @@
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_CreateEffect](#oh_filter_createeffect) (OH_PixelmapNative \*pixelmap, [OH_Filter](_o_h___filter.md) \*\*filter) | 创建一个OH_Filter对象。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_Release](#oh_filter_release) ([OH_Filter](_o_h___filter.md) \*filter) | 释放OH_Filter对象。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_Blur](#oh_filter_blur) ([OH_Filter](_o_h___filter.md) \*filter, float radius) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_BlurWithTileMode](#oh_filter_blurwithtilemode) ([OH_Filter](_o_h___filter.md) \*filter, float radius, [EffectTileMode](#effecttilemode) tileMode) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_Brighten](#oh_filter_brighten) ([OH_Filter](_o_h___filter.md) \*filter, float brightness) | 创建一个提亮效果并且添加到滤镜中。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_GrayScale](#oh_filter_grayscale) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个灰度效果并且添加到滤镜中。 | 
 | [EffectErrorCode](#effecterrorcode) [OH_Filter_Invert](#oh_filter_invert) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个反色效果并且添加到滤镜中。 | 
@@ -112,6 +113,25 @@ enum EffectErrorCode
 | EFFECT_UNKNOWN_ERROR | 未知错误 | 
 
 
+### EffectTileMode
+
+```
+enum EffectTileMode
+```
+
+**描述**
+
+定义着色器效果平铺模式的枚举。
+
+**起始版本：** 14
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| CLAMP | 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。 | 
+| REPEAT | 在水平和垂直方向上重复着色器效果。 | 
+| MIRROR | 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。 | 
+| DECAL | 仅在其原始边界内渲染着色器效果。 | 
+
 ## 函数说明
 
 
@@ -138,6 +158,30 @@ EffectErrorCode OH_Filter_Blur (OH_Filter* filter, float radius )
 
 返回结果参见状态码[EffectErrorCode](#effecterrorcode).
 
+
+### OH_Filter_BlurWithTileMode()
+
+```
+EffectErrorCode OH_Filter_BlurWithTileMode (OH_Filter* filter, float radius, EffectTileMode tileMode )
+```
+
+**描述**
+
+创建一个毛玻璃滤镜效果，然后添加到滤镜里面。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| filter | 滤镜指针。 | 
+| radius | 毛玻璃效果的模糊半径，单位为像素。 | 
+| tileMode | 着色器效果平铺模式，支持可选的具体模式可见[EffectTileMode](#effecttilemode)枚举。 | 
+
+**返回：**
+
+返回结果参见状态码[EffectErrorCode](#effecterrorcode).
 
 ### OH_Filter_Brighten()
 

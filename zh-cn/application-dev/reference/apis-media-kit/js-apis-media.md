@@ -481,6 +481,17 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 | AVERR_SERVICE_DIED                    | 5400105 | 表示服务进程死亡。                   |
 | AVERR_UNSUPPORT_FORMAT                | 5400106 | 表示不支持当前媒体资源的格式。       |
 | AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | 表示音频焦点被抢占                   |
+| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | 表示解析或链接服务端地址错误。        |
+| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | 表示网络连接超时。        |
+| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | 表示网络异常导致的数据或链路异常。        |
+| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | 表示网络被禁用。        |
+| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | 表示无访问权限。        |
+| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | 表示客户端请求参数错误或超出处理能力。        |
+| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | 表示无可用网络资源。        |
+| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | 表示服务端校验客户端证书失败。        |
+| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | 表示SSL连接失败。        |
+| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。        |
+| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。        |
 
 ## MediaType<sup>8+</sup>
 
@@ -709,7 +720,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+在API version 9-13，针对网络、服务器等数据流异常，接口上报5400103；从API version 14开始，对应错误细化为错误码5411001-5411011。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -722,6 +735,17 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
+| 5411001  | Can not find host.    |
+| 5411002  | Connection time out.  |
+| 5411003  | NetWork abnormal.     |
+| 5411004  | NetWork unavailable.  |
+| 5411005  | No permission.        |
+| 5411006  | Network access denied.  |
+| 5411007  | Cannot find available network resources. |
+| 5411008  | SSL client cert needed.    |
+| 5411009  | SSL connection failed.     |
+| 5411010  | SSL server cert needed.    |
+| 5411011  | Unsupportted request.      |
 
 **示例：**
 

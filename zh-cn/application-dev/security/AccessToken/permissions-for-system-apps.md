@@ -1159,13 +1159,17 @@
 
 允许应用获取对端Wi-Fi设备的MAC地址。
 
-**权限级别**：system_core
+在获取Wi-Fi扫描结果时，如果需要获取对端设备的MAC地址，则需要申请该权限。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：8
+
+**变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic。
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -3887,7 +3891,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE
 
@@ -3899,7 +3903,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.CAMERA_BACKGROUND
 
@@ -4141,7 +4145,7 @@
 
 允许应用禁用本应用的代码运行时完整性保护。
 
-针对使用跨平台框架开发的应用，用于应用申请可写可执行的匿名内存。当前仅平板、2in1设备应用可申请此权限。
+针对使用跨平台框架开发的应用，用于应用豁免代码运行时的完整性保护。当前仅平板、2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 
@@ -4200,6 +4204,30 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.ACCESS_ACCOUNT_SERVICE_EXTENSION_ABILITY
+
+允许系统应用调用账号ServiceExtensionAbility所提供的服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ANTI_FRAUD
+
+允许应用接入风控探针以检测端侧风险，检测结果可作为云侧风险决策的输入。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
 
 ### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
 
