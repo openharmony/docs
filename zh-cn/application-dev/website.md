@@ -1597,6 +1597,7 @@
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
+          - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -1619,7 +1620,7 @@
             - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
             - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
             - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
-            - [使用Node-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
+            - [使用JSVM-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
             - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
             - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
             - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
