@@ -2451,7 +2451,7 @@ Obtains the callback used when a registered component is destroyed.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | The name of a Web component. | 
+| webTag | The name of a **Web** component. | 
 
 **Returns**
 
@@ -2475,7 +2475,7 @@ Obtains the callback used when a registered object is valid.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | The name of a Web component. | 
+| webTag | The name of a **Web** component. | 
 
 **Returns**
 
@@ -2499,7 +2499,7 @@ Lists the registered objects and function names.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | The name of a Web component. | 
+| webTag | The name of a **Web** component. | 
 | objName | The name of the injected object. | 
 | methodList | The name of the injected function list. | 
 | callback | The injected callback function. | 
@@ -2524,7 +2524,7 @@ Runs a piece of JavaScript code in the displaying page.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | The name of a Web component. | 
+| webTag | The name of a **Web** component. | 
 | jsCode | A piece of JavaScript code script. | 
 | callback | The callback used to notify the result after code is executed.| 
 
@@ -2546,7 +2546,7 @@ Sets a callback used when a component is destroyed.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | The name of a Web component. | 
+| webTag | The name of a **Web** component. | 
 | callback | The callback used when a component is destroyed.| 
 
 
@@ -2567,7 +2567,7 @@ Sets a callback used when an object is valid.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | The name of a Web component. | 
+| webTag | The name of a **Web** component. | 
 | callback | The callback used when an object is valid.| 
 
 
@@ -2588,5 +2588,6 @@ Deletes a registered object and its callback.
 
 | Name| Description| 
 | -------- | -------- |
-| webTag | The name of a Web component. | 
+| webTag | The name of a **Web** component. | 
 | objName | The name of the injected object.| 
+ <!--no_check--> 
