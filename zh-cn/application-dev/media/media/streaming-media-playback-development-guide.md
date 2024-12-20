@@ -78,20 +78,17 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
     })
     ```
 
-2. AVPlayer处于在prepared/playing/paused状态时，数据加载回调后，调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。
-
+2. 调用[getTrackDescription](../../reference/apis-media-kit/js-apis-media.md#gettrackdescription9)获取所有音视频轨道列表。开发者可根据实际需求，基于mediaInfo各字段信息，确定目标轨道索引
     ```ts
-    public audioTrackList: number[] = [];
-    public videoTrackList: number[] = [];
+    // 以获取1080p视频轨道索引为例
+    public videoTrackIndex: number;
     avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
           let propertyIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           let propertyType: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
-          if (propertyType == 0) {
-            audioTrackList.push(parseInt(propertyIndex.toString())); // 获取音频轨道列表
-          } else if (propertyType == 1) {
-            videoTrackList.push(parseInt(propertyIndex.toString())); // 获取视频轨道列表
+          if (propertyType == 0 && ) {
+            videoTrackIndex = parseInt(propertyIndex.toString()); // 获取1080p视频轨道索引
           }
         }
       } else {
@@ -103,8 +100,10 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
 3. 在音视频播放过程中可调用[selectTrack](../../reference/apis-media-kit/js-apis-media.md#selecttrack12)选择对应的音视频轨道，或者调用的[deselectTrack](../../reference/apis-media-kit/js-apis-media.md#deselecttrack12)取消选择的音视频轨道。
 
     ```ts
-    avPlayer.selectTrack(1);
-    avPlayer.deselectTrack(1);
+    // 切换至目标视频轨道
+    avPlayer.selectTrack(videoTrackIndex);
+    // 取消选择目标视频轨道
+    // avPlayer.deselectTrack(videoTrackIndex);
     ```
 
 ## 异常场景说明
