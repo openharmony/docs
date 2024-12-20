@@ -4461,7 +4461,7 @@
 
 ### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
 
-允许应用发起录屏的时候，不弹出隐私授权弹窗
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
 
 **权限级别**：system_core
 
