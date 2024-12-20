@@ -4459,6 +4459,18 @@ Allows an application to query and configure user identity authentication polici
 
 **Valid since**: 16
 
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+Allows an application to initiate screen recording without displaying the user authorization dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
