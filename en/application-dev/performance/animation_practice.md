@@ -97,7 +97,7 @@ struct MyComponent {
 You can change the layout of a component in either of the following methods:
 
 - Modify [layout properties](../ui/arkts-attribute-animation-overview.md), which will cause a UI re-layout. Common layout properties include **width**, **height**, and **layoutWeight**.
-- Modify [transform properties](../reference/apis-arkui/ts-universal-attributes-transformation.md), which will cause the component to translate, rotate, or scale.
+- Modify [transform properties](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md), which will cause the component to translate, rotate, or scale.
 
 As modifying transform properties does not involve the time-consuming UI re-layout, it is more time efficient than modifying layout properties, and is therefore recommended. The following examples use the preceding methods to scale up a component by 10 times.
 
