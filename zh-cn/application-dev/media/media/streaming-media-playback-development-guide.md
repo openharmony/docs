@@ -100,7 +100,7 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
     });
     ```                   
 
-3. 在音视频播放过程中可调用[selectTrack](../../reference/apis-media-kit/js-apis-media.md#selecttrack12)选择对应的音视频轨道，或者调用的[deselectTrack](../../reference/apis-media-kit/js-apis-media.md#deselecttrack12)取消选择的音视频轨道。
+3. 在音视频播放过程中调用[selectTrack](../../reference/apis-media-kit/js-apis-media.md#selecttrack12)选择对应的音视频轨道，或者调用[deselectTrack](../../reference/apis-media-kit/js-apis-media.md#deselecttrack12)取消选择的音视频轨道。
 
     ```ts
     // 切换至目标视频轨道
