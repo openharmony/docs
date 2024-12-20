@@ -26,7 +26,7 @@ For scenarios where there is no restriction on the finger movement distance duri
 | Name| Type                             | Mandatory| Description                |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent) | Yes  | [ClickEvent](#clickevent) object.|
-| distanceThreshold  | number | Yes  | Movement threshold for click events. If the value specified is less than 0, it will be converted to the default value.<br>Default value: 2^31-1<br>**NOTE**<br>If the finger's movement exceeds the set threshold, the gesture recognition will fail. When the default value is used, if the finger moves beyond the touch target of the component, the gesture recognition will fail.|
+| distanceThreshold  | number | Yes  | Movement threshold for click events. If the value specified is less than or equal to 0, it will be converted to the default value.<br>Default value: 2^31-1<br>**NOTE**<br>If the finger movement exceeds the preset movement threshold, the gesture recognition fails. If the default threshold is used during initialization and the finger moves beyond the component's touch target, the gesture recognition fails.|
 
 ## onClick
 
@@ -69,7 +69,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | displayY<sup>10+</sup> | number                            | Y coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | screenX<sup>(deprecated)</sup> | number                    | X coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.|
 | screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.|
-| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API can only be used by certain components; currently supported components include: **RichEditor**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API can only be used by certain components; currently supported components are **RichEditor** and **Hyperlink**. Currently, asynchronous calls and Modifier APIs are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## EventTarget<sup>8+</sup>
 
@@ -84,6 +84,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | area | [Area](ts-types.md#area8) | Area information of the target element.|
 
 ## Example
+
+This example shows how to configure a click event for a button. By doing so, you can obtain relevant parameters of the click event when the button is pressed.
 
 ```ts
 // xxx.ets
@@ -103,7 +105,7 @@ struct ClickExample {
               + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
               + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
             }
-          })
+          }, 20)
         Button('Click').width(200).height(50)
           .onClick((event?: ClickEvent) => {
             if(event){
@@ -112,7 +114,7 @@ struct ClickExample {
               + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
               + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
             }
-          })
+          }, 20)
       }.margin(20)
 
       Text(this.text).margin(15)

@@ -367,7 +367,7 @@ Obtains the first language in the preferred language list.
 
 static setAppPreferredLanguage(language: string): void
 
-Sets the preferred language of the application.
+Sets the preferred language of the application. If the preferred language is set to **default**, the application's language will be the same as the system language, and the setting will take effect upon cold starting of the application.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -377,7 +377,7 @@ Sets the preferred language of the application.
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Valid language ID.|
+| language | string | Yes   | Valid language ID or **default**.|
 
 **Error codes**
 

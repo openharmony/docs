@@ -20,6 +20,8 @@ Add an asset. This API uses a promise to return the result.
 
 To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STORE_PERSISTENT_DATA permission.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name    | Type    | Mandatory| Description                                                        |
@@ -91,6 +93,8 @@ Add an asset. This API returns the result synchronously.
 
 To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STORE_PERSISTENT_DATA permission.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name    | Type    | Mandatory| Description                                                        |
@@ -149,6 +153,8 @@ try {
 remove(query: AssetMap): Promise\<void>
 
 Removes one or more assets. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -212,6 +218,8 @@ removeSync(query: AssetMap): void
 
 Removes one or more assets. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name| Type    | Mandatory| Description                                                  |
@@ -263,6 +271,8 @@ try {
 update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 Updates an asset. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -331,6 +341,8 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 
 Updates an asset. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name            | Type    | Mandatory| Description                                                        |
@@ -387,6 +399,8 @@ try {
 preQuery(query: AssetMap): Promise\<Uint8Array>
 
 Performs preprocessing for the asset query. This API is used when user authentication is required for the access to the asset. After the user authentication is successful, call [asset.query](#assetquery) and [asset.postQuery](#assetpostquery). This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -453,6 +467,8 @@ preQuerySync(query: AssetMap): Uint8Array
 
 Performs preprocessing for the asset query. This API is used when user authentication is required for the access to the asset. After the user authentication is successful, call [asset.querySync](#assetquerysync12) and [asset.postQuerySync](#assetpostquerysync12). This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name| Type    | Mandatory| Description                                                  |
@@ -513,6 +529,8 @@ try {
 query(query: AssetMap): Promise\<Array\<AssetMap>>
 
 Queries one or more assets. If user authentication is required for the access to the asset, call [asset.preQuery](#assetprequery) before this API and call [asset.postQuery](#assetpostquery) after this API. For details about the development procedure, see [Querying an Asset with User Authentication](../../security/AssetStoreKit/asset-js-query-auth.md). This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -583,6 +601,8 @@ querySync(query: AssetMap): Array\<AssetMap>
 
 Queries one or more assets. If user authentication is required for the access to the asset, call [asset.preQuerySync](#assetprequerysync12) before this API and call [asset.postQuerySync](#assetpostquerysync12) after this API. For details about the development procedure, see [Querying an Asset with User Authentication](../../security/AssetStoreKit/asset-js-query-auth.md). This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name  | Type                           | Mandatory| Description                                                        |
@@ -651,6 +671,8 @@ postQuery(handle: AssetMap): Promise\<void>
 
 Performs postprocessing for the asset query. This API is used when user authentication is required for the access to the asset. This API must be used with [asset.preQuery](#assetprequery) together. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name| Type    | Mandatory| Description                                                        |
@@ -704,6 +726,8 @@ postQuerySync(handle: AssetMap): void
 
 Performs postprocessing for the asset query. This API is used when user authentication is required for the access to the asset. This API must be used with [asset.preQuerySync](#assetprequerysync12) together. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name| Type    | Mandatory| Description                                                        |
@@ -745,6 +769,8 @@ try {
 
 Enumerates the asset attribute types.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name  | Value        | Description                                    |
@@ -765,36 +791,36 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 
 | Name| Value                                 | Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| SECRET                    | TagType.BYTES &#124; 0x01  | Asset plaintext.                                                |
-| ALIAS                     | TagType.BYTES &#124; 0x02 | Asset alias, which uniquely identifies an asset.                        |
-| ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | Access control based on the lock screen status.                                      |
-| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124; 0x04                   | Whether the asset is accessible only when a lock screen password is set.                |
-| AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | Type of user authentication required for accessing the asset.                              |
-| AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | Validity period of the user authentication.                                            |
-| AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | Challenge for the user authentication.                                        |
-| AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | Authorization token obtained after the user authentication is successful.                                          |
-| SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | Type of sync supported by the asset.                                      |
+| SECRET                    | TagType.BYTES &#124; 0x01  | Asset plaintext.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                                |
+| ALIAS                     | TagType.BYTES &#124; 0x02 | Asset alias, which uniquely identifies an asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                        |
+| ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | Access control based on the lock screen status.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                      |
+| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124 0x04                   | Whether the asset is accessible only when a lock screen password is set.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                |
+| AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | Type of user authentication required for accessing the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                              |
+| AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | Validity period of the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                            |
+| AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | Challenge for the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
+| AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | Authorization token obtained after the user authentication is successful.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                          |
+| SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | Asset sync type.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                      |
 | IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | Whether to retain the asset when the application is uninstalled.|
-| DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | Additional asset data customized by the service with integrity protection.            |
-| DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | Additional asset data customized by the service with integrity protection.|
-| DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | Additional asset data customized by the service with integrity protection.|
-| DATA_LABEL_CRITICAL_4 | TagType.BYTES &#124; 0x23  | Additional asset data customized by the service with integrity protection.|
-| DATA_LABEL_NORMAL_1       | TagType.BYTES &#124; 0x30 | Additional data of the asset customized by the service without integrity protection.            |
-| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
-| RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | Type of the asset query result to return.                                        |
-| RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | Maximum number of asset records to return.                                        |
-| RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                                |
-| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | How the query results are sorted. Currently, the results can be sorted only by **DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
-| CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | Policy for resolving the conflict (for example, a duplicate alias).                            |
-| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.|
+| DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | Additional asset data customized by the service with integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.            |
+| DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | Additional asset data customized by the service with integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | Additional asset data customized by the service with integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_CRITICAL_4 | TagType.BYTES &#124; 0x23  | Additional asset data customized by the service with integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_NORMAL_1       | TagType.BYTES &#124; 0x30 | Additional asset data customized by the service without integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.            |
+| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | Additional asset data customized by the service without integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | Additional asset data customized by the service without integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | Additional asset data customized by the service without integrity protection.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | Type of the asset query result to return.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
+| RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | Maximum number of asset records to return.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
+| RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                |
+| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | Sorting order of the query results. Currently, the results can be sorted only by **ASSET_TAG_DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | Policy for resolving the conflict (for example, a duplicate alias).<br>**Atomic service API**: This API can be used in atomic services since API version 14.                            |
+| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
-| REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the additional asset information customized by the service.|
+| REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the additional asset information customized by the service.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Value
 
@@ -802,19 +828,25 @@ type Value = boolean | number | Uint8Array;
 
 Represents the value of each attribute in [AssetMap](#assetmap).
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 ## AssetMap
 
 type AssetMap = Map\<Tag, Value>
 
-Represents a set of asset attributes in KV pairs.
+Represents a set of asset attributes in the form of KV pairs.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
 ## Accessibility
 
 Enumerates the types of access control based on the lock screen status.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -827,6 +859,8 @@ Enumerates the types of access control based on the lock screen status.
 ## AuthType
 
 Enumerates the types of user authentication supported by an asset.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -843,6 +877,8 @@ Enumerates the sync types supported by an asset.
 >
 > This field is an embedded parameter. Currently, asset sync is not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name                         | Value    | Description                                            |
@@ -856,6 +892,8 @@ Enumerates the sync types supported by an asset.
 
 Enumerates the type of information returned by an asset query operation.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.Security.Asset
 
 | Name      | Value  | Description                                                        |
@@ -866,6 +904,8 @@ Enumerates the type of information returned by an asset query operation.
 ## ConflictResolution
 
 Enumerates the policies for resolving conflicts (for example, a duplicate alias) when an asset is added.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
 
@@ -895,21 +935,21 @@ Enumerates the error codes.
 | -------------------------- | ----- | ---- |
 | PERMISSION_DENIED | 201     |The caller does not have the permission.|
 | NOT_SYSTEM_APPLICATION<sup>12+</sup> | 202     |The caller is not a system application.|
-| INVALID_ARGUMENT | 401    |Incorrect parameters are detected.|
-| SERVICE_UNAVAILABLE | 24000001    |The asset store service is unavailable.|
-| NOT_FOUND | 24000002    |Failed to find the asset.|
-| DUPLICATED | 24000003    |The specified asset already exists.|
-| ACCESS_DENIED | 24000004    |The access to the asset is denied.|
-| STATUS_MISMATCH | 24000005    |The screen lock status does not match.|
-| OUT_OF_MEMORY | 24000006    |The system memory is insufficient.|
-| DATA_CORRUPTED | 24000007    |The asset is corrupted.|
-| DATABASE_ERROR | 24000008   |The database operation failed.|
-| CRYPTO_ERROR | 24000009   |The crypto operation failed.|
-| IPC_ERROR | 24000010   |IPC failed.|
-| BMS_ERROR | 24000011   |The Bundle Manager service is abnormal.|
-| ACCOUNT_ERROR | 24000012   |The account service is abnormal.|
-| ACCESS_TOKEN_ERROR | 24000013   |The Access Token service is abnormal.|
-| FILE_OPERATION_ERROR | 24000014   |The file operation failed.|
-| GET_SYSTEM_TIME_ERROR | 24000015   |Failed to obtain the system time.|
-| LIMIT_EXCEEDED | 24000016   |The number of cached records exceeds the upper limit.|
-| UNSUPPORTED | 24000017   |The feature is not supported.|
+| INVALID_ARGUMENT | 401    |Incorrect parameters are detected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| SERVICE_UNAVAILABLE | 24000001    |The asset store service is unavailable.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| NOT_FOUND | 24000002    |Failed to find the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DUPLICATED | 24000003    |The specified asset already exists.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| ACCESS_DENIED | 24000004    |The access to the asset is denied.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| STATUS_MISMATCH | 24000005    |The screen lock status does not match.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| OUT_OF_MEMORY | 24000006    |The system memory is insufficient.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATA_CORRUPTED | 24000007    |The asset is corrupted.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| DATABASE_ERROR | 24000008   |The database operation failed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| CRYPTO_ERROR | 24000009   |The crypto operation failed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| IPC_ERROR | 24000010   |IPC failed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| BMS_ERROR | 24000011   |The Bundle Manager service is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| ACCOUNT_ERROR | 24000012   |The account service is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| ACCESS_TOKEN_ERROR | 24000013   |The Access Token service is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| FILE_OPERATION_ERROR | 24000014   |The file operation failed.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| GET_SYSTEM_TIME_ERROR | 24000015   |Failed to obtain the system time.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| LIMIT_EXCEEDED | 24000016   |The number of cached records exceeds the upper limit.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| UNSUPPORTED | 24000017   |The feature is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|

@@ -1,4 +1,4 @@
-# @ohos.usb (USB Manager) (No Longer Maintained) (System API)
+# @ohos.usb (USB Manager) (System API)
 
 The **usb** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control.
 
@@ -257,12 +257,12 @@ Enumerates USB device function types.
 | ACM          | 1    | ACM function. |
 | ECM          | 2    | ECM function. |
 | HDC          | 4    | HDC function. |
-| MTP          | 8    | Not supported currently.|
-| PTP          | 16   | Not supported currently.|
-| RNDIS        | 32   | Not supported currently.|
-| MIDI         | 64   | Not supported currently.|
-| AUDIO_SOURCE | 128  | Not supported currently.|
-| NCM          | 256  | Not supported currently.|
+| MTP          | 8    | Media transmission.|
+| PTP          | 16   | Image transmission.|
+| RNDIS        | 32   | Network sharing.|
+| MIDI         | 64   | MIDI function.|
+| AUDIO_SOURCE | 128  | Audio function.|
+| NCM          | 256  | NCM transmission. |
 
 ## PortModeType<sup>9+</sup>
 

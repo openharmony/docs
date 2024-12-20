@@ -350,6 +350,7 @@ Objects are not directly shared, and therefore all containers are thread-safe.
 ## What is the task scheduling mechanism in TaskPool and Worker? Do they provide the same event loop mechanism as the JS single thread?  (API version 10)
 
 **TaskPool** and **Worker** use the event loop to receive messages exchanged between threads.
+
 **Worker** does not support the setting of the message priority, but **TaskPool** does.
 
 ## What is the multithreading model of the system? (API version 10)
@@ -364,7 +365,7 @@ Yes. Context can be directly transferred as a parameter.
 
 **References**
 
-[Shared Objects](../arkts-utils/serialization-support-types.md)
+1. [Sendable Object Overview](../arkts-utils/arkts-sendable.md)
 
 ## How do I implement secure access to the same shared memory in multithreaded concurrency scenarios? (API version 10)
 
@@ -608,79 +609,6 @@ To address the problem that a large number of threads are required, you are advi
 
 [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md)
 
-##  What should I do if an error message related to modular loading is displayed when running an ArkTS application?
-
-The following errors related to modular loading may be displayed:
-
-1. "Cannot find dynamic-import module 'xxxx'" 
-
-   This error indicates that the module to load is not compiled into the application package.
-
-   Possible cause: An expression is dynamically loaded as an input parameter, but the module path is incorrect.
-
-   ``` typescript
-     import(module).then(m=>{m.foo();}).catch(e=>{console.log(e)})
-   ```
-
-   Locating method: Print the path information of the module, and check whether the path is correct.
-
-2. "Cannot find module 'xxxx', which is application Entry Point"
-
-   This error indicates that the entry file is not found during application startup.
-
-   Possible cause: The entry file is not found during application startup.
-
-   Locating method:
-
-   (1) Open the application project-level build file **module.json5** in the **entry/src/main** directory.
-
-
-   The following is an example of some parameters in **module.json5**.
-
-   ```
-   {
-     "module": {
-       "name": "entry",
-       "type": "entry",
-       ...
-       "abilities": [
-         {
-           "name": "EntryAbility", // Module name.
-           "srcEntry": "./ets/entryability/EntryAbility.ts",  // Relative path of the src directory to the project root directory.
-           "description": "$string:EntryAbility_desc",
-           "icon": "$media:icon",
-           "label": "$string:EntryAbility_label",
-           "startWindowIcon": "$media:icon",
-           "startWindowBackground": "$color:start_window_background",
-           "exported": true,
-           "skills": [
-             {
-               "entities": [
-                 "entity.system.home"
-               ],
-               "actions": [
-                 "action.system.home"
-               ]
-             }
-           ]
-         }
-       ]
-     }
-   }
-   ```
-
-   (2) Check the value of **srcEntry** under **"abilities** in **module.json5**. This parameter specifies the path of the entry file.
-
-3. "No export named 'xxxx' which exported by 'xxxx'"
-
-   This error indicates that no specific object is found in the module when the .so file in the HAP or HAR of the application is being loaded.
-
-   Possible cause: The dependency between modules is pre-parsed in the static compilation phase of the module. If the imported variable name in the .ets file is incorrect, an error message is displayed in both DevEco Studio and application build phase. Note that the dependency of C++ modules is checked at runtime.
-
-   Locating method:
-
-   Check whether the .so file in the application contains the exported variable that causes the error, and compare the exported variable with the imported variable in the .so file. If they are inconsistent, modify the variable.
-
 ## Can long-time listening interfaces, such as **emitter.on**, be used in a TaskPool thread?
 
 Not recommended.
@@ -697,15 +625,15 @@ You are advised to use a [continuous task](../reference/apis-arkts/js-apis-taskp
 
 ## Should I call onEnqueued, onStartExecution, onExecutionFailed, and onExecutionSucceeded in a certain sequence to listen for a task in the task pool? (API version 12)
 
- The four APIs are independent and can be called in any sequence.
+The four APIs are independent and can be called in any sequence.
 
 ## How do I use a sendable class in HAR?
 
- Use the TS HAR.
+Use the TS HAR.
 
 **References**
 
-[Compiling and Generating TS Files](../quick-start/har-package.md#compiling-and-generating-ts-files)
+[Building TS Files](../quick-start/har-package.md#building-ts-files)
 
 ## When a UI component in the TS HAR is used, an error message is displayed during the build, indicating that the UI component does not meet UI component syntax. What should I do?
 
@@ -741,4 +669,14 @@ To use a UI component in the HAR, use the source code HAR or JS HAR.
 - To collect data of the worker thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x4505c**
 - To collect data of the main thread and worker thread in any phase, run the following command: **hdc shell param set persist.ark.properties 0x6505c**
 
- <!--no_check--> 
+## Does ArkTS use an asynchronous I/O model similar to Node.js?
+
+Yes. Node.js uses the event loop system to process asynchronous operations, which are processed using callback functions or promises. Similarly, ArkTS uses a coroutine-based asynchronous I/O mechanism, in which I/O events are distributed to I/O threads, without blocking JS threads. Asynchronous operations can be processed using callback functions or Promise/async/await paradigm.
+
+## Do I/O intensive tasks like network requests need to be processed by multiple threads?
+
+The decision depends on the specific service scenario and implementation details. If the I/O operations are not frequent and do not affect other services of the UI main thread, multithreading is unnecessary. However, if there are many I/O requests and it takes a long time for the UI main thread to distribute these requests, employing multithreading can enhance the application's performance and response speed. The final decision depends on DevEco Studio Profiler.
+
+## Does the @ohos.net.http network framework need to use TaskPool for handling tasks?
+
+The decision depends on the specific service scenario and implementation details. If the number of network requests is small or the subsequent network data processing is not particularly time-consuming, then employing TaskPool to manage thread creation, recycling, and data transfer overhead is unnecessary. However, if there are a large number of network requests and it takes a long time to process the data obtained, leveraging TaskPool can help manage these tasks more efficiently and reduce the workload on the UI main thread.
